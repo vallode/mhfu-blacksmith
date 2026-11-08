@@ -8,7 +8,15 @@ interface Props {
   src: string;
   /** Accessible description, e.g. the monster's name. */
   label: string;
+  /**
+   * Show the model twice, fanned out from the grip and mirrored, as the game
+   * shows a pair of dual blades (each blade's file holds only one).
+   */
+  pair?: boolean;
 }
+
+/** Angle between the two blades of a pair. */
+const PAIR_ANGLE = Math.PI / 4;
 
 type Status = "loading" | "ready" | "error";
 
@@ -16,7 +24,7 @@ type Status = "loading" | "ready" | "error";
  * Interactive 3D view of a .glb model: drag to rotate, scroll/pinch to zoom.
  * three.js is imported on demand so it only loads on pages that show a model.
  */
-export default function ModelViewer({ src, label }: Props) {
+export default function ModelViewer({ src, label, pair = false }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("loading");
 
@@ -107,10 +115,21 @@ export default function ModelViewer({ src, label }: Props) {
         const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(src);
         if (disposed) return;
         model = gltf.scene;
-        scene.add(model);
+        if (pair) {
+          // Weapon models hold the grip at the origin with the blade along +Z,
+          // flat in the XZ plane: turn each copy half the angle about Y, and
+          // mirror the second across X so it's the left-hand blade.
+          const second = model.clone();
+          model.rotation.y = PAIR_ANGLE / 2;
+          second.rotation.y = -PAIR_ANGLE / 2;
+          second.scale.x = -1;
+          scene.add(model, second);
+        } else {
+          scene.add(model);
+        }
 
         // Frame the model for a turntable, viewed from slightly above (see fit).
-        const box = new THREE.Box3().setFromObject(model);
+        const box = new THREE.Box3().setFromObject(scene);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
         const radius = size.length() / 2;
@@ -198,7 +217,7 @@ export default function ModelViewer({ src, label }: Props) {
       disposed = true;
       cleanup();
     };
-  }, [src]);
+  }, [src, pair]);
 
   return (
     <div className="relative h-full min-h-48 w-full">
