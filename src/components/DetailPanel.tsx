@@ -132,9 +132,21 @@ export function MaterialList({
 }
 
 /** One page of the requirements section, shown as a tab in `RequirementTabs`. */
-export function RequirementsPage({ children }: { children: React.ReactNode }) {
+export function RequirementsPage({
+  children,
+  stacked,
+}: {
+  children: React.ReactNode;
+  /** Lay the lists out as one column instead of wrapping side by side. */
+  stacked?: boolean;
+}) {
   return (
-    <div className="flex flex-1 flex-row flex-wrap gap-x-[3.2rem] gap-y-[1.6rem] mobile:gap-x-[1.6rem]">
+    <div
+      className={cn(
+        "flex flex-1 gap-x-[3.2rem] gap-y-[1.6rem] mobile:gap-x-[1.6rem]",
+        stacked ? "flex-col" : "flex-row flex-wrap",
+      )}
+    >
       {children}
     </div>
   );
