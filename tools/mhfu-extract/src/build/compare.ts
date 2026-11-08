@@ -22,7 +22,10 @@ export async function readCategoryItems(dir: string, category: Category): Promis
   for (const { file } of category.files) {
     let items: Item[] = [];
     try {
-      const json = JSON.parse(await readFile(path.join(dir, file), "utf-8")) as Record<string, Item[]>;
+      const json = JSON.parse(await readFile(path.join(dir, file), "utf-8")) as Record<
+        string,
+        Item[]
+      >;
       items = json[category.arrayKey] ?? [];
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
@@ -63,14 +66,19 @@ function idKey(category: Category, file: string, id: number): string {
   return `${spec.slot ?? spec.table}:${id}`;
 }
 
-export function pairCategory(category: Category, extracted: CategoryItems, committed: CategoryItems, site: SiteIndex): Pairing {
+export function pairCategory(
+  category: Category,
+  extracted: CategoryItems,
+  committed: CategoryItems,
+  site: SiteIndex,
+): Pairing {
   const disc = new Map<string, { file: string; item: Item; id: number }>();
   const discOnly: Unpaired[] = [];
   for (const spec of category.files) {
     const items = extracted.get(spec.file) ?? [];
     const ids = assignDiscIds(
       items.map((i) => String(i.name)),
-      spec.table
+      spec.table,
     );
     items.forEach((item, i) => {
       const id = ids[i];
@@ -89,7 +97,11 @@ export function pairCategory(category: Category, extracted: CategoryItems, commi
     (committed.get(spec.file) ?? []).forEach((item, index) => {
       const name = String(item.name);
       const id = spec.slot
-        ? site.equipmentIdOf(spec.slot, { name, type: spec.weaponType, sex: item.sex as string | undefined })
+        ? site.equipmentIdOf(spec.slot, {
+            name,
+            type: spec.weaponType,
+            sex: item.sex as string | undefined,
+          })
         : site.itemIdOf(name);
       const match = id === null ? undefined : disc.get(idKey(category, spec.file, id));
       if (id === null || !match) {
@@ -97,16 +109,29 @@ export function pairCategory(category: Category, extracted: CategoryItems, commi
         return;
       }
       claimed.add(idKey(category, spec.file, id));
-      pairs.push({ file: spec.file, index, id, site: item, disc: match.item, discFile: match.file });
+      pairs.push({
+        file: spec.file,
+        index,
+        id,
+        site: item,
+        disc: match.item,
+        discFile: match.file,
+      });
     });
   }
   for (const [key, entry] of disc) {
-    if (!claimed.has(key)) discOnly.push({ file: entry.file, name: String(entry.item.name), id: entry.id });
+    if (!claimed.has(key))
+      discOnly.push({ file: entry.file, name: String(entry.item.name), id: entry.id });
   }
   return { pairs, siteOnly, discOnly };
 }
 
-export function fieldContext(category: Category, file: string, site: SiteIndex, spellings: SpellingIndex): FieldContext {
+export function fieldContext(
+  category: Category,
+  file: string,
+  site: SiteIndex,
+  spellings: SpellingIndex,
+): FieldContext {
   const spec = category.files.find((f) => f.file === file)!;
   return {
     site,
@@ -167,7 +192,7 @@ export function compareCategory(
   extracted: CategoryItems,
   committed: CategoryItems,
   site: SiteIndex,
-  spellings: SpellingIndex
+  spellings: SpellingIndex,
 ): CategoryComparison {
   const pairing = pairCategory(category, extracted, committed, site);
   const files = new Map(category.files.map((f) => [f.file, emptyStats(category, f.file)]));
@@ -186,7 +211,8 @@ export function compareCategory(
         total.fields[i]![key]++;
       };
       if (!(spec.field in pair.site)) {
-        if (pair.disc[spec.field] !== null && pair.disc[spec.field] !== undefined) bump("siteMissing");
+        if (pair.disc[spec.field] !== null && pair.disc[spec.field] !== undefined)
+          bump("siteMissing");
         return;
       }
       const siteValue = pair.site[spec.field];
@@ -195,7 +221,14 @@ export function compareCategory(
         bump("agree");
       } else {
         bump("disagree");
-        disagreements.push({ file: pair.file, name: String(pair.site.name), id: pair.id, field: spec.field, site: siteValue, disc: discValue });
+        disagreements.push({
+          file: pair.file,
+          name: String(pair.site.name),
+          id: pair.id,
+          field: spec.field,
+          site: siteValue,
+          disc: discValue,
+        });
       }
     });
   }
@@ -232,7 +265,8 @@ export async function loadInputs(extractedDir: string, dataDir: string, names: C
     const context = CATEGORIES[name].materialContext;
     byContext.set(context, [...(byContext.get(context) ?? []), ...[...items.values()].flat()]);
   }
-  for (const name of names) extracted.set(name, await readCategoryItems(extractedDir, CATEGORIES[name]));
+  for (const name of names)
+    extracted.set(name, await readCategoryItems(extractedDir, CATEGORIES[name]));
   const spellings = buildSpellingIndex(byContext, site);
   return { site, committed, extracted, spellings, byContext };
 }
@@ -252,10 +286,18 @@ export function formatComparison(results: CategoryComparison[]): string {
     out.push(`|---|---|---|---|${fields.map(() => "---").join("|")}|`);
     for (const f of [...r.files, r.total]) {
       const label = f.file === "total" ? "**total**" : f.file;
-      const cells = f.fields.map((s) => (s.disagree > 0 ? `${pct(s.agree, s.disagree)} (${s.disagree})` : pct(s.agree, s.disagree)));
-      out.push(`| ${label} | ${f.matched} | ${f.siteOnly} | ${f.discOnly} | ${cells.join(" | ")} |`);
+      const cells = f.fields.map((s) =>
+        s.disagree > 0 ? `${pct(s.agree, s.disagree)} (${s.disagree})` : pct(s.agree, s.disagree),
+      );
+      out.push(
+        `| ${label} | ${f.matched} | ${f.siteOnly} | ${f.discOnly} | ${cells.join(" | ")} |`,
+      );
     }
-    out.push("", "Cells: share of matched items whose field agrees, with the number that disagree in brackets.", "");
+    out.push(
+      "",
+      "Cells: share of matched items whose field agrees, with the number that disagree in brackets.",
+      "",
+    );
   }
   return out.join("\n");
 }

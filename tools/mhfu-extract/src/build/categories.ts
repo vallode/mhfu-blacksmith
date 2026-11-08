@@ -50,12 +50,31 @@ const ARMOR_FILES: CategoryFile[] = [
   { file: "armor/leggings.json", table: "LegArmorID", slot: "leggings" },
 ];
 
-const MELEE_TYPES = ["great-sword", "long-sword", "sword-and-shield", "dual-blades", "hammer", "hunting-horn", "lance", "gunlance"];
+const MELEE_TYPES = [
+  "great-sword",
+  "long-sword",
+  "sword-and-shield",
+  "dual-blades",
+  "hammer",
+  "hunting-horn",
+  "lance",
+  "gunlance",
+];
 const RANGED_TYPES = ["light-bowgun", "heavy-bowgun", "bow"];
 
 const WEAPON_FILES: CategoryFile[] = [
-  ...MELEE_TYPES.map((t) => ({ file: `weapons/${t}.json`, table: "WepBMID" as const, slot: "melee" as const, weaponType: t })),
-  ...RANGED_TYPES.map((t) => ({ file: `weapons/${t}.json`, table: "WepGunID" as const, slot: "ranged" as const, weaponType: t })),
+  ...MELEE_TYPES.map((t) => ({
+    file: `weapons/${t}.json`,
+    table: "WepBMID" as const,
+    slot: "melee" as const,
+    weaponType: t,
+  })),
+  ...RANGED_TYPES.map((t) => ({
+    file: `weapons/${t}.json`,
+    table: "WepGunID" as const,
+    slot: "ranged" as const,
+    weaponType: t,
+  })),
 ];
 
 export const CATEGORIES: Record<CategoryName, Category> = {
@@ -122,7 +141,16 @@ export const CATEGORIES: Record<CategoryName, Category> = {
     // layout only partly derived), `improve_cost` (derived as half the
     // sell price, unconfirmed) and `alternative_create_mats` (the disc
     // lacks the ticket alternatives the site lists).
-    take: ["attack", "slots", "rarity", "create_cost", "create_mats", "improve_mats", "improve_from", "improve_to"],
+    take: [
+      "attack",
+      "slots",
+      "rarity",
+      "create_cost",
+      "create_mats",
+      "improve_mats",
+      "improve_from",
+      "improve_to",
+    ],
   },
   decorations: {
     name: "decorations",

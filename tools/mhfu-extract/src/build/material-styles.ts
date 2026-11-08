@@ -29,11 +29,20 @@ export interface Style {
   color: string;
 }
 
-const OVERRIDES_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "overlay", "material-styles.json");
+const OVERRIDES_PATH = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "overlay",
+  "material-styles.json",
+);
 
 export function loadStyleOverrides(file = OVERRIDES_PATH): Map<number, Style> {
-  const json = JSON.parse(readFileSync(file, "utf-8")) as { styles: Record<string, Style & { name: string }> };
-  return new Map(Object.entries(json.styles).map(([id, s]) => [Number(id), { type: s.type, color: s.color }]));
+  const json = JSON.parse(readFileSync(file, "utf-8")) as {
+    styles: Record<string, Style & { name: string }>;
+  };
+  return new Map(
+    Object.entries(json.styles).map(([id, s]) => [Number(id), { type: s.type, color: s.color }]),
+  );
 }
 
 const PLACEHOLDER = "bone\u0000white";
@@ -45,7 +54,10 @@ interface Material {
   color: string;
 }
 
-function majority(counts: Map<string, number> | undefined, skipPlaceholder: boolean): Style | undefined {
+function majority(
+  counts: Map<string, number> | undefined,
+  skipPlaceholder: boolean,
+): Style | undefined {
   if (!counts) return undefined;
   const entries = [...counts].filter(([key]) => !(skipPlaceholder && key === PLACEHOLDER));
   if (entries.length === 0) return undefined;
@@ -58,7 +70,7 @@ function majority(counts: Map<string, number> | undefined, skipPlaceholder: bool
 export function buildStyleIndex(
   byContext: Map<MaterialContext, Record<string, unknown>[]>,
   site: SiteIndex,
-  overrides: Map<number, Style>
+  overrides: Map<number, Style>,
 ): (itemId: number) => Style | undefined {
   const armor = new Map<number, Map<string, number>>();
   const other = new Map<number, Map<string, number>>();
@@ -83,7 +95,12 @@ export function buildStyleIndex(
     const override = overrides.get(itemId);
     if (override) return override;
     const skip = [...(any.get(itemId) ?? [])].some((k) => k !== PLACEHOLDER);
-    return majority(other.get(itemId), skip) ?? majority(armor.get(itemId), skip) ?? majority(other.get(itemId), false) ?? majority(armor.get(itemId), false);
+    return (
+      majority(other.get(itemId), skip) ??
+      majority(armor.get(itemId), skip) ??
+      majority(other.get(itemId), false) ??
+      majority(armor.get(itemId), false)
+    );
   };
 }
 
@@ -95,7 +112,7 @@ export function restyleItem(
   item: Record<string, unknown>,
   site: SiteIndex,
   styleOf: (itemId: number) => Style | undefined,
-  onChange: (material: Material, after: Style) => void
+  onChange: (material: Material, after: Style) => void,
 ): Record<string, unknown> {
   let out = item;
   for (const field of MATERIAL_FIELDS) {

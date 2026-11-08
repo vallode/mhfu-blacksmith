@@ -103,16 +103,35 @@ async function fixture(): Promise<{ root: string; data: string; extracted: strin
   await mkdir(path.join(extracted, "quests"), { recursive: true });
   await writeFile(path.join(data, "equipment-ids.json"), JSON.stringify(equipmentIds));
   await writeFile(path.join(data, "items.json"), JSON.stringify(items));
-  await writeFile(path.join(data, "armor", "helmet.json"), JSON.stringify(committedHelmets, null, 2));
-  await writeFile(path.join(extracted, "armor", "helmet.json"), JSON.stringify(extractedHelmets, null, 2));
-  await writeFile(path.join(extracted, "quests", "village.json"), JSON.stringify({ quests: [{ id: 1 }] }));
+  await writeFile(
+    path.join(data, "armor", "helmet.json"),
+    JSON.stringify(committedHelmets, null, 2),
+  );
+  await writeFile(
+    path.join(extracted, "armor", "helmet.json"),
+    JSON.stringify(extractedHelmets, null, 2),
+  );
+  await writeFile(
+    path.join(extracted, "quests", "village.json"),
+    JSON.stringify({ quests: [{ id: 1 }] }),
+  );
   return { root, data, extracted };
 }
 
 test("assignDiscIds recovers IDs from enum names, pairing repeated names by order", () => {
-  assert.deepEqual(assignDiscIds(["Leather Helm", "Chain Helm", "Not An Armor"], "HeadArmorID"), [LEATHER_HELM, CHAIN_HELM, null]);
+  assert.deepEqual(assignDiscIds(["Leather Helm", "Chain Helm", "Not An Armor"], "HeadArmorID"), [
+    LEATHER_HELM,
+    CHAIN_HELM,
+    null,
+  ]);
   // Red Guild Guard Suit is ChestArmorID 172 and 174.
-  assert.deepEqual(assignDiscIds(["Red Guild Guard Suit", "Red Guild Guard Suit", "Red Guild Guard Suit"], "ChestArmorID"), [172, 174, null]);
+  assert.deepEqual(
+    assignDiscIds(
+      ["Red Guild Guard Suit", "Red Guild Guard Suit", "Red Guild Guard Suit"],
+      "ChestArmorID",
+    ),
+    [172, 174, null],
+  );
 });
 
 test("discMaterialId inverts the recipe-context item name correction", () => {
@@ -137,17 +156,35 @@ test("compareCategory pairs renamed items by ID and ignores skill order and spel
   const { root, data, extracted } = await fixture();
   try {
     const inputs = await loadInputs(extracted, data, ["armor"]);
-    const result = compareCategory(CATEGORIES.armor, inputs.extracted.get("armor")!, inputs.committed.get("armor")!, inputs.site, inputs.spellings);
+    const result = compareCategory(
+      CATEGORIES.armor,
+      inputs.extracted.get("armor")!,
+      inputs.committed.get("armor")!,
+      inputs.site,
+      inputs.spellings,
+    );
     const helmet = result.files.find((f) => f.file === "armor/helmet.json")!;
     assert.equal(helmet.matched, 2);
     assert.equal(helmet.siteOnly, 1);
     assert.equal(helmet.discOnly, 0);
     const field = (name: string) => helmet.fields.find((f) => f.field === name)!;
     assert.deepEqual(field("skills"), { field: "skills", agree: 2, disagree: 0, siteMissing: 0 });
-    assert.deepEqual(field("create_mats"), { field: "create_mats", agree: 2, disagree: 0, siteMissing: 0 });
+    assert.deepEqual(field("create_mats"), {
+      field: "create_mats",
+      agree: 2,
+      disagree: 0,
+      siteMissing: 0,
+    });
     assert.deepEqual(field("slots"), { field: "slots", agree: 1, disagree: 1, siteMissing: 0 });
     assert.deepEqual(result.disagreements, [
-      { file: "armor/helmet.json", name: "Leather Helm", id: LEATHER_HELM, field: "slots", site: 0, disc: 1 },
+      {
+        file: "armor/helmet.json",
+        name: "Leather Helm",
+        id: LEATHER_HELM,
+        field: "slots",
+        site: 0,
+        disc: 1,
+      },
     ]);
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -158,16 +195,33 @@ test("mergeCategory takes disc values, keeps site-only fields, order and agreein
   const { root, data, extracted } = await fixture();
   try {
     const inputs = await loadInputs(extracted, data, ["armor"]);
-    const result = mergeCategory(CATEGORIES.armor, inputs.extracted.get("armor")!, inputs.committed.get("armor")!, inputs.site, inputs.spellings, []);
+    const result = mergeCategory(
+      CATEGORIES.armor,
+      inputs.extracted.get("armor")!,
+      inputs.committed.get("armor")!,
+      inputs.site,
+      inputs.spellings,
+      [],
+    );
     const merged = result.files.get("armor/helmet.json")!;
     // Order, names, and fields the disc lacks are the committed ones.
-    assert.deepEqual(merged.map((i) => i.name), ["Chain Helm (site name)", "Leather Helm", "Site Only Helm"]);
+    assert.deepEqual(
+      merged.map((i) => i.name),
+      ["Chain Helm (site name)", "Leather Helm", "Site Only Helm"],
+    );
     assert.deepEqual(merged[0], committedHelmets.armor[0]);
     assert.deepEqual(merged[1], { ...committedHelmets.armor[1], slots: 1 });
     assert.deepEqual(merged[2], committedHelmets.armor[2]);
     assert.deepEqual(Object.keys(merged[1]!), Object.keys(committedHelmets.armor[1]!));
     assert.deepEqual(result.changes, [
-      { file: "armor/helmet.json", name: "Leather Helm", id: LEATHER_HELM, field: "slots", before: 0, after: 1 },
+      {
+        file: "armor/helmet.json",
+        name: "Leather Helm",
+        id: LEATHER_HELM,
+        field: "slots",
+        before: 0,
+        after: 1,
+      },
     ]);
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -189,7 +243,14 @@ test("mergeCategory writes new skills and materials in the site's spelling", asy
     ];
     await writeFile(path.join(extracted, "armor", "helmet.json"), JSON.stringify(disc));
     const inputs = await loadInputs(extracted, data, ["armor"]);
-    const result = mergeCategory(CATEGORIES.armor, inputs.extracted.get("armor")!, inputs.committed.get("armor")!, inputs.site, inputs.spellings, []);
+    const result = mergeCategory(
+      CATEGORIES.armor,
+      inputs.extracted.get("armor")!,
+      inputs.committed.get("armor")!,
+      inputs.site,
+      inputs.spellings,
+      [],
+    );
     const [chain, leather] = result.files.get("armor/helmet.json")!;
     // Committed spellings and order first; a skill new to the item gets the
     // MHP2G name when no committed item spells it otherwise.
@@ -212,8 +273,19 @@ test("mergeCategory keeps reviewed site values and rejects stale overrides", asy
   const { root, data, extracted } = await fixture();
   try {
     const inputs = await loadInputs(extracted, data, ["armor"]);
-    const args = [CATEGORIES.armor, inputs.extracted.get("armor")!, inputs.committed.get("armor")!, inputs.site, inputs.spellings] as const;
-    const keep = { file: "armor/helmet.json", name: "Leather Helm", field: "slots", reason: "test" };
+    const args = [
+      CATEGORIES.armor,
+      inputs.extracted.get("armor")!,
+      inputs.committed.get("armor")!,
+      inputs.site,
+      inputs.spellings,
+    ] as const;
+    const keep = {
+      file: "armor/helmet.json",
+      name: "Leather Helm",
+      field: "slots",
+      reason: "test",
+    };
     const result = mergeCategory(...args, [keep]);
     assert.equal(result.files.get("armor/helmet.json")![1]!.slots, 0);
     assert.deepEqual(result.changes, []);
@@ -233,10 +305,22 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
     assert.deepEqual(report.questFiles, [path.join("quests", "village.json")]);
 
     const written = await readFile(path.join(data, "armor", "helmet.json"), "utf-8");
-    const expected = { armor: [committedHelmets.armor[0], { ...committedHelmets.armor[1], slots: 1 }, committedHelmets.armor[2]] };
-    assert.equal(written, serializeDataFile("armor", null, expected.armor as Record<string, unknown>[]));
+    const expected = {
+      armor: [
+        committedHelmets.armor[0],
+        { ...committedHelmets.armor[1], slots: 1 },
+        committedHelmets.armor[2],
+      ],
+    };
+    assert.equal(
+      written,
+      serializeDataFile("armor", null, expected.armor as Record<string, unknown>[]),
+    );
     assert.ok(!written.endsWith("\n"));
-    assert.deepEqual(JSON.parse(await readFile(path.join(data, "quests", "village.json"), "utf-8")), { quests: [{ id: 1 }] });
+    assert.deepEqual(
+      JSON.parse(await readFile(path.join(data, "quests", "village.json"), "utf-8")),
+      { quests: [{ id: 1 }] },
+    );
 
     // A second run is a no-op.
     const again = await runBuildData({ extracted, data, only: ["armor"] });
@@ -257,7 +341,14 @@ test("mergeCategory writes a skill the committed list repeats once", async () =>
     ];
     await writeFile(path.join(data, "armor", "helmet.json"), JSON.stringify(committed));
     const inputs = await loadInputs(extracted, data, ["armor"]);
-    const result = mergeCategory(CATEGORIES.armor, inputs.extracted.get("armor")!, inputs.committed.get("armor")!, inputs.site, inputs.spellings, []);
+    const result = mergeCategory(
+      CATEGORIES.armor,
+      inputs.extracted.get("armor")!,
+      inputs.committed.get("armor")!,
+      inputs.site,
+      inputs.spellings,
+      [],
+    );
     assert.deepEqual(result.files.get("armor/helmet.json")![0]!.skills, [
       { name: "Defence", amount: 2 },
       { name: "Load", amount: 1 },

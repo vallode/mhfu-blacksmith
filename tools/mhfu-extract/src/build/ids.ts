@@ -27,7 +27,8 @@ import type { NameTable } from "../strings/names.js";
 import { correctedItemName, type MaterialContext } from "../overlay/item-name-corrections.js";
 
 /** Keys of `data/equipment-ids.json`. */
-export type EquipmentSlot = "leggings" | "helmet" | "plate" | "gauntlets" | "waist" | "melee" | "ranged";
+export type EquipmentSlot =
+  "leggings" | "helmet" | "plate" | "gauntlets" | "waist" | "melee" | "ranged";
 
 export interface EquipmentIdEntry {
   name: string;
@@ -122,7 +123,10 @@ export interface SiteIndex {
   /** Item ID of a site material/decoration name (`name` or alias), or null if unknown/ambiguous. */
   itemIdOf(name: string): number | null;
   /** Game ID of a site armor/weapon, or null if `data/equipment-ids.json` doesn't list it. */
-  equipmentIdOf(slot: EquipmentSlot, item: { name: string; type?: string; sex?: string }): number | null;
+  equipmentIdOf(
+    slot: EquipmentSlot,
+    item: { name: string; type?: string; sex?: string },
+  ): number | null;
   /** Every game ID in `slot` whose site name is `name` (any weapon type / sex). */
   equipmentIdsByName(slot: EquipmentSlot, name: string): number[];
 }
@@ -133,8 +137,12 @@ function equipmentKey(slot: EquipmentSlot, name: string, typeOrSex: string | und
 }
 
 export function loadSiteIndex(dataDir: string): SiteIndex {
-  const equipment = JSON.parse(readFileSync(path.join(dataDir, "equipment-ids.json"), "utf-8")) as SiteIndex["equipment"];
-  const itemsFile = JSON.parse(readFileSync(path.join(dataDir, "items.json"), "utf-8")) as { items: ItemRecord[] };
+  const equipment = JSON.parse(
+    readFileSync(path.join(dataDir, "equipment-ids.json"), "utf-8"),
+  ) as SiteIndex["equipment"];
+  const itemsFile = JSON.parse(readFileSync(path.join(dataDir, "items.json"), "utf-8")) as {
+    items: ItemRecord[];
+  };
 
   const items = new Map(itemsFile.items.map((i) => [i.id, i]));
   const owners = new Map<string, Set<number>>();
@@ -150,7 +158,10 @@ export function loadSiteIndex(dataDir: string): SiteIndex {
 
   const byKey = new Map<string, number>();
   const byName = new Map<string, number[]>();
-  for (const [slot, entries] of Object.entries(equipment) as [EquipmentSlot, (EquipmentIdEntry | null)[]][]) {
+  for (const [slot, entries] of Object.entries(equipment) as [
+    EquipmentSlot,
+    (EquipmentIdEntry | null)[],
+  ][]) {
     entries.forEach((entry, id) => {
       if (!entry) return;
       const disambiguator = slot === "melee" || slot === "ranged" ? entry.type : entry.sex;
@@ -170,9 +181,14 @@ export function loadSiteIndex(dataDir: string): SiteIndex {
       return ids && ids.size === 1 ? [...ids][0]! : null;
     },
     equipmentIdOf(slot, item) {
-      if (slot === "melee" || slot === "ranged") return byKey.get(equipmentKey(slot, item.name, item.type)) ?? null;
+      if (slot === "melee" || slot === "ranged")
+        return byKey.get(equipmentKey(slot, item.name, item.type)) ?? null;
       // Only duplicated names carry `sex` in equipment-ids.json.
-      return byKey.get(equipmentKey(slot, item.name, item.sex)) ?? byKey.get(equipmentKey(slot, item.name, undefined)) ?? null;
+      return (
+        byKey.get(equipmentKey(slot, item.name, item.sex)) ??
+        byKey.get(equipmentKey(slot, item.name, undefined)) ??
+        null
+      );
     },
     equipmentIdsByName(slot, name) {
       return byName.get(equipmentKey(slot, name, undefined)) ?? [];

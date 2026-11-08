@@ -20,7 +20,13 @@ import { fileURLToPath } from "node:url";
 import path from "node:path";
 import type { Category } from "./categories.js";
 import { canonical, toSite, type SpellingIndex } from "./fields.js";
-import { fieldContext, pairCategory, type CategoryItems, type Item, type Pairing } from "./compare.js";
+import {
+  fieldContext,
+  pairCategory,
+  type CategoryItems,
+  type Item,
+  type Pairing,
+} from "./compare.js";
 import type { SiteIndex } from "./ids.js";
 
 export interface KeepSiteValue {
@@ -30,7 +36,12 @@ export interface KeepSiteValue {
   reason: string;
 }
 
-const KEEP_PATH = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "overlay", "keep-site-values.json");
+const KEEP_PATH = path.join(
+  path.dirname(fileURLToPath(import.meta.url)),
+  "..",
+  "overlay",
+  "keep-site-values.json",
+);
 
 export function loadKeepSiteValues(file = KEEP_PATH): KeepSiteValue[] {
   return (JSON.parse(readFileSync(file, "utf-8")) as { entries: KeepSiteValue[] }).entries;
@@ -64,11 +75,12 @@ export function mergeCategory(
   committed: CategoryItems,
   site: SiteIndex,
   spellings: SpellingIndex,
-  keep: KeepSiteValue[]
+  keep: KeepSiteValue[],
 ): MergeResult {
   const pairing = pairCategory(category, extracted, committed, site);
   const take = category.fields.filter((f) => category.take.includes(f.field));
-  const keepKey = (file: string, name: string, field: string) => `${file}\u0000${name}\u0000${field}`;
+  const keepKey = (file: string, name: string, field: string) =>
+    `${file}\u0000${name}\u0000${field}`;
   const fileNames = new Set(category.files.map((f) => f.file));
   const relevantKeep = keep.filter((k) => fileNames.has(k.file));
   const keepByKey = new Map(relevantKeep.map((k) => [keepKey(k.file, k.name, k.field), k]));
@@ -88,7 +100,10 @@ export function mergeCategory(
       const discValue = pair.disc[spec.field];
       if (!(spec.field in pair.site) && (discValue === null || discValue === undefined)) continue;
 
-      const agrees = spec.field in pair.site && canonical(spec, pair.site[spec.field], "site", ctx) === canonical(spec, discValue, "disc", ctx);
+      const agrees =
+        spec.field in pair.site &&
+        canonical(spec, pair.site[spec.field], "site", ctx) ===
+          canonical(spec, discValue, "disc", ctx);
       const override = keepByKey.get(keepKey(pair.file, name, spec.field));
       if (override) {
         usedKeep.add(keepKey(pair.file, name, spec.field));
@@ -100,7 +115,14 @@ export function mergeCategory(
       const after = toSite(spec, discValue, pair.site, ctx);
       merged[spec.field] = after;
       if (JSON.stringify(after) !== JSON.stringify(pair.site[spec.field])) {
-        changes.push({ file: pair.file, name, id: pair.id, field: spec.field, before: pair.site[spec.field], after });
+        changes.push({
+          file: pair.file,
+          name,
+          id: pair.id,
+          field: spec.field,
+          before: pair.site[spec.field],
+          after,
+        });
       }
     }
     files.get(pair.file)![pair.index] = merged;
@@ -112,13 +134,19 @@ export function mergeCategory(
   });
   if (stale.length > 0) {
     const list = stale.map((k) => `  - ${k.file} "${k.name}" ${k.field}`).join("\n");
-    throw new Error(`keep-site-values.json has entries that no longer match a disc disagreement; remove them:\n${list}`);
+    throw new Error(
+      `keep-site-values.json has entries that no longer match a disc disagreement; remove them:\n${list}`,
+    );
   }
 
   return { files, changes, kept, pairing };
 }
 
 /** The committed files' layout: `JSON.stringify(_, null, 2)`, no trailing newline. */
-export function serializeDataFile(arrayKey: string, original: Record<string, unknown> | null, items: Item[]): string {
+export function serializeDataFile(
+  arrayKey: string,
+  original: Record<string, unknown> | null,
+  items: Item[],
+): string {
   return JSON.stringify({ ...(original ?? {}), [arrayKey]: items }, null, 2);
 }

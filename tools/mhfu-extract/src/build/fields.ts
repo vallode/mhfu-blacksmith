@@ -60,7 +60,10 @@ export interface FieldContext {
  */
 export interface SpellingIndex {
   skill(canonical: string, context: MaterialContext): string | undefined;
-  material(itemId: number, context: MaterialContext): { name: string; type: string; color: string } | undefined;
+  material(
+    itemId: number,
+    context: MaterialContext,
+  ): { name: string; type: string; color: string } | undefined;
 }
 
 interface Material {
@@ -90,10 +93,16 @@ function bump<T>(counts: Counts<T>, key: string, value: T): void {
 const MATERIAL_FIELDS = ["create_mats", "improve_mats", "alternative_create_mats"];
 
 /** Builds a SpellingIndex from committed items, grouped by recipe context. */
-export function buildSpellingIndex(byContext: Map<MaterialContext, Record<string, unknown>[]>, site: SiteIndex): SpellingIndex {
+export function buildSpellingIndex(
+  byContext: Map<MaterialContext, Record<string, unknown>[]>,
+  site: SiteIndex,
+): SpellingIndex {
   const skills = new Map<MaterialContext, Counts<string>>();
   const names = new Map<MaterialContext | "any", Counts<string>>();
-  const styles = { armor: new Map() as Counts<{ type: string; color: string }>, other: new Map() as Counts<{ type: string; color: string }> };
+  const styles = {
+    armor: new Map() as Counts<{ type: string; color: string }>,
+    other: new Map() as Counts<{ type: string; color: string }>,
+  };
   for (const [context, items] of byContext) {
     if (!skills.has(context)) skills.set(context, new Map());
     const skillCounts = skills.get(context)!;
@@ -102,7 +111,11 @@ export function buildSpellingIndex(byContext: Map<MaterialContext, Record<string
         if (typeof skill === "string") {
           const match = /^(.*?)\s*[+-]\d+$/.exec(skill.trim());
           if (match?.[1]) bump(skillCounts, canonicalSkillName(match[1]), match[1]);
-        } else if (skill && typeof skill === "object" && typeof (skill as { name?: unknown }).name === "string") {
+        } else if (
+          skill &&
+          typeof skill === "object" &&
+          typeof (skill as { name?: unknown }).name === "string"
+        ) {
           const name = (skill as { name: string }).name;
           bump(skillCounts, canonicalSkillName(name), name);
         }
@@ -115,7 +128,10 @@ export function buildSpellingIndex(byContext: Map<MaterialContext, Record<string
             if (!names.has(key)) names.set(key, new Map());
             bump(names.get(key)!, String(id), m.name);
           }
-          bump(context === "armor" ? styles.armor : styles.other, String(id), { type: m.type, color: m.color });
+          bump(context === "armor" ? styles.armor : styles.other, String(id), {
+            type: m.type,
+            color: m.color,
+          });
         }
       }
     }
@@ -127,7 +143,8 @@ export function buildSpellingIndex(byContext: Map<MaterialContext, Record<string
     material: (itemId, context) => {
       const key = String(itemId);
       const empty: Counts<string> = new Map();
-      const name = mostCommon(names.get(context) ?? empty, key) ?? mostCommon(names.get("any") ?? empty, key);
+      const name =
+        mostCommon(names.get(context) ?? empty, key) ?? mostCommon(names.get("any") ?? empty, key);
       const style = mostCommon(styles.other, key) ?? mostCommon(styles.armor, key);
       return name && style ? { name, ...style } : undefined;
     },
@@ -158,7 +175,8 @@ function decorationSkillKeys(value: unknown): string[] {
 }
 
 function materialKey(m: Material, side: "site" | "disc", ctx: FieldContext): string {
-  const id = side === "site" ? ctx.site.itemIdOf(m.name) : discMaterialId(m.name, ctx.materialContext);
+  const id =
+    side === "site" ? ctx.site.itemIdOf(m.name) : discMaterialId(m.name, ctx.materialContext);
   return `${id ?? `?${m.name}`} x${m.amount}`;
 }
 
@@ -172,14 +190,22 @@ function weaponRefKeys(value: unknown, side: "site" | "disc", ctx: FieldContext)
   return list(value)
     .map((name) => String(name))
     .map((name) => {
-      const ids = side === "site" ? ctx.site.equipmentIdsByName(ctx.weaponSlot!, name) : [enumIdOf(name, ctx.weaponTable!)];
+      const ids =
+        side === "site"
+          ? ctx.site.equipmentIdsByName(ctx.weaponSlot!, name)
+          : [enumIdOf(name, ctx.weaponTable!)];
       return ids.length === 1 && ids[0] !== null ? String(ids[0]) : `?${name}`;
     })
     .sort();
 }
 
 /** The value reduced to a string that's equal on both sides exactly when they agree. */
-export function canonical(spec: FieldSpec, value: unknown, side: "site" | "disc", ctx: FieldContext): string {
+export function canonical(
+  spec: FieldSpec,
+  value: unknown,
+  side: "site" | "disc",
+  ctx: FieldContext,
+): string {
   switch (spec.kind) {
     case "scalar":
       return JSON.stringify(value ?? null);
@@ -192,7 +218,11 @@ export function canonical(spec: FieldSpec, value: unknown, side: "site" | "disc"
     case "weapon-refs":
       return JSON.stringify(weaponRefKeys(value, side, ctx));
     case "set":
-      return JSON.stringify(list(value).map((v) => JSON.stringify(v)).sort());
+      return JSON.stringify(
+        list(value)
+          .map((v) => JSON.stringify(v))
+          .sort(),
+      );
   }
 }
 
@@ -200,8 +230,16 @@ export function canonical(spec: FieldSpec, value: unknown, side: "site" | "disc"
 // Disc -> site conversion
 // ---------------------------------------------------------------------------
 
-function skillSpelling(canonicalName: string, committedSpellings: Map<string, string>, ctx: FieldContext): string {
-  return committedSpellings.get(canonicalName) ?? ctx.spellings.skill(canonicalName, ctx.materialContext) ?? canonicalName;
+function skillSpelling(
+  canonicalName: string,
+  committedSpellings: Map<string, string>,
+  ctx: FieldContext,
+): string {
+  return (
+    committedSpellings.get(canonicalName) ??
+    ctx.spellings.skill(canonicalName, ctx.materialContext) ??
+    canonicalName
+  );
 }
 
 function armorSkillsToSite(disc: unknown, committed: unknown, ctx: FieldContext): unknown {
@@ -222,7 +260,11 @@ function armorSkillsToSite(disc: unknown, committed: unknown, ctx: FieldContext)
     written.add(canon);
   }
   for (const s of discSkills) {
-    if (!spellings.has(canonicalSkillName(s.name))) out.push({ name: skillSpelling(canonicalSkillName(s.name), spellings, ctx), amount: s.amount });
+    if (!spellings.has(canonicalSkillName(s.name)))
+      out.push({
+        name: skillSpelling(canonicalSkillName(s.name), spellings, ctx),
+        amount: s.amount,
+      });
   }
   return out;
 }
@@ -245,17 +287,23 @@ function decorationSkillsToSite(disc: unknown, committed: unknown, ctx: FieldCon
   for (const s of committedSkills) {
     const canon = canonicalSkillName(s.name);
     const amount = discByName.get(canon);
-    if (amount !== undefined && !written.has(canon)) out.push(`${s.name} ${formatSignedAmount(amount)}`);
+    if (amount !== undefined && !written.has(canon))
+      out.push(`${s.name} ${formatSignedAmount(amount)}`);
     written.add(canon);
   }
   for (const s of discSkills) {
     const canon = canonicalSkillName(s.name);
-    if (!spellings.has(canon)) out.push(`${skillSpelling(canon, spellings, ctx)} ${formatSignedAmount(s.amount)}`);
+    if (!spellings.has(canon))
+      out.push(`${skillSpelling(canon, spellings, ctx)} ${formatSignedAmount(s.amount)}`);
   }
   return out;
 }
 
-function materialsToSite(disc: unknown, siteItem: Record<string, unknown>, ctx: FieldContext): unknown {
+function materialsToSite(
+  disc: unknown,
+  siteItem: Record<string, unknown>,
+  ctx: FieldContext,
+): unknown {
   const discMats = list(disc) as Material[];
   if (discMats.length === 0) return null;
   // Spellings this item already uses, from any of its recipes.
@@ -294,10 +342,14 @@ export function toSite(
   spec: FieldSpec,
   disc: unknown,
   siteItem: Record<string, unknown>,
-  ctx: FieldContext
+  ctx: FieldContext,
 ): unknown {
   const committed = siteItem[spec.field];
-  if (spec.field in siteItem && canonical(spec, committed, "site", ctx) === canonical(spec, disc, "disc", ctx)) return committed;
+  if (
+    spec.field in siteItem &&
+    canonical(spec, committed, "site", ctx) === canonical(spec, disc, "disc", ctx)
+  )
+    return committed;
   switch (spec.kind) {
     case "scalar":
     case "set":
