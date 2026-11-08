@@ -92,16 +92,25 @@ function PanelTitle({ children }: { children: React.ReactNode }) {
 }
 
 export default function SetBuilderClient() {
-  const { data, loadError, searching, found, result, error, search, cancel } = useSetSearch();
+  const {
+    data,
+    loadError,
+    searching,
+    found,
+    result,
+    query: searched,
+    index,
+    setIndex,
+    error,
+    search,
+    cancel,
+  } = useSetSearch();
   const progress = useHunterProgress();
   const { save } = useSave();
   const [form, setForm] = useState<Form>(DEFAULT_FORM);
   const [restored, setRestored] = useState(false);
-  const [index, setIndex] = useState(0);
-  // The query behind the shown results (the form may have changed since).
-  const [searched, setSearched] = useState<SearchQuery | null>(null);
 
-  // Restore the last search (localStorage only exists in the browser).
+  // Restore the last form (localStorage only exists in the browser).
   useEffect(() => {
     const saved = readForm();
     if (!localStorage.getItem(STORAGE_KEY) && (save?.sex === "Male" || save?.sex === "Female")) {
@@ -121,8 +130,6 @@ export default function SetBuilderClient() {
       // Storage full or blocked: the form just isn't remembered.
     }
   }, [form, restored]);
-
-  useEffect(() => setIndex(0), [result]);
 
   const skills = useMemo(() => (data ? selectableSkills(data.trees) : []), [data]);
   const update = <K extends keyof Form>(key: K, value: Form[K]) =>
@@ -145,13 +152,12 @@ export default function SetBuilderClient() {
         ? data.pieces.filter((p) => progress.isOwned(p.href)).map((p) => p.id)
         : undefined,
     };
-    setSearched(query);
     search(query);
   };
 
   const sets = result?.sets ?? [];
   const set = sets[Math.min(index, sets.length - 1)] ?? null;
-  const step = (by: 1 | -1) => setIndex((i) => (i + by + sets.length) % sets.length);
+  const step = (by: 1 | -1) => setIndex((index + by + sets.length) % sets.length);
   const weaponIcon = searched?.hunterType === "Gunner" ? "heavy-bowgun" : "great-sword";
 
   let message: React.ReactNode = null;
