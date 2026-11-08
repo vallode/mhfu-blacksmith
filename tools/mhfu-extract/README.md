@@ -157,7 +157,9 @@ Open:
 - **EU quests**: 519 of 551 parse; 32 are skipped because EU's `DATA.BIN`
   layout differs from JP's ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)).
 - `diff` compares stats, not text: names come from the English
-  `mhp2g-patterns` enums for every region.
+  `mhp2g-patterns` enums for every region. Committed skill names are
+  rewritten to the extractor's spelling before comparing (see "Overlay
+  data").
 
 ### EBOOT decryption
 
@@ -323,6 +325,14 @@ all. Currently: `materials.json` (crafting-material `type`/`color`, e.g.
 `decoration-categories.json` (the presentation-only decoration grouping,
 e.g. "Attack Jewel" -> "Attack up"), both generated once from the committed
 `data/` files (see git history) and consumed by `src/emit/*.ts`.
+
+`skill-name-aliases.json` is the one overlay that goes the other way: it
+maps the committed site's legacy skill spellings (`"Defence"`, `"Load"`,
+`"Fast Chrge"`, ...) to the extractor's `SkillID` names. Only `diff` uses
+it, so the same skill under a different spelling isn't reported as a
+mismatch. `extract` output is unchanged, because the extractor's names are
+the canonical ones and `data/` is meant to be rebuilt from the disc. See
+the module doc comment for how each entry was chosen.
 
 Monster HP/attack/defense multipliers, flavor text and category grouping
 will need the same treatment once monster output exists ([#35](https://github.com/vallode/mhfu-blacksmith/issues/35)).
