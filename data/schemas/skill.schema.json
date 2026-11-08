@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Skills file",
+  "description": "Skill trees and the skills they activate at each points threshold. Tree names use the game's SkillID spelling; aliases are the other spellings of the same tree in data/armor and data/decorations.json.",
+  "type": "object",
+  "required": ["skills"],
+  "additionalProperties": false,
+  "properties": {
+    "skills": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/tree" }
+    }
+  },
+  "definitions": {
+    "tree": {
+      "type": "object",
+      "required": ["tree", "skills"],
+      "additionalProperties": false,
+      "properties": {
+        "tree": { "type": "string", "minLength": 1 },
+        "aliases": {
+          "type": "array",
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "skills": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["name", "points"],
+            "additionalProperties": false,
+            "properties": {
+              "name": { "type": "string", "minLength": 1 },
+              "points": { "type": "integer", "not": { "const": 0 } }
+            }
+          }
+        }
+      }
+    }
+  }
+}

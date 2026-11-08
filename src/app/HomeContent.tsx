@@ -5,6 +5,7 @@ const MENU = [
   { href: "/blacksmith/", label: "Weapons" },
   { href: "/armorsmith/", label: "Armor" },
   { href: "/decorations/", label: "Decorations" },
+  { href: "/set-builder/", label: "Set Builder" },
   { href: "/monsters/", label: "Monsters" },
   { href: "/hunter/", label: "Hunter Profile" },
   { href: "/options/", label: "Options" },

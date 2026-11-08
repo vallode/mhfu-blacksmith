@@ -26,6 +26,13 @@ import {
   decodeDecoration,
   decodeTree,
 } from "./schema";
+import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "./constants";
+import {
+  prepareSearchData,
+  type ArmorInput,
+  type SearchData,
+  type SkillTreeData,
+} from "./set-search";
 
 export interface MonsterListItem {
   slug: string;
@@ -341,4 +348,57 @@ export function useItems(): { items: ItemLookup | null; error: boolean } {
     };
   }, []);
   return { items, error };
+}
+
+// ---------------------------------------------------------------------------
+// Set builder: every armor piece, decoration and skill tree
+// ---------------------------------------------------------------------------
+let setSearchPromise: Promise<SearchData> | null = null;
+
+/**
+ * Everything the set search needs, from the same cached bundles as the armor
+ * and decoration pages plus skills.json.
+ */
+export function loadSetSearchData(): Promise<SearchData> {
+  if (!setSearchPromise) {
+    const armorFiles = ARMOR_SLOTS.flatMap((slot) =>
+      ARMOR_RANKS.map((rank) => `armor-${slot}-${rank}`),
+    );
+    setSearchPromise = Promise.all([
+      getDictionaries(),
+      fetchJson<{ skills: SkillTreeData[] }>("/data/skills.json"),
+      getBundle("decorations"),
+      ...armorFiles.map((f) => getBundle(f)),
+    ])
+      .then(([dict, skills, decoBundle, ...armorBundles]) => {
+        const armor: ArmorInput[] = (armorBundles as ArmorBundle[]).flatMap((b) =>
+          b.items.map((ca) => {
+            const a = decodeArmor(dict, ca, b.slot);
+            return {
+              slot: b.slot as ArmorSlot,
+              rank: b.rank as ArmorRank,
+              name: a.name,
+              slug: a.slug,
+              defence: Number(a.defence ?? 0),
+              res: ca.re,
+              slots: a.slots,
+              rarity: Number(a.rarity ?? 0) || undefined,
+              sex: a.sex,
+              hunterType: a.hunter_type,
+              skills: a.skills?.map((s) => ({ name: s.name, amount: Number(s.amount) })),
+            };
+          }),
+        );
+        const decorations = (decoBundle as DecorationBundle).items.map((cd) => {
+          const d = decodeDecoration(dict, cd);
+          return { ...d, skills: d.skills ?? [] };
+        });
+        return prepareSearchData(skills.skills, armor, decorations);
+      })
+      .catch((e) => {
+        setSearchPromise = null; // allow a retry
+        throw e;
+      });
+  }
+  return setSearchPromise;
 }
