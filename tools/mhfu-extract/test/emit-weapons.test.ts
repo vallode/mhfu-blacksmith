@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { emitBlademasterWeapons, emitGunnerWeapons } from "../src/emit/weapons.js";
+import {
+  blademasterAffinity,
+  emitBlademasterWeapons,
+  emitGunnerWeapons,
+} from "../src/emit/weapons.js";
 import { SHARPNESS_POINTER_COUNT, SHARPNESS_POINTERS_OFFSET } from "../src/tables/sharpness.js";
 import {
   EQUIP_CREATE_ENTRY_SIZE,
@@ -75,6 +79,24 @@ test("emitBlademasterWeapons reproduces the real Carbalite Sword entry end-to-en
   assert.deepEqual(sword!.create_mats, [
     { name: "Carbalite Ore", amount: 5, type: "ore", color: "slate" },
   ]);
+});
+
+test("blademasterAffinity adds the sharpness bonus to positive affinity only", () => {
+  assert.equal(blademasterAffinity(10, 3), 10);
+  assert.equal(blademasterAffinity(5, 4), 10); // Igneous Blade: 5% raw, shows 10%
+  assert.equal(blademasterAffinity(10, 5), 20); // Igneous Sword: 10% raw, shows 20%
+  assert.equal(blademasterAffinity(40, 6), 50); // Darkness Darkblade
+  assert.equal(blademasterAffinity(0, 6), 0);
+  assert.equal(blademasterAffinity(-20, 6), -20);
+});
+
+test("emitBlademasterWeapons writes affinity with the sharpness bonus", () => {
+  const reader = buildCarbaliteSwordFixture();
+  const wOff = tableOffset("weaponsBlademaster") + 1 * WEAPON_BM_ENTRY_SIZE;
+  reader.buf.writeUInt8(5, wOff + 9); // SharpnessAmount
+  reader.buf.writeInt8(10, wOff + 13); // Affinity (raw)
+  const sword = emitBlademasterWeapons(reader).find((w) => w.name === "Carbalite Sword");
+  assert.equal(sword!.affinity, "20%");
 });
 
 /**

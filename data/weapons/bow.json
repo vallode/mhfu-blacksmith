@@ -4699,7 +4699,7 @@
     {
       "name": "Heartshot Bow III",
       "attack": 336,
-      "affinity": "20%",
+      "affinity": "30%",
       "slots": 1,
       "bonus": null,
       "rarity": 10,
@@ -6870,7 +6870,7 @@
     {
       "name": "BeastKingThunderbow",
       "attack": 336,
-      "affinity": "10%",
+      "affinity": "0%",
       "slots": 0,
       "bonus": null,
       "rarity": 10,
