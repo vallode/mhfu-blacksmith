@@ -9,6 +9,7 @@ import { useVisibleTree } from "@/hooks/useVisibleTree";
 import type { ArmorSlot, ArmorRank } from "@/lib/constants";
 import { useArmorTree } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
+import Loading from "@/components/Loading";
 
 interface Props {
   slot: ArmorSlot;
@@ -45,13 +46,15 @@ export default function ArmorTreeListClient({ slot, rank }: Props) {
         </ArmorTreePanel>
 
         <Card>
-          <p className="leading-[1.2] whitespace-normal">
-            {loading
-              ? "Loading…"
-              : allHidden
+          {loading ? (
+            <Loading>Loading…</Loading>
+          ) : (
+            <p className="leading-[1.2] whitespace-normal">
+              {allHidden
                 ? "Nothing here is within your quest progress yet."
                 : "Select a piece of armor from the tree."}
-          </p>
+            </p>
+          )}
         </Card>
       </div>
     </>
