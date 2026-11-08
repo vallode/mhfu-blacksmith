@@ -57,6 +57,9 @@ importers:
       '@types/three':
         specifier: ^0.169.0
         version: 0.169.0
+      ajv:
+        specifier: ^8.20.0
+        version: 8.20.0
       eslint:
         specifier: ^9
         version: 9.39.4(jiti@2.7.0)

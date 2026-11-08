@@ -224,7 +224,7 @@
                     "slug": "blue-kut-ku-stave-ii",
                     "type": "bow",
                     "name": "Blue Kut-Ku Stave II",
-                    "rarity": 8,
+                    "rarity": 9,
                     "element": "fire",
                     "children": [
                       {
@@ -241,12 +241,14 @@
                     "type": "bow",
                     "name": "Wolf Bow",
                     "rarity": 9,
+                    "element": "poison",
                     "children": [
                       {
                         "slug": "crow-bow",
                         "type": "bow",
                         "name": "Crow Bow",
-                        "rarity": 10
+                        "rarity": 10,
+                        "element": "poison"
                       }
                     ]
                   }
@@ -543,6 +545,81 @@
     ]
   },
   {
+    "slug": "defect-swordfish-bow",
+    "type": "bow",
+    "name": "Defect Swordfish Bow",
+    "rarity": 5,
+    "element": "paralysis",
+    "children": [
+      {
+        "slug": "whole-swordfish-bow",
+        "type": "bow",
+        "name": "Whole Swordfish Bow",
+        "rarity": 8,
+        "element": "paralysis",
+        "children": [
+          {
+            "slug": "perfect-swordfish-bow",
+            "type": "bow",
+            "name": "Perfect Swordfish Bow",
+            "rarity": 10,
+            "element": "paralysis"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "dragon-bow-halo",
+    "type": "bow",
+    "name": "Dragon Bow Halo",
+    "rarity": 5,
+    "element": "thunder",
+    "children": [
+      {
+        "slug": "dragon-bow-solar",
+        "type": "bow",
+        "name": "Dragon Bow Solar",
+        "rarity": 8,
+        "element": "thunder",
+        "children": [
+          {
+            "slug": "ancient-dragonwood-bow",
+            "type": "bow",
+            "name": "Ancient Dragonwood Bow",
+            "rarity": 10,
+            "element": "thunder"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "slug": "dragon-bow-earth",
+    "type": "bow",
+    "name": "Dragon Bow Earth",
+    "rarity": 5,
+    "element": "dragon",
+    "children": [
+      {
+        "slug": "dragon-bow-mountain",
+        "type": "bow",
+        "name": "Dragon Bow Mountain",
+        "rarity": 8,
+        "element": "dragon",
+        "children": [
+          {
+            "slug": "dragon-bow-chaos",
+            "type": "bow",
+            "name": "Dragon Bow Chaos",
+            "rarity": 10,
+            "element": "dragon"
+          }
+        ]
+      }
+    ]
+  },
+  {
     "slug": "black-bow-i",
     "type": "bow",
     "name": "Black Bow I",
@@ -585,81 +662,6 @@
                 "element": "dragon"
               }
             ]
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "dragon-bow-earth",
-    "type": "bow",
-    "name": "Dragon Bow Earth",
-    "rarity": 5,
-    "element": "dragon",
-    "children": [
-      {
-        "slug": "dragon-bow-mountain",
-        "type": "bow",
-        "name": "Dragon Bow Mountain",
-        "rarity": 8,
-        "element": "dragon",
-        "children": [
-          {
-            "slug": "dragon-bow-chaos",
-            "type": "bow",
-            "name": "Dragon Bow Chaos",
-            "rarity": 10,
-            "element": "dragon"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "dragon-bow-halo",
-    "type": "bow",
-    "name": "Dragon Bow Halo",
-    "rarity": 5,
-    "element": "thunder",
-    "children": [
-      {
-        "slug": "dragon-bow-solar",
-        "type": "bow",
-        "name": "Dragon Bow Solar",
-        "rarity": 8,
-        "element": "thunder",
-        "children": [
-          {
-            "slug": "ancient-dragonwood-bow",
-            "type": "bow",
-            "name": "Ancient Dragonwood Bow",
-            "rarity": 10,
-            "element": "thunder"
-          }
-        ]
-      }
-    ]
-  },
-  {
-    "slug": "defect-swordfish-bow",
-    "type": "bow",
-    "name": "Defect Swordfish Bow",
-    "rarity": 5,
-    "element": "paralysis",
-    "children": [
-      {
-        "slug": "whole-swordfish-bow",
-        "type": "bow",
-        "name": "Whole Swordfish Bow",
-        "rarity": 8,
-        "element": "paralysis",
-        "children": [
-          {
-            "slug": "perfect-swordfish-bow",
-            "type": "bow",
-            "name": "Perfect Swordfish Bow",
-            "rarity": 10,
-            "element": "paralysis"
           }
         ]
       }
@@ -812,22 +814,6 @@
     ]
   },
   {
-    "slug": "icy-steel-bow",
-    "type": "bow",
-    "name": "Icy Steel Bow",
-    "rarity": 10,
-    "element": "ice",
-    "children": [
-      {
-        "slug": "daora-s-sagittarii",
-        "type": "bow",
-        "name": "Daora's Sagittarii",
-        "rarity": 10,
-        "element": "ice"
-      }
-    ]
-  },
-  {
     "slug": "beast-thunderbow",
     "type": "bow",
     "name": "Beast Thunderbow",
@@ -844,18 +830,27 @@
     ]
   },
   {
+    "slug": "icy-steel-bow",
+    "type": "bow",
+    "name": "Icy Steel Bow",
+    "rarity": 10,
+    "element": "ice",
+    "children": [
+      {
+        "slug": "daora-s-sagittarii",
+        "type": "bow",
+        "name": "Daora's Sagittarii",
+        "rarity": 10,
+        "element": "ice"
+      }
+    ]
+  },
+  {
     "slug": "dummy-diasorute-arrow",
     "type": "bow",
     "name": "dummy (Diasorute Arrow)",
     "rarity": 9,
     "element": "fire"
-  },
-  {
-    "slug": "ukanlos-bow",
-    "type": "bow",
-    "name": "Ukanlos Bow",
-    "rarity": 10,
-    "element": "ice"
   },
   {
     "slug": "hunter-s-bow-g",
@@ -908,6 +903,13 @@
     "type": "bow",
     "name": "Diablos Horn Bow G",
     "rarity": 9
+  },
+  {
+    "slug": "ukanlos-bow",
+    "type": "bow",
+    "name": "Ukanlos Bow",
+    "rarity": 10,
+    "element": "ice"
   },
   {
     "slug": "dragon-bow-solar-g",
