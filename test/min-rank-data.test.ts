@@ -2,7 +2,7 @@ import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
 import { describe, it } from "node:test";
-import { loadMinRanks } from "../scripts/lib/min-rank-data";
+import { loadMinRanks, type Recipes } from "../scripts/lib/min-rank-data";
 
 const dataDir = path.join(process.cwd(), "data");
 const ranks = loadMinRanks(dataDir);
@@ -10,7 +10,7 @@ const ranks = loadMinRanks(dataDir);
 const readList = (dir: string, file: string, field: string) =>
   (
     JSON.parse(fs.readFileSync(path.join(dataDir, dir, file), "utf-8")) as Record<string, unknown[]>
-  )[field] as { name: string }[];
+  )[field] as ({ name: string } & Recipes)[];
 
 describe("min rank over the real data", () => {
   it("finds a route for every weapon and armor piece", () => {
