@@ -10,6 +10,7 @@ content/**/*.md
 # assets from the repo).
 /public/data
 /public/search-data.json
+/public/embed
 /public/sw.js
 /public/workbox-*.js
 /public/swe-worker-*.js

@@ -1,7 +1,7 @@
 import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { faviconMetadata } from "@/lib/favicon";
-import { DEFAULT_IMAGE, SITE_DESCRIPTION, SITE_NAME, THEME_COLOR } from "@/lib/seo";
+import { DEFAULT_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, THEME_COLOR } from "@/lib/seo";
 import GlobalSearch from "@/components/GlobalSearch";
 import PreloadIcons from "@/components/PreloadIcons";
 // import OfflineDownload from "@/components/OfflineDownload"; // banner hidden for now
@@ -15,7 +15,7 @@ import { OfflineProvider } from "@/context/OfflineContext";
 import { FileSyncProvider } from "@/context/FileSyncContext";
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.NEXT_PUBLIC_SITE_URL ?? "https://mhfu-blacksmith.netlify.app"),
+  metadataBase: new URL(SITE_URL),
   title: SITE_NAME,
   description: SITE_DESCRIPTION,
   openGraph: {
