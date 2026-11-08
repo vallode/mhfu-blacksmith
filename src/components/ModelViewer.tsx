@@ -108,23 +108,55 @@ export default function ModelViewer({ src, label }: Props) {
         model = gltf.scene;
         scene.add(model);
 
-        // Frame the model for a turntable: fit its horizontal reach (any side
-        // can face the camera while it spins) and its height, then view from
-        // slightly above. A bounding sphere leaves flat models like a
-        // wyvern with spread wings far too small.
+        // Frame the model for a turntable, viewed from slightly above (see fit).
         const box = new THREE.Box3().setFromObject(model);
         const size = box.getSize(new THREE.Vector3());
         const center = box.getCenter(new THREE.Vector3());
-        const reach = Math.hypot(size.x, size.z) / 2;
         const radius = size.length() / 2;
+        // Fit by projection: the closest camera distance at which every corner
+        // of the bounding box stays inside the frame (with a small margin)
+        // from all around the turntable, at the current viewing elevation.
+        // Exact for any shape and aspect ratio, unlike a bounding sphere.
+        const corners = [0, 1, 2, 3, 4, 5, 6, 7].map(
+          (i) => new THREE.Vector3(i & 1 ? box.max.x : box.min.x, i & 2 ? box.max.y : box.min.y, i & 4 ? box.max.z : box.min.z)
+        );
+        const MARGIN = 0.92;
+        const probe = camera.clone();
+        const projected = new THREE.Vector3();
+        const fitsAt = (distance: number, elevation: number): boolean => {
+          probe.near = distance / 100;
+          probe.far = distance * 10;
+          probe.aspect = camera.aspect;
+          probe.updateProjectionMatrix();
+          for (let step = 0; step < 16; step++) {
+            const azimuth = (step / 16) * Math.PI * 2;
+            probe.position.set(
+              center.x + distance * Math.cos(elevation) * Math.sin(azimuth),
+              center.y + distance * Math.sin(elevation),
+              center.z + distance * Math.cos(elevation) * Math.cos(azimuth)
+            );
+            probe.lookAt(center);
+            probe.updateMatrixWorld();
+            for (const corner of corners) {
+              projected.copy(corner).project(probe);
+              if (projected.z > 1 || Math.abs(projected.x) > MARGIN || Math.abs(projected.y) > MARGIN) return false;
+            }
+          }
+          return true;
+        };
         fit = () => {
-          const vertical = Math.tan(THREE.MathUtils.degToRad(camera.fov / 2));
-          const horizontal = vertical * camera.aspect;
-          const distance = 1.1 * Math.max(reach / horizontal, size.y / 2 / vertical) + reach * 0.3;
-          // Keep the current (auto-rotated) viewing angle, change only the distance.
-          const direction = camera.position.clone().sub(controls.target);
-          if (direction.lengthSq() === 0) direction.set(1, 0.35, 1);
-          direction.normalize();
+          // Keep the current viewing elevation; change only the distance.
+          const offset = camera.position.clone().sub(controls.target);
+          const elevation = offset.lengthSq() ? Math.asin(THREE.MathUtils.clamp(offset.y / offset.length(), -1, 1)) : 0.33;
+          let near = radius * 0.5;
+          let far = radius * 50;
+          for (let i = 0; i < 30; i++) {
+            const mid = (near + far) / 2;
+            if (fitsAt(mid, elevation)) far = mid;
+            else near = mid;
+          }
+          const distance = far;
+          const direction = offset.lengthSq() ? offset.normalize() : new THREE.Vector3(1, 0.35, 1).normalize();
           controls.target.copy(center);
           camera.position.copy(center).addScaledVector(direction, distance);
           camera.near = distance / 100;
