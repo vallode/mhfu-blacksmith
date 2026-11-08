@@ -4,7 +4,7 @@
  */
 import fs from "fs";
 import path from "path";
-import { questHubSlug, type QuestHubSlug } from "./quests";
+import { isHiddenQuest, questHubSlug, type QuestHubSlug } from "./quests";
 
 export interface QuestSummary {
   id: number;
@@ -32,7 +32,8 @@ export function getQuestSummaries(): QuestSummary[] {
     };
     for (const q of quests) {
       const hub = questHubSlug(q.hub, q.rank);
-      if (hub) out.push({ id: q.id, hub, title: q.title ?? `Quest ${q.id}`, goal: q.goal });
+      if (hub && !isHiddenQuest(q.id))
+        out.push({ id: q.id, hub, title: q.title ?? `Quest ${q.id}`, goal: q.goal });
     }
   }
   cache = out;
