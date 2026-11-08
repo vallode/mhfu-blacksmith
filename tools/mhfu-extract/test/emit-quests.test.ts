@@ -5,6 +5,7 @@ import {
   emitQuest,
   emitQuestsFile,
   QUEST_HUB_TO_FILE,
+  questHub,
 } from "../src/emit/quests.js";
 import type { ParsedQuest } from "../src/quests/parser.js";
 
@@ -90,10 +91,19 @@ const GIADROME_HUNT: ParsedQuest = {
   },
 };
 
-test("emitQuest reproduces the real 'Hunt 1 Giadrome' quest (ID 1) end-to-end", () => {
-  const emitted = emitQuest(GIADROME_HUNT);
+/**
+ * Quest 1 is on no board (see questHub), so tests that need an emitted quest
+ * renumber it into the Village's ★1 block.
+ */
+const VILLAGE_GIADROME: ParsedQuest = {
+  ...GIADROME_HUNT,
+  header: { ...GIADROME_HUNT.header, questId: 10006 },
+};
+
+test("emitQuest reproduces the real 'Hunt 1 Giadrome' quest end-to-end", () => {
+  const emitted = emitQuest(VILLAGE_GIADROME);
   assert.ok(emitted);
-  assert.equal(emitted.id, 1);
+  assert.equal(emitted.id, 10006);
   assert.equal(emitted.hub, "village");
   assert.equal(emitted.rank, null);
   assert.equal(emitted.stars, 1);
@@ -157,13 +167,53 @@ test("emitQuest maps rank 4 (real Training School client '教官') to the traini
   assert.deepEqual(emitted.target, { monster: "Yian Kut-Ku", amount: 1 });
 });
 
+const withHeader = (questId: number, rank: number) =>
+  emitQuest({ ...GIADROME_HUNT, header: { ...GIADROME_HUNT.header, questId, rank } });
+
 test("emitQuest maps guild ranks 1/2/5 to guild low/high/g-rank tiers", () => {
-  const guildLow = emitQuest({ ...GIADROME_HUNT, header: { ...GIADROME_HUNT.header, rank: 1 } });
-  const guildHigh = emitQuest({ ...GIADROME_HUNT, header: { ...GIADROME_HUNT.header, rank: 2 } });
-  const guildG = emitQuest({ ...GIADROME_HUNT, header: { ...GIADROME_HUNT.header, rank: 5 } });
+  const guildLow = withHeader(1001, 1);
+  const guildHigh = withHeader(2001, 2);
+  const guildG = withHeader(3001, 5);
   assert.deepEqual([guildLow?.hub, guildLow?.rank], ["guild", "low-rank"]);
   assert.deepEqual([guildHigh?.hub, guildHigh?.rank], ["guild", "high-rank"]);
   assert.deepEqual([guildG?.hub, guildG?.rank], ["guild", "g-rank"]);
+});
+
+test("emitQuest puts the Village's quests on the Village board, whatever their rank byte", () => {
+  // Real headers: 10104 "The Carnivorous Leader" is rank 1 like Guild Low
+  // Rank, 11001 rank 2 like Guild High Rank, 10004 "Sinking Feeling" rank 0.
+  const elder = withHeader(10104, 1);
+  const high = withHeader(11001, 2);
+  const tigrex = withHeader(10004, 0);
+  assert.deepEqual([elder?.hub, elder?.rank], ["village", "low-rank"]);
+  assert.deepEqual([high?.hub, high?.rank], ["village", "high-rank"]);
+  assert.deepEqual([tigrex?.hub, tigrex?.rank], ["village", null]);
+});
+
+test("questHub reads the board from the quest ID block", () => {
+  const cases: [number, ReturnType<typeof questHub>][] = [
+    [1, null],
+    [109, null],
+    [1001, "guild"],
+    [2116, "guild"],
+    [3233, "guild"],
+    [4001, "treasure-hunting"],
+    [10001, "village"],
+    [11226, "village"],
+    [20001, "training-school"],
+    [21001, "training-school"],
+    [22006, "training-school"],
+    [30090, "guild"],
+    [40001, null],
+    [50001, null],
+  ];
+  for (const [id, hub] of cases) assert.equal(questHub(id), hub, `quest ${id}`);
+});
+
+test("emitQuest drops quests 1-109, which are on no board", () => {
+  // Real quest 1 itself, and 108 "Eliminate the Rathalos!" (rank 0, ★2).
+  assert.equal(emitQuest(GIADROME_HUNT), null);
+  assert.equal(withHeader(108, 0), null);
 });
 
 test("emitQuest returns null for the disc's unused/disabled quest slots (real 'm5000x' placeholder text)", () => {
@@ -224,7 +274,7 @@ test("classifyRewardTable labels main, extra and conditional tables from Unkn1/U
 test("emitQuest labels every table of a multi-table quest in disc order", () => {
   const items = [{ chance: 100, itemId: 342, amount: 3 }];
   const emitted = emitQuest({
-    ...GIADROME_HUNT,
+    ...VILLAGE_GIADROME,
     rewards: [
       { unkn1: 0x8000, unkn2: 0x0500, itemsPtr: 0, items },
       { unkn1: 0x8001, unkn2: 0, itemsPtr: 0, items },
@@ -246,13 +296,14 @@ test("emitQuest labels every table of a multi-table quest in disc order", () => 
 
 test("emitQuest returns a null target when targetNum is 0 (no single hunt/capture objective)", () => {
   const emitted = emitQuest({
-    ...GIADROME_HUNT,
-    header: { ...GIADROME_HUNT.header, targetNum: 0 },
+    ...VILLAGE_GIADROME,
+    header: { ...VILLAGE_GIADROME.header, targetNum: 0 },
   });
-  assert.equal(emitted?.target, null);
+  assert.ok(emitted);
+  assert.equal(emitted.target, null);
 });
 
-test("emitQuestsFile groups quests by hub and drops unused slots", () => {
+test("emitQuestsFile groups quests by hub and drops unused slots and boardless quests", () => {
   const disabled: ParsedQuest = {
     ...GIADROME_HUNT,
     header: { ...GIADROME_HUNT.header, rank: 0, questId: 50001 },
@@ -263,7 +314,7 @@ test("emitQuestsFile groups quests by hub and drops unused slots", () => {
     header: { ...GIADROME_HUNT.header, rank: 4, questId: 21001 },
   };
 
-  const output = emitQuestsFile([GIADROME_HUNT, disabled, training]);
+  const output = emitQuestsFile([VILLAGE_GIADROME, GIADROME_HUNT, disabled, training]);
   assert.deepEqual(Object.keys(output).sort(), Object.values(QUEST_HUB_TO_FILE).sort());
   assert.equal(output[QUEST_HUB_TO_FILE.village]!.quests.length, 1);
   assert.equal(output[QUEST_HUB_TO_FILE["training-school"]]!.quests.length, 1);
