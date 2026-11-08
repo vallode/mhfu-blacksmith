@@ -83,7 +83,7 @@
           "ko": "0"
         }
       },
-      "base_hp": 5242920
+      "base_hp": 40
     },
     {
       "name": "Vespoid Queen",
@@ -104,7 +104,7 @@
           "ko": "0"
         }
       },
-      "base_hp": 117966600
+      "base_hp": 1800
     },
     {
       "name": "Hornetaur",
@@ -197,7 +197,7 @@
           "ko": "0"
         }
       },
-      "base_hp": 6553650
+      "base_hp": 50
     },
     {
       "name": "Great Thunderbug",
