@@ -2,6 +2,7 @@
 
 import { useEffect, useLayoutEffect, useRef } from "react";
 import Card from "@/components/Card";
+import { cn } from "@/lib/cn";
 
 /**
  * Desktop: absolutely positioned in the .split-page (position: relative); the
@@ -15,18 +16,84 @@ const POPOVER_CLASSES =
 interface ButtonProps {
   open: boolean;
   onClick: () => void;
+  className?: string;
 }
 
-/** Toggles the 3D model popover. */
-export function ModelButton({ open, onClick }: ButtonProps) {
+/**
+ * A small isometric cube in the style of the game's item sprites, one
+ * character per pixel: o outline, t top face, l left face, r right face,
+ * e the front edge.
+ */
+const CUBE = [
+  ".....ooo.....",
+  "...ootttoo...",
+  ".ootttttttoo.",
+  "ottttttttttto",
+  "olltttttttrro",
+  "olllltttrrrro",
+  "olllllerrrrro",
+  "olllllerrrrro",
+  "olllllerrrrro",
+  "olllllerrrrro",
+  "olllllerrrrro",
+  ".oolllerrroo.",
+  "...ooleroo...",
+  ".....ooo.....",
+];
+
+const CUBE_FILL: Record<string, string> = {
+  o: "fill-[#0b0b0b]",
+  t: "fill-[#ece8d2]",
+  l: "fill-parchment",
+  r: "fill-[#7d7966]",
+  e: "fill-[#d8d3b6]",
+};
+
+/** The cube as SVG rects, one per run of same-coloured pixels. */
+function CubeSprite() {
+  const width = CUBE[0].length;
+  return (
+    <svg
+      viewBox={`0 0 ${width} ${CUBE.length}`}
+      className="h-[2.8rem] w-[2.6rem]"
+      shapeRendering="crispEdges"
+      aria-hidden
+    >
+      {CUBE.flatMap((row, y) =>
+        [...row.matchAll(/([^.])\1*/g)].map((run) => (
+          <rect
+            key={`${run.index}-${y}`}
+            x={run.index}
+            y={y}
+            width={run[0].length}
+            height={1}
+            className={CUBE_FILL[run[1]]}
+          />
+        )),
+      )}
+    </svg>
+  );
+}
+
+/**
+ * Toggles the 3D model popover: a cube sprite beside the item's name. It
+ * pulses green on hover like a list row and stays lit while the model is open.
+ */
+export function ModelButton({ open, onClick, className }: ButtonProps) {
   return (
     <button
       type="button"
       onClick={onClick}
       aria-expanded={open}
-      className="cursor-pointer self-start text-stat hover:underline focus-visible:underline"
+      aria-label={open ? "Hide 3D model" : "View 3D model"}
+      title={open ? "Hide 3D model" : "View 3D model"}
+      className={cn(
+        "flex flex-none cursor-pointer items-center px-[0.8rem] py-[0.4rem] hover:hover-glow focus-visible:hover-glow",
+        open && "bg-(image:--gradient-hover-glow)",
+        className,
+      )}
     >
-      {open ? "Hide 3D model" : "View 3D model"}
+      <CubeSprite />
     </button>
   );
 }

@@ -100,7 +100,16 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           {/* Name and habitats beside the portrait (stacked under it on phones) */}
           <div className="relative flex h-auto flex-[0_0_11rem] flex-row items-start text-[2.2rem] text-gold no-underline mobile:flex-col-reverse mobile:flex-wrap">
             <div className="flex flex-col">
-              <p className="leading-[1.25]">{monster.name}</p>
+              <div className="flex items-center">
+                <p className="leading-[1.25]">{monster.name}</p>
+                {modelUrl && (
+                  <ModelButton
+                    open={modelOpen}
+                    onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
+                    className="ml-[0.4rem]"
+                  />
+                )}
+              </div>
               {monster.habitats && <p className="leading-[1.25]">{monster.habitats.join(", ")}</p>}
             </div>
             <Icon
@@ -115,13 +124,6 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           <DetailBody>
             {monster.description && (
               <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
-            )}
-
-            {modelUrl && (
-              <ModelButton
-                open={modelOpen}
-                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
-              />
             )}
 
             <DetailRule />

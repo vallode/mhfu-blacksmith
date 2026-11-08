@@ -103,6 +103,13 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
           <DetailHeader>
             <Icon type={slot} size="large" alt={piece.name} />
             <p>{piece.name}</p>
+            {modelKey && (
+              <ModelButton
+                open={modelOpen}
+                onClick={() => setOpenModel(modelOpen ? null : modelKey)}
+                className="ml-[0.4rem]"
+              />
+            )}
             {piece.sex && <span>{piece.sex}</span>}
             {piece.hunter_type && <span>{piece.hunter_type}</span>}
           </DetailHeader>
@@ -141,13 +148,6 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 </Stat>
               )}
             </StatList>
-
-            {modelKey && (
-              <ModelButton
-                open={modelOpen}
-                onClick={() => setOpenModel(modelOpen ? null : modelKey)}
-              />
-            )}
 
             <DetailRule />
 
