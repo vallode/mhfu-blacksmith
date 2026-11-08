@@ -13,9 +13,6 @@ import { Slots } from "@/components/DetailPanel";
 import { cn } from "@/lib/cn";
 import type { ArmorSet, DecoBin, PlacedDeco } from "@/lib/set-search";
 
-/** Spaced-out lettering of the game's menus. */
-export const gameText = "tracking-[0.12em]";
-
 const RES_LABELS = ["Fire Res", "Water Res", "Thundr Res", "Ice Res", "Dragon Res"];
 
 function Decorations({ decos }: { decos: PlacedDeco[] }) {
@@ -51,7 +48,11 @@ function EquipRow({
     <li className="grid grid-cols-[3.8rem_1.6rem_minmax(0,1fr)_auto] items-center gap-y-[0.2rem] py-[0.4rem]">
       {icon}
       <span className="text-stat">:</span>
-      <span className={cn("truncate text-[1.9rem] text-white mobile:text-[1.6rem]", gameText)}>
+      <span
+        className={cn(
+          "truncate text-[1.9rem] text-white mobile:text-[1.6rem] mobile:wrap-break-word mobile:whitespace-normal",
+        )}
+      >
         {name}
         {alternatives}
       </span>
@@ -89,7 +90,6 @@ export function SetHeader({
       <span
         className={cn(
           "flex-1 text-[2.2rem] text-stat text-shadow-[0.15rem_0.15rem_black] mobile:text-[1.8rem]",
-          gameText,
         )}
         aria-live="polite"
       >
@@ -98,7 +98,6 @@ export function SetHeader({
       <span
         className={cn(
           "text-[2.2rem] text-white text-shadow-[0.15rem_0.15rem_black] mobile:text-[1.8rem]",
-          gameText,
         )}
       >
         {index + 1}/{count}
@@ -161,21 +160,18 @@ export default function ArmorSetView({
 
       <div className="flex flex-wrap gap-x-[3.2rem] gap-y-[2rem] px-[0.8rem]">
         <div className="flex min-w-[24rem] flex-1 flex-col gap-[0.6rem]">
-          <h3 className={cn("m-0 text-[1.9rem] font-normal text-stat", gameText)}>
-            [Activate Skill]
-          </h3>
+          <h3 className={cn("m-0 text-[1.9rem] font-normal text-stat")}>[Activate Skill]</h3>
           <ul className="m-0 list-none p-0">
             {set.skills.map((s) => (
               <li
                 key={s.tree}
                 className={cn(
                   "flex items-baseline gap-[1rem] text-[1.9rem] leading-[1.4] mobile:text-[1.6rem]",
-                  gameText,
                   s.threshold < 0 ? "text-negative" : "text-white",
                 )}
               >
                 {s.name}
-                <span className="text-[1.3rem] tracking-normal text-white/40">
+                <span className="text-[1.3rem] text-white/40">
                   {s.tree} {s.points > 0 ? `+${s.points}` : s.points}
                 </span>
               </li>
@@ -227,15 +223,11 @@ export function SetStatus({ set }: { set: ArmorSet | null }) {
     ["Free Slots", set?.freeSlots ?? "-"],
   ];
   return (
-    <dl className="m-0 grid grid-cols-[max-content_2ch_5ch] gap-y-[0.4rem] text-[1.9rem] mobile:text-[1.6rem]">
+    <dl className="m-0 grid grid-cols-[max-content_calc(var(--cell)*2)_calc(var(--cell)*5)] gap-y-[0.4rem] text-[1.9rem] mobile:text-[1.6rem]">
       {rows.map(([label, value], i) => (
         <div
           key={label}
-          className={cn(
-            "contents",
-            gameText,
-            (i === 1 || i === rows.length - 1) && "[&>*]:mt-[1.2rem]",
-          )}
+          className={cn("contents", (i === 1 || i === rows.length - 1) && "[&>*]:mt-[1.2rem]")}
         >
           <dt className="text-stat">{label}</dt>
           <dd className="m-0 text-stat">:</dd>

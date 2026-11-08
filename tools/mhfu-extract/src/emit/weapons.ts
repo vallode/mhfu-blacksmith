@@ -13,17 +13,13 @@
  * Deliberately **not** emitted this pass (out of scope — no confirmed
  * derivation yet): Hunting Horn's hidden `bonus` attack stat and Gunlance's
  * `shelling` type/level (both packed into the shared `NoteGLType` byte, but
- * its exact decode isn't nailed down), and every gunner-specific ammo/
- * capacity/coating detail (`ammo`, `shots`, `rapid_fire`, `coatings`,
- * `reload`, `recoil` display strings) — `bowgunShotTable`/`bowChargeTable`/
- * `bowgunModTable` aren't read by any tables/*.ts reader yet. `notes` is
+ * its exact decode isn't nailed down). Gunner ammo, shots, coatings,
+ * reload, recoil and rapid fire are in emit/gunner.ts. `notes` is
  * also not emitted (its committed content looks hand-written, not
  * disc-derived). These all come through as `null`/omitted, which the
  * loosely-typed weapon schema (`additionalProperties: true`) allows.
  */
 import {
-  decodeBowCoatings,
-  decodeShotCoat,
   readBlademasterWeapons,
   readGunnerWeapons,
   readModelToWeaponType,
@@ -31,6 +27,7 @@ import {
   WEAPON_TYPE_NAMES,
   type WeaponTypeName,
 } from "../tables/weapons.js";
+import { readDualAttributeWeapons, type DualAttributeWeapon } from "../tables/dual-attributes.js";
 import { readSharpnessTables, SHARPNESS_COLORS, type SharpnessEntry } from "../tables/sharpness.js";
 import {
   readEquipmentCreate,
@@ -41,6 +38,7 @@ import {
 import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver, type NameTable } from "../strings/names.js";
 import type { BinaryReader } from "../binary/reader.js";
+import { emitBowCoatingBonuses, emitGunnerDetails, readGunnerTables } from "./gunner.js";
 import {
   displayRarity,
   groupEquipCreateByEquipId,
@@ -63,7 +61,8 @@ const ELEMENT_VALUE_SCALE = 10;
 
 export interface EmittedElement {
   name: string;
-  attack: number;
+  /** Element value, or "Add" for a bow coating bonus. */
+  attack: number | "Add";
 }
 
 function emitElements(
@@ -78,6 +77,35 @@ function emitElements(
   const statusName = STATUS_NAMES[statusType];
   if (statusName) elements.push({ name: statusName, attack: statusValue * ELEMENT_VALUE_SCALE });
   return elements.length > 0 ? elements : null;
+}
+
+/**
+ * Both elements of a dual-element weapon (`WepDualAttr`), in stored order,
+ * which is also the site's order. These weapons have no element in their
+ * own struct.
+ */
+export function emitDualElements(entry: DualAttributeWeapon): EmittedElement[] {
+  return entry.attributes.map((a) => {
+    if (!a.name) {
+      throw new Error(
+        `Unknown dual-attribute flag 0x${a.flag.toString(16)} on WepBMID ${entry.weaponId}.`,
+      );
+    }
+    return { name: a.name, attack: a.value * ELEMENT_VALUE_SCALE };
+  });
+}
+
+/** `WepDualAttr` keyed by `WepBMID`, skipping all-zero entries (synthetic fixtures). */
+function dualAttributesByWeaponId(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): Map<number, DualAttributeWeapon> {
+  const byId = new Map<number, DualAttributeWeapon>();
+  for (const entry of readDualAttributeWeapons(reader, resolver)) {
+    if (entry.attributes.every((a) => a.flag === 0)) continue;
+    byId.set(entry.weaponId, entry);
+  }
+  return byId;
 }
 
 /**
@@ -190,7 +218,8 @@ export interface EmittedWeapon {
   improve_to: string[] | null;
   elements: EmittedElement[] | null;
   alternative_create_mats: ReturnType<typeof resolveMaterials> | null;
-  coatings?: string[];
+  /** Gunner-only fields from `emitGunnerDetails()` (emit/gunner.ts). */
+  [field: string]: unknown;
 }
 
 /**
@@ -225,6 +254,7 @@ export function emitBlademasterWeapons(
   const sharpnessTables = readSharpnessTables(reader, resolver);
   const create = readEquipmentCreate(reader, resolver);
   const upgrade = readEquipmentUpgrade(reader, resolver);
+  const dualAttributes = dualAttributesByWeaponId(reader, resolver);
   const names = getNameResolver();
 
   const createByEquipId = groupEquipCreateByEquipId([
@@ -264,6 +294,7 @@ export function emitBlademasterWeapons(
 
     const [primaryRecipe, altRecipe] = createByEquipId.get(w.index) ?? [];
     const upgradeEntry = upgradeGraph.entries[w.index];
+    const dual = dualAttributes.get(w.index);
 
     out.push({
       name,
@@ -287,43 +318,15 @@ export function emitBlademasterWeapons(
           ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names, "weapon"))
           : null,
       improve_to: resolveImproveTo(upgradeEntry, "WepBMID", names),
-      elements: emitElements(w.eleType, w.eleValue, w.statusType, w.statusValue),
+      elements: dual
+        ? emitDualElements(dual)
+        : emitElements(w.eleType, w.eleValue, w.statusType, w.statusValue),
       alternative_create_mats: altRecipe
         ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon"))
         : null,
     });
   }
   return out;
-}
-
-/**
- * `decodeShotCoat`'s `SHOT_COAT_FIELDS` is the bowgun 32-bit ammo-type
- * bitfield (norm1/pierce1/pellet1/...) — semantically meaningless for a
- * bow, which uses a completely different, much smaller vocabulary (close-
- * range/power/paralysis/poison/sleep/paint, confirmed against every
- * committed `data/weapons/bow.json` entry). `WepGunValue`'s `ShotCoatings`
- * field is shared by both sub-types (eboot.hexpat's own comment on the
- * neighboring `Reload` field already notes other shared fields have
- * different bow semantics), so decoding it as bowgun ammo flags for a bow
- * produced 100%-wrong coatings (106/106 real bows). Gate to bowgun types
- * only, and use `decodeBowCoatings()`'s independently-derived 6-flag bit
- * layout for bows (see that function's doc comment for the correlation
- * methodology and confidence level).
- */
-function coatingsForType(type: WeaponTypeName | null, shotCoatings: number): string[] | undefined {
-  if (type === "light-bowgun" || type === "heavy-bowgun") {
-    return Object.entries(decodeShotCoat(shotCoatings))
-      .filter(([, enabled]) => enabled)
-      .map(([flag]) => flag);
-  }
-  if (type === "bow") {
-    const decoded = decodeBowCoatings(shotCoatings);
-    if (!decoded) return undefined;
-    return Object.entries(decoded)
-      .filter(([, enabled]) => enabled)
-      .map(([flag]) => flag);
-  }
-  return undefined;
 }
 
 export function emitGunnerWeapons(
@@ -336,6 +339,7 @@ export function emitGunnerWeapons(
   const create = readEquipmentCreate(reader, resolver);
   const upgrade = readEquipmentUpgrade(reader, resolver);
   const names = getNameResolver();
+  const gunnerTables = readGunnerTables(reader, resolver);
 
   const createByEquipId = groupEquipCreateByEquipId([
     ...create.lightBowgun,
@@ -363,16 +367,10 @@ export function emitGunnerWeapons(
 
     const [primaryRecipe, altRecipe] = createByEquipId.get(w.index) ?? [];
     const upgradeEntry = upgradeGraph.entries[w.index];
-    // decodeShotCoat()'s SHOT_COAT_FIELDS is the bowgun 32-bit ammo-type
-    // bitfield (norm1/pierce1/pellet1/...) — semantically meaningless for
-    // bows, which use a completely different, much smaller vocabulary
-    // (close-range/power/paralysis/poison/sleep/paint). WepGunValue's
-    // ShotCoatings field is shared by both sub-types (confirmed via
-    // eboot.hexpat's own comment noting other shared fields like Reload
-    // already have different bow semantics), so decoding it as bowgun ammo
-    // flags for a bow produced 100%-wrong coatings. Gate it to bowgun types
-    // only until bow's own bit layout is decoded (see decodeBowCoatings()).
-    const coatings = coatingsForType(type, w.shotCoatings);
+    const elements = [
+      ...(emitElements(w.eleType, w.eleValue, 0, 0) ?? []),
+      ...(type === "bow" ? emitBowCoatingBonuses(w.shotCoatings) : []),
+    ];
 
     out.push({
       name,
@@ -396,11 +394,11 @@ export function emitGunnerWeapons(
           ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names, "weapon"))
           : null,
       improve_to: resolveImproveTo(upgradeEntry, "WepGunID", names),
-      elements: emitElements(w.eleType, w.eleValue, 0, 0),
+      elements: elements.length > 0 ? elements : null,
       alternative_create_mats: altRecipe
         ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon"))
         : null,
-      coatings,
+      ...emitGunnerDetails(w, type, classMod, gunnerTables),
     });
   }
   return out;

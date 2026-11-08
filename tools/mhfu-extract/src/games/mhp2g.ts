@@ -15,6 +15,7 @@ import type { Region } from "../container/sfo.js";
 import { EU_ALL_SIGNATURES } from "../tables/eu-signatures.js";
 import {
   DECO_SKILL_ENTRY_SIZE,
+  DUAL_ATTRIBUTE_ENTRY_SIZE,
   EQUIP_CREATE_ENTRY_SIZE,
   EQUIP_UPGRADE_ENTRY_SIZE,
   ITEM_ENTRY_SIZE,
@@ -27,6 +28,12 @@ import {
 } from "../tables/offsets.js";
 import type { GameProfile, TableDescriptor } from "../tables/profile.js";
 import {
+  BOWGUN_SHOT_COUNT,
+  BOWGUN_SHOT_ENTRY_SIZE,
+  BOW_CHARGE_COUNT,
+  BOW_CHARGE_ENTRY_SIZE,
+} from "../tables/gunner.js";
+import {
   SignatureResolver,
   StaticOffsetResolver,
   type TableAddressResolver,
@@ -36,11 +43,8 @@ import {
  * Per-table entry size/count, for tables that are a single flat fixed-stride
  * array. Tables not listed here are either a sequence of differently-sized
  * sections (`equipmentCreate`/`equipmentUpgrade` — see tables/recipes.ts,
- * `entrySize` only) or aren't read by this pipeline at all yet
- * (`bowgunShotTable`, `bowChargeTable`, `bowgunModTable`,
- * `dualAttributeWeapons` — declared in `eboot.hexpat` and carried in
- * `JP_TABLE_ADDRESSES` for completeness, but no reader/consumer exists in
- * tables/*.ts today).
+ * `entrySize` only), or read relative to another table (`bowgunModTable`,
+ * see tables/gunner.ts).
  */
 const FIXED_STRIDE_TABLES: Readonly<
   Partial<Record<keyof typeof JP_TABLE_ADDRESSES, { entrySize: number; count: number }>>
@@ -52,6 +56,12 @@ const FIXED_STRIDE_TABLES: Readonly<
   decorationSkills: { entrySize: DECO_SKILL_ENTRY_SIZE, count: TABLE_COUNTS.decorations },
   modelToWeaponType: { entrySize: 1, count: TABLE_COUNTS.modelToWeaponType },
   sharpnessTable: { entrySize: SHARPNESS_ENTRY_SIZE, count: TABLE_COUNTS.sharpnessEntries },
+  bowgunShotTable: { entrySize: BOWGUN_SHOT_ENTRY_SIZE, count: BOWGUN_SHOT_COUNT },
+  bowChargeTable: { entrySize: BOW_CHARGE_ENTRY_SIZE, count: BOW_CHARGE_COUNT },
+  dualAttributeWeapons: {
+    entrySize: DUAL_ATTRIBUTE_ENTRY_SIZE,
+    count: TABLE_COUNTS.dualAttributeWeapons,
+  },
   decorationValues: { entrySize: ITEM_ENTRY_SIZE, count: TABLE_COUNTS.decorations },
   itemTable: { entrySize: ITEM_ENTRY_SIZE, count: TABLE_COUNTS.regularItems },
 };
@@ -97,8 +107,9 @@ export const MHP2G_EU_RESOLVER: TableAddressResolver = new SignatureResolver(EU_
  * `ARMOR_SLOT_TABLE_NAMES`, not `armorValuePointers` itself (see that
  * module's doc comment for why). Doesn't include quest tables (an entirely
  * separate DataCipher/QuestCipher path, not table-address-resolved at all)
- * or tables no emit/*.ts module reads yet (`itemTable`, `bowgunShotTable`,
- * `bowChargeTable`, `bowgunModTable`, `dualAttributeWeapons`).
+ * or tables no emit/*.ts module reads yet (`itemTable`). `bowgunModTable`
+ * and the rapid fire table are found from `sharpnessTable`
+ * (tables/gunner.ts), so they need no entry.
  */
 export const MHP2G_EMIT_TABLES: readonly string[] = [
   "weaponClassModifiers",
@@ -106,6 +117,9 @@ export const MHP2G_EMIT_TABLES: readonly string[] = [
   "weaponsGunner",
   "modelToWeaponType",
   "sharpnessTable",
+  "bowgunShotTable",
+  "bowChargeTable",
+  "dualAttributeWeapons",
   "equipmentCreate",
   "equipmentUpgrade",
   "decorationValues",

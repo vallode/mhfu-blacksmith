@@ -1051,7 +1051,7 @@
       "name": "Maelstrom",
       "attack": 120,
       "max_attack": 180,
-      "rapid_fire": null,
+      "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": 0,
       "bonus": null,
@@ -2954,7 +2954,7 @@
       "bonus": null,
       "rarity": 4,
       "type": "light-bowgun",
-      "reload": "Fast ",
+      "reload": "Fast",
       "recoil": "Moderate",
       "ammo": [
         {
@@ -4243,7 +4243,7 @@
         {
           "name": "Flame S",
           "capacity": [
-            0
+            3
           ]
         },
         {
@@ -4275,13 +4275,13 @@
         {
           "name": "Tranq S",
           "capacity": [
-            0
+            2
           ]
         },
         {
           "name": "Paint S",
           "capacity": [
-            0
+            2
           ]
         },
         {
@@ -4398,7 +4398,7 @@
         {
           "name": "Flame S",
           "capacity": [
-            5
+            6
           ]
         },
         {
@@ -5012,24 +5012,24 @@
         {
           "name": "Normal S",
           "capacity": [
-            6,
-            6,
-            9
+            9,
+            9,
+            12
           ]
         },
         {
           "name": "Pierce S",
           "capacity": [
-            3,
-            3,
+            4,
+            0,
             0
           ]
         },
         {
           "name": "Pellet S",
           "capacity": [
-            4,
-            4,
+            6,
+            0,
             0
           ]
         },
@@ -5037,8 +5037,8 @@
           "name": "Crag S",
           "capacity": [
             1,
-            1,
-            1
+            0,
+            0
           ]
         },
         {
@@ -5430,7 +5430,7 @@
         {
           "name": "Flame S",
           "capacity": [
-            5
+            6
           ]
         },
         {
@@ -5961,7 +5961,7 @@
         {
           "name": "ThunderS",
           "capacity": [
-            3
+            0
           ]
         },
         {
@@ -6211,7 +6211,7 @@
       "name": "Maelstrom+",
       "attack": 204,
       "max_attack": 264,
-      "rapid_fire": null,
+      "rapid_fire": "Water S",
       "affinity": "0%",
       "slots": 0,
       "bonus": null,
@@ -7365,7 +7365,7 @@
         {
           "name": "Tranq S",
           "capacity": [
-            3
+            2
           ]
         },
         {
@@ -7538,7 +7538,7 @@
         {
           "name": "Tranq S",
           "capacity": [
-            3
+            2
           ]
         },
         {
@@ -8953,7 +8953,7 @@
         {
           "name": "Armor S",
           "capacity": [
-            0
+            1
           ]
         }
       ],
@@ -10012,7 +10012,7 @@
       "name": "Melynx Helldoll",
       "attack": 228,
       "max_attack": 288,
-      "rapid_fire": "Normal S Lv1|Flaming",
+      "rapid_fire": "Normal S Lv1|Flaming S",
       "affinity": "30%",
       "slots": 1,
       "bonus": null,
@@ -10319,7 +10319,7 @@
         {
           "name": "Armor S",
           "capacity": [
-            1
+            0
           ]
         }
       ],
@@ -11184,7 +11184,7 @@
         {
           "name": "Armor S",
           "capacity": [
-            1
+            0
           ]
         }
       ],
@@ -11915,7 +11915,7 @@
       "name": "Profusion",
       "attack": 264,
       "max_attack": 324,
-      "rapid_fire": "Pellet S Lv1|Pierce S Lv2",
+      "rapid_fire": "Pierce S Lv2|Pellet S Lv1",
       "affinity": "-15%",
       "slots": 1,
       "bonus": "12",
@@ -12261,7 +12261,7 @@
       "name": "Fire Wrath",
       "attack": 276,
       "max_attack": 336,
-      "rapid_fire": "Pierce S Lv1|Flaming S ",
+      "rapid_fire": "Pierce S Lv1|Flaming S",
       "affinity": "0%",
       "slots": 0,
       "bonus": null,
@@ -13606,7 +13606,7 @@
         {
           "name": "Armor S",
           "capacity": [
-            0
+            1
           ]
         }
       ],
@@ -14164,7 +14164,7 @@
       "name": "Shotgun (Snake)",
       "attack": 312,
       "max_attack": 372,
-      "rapid_fire": "Pellet S Lv3|Posion S",
+      "rapid_fire": "Pellet S Lv3|Poison S",
       "affinity": "0%",
       "slots": 1,
       "bonus": null,
@@ -15430,7 +15430,7 @@
           "name": "RecovS",
           "capacity": [
             3,
-            1
+            3
           ]
         },
         {
@@ -15664,7 +15664,7 @@
         {
           "name": "Tranq S",
           "capacity": [
-            3
+            2
           ]
         },
         {
@@ -17451,7 +17451,7 @@
       "name": "Prosperity",
       "attack": 336,
       "max_attack": 396,
-      "rapid_fire": "Pellet S Lv1|Pierce S Lv2",
+      "rapid_fire": "Pierce S Lv2|Pellet S Lv1",
       "affinity": "-15%",
       "slots": 0,
       "bonus": "16",
@@ -17970,7 +17970,7 @@
       "name": "EngravedFireWyvnBow",
       "attack": 360,
       "max_attack": 420,
-      "rapid_fire": "Pierce S Lv1|Flaming S ",
+      "rapid_fire": "Pierce S Lv1|Flaming S",
       "affinity": "0%",
       "slots": 1,
       "bonus": null,
@@ -18316,7 +18316,7 @@
       "name": "Absolute Bow",
       "attack": 360,
       "max_attack": 420,
-      "rapid_fire": "Pierce S Lv1|Flame S|Water S|Thunder S|Freeze S",
+      "rapid_fire": "Pierce S Lv1|Flaming S|Water S|Thunder S|Freeze S",
       "affinity": "0%",
       "slots": 0,
       "bonus": null,
@@ -18841,7 +18841,7 @@
       "bonus": null,
       "rarity": 9,
       "type": "light-bowgun",
-      "reload": "Normal ",
+      "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
         {
@@ -20398,7 +20398,7 @@
       "bonus": null,
       "rarity": 9,
       "type": "light-bowgun",
-      "reload": "Normal ",
+      "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
         {
@@ -20571,7 +20571,7 @@
       "bonus": null,
       "rarity": 9,
       "type": "light-bowgun",
-      "reload": "Normal ",
+      "reload": "Normal",
       "recoil": "Moderate",
       "ammo": [
         {
@@ -21657,24 +21657,28 @@
         {
           "name": "RecovS",
           "capacity": [
+            0,
             0
           ]
         },
         {
           "name": "PoisnS",
           "capacity": [
+            3,
             1
           ]
         },
         {
           "name": "Para S",
           "capacity": [
+            0,
             0
           ]
         },
         {
           "name": "SleepS",
           "capacity": [
+            0,
             0
           ]
         }
@@ -22118,7 +22122,7 @@
       "name": "Felyne Helldoll G",
       "attack": 312,
       "max_attack": 372,
-      "rapid_fire": "Normal S Lv1|Flame S",
+      "rapid_fire": "Normal S Lv1|Flaming S",
       "affinity": "0%",
       "slots": 3,
       "bonus": null,
@@ -22291,7 +22295,7 @@
       "name": "Melynx Helldoll G",
       "attack": 312,
       "max_attack": 372,
-      "rapid_fire": "Normal S Lv1|Flame S",
+      "rapid_fire": "Normal S Lv1|Flaming S",
       "affinity": "30%",
       "slots": 1,
       "bonus": null,

@@ -18,20 +18,20 @@
       "create_cost": 50,
       "skills": [
         {
-          "name": "Protection",
-          "amount": 2
+          "name": "Cold Res",
+          "amount": 4
         },
         {
-          "name": "Ice Res",
-          "amount": 1
+          "name": "Protection",
+          "amount": 2
         },
         {
           "name": "Heat Res",
           "amount": -2
         },
         {
-          "name": "Cold Res",
-          "amount": 4
+          "name": "Ice Res",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -62,16 +62,16 @@
       "create_cost": 150,
       "skills": [
         {
+          "name": "Gathering",
+          "amount": 3
+        },
+        {
           "name": "Throw",
           "amount": 2
         },
         {
           "name": "Backpackng",
           "amount": 2
-        },
-        {
-          "name": "Gathering",
-          "amount": 3
         },
         {
           "name": "Alchemy",
@@ -112,15 +112,11 @@
       "create_cost": 300,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -1
-        },
-        {
           "name": "Health",
           "amount": 3
         },
         {
-          "name": "Hunger",
+          "name": "Whim",
           "amount": 2
         },
         {
@@ -128,8 +124,12 @@
           "amount": 1
         },
         {
-          "name": "Whim",
+          "name": "Hunger",
           "amount": 2
+        },
+        {
+          "name": "Paralysis",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -166,10 +166,6 @@
       "create_cost": 450,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
           "name": "PsychicVis",
           "amount": 3
         },
@@ -180,6 +176,10 @@
         {
           "name": "BBQ",
           "amount": 3
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -222,20 +222,20 @@
       "create_cost": 450,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
-          "name": "NormalS Up",
-          "amount": 3
-        },
-        {
           "name": "PsychicVis",
           "amount": 3
         },
         {
           "name": "Carving",
           "amount": 2
+        },
+        {
+          "name": "NormalS Up",
+          "amount": 3
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -278,24 +278,24 @@
       "create_cost": 650,
       "skills": [
         {
-          "name": "Gluttony",
-          "amount": 3
-        },
-        {
           "name": "Anti-Theft",
           "amount": 2
         },
         {
-          "name": "Map",
-          "amount": -1
+          "name": "Horn",
+          "amount": 2
+        },
+        {
+          "name": "Gluttony",
+          "amount": 3
         },
         {
           "name": "PsychicVis",
           "amount": 1
         },
         {
-          "name": "Horn",
-          "amount": 2
+          "name": "Map",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -338,24 +338,24 @@
       "create_cost": 650,
       "skills": [
         {
-          "name": "Gluttony",
-          "amount": 3
-        },
-        {
           "name": "Anti-Theft",
           "amount": 2
         },
         {
-          "name": "Map",
-          "amount": -1
+          "name": "BBQ",
+          "amount": 2
+        },
+        {
+          "name": "Gluttony",
+          "amount": 3
         },
         {
           "name": "PsychicVis",
           "amount": 1
         },
         {
-          "name": "BBQ",
-          "amount": 2
+          "name": "Map",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -510,20 +510,20 @@
       "create_cost": 750,
       "skills": [
         {
-          "name": "Health",
+          "name": "SwdShrpner",
           "amount": 2
         },
         {
-          "name": "SwdShrpner",
+          "name": "Attack",
+          "amount": 2
+        },
+        {
+          "name": "Health",
           "amount": 2
         },
         {
           "name": "Hunger",
           "amount": -1
-        },
-        {
-          "name": "Attack",
-          "amount": 2
         },
         {
           "name": "PsychicVis",
@@ -580,19 +580,19 @@
           "amount": 2
         },
         {
-          "name": "Hunger",
-          "amount": -1
-        },
-        {
           "name": "Attack",
           "amount": 2
         },
         {
-          "name": "PsychicVis",
+          "name": "Precision",
           "amount": 2
         },
         {
-          "name": "Precision",
+          "name": "Hunger",
+          "amount": -1
+        },
+        {
+          "name": "PsychicVis",
           "amount": 2
         }
       ],
@@ -642,12 +642,12 @@
       "create_cost": 1900,
       "skills": [
         {
-          "name": "Stamina",
-          "amount": -2
-        },
-        {
           "name": "Gunnery",
           "amount": 5
+        },
+        {
+          "name": "Stamina",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -684,12 +684,12 @@
       "create_cost": 2300,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": 2
-        },
-        {
           "name": "PsychicVis",
           "amount": 5
+        },
+        {
+          "name": "Sneak",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -726,16 +726,16 @@
       "create_cost": 1150,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
-        },
-        {
           "name": "Faint",
           "amount": 3
         },
         {
           "name": "SwdShrpner",
           "amount": 2
+        },
+        {
+          "name": "Paralysis",
+          "amount": -2
         },
         {
           "name": "MixSucRate",
@@ -782,16 +782,16 @@
       "create_cost": 1150,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
-        },
-        {
           "name": "Faint",
           "amount": 3
         },
         {
           "name": "PelletSAdd",
           "amount": 2
+        },
+        {
+          "name": "Paralysis",
+          "amount": -2
         },
         {
           "name": "Shot Mix",
@@ -842,16 +842,16 @@
           "amount": 2
         },
         {
-          "name": "Poison",
-          "amount": -1
+          "name": "Everlastng",
+          "amount": 2
         },
         {
           "name": "Backpackng",
           "amount": 4
         },
         {
-          "name": "Everlastng",
-          "amount": 2
+          "name": "Poison",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -898,16 +898,16 @@
           "amount": 2
         },
         {
-          "name": "Poison",
-          "amount": -1
+          "name": "Everlastng",
+          "amount": 2
         },
         {
           "name": "Backpackng",
           "amount": 4
         },
         {
-          "name": "Everlastng",
-          "amount": 2
+          "name": "Poison",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -954,16 +954,16 @@
           "amount": 3
         },
         {
+          "name": "Gunnery",
+          "amount": 3
+        },
+        {
           "name": "Whim",
           "amount": 1
         },
         {
           "name": "Stamina",
           "amount": -2
-        },
-        {
-          "name": "Gunnery",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -1010,16 +1010,16 @@
           "amount": 3
         },
         {
+          "name": "Gunnery",
+          "amount": 3
+        },
+        {
           "name": "CragS Add",
           "amount": 1
         },
         {
           "name": "Stamina",
           "amount": -2
-        },
-        {
-          "name": "Gunnery",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -1062,16 +1062,16 @@
       "create_cost": 1350,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "Dragon Res",
+          "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 2
         },
         {
-          "name": "Dragon Res",
-          "amount": 2
+          "name": "Protection",
+          "amount": -2
         },
         {
           "name": "Gathering",
@@ -1124,16 +1124,16 @@
       "create_cost": 1350,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "Dragon Res",
+          "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 3
         },
         {
-          "name": "Dragon Res",
-          "amount": 2
+          "name": "Protection",
+          "amount": -2
         },
         {
           "name": "Gathering",
@@ -1324,10 +1324,6 @@
       "create_cost": 1650,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
           "name": "Poison",
           "amount": 3
         },
@@ -1338,6 +1334,10 @@
         {
           "name": "Fatigue",
           "amount": 1
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -1386,10 +1386,6 @@
       "create_cost": 1650,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
           "name": "Poison",
           "amount": 3
         },
@@ -1400,6 +1396,10 @@
         {
           "name": "Fatigue",
           "amount": 1
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -1448,20 +1448,20 @@
       "create_cost": 1650,
       "skills": [
         {
-          "name": "Health",
-          "amount": 2
-        },
-        {
           "name": "Attack",
           "amount": 3
         },
         {
-          "name": "Defence",
-          "amount": -1
+          "name": "Health",
+          "amount": 2
         },
         {
           "name": "Fire Res",
           "amount": 2
+        },
+        {
+          "name": "Defence",
+          "amount": -1
         },
         {
           "name": "Water Res",
@@ -1514,20 +1514,20 @@
       "create_cost": 1650,
       "skills": [
         {
-          "name": "Health",
-          "amount": 2
-        },
-        {
           "name": "Attack",
           "amount": 3
         },
         {
-          "name": "Defence",
-          "amount": -1
+          "name": "Health",
+          "amount": 2
         },
         {
           "name": "Fire Res",
           "amount": 2
+        },
+        {
+          "name": "Defence",
+          "amount": -1
         },
         {
           "name": "Water Res",
@@ -1580,12 +1580,12 @@
       "create_cost": 2350,
       "skills": [
         {
-          "name": "Hunger",
-          "amount": 1
-        },
-        {
           "name": "Heat Res",
           "amount": 4
+        },
+        {
+          "name": "Hunger",
+          "amount": 1
         },
         {
           "name": "Cold Res",
@@ -1638,12 +1638,12 @@
       "create_cost": 2350,
       "skills": [
         {
-          "name": "Hunger",
-          "amount": 3
-        },
-        {
           "name": "Heat Res",
           "amount": 4
+        },
+        {
+          "name": "Hunger",
+          "amount": 3
         },
         {
           "name": "Cold Res",
@@ -1696,11 +1696,11 @@
       "create_cost": 2350,
       "skills": [
         {
-          "name": "Antiseptic",
+          "name": "BombStrUp",
           "amount": 2
         },
         {
-          "name": "BombStrUp",
+          "name": "Antiseptic",
           "amount": 2
         },
         {
@@ -1758,11 +1758,11 @@
       "create_cost": 2350,
       "skills": [
         {
-          "name": "Antiseptic",
+          "name": "NormalS Up",
           "amount": 2
         },
         {
-          "name": "NormalS Up",
+          "name": "Antiseptic",
           "amount": 2
         },
         {
@@ -1824,16 +1824,16 @@
           "amount": 3
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "ThunderRes",
           "amount": 2
         },
         {
           "name": "Stamina",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -1886,16 +1886,16 @@
           "amount": 3
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "ThunderRes",
           "amount": 2
         },
         {
           "name": "Stamina",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -1944,10 +1944,6 @@
       "create_cost": 3350,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 3
         },
@@ -1958,6 +1954,10 @@
         {
           "name": "Horn",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -2000,10 +2000,6 @@
       "create_cost": 3350,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 3
         },
@@ -2014,6 +2010,10 @@
         {
           "name": "Shot Mix",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -2056,16 +2056,16 @@
       "create_cost": 3350,
       "skills": [
         {
+          "name": "Defence",
+          "amount": 3
+        },
+        {
           "name": "Guard",
           "amount": 1
         },
         {
           "name": "Throw",
           "amount": 2
-        },
-        {
-          "name": "Defence",
-          "amount": 3
         },
         {
           "name": "ThunderRes",
@@ -2118,16 +2118,16 @@
       "create_cost": 3350,
       "skills": [
         {
+          "name": "Defence",
+          "amount": 3
+        },
+        {
           "name": "Guard Up",
           "amount": 1
         },
         {
           "name": "Throw",
           "amount": 2
-        },
-        {
-          "name": "Defence",
-          "amount": 3
         },
         {
           "name": "ThunderRes",
@@ -2180,8 +2180,8 @@
       "create_cost": 4150,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
+          "name": "Stamina",
+          "amount": 3
         },
         {
           "name": "Heat Res",
@@ -2192,8 +2192,8 @@
           "amount": 2
         },
         {
-          "name": "Stamina",
-          "amount": 3
+          "name": "Paralysis",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -2242,8 +2242,8 @@
       "create_cost": 4150,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
+          "name": "Stamina",
+          "amount": 3
         },
         {
           "name": "Heat Res",
@@ -2254,8 +2254,8 @@
           "amount": 2
         },
         {
-          "name": "Stamina",
-          "amount": 3
+          "name": "Paralysis",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -2304,20 +2304,20 @@
       "create_cost": 4150,
       "skills": [
         {
-          "name": "Guard",
-          "amount": -2
-        },
-        {
-          "name": "Water Res",
-          "amount": 1
+          "name": "Evade",
+          "amount": 3
         },
         {
           "name": "Fishing",
           "amount": 3
         },
         {
-          "name": "Evade",
-          "amount": 3
+          "name": "Water Res",
+          "amount": 1
+        },
+        {
+          "name": "Guard",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -2366,16 +2366,16 @@
       "create_cost": 4150,
       "skills": [
         {
-          "name": "Water Res",
-          "amount": 1
+          "name": "Evade",
+          "amount": 3
         },
         {
           "name": "Fishing",
           "amount": 3
         },
         {
-          "name": "Evade",
-          "amount": 3
+          "name": "Water Res",
+          "amount": 1
         },
         {
           "name": "Precision",
@@ -2428,12 +2428,8 @@
       "create_cost": 1650,
       "skills": [
         {
-          "name": "Health",
-          "amount": -1
-        },
-        {
-          "name": "Rec Speed",
-          "amount": -1
+          "name": "Attack",
+          "amount": 2
         },
         {
           "name": "Expert",
@@ -2444,8 +2440,12 @@
           "amount": 1
         },
         {
-          "name": "Attack",
-          "amount": 2
+          "name": "Rec Speed",
+          "amount": -1
+        },
+        {
+          "name": "Health",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -2494,12 +2494,8 @@
       "create_cost": 1650,
       "skills": [
         {
-          "name": "Health",
-          "amount": -1
-        },
-        {
-          "name": "Rec Speed",
-          "amount": -1
+          "name": "Attack",
+          "amount": 2
         },
         {
           "name": "Expert",
@@ -2510,8 +2506,12 @@
           "amount": 1
         },
         {
-          "name": "Attack",
-          "amount": 2
+          "name": "Rec Speed",
+          "amount": -1
+        },
+        {
+          "name": "Health",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -2684,16 +2684,16 @@
       "create_cost": 3350,
       "skills": [
         {
-          "name": "SwdShrpner",
-          "amount": -2
+          "name": "Recovery",
+          "amount": 2
         },
         {
           "name": "Wide Area",
           "amount": 3
         },
         {
-          "name": "Recovery",
-          "amount": 2
+          "name": "SwdShrpner",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -2736,12 +2736,12 @@
       "create_cost": 3350,
       "skills": [
         {
-          "name": "Wide Area",
-          "amount": 3
-        },
-        {
           "name": "Recovery",
           "amount": 2
+        },
+        {
+          "name": "Wide Area",
+          "amount": 3
         },
         {
           "name": "MixSucRate",
@@ -2788,20 +2788,20 @@
       "create_cost": 4150,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -2
-        },
-        {
           "name": "Hunger",
           "amount": 2
         },
         {
-          "name": "Fishing",
-          "amount": 1
-        },
-        {
           "name": "Everlastng",
           "amount": 2
+        },
+        {
+          "name": "Poison",
+          "amount": -2
+        },
+        {
+          "name": "Fishing",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -2850,20 +2850,20 @@
       "create_cost": 4150,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -2
-        },
-        {
           "name": "Hunger",
           "amount": 2
         },
         {
-          "name": "Fishing",
-          "amount": 1
-        },
-        {
           "name": "Everlastng",
           "amount": 2
+        },
+        {
+          "name": "Poison",
+          "amount": -2
+        },
+        {
+          "name": "Fishing",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -2912,24 +2912,24 @@
       "create_cost": 3350,
       "skills": [
         {
-          "name": "Sleep",
+          "name": "Terrain",
           "amount": 2
         },
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
-          "name": "Defence",
-          "amount": 1
+          "name": "Sleep",
+          "amount": 2
         },
         {
           "name": "Whim",
           "amount": 1
         },
         {
-          "name": "Terrain",
-          "amount": 2
+          "name": "Defence",
+          "amount": 1
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -2978,15 +2978,11 @@
       "create_cost": 3350,
       "skills": [
         {
-          "name": "Sleep",
+          "name": "Terrain",
           "amount": 2
         },
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
-          "name": "Defence",
+          "name": "Sleep",
           "amount": 2
         },
         {
@@ -2994,8 +2990,12 @@
           "amount": 2
         },
         {
-          "name": "Terrain",
+          "name": "Defence",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -3044,20 +3044,20 @@
       "create_cost": 4900,
       "skills": [
         {
-          "name": "Health",
-          "amount": 3
-        },
-        {
           "name": "Attack",
           "amount": 2
         },
         {
-          "name": "Protection",
-          "amount": -2
-        },
-        {
           "name": "Potential",
           "amount": 2
+        },
+        {
+          "name": "Health",
+          "amount": 3
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -3106,20 +3106,20 @@
       "create_cost": 4900,
       "skills": [
         {
-          "name": "Health",
-          "amount": 3
-        },
-        {
           "name": "Attack",
           "amount": 2
         },
         {
-          "name": "Protection",
-          "amount": -2
-        },
-        {
           "name": "Potential",
           "amount": 2
+        },
+        {
+          "name": "Health",
+          "amount": 3
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -3230,12 +3230,12 @@
       "create_cost": 4900,
       "skills": [
         {
-          "name": "Expert",
-          "amount": 2
-        },
-        {
           "name": "PierceSAdd",
           "amount": 3
+        },
+        {
+          "name": "Expert",
+          "amount": 2
         },
         {
           "name": "HearProtct",
@@ -3292,20 +3292,20 @@
       "create_cost": 4900,
       "skills": [
         {
-          "name": "Snow Res",
-          "amount": 2
-        },
-        {
           "name": "Cold Res",
           "amount": 1
         },
         {
-          "name": "Terrain",
-          "amount": -2
+          "name": "Snow Res",
+          "amount": 2
         },
         {
           "name": "Quake Res",
           "amount": 2
+        },
+        {
+          "name": "Terrain",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -3354,20 +3354,20 @@
       "create_cost": 4900,
       "skills": [
         {
-          "name": "Snow Res",
-          "amount": 2
-        },
-        {
           "name": "Cold Res",
           "amount": 3
         },
         {
-          "name": "Terrain",
-          "amount": -2
+          "name": "Snow Res",
+          "amount": 2
         },
         {
           "name": "Quake Res",
           "amount": 2
+        },
+        {
+          "name": "Terrain",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -3420,12 +3420,12 @@
           "amount": 2
         },
         {
-          "name": "Artisan",
-          "amount": 1
-        },
-        {
           "name": "SwdShrpner",
           "amount": 2
+        },
+        {
+          "name": "Artisan",
+          "amount": 1
         },
         {
           "name": "Defence",
@@ -3482,16 +3482,16 @@
           "amount": 3
         },
         {
+          "name": "Precision",
+          "amount": 2
+        },
+        {
           "name": "PierceSAdd",
           "amount": 1
         },
         {
           "name": "Defence",
           "amount": -3
-        },
-        {
-          "name": "Precision",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -3540,16 +3540,16 @@
       "create_cost": 5350,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
+          "name": "Health",
+          "amount": 3
         },
         {
           "name": "Poison",
           "amount": 2
         },
         {
-          "name": "Health",
-          "amount": 3
+          "name": "Faint",
+          "amount": -1
         },
         {
           "name": "PsychicVis",
@@ -3602,16 +3602,16 @@
       "create_cost": 5350,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
+          "name": "Health",
+          "amount": 3
         },
         {
           "name": "Poison",
           "amount": 2
         },
         {
-          "name": "Health",
-          "amount": 3
+          "name": "Faint",
+          "amount": -1
         },
         {
           "name": "PsychicVis",
@@ -3664,20 +3664,20 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "Cooking",
+          "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 2
         },
         {
-          "name": "PsychicVis",
-          "amount": 3
+          "name": "Protection",
+          "amount": -2
         },
         {
-          "name": "Cooking",
-          "amount": 2
+          "name": "PsychicVis",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -3726,20 +3726,20 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "Cooking",
+          "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 2
         },
         {
-          "name": "PsychicVis",
-          "amount": 3
+          "name": "Protection",
+          "amount": -2
         },
         {
-          "name": "Cooking",
-          "amount": 2
+          "name": "PsychicVis",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -3788,20 +3788,20 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
-        },
-        {
-          "name": "Rec Speed",
-          "amount": 1
-        },
-        {
           "name": "Attack",
           "amount": 4
         },
         {
           "name": "PsychicVis",
           "amount": 2
+        },
+        {
+          "name": "Paralysis",
+          "amount": -2
+        },
+        {
+          "name": "Rec Speed",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -3850,20 +3850,20 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
-        },
-        {
-          "name": "Rec Speed",
-          "amount": 1
-        },
-        {
           "name": "Attack",
           "amount": 4
         },
         {
           "name": "PsychicVis",
           "amount": 2
+        },
+        {
+          "name": "Paralysis",
+          "amount": -2
+        },
+        {
+          "name": "Rec Speed",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -3912,16 +3912,16 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Health",
-          "amount": -2
+          "name": "WindPress",
+          "amount": 2
         },
         {
           "name": "Expert",
           "amount": 4
         },
         {
-          "name": "WindPress",
-          "amount": 2
+          "name": "Health",
+          "amount": -2
         },
         {
           "name": "Fate",
@@ -3974,16 +3974,16 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Health",
-          "amount": -2
+          "name": "WindPress",
+          "amount": 2
         },
         {
           "name": "Expert",
           "amount": 4
         },
         {
-          "name": "WindPress",
-          "amount": 2
+          "name": "Health",
+          "amount": -2
         },
         {
           "name": "Fate",
@@ -4036,20 +4036,20 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Sleep",
-          "amount": 2
-        },
-        {
           "name": "Guard",
           "amount": 2
         },
         {
-          "name": "Defence",
-          "amount": 1
+          "name": "Sleep",
+          "amount": 2
         },
         {
           "name": "Stamina",
           "amount": -2
+        },
+        {
+          "name": "Defence",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -4098,12 +4098,12 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Sleep",
-          "amount": 3
-        },
-        {
           "name": "ClustS Add",
           "amount": 2
+        },
+        {
+          "name": "Sleep",
+          "amount": 3
         },
         {
           "name": "Stamina",
@@ -4156,19 +4156,19 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Sharpness",
-          "amount": 2
-        },
-        {
-          "name": "Defence",
-          "amount": -1
-        },
-        {
           "name": "WindPress",
           "amount": 3
         },
         {
+          "name": "Sharpness",
+          "amount": 2
+        },
+        {
           "name": "Fate",
+          "amount": -1
+        },
+        {
+          "name": "Defence",
           "amount": -1
         }
       ],
@@ -4218,19 +4218,19 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Load",
-          "amount": 2
-        },
-        {
-          "name": "Hunger",
-          "amount": -1
-        },
-        {
           "name": "WindPress",
           "amount": 3
         },
         {
+          "name": "Load",
+          "amount": 2
+        },
+        {
           "name": "Fate",
+          "amount": -1
+        },
+        {
+          "name": "Hunger",
           "amount": -1
         }
       ],
@@ -4284,12 +4284,12 @@
           "amount": 2
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "Defence",
           "amount": 3
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -4342,12 +4342,12 @@
           "amount": 2
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "Defence",
           "amount": 3
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -4396,20 +4396,20 @@
       "create_cost": 100,
       "skills": [
         {
-          "name": "Health",
-          "amount": 2
-        },
-        {
-          "name": "Hunger",
-          "amount": -3
-        },
-        {
           "name": "Gluttony",
           "amount": 2
         },
         {
           "name": "Cooking",
           "amount": 2
+        },
+        {
+          "name": "Health",
+          "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -4458,16 +4458,16 @@
       "create_cost": 700,
       "skills": [
         {
-          "name": "Fire Res",
-          "amount": -2
-        },
-        {
           "name": "Ice Res",
           "amount": 2
         },
         {
           "name": "Fate",
           "amount": 3
+        },
+        {
+          "name": "Fire Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -4520,12 +4520,12 @@
           "amount": 2
         },
         {
-          "name": "ThunderRes",
-          "amount": -2
-        },
-        {
           "name": "Fate",
           "amount": 3
+        },
+        {
+          "name": "ThunderRes",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -4574,12 +4574,12 @@
       "create_cost": 1150,
       "skills": [
         {
-          "name": "Sleep",
-          "amount": 6
-        },
-        {
           "name": "Protection",
           "amount": 5
+        },
+        {
+          "name": "Sleep",
+          "amount": 6
         }
       ],
       "create_mats": [
@@ -4628,12 +4628,12 @@
       "create_cost": 1150,
       "skills": [
         {
-          "name": "Sleep",
-          "amount": 6
-        },
-        {
           "name": "Protection",
           "amount": 5
+        },
+        {
+          "name": "Sleep",
+          "amount": 6
         }
       ],
       "create_mats": [
@@ -4682,16 +4682,16 @@
       "create_cost": 1150,
       "skills": [
         {
-          "name": "Ice Res",
-          "amount": -2
-        },
-        {
           "name": "ThunderRes",
           "amount": 2
         },
         {
           "name": "Fate",
           "amount": 3
+        },
+        {
+          "name": "Ice Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -4744,16 +4744,16 @@
           "amount": 2
         },
         {
+          "name": "Loading",
+          "amount": 2
+        },
+        {
           "name": "Gluttony",
           "amount": 1
         },
         {
           "name": "Map",
           "amount": -2
-        },
-        {
-          "name": "Loading",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -4802,8 +4802,8 @@
       "create_cost": 9800,
       "skills": [
         {
-          "name": "Throw",
-          "amount": 2
+          "name": "Evade",
+          "amount": 3
         },
         {
           "name": "ElementAtk",
@@ -4814,8 +4814,8 @@
           "amount": -2
         },
         {
-          "name": "Evade",
-          "amount": 3
+          "name": "Throw",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -4864,11 +4864,11 @@
       "create_cost": 9800,
       "skills": [
         {
-          "name": "Sneak",
+          "name": "Hunger",
           "amount": 2
         },
         {
-          "name": "Hunger",
+          "name": "Sneak",
           "amount": 2
         },
         {
@@ -4988,20 +4988,20 @@
       "create_cost": 9800,
       "skills": [
         {
-          "name": "PelletS Up",
-          "amount": 2
+          "name": "Carving",
+          "amount": 3
         },
         {
-          "name": "Fate",
-          "amount": -2
+          "name": "PelletS Up",
+          "amount": 2
         },
         {
           "name": "Precision",
           "amount": 2
         },
         {
-          "name": "Carving",
-          "amount": 3
+          "name": "Fate",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -5054,16 +5054,16 @@
           "amount": 2
         },
         {
-          "name": "Gathering",
-          "amount": -1
+          "name": "Gunnery",
+          "amount": 3
         },
         {
           "name": "Fate",
           "amount": 1
         },
         {
-          "name": "Gunnery",
-          "amount": 3
+          "name": "Gathering",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -5120,12 +5120,12 @@
           "amount": 3
         },
         {
-          "name": "Gathering",
-          "amount": -2
-        },
-        {
           "name": "Fate",
           "amount": 2
+        },
+        {
+          "name": "Gathering",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -5236,20 +5236,20 @@
       "create_cost": 9800,
       "skills": [
         {
-          "name": "PelletS Up",
-          "amount": 2
+          "name": "Carving",
+          "amount": 3
         },
         {
-          "name": "Fate",
-          "amount": -2
+          "name": "PelletS Up",
+          "amount": 2
         },
         {
           "name": "Precision",
           "amount": 2
         },
         {
-          "name": "Carving",
-          "amount": 3
+          "name": "Fate",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -5302,16 +5302,16 @@
           "amount": 2
         },
         {
-          "name": "Gathering",
-          "amount": -1
+          "name": "Gunnery",
+          "amount": 3
         },
         {
           "name": "Fate",
           "amount": 1
         },
         {
-          "name": "Gunnery",
-          "amount": 3
+          "name": "Gathering",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -5368,12 +5368,12 @@
           "amount": 3
         },
         {
-          "name": "Gathering",
-          "amount": -2
-        },
-        {
           "name": "Fate",
           "amount": 2
+        },
+        {
+          "name": "Gathering",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -5426,12 +5426,12 @@
           "amount": 2
         },
         {
-          "name": "Water Res",
-          "amount": -2
-        },
-        {
           "name": "Fate",
           "amount": 3
+        },
+        {
+          "name": "Water Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -5480,10 +5480,6 @@
       "create_cost": 1650,
       "skills": [
         {
-          "name": "Poison",
-          "amount": 2
-        },
-        {
           "name": "Artisan",
           "amount": 2
         },
@@ -5492,12 +5488,16 @@
           "amount": 2
         },
         {
+          "name": "Stamina",
+          "amount": 3
+        },
+        {
           "name": "All Resist",
           "amount": -2
         },
         {
-          "name": "Stamina",
-          "amount": 3
+          "name": "Poison",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -5546,10 +5546,6 @@
       "create_cost": 1150,
       "skills": [
         {
-          "name": "Hunger",
-          "amount": -1
-        },
-        {
           "name": "Gathering",
           "amount": 3
         },
@@ -5558,12 +5554,16 @@
           "amount": 2
         },
         {
-          "name": "Recovery",
-          "amount": 2
-        },
-        {
           "name": "Stamina",
           "amount": 1
+        },
+        {
+          "name": "Hunger",
+          "amount": -1
+        },
+        {
+          "name": "Recovery",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -5612,10 +5612,6 @@
       "create_cost": 1150,
       "skills": [
         {
-          "name": "Hunger",
-          "amount": -1
-        },
-        {
           "name": "Gathering",
           "amount": 3
         },
@@ -5624,12 +5620,16 @@
           "amount": 2
         },
         {
-          "name": "Recovery",
-          "amount": 2
-        },
-        {
           "name": "Stamina",
           "amount": 1
+        },
+        {
+          "name": "Hunger",
+          "amount": -1
+        },
+        {
+          "name": "Recovery",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -5678,11 +5678,7 @@
       "create_cost": 2350,
       "skills": [
         {
-          "name": "Spc Attack",
-          "amount": 2
-        },
-        {
-          "name": "Fishing",
+          "name": "Alchemy",
           "amount": 2
         },
         {
@@ -5690,7 +5686,11 @@
           "amount": 3
         },
         {
-          "name": "Alchemy",
+          "name": "Fishing",
+          "amount": 2
+        },
+        {
+          "name": "Spc Attack",
           "amount": 2
         }
       ],
@@ -5740,11 +5740,7 @@
       "create_cost": 2350,
       "skills": [
         {
-          "name": "Spc Attack",
-          "amount": 2
-        },
-        {
-          "name": "Fishing",
+          "name": "Alchemy",
           "amount": 2
         },
         {
@@ -5752,7 +5748,11 @@
           "amount": 3
         },
         {
-          "name": "Alchemy",
+          "name": "Fishing",
+          "amount": 2
+        },
+        {
+          "name": "Spc Attack",
           "amount": 2
         }
       ],
@@ -5806,16 +5806,16 @@
           "amount": 2
         },
         {
-          "name": "Sneak",
-          "amount": -2
-        },
-        {
           "name": "Trapper",
           "amount": 3
         },
         {
           "name": "Observance",
           "amount": 2
+        },
+        {
+          "name": "Sneak",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -5864,10 +5864,6 @@
       "create_cost": 3350,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": -2
-        },
-        {
           "name": "SleepCtAdd",
           "amount": 2
         },
@@ -5878,6 +5874,10 @@
         {
           "name": "Observance",
           "amount": 2
+        },
+        {
+          "name": "Sneak",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -5926,6 +5926,10 @@
       "create_cost": 3350,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "Spc Attack",
           "amount": 2
         },
@@ -5936,10 +5940,6 @@
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -5988,6 +5988,10 @@
       "create_cost": 3350,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "Spc Attack",
           "amount": 2
         },
@@ -5998,10 +6002,6 @@
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -6050,6 +6050,10 @@
       "create_cost": 3350,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "Spc Attack",
           "amount": 2
         },
@@ -6060,10 +6064,6 @@
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -6112,6 +6112,10 @@
       "create_cost": 3350,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "Spc Attack",
           "amount": 2
         },
@@ -6122,10 +6126,6 @@
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -6264,16 +6264,16 @@
       "create_cost": 5800,
       "skills": [
         {
+          "name": "Fencing",
+          "amount": 2
+        },
+        {
           "name": "Sneak",
           "amount": 2
         },
         {
           "name": "Health",
           "amount": -5
-        },
-        {
-          "name": "Fencing",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -6322,16 +6322,16 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Health",
-          "amount": -5
+          "name": "Speed Fire",
+          "amount": 2
         },
         {
           "name": "CragS Add",
           "amount": 2
         },
         {
-          "name": "Speed Fire",
-          "amount": 2
+          "name": "Health",
+          "amount": -5
         }
       ],
       "create_mats": [
@@ -6380,8 +6380,8 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
+          "name": "Terrain",
+          "amount": 3
         },
         {
           "name": "Rec Speed",
@@ -6392,8 +6392,8 @@
           "amount": 2
         },
         {
-          "name": "Terrain",
-          "amount": 3
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -6442,20 +6442,20 @@
       "create_cost": 5800,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
-          "name": "Recoil",
-          "amount": 2
-        },
-        {
           "name": "Terrain",
           "amount": 3
         },
         {
           "name": "Rec Speed",
           "amount": 2
+        },
+        {
+          "name": "Recoil",
+          "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -6504,12 +6504,12 @@
       "create_cost": 9000,
       "skills": [
         {
-          "name": "HearProtct",
-          "amount": 2
-        },
-        {
           "name": "WindPress",
           "amount": 4
+        },
+        {
+          "name": "HearProtct",
+          "amount": 2
         },
         {
           "name": "Terrain",
@@ -6562,12 +6562,12 @@
       "create_cost": 9000,
       "skills": [
         {
-          "name": "HearProtct",
-          "amount": 2
-        },
-        {
           "name": "WindPress",
           "amount": 4
+        },
+        {
+          "name": "HearProtct",
+          "amount": 2
         },
         {
           "name": "Terrain",
@@ -6620,16 +6620,16 @@
       "create_cost": 9300,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -3
+          "name": "Fast Chrge",
+          "amount": 2
         },
         {
           "name": "Terrain",
           "amount": 4
         },
         {
-          "name": "Fast Chrge",
-          "amount": 2
+          "name": "Poison",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -6678,16 +6678,16 @@
       "create_cost": 9300,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -3
+          "name": "Fast Chrge",
+          "amount": 2
         },
         {
           "name": "Terrain",
           "amount": 4
         },
         {
-          "name": "Fast Chrge",
-          "amount": 2
+          "name": "Poison",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -6736,20 +6736,20 @@
       "create_cost": 9800,
       "skills": [
         {
-          "name": "ElementAtk",
-          "amount": 2
-        },
-        {
           "name": "All Resist",
           "amount": 3
         },
         {
-          "name": "PsychicVis",
+          "name": "ElementAtk",
           "amount": 2
         },
         {
           "name": "Everlastng",
           "amount": -2
+        },
+        {
+          "name": "PsychicVis",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -6798,20 +6798,20 @@
       "create_cost": 9800,
       "skills": [
         {
-          "name": "ElementAtk",
-          "amount": 2
-        },
-        {
           "name": "All Resist",
           "amount": 3
         },
         {
-          "name": "PsychicVis",
+          "name": "ElementAtk",
           "amount": 2
         },
         {
           "name": "Everlastng",
           "amount": -2
+        },
+        {
+          "name": "PsychicVis",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -6864,12 +6864,12 @@
           "amount": 2
         },
         {
-          "name": "Protection",
-          "amount": 1
-        },
-        {
           "name": "All Resist",
           "amount": 4
+        },
+        {
+          "name": "Protection",
+          "amount": 1
         },
         {
           "name": "Potential",
@@ -6922,20 +6922,20 @@
       "create_cost": 9800,
       "skills": [
         {
-          "name": "Protection",
-          "amount": 1
+          "name": "Loading",
+          "amount": 2
         },
         {
           "name": "All Resist",
           "amount": 4
         },
         {
-          "name": "Potential",
-          "amount": -2
+          "name": "Protection",
+          "amount": 1
         },
         {
-          "name": "Loading",
-          "amount": 2
+          "name": "Potential",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -7340,20 +7340,20 @@
       "create_cost": 11625,
       "skills": [
         {
-          "name": "Expert",
+          "name": "Anti-Theft",
           "amount": 2
         },
         {
-          "name": "Guard",
-          "amount": 3
-        },
-        {
-          "name": "Anti-Theft",
+          "name": "Expert",
           "amount": 2
         },
         {
           "name": "Cold Res",
           "amount": -2
+        },
+        {
+          "name": "Guard",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -7402,20 +7402,20 @@
       "create_cost": 11625,
       "skills": [
         {
-          "name": "Expert",
+          "name": "Anti-Theft",
           "amount": 3
         },
         {
-          "name": "Guard Up",
-          "amount": 1
-        },
-        {
-          "name": "Anti-Theft",
+          "name": "Expert",
           "amount": 3
         },
         {
           "name": "Cold Res",
           "amount": -2
+        },
+        {
+          "name": "Guard Up",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -7468,7 +7468,7 @@
           "amount": 3
         },
         {
-          "name": "Fate",
+          "name": "Quake Res",
           "amount": 2
         },
         {
@@ -7476,7 +7476,7 @@
           "amount": -2
         },
         {
-          "name": "Quake Res",
+          "name": "Fate",
           "amount": 2
         }
       ],
@@ -7526,15 +7526,11 @@
       "create_cost": 13500,
       "skills": [
         {
-          "name": "Load",
-          "amount": -1
-        },
-        {
           "name": "Recoil",
           "amount": 2
         },
         {
-          "name": "Fate",
+          "name": "Quake Res",
           "amount": 2
         },
         {
@@ -7542,7 +7538,11 @@
           "amount": -2
         },
         {
-          "name": "Quake Res",
+          "name": "Load",
+          "amount": -1
+        },
+        {
+          "name": "Fate",
           "amount": 2
         }
       ],
@@ -7592,16 +7592,16 @@
       "create_cost": 13500,
       "skills": [
         {
+          "name": "Fatigue",
+          "amount": 3
+        },
+        {
           "name": "Expert",
           "amount": 3
         },
         {
           "name": "Cold Res",
           "amount": -3
-        },
-        {
-          "name": "Fatigue",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -7650,16 +7650,16 @@
       "create_cost": 13500,
       "skills": [
         {
+          "name": "Fatigue",
+          "amount": 3
+        },
+        {
           "name": "Expert",
           "amount": 3
         },
         {
           "name": "Cold Res",
           "amount": -3
-        },
-        {
-          "name": "Fatigue",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -7708,8 +7708,8 @@
       "create_cost": 4150,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": -2
+          "name": "BBQ",
+          "amount": 2
         },
         {
           "name": "Fishing",
@@ -7720,8 +7720,8 @@
           "amount": 1
         },
         {
-          "name": "BBQ",
-          "amount": 2
+          "name": "Sneak",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -7764,8 +7764,8 @@
       "create_cost": 4150,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": -2
+          "name": "BBQ",
+          "amount": 2
         },
         {
           "name": "Fishing",
@@ -7776,8 +7776,8 @@
           "amount": 1
         },
         {
-          "name": "BBQ",
-          "amount": 2
+          "name": "Sneak",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -7824,16 +7824,16 @@
           "amount": 1
         },
         {
-          "name": "Expert",
-          "amount": 2
+          "name": "Potential",
+          "amount": 4
         },
         {
           "name": "Protection",
           "amount": -2
         },
         {
-          "name": "Potential",
-          "amount": 4
+          "name": "Expert",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -7882,20 +7882,20 @@
       "create_cost": 5900,
       "skills": [
         {
-          "name": "Expert",
-          "amount": 2
-        },
-        {
-          "name": "Protection",
-          "amount": -2
+          "name": "Loading",
+          "amount": 1
         },
         {
           "name": "Potential",
           "amount": 4
         },
         {
-          "name": "Loading",
-          "amount": 1
+          "name": "Protection",
+          "amount": -2
+        },
+        {
+          "name": "Expert",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -7944,20 +7944,20 @@
       "create_cost": 6400,
       "skills": [
         {
-          "name": "Antiseptic",
-          "amount": 1
-        },
-        {
-          "name": "Sneak",
-          "amount": -1
+          "name": "Recovery",
+          "amount": 2
         },
         {
           "name": "Whim",
           "amount": 3
         },
         {
-          "name": "Recovery",
-          "amount": 2
+          "name": "Antiseptic",
+          "amount": 1
+        },
+        {
+          "name": "Sneak",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -8006,20 +8006,20 @@
       "create_cost": 6400,
       "skills": [
         {
-          "name": "Antiseptic",
-          "amount": 1
-        },
-        {
-          "name": "Sneak",
-          "amount": -1
+          "name": "Recovery",
+          "amount": 2
         },
         {
           "name": "Whim",
           "amount": 3
         },
         {
-          "name": "Recovery",
-          "amount": 2
+          "name": "Antiseptic",
+          "amount": 1
+        },
+        {
+          "name": "Sneak",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -8068,20 +8068,20 @@
       "create_cost": 6900,
       "skills": [
         {
-          "name": "Expert",
-          "amount": 1
-        },
-        {
           "name": "Attack",
           "amount": 3
         },
         {
-          "name": "Protection",
-          "amount": -1
-        },
-        {
           "name": "HearProtct",
           "amount": 2
+        },
+        {
+          "name": "Expert",
+          "amount": 1
+        },
+        {
+          "name": "Protection",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -8130,20 +8130,20 @@
       "create_cost": 6900,
       "skills": [
         {
-          "name": "Expert",
-          "amount": 1
-        },
-        {
           "name": "Attack",
           "amount": 3
         },
         {
-          "name": "Protection",
-          "amount": -2
-        },
-        {
           "name": "HearProtct",
           "amount": 3
+        },
+        {
+          "name": "Expert",
+          "amount": 1
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -8192,16 +8192,16 @@
       "create_cost": 1150,
       "skills": [
         {
+          "name": "Cold Res",
+          "amount": 4
+        },
+        {
           "name": "Protection",
           "amount": 3
         },
         {
           "name": "Heat Res",
           "amount": -2
-        },
-        {
-          "name": "Cold Res",
-          "amount": 4
         }
       ],
       "create_mats": [
@@ -8250,12 +8250,12 @@
       "create_cost": 1350,
       "skills": [
         {
-          "name": "Backpackng",
-          "amount": 6
-        },
-        {
           "name": "Gathering",
           "amount": 5
+        },
+        {
+          "name": "Backpackng",
+          "amount": 6
         }
       ],
       "create_mats": [
@@ -8304,20 +8304,20 @@
       "create_cost": 1650,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -1
-        },
-        {
           "name": "Health",
           "amount": 4
+        },
+        {
+          "name": "Whim",
+          "amount": 2
         },
         {
           "name": "Map",
           "amount": 2
         },
         {
-          "name": "Whim",
-          "amount": 2
+          "name": "Paralysis",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -8360,20 +8360,20 @@
       "create_cost": 5350,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
-          "name": "Rec Speed",
-          "amount": 2
+          "name": "PsychicVis",
+          "amount": 3
         },
         {
           "name": "Attack",
           "amount": 2
         },
         {
-          "name": "PsychicVis",
-          "amount": 3
+          "name": "Rec Speed",
+          "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -8422,20 +8422,20 @@
       "create_cost": 5350,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
-          "name": "Rec Speed",
-          "amount": 2
+          "name": "PsychicVis",
+          "amount": 3
         },
         {
           "name": "Attack",
           "amount": 2
         },
         {
-          "name": "PsychicVis",
-          "amount": 3
+          "name": "Rec Speed",
+          "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -8488,16 +8488,16 @@
           "amount": 2
         },
         {
-          "name": "Map",
-          "amount": -2
+          "name": "Horn",
+          "amount": 3
         },
         {
           "name": "Cooking",
           "amount": 2
         },
         {
-          "name": "Horn",
-          "amount": 3
+          "name": "Map",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -8550,16 +8550,16 @@
           "amount": 2
         },
         {
-          "name": "Map",
-          "amount": -2
-        },
-        {
           "name": "Fishing",
           "amount": 3
         },
         {
           "name": "Cooking",
           "amount": 2
+        },
+        {
+          "name": "Map",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -8612,12 +8612,12 @@
           "amount": 2
         },
         {
-          "name": "Guard",
-          "amount": 2
-        },
-        {
           "name": "Attack",
           "amount": 3
+        },
+        {
+          "name": "Guard",
+          "amount": 2
         },
         {
           "name": "Stamina",
@@ -8674,16 +8674,16 @@
           "amount": 2
         },
         {
+          "name": "Attack",
+          "amount": 1
+        },
+        {
           "name": "ClustS Add",
           "amount": 2
         },
         {
           "name": "Hunger",
           "amount": -2
-        },
-        {
-          "name": "Attack",
-          "amount": 1
         }
       ],
       "create_mats": [
@@ -8732,16 +8732,16 @@
       "create_cost": 7800,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
-        },
-        {
           "name": "Faint",
           "amount": 3
         },
         {
           "name": "SwdShrpner",
           "amount": 2
+        },
+        {
+          "name": "Paralysis",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -8790,16 +8790,16 @@
       "create_cost": 7800,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
-        },
-        {
           "name": "Faint",
           "amount": 3
         },
         {
           "name": "PelletS Up",
           "amount": 2
+        },
+        {
+          "name": "Paralysis",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -8852,12 +8852,12 @@
           "amount": 3
         },
         {
-          "name": "Poison",
-          "amount": -2
-        },
-        {
           "name": "Everlastng",
           "amount": 2
+        },
+        {
+          "name": "Poison",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -8910,12 +8910,12 @@
           "amount": 3
         },
         {
-          "name": "Poison",
-          "amount": -2
-        },
-        {
           "name": "Everlastng",
           "amount": 2
+        },
+        {
+          "name": "Poison",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -8968,12 +8968,12 @@
           "amount": 2
         },
         {
-          "name": "All Resist",
-          "amount": -2
-        },
-        {
           "name": "Gunnery",
           "amount": 3
+        },
+        {
+          "name": "All Resist",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -9026,12 +9026,12 @@
           "amount": 2
         },
         {
-          "name": "All Resist",
-          "amount": -2
-        },
-        {
           "name": "Gunnery",
           "amount": 3
+        },
+        {
+          "name": "All Resist",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -9080,20 +9080,20 @@
       "create_cost": 8800,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -3
+          "name": "Dragon Res",
+          "amount": 3
         },
         {
           "name": "Sharpness",
           "amount": 2
         },
         {
-          "name": "SwdShrpner",
-          "amount": 1
+          "name": "Poison",
+          "amount": -3
         },
         {
-          "name": "Dragon Res",
-          "amount": 3
+          "name": "SwdShrpner",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -9142,16 +9142,16 @@
       "create_cost": 8800,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -3
+          "name": "Dragon Res",
+          "amount": 3
         },
         {
           "name": "PierceS Up",
           "amount": 2
         },
         {
-          "name": "Dragon Res",
-          "amount": 3
+          "name": "Poison",
+          "amount": -3
         },
         {
           "name": "Precision",
@@ -9208,12 +9208,12 @@
           "amount": 3
         },
         {
-          "name": "Poison",
-          "amount": -2
-        },
-        {
           "name": "Spc Attack",
           "amount": 2
+        },
+        {
+          "name": "Poison",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -9266,12 +9266,12 @@
           "amount": 3
         },
         {
-          "name": "Poison",
-          "amount": -2
-        },
-        {
           "name": "Spc Attack",
           "amount": 2
+        },
+        {
+          "name": "Poison",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -9424,12 +9424,12 @@
           "amount": 3
         },
         {
-          "name": "Defence",
-          "amount": -2
-        },
-        {
           "name": "Fire Res",
           "amount": 2
+        },
+        {
+          "name": "Defence",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -9482,12 +9482,12 @@
           "amount": 3
         },
         {
-          "name": "Defence",
-          "amount": -2
-        },
-        {
           "name": "Fire Res",
           "amount": 2
+        },
+        {
+          "name": "Defence",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -9540,12 +9540,12 @@
           "amount": 3
         },
         {
-          "name": "Cold Res",
-          "amount": -1
-        },
-        {
           "name": "PsychicVis",
           "amount": 3
+        },
+        {
+          "name": "Cold Res",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -9598,12 +9598,12 @@
           "amount": 3
         },
         {
-          "name": "Cold Res",
-          "amount": -1
-        },
-        {
           "name": "PsychicVis",
           "amount": 3
+        },
+        {
+          "name": "Cold Res",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -9652,16 +9652,16 @@
       "create_cost": 9000,
       "skills": [
         {
+          "name": "ElementAtk",
+          "amount": 2
+        },
+        {
           "name": "Antiseptic",
           "amount": 2
         },
         {
           "name": "Sneak",
           "amount": -2
-        },
-        {
-          "name": "ElementAtk",
-          "amount": 2
         },
         {
           "name": "Gluttony",
@@ -9714,16 +9714,16 @@
       "create_cost": 9000,
       "skills": [
         {
+          "name": "NormalS Up",
+          "amount": 2
+        },
+        {
           "name": "Antiseptic",
           "amount": 2
         },
         {
           "name": "Sneak",
           "amount": -2
-        },
-        {
-          "name": "NormalS Up",
-          "amount": 2
         },
         {
           "name": "Gluttony",
@@ -9780,12 +9780,12 @@
           "amount": 3
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "Stamina",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -9838,12 +9838,12 @@
           "amount": 3
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "Stamina",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -9892,16 +9892,16 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 5
         },
         {
           "name": "Wide Area",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -9950,16 +9950,16 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 5
         },
         {
           "name": "Wide Area",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -10008,15 +10008,15 @@
       "create_cost": 9100,
       "skills": [
         {
+          "name": "Defence",
+          "amount": 2
+        },
+        {
           "name": "Guard",
           "amount": 2
         },
         {
           "name": "Throw",
-          "amount": 2
-        },
-        {
-          "name": "Defence",
           "amount": 2
         },
         {
@@ -10070,15 +10070,15 @@
       "create_cost": 9100,
       "skills": [
         {
+          "name": "Defence",
+          "amount": 2
+        },
+        {
           "name": "Load",
           "amount": 2
         },
         {
           "name": "CragS Add",
-          "amount": 2
-        },
-        {
-          "name": "Defence",
           "amount": 2
         },
         {
@@ -10136,12 +10136,12 @@
           "amount": 5
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "Stamina",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -10194,12 +10194,12 @@
           "amount": 5
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "Stamina",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -10248,16 +10248,16 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Sleep",
-          "amount": 1
+          "name": "Defence",
+          "amount": 2
         },
         {
           "name": "Poison",
           "amount": 2
         },
         {
-          "name": "Defence",
-          "amount": 2
+          "name": "Sleep",
+          "amount": 1
         },
         {
           "name": "Dragon Res",
@@ -10310,16 +10310,16 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Sleep",
-          "amount": 3
+          "name": "Defence",
+          "amount": 2
         },
         {
           "name": "Poison",
           "amount": 2
         },
         {
-          "name": "Defence",
-          "amount": 2
+          "name": "Sleep",
+          "amount": 3
         },
         {
           "name": "Dragon Res",
@@ -10372,8 +10372,8 @@
       "create_cost": 9500,
       "skills": [
         {
-          "name": "Hunger",
-          "amount": -2
+          "name": "Stamina",
+          "amount": 3
         },
         {
           "name": "Heat Res",
@@ -10384,8 +10384,8 @@
           "amount": 2
         },
         {
-          "name": "Stamina",
-          "amount": 3
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -10434,8 +10434,8 @@
       "create_cost": 9500,
       "skills": [
         {
-          "name": "Hunger",
-          "amount": -2
+          "name": "Stamina",
+          "amount": 3
         },
         {
           "name": "Heat Res",
@@ -10446,8 +10446,8 @@
           "amount": 2
         },
         {
-          "name": "Stamina",
-          "amount": 3
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -10500,12 +10500,12 @@
           "amount": 6
         },
         {
-          "name": "Protection",
-          "amount": -1
-        },
-        {
           "name": "Potential",
           "amount": 2
+        },
+        {
+          "name": "Protection",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -10558,12 +10558,12 @@
           "amount": 6
         },
         {
-          "name": "Protection",
-          "amount": -1
-        },
-        {
           "name": "Potential",
           "amount": 2
+        },
+        {
+          "name": "Protection",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -10612,12 +10612,12 @@
       "create_cost": 9900,
       "skills": [
         {
-          "name": "Poison",
-          "amount": 3
-        },
-        {
           "name": "HearProtct",
           "amount": 2
+        },
+        {
+          "name": "Poison",
+          "amount": 3
         },
         {
           "name": "Gathering",
@@ -10674,12 +10674,12 @@
           "amount": 2
         },
         {
-          "name": "Gathering",
-          "amount": -2
-        },
-        {
           "name": "PoisnCtAdd",
           "amount": 3
+        },
+        {
+          "name": "Gathering",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -10728,6 +10728,10 @@
       "create_cost": 9900,
       "skills": [
         {
+          "name": "Cold Res",
+          "amount": 2
+        },
+        {
           "name": "Snow Res",
           "amount": 2
         },
@@ -10738,10 +10742,6 @@
         {
           "name": "Heat Res",
           "amount": -1
-        },
-        {
-          "name": "Cold Res",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -10790,6 +10790,10 @@
       "create_cost": 9900,
       "skills": [
         {
+          "name": "Cold Res",
+          "amount": 2
+        },
+        {
           "name": "Snow Res",
           "amount": 2
         },
@@ -10800,10 +10804,6 @@
         {
           "name": "Heat Res",
           "amount": -1
-        },
-        {
-          "name": "Cold Res",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -10856,12 +10856,12 @@
           "amount": 2
         },
         {
-          "name": "SwdShrpner",
-          "amount": 1
-        },
-        {
           "name": "Attack",
           "amount": 2
+        },
+        {
+          "name": "SwdShrpner",
+          "amount": 1
         },
         {
           "name": "Defence",
@@ -10972,16 +10972,16 @@
       "create_cost": 10250,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
+          "name": "Health",
+          "amount": 4
         },
         {
           "name": "Poison",
           "amount": 2
         },
         {
-          "name": "Health",
-          "amount": 4
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -11030,16 +11030,16 @@
       "create_cost": 10250,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
+          "name": "Health",
+          "amount": 4
         },
         {
           "name": "Poison",
           "amount": 3
         },
         {
-          "name": "Health",
-          "amount": 4
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -11088,16 +11088,16 @@
       "create_cost": 10250,
       "skills": [
         {
-          "name": "Attack",
-          "amount": -2
-        },
-        {
           "name": "Evade Inc",
           "amount": 1
         },
         {
           "name": "Technique",
           "amount": 4
+        },
+        {
+          "name": "Attack",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -11146,16 +11146,16 @@
       "create_cost": 10250,
       "skills": [
         {
-          "name": "Attack",
-          "amount": -2
-        },
-        {
           "name": "Evade Inc",
           "amount": 3
         },
         {
           "name": "Technique",
           "amount": 2
+        },
+        {
+          "name": "Attack",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -11204,20 +11204,20 @@
       "create_cost": 10750,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "Cooking",
+          "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 2
         },
         {
-          "name": "PsychicVis",
-          "amount": 1
+          "name": "Protection",
+          "amount": -2
         },
         {
-          "name": "Cooking",
-          "amount": 2
+          "name": "PsychicVis",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -11266,20 +11266,20 @@
       "create_cost": 10750,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "Cooking",
+          "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 2
         },
         {
-          "name": "PsychicVis",
-          "amount": 1
+          "name": "Protection",
+          "amount": -2
         },
         {
-          "name": "Cooking",
-          "amount": 2
+          "name": "PsychicVis",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -11328,16 +11328,16 @@
       "create_cost": 10750,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
+          "name": "Attack",
+          "amount": 4
         },
         {
           "name": "Rec Speed",
           "amount": 2
         },
         {
-          "name": "Attack",
-          "amount": 4
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -11386,16 +11386,16 @@
       "create_cost": 10750,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
+          "name": "Attack",
+          "amount": 4
         },
         {
           "name": "Rec Speed",
           "amount": 2
         },
         {
-          "name": "Attack",
-          "amount": 4
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -11444,16 +11444,16 @@
       "create_cost": 10750,
       "skills": [
         {
-          "name": "Health",
-          "amount": -2
+          "name": "WindPress",
+          "amount": 2
         },
         {
           "name": "Expert",
           "amount": 3
         },
         {
-          "name": "WindPress",
-          "amount": 2
+          "name": "Health",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -11502,16 +11502,16 @@
       "create_cost": 10750,
       "skills": [
         {
-          "name": "Health",
-          "amount": -3
+          "name": "WindPress",
+          "amount": 2
         },
         {
           "name": "Expert",
           "amount": 4
         },
         {
-          "name": "WindPress",
-          "amount": 2
+          "name": "Health",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -11676,16 +11676,16 @@
       "create_cost": 1350,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": -1
-        },
-        {
           "name": "Gathering",
           "amount": 2
         },
         {
           "name": "Alchemy",
           "amount": 2
+        },
+        {
+          "name": "Sneak",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -11734,16 +11734,16 @@
       "create_cost": 1650,
       "skills": [
         {
+          "name": "Whim",
+          "amount": 4
+        },
+        {
           "name": "Backpackng",
           "amount": 2
         },
         {
           "name": "Map",
           "amount": -1
-        },
-        {
-          "name": "Whim",
-          "amount": 4
         }
       ],
       "create_mats": [
@@ -11792,16 +11792,16 @@
       "create_cost": 5350,
       "skills": [
         {
-          "name": "Sleep",
-          "amount": -2
+          "name": "PsychicVis",
+          "amount": 3
         },
         {
           "name": "BombStrUp",
           "amount": 2
         },
         {
-          "name": "PsychicVis",
-          "amount": 3
+          "name": "Sleep",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -11850,16 +11850,16 @@
       "create_cost": 5350,
       "skills": [
         {
-          "name": "Sleep",
-          "amount": -2
+          "name": "PsychicVis",
+          "amount": 3
         },
         {
           "name": "CragS Add",
           "amount": 2
         },
         {
-          "name": "PsychicVis",
-          "amount": 3
+          "name": "Sleep",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -11908,10 +11908,6 @@
       "create_cost": 7200,
       "skills": [
         {
-          "name": "Guard",
-          "amount": -1
-        },
-        {
           "name": "Anti-Theft",
           "amount": 2
         },
@@ -11922,6 +11918,10 @@
         {
           "name": "Fatigue",
           "amount": 2
+        },
+        {
+          "name": "Guard",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -11974,12 +11974,12 @@
           "amount": 2
         },
         {
-          "name": "Precision",
-          "amount": -2
-        },
-        {
           "name": "Fatigue",
           "amount": 3
+        },
+        {
+          "name": "Precision",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12148,12 +12148,12 @@
           "amount": 3
         },
         {
-          "name": "Fire Res",
-          "amount": -2
-        },
-        {
           "name": "Evade",
           "amount": 2
+        },
+        {
+          "name": "Fire Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12206,12 +12206,12 @@
           "amount": 3
         },
         {
-          "name": "Fire Res",
-          "amount": -2
-        },
-        {
           "name": "Evade",
           "amount": 2
+        },
+        {
+          "name": "Fire Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12376,12 +12376,12 @@
       "create_cost": 7800,
       "skills": [
         {
-          "name": "ElementAtk",
-          "amount": 3
-        },
-        {
           "name": "Protection",
           "amount": 2
+        },
+        {
+          "name": "ElementAtk",
+          "amount": 3
         },
         {
           "name": "Stamina",
@@ -12434,12 +12434,12 @@
       "create_cost": 7800,
       "skills": [
         {
-          "name": "ElementAtk",
-          "amount": 3
-        },
-        {
           "name": "Protection",
           "amount": 2
+        },
+        {
+          "name": "ElementAtk",
+          "amount": 3
         },
         {
           "name": "Stamina",
@@ -12492,16 +12492,16 @@
       "create_cost": 8800,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "Gathering",
+          "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 3
         },
         {
-          "name": "Gathering",
-          "amount": 2
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12550,16 +12550,16 @@
       "create_cost": 8800,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "Gathering",
+          "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 3
         },
         {
-          "name": "Gathering",
-          "amount": 2
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12612,12 +12612,12 @@
           "amount": 3
         },
         {
-          "name": "Ice Res",
-          "amount": -2
-        },
-        {
           "name": "Fate",
           "amount": 2
+        },
+        {
+          "name": "Ice Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12670,12 +12670,12 @@
           "amount": 3
         },
         {
-          "name": "Ice Res",
-          "amount": -2
-        },
-        {
           "name": "Fate",
           "amount": 2
+        },
+        {
+          "name": "Ice Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12728,12 +12728,12 @@
           "amount": 3
         },
         {
-          "name": "ThunderRes",
-          "amount": -2
-        },
-        {
           "name": "Recovery",
           "amount": 2
+        },
+        {
+          "name": "ThunderRes",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12786,12 +12786,12 @@
           "amount": 3
         },
         {
-          "name": "ThunderRes",
-          "amount": -2
-        },
-        {
           "name": "Recovery",
           "amount": 2
+        },
+        {
+          "name": "ThunderRes",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12840,16 +12840,16 @@
       "create_cost": 8950,
       "skills": [
         {
-          "name": "Health",
-          "amount": -2
-        },
-        {
           "name": "Expert",
           "amount": 1
         },
         {
           "name": "ElementAtk",
           "amount": 2
+        },
+        {
+          "name": "Health",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12898,16 +12898,16 @@
       "create_cost": 8950,
       "skills": [
         {
-          "name": "Health",
-          "amount": -2
-        },
-        {
           "name": "Expert",
           "amount": 3
         },
         {
           "name": "ElementAtk",
           "amount": 2
+        },
+        {
+          "name": "Health",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -12956,12 +12956,12 @@
       "create_cost": 9000,
       "skills": [
         {
-          "name": "Hunger",
-          "amount": 3
-        },
-        {
           "name": "Heat Res",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": 3
         },
         {
           "name": "Cold Res",
@@ -13014,12 +13014,12 @@
       "create_cost": 9000,
       "skills": [
         {
-          "name": "Hunger",
-          "amount": 3
-        },
-        {
           "name": "Heat Res",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": 3
         },
         {
           "name": "Cold Res",
@@ -13076,12 +13076,12 @@
           "amount": 2
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "Potential",
           "amount": 3
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -13130,12 +13130,12 @@
       "create_cost": 9000,
       "skills": [
         {
-          "name": "PelletS Up",
-          "amount": 3
-        },
-        {
           "name": "BombStrUp",
           "amount": 2
+        },
+        {
+          "name": "PelletS Up",
+          "amount": 3
         },
         {
           "name": "Hunger",
@@ -13304,16 +13304,16 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Rec Speed",
-          "amount": -1
+          "name": "Recovery",
+          "amount": 2
         },
         {
           "name": "Wide Area",
           "amount": 4
         },
         {
-          "name": "Recovery",
-          "amount": 2
+          "name": "Rec Speed",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -13362,16 +13362,16 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Rec Speed",
-          "amount": -1
+          "name": "Recovery",
+          "amount": 2
         },
         {
           "name": "Wide Area",
           "amount": 6
         },
         {
-          "name": "Recovery",
-          "amount": 2
+          "name": "Rec Speed",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -13420,12 +13420,12 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Guard Up",
-          "amount": 2
-        },
-        {
           "name": "Defence",
           "amount": 1
+        },
+        {
+          "name": "Guard Up",
+          "amount": 2
         },
         {
           "name": "ThunderRes",
@@ -13478,12 +13478,12 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Guard Up",
-          "amount": 2
-        },
-        {
           "name": "Defence",
           "amount": 3
+        },
+        {
+          "name": "Guard Up",
+          "amount": 2
         },
         {
           "name": "ThunderRes",
@@ -13536,16 +13536,16 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
+          "name": "Terrain",
+          "amount": 3
         },
         {
           "name": "Guard",
           "amount": 2
         },
         {
-          "name": "Terrain",
-          "amount": 3
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -13594,16 +13594,16 @@
       "create_cost": 9100,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
+          "name": "Terrain",
+          "amount": 2
         },
         {
           "name": "PierceSAdd",
           "amount": 3
         },
         {
-          "name": "Terrain",
-          "amount": 2
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -13652,16 +13652,16 @@
       "create_cost": 9500,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -2
-        },
-        {
           "name": "Hunger",
           "amount": 3
         },
         {
           "name": "Everlastng",
           "amount": 2
+        },
+        {
+          "name": "Poison",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -13710,16 +13710,16 @@
       "create_cost": 9500,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -2
-        },
-        {
           "name": "Hunger",
           "amount": 3
         },
         {
           "name": "Everlastng",
           "amount": 2
+        },
+        {
+          "name": "Poison",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -13768,12 +13768,12 @@
       "create_cost": 9900,
       "skills": [
         {
-          "name": "Spc Attack",
-          "amount": 3
-        },
-        {
           "name": "HearProtct",
           "amount": 2
+        },
+        {
+          "name": "Spc Attack",
+          "amount": 3
         },
         {
           "name": "Terrain",
@@ -13826,12 +13826,12 @@
       "create_cost": 9900,
       "skills": [
         {
-          "name": "Spc Attack",
-          "amount": 3
-        },
-        {
           "name": "HearProtct",
           "amount": 2
+        },
+        {
+          "name": "Spc Attack",
+          "amount": 3
         },
         {
           "name": "Terrain",
@@ -13884,16 +13884,16 @@
       "create_cost": 10050,
       "skills": [
         {
-          "name": "Health",
-          "amount": -3
-        },
-        {
           "name": "Sharpness",
           "amount": 2
         },
         {
           "name": "Expert",
           "amount": 2
+        },
+        {
+          "name": "Health",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -13942,16 +13942,16 @@
       "create_cost": 10050,
       "skills": [
         {
-          "name": "Health",
-          "amount": -3
+          "name": "Load",
+          "amount": 2
         },
         {
           "name": "Expert",
           "amount": 2
         },
         {
-          "name": "Load",
-          "amount": 2
+          "name": "Health",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -14000,16 +14000,16 @@
       "create_cost": 10750,
       "skills": [
         {
+          "name": "WindPress",
+          "amount": 3
+        },
+        {
           "name": "Sharpness",
           "amount": 2
         },
         {
           "name": "Defence",
           "amount": -2
-        },
-        {
-          "name": "WindPress",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -14058,12 +14058,12 @@
       "create_cost": 10750,
       "skills": [
         {
-          "name": "Load",
-          "amount": 2
-        },
-        {
           "name": "WindPress",
           "amount": 3
+        },
+        {
+          "name": "Load",
+          "amount": 2
         },
         {
           "name": "Fate",
@@ -14120,12 +14120,12 @@
           "amount": 2
         },
         {
-          "name": "Hunger",
-          "amount": -3
-        },
-        {
           "name": "Defence",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -14178,12 +14178,12 @@
           "amount": 2
         },
         {
-          "name": "Hunger",
-          "amount": -3
-        },
-        {
           "name": "Defence",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -14232,12 +14232,12 @@
       "create_cost": 3750,
       "skills": [
         {
-          "name": "Antiseptic",
-          "amount": 2
-        },
-        {
           "name": "Protection",
           "amount": 5
+        },
+        {
+          "name": "Antiseptic",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -14286,12 +14286,12 @@
       "create_cost": 3750,
       "skills": [
         {
-          "name": "Antiseptic",
-          "amount": 2
-        },
-        {
           "name": "Protection",
           "amount": 5
+        },
+        {
+          "name": "Antiseptic",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -14344,16 +14344,16 @@
           "amount": 2
         },
         {
-          "name": "Map",
-          "amount": -2
-        },
-        {
           "name": "Loading",
           "amount": 2
         },
         {
           "name": "Cooking",
           "amount": 1
+        },
+        {
+          "name": "Map",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -14402,16 +14402,16 @@
       "create_cost": 16000,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "ElementAtk",
           "amount": 2
         },
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -14460,11 +14460,11 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Sneak",
+          "name": "Hunger",
           "amount": 2
         },
         {
-          "name": "Hunger",
+          "name": "Sneak",
           "amount": 2
         },
         {
@@ -14518,20 +14518,20 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
-        },
-        {
-          "name": "Backpackng",
-          "amount": 2
-        },
-        {
           "name": "Whim",
           "amount": 3
         },
         {
           "name": "Fate",
           "amount": 2
+        },
+        {
+          "name": "Backpackng",
+          "amount": 2
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -14580,20 +14580,20 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "PelletS Up",
-          "amount": 2
-        },
-        {
           "name": "PelletSAdd",
           "amount": 3
         },
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "PelletS Up",
+          "amount": 2
         },
         {
           "name": "Backpackng",
           "amount": 2
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -14642,16 +14642,16 @@
       "create_cost": 16000,
       "skills": [
         {
+          "name": "Carving",
+          "amount": 4
+        },
+        {
           "name": "Protection",
           "amount": 2
         },
         {
           "name": "Fate",
           "amount": -3
-        },
-        {
-          "name": "Carving",
-          "amount": 4
         }
       ],
       "create_mats": [
@@ -14700,16 +14700,16 @@
       "create_cost": 16000,
       "skills": [
         {
+          "name": "Carving",
+          "amount": 4
+        },
+        {
           "name": "NormalS Up",
           "amount": 2
         },
         {
           "name": "Fate",
           "amount": -3
-        },
-        {
-          "name": "Carving",
-          "amount": 4
         }
       ],
       "create_mats": [
@@ -14758,20 +14758,20 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
-        },
-        {
-          "name": "Backpackng",
-          "amount": 2
-        },
-        {
           "name": "Whim",
           "amount": 3
         },
         {
           "name": "Fate",
           "amount": 2
+        },
+        {
+          "name": "Backpackng",
+          "amount": 2
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -14820,20 +14820,20 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "PelletS Up",
-          "amount": 2
-        },
-        {
           "name": "PelletSAdd",
           "amount": 3
         },
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "PelletS Up",
+          "amount": 2
         },
         {
           "name": "Backpackng",
           "amount": 2
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -14882,16 +14882,16 @@
       "create_cost": 16000,
       "skills": [
         {
+          "name": "Carving",
+          "amount": 4
+        },
+        {
           "name": "Protection",
           "amount": 2
         },
         {
           "name": "Fate",
           "amount": -3
-        },
-        {
-          "name": "Carving",
-          "amount": 4
         }
       ],
       "create_mats": [
@@ -14940,16 +14940,16 @@
       "create_cost": 16000,
       "skills": [
         {
+          "name": "Carving",
+          "amount": 4
+        },
+        {
           "name": "NormalS Up",
           "amount": 2
         },
         {
           "name": "Fate",
           "amount": -3
-        },
-        {
-          "name": "Carving",
-          "amount": 4
         }
       ],
       "create_mats": [
@@ -15002,16 +15002,16 @@
           "amount": 4
         },
         {
+          "name": "Fast Chrge",
+          "amount": 2
+        },
+        {
           "name": "Stamina",
           "amount": 1
         },
         {
           "name": "Technique",
           "amount": -2
-        },
-        {
-          "name": "Fast Chrge",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -15064,12 +15064,12 @@
           "amount": 3
         },
         {
-          "name": "Technique",
-          "amount": -3
-        },
-        {
           "name": "Fast Chrge",
           "amount": 3
+        },
+        {
+          "name": "Technique",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -15118,20 +15118,20 @@
       "create_cost": 13500,
       "skills": [
         {
-          "name": "BombStrUp",
-          "amount": 3
-        },
-        {
-          "name": "Protection",
-          "amount": -2
+          "name": "Carving",
+          "amount": 4
         },
         {
           "name": "Fate",
           "amount": 2
         },
         {
-          "name": "Carving",
-          "amount": 4
+          "name": "Protection",
+          "amount": -2
+        },
+        {
+          "name": "BombStrUp",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -15180,20 +15180,20 @@
       "create_cost": 13500,
       "skills": [
         {
-          "name": "BombStrUp",
-          "amount": 3
-        },
-        {
-          "name": "Protection",
-          "amount": -2
+          "name": "Carving",
+          "amount": 4
         },
         {
           "name": "Fate",
           "amount": 2
         },
         {
-          "name": "Carving",
-          "amount": 4
+          "name": "Protection",
+          "amount": -2
+        },
+        {
+          "name": "BombStrUp",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -15242,20 +15242,20 @@
       "create_cost": 15500,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": -2
+          "name": "Potential",
+          "amount": 3
         },
         {
           "name": "Artisan",
           "amount": 2
         },
         {
-          "name": "Potential",
-          "amount": 3
-        },
-        {
           "name": "Horn",
           "amount": 2
+        },
+        {
+          "name": "Sneak",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -15298,20 +15298,20 @@
       "create_cost": 15500,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": 2
-        },
-        {
           "name": "Potential",
           "amount": 3
         },
         {
-          "name": "Precision",
-          "amount": -1
-        },
-        {
           "name": "Gunnery",
           "amount": 3
+        },
+        {
+          "name": "Sneak",
+          "amount": 2
+        },
+        {
+          "name": "Precision",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -15360,16 +15360,16 @@
       "create_cost": 9100,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "Spc Attack",
           "amount": 2
         },
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -15418,16 +15418,16 @@
       "create_cost": 9100,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "Spc Attack",
           "amount": 2
         },
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -15476,16 +15476,16 @@
       "create_cost": 9100,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "Spc Attack",
           "amount": 2
         },
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -15534,16 +15534,16 @@
       "create_cost": 9100,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "Spc Attack",
           "amount": 2
         },
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -15592,16 +15592,16 @@
       "create_cost": 10750,
       "skills": [
         {
-          "name": "Health",
-          "amount": -3
-        },
-        {
           "name": "Fencing",
           "amount": 2
         },
         {
           "name": "Spc Attack",
           "amount": 2
+        },
+        {
+          "name": "Health",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -15650,16 +15650,16 @@
       "create_cost": 10750,
       "skills": [
         {
-          "name": "Health",
-          "amount": -3
+          "name": "Speed Fire",
+          "amount": 2
         },
         {
           "name": "Spc Attack",
           "amount": 2
         },
         {
-          "name": "Speed Fire",
-          "amount": 2
+          "name": "Health",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -15708,12 +15708,12 @@
       "create_cost": 14000,
       "skills": [
         {
-          "name": "HearProtct",
-          "amount": 2
-        },
-        {
           "name": "WindPress",
           "amount": 5
+        },
+        {
+          "name": "HearProtct",
+          "amount": 2
         },
         {
           "name": "Terrain",
@@ -15766,12 +15766,12 @@
       "create_cost": 14000,
       "skills": [
         {
-          "name": "HearProtct",
-          "amount": 2
-        },
-        {
           "name": "WindPress",
           "amount": 5
+        },
+        {
+          "name": "HearProtct",
+          "amount": 2
         },
         {
           "name": "Terrain",
@@ -15824,16 +15824,16 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -3
+          "name": "Fast Chrge",
+          "amount": 2
         },
         {
           "name": "Terrain",
           "amount": 4
         },
         {
-          "name": "Fast Chrge",
-          "amount": 2
+          "name": "Poison",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -15882,16 +15882,16 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -3
+          "name": "Fast Chrge",
+          "amount": 2
         },
         {
           "name": "Terrain",
           "amount": 4
         },
         {
-          "name": "Fast Chrge",
-          "amount": 2
+          "name": "Poison",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -15940,12 +15940,12 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "ElementAtk",
-          "amount": 2
-        },
-        {
           "name": "All Resist",
           "amount": 5
+        },
+        {
+          "name": "ElementAtk",
+          "amount": 2
         },
         {
           "name": "Everlastng",
@@ -15998,12 +15998,12 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "ElementAtk",
-          "amount": 2
-        },
-        {
           "name": "All Resist",
           "amount": 5
+        },
+        {
+          "name": "ElementAtk",
+          "amount": 2
         },
         {
           "name": "Everlastng",
@@ -16056,10 +16056,6 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
           "name": "Rec Speed",
           "amount": 2
         },
@@ -16070,6 +16066,10 @@
         {
           "name": "Guard Up",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -16118,16 +16118,16 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
           "name": "Rec Speed",
           "amount": 2
         },
         {
           "name": "Load",
           "amount": 4
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -16176,10 +16176,6 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
           "name": "Rec Speed",
           "amount": 2
         },
@@ -16190,6 +16186,10 @@
         {
           "name": "Guard Up",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -16238,16 +16238,16 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -1
-        },
-        {
           "name": "Rec Speed",
           "amount": 2
         },
         {
           "name": "Load",
           "amount": 4
+        },
+        {
+          "name": "Faint",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -16300,12 +16300,12 @@
           "amount": 5
         },
         {
-          "name": "Cooking",
-          "amount": -2
-        },
-        {
           "name": "Quake Res",
           "amount": 2
+        },
+        {
+          "name": "Cooking",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -16358,16 +16358,16 @@
           "amount": 4
         },
         {
-          "name": "Fate",
-          "amount": 1
+          "name": "Quake Res",
+          "amount": 2
         },
         {
           "name": "Cooking",
           "amount": -2
         },
         {
-          "name": "Quake Res",
-          "amount": 2
+          "name": "Fate",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -16416,16 +16416,16 @@
       "create_cost": 21000,
       "skills": [
         {
+          "name": "Fatigue",
+          "amount": 2
+        },
+        {
           "name": "Expert",
           "amount": 5
         },
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Fatigue",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -16474,16 +16474,16 @@
       "create_cost": 21000,
       "skills": [
         {
+          "name": "Fatigue",
+          "amount": 2
+        },
+        {
           "name": "Expert",
           "amount": 5
         },
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Fatigue",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -16540,12 +16540,12 @@
           "amount": 3
         },
         {
-          "name": "Expert",
-          "amount": -2
-        },
-        {
           "name": "Protection",
           "amount": -3
+        },
+        {
+          "name": "Expert",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -16594,8 +16594,8 @@
       "create_cost": 22222,
       "skills": [
         {
-          "name": "Expert",
-          "amount": -2
+          "name": "Speed Fire",
+          "amount": 1
         },
         {
           "name": "NormalS Up",
@@ -16606,8 +16606,8 @@
           "amount": -3
         },
         {
-          "name": "Speed Fire",
-          "amount": 1
+          "name": "Expert",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -16718,16 +16718,16 @@
       "create_cost": 21000,
       "skills": [
         {
+          "name": "Loading",
+          "amount": 2
+        },
+        {
           "name": "Expert",
           "amount": 4
         },
         {
           "name": "HearProtct",
           "amount": 1
-        },
-        {
-          "name": "Loading",
-          "amount": 2
         },
         {
           "name": "Fast Chrge",
@@ -16780,16 +16780,16 @@
       "create_cost": 16000,
       "skills": [
         {
+          "name": "Evade",
+          "amount": 3
+        },
+        {
           "name": "Spc Attack",
           "amount": 2
         },
         {
           "name": "Cold Res",
           "amount": -2
-        },
-        {
-          "name": "Evade",
-          "amount": 3
         }
       ],
       "create_mats": [
@@ -16838,16 +16838,16 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": -1
-        },
-        {
           "name": "Hunger",
           "amount": 2
         },
         {
           "name": "Wide Area",
           "amount": 2
+        },
+        {
+          "name": "Sneak",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -16900,12 +16900,12 @@
           "amount": 2
         },
         {
-          "name": "Stamina",
-          "amount": -1
-        },
-        {
           "name": "Gunnery",
           "amount": 4
+        },
+        {
+          "name": "Stamina",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -16954,16 +16954,16 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": -1
-        },
-        {
           "name": "Protection",
           "amount": 2
         },
         {
           "name": "Wide Area",
           "amount": 2
+        },
+        {
+          "name": "Sneak",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -17016,12 +17016,12 @@
           "amount": 2
         },
         {
-          "name": "Stamina",
-          "amount": -1
-        },
-        {
           "name": "Gunnery",
           "amount": 4
+        },
+        {
+          "name": "Stamina",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -17070,16 +17070,16 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": -1
-        },
-        {
           "name": "Protection",
           "amount": 2
         },
         {
           "name": "Wide Area",
           "amount": 2
+        },
+        {
+          "name": "Sneak",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -17128,10 +17128,6 @@
       "create_cost": 7800,
       "skills": [
         {
-          "name": "Health",
-          "amount": -1
-        },
-        {
           "name": "Gathering",
           "amount": 3
         },
@@ -17142,6 +17138,10 @@
         {
           "name": "Recovery",
           "amount": 1
+        },
+        {
+          "name": "Health",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -17190,10 +17190,6 @@
       "create_cost": 7800,
       "skills": [
         {
-          "name": "Health",
-          "amount": -1
-        },
-        {
           "name": "Gathering",
           "amount": 3
         },
@@ -17204,6 +17200,10 @@
         {
           "name": "Recovery",
           "amount": 1
+        },
+        {
+          "name": "Health",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -17252,12 +17252,12 @@
       "create_cost": 9000,
       "skills": [
         {
-          "name": "MixSucRate",
-          "amount": 3
-        },
-        {
           "name": "Alchemy",
           "amount": 2
+        },
+        {
+          "name": "MixSucRate",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -17306,12 +17306,12 @@
       "create_cost": 9000,
       "skills": [
         {
-          "name": "MixSucRate",
-          "amount": 5
-        },
-        {
           "name": "Alchemy",
           "amount": 2
+        },
+        {
+          "name": "MixSucRate",
+          "amount": 5
         }
       ],
       "create_mats": [
@@ -17364,16 +17364,16 @@
           "amount": 2
         },
         {
-          "name": "Expert",
-          "amount": 1
+          "name": "Potential",
+          "amount": 2
         },
         {
           "name": "Protection",
           "amount": -2
         },
         {
-          "name": "Potential",
-          "amount": 2
+          "name": "Expert",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -17422,20 +17422,20 @@
       "create_cost": 9900,
       "skills": [
         {
-          "name": "Expert",
-          "amount": 1
-        },
-        {
-          "name": "Protection",
-          "amount": -2
+          "name": "Loading",
+          "amount": 2
         },
         {
           "name": "Potential",
           "amount": 2
         },
         {
-          "name": "Loading",
-          "amount": 2
+          "name": "Protection",
+          "amount": -2
+        },
+        {
+          "name": "Expert",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -17484,20 +17484,20 @@
       "create_cost": 13950,
       "skills": [
         {
-          "name": "Antiseptic",
-          "amount": 1
-        },
-        {
-          "name": "Sneak",
-          "amount": -1
+          "name": "Recovery",
+          "amount": 2
         },
         {
           "name": "Whim",
           "amount": 3
         },
         {
-          "name": "Recovery",
-          "amount": 2
+          "name": "Antiseptic",
+          "amount": 1
+        },
+        {
+          "name": "Sneak",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -17546,20 +17546,20 @@
       "create_cost": 13950,
       "skills": [
         {
-          "name": "Antiseptic",
-          "amount": 1
-        },
-        {
-          "name": "Sneak",
-          "amount": -1
+          "name": "Recovery",
+          "amount": 2
         },
         {
           "name": "Whim",
           "amount": 3
         },
         {
-          "name": "Recovery",
-          "amount": 2
+          "name": "Antiseptic",
+          "amount": 1
+        },
+        {
+          "name": "Sneak",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -17608,16 +17608,16 @@
       "create_cost": 14500,
       "skills": [
         {
-          "name": "Health",
-          "amount": -2
-        },
-        {
           "name": "Expert",
           "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 3
+        },
+        {
+          "name": "Health",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -17666,16 +17666,16 @@
       "create_cost": 14500,
       "skills": [
         {
-          "name": "Health",
-          "amount": -2
-        },
-        {
           "name": "Expert",
           "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 3
+        },
+        {
+          "name": "Health",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -17728,12 +17728,12 @@
           "amount": 3
         },
         {
-          "name": "Whim",
-          "amount": -1
-        },
-        {
           "name": "Fate",
           "amount": 3
+        },
+        {
+          "name": "Whim",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -17786,12 +17786,12 @@
           "amount": 3
         },
         {
-          "name": "Whim",
-          "amount": -1
-        },
-        {
           "name": "Fate",
           "amount": 3
+        },
+        {
+          "name": "Whim",
+          "amount": -1
         }
       ],
       "create_mats": [
@@ -17840,12 +17840,12 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "Fencing",
-          "amount": 2
-        },
-        {
           "name": "Attack",
           "amount": 3
+        },
+        {
+          "name": "Fencing",
+          "amount": 2
         },
         {
           "name": "Defence",
@@ -17898,20 +17898,20 @@
       "create_cost": 16000,
       "skills": [
         {
-          "name": "PierceS Up",
+          "name": "Attack",
           "amount": 2
         },
         {
-          "name": "ElementAtk",
-          "amount": 1
-        },
-        {
-          "name": "Attack",
+          "name": "PierceS Up",
           "amount": 2
         },
         {
           "name": "Defence",
           "amount": -2
+        },
+        {
+          "name": "ElementAtk",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -17960,16 +17960,16 @@
       "create_cost": 32500,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 3
         },
         {
           "name": "Fencing",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18018,16 +18018,16 @@
       "create_cost": 32500,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 3
         },
         {
           "name": "PierceS Up",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18076,16 +18076,16 @@
       "create_cost": 32500,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 3
         },
         {
           "name": "Fencing",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18134,16 +18134,16 @@
       "create_cost": 32500,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 3
         },
         {
           "name": "PierceS Up",
           "amount": 2
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18196,16 +18196,16 @@
           "amount": 2
         },
         {
-          "name": "Defence",
-          "amount": -2
+          "name": "Stamina",
+          "amount": 2
         },
         {
           "name": "Protection",
           "amount": -3
         },
         {
-          "name": "Stamina",
-          "amount": 2
+          "name": "Defence",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18254,20 +18254,20 @@
       "create_cost": 33333,
       "skills": [
         {
-          "name": "Defence",
-          "amount": -2
-        },
-        {
-          "name": "Protection",
-          "amount": -3
+          "name": "Loading",
+          "amount": 2
         },
         {
           "name": "Stamina",
           "amount": 2
         },
         {
-          "name": "Loading",
-          "amount": 2
+          "name": "Protection",
+          "amount": -3
+        },
+        {
+          "name": "Defence",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18316,10 +18316,6 @@
       "create_cost": 44444,
       "skills": [
         {
-          "name": "Sharpness",
-          "amount": -2
-        },
-        {
           "name": "Artisan",
           "amount": 2
         },
@@ -18330,6 +18326,10 @@
         {
           "name": "Protection",
           "amount": -3
+        },
+        {
+          "name": "Sharpness",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18378,20 +18378,20 @@
       "create_cost": 44444,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -3
-        },
-        {
-          "name": "Stamina",
-          "amount": -2
-        },
-        {
           "name": "Loading",
           "amount": 2
         },
         {
           "name": "Fast Chrge",
           "amount": 2
+        },
+        {
+          "name": "Protection",
+          "amount": -3
+        },
+        {
+          "name": "Stamina",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18440,16 +18440,16 @@
       "create_cost": 12800,
       "skills": [
         {
-          "name": "Rec Speed",
-          "amount": 2
-        },
-        {
           "name": "Attack",
           "amount": 2
         },
         {
           "name": "Defence",
           "amount": -3
+        },
+        {
+          "name": "Rec Speed",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -18498,16 +18498,16 @@
       "create_cost": 12800,
       "skills": [
         {
-          "name": "Rec Speed",
-          "amount": 5
-        },
-        {
           "name": "Attack",
           "amount": 2
         },
         {
           "name": "Defence",
           "amount": -2
+        },
+        {
+          "name": "Rec Speed",
+          "amount": 5
         }
       ],
       "create_mats": [
@@ -18560,12 +18560,12 @@
           "amount": 3
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "Attack",
           "amount": 4
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18618,12 +18618,12 @@
           "amount": 3
         },
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "PowerCtAdd",
           "amount": 4
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18676,12 +18676,12 @@
           "amount": 1
         },
         {
-          "name": "Recovery",
-          "amount": -3
-        },
-        {
           "name": "Carving",
           "amount": 5
+        },
+        {
+          "name": "Recovery",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -18730,16 +18730,16 @@
       "create_cost": 13300,
       "skills": [
         {
-          "name": "Recovery",
-          "amount": -3
+          "name": "PoisnCtAdd",
+          "amount": 3
         },
         {
           "name": "Carving",
           "amount": 3
         },
         {
-          "name": "PoisnCtAdd",
-          "amount": 3
+          "name": "Recovery",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -18792,12 +18792,12 @@
           "amount": 3
         },
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 4
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18850,12 +18850,12 @@
           "amount": 3
         },
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Recovery",
           "amount": 4
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -18908,16 +18908,16 @@
           "amount": 1
         },
         {
-          "name": "BombStrUp",
-          "amount": 3
-        },
-        {
           "name": "Defence",
           "amount": 3
         },
         {
           "name": "All Resist",
           "amount": -2
+        },
+        {
+          "name": "BombStrUp",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -18970,16 +18970,16 @@
           "amount": 1
         },
         {
-          "name": "CragS Add",
-          "amount": 3
-        },
-        {
           "name": "Defence",
           "amount": 3
         },
         {
           "name": "All Resist",
           "amount": -2
+        },
+        {
+          "name": "CragS Add",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -19028,16 +19028,16 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
-        },
-        {
           "name": "Sleep",
           "amount": 4
         },
         {
           "name": "Technique",
           "amount": 3
+        },
+        {
+          "name": "Paralysis",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -19086,19 +19086,19 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Paralysis",
-          "amount": -2
-        },
-        {
           "name": "Sleep",
           "amount": 1
         },
         {
-          "name": "SleepCtAdd",
+          "name": "Technique",
           "amount": 3
         },
         {
-          "name": "Technique",
+          "name": "Paralysis",
+          "amount": -2
+        },
+        {
+          "name": "SleepCtAdd",
           "amount": 3
         }
       ],
@@ -19148,16 +19148,16 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Attack",
-          "amount": -2
-        },
-        {
           "name": "Defence",
           "amount": 4
         },
         {
           "name": "Protection",
           "amount": 3
+        },
+        {
+          "name": "Attack",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -19206,16 +19206,16 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Attack",
-          "amount": -2
-        },
-        {
           "name": "Defence",
           "amount": 4
         },
         {
           "name": "Protection",
           "amount": 3
+        },
+        {
+          "name": "Attack",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -19268,12 +19268,12 @@
           "amount": 3
         },
         {
-          "name": "Technique",
-          "amount": -3
-        },
-        {
           "name": "Trapper",
           "amount": 3
+        },
+        {
+          "name": "Technique",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -19326,12 +19326,12 @@
           "amount": 3
         },
         {
-          "name": "Technique",
-          "amount": -3
-        },
-        {
           "name": "Trapper",
           "amount": 3
+        },
+        {
+          "name": "Technique",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -19380,20 +19380,20 @@
       "create_cost": 14750,
       "skills": [
         {
-          "name": "Expert",
-          "amount": 4
-        },
-        {
-          "name": "Protection",
-          "amount": -2
+          "name": "Potential",
+          "amount": 1
         },
         {
           "name": "PsychicVis",
           "amount": 2
         },
         {
-          "name": "Potential",
-          "amount": 1
+          "name": "Protection",
+          "amount": -2
+        },
+        {
+          "name": "Expert",
+          "amount": 4
         }
       ],
       "create_mats": [
@@ -19442,20 +19442,20 @@
       "create_cost": 14750,
       "skills": [
         {
-          "name": "Expert",
-          "amount": 4
-        },
-        {
-          "name": "Protection",
-          "amount": -2
+          "name": "Potential",
+          "amount": 1
         },
         {
           "name": "PsychicVis",
           "amount": 2
         },
         {
-          "name": "Potential",
-          "amount": 1
+          "name": "Protection",
+          "amount": -2
+        },
+        {
+          "name": "Expert",
+          "amount": 4
         }
       ],
       "create_mats": [
@@ -19504,16 +19504,16 @@
       "create_cost": 14750,
       "skills": [
         {
-          "name": "Rec Speed",
-          "amount": -2
+          "name": "HearProtct",
+          "amount": 2
         },
         {
           "name": "SwdShrpner",
           "amount": 5
         },
         {
-          "name": "HearProtct",
-          "amount": 2
+          "name": "Rec Speed",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -19562,16 +19562,16 @@
       "create_cost": 14750,
       "skills": [
         {
-          "name": "Rec Speed",
-          "amount": -2
-        },
-        {
           "name": "HearProtct",
           "amount": 2
         },
         {
           "name": "RazorCtAdd",
           "amount": 5
+        },
+        {
+          "name": "Rec Speed",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -19620,16 +19620,16 @@
       "create_cost": 14750,
       "skills": [
         {
-          "name": "Snow Res",
-          "amount": 5
-        },
-        {
           "name": "ElementAtk",
           "amount": 2
         },
         {
           "name": "Heat Res",
           "amount": -2
+        },
+        {
+          "name": "Snow Res",
+          "amount": 5
         }
       ],
       "create_mats": [
@@ -19678,16 +19678,16 @@
       "create_cost": 14750,
       "skills": [
         {
-          "name": "Snow Res",
-          "amount": 5
-        },
-        {
           "name": "ElementAtk",
           "amount": 2
         },
         {
           "name": "Heat Res",
           "amount": -2
+        },
+        {
+          "name": "Snow Res",
+          "amount": 5
         }
       ],
       "create_mats": [
@@ -19736,16 +19736,16 @@
       "create_cost": 15100,
       "skills": [
         {
-          "name": "Health",
-          "amount": -4
-        },
-        {
           "name": "Fencing",
           "amount": 1
         },
         {
           "name": "Drawn Crit",
           "amount": 4
+        },
+        {
+          "name": "Health",
+          "amount": -4
         }
       ],
       "create_mats": [
@@ -19794,16 +19794,16 @@
       "create_cost": 15100,
       "skills": [
         {
-          "name": "Health",
-          "amount": -3
+          "name": "Loading",
+          "amount": 1
         },
         {
           "name": "PierceSAdd",
           "amount": 5
         },
         {
-          "name": "Loading",
-          "amount": 1
+          "name": "Health",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -19856,12 +19856,12 @@
           "amount": 5
         },
         {
-          "name": "SwdShrpner",
-          "amount": -2
-        },
-        {
           "name": "Recovery",
           "amount": 2
+        },
+        {
+          "name": "SwdShrpner",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -19968,16 +19968,16 @@
       "create_cost": 15600,
       "skills": [
         {
-          "name": "Attack",
-          "amount": -3
+          "name": "Evade Inc",
+          "amount": 1
         },
         {
           "name": "Evade",
           "amount": 3
         },
         {
-          "name": "Evade Inc",
-          "amount": 1
+          "name": "Attack",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -20026,16 +20026,16 @@
       "create_cost": 15600,
       "skills": [
         {
-          "name": "Attack",
-          "amount": -2
+          "name": "Evade Inc",
+          "amount": 3
         },
         {
           "name": "Evade",
           "amount": 2
         },
         {
-          "name": "Evade Inc",
-          "amount": 3
+          "name": "Attack",
+          "amount": -2
         },
         {
           "name": "Set Trap",
@@ -20088,10 +20088,6 @@
       "create_cost": 16100,
       "skills": [
         {
-          "name": "MixSucRate",
-          "amount": -2
-        },
-        {
           "name": "Terrain",
           "amount": 2
         },
@@ -20102,6 +20098,10 @@
         {
           "name": "Fast Chrge",
           "amount": 2
+        },
+        {
+          "name": "MixSucRate",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -20150,10 +20150,6 @@
       "create_cost": 16100,
       "skills": [
         {
-          "name": "MixSucRate",
-          "amount": -2
-        },
-        {
           "name": "Terrain",
           "amount": 5
         },
@@ -20164,6 +20160,10 @@
         {
           "name": "Fast Chrge",
           "amount": 3
+        },
+        {
+          "name": "MixSucRate",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -20212,16 +20212,16 @@
       "create_cost": 16100,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -3
+          "name": "Cooking",
+          "amount": 2
         },
         {
           "name": "HearProtct",
           "amount": 2
         },
         {
-          "name": "Cooking",
-          "amount": 2
+          "name": "Protection",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -20270,16 +20270,16 @@
       "create_cost": 16100,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
+          "name": "Cooking",
+          "amount": 3
         },
         {
           "name": "HearProtct",
           "amount": 2
         },
         {
-          "name": "Cooking",
-          "amount": 3
+          "name": "Protection",
+          "amount": -2
         },
         {
           "name": "Observance",
@@ -20390,12 +20390,12 @@
       "create_cost": 16100,
       "skills": [
         {
-          "name": "NormalS Up",
-          "amount": 2
-        },
-        {
           "name": "Attack",
           "amount": 5
+        },
+        {
+          "name": "NormalS Up",
+          "amount": 2
         },
         {
           "name": "Fast Chrge",
@@ -20448,12 +20448,12 @@
       "create_cost": 16100,
       "skills": [
         {
-          "name": "Attack",
-          "amount": 6
-        },
-        {
           "name": "WindPress",
           "amount": 1
+        },
+        {
+          "name": "Attack",
+          "amount": 6
         },
         {
           "name": "Map",
@@ -20506,12 +20506,12 @@
       "create_cost": 16100,
       "skills": [
         {
-          "name": "Attack",
-          "amount": 6
-        },
-        {
           "name": "WindPress",
           "amount": 1
+        },
+        {
+          "name": "Attack",
+          "amount": 6
         },
         {
           "name": "Map",
@@ -20630,12 +20630,12 @@
           "amount": 3
         },
         {
-          "name": "Guard Up",
-          "amount": 1
-        },
-        {
           "name": "Recoil",
           "amount": 3
+        },
+        {
+          "name": "Guard Up",
+          "amount": 1
         },
         {
           "name": "Technique",
@@ -20688,12 +20688,12 @@
       "create_cost": 12800,
       "skills": [
         {
-          "name": "Health",
-          "amount": -3
-        },
-        {
           "name": "Expert",
           "amount": 1
+        },
+        {
+          "name": "Health",
+          "amount": -3
         },
         {
           "name": "WindPress",
@@ -20746,12 +20746,12 @@
       "create_cost": 12800,
       "skills": [
         {
-          "name": "Health",
-          "amount": -3
-        },
-        {
           "name": "Expert",
           "amount": 1
+        },
+        {
+          "name": "Health",
+          "amount": -3
         },
         {
           "name": "Load",
@@ -20804,20 +20804,20 @@
       "create_cost": 13300,
       "skills": [
         {
-          "name": "Sharpness",
-          "amount": -2
-        },
-        {
-          "name": "Guard Up",
-          "amount": 2
-        },
-        {
           "name": "Cooking",
           "amount": 2
         },
         {
           "name": "Quake Res",
           "amount": 3
+        },
+        {
+          "name": "Sharpness",
+          "amount": -2
+        },
+        {
+          "name": "Guard Up",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -20866,7 +20866,7 @@
       "create_cost": 13300,
       "skills": [
         {
-          "name": "Guard Up",
+          "name": "Cooking",
           "amount": 2
         },
         {
@@ -20874,12 +20874,12 @@
           "amount": 3
         },
         {
-          "name": "Cooking",
-          "amount": 2
-        },
-        {
           "name": "Fast Chrge",
           "amount": -2
+        },
+        {
+          "name": "Guard Up",
+          "amount": 2
         }
       ],
       "create_mats": [
@@ -20932,12 +20932,12 @@
           "amount": 2
         },
         {
-          "name": "Hunger",
-          "amount": -3
-        },
-        {
           "name": "Stamina",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -20990,12 +20990,12 @@
           "amount": 2
         },
         {
-          "name": "Hunger",
-          "amount": -3
-        },
-        {
           "name": "Stamina",
           "amount": 2
+        },
+        {
+          "name": "Hunger",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -21044,16 +21044,16 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
-        },
-        {
           "name": "HearProtct",
           "amount": 2
         },
         {
           "name": "Wide Area",
           "amount": 5
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -21102,16 +21102,16 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Protection",
-          "amount": -2
-        },
-        {
           "name": "HearProtct",
           "amount": 3
         },
         {
           "name": "Wide Area",
           "amount": 4
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -21160,11 +21160,11 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Guard",
-          "amount": 3
+          "name": "Survival",
+          "amount": 1
         },
         {
-          "name": "Attack",
+          "name": "Guard",
           "amount": 3
         },
         {
@@ -21172,8 +21172,8 @@
           "amount": -2
         },
         {
-          "name": "Survival",
-          "amount": 1
+          "name": "Attack",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -21222,20 +21222,20 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Load",
-          "amount": -2
+          "name": "Survival",
+          "amount": 1
         },
         {
           "name": "Recoil",
           "amount": 3
         },
         {
-          "name": "ClustS Add",
-          "amount": 3
+          "name": "Load",
+          "amount": -2
         },
         {
-          "name": "Survival",
-          "amount": 1
+          "name": "ClustS Add",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -21284,11 +21284,11 @@
       "create_cost": 14250,
       "skills": [
         {
-          "name": "Hunger",
+          "name": "Stamina",
           "amount": 3
         },
         {
-          "name": "Stamina",
+          "name": "Hunger",
           "amount": 3
         },
         {
@@ -21342,11 +21342,11 @@
       "create_cost": 14250,
       "skills": [
         {
-          "name": "Hunger",
+          "name": "Stamina",
           "amount": 3
         },
         {
-          "name": "Stamina",
+          "name": "Hunger",
           "amount": 3
         },
         {
@@ -21400,10 +21400,6 @@
       "create_cost": 14750,
       "skills": [
         {
-          "name": "Faint",
-          "amount": 3
-        },
-        {
           "name": "Sharpness",
           "amount": 3
         },
@@ -21414,6 +21410,10 @@
         {
           "name": "Cold Res",
           "amount": -2
+        },
+        {
+          "name": "Faint",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -21462,20 +21462,20 @@
       "create_cost": 14750,
       "skills": [
         {
-          "name": "Faint",
+          "name": "NormalS Up",
           "amount": 3
         },
         {
-          "name": "NormalS Up",
-          "amount": 3
+          "name": "Speed Fire",
+          "amount": 1
         },
         {
           "name": "Cold Res",
           "amount": -2
         },
         {
-          "name": "Speed Fire",
-          "amount": 1
+          "name": "Faint",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -21524,12 +21524,12 @@
       "create_cost": 15100,
       "skills": [
         {
-          "name": "Sharpness",
-          "amount": 3
-        },
-        {
           "name": "Artisan",
           "amount": 2
+        },
+        {
+          "name": "Sharpness",
+          "amount": 3
         },
         {
           "name": "Defence",
@@ -21582,12 +21582,12 @@
       "create_cost": 15100,
       "skills": [
         {
-          "name": "Load",
-          "amount": 4
-        },
-        {
           "name": "PierceS Up",
           "amount": 2
+        },
+        {
+          "name": "Load",
+          "amount": 4
         },
         {
           "name": "Defence",
@@ -21648,12 +21648,12 @@
           "amount": 3
         },
         {
-          "name": "Protection",
-          "amount": -2
-        },
-        {
           "name": "HearProtct",
           "amount": 2
+        },
+        {
+          "name": "Protection",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -21702,20 +21702,20 @@
       "create_cost": 16100,
       "skills": [
         {
+          "name": "Load",
+          "amount": 2
+        },
+        {
           "name": "Expert",
           "amount": 3
         },
         {
-          "name": "Load",
+          "name": "HearProtct",
           "amount": 2
         },
         {
           "name": "Protection",
           "amount": -2
-        },
-        {
-          "name": "HearProtct",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -21764,12 +21764,12 @@
       "create_cost": 16100,
       "skills": [
         {
-          "name": "ElementAtk",
-          "amount": 2
-        },
-        {
           "name": "Defence",
           "amount": 5
+        },
+        {
+          "name": "ElementAtk",
+          "amount": 2
         },
         {
           "name": "Stamina",
@@ -21822,12 +21822,12 @@
       "create_cost": 16100,
       "skills": [
         {
-          "name": "ElementAtk",
-          "amount": 2
-        },
-        {
           "name": "Defence",
           "amount": 5
+        },
+        {
+          "name": "ElementAtk",
+          "amount": 2
         },
         {
           "name": "Stamina",
@@ -22019,12 +22019,12 @@
       "create_cost": 23700,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": -3
-        },
-        {
           "name": "Artisan",
           "amount": 3
+        },
+        {
+          "name": "Sneak",
+          "amount": -3
         },
         {
           "name": "Dragon Res",
@@ -22077,11 +22077,11 @@
       "create_cost": 23700,
       "skills": [
         {
-          "name": "Sneak",
+          "name": "NormalS Up",
           "amount": 3
         },
         {
-          "name": "NormalS Up",
+          "name": "Sneak",
           "amount": 3
         },
         {
@@ -22243,16 +22243,16 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Cold Res",
-          "amount": -2
+          "name": "Evade",
+          "amount": 3
         },
         {
           "name": "Gathering",
           "amount": 2
         },
         {
-          "name": "Evade",
-          "amount": 3
+          "name": "Cold Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -22301,16 +22301,16 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Cold Res",
-          "amount": -2
+          "name": "Evade",
+          "amount": 3
         },
         {
           "name": "Gathering",
           "amount": 2
         },
         {
-          "name": "Evade",
-          "amount": 3
+          "name": "Cold Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -22359,16 +22359,16 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Cold Res",
-          "amount": -2
+          "name": "Evade",
+          "amount": 3
         },
         {
           "name": "Gathering",
           "amount": 2
         },
         {
-          "name": "Evade",
-          "amount": 3
+          "name": "Cold Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -22417,16 +22417,16 @@
       "create_cost": 13800,
       "skills": [
         {
-          "name": "Cold Res",
-          "amount": -2
+          "name": "Evade",
+          "amount": 3
         },
         {
           "name": "Gathering",
           "amount": 2
         },
         {
-          "name": "Evade",
-          "amount": 3
+          "name": "Cold Res",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -22475,8 +22475,8 @@
       "create_cost": 21000,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": 1
+          "name": "Daora Res",
+          "amount": 2
         },
         {
           "name": "HearProtct",
@@ -22487,8 +22487,8 @@
           "amount": -2
         },
         {
-          "name": "Daora Res",
-          "amount": 2
+          "name": "Sneak",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -22537,8 +22537,8 @@
       "create_cost": 21000,
       "skills": [
         {
-          "name": "Sneak",
-          "amount": 1
+          "name": "Daora Res",
+          "amount": 2
         },
         {
           "name": "HearProtct",
@@ -22549,8 +22549,8 @@
           "amount": -2
         },
         {
-          "name": "Daora Res",
-          "amount": 2
+          "name": "Sneak",
+          "amount": 1
         }
       ],
       "create_mats": [
@@ -22599,19 +22599,19 @@
       "create_cost": 24000,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -2
+          "name": "FireDrgRes",
+          "amount": 2
         },
         {
           "name": "Sharpness",
           "amount": 3
         },
         {
-          "name": "Evade",
-          "amount": 2
+          "name": "Poison",
+          "amount": -2
         },
         {
-          "name": "FireDrgRes",
+          "name": "Evade",
           "amount": 2
         }
       ],
@@ -22661,11 +22661,7 @@
       "create_cost": 24000,
       "skills": [
         {
-          "name": "Poison",
-          "amount": -2
-        },
-        {
-          "name": "Load",
+          "name": "FireDrgRes",
           "amount": 2
         },
         {
@@ -22673,7 +22669,11 @@
           "amount": 3
         },
         {
-          "name": "FireDrgRes",
+          "name": "Poison",
+          "amount": -2
+        },
+        {
+          "name": "Load",
           "amount": 2
         }
       ],
@@ -22727,16 +22727,16 @@
           "amount": 1
         },
         {
+          "name": "Stamina",
+          "amount": 4
+        },
+        {
           "name": "Protection",
           "amount": 2
         },
         {
           "name": "All Resist",
           "amount": -2
-        },
-        {
-          "name": "Stamina",
-          "amount": 4
         }
       ],
       "create_mats": [
@@ -22789,16 +22789,16 @@
           "amount": 1
         },
         {
+          "name": "Stamina",
+          "amount": 4
+        },
+        {
           "name": "Protection",
           "amount": 2
         },
         {
           "name": "All Resist",
           "amount": -2
-        },
-        {
-          "name": "Stamina",
-          "amount": 4
         }
       ],
       "create_mats": [
@@ -22847,20 +22847,20 @@
       "create_cost": 27000,
       "skills": [
         {
-          "name": "Wide Area",
-          "amount": 3
+          "name": "ChmleosRes",
+          "amount": 2
         },
         {
-          "name": "Everlastng",
-          "amount": -2
+          "name": "Wide Area",
+          "amount": 3
         },
         {
           "name": "Evade Inc",
           "amount": 2
         },
         {
-          "name": "ChmleosRes",
-          "amount": 2
+          "name": "Everlastng",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -22909,20 +22909,20 @@
       "create_cost": 27000,
       "skills": [
         {
-          "name": "Wide Area",
-          "amount": 3
+          "name": "ChmleosRes",
+          "amount": 2
         },
         {
-          "name": "Everlastng",
-          "amount": -2
+          "name": "Wide Area",
+          "amount": 3
         },
         {
           "name": "Stamina",
           "amount": 2
         },
         {
-          "name": "ChmleosRes",
-          "amount": 2
+          "name": "Everlastng",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -22975,12 +22975,12 @@
           "amount": 3
         },
         {
-          "name": "Cooking",
-          "amount": -2
-        },
-        {
           "name": "Survival",
           "amount": 4
+        },
+        {
+          "name": "Cooking",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -23033,12 +23033,12 @@
           "amount": 3
         },
         {
-          "name": "Cooking",
-          "amount": -2
-        },
-        {
           "name": "Survival",
           "amount": 4
+        },
+        {
+          "name": "Cooking",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -23087,7 +23087,7 @@
       "create_cost": 31500,
       "skills": [
         {
-          "name": "Fencing",
+          "name": "ChmleosRes",
           "amount": 2
         },
         {
@@ -23095,12 +23095,12 @@
           "amount": 3
         },
         {
-          "name": "Everlastng",
-          "amount": -2
+          "name": "Fencing",
+          "amount": 2
         },
         {
-          "name": "ChmleosRes",
-          "amount": 2
+          "name": "Everlastng",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -23149,20 +23149,20 @@
       "create_cost": 31500,
       "skills": [
         {
-          "name": "Expert",
-          "amount": 3
-        },
-        {
-          "name": "Everlastng",
-          "amount": -2
-        },
-        {
           "name": "ChmleosRes",
           "amount": 2
         },
         {
+          "name": "Expert",
+          "amount": 3
+        },
+        {
           "name": "Speed Fire",
           "amount": 2
+        },
+        {
+          "name": "Everlastng",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -23211,20 +23211,20 @@
       "create_cost": 31500,
       "skills": [
         {
-          "name": "Paralysis",
+          "name": "Fencing",
           "amount": 3
         },
         {
-          "name": "Fencing",
-          "amount": 3
+          "name": "Cooking",
+          "amount": 1
         },
         {
           "name": "Hunger",
           "amount": -2
         },
         {
-          "name": "Cooking",
-          "amount": 1
+          "name": "Paralysis",
+          "amount": 3
         }
       ],
       "create_mats": [
@@ -23273,16 +23273,16 @@
       "create_cost": 31500,
       "skills": [
         {
-          "name": "Hunger",
-          "amount": -2
-        },
-        {
           "name": "Loading",
           "amount": 3
         },
         {
           "name": "Cooking",
           "amount": 1
+        },
+        {
+          "name": "Hunger",
+          "amount": -2
         },
         {
           "name": "Para CtAdd",
@@ -23335,20 +23335,20 @@
       "create_cost": 44444,
       "skills": [
         {
-          "name": "Sharpness",
-          "amount": 1
+          "name": "Status Res",
+          "amount": 2
         },
         {
-          "name": "Dragon Res",
-          "amount": -3
+          "name": "Sharpness",
+          "amount": 1
         },
         {
           "name": "Evade Inc",
           "amount": 3
         },
         {
-          "name": "Status Res",
-          "amount": 2
+          "name": "Dragon Res",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -23397,20 +23397,20 @@
       "create_cost": 44444,
       "skills": [
         {
-          "name": "PierceS Up",
-          "amount": 1
+          "name": "Status Res",
+          "amount": 2
         },
         {
-          "name": "Dragon Res",
-          "amount": -3
+          "name": "PierceS Up",
+          "amount": 1
         },
         {
           "name": "Evade Inc",
           "amount": 3
         },
         {
-          "name": "Status Res",
-          "amount": 2
+          "name": "Dragon Res",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -23521,16 +23521,16 @@
       "create_cost": 31500,
       "skills": [
         {
+          "name": "Loading",
+          "amount": 1
+        },
+        {
           "name": "Load",
           "amount": 6
         },
         {
           "name": "Protection",
           "amount": -2
-        },
-        {
-          "name": "Loading",
-          "amount": 1
         }
       ],
       "create_mats": [
@@ -23583,16 +23583,16 @@
           "amount": 2
         },
         {
-          "name": "Whim",
-          "amount": -2
+          "name": "Set Trap",
+          "amount": 3
         },
         {
           "name": "Evade Inc",
           "amount": 2
         },
         {
-          "name": "Set Trap",
-          "amount": 3
+          "name": "Whim",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -23645,16 +23645,16 @@
           "amount": 2
         },
         {
-          "name": "Whim",
-          "amount": -2
+          "name": "Set Trap",
+          "amount": 3
         },
         {
           "name": "Evade Inc",
           "amount": 2
         },
         {
-          "name": "Set Trap",
-          "amount": 3
+          "name": "Whim",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -23811,12 +23811,12 @@
       "create_cost": 21000,
       "skills": [
         {
-          "name": "Protection",
-          "amount": 2
-        },
-        {
           "name": "Wide Area",
           "amount": 5
+        },
+        {
+          "name": "Protection",
+          "amount": 2
         },
         {
           "name": "Potential",
@@ -23869,12 +23869,12 @@
       "create_cost": 21000,
       "skills": [
         {
-          "name": "Protection",
-          "amount": 2
-        },
-        {
           "name": "Wide Area",
           "amount": 5
+        },
+        {
+          "name": "Protection",
+          "amount": 2
         },
         {
           "name": "Potential",
@@ -23927,16 +23927,16 @@
       "create_cost": 21500,
       "skills": [
         {
-          "name": "Health",
-          "amount": -2
-        },
-        {
           "name": "Expert",
           "amount": 3
         },
         {
           "name": "HearProtct",
           "amount": 4
+        },
+        {
+          "name": "Health",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -23985,16 +23985,16 @@
       "create_cost": 21500,
       "skills": [
         {
-          "name": "Health",
-          "amount": -2
-        },
-        {
           "name": "Expert",
           "amount": 3
         },
         {
           "name": "HearProtct",
           "amount": 4
+        },
+        {
+          "name": "Health",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -24043,16 +24043,16 @@
       "create_cost": 24000,
       "skills": [
         {
-          "name": "Whim",
-          "amount": -2
-        },
-        {
           "name": "Fate",
           "amount": 4
         },
         {
           "name": "Trapper",
           "amount": 3
+        },
+        {
+          "name": "Whim",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -24101,16 +24101,16 @@
       "create_cost": 24000,
       "skills": [
         {
-          "name": "Whim",
-          "amount": -2
-        },
-        {
           "name": "Fate",
           "amount": 4
         },
         {
           "name": "Trapper",
           "amount": 3
+        },
+        {
+          "name": "Whim",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -24159,12 +24159,12 @@
       "create_cost": 24500,
       "skills": [
         {
-          "name": "Fencing",
-          "amount": 1
-        },
-        {
           "name": "Attack",
           "amount": 3
+        },
+        {
+          "name": "Fencing",
+          "amount": 1
         },
         {
           "name": "Defence",
@@ -24217,12 +24217,12 @@
       "create_cost": 24500,
       "skills": [
         {
-          "name": "PierceS Up",
-          "amount": 1
-        },
-        {
           "name": "Attack",
           "amount": 3
+        },
+        {
+          "name": "PierceS Up",
+          "amount": 1
         },
         {
           "name": "Defence",
@@ -24275,16 +24275,16 @@
       "create_cost": 35500,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 4
         },
         {
           "name": "Drawn Crit",
           "amount": 3
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -24333,16 +24333,16 @@
       "create_cost": 35500,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 4
         },
         {
           "name": "PelletS Up",
           "amount": 3
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -24391,16 +24391,16 @@
       "create_cost": 35500,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 4
         },
         {
           "name": "Drawn Crit",
           "amount": 3
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -24449,16 +24449,16 @@
       "create_cost": 35500,
       "skills": [
         {
-          "name": "Faint",
-          "amount": -2
-        },
-        {
           "name": "Rec Speed",
           "amount": 4
         },
         {
           "name": "PelletS Up",
           "amount": 3
+        },
+        {
+          "name": "Faint",
+          "amount": -2
         }
       ],
       "create_mats": [
@@ -24507,8 +24507,8 @@
       "create_cost": 55555,
       "skills": [
         {
-          "name": "Rec Speed",
-          "amount": -3
+          "name": "Rage",
+          "amount": 2
         },
         {
           "name": "Artisan",
@@ -24519,8 +24519,8 @@
           "amount": 2
         },
         {
-          "name": "Rage",
-          "amount": 2
+          "name": "Rec Speed",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -24569,11 +24569,7 @@
       "create_cost": 55555,
       "skills": [
         {
-          "name": "Rec Speed",
-          "amount": -3
-        },
-        {
-          "name": "Evade",
+          "name": "Rage",
           "amount": 2
         },
         {
@@ -24581,8 +24577,12 @@
           "amount": 2
         },
         {
-          "name": "Rage",
+          "name": "Evade",
           "amount": 2
+        },
+        {
+          "name": "Rec Speed",
+          "amount": -3
         }
       ],
       "create_mats": [
@@ -24631,16 +24631,16 @@
       "create_cost": 66666,
       "skills": [
         {
+          "name": "SwdMastery",
+          "amount": 2
+        },
+        {
           "name": "Rec Speed",
           "amount": 4
         },
         {
           "name": "Fate",
           "amount": -3
-        },
-        {
-          "name": "SwdMastery",
-          "amount": 2
         }
       ],
       "create_mats": [
@@ -24689,16 +24689,16 @@
       "create_cost": 66666,
       "skills": [
         {
+          "name": "Marksman",
+          "amount": 2
+        },
+        {
           "name": "Rec Speed",
           "amount": 4
         },
         {
           "name": "Fate",
           "amount": -3
-        },
-        {
-          "name": "Marksman",
-          "amount": 2
         }
       ],
       "create_mats": [

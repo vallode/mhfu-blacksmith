@@ -55,9 +55,7 @@
       "type": "lance",
       "create_cost": 650,
       "improve_cost": 650,
-      "improve_from": [
-        "Iron Lance"
-      ],
+      "improve_from": "Iron Lance",
       "create_mats": [
         {
           "name": "Normal Ticket",
@@ -103,9 +101,7 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 1400,
-      "improve_from": [
-        "Iron Lance+"
-      ],
+      "improve_from": "Iron Lance+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -707,8 +703,8 @@
         }
       ],
       "improve_to": [
-        "Sadalsuud",
         "Lost Babel",
+        "Sadalsuud",
         "Ancient Destroyer",
         "Spark Plug"
       ],
@@ -880,10 +876,10 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "HvyBasariosShell",
-          "amount": 3,
-          "type": "part",
-          "color": "gray"
+          "name": "Mellanje Ore",
+          "amount": 5,
+          "type": "ore",
+          "color": "white"
         },
         {
           "name": "HvyCeanataurShl",
@@ -892,10 +888,10 @@
           "color": "blue"
         },
         {
-          "name": "Mellanje Ore",
-          "amount": 5,
-          "type": "ore",
-          "color": "white"
+          "name": "HvyBasariosShell",
+          "amount": 3,
+          "type": "part",
+          "color": "gray"
         }
       ],
       "improve_to": [
@@ -1022,12 +1018,6 @@
       ],
       "improve_mats": [
         {
-          "name": "Thunderbug Jelly",
-          "amount": 5,
-          "type": "fluid",
-          "color": "yellow"
-        },
-        {
           "name": "Eltalite Ore",
           "amount": 10,
           "type": "ore",
@@ -1038,6 +1028,12 @@
           "amount": 5,
           "type": "part",
           "color": "slate"
+        },
+        {
+          "name": "Thunderbug Jelly",
+          "amount": 5,
+          "type": "fluid",
+          "color": "yellow"
         }
       ],
       "improve_to": [
@@ -2097,9 +2093,7 @@
       "type": "lance",
       "create_cost": null,
       "improve_cost": 2150,
-      "improve_from": [
-        "Steel Lance"
-      ],
+      "improve_from": "Steel Lance",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2799,8 +2793,8 @@
       "create_cost": null,
       "improve_cost": 95000,
       "improve_from": [
-        "Gravios Venom Spear",
-        "Void Gravios Spear"
+        "Void Gravios Spear",
+        "Gravios Venom Spear"
       ],
       "create_mats": null,
       "improve_mats": [
@@ -3236,8 +3230,8 @@
       "create_cost": 85000,
       "improve_cost": 85000,
       "improve_from": [
-        "Ceanataur Piercer",
-        "Scissor Cannon"
+        "Scissor Cannon",
+        "Ceanataur Piercer"
       ],
       "create_mats": [
         {
@@ -5212,8 +5206,8 @@
       "create_cost": null,
       "improve_cost": 50000,
       "improve_from": [
-        "Bone Claw Lance+",
-        "Ceanataur Stinger"
+        "Ceanataur Stinger",
+        "Bone Claw Lance+"
       ],
       "create_mats": null,
       "improve_mats": [

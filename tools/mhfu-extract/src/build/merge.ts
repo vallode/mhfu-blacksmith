@@ -3,11 +3,13 @@
  *
  * - Item order, file layout and key order come from the committed file.
  *   Only items the disc also has change, and only in the category's `take`
- *   fields (see `categories.ts`). Everything else is copied through.
+ *   fields (see `categories.ts`), minus the file's own `keepFields`.
+ *   Everything else is copied through.
  * - A taken field is written in the site's vocabulary (`fields.ts`
  *   `toSite`): site names for the item's materials and upgrade-tree
- *   references, site skill spellings, and the committed value untouched
- *   when it already agrees with the disc.
+ *   references, site skill spellings. Lists are written in the disc's
+ *   order, even when they agree with the committed list as a set; a
+ *   scalar that agrees is left as committed.
  * - Disc items the site doesn't list are not added. They'd need fields the
  *   disc doesn't have (`hr`, `sex`, ...); they're reported instead.
  * - `overlay/keep-site-values.json` lists reviewed disagreements where the
@@ -82,6 +84,7 @@ export function mergeCategory(
   const keepKey = (file: string, name: string, field: string) =>
     `${file}\u0000${name}\u0000${field}`;
   const fileNames = new Set(category.files.map((f) => f.file));
+  const keepFieldsByFile = new Map(category.files.map((f) => [f.file, f.keepFields ?? []]));
   const relevantKeep = keep.filter((k) => fileNames.has(k.file));
   const keepByKey = new Map(relevantKeep.map((k) => [keepKey(k.file, k.name, k.field), k]));
   const usedKeep = new Set<string>();
@@ -95,7 +98,9 @@ export function mergeCategory(
     const ctx = fieldContext(category, pair.file, site, spellings);
     const name = String(pair.site.name);
     const merged: Item = { ...pair.site };
+    const keepFields = keepFieldsByFile.get(pair.file) ?? [];
     for (const spec of take) {
+      if (keepFields.includes(spec.field)) continue;
       if (!(spec.field in pair.disc)) continue;
       const discValue = pair.disc[spec.field];
       if (!(spec.field in pair.site) && (discValue === null || discValue === undefined)) continue;

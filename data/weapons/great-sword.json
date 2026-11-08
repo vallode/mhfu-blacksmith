@@ -158,9 +158,7 @@
       "type": "great-sword",
       "create_cost": 2150,
       "improve_cost": 2150,
-      "improve_from": [
-        "Buster Blade"
-      ],
+      "improve_from": "Buster Blade",
       "create_mats": [
         {
           "name": "Earth Crystal",
@@ -230,9 +228,7 @@
       "type": "great-sword",
       "create_cost": 4250,
       "improve_cost": 4250,
-      "improve_from": [
-        "Ravager Blade"
-      ],
+      "improve_from": "Ravager Blade",
       "create_mats": [
         {
           "name": "Hard Ticket",
@@ -310,9 +306,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 25000,
-      "improve_from": [
-        "Ravager Blade+"
-      ],
+      "improve_from": "Ravager Blade+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -362,9 +356,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": [
-        "Tactical Blade"
-      ],
+      "improve_from": "Tactical Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -413,9 +405,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 7150,
-      "improve_from": [
-        "Ravager Blade+"
-      ],
+      "improve_from": "Ravager Blade+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -473,9 +463,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 7150,
-      "improve_from": [
-        "Chrome Razor"
-      ],
+      "improve_from": "Chrome Razor",
       "create_mats": null,
       "improve_mats": [
         {
@@ -530,9 +518,7 @@
       "type": "great-sword",
       "create_cost": 25000,
       "improve_cost": 25000,
-      "improve_from": [
-        "Chrome Razor"
-      ],
+      "improve_from": "Chrome Razor",
       "create_mats": [
         {
           "name": "Carbalite Ore",
@@ -616,9 +602,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": [
-        "Carbalite Sword"
-      ],
+      "improve_from": "Carbalite Sword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -671,9 +655,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": [
-        "Carbalite Sword+"
-      ],
+      "improve_from": "Carbalite Sword+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -725,9 +707,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 95000,
-      "improve_from": [
-        "Lacerator Blade"
-      ],
+      "improve_from": "Lacerator Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -784,9 +764,7 @@
       "type": "great-sword",
       "create_cost": 75000,
       "improve_cost": 75000,
-      "improve_from": [
-        "Carbalite Sword+"
-      ],
+      "improve_from": "Carbalite Sword+",
       "create_mats": [
         {
           "name": "Eltalite Ore",
@@ -873,9 +851,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": [
-        "Decider"
-      ],
+      "improve_from": "Decider",
       "create_mats": null,
       "improve_mats": [
         {
@@ -933,9 +909,7 @@
       "type": "great-sword",
       "create_cost": 100000,
       "improve_cost": 100000,
-      "improve_from": [
-        "Decider"
-      ],
+      "improve_from": "Decider",
       "create_mats": [
         {
           "name": "SpecLavasioFin+",
@@ -1019,9 +993,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 120000,
-      "improve_from": [
-        "Igneous Blade"
-      ],
+      "improve_from": "Igneous Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1084,9 +1056,7 @@
       "type": "great-sword",
       "create_cost": 35000,
       "improve_cost": 35000,
-      "improve_from": [
-        "Carbalite Sword"
-      ],
+      "improve_from": "Carbalite Sword",
       "create_mats": [
         {
           "name": "Gaoren Pincer",
@@ -1163,9 +1133,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 85000,
-      "improve_from": [
-        "Bronze Coin"
-      ],
+      "improve_from": "Bronze Coin",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1219,9 +1187,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 130000,
-      "improve_from": [
-        "Gaoren Coin"
-      ],
+      "improve_from": "Gaoren Coin",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1278,9 +1244,7 @@
       "type": "great-sword",
       "create_cost": 3100,
       "improve_cost": 3100,
-      "improve_from": [
-        "Ravager Blade"
-      ],
+      "improve_from": "Ravager Blade",
       "create_mats": [
         {
           "name": "Flabby Hide",
@@ -1361,9 +1325,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": [
-        "Khezu Shock Sword"
-      ],
+      "improve_from": "Khezu Shock Sword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1421,9 +1383,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 85000,
-      "improve_from": [
-        "Khezu Shock Blade"
-      ],
+      "improve_from": "Khezu Shock Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1488,9 +1448,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 120000,
-      "improve_from": [
-        "Khezu Shock Full"
-      ],
+      "improve_from": "Khezu Shock Full",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1607,9 +1565,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 4250,
-      "improve_from": [
-        "Cat's Soul"
-      ],
+      "improve_from": "Cat's Soul",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1665,9 +1621,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 45000,
-      "improve_from": [
-        "Cat's Curse"
-      ],
+      "improve_from": "Cat's Curse",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1724,9 +1678,7 @@
       "type": "great-sword",
       "create_cost": 75000,
       "improve_cost": 75000,
-      "improve_from": [
-        "Cat's King"
-      ],
+      "improve_from": "Cat's King",
       "create_mats": [
         {
           "name": "Eltalite Ore",
@@ -1814,9 +1766,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 95000,
-      "improve_from": [
-        "Cat of Venus"
-      ],
+      "improve_from": "Cat of Venus",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1876,9 +1826,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 1400,
-      "improve_from": [
-        "Buster Sword+"
-      ],
+      "improve_from": "Buster Sword+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1926,9 +1874,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 2600,
-      "improve_from": [
-        "Defender"
-      ],
+      "improve_from": "Defender",
       "create_mats": null,
       "improve_mats": [
         {
@@ -1978,9 +1924,7 @@
       "type": "great-sword",
       "create_cost": 2150,
       "improve_cost": 2150,
-      "improve_from": [
-        "Sentinel"
-      ],
+      "improve_from": "Sentinel",
       "create_mats": [
         {
           "name": "Flame Sac",
@@ -2060,9 +2004,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 6350,
-      "improve_from": [
-        "Barbaroi Blade"
-      ],
+      "improve_from": "Barbaroi Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2115,9 +2057,7 @@
       "type": "great-sword",
       "create_cost": 4250,
       "improve_cost": 4250,
-      "improve_from": [
-        "Sentinel"
-      ],
+      "improve_from": "Sentinel",
       "create_mats": [
         {
           "name": "Dragonite Ore",
@@ -2192,9 +2132,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": [
-        "Halberd"
-      ],
+      "improve_from": "Halberd",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2334,9 +2272,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 2150,
-      "improve_from": [
-        "White Serpentblade"
-      ],
+      "improve_from": "White Serpentblade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2392,9 +2328,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 2150,
-      "improve_from": [
-        "Silver Serpentblade"
-      ],
+      "improve_from": "Silver Serpentblade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2445,9 +2379,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 4900,
-      "improve_from": [
-        "Vile Serpentblade"
-      ],
+      "improve_from": "Vile Serpentblade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2504,9 +2436,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": [
-        "Deadly Serpentblade"
-      ],
+      "improve_from": "Deadly Serpentblade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2561,9 +2491,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": [
-        "Silver Serpentblade"
-      ],
+      "improve_from": "Silver Serpentblade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2652,9 +2580,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 850,
-      "improve_from": [
-        "Bone Blade"
-      ],
+      "improve_from": "Bone Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2694,9 +2620,7 @@
       "type": "great-sword",
       "create_cost": 1100,
       "improve_cost": 1100,
-      "improve_from": [
-        "Bone Blade+"
-      ],
+      "improve_from": "Bone Blade+",
       "create_mats": [
         {
           "name": "Hard Ticket",
@@ -2774,9 +2698,7 @@
       "type": "great-sword",
       "create_cost": 1750,
       "improve_cost": 1750,
-      "improve_from": [
-        "Bone Slasher"
-      ],
+      "improve_from": "Bone Slasher",
       "create_mats": [
         {
           "name": "Lg Monster Bone",
@@ -2851,9 +2773,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 2600,
-      "improve_from": [
-        "Golem Blade"
-      ],
+      "improve_from": "Golem Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -2904,9 +2824,7 @@
       "type": "great-sword",
       "create_cost": 3100,
       "improve_cost": 3100,
-      "improve_from": [
-        "Golem Blade+"
-      ],
+      "improve_from": "Golem Blade+",
       "create_mats": [
         {
           "name": "Rathian Scale",
@@ -2983,9 +2901,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 8000,
-      "improve_from": [
-        "Valkyrie Blade"
-      ],
+      "improve_from": "Valkyrie Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3034,9 +2950,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 7150,
-      "improve_from": [
-        "Valkyrie Blade"
-      ],
+      "improve_from": "Valkyrie Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3093,9 +3007,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 70000,
-      "improve_from": [
-        "Titernia"
-      ],
+      "improve_from": "Titernia",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3223,9 +3135,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 125000,
-      "improve_from": [
-        "Alveblade"
-      ],
+      "improve_from": "Alveblade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3287,9 +3197,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 6350,
-      "improve_from": [
-        "Valkyrie Blade"
-      ],
+      "improve_from": "Valkyrie Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3342,9 +3250,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": [
-        "Spartacus Blade"
-      ],
+      "improve_from": "Spartacus Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3394,9 +3300,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": [
-        "Spartacus Blade"
-      ],
+      "improve_from": "Spartacus Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3453,9 +3357,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 70000,
-      "improve_from": [
-        "Obelion"
-      ],
+      "improve_from": "Obelion",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3511,9 +3413,7 @@
       "type": "great-sword",
       "create_cost": 4250,
       "improve_cost": 4250,
-      "improve_from": [
-        "Golem Blade+"
-      ],
+      "improve_from": "Golem Blade+",
       "create_mats": [
         {
           "name": "Plus Class Tcket",
@@ -3604,9 +3504,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 5600,
-      "improve_from": [
-        "Executioner"
-      ],
+      "improve_from": "Executioner",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3657,9 +3555,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": [
-        "Executioner+"
-      ],
+      "improve_from": "Executioner+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3708,9 +3604,7 @@
       "type": "great-sword",
       "create_cost": 25000,
       "improve_cost": 25000,
-      "improve_from": [
-        "Executioner"
-      ],
+      "improve_from": "Executioner",
       "create_mats": [
         {
           "name": "Hrd Monster Bone",
@@ -3793,9 +3687,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": [
-        "Agito"
-      ],
+      "improve_from": "Agito",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3848,9 +3740,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": [
-        "Wyvern Agito"
-      ],
+      "improve_from": "Wyvern Agito",
       "create_mats": null,
       "improve_mats": [
         {
@@ -3900,9 +3790,7 @@
       "type": "great-sword",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": [
-        "Wyvern Agito"
-      ],
+      "improve_from": "Wyvern Agito",
       "create_mats": [
         {
           "name": "Rajang Horn",
@@ -3984,9 +3872,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": [
-        "Demon Rod"
-      ],
+      "improve_from": "Demon Rod",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4045,9 +3931,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 130000,
-      "improve_from": [
-        "Great Demon Rod"
-      ],
+      "improve_from": "Great Demon Rod",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4109,9 +3993,7 @@
       "type": "great-sword",
       "create_cost": 20000,
       "improve_cost": 20000,
-      "improve_from": [
-        "Executioner"
-      ],
+      "improve_from": "Executioner",
       "create_mats": [
         {
           "name": "Kirin Horn",
@@ -4193,9 +4075,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": [
-        "Kirin Thundersword"
-      ],
+      "improve_from": "Kirin Thundersword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4254,9 +4134,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": [
-        "King Thundersword"
-      ],
+      "improve_from": "King Thundersword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4318,9 +4196,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 5600,
-      "improve_from": [
-        "Executioner"
-      ],
+      "improve_from": "Executioner",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4372,9 +4248,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": [
-        "Sword of the Diablos"
-      ],
+      "improve_from": "Sword of the Diablos",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4428,9 +4302,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": [
-        "Diablo Destroyer"
-      ],
+      "improve_from": "Diablo Destroyer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4486,9 +4358,7 @@
       "type": "great-sword",
       "create_cost": 2150,
       "improve_cost": 2150,
-      "improve_from": [
-        "Bone Slasher"
-      ],
+      "improve_from": "Bone Slasher",
       "create_mats": [
         {
           "name": "Cephalos Scale",
@@ -4567,9 +4437,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 3650,
-      "improve_from": [
-        "Finblade"
-      ],
+      "improve_from": "Finblade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4624,9 +4492,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 6350,
-      "improve_from": [
-        "Plesioth Watersword"
-      ],
+      "improve_from": "Plesioth Watersword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4683,9 +4549,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 55000,
-      "improve_from": [
-        "Plesioth Crystasword"
-      ],
+      "improve_from": "Plesioth Crystasword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4743,9 +4607,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": [
-        "Plesioth Azureblade"
-      ],
+      "improve_from": "Plesioth Azureblade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4810,9 +4672,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 110000,
-      "improve_from": [
-        "Plesioth Wave Sword"
-      ],
+      "improve_from": "Plesioth Wave Sword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4874,9 +4734,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 2150,
-      "improve_from": [
-        "Bone Slasher"
-      ],
+      "improve_from": "Bone Slasher",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4927,9 +4785,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 4900,
-      "improve_from": [
-        "Chick Decapitator"
-      ],
+      "improve_from": "Chick Decapitator",
       "create_mats": null,
       "improve_mats": [
         {
@@ -4979,9 +4835,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 45000,
-      "improve_from": [
-        "Chicken Decapitator"
-      ],
+      "improve_from": "Chicken Decapitator",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5033,9 +4887,7 @@
       "type": "great-sword",
       "create_cost": 50000,
       "improve_cost": 50000,
-      "improve_from": [
-        "Rooster Decapitator"
-      ],
+      "improve_from": "Rooster Decapitator",
       "create_mats": [
         {
           "name": "Hypno Beak",
@@ -5123,9 +4975,7 @@
       "type": "great-sword",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": [
-        "Pickaxe Blade"
-      ],
+      "improve_from": "Pickaxe Blade",
       "create_mats": [
         {
           "name": "Hypno Fang",
@@ -5215,9 +5065,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": [
-        "Pickaxe Blade+"
-      ],
+      "improve_from": "Pickaxe Blade+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5280,9 +5128,7 @@
       "type": "great-sword",
       "create_cost": 65000,
       "improve_cost": 65000,
-      "improve_from": [
-        "Rooster Decapitator"
-      ],
+      "improve_from": "Rooster Decapitator",
       "create_mats": [
         {
           "name": "Rubbery Hide+",
@@ -5365,9 +5211,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": [
-        "Slaughter"
-      ],
+      "improve_from": "Slaughter",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5432,9 +5276,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": [
-        "Slaughter+"
-      ],
+      "improve_from": "Slaughter+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5496,9 +5338,7 @@
       "type": "great-sword",
       "create_cost": 10000,
       "improve_cost": 10000,
-      "improve_from": [
-        "Chick Decapitator"
-      ],
+      "improve_from": "Chick Decapitator",
       "create_mats": [
         {
           "name": "Garuga Wing",
@@ -5575,9 +5415,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 65000,
-      "improve_from": [
-        "Sentoryu Raven"
-      ],
+      "improve_from": "Sentoryu Raven",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5632,9 +5470,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": [
-        "Sentoryu Wolf"
-      ],
+      "improve_from": "Sentoryu Wolf",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5691,9 +5527,7 @@
       "type": "great-sword",
       "create_cost": 2150,
       "improve_cost": 2150,
-      "improve_from": [
-        "Bone Slasher"
-      ],
+      "improve_from": "Bone Slasher",
       "create_mats": [
         {
           "name": "Rathalos Scale",
@@ -5774,9 +5608,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 8000,
-      "improve_from": [
-        "Red Wing"
-      ],
+      "improve_from": "Red Wing",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5830,9 +5662,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 6350,
-      "improve_from": [
-        "Red Wing"
-      ],
+      "improve_from": "Red Wing",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5889,9 +5719,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 70000,
-      "improve_from": [
-        "Blue Wing"
-      ],
+      "improve_from": "Blue Wing",
       "create_mats": null,
       "improve_mats": [
         {
@@ -5945,9 +5773,7 @@
       "type": "great-sword",
       "create_cost": 2150,
       "improve_cost": 2150,
-      "improve_from": [
-        "Bone Blade+"
-      ],
+      "improve_from": "Bone Blade+",
       "create_mats": [
         {
           "name": "Sm Hermitaur Shl",
@@ -6021,9 +5847,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 3100,
-      "improve_from": [
-        "Red Stripe"
-      ],
+      "improve_from": "Red Stripe",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6073,9 +5897,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 5600,
-      "improve_from": [
-        "Red Pincer"
-      ],
+      "improve_from": "Red Pincer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6210,9 +6032,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": [
-        "Violet Pincer"
-      ],
+      "improve_from": "Violet Pincer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6271,8 +6091,8 @@
       "create_cost": null,
       "improve_cost": 50000,
       "improve_from": [
-        "Great Pincer",
-        "Blue Claw Blade"
+        "Blue Claw Blade",
+        "Great Pincer"
       ],
       "create_mats": null,
       "improve_mats": [
@@ -6330,9 +6150,7 @@
       "type": "great-sword",
       "create_cost": 85000,
       "improve_cost": 85000,
-      "improve_from": [
-        "Killer's Scythe"
-      ],
+      "improve_from": "Killer's Scythe",
       "create_mats": [
         {
           "name": "TerraCeanatrClaw",
@@ -6472,9 +6290,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 115000,
-      "improve_from": [
-        "Carmine Blade"
-      ],
+      "improve_from": "Carmine Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6525,9 +6341,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 3650,
-      "improve_from": [
-        "Red Stripe"
-      ],
+      "improve_from": "Red Stripe",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6577,9 +6391,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 4900,
-      "improve_from": [
-        "Ceanataur Blade"
-      ],
+      "improve_from": "Ceanataur Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6678,9 +6490,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 45000,
-      "improve_from": [
-        "Frozen Tuna"
-      ],
+      "improve_from": "Frozen Tuna",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6791,9 +6601,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 20000,
-      "improve_from": [
-        "Black Belt Blade"
-      ],
+      "improve_from": "Black Belt Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6846,9 +6654,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 75000,
-      "improve_from": [
-        "Expert Blade"
-      ],
+      "improve_from": "Expert Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -6967,9 +6773,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 80000,
-      "improve_from": [
-        "Tiger Agito"
-      ],
+      "improve_from": "Tiger Agito",
       "create_mats": null,
       "improve_mats": [
         {
@@ -7025,9 +6829,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 125000,
-      "improve_from": [
-        "Tigrex Great Sword"
-      ],
+      "improve_from": "Tigrex Great Sword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -7080,9 +6882,7 @@
       "type": "great-sword",
       "create_cost": 80000,
       "improve_cost": 80000,
-      "improve_from": [
-        "Tiger Agito"
-      ],
+      "improve_from": "Tiger Agito",
       "create_mats": [
         {
           "name": "NargaCuttingWing",
@@ -7163,9 +6963,7 @@
       "type": "great-sword",
       "create_cost": 120000,
       "improve_cost": 120000,
-      "improve_from": [
-        "Hidden Blaze"
-      ],
+      "improve_from": "Hidden Blaze",
       "create_mats": [
         {
           "name": "StrNargaCttngWng",
@@ -7308,9 +7106,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": [
-        "Dragonslayer"
-      ],
+      "improve_from": "Dragonslayer",
       "create_mats": null,
       "improve_mats": [
         {
@@ -7367,9 +7163,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 65000,
-      "improve_from": [
-        "Eternal Annihilator"
-      ],
+      "improve_from": "Eternal Annihilator",
       "create_mats": null,
       "improve_mats": [
         {
@@ -7428,9 +7222,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 105000,
-      "improve_from": [
-        "Eternal Eradicator"
-      ],
+      "improve_from": "Eternal Eradicator",
       "create_mats": null,
       "improve_mats": [
         {
@@ -7548,9 +7340,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": [
-        "Black Blade"
-      ],
+      "improve_from": "Black Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -7607,9 +7397,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 150000,
-      "improve_from": [
-        "Fatalis Blade"
-      ],
+      "improve_from": "Fatalis Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -7665,9 +7453,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": [
-        "Black Blade"
-      ],
+      "improve_from": "Black Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -7726,9 +7512,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 150000,
-      "improve_from": [
-        "Fatalis Ancestor"
-      ],
+      "improve_from": "Fatalis Ancestor",
       "create_mats": null,
       "improve_mats": [
         {
@@ -7845,9 +7629,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 145000,
-      "improve_from": [
-        "Akantor Broadsword"
-      ],
+      "improve_from": "Akantor Broadsword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8054,9 +7836,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 2500,
-      "improve_from": [
-        "Rusted Great Sword"
-      ],
+      "improve_from": "Rusted Great Sword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8095,9 +7875,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 40000,
-      "improve_from": [
-        "Tarnished Great Swd"
-      ],
+      "improve_from": "Tarnished Great Swd",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8145,9 +7923,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 35000,
-      "improve_from": [
-        "Tarnished Great Swd"
-      ],
+      "improve_from": "Tarnished Great Swd",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8202,9 +7978,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 50000,
-      "improve_from": [
-        "Steel Ice Blade"
-      ],
+      "improve_from": "Steel Ice Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8262,9 +8036,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": [
-        "Steel Ice Blade+"
-      ],
+      "improve_from": "Steel Ice Blade+",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8323,9 +8095,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 130000,
-      "improve_from": [
-        "Daora's Decimator"
-      ],
+      "improve_from": "Daora's Decimator",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8421,9 +8191,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 12500,
-      "improve_from": [
-        "Worn Great Sword"
-      ],
+      "improve_from": "Worn Great Sword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8463,9 +8231,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 60000,
-      "improve_from": [
-        "Weathered Grt Sword"
-      ],
+      "improve_from": "Weathered Grt Sword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8518,9 +8284,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 100000,
-      "improve_from": [
-        "Epitaph Blade"
-      ],
+      "improve_from": "Epitaph Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8576,9 +8340,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 80000,
-      "improve_from": [
-        "Weathered Grt Sword"
-      ],
+      "improve_from": "Weathered Grt Sword",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8635,9 +8397,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 90000,
-      "improve_from": [
-        "Teostra Blade"
-      ],
+      "improve_from": "Teostra Blade",
       "create_mats": null,
       "improve_mats": [
         {
@@ -8696,9 +8456,7 @@
       "type": "great-sword",
       "create_cost": null,
       "improve_cost": 130000,
-      "improve_from": [
-        "King Teostra Blade"
-      ],
+      "improve_from": "King Teostra Blade",
       "create_mats": null,
       "improve_mats": [
         {

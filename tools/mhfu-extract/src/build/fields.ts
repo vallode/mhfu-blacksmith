@@ -29,7 +29,11 @@ export type FieldKind =
   /** Unordered list of plain values (bow/bowgun `coatings`, `elements`). */
   | "set"
   /** A percentage (`"10%"`, `"-5%"`, or a bare `"0"`), compared by its number. */
-  | "percent";
+  | "percent"
+  /** Bowgun `{ name, capacity }[]` ammo lists, compared by ammo name (trimmed). */
+  | "ammo"
+  /** A `|`-joined list (`rapid_fire`), compared as a set of trimmed entries; null is empty. */
+  | "joined-set";
 
 export interface FieldSpec {
   field: string;
@@ -209,6 +213,22 @@ function weaponRefKeys(value: unknown, side: "site" | "disc", ctx: FieldContext)
     .sort();
 }
 
+function ammoKeys(value: unknown): string[] {
+  return list(value)
+    .map((a) => a as { name: string; capacity: number[] })
+    .map((a) => `${a.name.trim()}=${JSON.stringify(a.capacity)}`)
+    .sort();
+}
+
+function joinedKeys(value: unknown): string[] {
+  if (typeof value !== "string") return [];
+  return value
+    .split("|")
+    .map((v) => v.trim())
+    .filter((v) => v !== "")
+    .sort();
+}
+
 /** The value reduced to a string that's equal on both sides exactly when they agree. */
 export function canonical(
   spec: FieldSpec,
@@ -237,6 +257,10 @@ export function canonical(
       const n = percentValue(value);
       return n === null ? JSON.stringify(value ?? null) : String(n);
     }
+    case "ammo":
+      return JSON.stringify(ammoKeys(value));
+    case "joined-set":
+      return JSON.stringify(joinedKeys(value));
   }
 }
 
@@ -261,26 +285,11 @@ function armorSkillsToSite(disc: unknown, committed: unknown, ctx: FieldContext)
   if (discSkills.length === 0) return null;
   const committedSkills = list(committed) as { name: string; amount: number }[];
   const spellings = new Map(committedSkills.map((s) => [canonicalSkillName(s.name), s.name]));
-  const discByName = new Map(discSkills.map((s) => [canonicalSkillName(s.name), s.amount]));
-  // Keep the committed order for skills both sides have, then add the
-  // disc's new ones in disc order.
-  // A skill the committed list repeats is written once.
-  const out: { name: string; amount: number }[] = [];
-  const written = new Set<string>();
-  for (const s of committedSkills) {
-    const canon = canonicalSkillName(s.name);
-    const amount = discByName.get(canon);
-    if (amount !== undefined && !written.has(canon)) out.push({ name: s.name, amount });
-    written.add(canon);
-  }
-  for (const s of discSkills) {
-    if (!spellings.has(canonicalSkillName(s.name)))
-      out.push({
-        name: skillSpelling(canonicalSkillName(s.name), spellings, ctx),
-        amount: s.amount,
-      });
-  }
-  return out;
+  // Disc order, in the committed spelling where the item already has one.
+  return discSkills.map((s) => ({
+    name: skillSpelling(canonicalSkillName(s.name), spellings, ctx),
+    amount: s.amount,
+  }));
 }
 
 function decorationSkillsToSite(disc: unknown, committed: unknown, ctx: FieldContext): unknown {
@@ -295,35 +304,25 @@ function decorationSkillsToSite(disc: unknown, committed: unknown, ctx: FieldCon
     .map((s) => parse(String(s)))
     .filter((s): s is { name: string; amount: number } => s !== null);
   const spellings = new Map(committedSkills.map((s) => [canonicalSkillName(s.name), s.name]));
-  const discByName = new Map(discSkills.map((s) => [canonicalSkillName(s.name), s.amount]));
-  const out: string[] = [];
-  const written = new Set<string>();
-  for (const s of committedSkills) {
-    const canon = canonicalSkillName(s.name);
-    const amount = discByName.get(canon);
-    if (amount !== undefined && !written.has(canon))
-      out.push(`${s.name} ${formatSignedAmount(amount)}`);
-    written.add(canon);
-  }
-  for (const s of discSkills) {
-    const canon = canonicalSkillName(s.name);
-    if (!spellings.has(canon))
-      out.push(`${skillSpelling(canon, spellings, ctx)} ${formatSignedAmount(s.amount)}`);
-  }
-  return out;
+  // Disc order, in the committed spelling where the item already has one.
+  return discSkills.map(
+    (s) =>
+      `${skillSpelling(canonicalSkillName(s.name), spellings, ctx)} ${formatSignedAmount(s.amount)}`,
+  );
 }
 
 function materialsToSite(
   disc: unknown,
+  field: string,
   siteItem: Record<string, unknown>,
   ctx: FieldContext,
 ): unknown {
   const discMats = list(disc) as Material[];
   if (discMats.length === 0) return null;
-  // Spellings this item already uses, from any of its recipes.
+  // Spellings this item already uses, from this field first, then its other recipes.
   const own = new Map<number, Material>();
-  for (const field of MATERIAL_FIELDS) {
-    for (const m of list(siteItem[field]) as Material[]) {
+  for (const source of [field, ...MATERIAL_FIELDS.filter((f) => f !== field)]) {
+    for (const m of list(siteItem[source]) as Material[]) {
       const id = ctx.site.itemIdOf(m.name);
       if (id !== null && !own.has(id)) own.set(id, m);
     }
@@ -349,8 +348,9 @@ function weaponRefsToSite(disc: unknown, field: string, ctx: FieldContext): unkn
 }
 
 /**
- * The disc value converted to the site's vocabulary. Returns the committed
- * value unchanged when the two already agree.
+ * The disc value converted to the site's vocabulary (spellings, names,
+ * material styles), in the disc's order. A scalar or percent that already
+ * agrees is returned as committed.
  */
 export function toSite(
   spec: FieldSpec,
@@ -360,6 +360,7 @@ export function toSite(
 ): unknown {
   const committed = siteItem[spec.field];
   if (
+    (spec.kind === "scalar" || spec.kind === "percent") &&
     spec.field in siteItem &&
     canonical(spec, committed, "site", ctx) === canonical(spec, disc, "disc", ctx)
   )
@@ -367,13 +368,15 @@ export function toSite(
   switch (spec.kind) {
     case "scalar":
     case "set":
+    case "ammo":
+    case "joined-set":
       return disc;
     case "armor-skills":
       return armorSkillsToSite(disc, committed, ctx);
     case "decoration-skills":
       return decorationSkillsToSite(disc, committed, ctx);
     case "materials":
-      return materialsToSite(disc, siteItem, ctx);
+      return materialsToSite(disc, spec.field, siteItem, ctx);
     case "weapon-refs":
       return weaponRefsToSite(disc, spec.field, ctx);
     case "percent": {

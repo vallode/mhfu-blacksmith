@@ -22,7 +22,7 @@ import type { ArmorRank } from "@/lib/constants";
 import { tierLabel } from "@/lib/min-rank";
 import { selectableSkills, type SearchQuery } from "@/lib/set-search";
 import * as ui from "@/styles/settings";
-import ArmorSetView, { SetHeader, SetStatus, gameText } from "./ArmorSetView";
+import ArmorSetView, { SetHeader, SetStatus } from "./ArmorSetView";
 import SkillPicker from "./SkillPicker";
 
 interface Form {
@@ -83,7 +83,6 @@ function PanelTitle({ children }: { children: React.ReactNode }) {
     <h2
       className={cn(
         "m-0 text-[2.2rem] font-normal text-stat text-shadow-[0.15rem_0.15rem_black] mobile:text-[1.8rem]",
-        gameText,
       )}
     >
       {children}

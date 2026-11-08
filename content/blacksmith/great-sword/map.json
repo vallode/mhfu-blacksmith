@@ -117,14 +117,6 @@
                                             "name": "Igneous Sword",
                                             "rarity": 10,
                                             "element": "fire"
-                                          },
-                                          {
-                                            "slug": "liquid-fire-blade",
-                                            "type": "long-sword",
-                                            "name": "Liquid Fire Blade",
-                                            "rarity": 9,
-                                            "element": "fire",
-                                            "children": []
                                           }
                                         ]
                                       },
@@ -1277,13 +1269,6 @@
     "rarity": 9
   },
   {
-    "slug": "ukanlos-destructor",
-    "type": "great-sword",
-    "name": "Ukanlos Destructor",
-    "rarity": 10,
-    "element": "ice"
-  },
-  {
     "slug": "buster-blade-g",
     "type": "great-sword",
     "name": "Buster Blade G",
@@ -1453,6 +1438,13 @@
     "type": "great-sword",
     "name": "Tactical Blade G",
     "rarity": 9
+  },
+  {
+    "slug": "ukanlos-destructor",
+    "type": "great-sword",
+    "name": "Ukanlos Destructor",
+    "rarity": 10,
+    "element": "ice"
   },
   {
     "slug": "rathalos-firesword-g",

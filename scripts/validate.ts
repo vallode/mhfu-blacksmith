@@ -236,6 +236,14 @@ if (!fs.existsSync(decoFile)) {
     const slug = slugify(name);
     if (slugs.has(slug)) error(`decoration: duplicate slug "${slug}"`);
     slugs.add(slug);
+
+    // Mirrors decoration.schema.json: every skill is a non-empty string.
+    const skills = d.skills;
+    if (!Array.isArray(skills) || skills.length === 0) {
+      error(`decoration "${name}": skills must be a non-empty array`);
+    } else if (skills.some((s) => typeof s !== "string" || s.trim() === "")) {
+      error(`decoration "${name}": empty skill in skills`);
+    }
     count++;
   }
 
