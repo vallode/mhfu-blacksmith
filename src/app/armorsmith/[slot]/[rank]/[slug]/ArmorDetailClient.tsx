@@ -14,6 +14,8 @@ import {
   DetailHeader,
   DetailRule,
   MaterialList,
+  RequirementsPage,
+  RequirementTabs,
   Requirements,
   Slots,
   Stat,
@@ -115,15 +117,17 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
               </Stat>
               {piece.max_defence !== undefined && (
                 <Stat armor label="Max defence:">
-                  <StatValue>{piece.max_defence}</StatValue>
+                  {piece.max_defence_pre_ukanlos !== undefined &&
+                  piece.max_defence_pre_ukanlos !== piece.max_defence ? (
+                    <>
+                      <StatValue>{piece.max_defence_pre_ukanlos}</StatValue>
+                      <StatValue className="opacity-20">[ {piece.max_defence} ]</StatValue>
+                    </>
+                  ) : (
+                    <StatValue>{piece.max_defence}</StatValue>
+                  )}
                 </Stat>
               )}
-              {piece.max_defence_pre_ukanlos !== undefined &&
-                piece.max_defence_pre_ukanlos !== piece.max_defence && (
-                  <Stat armor label="Pre-Ukanlos:">
-                    <StatValue>{piece.max_defence_pre_ukanlos}</StatValue>
-                  </Stat>
-                )}
               <Stat armor label="Slots:">
                 <Slots count={piece.slots} />
               </Stat>
@@ -156,44 +160,69 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
 
             <DetailRule />
 
-            {piece.skills && piece.skills.length > 0 && (
-              <div className="flex flex-1 flex-col gap-[13px]">
-                <h2 className="m-0 w-full leading-none font-normal">Skills</h2>
-                {piece.skills.map((skill, i) => (
-                  <div key={i} className="flex">
-                    <h3 className="m-0 flex w-cells-10 leading-none font-normal">{skill.name}</h3>
-                    <p
-                      className={cn(
-                        "w-cells-4 text-right",
-                        Number(skill.amount) < 0 ? "text-negative" : "text-positive",
-                      )}
-                    >
-                      {skill.amount}
-                    </p>
-                  </div>
-                ))}
-              </div>
-            )}
-
-            {piece.create_mats && piece.create_mats.length > 0 && (
-              <Requirements>
-                <MaterialList
-                  label="Create cost"
-                  cost={piece.create_cost}
-                  materials={piece.create_mats}
-                />
-              </Requirements>
-            )}
-
-            {piece.alternative_create_mats && piece.alternative_create_mats.length > 0 && (
-              <Requirements>
-                <MaterialList
-                  label="Create cost"
-                  cost={piece.create_cost}
-                  materials={piece.alternative_create_mats}
-                />
-              </Requirements>
-            )}
+            {/* One tab per page: skills, create cost, alternative recipe */}
+            <Requirements>
+              <RequirementTabs
+                key={slug}
+                label={`${piece.name} details`}
+                tabs={[
+                  piece.skills &&
+                    piece.skills.length > 0 && {
+                      id: "skills",
+                      label: "Skills",
+                      content: (
+                        <RequirementsPage>
+                          <div className="flex flex-1 flex-col gap-[13px]">
+                            {piece.skills.map((skill, i) => (
+                              <div key={i} className="flex">
+                                <h3 className="m-0 flex w-cells-10 leading-none font-normal">
+                                  {skill.name}
+                                </h3>
+                                <p
+                                  className={cn(
+                                    "w-cells-4 text-right",
+                                    Number(skill.amount) < 0 ? "text-negative" : "text-positive",
+                                  )}
+                                >
+                                  {skill.amount}
+                                </p>
+                              </div>
+                            ))}
+                          </div>
+                        </RequirementsPage>
+                      ),
+                    },
+                  piece.create_mats &&
+                    piece.create_mats.length > 0 && {
+                      id: "create",
+                      label: "Create cost",
+                      content: (
+                        <RequirementsPage>
+                          <MaterialList
+                            label="Create cost"
+                            cost={piece.create_cost}
+                            materials={piece.create_mats}
+                          />
+                        </RequirementsPage>
+                      ),
+                    },
+                  piece.alternative_create_mats &&
+                    piece.alternative_create_mats.length > 0 && {
+                      id: "alt-recipe",
+                      label: "Alt. Recipe",
+                      content: (
+                        <RequirementsPage>
+                          <MaterialList
+                            label="Create cost"
+                            cost={piece.create_cost}
+                            materials={piece.alternative_create_mats}
+                          />
+                        </RequirementsPage>
+                      ),
+                    },
+                ]}
+              />
+            </Requirements>
           </DetailBody>
         </DetailCard>
         {modelOpen && models && (
