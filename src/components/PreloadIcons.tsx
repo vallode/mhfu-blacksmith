@@ -3,7 +3,7 @@ import path from "path";
 import ReactDOM from "react-dom";
 
 // Top-level files in public/images that are not icon sprites (backgrounds,
-// screenshots, large art, spinners). Everything else in that directory is a
+// screenshots, large art). Everything else in that directory is a
 // small sprite used by <Icon>, either as an <img> or as a CSS mask/background
 // on ::before/::after, which the browser would otherwise only discover (and
 // fetch) after the element renders — that is what causes the icons to pop in.
@@ -11,12 +11,8 @@ const NOT_ICONS = new Set([
   "bg.png",
   "blacksmith.png",
   "blacksmith-scaled.png",
-  "loading.gif",
-  "mhfu__card.png",
-  "not-found.png",
   "screenshot.png",
   "scroll.png",
-  "scroll-short.png",
 ]);
 
 function iconUrls(): string[] {

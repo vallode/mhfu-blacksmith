@@ -207,6 +207,3 @@ export function readArmorValues(
   }
   return result;
 }
-
-/** Exported for tests/validation — the byte size of one ArmorValue struct. */
-export const ARMOR_VALUE_ENTRY_SIZE = ARMOR_ENTRY_SIZE;

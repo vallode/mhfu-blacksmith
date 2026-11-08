@@ -96,7 +96,6 @@ export interface CompactWeapon {
   rl?: number; // reload stringIdx
   cc?: number; // create_cost
   ic?: number; // improve_cost
-  rk?: number; // rank index into RANKS
   mr?: MinRankTuple; // earliest quest progress needed to make it
   c?: string | null; // color (icon)
   cm?: MatTuple[]; // create_mats
@@ -118,7 +117,7 @@ export interface CompactArmor {
   re?: number[]; // [fire, water, thunder, ice, dragon]
   sl?: number;
   r?: number; // rarity
-  rk?: number; // rank idx
+  rk: number; // rank idx
   mr?: MinRankTuple; // earliest quest progress needed to make it
   cc?: number; // create_cost
   sx?: number; // sex stringIdx
@@ -318,7 +317,6 @@ export function decodeWeapon(d: Dictionaries, w: CompactWeapon, type: string): W
     shots: w.so ? w.so.map(([ni, lv]) => ({ name: str(d, ni), level: lv })) : null,
     skills: null,
     color: w.c ?? null,
-    rank: w.rk !== undefined ? RANKS[w.rk] : undefined,
     min_rank: decodeMinRank(w.mr),
   };
 }
@@ -346,7 +344,7 @@ export function decodeArmor(d: Dictionaries, a: CompactArmor, slot: string): Arm
     skills: a.sk ? a.sk.map(([ni, amt]) => ({ name: str(d, ni), amount: amt })) : undefined,
     create_mats: decodeMats(d, a.cm),
     alternative_create_mats: decodeMats(d, a.am),
-    rank: a.rk !== undefined ? RANKS[a.rk] : undefined,
+    rank: RANKS[a.rk],
     min_rank: decodeMinRank(a.mr),
   };
 }

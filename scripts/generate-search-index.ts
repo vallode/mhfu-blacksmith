@@ -39,23 +39,13 @@ for (const file of fs.readdirSync(weaponDir)) {
   };
 
   for (const w of data.weapons) {
-    if ("donotrender" in w || !w.name) continue;
+    if (!w.name) continue;
 
     const name = w.name as string;
     const slug = slugify(name);
     const rarity = Number(w.rarity ?? 0);
-    const hr = Number(w.hr ?? 0);
-
-    let rank: string;
-    if (hr > 0) {
-      if (hr <= 5) rank = "low-rank";
-      else if (hr <= 8) rank = "high-rank";
-      else rank = Number(w.elder) ? "g-rank" : "high-rank";
-    } else {
-      if (rarity <= 4) rank = "low-rank";
-      else if (rarity <= 7) rank = "high-rank";
-      else rank = "g-rank";
-    }
+    // Weapons have no rank of their own; estimate one from rarity.
+    const rank = rarity <= 4 ? "low-rank" : rarity <= 7 ? "high-rank" : "g-rank";
 
     const elements = Array.isArray(w.elements)
       ? (w.elements as { name: string }[]).map((e) => e.name).join(" ")
@@ -86,10 +76,7 @@ for (const file of fs.readdirSync(armorDir)) {
     armor: Record<string, unknown>[];
   };
 
-  const pieces = data.armor.filter((a) => !("donotrender" in a) && a.name) as (Record<
-    string,
-    unknown
-  > & {
+  const pieces = data.armor.filter((a) => a.name) as (Record<string, unknown> & {
     name: string;
     sex?: string;
   })[];
@@ -132,7 +119,7 @@ if (fs.existsSync(decoFile)) {
   };
 
   for (const d of data.decorations) {
-    if ("donotrender" in d || !d.name) continue;
+    if (!d.name) continue;
 
     const name = d.name as string;
     const slug = slugify(name);
