@@ -125,7 +125,7 @@ export default withPWA({
         },
       },
       {
-        urlPattern: /\/models\/manifest\.json$/,
+        urlPattern: /\/models\/manifest\/.+\.json$/,
         handler: "NetworkFirst",
         options: {
           cacheName: "models",

@@ -98,7 +98,8 @@ export async function main(argv: string[]): Promise<void> {
         out: flags.out ?? "../../public/models",
         lossless: flags.lossless === "true",
       });
-      console.log(`\nDone. Manifest: ${Object.keys(manifest.monsters).length} monsters, ${Object.keys(manifest.weapons).length} weapons, ${Object.keys(manifest.armor).length} armor pieces.`);
+      const count = (record: Record<string, Record<string, unknown>>) => Object.values(record).reduce((sum, r) => sum + Object.keys(r).length, 0);
+      console.log(`\nDone. Manifest: ${Object.keys(manifest.monsters).length} monsters, ${count(manifest.weapons)} weapons, ${count(manifest.armor)} armor pieces.`);
       return;
     }
     default:

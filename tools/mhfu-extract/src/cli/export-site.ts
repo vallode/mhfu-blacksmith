@@ -5,13 +5,13 @@
  *   public/models/monsters/emNN.glb
  *   public/models/weapons/weNNN.glb
  *   public/models/armor/<m|f>_<folder>NNN.glb
- *   public/models/manifest.json
  *
- * The manifest is keyed by the site's own names so the site resolves its own
- * slugs:
- *   monsters: { "<monster name>": "monsters/em01.glb" }
- *   weapons:  { "<weapon type>/<weapon name>": "weapons/we123.glb" }
- *   armor:    { "<slot>/<piece name>[|<sex>]": { "male"?: "...", "female"?: "..." } }
+ * and a manifest split by category, so a page only fetches its own list:
+ *   public/models/manifest/monsters.json         { "<monster name>": NN }
+ *   public/models/manifest/weapons/<type>.json   { "<weapon name>": NNN }
+ *   public/models/manifest/armor/<slot>.json     { "<piece name>[|<sex>]": [maleNNN, femaleNNN] }
+ * Values are model IDs (0 = none); the site rebuilds the file paths from
+ * them (src/lib/models.ts). Keys are the site's own names.
  *
  * Monsters map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the vendored
  * monster.enum, matched to `data/monsters/*.json` by name. Weapons and armor
@@ -24,7 +24,7 @@
  * Each run replaces the categories it exported and keeps the others from the
  * previous manifest, so a monsters-only run doesn't drop weapons.
  */
-import { access, mkdir, readFile, readdir, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
@@ -58,15 +58,13 @@ export interface ExportSiteOptions {
  */
 export const SITE_GLB_OPTIONS: GlbOptions = { textureQuality: 80, positionBits: 12, uvBits: 11 };
 
-export interface ArmorModelFiles {
-  male?: string;
-  female?: string;
-}
-
+/** Model IDs keyed by the site's names; see the module comment for the files they become. */
 export interface SiteModelManifest {
-  monsters: Record<string, string>;
-  weapons: Record<string, string>;
-  armor: Record<string, ArmorModelFiles>;
+  monsters: Record<string, number>;
+  /** weapon type -> weapon name -> model ID */
+  weapons: Record<string, Record<string, number>>;
+  /** armor slot -> "name" or "name|Sex" -> [male model ID, female model ID], 0 = none */
+  armor: Record<string, Record<string, [number, number]>>;
 }
 
 /** monster.enum names that differ from the site's names. */
@@ -143,10 +141,10 @@ async function siteMonsterNames(dataDir: string): Promise<Set<string>> {
   return names;
 }
 
-async function exportMonsters(options: ExportSiteOptions, converter: Converter): Promise<Record<string, string>> {
+async function exportMonsters(options: ExportSiteOptions, converter: Converter): Promise<Record<string, number>> {
   const enums = loadEnums();
   const siteNames = await siteMonsterNames(options.data);
-  const monsters: Record<string, string> = {};
+  const monsters: Record<string, number> = {};
   const emDir = path.join(options.unpacked, "data-bin", "emmodel");
   if (!(await exists(emDir))) return monsters;
   const files = (await readdir(emDir)).filter((f) => /^em\d+\.pac$/.test(f)).sort();
@@ -160,15 +158,16 @@ async function exportMonsters(options: ExportSiteOptions, converter: Converter):
     }
     if (monsters[siteName]) continue; // duplicate emID name (e.g. Yama Tsukami)
     const relative = await converter.convert(`emmodel/${file}`, `monsters/${file.replace(/\.pac$/, ".glb")}`);
-    if (relative) monsters[siteName] = relative;
+    if (relative) monsters[siteName] = id;
   }
   console.log(`monsters: ${Object.keys(monsters).length}`);
   return monsters;
 }
 
-async function exportWeapons(reader: BinaryReader, region: Region, ids: EquipmentIds, converter: Converter): Promise<Record<string, string>> {
+async function exportWeapons(reader: BinaryReader, region: Region, ids: EquipmentIds, converter: Converter): Promise<SiteModelManifest["weapons"]> {
   const resolver = MHP2G_PROFILE.resolverForRegion(region) ?? undefined;
-  const weapons: Record<string, string> = {};
+  const weapons: SiteModelManifest["weapons"] = {};
+  let count = 0;
   const tables = [
     ["melee", readBlademasterWeapons(reader, resolver)],
     ["ranged", readGunnerWeapons(reader, resolver)],
@@ -179,32 +178,38 @@ async function exportWeapons(reader: BinaryReader, region: Region, ids: Equipmen
       if (!page?.type) continue;
       const id = String(entry.modelId).padStart(3, "0");
       const relative = await converter.convert(`weapon/we${id}.pac`, `weapons/we${id}.glb`);
-      if (relative) weapons[`${page.type}/${page.name}`] = relative;
+      if (relative) {
+        (weapons[page.type] ??= {})[page.name] = entry.modelId;
+        count++;
+      }
     }
   }
-  console.log(`weapons: ${Object.keys(weapons).length}`);
+  console.log(`weapons: ${count}`);
   return weapons;
 }
 
-async function exportArmor(reader: BinaryReader, region: Region, ids: EquipmentIds, converter: Converter): Promise<Record<string, ArmorModelFiles>> {
+async function exportArmor(reader: BinaryReader, region: Region, ids: EquipmentIds, converter: Converter): Promise<SiteModelManifest["armor"]> {
   const resolver = MHP2G_PROFILE.resolverForRegion(region) ?? undefined;
-  const armor: Record<string, ArmorModelFiles> = {};
+  const armor: SiteModelManifest["armor"] = {};
+  let count = 0;
   for (const [slot, entries] of Object.entries(readArmorModelIds(reader, resolver)) as [SiteArmorSlot, { index: number; maleId: number; femaleId: number }[]][]) {
     for (const entry of entries) {
       const page = ids[slot]?.[entry.index];
       if (!page) continue;
-      const files: ArmorModelFiles = {};
+      const models: [number, number] = [0, 0];
       // Model 0 is the empty slot (e.g. piercings and other helmets with no mesh).
-      for (const [sex, id] of [["m", entry.maleId], ["f", entry.femaleId]] as const) {
+      for (const [i, sex, id] of [[0, "m", entry.maleId], [1, "f", entry.femaleId]] as const) {
         if (id === 0) continue;
         const source = armorModelPath(slot, sex, id);
-        const relative = await converter.convert(source, `armor/${path.basename(source, ".pac")}.glb`);
-        if (relative) files[sex === "m" ? "male" : "female"] = relative;
+        if (await converter.convert(source, `armor/${path.basename(source, ".pac")}.glb`)) models[i] = id;
       }
-      if (files.male || files.female) armor[`${slot}/${page.name}${page.sex ? `|${page.sex}` : ""}`] = files;
+      if (models[0] || models[1]) {
+        (armor[slot] ??= {})[`${page.name}${page.sex ? `|${page.sex}` : ""}`] = models;
+        count++;
+      }
     }
   }
-  console.log(`armor: ${Object.keys(armor).length}`);
+  console.log(`armor: ${count}`);
   return armor;
 }
 
@@ -212,14 +217,43 @@ function sortRecord<T>(record: Record<string, T>): Record<string, T> {
   return Object.fromEntries(Object.entries(record).sort(([a], [b]) => a.localeCompare(b)));
 }
 
-export async function runExportSite(options: ExportSiteOptions): Promise<SiteModelManifest> {
-  const manifestPath = path.join(options.out, "manifest.json");
-  let previous: Partial<SiteModelManifest> = {};
+async function readJson<T>(file: string): Promise<T | null> {
   try {
-    previous = JSON.parse(await readFile(manifestPath, "utf-8")) as Partial<SiteModelManifest>;
+    return JSON.parse(await readFile(file, "utf-8")) as T;
   } catch {
-    // no previous manifest
+    return null;
   }
+}
+
+/** Read a manifest written by writeManifest (missing parts come back empty). */
+async function readManifest(dir: string): Promise<Partial<SiteModelManifest>> {
+  const manifest: Partial<SiteModelManifest> = {};
+  const monsters = await readJson<Record<string, number>>(path.join(dir, "monsters.json"));
+  if (monsters) manifest.monsters = monsters;
+  for (const category of ["weapons", "armor"] as const) {
+    const files = await readdir(path.join(dir, category)).catch(() => [] as string[]);
+    for (const file of files.filter((f) => f.endsWith(".json"))) {
+      const content = await readJson<Record<string, never>>(path.join(dir, category, file));
+      if (content) (manifest[category] ??= {})[file.replace(/\.json$/, "")] = content;
+    }
+  }
+  return manifest;
+}
+
+async function writeManifest(dir: string, manifest: SiteModelManifest): Promise<void> {
+  await rm(dir, { recursive: true, force: true });
+  await mkdir(path.join(dir, "weapons"), { recursive: true });
+  await mkdir(path.join(dir, "armor"), { recursive: true });
+  const write = (file: string, record: Record<string, unknown>) => writeFile(path.join(dir, file), `${JSON.stringify(sortRecord(record))}\n`);
+  await write("monsters.json", manifest.monsters);
+  for (const [type, weapons] of Object.entries(manifest.weapons)) await write(`weapons/${type}.json`, weapons);
+  for (const [slot, pieces] of Object.entries(manifest.armor)) await write(`armor/${slot}.json`, pieces);
+}
+
+export async function runExportSite(options: ExportSiteOptions): Promise<SiteModelManifest> {
+  const manifestDir = path.join(options.out, "manifest");
+  const previous = await readManifest(manifestDir);
+  await rm(path.join(options.out, "manifest.json"), { force: true }); // the old single-file manifest
 
   const converter = new Converter(path.join(options.unpacked, "data-bin"), options.out, options.lossless ? {} : SITE_GLB_OPTIONS);
   const manifest: SiteModelManifest = {
@@ -247,11 +281,6 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
   }
 
   if (converter.missing) console.log(`${converter.missing} referenced packages were missing from the unpacked directory.`);
-  const sorted: SiteModelManifest = {
-    monsters: sortRecord(manifest.monsters),
-    weapons: sortRecord(manifest.weapons),
-    armor: sortRecord(manifest.armor),
-  };
-  await writeFile(manifestPath, `${JSON.stringify(sorted)}\n`);
-  return sorted;
+  await writeManifest(manifestDir, manifest);
+  return manifest;
 }
