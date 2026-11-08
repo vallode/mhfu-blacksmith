@@ -9,9 +9,8 @@ export const section = "flex flex-col gap-[1.3rem] text-[1.6rem] mobile:text-[1.
 export const heading =
   "m-0 text-[1.8rem] tracking-[0.1ch] text-parchment uppercase text-shadow-[0.15rem_0.15rem_black]";
 
-/** Explanatory text. Inside a Card, Card's paragraph reset still overrides
- * the colour and line height (see Card.module.scss). */
-export const note = "m-0 text-[1.4rem] leading-[1.4] text-white/60";
+/** Explanatory text; wraps, unlike the one-line card paragraph default. */
+export const note = "m-0 text-[1.4rem] leading-[1.4] whitespace-normal text-white/60";
 
 export const error = "m-0 text-[1.4rem] text-negative";
 

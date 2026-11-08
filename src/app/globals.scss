@@ -310,6 +310,21 @@ img {
   }
 }
 
+// ─── Card paragraphs ──────────────────────────────────────────────────────────
+// Default for paragraphs inside a Card: one line, tight leading, colour from
+// the card, above its frame. In Tailwind's components layer, so any utility
+// on a paragraph overrides it (e.g. a note that wraps, a red error).
+@layer components {
+  .card-copy p {
+    color: inherit;
+    line-height: 1;
+    margin: 0;
+    position: relative;
+    white-space: nowrap;
+    z-index: 10;
+  }
+}
+
 // ─── Reusable components ──────────────────────────────────────────────────────
 // Shared building blocks used as plain class strings across pages. Layout
 // (flex/spacing) is done with Tailwind utilities directly in the markup.

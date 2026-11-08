@@ -3,10 +3,20 @@
 import Link from "next/link";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import TreeScroll from "@/components/TreeScroll";
-import MaterialRow from "@/components/MaterialRow";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import cardStyles from "@/styles/weapon-card.module.scss";
+import {
+  DetailBody,
+  DetailCard,
+  DetailHeader,
+  DetailRule,
+  MaterialList,
+  Requirements,
+  Slots,
+  Stat,
+  StatList,
+  StatValue,
+} from "@/components/DetailPanel";
 import { useDecoration } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
 
@@ -72,8 +82,8 @@ export default function DecorationDetailClient({ slug }: Props) {
           </TreeScroll>
         </Card>
 
-        <Card className={cardStyles["weapon-card"]}>
-          <div className={cardStyles["weapon-card__header"]}>
+        <DetailCard>
+          <DetailHeader>
             <Icon
               type="decoration"
               size="large"
@@ -81,53 +91,34 @@ export default function DecorationDetailClient({ slug }: Props) {
               alt={deco.name}
             />
             <p>{deco.name}</p>
-          </div>
+          </DetailHeader>
 
-          <div className={cardStyles["weapon-card__details"]}>
-            <div className="stats">
-              <div>
-                <h3>Slots:</h3>
-                <p>
-                  <span id="weaponSlots">
-                    {Array.from({ length: 3 }, (_, i) =>
-                      i < (deco.slots ?? 0) ? "O" : "-"
-                    ).join("")}
-                  </span>
-                </p>
-              </div>
+          <DetailBody>
+            <StatList>
+              <Stat label="Slots:"><Slots count={deco.slots} /></Stat>
               {deco.category && (
-                <div>
-                  <h3>Category:</h3>
-                  <p><span>{deco.category}</span></p>
-                </div>
+                <Stat label="Category:"><StatValue>{deco.category}</StatValue></Stat>
               )}
-            </div>
+            </StatList>
 
             {deco.skills && deco.skills.length > 0 && (
               <>
-                <hr />
-                <div className="skills">
+                <DetailRule />
+                <div className="flex flex-1 flex-col gap-[13px]">
                   {deco.skills.map((skill, i) => (
-                    <p key={i} className="element">{skill}</p>
+                    <p key={i} className={i === 0 ? "w-full font-normal" : undefined}>{skill}</p>
                   ))}
                 </div>
               </>
             )}
 
             {deco.create_mats && deco.create_mats.length > 0 && (
-              <div className="requirements">
-                <div className="create_mats">
-                  <p>
-                    <span>Create cost: </span>{deco.create_cost}z
-                  </p>
-                  {deco.create_mats.map((m, i) => (
-                    <MaterialRow key={i} material={m} />
-                  ))}
-                </div>
-              </div>
+              <Requirements>
+                <MaterialList label="Create cost" cost={deco.create_cost} materials={deco.create_mats} />
+              </Requirements>
             )}
-          </div>
-        </Card>
+          </DetailBody>
+        </DetailCard>
       </div>
     </>
   );

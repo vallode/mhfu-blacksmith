@@ -3,10 +3,21 @@
 import Link from "next/link";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import TreeScroll from "@/components/TreeScroll";
-import MaterialRow from "@/components/MaterialRow";
 import Card from "@/components/Card";
 import Icon from "@/components/Icon";
-import cardStyles from "@/styles/weapon-card.module.scss";
+import {
+  DetailBody,
+  DetailCard,
+  DetailHeader,
+  DetailRule,
+  MaterialList,
+  Requirements,
+  Slots,
+  Stat,
+  StatList,
+  StatValue,
+} from "@/components/DetailPanel";
+import { cn } from "@/lib/cn";
 import type { ArmorSlot, ArmorRank } from "@/lib/constants";
 import { useArmorPiece } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
@@ -79,71 +90,49 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
           </Card>
         )}
 
-        <Card className={cardStyles["weapon-card"]}>
-          <div className={cardStyles["weapon-card__header"]}>
+        <DetailCard>
+          <DetailHeader>
             <Icon type={slot} size="large" alt={piece.name} />
             <p>{piece.name}</p>
-            {piece.sex && <span className="sex">{piece.sex}</span>}
-            {piece.hunter_type && <span className="hunter_type">{piece.hunter_type}</span>}
-          </div>
+            {piece.sex && <span>{piece.sex}</span>}
+            {piece.hunter_type && <span>{piece.hunter_type}</span>}
+          </DetailHeader>
 
-          <div className={cardStyles["weapon-card__details"]}>
-            <div className="stats stats--armor">
-              <div>
-                <h3>Defence:</h3>
-                <p><span>{piece.defence}</span></p>
-              </div>
-              <div>
-                <h3>Slots:</h3>
-                <p>
-                  <span id="weaponSlots">
-                    {Array.from({ length: 3 }, (_, i) =>
-                      i < (piece.slots ?? 0) ? "O" : "-"
-                    ).join("")}
-                  </span>
-                </p>
-              </div>
+          <DetailBody>
+            <StatList armor>
+              <Stat armor label="Defence:"><StatValue>{piece.defence}</StatValue></Stat>
+              <Stat armor label="Slots:"><Slots count={piece.slots} /></Stat>
               {piece.fire_res !== undefined && (
-                <div>
-                  <h3>Fire res:</h3>
-                  <p><span>{piece.fire_res}</span></p>
-                </div>
+                <Stat armor label="Fire res:"><StatValue>{piece.fire_res}</StatValue></Stat>
               )}
               {piece.water_res !== undefined && (
-                <div>
-                  <h3>Water res:</h3>
-                  <p><span>{piece.water_res}</span></p>
-                </div>
+                <Stat armor label="Water res:"><StatValue>{piece.water_res}</StatValue></Stat>
               )}
               {piece.thunder_res !== undefined && (
-                <div>
-                  <h3>Thunder res:</h3>
-                  <p><span>{piece.thunder_res}</span></p>
-                </div>
+                <Stat armor label="Thunder res:"><StatValue>{piece.thunder_res}</StatValue></Stat>
               )}
               {piece.ice_res !== undefined && (
-                <div>
-                  <h3>Ice res:</h3>
-                  <p><span>{piece.ice_res}</span></p>
-                </div>
+                <Stat armor label="Ice res:"><StatValue>{piece.ice_res}</StatValue></Stat>
               )}
               {piece.dragon_res !== undefined && (
-                <div>
-                  <h3>Dragon res:</h3>
-                  <p><span>{piece.dragon_res}</span></p>
-                </div>
+                <Stat armor label="Dragon res:"><StatValue>{piece.dragon_res}</StatValue></Stat>
               )}
-            </div>
+            </StatList>
 
-            <hr />
+            <DetailRule />
 
             {piece.skills && piece.skills.length > 0 && (
-              <div className="skills">
-                <h2>Skills</h2>
+              <div className="flex flex-1 flex-col gap-[13px]">
+                <h2 className="m-0 w-full font-normal leading-none">Skills</h2>
                 {piece.skills.map((skill, i) => (
-                  <div key={i}>
-                    <h3>{skill.name}</h3>
-                    <p className={Number(skill.amount) < 0 ? "negative" : "positive"}>
+                  <div key={i} className="flex">
+                    <h3 className="m-0 flex w-[10ch] font-normal leading-none">{skill.name}</h3>
+                    <p
+                      className={cn(
+                        "w-[4ch] text-right",
+                        Number(skill.amount) < 0 ? "text-negative" : "text-positive",
+                      )}
+                    >
                       {skill.amount}
                     </p>
                   </div>
@@ -152,32 +141,22 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
             )}
 
             {piece.create_mats && piece.create_mats.length > 0 && (
-              <div className="requirements">
-                <div className="create_mats">
-                  <p>
-                    <span>Create cost: </span>{piece.create_cost}z
-                  </p>
-                  {piece.create_mats.map((m, i) => (
-                    <MaterialRow key={i} material={m} />
-                  ))}
-                </div>
-              </div>
+              <Requirements>
+                <MaterialList label="Create cost" cost={piece.create_cost} materials={piece.create_mats} />
+              </Requirements>
             )}
 
             {piece.alternative_create_mats && piece.alternative_create_mats.length > 0 && (
-              <div className="requirements">
-                <div className="create_mats">
-                  <p>
-                    <span>Create cost: </span>{piece.create_cost}z
-                  </p>
-                  {piece.alternative_create_mats.map((m, i) => (
-                    <MaterialRow key={i} material={m} />
-                  ))}
-                </div>
-              </div>
+              <Requirements>
+                <MaterialList
+                  label="Create cost"
+                  cost={piece.create_cost}
+                  materials={piece.alternative_create_mats}
+                />
+              </Requirements>
             )}
-          </div>
-        </Card>
+          </DetailBody>
+        </DetailCard>
       </div>
     </>
   );
