@@ -6,6 +6,7 @@ import fs from "fs";
 import path from "path";
 import { slugify, armorSlugs } from "../src/lib/slug";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
+import { parseDecorationSkill, treeNameIndex, type SkillTreeData } from "../src/lib/set-search";
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
@@ -247,6 +248,50 @@ if (!fs.existsSync(decoFile)) {
   }
 
   console.log(`  decorations: ${count} entries`);
+}
+
+// ─── Skills ───────────────────────────────────────────────────────────────────
+// Every skill tree named on armor or a decoration must be in data/skills.json
+// (by name or alias), or the set builder can't search for it.
+
+section("Validating skills…");
+
+{
+  const trees = (
+    JSON.parse(fs.readFileSync(path.join(dataDir, "skills.json"), "utf-8")) as {
+      skills: SkillTreeData[];
+    }
+  ).skills;
+  const names = treeNameIndex(trees);
+  if (names.size !== trees.reduce((n, t) => n + 1 + (t.aliases?.length ?? 0), 0)) {
+    error("skills: a tree name or alias appears twice");
+  }
+  const unknown = new Map<string, string>();
+  for (const file of fs.readdirSync(path.join(dataDir, "armor"))) {
+    const { armor } = JSON.parse(fs.readFileSync(path.join(dataDir, "armor", file), "utf-8")) as {
+      armor: { name: string; skills?: { name: string }[] }[];
+    };
+    for (const p of armor) {
+      for (const s of p.skills ?? []) if (!names.has(s.name)) unknown.set(s.name, p.name);
+    }
+  }
+  const { decorations } = JSON.parse(
+    fs.readFileSync(path.join(dataDir, "decorations.json"), "utf-8"),
+  ) as { decorations: { name: string; skills?: string[] }[] };
+  for (const d of decorations) {
+    for (const s of d.skills ?? []) {
+      const parsed = parseDecorationSkill(s);
+      if (!parsed) {
+        if (s.trim()) error(`decoration ${d.name}: can't read skill "${s}"`);
+        continue;
+      }
+      if (!names.has(parsed.name)) unknown.set(parsed.name, d.name);
+    }
+  }
+  for (const [tree, item] of unknown) {
+    error(`skills: "${tree}" (on ${item}) is not a tree or alias in data/skills.json`);
+  }
+  console.log(`  skills: ${trees.length} trees`);
 }
 
 // ─── Monsters ─────────────────────────────────────────────────────────────────

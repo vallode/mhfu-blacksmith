@@ -30,6 +30,8 @@ export interface MinRanks {
   weapon(type: string, name: string): Progress;
   /** Progress for an armor piece, from its create recipes. */
   armor(piece: Recipes): Progress;
+  /** Progress for a decoration, from its create recipes. */
+  decoration(deco: Recipes): Progress;
   /** Materials no quest, monster or ore tier covers; they gate nothing. */
   unsourced: ReadonlySet<string>;
   /** Number of items with a known source. */
@@ -60,10 +62,12 @@ export function loadMinRanks(dataDir: string): MinRanks {
   const armorPieces = list("armor").flatMap(
     (file) => readJson<{ armor: Recipes[] }>("armor", file).armor,
   );
+  const decorations = readJson<{ decorations: Recipes[] }>("decorations.json").decorations;
 
   // Items gathered in the field, from the category their recipes give them.
+  // Decorations count too: some materials (Power Seed) only appear in theirs.
   const gathered = new Set<string>();
-  const recipes = [...weaponFiles.flatMap((f) => f.weapons), ...armorPieces];
+  const recipes = [...weaponFiles.flatMap((f) => f.weapons), ...armorPieces, ...decorations];
   for (const piece of recipes)
     for (const m of [
       ...(piece.create_mats ?? []),
@@ -88,14 +92,18 @@ export function loadMinRanks(dataDir: string): MinRanks {
     unsourced,
   );
 
+  // Armor and decorations: the earlier of their create recipes.
+  const created = (item: Recipes): Progress => {
+    const main = recipeProgress(item.create_mats, sources, key, unsourced);
+    return item.alternative_create_mats?.length
+      ? either(main, recipeProgress(item.alternative_create_mats, sources, key, unsourced))
+      : main;
+  };
+
   return {
     weapon: (type, name) => weapons.get(weaponKey(type, name)) ?? null,
-    armor: (piece) => {
-      const main = recipeProgress(piece.create_mats, sources, key, unsourced);
-      return piece.alternative_create_mats?.length
-        ? either(main, recipeProgress(piece.alternative_create_mats, sources, key, unsourced))
-        : main;
-    },
+    armor: created,
+    decoration: created,
     unsourced,
     sourceCount: sources.size,
   };
