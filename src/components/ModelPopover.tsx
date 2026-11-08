@@ -95,13 +95,12 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
           visible band (4 source px at 3x), so the render ends at the frame. */}
       <Card frame="blue" className="border-[12px] p-0">
         <div className="flex min-h-0 flex-1">{children}</div>
-        {/* `!` on the size: modern-normalize's un-layered `button { font-size: 100% }` beats layered utilities. */}
         <button
           ref={closeRef}
           type="button"
           onClick={onClose}
           aria-label="Close 3D model"
-          className="absolute top-1 right-2 z-20 cursor-pointer px-2 text-[4.4rem]! leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:text-[3.4rem]!"
+          className="absolute top-1 right-2 z-20 cursor-pointer px-2 text-[4.4rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:text-[3.4rem]"
         >
           ×
         </button>
