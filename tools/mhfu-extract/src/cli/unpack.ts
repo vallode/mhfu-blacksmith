@@ -11,6 +11,23 @@ import { loadFileList } from "../container/filelist.js";
 import { openDiscImage } from "../container/image.js";
 import { detectRegion, parseSfo, type Region } from "../container/sfo.js";
 
+/** Bumped when unpack's file naming changes; see UnpackManifest.fileList. */
+export const FILE_LIST_VERSION = 2;
+
+/**
+ * Throw if `manifest` comes from an unpack whose file names are stale: an EU
+ * (or US) disc unpacked before region-aware naming. Anything reading files by
+ * path (export-site, extract's quests) would silently read the wrong files.
+ */
+export function assertCurrentFileNames(manifest: UnpackManifest, dir: string): void {
+  if (manifest.region !== "jp" && (manifest.fileList ?? 1) < FILE_LIST_VERSION) {
+    throw new Error(
+      `${dir} was unpacked before DATA.BIN files were named per region, so its ${manifest.region.toUpperCase()} file names are wrong ` +
+        `(e.g. weapon/we020.pac holds the real we000). Delete it and run unpack again.`
+    );
+  }
+}
+
 export interface UnpackOptions {
   iso: string;
   out: string;
@@ -30,6 +47,13 @@ export interface UnpackManifest {
   discId: string;
   isoPath: string;
   fileCount: number;
+  /**
+   * How DATA.BIN entries were named: 2 = region-aware (EU via
+   * filelist-eu.json). Absent in older unpacks, whose EU file names are off by
+   * up to 55 entries (e.g. their weapon/we020.pac is the real we000);
+   * assertCurrentFileNames() rejects those.
+   */
+  fileList?: number;
   /** False when unpacked with `--skip-eboot`: no eboot.bin was written. Absent in manifests from before the flag existed (always true then). */
   eboot?: boolean;
   unpackedAt: string;
@@ -85,6 +109,7 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
       isoPath: path.resolve(options.iso),
       fileCount: files.length,
       eboot: !options.skipEboot,
+      fileList: FILE_LIST_VERSION,
       unpackedAt: new Date().toISOString(),
     };
     const manifestPath = path.join(options.out, "manifest.json");

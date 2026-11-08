@@ -36,7 +36,7 @@ import { isTmh, readTmh } from "../models/tmh.js";
 import { loadEnums, lookupName } from "../strings/enums.js";
 import { armorModelPath, readArmorModelIds, type SiteArmorSlot } from "../tables/armor-models.js";
 import { readBlademasterWeapons, readGunnerWeapons } from "../tables/weapons.js";
-import type { UnpackManifest } from "./unpack.js";
+import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 
 export interface ExportSiteOptions {
   /** An `unpack` output directory (containing `data-bin/`, and `eboot.bin` for weapons/armor). */
@@ -251,6 +251,8 @@ async function writeManifest(dir: string, manifest: SiteModelManifest): Promise<
 }
 
 export async function runExportSite(options: ExportSiteOptions): Promise<SiteModelManifest> {
+  const unpackManifest = JSON.parse(await readFile(path.join(options.unpacked, "manifest.json"), "utf-8")) as UnpackManifest;
+  assertCurrentFileNames(unpackManifest, options.unpacked);
   const manifestDir = path.join(options.out, "manifest");
   const previous = await readManifest(manifestDir);
   await rm(path.join(options.out, "manifest.json"), { force: true }); // the old single-file manifest
@@ -267,7 +269,6 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
 
   const ebootPath = path.join(options.unpacked, "eboot.bin");
   if (await exists(ebootPath)) {
-    const unpackManifest = JSON.parse(await readFile(path.join(options.unpacked, "manifest.json"), "utf-8")) as UnpackManifest;
     const reader = new BinaryReader(await readFile(ebootPath));
     const ids = JSON.parse(await readFile(path.join(options.data, "equipment-ids.json"), "utf-8")) as EquipmentIds;
     if (await exists(path.join(options.unpacked, "data-bin", "weapon"))) {
