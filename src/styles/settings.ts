@@ -1,14 +1,11 @@
 // Class strings for the settings cards on the Options page
-// (PreferencesSettings, SaveSyncSettings, OfflineSettings).
+// (SettingsCard, PreferencesSettings, SaveSyncSettings, OfflineSettings).
 
 /** Passed to <Card className>. Repeats the size under `mobile:` because Card
  * sets its own `mobile:` size, which cn() only replaces with another
  * `mobile:` class. `flex-none` keeps each card its natural height (Card is
  * `flex-1`), so a long card scrolls the page instead of being clipped. */
 export const section = "flex flex-none flex-col gap-[1.3rem] text-[1.6rem] mobile:text-[1.6rem]";
-
-export const heading =
-  "m-0 text-[1.8rem] tracking-[0.1ch] text-parchment uppercase text-shadow-[0.15rem_0.15rem_black]";
 
 /** Explanatory text; wraps, unlike the one-line card paragraph default. */
 export const note = "m-0 text-[1.4rem] leading-[1.4] whitespace-normal text-white/60";
@@ -62,22 +59,18 @@ export const toggleOn = "bg-stat";
 
 export const toggleOff = "bg-transparent hover:bg-stat/25";
 
-/** A preference row: label and note on the left, its choices on the right (below on a phone or when they don't fit). */
+/** A preference row: label and note on the left, its control on the right (below when it doesn't fit). */
 export const preferenceRow =
   "flex flex-wrap items-center justify-between gap-x-[2.4rem] gap-y-[0.8rem]";
 
 /** Group heading inside the preferences card ("Display", "Hunter"). */
 export const subheading = "m-0 text-[1.5rem] font-normal tracking-[0.1ch] text-stat uppercase";
 
-/** One option in a preference's choice group: add `choiceIdle` or `choiceSelected`. */
-export const choice = [
-  buttonBase,
-  "focus-visible:outline-2 focus-visible:-outline-offset-4 focus-visible:outline-white",
-].join(" ");
+/** "◀ VALUE ▶" selector for a preference with several values. */
+export const selector = "flex flex-none items-center gap-[0.8rem]";
 
-/** An option that isn't chosen: muted, glowing on hover. */
-export const choiceIdle =
-  "border-white/30 text-white/50 hover:text-white hover:hover-glow focus-visible:text-white";
+export const selectorArrow = "size-[3.4rem]";
 
-/** The chosen option: the steady green highlight of a selected row. */
-export const choiceSelected = "border-hr text-white [background:var(--gradient-hover-glow)]";
+/** Fixed width, so the arrows stay put as the value changes (fits "Within 1 material"). */
+export const selectorValue =
+  "w-[19rem] text-center text-[1.8rem] leading-none tracking-[0.1em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";

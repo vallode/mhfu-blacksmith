@@ -1,6 +1,6 @@
 "use client";
 
-import Card from "@/components/Card";
+import SettingsCard from "@/components/SettingsCard";
 import { useFileSync } from "@/context/FileSyncContext";
 import * as ui from "@/styles/settings";
 
@@ -19,33 +19,30 @@ export default function SaveSyncSettings() {
 
   if (!fileSync.isSupported) {
     return (
-      <Card className={ui.section}>
-        <h2 className={ui.heading}>Save Sync</h2>
+      <SettingsCard title="Save Sync">
         <p className={ui.note}>
           Automatic save syncing isn&apos;t supported in this browser. You can still upload your
           save file manually from the Hunter page.
         </p>
-      </Card>
+      </SettingsCard>
     );
   }
 
   if (!fileSync.hasHandle) {
     return (
-      <Card className={ui.section}>
-        <h2 className={ui.heading}>Save Sync</h2>
+      <SettingsCard title="Save Sync">
         <p className={ui.note}>
           Connect your save file from the Hunter page to have your hunter profile refresh
           automatically whenever you return, no re-uploading needed.
         </p>
-      </Card>
+      </SettingsCard>
     );
   }
 
   const connected = fileSync.permission === "granted";
 
   return (
-    <Card className={ui.section}>
-      <h2 className={ui.heading}>Save Sync</h2>
+    <SettingsCard title="Save Sync">
       <p className={ui.note}>
         Your hunter profile refreshes automatically from {fileSync.fileName ?? "your save file"}{" "}
         whenever you return to this site — no re-uploading needed.
@@ -85,6 +82,6 @@ export default function SaveSyncSettings() {
           Forget save file
         </button>
       </div>
-    </Card>
+    </SettingsCard>
   );
 }

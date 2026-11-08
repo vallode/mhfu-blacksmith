@@ -3,12 +3,13 @@
 /**
  * The preferences card on the Options page: how values are shown, and which
  * markers a loaded hunter adds to the trees and recipes. Styled after the
- * game's Options menu: a yellow title on a grey bar, and a yellow box for each
- * On/Off preference (filled when on).
+ * game's Options menu (SettingsCard): a yellow box for each On/Off preference
+ * (filled when on), and "◀ VALUE ▶" for one with several values.
  */
-import { useId, useRef } from "react";
+import { useId } from "react";
 import Link from "next/link";
-import Card from "@/components/Card";
+import SelectorArrow from "@/components/SelectorArrow";
+import SettingsCard from "@/components/SettingsCard";
 import { usePreferences, type Preferences } from "@/context/PreferencesContext";
 import { cn } from "@/lib/cn";
 import { DEFAULT_PREFERENCES } from "@/lib/preferences";
@@ -85,10 +86,11 @@ function ToggleRow({
 }
 
 /**
- * A preference with several choices, as a labelled radio group. Arrow keys move the choice, as in a native radio
- * group; only the chosen option is in the tab order.
+ * A preference with several values, as the game's selector: "◀ VALUE ▶". The
+ * arrows, or the left/right arrow keys while either has focus, step through
+ * the values and wrap around.
  */
-function ChoiceRow<T>({
+function SelectorRow<T>({
   label,
   note,
   choices,
@@ -102,47 +104,42 @@ function ChoiceRow<T>({
   onChange: (value: T) => void;
 }) {
   const id = useId();
-  const buttons = useRef<(HTMLButtonElement | null)[]>([]);
-  const selected = Math.max(
+  const index = Math.max(
     0,
     choices.findIndex((c) => c.value === value),
   );
-
-  const onKeyDown = (event: React.KeyboardEvent) => {
-    const step = { ArrowRight: 1, ArrowDown: 1, ArrowLeft: -1, ArrowUp: -1 }[event.key];
-    if (!step) return;
-    event.preventDefault();
-    const next = (selected + step + choices.length) % choices.length;
-    onChange(choices[next].value);
-    buttons.current[next]?.focus();
-  };
+  const step = (by: 1 | -1) =>
+    onChange(choices[(index + by + choices.length) % choices.length].value);
+  const name = label.toLowerCase();
 
   return (
     <div className={ui.preferenceRow}>
       <RowText id={id} label={label} note={note} />
       <div
-        role="radiogroup"
+        role="group"
         aria-labelledby={`${id}-label`}
         aria-describedby={`${id}-note`}
-        className="flex flex-wrap gap-[0.8rem]"
-        onKeyDown={onKeyDown}
+        className={ui.selector}
+        onKeyDown={(event) => {
+          if (event.key !== "ArrowLeft" && event.key !== "ArrowRight") return;
+          event.preventDefault();
+          step(event.key === "ArrowLeft" ? -1 : 1);
+        }}
       >
-        {choices.map((choice, i) => (
-          <button
-            key={String(choice.value)}
-            ref={(el) => {
-              buttons.current[i] = el;
-            }}
-            type="button"
-            role="radio"
-            aria-checked={i === selected}
-            tabIndex={i === selected ? 0 : -1}
-            className={cn(ui.choice, i === selected ? ui.choiceSelected : ui.choiceIdle)}
-            onClick={() => onChange(choice.value)}
-          >
-            {choice.label}
-          </button>
-        ))}
+        <SelectorArrow
+          className={ui.selectorArrow}
+          label={`Previous ${name}`}
+          onClick={() => step(-1)}
+        />
+        <span className={ui.selectorValue} aria-live="polite">
+          {choices[index].label}
+        </span>
+        <SelectorArrow
+          next
+          className={ui.selectorArrow}
+          label={`Next ${name}`}
+          onClick={() => step(1)}
+        />
       </div>
     </div>
   );
@@ -168,11 +165,7 @@ export default function PreferencesSettings() {
   );
 
   return (
-    <Card frame="teal" className={ui.section}>
-      <div className={ui.menuHeader}>
-        <h2 className={ui.menuTitle}>Preferences</h2>
-      </div>
-
+    <SettingsCard title="Preferences">
       <h3 className={ui.subheading}>Display</h3>
       {toggle(
         "showRawValues",
@@ -215,7 +208,7 @@ export default function PreferencesSettings() {
         "Count zenny",
         "Only count a weapon as craftable when you can also afford it.",
       )}
-      <ChoiceRow
+      <SelectorRow
         label="Starting tree filter"
         note="The weapon tree filter each visit starts on."
         choices={TREE_FILTER_CHOICES}
@@ -240,6 +233,6 @@ export default function PreferencesSettings() {
           Reset to defaults
         </button>
       </div>
-    </Card>
+    </SettingsCard>
   );
 }
