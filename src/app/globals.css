@@ -29,6 +29,19 @@
      p-4 = 16px, gap-2 = 8px, and so on. */
   --spacing: 0.4rem;
 
+  /* The game sets its text on a wide fixed pitch: about 0.64em per character
+     with BIZ UDGothic's glyphs (0.5em each), so 14% tracking. A percentage is
+     of each element's own font size and inherits as a percentage, so it
+     scales with every text size (0.14em would inherit as body's pixel
+     value). Set on body; tracking-game restores it under an element that
+     overrides it. */
+  --tracking-game: 14%;
+
+  /* One character cell at that pitch: the glyph advance plus tracking.
+     Size text columns in cells with w-cells-N, not ch: 1ch is only the
+     glyph. Unregistered, so ch and em resolve on the element using it. */
+  --cell: calc(1ch + 0.14em);
+
   /* UI palette */
   --color-accent: #037703;
   --color-hr: #6e905f;
@@ -129,6 +142,11 @@
 /* ─── Custom utilities ─────────────────────────────────────────────────────────
    Effects that are awkward as utility class strings. They work with variants
    like any other utility (hover:hover-glow, mobile:pixelated). */
+
+/* Width of N character cells (see --cell): w-cells-10 fits ten characters */
+@utility w-cells-* {
+  width: calc(--value(number) * var(--cell));
+}
 
 /* Crisp rendering for pixel-art game sprites */
 @utility pixelated {
@@ -243,13 +261,15 @@
 
 /* ─── Typography ─────────────────────────────────────────────────────────────── */
 
+/* BIZ UDGothic (Morisawa, SIL OFL 1.1, see public/fonts/biz-udgothic-OFL.txt):
+   a Japanese gothic whose Latin glyphs are fixed half-width, like the game's
+   in-game text. Only the Latin subset is shipped; the site shows no Japanese.
+   The fallbacks are monospace so the fixed-width look survives a failed load. */
 @font-face {
-  font-family: "Roboto Condensed";
-  src:
-    local("Roboto Condensed"),
-    url("/fonts/roboto-condensed-regular.woff2") format("woff2"),
-    url("/fonts/roboto-condensed-regular.woff") format("woff"),
-    url("/fonts/roboto-condensed-regular.ttf") format("truetype");
+  font-family: "BIZ UDGothic";
+  font-style: normal;
+  font-weight: 400;
+  src: url("/fonts/biz-udgothic-latin-400-normal.woff2") format("woff2");
 }
 
 html {
@@ -265,7 +285,12 @@ html {
 body {
   display: flex;
   flex-direction: column;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "BIZ UDGothic", ui-monospace, monospace;
+  /* Browsers without percentage letter-spacing get the em value. */
+  letter-spacing: 0.14em;
+  @supports (letter-spacing: 1%) {
+    letter-spacing: var(--tracking-game);
+  }
   font-size: 16px;
   height: 100%;
   align-items: stretch;
@@ -311,6 +336,15 @@ body {
   a {
     color: inherit;
     text-decoration: inherit;
+  }
+
+  /* The UA stylesheet resets letter-spacing on form controls; inherit the
+     game tracking like the rest of the text. */
+  button,
+  input,
+  select,
+  textarea {
+    letter-spacing: inherit;
   }
 }
 

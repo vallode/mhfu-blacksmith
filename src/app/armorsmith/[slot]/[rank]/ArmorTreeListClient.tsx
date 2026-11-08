@@ -59,7 +59,7 @@ export default function ArmorTreeListClient({ slot, rank }: Props) {
         </Card>
 
         <Card>
-          <p>
+          <p className="leading-[1.2] whitespace-normal">
             {loading
               ? "Loading…"
               : allHidden
