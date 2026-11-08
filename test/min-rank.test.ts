@@ -68,6 +68,7 @@ describe("earliestSources", () => {
       [],
       key,
       new Set(["iron ore"]),
+      {},
     );
     assert.equal(s.has("iron ore"), false);
   });
