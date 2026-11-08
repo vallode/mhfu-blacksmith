@@ -91,20 +91,19 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
 
   return (
     <div ref={popoverRef} className={styles.popover} role="dialog" aria-label={`3D model of ${title}`}>
-      <Card frame="blue" className="gap-4">
-        <div className="flex items-center justify-between gap-4">
-          <p className="overflow-hidden text-ellipsis">{title}</p>
-          <button
-            ref={closeRef}
-            type="button"
-            onClick={onClose}
-            aria-label="Close 3D model"
-            className="cursor-pointer px-2 leading-none text-stat hover:text-white focus-visible:text-white"
-          >
-            ×
-          </button>
-        </div>
+      {/* No padding, and a layout border exactly as thick as the blue frame's
+          visible band (4 source px at 3x), so the render ends at the frame. */}
+      <Card frame="blue" className="border-[12px] p-0">
         <div className="flex min-h-0 flex-1">{children}</div>
+        <button
+          ref={closeRef}
+          type="button"
+          onClick={onClose}
+          aria-label="Close 3D model"
+          className="absolute top-1 right-2 z-20 cursor-pointer px-2 leading-none text-stat hover:text-white focus-visible:text-white"
+        >
+          ×
+        </button>
       </Card>
     </div>
   );
