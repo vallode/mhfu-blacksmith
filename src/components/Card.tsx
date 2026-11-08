@@ -42,7 +42,7 @@ export default function Card({
     // Border widths are deliberately thinner than the frame art's
     // border-image-width, so the scroll area (and its rows) runs close to the
     // card edges and slightly under the frame.
-    variant === "weapon-tree" && "h-full overflow-auto border-x-[11px] border-y-[4px] p-0",
+    variant === "weapon-tree" && "h-full overflow-auto border-x-[6px] border-y-[11px] p-0",
     href && linkGlow,
     className,
   );
