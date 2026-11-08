@@ -119,6 +119,13 @@
   }
 }
 
+/* "Pulsing highlights" off on the Options page (PreferencesContext sets the
+   attribute): every hover/selection glow reads this token, so they all hold
+   steady. */
+:root[data-steady-highlights] {
+  --animate-hover-glow: none;
+}
+
 /* ─── Custom variants ────────────────────────────────────────────────────────── */
 
 /* Phone layout: `mobile:flex-col` applies at 600px wide and below, matching

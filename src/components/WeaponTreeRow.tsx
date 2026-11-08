@@ -8,6 +8,7 @@ import { prefetchBundle } from "@/lib/client-data";
 import { isNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { useTreeFilterResult } from "@/context/TreeFilterContext";
+import { usePreferences } from "@/context/PreferencesContext";
 import type { MaterialCheck } from "@/lib/hunter-progress";
 import { rowStatus } from "@/lib/tree-filter";
 import type { WeaponTreeNode } from "@/lib/types";
@@ -116,14 +117,14 @@ export default function WeaponTreeRow({
   // Markers for the loaded hunter: owned pieces, and weapons they can forge
   // or upgrade with what's in their item box right now. In a
   // filtered weapon tree the panel has already worked this out for every row.
+  // The Options page can turn either marker off; the tree filter still works.
   const progress = useHunterProgress();
+  const { markOwned, showCraftProgress } = usePreferences().prefs;
   const filtered = useTreeFilterResult()?.rows.get(node.slug);
-  const {
-    href,
-    external: isExternal,
-    owned,
-    craft,
-  } = filtered ?? rowStatus(node, sectionType, basePath, parentHref, progress);
+  const status = filtered ?? rowStatus(node, sectionType, basePath, parentHref, progress);
+  const { href, external: isExternal } = status;
+  const owned = markOwned && status.owned;
+  const craft = showCraftProgress ? status.craft : null;
   const dimmed = filtered ? !filtered.match : false;
   const ready = craft?.status === "ready" ? craft : null;
 
