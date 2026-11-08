@@ -3,8 +3,8 @@
  * (git-ignored; runs in `pnpm build` before `next build`):
  *
  * - icons/<type>-<tint>.png: 180px thumbnails, the site's in-game icon sprite
- *   tinted the way the site tints it (multiply), in the site's blue card frame,
- *   with a transparent background.
+ *   tinted the way the site tints it (multiply), in the site's blue card frame
+ *   and its patterned fill.
  *   See embedIcon() in src/lib/seo.ts.
  * - oembed/<route>.json: each detail page's oEmbed file, which gives Discord
  *   the line above the title ("Rarity 10 Long Sword"). See oembedJson().
@@ -47,8 +47,8 @@ function over(top: number[], under: number[]): number[] {
 
 async function writeIcons() {
   // scripts/lib/embed-frame.png is the site's blue card frame (the
-  // card-frame-blue utility in globals.css, without its fill) drawn by the
-  // browser at 180px. Inside it the icon is transparent.
+  // card-frame-blue utility in globals.css, with its patterned fill) drawn by
+  // the browser at 180px, on a transparent background.
   const frame = await sharp(path.join(process.cwd(), "scripts/lib/embed-frame.png"))
     .ensureAlpha()
     .raw()
