@@ -184,14 +184,3 @@ export function iconImgClass({
     monster && "p-[4px]",
   );
 }
-
-/**
- * Large monster portrait in the monster detail header, on a parchment
- * scroll backdrop. Pass as the Icon's className.
- */
-export const monsterPortrait = [
-  "mt-[1.2rem] mr-[calc((16.8rem-9rem)/2)] mb-0 ml-auto h-[9rem] w-[9rem] [&_img]:h-[9rem] [&_img]:w-[9rem]",
-  "mobile:mx-auto mobile:mt-0 mobile:mb-[1.6rem]",
-  "after:absolute after:top-1/2 after:bottom-0 after:left-1/2 after:-z-1 after:h-[11.2rem] after:w-[16.8rem] after:-translate-x-1/2 after:-translate-y-1/2",
-  "after:bg-[url(/images/scroll.png)] after:bg-contain after:bg-no-repeat after:bg-[position:0px_0px] after:pixelated",
-].join(" ");

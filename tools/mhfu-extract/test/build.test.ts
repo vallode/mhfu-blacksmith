@@ -5,6 +5,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { CATEGORIES } from "../src/build/categories.js";
 import { compareCategory, loadInputs } from "../src/build/compare.js";
+import { canonical, percentValue, toSite, type FieldContext } from "../src/build/fields.js";
 import { assignDiscIds, discMaterialId, loadSiteIndex } from "../src/build/ids.js";
 import { mergeCategory, serializeDataFile } from "../src/build/merge.js";
 import { runBuildData } from "../src/cli/build-data.js";
@@ -356,4 +357,18 @@ test("mergeCategory writes a skill the committed list repeats once", async () =>
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("percent fields compare by number and keep the committed spelling when they agree", () => {
+  const spec = { field: "affinity", kind: "percent" as const };
+  const ctx = {} as FieldContext;
+  assert.equal(percentValue("0"), 0);
+  assert.equal(percentValue("-10%"), -10);
+  assert.equal(percentValue("15 %"), 15);
+  assert.equal(percentValue("n/a"), null);
+  assert.equal(canonical(spec, "0", "site", ctx), canonical(spec, "0%", "disc", ctx));
+  assert.notEqual(canonical(spec, "10%", "site", ctx), canonical(spec, "5%", "disc", ctx));
+  assert.equal(toSite(spec, "0%", { affinity: "0" }, ctx), "0");
+  assert.equal(toSite(spec, "-5%", { affinity: "0" }, ctx), "-5%");
+  assert.equal(toSite(spec, 20, { affinity: "10%" }, ctx), "20%");
 });

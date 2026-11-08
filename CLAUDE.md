@@ -31,7 +31,7 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
   `globals.css`. Use their utilities instead of hex values:
   - UI: `text-gold`, `text-stat`, `text-positive`, `text-negative`,
     `text-element`, `text-warm`, `text-muted`, `text-parchment`,
-    `text-unavailable`, `bg-accent`, `border-hr`, `bg-line`
+    `text-unavailable`, `bg-accent`, `bg-selector`, `border-hr`, `bg-line`
   - Game palettes (any colour utility: `text-`, `bg-`, `border-`, …):
     `rarity-{4..10}`, `gem-{blue,cyan,…}`, `note-{a,b,g,p,r,w,y}`,
     `sharpness-{1..7}`

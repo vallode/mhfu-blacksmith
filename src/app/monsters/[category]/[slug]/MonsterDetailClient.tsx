@@ -3,12 +3,13 @@
 import Link from "next/link";
 import { useState } from "react";
 import Card from "@/components/Card";
-import Icon from "@/components/Icon";
 import { DetailBody, DetailCard, DetailRule } from "@/components/DetailPanel";
-import { monsterPortrait } from "@/lib/icon-style";
+import TreeScroll from "@/components/TreeScroll";
+import { cn } from "@/lib/cn";
 import { hitzoneTable } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
-import { useMonster } from "@/lib/client-data";
+import { useMonster, useMonsterList } from "@/lib/client-data";
+import MonsterNav from "@/components/MonsterNav";
 import BorderRule from "@/components/BorderRule";
 import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
@@ -32,8 +33,14 @@ const HITZONE_LABELS: Record<string, string> = {
   ko: "KO",
 };
 
+// Some monsters have no art; keep the layout and hide the broken-image glyph.
+const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
+  e.currentTarget.style.visibility = "hidden";
+};
+
 export default function MonsterDetailClient({ category, slug }: Props) {
   const { item: monster, loading } = useMonster(category, slug);
+  const { items: siblings } = useMonsterList(category);
   const modelUrl = useMonsterModel(monster?.name);
   // Open state is tied to the model, so navigating to another monster closes it.
   const [openModel, setOpenModel] = useState<string | null>(null);
@@ -42,13 +49,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   if (loading) {
     return (
       <>
-        <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-          <div>
-            <Link href={`/monsters/${category}/`} aria-label="Back">
-              <Icon type="arrow" nav alt="Back" />
-            </Link>
-          </div>
-        </nav>
+        <MonsterNav activeCategory={category} />
         <BorderRule />
         <p style={{ padding: "2rem" }}>Loading…</p>
       </>
@@ -57,13 +58,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   if (!monster) {
     return (
       <>
-        <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-          <div>
-            <Link href={`/monsters/${category}/`} aria-label="Back">
-              <Icon type="arrow" nav alt="Back" />
-            </Link>
-          </div>
-        </nav>
+        <MonsterNav activeCategory={category} />
         <BorderRule />
         <p style={{ padding: "2rem" }}>Not found.</p>
       </>
@@ -74,56 +69,66 @@ export default function MonsterDetailClient({ category, slug }: Props) {
 
   return (
     <>
-      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-        <div>
-          <Link href={`/monsters/${category}/`} aria-label="Back">
-            <Icon type="arrow" nav alt="Back" />
-          </Link>
-        </div>
-      </nav>
+      <MonsterNav activeCategory={category} />
       <BorderRule />
 
       <div className="split-page">
-        {/* Monster list sidebar */}
+        {/* Monsters of the same type, as navigation */}
         <Card variant="weapon-tree">
-          <Icon
-            type={category}
-            size="large"
-            monster
-            imgSrc={`/images/monsters/${slug}.png`}
-            alt={monster.name}
-          />
+          <TreeScroll treeKey={`monsters-${category}`} activeSlug={slug}>
+            {siblings?.map((m) => (
+              <Link
+                key={m.slug}
+                id={m.slug}
+                href={`/monsters/${category}/${m.slug}/`}
+                aria-current={m.slug === slug ? "page" : undefined}
+                className={cn("list-row", m.slug === slug && "bg-white/10")}
+              >
+                <img
+                  className="h-[32px] w-[32px] pixelated"
+                  src={`/images/monsters/${m.slug}-favicon.png`}
+                  alt=""
+                  decoding="sync"
+                  onError={hideBroken}
+                />
+                <p>{m.name}</p>
+              </Link>
+            ))}
+          </TreeScroll>
         </Card>
 
         {/* Detail panel */}
         <DetailCard>
-          {/* Name and habitats beside the portrait (stacked under it on phones) */}
-          <div className="relative flex h-auto flex-[0_0_11rem] flex-row items-start text-[2.2rem] text-gold no-underline mobile:flex-col-reverse mobile:flex-wrap">
-            <div className="flex flex-col">
-              <p className="leading-[1.25]">{monster.name}</p>
+          {/* Name, habitats and description left of the portrait scroll (stacked on phones) */}
+          <div className="flex flex-row items-start gap-4 mobile:flex-col-reverse mobile:items-stretch">
+            <div className="flex min-w-0 flex-1 flex-col gap-2 text-[2.2rem] text-gold">
+              <div className="flex items-center">
+                <p className="leading-[1.25]">{monster.name}</p>
+                {modelUrl && (
+                  <ModelButton
+                    open={modelOpen}
+                    onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
+                    className="ml-[0.4rem]"
+                  />
+                )}
+              </div>
               {monster.habitats && <p className="leading-[1.25]">{monster.habitats.join(", ")}</p>}
+              {monster.description && (
+                <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
+              )}
             </div>
-            <Icon
-              type={category}
-              monster
-              imgSrc={`/images/monsters/${slug}.png`}
-              alt={monster.name}
-              className={monsterPortrait}
-            />
+            <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">
+              <img
+                className="h-[9rem] w-[9rem] object-contain pixelated"
+                src={`/images/monsters/${slug}.png`}
+                alt={monster.name}
+                decoding="sync"
+                onError={hideBroken}
+              />
+            </div>
           </div>
 
           <DetailBody>
-            {monster.description && (
-              <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
-            )}
-
-            {modelUrl && (
-              <ModelButton
-                open={modelOpen}
-                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
-              />
-            )}
-
             <DetailRule />
 
             {hitzoneEntries.length > 0 && (

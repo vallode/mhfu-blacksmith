@@ -27,6 +27,7 @@ import BorderRule from "@/components/BorderRule";
 import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useWeaponModel } from "@/lib/models";
+import { usePreferences } from "@/context/PreferencesContext";
 
 interface Props {
   type: WeaponType;
@@ -53,6 +54,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
   const { item: weapon, tree, loading } = useWeapon(type, slug);
   const melodies = useMelodies(weapon?.notes);
   const modelUrl = useWeaponModel(type, weapon?.name);
+  const { showRawValues } = usePreferences().prefs;
   // Open state is tied to the model, so navigating to another weapon closes it.
   const [openModel, setOpenModel] = useState<string | null>(null);
   const modelOpen = modelUrl !== null && openModel === modelUrl;
@@ -97,6 +99,14 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
             <p id="weapon_name">{weapon.name}</p>
 
+            {modelUrl && (
+              <ModelButton
+                open={modelOpen}
+                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
+                className="ml-[0.4rem]"
+              />
+            )}
+
             {(weapon.sharpness || weapon.sharpness_plus) && (
               <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:mt-[1rem] mobile:mr-auto mobile:ml-0">
                 {weapon.sharpness && <SharpnessBar values={weapon.sharpness} />}
@@ -111,7 +121,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               {weapon.attack && (
                 <Stat label="Attack:">
                   <StatValue>{weapon.attack}</StatValue>
-                  {weapon.raw_attack && (
+                  {showRawValues && weapon.raw_attack && (
                     <StatValue className="opacity-20">[ {weapon.raw_attack} ]</StatValue>
                   )}
                   {weapon.shelling && <StatValue>[{weapon.shelling.type} Type]</StatValue>}
@@ -169,7 +179,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               {weapon.elements?.map((el, i) => (
                 <p key={i} className="inline-block text-element">
                   {el.name} Attrib: {el.attack}
-                  {typeof el.attack === "number" && (
+                  {showRawValues && typeof el.attack === "number" && (
                     <StatValue className="opacity-20"> [ {el.attack / 10} ]</StatValue>
                   )}
                 </p>
@@ -183,13 +193,6 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
               {weapon.bonus && <p className="inline-block text-element">Defense {weapon.bonus}</p>}
             </StatList>
-
-            {modelUrl && (
-              <ModelButton
-                open={modelOpen}
-                onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
-              />
-            )}
 
             <DetailRule />
 

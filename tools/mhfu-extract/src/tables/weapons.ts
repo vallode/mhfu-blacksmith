@@ -172,8 +172,7 @@ export function decodeShotCoat(value: number): ShotCoatFlags {
  * bows; the ~4-7 remaining disagreements per flag cluster on just 3 bow
  * families (Dragonhead Harp, Blue Blade Bow/Showroom Model, Ukanlos Bow) —
  * consistent with those specific committed entries being stale/incomplete
- * wiki data (the same class of issue flagged for `affinity`, see
- * vallode/mhfu-blacksmith#33) rather than a decode bug, since the same raw byte
+ * wiki data rather than a decode bug, since the same raw byte
  * value decodes correctly for every *other* bow sharing it. The remaining
  * 26 bits (7-31) are the bowgun ammo-flag territory `decodeShotCoat()`
  * covers — always 0 on every real bow, confirming bows simply don't use

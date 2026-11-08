@@ -10,6 +10,8 @@ import { useState } from "react";
 import Card from "./Card";
 import TreeScroll from "./TreeScroll";
 import WeaponTreeRow from "./WeaponTreeRow";
+import SelectorArrow from "./SelectorArrow";
+import { useVisibleTree } from "@/hooks/useVisibleTree";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { TreeFilterContext } from "@/context/TreeFilterContext";
 import { cycleTreeFilter, filterTree, TREE_FILTERS, type TreeFilterId } from "@/lib/tree-filter";
@@ -29,47 +31,12 @@ interface Props {
 // clipped arrow and no horizontal page scroll.
 //   bar inset 4px, bar height 56px, arrow 44px
 
+/** The filter bar's arrows: 44px, centred on the bar's ends. */
+const arrowPosition = "absolute top-[calc(50%-22px)] size-[44px]";
+
 /** Label and count text in the filter bar. */
 const barText =
   "text-[25px] leading-none tracking-[0.08em] whitespace-nowrap text-shadow-[2px_2px_0_rgb(0_0_0/0.6)] mobile:text-[20px]";
-
-/**
- * Previous/next button with the game's green arrow sprite (the nav's back
- * arrow); "next" is the same image mirrored.
- */
-function ArrowButton({
-  next,
-  label,
-  onClick,
-}: {
-  next?: boolean;
-  label: string;
-  onClick: () => void;
-}) {
-  return (
-    <button
-      type="button"
-      className={cn(
-        "group absolute top-[calc(50%-22px)] m-0 flex size-[44px] cursor-pointer items-center justify-center border-0 bg-transparent p-0",
-        "focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:outline-solid",
-        next ? "right-[calc(-1*(1.2rem+4px))]" : "left-[calc(-1*(1.2rem+4px))]",
-      )}
-      aria-label={label}
-      onClick={onClick}
-    >
-      <img
-        className={cn(
-          "h-[42px] w-auto transition-[filter] duration-100 ease-[ease] pixelated group-hover:brightness-125 group-focus-visible:brightness-125",
-          next && "-scale-x-100",
-        )}
-        src="/images/arrow.png"
-        alt=""
-        aria-hidden="true"
-        decoding="sync"
-      />
-    </button>
-  );
-}
 
 export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   const progress = useHunterProgress();
@@ -79,10 +46,15 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   // is never the case on the first (hydrating) render.
   const [filter, setFilter] = useState<TreeFilterId>(readTreeFilter);
 
+  // The rows the hunter's quest progress (a preference) leaves in.
+  const visibleTree = useVisibleTree(tree, type, basePath, activeSlug);
+
   // Recomputed every render: craftCheck answers null until a bundle has
   // loaded, and the provider re-renders us when it arrives.
   const result =
-    progress.active && tree ? filterTree(tree, type, basePath, progress, filter) : null;
+    progress.active && visibleTree
+      ? filterTree(visibleTree, type, basePath, progress, filter)
+      : null;
 
   const step = (by: 1 | -1) => {
     setFilter((current) => {
@@ -101,7 +73,7 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
       <Card variant="weapon-tree">
         <TreeScroll treeKey={treeKey} activeSlug={activeSlug}>
           <TreeFilterContext.Provider value={result}>
-            {tree?.map((node) => (
+            {visibleTree?.map((node) => (
               <ul key={node.slug}>
                 <WeaponTreeRow
                   node={node}
@@ -123,7 +95,7 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
           data-filter-bar
           // A flat grey rectangle, as in the game's selector: no border or frame.
           // Side padding clears the arrows, which overlap the bar's ends.
-          className="absolute right-[4px] bottom-[4px] left-[4px] z-2 flex h-[56px] items-center gap-[1.6rem] bg-[rgb(96_102_94/0.78)] px-[calc(44px-1.2rem-4px+0.8rem)] py-0"
+          className="absolute right-[4px] bottom-[4px] left-[4px] z-2 flex h-[56px] items-center gap-[1.6rem] bg-selector px-[calc(44px-1.2rem-4px+0.8rem)] py-0"
           role="group"
           aria-label="Weapon tree filter"
           onKeyDown={(event) => {
@@ -132,7 +104,11 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
             step(event.key === "ArrowLeft" ? -1 : 1);
           }}
         >
-          <ArrowButton label="Previous filter" onClick={() => step(-1)} />
+          <SelectorArrow
+            className={cn(arrowPosition, "left-[calc(-1*(1.2rem+4px))]")}
+            label="Previous filter"
+            onClick={() => step(-1)}
+          />
           <span className={cn(barText, "min-w-0 flex-auto truncate text-stat")} aria-live="polite">
             {label}
           </span>
@@ -144,7 +120,12 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
               {result.matched} of {result.total} weapons
             </span>
           </span>
-          <ArrowButton next label="Next filter" onClick={() => step(1)} />
+          <SelectorArrow
+            next
+            className={cn(arrowPosition, "right-[calc(-1*(1.2rem+4px))]")}
+            label="Next filter"
+            onClick={() => step(1)}
+          />
         </div>
       )}
     </div>

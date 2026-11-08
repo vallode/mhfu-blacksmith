@@ -1,13 +1,11 @@
 // Class strings for the settings cards on the Options page
-// (SaveSyncSettings, OfflineSettings).
+// (SettingsCard, PreferencesSettings, SaveSyncSettings, OfflineSettings).
 
 /** Passed to <Card className>. Repeats the size under `mobile:` because Card
  * sets its own `mobile:` size, which cn() only replaces with another
- * `mobile:` class. */
-export const section = "flex flex-col gap-[1.3rem] text-[1.6rem] mobile:text-[1.6rem]";
-
-export const heading =
-  "m-0 text-[1.8rem] tracking-[0.1ch] text-parchment uppercase text-shadow-[0.15rem_0.15rem_black]";
+ * `mobile:` class. `flex-none` keeps each card its natural height (Card is
+ * `flex-1`), so a long card scrolls the page instead of being clipped. */
+export const section = "flex flex-none flex-col gap-[1.3rem] text-[1.6rem] mobile:text-[1.6rem]";
 
 /** Explanatory text; wraps, unlike the one-line card paragraph default. */
 export const note = "m-0 text-[1.4rem] leading-[1.4] whitespace-normal text-white/60";
@@ -33,9 +31,46 @@ export const button = [
   "disabled:cursor-default disabled:opacity-60",
 ].join(" ");
 
-/** Destructive/secondary action: muted until hovered, then red. */
+/** Destructive/secondary action: muted until hovered, then red; dimmed further while disabled. */
 export const buttonSecondary = [
   buttonBase,
   "border-white/30 text-white/50",
-  "hover:border-negative hover:text-negative focus-visible:border-negative focus-visible:text-negative",
+  "enabled:hover:border-negative enabled:hover:text-negative enabled:focus-visible:border-negative enabled:focus-visible:text-negative",
+  "disabled:cursor-default disabled:opacity-60",
 ].join(" ");
+
+/**
+ * Card header in the style of the game's Options menu: yellow title on the
+ * flat grey selector bar, with a light rule under it. Made for the teal
+ * frame (`<Card frame="teal">`, as on the game's menus): the negative margins
+ * pull it out to sit just inside the frame's 18px bands.
+ */
+export const menuHeader =
+  "-mx-[0.8rem] -mt-[1.1rem] mb-[0.4rem] border-b-[3px] border-white/45 bg-selector px-[1.6rem] py-[0.8rem]";
+
+export const menuTitle =
+  "m-0 text-[2.2rem] font-normal tracking-[0.2em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";
+
+/** An On/Off preference: a yellow box, outlined when off and filled when on. */
+export const toggle =
+  "size-[2.6rem] flex-none cursor-pointer border-[3px] border-stat p-0 shadow-[0.2rem_0.2rem_0_black] focus-visible:outline-2 focus-visible:outline-offset-3 focus-visible:outline-white";
+
+export const toggleOn = "bg-stat";
+
+export const toggleOff = "bg-transparent hover:bg-stat/25";
+
+/** A preference row: label and note on the left, its control on the right (below when it doesn't fit). */
+export const preferenceRow =
+  "flex flex-wrap items-center justify-between gap-x-[2.4rem] gap-y-[0.8rem]";
+
+/** Group heading inside the preferences card ("Display", "Hunter"). */
+export const subheading = "m-0 text-[1.5rem] font-normal tracking-[0.1ch] text-stat uppercase";
+
+/** "◀ VALUE ▶" selector for a preference with several values. */
+export const selector = "flex flex-none items-center gap-[0.8rem]";
+
+export const selectorArrow = "size-[3.4rem]";
+
+/** Fixed width, so the arrows stay put as the value changes (fits "Within 1 material"). */
+export const selectorValue =
+  "w-[19rem] text-center text-[1.8rem] leading-none tracking-[0.1em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";
