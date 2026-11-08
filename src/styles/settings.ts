@@ -74,3 +74,7 @@ export const selectorArrow = "size-[3.4rem]";
 /** Fixed width, so the arrows stay put as the value changes (fits "Within 1 material"). */
 export const selectorValue =
   "w-[19rem] text-center text-[1.8rem] leading-none tracking-[0.1em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";
+
+/** A text/search box (set builder's skill and piece search). */
+export const searchInput =
+  "w-full border border-hr bg-black/45 px-[1rem] py-[0.6rem] font-[inherit] text-[1.6rem] text-white outline-none placeholder:text-white/35 focus-visible:border-white";

@@ -8,6 +8,7 @@
  */
 import { useId, useMemo, useState } from "react";
 import { cn } from "@/lib/cn";
+import * as ui from "@/styles/settings";
 import type { SkillActivation } from "@/lib/set-search";
 
 export type SkillOption = SkillActivation & { tree: string };
@@ -86,7 +87,7 @@ export default function SkillPicker({
 
       <div className="relative">
         <input
-          className="w-full border border-hr bg-black/45 px-[1rem] py-[0.6rem] font-[inherit] text-[1.6rem] text-white outline-none placeholder:text-white/35 focus-visible:border-white"
+          className={ui.searchInput}
           type="search"
           role="combobox"
           aria-label="Add a skill"
