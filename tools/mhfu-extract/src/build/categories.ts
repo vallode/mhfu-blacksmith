@@ -8,7 +8,7 @@
  * disagreements are site errors rather than extractor gaps; see
  * `tools/mhfu-extract/README.md`'s "Building data/ from the disc" for the
  * numbers each decision was based on. Every other field, including ones
- * the disc doesn't have at all (armor `hr`/`elder`/`sex`/`hunter_type`,
+ * the disc doesn't have at all (armor `hr`/`elder`,
  * decoration `category`, weapon `bonus`/`shelling`/`notes`), is kept
  * from the committed file.
  */
@@ -135,6 +135,10 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       { field: "dragon_res", kind: "scalar" },
       { field: "water_res", kind: "scalar" },
       { field: "ice_res", kind: "scalar" },
+      { field: "sex", kind: "scalar" },
+      { field: "hunter_type", kind: "scalar" },
+      { field: "max_defence", kind: "scalar" },
+      { field: "max_defence_pre_ukanlos", kind: "scalar" },
       { field: "create_cost", kind: "scalar" },
       { field: "skills", kind: "armor-skills" },
       { field: "create_mats", kind: "materials" },
@@ -149,6 +153,10 @@ export const CATEGORIES: Record<CategoryName, Category> = {
       "dragon_res",
       "water_res",
       "ice_res",
+      "sex",
+      "hunter_type",
+      "max_defence",
+      "max_defence_pre_ukanlos",
       "create_cost",
       "skills",
       "create_mats",

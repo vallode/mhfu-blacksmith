@@ -3,7 +3,13 @@ import { readFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { fileURLToPath } from "node:url";
-import { emitArmor, type EmittedArmor } from "../src/emit/armor.js";
+import {
+  defenceAtLevel,
+  emitArmor,
+  hunterTypeFromBits,
+  sexFromHunterType,
+  type EmittedArmor,
+} from "../src/emit/armor.js";
 import { MHP2G_EU_RESOLVER } from "../src/games/mhp2g.js";
 import { ARMOR_POINTER_INDEX, ARMOR_SLOTS, type ArmorSlot } from "../src/tables/armor.js";
 import { ARMOR_SLOT_TABLE_NAMES_EU, EU_TABLE_SIGNATURES } from "../src/tables/eu-signatures.js";
@@ -156,6 +162,11 @@ test("emitArmor reproduces the real Leather Helm entry end-to-end", () => {
   assert.equal(helm!.fire_res, 2);
   assert.equal(helm!.water_res, 0);
   assert.equal(helm!.create_cost, 150); // 300 / 2
+  assert.equal(helm!.sex, "Male/Female");
+  assert.equal(helm!.hunter_type, "Blademaster/Gunner");
+  // Caps 6/11/14/14/19/19/28: level 19 before Ukanlos, 28 after.
+  assert.equal(helm!.max_defence_pre_ukanlos, 2 + 2 * 18);
+  assert.equal(helm!.max_defence, 2 + 2 * 27);
   assert.deepEqual(helm!.skills, [
     { name: "Gathering", amount: 2 },
     { name: "Throw", amount: 2 },
@@ -187,4 +198,36 @@ test("emitArmor looks up each piece's recipe by its array index", () => {
   const helm = emitArmor(reader).head.find((a) => a.name === "Leather Helm")!;
   assert.equal(helm.create_cost, null);
   assert.equal(helm.create_mats, null);
+});
+
+test("HunterType bits decode to sex and hunter_type", () => {
+  assert.equal(sexFromHunterType(15), "Male/Female");
+  assert.equal(sexFromHunterType(13), "Male"); // Red Guild Guard Suit (male)
+  assert.equal(sexFromHunterType(14), "Female");
+  assert.equal(sexFromHunterType(4), null);
+  assert.equal(hunterTypeFromBits(15), "Blademaster/Gunner");
+  assert.equal(hunterTypeFromBits(7), "Blademaster");
+  assert.equal(hunterTypeFromBits(11), "Gunner");
+  assert.equal(hunterTypeFromBits(3), null);
+});
+
+test("defenceAtLevel adds 2 per level above level 1", () => {
+  assert.equal(defenceAtLevel(38, 36), 108); // Hunter's Helm S: 540 / 5
+  assert.equal(defenceAtLevel(100, 9), 116); // Dark Ukanlos Mask, LV9
+  assert.equal(defenceAtLevel(44, 12), 66); // Kirin Horn, LV12
+  assert.equal(defenceAtLevel(5, 1), 5);
+  assert.equal(defenceAtLevel(5, 0), 5); // dummy entries have no caps
+});
+
+test("emitArmor takes sex, hunter_type and both max defences from the struct", () => {
+  const reader = buildJpFixture();
+  const off = JP_ARRAY_OFFSET.chest + 1 * 40; // Leather Armor
+  reader.buf.writeUInt8(10, off + 4); // HunterType: female gunner
+  [1, 1, 2, 3, 7, 8, 9].forEach((cap, i) => reader.buf.writeUInt8(cap, off + 20 + i));
+  reader.buf.writeInt8(100, off + 12); // defense
+  const plate = emitArmor(reader).chest.find((a) => a.name === "Leather Armor")!;
+  assert.equal(plate.sex, "Female");
+  assert.equal(plate.hunter_type, "Gunner");
+  assert.equal(plate.max_defence_pre_ukanlos, 114);
+  assert.equal(plate.max_defence, 116);
 });

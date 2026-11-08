@@ -453,9 +453,26 @@ derivation notes for specifics):
 Known gaps and approximations, tracked in
 [#38](https://github.com/vallode/mhfu-blacksmith/issues/38):
 
-- **`sex`/`hunter_type`/`hr`/`elder`** armor fields are omitted: no raw field
-  correlates with the first two, and the last two aren't in `ArmorValue`.
-  All four are optional in the schema.
+- **Armor `sex`/`hunter_type`** come from `ArmorValue.HunterType`, a bit
+  field (1 male, 2 female, 4 Blademaster, 8 Gunner). Matched by game ID on
+  the EU disc, it agrees with all 2080 committed values of each. An earlier
+  check that found no correlation predates
+  [#61](https://github.com/vallode/mhfu-blacksmith/pull/61), when every slot
+  read the next slot's array.
+- **Armor max defence** (`max_defence`, `max_defence_pre_ukanlos`,
+  [#10](https://github.com/vallode/mhfu-blacksmith/issues/10)):
+  `ArmorSphereCaps` is seven cumulative max levels, one per upgrade tier
+  (Armor Sphere, +, Hard, Heavy, Royal, True, True after Ukanlos; the
+  armor sphere `EquipUpgrade` entries use the True Armor Sphere for the
+  last two). Defence = base + 2 per level above 1. The +2 isn't in a table
+  near the armor or upgrade tables; it's the community figure, checked
+  against the Hunter's S (Blademaster) set (190 → 540), the Ukanlos
+  Blademaster series (LV2 102 → LV9 116) and the Kirin (Blade) set (LV12
+  66). See `src/emit/armor.ts`. `extract --raw` writes every armor struct
+  (bytes and decoded fields) to `raw/armor.json`.
+- **`hr`/`elder`** armor unlock requirements aren't in `ArmorValue` and no
+  unlock table was found; both stay as committed and are optional in the
+  schema.
 - **Sharpness** uses a reach-threshold model over `SharpnessTable`. Each
   weapon class has its own run of 8 entries, found through the table's
   `PTR[11]` (one pointer per `WepTypeID`): great sword and long sword start
@@ -638,7 +655,7 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 
 | category    | taken                                                                                                                                  | agreement                                                                             | not taken                                                                                                                                                              |
 | ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| armor       | rarity, rank, slots, defence, resistances, create_cost, skills, create_mats                                                            | 97.5–100%                                                                             | `hr`, `elder`, `sex`, `hunter_type` (not on the disc), `alternative_create_mats` (not emitted)                                                                         |
+| armor       | rarity, rank, slots, defence, resistances, sex, hunter_type, max_defence, max_defence_pre_ukanlos, create_cost, skills, create_mats    | 97.5–100%                                                                             | `hr`, `elder` (not on the disc), `alternative_create_mats` (not emitted)                                                                                               |
 | weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing), and everything the emitter doesn't produce (`bonus`, `shelling`, `notes`) |
 | decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                                                                                                         |
 | monsters    | base_hp, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                                           | base_hp new; per part 97.3%, per drop group 86.5% (see below)                         | `description`, `habitats`, `sizes`, `icon` (not on the disc), `tolerances` (no committed field)                                                                        |

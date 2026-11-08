@@ -42,7 +42,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 55,
+      "max_defence_pre_ukanlos": 37
     },
     {
       "name": "Leather Helm",
@@ -90,7 +92,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Chain Helm",
@@ -144,7 +148,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hunter's Helm",
@@ -200,7 +206,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Hunter's Cap",
@@ -256,7 +264,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Protection Piercing",
@@ -306,7 +316,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Bone Helm",
@@ -360,7 +372,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Bone Cap",
@@ -414,7 +428,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Giaprey Helm",
@@ -470,7 +486,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Giaprey Cap",
@@ -526,7 +544,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Battle Helm",
@@ -592,7 +612,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Battle Cap",
@@ -658,7 +680,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Velociprey Helm",
@@ -718,7 +742,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Velociprey Cap",
@@ -778,7 +804,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Vespoid Helm",
@@ -834,7 +862,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Vespoid Cap",
@@ -890,7 +920,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hi-Metal Helm",
@@ -946,7 +978,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Hi-Metal Cap",
@@ -1002,7 +1036,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hornetaur Helm",
@@ -1060,7 +1096,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hornetaur Cap",
@@ -1118,7 +1156,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 39
     },
     {
       "name": "Genprey Helm",
@@ -1180,7 +1220,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Genprey Cap",
@@ -1242,7 +1284,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 39
     },
     {
       "name": "Ioprey Helm",
@@ -1308,7 +1352,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Cap",
@@ -1370,7 +1416,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Kut-Ku Helm",
@@ -1436,7 +1484,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Kut-Ku Cap",
@@ -1502,7 +1552,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Cephalos Helm",
@@ -1554,7 +1606,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Cephalos Cap",
@@ -1606,7 +1660,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Conga Helm",
@@ -1668,7 +1724,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Conga Cap",
@@ -1730,7 +1788,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Gypceros Helm",
@@ -1792,7 +1852,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Gypceros Cap",
@@ -1854,7 +1916,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Khezu Helm",
@@ -1916,7 +1980,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Khezu Cap",
@@ -1978,7 +2044,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hermitaur Helm",
@@ -2040,7 +2108,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hermitaur Cap",
@@ -2102,7 +2172,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Plesioth Helm",
@@ -2164,7 +2236,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Plesioth Cap",
@@ -2226,7 +2300,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Lobster Helm",
@@ -2288,7 +2364,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Lobster Cap",
@@ -2350,7 +2428,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Kut-Ku Helm D",
@@ -2416,7 +2496,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Kut-Ku Cap D",
@@ -2482,7 +2564,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Gypceros Helm D",
@@ -2544,7 +2628,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Gypceros Cap D",
@@ -2606,7 +2692,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Khezu Helm D",
@@ -2664,7 +2752,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Khezu Cap D",
@@ -2722,7 +2812,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Plesioth Helm D",
@@ -2784,7 +2876,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Plesioth Cap D",
@@ -2846,7 +2940,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Basarios Helm",
@@ -2912,7 +3008,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Basarios Cap",
@@ -2978,7 +3076,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Monoblos Helm",
@@ -3040,7 +3140,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Monoblos Cap",
@@ -3102,7 +3204,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Yian Garuga Helm",
@@ -3164,7 +3268,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Yian Garuga Cap",
@@ -3226,7 +3332,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Blango Helm",
@@ -3288,7 +3396,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Blango Cap",
@@ -3350,7 +3460,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Ceanataur Helm",
@@ -3412,7 +3524,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 107,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Ceanataur Cap",
@@ -3474,7 +3588,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathian Helm",
@@ -3536,7 +3652,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rathian Cap",
@@ -3598,7 +3716,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Tigrex Helm",
@@ -3660,7 +3780,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Tigrex Cap",
@@ -3722,7 +3844,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathalos Helm",
@@ -3778,7 +3902,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathalos Cap",
@@ -3834,7 +3960,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Diablo Helm",
@@ -3896,7 +4024,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Diablo Cap",
@@ -3958,7 +4088,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gravios Helm",
@@ -4020,7 +4152,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Gravios Cap",
@@ -4078,7 +4212,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Diablo Helm D",
@@ -4140,7 +4276,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Diablo Cap D",
@@ -4202,7 +4340,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gravios Helm D",
@@ -4260,7 +4400,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Gravios Cap D",
@@ -4318,7 +4460,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Chaos Shroom",
@@ -4372,7 +4516,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Mosswine Mask",
@@ -4428,7 +4574,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 55,
+      "max_defence_pre_ukanlos": 37
     },
     {
       "name": "Felyne Mask",
@@ -4482,7 +4630,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Bullfango Mask",
@@ -4530,7 +4680,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Giaprey Mask",
@@ -4588,7 +4740,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Velociprey Mask",
@@ -4646,7 +4800,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Red Piercing",
@@ -4700,7 +4856,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Blue Piercing",
@@ -4754,7 +4912,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Yellow Piercing",
@@ -4808,7 +4968,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Black Piercing",
@@ -4866,7 +5028,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "White Piercing",
@@ -4920,7 +5084,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Felyne Piercing",
@@ -4978,7 +5144,9 @@
           "type": "ticket",
           "color": "blue"
         }
-      ]
+      ],
+      "max_defence": 44,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Garuga Mask",
@@ -5032,7 +5200,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Bistro Cap",
@@ -5084,7 +5254,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Genprey Mask",
@@ -5142,7 +5314,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Black Belt Helm",
@@ -5192,7 +5366,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Mask (Sun)",
@@ -5254,7 +5430,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Mask (Moon)",
@@ -5316,7 +5494,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guild Knight Feather",
@@ -5378,7 +5558,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guild Knight Mask",
@@ -5440,7 +5622,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Helm",
@@ -5502,7 +5686,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Mask",
@@ -5564,7 +5750,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Maiden's Hat",
@@ -5626,7 +5814,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Designer Glasses",
@@ -5688,7 +5878,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Helper Hood",
@@ -5750,7 +5942,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Healer Glasses",
@@ -5812,7 +6006,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Ioprey Mask",
@@ -5870,7 +6066,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Remobra Face",
@@ -5936,7 +6134,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Melahoa Flower Hat",
@@ -6002,7 +6202,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Melahoa Bloom",
@@ -6068,7 +6270,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Makluva Hood",
@@ -6130,7 +6334,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Makluva Gills",
@@ -6192,7 +6398,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hypnoc Helm",
@@ -6254,7 +6462,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hypnoc Cap",
@@ -6316,7 +6526,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Obituary Testa",
@@ -6378,7 +6590,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Obituary Caput",
@@ -6440,7 +6654,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Butterfly Testa",
@@ -6502,7 +6718,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Butterfly Caput",
@@ -6564,7 +6782,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Black Head",
@@ -6609,7 +6829,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Black Face",
@@ -6654,7 +6876,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Death Stench Brain",
@@ -6712,7 +6936,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Death Stench Soul",
@@ -6770,7 +6996,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Volganos Helm",
@@ -6832,7 +7060,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Volganos Cap",
@@ -6894,7 +7124,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mizuha Cap",
@@ -6946,7 +7178,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Extravagant Cap",
@@ -6998,7 +7232,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kushala Glare",
@@ -7054,7 +7290,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Kushala Snarl",
@@ -7110,7 +7348,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 59,
+      "max_defence_pre_ukanlos": 43
     },
     {
       "name": "Kirin Horn",
@@ -7172,7 +7412,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Kirin Crest",
@@ -7234,7 +7476,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Guardian Spirit Mask",
@@ -7296,7 +7540,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Carnage Mask",
@@ -7358,7 +7604,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Auroros Helm",
@@ -7420,7 +7668,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Genesis Headpiece",
@@ -7482,7 +7732,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Borealis Crown",
@@ -7544,7 +7796,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Glyph Crown",
@@ -7606,7 +7860,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Empress Crown",
@@ -7668,7 +7924,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Empress Mask",
@@ -7730,7 +7988,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 59,
+      "max_defence_pre_ukanlos": 45
     },
     {
       "name": "Indra Helm",
@@ -7786,7 +8046,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Steadfast Helm",
@@ -7846,7 +8108,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Kaiser Crown",
@@ -7898,7 +8162,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Kaiser Mask",
@@ -7950,7 +8216,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Red Lobster Helm",
@@ -8006,7 +8274,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Red Lobster Cap",
@@ -8062,7 +8332,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Monodevil Helm",
@@ -8124,7 +8396,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Monodevil Cap",
@@ -8186,7 +8460,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathian Heart Helm",
@@ -8248,7 +8524,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Rathian Heart Cap",
@@ -8310,7 +8588,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathalos Soul Helm",
@@ -8372,7 +8652,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rathalos Soul Cap",
@@ -8434,7 +8716,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Sword Saint Piercing",
@@ -8459,7 +8743,9 @@
         }
       ],
       "create_mats": null,
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Barrage Piercing",
@@ -8484,7 +8770,9 @@
         }
       ],
       "create_mats": null,
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 34,
+      "max_defence_pre_ukanlos": 26
     },
     {
       "name": "Mafumofu Hood S",
@@ -8542,7 +8830,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Leather Helm S",
@@ -8596,7 +8886,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Chain Helm S",
@@ -8646,7 +8938,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hunter's Helm S",
@@ -8708,7 +9002,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Hunter's Cap S",
@@ -8770,7 +9066,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Bone Helm S",
@@ -8832,7 +9130,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Bone Cap S",
@@ -8894,7 +9194,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Battle Helm S",
@@ -8956,7 +9258,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Battle Cap S",
@@ -9018,7 +9322,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Velociprey Helm S",
@@ -9070,7 +9376,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Velociprey Cap S",
@@ -9122,7 +9430,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Vespoid Helm S",
@@ -9180,7 +9490,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Vespoid Cap S",
@@ -9238,7 +9550,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hi-Metal Helm S",
@@ -9296,7 +9610,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hi-Metal Cap S",
@@ -9354,7 +9670,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hornetaur Helm S",
@@ -9412,7 +9730,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Hornetaur Cap S",
@@ -9474,7 +9794,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Genprey Helm S",
@@ -9532,7 +9854,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Genprey Cap S",
@@ -9590,7 +9914,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Ioprey Helm S",
@@ -9648,7 +9974,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Ioprey Cap S",
@@ -9706,7 +10034,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kut-Ku Helm S",
@@ -9764,7 +10094,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Kut-Ku Cap S",
@@ -9822,7 +10154,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Cephalos Helm S",
@@ -9880,7 +10214,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Cephalos Cap S",
@@ -9938,7 +10274,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Conga Helm S",
@@ -10000,7 +10338,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Conga Cap S",
@@ -10062,7 +10402,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gypceros Helm S",
@@ -10120,7 +10462,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Gypceros Cap S",
@@ -10178,7 +10522,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Khezu Helm S",
@@ -10236,7 +10582,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Khezu Cap S",
@@ -10294,7 +10642,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hermitaur Helm S",
@@ -10356,7 +10706,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Hermitaur Cap S",
@@ -10414,7 +10766,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hypnoc Helm S",
@@ -10472,7 +10826,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Hypnoc Cap S",
@@ -10530,7 +10886,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Basarios Helm S",
@@ -10592,7 +10950,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Basarios Cap S",
@@ -10654,7 +11014,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Plesioth Helm S",
@@ -10716,7 +11078,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Plesioth Cap S",
@@ -10778,7 +11142,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Monoblos Helm S",
@@ -10836,7 +11202,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Monoblos Cap S",
@@ -10894,7 +11262,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Garuga Helm S",
@@ -10956,7 +11326,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Garuga Cap S",
@@ -11018,7 +11390,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blango Helm S",
@@ -11080,7 +11454,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Blango Cap S",
@@ -11142,7 +11518,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Ceanataur Helm S",
@@ -11204,7 +11582,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 81
     },
     {
       "name": "Ceanataur Cap S",
@@ -11262,7 +11642,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathian Helm S",
@@ -11320,7 +11702,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathian Cap S",
@@ -11378,7 +11762,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Naruga Helm S",
@@ -11436,7 +11822,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Naruga Cap S",
@@ -11494,7 +11882,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Tigrex Helm S",
@@ -11556,7 +11946,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Tigrex Cap S",
@@ -11618,7 +12010,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathalos Helm S",
@@ -11676,7 +12070,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Rathalos Cap S",
@@ -11734,7 +12130,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Diablo Helm S",
@@ -11792,7 +12190,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Diablo Cap S",
@@ -11850,7 +12250,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Gravios Helm S",
@@ -11908,7 +12310,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Gravios Cap S",
@@ -11966,7 +12370,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Leather Helm U",
@@ -12024,7 +12430,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Chain Helm U",
@@ -12076,7 +12484,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hunter's Helm U",
@@ -12134,7 +12544,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Hunter's Cap U",
@@ -12192,7 +12604,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Bone Helm U",
@@ -12254,7 +12668,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Bone Cap U",
@@ -12312,7 +12728,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Battle Helm U",
@@ -12370,7 +12788,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Battle Cap U",
@@ -12428,7 +12848,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Giaprey Helm U",
@@ -12486,7 +12908,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Giaprey Cap U",
@@ -12544,7 +12968,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Vespoid Helm U",
@@ -12602,7 +13028,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Vespoid Cap U",
@@ -12660,7 +13088,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hi-Metal Helm U",
@@ -12712,7 +13142,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Hi-Metal Cap U",
@@ -12764,7 +13196,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hornetaur Helm U",
@@ -12822,7 +13256,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hornetaur Cap U",
@@ -12880,7 +13316,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Genprey Helm U",
@@ -12938,7 +13376,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Genprey Cap U",
@@ -12996,7 +13436,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Ioprey Helm U",
@@ -13054,7 +13496,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Cap U",
@@ -13112,7 +13556,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kut-Ku Helm U",
@@ -13170,7 +13616,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Kut-Ku Cap U",
@@ -13228,7 +13676,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Cephalos Helm U",
@@ -13286,7 +13736,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Cephalos Cap U",
@@ -13344,7 +13796,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Conga Helm U",
@@ -13402,7 +13856,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Conga Cap U",
@@ -13460,7 +13916,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gypceros Helm U",
@@ -13518,7 +13976,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Gypceros Cap U",
@@ -13576,7 +14036,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Khezu Helm U",
@@ -13634,7 +14096,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Khezu Cap U",
@@ -13692,7 +14156,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hermitaur Helm U",
@@ -13750,7 +14216,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hermitaur Cap U",
@@ -13808,7 +14276,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Basarios Helm U",
@@ -13866,7 +14336,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Basarios Cap U",
@@ -13924,7 +14396,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Plesioth Helm U",
@@ -13982,7 +14456,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Plesioth Cap U",
@@ -14040,7 +14516,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blango Helm U",
@@ -14098,7 +14576,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Blango Cap U",
@@ -14156,7 +14636,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Ceanataur Helm U",
@@ -14214,7 +14696,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Ceanataur Cap U",
@@ -14272,7 +14756,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Diablo Helm U",
@@ -14330,7 +14816,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Diablo Cap U",
@@ -14388,7 +14876,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Gravios Helm U",
@@ -14446,7 +14936,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Gravios Cap U",
@@ -14504,7 +14996,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Skull Face",
@@ -14562,7 +15056,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Black Belt Helm S",
@@ -14612,7 +15108,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Shinobi Mask (Heaven)",
@@ -14670,7 +15168,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Shinobi Mask (Earth)",
@@ -14728,7 +15228,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RdGuildGuardTricorne",
@@ -14790,7 +15292,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red Guild Guard Mask",
@@ -14852,7 +15356,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BlGuildGuardTricorne",
@@ -14910,7 +15416,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blue GuildGuard Mask",
@@ -14968,7 +15476,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Red Guild Guard Hat",
@@ -15030,7 +15540,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RedGuildGuardPiercng",
@@ -15092,7 +15604,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blue Guild Guard Hat",
@@ -15150,7 +15664,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BluGuildGuardPiercng",
@@ -15208,7 +15724,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Devil Blos Helm",
@@ -15266,7 +15784,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Devil Blos Cap",
@@ -15328,7 +15848,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Jolly Roger Hat",
@@ -15386,7 +15908,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Jolly Roger Cap",
@@ -15448,7 +15972,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Golden Hair Tie",
@@ -15504,7 +16030,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Puppet Master Mask",
@@ -15566,7 +16094,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Obituary Testa S",
@@ -15624,7 +16154,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Obituary Caput S",
@@ -15682,7 +16214,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Butterfly Testa S",
@@ -15740,7 +16274,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Butterfly Caput S",
@@ -15798,7 +16334,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Death Stench Brain S",
@@ -15856,7 +16394,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Death Stench Soul S",
@@ -15914,7 +16454,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Supreme Mizuha Cap",
@@ -15972,7 +16514,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "SuprmeExtravagantCap",
@@ -16030,7 +16574,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Kushala Glare S",
@@ -16092,7 +16638,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Kushala Snarl S",
@@ -16154,7 +16702,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Kirin Horn S",
@@ -16212,7 +16762,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Kirin Crest S",
@@ -16270,7 +16822,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Auroros Helm Haku",
@@ -16332,7 +16886,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "GenesisHeadpieceHaku",
@@ -16390,7 +16946,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Borealis Crown Haku",
@@ -16452,7 +17010,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Glyph Crown Haku",
@@ -16510,7 +17070,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Ultimate Indra Helm",
@@ -16562,7 +17124,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "SupremeSteadfastHelm",
@@ -16618,7 +17182,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Kaiser Crown S",
@@ -16670,7 +17236,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Kaiser Mask S",
@@ -16722,7 +17290,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Dragon Head S",
@@ -16784,7 +17354,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Dragon Face S",
@@ -16846,7 +17418,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Dark Akantor Mask",
@@ -16908,7 +17482,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Dark Akantor Fangs",
@@ -16970,7 +17546,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Bistro Cap U",
@@ -17018,7 +17596,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Mask (Sky)",
@@ -17076,7 +17656,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Mask (Sea)",
@@ -17134,7 +17716,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Helm U",
@@ -17192,7 +17776,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Mask U",
@@ -17250,7 +17836,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Helper Hood U",
@@ -17308,7 +17896,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Healer Beret U",
@@ -17366,7 +17956,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Melahoa Flower Hat U",
@@ -17428,7 +18020,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Melahoa Bloom U",
@@ -17490,7 +18084,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Makluva Hood U",
@@ -17544,7 +18140,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Makluva Gills U",
@@ -17598,7 +18196,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Monodevil Helm U",
@@ -17660,7 +18260,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Monodevil Cap U",
@@ -17722,7 +18324,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathian Heart Helm U",
@@ -17784,7 +18388,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rathian Heart Cap U",
@@ -17846,7 +18452,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathalos Soul Helm U",
@@ -17904,7 +18512,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathalos Soul Cap U",
@@ -17962,7 +18572,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Golden Moon Helm",
@@ -18020,7 +18632,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Golden Moon Cap",
@@ -18078,7 +18692,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 61,
+      "max_defence_pre_ukanlos": 45
     },
     {
       "name": "Silver Sol Helm",
@@ -18136,7 +18752,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Silver Sol Cap",
@@ -18198,7 +18816,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Auroros Helm Ten",
@@ -18256,7 +18876,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Genesis Headpiece Ten",
@@ -18314,7 +18936,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Borealis Crown Ten",
@@ -18372,7 +18996,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Glyph Crown Ten",
@@ -18430,7 +19056,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Fatalis Head",
@@ -18492,7 +19120,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Fatalis Face",
@@ -18554,7 +19184,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "White Fatalis Head",
@@ -18616,7 +19248,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 115,
+      "max_defence_pre_ukanlos": 93
     },
     {
       "name": "White Fatalis Face",
@@ -18678,7 +19312,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 63,
+      "max_defence_pre_ukanlos": 49
     },
     {
       "name": "Kut-Ku Helm X",
@@ -18736,7 +19372,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 94
     },
     {
       "name": "Kut-Ku Cap X",
@@ -18794,7 +19432,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Conga Helm X",
@@ -18852,7 +19492,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Conga Cap X",
@@ -18910,7 +19552,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Gypceros Helm X",
@@ -18968,7 +19612,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Gypceros Cap X",
@@ -19026,7 +19672,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Khezu Helm X",
@@ -19084,7 +19732,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Khezu Cap X",
@@ -19142,7 +19792,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hermitaur Helm X",
@@ -19204,7 +19856,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hermitaur Cap X",
@@ -19266,7 +19920,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hypnoc Helm X",
@@ -19324,7 +19980,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hypnoc Cap X",
@@ -19382,7 +20040,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Basarios Helm X",
@@ -19444,7 +20104,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Basarios Cap X",
@@ -19502,7 +20164,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Plesioth Helm X",
@@ -19560,7 +20224,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 100
     },
     {
       "name": "Plesioth Cap X",
@@ -19622,7 +20288,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Monoblos Helm X",
@@ -19684,7 +20352,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Monoblos Cap X",
@@ -19746,7 +20416,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Yian Garuga Helm X",
@@ -19808,7 +20480,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Yian Garuga Cap X",
@@ -19870,7 +20544,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Blango Helm X",
@@ -19928,7 +20604,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Blango Cap X",
@@ -19986,7 +20664,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Ceanataur Helm X",
@@ -20044,7 +20724,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 103
     },
     {
       "name": "Ceanataur Cap X",
@@ -20102,7 +20784,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Rathian Helm X",
@@ -20164,7 +20848,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Rathian Cap X",
@@ -20226,7 +20912,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Naruga Helm X",
@@ -20288,7 +20976,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Naruga Cap X",
@@ -20346,7 +21036,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Volganos Helm X",
@@ -20408,7 +21100,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Volganos Cap X",
@@ -20470,7 +21164,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Tigrex Helm X",
@@ -20532,7 +21228,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Tigrex Cap X",
@@ -20590,7 +21288,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Rathalos Helm X",
@@ -20648,7 +21348,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Rathalos Cap X",
@@ -20706,7 +21408,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Diablo Helm X",
@@ -20764,7 +21468,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Diablo Cap X",
@@ -20822,7 +21528,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Gravios Helm X",
@@ -20884,7 +21592,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Gravios Cap X",
@@ -20946,7 +21656,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Kut-Ku Helm Z",
@@ -21004,7 +21716,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 94
     },
     {
       "name": "Kut-Ku Cap Z",
@@ -21062,7 +21776,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Conga Helm Z",
@@ -21120,7 +21836,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Conga Cap Z",
@@ -21178,7 +21896,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Gypceros Helm Z",
@@ -21236,7 +21956,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Gypceros Cap Z",
@@ -21294,7 +22016,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Khezu Helm Z",
@@ -21352,7 +22076,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Khezu Cap Z",
@@ -21410,7 +22136,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hermitaur Helm Z",
@@ -21472,7 +22200,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hermitaur Cap Z",
@@ -21534,7 +22264,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Plesioth Helm Z",
@@ -21592,7 +22324,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 100
     },
     {
       "name": "Plesioth Cap Z",
@@ -21654,7 +22388,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Blango Helm Z",
@@ -21712,7 +22448,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Blango Cap Z",
@@ -21770,7 +22508,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Ceanataur Helm Z",
@@ -21828,7 +22568,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 103
     },
     {
       "name": "Ceanataur Cap Z",
@@ -21886,7 +22628,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Diablo Helm Z",
@@ -21944,7 +22688,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Diablo Cap Z",
@@ -22002,7 +22748,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Gravios Helm Z",
@@ -22060,7 +22808,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Gravios Cap Z",
@@ -22118,7 +22868,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Crystal Piercing",
@@ -22157,7 +22909,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "True Golden Hair Tie",
@@ -22215,7 +22969,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 105
     },
     {
       "name": "TruePuppetMasterMask",
@@ -22273,7 +23029,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Black Belt Helm X",
@@ -22331,7 +23089,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Black Belt Cap X",
@@ -22381,7 +23141,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Obituary Testa X",
@@ -22443,7 +23205,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Obituary Caput X",
@@ -22505,7 +23269,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Butterfly Testa X",
@@ -22567,7 +23333,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Butterfly Caput X",
@@ -22629,7 +23397,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "True Mizuha Cap",
@@ -22691,7 +23461,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "True Extravagant Cap",
@@ -22753,7 +23525,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Kushala Glare X",
@@ -22815,7 +23589,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 108
     },
     {
       "name": "Kusha Snarl X",
@@ -22877,7 +23653,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Kirin Horn X",
@@ -22939,7 +23717,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Kirin Crest X",
@@ -23001,7 +23781,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Empress Crown X",
@@ -23063,7 +23845,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 112
     },
     {
       "name": "Empress Mask X",
@@ -23125,7 +23909,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 63,
+      "max_defence_pre_ukanlos": 61
     },
     {
       "name": "True Indra Helm",
@@ -23187,7 +23973,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "True Steadfast Helm",
@@ -23249,7 +24037,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Kaiser Crown X",
@@ -23311,7 +24101,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Kaiser Mask X",
@@ -23373,7 +24165,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "TrueGuardianSpritMask",
@@ -23431,7 +24225,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "True Carnage Mask",
@@ -23489,7 +24285,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Dragon Head X",
@@ -23551,7 +24349,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Dragon Face X",
@@ -23613,7 +24413,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Ucamulbas Mask",
@@ -23675,7 +24477,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Ucamulbas Fangs",
@@ -23733,7 +24537,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Melahoa Flower Hat Z",
@@ -23791,7 +24597,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Melahoa Bloom Z",
@@ -23853,7 +24661,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Makluva Hood Z",
@@ -23911,7 +24721,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Makluva Gills Z",
@@ -23969,7 +24781,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Rathian Heart Helm Z",
@@ -24027,7 +24841,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Rathian Heart Cap Z",
@@ -24085,7 +24901,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Rathalos Soul Helm Z",
@@ -24147,7 +24965,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Rathalos Soul Cap Z",
@@ -24205,7 +25025,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Golden Moon Helm Z",
@@ -24267,7 +25089,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 108
     },
     {
       "name": "Golden Moon Cap Z",
@@ -24329,7 +25153,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Silver Sol Helm Z",
@@ -24387,7 +25213,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Silver Sol Cap Z",
@@ -24445,7 +25273,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Auroros Helm Kyoku",
@@ -24503,7 +25333,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "GenesisHeadpieceKyoku",
@@ -24561,7 +25393,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Borealis Crown Kyoku",
@@ -24619,7 +25453,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Glyph Crown Kyoku",
@@ -24677,7 +25513,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Fatalis Head Z",
@@ -24739,7 +25577,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 117,
+      "max_defence_pre_ukanlos": 115
     },
     {
       "name": "Fatalis Face Z",
@@ -24801,7 +25641,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 65,
+      "max_defence_pre_ukanlos": 63
     },
     {
       "name": "White Fatalis Head Z",
@@ -24859,7 +25701,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 118,
+      "max_defence_pre_ukanlos": 116
     },
     {
       "name": "White Fatalis Face Z",
@@ -24917,7 +25761,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 66,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Aspire Piercing",
@@ -24942,7 +25788,9 @@
         }
       ],
       "create_mats": null,
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 44,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Eagle Eye Piercing",
@@ -24967,7 +25815,9 @@
         }
       ],
       "create_mats": null,
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 44,
+      "max_defence_pre_ukanlos": 40
     }
   ]
 }

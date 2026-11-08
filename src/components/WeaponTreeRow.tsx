@@ -67,11 +67,20 @@ function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
  * its improve recipe from an owned parent): one square each, filled when the item box has enough and hollow
  * when short. Pushed to the row's right edge.
  */
-function MaterialPips({ materials }: { materials: MaterialCheck[] }) {
+function MaterialPips({
+  materials,
+  className,
+}: {
+  materials: MaterialCheck[];
+  className?: string;
+}) {
   const have = materials.filter((m) => m.have >= m.need).length;
   return (
     <span
-      className="relative z-10 ml-auto flex flex-[0_0_auto] items-center gap-[3px] pl-4 opacity-60"
+      className={cn(
+        "relative z-10 ml-auto flex flex-[0_0_auto] items-center gap-[3px] pl-4 opacity-60",
+        className,
+      )}
       role="img"
       aria-label={`${have} of ${materials.length} materials owned`}
       title={materials
@@ -184,7 +193,22 @@ export default function WeaponTreeRow({
           {collapsed ? "[+]" : "[-]"}
         </p>
       )}
-      {craft && craft.status !== "unknown" && <MaterialPips materials={craft.materials} />}
+      {/* Armor: max defence, right-aligned (the pips, if any, follow it). */}
+      {node.max_defence !== undefined && (
+        <span
+          className="relative z-10 ml-auto pl-4 text-muted"
+          title={`Max defence ${node.max_defence}`}
+        >
+          <span className="sr-only">Max defence </span>
+          {node.max_defence}
+        </span>
+      )}
+      {craft && craft.status !== "unknown" && (
+        <MaterialPips
+          materials={craft.materials}
+          className={cn(node.max_defence !== undefined && "ml-0")}
+        />
+      )}
     </>
   );
 

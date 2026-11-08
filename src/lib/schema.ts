@@ -63,6 +63,7 @@ export interface CompactTreeNode {
   c?: string; // color
   e?: string; // element
   m?: MinRankTuple; // earliest quest progress needed to make it
+  d?: number; // armor max defence
   k?: CompactTreeNode[]; // children
 }
 
@@ -115,6 +116,8 @@ export interface CompactArmor {
   n: string;
   s: string;
   d?: number; // defence
+  md?: number; // max_defence
+  mp?: number; // max_defence_pre_ukanlos
   re?: number[]; // [fire, water, thunder, ice, dragon]
   sl?: number;
   r?: number; // rarity
@@ -271,6 +274,7 @@ export function decodeTreeNode(node: CompactTreeNode, bundleType: string): Weapo
     color: node.c,
     element: node.e,
     min_rank: decodeMinRank(node.m),
+    max_defence: node.d,
     children: node.k?.map((c) => decodeTreeNode(c, bundleType)),
   };
 }
@@ -333,6 +337,8 @@ export function decodeArmor(d: Dictionaries, a: CompactArmor, slot: string): Arm
     slug: a.s,
     type: slot,
     defence: a.d,
+    max_defence: a.md,
+    max_defence_pre_ukanlos: a.mp,
     fire_res: a.re?.[0],
     water_res: a.re?.[1],
     thunder_res: a.re?.[2],

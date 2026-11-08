@@ -42,7 +42,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 55,
+      "max_defence_pre_ukanlos": 37
     },
     {
       "name": "Leather Vambraces",
@@ -92,7 +94,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Chain Vambraces",
@@ -146,7 +150,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hunter Vambraces",
@@ -202,7 +208,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Hunter Guards",
@@ -258,7 +266,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Bone Vambraces",
@@ -318,7 +328,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Bone Guards",
@@ -378,7 +390,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Giaprey Vambraces",
@@ -434,7 +448,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Giaprey Guards",
@@ -490,7 +506,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Battle Vambraces",
@@ -556,7 +574,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Battle Guards",
@@ -622,7 +642,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Velociprey Braces",
@@ -688,7 +710,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Velociprey Guards",
@@ -754,7 +778,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Vespoid Vambraces",
@@ -810,7 +836,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Vespoid Guards",
@@ -866,7 +894,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hi-Metal Vambraces",
@@ -922,7 +952,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Hi-Metal Guards",
@@ -978,7 +1010,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hornet Vambraces",
@@ -1040,7 +1074,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hornet Guards",
@@ -1102,7 +1138,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 39
     },
     {
       "name": "Genprey Vambraces",
@@ -1164,7 +1202,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Genprey Guards",
@@ -1226,7 +1266,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 39
     },
     {
       "name": "Steel Vambraces",
@@ -1282,7 +1324,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Vambraces",
@@ -1348,7 +1392,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Guards",
@@ -1410,7 +1456,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Kut-Ku Vambraces",
@@ -1470,7 +1518,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Kut-Ku Guards",
@@ -1530,7 +1580,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Cephalos Vambraces",
@@ -1588,7 +1640,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Cephalos Guards",
@@ -1646,7 +1700,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Conga Vambraces",
@@ -1708,7 +1764,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Conga Guards",
@@ -1770,7 +1828,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Gypceros Vambraces",
@@ -1832,7 +1892,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Gypceros Guards",
@@ -1894,7 +1956,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Khezu Vambraces",
@@ -1956,7 +2020,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Khezu Guards",
@@ -2018,7 +2084,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hermitaur Vambraces",
@@ -2080,7 +2148,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hermitaur Guards",
@@ -2142,7 +2212,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Plesioth Vambraces",
@@ -2204,7 +2276,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Plesioth Guards",
@@ -2266,7 +2340,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Lobster Vambraces",
@@ -2328,7 +2404,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Lobster Guards",
@@ -2390,7 +2468,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Kut-Ku Vambraces D",
@@ -2456,7 +2536,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Kut-Ku Guards D",
@@ -2522,7 +2604,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Gypceros Vambraces D",
@@ -2584,7 +2668,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Gypceros Guards D",
@@ -2646,7 +2732,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Khezu Vambraces D",
@@ -2704,7 +2792,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Khezu Guards D",
@@ -2762,7 +2852,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Plesioth Vambraces D",
@@ -2824,7 +2916,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Plesioth Guards D",
@@ -2886,7 +2980,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Basarios Vambraces",
@@ -2952,7 +3048,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Basarios Guards",
@@ -3018,7 +3116,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Monoblos Vambraces",
@@ -3080,7 +3180,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Monoblos Guards",
@@ -3142,7 +3244,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Garuga Vambraces",
@@ -3204,7 +3308,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Garuga Guards",
@@ -3266,7 +3372,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Blango Vambraces",
@@ -3328,7 +3436,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Blango Guards",
@@ -3390,7 +3500,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Ceanataur Vambraces",
@@ -3452,7 +3564,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 107,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Ceanataur Guards",
@@ -3514,7 +3628,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathian Vambraces",
@@ -3576,7 +3692,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rathian Guards",
@@ -3638,7 +3756,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Tigrex Vambraces",
@@ -3700,7 +3820,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Tigrex Guards",
@@ -3762,7 +3884,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathalos Vambraces",
@@ -3824,7 +3948,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathalos Guards",
@@ -3886,7 +4012,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Diablo Vambraces",
@@ -3942,7 +4070,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Diablo Guards",
@@ -3998,7 +4128,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gravios Vambraces",
@@ -4060,7 +4192,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Gravios Guards",
@@ -4118,7 +4252,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Diablo Vambraces D",
@@ -4174,7 +4310,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Diablo Guards D",
@@ -4230,7 +4368,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gravios Vambraces D",
@@ -4288,7 +4428,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Gravios Guards D",
@@ -4346,7 +4488,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mosswine Gloves",
@@ -4402,7 +4546,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 55,
+      "max_defence_pre_ukanlos": 37
     },
     {
       "name": "Giaprey Gloves",
@@ -4460,7 +4606,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Velociprey Gloves",
@@ -4518,7 +4666,9 @@
           "color": "pink"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Genprey Gloves",
@@ -4576,7 +4726,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Black Belt Vambraces",
@@ -4626,7 +4778,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Kote (Sun)",
@@ -4688,7 +4842,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Kote (Moon)",
@@ -4750,7 +4906,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guild Knight Gloves",
@@ -4812,7 +4970,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guild Knight Sleeves",
@@ -4874,7 +5034,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Vambraces",
@@ -4936,7 +5098,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Guards",
@@ -4998,7 +5162,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Maiden's Sleeves",
@@ -5060,7 +5226,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Personal Sleeves",
@@ -5122,7 +5290,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Helper Sleeves",
@@ -5184,7 +5354,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Healer Sleeves",
@@ -5246,7 +5418,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Ioprey Gloves",
@@ -5304,7 +5478,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Remobra Hands",
@@ -5370,7 +5546,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Melahoa Branch",
@@ -5436,7 +5614,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Melahoa Petal",
@@ -5502,7 +5682,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Makluva Sleeves",
@@ -5564,7 +5746,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Makluva Sucker",
@@ -5626,7 +5810,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hypnoc Vambraces",
@@ -5688,7 +5874,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hypnoc Guards",
@@ -5750,7 +5938,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Obituary Mano",
@@ -5812,7 +6002,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Obituary Brasso",
@@ -5874,7 +6066,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Butterfly Mano",
@@ -5936,7 +6130,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Butterfly Brasso",
@@ -5998,7 +6194,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Black Claw",
@@ -6043,7 +6241,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Black Fist",
@@ -6088,7 +6288,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Death Stench Grip",
@@ -6146,7 +6348,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Death Stench Grasp",
@@ -6204,7 +6408,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Volganos Vambraces",
@@ -6266,7 +6472,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Volganos Guards",
@@ -6328,7 +6536,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mizuha Sleeves",
@@ -6386,7 +6596,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Extravagant Sleeves",
@@ -6444,7 +6656,9 @@
           "color": "gray"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kushala Grip",
@@ -6502,7 +6716,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Kushala Embrace",
@@ -6560,7 +6776,9 @@
           "color": "slate"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 59,
+      "max_defence_pre_ukanlos": 43
     },
     {
       "name": "Kirin Longarms",
@@ -6622,7 +6840,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Kirin Gloves",
@@ -6684,7 +6904,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "GuardianSprtVambrces",
@@ -6746,7 +6968,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Carnage Vambraces",
@@ -6808,7 +7032,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Auroros Gauntlets",
@@ -6870,7 +7096,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Genesis Gauntlets",
@@ -6932,7 +7160,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Borealis Gauntlets",
@@ -6994,7 +7224,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Glyph Gauntlets",
@@ -7056,7 +7288,9 @@
           "color": "white"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Empress Vambraces",
@@ -7118,7 +7352,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Empress Guards",
@@ -7180,7 +7416,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 59,
+      "max_defence_pre_ukanlos": 45
     },
     {
       "name": "Indra Gloves",
@@ -7242,7 +7480,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Steadfast Guards",
@@ -7308,7 +7548,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Kaiser Vambraces",
@@ -7366,7 +7608,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Kaiser Guards",
@@ -7424,7 +7668,9 @@
           "color": "red"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Red Lobster Braces",
@@ -7480,7 +7726,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Red Lobster Guards",
@@ -7536,7 +7784,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 57,
+      "max_defence_pre_ukanlos": 41
     },
     {
       "name": "Monodevil Vambraces",
@@ -7598,7 +7848,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 106,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Monodevil Guards",
@@ -7660,7 +7912,9 @@
           "color": "orange"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 56,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathian Heart Braces",
@@ -7722,7 +7976,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Rathian Heart Guards",
@@ -7784,7 +8040,9 @@
           "color": "green"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Rathalos Soul Braces",
@@ -7846,7 +8104,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rathalos Soul Guards",
@@ -7908,7 +8168,9 @@
           "color": "blue"
         }
       ],
-      "rank": "low-rank"
+      "rank": "low-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Mafumofu Mittens S",
@@ -7960,7 +8222,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Leather Vambraces S",
@@ -8014,7 +8278,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Chain Vambraces S",
@@ -8070,7 +8336,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hunter Vambraces S",
@@ -8132,7 +8400,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Hunter Guards S",
@@ -8194,7 +8464,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Bone Vambraces S",
@@ -8256,7 +8528,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Bone Guards S",
@@ -8318,7 +8592,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Battle Vambraces S",
@@ -8380,7 +8656,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Battle Guards S",
@@ -8442,7 +8720,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Velociprey Braces S",
@@ -8500,7 +8780,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Velociprey Guards S",
@@ -8558,7 +8840,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Vespoid Vambraces S",
@@ -8616,7 +8900,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Vespoid Guards S",
@@ -8674,7 +8960,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hi-Metal Vambraces S",
@@ -8732,7 +9020,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hi-Metal Guards S",
@@ -8790,7 +9080,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Steel Vambraces S",
@@ -8848,7 +9140,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Hornet Vambraces S",
@@ -8910,7 +9204,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Hornet Guards S",
@@ -8968,7 +9264,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Genprey Vambraces S",
@@ -9026,7 +9324,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Genprey Guards S",
@@ -9084,7 +9384,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Ioprey Vambraces S",
@@ -9142,7 +9444,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Ioprey Guards S",
@@ -9200,7 +9504,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kut-Ku Vambraces S",
@@ -9252,7 +9558,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 68
     },
     {
       "name": "Kut-Ku Guards S",
@@ -9304,7 +9612,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Cephalos Vambraces S",
@@ -9362,7 +9672,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Cephalos Guards S",
@@ -9420,7 +9732,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Conga Vambraces S",
@@ -9482,7 +9796,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Conga Guards S",
@@ -9544,7 +9860,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gypceros Vambraces S",
@@ -9602,7 +9920,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Gypceros Guards S",
@@ -9660,7 +9980,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Khezu Vambraces S",
@@ -9718,7 +10040,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Khezu Guards S",
@@ -9776,7 +10100,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hermitaur Braces S",
@@ -9838,7 +10164,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Hermitaur Guards S",
@@ -9900,7 +10228,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hypnoc Vambraces S",
@@ -9958,7 +10288,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Hypnoc Guards S",
@@ -10016,7 +10348,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Basarios Vambraces S",
@@ -10078,7 +10412,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Basarios Guards S",
@@ -10140,7 +10476,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Plesioth Vambraces S",
@@ -10202,7 +10540,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Plesioth Guards S",
@@ -10264,7 +10604,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Monoblos Vambraces S",
@@ -10322,7 +10664,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Monoblos Guards S",
@@ -10380,7 +10724,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Garuga Vambraces S",
@@ -10438,7 +10784,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Garuga Guards S",
@@ -10496,7 +10844,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blango Vambraces S",
@@ -10558,7 +10908,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Blango Guards S",
@@ -10620,7 +10972,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Ceanataur Braces S",
@@ -10682,7 +11036,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 81
     },
     {
       "name": "Ceanataur Guards S",
@@ -10740,7 +11096,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathian Vambraces S",
@@ -10798,7 +11156,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rathian Guards S",
@@ -10856,7 +11216,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Naruga Vambraces S",
@@ -10914,7 +11276,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Naruga Guards S",
@@ -10972,7 +11336,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Tigrex Vambraces S",
@@ -11034,7 +11400,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Tigrex Guards S",
@@ -11096,7 +11464,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rathalos Vambraces S",
@@ -11154,7 +11524,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Rathalos Guards S",
@@ -11212,7 +11584,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Diablo Vambraces S",
@@ -11270,7 +11644,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Diablo Guards S",
@@ -11328,7 +11704,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Gravios Vambraces S",
@@ -11386,7 +11764,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Gravios Guards S",
@@ -11444,7 +11824,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Leather Vambraces U",
@@ -11502,7 +11884,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Chain Vambraces U",
@@ -11560,7 +11944,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 38
     },
     {
       "name": "Hunter Vambraces U",
@@ -11618,7 +12004,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Hunter Guards U",
@@ -11676,7 +12064,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Bone Vambraces U",
@@ -11738,7 +12128,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Bone Guards U",
@@ -11796,7 +12188,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Battle Vambraces U",
@@ -11854,7 +12248,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Battle Guards U",
@@ -11912,7 +12308,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Giaprey Vambraces U",
@@ -11970,7 +12368,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Giaprey Guards U",
@@ -12028,7 +12428,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Vespoid Vambraces U",
@@ -12086,7 +12488,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Vespoid Guards U",
@@ -12144,7 +12548,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Hi-Metal Vambraces U",
@@ -12202,7 +12608,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Hi-Metal Guards U",
@@ -12260,7 +12668,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Steel Vambraces U",
@@ -12318,7 +12728,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Hornet Vambraces U",
@@ -12376,7 +12788,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Hornet Guards U",
@@ -12434,7 +12848,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Genprey Vambraces U",
@@ -12492,7 +12908,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 64
     },
     {
       "name": "Genprey Guards U",
@@ -12550,7 +12968,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Ioprey Vambraces U",
@@ -12608,7 +13028,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Ioprey Guards U",
@@ -12666,7 +13088,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Kut-Ku Vambraces U",
@@ -12724,7 +13148,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 66
     },
     {
       "name": "Kut-Ku Guards U",
@@ -12782,7 +13208,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Cephalos Vambraces U",
@@ -12840,7 +13268,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Cephalos Guards U",
@@ -12898,7 +13328,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Conga Vambraces U",
@@ -12956,7 +13388,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Conga Guards U",
@@ -13014,7 +13448,9 @@
           "color": "pink"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Gypceros Vambraces U",
@@ -13072,7 +13508,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 72
     },
     {
       "name": "Gypceros Guards U",
@@ -13130,7 +13568,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Khezu Vambraces U",
@@ -13188,7 +13628,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Khezu Guards U",
@@ -13246,7 +13688,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Hermitaur Braces U",
@@ -13304,7 +13748,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Hermitaur Guards U",
@@ -13362,7 +13808,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Basarios Vambraces U",
@@ -13420,7 +13868,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 74
     },
     {
       "name": "Basarios Guards U",
@@ -13478,7 +13928,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Plesioth Vambraces U",
@@ -13536,7 +13988,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Plesioth Guards U",
@@ -13594,7 +14048,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Blango Vambraces U",
@@ -13652,7 +14108,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Blango Guards U",
@@ -13710,7 +14168,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Ceanataur Braces U",
@@ -13768,7 +14228,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "Ceanataur Guards U",
@@ -13826,7 +14288,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Diablo Vambraces U",
@@ -13884,7 +14348,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Diablo Guards U",
@@ -13942,7 +14408,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Gravios Vambraces U",
@@ -14000,7 +14468,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Gravios Guards U",
@@ -14058,7 +14528,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BlackBeltVambraces S",
@@ -14108,7 +14580,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Shinobi Kote(Heaven)",
@@ -14166,7 +14640,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Shinobi Kote (Earth)",
@@ -14224,7 +14700,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RedGuildGuard Gloves",
@@ -14286,7 +14764,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RedGuildGuardSleeves",
@@ -14348,7 +14828,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BlueGuildGuardGloves",
@@ -14406,7 +14888,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BluGuildGuardSleeves",
@@ -14464,7 +14948,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RedGuildGuard Gloves",
@@ -14526,7 +15012,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "RedGuildGuardSleeves",
@@ -14588,7 +15076,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BlueGuildGuardGloves",
@@ -14646,7 +15136,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "BluGuildGuardSleeves",
@@ -14704,7 +15196,9 @@
           "color": "blue"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Devil Blos Vambraces",
@@ -14766,7 +15260,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Devil Blos Guards",
@@ -14828,7 +15324,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Jolly Roger Gloves",
@@ -14890,7 +15388,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Jolly Roger Cuffs",
@@ -14948,7 +15448,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Golden Kote",
@@ -15004,7 +15506,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 109,
+      "max_defence_pre_ukanlos": 79
     },
     {
       "name": "PuppetMaster Gloves",
@@ -15066,7 +15570,9 @@
           "color": "gray"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Obituary Mano S",
@@ -15124,7 +15630,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Obituary Brasso S",
@@ -15182,7 +15690,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Butterfly Mano S",
@@ -15240,7 +15750,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 76
     },
     {
       "name": "Butterfly Brasso S",
@@ -15298,7 +15810,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Death Stench Grip S",
@@ -15356,7 +15870,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Death Stench Grasp S",
@@ -15414,7 +15930,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "SupremeMizuhaSleeves",
@@ -15472,7 +15990,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "SprmExtrvgantSleeves",
@@ -15530,7 +16050,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Kushala Grip S",
@@ -15588,7 +16110,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Kushala Embrace S",
@@ -15646,7 +16170,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Kirin Longarms S",
@@ -15704,7 +16230,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Kirin Gloves S",
@@ -15762,7 +16290,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Auroros GauntletHaku",
@@ -15824,7 +16354,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Genesis GauntletHaku",
@@ -15882,7 +16414,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "BorealisGauntletHaku",
@@ -15944,7 +16478,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 88
     },
     {
       "name": "Glyph Gauntlets Haku",
@@ -16002,7 +16538,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "UltimateIndraGloves",
@@ -16060,7 +16598,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "SuprmSteadfastGuards",
@@ -16122,7 +16662,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Kaiser Vambraces S",
@@ -16180,7 +16722,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Kaiser Guards S",
@@ -16238,7 +16782,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Dragonclaw S",
@@ -16300,7 +16846,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Dragonfist S",
@@ -16362,7 +16910,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Dark Akantor Claw",
@@ -16424,7 +16974,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "DarkAkantor Gauntlet",
@@ -16486,7 +17038,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "Shinobi Kote (Sky)",
@@ -16544,7 +17098,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Shinobi Kote (Sea)",
@@ -16602,7 +17158,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Vambraces U",
@@ -16660,7 +17218,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Guardian Guards U",
@@ -16718,7 +17278,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Helper Sleeves U",
@@ -16776,7 +17338,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Healer Sleeves U",
@@ -16834,7 +17398,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Melahoa Branch U",
@@ -16896,7 +17462,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Melahoa Petal U",
@@ -16958,7 +17526,9 @@
           "color": "orange"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 40
     },
     {
       "name": "Makluva Sleeves U",
@@ -17012,7 +17582,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 70
     },
     {
       "name": "Makluva Sucker U",
@@ -17066,7 +17638,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 42
     },
     {
       "name": "Monodevil Braces U",
@@ -17128,7 +17702,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 108,
+      "max_defence_pre_ukanlos": 78
     },
     {
       "name": "Monodevil Guards U",
@@ -17190,7 +17766,9 @@
           "color": "red"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 58,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rthan Heart Braces U",
@@ -17252,7 +17830,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 80
     },
     {
       "name": "Rthan Heart Guards U",
@@ -17314,7 +17894,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Rthlos Soul Braces U",
@@ -17372,7 +17954,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 82
     },
     {
       "name": "Rthlos Soul Guards U",
@@ -17430,7 +18014,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 44
     },
     {
       "name": "Golden Moon Braces",
@@ -17488,7 +18074,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 84
     },
     {
       "name": "Golden Moon Guards",
@@ -17546,7 +18134,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 61,
+      "max_defence_pre_ukanlos": 45
     },
     {
       "name": "Silver Sol Braces",
@@ -17604,7 +18194,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Silver Sol Guards",
@@ -17666,7 +18258,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Auroros Gauntlet Ten",
@@ -17724,7 +18318,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Genesis Gauntlet Ten",
@@ -17782,7 +18378,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Borealis GauntletTen",
@@ -17840,7 +18438,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 86
     },
     {
       "name": "Glyph Gauntlets Ten",
@@ -17898,7 +18498,9 @@
           "color": "white"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "Fatalis Claw",
@@ -17960,7 +18562,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 90
     },
     {
       "name": "Fatalis Fist",
@@ -18022,7 +18626,9 @@
           "color": "green"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 48
     },
     {
       "name": "White Fatalis Claw",
@@ -18084,7 +18690,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 115,
+      "max_defence_pre_ukanlos": 93
     },
     {
       "name": "White Fatalis Fist",
@@ -18146,7 +18754,9 @@
           "color": "slate"
         }
       ],
-      "rank": "high-rank"
+      "rank": "high-rank",
+      "max_defence": 63,
+      "max_defence_pre_ukanlos": 49
     },
     {
       "name": "Kut-Ku Vambraces X",
@@ -18208,7 +18818,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 94
     },
     {
       "name": "Kut-Ku Guards X",
@@ -18270,7 +18882,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Conga Vambraces X",
@@ -18328,7 +18942,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Conga Guards X",
@@ -18386,7 +19002,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Gypceros Vambraces X",
@@ -18444,7 +19062,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Gypceros Guards X",
@@ -18502,7 +19122,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Khezu Vambraces X",
@@ -18560,7 +19182,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Khezu Guards X",
@@ -18618,7 +19242,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hermitaur Braces X",
@@ -18680,7 +19306,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hermitaur Guards X",
@@ -18742,7 +19370,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hypnoc Vambraces X",
@@ -18800,7 +19430,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hypnoc Guards X",
@@ -18862,7 +19494,9 @@
           "color": "pink"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Basarios Vambraces X",
@@ -18920,7 +19554,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Basarios Guards X",
@@ -18982,7 +19618,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Plesioth Vambraces X",
@@ -19044,7 +19682,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 100
     },
     {
       "name": "Plesioth Guards X",
@@ -19102,7 +19742,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Monoblos Vambraces X",
@@ -19164,7 +19806,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Monoblos Guards X",
@@ -19226,7 +19870,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Garuga Vambraces X",
@@ -19288,7 +19934,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Garuga Guards X",
@@ -19350,7 +19998,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Blango Vambraces X",
@@ -19408,7 +20058,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Blango Guards X",
@@ -19466,7 +20118,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Ceanataur Braces X",
@@ -19524,7 +20178,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 103
     },
     {
       "name": "Ceanataur Guards X",
@@ -19582,7 +20238,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Rathian Vambraces X",
@@ -19640,7 +20298,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Rathian Guards X",
@@ -19698,7 +20358,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Naruga Vambraces X",
@@ -19760,7 +20422,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Naruga Guards X",
@@ -19818,7 +20482,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Volganos Vambraces X",
@@ -19880,7 +20546,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Volganos Guards X",
@@ -19942,7 +20610,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Tigrex Vambraces X",
@@ -20004,7 +20674,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Tigrex Guards X",
@@ -20066,7 +20738,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Rathalos Vambraces X",
@@ -20124,7 +20798,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Rathalos Guards X",
@@ -20182,7 +20858,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Diablo Vambraces X",
@@ -20240,7 +20918,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Diablo Guards X",
@@ -20298,7 +20978,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Gravios Vambraces X",
@@ -20360,7 +21042,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Gravios Guards X",
@@ -20422,7 +21106,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Kut-Ku Vambraces Z",
@@ -20484,7 +21170,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 94
     },
     {
       "name": "Kut-Ku Guards Z",
@@ -20546,7 +21234,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 52
     },
     {
       "name": "Conga Vambraces Z",
@@ -20604,7 +21294,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Conga Guards Z",
@@ -20662,7 +21354,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Gypceros Vambraces Z",
@@ -20720,7 +21414,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Gypceros Guards Z",
@@ -20778,7 +21474,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Khezu Vambraces Z",
@@ -20836,7 +21534,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Khezu Guards Z",
@@ -20894,7 +21594,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Hermitaur Braces Z",
@@ -20952,7 +21654,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Hermitaur Guards Z",
@@ -21010,7 +21714,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Plesioth Vambraces Z",
@@ -21072,7 +21778,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 100
     },
     {
       "name": "Plesioth Guards Z",
@@ -21130,7 +21838,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Blango Vambraces Z",
@@ -21192,7 +21902,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 102
     },
     {
       "name": "Blango Guards Z",
@@ -21254,7 +21966,9 @@
           "color": "orange"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Ceanataur Braces Z",
@@ -21312,7 +22026,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 103
     },
     {
       "name": "Ceanataur Guards Z",
@@ -21370,7 +22086,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Diablo Vambraces Z",
@@ -21432,7 +22150,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Diablo Guards Z",
@@ -21494,7 +22214,9 @@
           "color": "cyan"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Gravios Vambraces Z",
@@ -21552,7 +22274,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Gravios Guards Z",
@@ -21610,7 +22334,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Crystal Bracelet",
@@ -21649,7 +22375,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 54,
+      "max_defence_pre_ukanlos": 46
     },
     {
       "name": "True Golden Kote",
@@ -21707,7 +22435,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 111,
+      "max_defence_pre_ukanlos": 105
     },
     {
       "name": "TruePupptMastrGloves",
@@ -21765,7 +22495,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Black Belt Braces X",
@@ -21815,7 +22547,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Black Belt Guards X",
@@ -21865,7 +22599,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Obituary Mano X",
@@ -21923,7 +22659,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Obituary Brasso X",
@@ -21981,7 +22719,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Butterfly Mano X",
@@ -22039,7 +22779,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 98
     },
     {
       "name": "Butterfly Brasso X",
@@ -22097,7 +22839,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "True Mizuha Sleeves",
@@ -22159,7 +22903,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "TrueExtrvagantSleeves",
@@ -22221,7 +22967,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Kushala Grip X",
@@ -22283,7 +23031,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 108
     },
     {
       "name": "Kushala Grasp X",
@@ -22345,7 +23095,9 @@
           "color": "gray"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Kirin Longarms X",
@@ -22407,7 +23159,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Kirin Gloves X",
@@ -22469,7 +23223,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Empress Vambraces X",
@@ -22531,7 +23287,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 112
     },
     {
       "name": "Empress Guards X",
@@ -22593,7 +23351,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 63,
+      "max_defence_pre_ukanlos": 61
     },
     {
       "name": "True Indra Gloves",
@@ -22651,7 +23411,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "True SteadfastGuards",
@@ -22709,7 +23471,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Kaiser Vambraces X",
@@ -22767,7 +23531,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Kaiser Guards X",
@@ -22825,7 +23591,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "TrueGuardnSprtBraces",
@@ -22887,7 +23655,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "TrueCarnageVambraces",
@@ -22949,7 +23719,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Dragonclaw X",
@@ -23011,7 +23783,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Dragonfist X",
@@ -23073,7 +23847,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Ucamulbas Claw",
@@ -23135,7 +23911,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 116,
+      "max_defence_pre_ukanlos": 114
     },
     {
       "name": "Ucamulbas Gauntlets",
@@ -23193,7 +23971,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 64,
+      "max_defence_pre_ukanlos": 62
     },
     {
       "name": "Melahoa Branch Z",
@@ -23255,7 +24035,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 92
     },
     {
       "name": "Melahoa Petal Z",
@@ -23317,7 +24099,9 @@
           "color": "yellow"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 50
     },
     {
       "name": "Makluva Sleeves Z",
@@ -23371,7 +24155,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 110,
+      "max_defence_pre_ukanlos": 96
     },
     {
       "name": "Makluva Sucker Z",
@@ -23425,7 +24211,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 60,
+      "max_defence_pre_ukanlos": 54
     },
     {
       "name": "Rthan Heart Braces Z",
@@ -23483,7 +24271,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 104
     },
     {
       "name": "Rthan Heart Guards Z",
@@ -23541,7 +24331,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 56
     },
     {
       "name": "Rthlos Soul Braces Z",
@@ -23599,7 +24391,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 112,
+      "max_defence_pre_ukanlos": 106
     },
     {
       "name": "Rthlos Soul Guards Z",
@@ -23661,7 +24455,9 @@
           "color": "red"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Golden Moon Braces Z",
@@ -23719,7 +24515,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 108
     },
     {
       "name": "Golden Moon Guards Z",
@@ -23777,7 +24575,9 @@
           "color": "green"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 58
     },
     {
       "name": "Silver Sol Braces Z",
@@ -23835,7 +24635,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Silver Sol Guards Z",
@@ -23893,7 +24695,9 @@
           "color": "blue"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "AurorosGauntletKyoku",
@@ -23951,7 +24755,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "GenesisGauntletKyoku",
@@ -24009,7 +24815,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "BorealisGauntletKyoku",
@@ -24067,7 +24875,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 114,
+      "max_defence_pre_ukanlos": 110
     },
     {
       "name": "Glyph Gauntlets Kyoku",
@@ -24125,7 +24935,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 62,
+      "max_defence_pre_ukanlos": 60
     },
     {
       "name": "Fatalis Claw Z",
@@ -24187,7 +24999,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 117,
+      "max_defence_pre_ukanlos": 115
     },
     {
       "name": "Fatalis Fist Z",
@@ -24249,7 +25063,9 @@
           "color": "white"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 65,
+      "max_defence_pre_ukanlos": 63
     },
     {
       "name": "Wht Fatalis Claw Z",
@@ -24307,7 +25123,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 118,
+      "max_defence_pre_ukanlos": 116
     },
     {
       "name": "Wht Fatalis Fist Z",
@@ -24365,7 +25183,9 @@
           "color": "slate"
         }
       ],
-      "rank": "g-rank"
+      "rank": "g-rank",
+      "max_defence": 66,
+      "max_defence_pre_ukanlos": 64
     }
   ]
 }

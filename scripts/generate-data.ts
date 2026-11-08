@@ -151,6 +151,7 @@ function compactTreeNode(
   node: WeaponTreeNode,
   bundleType: string,
   minRankOf?: MinRankLookup,
+  maxDefenceOf?: (slug: string) => number | undefined,
 ): CompactTreeNode {
   const out: CompactTreeNode = { s: node.slug, n: node.name };
   if (node.type && node.type !== bundleType) out.t = node.type;
@@ -159,8 +160,10 @@ function compactTreeNode(
   if (node.element) out.e = node.element;
   const mr = minRankOf?.(node.type || bundleType, node.slug);
   if (mr) out.m = mr;
+  const md = maxDefenceOf?.(node.slug);
+  if (md !== undefined) out.d = md;
   if (node.children && node.children.length > 0) {
-    out.k = node.children.map((c) => compactTreeNode(c, bundleType, minRankOf));
+    out.k = node.children.map((c) => compactTreeNode(c, bundleType, minRankOf, maxDefenceOf));
   }
   return out;
 }
@@ -168,7 +171,8 @@ const compactTree = (
   nodes: WeaponTreeNode[],
   bundleType: string,
   minRankOf?: MinRankLookup,
-): CompactTreeNode[] => nodes.map((n) => compactTreeNode(n, bundleType, minRankOf));
+  maxDefenceOf?: (slug: string) => number | undefined,
+): CompactTreeNode[] => nodes.map((n) => compactTreeNode(n, bundleType, minRankOf, maxDefenceOf));
 
 // ---------------------------------------------------------------------------
 // Item encoders
@@ -247,6 +251,10 @@ function encodeArmor(a: ArmorPiece, minRank: Progress): CompactArmor {
   const out: CompactArmor = { n: a.name, s: a.slug };
   const d = toNum(a.defence);
   if (d !== undefined) out.d = d;
+  const md = toNum(a.max_defence);
+  if (md !== undefined) out.md = md;
+  const mp = toNum(a.max_defence_pre_ukanlos);
+  if (mp !== undefined) out.mp = mp;
   const res = [a.fire_res, a.water_res, a.thunder_res, a.ice_res, a.dragon_res].map(toNum);
   if (res.some((v) => v !== undefined)) out.re = res.map((v) => v ?? 0);
   if (a.slots !== undefined) out.sl = Number(a.slots);
@@ -411,12 +419,18 @@ for (const slot of ARMOR_SLOTS) {
       armorRefs.set(`${slot}|${p.name}`, ref);
     });
     const minRankBySlug = new Map(items.map((i) => [i.s, i.mr]));
+    const maxDefenceBySlug = new Map(items.map((i) => [i.s, i.md]));
     totalItems += items.length;
     push(`armor-${slot}-${rank}.json`, {
       kind: "armor",
       slot,
       rank,
-      tree: compactTree(tree.map, slot, (_type, slug) => minRankBySlug.get(slug)),
+      tree: compactTree(
+        tree.map,
+        slot,
+        (_type, slug) => minRankBySlug.get(slug),
+        (slug) => maxDefenceBySlug.get(slug),
+      ),
       items,
     });
   }
