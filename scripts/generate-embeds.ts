@@ -4,7 +4,8 @@
  *
  * - icons/<type>-<tint>.png: 180px thumbnails, the site's in-game icon sprite
  *   tinted the way the site tints it (multiply), in the site's blue card frame
- *   and its patterned fill.
+ *   and its patterned fill. Monsters get their portrait on the scroll, as on
+ *   the monster page (see monsterEmbedIcon()).
  *   See embedIcon() in src/lib/seo.ts.
  * - oembed/<route>.json: each detail page's oEmbed file, which gives Discord
  *   the line above the title ("Rarity 10 Long Sword"). See oembedJson().
@@ -33,8 +34,11 @@ const publicDir = path.join(process.cwd(), "public");
 const outDir = path.join(publicDir, "embed");
 
 const SIZE = 180;
-/** Sprites are 26px; 5× sits inside the frame with a margin. */
-const SCALE = 5;
+/** Room inside the frame for the sprite, in pixels. */
+const INNER = 140;
+/** The largest scale: weapon and armour sprites (26px) draw at 5×. */
+const MAX_SCALE = 5;
+
 const hexToRgb = (hex: string) => [1, 3, 5].map((i) => parseInt(hex.slice(i, i + 2), 16));
 
 /** Source-over of a straight-alpha RGBA colour onto another. */
@@ -43,6 +47,98 @@ function over(top: number[], under: number[]): number[] {
   if (a === 0) return [0, 0, 0, 0];
   const rgb = [0, 1, 2].map((c) => (top[c] * top[3] + under[c] * under[3] * (1 - top[3])) / a);
   return [...rgb, a];
+}
+
+interface Sprite {
+  data: Buffer;
+  width: number;
+  height: number;
+}
+
+/** A sprite as raw RGBA, cropped to its visible pixels so it centres on what's drawn. */
+async function loadSprite(file: string): Promise<Sprite> {
+  const { data, info } = await sharp(file)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  let [x0, y0, x1, y1] = [info.width, info.height, -1, -1];
+  for (let y = 0; y < info.height; y++) {
+    for (let x = 0; x < info.width; x++) {
+      if (data[(y * info.width + x) * 4 + 3] === 0) continue;
+      [x0, y0, x1, y1] = [Math.min(x0, x), Math.min(y0, y), Math.max(x1, x), Math.max(y1, y)];
+    }
+  }
+  const width = x1 - x0 + 1;
+  const height = y1 - y0 + 1;
+  const cropped = Buffer.alloc(width * height * 4);
+  for (let y = 0; y < height; y++) {
+    data.copy(
+      cropped,
+      y * width * 4,
+      ((y + y0) * info.width + x0) * 4,
+      ((y + y0) * info.width + x1 + 1) * 4,
+    );
+  }
+  return { data: cropped, width, height };
+}
+
+/**
+ * One thumbnail: the sprite at the largest whole scale that fits, centred in
+ * the frame, multiplied by `tint` (the site's mix-blend-mode: multiply; white
+ * leaves full-colour sprites as they are).
+ */
+async function drawIcon(frame: Buffer, sprite: Sprite, tint: number[], file: string) {
+  const scale = Math.min(MAX_SCALE, Math.floor(INNER / Math.max(sprite.width, sprite.height)));
+  const left = Math.floor((SIZE - sprite.width * scale) / 2);
+  const top = Math.floor((SIZE - sprite.height * scale) / 2);
+  const out = Buffer.alloc(SIZE * SIZE * 4);
+  for (let y = 0; y < SIZE; y++) {
+    for (let x = 0; x < SIZE; x++) {
+      const o = (y * SIZE + x) * 4;
+      let px = [frame[o], frame[o + 1], frame[o + 2], frame[o + 3] / 255];
+      const sx = Math.floor((x - left) / scale);
+      const sy = Math.floor((y - top) / scale);
+      if (x >= left && y >= top && sx < sprite.width && sy < sprite.height) {
+        const i = (sy * sprite.width + sx) * 4;
+        const tinted = [0, 1, 2].map((c) => (sprite.data[i + c] * tint[c]) / 255);
+        px = over([...tinted, sprite.data[i + 3] / 255], px);
+      }
+      out[o] = Math.round(px[0]);
+      out[o + 1] = Math.round(px[1]);
+      out[o + 2] = Math.round(px[2]);
+      out[o + 3] = Math.round(px[3] * 255);
+    }
+  }
+  await sharp(out, { raw: { width: SIZE, height: SIZE, channels: 4 } })
+    .png({ palette: true })
+    .toFile(file);
+}
+
+/** The scroll (public/images/scroll.png, 49×32) at 4×, and portraits (32–40px) at 3× on it. */
+const SCROLL_SCALE = 4;
+const PORTRAIT_SCALE = 3;
+
+/** A monster portrait centred on the scroll, like the portrait on the monster page. */
+async function drawOnScroll(name: string, file: string) {
+  const scroll = sharp(path.join(publicDir, "images/scroll.png"));
+  const { width = 0, height = 0 } = await scroll.metadata();
+  const portrait = sharp(path.join(publicDir, "images/monsters", `${name}.png`));
+  const size = await portrait.metadata();
+  const w = (size.width ?? 0) * PORTRAIT_SCALE;
+  const h = (size.height ?? 0) * PORTRAIT_SCALE;
+  const W = width * SCROLL_SCALE;
+  const H = height * SCROLL_SCALE;
+  await scroll
+    .resize(W, H, { kernel: "nearest" })
+    .composite([
+      {
+        input: await portrait.resize(w, h, { kernel: "nearest" }).toBuffer(),
+        left: Math.floor((W - w) / 2),
+        top: Math.floor((H - h) / 2),
+      },
+    ])
+    .png({ palette: true })
+    .toFile(file);
 }
 
 async function writeIcons() {
@@ -58,39 +154,24 @@ async function writeIcons() {
   fs.mkdirSync(dir, { recursive: true });
   let count = 0;
 
+  // Weapons, armour and decorations: one per tint.
   for (const type of EMBED_ICON_TYPES) {
-    const { data: sprite, info } = await sharp(path.join(publicDir, "images", `${type}.png`))
-      .ensureAlpha()
-      .raw()
-      .toBuffer({ resolveWithObject: true });
-    const left = Math.floor((SIZE - info.width * SCALE) / 2);
-    const top = Math.floor((SIZE - info.height * SCALE) / 2);
-
+    const sprite = await loadSprite(path.join(publicDir, "images", `${type}.png`));
     for (const [name, hex] of Object.entries(EMBED_ICON_TINTS)) {
       const tint = hex ? hexToRgb(hex) : [255, 255, 255];
-      const out = Buffer.alloc(SIZE * SIZE * 4);
-      for (let y = 0; y < SIZE; y++) {
-        for (let x = 0; x < SIZE; x++) {
-          const o = (y * SIZE + x) * 4;
-          let px = [frame[o], frame[o + 1], frame[o + 2], frame[o + 3] / 255];
+      await drawIcon(frame, sprite, tint, path.join(dir, `${type}-${name}.png`));
+      count++;
+    }
+  }
 
-          const sx = Math.floor((x - left) / SCALE);
-          const sy = Math.floor((y - top) / SCALE);
-          if (x >= left && y >= top && sx < info.width && sy < info.height) {
-            const i = (sy * info.width + sx) * 4;
-            // Sprite colour × tint (the site's mix-blend-mode: multiply).
-            const tinted = [0, 1, 2].map((c) => (sprite[i + c] * tint[c]) / 255);
-            px = over([...tinted, sprite[i + 3] / 255], px);
-          }
-          out[o] = Math.round(px[0]);
-          out[o + 1] = Math.round(px[1]);
-          out[o + 2] = Math.round(px[2]);
-          out[o + 3] = Math.round(px[3] * 255);
-        }
-      }
-      await sharp(out, { raw: { width: SIZE, height: SIZE, channels: 4 } })
-        .png({ palette: true })
-        .toFile(path.join(dir, `${type}-${name}.png`));
+  // Monsters: their portrait on the scroll, as on the monster page. The
+  // category icon stands in for monsters without a portrait of their own.
+  for (const category of getMonsterCategories()) {
+    await drawOnScroll(category, path.join(dir, `monster-${category}.png`));
+    count++;
+    for (const m of getMonsters(category)) {
+      if (!fs.existsSync(path.join(publicDir, "images/monsters", `${m.slug}.png`))) continue;
+      await drawOnScroll(m.slug, path.join(dir, `monster-${m.slug}.png`));
       count++;
     }
   }

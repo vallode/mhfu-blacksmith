@@ -2,7 +2,7 @@ import { notFound } from "next/navigation";
 import { getMonsters, getMonster } from "@/lib/monsters";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import type { Metadata } from "next";
-import { monsterDescription, pageMetadata, monsterIcon } from "@/lib/seo";
+import { monsterDescription, monsterEmbedIcon, pageMetadata } from "@/lib/seo";
 import { faviconMetadata } from "@/lib/favicon";
 import MonsterDetailClient from "./MonsterDetailClient";
 
@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
       title: monster.name,
       description: monsterDescription(monster),
       path: `/monsters/${category}/${slug}/`,
-      image: monsterIcon(slug, category),
+      image: monsterEmbedIcon(slug, category),
       oembed: true,
     }),
   };
