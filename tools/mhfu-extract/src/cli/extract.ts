@@ -10,6 +10,7 @@ import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
 import { emitQuestsFile } from "../emit/quests.js";
+import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
 import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
@@ -27,7 +28,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts). */
   raw?: boolean;
 }
 
@@ -91,6 +92,7 @@ async function writeRawDumps(
   const dumps = {
     "sharpness.json": dumpSharpnessRaw(reader, resolver),
     "weapons.json": dumpWeaponsRaw(reader, resolver),
+    "gunner.json": dumpGunnerRaw(reader, resolver),
   };
   for (const [file, dump] of Object.entries(dumps)) {
     const rawPath = path.join(rawDir, file);

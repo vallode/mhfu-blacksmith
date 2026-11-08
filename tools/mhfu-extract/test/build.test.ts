@@ -273,11 +273,9 @@ test("mergeCategory keeps a file's keepFields as committed", async () => {
   }
 });
 
-test("bow elements are kept as committed; other weapon files take them", () => {
-  const files = CATEGORIES.weapons.files;
+test("every weapon file takes elements", () => {
   assert.ok(CATEGORIES.weapons.take.includes("elements"));
-  assert.deepEqual(files.find((f) => f.file === "weapons/bow.json")!.keepFields, ["elements"]);
-  assert.ok(files.filter((f) => f.file !== "weapons/bow.json").every((f) => !f.keepFields?.length));
+  assert.ok(CATEGORIES.weapons.files.every((f) => !f.keepFields?.includes("elements")));
 });
 
 test("mergeCategory writes new skills and materials in the site's spelling", async () => {
@@ -425,6 +423,94 @@ test("percent fields compare by number and keep the committed spelling when they
   assert.equal(toSite(spec, "0%", { affinity: "0" }, ctx), "0");
   assert.equal(toSite(spec, "-5%", { affinity: "0" }, ctx), "-5%");
   assert.equal(toSite(spec, 20, { affinity: "10%" }, ctx), "20%");
+});
+
+test("ammo lists compare by ammo name and rapid fire as a trimmed set", () => {
+  const ctx = {} as FieldContext;
+  const ammo = { field: "ammo", kind: "ammo" as const };
+  const site = [
+    { name: "Normal S", capacity: [6, 6, 0] },
+    { name: "Pierce S ", capacity: [3, 0, 0] },
+  ];
+  const disc = [
+    { name: "Pierce S", capacity: [3, 0, 0] },
+    { name: "Normal S", capacity: [6, 6, 0] },
+  ];
+  assert.equal(canonical(ammo, site, "site", ctx), canonical(ammo, disc, "disc", ctx));
+  assert.notEqual(
+    canonical(ammo, site, "site", ctx),
+    canonical(ammo, [{ name: "Normal S", capacity: [6, 6, 9] }, disc[0]], "disc", ctx),
+  );
+
+  const rapid = { field: "rapid_fire", kind: "joined-set" as const };
+  assert.equal(
+    canonical(rapid, "Pellet S Lv1|Pierce S Lv2 ", "site", ctx),
+    canonical(rapid, "Pierce S Lv2|Pellet S Lv1", "disc", ctx),
+  );
+  assert.equal(canonical(rapid, null, "site", ctx), canonical(rapid, "", "disc", ctx));
+  assert.equal(
+    toSite(rapid, "Normal S Lv1|Flaming S", { rapid_fire: "Normal S Lv1|Flaming" }, ctx),
+    "Normal S Lv1|Flaming S",
+  );
+  // An agreeing list is still written in the disc's order and spelling.
+  assert.equal(
+    toSite(rapid, "Pierce S Lv2|Pellet S Lv1", { rapid_fire: "Pellet S Lv1|Pierce S Lv2 " }, ctx),
+    "Pierce S Lv2|Pellet S Lv1",
+  );
+});
+
+test("mergeCategory takes elements in bow and melee files alike", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "mhfu-extract-elements-"));
+  try {
+    const data = path.join(root, "data");
+    const extracted = path.join(root, "extracted");
+    for (const dir of [data, extracted])
+      await mkdir(path.join(dir, "weapons"), { recursive: true });
+    // Real enum IDs: WepBMID 1 "Carbalite Sword", WepGunID 1 "Shooter's Barrel".
+    await writeFile(
+      path.join(data, "equipment-ids.json"),
+      JSON.stringify({
+        ...equipmentIds,
+        melee: [null, { name: "Carbalite Sword", type: "great-sword" }],
+        ranged: [null, { name: "Shooter's Barrel", type: "bow" }],
+      }),
+    );
+    await writeFile(path.join(data, "items.json"), JSON.stringify(items));
+    const write = (dir: string, file: string, item: object) =>
+      writeFile(path.join(dir, "weapons", file), JSON.stringify({ weapons: [item] }));
+    await write(data, "bow.json", { name: "Shooter's Barrel", type: "bow", elements: null });
+    await write(data, "great-sword.json", { name: "Carbalite Sword", elements: null });
+    const poisonAdd = [{ name: "Poison", attack: "Add" }];
+    await write(extracted, "bow.json", {
+      name: "Shooter's Barrel",
+      type: "bow",
+      elements: poisonAdd,
+    });
+    await write(extracted, "great-sword.json", {
+      name: "Carbalite Sword",
+      elements: [{ name: "Fire", attack: 100 }],
+    });
+
+    const inputs = await loadInputs(extracted, data, ["weapons"]);
+    const result = mergeCategory(
+      CATEGORIES.weapons,
+      inputs.extracted.get("weapons")!,
+      inputs.committed.get("weapons")!,
+      inputs.site,
+      inputs.spellings,
+      [],
+    );
+    assert.deepEqual(result.files.get("weapons/bow.json")![0]!.elements, poisonAdd);
+    assert.deepEqual(result.files.get("weapons/great-sword.json")![0]!.elements, [
+      { name: "Fire", attack: 100 },
+    ]);
+    assert.deepEqual(result.changes.map((c) => `${c.file} ${c.field}`).sort(), [
+      "weapons/bow.json elements",
+      "weapons/great-sword.json elements",
+    ]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
 });
 
 test("set fields that agree are still written in the disc's order", () => {

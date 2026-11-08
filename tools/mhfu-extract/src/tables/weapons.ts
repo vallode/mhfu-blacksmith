@@ -162,21 +162,16 @@ export function decodeShotCoat(value: number): ShotCoatFlags {
 /**
  * Bow's 6 named coating flags, mapped to their real bit positions within
  * the shared `WepGunValue.ShotCoatings` u32 — discovered (not guessed) by
- * correlating every real JP bow's raw `shotCoatings` value against its
- * committed `data/weapons/bow.json` `coatings` list (106 bows with
- * committed data; cross-validated byte-identical against the independent
- * EU EBOOT dump too, see `test/weapons.test.ts`). Bit 0 is never set on any
- * real bow (always reserved/unused for this sub-type); bits 1 and 6 matched
- * *every single* real bow with zero exceptions (power: 106/106, paint:
- * 106/106 — every bow always has paint). Bits 2-5 matched 102-99/106 real
- * bows; the ~4-7 remaining disagreements per flag cluster on just 3 bow
- * families (Dragonhead Harp, Blue Blade Bow/Showroom Model, Ukanlos Bow) —
- * consistent with those specific committed entries being stale/incomplete
- * wiki data rather than a decode bug, since the same raw byte
- * value decodes correctly for every *other* bow sharing it. The remaining
- * 26 bits (7-31) are the bowgun ammo-flag territory `decodeShotCoat()`
- * covers — always 0 on every real bow, confirming bows simply don't use
- * that part of the shared field.
+ * correlating every real bow's raw `shotCoatings` value against its
+ * committed `data/weapons/bow.json` `coatings` list. On the EU disc this
+ * layout is the only one of the 24 orderings of bits 2-5 that matches 98
+ * of 106 bows (vallode/mhfu-blacksmith#32); the next best matches 79. The
+ * 8 left are whole bow families the site lists differently (Blue Blade
+ * Bow/Showroom Model, Dragonhead Harp, Ancient Dragonwood Bow, Ukanlos
+ * Bow), all sharing one raw value within each family, so they are site
+ * errors. Bit 0 is never set on a bow; bits 1 (power) and 6 (paint) are
+ * set on every bow. Bits 7-9 are the coating bonuses (see
+ * `BOW_COATING_BONUS_BITS` in emit/gunner.ts) and bits 10-31 are never set.
  *
  * Declared here in `closerng, paralysis, poison, sleep, power, paint`
  * order — not bit order — because that's the dominant real ordering
