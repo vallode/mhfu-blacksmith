@@ -1,7 +1,6 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
-import styles from "./WeaponTreeRow.module.scss";
 
 /**
  * Persistent-scroll wrapper for the weapon/armor/decoration tree sidebar.
@@ -114,7 +113,12 @@ export default function TreeScroll({
   }, [treeKey, activeSlug]);
 
   return (
-    <div className={styles["weapon-tree"]} ref={ref}>
+    // Every tree list is unstyled and sizes to its content, so deep branches
+    // scroll horizontally instead of being clipped; nested branches indent.
+    <div
+      className="h-full pl-[13px] [&_li_ul]:pl-[26px] [&_ul]:m-0 [&_ul]:w-max [&_ul]:min-w-full [&_ul]:list-none [&_ul]:p-0"
+      ref={ref}
+    >
       {children}
     </div>
   );

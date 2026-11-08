@@ -22,13 +22,28 @@ export interface SaveData {
   zenny?: number;
   /** Missing on saves stored before the equipment box was read. */
   equipment?: EquipSlot[];
+  /** Missing on saves stored before these were kept. */
+  sex?: string;
+  /** Total play time in seconds. */
+  playTime?: number;
+  /** 0-based character slot in the save file. Missing on saves stored before it was kept. */
+  slot?: number;
   savedAt: number;
 }
 
 /** The parts of a parsed hunter that get stored. */
 export function saveFromCharacter(
-  character: { name: string; zenny: number; itemChest: ItemSlot[]; itemPouch: ItemSlot[]; equipBox: EquipSlot[] },
-  region: string
+  character: {
+    name: string;
+    sex?: string;
+    zenny: number;
+    playTime?: number;
+    itemChest: ItemSlot[];
+    itemPouch: ItemSlot[];
+    equipBox: EquipSlot[];
+  },
+  region: string,
+  slot?: number
 ): Omit<SaveData, "savedAt"> {
   return {
     name: character.name,
@@ -36,6 +51,9 @@ export function saveFromCharacter(
     items: [...character.itemChest, ...character.itemPouch],
     zenny: character.zenny,
     equipment: character.equipBox,
+    sex: character.sex,
+    playTime: character.playTime,
+    slot,
   };
 }
 

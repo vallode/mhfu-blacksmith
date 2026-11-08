@@ -1,9 +1,8 @@
 import Link from "next/link";
+import BorderRule from "@/components/BorderRule";
 import type { Metadata } from "next";
 import OfflineSettings from "@/components/OfflineSettings";
 import SaveSyncSettings from "@/components/SaveSyncSettings";
-import styles from "@/styles/options.module.scss";
-import BorderRule from "@/components/BorderRule";
 
 export const metadata: Metadata = {
   title: "Options — MHFU Blacksmith",
@@ -11,14 +10,14 @@ export const metadata: Metadata = {
 
 export default function OptionsPage() {
   return (
-    <div className={styles.page}>
+    <div className="flex flex-col items-center px-[1.3rem] pb-[4rem]">
       <Link className="blacksmith__title" href="/">
         <img src="/images/blacksmith.png" alt="Blacksmith" />
       </Link>
 
       <BorderRule />
 
-      <div className={styles.content}>
+      <div className="flex w-full max-w-[72rem] flex-col gap-[1.3rem]">
         <SaveSyncSettings />
         <OfflineSettings />
       </div>

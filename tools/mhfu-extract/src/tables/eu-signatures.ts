@@ -232,23 +232,20 @@ export const EU_TABLE_SIGNATURES: Readonly<Record<string, TableSignature>> = {
  * signature-resolvable). Each is the slot's first 2 `ArmorValue` entries (80
  * bytes, ARMOR_ENTRY_SIZE=40), found by dereferencing JP's real
  * `armorValuePointers` table once (via `readPointer()` +
- * `JP_BASE_ADDRESS`) to get each slot's known-good JP array address, then
+ * `JP_BASE_ADDRESS`) to get each array's known-good JP address, then
  * applying the same signature process as every other table above. All 5
  * real EU offsets found a +0x2b04 shift, the same bucket as most other
- * tables; every slot's *entire* real array content (17440/16800/16440/
- * 16360/16800 bytes for head/chest/arm/waist/leg respectively) was diffed
- * byte-for-byte identical between JP and the resolved EU offset.
+ * tables; every array's entire content was diffed byte-for-byte identical
+ * between JP and the resolved EU offset.
+ *
+ * Keyed by the slot each array really holds, which is not the slot
+ * eboot.hexpat's pointer order labels it with (see `ARMOR_POINTER_INDEX` in
+ * `tables/armor.ts`). These were first recorded under the hexpat labels,
+ * one slot off: the bytes below are unchanged, only the keys moved.
  */
 export const ARMOR_SLOT_TABLE_NAMES_EU: Readonly<Record<string, TableSignature>> = {
   armorValuesHead: {
-    // Real EU offset 0x171de8, JP array base 0x16f2e4 (+0x2b04).
-    signature: Buffer.from(
-      "000000000f000000000000000000000000000000000000000000000000000000000000000000000006001a000f0000002c0100000202000000000100060b0e0e13131c0002003403130229023d020000",
-      "hex"
-    ),
-    signatureOffset: 0,
-  },
-  armorValuesChest: {
+    // helmets, 436 entries; entry 1 is Leather Helm.
     // Real EU offset 0x161808, JP array base 0x15ed04 (+0x2b04).
     signature: Buffer.from(
       "000000000f00000000000000000000000000000000000000000000000000000000000000000000000f0011000f0000002c0100000202000000000100060b0e0e13131c0002003402130229013c0244fe",
@@ -256,7 +253,8 @@ export const ARMOR_SLOT_TABLE_NAMES_EU: Readonly<Record<string, TableSignature>>
     ),
     signatureOffset: 0,
   },
-  armorValuesArm: {
+  armorValuesChest: {
+    // chest plates, 420 entries; entry 1 is Leather Armor.
     // Real EU offset 0x165c28, JP array base 0x163124 (+0x2b04).
     signature: Buffer.from(
       "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060024000f0000002c0100000202000000000000060b0e0e13131c0002003402130229023b0244ff",
@@ -264,7 +262,8 @@ export const ARMOR_SLOT_TABLE_NAMES_EU: Readonly<Record<string, TableSignature>>
     ),
     signatureOffset: 0,
   },
-  armorValuesWaist: {
+  armorValuesArm: {
+    // gauntlets, 411 entries; entry 1 is Leather Vambraces.
     // Real EU offset 0x169dc8, JP array base 0x1672c4 (+0x2b04).
     signature: Buffer.from(
       "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060023000f0000002c0100000202000000000100060b0e0e13131c0002003403130229023d020000",
@@ -272,10 +271,20 @@ export const ARMOR_SLOT_TABLE_NAMES_EU: Readonly<Record<string, TableSignature>>
     ),
     signatureOffset: 0,
   },
-  armorValuesLeg: {
+  armorValuesWaist: {
+    // waist, 409 entries; entry 1 is Leather Belt.
     // Real EU offset 0x16de00, JP array base 0x16b2fc (+0x2b04).
     signature: Buffer.from(
       "000000000f0000000000000000000000000000000000000000000000000000000000000000000000060019000f0000002c0100000202000000000000060b0e0e13131c0003003403130229013b0344fe",
+      "hex"
+    ),
+    signatureOffset: 0,
+  },
+  armorValuesLeg: {
+    // leggings, 420 entries; entry 1 is Green Pants.
+    // Real EU offset 0x171de8, JP array base 0x16f2e4 (+0x2b04).
+    signature: Buffer.from(
+      "000000000f000000000000000000000000000000000000000000000000000000000000000000000006001a000f0000002c0100000202000000000100060b0e0e13131c0002003403130229023d020000",
       "hex"
     ),
     signatureOffset: 0,

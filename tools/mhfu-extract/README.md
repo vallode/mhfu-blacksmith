@@ -161,7 +161,9 @@ Open:
   all 551 quest files are found at their real indices; not yet re-run
   against a real EU EBOOT.
 - `diff` compares stats, not text: names come from the English
-  `mhp2g-patterns` enums for every region.
+  `mhp2g-patterns` enums for every region. Committed skill names are
+  rewritten to the extractor's spelling before comparing (see "Overlay
+  data").
 
 ### EBOOT decryption
 
@@ -318,10 +320,9 @@ file paths:
   with a page get a model whose `modelToWeaponType` matches the page's type,
   and renders match the site's weapon images.
 - **Armor** needs `eboot.bin` too: each armor entry holds a male and a female
-  model ID into `player/{m,f}/<folder>/`. See `src/tables/armor-models.ts`:
-  the `ArmorValuePTR` arrays hold the *next* slot's armor compared with the
-  labels in `src/tables/armor.ts` (helmets are in the array labeled
-  "chest", and so on), confirmed by both stats and model-folder ranges.
+  model ID into `player/{m,f}/<folder>/`, read from the same per-slot
+  arrays as `src/tables/armor.ts` (see `src/tables/armor-models.ts`). Each
+  slot's highest model IDs are exactly the last files in its folder.
 
 Each run replaces the categories it could export and keeps the rest of the
 previous manifest, so a run without `eboot.bin` keeps weapons and armor.
@@ -356,16 +357,6 @@ derivation notes for specifics):
 Known gaps and approximations, tracked in
 [#38](https://github.com/vallode/mhfu-blacksmith/issues/38):
 
-- **Armor slots are rotated**: `src/tables/armor.ts` labels the five
-  `ArmorValuePTR` arrays head/chest/arm/waist/leg, but each holds the next
-  slot's armor (helmets are in the "chest" array, legs in "head"), with the
-  counts rotated too. Found while mapping armor models; see
-  `src/tables/armor-models.ts`. `emit/armor.ts` hasn't been corrected yet,
-  which likely explains the next item.
-- **Armor name alignment**: the stat array and the name list drift apart.
-  `src/overlay/armor-index-corrections.json` fixes 68–73% of entries per slot;
-  the rest fall back to raw position ([#30](https://github.com/vallode/mhfu-blacksmith/issues/30)). A handful of tail
-  `headArmor` entries with corrupt slot counts (>3) are skipped.
 - **`sex`/`hunter_type`/`hr`/`elder`** armor fields are omitted: no raw field
   correlates with the first two, and the last two aren't in `ArmorValue`.
   All four are optional in the schema.
@@ -432,6 +423,14 @@ all. Currently: `materials.json` (crafting-material `type`/`color`, e.g.
 e.g. "Attack Jewel" -> "Attack up"), both generated once from the committed
 `data/` files (see git history) and consumed by `src/emit/*.ts`.
 
+`skill-name-aliases.json` is the one overlay that goes the other way: it
+maps the committed site's legacy skill spellings (`"Defence"`, `"Load"`,
+`"Fast Chrge"`, ...) to the extractor's `SkillID` names. Only `diff` uses
+it, so the same skill under a different spelling isn't reported as a
+mismatch. `extract` output is unchanged, because the extractor's names are
+the canonical ones and `data/` is meant to be rebuilt from the disc. See
+the module doc comment for how each entry was chosen.
+
 Monster HP/attack/defense multipliers, flavor text and category grouping
 will need the same treatment once monster output exists ([#35](https://github.com/vallode/mhfu-blacksmith/issues/35)).
 English quest board text is another candidate ([#36](https://github.com/vallode/mhfu-blacksmith/issues/36)).
@@ -446,7 +445,9 @@ Tests exercise the binary readers, cipher, EBOOT decryption strategy chain,
 struct decoders, and the `emit/` layer against small hand-built fixture
 buffers (no game files needed/included) — the `emit/*.test.ts` fixtures in
 particular reproduce exact real byte values from a decrypted JP EBOOT
-(e.g. the real "Carbalite Sword"/"Leather Helm"/"Paralysis Jewel" entries),
+(e.g. the real "Carbalite Sword"/"Leather Helm"/"Paralysis Jewel" entries;
+`test/emit-armor.test.ts` checks the first real piece of every armor slot
+against `data/armor/` through both the JP and EU paths),
 so they double as a regression check that those disc values keep producing
 the same output. Every table reader's byte offsets have additionally been
 validated by hand against a real decrypted JP EBOOT (not part of this repo,
@@ -454,6 +455,16 @@ not automated in CI) — see git history for the specific findings, notably:
 
 - `ArmorValuePTR` is five *single* pointers to per-slot arrays, not one
   pointer per armor piece as the ImHex syntax might suggest at a glance.
+- Those five pointers are in leg, head, chest, arm, waist order, not the
+  head, chest, arm, waist, leg that `eboot.hexpat` declares: each one holds
+  the next slot's armor (`ARMOR_POINTER_INDEX` in `src/tables/armor.ts`).
+  The arrays sit back to back in true slot order, 436/420/411/409 entries
+  apart, and entry 1 of each is that slot's starter piece with the site's
+  exact stats. Reading them in the declared order was the "armor name
+  alignment" drift of [#30](https://github.com/vallode/mhfu-blacksmith/issues/30): a helmet name on a leggings stat block,
+  hidden by set pieces sharing defense, resistances and price. With the
+  right order, plain index naming is correct and the fingerprint-derived
+  armor index/slots correction overlays are gone.
 - `EquipmentCreateTable`/`EquipUpgradeTable`'s section counts (transcribed
   from `eboot.hexpat`) are correct: the computed end-of-table byte offset for
   each matches the real gap to the next declared table's address exactly.
