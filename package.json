@@ -7,6 +7,8 @@
     "build": "tsx scripts/generate-data.ts && tsx scripts/generate-search-index.ts && tsx scripts/generate-weapon-data.ts && next build",
     "start": "next start",
     "lint": "eslint src",
+    "format": "prettier --write src",
+    "format:check": "prettier --check src",
     "generate-data": "tsx scripts/generate-data.ts",
     "generate-search": "tsx scripts/generate-search-index.ts",
     "generate-weapons": "tsx scripts/generate-weapon-data.ts",
@@ -25,7 +27,6 @@
     "next": "^15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "sass": "^1.100.0",
     "tailwind-merge": "^3.7.0",
     "tsx": "^4.22.4"
   },
@@ -38,6 +39,8 @@
     "eslint": "^9",
     "eslint-config-next": "^15.3.3",
     "postcss": "^8.5.25",
+    "prettier": "^3.9.10",
+    "prettier-plugin-tailwindcss": "^0.8.1",
     "tailwindcss": "^4.3.3",
     "typescript": "^5"
   },
