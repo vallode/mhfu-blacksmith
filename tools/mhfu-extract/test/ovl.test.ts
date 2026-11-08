@@ -1,6 +1,28 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { OVL_HEADER_SIZE, OvlFormatError, parseOvl } from "../src/container/ovl.js";
+import {
+  GAME_TASK_JP,
+  HITZONE_POINTERS_OFFSET,
+  locateMonsterChunks,
+  MONSTER_CHUNK_SIZE,
+  readMonsterChunks,
+  TOLERANCE_OFFSET,
+} from "../src/monsters/hitzones.js";
+import { monsterAddressSpace } from "../src/monsters/overlays.js";
+import {
+  CAP_BREAK_ENTRY_SIZE,
+  CAPTURE_TYPE,
+  CARVE_INDEX_COUNT,
+  CARVE_INDEX_SIZE,
+  GAME_SUB_JP,
+  isCompleteList,
+  locateCapBreakTables,
+  locateCarveTables,
+  readCapBreakTables,
+  readCarveTables,
+  readRewardList,
+} from "../src/monsters/rewards.js";
 
 const LOAD_BASE = 0x09a5a580;
 
@@ -135,4 +157,193 @@ test("known real reward bytes: Giaprey (monster ID 35) low-rank body carve table
     { chance: 30, itemId: 342 }, // Giaprey Hide
     { chance: 18, itemId: 281 }, // Sm Monster Bone
   ]);
+});
+
+// --- Monster tables (src/monsters/) -----------------------------------------
+//
+// Synthetic overlays laid out as the vendored hexpats describe, using the
+// real bytes above: Giaprey's carve list and Felyne's hitzone row. Each test
+// also places the tables at a shifted file offset, as EU tables can be.
+
+const GAME_SUB_LOAD = GAME_SUB_JP.loadBase;
+const GIAPREY_CARVE = Buffer.from("340054011e00560112001901ffff", "hex");
+const GIAPREY_VADDR = 0x09ccf658;
+const subOffset = (vaddr: number) => vaddr - GAME_SUB_LOAD + 0x80;
+
+/** game_sub.ovl with every monster's low- and high-rank body carves pointing at Giaprey's list, tables shifted by `shift` bytes. */
+function buildGameSub(shift = 0): Buffer {
+  const buf = buildOvl({
+    name: "game_sub.ovl",
+    loadBase: GAME_SUB_LOAD,
+    dataSize: subOffset(GAME_SUB_JP.capBreakIndex) + shift + 0x2000,
+  });
+  const listOffset = subOffset(GIAPREY_VADDR) + shift;
+  GIAPREY_CARVE.copy(buf, listOffset);
+  const listVaddr = GIAPREY_VADDR + shift;
+  // Pointer 5 -> Giaprey's list. All other indexes are 0xFFFF (none).
+  const pointers = subOffset(GAME_SUB_JP.carvePointers) + shift;
+  buf.writeUInt32LE(listVaddr, pointers + 5 * 4);
+  const index = subOffset(GAME_SUB_JP.carveIndex) + shift;
+  buf.fill(0xff, index, index + CARVE_INDEX_COUNT * CARVE_INDEX_SIZE);
+  for (let i = 0; i < CARVE_INDEX_COUNT; i++) {
+    buf.writeUInt16LE(5, index + i * CARVE_INDEX_SIZE + 2); // body, low
+    buf.writeUInt16LE(5, index + i * CARVE_INDEX_SIZE + 4); // body, high
+  }
+  // Cap/break: 60 capture entries whose low-rank index 3 -> one reward list.
+  const rewardOffset = subOffset(GAME_SUB_JP.capBreakPointers) + shift - 0x40;
+  const rewards = [
+    [45, 100, 1],
+    [35, 200, 1],
+    [20, 340, 2],
+  ];
+  rewards.forEach(([chance, item, amount], i) => {
+    buf.writeUInt16LE(chance!, rewardOffset + i * 6);
+    buf.writeUInt16LE(item!, rewardOffset + i * 6 + 2);
+    buf.writeUInt16LE(amount!, rewardOffset + i * 6 + 4);
+  });
+  buf.writeUInt16LE(0xffff, rewardOffset + rewards.length * 6);
+  const capPointers = subOffset(GAME_SUB_JP.capBreakPointers) + shift;
+  buf.writeUInt32LE(GAME_SUB_LOAD - 0x80 + rewardOffset, capPointers + 3 * 4);
+  const capIndex = subOffset(GAME_SUB_JP.capBreakIndex) + shift;
+  for (let i = 0; i < 60; i++) {
+    const at = capIndex + i * CAP_BREAK_ENTRY_SIZE;
+    buf.writeUInt8(77, at); // Giadrome
+    buf.writeUInt8(CAPTURE_TYPE, at + 1);
+    buf.fill(0xff, at + 2, at + CAP_BREAK_ENTRY_SIZE);
+    buf.writeUInt16LE(3, at + 4); // low rank
+  }
+  buf.writeUInt8(0xff, capIndex + 60 * CAP_BREAK_ENTRY_SIZE);
+  return buf;
+}
+
+for (const shift of [0, 0x2b04]) {
+  test(`carve and cap/break tables are located and read (shift 0x${shift.toString(16)})`, () => {
+    const ovl = parseOvl(buildGameSub(shift));
+    const carves = locateCarveTables(ovl);
+    assert.ok(carves);
+    assert.equal(carves.shift, shift);
+    const tables = readCarveTables(ovl, carves.pointers, carves.index);
+    assert.equal(tables.length, 89);
+    const giaprey = tables[34]!;
+    assert.equal(giaprey.emId, 35);
+    assert.deepEqual(giaprey.body.low?.entries, [
+      { chance: 52, itemId: 340 },
+      { chance: 30, itemId: 342 },
+      { chance: 18, itemId: 281 },
+    ]);
+    assert.equal(giaprey.body.low?.pointer, GIAPREY_VADDR + shift);
+    assert.equal(giaprey.tail.low, undefined);
+
+    const capBreak = locateCapBreakTables(ovl, { hint: carves.shift });
+    assert.ok(capBreak);
+    assert.equal(capBreak.shift, shift);
+    const caps = readCapBreakTables(ovl, capBreak.pointers, capBreak.index);
+    assert.equal(caps.length, 60);
+    assert.equal(caps[0]!.emId, 77);
+    assert.equal(caps[0]!.type, CAPTURE_TYPE);
+    assert.deepEqual(caps[0]!.ranks.low?.entries, [
+      { chance: 45, itemId: 100, amount: 1 },
+      { chance: 35, itemId: 200, amount: 1 },
+      { chance: 20, itemId: 340, amount: 2 },
+    ]);
+  });
+}
+
+test("readRewardList rejects lists that run on or hold impossible values", () => {
+  const ovl = parseOvl(
+    buildOvl({ name: "game_sub.ovl", loadBase: GAME_SUB_LOAD, dataSize: 0x400 }),
+  );
+  const at = OVL_HEADER_SIZE;
+  ovl.reader.buf.writeUInt16LE(150, at); // chance > 100
+  assert.equal(readRewardList(ovl, GAME_SUB_LOAD, false), null);
+  ovl.reader.buf.writeUInt16LE(0xffff, at);
+  assert.deepEqual(readRewardList(ovl, GAME_SUB_LOAD, false), []);
+  assert.equal(isCompleteList([]), false);
+  // A pointer outside the overlay (another file's address range).
+  assert.equal(readRewardList(ovl, 0x08900000, false), null);
+});
+
+const GAME_TASK_LOAD = GAME_TASK_JP.loadBase;
+const taskOffset = (vaddr: number) => vaddr - GAME_TASK_LOAD + 0x80;
+/** Felyne's row: part byte (assumed 1), then the real fixture bytes from cut to KO. */
+const FELYNE_ROW = Buffer.from("01787878646464640a64", "hex");
+const FELYNE_ROW_VADDR = 0x09bc0418;
+const HITZONE_TBL_VADDR = 0x09bc0000;
+
+/** game_task.ovl whose 90 chunks all point (via one HitzoneTbl) at Felyne's row; chunk array shifted by `shift`. */
+function buildGameTask(shift = 0): Buffer {
+  const buf = buildOvl({
+    name: "game_task.ovl",
+    loadBase: GAME_TASK_LOAD,
+    dataSize: Math.max(
+      taskOffset(GAME_TASK_JP.monsterChunks) + shift + 90 * MONSTER_CHUNK_SIZE,
+      taskOffset(FELYNE_ROW_VADDR) + 0x40,
+    ),
+  });
+  FELYNE_ROW.copy(buf, taskOffset(FELYNE_ROW_VADDR));
+  // A zero u16 after the row ends the list.
+  buf.writeUInt32LE(FELYNE_ROW_VADDR, taskOffset(HITZONE_TBL_VADDR));
+  const chunks = taskOffset(GAME_TASK_JP.monsterChunks) + shift;
+  for (let emId = 0; emId < 90; emId++) {
+    const base = chunks + emId * MONSTER_CHUNK_SIZE;
+    buf.writeFloatLE(1, base + 0x40);
+    buf.writeUInt32LE(HITZONE_TBL_VADDR, base + HITZONE_POINTERS_OFFSET);
+    // Paralysis initial / KO initial / poison increase, to pin the layout.
+    buf.writeUInt16LE(150, base + TOLERANCE_OFFSET);
+    buf.writeUInt16LE(100 + emId, base + TOLERANCE_OFFSET + 10);
+    buf.writeUInt16LE(75, base + TOLERANCE_OFFSET + 52);
+  }
+  return buf;
+}
+
+for (const shift of [0, 0x2f60]) {
+  test(`monster chunks are located and hitzones followed through HitzoneTbl (shift 0x${shift.toString(16)})`, () => {
+    const ovl = parseOvl(buildGameTask(shift));
+    const location = locateMonsterChunks(ovl);
+    assert.ok(location);
+    assert.equal(location.shift, shift);
+    const space = monsterAddressSpace({ gameTask: ovl, gameSub: ovl, em: new Map() });
+    const chunks = readMonsterChunks(ovl, location.offset, space);
+    assert.equal(chunks.length, 90);
+    const felyne = chunks[9]!;
+    assert.equal(felyne.hitzones.length, 1);
+    assert.equal(felyne.hitzones[0]!.rowsPointer, FELYNE_ROW_VADDR);
+    assert.deepEqual(felyne.hitzones[0]!.rows, [
+      {
+        part: 1,
+        values: {
+          cut: 120,
+          bash: 120,
+          shot: 120,
+          fire: 100,
+          water: 100,
+          ice: 100,
+          thunder: 100,
+          dragon: 10,
+          ko: 100,
+        },
+      },
+    ]);
+    assert.equal(felyne.tolerances.paralysis.initial, 150);
+    assert.equal(felyne.tolerances.ko.initial, 109);
+    assert.equal(felyne.tolerances.poison.increase, 75);
+  });
+}
+
+test("monsterAddressSpace prefers the monster's own emXX.ovl for a shared load slot", () => {
+  const task = parseOvl(buildOvl({ loadBase: GAME_TASK_LOAD }));
+  const slot = 0x09c80000;
+  const em01 = parseOvl(buildOvl({ name: "em01.ovl", loadBase: slot }));
+  const em11 = parseOvl(buildOvl({ name: "em11.ovl", loadBase: slot }));
+  const em = new Map([
+    [1, em01],
+    [11, em11],
+  ]);
+  const space = monsterAddressSpace({ gameTask: task, gameSub: task, em });
+  assert.equal(space(GAME_TASK_LOAD + 4, 1)?.file, "game_task.ovl");
+  assert.equal(space(slot + 4, 1)?.file, "em01.ovl");
+  assert.equal(space(slot + 4, 11)?.file, "em11.ovl");
+  // A monster with no em file of its own: two files map the address, so no answer.
+  assert.equal(space(slot + 4, 37), null);
+  assert.equal(space(0x08900000, 1), null);
 });
