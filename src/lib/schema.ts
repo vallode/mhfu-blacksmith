@@ -20,7 +20,9 @@ import type {
   WeaponTreeNode,
   Melody,
   MinRank,
+  MonsterDrop,
 } from "./types";
+import { splitDropQuantity } from "./monster-drops";
 
 // ---------------------------------------------------------------------------
 // Dictionaries (shared across all bundles, emitted as dictionaries.json)
@@ -364,10 +366,19 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
       const rankName = str(d, rankIdx);
       drops[rankName] = {};
       for (const [srcIdx, items] of sources) {
-        drops[rankName][str(d, srcIdx)] = items.map(([matId, chanceIdx]) => ({
-          name: d.material_ids[matId] ?? "",
-          chance: str(d, chanceIdx),
-        }));
+        drops[rankName][str(d, srcIdx)] = items.map(([matId, chanceIdx]) => {
+          // Drop names carry their quantity ("Plesioth Scale x2"); the icon
+          // comes from the plain material name used by recipes.
+          const [name, quantity] = splitDropQuantity(d.material_ids[matId] ?? "");
+          const [typeIdx, colorIdx] = d.materials[name] ?? [];
+          const type = typeIdx !== undefined ? d.types[typeIdx] : undefined;
+          const color = colorIdx !== undefined ? d.colors[colorIdx] : undefined;
+          const drop: MonsterDrop = { name, chance: str(d, chanceIdx) };
+          if (quantity !== undefined) drop.quantity = quantity;
+          if (type) drop.type = type;
+          if (color) drop.color = color;
+          return drop;
+        });
       }
     }
   }

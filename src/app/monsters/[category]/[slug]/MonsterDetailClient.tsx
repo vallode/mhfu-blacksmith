@@ -6,13 +6,14 @@ import Card from "@/components/Card";
 import { DetailBody, DetailCard, DetailRule } from "@/components/DetailPanel";
 import TreeScroll from "@/components/TreeScroll";
 import { cn } from "@/lib/cn";
-import { hitzoneTable } from "@/styles/tables";
+import { hitzoneBest, hitzoneTable, hitzoneZero } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster, useMonsterList } from "@/lib/client-data";
 import MonsterNav from "@/components/MonsterNav";
 import BorderRule from "@/components/BorderRule";
 import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
+import MonsterDrops from "@/components/MonsterDrops";
 import { useMonsterModel } from "@/lib/models";
 
 interface Props {
@@ -21,16 +22,18 @@ interface Props {
 }
 
 const HITZONE_COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
-const HITZONE_LABELS: Record<string, string> = {
-  cut: "Cut",
-  bash: "Bash",
-  shot: "Shot",
-  fir: "Fire",
-  wtr: "Water",
-  thn: "Thunder",
-  ice: "Ice",
-  drg: "Dragon",
-  ko: "KO",
+// Full label, and the game's abbreviation for phones, where nine columns
+// leave no room for "Thunder".
+const HITZONE_LABELS: Record<string, [full: string, short: string]> = {
+  cut: ["Cut", "Cut"],
+  bash: ["Bash", "Bsh"],
+  shot: ["Shot", "Sht"],
+  fir: ["Fire", "Fir"],
+  wtr: ["Water", "Wtr"],
+  thn: ["Thunder", "Thn"],
+  ice: ["Ice", "Ice"],
+  drg: ["Dragon", "Drg"],
+  ko: ["KO", "KO"],
 };
 
 // Some monsters have no art; keep the layout and hide the broken-image glyph.
@@ -66,6 +69,12 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   }
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
+  // The most effective part per column, to highlight it
+  const bestHitzone: Partial<Record<(typeof HITZONE_COLS)[number], number>> = {};
+  for (const col of HITZONE_COLS) {
+    const values = hitzoneEntries.map(([, v]) => Number(v[col])).filter((n) => n > 0);
+    if (values.length > 1) bestHitzone[col] = Math.max(...values);
+  }
 
   return (
     <>
@@ -137,7 +146,10 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                   <tr>
                     <th>Part</th>
                     {HITZONE_COLS.map((col) => (
-                      <th key={col}>{HITZONE_LABELS[col]}</th>
+                      <th key={col}>
+                        <span className="mobile:hidden">{HITZONE_LABELS[col][0]}</span>
+                        <span className="hidden mobile:inline">{HITZONE_LABELS[col][1]}</span>
+                      </th>
                     ))}
                   </tr>
                 </thead>
@@ -145,37 +157,32 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                   {hitzoneEntries.map(([part, values]) => (
                     <tr key={part}>
                       <td>{part}</td>
-                      {HITZONE_COLS.map((col) => (
-                        <td key={col}>{values[col] ?? "—"}</td>
-                      ))}
+                      {HITZONE_COLS.map((col) => {
+                        const value = values[col];
+                        const n = Number(value);
+                        return (
+                          <td
+                            key={col}
+                            className={cn(
+                              value !== undefined && n === 0 && hitzoneZero,
+                              value !== undefined && n === bestHitzone[col] && hitzoneBest,
+                            )}
+                          >
+                            {value ?? "—"}
+                          </td>
+                        );
+                      })}
                     </tr>
                   ))}
                 </tbody>
               </table>
             )}
 
-            {monster.drops && (
+            {monster.drops && Object.keys(monster.drops).length > 0 && (
               <>
                 <DetailRule />
-                {Object.entries(monster.drops).map(([rankName, rankDrops]) => (
-                  <div key={rankName}>
-                    <Card>
-                      <p>
-                        <span>{rankName}</span>
-                      </p>
-                      {Object.entries(rankDrops).map(([source, items]) => (
-                        <div key={source}>
-                          <p>{source}</p>
-                          {items.map((drop, i) => (
-                            <p key={i}>
-                              {drop.name}: {drop.chance}
-                            </p>
-                          ))}
-                        </div>
-                      ))}
-                    </Card>
-                  </div>
-                ))}
+                {/* Keyed on the monster so the rank tab resets when navigating */}
+                <MonsterDrops key={slug} drops={monster.drops} />
               </>
             )}
           </DetailBody>

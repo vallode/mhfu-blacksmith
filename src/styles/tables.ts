@@ -21,10 +21,16 @@ export const statTable = [
  * nine columns are too tight for the game tracking on a phone.
  */
 export const hitzoneTable = [
-  "h-min w-full table-fixed border-collapse text-[1.4rem] tracking-normal",
-  "[&_tr_th]:text-center",
-  "[&_th:first-of-type]:w-auto [&_th:first-of-type]:text-left [&_th:first-of-type]:text-gold",
-  "[&_td]:relative [&_td]:pr-[0.8rem] [&_td]:text-right [&_td:first-of-type]:text-left",
-  // Column separators
-  "[&_td]:after:absolute [&_td]:after:top-1/2 [&_td]:after:right-px [&_td]:after:h-[60%] [&_td]:after:w-px [&_td]:after:-translate-y-1/2 [&_td]:after:bg-unavailable [&_td]:after:opacity-50",
+  "h-min w-full table-fixed border-collapse text-[1.4rem] tracking-normal tabular-nums",
+  "[&_th]:pr-[0.8rem] [&_th]:pb-[0.4rem] [&_th]:text-right [&_th]:font-normal [&_th]:text-warm",
+  // Part names ("Chest-Broken") fit on one line; on a phone the column is
+  // narrower and they wrap instead.
+  "[&_th:first-of-type]:w-cells-13 [&_th:first-of-type]:text-left [&_th:first-of-type]:text-gold mobile:[&_th:first-of-type]:w-cells-7",
+  "[&_td]:relative [&_td]:py-[0.2rem] [&_td]:pr-[0.8rem] [&_td]:text-right [&_td:first-of-type]:text-left [&_td:first-of-type]:whitespace-nowrap [&_td:first-of-type]:capitalize mobile:[&_td:first-of-type]:whitespace-normal",
+  // Column separators (none after the last column)
+  "[&_td:not(:last-of-type)]:after:absolute [&_td:not(:last-of-type)]:after:top-1/2 [&_td:not(:last-of-type)]:after:right-px [&_td:not(:last-of-type)]:after:h-[60%] [&_td:not(:last-of-type)]:after:w-px [&_td:not(:last-of-type)]:after:-translate-y-1/2 [&_td:not(:last-of-type)]:after:bg-unavailable [&_td:not(:last-of-type)]:after:opacity-50",
 ].join(" ");
+
+/** Hitzone value: the highest in its column is highlighted; zero is dimmed. */
+export const hitzoneBest = "text-positive";
+export const hitzoneZero = "text-unavailable";
