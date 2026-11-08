@@ -1,16 +1,12 @@
 "use client";
 
-import Link from "next/link";
 import { useState } from "react";
 import Card from "@/components/Card";
 import { DetailBody, DetailCard, DetailRule } from "@/components/DetailPanel";
-import TreeScroll from "@/components/TreeScroll";
 import { cn } from "@/lib/cn";
 import { hitzoneBest, hitzoneTable, hitzoneZero } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
-import { useMonster, useMonsterList, useQuests } from "@/lib/client-data";
-import MonsterNav from "@/components/MonsterNav";
-import BorderRule from "@/components/BorderRule";
+import { useMonster, useQuests } from "@/lib/client-data";
 import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
@@ -51,30 +47,16 @@ const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
 
 export default function MonsterDetailClient({ category, slug }: Props) {
   const { item: monster, loading } = useMonster(category, slug);
-  const { items: siblings } = useMonsterList(category);
   const modelUrl = useMonsterModel(monster?.name);
   const { quests } = useQuests();
   // Open state is tied to the model, so navigating to another monster closes it.
   const [openModel, setOpenModel] = useState<string | null>(null);
   const modelOpen = modelUrl !== null && openModel === modelUrl;
 
-  if (loading) {
-    return (
-      <>
-        <MonsterNav activeCategory={category} />
-        <BorderRule />
-        <Loading className="p-[2rem]">Loading…</Loading>
-      </>
-    );
-  }
-  if (!monster) {
-    return (
-      <>
-        <MonsterNav activeCategory={category} />
-        <BorderRule />
-        <p style={{ padding: "2rem" }}>Not found.</p>
-      </>
-    );
+  // The nav and the list of monsters on the left come from the monsters
+  // layout (MonsterShell), which stays mounted; this is only the detail panel.
+  if (loading || !monster) {
+    return <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>;
   }
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
@@ -146,93 +128,64 @@ export default function MonsterDetailClient({ category, slug }: Props) {
 
   return (
     <>
-      <MonsterNav activeCategory={category} />
-      <BorderRule />
-
-      <div className="split-page">
-        {/* Monsters of the same type, as navigation */}
-        <Card variant="weapon-tree">
-          <TreeScroll treeKey={`monsters-${category}`} activeSlug={slug}>
-            {siblings?.map((m) => (
-              <Link
-                key={m.slug}
-                id={m.slug}
-                href={`/monsters/${category}/${m.slug}/`}
-                aria-current={m.slug === slug ? "page" : undefined}
-                className={cn("list-row", m.slug === slug && "bg-white/10")}
-              >
-                <img
-                  className="h-[32px] w-[32px] pixelated"
-                  src={`/images/monsters/${m.slug}-favicon.png`}
-                  alt=""
-                  decoding="sync"
-                  onError={hideBroken}
+      {/* Detail panel */}
+      <DetailCard>
+        {/* Name, habitats and description left of the portrait scroll (stacked on phones) */}
+        <div className="flex flex-row items-start gap-4 mobile:flex-col-reverse mobile:items-stretch">
+          <div className="flex min-w-0 flex-1 flex-col gap-2 text-[2.2rem] text-gold">
+            <div className="flex items-center">
+              <p className="leading-[1.25]">{monster.name}</p>
+              {modelUrl && (
+                <ModelButton
+                  open={modelOpen}
+                  onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
+                  className="ml-[0.4rem]"
                 />
-                <p>{m.name}</p>
-              </Link>
-            ))}
-          </TreeScroll>
-        </Card>
-
-        {/* Detail panel */}
-        <DetailCard>
-          {/* Name, habitats and description left of the portrait scroll (stacked on phones) */}
-          <div className="flex flex-row items-start gap-4 mobile:flex-col-reverse mobile:items-stretch">
-            <div className="flex min-w-0 flex-1 flex-col gap-2 text-[2.2rem] text-gold">
-              <div className="flex items-center">
-                <p className="leading-[1.25]">{monster.name}</p>
-                {modelUrl && (
-                  <ModelButton
-                    open={modelOpen}
-                    onClick={() => setOpenModel(modelOpen ? null : modelUrl)}
-                    className="ml-[0.4rem]"
-                  />
-                )}
-              </div>
-              {monster.habitats && <p className="leading-[1.25]">{monster.habitats.join(", ")}</p>}
-              {monster.description && (
-                <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
-              )}
-              {monster.sizes && (
-                <p className="text-[1.6rem] text-stat">
-                  Size:{" "}
-                  <span className="text-white tabular-nums">
-                    {formatSize(monster.sizes.min)}–{formatSize(monster.sizes.max)} cm
-                  </span>
-                </p>
-              )}
-              {monster.base_hp !== undefined && (
-                <p className="text-[1.6rem] text-stat">
-                  Base HP:{" "}
-                  <span className="text-white tabular-nums">
-                    {monster.base_hp.toLocaleString("en-US")}
-                  </span>
-                </p>
               )}
             </div>
-            <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">
-              <img
-                className="h-[9rem] w-[9rem] object-contain pixelated"
-                src={`/images/monsters/${slug}.png`}
-                alt={monster.name}
-                decoding="sync"
-                onError={hideBroken}
-              />
-            </div>
+            {monster.habitats && <p className="leading-[1.25]">{monster.habitats.join(", ")}</p>}
+            {monster.description && (
+              <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
+            )}
+            {monster.sizes && (
+              <p className="text-[1.6rem] text-stat">
+                Size:{" "}
+                <span className="text-white tabular-nums">
+                  {formatSize(monster.sizes.min)}–{formatSize(monster.sizes.max)} cm
+                </span>
+              </p>
+            )}
+            {monster.base_hp !== undefined && (
+              <p className="text-[1.6rem] text-stat">
+                Base HP:{" "}
+                <span className="text-white tabular-nums">
+                  {monster.base_hp.toLocaleString("en-US")}
+                </span>
+              </p>
+            )}
           </div>
+          <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">
+            <img
+              className="h-[9rem] w-[9rem] object-contain pixelated"
+              src={`/images/monsters/${slug}.png`}
+              alt={monster.name}
+              decoding="sync"
+              onError={hideBroken}
+            />
+          </div>
+        </div>
 
-          <DetailBody>
-            <DetailRule />
-            {/* Keyed on the monster so the selected tab resets when navigating */}
-            {tabs.length > 0 && <Tabs key={slug} label={`${monster.name} data`} tabs={tabs} />}
-          </DetailBody>
-        </DetailCard>
-        {modelOpen && (
-          <ModelPopover title={monster.name} onClose={() => setOpenModel(null)}>
-            <ModelViewer src={modelUrl} label={monster.name} />
-          </ModelPopover>
-        )}
-      </div>
+        <DetailBody>
+          <DetailRule />
+          {/* Keyed on the monster so the selected tab resets when navigating */}
+          {tabs.length > 0 && <Tabs key={slug} label={`${monster.name} data`} tabs={tabs} />}
+        </DetailBody>
+      </DetailCard>
+      {modelOpen && (
+        <ModelPopover title={monster.name} onClose={() => setOpenModel(null)}>
+          <ModelViewer src={modelUrl} label={monster.name} />
+        </ModelPopover>
+      )}
     </>
   );
 }

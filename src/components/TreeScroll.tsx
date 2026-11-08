@@ -76,8 +76,9 @@ export default function TreeScroll({
     let restored = false;
     const restore = () => {
       if (restored) return;
-      // No content yet — wait for it (empty tree renders zero rows).
-      if (!el.querySelector("li")) return;
+      // No content yet — wait for it (empty tree renders zero rows). Tree
+      // rows are <li>s; flat lists (the bestiary sidebar) are bare links.
+      if (!el.querySelector("li, a")) return;
       restored = true;
 
       const saved = sessionStorage.getItem(`tree-scroll:${treeKey}`);
@@ -87,6 +88,10 @@ export default function TreeScroll({
         // First visit to this tree: bring the active item into view.
         const active = el.querySelector<HTMLElement>(`#${CSS.escape(activeSlug)}`);
         active?.scrollIntoView({ block: "center" });
+        // Remember where that left the list, so moving to another item in a
+        // list that stays mounted (the bestiary sidebar) keeps it still
+        // instead of centring the new item.
+        onScroll();
       }
       // Reveal in the same frame the scroll is applied — no jump.
       reveal();
