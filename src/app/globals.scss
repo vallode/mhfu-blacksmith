@@ -371,6 +371,14 @@ img {
   }
 }
 
+// With the hunter filter bar showing (WeaponTreePanel), let its arrows out
+// past the tree card; `min-*: 0` keeps the flex sizing overflow: hidden gave.
+.split-page:has(> [data-tree-panel] [data-filter-bar]) {
+  min-height: 0;
+  min-width: 0;
+  overflow: visible;
+}
+
 // ─── View Transitions ─────────────────────────────────────────────────────────
 
 @media (prefers-reduced-motion: no-preference) {
