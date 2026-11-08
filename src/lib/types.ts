@@ -60,7 +60,8 @@ export interface Weapon {
   reload?: string | null;
   create_cost?: number | null;
   improve_cost?: number | null;
-  improve_from?: string[] | null;
+  /** A single source is a bare string; several are a list. */
+  improve_from?: string | string[] | null;
   improve_to?: string[] | null;
   create_mats?: Material[] | null;
   improve_mats?: Material[] | null;
