@@ -75,7 +75,7 @@ test("readRewards decodes RewardTBL entries and their nested RewardItem lists", 
   const { buf, reader } = fixtureReader(64);
   const header = { rewardsPtr: 16 } as ReturnType<typeof readQuestHeader>;
 
-  // RewardTBL[0]: unkn1/unkn2 (unused by the reader) + itemsPtr -> 32.
+  // RewardTBL[0]: unkn1/unkn2 (kept raw) + itemsPtr -> 32.
   buf.writeUInt16LE(32768, 16);
   buf.writeUInt16LE(1280, 18);
   buf.writeUInt32LE(32, 20);
@@ -92,6 +92,9 @@ test("readRewards decodes RewardTBL entries and their nested RewardItem lists", 
 
   const rewards = readRewards(reader, header);
   assert.equal(rewards.length, 1);
+  assert.equal(rewards[0]!.unkn1, 32768);
+  assert.equal(rewards[0]!.unkn2, 1280);
+  assert.equal(rewards[0]!.itemsPtr, 32);
   assert.deepEqual(rewards[0]!.items, [
     { chance: 1, itemId: 345, amount: 1 },
     { chance: 25, itemId: 342, amount: 1 },

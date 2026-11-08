@@ -38,6 +38,9 @@ const GIADROME_HUNT: ParsedQuest = {
   ],
   rewards: [
     {
+      unkn1: 0x8000,
+      unkn2: 0x0500,
+      itemsPtr: 2568,
       items: [
         { chance: 1, itemId: 345, amount: 1 },
         { chance: 25, itemId: 342, amount: 1 }, // Giaprey Hide
