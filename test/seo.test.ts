@@ -60,32 +60,14 @@ describe("weaponDescription", () => {
     improve_from: "Odyssey Blade",
   } as Weapon;
 
-  test("puts stats first, then the recipe one material per line", () => {
+  test("lists the stats and sharpness, without the recipe", () => {
     assert.equal(
       weaponDescription(weapon),
       [
         "Rarity 9 Sword and Shield",
         "Attack 308 · ⚡ Thunder 300 · Affinity −10% · Slots ○○—",
         "🟥🟥🟧🟧🟨🟨🟨🟩🟩🟩🟩🟦⬛⬛⬛ Sharpness",
-        "",
-        "Create · 90,000z",
-        "Lightning Sac ×4",
-        "Kirin Hide+ ×3",
-        "Or upgrade from Odyssey Blade",
       ].join("\n"),
-    );
-  });
-
-  test("shows the upgrade recipe when the weapon can't be made directly", () => {
-    const upgraded = {
-      ...weapon,
-      create_mats: null,
-      improve_cost: 16500,
-      improve_mats: [{ name: "Firecell Stone", amount: 2 }],
-    } as Weapon;
-    assert.match(
-      weaponDescription(upgraded),
-      /\n\nUpgrade from Odyssey Blade · 16,500z\nFirecell Stone ×2$/,
     );
   });
 });

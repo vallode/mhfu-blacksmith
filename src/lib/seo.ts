@@ -2,7 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Metadata, Viewport } from "next";
 import { rankName, type GuildRank } from "./min-rank";
-import type { ArmorPiece, Decoration, Material, Monster, Weapon } from "./types";
+import type { ArmorPiece, Decoration, Monster, Weapon } from "./types";
 
 export const SITE_NAME = "MHFU Blacksmith";
 export const SITE_DESCRIPTION =
@@ -76,19 +76,6 @@ export const titleCase = (s: string): string =>
 export const rankLabel = (rank: string | undefined): string =>
   rank ? rankName(rank as GuildRank) : "";
 
-const zenny = (n: number | string | null | undefined): string | null =>
-  n === null || n === undefined || n === "" ? null : `${Number(n).toLocaleString("en-US")}z`;
-
-/**
- * A recipe as a heading and one material per line, like the game's recipe
- * screen: "Create · 1,150z\nDosbiscus ×1\n…". Empty when there are no materials.
- */
-function recipe(label: string, cost: unknown, mats: Material[] | null | undefined): string {
-  if (!mats?.length) return "";
-  const z = zenny(cost as number | null);
-  return lines(`${label}${z ? ` · ${z}` : ""}`, ...mats.map((m) => `${m.name} ×${m.amount}`));
-}
-
 const signed = (n: number | string): string => {
   const v = Number(n);
   return v > 0 ? `+${v}` : `${v}`.replace("-", "−");
@@ -97,10 +84,6 @@ const signed = (n: number | string): string => {
 /** Newline-separated lines, skipping empty ones. */
 const lines = (...parts: (string | number | false | null | undefined)[]): string =>
   parts.filter((p) => p).join("\n");
-
-/** Blocks of lines with a blank line between them, skipping empty ones. */
-const blocks = (...parts: (string | false | null | undefined)[]): string =>
-  parts.filter((p) => p).join("\n\n");
 
 /** Element and status icons; embeds show plain text, so these stand in for the game's. */
 const ELEMENT_EMOJI: Record<string, string> = {
@@ -195,20 +178,11 @@ export function weaponDescription(w: Weapon): string {
     `Slots ${slotGlyphs(w.slots)}`,
   ].filter(Boolean);
 
-  const from = Array.isArray(w.improve_from) ? w.improve_from.join(" / ") : w.improve_from;
-  const upgrade = from ? `Upgrade from ${from}` : "Upgrade";
-
-  return blocks(
-    lines(
-      `${w.rarity ? `Rarity ${w.rarity} ` : ""}${titleCase(w.type)}`,
-      stats.join(" · "),
-      w.sharpness && `${sharpnessEmoji(w.sharpness)} Sharpness`,
-      w.sharpness_plus && `${sharpnessEmoji(w.sharpness_plus)} Sharpness +1`,
-    ),
-    // Weapons that can be both made and upgraded show the recipe and name the upgrade.
-    w.create_mats?.length
-      ? lines(recipe("Create", w.create_cost, w.create_mats), from && `Or upgrade from ${from}`)
-      : recipe(upgrade, w.improve_cost, w.improve_mats),
+  return lines(
+    `${w.rarity ? `Rarity ${w.rarity} ` : ""}${titleCase(w.type)}`,
+    stats.join(" · "),
+    w.sharpness && `${sharpnessEmoji(w.sharpness)} Sharpness`,
+    w.sharpness_plus && `${sharpnessEmoji(w.sharpness_plus)} Sharpness +1`,
   );
 }
 
@@ -236,15 +210,12 @@ export function armorDescription(p: ArmorPiece): string {
     .map(([n, v]) => `${ELEMENT_EMOJI[n]}${signed(v!)}`)
     .join(" ");
 
-  return blocks(
-    lines(
-      kind.join(" · "),
-      stats.join(" · "),
-      p.skills?.length &&
-        `Skills: ${p.skills.map((s) => `${s.name} ${signed(s.amount)}`).join(", ")}`,
-      res && `Resist ${res}`,
-    ),
-    recipe("Create", p.create_cost, p.create_mats),
+  return lines(
+    kind.join(" · "),
+    stats.join(" · "),
+    p.skills?.length &&
+      `Skills: ${p.skills.map((s) => `${s.name} ${signed(s.amount)}`).join(", ")}`,
+    res && `Resist ${res}`,
   );
 }
 
@@ -262,11 +233,8 @@ export function decorationDescription(d: Decoration): string {
     d.slots ? `Uses ${slotGlyphs(d.slots).replace(/—/g, "")}` : "",
   ].filter(Boolean);
 
-  return blocks(
-    lines(
-      kind.join(" · "),
-      d.skills?.length && `Skills: ${d.skills.map((s) => s.replace(/ -(\d)/, " −$1")).join(", ")}`,
-    ),
-    recipe("Create", d.create_cost, d.create_mats),
+  return lines(
+    kind.join(" · "),
+    d.skills?.length && `Skills: ${d.skills.map((s) => s.replace(/ -(\d)/, " −$1")).join(", ")}`,
   );
 }
