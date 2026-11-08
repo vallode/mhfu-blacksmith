@@ -7,8 +7,12 @@
  *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
  *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
+ *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
+ *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
  */
 import { fileURLToPath } from "node:url";
+import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.js";
+import { parseCategories, runCompare } from "./cli/compare.js";
 import { printDiffSummary, runDiff } from "./cli/diff.js";
 import { runExportSite } from "./cli/export-site.js";
 import { runExtract } from "./cli/extract.js";
@@ -16,7 +20,7 @@ import { runModels } from "./cli/models.js";
 import { runUnpack } from "./cli/unpack.js";
 
 /** Flags that take no value; present means `"true"`. */
-const BOOLEAN_FLAGS = new Set(["skip-eboot", "lossless"]);
+const BOOLEAN_FLAGS = new Set(["skip-eboot", "lossless", "dry-run"]);
 
 /** Minimal `--flag value` parser — no `=` form; flags in BOOLEAN_FLAGS take no value. */
 export function parseFlags(argv: string[]): Record<string, string> {
@@ -50,7 +54,9 @@ const USAGE = `Usage:
   tsx src/cli.ts extract --unpacked <dir> --out <dir>
   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
-  tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]`;
+  tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
+  tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations] [--out <path>] [--markdown <path>]
+  tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,quests] [--report <path>] [--markdown <path>] [--dry-run]`;
 
 export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
@@ -110,6 +116,29 @@ export async function main(argv: string[]): Promise<void> {
       console.log(
         `\nDone. Manifest: ${Object.keys(manifest.monsters).length} monsters, ${count(manifest.weapons)} weapons, ${count(manifest.armor)} armor pieces.`,
       );
+      return;
+    }
+    case "compare": {
+      await runCompare({
+        extracted: requireFlag(flags, "extracted"),
+        data: requireFlag(flags, "data"),
+        only: parseCategories(flags.only),
+        out: flags.out,
+        markdown: flags.markdown,
+      });
+      return;
+    }
+    case "build-data": {
+      const dryRun = flags["dry-run"] === "true";
+      const report = await runBuildData({
+        extracted: requireFlag(flags, "extracted"),
+        data: requireFlag(flags, "data"),
+        only: parseTargets(flags.only),
+        report: flags.report,
+        markdown: flags.markdown,
+        dryRun,
+      });
+      printBuildSummary(report, dryRun);
       return;
     }
     default:

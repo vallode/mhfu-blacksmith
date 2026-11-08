@@ -11,6 +11,8 @@
     "diff": "tsx src/cli.ts diff",
     "models": "tsx src/cli.ts models",
     "export-site": "tsx src/cli.ts export-site",
+    "compare": "tsx src/cli.ts compare",
+    "build-data": "tsx src/cli.ts build-data",
     "test": "tsx --test test/**/*.test.ts"
   },
   "dependencies": {
