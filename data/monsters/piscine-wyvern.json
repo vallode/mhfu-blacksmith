@@ -153,7 +153,17 @@
           "ko": "0"
         }
       },
-      "base_hp": 300
+      "base_hp": 300,
+      "flinch_thresholds": [
+        150,
+        90,
+        90,
+        60,
+        60,
+        90,
+        90,
+        90
+      ]
     },
     {
       "name": "Cephadrome",
@@ -423,7 +433,26 @@
           "ko": "0"
         }
       },
-      "base_hp": 1600
+      "base_hp": 1600,
+      "breaks": [
+        {
+          "name": "back fin",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        130,
+        100,
+        100,
+        170,
+        170,
+        80,
+        100,
+        100
+      ]
     },
     {
       "name": "Plesioth",
@@ -786,7 +815,26 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "back fin",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        250,
+        100,
+        100,
+        250,
+        250,
+        150,
+        130,
+        180
+      ]
     },
     {
       "name": "Green Plesioth",
@@ -1100,7 +1148,26 @@
           "ko": "0"
         }
       },
-      "base_hp": 4400
+      "base_hp": 4400,
+      "breaks": [
+        {
+          "name": "back fin",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        250,
+        100,
+        100,
+        250,
+        250,
+        150,
+        130,
+        180
+      ]
     },
     {
       "name": "Lavasioth",
@@ -1279,7 +1346,33 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "face",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "fin",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        250,
+        100,
+        100,
+        250,
+        250,
+        150,
+        130,
+        180
+      ]
     }
   ]
 }

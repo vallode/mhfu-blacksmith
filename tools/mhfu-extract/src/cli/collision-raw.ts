@@ -1,12 +1,17 @@
 /**
  * Writes the monster hitbox raw dumps for `extract --raw` (see
- * `emit/collision-raw.ts`): `raw/collision.json`, `raw/emmodel.json` and the
+ * `emit/collision-raw.ts`): `raw/collision.json`, `raw/parts.json`, `raw/emmodel.json` and the
  * model packages' unidentified entries as `raw/emmodel/emNN.<index>.bin`.
  */
 import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { parseOvl, type OvlFile } from "../container/ovl.js";
-import { dumpCollisionRaw, dumpEmModelRaw, type EmModelRawEntry } from "../emit/collision-raw.js";
+import {
+  dumpCollisionRaw,
+  dumpEmModelRaw,
+  dumpPartsRaw,
+  type EmModelRawEntry,
+} from "../emit/collision-raw.js";
 import { OVERLAY_DIR, type MonsterOverlays } from "../monsters/overlays.js";
 import { loadEnums, lookupName } from "../strings/enums.js";
 
@@ -58,6 +63,14 @@ export async function writeCollisionRaw(
   const resolved = collision.filter((c) => c.collision).length;
   console.log(
     `Wrote ${collisionPath} (${resolved} of ${collision.length} collision pointers resolved, ${emOvls.size} emNN.ovl files).`,
+  );
+
+  const parts = dumpPartsRaw(overlays.gameTask, chunksOffset, emOvls, names);
+  const partsPath = path.join(rawDir, "parts.json");
+  await writeFile(partsPath, `${JSON.stringify(parts)}\n`, "utf-8");
+  const durability = parts.filter((p) => p.pointers[23]!.target).length;
+  console.log(
+    `Wrote ${partsPath} (${durability} of ${parts.length} PartDurabilityPTR targets resolved).`,
   );
 
   const modelDir = path.join(unpackedDir, "data-bin", "emmodel");

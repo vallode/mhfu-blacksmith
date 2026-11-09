@@ -24,7 +24,26 @@
         "sizes":       { "type": "object" },
         "base_hp":     { "type": "integer", "minimum": 0 },
         "drops":       { "type": "object" },
-        "hitzones":    { "type": "object" }
+        "hitzones":    { "type": "object" },
+        "breaks":      { "type": "array", "items": { "$ref": "#/definitions/break" } },
+        "flinch_thresholds": {
+          "type": "array",
+          "maxItems": 9,
+          "items": { "type": ["integer", "null"], "minimum": 1 }
+        }
+      }
+    },
+    "break": {
+      "type": "object",
+      "required": ["name", "parts", "flinches"],
+      "additionalProperties": false,
+      "properties": {
+        "name":      { "type": "string", "minLength": 1 },
+        "parts":     { "type": "array", "items": { "type": "integer", "minimum": 0 }, "minItems": 1 },
+        "flinches":  { "type": ["integer", "null"], "minimum": 1 },
+        "all_parts": { "type": "boolean" },
+        "below_hp":  { "type": "number", "exclusiveMinimum": 0, "maximum": 1 },
+        "damage":    { "enum": ["cut", "fire", "dragon"] }
       }
     }
   }

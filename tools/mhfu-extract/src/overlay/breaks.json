@@ -1,0 +1,143 @@
+{
+  "$comment": [
+    "Breaks set by a species' own code rather than the game_task break table (monsters/breaks.ts),",
+    "read by hand from the EU disc's code (vallode/mhfu-blacksmith#121). Keyed by species emID (the",
+    "EBOOT species table maps subspecies to it); each entry: the capbreakindex break type, the body",
+    "parts (hitbox capsule part numbers), and the flinch count of those parts that triggers it.",
+    "Optional: all_parts (every listed part must reach the count, else any), below_hp (fraction of",
+    "max HP the monster must be under), damage (the part must have taken that damage: fire is",
+    "part flag 4, set from attack flag 0x10, and the Ukanlos label confirms it; dragon is part",
+    "flag 0x20, from attack flag 0x100, and MHFU elder dragon horns are dragon-only breaks; cut is",
+    "part flag 2), only (the emIDs an entry is limited to). flinches null: the break follows an",
+    "event counter (monster +0x579), not a part's flinches, and the parts are the capsules of the",
+    "hitzone part the break is named after. source: where the call is (vaddr, EU). Ceanataur shells:",
+    "the shell's break type follows its skull (monster +0x4AE: 0 -> 1, 1 -> 2, 2 -> 3) for Shogun and",
+    "Terra alike, but Terra's only break reward is 2, its claw, so the shells are listed for Shogun only."
+  ],
+  "species": {
+    "6": [{ "break": 1, "parts": [6], "flinches": 2, "source": "em20.ovl 0x09D1B148" }],
+    "15": [{ "break": 1, "parts": [6], "flinches": 2, "source": "em15.ovl 0x09D1ADD0" }],
+    "20": [{ "break": 1, "parts": [6], "flinches": 2, "source": "em20.ovl 0x09D1B148" }],
+    "40": [
+      { "break": 1, "parts": [6], "flinches": 2, "source": "em40.ovl 0x09D1AA8C" },
+      { "break": 2, "parts": [6], "flinches": 3, "source": "em40.ovl 0x09D1AAA8" },
+      { "break": 3, "parts": [0], "flinches": 2, "source": "em40.ovl 0x09D1AAC4" },
+      { "break": 4, "parts": [1, 2], "flinches": 2, "source": "em40.ovl 0x09D1AAE0" }
+    ],
+    "48": [
+      { "break": 1, "parts": [2], "flinches": null, "source": "game_task.ovl 0x09B2768C" },
+      {
+        "break": 2,
+        "parts": [5, 6],
+        "flinches": 2,
+        "all_parts": true,
+        "source": "game_task.ovl 0x09B1F13C"
+      }
+    ],
+    "51": [
+      { "break": 1, "parts": [0], "flinches": null, "source": "game_task.ovl 0x09B31868" },
+      {
+        "break": 2,
+        "parts": [4],
+        "flinches": 1,
+        "damage": "cut",
+        "source": "game_task.ovl 0x09B41808"
+      }
+    ],
+    "53": [{ "break": 2, "parts": [4], "flinches": null, "source": "game_task.ovl 0x09B3189C" }],
+    "59": [
+      {
+        "break": 0,
+        "parts": [0],
+        "flinches": 1,
+        "damage": "dragon",
+        "source": "em59.ovl 0x09D252F8"
+      }
+    ],
+    "64": [
+      {
+        "break": 0,
+        "parts": [0],
+        "flinches": 2,
+        "below_hp": 0.6,
+        "damage": "dragon",
+        "source": "em54.ovl 0x09D212FC"
+      },
+      { "break": 1, "parts": [5], "flinches": 2, "source": "em54.ovl 0x09D21320" }
+    ],
+    "65": [
+      {
+        "break": 0,
+        "parts": [0],
+        "flinches": 2,
+        "below_hp": 0.6,
+        "damage": "dragon",
+        "source": "em54.ovl 0x09D212FC"
+      },
+      { "break": 1, "parts": [5], "flinches": 2, "source": "em54.ovl 0x09D21320" }
+    ],
+    "67": [
+      {
+        "break": 1,
+        "parts": [2],
+        "flinches": 2,
+        "only": [67],
+        "source": "game_task.ovl 0x09B1F1F4"
+      },
+      {
+        "break": 2,
+        "parts": [2],
+        "flinches": 2,
+        "only": [67],
+        "source": "game_task.ovl 0x09B1F204"
+      },
+      {
+        "break": 3,
+        "parts": [2],
+        "flinches": 2,
+        "only": [67],
+        "source": "game_task.ovl 0x09B1F214"
+      },
+      {
+        "break": 4,
+        "parts": [5, 6],
+        "flinches": 1,
+        "only": [67],
+        "source": "game_task.ovl 0x09B1F248"
+      },
+      {
+        "break": 2,
+        "parts": [5, 6],
+        "flinches": 1,
+        "only": [87],
+        "source": "game_task.ovl 0x09B1F258"
+      }
+    ],
+    "76": [
+      {
+        "break": 1,
+        "parts": [0],
+        "flinches": 4,
+        "below_hp": 0.5,
+        "source": "em75.ovl 0x09D3F438"
+      }
+    ],
+    "81": [{ "break": 3, "parts": [3], "flinches": 2, "source": "em75.ovl 0x09D3F56C" }],
+    "88": [
+      {
+        "break": 1,
+        "parts": [0],
+        "flinches": 4,
+        "below_hp": 0.5,
+        "source": "em75.ovl 0x09D3F4F0"
+      },
+      {
+        "break": 2,
+        "parts": [2],
+        "flinches": 2,
+        "damage": "fire",
+        "source": "em75.ovl 0x09D3F528"
+      }
+    ]
+  }
+}

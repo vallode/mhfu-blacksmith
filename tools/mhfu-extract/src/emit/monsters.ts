@@ -9,12 +9,17 @@
  * overlay maps are emitted. Values stay numeric: hitzones as numbers under
  * the site's column keys, drops as `{ itemId, name, chance, amount }` with
  * the `ItemID` enum name. `base_hp` is the chunk's base HP; `tolerances`
- * has no committed counterpart yet.
+ * has no committed counterpart yet. `breaks` lists the parts behind each
+ * of the monster's break rewards (`monsters/breaks.ts`, `overlay/breaks.ts`),
+ * named after its `break …` drop group. `flinch_thresholds` is each body
+ * part's flinch threshold (`hitzones.ts` `readFlinchThresholds`).
  *
  * Monsters are named by the `emID` enum, so `compare` recovers their IDs the
  * same way it does for equipment.
  */
+import type { BreakRecord } from "../monsters/breaks.js";
 import type { HitzoneColumn, MonsterChunk } from "../monsters/hitzones.js";
+import { codeBreaks, type BreakDamage } from "../overlay/breaks.js";
 import type { CapBreakTable, CarveTables, RewardEntry, RewardRank } from "../monsters/rewards.js";
 import { MONSTER_OVERLAY, parseDropSlot } from "../overlay/monsters.js";
 import { getNameResolver } from "../strings/names.js";
@@ -47,12 +52,94 @@ export interface EmittedMonster {
   hitzones?: Record<string, Record<string, number>>;
   drops?: Record<string, Record<string, EmittedDrop[]>>;
   tolerances: MonsterChunk["tolerances"];
+  breaks?: EmittedBreak[];
+  /** Damage each body part (hitbox capsule `part`) takes before a flinch; null: no such part. */
+  flinch_thresholds?: (number | null)[];
+}
+
+/** One break reward and the body parts behind it. */
+export interface EmittedBreak {
+  /** The break's drop group label without "break " ("head", "wing"). */
+  name: string;
+  /** Body parts: the hitbox capsules' `part` numbers. */
+  parts: number[];
+  /** Flinches of a part that break it; null when an event counter does. */
+  flinches: number | null;
+  /** Every listed part must reach the count (else any one). */
+  all_parts?: true;
+  /** Fraction of max HP the monster must be under. */
+  below_hp?: number;
+  /** Damage the part must have taken. */
+  damage?: BreakDamage;
 }
 
 export interface MonsterTables {
   chunks: MonsterChunk[];
   carves: CarveTables[];
   capBreak: CapBreakTable[];
+  /** The break table; absent, no breaks are emitted. */
+  breaks?: BreakRecord[];
+  /** Species of each emID (EBOOT); absent, each monster is its own. */
+  species?: number[] | null;
+}
+
+const BREAK_LABEL = /^break\s+/i;
+
+/** The monster's break reward labels by break type, from its first drop rank that has each. */
+function breakLabels(drops: Record<string, Record<string, string>>): Map<number, string> {
+  const labels = new Map<number, string>();
+  for (const groups of Object.values(drops))
+    for (const [label, slot] of Object.entries(groups)) {
+      const { kind, breakType } = parseDropSlot(slot);
+      if (kind === "break" && breakType !== undefined && !labels.has(breakType))
+        labels.set(breakType, label.replace(BREAK_LABEL, ""));
+    }
+  return labels;
+}
+
+/**
+ * The parts behind each of a monster's break rewards: the break table's
+ * records for its species, then its species' code-set breaks. Records of
+ * one break with the same flinch count merge into one entry.
+ */
+export function monsterBreaks(
+  tables: MonsterTables,
+  emId: number,
+  drops: Record<string, Record<string, string>>,
+): EmittedBreak[] {
+  const labels = breakLabels(drops);
+  if (labels.size === 0 || !tables.breaks) return [];
+  const species = tables.species?.[emId] ?? emId;
+  const out: EmittedBreak[] = [];
+  const add = (entry: EmittedBreak) => {
+    const same = out.find(
+      (b) =>
+        b.name === entry.name &&
+        b.flinches === entry.flinches &&
+        !b.all_parts &&
+        !entry.all_parts &&
+        b.below_hp === entry.below_hp &&
+        b.damage === entry.damage,
+    );
+    if (same) same.parts = [...new Set([...same.parts, ...entry.parts])].sort((a, b) => a - b);
+    else out.push(entry);
+  };
+  for (const [type, name] of [...labels].sort(([a], [b]) => a - b)) {
+    for (const r of tables.breaks)
+      if (r.emId === species && r.breakType === type)
+        add({ name, parts: [r.part], flinches: r.flinches });
+    for (const c of codeBreaks(species, emId))
+      if (c.break === type)
+        add({
+          name,
+          parts: [...c.parts],
+          flinches: c.flinches,
+          ...(c.all_parts ? { all_parts: true as const } : {}),
+          ...(c.below_hp !== undefined ? { below_hp: c.below_hp } : {}),
+          ...(c.damage ? { damage: c.damage } : {}),
+        });
+  }
+  return out;
 }
 
 function dropList(tables: MonsterTables, emId: number, slot: string): RewardEntry[] | undefined {
@@ -79,6 +166,7 @@ export function emitMonsters(tables: MonsterTables): EmitOutput {
       base_hp: chunk.baseHp,
       tolerances: chunk.tolerances,
     };
+    if (chunk.flinchThresholds) monster.flinch_thresholds = chunk.flinchThresholds;
 
     if (entry.hitzones && chunk.hitzones) {
       const hitzones: Record<string, Record<string, number>> = {};
@@ -107,6 +195,8 @@ export function emitMonsters(tables: MonsterTables): EmitOutput {
         }
       }
       monster.drops = drops;
+      const breaks = monsterBreaks(tables, entry.id, entry.drops);
+      if (breaks.length > 0) monster.breaks = breaks;
     }
 
     const list = byFile.get(entry.file) ?? [];
