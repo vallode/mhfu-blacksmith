@@ -12,9 +12,8 @@ interface NavItem {
   label: string;
   /** Shorter label for the phone tab bar. */
   short?: string;
-  /** Icon sprite (a monster-type icon when `monster`). */
+  /** Icon sprite, from /images/<icon>.png. */
   icon: string;
-  monster?: boolean;
   /** Pages under this path light the entry up. */
   match: string;
   /** Plain link; entries with a `section` open the page last viewed there. */
@@ -29,14 +28,7 @@ const NAV: NavItem[] = [
   { label: "Armor", icon: "helmet", match: "/armorsmith/", section: "armor", tab: true },
   { label: "Decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
   { label: "Set Builder", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
-  {
-    label: "Monsters",
-    icon: "flying-wyvern",
-    monster: true,
-    match: "/monsters/",
-    section: "monsters",
-    tab: true,
-  },
+  { label: "Monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
   { label: "Quests", icon: "ticket", match: "/quests/", href: "/quests/", tab: true },
   { label: "Hunter Profile", short: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
   { label: "Options", icon: "part", match: "/options/", href: "/options/" },
@@ -104,13 +96,7 @@ function SidebarContents({
               aria-current={active ? "page" : undefined}
               className={cn(sidebarRow, active && sidebarRowActive)}
             >
-              <Icon
-                type={item.icon}
-                monster={item.monster}
-                nav
-                active={active}
-                className={rowIcon}
-              />
+              <Icon type={item.icon} nav active={active} className={rowIcon} />
               <span className={cn(collapsed && "sr-only")}>{item.label}</span>
             </Link>
           );
@@ -193,13 +179,7 @@ function TabBar({
               aria-current={active ? "page" : undefined}
               className={cn(tab, active && tabActive)}
             >
-              <Icon
-                type={item.icon}
-                monster={item.monster}
-                nav
-                active={active}
-                className={rowIcon}
-              />
+              <Icon type={item.icon} nav active={active} className={rowIcon} />
               <span className={label}>{item.short ?? item.label}</span>
             </Link>
           );
