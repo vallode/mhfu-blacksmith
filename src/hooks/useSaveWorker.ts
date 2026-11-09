@@ -1,7 +1,7 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { EquipSlot } from "@/lib/save-store";
+import type { EquipSlot, MonsterRecord } from "@/lib/save-store";
 
 export interface CharacterResult {
   name: string;
@@ -14,6 +14,10 @@ export interface CharacterResult {
   equipBox: EquipSlot[];
   itemChest: { id: number; qty: number }[];
   itemPouch: { id: number; qty: number }[];
+  /** IDs of the quests the hunter has cleared. */
+  clearedQuests: number[];
+  /** Monsters with a kill, capture or size record. */
+  monsters: MonsterRecord[];
 }
 
 export interface WorkerResult {

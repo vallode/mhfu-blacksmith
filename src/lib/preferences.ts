@@ -20,6 +20,10 @@ export interface Preferences {
   showMaterialCounts: boolean;
   /** Count a recipe's zenny cost when deciding whether a weapon can be made. */
   checkZenny: boolean;
+  /** CLEAR!! on quests the loaded hunter has cleared. */
+  markCleared: boolean;
+  /** The loaded hunter's kill and capture counts on monster pages. */
+  showHuntRecords: boolean;
   /** The weapon tree filter a new visit starts on. */
   defaultTreeFilter: TreeFilterId;
   /** The highest guild quest the hunter can take (one of `STAGES`), or null to show all gear. */
@@ -33,6 +37,8 @@ export const DEFAULT_PREFERENCES: Preferences = {
   showCraftProgress: true,
   showMaterialCounts: true,
   checkZenny: true,
+  markCleared: true,
+  showHuntRecords: true,
   defaultTreeFilter: "all",
   questProgress: null,
 };

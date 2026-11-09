@@ -40,6 +40,7 @@ pnpm --filter mhfu-extract extract --unpacked .cache/mhfu --out .cache/mhfu/extr
 pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
+pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 ```
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
@@ -61,6 +62,9 @@ pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data .
   from the disc".
 - `build-data` rewrites committed `data/` from the extracted output. See
   "Building `data/` from the disc".
+- `quest-flags` searches the unpacked EBOOT and overlays for the table
+  that maps quest IDs to their "cleared" bit in a save, and writes
+  `quest-flags.json` (or `--out`). See "Save quest flags".
 
 ### Region support: JP and EU equipment both fully wired into `extract`
 
@@ -738,6 +742,61 @@ rows.
 Not implemented (out of scope for now, same as the underlying parser —
 see "Quests (.mib)" above): `QuestScript`, gathering node locations/items,
 and arena sets.
+
+### Save quest flags
+
+A hunter's cleared quests are a 512-bit field (64 bytes) at offset `0x3f88`
+of each hunter's block in the decrypted `MHP2NDG.BIN`, between the item
+pouch and the play time (`0x3fc8`). Bit `n` is byte `n >> 3`, mask
+`1 << (n & 7)`. The location is confirmed three ways: the EU "All quests
+clear" CWCheat writes the first 14 u32 words (its address sits at the same
+distance from the Zenny, Guild Points and Pokke Points codes as `0x3f88`
+does from their save offsets); a fresh hunter's only cleared quest set one
+bit; and clearing one more quest set one more. The cheat's 448 bits stop
+short of the Training School, which starts at bit 450.
+
+**The game's table** is an array with one u16 quest ID per bit: on the EU
+disc it is at EBOOT `0x19a65c` (bit 0 = quest 1), 504 entries followed by
+the value 60000. In bit order it holds quests 1-10 and 101-109, the Guild
+(1001-3233), Treasure Hunting (4001-4007, bits 272-278), the Village
+(10001-11226, from bit 279) and the Training School (20001 from bit 450,
+21001 from 468, the Exercises 22001-22006 at 498-503). Each star level has
+a fixed number of slots, filled after its last quest with reserved IDs no
+quest uses (2014-2015, 2128-2130, 2237-2240, …). `src/tables/quest-flags.ts`
+holds it as 24 runs of consecutive IDs (`QUEST_FLAG_RUNS`): a quest's bit
+is its position.
+
+Saves agree with every bit of it:
+
+- **Anchors** (quests cleared on purpose in an unedited save): `10001`
+  Mountain Herb Picking is bit 279, `1001` Gathering - Snowy Mountains is
+  bit 19, and a third hunter's three bits are `1004`, `1005` and `1020`.
+  The scan uses these to find the table.
+- **A heavily played (possibly edited) hunter**: its cleared bits are runs
+  exactly as long as each star level, every Urgent Quest is set, and its
+  Treasure Hunting and Training School bits fall on those quests.
+
+The hidden Guild quests (30001-30090) and 40001-40008 / 50001-50003 have
+no bit.
+
+`quest-flags` searches the EBOOT and every `*_task.ovl`/`*_sub.ovl`
+overlay (`src/quests/flag-scan.ts`) for it:
+
+- **Quest ID lists**: u16/u32 arrays of disc quest IDs (one field every
+  2-32 bytes), with 0 or all-ones entries allowed for unused slots. Each
+  list is placed by the anchors (`bitOfFirstEntry` = anchor bit minus its
+  index) and compared with `QUEST_FLAG_RUNS` (`vsSaves`).
+- **The table** (`table` in the report): the lists are pieces of one table
+  split up by the entries that aren't quest IDs, so the bit-0 position most
+  lists point to is read whole. `bits` maps every quest ID to its bit,
+  `otherEntries` keeps the values between groups, and `entries` has all
+  512 raw values.
+- **Ordered values**: strided runs, in order, of each star level's first
+  quest ID, first bit, quest count or slot count, as u8/u16/u32, in case a
+  disc keeps the layout as a table of ranges instead.
+
+Neither search reads MIPS code, so a mapping computed only in code
+(e.g. `base + id - first` with immediates) wouldn't be found.
 
 ## Building `data/` from the disc
 

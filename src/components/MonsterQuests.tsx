@@ -1,8 +1,17 @@
 import Link from "next/link";
 import { QUEST_HUBS, questHref, type Quest } from "@/lib/quests";
 
-/** A monster's quests, one titled list per quest board, linking to each quest. */
-export default function MonsterQuests({ quests }: { quests: Quest[] }) {
+/**
+ * A monster's quests, one titled list per quest board, linking to each quest.
+ * Quests in `cleared` (the loaded hunter's) are marked CLEAR!!.
+ */
+export default function MonsterQuests({
+  quests,
+  cleared,
+}: {
+  quests: Quest[];
+  cleared?: ReadonlySet<number> | null;
+}) {
   return (
     <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1">
       {QUEST_HUBS.map((hub) => {
@@ -21,6 +30,9 @@ export default function MonsterQuests({ quests }: { quests: Quest[] }) {
                   >
                     {q.title}
                   </Link>
+                  {cleared?.has(q.id) && (
+                    <span className="ml-auto flex-none text-stat">CLEAR!!</span>
+                  )}
                 </li>
               ))}
             </ul>

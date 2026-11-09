@@ -4,8 +4,11 @@ import Link from "next/link";
 import { DetailBody, DetailCard, DetailRule, Stat, StatList } from "@/components/DetailPanel";
 import { QuestRewards, QuestSupplies } from "@/components/QuestRewards";
 import Tabs, { type Tab } from "@/components/Tabs";
+import { usePreferences } from "@/context/PreferencesContext";
+import { useSave } from "@/context/SaveContext";
 import { useQuests } from "@/lib/client-data";
 import {
+  clearedQuestIds,
   questHref,
   questHubLabel,
   questsOnHub,
@@ -45,8 +48,11 @@ function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
 
 export default function QuestDetailClient({ hub, id }: Props) {
   const { quests, error } = useQuests();
+  const { save } = useSave();
+  const { markCleared } = usePreferences().prefs;
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const quest = onHub.find((q) => q.id === id);
+  const cleared = markCleared && (clearedQuestIds(save)?.has(id) ?? false);
   const requires =
     quest?.requires == null ? undefined : quests?.find((q) => q.id === quest.requires);
 
@@ -143,18 +149,20 @@ export default function QuestDetailClient({ hub, id }: Props) {
     <DetailCard>
       {/* Title, board and description, like the quest scroll: the title
           centred in white, the details in white with the game's roomy lines.
-          URGENT!!! sits in the top-right corner, level with the title's first
-          line, which keeps clear of it; on a phone it takes its own line. */}
+          CLEAR!! (a quest the loaded hunter has cleared) and URGENT!!! sit in
+          the top corners, level with the title's first line, which keeps
+          clear of them; on a phone they take their own line. */}
       <div className="relative flex flex-col gap-2 text-main text-white">
-        {quest.urgent && (
-          <p className="absolute top-0 right-0 text-small leading-[2.75rem] text-negative mobile:static mobile:self-end mobile:leading-[1.25]">
-            URGENT!!!
-          </p>
+        {(cleared || quest.urgent) && (
+          <div className="pointer-events-none absolute inset-x-0 top-0 flex text-small leading-[2.75rem] mobile:static mobile:leading-[1.25]">
+            {cleared && <p className="text-stat">CLEAR!!</p>}
+            {quest.urgent && <p className="ml-auto text-negative">URGENT!!!</p>}
+          </div>
         )}
         <p
           className={cn(
             "text-center leading-[1.25] whitespace-normal",
-            quest.urgent && "px-[9.6rem] mobile:px-0",
+            (cleared || quest.urgent) && "px-[9.6rem] mobile:px-0",
           )}
         >
           {quest.title}

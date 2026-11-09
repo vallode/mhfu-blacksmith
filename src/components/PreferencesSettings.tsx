@@ -2,7 +2,7 @@
 
 /**
  * The preferences card on the Options page: how values are shown, and which
- * markers a loaded hunter adds to the trees and recipes. Styled after the
+ * markers a loaded hunter adds to the trees, recipes, quests and monsters. Styled after the
  * game's Options menu (SettingsCard): a yellow box for each On/Off preference
  * (filled when on), and "◀ VALUE ▶" for one with several values.
  */
@@ -94,6 +94,16 @@ export default function PreferencesSettings() {
         "checkZenny",
         "Count zenny",
         "Only count a weapon as craftable when you can also afford it.",
+      )}
+      {toggle(
+        "markCleared",
+        "Mark cleared quests",
+        "Mark the quests you have cleared with CLEAR!! on the quest boards and quest pages.",
+      )}
+      {toggle(
+        "showHuntRecords",
+        "Hunt records",
+        "Show how many of each monster you have hunted and captured on its page.",
       )}
       <SelectorRow
         label="Starting tree filter"

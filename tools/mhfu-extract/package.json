@@ -13,6 +13,7 @@
     "export-site": "tsx src/cli.ts export-site",
     "compare": "tsx src/cli.ts compare",
     "build-data": "tsx src/cli.ts build-data",
+    "quest-flags": "tsx src/cli.ts quest-flags",
     "test": "tsx --test test/**/*.test.ts"
   },
   "dependencies": {
