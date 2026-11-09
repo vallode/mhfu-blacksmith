@@ -31,7 +31,6 @@ import {
 } from "@/styles/tables";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
-import BorderRule from "@/components/BorderRule";
 import ModelViewer from "@/components/ModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useWeaponModel } from "@/lib/models";
@@ -73,10 +72,9 @@ export default function WeaponDetailClient({ type, slug }: Props) {
     // bundle loads so the sidebar doesn't flash in once it resolves.
     return (
       <>
-        <WeaponNav activeType={type} />
-        <BorderRule />
+        <WeaponNav activeType={type} detail />
         <div className="split-page">
-          <WeaponTreePanel type={type} tree={null} activeSlug={slug} />
+          <WeaponTreePanel type={type} tree={null} activeSlug={slug} className="mobile:hidden" />
           <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>
         </div>
       </>
@@ -85,12 +83,11 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
   return (
     <>
-      <WeaponNav activeType={type} />
-      <BorderRule />
+      <WeaponNav activeType={type} detail />
 
       <div className="split-page">
-        {/* Weapon tree sidebar */}
-        <WeaponTreePanel type={type} tree={tree} activeSlug={slug} />
+        {/* Weapon tree. Phones show one pane at a time: here, the detail. */}
+        <WeaponTreePanel type={type} tree={tree} activeSlug={slug} className="mobile:hidden" />
 
         {/* Detail panel */}
         <DetailCard>

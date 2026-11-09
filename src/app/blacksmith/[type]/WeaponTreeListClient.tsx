@@ -5,7 +5,6 @@ import WeaponTreePanel from "@/components/WeaponTreePanel";
 import Card from "@/components/Card";
 import type { WeaponType } from "@/lib/constants";
 import { useWeaponTree } from "@/lib/client-data";
-import BorderRule from "@/components/BorderRule";
 import Loading from "@/components/Loading";
 
 interface Props {
@@ -18,12 +17,12 @@ export default function WeaponTreeListClient({ type }: Props) {
   return (
     <>
       <WeaponNav activeType={type} />
-      <BorderRule />
 
-      <div className="split-page">
+      <div className="split-page" data-fill-screen>
         <WeaponTreePanel type={type} tree={loading ? null : tree} />
 
-        <Card>
+        {/* Phones show one pane at a time: here, the tree. */}
+        <Card className="mobile:hidden">
           {loading ? (
             <Loading>Loading…</Loading>
           ) : (

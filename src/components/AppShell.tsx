@@ -270,7 +270,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
   }, [menuOpen, closeMenu]);
 
   return (
-    <div className="flex min-h-0 flex-1 gap-[1.3rem] mobile:flex-col">
+    // On phones the document scrolls, unless the page holds an element marked
+    // data-fill-screen (a list pane): then the shell is exactly the screen
+    // (less the body's padding) and that pane scrolls inside it, under a page
+    // bar that stays put.
+    <div className="flex min-h-0 flex-1 gap-[1.3rem] mobile:flex-col mobile:has-data-fill-screen:max-h-[calc(100dvh-3.9rem)]">
       <aside className="flex flex-none mobile:hidden">
         <Card
           className={cn(
@@ -289,7 +293,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
 
       {/* A size container, so full-bleed pieces (BorderRule) span the page
           column rather than the window. */}
-      <div className="@container flex min-w-0 flex-1 flex-col">{children}</div>
+      <div className="@container flex min-h-0 min-w-0 flex-1 flex-col">{children}</div>
 
       {/* Room for the fixed tab bar at the end of the page. */}
       <div className="hidden h-tabbar flex-none mobile:block" />

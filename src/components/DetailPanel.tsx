@@ -9,8 +9,14 @@ import type { Material } from "@/lib/types";
 // default; values are white.
 
 /** The detail card; shares the row equally with the tree card. */
-export function DetailCard({ children }: { children: React.ReactNode }) {
-  return <Card className="min-w-0">{children}</Card>;
+export function DetailCard({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <Card className={cn("min-w-0", className)}>{children}</Card>;
 }
 
 /** Icon + name (+ sharpness) row at the top of the panel. */
