@@ -7,7 +7,7 @@ import { DetailCard } from "@/components/DetailPanel";
 export default function MonsterListClient() {
   return (
     <DetailCard>
-      <p className="text-[2.2rem] leading-[1.25] uppercase">No data</p>
+      <p className="text-main leading-[1.25] uppercase">No data</p>
     </DetailCard>
   );
 }

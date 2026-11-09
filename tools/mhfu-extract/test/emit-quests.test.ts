@@ -192,16 +192,12 @@ test("emitQuest puts the Village's quests on the Village board, whatever their r
 
 test("questHub reads the board from the quest ID block", () => {
   const cases: [number, ReturnType<typeof questHub>][] = [
-    [1, null],
-    [10, null],
-    [100, null],
-    [101, "village"],
-    [102, "village"],
-    [103, null],
-    [107, null],
-    [108, "village"],
-    [109, "village"],
-    [110, null],
+    [0, null],
+    [1, "guild"],
+    [10, "guild"],
+    [101, "guild"],
+    [105, "guild"],
+    [109, "guild"],
     [1001, "guild"],
     [2116, "guild"],
     [3233, "guild"],
@@ -218,19 +214,15 @@ test("questHub reads the board from the quest ID block", () => {
   for (const [id, hub] of cases) assert.equal(questHub(id), hub, `quest ${id}`);
 });
 
-test("emitQuest drops quests 1-10, which are on no confirmed board", () => {
-  // Real quest 1 itself, and 10 "The Lady Gourmet".
-  assert.equal(emitQuest(GIADROME_HUNT), null);
-  assert.equal(withHeader(10, 0), null);
-});
-
-test("emitQuest puts the confirmed quests 101, 102, 108 and 109 on the Village board", () => {
-  // Real headers: 101 "The Shadow in the Mountains" and 109 "Attack of the
-  // Rathian" are both rank 0, so they carry no rank tier.
+test("emitQuest puts quests 1-10 and 101-109 on Guild Low Rank (★1 and ★2)", () => {
+  // Real headers: 1 "A True Foe - The Giadrome!" (★1), 101 "The Shadow in
+  // the Mountains" and 109 "Attack of the Rathian" (★2) are all rank 0.
+  const giadrome = emitQuest(GIADROME_HUNT);
   const first = withHeader(101, 0);
   const rathian = withHeader(109, 0);
-  assert.deepEqual([first?.hub, first?.rank], ["village", null]);
-  assert.deepEqual([rathian?.hub, rathian?.rank], ["village", null]);
+  assert.deepEqual([giadrome?.hub, giadrome?.rank], ["guild", "low-rank"]);
+  assert.deepEqual([first?.hub, first?.rank], ["guild", "low-rank"]);
+  assert.deepEqual([rathian?.hub, rathian?.rank], ["guild", "low-rank"]);
 });
 
 test("emitQuest flags the Urgent Quests", () => {
@@ -345,10 +337,16 @@ test("emitQuestsFile groups quests by hub and drops unused slots and boardless q
     header: { ...GIADROME_HUNT.header, rank: 4, questId: 21001 },
   };
 
-  const output = emitQuestsFile([VILLAGE_GIADROME, GIADROME_HUNT, disabled, training]);
+  // 40001 has real text here, but its ID block is on no board.
+  const boardless: ParsedQuest = {
+    ...GIADROME_HUNT,
+    header: { ...GIADROME_HUNT.header, questId: 40001 },
+  };
+
+  const output = emitQuestsFile([VILLAGE_GIADROME, GIADROME_HUNT, disabled, training, boardless]);
   assert.deepEqual(Object.keys(output).sort(), Object.values(QUEST_HUB_TO_FILE).sort());
   assert.equal(output[QUEST_HUB_TO_FILE.village]!.quests.length, 1);
   assert.equal(output[QUEST_HUB_TO_FILE["training-school"]]!.quests.length, 1);
-  assert.equal(output[QUEST_HUB_TO_FILE.guild]!.quests.length, 0);
+  assert.equal(output[QUEST_HUB_TO_FILE.guild]!.quests.length, 1);
   assert.equal(output[QUEST_HUB_TO_FILE["treasure-hunting"]]!.quests.length, 0);
 });

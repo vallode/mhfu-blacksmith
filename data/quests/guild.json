@@ -1,6 +1,4062 @@
 {
   "quests": [
     {
+      "id": 1,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Snowy Mountains (Day)",
+      "fee": 100,
+      "reward": 1200,
+      "penalty": 400,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Giadrome",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Thawing Agent",
+          "amount": 2
+        },
+        {
+          "item": "Thawing Agent",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": "Giadrome Claw",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Giaprey Hide",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Giadrome Hide",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Sm Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Sm Monster Bone",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Giaprey Scale",
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Giadrome",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "A True Foe - The Giadrome!",
+      "goal": "Hunt the Giadrome",
+      "details": "Within a group of the sly\ncarnivorous Giaprey, there\nis a leader. They call it\nthe Giadrome. I need a\nhunter's strength to show\nthat pack of beasts and\ntheir leader who's boss!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Spirited Boy",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 2,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Snowy Mountains (Night)",
+      "fee": 100,
+      "reward": 1500,
+      "penalty": 500,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Bulldrome",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Bomb Material",
+          "amount": 2
+        },
+        {
+          "item": "Bomb Material",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Bulldrome Hide",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Raw Meat",
+              "amount": 2
+            },
+            {
+              "chance": 30,
+              "item": "Brute Bone",
+              "amount": 1
+            },
+            {
+              "chance": 36,
+              "item": "Sm Bone Husk",
+              "amount": 5
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Bulldrome",
+          "quantity": 1,
+          "power": 3
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Giaprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Reckless Bulldrome Hunter",
+      "goal": "Hunt the Bulldrome",
+      "details": "My son decided to become a\nhunter and ran off after a\nBulldrome on his own! Of\ncourse, now the tables have\nturned and I'm worried!\nHunt down the Bulldrome on\nthe snowy mountains!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Troubled Father",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 3,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Snowy Mountains (Day)",
+      "fee": 100,
+      "reward": 900,
+      "penalty": 300,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Blango",
+        "amount": 15
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 36,
+              "item": "Brute Bone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Blango Pelt",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Sharp Claw",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Bone",
+              "amount": 4
+            },
+            {
+              "chance": 5,
+              "item": "Ice Crystal",
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Bulldrome",
+          "quantity": 1,
+          "power": 3
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 99
+        }
+      ],
+      "title": "A Pack of Blangos",
+      "goal": "Slay 15 Blangos",
+      "details": "A large pack of Blangos are\nmassing nearby. They are\nviolent enough that a large\ngroup will quickly become\nuncontrollable. Please slay\n15 of the apes!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Wise Maiden",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 4,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Snowy Mountains (Day)",
+      "fee": 100,
+      "reward": 900,
+      "penalty": 300,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Sunset Herb",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Herb",
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": "Antidote Herb",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Ivy",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Sleep Herb",
+              "amount": 2
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Bulldrome",
+          "quantity": 1,
+          "power": 3
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Mountain Herb Picking",
+      "goal": "Deliver 20 Mountain Herbs",
+      "details": "I want to pick some of this\nvillage's famous Mountain\nHerbs for my brother in\ntown, but there are too many\nmonsters! Could you please\ngo out for me and bring back\n20 Mountain Herbs?",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Loving Sibling",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 5,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Jungle (Night)",
+      "fee": 150,
+      "reward": 1800,
+      "penalty": 600,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Congalala",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Deodorant",
+          "amount": 2
+        },
+        {
+          "item": "Deodorant",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Congalala Pelt",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Conga Pelt",
+              "amount": 2
+            },
+            {
+              "chance": 26,
+              "item": "Sharp Claw",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Brute Bone",
+              "amount": 2
+            },
+            {
+              "chance": 12,
+              "item": "Blue Mushroom",
+              "amount": 2
+            },
+            {
+              "chance": 8,
+              "item": "Nitroshroom",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Bone",
+              "amount": 4
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Congalala",
+          "quantity": 1,
+          "power": 3
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Conga",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Hornetaur",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        }
+      ],
+      "title": "Rarest of the Rare Beasts",
+      "goal": "Hunt the Congalala",
+      "details": "Do you know of a pink,\nfanged beast that roams the\njungle? That beast has\ndirtied my shop beyond hope!\nIt's impossible to clean up!\nGet rid of it before I'm\nsoiled again!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Village Grocer",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 6,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Jungle (Day)",
+      "fee": 100,
+      "reward": 900,
+      "penalty": 300,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Conga",
+        "amount": 15
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Deodorant",
+          "amount": 2
+        },
+        {
+          "item": "Deodorant",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 36,
+              "item": "Brute Bone",
+              "amount": 1
+            },
+            {
+              "chance": 30,
+              "item": "Conga Pelt",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Sharp Claw",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Bone",
+              "amount": 4
+            },
+            {
+              "chance": 5,
+              "item": "Blue Mushroom",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Velocidrome",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Conga",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Hornetaur",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 2
+        }
+      ],
+      "title": "Hunt the Rare Forest Congas!",
+      "goal": "Slay 15 Congas",
+      "details": "I took a trip to the jungle\nand saw some beautiful pink\nanimals with fangs. But when\nI tried to pet them from my\ncarriage, the beasts made a\nstink on me! I can't get it\noff! Punish those meanies!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Oblivious Daughter",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 7,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Jungle (Day)",
+      "fee": 100,
+      "reward": 900,
+      "penalty": 300,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 4,
+          "condition": null,
+          "items": [
+            {
+              "chance": 25,
+              "item": "Blue Mushroom",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Nitroshroom",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Toadstool",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Parashroom",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Exciteshroom",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Dragon Toadstool",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Velocidrome",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 3
+        }
+      ],
+      "title": "A Mushroom Goldrush!",
+      "goal": "Deliver 20 Special Mushrooms",
+      "details": "Mushrooms from the jungle\nare skyrocketing in price!\nIf you were to gather 20 of\nthem for me, you would be\njustly compensated. However,\nI hear the area is infested\nwith carnivores, so beware!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Greedy Merchant",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 8,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Desert (Night)",
+      "fee": 150,
+      "reward": 1800,
+      "penalty": 600,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Cephadrome",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": "Cephalos Scale",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Wyvern Claw",
+              "amount": 5
+            },
+            {
+              "chance": 15,
+              "item": "Piscine Fang",
+              "amount": 1
+            },
+            {
+              "chance": 23,
+              "item": "Lg Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 18,
+              "item": "Burst Arrowana",
+              "amount": 3
+            },
+            {
+              "chance": 15,
+              "item": "Bomb Arrowana",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Cephadrome",
+          "quantity": 1,
+          "power": 3
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Cephalos",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 3
+        }
+      ],
+      "title": "The Land Shark",
+      "goal": "Hunt the Cephadrome",
+      "details": "A villager was tracking a \npack of monsters, but lost \nsight of them in the desert.\nPlease find the leader of\nthe pack and hunt it down\nfor us.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Oasis Village Chief",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 9,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Desert (Day)",
+      "fee": 180,
+      "reward": 2100,
+      "penalty": 700,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Daimyo Hermitaur",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 1
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 1
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 1
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": "Hermitaur Shell",
+              "amount": 1
+            },
+            {
+              "chance": 24,
+              "item": "Sm Hermitaur Shl",
+              "amount": 2
+            },
+            {
+              "chance": 15,
+              "item": "Giant Bone",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Med Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Sharp Claw",
+              "amount": 1
+            },
+            {
+              "chance": 16,
+              "item": "Glutton Tuna",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Daimyo Hermitaur",
+          "quantity": 1,
+          "power": 3
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Cephalos",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 2
+        }
+      ],
+      "title": "The Giant Enemy Crab",
+      "goal": "Hunt the Daimyo Hermitaur",
+      "details": "A giant crab is wandering\naround the desert! However,\nno normal sword is capable\nof cracking its shell! I\nhate to ask for help from\nother hunters, but please\nlend me your skills!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Defeated Warrior",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 10,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 1,
+      "map": "Desert (Day)",
+      "fee": 100,
+      "reward": 900,
+      "penalty": 300,
+      "time_limit_minutes": 50,
+      "target": null,
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 1
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 1
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 1
+        },
+        {
+          "item": "Cool Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Crag S Lv1",
+          "amount": 3
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Sm Barrel-Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Sm Barrel-Bomb",
+          "amount": 2
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": "Piscine Fang",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Cephalos Scale",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Wyvern Claw",
+              "amount": 5
+            },
+            {
+              "chance": 20,
+              "item": "Lg Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 22,
+              "item": "Burst Arrowana",
+              "amount": 3
+            },
+            {
+              "chance": 13,
+              "item": "Bomb Arrowana",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Gendrome",
+          "quantity": 1,
+          "power": 2
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Cephalos",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 2
+        }
+      ],
+      "title": "The Lady Gourmet",
+      "goal": "Deliver 8 Piscine Livers",
+      "details": "I travel the world for new\ntastes and flavors. Now I\nwant to try the liver of a\nPiscine Wyvern, a taste few\nothers have experienced.\nPlease bring me 8 of these\nlivers!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "The Lady Gourmet",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 101,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 2,
+      "map": "Snowy Mountains (Night)",
+      "fee": 180,
+      "reward": 2100,
+      "penalty": 700,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Khezu",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Poison Thrw Knf",
+          "amount": 5
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": "Flabby Hide",
+              "amount": 1
+            },
+            {
+              "chance": 15,
+              "item": "Wyvern Claw",
+              "amount": 5
+            },
+            {
+              "chance": 15,
+              "item": "Wyvern Fang",
+              "amount": 5
+            },
+            {
+              "chance": 15,
+              "item": "Med Monster Bone",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Lg Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Pale Extract",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Electro Sac",
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Khezu",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Rocks",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Anteka",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Giaprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 3
+        }
+      ],
+      "title": "The Shadow in the Mountains",
+      "goal": "Hunt the Khezu",
+      "details": "We were exploring a\nsnow-covered mountain near\nhere, but stumbled on this\ndisgusting blob-like\nmonster! If you can't get\nrid of that thing, our\nresearch is doomed! Help us!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Old Geologist",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 102,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 2,
+      "map": "Snowy Mountains (Day)",
+      "fee": 200,
+      "reward": 2400,
+      "penalty": 800,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Blangonga",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Thawing Agent",
+          "amount": 2
+        },
+        {
+          "item": "Thawing Agent",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 10,
+              "item": "Blangonga Pelt",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Blango Pelt",
+              "amount": 2
+            },
+            {
+              "chance": 25,
+              "item": "Sharp Claw",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Giant Bone",
+              "amount": 1
+            },
+            {
+              "chance": 16,
+              "item": "Brute Bone",
+              "amount": 2
+            },
+            {
+              "chance": 5,
+              "item": "Ice Crystal",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Honey",
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Blangonga",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Giaprey",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Blango",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Popo",
+          "max_quantity": 3
+        }
+      ],
+      "title": "The King of the Mountains",
+      "goal": "Hunt the Blangonga",
+      "details": "A Blangonga has staked its\nclaim to a piece of the\nsnowy mountains. Now we\ncan't enter the area to\ngather firewood. Exterminate\nthe Blangonga! ",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Foothills Villager",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 103,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 2,
+      "map": "Jungle (Day)",
+      "fee": 100,
+      "reward": 900,
+      "penalty": 300,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Hermitaur",
+        "amount": 10
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 21,
+              "item": "Sharp Claw",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Sm Hermitaur Shl",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Sap Plant",
+              "amount": 2
+            },
+            {
+              "chance": 10,
+              "item": "Blue Mushroom",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Parashroom",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Congalala",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 3
+        }
+      ],
+      "title": "A Swarm of Hermitaurs",
+      "goal": "Slay 10 Hermitaurs",
+      "details": "Fishing is no easy endeavor,\nbut lately things have\ngotten out of hand! While\nunloading my ship, a swarm\nof Hermitaurs appeared. Slay\n10 of them and let me get\non with my work!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Jungle Fisherman",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 104,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 2,
+      "map": "Desert (Day)",
+      "fee": 200,
+      "reward": 2400,
+      "penalty": 800,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Plesioth",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 5,
+              "item": "Plesioth Scale",
+              "amount": 1
+            },
+            {
+              "chance": 18,
+              "item": "Piscine Fang",
+              "amount": 1
+            },
+            {
+              "chance": 10,
+              "item": "Wyvern Claw",
+              "amount": 5
+            },
+            {
+              "chance": 10,
+              "item": "Wyvern Fang",
+              "amount": 5
+            },
+            {
+              "chance": 8,
+              "item": "Med Monster Bone",
+              "amount": 2
+            },
+            {
+              "chance": 17,
+              "item": "Lg Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 18,
+              "item": "Burst Arrowana",
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": "Bomb Arrowana",
+              "amount": 3
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Plesioth",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Cephalos",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Apceros",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 2
+        }
+      ],
+      "title": "Water Wyvern in the Desert",
+      "goal": "Hunt the Plesioth",
+      "details": "I found a giant water wyvern\nin a cave in the desert! I\ncan't defeat it because it \nstays underwater. Slay it\nfor me and the glory is all\nyours!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Proud Hunter",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 105,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 2,
+      "map": "Swamp (Day)",
+      "fee": 180,
+      "reward": 2100,
+      "penalty": 700,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Gypceros",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Antidote",
+          "amount": 2
+        },
+        {
+          "item": "Antidote",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Sply Pitfall Trp",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": "Rubbery Hide",
+              "amount": 1
+            },
+            {
+              "chance": 22,
+              "item": "Wyvern Fang",
+              "amount": 3
+            },
+            {
+              "chance": 22,
+              "item": "Wyvern Claw",
+              "amount": 2
+            },
+            {
+              "chance": 23,
+              "item": "Med Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Poison Sac",
+              "amount": 1
+            },
+            {
+              "chance": 23,
+              "item": "Sm Monster Bone",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Gypceros",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 1
+        },
+        {
+          "monster": "Hornetaur",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 4
+        },
+        {
+          "monster": "Conga",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Ioprey",
+          "max_quantity": 3
+        }
+      ],
+      "title": "Gypceros: Venomous Terror",
+      "goal": "Hunt the Gypceros",
+      "details": "The fields all around the\ntown are getting torn to\nshreds by a gigantic\npoisonous bird-like monster.\nExterminate it for us! Its\npoison can melt crops, so be\ncareful it doesn't melt you!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Swamp Farmer",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 106,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 2,
+      "map": "Swamp (Night)",
+      "fee": 220,
+      "reward": 2700,
+      "penalty": 900,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Shogun Ceanataur",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Hot Drink",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Throwing Knife",
+          "amount": 5
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": "Ceanataur Shell",
+              "amount": 1
+            },
+            {
+              "chance": 24,
+              "item": "Sm Ceanataur Shl",
+              "amount": 2
+            },
+            {
+              "chance": 16,
+              "item": "Giant Bone",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Med Monster Bone",
+              "amount": 2
+            },
+            {
+              "chance": 32,
+              "item": "Sharp Claw",
+              "amount": 1
+            },
+            {
+              "chance": 3,
+              "item": "Sm Lobstershell",
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Shogun Ceanataur",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Hornetaur",
+          "max_quantity": 5
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Genprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 5
+        },
+        {
+          "monster": "Conga",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 8
+        },
+        {
+          "monster": "Ioprey",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 10
+        },
+        {
+          "monster": "Shakalaka",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Supreme Ruler of the Swamp",
+      "goal": "Hunt the Shogun Ceanataur",
+      "details": "Hunters! It is time to hunt\ndown the Shogun Ceanataur.\nLet us rid the swamp zone of\nthis menace and expand our\nstrategic possibilities.\nThis is a highly classified\nhunt. So don't tell a soul!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Scheming Strategist",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 107,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 2,
+      "map": "Forest and Hills (Day)",
+      "fee": 180,
+      "reward": 2100,
+      "penalty": 700,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Yian Kut-Ku",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Sonic Bomb",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 1,
+              "item": "Kut-Ku Scale",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Kut-Ku Shell",
+              "amount": 1
+            },
+            {
+              "chance": 23,
+              "item": "Screamer",
+              "amount": 1
+            },
+            {
+              "chance": 26,
+              "item": "Sm Monster Bone",
+              "amount": 2
+            },
+            {
+              "chance": 20,
+              "item": "Med Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 1,
+              "item": "Flame Sac",
+              "amount": 1
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Yian Kut-Ku",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Mosswine",
+          "max_quantity": 5
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 12
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Slay the Great Kut-Ku!",
+      "goal": "Hunt the Yian Kut-Ku",
+      "details": "A bird-like Yian Kut-Ku is\nattacking people the world\nover! It has even shown up\nin these very hills! If it\nisn't eliminated soon, we're\nfinished! Show me what\nyou're made of!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Foothills Guardsman",
+      "requires": null,
+      "urgent": false
+    },
+    {
+      "id": 108,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 2,
+      "map": "Forest and Hills (Day)",
+      "fee": 250,
+      "reward": 3000,
+      "penalty": 1000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Rathalos",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Supply Flash Bmb",
+          "amount": 1
+        },
+        {
+          "item": "Supply Flash Bmb",
+          "amount": 1
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 26,
+              "item": "FireWyvern Fluid",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Rathalos Scale",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Rathalos Shell",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Wyvern Claw",
+              "amount": 5
+            },
+            {
+              "chance": 10,
+              "item": "Wyvern Fang",
+              "amount": 5
+            },
+            {
+              "chance": 4,
+              "item": "Med Monster Bone",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Lg Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": "Armor Sphere",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Rathalos",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Mosswine",
+          "max_quantity": 5
+        },
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Bullfango",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Melynx",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 12
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 3
+        },
+        {
+          "monster": "Felyne",
+          "max_quantity": 1
+        }
+      ],
+      "title": "Eliminate the Rathalos!",
+      "goal": "Hunt the Rathalos",
+      "details": "I request the assistance of\nonly the bravest of hunters\nto find and hunt the\nRathalos that has appeared\nnear here. Of course, a\nhandsome reward will be paid\nupon success.",
+      "fail": "Reward Zero\nTime Over",
+      "client": "The Kindly Lord",
+      "requires": 10203,
+      "urgent": false
+    },
+    {
+      "id": 109,
+      "hub": "guild",
+      "rank": "low-rank",
+      "stars": 2,
+      "map": "Jungle (Day)",
+      "fee": 250,
+      "reward": 3000,
+      "penalty": 1000,
+      "time_limit_minutes": 50,
+      "target": {
+        "monster": "Rathian",
+        "amount": 1
+      },
+      "supplies": [
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Map",
+          "amount": 1
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "Mini Whetstone",
+          "amount": 2
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "First-Aid Med",
+          "amount": 3
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Ration",
+          "amount": 2
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Paintball",
+          "amount": 1
+        },
+        {
+          "item": "Normal S Lv1",
+          "amount": 1
+        },
+        {
+          "item": "Pellet S Lv1",
+          "amount": 10
+        },
+        {
+          "item": "Recov S Lv1",
+          "amount": 5
+        },
+        {
+          "item": "Para S Lv1",
+          "amount": 8
+        },
+        {
+          "item": "Poison Coating",
+          "amount": 15
+        },
+        {
+          "item": "Empty Bottle",
+          "amount": 10
+        },
+        {
+          "item": "Antidote",
+          "amount": 2
+        },
+        {
+          "item": "Antidote",
+          "amount": 2
+        },
+        {
+          "item": "Tranq Bomb",
+          "amount": 3
+        },
+        {
+          "item": "Tranq S",
+          "amount": 4
+        },
+        {
+          "item": "Prtbl Shock Trap",
+          "amount": 1
+        }
+      ],
+      "reward_tables": [
+        {
+          "kind": "main",
+          "draws": 5,
+          "condition": null,
+          "items": [
+            {
+              "chance": 26,
+              "item": "FireWyvern Fluid",
+              "amount": 1
+            },
+            {
+              "chance": 25,
+              "item": "Rathian Scale",
+              "amount": 1
+            },
+            {
+              "chance": 20,
+              "item": "Rathian Shell",
+              "amount": 1
+            },
+            {
+              "chance": 5,
+              "item": "Wyvern Claw",
+              "amount": 3
+            },
+            {
+              "chance": 10,
+              "item": "Wyvern Fang",
+              "amount": 6
+            },
+            {
+              "chance": 4,
+              "item": "Med Monster Bone",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Lg Monster Bone",
+              "amount": 1
+            },
+            {
+              "chance": 2,
+              "item": "Armor Sphere",
+              "amount": 2
+            },
+            {
+              "chance": 4,
+              "item": "Armor Sphere",
+              "amount": 1
+            }
+          ]
+        }
+      ],
+      "large_monsters": [
+        {
+          "monster": "Rathian",
+          "quantity": 1,
+          "power": 4
+        }
+      ],
+      "small_monsters": [
+        {
+          "monster": "Aptonoth",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Vespoid",
+          "max_quantity": 12
+        },
+        {
+          "monster": "Kelbi",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Hermitaur",
+          "max_quantity": 2
+        },
+        {
+          "monster": "Mosswine",
+          "max_quantity": 99
+        },
+        {
+          "monster": "Velociprey",
+          "max_quantity": 4
+        }
+      ],
+      "title": "Attack of the Rathian",
+      "goal": "Hunt the Rathian",
+      "details": "My caravan was wiped out by\nthe queen of the skies, the\nkiller Rathian! I'll pay you\nwhatever you ask if you hunt\ndown that foul creature!\nHelp me kind hunter, you're\nmy only hope!",
+      "fail": "Reward Zero\nTime Over",
+      "client": "Caravan Leader",
+      "requires": 10203,
+      "urgent": false
+    },
+    {
       "id": 1001,
       "hub": "guild",
       "rank": "low-rank",

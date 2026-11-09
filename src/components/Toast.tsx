@@ -21,7 +21,7 @@ interface ToastViewportProps {
 }
 
 const actionButton = [
-  "cursor-pointer border border-hr bg-transparent px-[0.8rem] py-[0.25rem] font-[inherit] text-[1.4rem] text-white/85",
+  "cursor-pointer border border-hr bg-transparent px-[0.8rem] py-[0.25rem] font-[inherit] text-fine text-white/85",
   "hover:text-white hover:hover-glow focus-visible:text-white focus-visible:hover-glow",
 ].join(" ");
 
@@ -44,18 +44,18 @@ export default function ToastViewport({ toasts, onDismiss }: ToastViewportProps)
         >
           <button
             type="button"
-            className="absolute top-[1.2rem] right-[1.8rem] cursor-pointer border-none bg-transparent px-[0.4rem] py-[0.2rem] font-[inherit] text-[1.8rem] leading-none text-white/50 hover:text-white focus-visible:text-white"
+            className="absolute top-[1.2rem] right-[1.8rem] cursor-pointer border-none bg-transparent px-[0.4rem] py-[0.2rem] font-[inherit] text-sub leading-none text-white/50 hover:text-white focus-visible:text-white"
             onClick={() => onDismiss(t.id)}
             aria-label="Dismiss"
           >
             ×
           </button>
           {t.title && (
-            <p className="m-0 pr-[2rem] text-[1.6rem] leading-[1.2] tracking-[0.15ch] text-parchment uppercase text-shadow-[0.15rem_0.15rem_black]">
+            <p className="m-0 pr-[2rem] text-small leading-[1.2] tracking-[0.15ch] text-parchment uppercase text-shadow-[0.15rem_0.15rem_black]">
               {t.title}
             </p>
           )}
-          <p className="m-0 text-[1.5rem] leading-[1.35] text-inherit">{t.message}</p>
+          <p className="m-0 text-small leading-[1.35] text-inherit">{t.message}</p>
           {t.progress != null && <progress className={progressBar} value={t.progress} max={100} />}
           {t.actions && t.actions.length > 0 && (
             <div className="mt-[0.2rem] flex flex-wrap gap-[0.6rem]">
