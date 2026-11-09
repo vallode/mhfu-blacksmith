@@ -9,6 +9,7 @@ import QuestNav from "@/components/QuestNav";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import StarMarks from "@/components/StarMarks";
 import { usePreferences } from "@/context/PreferencesContext";
+import { useGameText, useT } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
 import { useQuests } from "@/lib/client-data";
@@ -44,6 +45,8 @@ export default function QuestHubShell({
   hub: QuestHubSlug;
   children: React.ReactNode;
 }) {
+  const t = useT().quests;
+  const game = useGameText();
   const { quests, error } = useQuests();
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const levels = questStarLevels(onHub);
@@ -97,7 +100,7 @@ export default function QuestHubShell({
         <div data-tree-panel className="relative z-2 flex min-h-0 min-w-0 flex-1 flex-col">
           <Card variant="weapon-tree">
             <div ref={listRef} className="flex flex-col">
-              {error && <p className="px-[16px] text-negative">Couldn&apos;t load quests.</p>}
+              {error && <p className="px-[16px] text-negative">{t.loadError}</p>}
               {shown.map((q) => (
                 <Link
                   key={q.id}
@@ -106,11 +109,11 @@ export default function QuestHubShell({
                   aria-current={q.id === id ? "page" : undefined}
                   className={cn("list-row", q.id === id && "bg-white/10")}
                 >
-                  <p className="truncate">{q.title}</p>
+                  <p className="truncate">{game.quest(q.id, "title", q.title)}</p>
                   {(cleared?.has(q.id) || q.urgent) && (
                     <span className="ml-auto flex flex-none gap-[1rem]">
-                      {cleared?.has(q.id) && <span className="text-stat">CLEAR!!</span>}
-                      {q.urgent && <span className="text-negative">Urgent</span>}
+                      {cleared?.has(q.id) && <span className="text-stat">{t.cleared}</span>}
+                      {q.urgent && <span className="text-negative">{t.board.urgent}</span>}
                     </span>
                   )}
                 </Link>
@@ -130,12 +133,12 @@ export default function QuestHubShell({
               label={
                 <StarMarks {...questStarLevel(hub, current ?? 0)} scale={2} className="flex" />
               }
-              groupLabel="Quest star level"
-              previousLabel="Previous star level"
-              nextLabel="Next star level"
+              groupLabel={t.board.starLevels}
+              previousLabel={t.board.previousStarLevel}
+              nextLabel={t.board.nextStarLevel}
               onStep={step}
               count={`${index + 1}/${levels.length}`}
-              countLabel={`Star level ${index + 1} of ${levels.length}`}
+              countLabel={t.board.starLevelOf(index + 1, levels.length)}
             />
           )}
         </div>

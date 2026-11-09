@@ -1,4 +1,5 @@
 import { DetailCard } from "@/components/DetailPanel";
+import Msg from "@/components/Msg";
 
 /**
  * /monsters/<type>/: the type's monsters are listed down the left by the
@@ -7,7 +8,9 @@ import { DetailCard } from "@/components/DetailPanel";
 export default function MonsterListClient() {
   return (
     <DetailCard>
-      <p className="text-main leading-[1.25] uppercase">No data</p>
+      <p className="text-main leading-[1.25] uppercase">
+        <Msg k="monsters.noData" />
+      </p>
     </DetailCard>
   );
 }

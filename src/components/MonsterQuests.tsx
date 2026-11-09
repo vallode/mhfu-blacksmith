@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useGameText, useT } from "@/context/LanguageContext";
 import { QUEST_HUBS, questHref, type Quest } from "@/lib/quests";
 
 /**
@@ -12,6 +15,8 @@ export default function MonsterQuests({
   quests: Quest[];
   cleared?: ReadonlySet<number> | null;
 }) {
+  const t = useT().quests;
+  const game = useGameText();
   return (
     <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1">
       {QUEST_HUBS.map((hub) => {
@@ -19,7 +24,9 @@ export default function MonsterQuests({
         if (onHub.length === 0) return null;
         return (
           <section key={hub.slug} className="flex min-w-0 flex-col gap-[0.6rem]">
-            <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">{hub.label}</h3>
+            <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">
+              {t.hubs[hub.slug]}
+            </h3>
             <ul className="m-0 flex list-none flex-col gap-[0.4rem] p-0">
               {onHub.map((q) => (
                 <li key={q.id} className="flex min-w-0 items-baseline gap-[0.8rem] leading-[1.25]">
@@ -28,10 +35,10 @@ export default function MonsterQuests({
                     href={questHref(q)}
                     className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
                   >
-                    {q.title}
+                    {game.quest(q.id, "title", q.title)}
                   </Link>
                   {cleared?.has(q.id) && (
-                    <span className="ml-auto flex-none text-stat">CLEAR!!</span>
+                    <span className="ml-auto flex-none text-stat">{t.cleared}</span>
                   )}
                 </li>
               ))}

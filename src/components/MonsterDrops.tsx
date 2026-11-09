@@ -1,4 +1,7 @@
+"use client";
+
 import Icon from "@/components/Icon";
+import { useGameText, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { parseDropSource } from "@/lib/monster-drops";
 import type { MonsterDrop } from "@/lib/types";
@@ -27,22 +30,34 @@ export function DropGrid({ children }: { children: React.ReactNode }) {
  * chance.
  */
 export default function MonsterDrops({ sources }: MonsterDropsProps) {
+  const t = useT().monsters.drops;
+  const game = useGameText();
   return (
     <DropGrid>
-      {Object.entries(sources).map(([source, items]) => (
-        <DropList key={source} {...parseDropSource(source)} items={items} />
-      ))}
+      {Object.entries(sources).map(([source, items]) => {
+        const { title, count, note } = parseDropSource(source);
+        return (
+          <DropList
+            key={source}
+            title={t.sources[title] ?? title}
+            count={count}
+            note={note && (t.notes[note] ?? note)}
+            items={items.map((drop) => ({ ...drop, name: game.name("item", drop.name) }))}
+          />
+        );
+      })}
     </DropGrid>
   );
 }
 
 interface DropListProps {
-  /** How the items are obtained: "Body carves", "Main reward" */
+  /** How the items are obtained, translated: "Body carves", "Main reward" */
   title: string;
   /** How many attempts, shown as "×N" */
   count?: number;
   /** Condition or detail, in small text */
   note?: string;
+  /** The rows, with item names already in the site's language. */
   items: MonsterDrop[];
 }
 

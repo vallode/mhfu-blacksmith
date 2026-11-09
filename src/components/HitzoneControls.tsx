@@ -1,9 +1,13 @@
 "use client";
 
+import { useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 
 export interface HitzonePart {
+  /** The data's part id ("front-legs"). */
   name: string;
+  /** The part's name in the site's language. */
+  label: string;
   /** `var(--color-hitbox-N)`. */
   color: string;
 }
@@ -34,6 +38,7 @@ export default function HitzoneControls({
   onPin,
   onHover,
 }: Props) {
+  const t = useT().monsters.hitzones;
   return (
     <>
       <button
@@ -46,11 +51,11 @@ export default function HitzoneControls({
           show ? "text-stat" : "text-parchment",
         )}
       >
-        Hitzones
+        {t.show}
       </button>
       {show && (
         <ul
-          aria-label="Hitzone parts"
+          aria-label={t.legend}
           className={cn(panel, "absolute top-2 left-2 z-10 flex flex-col")}
           onPointerLeave={() => onHover(null)}
         >
@@ -64,7 +69,7 @@ export default function HitzoneControls({
                 onFocus={() => onHover(part.name)}
                 onBlur={() => onHover(null)}
                 className={cn(
-                  "flex cursor-pointer items-center gap-[0.6rem] capitalize hover:text-white focus-visible:text-white",
+                  "flex cursor-pointer items-center gap-[0.6rem] hover:text-white focus-visible:text-white",
                   pinned === part.name ? "text-white underline" : "text-parchment",
                 )}
               >
@@ -73,7 +78,7 @@ export default function HitzoneControls({
                   className="size-[1rem] shrink-0"
                   style={{ backgroundColor: part.color }}
                 />
-                {part.name}
+                {part.label}
               </button>
             </li>
           ))}

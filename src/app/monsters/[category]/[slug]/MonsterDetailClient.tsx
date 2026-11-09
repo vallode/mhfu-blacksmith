@@ -19,6 +19,8 @@ import { clearedQuestIds, questsWithMonster } from "@/lib/quests";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useMonsterHitboxes, useMonsterModel } from "@/lib/models";
+import { useLocale } from "@/context/LanguageContext";
+import type { Messages } from "@/lib/i18n/messages";
 import Loading from "@/components/Loading";
 
 interface Props {
@@ -27,18 +29,24 @@ interface Props {
 }
 
 const HITZONE_COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
-// The game's abbreviated column headers.
-const HITZONE_LABELS: Record<string, string> = {
-  cut: "Cut",
-  bash: "Bsh",
-  shot: "Sht",
-  fir: "Fir",
-  wtr: "Wtr",
-  thn: "Thn",
-  ice: "Ice",
-  drg: "Drg",
-  ko: "KO",
-};
+
+/**
+ * A hitzone part's name in the site's language. A part id the dictionary
+ * doesn't list shows capitalised, as "front-legs" -> "Front-Legs".
+ */
+function partLabel(t: Messages, part: string): string {
+  return t.monsters.hitzones.parts[part] ?? part.replace(/(^|[\s-])\w/g, (c) => c.toUpperCase());
+}
+
+/**
+ * A drop table rank's tab label: one of the common ranks ("low rank",
+ * "g-rank"), else the bestiary's own ("1-2 star guild"), else as the data has it.
+ */
+function rankLabel(t: Messages, rank: string): string {
+  const id = rank.trim().toLowerCase().replace(/\s+/g, "-");
+  if (id in t.common.ranks) return t.common.ranks[id as keyof Messages["common"]["ranks"]];
+  return t.monsters.drops.ranks[id] ?? formatRank(rank);
+}
 
 /** A hitzone part's colour on the model, by its place in the hitzone table. */
 const hitboxColor = (index: number) => `var(--color-hitbox-${(index % 8) + 1})`;
@@ -46,15 +54,13 @@ const hitboxColor = (index: number) => `var(--color-hitbox-${(index % 8) + 1})`;
 /** Hitbox opacity: all shown, a highlighted part, and the rest while one is highlighted. */
 const HITBOX_OPACITY = { shown: 0.35, highlighted: 0.6, dimmed: 0.08 };
 
-/** Sizes are stored to two decimals; whole centimetres are enough here. */
-const formatSize = (cm: number) => Math.round(cm).toLocaleString("en-US");
-
 // Some monsters have no art; keep the layout and hide the broken-image glyph.
 const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
   e.currentTarget.style.visibility = "hidden";
 };
 
 export default function MonsterDetailClient({ category, slug }: Props) {
+  const { t, game, formatNumber } = useLocale();
   const { item: monster, loading } = useMonster(category, slug);
   const modelUrl = useMonsterModel(monster?.name);
   const { quests } = useQuests();
@@ -75,9 +81,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const hitboxParts = useMemo<HitzonePart[]>(() => {
     if (!hitboxes || !monster?.hitzones) return [];
     return Object.keys(monster.hitzones)
-      .map((name, i) => ({ name, color: hitboxColor(i) }))
+      .map((name, i) => ({ name, label: partLabel(t, name), color: hitboxColor(i) }))
       .filter(({ name }) => hitboxes.some((capsule) => capsule.parts.includes(name)));
-  }, [hitboxes, monster?.hitzones]);
+  }, [hitboxes, monster?.hitzones, t]);
 
   const capsules = useMemo<ModelCapsule[]>(() => {
     if (!hitboxes || (!showHitzones && !highlight)) return [];
@@ -97,8 +103,16 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The nav and the list of monsters on the left come from the monsters
   // layout (MonsterShell), which stays mounted; this is only the detail panel.
   if (loading || !monster) {
-    return <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>;
+    return (
+      <Card>
+        {loading ? <Loading>{t.common.loading}</Loading> : <p>{t.monsters.detail.notFound}</p>}
+      </Card>
+    );
   }
+
+  const name = game.name("monster", monster.name);
+  /** Sizes are stored to two decimals; whole centimetres are enough here. */
+  const formatSize = (cm: number) => formatNumber(Math.round(cm));
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
   // The most effective part per column, to highlight it
@@ -119,14 +133,14 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       ? [
           {
             id: "hitzones",
-            label: "Hitzones",
+            label: t.monsters.detail.tabs.hitzones,
             content: (
               <table className={hitzoneTable}>
                 <thead>
                   <tr>
-                    <th>Part</th>
+                    <th>{t.monsters.hitzones.part}</th>
                     {HITZONE_COLS.map((col) => (
-                      <th key={col}>{HITZONE_LABELS[col]}</th>
+                      <th key={col}>{t.monsters.hitzones.columns[col]}</th>
                     ))}
                   </tr>
                 </thead>
@@ -141,7 +155,11 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                       onPointerLeave={() => setHoveredPart(null)}
                       className={cn(modelOpen && hoveredPart === part && "bg-white/10")}
                     >
-                      <td style={{ color: partColor(part) }}>{part}</td>
+                      <td style={{ color: partColor(part) }}>
+                        {/* The table capitalises each word of a part id; the
+                            label is already cased as the language writes it. */}
+                        <span className="normal-case">{partLabel(t, part)}</span>
+                      </td>
                       {HITZONE_COLS.map((col) => {
                         const value = values[col];
                         const n = Number(value);
@@ -168,7 +186,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // One tab per rank's drop tables
   const dropTabs: Tab[] = Object.entries(monster.drops ?? {}).map(([rank, sources]) => ({
     id: rank,
-    label: formatRank(rank),
+    label: rankLabel(t, rank),
     content: <MonsterDrops sources={sources} />,
   }));
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
@@ -178,7 +196,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       ? [
           {
             id: "quests",
-            label: "Quests",
+            label: t.monsters.detail.tabs.quests,
             content: <MonsterQuests quests={monsterQuests} cleared={cleared} />,
           },
         ]
@@ -196,7 +214,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
         <div className="flex flex-row items-start gap-4 mobile:flex-col-reverse mobile:items-stretch">
           <div className="flex min-w-0 flex-1 flex-col gap-2 text-main text-gold">
             <div className="flex items-center">
-              <p className="min-w-0 leading-[1.25] whitespace-normal">{monster.name}</p>
+              <p className="min-w-0 leading-[1.25] whitespace-normal">{name}</p>
               {modelUrl && (
                 <ModelButton
                   open={modelOpen}
@@ -206,34 +224,39 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               )}
             </div>
             {monster.habitats && (
-              <p className="leading-[1.25] whitespace-normal">{monster.habitats.join(", ")}</p>
+              <p className="leading-[1.25] whitespace-normal">
+                {monster.habitats.map((map) => game.name("map", map)).join(", ")}
+              </p>
             )}
             {monster.description && (
               <p className="text-small whitespace-normal text-white">{monster.description}</p>
             )}
             {monster.sizes && (
               <p className="text-small text-stat">
-                Size:{" "}
+                {t.monsters.detail.size}{" "}
                 <span className="text-white tabular-nums">
-                  {formatSize(monster.sizes.min)}–{formatSize(monster.sizes.max)} cm
+                  {t.monsters.detail.sizeRange(
+                    formatSize(monster.sizes.min),
+                    formatSize(monster.sizes.max),
+                  )}
                 </span>
               </p>
             )}
             {monster.base_hp !== undefined && (
               <p className="text-small text-stat">
-                Base HP:{" "}
-                <span className="text-white tabular-nums">
-                  {monster.base_hp.toLocaleString("en-US")}
-                </span>
+                {t.monsters.detail.baseHp}{" "}
+                <span className="text-white tabular-nums">{formatNumber(monster.base_hp)}</span>
               </p>
             )}
             {record && (
               <p className="text-small whitespace-normal text-stat">
-                Hunted: <span className="text-white tabular-nums">{record.kills}</span>
+                {t.monsters.detail.hunted}{" "}
+                <span className="text-white tabular-nums">{formatNumber(record.kills)}</span>
                 {monster.sizes && (
                   <>
-                    {" · "}Captured:{" "}
-                    <span className="text-white tabular-nums">{record.captures}</span>
+                    {" · "}
+                    {t.monsters.detail.captured}{" "}
+                    <span className="text-white tabular-nums">{formatNumber(record.captures)}</span>
                   </>
                 )}
               </p>
@@ -243,7 +266,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             <img
               className="h-[9rem] w-[9rem] object-contain pixelated"
               src={`/images/monsters/${slug}.png`}
-              alt={monster.name}
+              alt={name}
               decoding="sync"
               onError={hideBroken}
             />
@@ -253,13 +276,15 @@ export default function MonsterDetailClient({ category, slug }: Props) {
         <DetailBody>
           <DetailRule />
           {/* Keyed on the monster so the selected tab resets when navigating */}
-          {tabs.length > 0 && <Tabs key={slug} label={`${monster.name} data`} tabs={tabs} />}
+          {tabs.length > 0 && (
+            <Tabs key={slug} label={t.monsters.detail.tabsLabel(name)} tabs={tabs} />
+          )}
         </DetailBody>
       </DetailCard>
       {modelOpen && (
-        <ModelPopover title={monster.name} onClose={() => setOpenModel(null)}>
+        <ModelPopover title={name} onClose={() => setOpenModel(null)}>
           <div className="relative h-full w-full">
-            <ModelViewer src={modelUrl} label={monster.name} capsules={capsules} />
+            <ModelViewer src={modelUrl} label={name} capsules={capsules} />
             {hitboxParts.length > 0 && (
               <HitzoneControls
                 parts={hitboxParts}
