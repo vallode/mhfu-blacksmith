@@ -1,0 +1,12 @@
+{
+  "$comment": "Spanish game text: names keyed by their English name, quest board text keyed by quest ID. Missing entries fall back to English. Generated from the EU disc by `pnpm --filter mhfu-extract locales` (see tools/mhfu-extract/README.md, \"Localized text\"); don't hand-translate official names.",
+  "source": null,
+  "weapon": {},
+  "armor": {},
+  "item": {},
+  "monster": {},
+  "skill": {},
+  "decoration": {},
+  "map": {},
+  "quest": {}
+}

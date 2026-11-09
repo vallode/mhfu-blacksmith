@@ -1,0 +1,2 @@
+/** quests */
+export const quests = {};

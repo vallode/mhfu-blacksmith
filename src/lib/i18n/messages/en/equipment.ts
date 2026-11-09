@@ -1,0 +1,2 @@
+/** equipment */
+export const equipment = {};

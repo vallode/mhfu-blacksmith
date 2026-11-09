@@ -34,6 +34,8 @@ function collectPrecacheEntries(): PrecacheEntry[] {
   if (fs.existsSync(dataDir)) {
     for (const f of fs.readdirSync(dataDir)) {
       if (!f.endsWith(".json")) continue;
+      // Game text in other languages: fetched (and runtime-cached) only in that language.
+      if (f.startsWith("locale-")) continue;
       entries.push({ url: `/data/${f}`, revision: hashFile(path.join(dataDir, f)) });
     }
   }

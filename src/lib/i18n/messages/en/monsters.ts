@@ -1,0 +1,2 @@
+/** monsters */
+export const monsters = {};

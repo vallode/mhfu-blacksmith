@@ -10,6 +10,8 @@ import Link from "next/link";
 import SettingsCard from "@/components/SettingsCard";
 import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
 import { usePreferences, type Preferences } from "@/context/PreferencesContext";
+import { useT } from "@/context/LanguageContext";
+import { LOCALES, LOCALE_NAMES, type Locale } from "@/lib/i18n/locales";
 import { STAGES, tierLabel, type Tier } from "@/lib/min-rank";
 import { DEFAULT_PREFERENCES } from "@/lib/preferences";
 import { TREE_FILTERS } from "@/lib/tree-filter";
@@ -30,6 +32,12 @@ const TREE_FILTER_CHOICES = TREE_FILTERS.map((f) => ({ value: f.id, label: f.lab
 
 export default function PreferencesSettings() {
   const { prefs, set, reset } = usePreferences();
+  const t = useT();
+
+  const languageChoices: Choice<Locale | "auto">[] = [
+    { value: "auto", label: t.site.language.auto },
+    ...LOCALES.map((code) => ({ value: code, label: LOCALE_NAMES[code] })),
+  ];
 
   /** An On/Off row for a boolean preference. */
   const toggle = (key: ToggleKey, label: string, note: React.ReactNode) => (
@@ -42,6 +50,17 @@ export default function PreferencesSettings() {
 
   return (
     <SettingsCard title="Preferences">
+      <h3 className={ui.subheading}>{t.site.language.heading}</h3>
+      <SelectorRow
+        label={t.site.language.label}
+        note={t.site.language.note}
+        choices={languageChoices}
+        value={prefs.language}
+        onChange={(value) => set("language", value)}
+      />
+
+      <hr className="my-[0.4rem] h-[3px]" />
+
       <h3 className={ui.subheading}>Display</h3>
       {toggle(
         "showRawValues",

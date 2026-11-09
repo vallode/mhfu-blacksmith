@@ -6,8 +6,11 @@
  */
 import { STAGES, type Tier } from "./min-rank";
 import { isTreeFilterId, type TreeFilterId } from "./tree-filter";
+import { isLocale, type Locale } from "./i18n/locales";
 
 export interface Preferences {
+  /** The site's language, or "auto" to follow the browser's. */
+  language: Locale | "auto";
   /** Show the true (raw) attack and element values in brackets next to the displayed ones. */
   showRawValues: boolean;
   /** Pulse the green hover and selection highlights (off: a steady highlight). */
@@ -31,6 +34,7 @@ export interface Preferences {
 }
 
 export const DEFAULT_PREFERENCES: Preferences = {
+  language: "auto",
   showRawValues: true,
   animateHighlights: true,
   markOwned: true,
@@ -59,7 +63,9 @@ export function parsePreferences(raw: string | null): Preferences {
   const prefs = { ...DEFAULT_PREFERENCES };
   for (const key of Object.keys(DEFAULT_PREFERENCES) as (keyof Preferences)[]) {
     const value = record[key];
-    if (key === "defaultTreeFilter") {
+    if (key === "language") {
+      if (value === "auto" || isLocale(value)) prefs.language = value;
+    } else if (key === "defaultTreeFilter") {
       if (isTreeFilterId(value)) prefs.defaultTreeFilter = value;
     } else if (key === "questProgress") {
       // The stage itself, not the parsed copy, so it compares equal to the choices.

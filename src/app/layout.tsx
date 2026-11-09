@@ -10,6 +10,7 @@ import SaveSyncReconnect from "@/components/SaveSyncReconnect";
 import { SaveProvider } from "@/context/SaveContext";
 import { HunterProgressProvider } from "@/context/HunterProgressContext";
 import { PreferencesProvider } from "@/context/PreferencesContext";
+import { LanguageProvider } from "@/context/LanguageContext";
 import { ToastProvider } from "@/context/ToastContext";
 import { OfflineProvider } from "@/context/OfflineContext";
 import { FileSyncProvider } from "@/context/FileSyncContext";
@@ -49,21 +50,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <PreloadIcons />
         <PreferencesProvider>
-          <SaveProvider>
-            <HunterProgressProvider>
-              <ToastProvider>
-                <OfflineProvider>
-                  <FileSyncProvider>
-                    <OfflineNavGuard>{children}</OfflineNavGuard>
-                    <GlobalSearch />
-                    {/* Offline download banner hidden for now.
+          <LanguageProvider>
+            <SaveProvider>
+              <HunterProgressProvider>
+                <ToastProvider>
+                  <OfflineProvider>
+                    <FileSyncProvider>
+                      <OfflineNavGuard>{children}</OfflineNavGuard>
+                      <GlobalSearch />
+                      {/* Offline download banner hidden for now.
                     <OfflineDownload /> */}
-                    <SaveSyncReconnect />
-                  </FileSyncProvider>
-                </OfflineProvider>
-              </ToastProvider>
-            </HunterProgressProvider>
-          </SaveProvider>
+                      <SaveSyncReconnect />
+                    </FileSyncProvider>
+                  </OfflineProvider>
+                </ToastProvider>
+              </HunterProgressProvider>
+            </SaveProvider>
+          </LanguageProvider>
         </PreferencesProvider>
       </body>
     </html>
