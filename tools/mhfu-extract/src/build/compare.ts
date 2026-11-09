@@ -15,7 +15,7 @@ import {
   type SpellingIndex,
 } from "./fields.js";
 import { assignDiscIds, loadSiteIndex, type SiteIndex } from "./ids.js";
-import type { MaterialContext } from "../overlay/item-name-corrections.js";
+import type { MaterialContext } from "./categories.js";
 import { monsterIdOf } from "../overlay/monsters.js";
 
 export type Item = Record<string, unknown>;

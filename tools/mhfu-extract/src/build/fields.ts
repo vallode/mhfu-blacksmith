@@ -5,12 +5,14 @@
  * Every field has a kind. A kind says how to reduce a value to a canonical
  * form that ignores presentation (skill spelling, list order, material
  * spelling, `null` vs `[]`), and how to turn a disc value into the site's
- * vocabulary (`toSite`) for writing to `data/`. `toSite` keeps the committed
- * value whenever its canonical form already equals the disc's, so an
- * unchanged field stays byte-identical.
+ * vocabulary (`toSite`) for writing to `data/`. Item names are not part of
+ * that vocabulary: materials and drops are always written with the game's
+ * own item name (`data/items.json`), never an older site spelling. `toSite`
+ * keeps the committed value whenever its canonical form already equals the
+ * disc's, so an unchanged field stays byte-identical.
  */
 import { canonicalDecorationSkill, canonicalSkillName } from "../overlay/skill-name-aliases.js";
-import type { MaterialContext } from "../overlay/item-name-corrections.js";
+import type { MaterialContext } from "./categories.js";
 import type { NameTable } from "../strings/names.js";
 import { formatSignedAmount } from "../emit/common.js";
 import { discMaterialId, enumIdOf, type EquipmentSlot, type SiteIndex } from "./ids.js";
@@ -59,25 +61,19 @@ export interface FieldContext {
 }
 
 /**
- * Most common committed spelling (and, for materials, type/color) for each
- * canonical skill name and item ID. Used to spell a value the committed
- * item didn't have before, the way the rest of the site already spells it.
- * A skill no committed item of the same category spells is written with
- * its `SkillID` name.
+ * Most common committed skill spelling for each canonical skill name, and
+ * material icon style (type/color) for each item ID. Used to write a value
+ * the committed item didn't have before the way the rest of the site
+ * already writes it. A skill no committed item of the same category spells
+ * is written with its `SkillID` name.
  *
- * Material names are taken from the same recipe context first (armor
- * files spell some items differently from weapon files, e.g.
- * "FireWyvern Claw" vs "Fire Wyvern Claw", and both resolve). The icon
- * style is taken from weapon and decoration recipes first: about a third
- * of the items armor shares with them carry a placeholder "bone"/"white"
- * style in the committed armor files.
+ * The icon style is taken from weapon and decoration recipes first: about
+ * a third of the items armor shares with them carry a placeholder
+ * "bone"/"white" style in the committed armor files.
  */
 export interface SpellingIndex {
   skill(canonical: string, context: MaterialContext): string | undefined;
-  material(
-    itemId: number,
-    context: MaterialContext,
-  ): { name: string; type: string; color: string } | undefined;
+  materialStyle(itemId: number): { type: string; color: string } | undefined;
 }
 
 interface Material {
@@ -112,7 +108,6 @@ export function buildSpellingIndex(
   site: SiteIndex,
 ): SpellingIndex {
   const skills = new Map<MaterialContext, Counts<string>>();
-  const names = new Map<MaterialContext | "any", Counts<string>>();
   const styles = {
     armor: new Map() as Counts<{ type: string; color: string }>,
     other: new Map() as Counts<{ type: string; color: string }>,
@@ -138,10 +133,6 @@ export function buildSpellingIndex(
         for (const m of (item[field] as Material[] | null | undefined) ?? []) {
           const id = site.itemIdOf(m.name);
           if (id === null) continue;
-          for (const key of [context, "any"] as const) {
-            if (!names.has(key)) names.set(key, new Map());
-            bump(names.get(key)!, String(id), m.name);
-          }
           bump(context === "armor" ? styles.armor : styles.other, String(id), {
             type: m.type,
             color: m.color,
@@ -154,14 +145,8 @@ export function buildSpellingIndex(
     // Skill spelling is per category only: decorations use the SkillID
     // spelling for trees armor spells differently ("SleepCAdd" vs "SleepCtAdd").
     skill: (canonical, context) => mostCommon(skills.get(context) ?? new Map(), canonical),
-    material: (itemId, context) => {
-      const key = String(itemId);
-      const empty: Counts<string> = new Map();
-      const name =
-        mostCommon(names.get(context) ?? empty, key) ?? mostCommon(names.get("any") ?? empty, key);
-      const style = mostCommon(styles.other, key) ?? mostCommon(styles.armor, key);
-      return name && style ? { name, ...style } : undefined;
-    },
+    materialStyle: (itemId) =>
+      mostCommon(styles.other, String(itemId)) ?? mostCommon(styles.armor, String(itemId)),
   };
 }
 
@@ -197,8 +182,7 @@ function decorationSkillKeys(value: unknown): string[] {
 }
 
 function materialKey(m: Material, side: "site" | "disc", ctx: FieldContext): string {
-  const id =
-    side === "site" ? ctx.site.itemIdOf(m.name) : discMaterialId(m.name, ctx.materialContext);
+  const id = side === "site" ? ctx.site.itemIdOf(m.name) : discMaterialId(m.name);
   return `${id ?? `?${m.name}`} x${m.amount}`;
 }
 
@@ -435,7 +419,7 @@ function materialsToSite(
 ): unknown {
   const discMats = list(disc) as Material[];
   if (discMats.length === 0) return null;
-  // Spellings this item already uses, from this field first, then its other recipes.
+  // Icon styles this item already uses, from this field first, then its other recipes.
   const own = new Map<number, Material>();
   for (const source of [field, ...MATERIAL_FIELDS.filter((f) => f !== field)]) {
     for (const m of list(siteItem[source]) as Material[]) {
@@ -444,12 +428,12 @@ function materialsToSite(
     }
   }
   return discMats.map((m) => {
-    const id = discMaterialId(m.name, ctx.materialContext);
+    const id = discMaterialId(m.name);
     if (id === null) return m;
-    const known = own.get(id) ?? ctx.spellings.material(id, ctx.materialContext);
-    if (known) return { name: known.name, amount: m.amount, type: known.type, color: known.color };
-    const item = ctx.site.items.get(id);
-    return { name: item?.name ?? m.name, amount: m.amount, type: m.type, color: m.color };
+    // The game's own name, never an older site spelling of the same item.
+    const name = ctx.site.items.get(id)?.name ?? m.name;
+    const style = own.get(id) ?? ctx.spellings.materialStyle(id) ?? m;
+    return { name, amount: m.amount, type: style.type, color: style.color };
   });
 }
 
@@ -535,9 +519,9 @@ function hitzonesToSite(disc: unknown, committed: unknown): unknown {
 
 /**
  * The committed drops with each group the disc has rewritten from it when it
- * differs, keeping the committed entry order. An item keeps its committed spelling when the
- * group already listed it, else takes its `data/items.json` name; amounts are
- * written as an ` xN` suffix in groups whose committed entries have one.
+ * differs, keeping the committed entry order. Items take their game name
+ * (`data/items.json`); amounts are written as an ` xN` suffix in groups
+ * whose committed entries have one.
  * Groups the disc lacks stay as they are, and no group is added.
  */
 function dropsToSite(disc: unknown, committed: unknown, ctx: FieldContext): unknown {
@@ -571,14 +555,8 @@ function dropsToSite(disc: unknown, committed: unknown, ctx: FieldContext): unkn
       const withAmount =
         committedEntries.some((e) => /\sx\d+$/i.test(e.name.trim())) ||
         discList.some((e) => (e.amount ?? 1) !== 1);
-      const spelling = new Map<number, string>();
-      for (const e of committedEntries) {
-        const id = ctx.site.itemIdOf(e.name);
-        if (id !== null && !spelling.has(id))
-          spelling.set(id, e.name.trim().replace(/\s+x\d+$/i, ""));
-      }
       const format = (e: (typeof discList)[number]) => {
-        const base = spelling.get(e.itemId) ?? ctx.site.items.get(e.itemId)?.name ?? e.name;
+        const base = ctx.site.items.get(e.itemId)?.name ?? e.name;
         return { name: withAmount ? `${base} x${e.amount ?? 1}` : base, chance: `${e.chance}%` };
       };
       // Committed order: each committed entry takes the first unused disc

@@ -12,7 +12,6 @@
  * decoration `category`), is kept
  * from the committed file.
  */
-import type { MaterialContext } from "../overlay/item-name-corrections.js";
 import type { NameTable } from "../strings/names.js";
 import type { FieldSpec } from "./fields.js";
 import type { EquipmentSlot } from "./ids.js";
@@ -31,6 +30,9 @@ export interface CategoryFile {
   /** Category `take` fields kept from the committed file for this file only. */
   keepFields?: string[];
 }
+
+/** Which kind of recipe a material or skill belongs to; armor spells some skills differently. */
+export type MaterialContext = "armor" | "weapon" | "decoration";
 
 export interface Category {
   name: CategoryName;

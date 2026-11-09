@@ -23,10 +23,6 @@
     "type": "part",
     "color": "gray"
   },
-  "Akito jewel": {
-    "type": "deco",
-    "color": "white"
-  },
   "Akito Jewel": {
     "type": "deco",
     "color": "white"
@@ -43,10 +39,6 @@
     "type": "webbing",
     "color": "pink"
   },
-  "Alluring Wing": {
-    "type": "bone",
-    "color": "white"
-  },
   "Amezari Shell": {
     "type": "shell",
     "color": "red"
@@ -58,10 +50,6 @@
   "Anchor Jewel": {
     "type": "decoration",
     "color": "slate"
-  },
-  "Ancient DrgnBone": {
-    "type": "bone",
-    "color": "white"
   },
   "Ancient Fish": {
     "type": "fish",
@@ -108,8 +96,8 @@
     "color": "pink"
   },
   "Antidote Herb": {
-    "type": "bone",
-    "color": "white"
+    "type": "herb",
+    "color": "blue"
   },
   "Antidote Jewel": {
     "type": "decoration",
@@ -140,8 +128,8 @@
     "color": "orange"
   },
   "Armorskin": {
-    "type": "bone",
-    "color": "white"
+    "type": "fluid",
+    "color": "orange"
   },
   "Armory Jewel": {
     "type": "decoration",
@@ -155,41 +143,9 @@
     "type": "decoration",
     "color": "red"
   },
-  "Azr Rathlos Scl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Azr Rathlos Scl+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Azr Rathlos Tail": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Azre Rathlos Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Azre Rathlos Shl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Azre Rthlos Scl+": {
     "type": "scale",
     "color": "blue"
-  },
-  "AzrRathlosHvyCpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "AzrRathlosThkScl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Azur Rathlos Wng": {
-    "type": "bone",
-    "color": "white"
   },
   "Azur Rthlos Tail": {
     "type": "part",
@@ -232,7 +188,7 @@
     "color": "slate"
   },
   "Barrel Lid": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Basarios Carapace": {
@@ -242,10 +198,6 @@
   "Basarios Carpace": {
     "type": "part",
     "color": "gray"
-  },
-  "Basarios Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
   },
   "Basarios Shell": {
     "type": "part",
@@ -259,10 +211,6 @@
     "type": "part",
     "color": "gray"
   },
-  "BasariosStrngWng": {
-    "type": "bone",
-    "color": "white"
-  },
   "BattlefieldJewel": {
     "type": "deco",
     "color": "slate"
@@ -274,10 +222,6 @@
   "Beloved Jewel": {
     "type": "decoration",
     "color": "pink"
-  },
-  "Big Wyvern stone": {
-    "type": "stone",
-    "color": "blue"
   },
   "Big Wyvern Stone": {
     "type": "stone",
@@ -292,11 +236,7 @@
     "color": "slate"
   },
   "Binoculars": {
-    "type": "bone",
-    "color": "white"
-  },
-  "BirdWyvnStoutBne": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Bitterbug": {
@@ -327,14 +267,6 @@
     "type": "scale",
     "color": "gray"
   },
-  "Black Pearl+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Blackbelt Coin G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Blackbelt Ticket": {
     "type": "ticket",
     "color": "green"
@@ -346,10 +278,6 @@
   "BlackNargaPelt+": {
     "type": "pelt",
     "color": "gray"
-  },
-  "Blangnga HvyFang": {
-    "type": "bone",
-    "color": "white"
   },
   "Blango Pelt": {
     "type": "pelt",
@@ -371,16 +299,8 @@
     "type": "claw",
     "color": "white"
   },
-  "Blangonga pelt": {
-    "type": "pelt",
-    "color": "white"
-  },
   "Blangonga Pelt": {
     "type": "pelt",
-    "color": "white"
-  },
-  "Blangonga Pelt G": {
-    "type": "bone",
     "color": "white"
   },
   "Blangonga Pelt+": {
@@ -391,16 +311,8 @@
     "type": "part",
     "color": "white"
   },
-  "Blangonga Tail G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Blangonga Whiskr": {
     "type": "part",
-    "color": "white"
-  },
-  "Blaze Sac": {
-    "type": "bone",
     "color": "white"
   },
   "Blazing Fire Sac": {
@@ -410,14 +322,6 @@
   "Blessing Jewel": {
     "type": "decoration",
     "color": "pink"
-  },
-  "Blk Blos Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Blk Blos Hvy Spn": {
-    "type": "bone",
-    "color": "white"
   },
   "Blk Blos Thracic": {
     "type": "part",
@@ -442,26 +346,6 @@
   "Blk Rajang Pelt+": {
     "type": "pelt",
     "color": "gray"
-  },
-  "BlkGravDvnePlate": {
-    "type": "bone",
-    "color": "white"
-  },
-  "BlkGraviosHvyShl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "BlkRajangThkPelt": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Blngnga Hrd Whskr": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Blngnga HrdWhskr": {
-    "type": "bone",
-    "color": "white"
   },
   "Blood Red Horn": {
     "type": "claw",
@@ -491,17 +375,9 @@
     "type": "mushroom",
     "color": "blue"
   },
-  "BlueKut-KuHvyCpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "BlueKut-KuThkScl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Bomb Arrowana": {
-    "type": "bone",
-    "color": "white"
+    "type": "fish",
+    "color": "red"
   },
   "Bombardier Jewel": {
     "type": "decoration",
@@ -512,38 +388,18 @@
     "color": "white"
   },
   "Book of Combos 1": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Book of Combos 5": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Boomerang": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Brute Bone": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Brwn Blngnga Pelt": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Brwn Blngnga Tail": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Brwn BlngngaFang": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Brwn BlngngaPelt": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Brwn BlngngaTail": {
     "type": "bone",
     "color": "white"
   },
@@ -567,17 +423,9 @@
     "type": "part",
     "color": "orange"
   },
-  "Bullfango pelt": {
-    "type": "pelt",
-    "color": "orange"
-  },
   "Bullfango Pelt": {
     "type": "pelt",
     "color": "orange"
-  },
-  "Bullfango Pelt+": {
-    "type": "bone",
-    "color": "white"
   },
   "Burnt Meat": {
     "type": "meat",
@@ -600,10 +448,6 @@
     "color": "slate"
   },
   "Carpenterbug": {
-    "type": "insect",
-    "color": "gray"
-  },
-  "CarpenterBug": {
     "type": "insect",
     "color": "gray"
   },
@@ -651,18 +495,6 @@
     "type": "shell",
     "color": "blue"
   },
-  "CeanataurClaw G": {
-    "type": "bone",
-    "color": "white"
-  },
-  "CeanataurHvyCpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "CeanataurHvyLeg": {
-    "type": "bone",
-    "color": "white"
-  },
   "Celebrity Jewel": {
     "type": "decoration",
     "color": "blue"
@@ -670,10 +502,6 @@
   "Cephadrome Coin": {
     "type": "coin",
     "color": "cyan"
-  },
-  "Cephalos Coin": {
-    "type": "bone",
-    "color": "white"
   },
   "Cephalos Fin": {
     "type": "part",
@@ -699,10 +527,6 @@
     "type": "pelt",
     "color": "slate"
   },
-  "Chameleos Hide G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Chameleos Hide+": {
     "type": "pelt",
     "color": "slate"
@@ -710,10 +534,6 @@
   "Chameleos Horn": {
     "type": "claw",
     "color": "slate"
-  },
-  "Chameleos Horn G": {
-    "type": "bone",
-    "color": "white"
   },
   "Chameleos Jewel": {
     "type": "stone",
@@ -727,14 +547,6 @@
     "type": "part",
     "color": "slate"
   },
-  "Chameleos Tail G": {
-    "type": "bone",
-    "color": "white"
-  },
-  "ChameleosWbng G": {
-    "type": "bone",
-    "color": "white"
-  },
   "ChameleosWebbing": {
     "type": "webbing",
     "color": "slate"
@@ -743,25 +555,17 @@
     "type": "mushroom",
     "color": "slate"
   },
-  "Chaoshroom": {
-    "type": "bone",
-    "color": "white"
-  },
-  "ChoiceKhezuSteak": {
-    "type": "bone",
-    "color": "white"
-  },
   "CloseRngCoating": {
-    "type": "bone",
+    "type": "fluid",
     "color": "white"
   },
   "Clust S Lv3": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Cold Meat": {
-    "type": "bone",
-    "color": "white"
+    "type": "meat",
+    "color": "blue"
   },
   "Cold Wind Jewel": {
     "type": "decoration",
@@ -770,14 +574,6 @@
   "ColdBreezeJewel": {
     "type": "decoration",
     "color": "cyan"
-  },
-  "Colossal Bone": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Coma sac": {
-    "type": "sac",
-    "color": "blue"
   },
   "Coma Sac": {
     "type": "sac",
@@ -819,10 +615,6 @@
     "type": "claw",
     "color": "pink"
   },
-  "Congalala Claw G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Congalala Claw+": {
     "type": "claw",
     "color": "pink"
@@ -839,19 +631,11 @@
     "type": "pelt",
     "color": "pink"
   },
-  "Congalala Pelt G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Congalala Pelt+": {
     "type": "pelt",
     "color": "pink"
   },
-  "ConglalaStrngFng": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Constitutn Jewel": {
+  "ConstitutnJewel": {
     "type": "decoration",
     "color": "white"
   },
@@ -880,7 +664,7 @@
     "color": "orange"
   },
   "Crag S Lv3": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Cricket": {
@@ -931,14 +715,6 @@
     "type": "claw",
     "color": "gray"
   },
-  "Daora Horn G": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Daora Hvy Carpce": {
-    "type": "bone",
-    "color": "white"
-  },
   "Daora Jewel": {
     "type": "stone",
     "color": "gray"
@@ -959,10 +735,6 @@
     "type": "webbing",
     "color": "gray"
   },
-  "Daora Webbing G": {
-    "type": "bone",
-    "color": "white"
-  },
   "DaoraDragonScal+": {
     "type": "scale",
     "color": "gray"
@@ -970,10 +742,6 @@
   "DaoraDragonScale": {
     "type": "scale",
     "color": "gray"
-  },
-  "DaoraDrgnThckScl": {
-    "type": "bone",
-    "color": "white"
   },
   "Dark Piece": {
     "type": "scale",
@@ -994,6 +762,10 @@
   "Demondrug": {
     "type": "fluid",
     "color": "red"
+  },
+  "DemonKingTicket": {
+    "type": "ticket",
+    "color": "white"
   },
   "Dengeki Ticket": {
     "type": "ticket",
@@ -1018,14 +790,6 @@
   "Diablos Coin": {
     "type": "coin",
     "color": "yellow"
-  },
-  "Diablos Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Diablos HvySpne": {
-    "type": "bone",
-    "color": "white"
   },
   "Diablos Shell": {
     "type": "part",
@@ -1058,6 +822,10 @@
   "Dosbiscus": {
     "type": "herb",
     "color": "red"
+  },
+  "Dragon S": {
+    "type": "ukwn",
+    "color": "white"
   },
   "Dragon Seed": {
     "type": "seed",
@@ -1107,19 +875,11 @@
     "type": "ore",
     "color": "white"
   },
-  "Elder Dragon Jwl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Elder Drgn Bone": {
-    "type": "bone",
-    "color": "white"
-  },
   "Elder Thank You": {
     "type": "ticket",
     "color": "yellow"
   },
-  "Elder Thank You+": {
+  "Elder Thnk You+": {
     "type": "ticket",
     "color": "yellow"
   },
@@ -1151,10 +911,6 @@
     "type": "insect",
     "color": "orange"
   },
-  "Emperor Locust": {
-    "type": "bone",
-    "color": "white"
-  },
   "Energy Drink": {
     "type": "fluid",
     "color": "yellow"
@@ -1162,10 +918,6 @@
   "Eternal Jewel": {
     "type": "decoration",
     "color": "blue"
-  },
-  "Etherlite Ore": {
-    "type": "bone",
-    "color": "white"
   },
   "Evade Jewel": {
     "type": "decoration",
@@ -1191,25 +943,13 @@
     "type": "decoration",
     "color": "slate"
   },
-  "Famitsu Invoice": {
-    "type": "bone",
-    "color": "white"
-  },
   "Famitsu PO": {
     "type": "ticket",
     "color": "red"
   },
-  "Famitsu PT Tckt": {
-    "type": "bone",
-    "color": "white"
-  },
   "Famitsu Ticket": {
     "type": "ticket",
     "color": "blue"
-  },
-  "FamitsuSpcialTkt": {
-    "type": "bone",
-    "color": "white"
   },
   "Fast Food Jewel": {
     "type": "decoration",
@@ -1217,18 +957,6 @@
   },
   "Fasting Jewel": {
     "type": "decoration",
-    "color": "white"
-  },
-  "FataHrdCrmsnWng": {
-    "type": "bone",
-    "color": "white"
-  },
-  "FataHvyCrmsnHrn": {
-    "type": "bone",
-    "color": "white"
-  },
-  "FataHvyCrmsnShl": {
-    "type": "bone",
     "color": "white"
   },
   "Fatalis CrmsnHrn": {
@@ -1263,18 +991,6 @@
     "type": "claw",
     "color": "gray"
   },
-  "Fatalis Hrd Wbng": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Fatalis Hvy Horn": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Fatalis Hvy Shl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Fatalis Scale": {
     "type": "scale",
     "color": "gray"
@@ -1283,17 +999,9 @@
     "type": "part",
     "color": "gray"
   },
-  "Fatalis Thck Scl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Fatalis Webbing": {
     "type": "webbing",
     "color": "gray"
-  },
-  "FataThkCrmsnScl": {
-    "type": "bone",
-    "color": "white"
   },
   "Fate Jewel": {
     "type": "decoration",
@@ -1327,10 +1035,6 @@
     "type": "decoration",
     "color": "pink"
   },
-  "Fighter Coin G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Fire Coin": {
     "type": "coin",
     "color": "red"
@@ -1347,10 +1051,6 @@
     "type": "scale",
     "color": "red"
   },
-  "Fire Drgn HvyScl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Fire Drgn Jwl": {
     "type": "stone",
     "color": "red"
@@ -1359,10 +1059,6 @@
     "type": "scale",
     "color": "red"
   },
-  "Fire Drgn Wbng": {
-    "type": "bone",
-    "color": "white"
-  },
   "Fire Drgn Webbng": {
     "type": "webbing",
     "color": "red"
@@ -1370,10 +1066,6 @@
   "Fire Herb": {
     "type": "herb",
     "color": "red"
-  },
-  "Fire Stone": {
-    "type": "bone",
-    "color": "white"
   },
   "Fire Wyvern BrnStm": {
     "type": "bone",
@@ -1387,20 +1079,8 @@
     "type": "ore",
     "color": "orange"
   },
-  "FireDrgnStrngClw": {
-    "type": "bone",
-    "color": "white"
-  },
   "Firestone": {
     "type": "ore",
-    "color": "red"
-  },
-  "FireWyvern Claw": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Firewyvern Fluid": {
-    "type": "part",
     "color": "red"
   },
   "FireWyvern Fluid": {
@@ -1414,10 +1094,6 @@
   "FireWyvrn Marrow": {
     "type": "part",
     "color": "red"
-  },
-  "FireWyvrnHrdClaw": {
-    "type": "bone",
-    "color": "white"
   },
   "Fisher Jewel": {
     "type": "decoration",
@@ -1436,16 +1112,12 @@
     "color": "gray"
   },
   "Flute": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Flying Jewel": {
     "type": "decoration",
     "color": "blue"
-  },
-  "FlynFighterPass": {
-    "type": "bone",
-    "color": "white"
   },
   "FlynMealPassPlus": {
     "type": "ticket",
@@ -1468,8 +1140,8 @@
     "color": "blue"
   },
   "Frozen Berry": {
-    "type": "bone",
-    "color": "white"
+    "type": "seed",
+    "color": "cyan"
   },
   "Gaoren Carapace": {
     "type": "shell",
@@ -1478,14 +1150,6 @@
   "Gaoren Claw": {
     "type": "claw",
     "color": "gray"
-  },
-  "Gaoren Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Gaoren Hvy Spn": {
-    "type": "bone",
-    "color": "white"
   },
   "Gaoren Pincer": {
     "type": "shell",
@@ -1503,29 +1167,13 @@
     "type": "shell",
     "color": "gray"
   },
-  "GaorenDvinePlate": {
-    "type": "bone",
-    "color": "white"
-  },
-  "GaorenStrngClaw": {
-    "type": "bone",
-    "color": "white"
-  },
   "Garuga Carapace": {
     "type": "part",
     "color": "slate"
   },
-  "Garuga Devil Ear": {
-    "type": "bone",
-    "color": "white"
-  },
   "Garuga Ear": {
     "type": "part",
     "color": "slate"
-  },
-  "Garuga Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
   },
   "Garuga Mane": {
     "type": "part",
@@ -1535,10 +1183,6 @@
     "type": "scale",
     "color": "slate"
   },
-  "Garuga Scale G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Garuga Scale+": {
     "type": "scale",
     "color": "slate"
@@ -1547,21 +1191,9 @@
     "type": "part",
     "color": "slate"
   },
-  "Garuga Slvr Mane": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Garuga StrngWng": {
-    "type": "bone",
-    "color": "white"
-  },
   "Garuga Tail": {
     "type": "part",
     "color": "slate"
-  },
-  "Garuga Tail+": {
-    "type": "bone",
-    "color": "white"
   },
   "Garuga Wing": {
     "type": "part",
@@ -1615,10 +1247,6 @@
     "type": "claw",
     "color": "white"
   },
-  "Giadrome hide": {
-    "type": "pelt",
-    "color": "white"
-  },
   "Giadrome Hide": {
     "type": "pelt",
     "color": "white"
@@ -1640,8 +1268,8 @@
     "color": "white"
   },
   "Giant Corn": {
-    "type": "bone",
-    "color": "white"
+    "type": "seed",
+    "color": "yellow"
   },
   "Giaprey Hide": {
     "type": "pelt",
@@ -1670,22 +1298,6 @@
   "Gld Rathian Scl+": {
     "type": "scale",
     "color": "yellow"
-  },
-  "GldRathianHvyCpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "GldRathianSpike": {
-    "type": "bone",
-    "color": "white"
-  },
-  "GldRathianThkScl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Glorious Horn": {
-    "type": "bone",
-    "color": "white"
   },
   "Glutton Tuna": {
     "type": "fish",
@@ -1716,8 +1328,8 @@
     "color": "pink"
   },
   "Gourmet Fish": {
-    "type": "bone",
-    "color": "white"
+    "type": "fish",
+    "color": "orange"
   },
   "Gourmet Fish+": {
     "type": "fish",
@@ -1743,20 +1355,12 @@
     "type": "coin",
     "color": "white"
   },
-  "Gravios Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
   "Gravios Shell": {
     "type": "part",
     "color": "white"
   },
   "Gravios Skl Shl": {
     "type": "part",
-    "color": "white"
-  },
-  "GraviosDvnePlate": {
-    "type": "bone",
     "color": "white"
   },
   "Great Hornfly": {
@@ -1799,28 +1403,12 @@
     "type": "scale",
     "color": "green"
   },
-  "GrnCongalalaClaw": {
-    "type": "bone",
-    "color": "white"
-  },
-  "GrnCongalalaPelt": {
-    "type": "bone",
-    "color": "white"
-  },
-  "GrnPlsioth Fin G": {
-    "type": "bone",
-    "color": "white"
-  },
-  "GrnPlsiothThkScl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Gt Amezari Shell": {
     "type": "shell",
     "color": "red"
   },
   "Gt Lobstershell": {
-    "type": "claw",
+    "type": "shell",
     "color": "pink"
   },
   "Gunpowder": {
@@ -1834,10 +1422,6 @@
   "Gypceros Head": {
     "type": "part",
     "color": "blue"
-  },
-  "Gypceros HrdHead": {
-    "type": "bone",
-    "color": "white"
   },
   "Hard Daora Horn": {
     "type": "claw",
@@ -1884,7 +1468,7 @@
     "color": "red"
   },
   "Health Flute": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Health Jewel": {
@@ -1919,36 +1503,24 @@
     "type": "claw",
     "color": "red"
   },
-  "Hermitaur HvyCpc": {
-    "type": "bone",
-    "color": "white"
-  },
   "Hermitaur Shell": {
     "type": "shell",
     "color": "red"
-  },
-  "HermitaurClaw G": {
-    "type": "bone",
-    "color": "white"
   },
   "Hero of JumboBio": {
     "type": "ticket",
     "color": "yellow"
   },
-  "Hero of KKto Bio": {
+  "Hero of Kkto Bio": {
     "type": "ticket",
     "color": "yellow"
-  },
-  "Hg Lobstershell": {
-    "type": "bone",
-    "color": "white"
   },
   "HideCutter Jewel": {
     "type": "decoration",
     "color": "orange"
   },
-  "High Quality Pelt": {
-    "type": "bone",
+  "High Qualty Pelt": {
+    "type": "pelt",
     "color": "white"
   },
   "High Speed Jewel": {
@@ -1963,19 +1535,7 @@
     "type": "webbing",
     "color": "gray"
   },
-  "Hornet RazorWing": {
-    "type": "webbing",
-    "color": "gray"
-  },
-  "Hornetaur Carpce": {
-    "type": "bone",
-    "color": "white"
-  },
   "Hornetaur Crapce": {
-    "type": "insect",
-    "color": "gray"
-  },
-  "HorNetaur Crapce": {
     "type": "insect",
     "color": "gray"
   },
@@ -2000,8 +1560,8 @@
     "color": "red"
   },
   "Hot Meat": {
-    "type": "bone",
-    "color": "white"
+    "type": "meat",
+    "color": "red"
   },
   "Hot Wind Jewel": {
     "type": "decoration",
@@ -2014,10 +1574,6 @@
   "Howitzer Jewel": {
     "type": "decoration",
     "color": "gray"
-  },
-  "Hrd monster Bone": {
-    "type": "bone",
-    "color": "red"
   },
   "Hrd Monster Bone": {
     "type": "bone",
@@ -2079,16 +1635,16 @@
     "type": "claw",
     "color": "white"
   },
-  "Hunter Soul Tckt": {
-    "type": "bone",
+  "Hunter Soul Tkt": {
+    "type": "ticket",
     "color": "white"
   },
   "Hunter's Ticket": {
-    "type": "bone",
+    "type": "ticket",
     "color": "white"
   },
   "Huskberry": {
-    "type": "bone",
+    "type": "seed",
     "color": "white"
   },
   "HvnlyBlkGraviShl": {
@@ -2142,10 +1698,6 @@
   "Hvy Kut-Ku Shell": {
     "type": "part",
     "color": "pink"
-  },
-  "Hvy Monster bone": {
-    "type": "bone",
-    "color": "gray"
   },
   "Hvy Monster Bone": {
     "type": "bone",
@@ -2219,10 +1771,6 @@
     "type": "part",
     "color": "red"
   },
-  "HvygaorenShell": {
-    "type": "shell",
-    "color": "gray"
-  },
   "HvyGaorenShell": {
     "type": "shell",
     "color": "gray"
@@ -2287,18 +1835,6 @@
     "type": "part",
     "color": "white"
   },
-  "HypncFangedBeak": {
-    "type": "bone",
-    "color": "white"
-  },
-  "HypncGizzardStn+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "HypncGizzardStne": {
-    "type": "bone",
-    "color": "white"
-  },
   "Hypno Beak": {
     "type": "bone",
     "color": "orange"
@@ -2319,29 +1855,9 @@
     "type": "bone",
     "color": "orange"
   },
-  "Hypnoc Beak": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Hypnoc Claw+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Hypnoc Feather": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Hypnoc Feather+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Hypnoc StrngClaw": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Hypnoc Ticket": {
-    "type": "bone",
-    "color": "white"
+  "Hypno Ticket": {
+    "type": "ticket",
+    "color": "orange"
   },
   "Ice Crystal": {
     "type": "ore",
@@ -2427,10 +1943,6 @@
     "type": "pelt",
     "color": "white"
   },
-  "Khezu Hide-Gloss": {
-    "type": "bone",
-    "color": "white"
-  },
   "KhezuHide-Cream": {
     "type": "pelt",
     "color": "white"
@@ -2442,10 +1954,6 @@
   "Killer Beetle": {
     "type": "insect",
     "color": "green"
-  },
-  "King Lobster Shl": {
-    "type": "bone",
-    "color": "white"
   },
   "King Scarab": {
     "type": "insect",
@@ -2463,10 +1971,6 @@
     "type": "pelt",
     "color": "white"
   },
-  "Kirin Hide G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Kirin Hide+": {
     "type": "pelt",
     "color": "white"
@@ -2479,16 +1983,8 @@
     "type": "part",
     "color": "white"
   },
-  "Kirin Slvr Mane": {
-    "type": "bone",
-    "color": "white"
-  },
   "Kirin Thndr Tail": {
     "type": "part",
-    "color": "white"
-  },
-  "KirinThndrTail G": {
-    "type": "bone",
     "color": "white"
   },
   "Knife Mackarel": {
@@ -2515,14 +2011,6 @@
     "type": "part",
     "color": "pink"
   },
-  "Kut-Ku Hrd Wbbng": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Kut-Ku Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
   "Kut-Ku Scale": {
     "type": "scale",
     "color": "pink"
@@ -2535,32 +2023,12 @@
     "type": "part",
     "color": "pink"
   },
-  "Kut-Ku Thck Scl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Kut-Ku Webbing": {
     "type": "webbing",
     "color": "pink"
   },
-  "Lao Shan's Ruby": {
-    "type": "stone",
-    "color": "red"
-  },
-  "Lao Shan'sThkScl": {
-    "type": "scale",
-    "color": "red"
-  },
-  "Lao-Shan Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
   "Lao-Shan Scale+": {
     "type": "scale",
-    "color": "red"
-  },
-  "Lao-Shan's claw": {
-    "type": "claw",
     "color": "red"
   },
   "Lao-Shan's Claw": {
@@ -2573,10 +2041,6 @@
   },
   "Lao-Shan's Ruby": {
     "type": "stone",
-    "color": "red"
-  },
-  "Lao-Shan's scale": {
-    "type": "scale",
     "color": "red"
   },
   "Lao-Shan's Scale": {
@@ -2611,14 +2075,6 @@
     "type": "heavenly",
     "color": "red"
   },
-  "Lao-ShanThckScl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "LaoS Dvine Plate": {
-    "type": "bone",
-    "color": "white"
-  },
   "LapisLazuliJewel": {
     "type": "deco",
     "color": "yellow"
@@ -2627,9 +2083,9 @@
     "type": "ukwn",
     "color": "gray"
   },
-  "Lava Ticket": {
-    "type": "bone",
-    "color": "white"
+  "Lavasioth Ticket": {
+    "type": "ticket",
+    "color": "red"
   },
   "LeatherNargaTail": {
     "type": "part",
@@ -2647,14 +2103,6 @@
     "type": "coin",
     "color": "red"
   },
-  "Legendary Coin G": {
-    "type": "bone",
-    "color": "white"
-  },
-  "LethrGarugatail": {
-    "type": "part",
-    "color": "slate"
-  },
   "LethrGarugaTail": {
     "type": "part",
     "color": "slate"
@@ -2668,7 +2116,7 @@
     "color": "white"
   },
   "Lg Lobstershell": {
-    "type": "claw",
+    "type": "shell",
     "color": "pink"
   },
   "Lg Monster Bone": {
@@ -2678,10 +2126,6 @@
   "Lg Pelagus Fang": {
     "type": "claw",
     "color": "yellow"
-  },
-  "Lg Wyvern Stone": {
-    "type": "bone",
-    "color": "white"
   },
   "Lifecrystals": {
     "type": "sac",
@@ -2763,21 +2207,9 @@
     "type": "part",
     "color": "pink"
   },
-  "Lucky Kut-KuEar": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Lunastra Carpace": {
-    "type": "bone",
-    "color": "white"
-  },
   "Lunastra Horn": {
     "type": "claw",
     "color": "blue"
-  },
-  "Lunastra Horn G": {
-    "type": "bone",
-    "color": "white"
   },
   "Lunastra Mane": {
     "type": "part",
@@ -2815,14 +2247,6 @@
     "type": "claw",
     "color": "yellow"
   },
-  "Majestic Red Hrn": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Majestic Wht Hrn": {
-    "type": "bone",
-    "color": "white"
-  },
   "Map Jewel": {
     "type": "decoration",
     "color": "white"
@@ -2844,8 +2268,8 @@
     "color": "white"
   },
   "Max Potion": {
-    "type": "bone",
-    "color": "white"
+    "type": "fluid",
+    "color": "yellow"
   },
   "Med Monster Bone": {
     "type": "bone",
@@ -2856,7 +2280,7 @@
     "color": "orange"
   },
   "Mega Bugnet": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Mega Demondrug": {
@@ -2868,11 +2292,7 @@
     "color": "yellow"
   },
   "Mega Pickaxe": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Melange Ore": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Mellanje Ore": {
@@ -2882,10 +2302,6 @@
   "Melt-Proof Jewel": {
     "type": "decoration",
     "color": "pink"
-  },
-  "Monoblos Carpce": {
-    "type": "bone",
-    "color": "white"
   },
   "Monoblos Heart": {
     "type": "part",
@@ -2898,10 +2314,6 @@
   "Monoblos Spine": {
     "type": "part",
     "color": "red"
-  },
-  "Monoblos Thrcic": {
-    "type": "bone",
-    "color": "white"
   },
   "MonoblosCarapace": {
     "type": "part",
@@ -2918,10 +2330,6 @@
   "Monster Broth": {
     "type": "fluid",
     "color": "blue"
-  },
-  "Monster Broth+": {
-    "type": "bone",
-    "color": "white"
   },
   "Monster Essence": {
     "type": "fluid",
@@ -2942,10 +2350,6 @@
   "Mystery Bone": {
     "type": "bone",
     "color": "yellow"
-  },
-  "Narga Brain stem": {
-    "type": "part",
-    "color": "red"
   },
   "Narga Brain Stem": {
     "type": "part",
@@ -2971,60 +2375,12 @@
     "type": "part",
     "color": "gray"
   },
-  "Naruga Blk Pelt": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Fang+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Hvy Fang": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Hvy Spike": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Marrow": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Pelt": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Scale+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Spike": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Strng Wng": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Thck Scl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Naruga Wing": {
-    "type": "bone",
-    "color": "white"
-  },
-  "NarugaDvinePlate": {
-    "type": "bone",
-    "color": "white"
-  },
   "Needleberry": {
     "type": "seed",
     "color": "gray"
   },
   "Net": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Ninja Jewel": {
@@ -3040,15 +2396,11 @@
     "color": "white"
   },
   "Normal S Lv3": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Normal Ticket": {
     "type": "ticket",
-    "color": "white"
-  },
-  "Nova Crystal": {
-    "type": "bone",
     "color": "white"
   },
   "Novacrystal": {
@@ -3056,20 +2408,16 @@
     "color": "white"
   },
   "Nutrients": {
-    "type": "bone",
-    "color": "white"
+    "type": "fluid",
+    "color": "cyan"
   },
   "Old Pickaxe": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Omnipotent Jewel": {
     "type": "decoration",
     "color": "green"
-  },
-  "One-HornedTicket": {
-    "type": "bone",
-    "color": "white"
   },
   "OrangeHypnoPelt": {
     "type": "part",
@@ -3116,12 +2464,12 @@
     "color": "yellow"
   },
   "ParalysisCoating": {
-    "type": "bone",
-    "color": "white"
+    "type": "fluid",
+    "color": "yellow"
   },
   "Parashroom": {
-    "type": "bone",
-    "color": "white"
+    "type": "mushroom",
+    "color": "yellow"
   },
   "ParaylsisCoating": {
     "type": "bone",
@@ -3140,7 +2488,7 @@
     "color": "white"
   },
   "Pellet S Lv3": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "PelletBonusJewel": {
@@ -3176,7 +2524,7 @@
     "color": "white"
   },
   "Pierce S Lv3": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "PierceBonusJewel": {
@@ -3195,21 +2543,17 @@
     "type": "decoration",
     "color": "red"
   },
-  "Pirate J Ticket": {
-    "type": "bone",
-    "color": "white"
-  },
   "Pirate Tckt J G": {
     "type": "ticket",
     "color": "red"
   },
+  "Pirate Ticket J": {
+    "type": "ticket",
+    "color": "white"
+  },
   "Piscine Fang": {
     "type": "claw",
     "color": "yellow"
-  },
-  "Piscine Fang+": {
-    "type": "bone",
-    "color": "white"
   },
   "Platinum Mane": {
     "type": "part",
@@ -3223,10 +2567,6 @@
     "type": "part",
     "color": "blue"
   },
-  "Plesioth Fin G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Plesioth Fin+": {
     "type": "part",
     "color": "blue"
@@ -3238,10 +2578,6 @@
   "Plesioth Scale+": {
     "type": "scale",
     "color": "blue"
-  },
-  "Plsioth Thck Scl": {
-    "type": "bone",
-    "color": "white"
   },
   "PlumD.HermitrClaw": {
     "type": "claw",
@@ -3279,21 +2615,9 @@
     "type": "part",
     "color": "pink"
   },
-  "PnkRathian Scl+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "PnkRathianHvyCpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "PnkRathianThkScl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Poison Coating": {
-    "type": "bone",
-    "color": "white"
+    "type": "fluid",
+    "color": "slate"
   },
   "Poison Sac": {
     "type": "sac",
@@ -3316,8 +2640,8 @@
     "color": "red"
   },
   "Power Coating": {
-    "type": "bone",
-    "color": "white"
+    "type": "fluid",
+    "color": "red"
   },
   "Power Extract": {
     "type": "fluid",
@@ -3355,57 +2679,29 @@
     "type": "fluid",
     "color": "orange"
   },
+  "PtFamitsuTicket": {
+    "type": "ticket",
+    "color": "blue"
+  },
   "Puppet Ticket": {
     "type": "ticket",
-    "color": "white"
-  },
-  "Puppet Ticket+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Pur Gyp StrngWng": {
-    "type": "bone",
     "color": "white"
   },
   "Pur Gypceros Wng": {
     "type": "part",
     "color": "slate"
   },
-  "Pur GypcerosWng": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Pur HermitaurClw": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Pur HermitaurShl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Pur Rubbery Hide": {
     "type": "pelt",
     "color": "slate"
   },
-  "Pure Crystal": {
-    "type": "bone",
-    "color": "white"
-  },
   "Purecrystal": {
-    "type": "ore",
-    "color": "cyan"
-  },
-  "PureCrystal": {
     "type": "ore",
     "color": "cyan"
   },
   "QuickEaterJewel": {
     "type": "decoration",
     "color": "yellow"
-  },
-  "Rainbow Down": {
-    "type": "bone",
-    "color": "white"
   },
   "Rainbow Insect": {
     "type": "insect",
@@ -3431,21 +2727,9 @@
     "type": "claw",
     "color": "yellow"
   },
-  "Rajang Hard Horn": {
-    "type": "bone",
-    "color": "white"
-  },
   "Rajang Horn": {
     "type": "claw",
     "color": "yellow"
-  },
-  "Rajang Hvy Fang": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Rajang StrngClaw": {
-    "type": "bone",
-    "color": "white"
   },
   "Rajang Tail": {
     "type": "part",
@@ -3462,10 +2746,6 @@
   "Rathalos Carpace": {
     "type": "part",
     "color": "red"
-  },
-  "Rathalos Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
   },
   "Rathalos Plate": {
     "type": "scale",
@@ -3491,10 +2771,6 @@
     "type": "part",
     "color": "red"
   },
-  "Rathalos ThckScl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Rathalos Webbing": {
     "type": "webbing",
     "color": "red"
@@ -3506,10 +2782,6 @@
   "Rathian Carapace": {
     "type": "part",
     "color": "green"
-  },
-  "Rathian Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
   },
   "Rathian Plate": {
     "type": "scale",
@@ -3535,37 +2807,13 @@
     "type": "part",
     "color": "green"
   },
-  "Rathian Spike G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Rathian Spike+": {
     "type": "part",
     "color": "green"
   },
-  "Rathian Thck Scl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Rathian Thorn": {
     "type": "part",
     "color": "green"
-  },
-  "RathianDvnePlate": {
-    "type": "bone",
-    "color": "white"
-  },
-  "RathlosDvnePlate": {
-    "type": "bone",
-    "color": "white"
-  },
-  "RathlosStrngWng": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Razor Claw": {
-    "type": "bone",
-    "color": "white"
   },
   "Razor Jewel": {
     "type": "decoration",
@@ -3575,14 +2823,6 @@
     "type": "decoration",
     "color": "gray"
   },
-  "RedCeanataurClaw": {
-    "type": "bone",
-    "color": "white"
-  },
-  "RedCeanataurShl": {
-    "type": "bone",
-    "color": "white"
-  },
   "Rejuvenated Beak": {
     "type": "bone",
     "color": "slate"
@@ -3590,10 +2830,6 @@
   "Remobra Skin": {
     "type": "pelt",
     "color": "gray"
-  },
-  "Remobra Skin G": {
-    "type": "bone",
-    "color": "white"
   },
   "Remobra Skin+": {
     "type": "pelt",
@@ -3607,21 +2843,13 @@
     "type": "decoration",
     "color": "green"
   },
-  "RobustBlkBlosHrn": {
-    "type": "bone",
-    "color": "white"
-  },
   "RobustWyvernBone": {
     "type": "bone",
     "color": "cyan"
   },
   "Rubbery Hide": {
-    "type": "pelt",
+    "type": "hide",
     "color": "blue"
-  },
-  "Rubbery Hide G": {
-    "type": "bone",
-    "color": "white"
   },
   "Rubbery Hide+": {
     "type": "pelt",
@@ -3679,20 +2907,12 @@
     "type": "bone",
     "color": "slate"
   },
-  "Sharpened Beak+": {
-    "type": "bone",
-    "color": "white"
-  },
   "SharpshootrJewel": {
     "type": "decoration",
     "color": "white"
   },
-  "ShiningRajangPlt": {
-    "type": "bone",
-    "color": "white"
-  },
   "Shock Trap": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "Shockless Jewel": {
@@ -3732,8 +2952,8 @@
     "color": "cyan"
   },
   "Sleep Coating": {
-    "type": "bone",
-    "color": "white"
+    "type": "fluid",
+    "color": "cyan"
   },
   "Sleep Herb": {
     "type": "herb",
@@ -3746,26 +2966,6 @@
   "Sleepyfish": {
     "type": "fish",
     "color": "cyan"
-  },
-  "Slvr  Rthlos Cpc": {
-    "type": "part",
-    "color": "white"
-  },
-  "Slvr Rathlos Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Slvr Rathlos Wng": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Slvr Ratlos Scl+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Slvr Ratlos Tail": {
-    "type": "bone",
-    "color": "white"
   },
   "Slvr Rthlos Cpc": {
     "type": "part",
@@ -3787,18 +2987,6 @@
     "type": "bone",
     "color": "white"
   },
-  "SlvrRthlosHvyCpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "SlvrRthlosThkScl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "SlvRthlosHrdTail": {
-    "type": "bone",
-    "color": "white"
-  },
   "Sm Ancient Stone": {
     "type": "ukwn",
     "color": "gray"
@@ -3816,7 +3004,7 @@
     "color": "red"
   },
   "Sm Lobstershell": {
-    "type": "claw",
+    "type": "shell",
     "color": "pink"
   },
   "Sm Monster Bone": {
@@ -3908,8 +3096,8 @@
     "color": "green"
   },
   "Spicy Mushroom": {
-    "type": "bone",
-    "color": "white"
+    "type": "mushroom",
+    "color": "red"
   },
   "Splendid Beak": {
     "type": "bone",
@@ -4015,7 +3203,7 @@
     "type": "decoration",
     "color": "white"
   },
-  "StrongShot Jewel+": {
+  "StrongShotJewel+": {
     "type": "decoration",
     "color": "white"
   },
@@ -4071,17 +3259,9 @@
     "type": "claw",
     "color": "red"
   },
-  "Teostra Horn G": {
-    "type": "bone",
-    "color": "white"
-  },
   "Teostra Horn+": {
     "type": "claw",
     "color": "red"
-  },
-  "Teostra Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
   },
   "Teostra Mane": {
     "type": "part",
@@ -4223,19 +3403,7 @@
     "type": "claw",
     "color": "yellow"
   },
-  "Tigrex Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Tigrex Hvy Fang": {
-    "type": "bone",
-    "color": "white"
-  },
   "Tigrex Scale": {
-    "type": "scale",
-    "color": "yellow"
-  },
-  "Tigrex Scale +": {
     "type": "scale",
     "color": "yellow"
   },
@@ -4251,21 +3419,9 @@
     "type": "part",
     "color": "yellow"
   },
-  "Tigrex StrngClaw": {
-    "type": "bone",
-    "color": "white"
-  },
   "Tigrex Tail": {
     "type": "part",
     "color": "yellow"
-  },
-  "Tigrex Thck Scl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "TigrexDvinePlate": {
-    "type": "bone",
-    "color": "white"
   },
   "Tip Toe Jewel": {
     "type": "decoration",
@@ -4304,7 +3460,7 @@
     "color": "green"
   },
   "Trap Tool": {
-    "type": "bone",
+    "type": "ukwn",
     "color": "white"
   },
   "TrapMasterJewel": {
@@ -4323,41 +3479,9 @@
     "type": "claw",
     "color": "yellow"
   },
-  "TwstBlkBlosHorn": {
-    "type": "bone",
-    "color": "white"
-  },
   "TwstBlkBlosHrn": {
     "type": "claw",
     "color": "gray"
-  },
-  "Ucamu Divine Jwl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Ucamulbas Fang": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Ucamulbas Fin": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Ucamulbas Jaw": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Ucamulbas Scale": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Ucamulbas Shell": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Ucamulbas Tail": {
-    "type": "bone",
-    "color": "white"
   },
   "Ukanlos Stone": {
     "type": "heavenly",
@@ -4367,16 +3491,8 @@
     "type": "claw",
     "color": "white"
   },
-  "UkanlosShoveljaw": {
-    "type": "part",
-    "color": "white"
-  },
   "UkanlosShovelJaw": {
     "type": "part",
-    "color": "white"
-  },
-  "Ukanlosunderscl": {
-    "type": "scale",
     "color": "white"
   },
   "UkanlosUnderscl": {
@@ -4427,17 +3543,9 @@
     "type": "scale",
     "color": "blue"
   },
-  "Velociprey Scl+": {
-    "type": "bone",
-    "color": "white"
-  },
   "Velociprey Scle+": {
     "type": "scale",
     "color": "blue"
-  },
-  "Venom Sac": {
-    "type": "bone",
-    "color": "white"
   },
   "Vespoid Abdomen": {
     "type": "insect",
@@ -4467,10 +3575,6 @@
     "type": "insect",
     "color": "yellow"
   },
-  "Vespoid wing": {
-    "type": "webbing",
-    "color": "yellow"
-  },
   "Vespoid Wing": {
     "type": "webbing",
     "color": "yellow"
@@ -4483,29 +3587,9 @@
     "type": "pelt",
     "color": "orange"
   },
-  "Vibrant Crown": {
-    "type": "bone",
-    "color": "white"
-  },
   "Vibrant Pelt": {
     "type": "pelt",
     "color": "yellow"
-  },
-  "Volganos Fin+": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Volganos Hvy Cpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Volganos HvyFang": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Volganos Thk Scl": {
-    "type": "bone",
-    "color": "white"
   },
   "Vspoid Razorwing": {
     "type": "webbing",
@@ -4523,25 +3607,13 @@
     "type": "coin",
     "color": "cyan"
   },
-  "Well Done Steak": {
-    "type": "bone",
-    "color": "white"
-  },
   "Well-Done Steak": {
     "type": "meat",
     "color": "orange"
   },
   "Whetstone": {
-    "type": "bone",
-    "color": "white"
-  },
-  "White Ftalis Hrn": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Wht Fatalis Cpc": {
-    "type": "bone",
-    "color": "white"
+    "type": "stone",
+    "color": "yellow"
   },
   "Wht Fatalis Horn": {
     "type": "claw",
@@ -4559,10 +3631,6 @@
     "type": "webbing",
     "color": "white"
   },
-  "Wht Fatalis Wng": {
-    "type": "bone",
-    "color": "white"
-  },
   "Wht Monoblos Cpc": {
     "type": "part",
     "color": "white"
@@ -4577,22 +3645,6 @@
   },
   "Wht Monoblos Spn": {
     "type": "part",
-    "color": "white"
-  },
-  "WhtFatalisHvyCpc": {
-    "type": "bone",
-    "color": "white"
-  },
-  "WhtFatalisHvyHrn": {
-    "type": "bone",
-    "color": "white"
-  },
-  "WhtFatalisThkScl": {
-    "type": "bone",
-    "color": "white"
-  },
-  "WhtMnoblosThrcic": {
-    "type": "bone",
     "color": "white"
   },
   "WhtMonoblosThora": {
@@ -4619,24 +3671,8 @@
     "type": "stone",
     "color": "cyan"
   },
-  "YamatsukaFillet": {
-    "type": "part",
-    "color": "green"
-  },
   "YamaTsukaFillet": {
     "type": "part",
-    "color": "green"
-  },
-  "Yamatsukami Fin": {
-    "type": "bone",
-    "color": "white"
-  },
-  "Yamatsukami Skin": {
-    "type": "bone",
-    "color": "white"
-  },
-  "YamatsukamiFluid": {
-    "type": "fluid",
     "color": "green"
   },
   "YamaTsukamiFluid": {

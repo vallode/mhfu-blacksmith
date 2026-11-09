@@ -8,9 +8,16 @@ interface MonsterDropsProps {
   sources: Record<string, MonsterDrop[]>;
 }
 
-/** An item name in a drop or supply row: truncated, but wrapped on a phone, where the column is narrow. */
+/**
+ * An item name in a drop or supply row, padded to the game's 16-character
+ * name cap (`ITEM_NAME_LENGTH`) so the columns after it line up. It shrinks
+ * (truncated, wrapped on a phone) only when the row has no room for it.
+ */
 export const dropName =
-  "min-w-0 flex-auto truncate mobile:leading-[1.25] mobile:wrap-anywhere mobile:whitespace-normal";
+  "w-cells-16 min-w-0 truncate mobile:leading-[1.25] mobile:wrap-anywhere mobile:whitespace-normal";
+
+/** The "×N" column: three cells fit the largest amount, ×99. */
+export const dropQuantity = "w-cells-3 flex-none text-muted";
 
 /** Two-across grid of DropLists (one per column on phones). */
 export function DropGrid({ children }: { children: React.ReactNode }) {
@@ -48,6 +55,8 @@ interface DropListProps {
 
 /** A titled list of drops: icon, item, quantity and chance per row. Shared by monster drops and quest rewards. */
 export function DropList({ title, count, note, items }: DropListProps) {
+  // Only lists with amounts get the quantity column, so chances stay next to the names.
+  const showQuantity = items.some((drop) => drop.quantity !== undefined);
   return (
     <section className="flex min-w-0 flex-col gap-[0.6rem]">
       <h3 className="m-0 flex flex-wrap items-baseline gap-x-[0.8rem] text-small leading-[1.25] font-normal text-gold">
@@ -59,20 +68,20 @@ export function DropList({ title, count, note, items }: DropListProps) {
       </h3>
       <ul className="m-0 flex list-none flex-col gap-[0.2rem] p-0">
         {items.map((drop, i) => (
-          <DropRow key={i} drop={drop} />
+          <DropRow key={i} drop={drop} showQuantity={showQuantity} />
         ))}
       </ul>
     </section>
   );
 }
 
-function DropRow({ drop }: { drop: MonsterDrop }) {
+function DropRow({ drop, showQuantity }: { drop: MonsterDrop; showQuantity: boolean }) {
   return (
     <li className="flex items-center gap-[0.8rem] leading-none text-white">
       <Icon type={drop.type || "ukwn"} color={drop.color} />
       <span className={dropName}>{drop.name}</span>
-      {drop.quantity !== undefined && (
-        <span className="flex-none text-muted">×{drop.quantity}</span>
+      {showQuantity && (
+        <span className={dropQuantity}>{drop.quantity !== undefined && `×${drop.quantity}`}</span>
       )}
       <span
         className={cn(

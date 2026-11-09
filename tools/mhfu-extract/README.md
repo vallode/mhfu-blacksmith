@@ -820,16 +820,32 @@ disagreement as JSON.
 
 **Merging (`src/build/merge.ts`).** For each paired item, `build-data`
 writes the disc value of each field in that category's `take` list
-(`src/build/categories.ts`), in the site's vocabulary: site item names,
-the site's skill spelling (`Defence`, `Load`), and the site's spelling and
-icon style for each material. Lists (skills, materials, elements,
+(`src/build/categories.ts`), in the site's vocabulary: site equipment
+names, the site's skill spelling (`Defence`, `Load`) and the site's icon
+style for each material. Lists (skills, materials, elements,
 upgrade-tree references) are written in the disc's order, even when they
 already agree as a set; a scalar that agrees is left byte-identical. Item
 order, key order and file layout don't change, and a second run is a no-op. Disc items the site doesn't list (the 10 unused
 Piercings, Pink Metal Boots, Rookie Knife, Swordfish Bow G) aren't added.
 `overlay/keep-site-values.json` lists reviewed disagreements where the site
 is right, currently the 10 Ruststone weapons, which have no `EquipCreate`
-recipe on the disc. Quests are copied through.
+recipe on the disc. Quests are copied through (see "Material names").
+
+**Material names.** Materials, drops and quest supply and reward items are
+always written with the game's own item name (`data/items.json` `name`, the same string as the
+`ItemID` enum), never the spelling the committed files used: "Fire Stone"
+is written "Firestone", "Elder Drgn Bone" "Eldr Dragon Bone". The game
+caps item names at 16 characters, so many are abbreviated, and the site
+pads them to that width when it renders them. `build-data` renames every
+material in the files it writes, including fields it doesn't take (weapon
+`alternative_create_mats`) and items with no disc match. Quests are
+copied through with each item under its game name (the `ItemID` enum
+differs from `items.json` only on a few Japanese promo tickets). `pnpm
+validate` fails on a recipe material, drop or quest item that isn't spelled
+like its item. Old site spellings stay in `data/items.json` as `aliases`, so they
+still resolve to an item. This replaced an earlier table that respelled
+the disc's names to match the committed files, which spelled about 240
+items differently in armor and weapon recipes.
 
 **Material icon styles (`src/build/material-styles.ts`).** `type`/`color`
 aren't on the disc's recipes, and the committed files gave the same item
@@ -954,8 +970,8 @@ To refresh after an extractor fix: rerun `extract`, `compare`, then
 ## Overlay data
 
 `src/overlay/*.json` holds fields that cannot be derived from the disc at
-all. Currently: `materials.json` (crafting-material `type`/`color`, e.g.
-"Iron Ore" -> `{ type: "ore", color: "gray" }`) and
+all. Currently: `materials.json` (crafting-material `type`/`color` by game
+item name, e.g. "Iron Ore" -> `{ type: "ore", color: "gray" }`) and
 `decoration-categories.json` (the presentation-only decoration grouping,
 e.g. "Attack Jewel" -> "Attack up"), both generated once from the committed
 `data/` files (see git history) and consumed by `src/emit/*.ts`.

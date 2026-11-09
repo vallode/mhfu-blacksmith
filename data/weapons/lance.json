@@ -942,7 +942,7 @@
           "color": "cyan"
         },
         {
-          "name": "HvygaorenShell",
+          "name": "HvyGaorenShell",
           "amount": 3,
           "type": "shell",
           "color": "gray"
@@ -5684,7 +5684,7 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Hornet RazorWing",
+          "name": "Hornet Razorwing",
           "amount": 5,
           "type": "webbing",
           "color": "gray"
@@ -5744,7 +5744,7 @@
       "improve_from": "Longhorn",
       "create_mats": [
         {
-          "name": "Bullfango pelt",
+          "name": "Bullfango Pelt",
           "amount": 5,
           "type": "pelt",
           "color": "orange"
@@ -7984,7 +7984,7 @@
           "color": "gray"
         },
         {
-          "name": "Narga Brain stem",
+          "name": "Narga Brain Stem",
           "amount": 2,
           "type": "part",
           "color": "red"

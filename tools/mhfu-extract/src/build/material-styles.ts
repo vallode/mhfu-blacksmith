@@ -1,6 +1,12 @@
 /**
- * One icon style (`type`/`color`) per item, applied by `build-data` to every
- * material it writes.
+ * One name and one icon style (`type`/`color`) per item, applied by
+ * `build-data` to every material in the files it writes.
+ *
+ * The name is the game's own item name (`data/items.json`), exactly as the
+ * game spells it, whatever spelling the committed recipe used ("Fire Stone"
+ * becomes "Firestone", "Elder Drgn Bone" becomes "Eldr Dragon Bone"). The
+ * game caps item names at 16 characters; the site pads them to that width
+ * when it renders them.
  *
  * Material styles are site presentation data, not disc data. The committed
  * files give the same item different styles, mostly because "bone"/"white"
@@ -21,7 +27,7 @@
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
-import type { MaterialContext } from "../overlay/item-name-corrections.js";
+import type { MaterialContext } from "./categories.js";
 import type { SiteIndex } from "./ids.js";
 
 export interface Style {
@@ -104,15 +110,21 @@ export function buildStyleIndex(
   };
 }
 
+/** A material's name and icon style. */
+export interface MaterialLook extends Style {
+  name: string;
+}
+
 /**
- * Returns `item` with every material restyled through `styleOf`, or the
- * same object when nothing changes. Calls `onChange` for each restyle.
+ * Returns `item` with every material renamed to its game name and
+ * restyled through `styleOf`, or the same object when nothing changes.
+ * Calls `onChange` for each material that changes.
  */
-export function restyleItem(
+export function normalizeMaterials(
   item: Record<string, unknown>,
   site: SiteIndex,
   styleOf: (itemId: number) => Style | undefined,
-  onChange: (material: Material, after: Style) => void,
+  onChange: (material: Material, after: MaterialLook) => void,
 ): Record<string, unknown> {
   let out = item;
   for (const field of MATERIAL_FIELDS) {
@@ -121,11 +133,17 @@ export function restyleItem(
     let changed = false;
     const next = mats.map((m) => {
       const id = site.itemIdOf(m.name);
-      const style = id === null ? undefined : styleOf(id);
-      if (!style || (style.type === m.type && style.color === m.color)) return m;
+      if (id === null) return m;
+      const style = styleOf(id) ?? m;
+      const after = {
+        name: site.items.get(id)?.name ?? m.name,
+        type: style.type,
+        color: style.color,
+      };
+      if (after.name === m.name && after.type === m.type && after.color === m.color) return m;
       changed = true;
-      onChange(m, style);
-      return { ...m, type: style.type, color: style.color };
+      onChange(m, after);
+      return { ...m, ...after };
     });
     if (changed) out = { ...out, [field]: next };
   }

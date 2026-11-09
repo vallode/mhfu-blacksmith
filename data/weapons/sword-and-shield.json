@@ -2160,7 +2160,7 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Giadrome hide",
+          "name": "Giadrome Hide",
           "amount": 1,
           "type": "pelt",
           "color": "white"
@@ -5868,7 +5868,7 @@
           "color": "blue"
         },
         {
-          "name": "Lao-Shan's claw",
+          "name": "Lao-Shan's Claw",
           "amount": 4,
           "type": "claw",
           "color": "red"
@@ -6357,7 +6357,7 @@
           "color": "orange"
         },
         {
-          "name": "LethrGarugatail",
+          "name": "LethrGarugaTail",
           "amount": 2,
           "type": "part",
           "color": "slate"
@@ -6411,7 +6411,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "Hero of KKto Bio",
+          "name": "Hero of Kkto Bio",
           "amount": 1,
           "type": "ticket",
           "color": "yellow"
@@ -6553,7 +6553,7 @@
           "color": "slate"
         },
         {
-          "name": "Lao-Shan's scale",
+          "name": "Lao-Shan's Scale",
           "amount": 3,
           "type": "scale",
           "color": "red"

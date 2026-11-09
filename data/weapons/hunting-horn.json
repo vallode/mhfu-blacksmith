@@ -3039,7 +3039,7 @@
           "color": "white"
         },
         {
-          "name": "Coma sac",
+          "name": "Coma Sac",
           "amount": 3,
           "type": "sac",
           "color": "blue"
@@ -11409,7 +11409,7 @@
       "improve_from": null,
       "create_mats": [
         {
-          "name": "UkanlosShoveljaw",
+          "name": "UkanlosShovelJaw",
           "amount": 3,
           "type": "part",
           "color": "white"
@@ -11421,7 +11421,7 @@
           "color": "white"
         },
         {
-          "name": "Ukanlosunderscl",
+          "name": "UkanlosUnderscl",
           "amount": 5,
           "type": "scale",
           "color": "white"
