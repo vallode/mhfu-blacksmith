@@ -17,7 +17,9 @@ import {
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import type { ShuffleReport } from "./shuffles/shuffle.js";
-import { findShops, shuffleShops } from "./shuffles/shops.js";
+import { findShops, locateItemTable, randomizeShops } from "./shuffles/shops.js";
+import { tableName } from "./names.js";
+import { TABLE_COUNTS } from "../../mhfu-extract/src/tables/offsets.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -36,6 +38,30 @@ export interface RandomizeResult {
   sources: SourceSummary;
   /** Recipe materials that can't be found at their old tier any more. Should be empty. */
   problems: string[];
+}
+
+/**
+ * The item table for shop prices: required when prices or carry limits
+ * change; otherwise used when the EBOOT happens to be loaded, to price items
+ * that are never normally sold.
+ */
+function shopItemTable(game: GameData, required: boolean) {
+  if (required) return locateItemTable(game.eboot!, game.resolver);
+  if (!game.eboot) return null;
+  try {
+    return locateItemTable(game.eboot, game.resolver);
+  } catch {
+    return null;
+  }
+}
+
+/** Every item with a name and an item record: what "any item" shops can sell. */
+function sellableItems(): number[] {
+  const out: number[] = [];
+  for (let id = 1; id < TABLE_COUNTS.regularItems + TABLE_COUNTS.decorations; id++) {
+    if (tableName("ItemID", id) !== null) out.push(id);
+  }
+  return out;
 }
 
 /** Items from gathering points in quests the player can take. Never shuffled. */
@@ -142,15 +168,30 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
   }
 
   if (settings["shops.enabled"]) {
+    const prices = settings["shops.prices"];
+    const stacks = settings["shops.stacks"];
     reports.push(
-      shuffleShops(
+      randomizeShops(
         findShops(game.lobbyTask.ovl),
         {
-          keepEssentials: settings["shops.keepEssentials"],
+          pool: settings["shops.pool"],
           mix: settings["shops.mix"],
+          keepEssentials: settings["shops.keepEssentials"],
           special: settings["shops.special"],
+          countSpread: settings["shops.countSpread"],
+          priceSpread: prices ? settings["shops.priceSpread"] : null,
+          stackSpread: stacks ? settings["shops.stackSpread"] : null,
         },
-        rng.fork("shops"),
+        {
+          bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
+          allItems: sellableItems(),
+          items: shopItemTable(game, prices || stacks),
+        },
+        {
+          stock: rng.fork("shops"),
+          prices: rng.fork("shop-prices"),
+          stacks: rng.fork("shop-stacks"),
+        },
         edits,
         game.lobbyTask,
       ),

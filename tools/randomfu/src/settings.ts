@@ -24,9 +24,15 @@ export interface Settings {
   "weapons.enabled": boolean;
   "weapons.mix": "same-type" | "any-type";
   "shops.enabled": boolean;
-  "shops.keepEssentials": boolean;
+  "shops.pool": "shop" | "low" | "high" | "any";
   "shops.mix": "each" | "all";
+  "shops.keepEssentials": boolean;
   "shops.special": boolean;
+  "shops.countSpread": number;
+  "shops.prices": boolean;
+  "shops.priceSpread": number;
+  "shops.stacks": boolean;
+  "shops.stackSpread": number;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -193,10 +199,66 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "shops.enabled",
     section: "Shops",
-    label: "Shuffle what shops sell",
-    help: "Each item a shop sells is swapped for another in every stage of that shop, so later stock still includes earlier stock. Prices follow the item.",
+    label: "Randomize shops",
+    help: "Each item a shop sells is replaced by another, the same in every stage of that shop, so later stages still include earlier stock.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "shops.pool",
+    section: "Shops",
+    label: "What shops can sell",
+    help: "Where replacement items come from.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "shop",
+          label: "Shop items",
+          help: "Only items shops sell anyway, in new places and stages.",
+        },
+        {
+          value: "low",
+          label: "Shop items and Low Rank items",
+          help: "Also anything first found in Low Rank: herbs, ores, bones, Low Rank monster parts.",
+        },
+        {
+          value: "high",
+          label: "Up to High Rank items",
+          help: "Also anything first found in High Rank.",
+        },
+        {
+          value: "any",
+          label: "Any item (chaos)",
+          help: "Any item in the game, G Rank parts and jewels included.",
+        },
+      ],
+    },
+    default: "shop",
+    enabledBy: "shops.enabled",
+  },
+  {
+    key: "shops.mix",
+    section: "Shops",
+    label: "Shops share replacements",
+    help: "Whether one item is replaced by the same thing in every shop. With shop items only, this also decides whether shops trade stock.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "each",
+          label: "Each shop on its own",
+          help: "Every shop has its own replacements (shops that share stock lists share them).",
+        },
+        {
+          value: "all",
+          label: "All shops together",
+          help: "One replacement per item everywhere; with shop items only, granny's herbs can reach the general store.",
+        },
+      ],
+    },
+    default: "each",
+    enabledBy: "shops.enabled",
   },
   {
     key: "shops.keepEssentials",
@@ -208,29 +270,6 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "shops.enabled",
   },
   {
-    key: "shops.mix",
-    section: "Shops",
-    label: "Which items can swap",
-    help: "Whether shops swap only among their own stock.",
-    type: {
-      kind: "choice",
-      choices: [
-        {
-          value: "each",
-          label: "Within each shop",
-          help: "The village store sells its own items in a new order of stages; the granny and Guild Hall swap among theirs.",
-        },
-        {
-          value: "all",
-          label: "Across all shops",
-          help: "One swap for every shop: granny's herbs and Wyvern Claws can turn up in the general store.",
-        },
-      ],
-    },
-    default: "each",
-    enabledBy: "shops.enabled",
-  },
-  {
     key: "shops.special",
     section: "Shops",
     label: "Include the sphere and jewel shop",
@@ -238,6 +277,53 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     enabledBy: "shops.enabled",
+  },
+  {
+    key: "shops.countSpread",
+    section: "Shops",
+    label: "How many items each shop sells",
+    help: "Each shop sells up to this much more or fewer, every stage alike. Above 0, the shop lists are rewritten and the game is pointed at their new places.",
+    type: SPREAD,
+    default: 0,
+    enabledBy: "shops.enabled",
+  },
+  {
+    key: "shops.prices",
+    section: "Shops",
+    label: "Randomize prices",
+    help: "Change the price of everything shops sell. A price is the item's own, so it's the same in every shop.",
+    type: { kind: "boolean" },
+    default: false,
+    eboot: true,
+    enabledBy: "shops.enabled",
+  },
+  {
+    key: "shops.priceSpread",
+    section: "Shops",
+    label: "Price variation",
+    help: "How far a price can move, up or down.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "shops.prices",
+  },
+  {
+    key: "shops.stacks",
+    section: "Shops",
+    label: "Randomize carry limits",
+    help: "Change how many of each item you can carry (1 to 99), for everything shops sell. This applies everywhere, not just in shops.",
+    type: { kind: "boolean" },
+    default: false,
+    eboot: true,
+    enabledBy: "shops.enabled",
+  },
+  {
+    key: "shops.stackSpread",
+    section: "Shops",
+    label: "Carry limit variation",
+    help: "How far a carry limit can move, up or down.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "shops.stacks",
   },
 ];
 
@@ -304,12 +390,14 @@ export function parseAssignments(value: string): Record<string, string> {
 
 /** True if any option that needs the decrypted EBOOT is on. */
 export function needsEboot(settings: Settings): boolean {
-  return OPTIONS.some((o) => o.eboot && settings[o.key] === true);
+  return OPTIONS.some((o) => o.eboot && settings[o.key] === true && isActive(settings, o));
 }
 
-/** True if the option is in effect (its `enabledBy` switch, if any, is on). */
+/** True if the option is in effect: its `enabledBy` switch, and that switch's, are on. */
 export function isActive(settings: Settings, option: OptionDef): boolean {
-  return !option.enabledBy || settings[option.enabledBy] === true;
+  if (!option.enabledBy) return true;
+  const parent = BY_KEY.get(option.enabledBy)!;
+  return settings[option.enabledBy] === true && isActive(settings, parent);
 }
 
 export function encodeSettings(settings: Settings): string {
@@ -396,6 +484,9 @@ export const PRESETS: readonly Preset[] = [
       "costs.enabled": true,
       "weapons.enabled": true,
       "shops.enabled": true,
+      "shops.pool": "low",
+      "shops.prices": true,
+      "shops.stacks": true,
     },
   },
   {
@@ -411,9 +502,15 @@ export const PRESETS: readonly Preset[] = [
       "weapons.enabled": true,
       "weapons.mix": "any-type",
       "shops.enabled": true,
-      "shops.keepEssentials": false,
+      "shops.pool": "any",
       "shops.mix": "all",
+      "shops.keepEssentials": false,
       "shops.special": true,
+      "shops.countSpread": 0.5,
+      "shops.prices": true,
+      "shops.priceSpread": 0.9,
+      "shops.stacks": true,
+      "shops.stackSpread": 0.9,
     },
   },
 ];

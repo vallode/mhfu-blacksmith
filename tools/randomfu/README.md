@@ -107,6 +107,16 @@ added there shows up everywhere.
 | `costs.spread`                    | 0.5         | How far costs move                                                   |
 | `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                   |
 | `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)  |
+| `shops.enabled`                   | off         | Randomize shops                                                      |
+| `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`  |
+| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them              |
+| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo      |
+| `shops.special`                   | off         | Include the Armor Sphere, jewel and Pokke Ticket shop                |
+| `shops.countSpread`               | 0           | How much more or fewer items each shop sells                         |
+| `shops.prices`                    | off         | Randomize prices of what shops sell (EBOOT)                          |
+| `shops.priceSpread`               | 0.5         | How far prices move                                                  |
+| `shops.stacks`                    | off         | Randomize carry limits of what shops sell (EBOOT)                    |
+| `shops.stackSpread`               | 0.5         | How far carry limits move                                            |
 
 ## Shuffles
 
@@ -173,20 +183,39 @@ and bowguns, so that pairing is untested. Weapons from Ancient/Rusted
 shards stay put. It runs before the recipe shuffles, which then shuffle
 the tables it left.
 
-`shops` changes what the shops sell. The shops live in
-`overlay/lobby_task.ovl`: each shop's stock is a list of u16 item IDs
-ending in 0xFFFF, one list per stage of the game, and the game picks one
-from a table of pointers per shop (each ending in a 0 word). On the EU disc
-the tables are at 0xa7da8: the village general store (8 stages), the
-peddling granny's pools (her table also uses two Guild lists), the Guild
-Hall store (9 stages) and a shop of Armor Spheres, jewels and Pokke
-Tickets. The shuffle finds the tables by their shape, from the table that
-holds the general store's list (Herb, Potion, Antidote, Whetstone), not by
-address. Each item is swapped for the same other item in every list of a
-shop (or of every shop, with `shops.mix all`), so later stages still sell
-everything earlier ones did; lists keep their length, and prices follow the
-item. `shop-scan` and `shop-lists` are the research commands that found
-them.
+`shops` changes the shops. They live in `overlay/lobby_task.ovl`: each
+shop's stock is a list of u16 item IDs ending in 0xFFFF, one list per stage
+of the game, and the game picks one from a table of pointers per shop
+(each ending in a 0 word). On the EU disc the tables are at 0xa7da8: the
+village general store (8 stages), the peddling granny's pools (her table
+also uses two Guild lists), the Guild Hall store (9 stages) and a shop of
+Armor Spheres, jewels and Pokke Tickets. They're found by their shape, from
+the table holding the general store's list (Herb, Potion, Antidote,
+Whetstone), not by address; `shop-scan` and `shop-lists` are the research
+commands that found them.
+
+- **Stock**: each item a shop sells is replaced by one drawn from the pool
+  (`shops.pool`: the shops' own items, items first found in Low or High
+  Rank, or any item in the game), the same in every stage. Shops sharing a
+  list share replacements (or all shops do, with `shops.mix all`).
+- **How many**: with `shops.countSpread`, each shop's lists scale by one
+  factor, so later stages still sell what earlier ones did (stages nest by
+  construction: items are kept in an order of pinned items, then by the
+  stage they first appear in, then extra pool items). No list grows past
+  the longest one on the disc (83), since the shop screen's limit is
+  unknown. Lists that change length are rewritten back to back in the
+  space the lists use now and the pointer tables are updated; shops can
+  only grow into space others free, so growth is scaled back until it
+  fits. This refuses to run if that space holds anything but lists and
+  padding. Without it, lists stay where they are.
+- **Prices and carry limits** are the item's own (EBOOT item table), so
+  they apply wherever the item is. The buy price field isn't documented:
+  randomfu finds it on the disc as the one field holding the general
+  store's prices (Herb 20z, Potion 66z, ...) and checks the carry limit
+  byte (+3) against Potion 10 and Whetstone 20, refusing to edit if they
+  don't match. Any item a shop now sells that has no price gets one from
+  its rarity (100z × (rarity + 1)²), so nothing is free; that needs the
+  EBOOT, so without it, wide pools may sell some items for free.
 
 ## How it writes the disc
 

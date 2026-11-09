@@ -614,6 +614,13 @@
         return wrap;
       }
 
+      // On when its switch is on, and that switch's switch, all the way up.
+      function isActive(option) {
+        if (!option.enabledBy) return true;
+        const parent = schema.options.find((o) => o.key === option.enabledBy);
+        return settings[option.enabledBy] === true && isActive(parent);
+      }
+
       function format(option, value) {
         return option.type.percent ? `±${Math.round(value * 100)}%` : String(value);
       }
@@ -632,7 +639,7 @@
             for (const radio of wrap.querySelectorAll("input[type=radio]"))
               radio.checked = radio.value === value;
           }
-          const active = !option.enabledBy || settings[option.enabledBy] === true;
+          const active = isActive(option);
           wrap.classList.toggle("off", !active);
           for (const input of wrap.querySelectorAll("input")) input.disabled = !active;
         }

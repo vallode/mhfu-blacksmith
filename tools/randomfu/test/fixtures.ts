@@ -439,6 +439,29 @@ function writeMaterials(buf: Buffer, at: number, materials: Materials): void {
   });
 }
 
+/** Prices: the store's real ones (which randomfu checks for), plus a few more shop items. */
+export const FIXTURE_ITEM_PRICES: [number, number][] = [
+  [163, 20],
+  [7, 66],
+  [11, 60],
+  [153, 80],
+  [21, 300],
+  [22, 250],
+  [144, 60],
+  [145, 160],
+  [164, 20],
+  [167, 50],
+  [97, 10],
+];
+export const FIXTURE_ITEM_STACKS: [number, number][] = [
+  [7, 10],
+  [153, 20],
+  [163, 10],
+  [11, 10],
+  [21, 5],
+  [22, 5],
+];
+
 export function buildEboot(
   recipes: FixtureRecipe[],
   prices: FixturePrices = FIXTURE_PRICES,
@@ -487,6 +510,15 @@ export function buildEboot(
       tableOffset("armorValuePointers") + ARMOR_POINTER_INDEX[slot] * 4,
     );
   });
+  // Item table: buy prices at +12 for the general store's items (and a sell price at +8),
+  // carry limits at +3.
+  const items = tableOffset("itemTable");
+  for (const [id, price] of FIXTURE_ITEM_PRICES) {
+    buf.writeUInt32LE(price, items + id * ITEM_ENTRY_SIZE + 12);
+    buf.writeUInt32LE(Math.floor(price / 10), items + id * ITEM_ENTRY_SIZE + 8);
+  }
+  for (const [id, stack] of FIXTURE_ITEM_STACKS) buf[items + id * ITEM_ENTRY_SIZE + 3] = stack;
+
   const bm = tableOffset("weaponsBlademaster");
   for (const [i, price] of prices.blademaster)
     buf.writeUInt32LE(price, bm + i * WEAPON_BM_ENTRY_SIZE + 4);
@@ -538,7 +570,10 @@ export function buildLobbyTask(): {
     items.forEach((v, i) => buf.writeUInt16LE(v, at + i * 2));
     buf.writeUInt16LE(0xffff, at + items.length * 2);
     at += items.length * 2 + 2;
-    at += at % 4; // the EU lists are 4-byte aligned
+    if (at % 4 !== 0) {
+      buf.writeUInt16LE(0xffff, at); // the EU lists are 4-byte aligned, padded with 0xFFFF
+      at += 2;
+    }
   }
   const tablesAt = 0x600;
   let p = tablesAt;
