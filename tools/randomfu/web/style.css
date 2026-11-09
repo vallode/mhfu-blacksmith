@@ -96,10 +96,6 @@ code {
   color: var(--color-gold);
 }
 
-[hidden] {
-  display: none !important;
-}
-
 .visually-hidden {
   position: absolute;
   width: 1px;
@@ -1133,4 +1129,10 @@ input[type="range"] {
       flex: 1 1 auto;
     }
   }
+}
+
+/* Last, so it beats the single-class rules above that set display (.panel,
+   .row, …) at the same specificity, without !important. */
+[hidden] {
+  display: none;
 }

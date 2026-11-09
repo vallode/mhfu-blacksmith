@@ -8,7 +8,7 @@
       name="description"
       content="A seeded randomizer for Monster Hunter Freedom Unite that runs in your browser on your own disc image."
     />
-    <meta name="theme-color" content="#1b2016" />
+    <meta name="theme-color" content="#6e905f" />
     <link rel="icon" href="images/favicons/felyne-favicon.png" />
     <style>
       /*STYLE*/
@@ -164,6 +164,10 @@
       <!-- The run -->
       <section class="panel" data-step="run" hidden>
         <p class="status big" id="run-status" role="status"></p>
+        <p class="status err" id="stale" hidden>
+          Your settings or disc changed since this run. Go back to the review and randomize again to
+          use them.
+        </p>
         <div class="downloads" id="downloads"></div>
         <details class="log-wrap" id="log-wrap" open>
           <summary class="subheading">Log</summary>

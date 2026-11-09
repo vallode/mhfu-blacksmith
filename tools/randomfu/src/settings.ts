@@ -516,19 +516,22 @@ export function settingsToJson(settings: Settings): string {
   return `${JSON.stringify(settings, null, 2)}\n`;
 }
 
+/** An option's value in words: yes/no, ±50%, a number, or the choice's label. */
+export function formatOption(option: OptionDef, value: Settings[OptionKey]): string {
+  const type = option.type;
+  if (type.kind === "boolean") return value ? "yes" : "no";
+  if (type.kind === "number" && type.percent) return `±${Math.round(Number(value) * 100)}%`;
+  if (type.kind === "choice") {
+    return type.choices.find((c) => c.value === value)?.label ?? String(value);
+  }
+  return String(value);
+}
+
 /** One line per option, for the spoiler log and the console. */
 export function describeSettings(settings: Settings): string[] {
-  return OPTIONS.filter((o) => isActive(settings, o)).map((o) => {
-    const value = settings[o.key];
-    let shown: string;
-    if (o.type.kind === "boolean") shown = value ? "yes" : "no";
-    else if (o.type.kind === "number" && o.type.percent)
-      shown = `±${Math.round(Number(value) * 100)}%`;
-    else if (o.type.kind === "choice") {
-      shown = o.type.choices.find((c) => c.value === value)?.label ?? String(value);
-    } else shown = String(value);
-    return `${o.section} / ${o.label}: ${shown}`;
-  });
+  return OPTIONS.filter((o) => isActive(settings, o)).map(
+    (o) => `${o.section} / ${o.label}: ${formatOption(o, settings[o.key])}`,
+  );
 }
 
 export interface Preset {

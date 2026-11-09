@@ -11,6 +11,7 @@
  *   node web/build.mjs
  */
 import { build } from "esbuild";
+import postcss from "postcss";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -54,15 +55,19 @@ await build({
 
 // ---------------------------------------------------------------- the site's look
 
-const globals = readFileSync(path.join(site, "src", "app", "globals.css"), "utf8");
+// Parsed rather than pattern-matched, so the file's formatting doesn't matter.
+const globals = postcss.parse(readFileSync(path.join(site, "src", "app", "globals.css"), "utf8"));
 
-/** The site's design tokens: every top-level custom property in its `@theme` block. */
+/** The site's design tokens: every custom property declared directly in its `@theme` block. */
 function siteTokens() {
-  const theme = globals.match(/@theme static \{([\s\S]*?)\n\}/)?.[1];
+  let theme;
+  globals.walkAtRules("theme", (rule) => {
+    theme = rule;
+  });
   if (!theme) throw new Error("Couldn't find the @theme block in globals.css");
-  const tokens = [...theme.matchAll(/^ {2}(--[\w-]+):\s*([^;]+);/gm)].map(
-    ([, name, value]) => `${name}: ${value.trim()};`,
-  );
+  const tokens = (theme.nodes ?? [])
+    .filter((node) => node.type === "decl" && node.prop.startsWith("--"))
+    .map((decl) => `${decl.prop}: ${decl.value};`);
   if (!tokens.some((t) => t.startsWith("--color-stat:"))) {
     throw new Error("The @theme block in globals.css has no colour tokens");
   }
@@ -71,8 +76,13 @@ function siteTokens() {
 
 /** The image of one of the site's `@utility` rules (its in-game frames and divider). */
 function utilityImage(name) {
-  const rule = globals.match(new RegExp(`@utility ${name} \\{([\\s\\S]*?)\\n\\}`))?.[1];
-  const url = rule?.match(/url\("(data:image\/png;base64,[^"]+)"\)/)?.[1];
+  let url;
+  globals.walkAtRules("utility", (rule) => {
+    if (rule.params.trim() !== name) return;
+    rule.walkDecls((decl) => {
+      url ??= decl.value.match(/url\(\s*["']?(data:image\/png;base64,[^"')]+)/)?.[1];
+    });
+  });
   if (!url) throw new Error(`Couldn't find the image of @utility ${name} in globals.css`);
   return url;
 }

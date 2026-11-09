@@ -17,6 +17,7 @@ import {
   decodeSettings,
   defaultSettings,
   encodeSettings,
+  formatOption,
   isActive,
   needsEboot,
   settingsFromJson,
@@ -121,6 +122,8 @@ const reached = new Set<string>(["game"]);
 /** A run (or preview) has started, so the run step has something to show. */
 let ranOnce = false;
 let busy = false;
+/** What the last run was made from, to tell when its results no longer match. */
+let ranWith: { settings: string; iso: File } | null = null;
 
 let iso: File | null = null;
 let eboot: File | null = null;
@@ -230,21 +233,6 @@ function megabytes(file: File): string {
 
 // ---------------------------------------------------------------- options
 
-function format(option: OptionDef, value: number): string {
-  return option.type.kind === "number" && option.type.percent
-    ? `±${Math.round(value * 100)}%`
-    : String(value);
-}
-
-/** An option's value in words, for the review. */
-function shown(option: OptionDef): string {
-  const value = settings[option.key];
-  const type = option.type;
-  if (type.kind === "boolean") return value ? "on" : "off";
-  if (type.kind === "number") return format(option, value as number);
-  return type.choices.find((c) => c.value === value)?.label ?? String(value);
-}
-
 function update(key: OptionKey, value: boolean | number | string): void {
   settings = applySettings(settings, { [key]: value });
   render();
@@ -274,7 +262,14 @@ function renderOption(option: OptionDef): HTMLElement {
       max: String(type.max),
       step: String(type.step),
     });
-    input.addEventListener("input", () => update(option.key, Number(input.value)));
+    const out = el("output", { for: id });
+    // While dragging, only the value and the share string follow; the rest on release.
+    input.addEventListener("input", () => {
+      settings = applySettings(settings, { [option.key]: Number(input.value) });
+      out.textContent = formatOption(option, settings[option.key]);
+      $<HTMLTextAreaElement>("share").value = encodeSettings(settings);
+    });
+    input.addEventListener("change", () => update(option.key, Number(input.value)));
     const nudge = (by: 1 | -1) => {
       const raw = (settings[option.key] as number) + by * type.step;
       const value = Math.min(type.max, Math.max(type.min, Number(raw.toFixed(4))));
@@ -284,7 +279,6 @@ function renderOption(option: OptionDef): HTMLElement {
     const more = arrowButton(true, `More: ${option.label}`);
     less.addEventListener("click", () => nudge(-1));
     more.addEventListener("click", () => nudge(1));
-    const out = el("output", { for: id });
     wrap.append(
       el(
         "div",
@@ -385,7 +379,7 @@ function render(): void {
       $<HTMLInputElement>(`opt-${option.key}`).checked = value as boolean;
     } else if (option.type.kind === "number") {
       $<HTMLInputElement>(`opt-${option.key}`).value = String(value);
-      wrap.querySelector("output")!.textContent = format(option, value as number);
+      wrap.querySelector("output")!.textContent = formatOption(option, value);
       const [less, more] = wrap.querySelectorAll<HTMLButtonElement>(".arrow");
       less!.disabled = !active || (value as number) <= option.type.min;
       more!.disabled = !active || (value as number) >= option.type.max;
@@ -398,8 +392,9 @@ function render(): void {
     for (const input of wrap.querySelectorAll("input")) input.disabled = !active;
   }
 
+  const preset = PRESETS.find(matchesPreset);
   for (const radio of document.querySelectorAll<HTMLInputElement>("input[name=preset]")) {
-    radio.checked = matchesPreset(PRESETS.find((p) => p.name === radio.value)!);
+    radio.checked = radio.value === preset?.name;
   }
 
   $<HTMLTextAreaElement>("share").value = encodeSettings(settings);
@@ -414,7 +409,8 @@ function render(): void {
     reached.add(current);
   }
   renderSteps();
-  renderSummary();
+  if (current === "review") renderSummary(preset);
+  if (current === "run") renderStale();
   save();
 }
 
@@ -453,7 +449,13 @@ function renderSteps(): void {
   next.querySelector("span")!.textContent = following?.id === "review" ? "Review" : "Next";
 }
 
-function renderSummary(): void {
+/** Flags the last run's results once the settings or disc differ from what made them. */
+function renderStale(): void {
+  $("stale").hidden =
+    busy || !ranWith || (ranWith.settings === encodeSettings(settings) && ranWith.iso === iso);
+}
+
+function renderSummary(preset: Preset | undefined): void {
   const groups: HTMLElement[] = [];
   const group = (step: Step, lines: { text: string; off?: boolean }[]) => {
     const edit = el("button", { type: "button", class: "summary-edit" }, step.title);
@@ -477,7 +479,6 @@ function renderSummary(): void {
       off: !iso,
     },
   ]);
-  const preset = PRESETS.find(matchesPreset);
   group(byId("start"), [
     { text: `Seed: ${settings.seed}` },
     { text: `Preset: ${preset ? preset.name : "custom"}` },
@@ -486,11 +487,11 @@ function renderSummary(): void {
     const lines: { text: string; off?: boolean }[] = [];
     for (const option of OPTIONS.filter((o) => step.sections?.includes(o.section))) {
       if (!isActive(settings, option)) continue;
-      const value = shown(option);
+      const value = settings[option.key];
       lines.push(
         option.type.kind === "boolean"
-          ? { text: `${value === "on" ? "✓" : "✗"} ${option.label}`, off: value === "off" }
-          : { text: `${option.label}: ${value}` },
+          ? { text: `${value ? "✓" : "✗"} ${option.label}`, off: !value }
+          : { text: `${option.label}: ${formatOption(option, value)}` },
       );
     }
     group(step, lines);
@@ -572,12 +573,14 @@ function setFile(kind: "iso" | "eboot", file: File | null): void {
 
 let checkToken = 0;
 async function checkFiles(): Promise<void> {
+  const token = ++checkToken;
   if (!iso) {
     disc = null;
+    checking = false;
+    checkError = null;
     say($("check-status"), "");
     return;
   }
-  const token = ++checkToken;
   checking = true;
   checkError = null;
   say($("check-status"), "Checking your disc…", "busy");
@@ -617,7 +620,9 @@ function droppable(kind: "iso" | "eboot"): void {
     event.preventDefault();
     drop.classList.add("dragging");
   });
-  drop.addEventListener("dragleave", () => drop.classList.remove("dragging"));
+  drop.addEventListener("dragleave", (event) => {
+    if (!drop.contains(event.relatedTarget as Node | null)) drop.classList.remove("dragging");
+  });
   drop.addEventListener("drop", (event) => {
     event.preventDefault();
     drop.classList.remove("dragging");
@@ -628,15 +633,17 @@ function droppable(kind: "iso" | "eboot"): void {
 
 // ---------------------------------------------------------------- runs
 
-function outputName(file: File): string {
-  return `${file.name.replace(/\.iso$/i, "")} (randomfu ${settings.seed}).iso`;
+function outputName(file: File, seed: string): string {
+  return `${file.name.replace(/\.iso$/i, "")} (randomfu ${seed}).iso`;
 }
 
 async function run(dryRun: boolean): Promise<void> {
   if (busy) return;
   const reason = blocker("game") ?? blocker("eboot");
-  if (reason || !iso) return say($("copy-status"), reason ?? "Pick your disc image first.", "err");
+  if (reason || !iso) return say($("nav-status"), reason ?? "Pick your disc image first.", "err");
   const file = iso;
+  const seed = settings.seed;
+  ranWith = { settings: encodeSettings(settings), iso: file };
   busy = true;
   ranOnce = true;
   for (const id of ["run", "dry-run"]) $<HTMLButtonElement>(id).disabled = true;
@@ -657,14 +664,14 @@ async function run(dryRun: boolean): Promise<void> {
     if (r.type === "error") throw new Error(r.message);
     if (r.type !== "done") throw new Error("The run stopped without finishing.");
     showSpoiler(r.spoiler);
-    const spoilerName = `${outputName(file).replace(/\.iso$/, "")} spoiler.txt`;
+    const spoilerName = `${outputName(file, seed).replace(/\.iso$/, "")} spoiler.txt`;
     const links: HTMLElement[] = [];
     if (r.segments) {
       const parts = r.segments.map((s: Segment) =>
         "data" in s ? s.data : file.slice(s.start, s.end),
       );
       const blob = new Blob(parts as BlobPart[], { type: "application/octet-stream" });
-      links.push(download(outputName(file), blob, "Download randomized ISO"));
+      links.push(download(outputName(file, seed), blob, "Download randomized ISO"));
     } else {
       const now = el(
         "button",
@@ -700,6 +707,7 @@ async function run(dryRun: boolean): Promise<void> {
     busy = false;
     for (const id of ["run", "dry-run"]) $<HTMLButtonElement>(id).disabled = false;
     renderSteps();
+    renderStale();
   }
 }
 
@@ -765,7 +773,7 @@ function init(): void {
     const seed = $<HTMLInputElement>("seed").value.trim();
     if (!seed) return;
     settings = { ...settings, seed };
-    render();
+    $<HTMLTextAreaElement>("share").value = encodeSettings(settings);
   });
   $<HTMLInputElement>("seed").addEventListener("change", () => render());
   $("new-seed").addEventListener("click", () => {
