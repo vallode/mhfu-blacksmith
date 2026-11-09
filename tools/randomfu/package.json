@@ -11,7 +11,8 @@
     "gui": "tsx src/cli.ts gui",
     "settings": "tsx src/cli.ts settings",
     "test": "tsx --test test/**/*.test.ts",
-    "shop-scan": "tsx src/cli.ts shop-scan"
+    "shop-scan": "tsx src/cli.ts shop-scan",
+    "shop-lists": "tsx src/cli.ts shop-lists"
   },
   "dependencies": {
     "tsx": "^4.22.4"

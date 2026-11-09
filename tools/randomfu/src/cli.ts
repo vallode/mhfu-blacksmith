@@ -120,6 +120,7 @@ const USAGE = `Usage:
   settings [--write <file.json>]                    list every setting, or write the defaults
   shop-scan --iso <in> [--eboot <dump>] [--out <report.txt>]
                                                     research: look for the shops' item lists
+  shop-lists --iso <in> [--out <report.txt>]        research: map the shop lists in lobby_task.ovl
 
 Settings (later ones win):
   --settings <file.json>       any subset of settings (see "settings")
@@ -216,6 +217,17 @@ export async function main(argv: string[]): Promise<void> {
           "utf-8",
         );
         console.log(`Wrote ${flags.out} and the full candidate list as JSON next to it.`);
+      } else {
+        console.log(report);
+      }
+      return;
+    }
+    case "shop-lists": {
+      const { formatShopLists, runShopLists } = await import("./research/shop-lists.js");
+      const report = formatShopLists(await runShopLists(requireFlag(flags, "iso")));
+      if (flags.out) {
+        writeFileSync(flags.out, `${report}\n`, "utf-8");
+        console.log(`Wrote ${flags.out}`);
       } else {
         console.log(report);
       }
