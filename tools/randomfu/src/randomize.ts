@@ -7,6 +7,7 @@ import type { GameData } from "./game/load.js";
 import { coarsen, itemTiers, monsterStars, type Tier } from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import { needsEboot, type Settings } from "./settings.js";
+import { shuffleArmor } from "./shuffles/armor.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
 import { collectGatheringSlots, shuffleGathering } from "./shuffles/gathering.js";
 import {
@@ -128,6 +129,12 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         edits,
       ),
     );
+  }
+
+  // Armor only changes which piece each create entry makes, so the recipe
+  // shuffles' spoiler names the new pieces.
+  if (settings["armor.enabled"]) {
+    reports.push(shuffleArmor(game.eboot!, game.resolver, rng.fork("armor"), edits));
   }
 
   if (settings["recipes.materials"] || settings["recipes.amounts"]) {

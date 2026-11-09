@@ -142,8 +142,8 @@ test("randomizing is deterministic and keeps items within their tier", async () 
   const monster = a.reports.find((r) => r.title.startsWith("Monster"))!;
   assert.equal(monster.lines.length, 6, "monster 3's list (no quest) left out");
   const crafting = a.reports.find((r) => r.title.startsWith("Crafting"))!;
-  assert.equal(crafting.lines.length, 18, "every slot, including the entry with Hide set");
-  assert.ok(crafting.notes.some((n) => n.startsWith("2 of 18 slots keep their material")));
+  assert.equal(crafting.lines.length, 34, "every slot, including the entry with Hide set");
+  assert.ok(crafting.notes.some((n) => n.startsWith("2 of 34 slots keep their material")));
 
   // Recipe materials only swap within a tier: 1★ slots get 1★ items, and so on.
   const tierOf = (item: number) => a.sources.tiers.get(item);
@@ -263,6 +263,7 @@ test("written output reads back with the shuffled data, and nothing else changes
     "recipe-amounts",
     "costs",
     "gathering",
+    "armor",
   );
   const result = randomize(game, all);
   const summary = writeEdits(image, game, result.edits);
@@ -290,6 +291,10 @@ test("written output reads back with the shuffled data, and nothing else changes
   for (const ids of [[1001, 10102], [10101], [2001], [20001]]) {
     assert.deepEqual(gathered(after.game, ids), gathered(before.game, ids), `gathering ${ids}`);
   }
+  assert.ok(
+    result.reports.some((r) => r.title === "Armor progression" && r.lines.length > 0),
+    "armor moved on the written EBOOT",
+  );
 
   // Monster lists: same lengths and chances; each tier keeps its items.
   const listsBefore = collectRewardLists(before.game.gameSub.ovl);
@@ -356,7 +361,7 @@ test("the CLI writes an ISO and a spoiler log, and refuses to overwrite", async 
       "--seed",
       "cli",
       "--shuffles",
-      "quest-rewards,monster-rewards,recipes,recipe-amounts,costs,gathering",
+      "quest-rewards,monster-rewards,recipes,recipe-amounts,costs,gathering,armor",
       "--cost-spread",
       "0.25",
     ]);
@@ -365,6 +370,7 @@ test("the CLI writes an ISO and a spoiler log, and refuses to overwrite", async 
     assert.match(spoiler, /Cost variation: ±25%/);
     assert.match(spoiler, /== Quest rewards ==/);
     assert.match(spoiler, /== Gathering points ==/);
+    assert.match(spoiler, /== Armor progression ==/);
     assert.match(spoiler, /== Where items are first found ==/);
     assert.match(spoiler, /Low Rank 1★ \(\d+\)/);
     await assert.rejects(

@@ -8,6 +8,7 @@ export const SHUFFLE_KEYS = {
   "recipe-amounts": "recipes.amounts",
   costs: "costs.enabled",
   weapons: "weapons.enabled",
+  armor: "armor.enabled",
   shops: "shops.enabled",
   gathering: "gathering.enabled",
 } as const satisfies Record<string, OptionKey>;

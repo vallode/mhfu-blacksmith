@@ -31,7 +31,11 @@ import {
   WEAPON_BM_ENTRY_SIZE,
   tableOffset,
 } from "../../mhfu-extract/src/tables/offsets.js";
-import { ARMOR_POINTER_INDEX, ARMOR_SLOTS } from "../../mhfu-extract/src/tables/armor.js";
+import {
+  ARMOR_POINTER_INDEX,
+  ARMOR_SLOTS,
+  type ArmorSlot,
+} from "../../mhfu-extract/src/tables/armor.js";
 
 export const SECTOR = 2048;
 
@@ -390,6 +394,11 @@ export const EBOOT_SIZE = 2_000_000;
 /** Where the fixture's armor arrays go (the JP EBOOT finds them through a pointer table). */
 const ARMOR_ARRAYS = 1_850_000;
 
+/** EBOOT offset of a piece's `ArmorValues` entry. */
+export function armorValueAt(slot: ArmorSlot, index: number): number {
+  return ARMOR_ARRAYS + ARMOR_SLOTS.indexOf(slot) * 20_000 + index * ARMOR_ENTRY_SIZE;
+}
+
 export interface FixturePrices {
   blademaster: [index: number, price: number][];
   armorHead: [index: number, price: number][];
@@ -536,11 +545,24 @@ export function buildEboot(
   }
   for (const [id, stack] of FIXTURE_ITEM_STACKS) buf[items + id * ITEM_ENTRY_SIZE + 3] = stack;
 
+  for (const a of FIXTURE_ARMOR) {
+    const at = armorValueAt(a.slot, a.index);
+    buf.writeUInt16LE(a.hunterType & 1 ? a.index : 0, at); // male model
+    buf.writeUInt16LE(a.hunterType & 2 ? a.index : 0, at + 2); // female model
+    buf[at + 4] = a.hunterType;
+    buf[at + 5] = a.rarity;
+  }
+  for (const [slot, entries] of Object.entries(FIXTURE_ARMOR_CREATE)) {
+    for (const [entry, piece, materials] of entries) {
+      const at = create[slot as ArmorSlot].offset + entry * EQUIP_CREATE_ENTRY_SIZE;
+      buf.writeUInt16LE(piece, at + 2);
+      writeMaterials(buf, at + 4, materials);
+    }
+  }
   const bm = tableOffset("weaponsBlademaster");
   for (const [i, price] of prices.blademaster)
     buf.writeUInt32LE(price, bm + i * WEAPON_BM_ENTRY_SIZE + 4);
-  for (const [i, price] of prices.armorHead)
-    buf.writeUInt32LE(price, ARMOR_ARRAYS + i * ARMOR_ENTRY_SIZE + 8);
+  for (const [i, price] of prices.armorHead) buf.writeUInt32LE(price, armorValueAt("head", i) + 8);
   const deco = tableOffset("decorationValues");
   for (const [i, price] of prices.decoration)
     buf.writeUInt32LE(price, deco + i * ITEM_ENTRY_SIZE + 12);
@@ -808,6 +830,83 @@ export const FIXTURE_RECIPES: FixtureRecipe[] = [
     ],
   },
 ];
+
+export interface FixtureArmor {
+  slot: ArmorSlot;
+  index: number;
+  /** `HunterType` bits: 1 male, 2 female, 4 Blademaster, 8 Gunner (15 = anyone). */
+  hunterType: number;
+  /** Raw rarity (shown as rarity + 1). */
+  rarity: number;
+}
+
+/**
+ * Armor pieces (`ArmorValues`). Head: anyone at rarity 1 (1, 2, 5; 9 is in
+ * no create entry) and rarity 2 (3, 4); male-only 6 and 8, female-only 7;
+ * 10 and 11 have no `HunterType` bits. Chest, rarity 1: Blademaster 1 and
+ * 3, Gunner 2 and 4, anyone 5. Legs, rarity 3: anyone 1, 2, 3. Model IDs
+ * are the index, or 0 for the sex that can't wear it.
+ */
+const pieces = (slot: ArmorSlot, rows: [index: number, hunterType: number, rarity: number][]) =>
+  rows.map(([index, hunterType, rarity]): FixtureArmor => ({ slot, index, hunterType, rarity }));
+
+export const FIXTURE_ARMOR: FixtureArmor[] = [
+  ...pieces("head", [
+    [1, 15, 0],
+    [2, 15, 0],
+    [3, 15, 1],
+    [4, 15, 1],
+    [5, 15, 0],
+    [6, 13, 1],
+    [7, 14, 1],
+    [8, 13, 1],
+    [9, 15, 0],
+    [10, 0, 0],
+    [11, 0, 0],
+  ]),
+  ...pieces("chest", [
+    [1, 7, 0],
+    [2, 11, 0],
+    [3, 7, 0],
+    [4, 11, 0],
+    [5, 15, 0],
+  ]),
+  ...pieces("leg", [
+    [1, 15, 2],
+    [2, 15, 2],
+    [3, 15, 2],
+  ]),
+];
+
+/**
+ * Armor create entries besides `FIXTURE_RECIPES` (head entries 1-4, which
+ * make pieces 1-4), by slot: [entry, piece, materials]. Head piece 5 and
+ * chest piece 3 have a second recipe.
+ */
+export const FIXTURE_ARMOR_CREATE: Partial<Record<ArmorSlot, [number, number, Materials][]>> = {
+  head: [
+    [5, 5, [{ itemId: 111, quantity: 1 }]],
+    [6, 6, [{ itemId: 112, quantity: 1 }]],
+    [7, 7, [{ itemId: 113, quantity: 2 }]],
+    [8, 8, [{ itemId: 101, quantity: 1 }]],
+    [9, 5, [{ itemId: 110, quantity: 2 }]],
+    [10, 10, [{ itemId: 100, quantity: 1 }]],
+    [11, 11, [{ itemId: 100, quantity: 3 }]],
+  ],
+  chest: [
+    [0, 1, [{ itemId: 100, quantity: 1 }]],
+    [1, 2, [{ itemId: 101, quantity: 1 }]],
+    [2, 3, [{ itemId: 102, quantity: 1 }]],
+    [3, 4, [{ itemId: 103, quantity: 1 }]],
+    [4, 5, [{ itemId: 104, quantity: 1 }]],
+    [5, 3, [{ itemId: 110, quantity: 1 }]],
+  ],
+  leg: [
+    [0, 1, [{ itemId: 111, quantity: 1 }]],
+    [1, 2, [{ itemId: 112, quantity: 1 }]],
+    [2, 3, [{ itemId: 113, quantity: 1 }]],
+  ],
+};
 
 /** JP's unencrypted DATA.BIN entries (`JP_EXCEPTIONS` in mhfu-extract's databin.ts). */
 export const JP_RAW = new Set([

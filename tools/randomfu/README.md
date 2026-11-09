@@ -14,9 +14,9 @@ Licensed **GPL-3.0-or-later** (see `LICENSE`), because it builds on
 
 Early. On the EU disc, PPSSPP boots a randomized image and the smithy shows
 the shuffled recipe materials. Star-level tiers, gathering sources,
-`recipe-amounts`, `costs` and `gathering` are so far tested only against the
-synthetic disc the tests build (`test/fixtures.ts`). A PSP with custom
-firmware isn't tested. Run `roundtrip` on a new disc first.
+`recipe-amounts`, `costs`, `armor` and `gathering` are so far tested only
+against the synthetic disc the tests build (`test/fixtures.ts`). A PSP
+with custom firmware isn't tested. Run `roundtrip` on a new disc first.
 
 ## Usage
 
@@ -71,14 +71,14 @@ pnpm settings --write my.json       # write every setting to a file to edit
 
 Settings come from these flags, later ones winning:
 
-| Flag                                                          | What it sets                                                                                                |
-| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
-| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                |
-| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                     |
-| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, shops |
-| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                               |
-| `--set key=value,key=value`                                   | Any setting by name                                                                                         |
-| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                              |
+| Flag                                                          | What it sets                                                                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
+| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                       |
+| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                            |
+| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, shops |
+| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                      |
+| `--set key=value,key=value`                                   | Any setting by name                                                                                                |
+| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                     |
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
@@ -108,6 +108,7 @@ added there shows up everywhere.
 | `costs.spread`                    | 0.5         | How far costs move                                                   |
 | `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                   |
 | `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)  |
+| `armor.enabled`                   | off         | Shuffle armor progression (EBOOT)                                    |
 | `shops.enabled`                   | off         | Randomize shops                                                      |
 | `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`  |
 | `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them              |
@@ -132,6 +133,7 @@ No shuffle changes a list's length, so every edited file keeps its size.
 | `recipe-amounts`  | The same recipe tables                              | Quantities, rescaled and varied (see below)          |
 | `costs`           | Weapon, armor and decoration prices in the EBOOT    | Crafting and upgrade costs, varied in steps of 10z   |
 | `weapons`         | Weapon create and upgrade entries in the EBOOT      | Which weapon each place makes (see below)            |
+| `armor`           | Armor create entries in the EBOOT                   | Which piece each place makes (see below)             |
 | `shops`           | Shop item lists in `lobby_task.ovl`                 | Which items each shop sells (see below)              |
 
 ### Logic
@@ -196,6 +198,22 @@ node keeps its odds; tables keep their length and the quest file its
 size. Only pairs in tables a node uses move: an unused table keeps its
 items, and so do Training School, Treasure Hunting and the unused
 gathering copies. A pair with item 0 is left as it is.
+
+`armor` gives each armor place in the smithy (a create entry) a different
+piece of the same slot and rarity, wearable by the same hunters. A piece's
+`HunterType` is a bit field (1 male, 2 female, 4 Blademaster, 8 Gunner),
+and pieces only trade with pieces of the same rarity and the same value,
+so a place both sexes could use never gets a male- or female-only piece,
+and a Gunner place never gets a Blademaster piece. One substitution per
+slot is applied to every create entry, so where a piece had two recipes,
+both now make the same new piece. The place keeps its materials and the
+rest of its entry; the piece keeps its stats, skills, slots, sphere caps
+and price. Piece 0 (unused entries), pieces no create entry makes and
+pieces with no `HunterType` bits stay put. Blademaster and Gunner pieces
+never mix: the permutation keeps every piece in the smithy either way,
+but nothing has shown how the smithy treats a place whose piece is for
+the other type, so there's no option for it. Like `weapons`, it runs
+before the recipe shuffles, whose spoiler lines then name the new pieces.
 
 `shops` changes the shops. They live in `overlay/lobby_task.ovl`: each
 shop's stock is a list of u16 item IDs ending in 0xFFFF, one list per stage

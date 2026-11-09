@@ -32,8 +32,10 @@ test("every option has a default its own checks accept", () => {
   for (const preset of PRESETS) applySettings(defaults, preset.changes);
   for (const name of ["Full", "Chaos"]) {
     const preset = PRESETS.find((p) => p.name === name)!;
+    assert.equal(preset.changes["armor.enabled"], true, `${name} shuffles armor`);
     assert.equal(preset.changes["gathering.enabled"], true, `${name} shuffles gathering`);
   }
+  assert.equal(OPTIONS.find((o) => o.key === "armor.enabled")!.eboot, true);
   assert.ok(!OPTIONS.find((o) => o.key === "gathering.enabled")!.eboot);
 });
 
@@ -112,7 +114,8 @@ test("CLI flags layer: file < string < --shuffles < shorthand < --set < --seed",
   assert.equal(s["costs.spread"], 0.2);
   assert.equal(s["recipes.maxQuantity"], 5);
   assert.throws(() => settingsFromFlags({ shuffles: "everything" }), /Unknown shuffle/);
-  const named = settingsFromFlags({ shuffles: "gathering" });
+  const named = settingsFromFlags({ shuffles: "armor,gathering" });
+  assert.equal(named["armor.enabled"], true);
   assert.equal(named["gathering.enabled"], true);
   assert.equal(named["weapons.enabled"], false);
   assert.ok(readFileSync(file, "utf-8").includes("FROMFILE"));

@@ -59,6 +59,7 @@ const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   "recipe-amounts": "recipes.amounts",
   costs: "costs.enabled",
   weapons: "weapons.enabled",
+  armor: "armor.enabled",
   shops: "shops.enabled",
   gathering: "gathering.enabled",
 };

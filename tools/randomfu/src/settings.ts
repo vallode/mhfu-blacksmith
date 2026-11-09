@@ -24,6 +24,7 @@ export interface Settings {
   "costs.spread": number;
   "weapons.enabled": boolean;
   "weapons.mix": "same-type" | "any-type";
+  "armor.enabled": boolean;
   "shops.enabled": boolean;
   "shops.pool": "shop" | "low" | "high" | "any";
   "shops.mix": "each" | "all";
@@ -204,6 +205,15 @@ export const OPTIONS: readonly OptionDef[] = [
     },
     default: "same-type",
     enabledBy: "weapons.enabled",
+  },
+  {
+    key: "armor.enabled",
+    section: "Armor",
+    label: "Shuffle armor progression",
+    help: "Each place in the smithy gives a different armor piece for the same slot and rarity, wearable by the same hunters (Blademaster, Gunner or both; male, female or both). Places keep their materials; pieces keep their stats, skills and cost.",
+    type: { kind: "boolean" },
+    default: false,
+    eboot: true,
   },
   {
     key: "shops.enabled",
@@ -486,12 +496,13 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Full",
-    help: "Everything, keeping items at their star level and weapons in their type.",
+    help: "Everything, keeping items at their star level, weapons in their type and armor with its hunter type.",
     changes: {
       "recipes.materials": true,
       "recipes.amounts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
+      "armor.enabled": true,
       "shops.enabled": true,
       "shops.pool": "low",
       "shops.prices": true,
@@ -501,7 +512,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Chaos",
-    help: "Everything, anywhere: no progression logic, any weapon type, wide amounts and costs.",
+    help: "Everything, anywhere: no progression logic, any weapon type, wide amounts and costs. Armor still keeps its rarity, hunter type and sex.",
     changes: {
       "logic.tiers": "none",
       "recipes.materials": true,
@@ -511,6 +522,7 @@ export const PRESETS: readonly Preset[] = [
       "costs.spread": 0.9,
       "weapons.enabled": true,
       "weapons.mix": "any-type",
+      "armor.enabled": true,
       "shops.enabled": true,
       "shops.pool": "any",
       "shops.mix": "all",
