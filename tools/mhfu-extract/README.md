@@ -582,6 +582,11 @@ the "Troubled Father"; "Mountain Herb Picking" is 100z as `4` and free as
 `10001`), others match nothing else on the disc. They may be ★1 unlockables
 or unused.
 
+**`urgent`** marks the 22 Urgent Quests, which unlock the next star level.
+Their flag on the disc isn't decoded, so they are hand-entered in
+`src/tables/urgent-quests.ts` from the Monster Hunter Wiki's "MHFU Urgent
+Quests" category, matched to quest IDs by title, fee and reward.
+
 **The `rank` is `questHeader.Rank`'s tier**: 1/2/5 are low/high/G rank,
 and 0, 3 and 4 have none. It is not the board: an earlier version read the
 hub from it and filed the Village's `10xxx`/`11xxx` quests (rank 1/2, like

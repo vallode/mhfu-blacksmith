@@ -375,7 +375,8 @@
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
       "client": "Treshi",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 4002,
@@ -768,7 +769,8 @@
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
       "client": "Treshi",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 4003,
@@ -1157,7 +1159,8 @@
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
       "client": "Treshi",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 4004,
@@ -1547,7 +1550,8 @@
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
       "client": "Treshi",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 4005,
@@ -1941,7 +1945,8 @@
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
       "client": "Treshi",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 4006,
@@ -2322,7 +2327,8 @@
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
       "client": "Treshi",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 4007,
@@ -2716,7 +2722,8 @@
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
       "client": "Treshi",
-      "requires": null
+      "requires": null,
+      "urgent": false
     }
   ]
 }

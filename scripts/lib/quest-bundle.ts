@@ -42,6 +42,7 @@ export interface QuestRecord {
   fail: string | null;
   client: string | null;
   requires?: number | null;
+  urgent?: boolean;
 }
 
 export interface QuestBundleInputs {
@@ -171,6 +172,7 @@ export function encodeQuestBundle({ quests, itemId, monsterPage }: QuestBundleIn
       str(q.details),
       str(q.client),
       q.requires ?? null,
+      q.urgent ? 1 : 0,
     ]);
   }
 

@@ -233,6 +233,13 @@ test("emitQuest puts the confirmed quests 101, 102, 108 and 109 on the Village b
   assert.deepEqual([rathian?.hub, rathian?.rank], ["village", null]);
 });
 
+test("emitQuest flags the Urgent Quests", () => {
+  // 10203 "Shadow in the Snow" (Village ★3) and 3233 "Absolute Zero" (G★3) are urgent.
+  assert.equal(withHeader(10203, 1)?.urgent, true);
+  assert.equal(withHeader(3233, 5)?.urgent, true);
+  assert.equal(withHeader(109, 0)?.urgent, false);
+});
+
 test("emitQuest records a known prerequisite in requires, else null", () => {
   // 109 "Attack of the Rathian" appears once 10203 "Shadow in the Snow" is cleared.
   assert.equal(withHeader(109, 0)?.requires, 10203);

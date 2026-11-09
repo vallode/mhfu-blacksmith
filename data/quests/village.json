@@ -227,7 +227,8 @@
       "details": "We were exploring a\nsnow-covered mountain near\nhere, but stumbled on this\ndisgusting blob-like\nmonster! If you can't get\nrid of that thing, our\nresearch is doomed! Help us!",
       "fail": "Reward Zero\nTime Over",
       "client": "Old Geologist",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 102,
@@ -452,7 +453,8 @@
       "details": "A Blangonga has staked its\nclaim to a piece of the\nsnowy mountains. Now we\ncan't enter the area to\ngather firewood. Exterminate\nthe Blangonga! ",
       "fail": "Reward Zero\nTime Over",
       "client": "Foothills Villager",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 108,
@@ -674,7 +676,8 @@
       "details": "I request the assistance of\nonly the bravest of hunters\nto find and hunt the\nRathalos that has appeared\nnear here. Of course, a\nhandsome reward will be paid\nupon success.",
       "fail": "Reward Zero\nTime Over",
       "client": "The Kindly Lord",
-      "requires": 10203
+      "requires": 10203,
+      "urgent": false
     },
     {
       "id": 109,
@@ -892,7 +895,8 @@
       "details": "My caravan was wiped out by\nthe queen of the skies, the\nkiller Rathian! I'll pay you\nwhatever you ask if you hunt\ndown that foul creature!\nHelp me kind hunter, you're\nmy only hope!",
       "fail": "Reward Zero\nTime Over",
       "client": "Caravan Leader",
-      "requires": 10203
+      "requires": 10203,
+      "urgent": false
     },
     {
       "id": 10001,
@@ -988,7 +992,8 @@
       "details": "I want to pick some of this\nvillage's famous Mountain\nHerbs for my brother in\ntown, but there are too many\nmonsters! Could you please\ngo out for me and bring back\n5 Mountain Herbs?",
       "fail": "Reward Zero\nTime Over",
       "client": "Loving Sibling",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10002,
@@ -1107,7 +1112,8 @@
       "details": "In the Eastern lands, it is\nsaid that an Anteka's\nantlers are good for one's\nhealth. I would like to test\nthis proverb. Please acquire\n3 of these antlers for this\npurpose. ",
       "fail": "Reward Zero\nTime Over",
       "client": "The Aged Apothecary",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10003,
@@ -1237,7 +1243,8 @@
       "details": "HELP! The children are being\nattacked by small, white\nmonsters called Giaprey! 5\nof the beasts are outside!\nDo something! Please! Think\nof the children!",
       "fail": "Reward Zero\nTime Over",
       "client": "Pokke Village Guard",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10004,
@@ -1383,7 +1390,8 @@
       "details": "As usual, I went into the\nmountains on my hunt for\nPopos; however, today they\nwere frightened and fled to\nthe summit. Something must\nbe up there... Please get\nthe Popo Tongues for me!",
       "fail": "Reward Zero\nTime Over",
       "client": "Frightened Youth",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10005,
@@ -1526,7 +1534,8 @@
       "details": "Whew! That was incredibly\nscary! On my walk up the\nmountain road, some Blangos\nbegan to chase me! I think\nthey are still up there, so\nplease slay them quickly! ",
       "fail": "Reward Zero\nTime Over",
       "client": "Wild Grass Gatherer",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10101,
@@ -1606,7 +1615,8 @@
       "details": "A gathering quest in the\nsnowy mountains. Gather all\nthe materials you can from\nthe field, then deliver the\nPaw Pass Ticket to finish\nup.",
       "fail": "Reward Zero",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10102,
@@ -1706,7 +1716,8 @@
       "details": "A gathering quest in the\njungle. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.",
       "fail": "Reward Zero",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10103,
@@ -1794,7 +1805,8 @@
       "details": "A gathering quest in the\ndesert. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.",
       "fail": "Reward Zero",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10104,
@@ -1955,7 +1967,8 @@
       "details": "It seems that I can trust\nyou with a difficult job\nlike this. I'd like you to\nhunt down the leader of a\nGiaprey pack, the Giadrome.\nI wish you a beautiful\nvictory in our defense!",
       "fail": "Reward Zero\nTime Over",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 10105,
@@ -2107,7 +2120,8 @@
       "details": "My son decided to become a\nhunter and ran off after a\nBulldrome on his own! Of\ncourse, now the tables have\nturned and I'm worried!\nHunt down the Bulldrome on\nthe snowy mountains!",
       "fail": "Reward Zero\nTime Over",
       "client": "Troubled Father",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10106,
@@ -2243,7 +2257,8 @@
       "details": "I chased off a Giaprey that\nwas feeding on my Popos, but\nnow it's back with 19 of its\nbuddies! I can't take on the\nwhole lot of them! Hunters,\nthis is your chance! Please\nget rid of them for me!",
       "fail": "Reward Zero\nTime Over",
       "client": "Proud Farmer",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10107,
@@ -2387,7 +2402,8 @@
       "details": "I request that you slay the\nBlangos rampaging through\nthe mountains... A Bulldrome\nwas also spotted in the\narea. Successfully avoid the\nBulldrome and go about your\nmission.",
       "fail": "Reward Zero\nTime Over",
       "client": "Calm Villager",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10108,
@@ -2497,7 +2513,8 @@
       "details": "The Mountain Herb, one of\nthe seven sacred mountain\nflowers, truly captures the\nspirit of the mountains.\nThere shouldn't be any\nwyverns in this weather, so\nyou may gather with ease.",
       "fail": "Reward Zero\nTime Over",
       "client": "Optimistic Lady",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10109,
@@ -2670,7 +2687,8 @@
       "details": "It seems that whenever my\nwife goes to pick mushrooms\nin the Jungle, a large\ncarnivore appears! There's\nno way I can let her go pick\nmushrooms now... Please!\nMake the Jungle safe again!",
       "fail": "Reward Zero\nTime Over",
       "client": "Newly Wedded Husband",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10110,
@@ -2848,7 +2866,8 @@
       "details": "I want you to hunt and kill\nthe giant bird-like monster\nthat has appeared in our \njungle. It's wreaking havoc\non our environment and must\nbe stopped!",
       "fail": "Reward Zero\nTime Over",
       "client": "Jungle Envoy",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10111,
@@ -3016,7 +3035,8 @@
       "details": "Do you know of a pink,\nfanged beast that roams the\njungle? That beast has\ndirtied my shop beyond hope!\nIt's impossible to clean up!\nGet rid of it before I'm\nsoiled again!",
       "fail": "Reward Zero\nTime Over",
       "client": "Village Grocer",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10112,
@@ -3161,7 +3181,8 @@
       "details": "I took a trip to the jungle\nand saw some beautiful pink\nanimals with fangs. But when\nI tried to pet them from my\ncarriage, the beasts made a\nstink on me! I can't get it\noff! Punish those meanies!",
       "fail": "Reward Zero\nTime Over",
       "client": "Oblivious Daughter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10113,
@@ -3295,7 +3316,8 @@
       "details": "My village is under attack\nby a swarm of bug monsters!\nIt seems there are about 20\nof them. One on one they are\nnot a threat, but as a group\nthey are deadly. So be\ncareful.",
       "fail": "Reward Zero\nTime Over",
       "client": "Jungle Envoy",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10114,
@@ -3423,7 +3445,8 @@
       "details": "An affinity towards\ncombining is important, but\nso are fresh raw materials!\nSpecial Mushrooms from the\njungle are sure to improve\nyour hunting life and\nwallet! Gather 10 of them!",
       "fail": "Reward Zero\nTime Over",
       "client": "Combining Madam",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10115,
@@ -3587,7 +3610,8 @@
       "details": "My caravans are being hit by\npacks of Genprey. It appears\nthere is an extraordinarily\npowerful boss among them!\nHunt down the monster and\nmake the roads safe again\nfor all!",
       "fail": "Reward Zero\nTime Over",
       "client": "Ambitious Noble",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10116,
@@ -3761,7 +3785,8 @@
       "details": "Our pack-animals were eaten\nby something in the desert.\nBut nobody actually saw the\nmonster attack! Track down\nthis vile beast and take \nit out!",
       "fail": "Reward Zero\nTime Over",
       "client": "Oasis Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10117,
@@ -3919,7 +3944,8 @@
       "details": "Hello sirs and madams! I\ndeal in rare items that I\nfind in the desert. Recently\nI've got a buyer for Piscine\nWyvern and Sand Wyvern\nlivers. Deliver 3 of them\nto me!",
       "fail": "Reward Zero\nTime Over",
       "client": "Foreign Peddler",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10118,
@@ -4043,7 +4069,8 @@
       "details": "Fishing. It carries on in\nthe hearts of children and\nremains a simple pleasure\nfor adults. Hearken back to\na simpler time and bring me\nback 2 of the desert's most\nprecious gift... Goldenfish!",
       "fail": "Reward Zero\nTime Over",
       "client": "Twilight Fisherman",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10201,
@@ -4143,7 +4170,8 @@
       "details": "A gathering quest in the\nswamp. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.",
       "fail": "Reward Zero",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10202,
@@ -4231,7 +4259,8 @@
       "details": "A gathering quest in the\nforest and hills. Gather all\nthe materials you can from\nthe field, then deliver the\nPaw Pass Ticket to finish\nup.",
       "fail": "Reward Zero",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10203,
@@ -4386,7 +4415,8 @@
       "details": "If it's not one thing, it's\nanother, right? Near the\nvillage, a strange flying\nwyvern called a Khezu has\nbeen spotted. It is strong,\nbut I believe you can handle\nit. Do your very best! ",
       "fail": "Reward Zero\nTime Over",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 10204,
@@ -4526,7 +4556,8 @@
       "details": "I'm after the rare larvae of\nthe Khezu. They should be\non the summit, so search\nthere. These whelps aren't\nto be taken lightly. If you\nrun out of Pickaxes, combine\na bone with a rock!",
       "fail": "Reward Zero\nTime Over",
       "client": "Delicacy Collector",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10205,
@@ -4676,7 +4707,8 @@
       "details": "The pelt of a Blango can be\nmade into various pieces of\narmor that are useful in\neveryday life. Slay 10 of\nthe beasts and bring me\ntheir pelts. Beware of the\nGiadrome.",
       "fail": "Reward Zero\nTime Over",
       "client": "Armory Owner",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10206,
@@ -4828,7 +4860,8 @@
       "details": "I've always longed to go\nhunting in the jungle!\nHowever, if a huge monster\nappeared, I'd be finished!\nMaybe you could take out \nthe Daimyo Hermitaur for me?",
       "fail": "Reward Zero\nTime Over",
       "client": "Uncomfortable Butler",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10207,
@@ -4995,7 +5028,8 @@
       "details": "Hunt down the water wyvern\nthat keeps harassing my\nshipyard! Your target is a\nmonster covered in green\nscales that is more powerful\nthan its cousin! Heh heh!",
       "fail": "Reward Zero\nTime Over",
       "client": "Master Shipwright",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10208,
@@ -5146,7 +5180,8 @@
       "details": "Fishing is no easy endeavor,\nbut lately things have\ngotten out of hand! While\nunloading my ship, a swarm\nof Hermitaurs appeared. Slay\n10 of them and let me get\non with my work!",
       "fail": "Reward Zero\nTime Over",
       "client": "Jungle Fisherman",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10209,
@@ -5308,7 +5343,8 @@
       "details": "I saw a gigantic bird-like\nmonster deep in the jungle!\nIt scared everyone so bad\nthat I can't do business\nwith a thing like that out\nthere! Please hunt it down\nso I can work in peace!",
       "fail": "Reward Zero\nTime Over",
       "client": "Guarded Merchant",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10210,
@@ -5456,7 +5492,8 @@
       "details": "When some of my clan went\ngathering in the desert,\nthey were attacked by an\nenormous crab, nya! As long\nas he's around, we can't do\nbusiness. Help us, nya!",
       "fail": "Reward Zero\nTime Over",
       "client": "Lynian Clan Leader",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10211,
@@ -5619,7 +5656,8 @@
       "details": "I found a giant water wyvern\nin a cave in the desert! I\ncan't defeat it because it \nstays underwater. Slay it\nfor me and the glory is all\nyours!",
       "fail": "Reward Zero\nTime Over",
       "client": "Proud Hunter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10212,
@@ -5763,7 +5801,8 @@
       "details": "I'm too injured to go on...\nThe Genprey living in the\ndesert have the power to\nparalyze their foes. I'd\nlike you to find the pack\nthat did this to me and kill\n20 of the fiends! ",
       "fail": "Reward Zero\nTime Over",
       "client": "Injured Soldier",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10213,
@@ -5929,7 +5968,8 @@
       "details": "The fields all around the\ntown are getting torn to\nshreds by a gigantic\npoisonous bird-like monster.\nExterminate it for us! Its\npoison can melt crops, so be\ncareful it doesn't melt you!",
       "fail": "Reward Zero\nTime Over",
       "client": "Swamp Farmer",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10214,
@@ -6095,7 +6135,8 @@
       "details": "That big eared Yian Kut-Ku\nreally made mincemeat out of\nme! It's out of my league,\nso I want you to hunt it\ndown for me! He's all yours!",
       "fail": "Reward Zero\nTime Over",
       "client": "Novice Hunter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10215,
@@ -6255,7 +6296,8 @@
       "details": "I took a trip to the swamp\nand saw a pretty pink animal\nwith fangs. But when I tried\nto call it to the carriage,\nit threw something dirty at\nme and now I can't get the\nsmell off! Punish it!",
       "fail": "Reward Zero\nTime Over",
       "client": "Oblivious Daughter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10216,
@@ -6416,7 +6458,8 @@
       "details": "My village is under attack\nby a pack of Ioprey. Inside\ntheir pack, they are led by\nan incredibly large boss\nwith poison filled fangs.\nSlay this creature for us!",
       "fail": "Reward Zero\nTime Over",
       "client": "Swamp Village Envoy",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10217,
@@ -6570,7 +6613,8 @@
       "details": "A bird-like Yian Kut-Ku is\nattacking people the world\nover! It has even shown up\nin these very hills! If it\nisn't eliminated soon, we're\nfinished! Show me what\nyou're made of!",
       "fail": "Reward Zero\nTime Over",
       "client": "Foothills Guardsman",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10218,
@@ -6691,7 +6735,8 @@
       "details": "Prices on mushrooms from the\nforest and hills have\nskyrocketed. Please gather\n10 of them for me and I'll\ncut you in on the profits!\nBut beware of the Kut-Ku\nrumored to roam the area.",
       "fail": "Reward Zero\nTime Over",
       "client": "Impatient Trader",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10301,
@@ -6783,7 +6828,8 @@
       "details": "A gathering quest in the\nVolcanic Belt. Gather all\nthe materials you can from\nthe field, then deliver the\nPaw Pass Ticket to finish\nup.",
       "fail": "Reward Zero",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10302,
@@ -6927,7 +6973,8 @@
       "details": "My next request requires a\ntrue master... Care to test\nyourself? I'd like you to\nhunt down the chief of\nthe snowy mountains.\nRemember, on this quest\nnegligence is unforgivable.",
       "fail": "Reward Zero\nTime Over",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 10303,
@@ -7097,7 +7144,8 @@
       "details": "I've always longed to\nventure into the swamp! I\nthink I could hunt down a\nKelbi, but I could never\nfight a wyvern. Maybe you'd\ntake care of this special\nmonster for me...",
       "fail": "Reward Zero\nTime Over",
       "client": "Uncomfortable Butler",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10304,
@@ -7259,7 +7307,8 @@
       "details": "A Yian Garuga has been\nspotted in the jungle and\nthere is now a vigorous\nsearch on for this atrocious\nbeast. It has downed many a\nhunter, so take care as you\nhunt it!",
       "fail": "Reward Zero\nTime Over",
       "client": "Barmaid",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10305,
@@ -7398,7 +7447,8 @@
       "details": "2 Velocidrome and their\nbrood have long been\nmenacing this area. Please\ndestroy the two Velocidrome\nto disperse the pack and\nreturn peace and quiet to\nthe jungle!",
       "fail": "Reward Zero\nTime Over",
       "client": "Jungle Lord",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10306,
@@ -7547,7 +7597,8 @@
       "details": "My plantation's under\nattack by giant bugs!\nThey nest in the jungle,\nin a swarm of about 20.\nTake care of them for me!",
       "fail": "Reward Zero\nTime Over",
       "client": "Landowner",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10307,
@@ -7706,7 +7757,8 @@
       "details": "This is a request to the\nvirtuous hunters of Pokke. A\nMonoblos is tearing through\nthe desert near my village\nof Kokoto. Please hunt it\ndown for us!",
       "fail": "Reward Zero\nTime Over",
       "client": "Kokoto Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10308,
@@ -7869,7 +7921,8 @@
       "details": "I beseech you for help! An\nold enemy has cut our\nhunters down to the last\nman... I fled to tell you\nthat the silver horned White\nMonoblos terrorizes us once\nagain! Rid us of it! ",
       "fail": "Reward Zero\nTime Over",
       "client": "Former Kokoto Hunter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10309,
@@ -8034,7 +8087,8 @@
       "details": "Hunters! It is time to hunt\ndown the Shogun Ceanataur.\nLet us rid the swamp zone of\nthis menace and expand our\nstrategic possibilities.\nThis is a highly classified\nhunt. So don't tell a soul!",
       "fail": "Reward Zero\nTime Over",
       "client": "Scheming Strategist",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10310,
@@ -8187,7 +8241,8 @@
       "details": "The Yian Kut-Ku are\ncircling, screaming in their\nshrill voices. Everyone is\ntrapped inside the town!\nPlease do something!",
       "fail": "Reward Zero\nTime Over",
       "client": "Beautiful Lady",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10311,
@@ -8344,7 +8399,8 @@
       "details": "We were just in a fight with\na pack of Ioprey, but were\nrouted and had to retreat\nbefore we could defeat their\nleader. Hunt it down for us,\nbut beware of its poison\nattacks.",
       "fail": "Reward Zero\nTime Over",
       "client": "Hardened Mercenary",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10312,
@@ -8506,7 +8562,8 @@
       "details": "A wyvern attacked my team\nfrom out of the blue while\nwe were on an expedition to\nthe Volcanic Belt. Where did\nit come from? Please slay\nit!",
       "fail": "Reward Zero\nTime Over",
       "client": "Survivor",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10313,
@@ -8647,7 +8704,8 @@
       "details": "Upon our trip into the cave\nat the volcano, an enormous\nShogun Ceanataur dropped\ndown from the ceiling right\non top of us! Its ambush\ncaused massive damage! Rid\nthe world of that scourge!",
       "fail": "Reward Zero\nTime Over",
       "client": "Chief Weapon smith",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10314,
@@ -8792,7 +8850,8 @@
       "details": "While mining for ore, we\nencountered a huge Ioprey\nnest deep inside our tunnel!\nWe can't continue working\nunless you kill 20 of them\nfor us!",
       "fail": "Reward Zero\nTime Over",
       "client": "Mine Owner",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10315,
@@ -8946,7 +9005,8 @@
       "details": "I wanted to keep digging in\nsearch of the ultimate\ntreasure trove... But some\nCeanataurs smashed my\nPickaxe! If you don't get\nrid of them, there will be\nno digging for me! Help me!",
       "fail": "Reward Zero\nTime Over",
       "client": "Digging Fanatic",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10316,
@@ -9083,7 +9143,8 @@
       "details": "We need Coal to power our \nambush spear cannon. Go to\nthe Volcanic Belt and mine\nthe reserves there! If\nyou're worried about\nPickaxes, combine a long\ncylindrical bone and a rock.",
       "fail": "Reward Zero\nTime Over",
       "client": "Fort Guard",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10317,
@@ -9257,7 +9318,8 @@
       "details": "I saw it! I saw it! In the\nmiddle of a blinding snow\nstorm, there it was; dark\nblack wings were dancing in\nthe sky... No mere human\ncould stand up to it! Don't\neven think of hunting it!",
       "fail": "Reward Zero\nTime Over",
       "client": "Fleeing Villager",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10318,
@@ -9427,7 +9489,8 @@
       "details": "There was surely a vortex\ninside of that downpour. The\nwind wrapped around and\nrevealed Kushala Daora! I\ndon't foresee anyone\ndefeating it. Weaken it and\nthen drive it away!",
       "fail": "Reward Zero\nTime Over",
       "client": "Jungle Psychic",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10319,
@@ -9556,7 +9619,8 @@
       "details": "I went to open up the little\narena that hasn't been used\nin a while one morning, and\nI find that a band of\nHermitaurs have turned it\ninto their home! Now I need\nyour help to turn them out!",
       "fail": "Reward Zero\nTime Over",
       "client": "DesertedArenaManager",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10401,
@@ -9724,7 +9788,8 @@
       "details": "The Tigrex, said to be an\nancestor of today's wyverns,\nhas finally made an\nappearance. With such a\npowerful beast on the loose,\nthe village is not safe.\nHunt it down at once!",
       "fail": "Reward Zero\nTime Over",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 10402,
@@ -9867,7 +9932,8 @@
       "details": "That must have been the \nphantom beast... The faint\nglow, and how it seemed to\nglide over land... There's\nno doubt that amazing riches\nawait its slayer!",
       "fail": "Reward Zero\nTime Over",
       "client": "Mountain Explorer",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10403,
@@ -10001,7 +10067,8 @@
       "details": "It happened in an instant...\nTwo Blangongas destroyed all\nthe trees around my house.\nNow all I want to do is hunt\nthem down so I can get my \nrevenge. Please help me!",
       "fail": "Reward Zero\nTime Over",
       "client": "Alpine Survivor",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10404,
@@ -10150,7 +10217,8 @@
       "details": "Two poisonous fowl have\nappeared in the jungle. With\nthem there, the jungle\nflowers will surely wilt and\ndie! Go kill them... Now!",
       "fail": "Reward Zero\nTime Over",
       "client": "Selfish Princess",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10405,
@@ -10318,7 +10386,8 @@
       "details": "I have an urgent request\nfrom a hunter on an\nexpedition in the desert! It\nseems he has encountered the\nmighty Tigrex! Go to his aid\nand crush this beast at\nonce!",
       "fail": "Reward Zero\nTime Over",
       "client": "Guild Messenger",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10406,
@@ -10481,7 +10550,8 @@
       "details": "A giant wyvern smashed the\nborder-wall and ran into\nthis area. We need to find\nand kill it before it\ncauses any more trouble! ",
       "fail": "Reward Zero\nTime Over",
       "client": "Border Captain",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10407,
@@ -10645,7 +10715,8 @@
       "details": "I had hired the most skilled\nhunters imaginable, and went\non a safari for the famed\nDiablos... But what we found\nwas no mere Diablos! We must\nslay that black horned\nwyvern! No matter what!",
       "fail": "Reward Zero\nTime Over",
       "client": "Failed Millionaire",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10408,
@@ -10778,7 +10849,8 @@
       "details": "I am a true connoisseur of\ncrab cuisine, and as such a\nconnoisseur, I suspect the\nDaimyo Hermitaurs found in\nthe desert are incredibly\ntasty! One is never enough,\nso hunt down two!",
       "fail": "Reward Zero\nTime Over",
       "client": "The Lady Gourmet",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10409,
@@ -10949,7 +11021,8 @@
       "details": "Even in the relative calm of\nthe swamp zone, something\nhas stirred up the monsters.\nIn particular, heavily\narmored wyverns have been\nattacking us. Can you help\nus out? ",
       "fail": "Reward Zero\nTime Over",
       "client": "Swamp Townsman",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10410,
@@ -11098,7 +11171,8 @@
       "details": "This is awful! The princess\nsaw some strange masked\nmonsters that made her run \nfor the hills! We're sending\ntroops on a hunt for the\nfiends, so track down the\nmasked marauders!",
       "fail": "Reward Zero\nTime Over",
       "client": "Princess's Attendant",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10411,
@@ -11265,7 +11339,8 @@
       "details": "A fearsome Gravios has\nappeared amidst the magma\nand desolation of the\nVolcanic Belt. Hunt down the\nfire breather for us!",
       "fail": "Reward Zero\nTime Over",
       "client": "Troubled Noble",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10412,
@@ -11397,7 +11472,8 @@
       "details": "A relic of olden days, the\nancient tower is now\noff-limits. Those examining\nit should beware the danger\nposed by the Remobras. They\nmust be defeated before\nentering the tower!",
       "fail": "Reward Zero\nTime Over",
       "client": "Wyverian Maiden",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10413,
@@ -11571,7 +11647,8 @@
       "details": "We've received a communique\nfrom headquarters. An elder\ndragon has appeared in the\nVolcanic Belt. Fight the\ndragon and collect data on\nits behavior!",
       "fail": "Reward Zero\nTime Over",
       "client": "Elder Dragon Scholar",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10414,
@@ -11766,7 +11843,8 @@
       "details": "Near the forbidden ancient\ntower, the Lunastra, empress\nof the elder dragons, is\nbuilding a nest. Hunters!\nWho among you can defeat\nthis ancient beast!? Exhibit\nyour true skills!",
       "fail": "Reward Zero\nTime Over",
       "client": "Scarlet Mystery Man",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10415,
@@ -11935,7 +12013,8 @@
       "details": "Our intuition told us to\nturn around, but we thought\nno one was there... Yet even\nthough no one should've been\nthere, we were attacked from\nbehind! Beware! It was an\nenemy never before seen! ",
       "fail": "Reward Zero\nTime Over",
       "client": "Injured Hero",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10416,
@@ -12096,7 +12175,8 @@
       "details": "It seems an unknown elder\ndragon has appeared in the\nswamp zone. However, no one\ntruly got a clear look at\nit. What could the beast\nhave been? Slay it, but\nproceed with caution!",
       "fail": "Reward Zero\nTime Over",
       "client": "Grim Aristocrat",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10417,
@@ -12262,7 +12342,8 @@
       "details": "I was gathering mushrooms in\nthe Swamp when a Khezu\nappeared, but it was no\nordinary Khezu. What was so\ndifferent about it? You'll\nknow as soon as you see it!",
       "fail": "Reward Zero\nTime Over",
       "client": "Novice Hunter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10418,
@@ -12404,7 +12485,8 @@
       "details": "Two Congalalas have started\na territorial fight over the\nSwamp. If they're not\nstopped soon, it'll ruin\ncommerce in the area! Please\nhurry and put an end to\ntheir dispute!",
       "fail": "Reward Zero\nTime Over",
       "client": "Swamp Envoy",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10501,
@@ -12561,7 +12643,8 @@
       "details": "A pair of fire wyverns have \ntaken up residence in the\nhillside. If you are able to\nhunt them by yourself, you\nare truly a top class\nhunter. Care to try your\nluck?",
       "fail": "Reward Zero\nTime Over",
       "client": "Pokke Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 10502,
@@ -12723,7 +12806,8 @@
       "details": "The water wyvern known as\nPlesioth is raging in the\njungle. And not just one of\nthem! Head off immediately\nto slay them!",
       "fail": "Reward Zero\nTime Over",
       "client": "Lovely Princess",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10503,
@@ -12888,7 +12972,8 @@
       "details": "I've always longed to\nbe a hunter, but a meeting\nwith a Rathian ended that!\nNow that I know what it\ntakes, I'll start over, but\nyou have the spirit to hunt\ndown that Rathian!",
       "fail": "Reward Zero\nTime Over",
       "client": "Uncomfortable Butler",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10504,
@@ -13048,7 +13133,8 @@
       "details": "I simply can't bear to think\nabout the terror and pain\nthose Diablos are causing my\npeople. I can't sleep at\nnight with that worry! Hunt \ndown those 2 Diablos for me!",
       "fail": "Reward Zero\nTime Over",
       "client": "Lovely Princess",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10505,
@@ -13232,7 +13318,8 @@
       "details": "While in the secluded desert\nvillage, I spotted an elder\ndragon with red scales!\nWhile I do know some\nhunters, it would be wrong\nto make this request of\nthem... So it's up to you!",
       "fail": "Reward Zero\nTime Over",
       "client": "Wyverian Pioneer",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10506,
@@ -13411,7 +13498,8 @@
       "details": "I have an earnest request of\nyou... I want you to fight\nthe elder fire dragon we\ncornered in the Volcanic\nBelt! Weaken it with your\nrepeated counterattacks and\nthen finally slay the beast!",
       "fail": "Reward Zero\nTime Over",
       "client": "Heroic General",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10507,
@@ -13576,7 +13664,8 @@
       "details": "Hey! Hey! Have you heard the\nnews!? There's a rumor that\ntwo enormous monsters with\nthick shells have appeared\nin the Volcanic Belt! There\nmust be a hunter somewhere\nwho can face them!",
       "fail": "Reward Zero\nTime Over",
       "client": "Hunter In Training",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10508,
@@ -13749,7 +13838,8 @@
       "details": "It cannot be... We tried so\nhard to kill it... But... My\nentire war band was wiped\nout by a wyvern. Now it all\nrests upon your shoulders,\nmonster hunter! Slay it!",
       "fail": "Reward Zero\nTime Over",
       "client": "Proud Soldier",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10509,
@@ -13896,7 +13986,8 @@
       "details": "Gather, bold hunters! You\nare the lynchpin of our\nnational defense! A menace\ncreeps towards this town.\nYou must repel this monster\nand defend the fort.",
       "fail": "Time Over, Reward Zero, or\nTown Integrity Zero",
       "client": "Red-Faced Commander",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 10510,
@@ -14048,7 +14139,8 @@
       "details": "There are two Rajang, each\nwith golden fur. Hunters, I\nhave prepared a special\nstage for your grandest\nperformance. Demonstrate\nyour true power... He he\nhe...",
       "fail": "Reward Zero\nTime Over",
       "client": "Scarlet Mystery Man",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 10511,
@@ -14214,7 +14306,8 @@
       "details": "A giant dragon has attacked\nour fort! If the fort falls,\nso too do our lands! Use its\ninstalled weaponry to make\nthis beast pay for its\nindiscretions!",
       "fail": "Time Over, Reward Zero, or\nFort Integrity Zero",
       "client": "Loyal Minister",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11001,
@@ -14368,7 +14461,8 @@
       "details": "A Bulldrome and its pack are\ngoing hog-wild around a\nmining point for Ore. I\ndon't want others to find\nthat secret location, so\nplease hunt them in secret\nfor me.",
       "fail": "Reward Zero\nTime Over",
       "client": "Very Suspect Peddler",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11002,
@@ -14500,7 +14594,8 @@
       "details": "I went to open up the little\narena that hasn't been used\nin a while one morning, and\nI find that it's been taken\nover by a group of strange,\nlittle... things! Now I need\nyour help to take them out!",
       "fail": "Reward Zero\nTime Over",
       "client": "DesertedArenaManager",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11003,
@@ -14648,7 +14743,8 @@
       "details": "I went to open up the little\narena that hasn't been used\nin a while one morning, and\nI find that it's been turned\ninto a meat-lover's\nparadise! Please bring an\nend to their partying!",
       "fail": "Reward Zero\nTime Over",
       "client": "DesertedArenaManager",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11004,
@@ -14829,7 +14925,8 @@
       "details": "It's no use. No matter where\nI look, I can't seem to find\nthe Vespoid Queen! Perhaps\nif you slayed a large number\nof Vespoids to make her feel\nthat her swarm was in grave\ndanger, she might appear...",
       "fail": "Reward Zero\nTime Over",
       "client": "Jungle Researcher",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11005,
@@ -14986,7 +15083,8 @@
       "details": "I told my mother that I\nwanted a hat adorned with a\nHypnocatrice's tail feather,\nbut she got mad and said I\nwas being selfish. Therefore\nthis is a secret request.\nYou must tell no one, OK!?",
       "fail": "Reward Zero\nTime Over",
       "client": "Selfish Mantled Girl",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 11006,
@@ -15159,7 +15257,8 @@
       "details": "There is a gigantic\nCephadrome here in the Old\nDesert. There are numerous\ncasualties and a state of\nemergency has been declared.\nWe're calling on all hunters\neverywhere to please help!",
       "fail": "Reward Zero\nTime Over",
       "client": "OldDesertTownMayor",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11007,
@@ -15313,7 +15412,8 @@
       "details": "That Gypceros stole my very\nimportant Book of Combos,\nand then, right after that,\na band of Melynx stole my\nBBQ Spit! At this rate, I'm\ngoing to be forced into\nearly retirement! Heeeeelp!",
       "fail": "Reward Zero\nTime Over",
       "client": "Compassionate Hunter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11008,
@@ -15456,7 +15556,8 @@
       "details": "I saw a gigantic Gypceros\nlurking deep in the swamp!\nIt scared everyone so bad\nthat I can't do business\nwith a thing like that out\nthere! Please hunt it down\nso I can work in peace!",
       "fail": "Reward Zero\nTime Over",
       "client": "Guarded Merchant",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11009,
@@ -15637,7 +15738,8 @@
       "details": "Off the record, I want you\nto hunt the Basarios down.\nYou can tell the Guild that\nyou failed and then sell the\nmaterials you get wholesale.\nHmm? Oh no, this is a real\nrequest from the Guild...",
       "fail": "Reward Zero\nTime Over",
       "client": "Illegal Middleman",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11010,
@@ -15806,7 +15908,8 @@
       "details": "Just when I thought that\nmaybe this time the peace\nwould last, this happens!\nAs long as that Khezu just\nsits there, we can't get out\nof the Old Jungle. Please,\ncome to our rescue, hunter!",
       "fail": "Reward Zero\nTime Over",
       "client": "Madam Merchant",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11011,
@@ -15964,7 +16067,8 @@
       "details": "I've always longed to\nventure into the Snowy\nMountains! I think I could\nhunt down an Anteka, but I\ncould never fight a wyvern.\nMaybe you could take care of\na special monster for me...",
       "fail": "Reward Zero\nTime Over",
       "client": "Uncomfortable Butler",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11012,
@@ -16220,7 +16324,8 @@
       "details": "A large number of Congalalas\nare congregating in the\nSwamp and I want you to hunt\nthem down. You must get rid\nof at least 2 of those\nhorrid things for me. I\nwon't accept any less!",
       "fail": "Hunt less than 2 Congalalas\nbefore Time Up, Reward Zero",
       "client": "Selfish Landowner",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11013,
@@ -16456,7 +16561,8 @@
       "details": "Help! There has been an\nexplosion of so many Daimyo\nHermitaurs near our fishing\ngrounds that we can't handle\nthings by ourselves! Get rid\nof as many as you can so we\ncan get back to fishing!",
       "fail": "Hunt less than two Daimyo\nbefore Time Up, Reward Zero",
       "client": "Tanned Fisherman",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11014,
@@ -16670,7 +16776,8 @@
       "details": "So I hear a Yian Kut-Ku and\na Daimyo Hermitaur are in\nthe Jungle. Sounds like a\njob for me! Don't worry, if\nyou fail I'll mop them up\nfor you. You can count on\nit!",
       "fail": "Reward Zero\nTime Over",
       "client": "Gutsy Youth",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11101,
@@ -16805,7 +16912,8 @@
       "details": "I went to open up the big\narena that hasn't been used\nin a while one morning, and\nI find that it's been turned\ninto a Remobra nest! Please,\nI need you to help me clear\nthem out!",
       "fail": "Reward Zero\nTime Over",
       "client": "DesertedArenaManager",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11102,
@@ -16945,7 +17053,8 @@
       "details": "I got a request to hunt some\nHypnocatrices, but I have so\nmany other things to do that\nI can't handle it all. Can\nyou handle it in my stead,\nplease? ...But please keep\nthis a secret, OK?",
       "fail": "Reward Zero\nTime Over",
       "client": "ShortHairMantledGirl",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11103,
@@ -17109,7 +17218,8 @@
       "details": "We've received a rescue\nrequest from a poacher out\nhunting the Plesioth of the\nunderground lake in the Old\nDesert. We ask that you\nplease hold the Plesioth off\nwhile we rescue the person.",
       "fail": "Reward Zero\nTime Over",
       "client": "OldDesertWepnSmiths",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11104,
@@ -17254,7 +17364,8 @@
       "details": "Help! I've received word\nthat a Green Plesioth has\nappeared along our Queen's\nroute to another land.\nPlease take care of it in\nsecret for us before she\nenters the area!",
       "fail": "Reward Zero\nTime Over",
       "client": "Hasty High Official",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11105,
@@ -17430,7 +17541,8 @@
       "details": "Phew... I barely made it out\nalive from that Yian Garuga.\nI'll tell you what. You keep\nit a secret and I'll let you\nknow where you can find this\nsly, cool-headed beast. Have\nwe got a deal?",
       "fail": "Reward Zero\nTime Over",
       "client": "Mantled Lone Hunter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11106,
@@ -17607,7 +17719,8 @@
       "details": "This is a request to the\nvirtuous hunters of Pokke. A\nMonoblos is tearing through\nthe desert near my village\nof Kokoto. Please hunt it\ndown for us!",
       "fail": "Reward Zero\nTime Over",
       "client": "Kokoto Village Chief",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11107,
@@ -17770,7 +17883,8 @@
       "details": "An ancient wall painting our\ncountry was researching was\ndestroyed by a Monoblos, and \nas an art-lover, I won't \nstand for it! My father \ncan't spare any soldiers, \nso you're my only hope!",
       "fail": "Reward Zero\nTime Over",
       "client": "Pretty Mantled Lady",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 11108,
@@ -18009,7 +18123,8 @@
       "details": "Aaaah!! A Kut-Ku here and a\nKut-Ku there! The hillside\nis covered in a confusion of\nred and blue! We don't\ncare if you have to get rid\nof them one at a time, but\nplease, just do it!",
       "fail": "Hunt less than 1 per type\nbefore Time Up, Reward Zero",
       "client": "Riled Villagers",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11109,
@@ -18244,7 +18359,8 @@
       "details": "I was hiding from a Basarios\nbehind some boulders when it\nturned out to be another\none! I thought I could hide\nbehind some other boulders\nahead of me, but it was yet\nanother one! Somebody, help!",
       "fail": "Hunt less than 2 Basarios\nbefore Time Up, Reward Zero",
       "client": "Unlucky Journey Lady",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11110,
@@ -18493,7 +18609,8 @@
       "details": "I've had the pleasure of\ntasting some exotic foods in\nmy social circles, and I'm\nafraid I've grown fond of\nShogun meat. They're\nexperiencing a population\nboom, so what better timing?",
       "fail": "Hunt less than 2 S.Ceanataur\nbefore Time Up, Reward Zero",
       "client": "Mantled Lady",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11111,
@@ -18715,7 +18832,8 @@
       "details": "My request is this: Please\nhunt down a few Blangongas\nin a row! The beasts are too\nhard for the hunters of my\nvillage, so please keep this\na secret and spare their\npride. Good luck!",
       "fail": "Hunt less than 2 Blangongas\nbefore Time Up, Reward Zero",
       "client": "MantledLadyInGreen",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11112,
@@ -18935,7 +19053,8 @@
       "details": "We've received word that an\nairship made an emergency\nlanding in the Desert, but a\nMonoblos often walks through\nthe area, and the desert\nlake is home to a Plesioth.\nPlease hurry to the hunt!",
       "fail": "Reward Zero\nTime Over",
       "client": "Guild Messenger",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11113,
@@ -19164,7 +19283,8 @@
       "details": "I spotted that Congalala I\nran into last time fighting\nferociously with Mr. Crab in\nthe Swamp. I don't want\nanyone else to suffer as I\nhave, so please do something\nabout them both!",
       "fail": "Reward Zero\nTime Over",
       "client": "Oblivious Daughter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11114,
@@ -19381,7 +19501,8 @@
       "details": "The Jungle is naturally\nfoggy, but this time, there\nwas something unusual in the\nair. As it turned out, it's\nthe fault of two monsters in\nparticular. I wonder if you\ncould hunt them down for us?",
       "fail": "Reward Zero\nTime Over",
       "client": "Jungle Town Diplomat",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11115,
@@ -19610,7 +19731,8 @@
       "details": "Recently, travelers through\nthe Old Jungle have been\ndisappearing... and we'd\nlike for you to look into\nthis. We believe this to be\nthe work of monsters, but we\nwould like confirmation.",
       "fail": "Reward Zero\nTime Over",
       "client": "Honest Retainer",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11116,
@@ -19795,7 +19917,8 @@
       "details": "A brown Kushala Daora is\nrapidly closing on the town.\nScouts report that outlying\nareas have already been\nrazed. If we don't stop this\ndragon, our town will be\nannihilated! We need you!",
       "fail": "Reward Zero\nTime Over",
       "client": "Guild Master",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11117,
@@ -19989,7 +20112,8 @@
       "details": "We've received a communique\nfrom headquarters. An elder\ndragon has appeared in the\nVolcanic Belt. Fight the\ndragon and collect data on\nits behavior!",
       "fail": "Reward Zero\nTime Over",
       "client": "Elder Dragon Scholar",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11118,
@@ -20192,7 +20316,8 @@
       "details": "A perfectly clear desert\nnight sky opened up and she\ndescended down upon me...\nHer form was that of a\nbreathtaking shooting star.\nSurely, I am to be her king.\nCome, she mustn't escape me!",
       "fail": "Reward Zero\nTime Over",
       "client": "Fallen Aristocrat",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11119,
@@ -20363,7 +20488,8 @@
       "details": "It seems that once again our\nland is in crisis. The giant\nelder dragon Lao-Shan Lung\nis approaching the village\nfrom the mountains. Head to\nthe fort and defend our way\nof life!",
       "fail": "Time Over, Reward Zero, or\nFort Integrity Zero",
       "client": "Guild Master",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11201,
@@ -20546,7 +20672,8 @@
       "details": "I couldn't sit by while the\nNargacuga hurt our people,\nso I snuck out to go slay\nit... and failed. I can't\nface my father like this,\nso please defeat it for me\nin secret!",
       "fail": "Reward Zero\nTime Over",
       "client": "Brave Mantled Youth",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 11202,
@@ -20733,7 +20860,8 @@
       "details": "Our head drill sergeant was\nattacked while out on an\nexpedition in the Old Jungle\nby an unknown assailant. We\nthink it's probably a\nmonster, but we require the\nassistance of a hunter!",
       "fail": "Reward Zero\nTime Over",
       "client": "Bearded Soldier",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11203,
@@ -20887,7 +21015,8 @@
       "details": "We're the Mysterious Duo,\nable to silence even the\ncrying of kids! Normally,\nthe Tigrex is nothing to us,\nbut our stomachs are acting\nup a bit today, so help us\nout...? Owahahaha! Hahaha!",
       "fail": "Reward Zero\nTime Over",
       "client": "Red&BlackMantledPair",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11204,
@@ -21069,7 +21198,8 @@
       "details": "Unbelievably, the king of\nall wyverns has appeared in\nthe Old Volcano belt. To\nprotect our temple, we went\nto fight it, but to no\navail. Please, we humbly ask\nfor your assistance, hunter!",
       "fail": "Reward Zero\nTime Over",
       "client": "MightyMountainMonks",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11205,
@@ -21243,7 +21373,8 @@
       "details": "Wow, nothing like a hunting\nground to get the blood\npumping and the spirit ready\nfor the hunt! Unfortunately,\nwhile I've been gone, the\nrequests have been piling\nup. Can you lend me a hand!?",
       "fail": "Reward Zero\nTime Over",
       "client": "Healed Hunter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11206,
@@ -21402,7 +21533,8 @@
       "details": "The azure sky-king and the\npink, earthly queen. \nWhoever successfully hunts\nthem both shall be known as\nthe King of Hunters. I await\nyour return with a glass\nheld high!",
       "fail": "Reward Zero\nTime Over",
       "client": "SharpWittedGentleman",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11207,
@@ -21570,7 +21702,8 @@
       "details": "Ah, I tried to slay it, but\nI was in way over my head.\nStill, I can't let it go, so\nI ask that if you have the\ncourage to face this beast,\nto please step forward.",
       "fail": "Reward Zero\nTime Over",
       "client": "Wounded Hunter",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11208,
@@ -21728,7 +21861,8 @@
       "details": "I saw four black towers\nrising up on the dunes...\nI know what I saw! It was no\ndream, but reality! Please,\nsave the Old Desert Town\nand my two dear daughters\nfrom those menaces!",
       "fail": "Reward Zero\nTime Over",
       "client": "Bandaged-Wrapped Man",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11209,
@@ -21904,7 +22038,8 @@
       "details": "Even us knights can't stand\nup to the Gravios's mighty\nheat ray. I know this is a\nbig request, but can you\nplease go and hunt this\narmored beast in our stead?",
       "fail": "Reward Zero\nTime Over",
       "client": "Friendly Head Knight",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11210,
@@ -22065,7 +22200,8 @@
       "details": "All of the hunters who have\ntaken on this request have\nfallen one by one, until\nthere was no one left who\nwould even consider it. 'Tis\nlamentable, no? Is there no\none who has the guts to try?",
       "fail": "Reward Zero\nTime Over",
       "client": "Guild Retiree",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11211,
@@ -22169,7 +22305,8 @@
       "details": "I'll tell you about a secret\nhunting ground, I will. It\ndoesn't matter if it's day\nor night, the silver sun\nalways shines, giving would-\nbe hunters a good workout...\nHeh, heh, heh...!",
       "fail": "Reward Zero\nTime Over",
       "client": "Hunchbacked Old Lady",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11212,
@@ -22273,7 +22410,8 @@
       "details": "We were dazed and lost in a\nhaze for days when we came\nupon a mysterious land.\nThere, we spied a golden\nmoon. If I tell you the\nlocation, will you look into\nthe area for me in secret?",
       "fail": "Reward Zero\nTime Over",
       "client": "Well-Dressed Youth",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11213,
@@ -22437,7 +22575,8 @@
       "details": "A gold- and silver-colored\nwyvern have taken over the\narea our village was going\nto develop. We'd like to\nkeep this area a secret,\neven from hunters we know,\nso we're counting on you!",
       "fail": "Reward Zero\nTime Over",
       "client": "Big-NosedMantledMan",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11214,
@@ -22599,7 +22738,8 @@
       "details": "Wahaha! It is I, the Mystery\nMan! I came here to drive\nthe Instructor's Rajang\ncrazy and to hinder the\nprogress of his students!\nSo, come on, take my job! It\ncan be our secret. Wahaha!",
       "fail": "Reward Zero\nTime Over",
       "client": "Big-VoicedMantledMan",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11215,
@@ -22758,7 +22898,8 @@
       "details": "There's something causing\nlightning strikes in the\nheart of the Old Jungle. My\ntheory is that this is proof\nthat the mythical beast has\ncome out of hiding. Isn't\nit absolutely fascinating?",
       "fail": "Reward Zero\nTime Over",
       "client": "Practicality Scholar",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11216,
@@ -22967,7 +23108,8 @@
       "details": "Recently, the weather around\nthe Snowy Mountains has been\nbad nonstop. Further, the\nmonsters are hungry from a\nlack of food, and have\nstarted to violently attack\neach other. Please help us!",
       "fail": "Reward Zero\nTime Over",
       "client": "Base Village Elder",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11217,
@@ -23175,7 +23317,8 @@
       "details": "The princess has run off by\nherself to dig up some\njewels in the Volcano! If\nsomeone were to find out,\nit would cause a huge stink.\nWe haven't a moment to lose.\nPlease set out at once!",
       "fail": "Reward Zero\nTime Over",
       "client": "Princess's Attendant",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11218,
@@ -23437,7 +23580,8 @@
       "details": "I absolutely hate birds.\nI hate their voices, their\nbeaks, their eyes -- every-\nthing! And just my luck, \n3 bird-like monsters live\nright next to my house.\nARGH! Please help me!",
       "fail": "Reward Zero\nTime Over",
       "client": "BittrlyUnlkyJurnyLdy",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11219,
@@ -23694,7 +23838,8 @@
       "details": "The scorching sands reveal a\nMonoblos while a Daimyo\nsurfaces from underground\nand the roar of a Rathian\nechoes overhead. This isn't\na request, but a warning. If\nyou head out, return safely!",
       "fail": "Reward Zero\nTime Over",
       "client": "Half-Wild Mercenary",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11220,
@@ -23888,7 +24033,8 @@
       "details": "Our intuition told us to\nturn around, but we thought\nno one was there... Yet even\nthough no one should've been\nthere, we were attacked from\nbehind! Beware! It was an\nenemy never before seen! ",
       "fail": "Reward Zero\nTime Over",
       "client": "Injured Hero",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11221,
@@ -24069,7 +24215,8 @@
       "details": "People think it's impossible\nto fight an enemy you cannot\nsee, however, if one were to\nfocus and \"see\" with your\ngut instinct... Well, if all\nelse fails, just swing your\nweapon round and round!",
       "fail": "Reward Zero\nTime Over",
       "client": "Jungle Ancient",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11222,
@@ -24259,7 +24406,8 @@
       "details": "The Town is under attack\nfrom the Teostra! Casualties\nare high and it's only a\nmatter of time before the\ntown falls. We'll pay you\nwhatever you ask; just hurry\nto their aid!",
       "fail": "Reward Zero\nTime Over",
       "client": "Guild Manager",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11223,
@@ -24458,7 +24606,8 @@
       "details": "The Teostra's hideaway can\nonly be found during the\ndarkest hour, but I have\ndone it. Now, if you can\nkeep a secret, I'll tell you\nwhere it is, and of course\nyou will be well rewarded...",
       "fail": "Reward Zero\nTime Over",
       "client": "Ill-ReputedInformant",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11224,
@@ -24602,7 +24751,8 @@
       "details": "Hmm... This is quite\nserious. The fort which lies\nat the heart of our defenses\nis under siege by a giant\nmonster. We need your\nstrength to hold our\nposition!",
       "fail": "Time Over, Reward Zero, or\nFort Integrity Zero",
       "client": "Mantled Giant",
-      "requires": null
+      "requires": null,
+      "urgent": false
     },
     {
       "id": 11225,
@@ -24686,7 +24836,8 @@
       "details": "We finally have the mighty\nAkantor cornered in the\nVolcano, but our forces are\nexhausted and there is mass\nconfusion. Please, I humbly\nrequest that you secretly\nslay the beast for us!",
       "fail": "Reward Zero\nTime Over",
       "client": "Popular Mantled Man",
-      "requires": null
+      "requires": null,
+      "urgent": true
     },
     {
       "id": 11226,
@@ -24960,7 +25111,8 @@
       "details": "I'm overjoyed at the chance\nto see a hunter as skilled\nas yourself. I sense that\nshould you complete this\nfinal quest, you will come\nto know the true meaning\nof a hunter's life!",
       "fail": "Reward Zero\nTime Over",
       "client": "Red-Clad Knight",
-      "requires": null
+      "requires": null,
+      "urgent": true
     }
   ]
 }
