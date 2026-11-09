@@ -345,8 +345,9 @@ pnpm --filter mhfu-extract export-site --unpacked .cache/mhfu
 `models` converts `.pac` model packages (a PMO 1.0 mesh plus a `.TMH`
 texture set) into `.glb` files. The source lives in `src/models/`: `pac.ts`
 is the container, `pmo.ts` the mesh tables, `ge.ts` the PSP GE display lists
-that hold the geometry, `tmh.ts` the textures, `gltf.ts`/`texture.ts`/
-`png.ts` the output. Two corrections to mhff's description of PMO 1.0, both
+that hold the geometry, `tmh.ts` the textures, `ahi.ts` the skeleton,
+`attach.ts` puts severable tails together, `gltf.ts`/`texture.ts`/`png.ts`
+the output. Two corrections to mhff's description of PMO 1.0, both
 confirmed on real files: mesh records are 0x18 bytes, and materials go
 through a per-slot byte map at header offset 0x28.
 
@@ -388,9 +389,27 @@ Status:
   Armor pieces (`player/**`) convert the same way.
 - Output is the static bind pose: mesh pieces are already in model space, so
   no skeleton is needed to assemble them, but skinning weights are dropped
-  and there's no animation (`motion/*.bin` isn't decoded).
-- A package's second PMO isn't converted. On large monsters it's a few
-  small flat quads (probably shadow or effect planes).
+  and there's no animation (`motion/*.bin` and a monster package's entry 3,
+  its motion bank, aren't decoded). The one exception is a severable tail,
+  below.
+- **Severable tails.** A monster package is `[.ahi skeleton, PMO, .TMH,
+motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
+  byte (0x50 in its record): 1 the head chain, 2 the tail chain, 3 a
+  parentless copy of the tail's last bones. Where the tail can be cut, the
+  body's tail ends at the cut (closed by a flesh cap), and the tail tip is
+  skinned to that copy and modelled around the origin, i.e. inside the
+  body, so the game can drop it once cut. `attach.ts` moves the copy onto
+  the bones it copies (matched by the leaf's offset from its parent, e.g.
+  Cephalos's 46 -> 47 and 43 -> 44 are both +73.07 along z) and the tip's
+  vertices with it, through each vertex group's bone palette (`pmo.ts`).
+  Only the bones the offset sums need to be unrotated and unscaled (within
+  0.01 rad / 1%): Yian Garuga's crest and Basarios's neck don't count, and
+  Gravios's ~0.001 rad of authoring noise is ignored. Renders checked for
+  all 32 monsters it changes; Lavasioth's copy is already in place, and
+  small monsters have none.
+- A package's second PMO isn't converted: it's effect geometry (a shadow
+  quad on the Raths, Cephalos's sand spray, Tigrex's roar ring, Lavasioth's
+  lava).
 - Names come from the region-aware file list (see "`DATA.BIN`"), so an EU
   dump unpacked before that existed has wrong names (e.g. its
   `weapon/we000.pac` is male waist armor); unpack it again.

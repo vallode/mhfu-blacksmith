@@ -10,6 +10,7 @@ import { mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { buildGlb, type GlbStats } from "../models/gltf.js";
 import { isPac, readPac } from "../models/pac.js";
+import { attachDetachedParts, skeletonFor } from "../models/attach.js";
 import { isPmo, readPmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
 
@@ -48,7 +49,7 @@ export async function convertPac(file: string, outDir: string, root: string): Pr
         error: `no PMO mesh (entries: ${entries.map((e) => e.magic ?? "?").join(", ")})`,
       };
     const tmhEntry = entries.find((entry) => isTmh(entry.data));
-    const pmo = readPmo(pmoEntry.data);
+    const pmo = attachDetachedParts(readPmo(pmoEntry.data), skeletonFor(entries, pmoEntry.index));
     const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
     const { glb, stats } = await buildGlb(pmo, textures, source);
     const output = path.join(outDir, source.replace(/\.pac$/, ".glb"));
