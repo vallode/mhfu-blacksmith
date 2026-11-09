@@ -46,7 +46,9 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
             // new detail card (on phones it sits below the list).
             scroll={false}
             aria-current={m.slug === slug ? "page" : undefined}
-            className={cn("list-row", m.slug === slug && "bg-white/10")}
+            // The selected monster gets the weapon tree's active row: the hover
+            // glow's green, held still.
+            className={cn("list-row", m.slug === slug && "bg-(image:--gradient-hover-glow)")}
           >
             {/* The portrait thumbnails fill their square, so they sit inside
                 the same 32px slot as other row icons with 4px of padding. */}
