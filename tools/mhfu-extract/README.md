@@ -501,8 +501,22 @@ attack tables they use, its init (whose code, and its callees', is in
 `code`), and its call sites with their argument registers and monster
 links. Those reaching an attack table come first.
 
-Still open: which spawns (and so which monster) set which index, and what
-the remaining bytes mean.
+What the seventh EU run showed (EBOOT vaddr base `0x8801a4c`, the same as
+JP): 110 of 150 constructors' vtables (in the EBOOT) reach an attack table,
+through slots 8-10 (the shell's setup). `0x104c40`'s class (vtable
+`0x089bd428`, table `game_task.ovl` `0x1a0c60`, 79 records) shows that the
+record is not simply byte `0x0D`. Its init passes the spawner's `a3` to
+`0x1189e8`, which stores it at `+0x0D` (a kind) and the spawner's `t0` at
+`+0x8B` (a variant), with the owner's slot at `+0x15`. Its setup
+(`0x118a58`) then takes record `start[kind] + variant` (the variant is 0
+for a few kinds), `start` being an s16 array at `0x09c00f68`. Byte `0x0D`
+also indexes the class's other per-kind arrays (floats at `0x09c00fc0`, three
+floats at `0x09c01110`). Monster code spawns it with kind 1 (Plesioth,
+variants 0-2), 4 (Gravios, 0, 1, 3), 3 (Yian Kut-Ku), 0x12 (Kushala Daora)
+and 0x26 or 1 (Lavasioth). So each class computes its record from its own
+code, and mapping monsters to records means decoding each class's setup.
+
+Still open: that per-class mapping, and what the remaining bytes mean.
 
 ## 3D models (experimental)
 
