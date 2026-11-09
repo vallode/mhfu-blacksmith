@@ -232,6 +232,16 @@ export function questsWithMonster(quests: Quest[], name: string): Quest[] {
     .sort((a, b) => hubOrder(a) - hubOrder(b) || a.stars - b.stars || a.id - b.id);
 }
 
+/**
+ * IDs of the quests the loaded hunter has cleared, or null without a hunter
+ * (or with one stored before cleared quests were read from saves).
+ */
+export function clearedQuestIds(
+  save: { clearedQuests?: readonly number[] } | null,
+): ReadonlySet<number> | null {
+  return save?.clearedQuests ? new Set(save.clearedQuests) : null;
+}
+
 export function questHref(q: Pick<Quest, "hub" | "id">): string {
   return `/quests/${q.hub}/${q.id}/`;
 }

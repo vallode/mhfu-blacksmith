@@ -12,6 +12,7 @@ import path from "node:path";
 import { before, test } from "node:test";
 import type { CharacterResult, WorkerResult } from "../src/hooks/useSaveWorker";
 import type { ItemRecord } from "../src/lib/items";
+import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
 
 const root = path.resolve(__dirname, "..");
 const SAVE = path.join(root, "test/fixtures/MHP2NDG.BIN");
@@ -325,4 +326,78 @@ test("every decoration is a known jewel and the jewels fit the piece's slots", a
       );
     }
   }
+});
+
+// Quest flags and monster records. This save's quest bits were set with the
+// "All quests clear" cheat (the first 448 bits); the Training School bits
+// after them, and every monster table, are the hunters' own.
+const siteQuestIds = new Set(
+  ["village", "guild", "training-school", "treasure-hunting"].flatMap((hub) =>
+    (
+      JSON.parse(fs.readFileSync(path.join(root, `data/quests/${hub}.json`), "utf-8")).quests as {
+        id: number;
+      }[]
+    ).map((q) => q.id),
+  ),
+);
+
+test("cleared quests: every quest the cheat's 448 bits cover, plus each hunter's training", async () => {
+  const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
+  // Everything but the Training School's 47 quests sits in the first 448 bits.
+  const cheat = [...siteQuestIds].filter((id) => id < 20000);
+  for (const h of [gideon, mearo]) {
+    for (const id of cheat) assert.ok(h.clearedQuests.includes(id), `${h.name}: ${id}`);
+  }
+  const training = (h: CharacterResult) => h.clearedQuests.filter((id) => id >= 20000);
+  assert.deepEqual(training(gideon), [21001]);
+  assert.deepEqual(training(mearo), [20001, 20007]);
+  // 403 quests before the Training School, counting 1-10 and 101-109.
+  assert.equal(gideon.clearedQuests.length, 403 + 1);
+});
+
+test("every cleared quest is on the site, or one of the disc's unlisted 1-10 / 103-107", async () => {
+  for (const h of ok(await parse("us")).characters) {
+    for (const id of h?.clearedQuests ?? []) {
+      assert.ok(
+        siteQuestIds.has(id) || id <= 10 || (id >= 103 && id <= 107),
+        `${h!.name}: quest ${id} is not on the site`,
+      );
+    }
+  }
+});
+
+test("monster records read the Guild Card tables by monster ID", async () => {
+  const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
+  const byName = (h: CharacterResult, monster: string) =>
+    h.monsters.find((m) => m.id === MONSTER_GAME_IDS[monster]);
+  assert.deepEqual(byName(gideon, "Bullfango"), {
+    id: 5,
+    kills: 31,
+    captures: 0,
+    largest: 0,
+    smallest: 0,
+  });
+  assert.equal(byName(gideon, "Melynx")?.kills, 34);
+  assert.equal(byName(gideon, "Akantor")?.kills, 1);
+  // A large monster's first kill sets both size records.
+  assert.deepEqual(byName(gideon, "Cephadrome"), {
+    id: 8,
+    kills: 1,
+    captures: 0,
+    largest: 103,
+    smallest: 103,
+  });
+  assert.deepEqual(
+    mearo.monsters.map((m) => [m.id, m.kills]),
+    [
+      [70, 5],
+      [77, 1],
+    ],
+  );
+  assert.equal(byName(mearo, "Popo")?.kills, 5);
+  assert.equal(byName(mearo, "Giadrome")?.kills, 1);
+  assert.ok(
+    [gideon, mearo].every((h) => h.monsters.every((m) => m.captures === 0)),
+    "neither hunter has captured anything",
+  );
 });

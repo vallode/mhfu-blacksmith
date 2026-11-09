@@ -13,6 +13,19 @@ export interface EquipSlot {
   decorations?: number[];
 }
 
+/**
+ * One monster's records from the hunter's Guild Card tables, by the game's
+ * monster ID (src/lib/monster-ids.ts). `largest`/`smallest` are the raw size
+ * records; their unit isn't decoded.
+ */
+export interface MonsterRecord {
+  id: number;
+  kills: number;
+  captures: number;
+  largest: number;
+  smallest: number;
+}
+
 export interface SaveData {
   name: string;
   region: string;
@@ -30,6 +43,10 @@ export interface SaveData {
   hunterRank?: number;
   /** 0-based character slot in the save file. Missing on saves stored before it was kept. */
   slot?: number;
+  /** IDs of the quests the hunter has cleared. Missing on saves stored before they were read. */
+  clearedQuests?: number[];
+  /** Monsters with a record (kills, captures or sizes). Missing on saves stored before they were read. */
+  monsters?: MonsterRecord[];
   savedAt: number;
 }
 
@@ -44,6 +61,8 @@ export function saveFromCharacter(
     itemChest: ItemSlot[];
     itemPouch: ItemSlot[];
     equipBox: EquipSlot[];
+    clearedQuests?: number[];
+    monsters?: MonsterRecord[];
   },
   region: string,
   slot?: number,
@@ -58,6 +77,8 @@ export function saveFromCharacter(
     playTime: character.playTime,
     hunterRank: character.hunterRank,
     slot,
+    clearedQuests: character.clearedQuests,
+    monsters: character.monsters,
   };
 }
 

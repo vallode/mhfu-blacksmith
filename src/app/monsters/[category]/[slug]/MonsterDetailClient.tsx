@@ -16,7 +16,10 @@ import MonsterQuests from "@/components/MonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { breakIndex, breakKey, flinchThreshold } from "@/lib/monster-breaks";
 import { formatRank } from "@/lib/monster-drops";
-import { questsWithMonster } from "@/lib/quests";
+import { monsterRecordFor } from "@/lib/monster-ids";
+import { clearedQuestIds, questsWithMonster } from "@/lib/quests";
+import { usePreferences } from "@/context/PreferencesContext";
+import { useSave } from "@/context/SaveContext";
 import { useMonsterHitboxes, useMonsterModel, type HitboxCapsule } from "@/lib/models";
 import type { MonsterBreak } from "@/lib/types";
 import Loading from "@/components/Loading";
@@ -75,6 +78,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const { item: monster, loading } = useMonster(category, slug);
   const modelUrl = useMonsterModel(monster?.name);
   const { quests } = useQuests();
+  const { save } = useSave();
+  const { markCleared, showHuntRecords } = usePreferences().prefs;
   // Open state is tied to the model, so navigating to another monster closes it.
   const [openModel, setOpenModel] = useState<string | null>(null);
   const modelOpen = modelUrl !== null && openModel === modelUrl;
@@ -248,10 +253,20 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     content: <MonsterDrops sources={sources} />,
   }));
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
+  const cleared = markCleared ? clearedQuestIds(save) : null;
   const questTab: Tab[] =
     monsterQuests.length > 0
-      ? [{ id: "quests", label: "Quests", content: <MonsterQuests quests={monsterQuests} /> }]
+      ? [
+          {
+            id: "quests",
+            label: "Quests",
+            content: <MonsterQuests quests={monsterQuests} cleared={cleared} />,
+          },
+        ]
       : [];
+  // The loaded hunter's Guild Card counts. Only large monsters (the ones with
+  // sizes) can be captured.
+  const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
   const tabs = [...hitzoneTab, ...dropTabs, ...questTab];
 
   return (
@@ -291,6 +306,17 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 <span className="text-white tabular-nums">
                   {monster.base_hp.toLocaleString("en-US")}
                 </span>
+              </p>
+            )}
+            {record && (
+              <p className="text-small whitespace-normal text-stat">
+                Hunted: <span className="text-white tabular-nums">{record.kills}</span>
+                {monster.sizes && (
+                  <>
+                    {" · "}Captured:{" "}
+                    <span className="text-white tabular-nums">{record.captures}</span>
+                  </>
+                )}
               </p>
             )}
           </div>
