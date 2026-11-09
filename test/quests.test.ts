@@ -8,6 +8,7 @@ import {
   questHubSlug,
   questsOnHub,
   questStarLevels,
+  starMarks,
   questsWithMonster,
   rewardTableHeading,
 } from "../src/lib/quests";
@@ -203,6 +204,12 @@ describe("quest lookups", () => {
       questsOnHub(quests, "village").map((q) => q.id),
       [2, 4, 1, 3],
     );
+  });
+
+  test("starMarks writes one star per level", () => {
+    assert.equal(starMarks(1), "★");
+    assert.equal(starMarks(5), "★★★★★");
+    assert.equal(starMarks(0), "");
   });
 
   test("questStarLevels lists each star level once, lowest first", () => {

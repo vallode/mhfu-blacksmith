@@ -24,6 +24,8 @@ const barText =
 
 interface Props {
   label: string;
+  /** Screen-reader version of `label`, e.g. "3 stars" for "★★★". */
+  labelText?: string;
   /** Accessible name of the group, e.g. "Weapon tree filter". */
   groupLabel: string;
   previousLabel: string;
@@ -37,6 +39,7 @@ interface Props {
 
 export default function SelectorBar({
   label,
+  labelText,
   groupLabel,
   previousLabel,
   nextLabel,
@@ -64,7 +67,14 @@ export default function SelectorBar({
         onClick={() => onStep(-1)}
       />
       <span className={cn(barText, "min-w-0 flex-auto truncate text-stat")} aria-live="polite">
-        {label}
+        {labelText ? (
+          <>
+            <span aria-hidden="true">{label}</span>
+            <span className="sr-only">{labelText}</span>
+          </>
+        ) : (
+          label
+        )}
       </span>
       {count && (
         <span className={cn(barText, "flex-none text-white")}>

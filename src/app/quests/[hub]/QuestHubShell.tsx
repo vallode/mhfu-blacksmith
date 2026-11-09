@@ -9,7 +9,13 @@ import QuestNav from "@/components/QuestNav";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import { cn } from "@/lib/cn";
 import { useQuests } from "@/lib/client-data";
-import { questHref, questsOnHub, questStarLevels, type QuestHubSlug } from "@/lib/quests";
+import {
+  questHref,
+  questsOnHub,
+  questStarLevels,
+  starMarks,
+  type QuestHubSlug,
+} from "@/lib/quests";
 
 /** The quest ID in /quests/<hub>/<id>/, if the path has one. */
 function activeQuestId(pathname: string, hub: string): number | null {
@@ -102,7 +108,8 @@ export default function QuestHubShell({
           </Card>
           {index >= 0 && (
             <SelectorBar
-              label={`${current}★ Quests`}
+              label={starMarks(current ?? 0)}
+              labelText={`${current} stars`}
               groupLabel="Quest star level"
               previousLabel="Previous star level"
               nextLabel="Next star level"

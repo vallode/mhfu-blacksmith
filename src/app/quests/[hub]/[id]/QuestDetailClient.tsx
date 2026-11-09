@@ -9,6 +9,7 @@ import {
   questHref,
   questHubLabel,
   questsOnHub,
+  starMarks,
   type QuestHubSlug,
   type QuestMonster,
 } from "@/lib/quests";
@@ -97,7 +98,7 @@ export default function QuestDetailClient({ hub, id }: Props) {
                 href={questHref(requires)}
                 className="whitespace-normal text-white underline-offset-4 hover:underline"
               >
-                {requires.title} ({questHubLabel(requires.hub)} {requires.stars}★)
+                {requires.title} ({questHubLabel(requires.hub)} {starMarks(requires.stars)})
               </Link>
             </Stat>
           )}
@@ -141,7 +142,7 @@ export default function QuestDetailClient({ hub, id }: Props) {
       <div className="flex flex-col gap-2 text-[2.2rem] text-gold">
         <p className="leading-[1.25] whitespace-normal">{quest.title}</p>
         <p className="text-[1.6rem] leading-[1.25] whitespace-normal text-stat">
-          {questHubLabel(hub)} · {quest.stars}★
+          {questHubLabel(hub)} · {starMarks(quest.stars)}
           {quest.urgent && (
             <>
               {" · "}
