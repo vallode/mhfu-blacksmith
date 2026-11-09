@@ -126,3 +126,45 @@ export function useArmorModel(
   );
   return result;
 }
+
+/** One monster hitbox: a capsule in the model's space (see tools/mhfu-extract `monsters/hitboxes.ts`). */
+export interface HitboxCapsule {
+  /** Hitzone row the capsule takes its values from. */
+  row: number;
+  /** The monster's hitzone parts (`Monster.hitzones` keys) on that row. */
+  parts: string[];
+  radius: number;
+  start: [number, number, number];
+  end: [number, number, number];
+}
+
+const hitboxFiles = new Map<string, Promise<HitboxCapsule[] | null>>();
+
+/**
+ * A monster's hitboxes, from the file next to its model
+ * (`/models/monsters/emNN.hitboxes.json`); null while loading or if it has none.
+ */
+export function useMonsterHitboxes(modelUrl: string | null): HitboxCapsule[] | null {
+  const [capsules, setCapsules] = useState<HitboxCapsule[] | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    setCapsules(null);
+    if (!modelUrl) return;
+    const url = modelUrl.replace(/\.glb$/, ".hitboxes.json");
+    let promise = hitboxFiles.get(url);
+    if (!promise) {
+      promise = fetch(url)
+        .then((res) => (res.ok ? (res.json() as Promise<{ capsules: HitboxCapsule[] }>) : null))
+        .then((file) => (file?.capsules.length ? file.capsules : null))
+        .catch(() => null);
+      hitboxFiles.set(url, promise);
+    }
+    promise.then((found) => {
+      if (!cancelled) setCapsules(found);
+    });
+    return () => {
+      cancelled = true;
+    };
+  }, [modelUrl]);
+  return capsules;
+}

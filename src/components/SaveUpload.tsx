@@ -28,13 +28,13 @@ const slotBase =
 const slotActive =
   "animate-none bg-[linear-gradient(0.25turn,rgb(3_119_3/0.95),rgb(3_119_3/0.55))]";
 
-const slotName = "flex min-w-0 gap-[1.4rem] text-[2.8rem] [&>:last-child]:truncate";
-const slotRow = "flex gap-[1.6rem] text-[2.2rem]";
+const slotName = "flex min-w-0 gap-[1.4rem] text-main [&>:last-child]:truncate";
+const slotRow = "flex gap-[1.6rem] text-sub";
 const slotLabel = "flex-[0_0_7rem] uppercase";
 
 // Status line under the slots (reading, errors). A div, not a p, so it
 // skips Card's one-line paragraph default (.card-copy p in globals.css).
-const notice = "py-[1.3rem] text-center text-[1.8rem] text-white/60";
+const notice = "py-[1.3rem] text-center text-sub text-white/60";
 
 /** The stored hunter's items, in the order selection saved them (box, then pouch). */
 const hunterItems = (c: CharacterResult) => [...c.itemChest, ...c.itemPouch];
@@ -191,7 +191,7 @@ export default function SaveUpload() {
   const storedSlot = save && !result ? (save.slot ?? 0) : null;
 
   const loaderCta =
-    "block w-full cursor-pointer border border-dashed border-white/35 bg-transparent p-[2.4rem] text-center font-[inherit] text-[1.8rem] text-white/70 hover:border-white/60 hover:text-white";
+    "block w-full cursor-pointer border border-dashed border-white/35 bg-transparent p-[2.4rem] text-center font-[inherit] text-sub text-white/70 hover:border-white/60 hover:text-white";
 
   return (
     // Slots take the game's third of the width; the loader has the rest. On a

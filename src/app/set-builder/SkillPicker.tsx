@@ -69,12 +69,12 @@ export default function SkillPicker({
           {chosen.map((s) => (
             <li key={s.name} className={row}>
               <span className="min-w-0 flex-1 truncate text-white">{s.name}</span>
-              <span className="text-[1.4rem] text-white/50">
+              <span className="text-fine text-white/50">
                 {s.tree} {s.points}
               </span>
               <button
                 type="button"
-                className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-[1.8rem] leading-none text-white/50 hover:text-negative focus-visible:text-negative"
+                className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-sub leading-none text-white/50 hover:text-negative focus-visible:text-negative"
                 aria-label={`Remove ${s.name}`}
                 onClick={() => onChange(value.filter((v) => v !== s.name))}
               >
@@ -141,7 +141,7 @@ export default function SkillPicker({
                 onMouseEnter={() => setActive(i)}
               >
                 <span className="min-w-0 flex-1 truncate text-white">{s.name}</span>
-                <span className="text-[1.4rem] text-white/50">
+                <span className="text-fine text-white/50">
                   {s.tree} {s.points}
                 </span>
               </li>

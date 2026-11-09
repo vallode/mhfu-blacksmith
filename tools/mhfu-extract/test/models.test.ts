@@ -9,19 +9,8 @@ import { readPmo } from "../src/models/pmo.js";
 import { encodeTexture } from "../src/models/texture.js";
 import { readTmh, unswizzle } from "../src/models/tmh.js";
 import { MeshoptDecoder } from "meshoptimizer";
+import { pac, pmo, stripDisplayList } from "./model-fixtures.js";
 import sharp from "sharp";
-
-function pac(entries: Buffer[]): Buffer {
-  const header = Buffer.alloc(4 + entries.length * 8);
-  header.writeUInt32LE(entries.length, 0);
-  let offset = header.length;
-  entries.forEach((entry, i) => {
-    header.writeUInt32LE(offset, 4 + i * 8);
-    header.writeUInt32LE(entry.length, 8 + i * 8);
-    offset += entry.length;
-  });
-  return Buffer.concat([header, ...entries]);
-}
 
 test("readPac splits entries and identifies magics", () => {
   const buf = pac([
@@ -76,27 +65,6 @@ test("decodeVertexType matches the layout real weapon/armor meshes use (VTYPE 0x
 });
 
 /** Build a display list drawing one indexed 4-vertex strip with VTYPE 0x000900 (s16 positions, u8 indices). */
-function stripDisplayList(clockwise: boolean): Buffer {
-  const commands = [
-    0x12000000 | (2 << 7) | (1 << 11),
-    0x01000000 | 0x20,
-    0x02000000 | 0x38,
-    0x9b000000 | (clockwise ? 1 : 0),
-    0x04040004,
-    0x0b000000,
-  ];
-  const list = Buffer.alloc(0x40);
-  commands.forEach((c, i) => list.writeUInt32LE(c >>> 0, i * 4));
-  const positions = [
-    [0, 0, 0],
-    [0x7fff, 0, 0],
-    [0, 0x7fff, 0],
-    [0x7fff, 0x7fff, 0],
-  ];
-  positions.forEach((p, i) => p.forEach((v, k) => list.writeInt16LE(v, 0x20 + i * 6 + k * 2)));
-  list.set([0, 1, 2, 3], 0x38);
-  return list;
-}
 
 test("runDisplayList decodes an indexed triangle strip with alternating winding", () => {
   const { vertices, triangles } = runDisplayList(new BinaryReader(stripDisplayList(false)), 0);
@@ -120,34 +88,6 @@ test("runDisplayList rejects unknown GE commands instead of guessing", () => {
 });
 
 /** Minimal PMO 1.0: one mesh, two vertex groups, material map sending slot 1 to material 0. */
-function pmo(list: Buffer = stripDisplayList(false)): Buffer {
-  const buf = Buffer.alloc(0x100 + list.length);
-  buf.write("pmo\x001.0\x00", 0, "latin1");
-  buf.writeUInt32LE(buf.length, 0x08);
-  buf.writeFloatLE(2, 0x0c);
-  [2, 4, 8].forEach((s, i) => buf.writeFloatLE(s, 0x10 + i * 4));
-  buf.writeUInt16LE(1, 0x1c); // meshes
-  buf.writeUInt16LE(2, 0x1e); // materials
-  buf.writeUInt32LE(0x40, 0x20); // mesh table
-  buf.writeUInt32LE(0x60, 0x24); // vertex groups
-  buf.writeUInt32LE(0x80, 0x28); // material map
-  buf.writeUInt32LE(0x90, 0x2c);
-  buf.writeUInt32LE(0x90, 0x30); // materials
-  buf.writeUInt32LE(0x100, 0x34); // display lists
-  buf.writeFloatLE(1, 0x40);
-  buf.writeFloatLE(1, 0x44);
-  buf.writeUInt16LE(0, 0x52); // material slot base
-  buf.writeUInt16LE(2, 0x54); // group count
-  buf.writeUInt16LE(0, 0x56); // first group
-  buf.writeUInt8(0, 0x60); // group 0 -> slot 0
-  buf.writeUInt8(1, 0x70); // group 1 -> slot 1
-  buf.set([1, 0], 0x80); // slot 0 -> material 1, slot 1 -> material 0
-  buf.writeUInt32LE(0xffffffff, 0x90);
-  buf.writeUInt32LE(3, 0x98); // material 0 texture 3
-  buf.writeUInt32LE(5, 0xa8); // material 1 texture 5
-  list.copy(buf, 0x100);
-  return buf;
-}
 
 test("readPmo resolves materials through the material map and keeps per-axis scale", () => {
   const model = readPmo(pmo());

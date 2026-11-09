@@ -16,6 +16,7 @@ import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
 import { dumpArmorRaw } from "../emit/armor-raw.js";
+import { writeCollisionRaw } from "./collision-raw.js";
 import {
   committedMelodyCombos,
   dumpMelodyRaw,
@@ -38,7 +39,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts) and `raw/monsters.json` (the decoded monster tables). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts). */
   raw?: boolean;
 }
 
@@ -244,6 +245,14 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     const melodyPath = path.join(options.out, "raw", "melodies.json");
     await writeFile(melodyPath, `${JSON.stringify(melodyRaw)}\n`, "utf-8");
     console.log(`Wrote ${melodyPath} (${melodyRaw.hits.length} candidate table(s)).`);
+
+    // Monster hitbox candidates: CollisionPTR targets and the model packages' unknown entries.
+    await writeCollisionRaw(
+      options.unpacked,
+      options.out,
+      overlays,
+      monsters.locations.chunks.offset,
+    );
   }
   Object.assign(output, emitMonsters(monsters));
 

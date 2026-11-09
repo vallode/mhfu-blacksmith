@@ -19,8 +19,7 @@
  * 1.02, which matches a published figure for the first Village Elder quest.
  * Which set a quest uses follows its header `rank` byte: 0 -> set 0
  * (Training School Basic/Mastery quests, the two Village Tigrex quests and
- * the Village's `101`/`102`/`108`/`109`),
- * 1/2/5 (the low/high/G rank tier, on both the Village and Guild boards)
+ * the Guild's ★1/★2 quests `1`-`10` and `101`-`109`), 1/2/5 (the low/high/G rank tier, on both the Village and Guild boards)
  * -> set 1, 3 (Treasure Hunting) -> set 2, 4 (Subjugation Training) ->
  * set 3. The board itself comes from the quest ID (`questHub` in
  * src/emit/quests.ts). Sets 2 and 3 hold real values exactly on the rows

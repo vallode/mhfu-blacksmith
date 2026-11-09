@@ -1,20 +1,21 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useState } from "react";
 import Card from "@/components/Card";
 import { DetailBody, DetailCard, DetailRule } from "@/components/DetailPanel";
 import { cn } from "@/lib/cn";
 import { hitzoneBest, hitzoneTable, hitzoneZero } from "@/styles/tables";
 import type { MonsterCategory } from "@/lib/constants";
 import { useMonster, useQuests } from "@/lib/client-data";
-import ModelViewer from "@/components/ModelViewer";
+import ModelViewer, { type ModelCapsule } from "@/components/ModelViewer";
+import HitzoneControls, { type HitzonePart } from "@/components/HitzoneControls";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { formatRank } from "@/lib/monster-drops";
 import { questsWithMonster } from "@/lib/quests";
-import { useMonsterModel } from "@/lib/models";
+import { useMonsterHitboxes, useMonsterModel } from "@/lib/models";
 import Loading from "@/components/Loading";
 
 interface Props {
@@ -37,6 +38,12 @@ const HITZONE_LABELS: Record<string, [full: string, short: string]> = {
   ko: ["KO", "KO"],
 };
 
+/** A hitzone part's colour on the model, by its place in the hitzone table. */
+const hitboxColor = (index: number) => `var(--color-hitbox-${(index % 8) + 1})`;
+
+/** Hitbox opacity: all shown, a highlighted part, and the rest while one is highlighted. */
+const HITBOX_OPACITY = { shown: 0.35, highlighted: 0.6, dimmed: 0.08 };
+
 /** Sizes are stored to two decimals; whole centimetres are enough here. */
 const formatSize = (cm: number) => Math.round(cm).toLocaleString("en-US");
 
@@ -52,6 +59,36 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // Open state is tied to the model, so navigating to another monster closes it.
   const [openModel, setOpenModel] = useState<string | null>(null);
   const modelOpen = modelUrl !== null && openModel === modelUrl;
+  const hitboxes = useMonsterHitboxes(modelUrl);
+  const [showHitzones, setShowHitzones] = useState(false);
+  // A part hovered in the hitzone table or the legend, and one picked in the
+  // legend (which only shows with the hitboxes, so a pick ends with them).
+  const [hoveredPart, setHoveredPart] = useState<string | null>(null);
+  const [pinnedPart, setPinnedPart] = useState<string | null>(null);
+  const highlight = hoveredPart ?? (showHitzones ? pinnedPart : null);
+
+  // Hitzone parts that have hitboxes, coloured by their place in the table.
+  const hitboxParts = useMemo<HitzonePart[]>(() => {
+    if (!hitboxes || !monster?.hitzones) return [];
+    return Object.keys(monster.hitzones)
+      .map((name, i) => ({ name, color: hitboxColor(i) }))
+      .filter(({ name }) => hitboxes.some((capsule) => capsule.parts.includes(name)));
+  }, [hitboxes, monster?.hitzones]);
+
+  const capsules = useMemo<ModelCapsule[]>(() => {
+    if (!hitboxes || (!showHitzones && !highlight)) return [];
+    return hitboxes.map((capsule) => {
+      const part = hitboxParts.find(({ name }) => capsule.parts.includes(name));
+      const opacity = !highlight
+        ? HITBOX_OPACITY.shown
+        : capsule.parts.includes(highlight)
+          ? HITBOX_OPACITY.highlighted
+          : showHitzones
+            ? HITBOX_OPACITY.dimmed
+            : 0;
+      return { ...capsule, color: part?.color ?? "var(--color-unavailable)", opacity };
+    });
+  }, [hitboxes, hitboxParts, showHitzones, highlight]);
 
   // The nav and the list of monsters on the left come from the monsters
   // layout (MonsterShell), which stays mounted; this is only the detail panel.
@@ -66,6 +103,12 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     const values = hitzoneEntries.map(([, v]) => Number(v[col])).filter((n) => n > 0);
     if (values.length > 1) bestHitzone[col] = Math.max(...values);
   }
+
+  // While the model shows hitboxes, part names take their hitbox colour as a legend.
+  const partColor = (part: string) =>
+    modelOpen && (showHitzones || highlight)
+      ? hitboxParts.find(({ name }) => name === part)?.color
+      : undefined;
 
   const hitzoneTab: Tab[] =
     hitzoneEntries.length > 0
@@ -88,8 +131,16 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 </thead>
                 <tbody>
                   {hitzoneEntries.map(([part, values]) => (
-                    <tr key={part}>
-                      <td>{part}</td>
+                    <tr
+                      key={part}
+                      // With the model open, hovering a part highlights its hitboxes.
+                      onPointerEnter={(e) =>
+                        modelOpen && e.pointerType === "mouse" && setHoveredPart(part)
+                      }
+                      onPointerLeave={() => setHoveredPart(null)}
+                      className={cn(modelOpen && hoveredPart === part && "bg-white/10")}
+                    >
+                      <td style={{ color: partColor(part) }}>{part}</td>
                       {HITZONE_COLS.map((col) => {
                         const value = values[col];
                         const n = Number(value);
@@ -132,7 +183,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       <DetailCard>
         {/* Name, habitats and description left of the portrait scroll (stacked on phones) */}
         <div className="flex flex-row items-start gap-4 mobile:flex-col-reverse mobile:items-stretch">
-          <div className="flex min-w-0 flex-1 flex-col gap-2 text-[2.2rem] text-gold">
+          <div className="flex min-w-0 flex-1 flex-col gap-2 text-main text-gold">
             <div className="flex items-center">
               <p className="min-w-0 leading-[1.25] whitespace-normal">{monster.name}</p>
               {modelUrl && (
@@ -147,10 +198,10 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               <p className="leading-[1.25] whitespace-normal">{monster.habitats.join(", ")}</p>
             )}
             {monster.description && (
-              <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
+              <p className="text-small whitespace-normal text-white">{monster.description}</p>
             )}
             {monster.sizes && (
-              <p className="text-[1.6rem] text-stat">
+              <p className="text-small text-stat">
                 Size:{" "}
                 <span className="text-white tabular-nums">
                   {formatSize(monster.sizes.min)}–{formatSize(monster.sizes.max)} cm
@@ -158,7 +209,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               </p>
             )}
             {monster.base_hp !== undefined && (
-              <p className="text-[1.6rem] text-stat">
+              <p className="text-small text-stat">
                 Base HP:{" "}
                 <span className="text-white tabular-nums">
                   {monster.base_hp.toLocaleString("en-US")}
@@ -185,7 +236,19 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       </DetailCard>
       {modelOpen && (
         <ModelPopover title={monster.name} onClose={() => setOpenModel(null)}>
-          <ModelViewer src={modelUrl} label={monster.name} />
+          <div className="relative h-full w-full">
+            <ModelViewer src={modelUrl} label={monster.name} capsules={capsules} />
+            {hitboxParts.length > 0 && (
+              <HitzoneControls
+                parts={hitboxParts}
+                show={showHitzones}
+                onShowChange={setShowHitzones}
+                pinned={pinnedPart}
+                onPin={setPinnedPart}
+                onHover={setHoveredPart}
+              />
+            )}
+          </div>
         </ModelPopover>
       )}
     </>

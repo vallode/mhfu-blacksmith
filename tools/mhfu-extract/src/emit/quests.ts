@@ -24,45 +24,33 @@ import type { Rank } from "./common.js";
 
 export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunting";
 
-/** The quests in the `101`-`109` block confirmed as Village quests (see `questHub`). */
-const CONFIRMED_VILLAGE_EXTRAS: ReadonlySet<number> = new Set([101, 102, 108, 109]);
-
 /**
  * The quest board, from the quest ID (`m#####.mib`). The disc numbers its
  * quests in blocks, one block per board and star level (`1001`-`1022` is
- * Guild Low Rank's first star, `10101`-`10118` the Village's ★2, ...):
- *  - `1xxx`/`2xxx`/`3xxx`: Guild Low / High / G Rank.
+ * Guild Low Rank's ★3, `10101`-`10118` the Village's ★2, ...):
+ *  - `1`-`10`/`101`-`109`: Guild Low Rank ★1 and ★2. The Monster Hunter
+ *    Wiki's Guild Hall list has all 19 with the disc's fee, reward, locale
+ *    and client. Many share a title and client with a Village quest
+ *    (`2` and `10105` are both "Reckless Bulldrome Hunter" for the "Troubled
+ *    Father"), but pay 12x their fee like every Guild quest, where the
+ *    Village pays 6x. Some only appear once a prerequisite is cleared (`109`
+ *    "Attack of the Rathian" after `10203` "Shadow in the Snow").
+ *  - `1xxx`/`2xxx`/`3xxx`: Guild Low (★3-★5) / High (★6-★8) / G Rank.
  *  - `4xxx`: Treasure Hunting (client always "Treshi").
  *  - `10xxx`/`11xxx`: Village, ★1-★6 then ★7-★9 (many from the "Pokke
  *    Village Chief"; `10004`/`10108` are the Village's two Tigrex quests).
- *  - `101`, `102`, `108`, `109`: Village ★2 quests, some of which only
- *    appear once a prerequisite is cleared (`109` "Attack of the Rathian"
- *    after `10203` "Shadow in the Snow"). Header rank 0; they hold the
- *    Village's low-star Rathalos and Rathian. The Monster Hunter Wiki lists
- *    all four with the disc's fee, reward, locale and client.
  *  - `20xxx`-`22xxx`: Training School (client always "Instructor"):
  *    Basic Training and the weapon Mastery quests, then the Subjugation
  *    Training quests.
  *  - `30001`-`30090`: 90 identical "Gathering - Snowy Mountains" copies
  *    with Guild Low Rank's header rank; kept there (the site hides them).
  *
- * `103`-`107` share that block but aren't emitted until they're confirmed:
- * the wiki only has the regular Village quests of the same titles
- * (`10208`, `10211`, `10213`, `10217`, `10309`), with different fees and
- * rewards. `1`-`10` fit no confirmed board either, so they aren't emitted.
- * Some repeat a Village quest with different values (`Reckless Bulldrome
- * Hunter` is both `2` and `10105`, from the same "Troubled Father";
- * `Mountain Herb Picking` is 100z as `4` and free as `10001`), and some
- * match nothing else on the disc (`The Lady Gourmet`). They may be ★1 unlockables like `108`/`109`,
- * or unused.
- *
  * The header's `rank` byte is not the board: the Village's `10xxx` quests
  * carry the same values as Guild Low Rank. It is the quest's rank tier
  * (`RANK_TIER`).
  */
 export function questHub(questId: number): QuestHub | null {
-  if (CONFIRMED_VILLAGE_EXTRAS.has(questId)) return "village";
-  if (questId >= 1000 && questId < 4000) return "guild";
+  if (questId >= 1 && questId < 4000) return "guild";
   if (questId >= 4000 && questId < 5000) return "treasure-hunting";
   if (questId >= 10000 && questId < 12000) return "village";
   if (questId >= 20000 && questId < 23000) return "training-school";
@@ -75,9 +63,10 @@ export function questHub(questId: number): QuestHub | null {
  * stat multiplier set (src/monsters/multipliers.ts). 1/2/5 agree with the
  * quest ID block on every Guild quest. Village quests use them too: `10xxx`
  * are 1 (one ★6 is 2), `11xxx` 2 (one ★9 is 5). 0 (the Training School's
- * Basic/Mastery quests, the Village's two Tigrex quests and `101`/`102`/
- * `108`/`109`),
- * 3 (Treasure Hunting) and 4 (Subjugation Training) have no tier.
+ * Basic/Mastery quests, the Village's two Tigrex quests and the Guild's ★1
+ * and ★2), 3 (Treasure Hunting) and 4 (Subjugation Training) have no tier.
+ * The Guild's ★1/★2 quests are still on its Low Rank board, so they are
+ * emitted as low rank (`questRank`).
  */
 const RANK_TIER: Record<number, Rank> = {
   1: "low-rank",
@@ -92,6 +81,11 @@ const RANK_TIER: Record<number, Rank> = {
  * and `m40001`-`m40008` (0 zenny fee, real monsters and rewards, but no
  * text in any language, so never shown on a quest board).
  */
+/** The emitted rank: the header's tier, or Low Rank for the Guild's rank-0 ★1/★2 quests. */
+function questRank(hub: QuestHub, headerRank: number): Rank | null {
+  return RANK_TIER[headerRank] ?? (hub === "guild" ? "low-rank" : null);
+}
+
 const PLACEHOLDER_TITLES = new Set(["**********", "none"]);
 
 function isPlaceholderQuest(parsed: ParsedQuest): boolean {
@@ -284,7 +278,7 @@ export function emitQuest(parsed: ParsedQuest): EmittedQuest | null {
   return {
     id: header.questId,
     hub,
-    rank: RANK_TIER[header.rank] ?? null,
+    rank: questRank(hub, header.rank),
     stars: header.questStars,
     map: resolveMapName(header.map),
     fee: header.fee,

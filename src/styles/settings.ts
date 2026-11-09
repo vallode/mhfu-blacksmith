@@ -5,23 +5,23 @@
  * sets its own `mobile:` size, which cn() only replaces with another
  * `mobile:` class. `flex-none` keeps each card its natural height (Card is
  * `flex-1`), so a long card scrolls the page instead of being clipped. */
-export const section = "flex flex-none flex-col gap-[1.3rem] text-[1.6rem] mobile:text-[1.6rem]";
+export const section = "flex flex-none flex-col gap-[1.3rem] text-small";
 
 /** Explanatory text; wraps, unlike the one-line card paragraph default. */
-export const note = "m-0 text-[1.4rem] leading-[1.4] whitespace-normal text-white/60";
+export const note = "m-0 text-fine leading-[1.4] whitespace-normal text-white/60";
 
-export const error = "m-0 text-[1.4rem] text-negative";
+export const error = "m-0 text-fine text-negative";
 
 export const status = "flex flex-col gap-[0.6rem]";
 
-export const statusLabel = "text-[1.6rem] text-white";
+export const statusLabel = "text-small text-white";
 
 export { progressBar as progress } from "./progress";
 
 export const actions = "flex flex-wrap gap-[0.8rem]";
 
 const buttonBase =
-  "cursor-pointer border bg-transparent px-[1.4rem] py-[0.6rem] font-[inherit] text-[1.5rem]";
+  "cursor-pointer border bg-transparent px-[1.4rem] py-[0.6rem] font-[inherit] text-small";
 
 /** Main action: green glow on hover/focus, dimmed while disabled. */
 export const button = [
@@ -49,7 +49,7 @@ export const menuHeader =
   "-mx-[0.8rem] -mt-[1.1rem] mb-[0.4rem] border-b-[3px] border-white/45 bg-selector px-[1.6rem] py-[0.8rem]";
 
 export const menuTitle =
-  "m-0 text-[2.2rem] font-normal tracking-[0.2em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";
+  "m-0 text-main font-normal tracking-[0.2em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";
 
 /** An On/Off preference: a yellow box, outlined when off and filled when on. */
 export const toggle =
@@ -64,7 +64,7 @@ export const preferenceRow =
   "flex flex-wrap items-center justify-between gap-x-[2.4rem] gap-y-[0.8rem]";
 
 /** Group heading inside the preferences card ("Display", "Hunter"). */
-export const subheading = "m-0 text-[1.5rem] font-normal tracking-[0.1ch] text-stat uppercase";
+export const subheading = "m-0 text-small font-normal tracking-[0.1ch] text-stat uppercase";
 
 /** "◀ VALUE ▶" selector for a preference with several values. */
 export const selector = "flex flex-none items-center gap-[0.8rem]";
@@ -73,8 +73,8 @@ export const selectorArrow = "size-[3.4rem]";
 
 /** Fixed width, so the arrows stay put as the value changes (fits "Within 1 material"). */
 export const selectorValue =
-  "w-[19rem] text-center text-[1.8rem] leading-none tracking-[0.1em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";
+  "w-[19rem] text-center text-sub leading-none tracking-[0.1em] text-stat uppercase text-shadow-[0.15rem_0.15rem_black]";
 
 /** A text/search box (set builder's skill and piece search). */
 export const searchInput =
-  "w-full border border-hr bg-black/45 px-[1rem] py-[0.6rem] font-[inherit] text-[1.6rem] text-white outline-none placeholder:text-white/35 focus-visible:border-white";
+  "w-full border border-hr bg-black/45 px-[1rem] py-[0.6rem] font-[inherit] text-small text-white outline-none placeholder:text-white/35 focus-visible:border-white";

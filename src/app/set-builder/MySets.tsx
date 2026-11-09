@@ -22,7 +22,7 @@ function Summary({ set, data, tables }: { set: SavedSet; data: SearchData; table
   const stats = evaluateBuild(data, r.set);
   const good = stats.skills.filter((s) => s.threshold > 0).map((s) => s.name);
   return (
-    <span className="flex flex-col gap-[0.2rem] text-[1.4rem] text-white/60">
+    <span className="flex flex-col gap-[0.2rem] text-fine text-white/60">
       <span className="flex flex-wrap items-center gap-x-[0.4rem]">
         {r.set.pieces.map((p, i) =>
           p ? <Icon key={i} type={p.slot} size="mini" rarity={p.rarity} alt={p.name} /> : null,
@@ -103,8 +103,8 @@ export default function MySets({
               </form>
             ) : (
               <span className="flex items-baseline gap-[0.8rem]">
-                <span className="min-w-0 flex-1 truncate text-[1.8rem] text-white">{s.name}</span>
-                {s.id === openId && <span className="text-[1.3rem] text-stat">In editor</span>}
+                <span className="min-w-0 flex-1 truncate text-sub text-white">{s.name}</span>
+                {s.id === openId && <span className="text-fine text-stat">In editor</span>}
               </span>
             )}
             {data && tables && <Summary set={s} data={data} tables={tables} />}
