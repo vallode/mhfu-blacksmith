@@ -26,6 +26,12 @@ import {
   readAttackRecord,
   type AttackRecord,
 } from "../monsters/attacks.js";
+import {
+  CodeGraph,
+  type CodeFile,
+  type MonsterLink,
+  type TableUse,
+} from "../monsters/code-graph.js";
 import { isUserAddress } from "../monsters/collision.js";
 import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "../monsters/hitzones.js";
 
@@ -80,6 +86,15 @@ export interface AttackRecordDump extends AttackRecord {
   refs?: PointerRef[];
 }
 
+/** A function using a table: what it touches and which monsters lead to it. */
+export interface TableFunction {
+  file: string;
+  offset: number;
+  /** Records it builds the address of or reads, by index. */
+  records: number[];
+  monsters: MonsterLink[];
+}
+
 export interface AttackTableDump {
   offset: number;
   /** vaddr of the first record, for overlays. */
@@ -89,6 +104,8 @@ export interface AttackTableDump {
   monster?: { name: string; attacks: number };
   /** The 0x80 bytes before the table, as hex. */
   before: string;
+  /** Code using the table (`monsters/code-graph.ts`), for overlays. */
+  code?: { uses: TableUse[]; functions: TableFunction[] };
   records: AttackRecordDump[];
 }
 
@@ -103,6 +120,9 @@ export interface AttackRawDump {
 }
 
 const BEFORE = 0x80;
+/** Caps that keep `raw/attacks.json` small. */
+const MAX_USES = 120;
+const MAX_LINKS = 12;
 const hex = (n: number) => `0x${n.toString(16)}`;
 
 /**
@@ -182,6 +202,7 @@ function dumpTable(
   run: { offset: number; count: number },
   byNumbers: ReadonlyMap<string, CribAttack[]>,
   pointers: PointerIndex,
+  graph: CodeGraph | null,
 ): AttackTableDump {
   const ovl = file.ovl;
   // Pointers from the same file or game_task.ovl (always loaded); into
@@ -219,8 +240,42 @@ function dumpTable(
     count: run.count,
     ...(monster ? { monster } : {}),
     before: file.buf.subarray(Math.max(0, run.offset - BEFORE), run.offset).toString("hex"),
+    ...(graph && ovl ? { code: tableCode(graph, file.name, run) } : {}),
     records,
   };
+}
+
+/** The code using a table, grouped by function, with the monsters leading to each. */
+function tableCode(
+  graph: CodeGraph,
+  fileName: string,
+  run: { offset: number; count: number },
+): { uses: TableUse[]; functions: TableFunction[] } {
+  const uses = graph.usesOf(
+    fileName,
+    run.offset,
+    run.offset + run.count * ATTACK_RECORD_SIZE,
+    ATTACK_RECORD_SIZE,
+  );
+  const byFunction = new Map<string, TableFunction>();
+  for (const use of uses) {
+    const key = `${use.file}:${use.func}`;
+    let fn = byFunction.get(key);
+    if (!fn) {
+      fn = { file: use.file, offset: use.func, records: [], monsters: [] };
+      byFunction.set(key, fn);
+    }
+    if (!fn.records.includes(use.record)) fn.records.push(use.record);
+  }
+  const functions = [...byFunction.values()].map((fn) => ({
+    ...fn,
+    records: fn.records.sort((a, b) => a - b),
+    monsters: graph
+      .monstersOf(fn.file, fn.offset)
+      .sort((a, b) => a.depth - b.depth || a.emId - b.emId)
+      .slice(0, MAX_LINKS),
+  }));
+  return { uses: uses.slice(0, MAX_USES), functions };
 }
 
 /** Finds and dumps every attack table in `files`, labelled from `crib`. */
@@ -231,6 +286,15 @@ export function dumpAttacksRaw(
 ): AttackRawDump {
   const byNumbers = cribIndex(crib);
   const pointers = new PointerIndex(files, chunks);
+  // The main overlays are always loaded; per-monster ones share addresses.
+  const codeFiles: CodeFile[] = files
+    .filter((f): f is SearchFile & { ovl: OvlFile } => f.ovl !== undefined)
+    .map((f) => ({
+      name: f.name,
+      ovl: f.ovl,
+      shared: f.name === "game_task.ovl" || f.name === "game_sub.ovl",
+    }));
+  const graph = codeFiles.length ? new CodeGraph(codeFiles, chunks) : null;
   return {
     files: files.map((file) => {
       const reader = file.ovl?.reader ?? new BinaryReader(file.buf);
@@ -240,7 +304,7 @@ export function dumpAttacksRaw(
         ...(file.ovl ? { loadBase: hex(file.ovl.loadBase) } : {}),
         length: file.buf.length,
         tables: findAttackTables(file.buf).map((run) =>
-          dumpTable(file, reader, run, byNumbers, pointers),
+          dumpTable(file, reader, run, byNumbers, pointers, graph),
         ),
       };
     }),

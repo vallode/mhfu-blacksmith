@@ -447,9 +447,24 @@ every table in `eboot.bin`, both main overlays, every `emNN.ovl` and the
 monster packages' skeleton and motion entries, with each record whole and
 decoded, the crib attacks with the same numbers, the 0x80 bytes before the
 table (a pointer list precedes several), and the pointers to each record
-from the same file or `game_task.ovl`. Still open: which records each
-monster uses (probably chosen by index from its own code), and what the
-remaining bytes mean.
+from the same file or `game_task.ovl`.
+
+Which monster uses which records is traced through the code
+(`src/monsters/mips.ts`, `src/monsters/code-graph.ts`). `scanCode` reads
+every overlay word as an Allegrex instruction and follows the constant
+addresses that `lui` + `addiu`/`ori` pairs build, the loads and stores at
+them, `jal` calls and function prologues. Each table's `code` in
+`raw/attacks.json` lists the instructions that build or read an address in
+it, grouped by function (with the records each touches). From each function
+`CodeGraph` searches upward, through its callers, the pointer lists holding
+its address and the code building that address, until a `MonChunk` slot
+points at the chain. That slot names the monster, and the path is given.
+`game_task.ovl` and `game_sub.ovl` are always loaded, so anything may point
+into them; a per-monster overlay is only followed from itself and from the
+chunk slots.
+
+Still open: which records each monster uses, and what the remaining bytes
+mean.
 
 ## 3D models (experimental)
 
