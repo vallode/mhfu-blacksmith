@@ -12,7 +12,11 @@ import {
   readSpeciesTable,
   type BreakRecord,
 } from "../src/monsters/breaks.js";
-import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "../src/monsters/hitzones.js";
+import {
+  MONSTER_CHUNK_COUNT,
+  MONSTER_CHUNK_SIZE,
+  readFlinchThresholds,
+} from "../src/monsters/hitzones.js";
 import { MONSTER_OVERLAY } from "../src/overlay/monsters.js";
 
 const LOAD_BASE = 0x09a5a580;
@@ -148,4 +152,38 @@ test("monsterBreaks adds the species' code-set breaks from overlay/breaks.json",
   ]);
   // No break table, no breaks.
   assert.deepEqual(monsterBreaks({ ...tables([]), breaks: undefined }, 88, drops(88)), []);
+});
+
+test("readFlinchThresholds reads a part per u16 up to the record's count", () => {
+  const buf = Buffer.alloc(OVL_HEADER_SIZE + 0x40);
+  buf.write("MWo3", 0, "latin1");
+  buf.writeUInt32LE(LOAD_BASE, 0x08);
+  buf.writeUInt32LE(LOAD_BASE + buf.length, 0x1c);
+  const at = OVL_HEADER_SIZE;
+  [130, 100, 100, 100, 100, 100, 80, 80, 0xffff].forEach((v, i) =>
+    buf.writeUInt16LE(v, at + i * 2),
+  );
+  buf.writeUInt16LE(8, at + 18);
+  const ovl = parseOvl(buf);
+  assert.deepEqual(
+    readFlinchThresholds(ovl, LOAD_BASE + at),
+    [130, 100, 100, 100, 100, 100, 80, 80],
+  );
+  // A missing part reads as null; a count over 9 isn't a record.
+  buf.writeUInt16LE(0xffff, at + 2);
+  buf.writeUInt16LE(9, at + 18);
+  assert.deepEqual(readFlinchThresholds(ovl, LOAD_BASE + at), [
+    130,
+    null,
+    100,
+    100,
+    100,
+    100,
+    80,
+    80,
+    null,
+  ]);
+  buf.writeUInt16LE(10, at + 18);
+  assert.equal(readFlinchThresholds(ovl, LOAD_BASE + at), null);
+  assert.equal(readFlinchThresholds(ovl, 0x08900000), null);
 });

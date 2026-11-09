@@ -146,6 +146,8 @@ export interface CompactMonster {
   hp?: number;
   /** breaks, as is */
   bk?: MonsterBreak[];
+  /** flinch_thresholds, as is */
+  ft?: (number | null)[];
 }
 
 export interface CompactDecoration {
@@ -407,6 +409,7 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     sizes: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     base_hp: m.hp,
     breaks: m.bk,
+    flinch_thresholds: m.ft,
   };
 }
 

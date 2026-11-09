@@ -87,7 +87,10 @@
           "ko": "150"
         }
       },
-      "base_hp": 200
+      "base_hp": 200,
+      "flinch_thresholds": [
+        60
+      ]
     },
     {
       "name": "Bulldrome",
@@ -269,7 +272,10 @@
           "ko": "150"
         }
       },
-      "base_hp": 1200
+      "base_hp": 1200,
+      "flinch_thresholds": [
+        120
+      ]
     },
     {
       "name": "Conga",
@@ -357,7 +363,17 @@
           "ko": "0"
         }
       },
-      "base_hp": 120
+      "base_hp": 120,
+      "flinch_thresholds": [
+        20,
+        20,
+        20,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
     },
     {
       "name": "Congalala",
@@ -843,6 +859,16 @@
           ],
           "flinches": 2
         }
+      ],
+      "flinch_thresholds": [
+        200,
+        180,
+        150,
+        150,
+        140,
+        1,
+        1,
+        1
       ]
     },
     {
@@ -1037,6 +1063,16 @@
           ],
           "flinches": 2
         }
+      ],
+      "flinch_thresholds": [
+        200,
+        180,
+        150,
+        150,
+        140,
+        1,
+        1,
+        1
       ]
     },
     {
@@ -1125,7 +1161,17 @@
           "ko": "0"
         }
       },
-      "base_hp": 100
+      "base_hp": 100,
+      "flinch_thresholds": [
+        25,
+        12,
+        12,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
     },
     {
       "name": "Blangonga",
@@ -1511,6 +1557,17 @@
           "flinches": 1,
           "damage": "cut"
         }
+      ],
+      "flinch_thresholds": [
+        350,
+        150,
+        150,
+        160,
+        600,
+        1,
+        1,
+        1,
+        350
       ]
     },
     {
@@ -1677,6 +1734,17 @@
           "flinches": 1,
           "damage": "cut"
         }
+      ],
+      "flinch_thresholds": [
+        300,
+        200,
+        200,
+        160,
+        600,
+        1,
+        1,
+        1,
+        350
       ]
     },
     {
@@ -1952,6 +2020,17 @@
           ],
           "flinches": null
         }
+      ],
+      "flinch_thresholds": [
+        500,
+        350,
+        350,
+        300,
+        1000,
+        1,
+        1,
+        1,
+        1000
       ]
     },
     {
@@ -2021,7 +2100,18 @@
           "ko": "0"
         }
       },
-      "base_hp": 3600
+      "base_hp": 3600,
+      "flinch_thresholds": [
+        500,
+        350,
+        350,
+        300,
+        1000,
+        1,
+        1,
+        1,
+        1000
+      ]
     }
   ]
 }

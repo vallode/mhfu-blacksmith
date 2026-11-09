@@ -25,7 +25,12 @@
         "base_hp":     { "type": "integer", "minimum": 0 },
         "drops":       { "type": "object" },
         "hitzones":    { "type": "object" },
-        "breaks":      { "type": "array", "items": { "$ref": "#/definitions/break" } }
+        "breaks":      { "type": "array", "items": { "$ref": "#/definitions/break" } },
+        "flinch_thresholds": {
+          "type": "array",
+          "maxItems": 9,
+          "items": { "type": ["integer", "null"], "minimum": 1 }
+        }
       }
     },
     "break": {

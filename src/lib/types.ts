@@ -191,6 +191,11 @@ export interface Monster {
   base_hp?: number;
   /** Breakable parts, one entry per break reward */
   breaks?: MonsterBreak[];
+  /**
+   * Damage each body part (hitbox capsule `part`) takes before the monster
+   * flinches, before quest scaling; null where there's no such part.
+   */
+  flinch_thresholds?: (number | null)[];
 }
 
 export interface Decoration {

@@ -37,3 +37,18 @@ export function breakIndex(key: string): number | null {
   const match = /^break:(\d+)$/.exec(key);
   return match ? Number(match[1]) : null;
 }
+
+/**
+ * A hitzone row's flinch threshold from its body parts' (`Monster.flinch_thresholds`
+ * by capsule `part`): one value, or "min–max" when the row covers parts with
+ * different ones. Null when none of the parts has one.
+ */
+export function flinchThreshold(thresholds: (number | null)[], parts: number[]): string | null {
+  const values = parts
+    .map((part) => thresholds[part])
+    .filter((v): v is number => typeof v === "number");
+  if (values.length === 0) return null;
+  const min = Math.min(...values);
+  const max = Math.max(...values);
+  return min === max ? String(min) : `${min}–${max}`;
+}

@@ -441,8 +441,12 @@ type)`).
   2 cut, 4 fire, 0x20 dragon). They were read by hand, and each entry
   cites its call.
 
-The part durability records themselves (nine u16 per monster) look like
-each part's flinch threshold; they aren't emitted yet.
+Each monster's `flinch_thresholds` are the part durability records
+themselves (`hitzones.ts` `readFlinchThresholds`): per body part, the damage
+it takes before the monster flinches. On a flinch the game refills the
+part's counter (`+0x580 + part * 8`) from the record (EU `0x09AD3B10`),
+in some cases multiplied by the fourth float of the quest's stat
+multiplier row (EU `0x09AD3B88`, `multipliers.ts`: 1.0 to 2.5).
 
 ## 3D models (experimental)
 

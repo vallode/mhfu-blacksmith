@@ -70,7 +70,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 70
+      "base_hp": 70,
+      "flinch_thresholds": [
+        100
+      ]
     },
     {
       "name": "Giadrome",
@@ -197,7 +200,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 800
+      "base_hp": 800,
+      "flinch_thresholds": [
+        80
+      ]
     },
     {
       "name": "Velociprey",
@@ -274,7 +280,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 70
+      "base_hp": 70,
+      "flinch_thresholds": [
+        60
+      ]
     },
     {
       "name": "Velocidrome",
@@ -401,7 +410,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 800
+      "base_hp": 800,
+      "flinch_thresholds": [
+        110
+      ]
     },
     {
       "name": "Genprey",
@@ -474,7 +486,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 100
+      "base_hp": 100,
+      "flinch_thresholds": [
+        70
+      ]
     },
     {
       "name": "Gendrome",
@@ -605,7 +620,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 1200
+      "base_hp": 1200,
+      "flinch_thresholds": [
+        180
+      ]
     },
     {
       "name": "Ioprey",
@@ -678,7 +696,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 150
+      "base_hp": 150,
+      "flinch_thresholds": [
+        100
+      ]
     },
     {
       "name": "Iodrome",
@@ -775,7 +796,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 1600
+      "base_hp": 1600,
+      "flinch_thresholds": [
+        220
+      ]
     },
     {
       "name": "Yian Kut-Ku",
@@ -1155,6 +1179,16 @@
           ],
           "flinches": 2
         }
+      ],
+      "flinch_thresholds": [
+        130,
+        100,
+        100,
+        100,
+        100,
+        100,
+        80,
+        80
       ]
     },
     {
@@ -1477,6 +1511,16 @@
           ],
           "flinches": 2
         }
+      ],
+      "flinch_thresholds": [
+        130,
+        100,
+        100,
+        100,
+        100,
+        100,
+        80,
+        80
       ]
     },
     {
@@ -1905,6 +1949,17 @@
           ],
           "flinches": 2
         }
+      ],
+      "flinch_thresholds": [
+        160,
+        150,
+        150,
+        180,
+        180,
+        100,
+        200,
+        150,
+        140
       ]
     },
     {
@@ -1991,7 +2046,18 @@
           "ko": "0"
         }
       },
-      "base_hp": 3800
+      "base_hp": 3800,
+      "flinch_thresholds": [
+        160,
+        150,
+        150,
+        180,
+        180,
+        100,
+        200,
+        150,
+        140
+      ]
     },
     {
       "name": "Gypceros",
@@ -2387,6 +2453,16 @@
           ],
           "flinches": 2
         }
+      ],
+      "flinch_thresholds": [
+        150,
+        100,
+        100,
+        120,
+        120,
+        80,
+        130,
+        80
       ]
     },
     {
@@ -2730,6 +2806,16 @@
           ],
           "flinches": 2
         }
+      ],
+      "flinch_thresholds": [
+        150,
+        100,
+        100,
+        120,
+        120,
+        80,
+        130,
+        80
       ]
     },
     {
@@ -2994,6 +3080,16 @@
           ],
           "flinches": 2
         }
+      ],
+      "flinch_thresholds": [
+        130,
+        100,
+        100,
+        100,
+        100,
+        100,
+        80,
+        80
       ]
     }
   ]

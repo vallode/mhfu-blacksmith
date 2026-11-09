@@ -87,7 +87,10 @@
           "ko": "200"
         }
       },
-      "base_hp": 120
+      "base_hp": 120,
+      "flinch_thresholds": [
+        100
+      ]
     },
     {
       "name": "Daimyo Hermitaur",
@@ -530,6 +533,17 @@
           "flinches": 2,
           "all_parts": true
         }
+      ],
+      "flinch_thresholds": [
+        150,
+        100,
+        200,
+        150,
+        150,
+        100,
+        100,
+        100,
+        200
       ]
     },
     {
@@ -717,6 +731,17 @@
           "flinches": 2,
           "all_parts": true
         }
+      ],
+      "flinch_thresholds": [
+        150,
+        100,
+        200,
+        150,
+        150,
+        100,
+        100,
+        100,
+        200
       ]
     },
     {
@@ -810,7 +835,10 @@
           "ko": "200"
         }
       },
-      "base_hp": 150
+      "base_hp": 150,
+      "flinch_thresholds": [
+        130
+      ]
     },
     {
       "name": "Shogun Ceanataur",
@@ -1318,6 +1346,16 @@
           ],
           "flinches": 1
         }
+      ],
+      "flinch_thresholds": [
+        150,
+        150,
+        200,
+        200,
+        180,
+        150,
+        100,
+        100
       ]
     },
     {
@@ -1493,6 +1531,16 @@
           ],
           "flinches": 1
         }
+      ],
+      "flinch_thresholds": [
+        150,
+        150,
+        200,
+        200,
+        180,
+        150,
+        100,
+        100
       ]
     },
     {
@@ -1579,7 +1627,17 @@
           "ko": "0"
         }
       },
-      "base_hp": 20000
+      "base_hp": 20000,
+      "flinch_thresholds": [
+        400,
+        800,
+        1000,
+        500,
+        500,
+        500,
+        500,
+        880
+      ]
     }
   ]
 }

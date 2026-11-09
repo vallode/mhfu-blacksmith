@@ -11,7 +11,8 @@
  * the `ItemID` enum name. `base_hp` is the chunk's base HP; `tolerances`
  * has no committed counterpart yet. `breaks` lists the parts behind each
  * of the monster's break rewards (`monsters/breaks.ts`, `overlay/breaks.ts`),
- * named after its `break …` drop group.
+ * named after its `break …` drop group. `flinch_thresholds` is each body
+ * part's flinch threshold (`hitzones.ts` `readFlinchThresholds`).
  *
  * Monsters are named by the `emID` enum, so `compare` recovers their IDs the
  * same way it does for equipment.
@@ -52,6 +53,8 @@ export interface EmittedMonster {
   drops?: Record<string, Record<string, EmittedDrop[]>>;
   tolerances: MonsterChunk["tolerances"];
   breaks?: EmittedBreak[];
+  /** Damage each body part (hitbox capsule `part`) takes before a flinch; null: no such part. */
+  flinch_thresholds?: (number | null)[];
 }
 
 /** One break reward and the body parts behind it. */
@@ -163,6 +166,7 @@ export function emitMonsters(tables: MonsterTables): EmitOutput {
       base_hp: chunk.baseHp,
       tolerances: chunk.tolerances,
     };
+    if (chunk.flinchThresholds) monster.flinch_thresholds = chunk.flinchThresholds;
 
     if (entry.hitzones && chunk.hitzones) {
       const hitzones: Record<string, Record<string, number>> = {};

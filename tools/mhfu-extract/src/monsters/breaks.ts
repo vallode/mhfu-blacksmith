@@ -32,10 +32,14 @@
  */
 import type { BinaryReader } from "../binary/reader.js";
 import type { OvlFile } from "../container/ovl.js";
-import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "./hitzones.js";
+import {
+  FLINCH_THRESHOLD_POINTER_OFFSET,
+  MONSTER_CHUNK_COUNT,
+  MONSTER_CHUNK_SIZE,
+} from "./hitzones.js";
 
-/** `emChunk` `+0x1B4`: the per-monster part durability record (`PartDurabilityPTR`). */
-export const PART_DURABILITY_POINTER_OFFSET = 0x1b4;
+/** `emChunk` `+0x1B4`: the per-monster flinch threshold record (`PartDurabilityPTR`, `hitzones.ts`). */
+export const PART_DURABILITY_POINTER_OFFSET = FLINCH_THRESHOLD_POINTER_OFFSET;
 export const PART_DURABILITY_RECORD_SIZE = 0x18;
 export const BREAK_RECORD_SIZE = 0x20;
 const NO_BREAK = 0xffff;

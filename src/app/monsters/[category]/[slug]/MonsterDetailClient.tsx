@@ -14,7 +14,7 @@ import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
-import { breakIndex, breakKey } from "@/lib/monster-breaks";
+import { breakIndex, breakKey, flinchThreshold } from "@/lib/monster-breaks";
 import { formatRank } from "@/lib/monster-drops";
 import { questsWithMonster } from "@/lib/quests";
 import { useMonsterHitboxes, useMonsterModel, type HitboxCapsule } from "@/lib/models";
@@ -42,6 +42,14 @@ const HITZONE_LABELS: Record<string, string> = {
 
 /** A hitzone part's colour on the model, by its place in the hitzone table. */
 const hitboxColor = (index: number) => `var(--color-hitbox-${(index % 8) + 1})`;
+
+/**
+ * The flinch column is wider than the value columns: it can hold a range
+ * ("100–160"). A phone has no room for it; there the value goes under the
+ * part name (`flinchBelow`).
+ */
+const flinchColumn = "w-cells-8 mobile:hidden";
+const flinchBelow = "hidden text-fine text-muted mobile:block";
 
 /** Hitbox opacity: all shown, a highlighted part, and the rest while one is highlighted. */
 const HITBOX_OPACITY = { shown: 0.35, highlighted: 0.6, dimmed: 0.08 };
@@ -115,6 +123,22 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     );
   }, [hitboxes, monster?.hitzones, breaks]);
 
+  // Each hitzone row's flinch threshold, from the body parts of its hitboxes;
+  // null (no column) without hitboxes or thresholds.
+  const flinchByRow = useMemo<Record<string, string | null> | null>(() => {
+    const thresholds = monster?.flinch_thresholds;
+    if (!hitboxes || !thresholds || !monster?.hitzones) return null;
+    return Object.fromEntries(
+      Object.keys(monster.hitzones).map((name) => [
+        name,
+        flinchThreshold(
+          thresholds,
+          hitboxes.filter((c) => c.parts.includes(name)).map((c) => c.part),
+        ),
+      ]),
+    );
+  }, [hitboxes, monster?.flinch_thresholds, monster?.hitzones]);
+
   // The nav and the list of monsters on the left come from the monsters
   // layout (MonsterShell), which stays mounted; this is only the detail panel.
   if (loading || !monster) {
@@ -148,10 +172,14 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 <table className={hitzoneTable}>
                   <thead>
                     <tr>
-                      <th>Part</th>
+                      <th>
+                        Part
+                        {flinchByRow && <span className={flinchBelow}>Flinch</span>}
+                      </th>
                       {HITZONE_COLS.map((col) => (
                         <th key={col}>{HITZONE_LABELS[col]}</th>
                       ))}
+                      {flinchByRow && <th className={flinchColumn}>Flinch</th>}
                     </tr>
                   </thead>
                   <tbody>
@@ -172,6 +200,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                               ◆<span className="sr-only"> (breakable)</span>
                             </span>
                           )}
+                          {flinchByRow?.[part] && (
+                            <span className={flinchBelow}>{flinchByRow[part]}</span>
+                          )}
                         </td>
                         {HITZONE_COLS.map((col) => {
                           const value = values[col];
@@ -182,16 +213,27 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                               className={cn(
                                 value !== undefined && n === 0 && hitzoneZero,
                                 value !== undefined && n === bestHitzone[col] && hitzoneBest,
+                                // On a phone KO ends the row (the flinch column is hidden).
+                                col === "ko" && flinchByRow && "mobile:after:hidden",
                               )}
                             >
                               {value ?? "—"}
                             </td>
                           );
                         })}
+                        {flinchByRow && (
+                          <td className={flinchColumn}>{flinchByRow[part] ?? "—"}</td>
+                        )}
                       </tr>
                     ))}
                   </tbody>
                 </table>
+                {flinchByRow && (
+                  <p className="mt-[0.8rem] text-fine leading-[1.25] whitespace-normal text-white/60">
+                    Flinch: damage a part takes before the monster flinches, a range where the row
+                    covers several parts. G-rank quests can raise it up to ×2.5.
+                  </p>
+                )}
                 {breaks.length > 0 && (
                   <MonsterBreaks
                     breaks={breaks}
