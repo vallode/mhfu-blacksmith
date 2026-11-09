@@ -389,6 +389,10 @@ Open questions:
   monster's own `overlay/emNN.ovl` or elsewhere), and the target of
   `CollisionPTR`: 0x800 bytes as hex and f32s, plus 0x200 bytes at each
   pointer if the target starts with a pointer list.
+- `raw/parts.json`: for working out breakable parts, each `MonChunk`'s
+  `emPTRChunk` (the 28 u32s at `+0x158`; the hexpat names the 24th, `+0x1B4`,
+  `PartDurabilityPTR`) and 0x200 bytes at each pointer's target, plus
+  0x100 bytes at each pointer if the target starts with a pointer list.
 - `raw/emmodel.json`: each `emmodel/emNN.pac`'s entries (size, magic, first
   0x40 bytes) and its PMO header, mesh records and vertex-group records,
   with each group's vertex count, weights per vertex and position bounds.
