@@ -4,6 +4,7 @@ import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { test } from "node:test";
 import { decryptEboot, EbootDecryptionError } from "../src/container/eboot.js";
+import { encryptGameEboot } from "./prx-fixture.js";
 
 const ELF_HEADER = Buffer.from([0x7f, 0x45, 0x4c, 0x46, 0, 0, 0, 0]);
 const PSP_HEADER = Buffer.from([0x7e, 0x50, 0x53, 0x50, 0, 0, 0, 0]);
@@ -51,5 +52,22 @@ test("decryptEboot surfaces a clear error when pspdecrypt isn't found", async ()
       assert.match(err.message, /not found on PATH/);
       return true;
     },
+  );
+});
+
+test("decryptEboot decrypts a game EBOOT in-process, without pspdecrypt", async () => {
+  const elf = Buffer.concat([ELF_HEADER, Buffer.alloc(3000, 7)]);
+  const result = await decryptEboot(encryptGameEboot(elf), {
+    pspdecryptBin: "definitely-not-a-real-binary-xyz",
+  });
+  assert.deepEqual(result, elf);
+});
+
+test("decryptEboot without external tools says why it couldn't decrypt", async () => {
+  const raw = encryptGameEboot(Buffer.concat([ELF_HEADER, Buffer.alloc(100)]));
+  raw.writeUInt32LE(0x12345678, 0xd0);
+  await assert.rejects(
+    () => decryptEboot(raw, { external: false }),
+    /Couldn't decrypt EBOOT.BIN: Unknown EBOOT tag 0x12345678/,
   );
 });

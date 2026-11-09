@@ -87,6 +87,59 @@ export interface EquipmentCreateTables {
   decoration: EquipCreateEntry[];
 }
 
+/** `EquipmentCreateTables`' sections in table order, with their entry counts. */
+const EQUIP_CREATE_SECTIONS: readonly (readonly [keyof EquipmentCreateTables, number])[] = [
+  ["head", 437],
+  ["chest", 435],
+  ["arm", 426],
+  ["waist", 424],
+  ["leg", 434],
+  ["greatSwordLongSword", 131],
+  ["lanceGunlance", 117],
+  ["swordAndShieldDualBlades", 131],
+  ["hammerHuntingHorn", 124],
+  ["ancientRustBlademaster", 8],
+  ["lightBowgun", 135],
+  ["heavyBowgun", 107],
+  ["bow", 61],
+  ["ancientRustGunner", 2],
+  ["decoration", 192],
+];
+
+/** The hidden u16 TERM plus `NullCreate` entry that come after these sections. */
+const EQUIP_CREATE_FILLER_AFTER = new Set<keyof EquipmentCreateTables>([
+  "leg",
+  "ancientRustGunner",
+]);
+
+export interface TableSection {
+  /** File offset of the section's first entry. */
+  offset: number;
+  count: number;
+}
+
+/**
+ * Where each EquipmentCreate section starts in the EBOOT, for tools that
+ * patch entries in place: entry `i` of a section is at
+ * `offset + i * EQUIP_CREATE_ENTRY_SIZE`. See readEquipmentCreate() for `resolver`.
+ */
+export function equipmentCreateLayout(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): Record<keyof EquipmentCreateTables, TableSection> {
+  let offset = resolveTableOffset("equipmentCreate", reader, resolver);
+  const layout = {} as Record<keyof EquipmentCreateTables, TableSection>;
+  for (const [name, count] of EQUIP_CREATE_SECTIONS) {
+    layout[name] = { offset, count };
+    offset += count * EQUIP_CREATE_ENTRY_SIZE;
+    if (EQUIP_CREATE_FILLER_AFTER.has(name)) {
+      offset += 2; // hidden u16 TERM / TERM2
+      offset += EQUIP_CREATE_ENTRY_SIZE; // hidden EquipCreate<0> NullCreate1 / NullCreate2
+    }
+  }
+  return layout;
+}
+
 /**
  * EquipmentCreate (EquipmentCreateTable) @ 0x08938D14. `resolver` defaults
  * to JP's static table — pass e.g. `MHP2G_EU_RESOLVER` (games/mhp2g.ts) to
@@ -97,54 +150,13 @@ export function readEquipmentCreate(
   reader: BinaryReader,
   resolver?: TableAddressResolver,
 ): EquipmentCreateTables {
-  let offset = resolveTableOffset("equipmentCreate", reader, resolver);
-  const next = (count: number): EquipCreateEntry[] => {
-    const { entries, nextOffset } = readEquipCreateSection(reader, offset, count);
-    offset = nextOffset;
-    return entries;
-  };
-
-  const head = next(437);
-  const chest = next(435);
-  const arm = next(426);
-  const waist = next(424);
-  const leg = next(434);
-
-  offset += 2; // hidden u16 TERM
-  offset += EQUIP_CREATE_ENTRY_SIZE; // hidden EquipCreate<0> NullCreate1[1]
-
-  const greatSwordLongSword = next(131);
-  const lanceGunlance = next(117);
-  const swordAndShieldDualBlades = next(131);
-  const hammerHuntingHorn = next(124);
-  const ancientRustBlademaster = next(8);
-  const lightBowgun = next(135);
-  const heavyBowgun = next(107);
-  const bow = next(61);
-  const ancientRustGunner = next(2);
-
-  offset += 2; // hidden u16 TERM2
-  offset += EQUIP_CREATE_ENTRY_SIZE; // hidden EquipCreate<0> NullCreate2[1]
-
-  const decoration = next(192);
-
-  return {
-    head,
-    chest,
-    arm,
-    waist,
-    leg,
-    greatSwordLongSword,
-    lanceGunlance,
-    swordAndShieldDualBlades,
-    hammerHuntingHorn,
-    ancientRustBlademaster,
-    lightBowgun,
-    heavyBowgun,
-    bow,
-    ancientRustGunner,
-    decoration,
-  };
+  const layout = equipmentCreateLayout(reader, resolver);
+  const tables = {} as EquipmentCreateTables;
+  for (const [name] of EQUIP_CREATE_SECTIONS) {
+    const { offset, count } = layout[name];
+    tables[name] = readEquipCreateSection(reader, offset, count).entries;
+  }
+  return tables;
 }
 
 export interface EquipUpgradeEntry {
@@ -171,34 +183,40 @@ export interface EquipmentUpgradeTables {
   armorSphere: EquipUpgradeEntry[];
 }
 
+/**
+ * Where each EquipmentUpgrade section starts in the EBOOT: entry `i` of a
+ * section is at `offset + i * EQUIP_UPGRADE_ENTRY_SIZE`. See readEquipmentCreate() for `resolver`.
+ */
+export function equipmentUpgradeLayout(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): Record<keyof EquipmentUpgradeTables, TableSection> {
+  let offset = resolveTableOffset("equipmentUpgrade", reader, resolver);
+  offset += EQUIP_UPGRADE_ENTRY_SIZE; // hidden EquipUpgrade<1> NullUpgrade[1]
+  const blademaster = { offset, count: TABLE_COUNTS.weaponsBlademaster };
+  offset += TABLE_COUNTS.weaponsBlademaster * EQUIP_UPGRADE_ENTRY_SIZE;
+  const gunner = { offset, count: TABLE_COUNTS.weaponsGunner };
+  offset += TABLE_COUNTS.weaponsGunner * EQUIP_UPGRADE_ENTRY_SIZE;
+  offset += 49 * 4; // hidden u32 Unkn[49]
+  const armorSphere = { offset, count: 7 };
+  return { blademaster, gunner, armorSphere };
+}
+
 /** EquipmentUpgrade (EquipUpgradeTable) @ 0x0894CEA4. See readEquipmentCreate() for `resolver`. */
 export function readEquipmentUpgrade(
   reader: BinaryReader,
   resolver?: TableAddressResolver,
 ): EquipmentUpgradeTables {
-  let offset = resolveTableOffset("equipmentUpgrade", reader, resolver);
-  offset += EQUIP_UPGRADE_ENTRY_SIZE; // hidden EquipUpgrade<1> NullUpgrade[1]
-
-  const blademaster: EquipUpgradeEntry[] = [];
-  for (let i = 0; i < TABLE_COUNTS.weaponsBlademaster; i++) {
-    blademaster.push(readEquipUpgradeEntry(reader, offset + i * EQUIP_UPGRADE_ENTRY_SIZE, i));
-  }
-  offset += TABLE_COUNTS.weaponsBlademaster * EQUIP_UPGRADE_ENTRY_SIZE;
-
-  const gunner: EquipUpgradeEntry[] = [];
-  for (let i = 0; i < TABLE_COUNTS.weaponsGunner; i++) {
-    gunner.push(readEquipUpgradeEntry(reader, offset + i * EQUIP_UPGRADE_ENTRY_SIZE, i));
-  }
-  offset += TABLE_COUNTS.weaponsGunner * EQUIP_UPGRADE_ENTRY_SIZE;
-
-  offset += 49 * 4; // hidden u32 Unkn[49]
-
-  const armorSphere: EquipUpgradeEntry[] = [];
-  for (let i = 0; i < 7; i++) {
-    armorSphere.push(readEquipUpgradeEntry(reader, offset + i * EQUIP_UPGRADE_ENTRY_SIZE, i));
-  }
-
-  return { blademaster, gunner, armorSphere };
+  const layout = equipmentUpgradeLayout(reader, resolver);
+  const read = ({ offset, count }: TableSection): EquipUpgradeEntry[] =>
+    Array.from({ length: count }, (_, i) =>
+      readEquipUpgradeEntry(reader, offset + i * EQUIP_UPGRADE_ENTRY_SIZE, i),
+    );
+  return {
+    blademaster: read(layout.blademaster),
+    gunner: read(layout.gunner),
+    armorSphere: read(layout.armorSphere),
+  };
 }
 
 /**

@@ -56,6 +56,31 @@ export class StaticOffsetResolver implements TableAddressResolver {
   }
 }
 
+/**
+ * Resolves every table against one buffer, the unedited EBOOT, once, and
+ * reuses the offset after. A tool that edits the EBOOT (randomfu's
+ * shuffles) must not search the edited buffer: a signature is a table's
+ * own bytes, so editing the table makes it stop matching. Tables don't move
+ * when edited, so the first answer stays right.
+ */
+export class PinnedResolver implements TableAddressResolver {
+  private readonly offsets = new Map<string, number>();
+
+  constructor(
+    private readonly inner: TableAddressResolver,
+    private readonly original: Buffer,
+  ) {}
+
+  resolve(table: string): number {
+    let offset = this.offsets.get(table);
+    if (offset === undefined) {
+      offset = this.inner.resolve(table, this.original);
+      this.offsets.set(table, offset);
+    }
+    return offset;
+  }
+}
+
 /** A region-independent byte pattern used to locate one table within a buffer. */
 export interface TableSignature {
   /** The exact bytes to search for — must be region-independent (e.g. raw stat values, not pointers or localized strings). */

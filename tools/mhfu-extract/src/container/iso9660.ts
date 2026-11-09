@@ -17,11 +17,14 @@ export interface DirEntry {
   isDirectory: boolean;
   lba: number;
   size: number;
+  /** Byte offset of this entry's directory record in the image, for tools that patch `lba`/`size` in place. */
+  recordOffset: number;
 }
 
 function parseDirectoryRecord(
   buf: Buffer,
   offset: number,
+  bufImageOffset: number,
 ): { entry: DirEntry; recordLength: number } | null {
   const recordLength = buf.readUInt8(offset);
   if (recordLength === 0) return null;
@@ -38,7 +41,10 @@ function parseDirectoryRecord(
   const semi = name.indexOf(";");
   if (semi !== -1) name = name.slice(0, semi);
 
-  return { entry: { name, isDirectory, lba, size }, recordLength };
+  return {
+    entry: { name, isDirectory, lba, size, recordOffset: bufImageOffset + offset },
+    recordLength,
+  };
 }
 
 export class Iso9660Reader {
@@ -50,7 +56,7 @@ export class Iso9660Reader {
       throw new Error("Not an ISO 9660 image (bad primary volume descriptor)");
     }
     const rootRecordOffset = 156;
-    const parsed = parseDirectoryRecord(pvd, rootRecordOffset);
+    const parsed = parseDirectoryRecord(pvd, rootRecordOffset, PVD_LBA * SECTOR_SIZE);
     if (!parsed) throw new Error("Missing root directory record in PVD");
     this.rootEntry = parsed.entry;
   }
@@ -68,7 +74,7 @@ export class Iso9660Reader {
       let offset = sector * SECTOR_SIZE;
       const sectorEnd = offset + SECTOR_SIZE;
       while (offset < sectorEnd) {
-        const parsed = parseDirectoryRecord(raw, offset);
+        const parsed = parseDirectoryRecord(raw, offset, dir.lba * SECTOR_SIZE);
         if (!parsed) break; // padding to end of sector
         // Skip the "." and ".." self/parent entries (identifier length 1,
         // byte value 0x00 or 0x01).

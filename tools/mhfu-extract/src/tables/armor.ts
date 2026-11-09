@@ -188,20 +188,31 @@ function readArmorValueEntry(reader: BinaryReader, off: number, index: number): 
  *   see module doc comment above for why armor needs this different
  *   strategy from every other table.
  */
+/** File offset of each slot's `ArmorValues` array; entry `i` is at `+ i * ARMOR_ENTRY_SIZE`. See readArmorValues(). */
+export function armorValuesOffsets(
+  reader: BinaryReader,
+  resolver?: TableAddressResolver,
+): Record<ArmorSlot, number> {
+  const result = {} as Record<ArmorSlot, number>;
+  const ptrTableOffset = resolver ? undefined : tableOffset("armorValuePointers");
+  for (const slot of ARMOR_SLOTS) {
+    result[slot] = resolver
+      ? resolver.resolve(ARMOR_SLOT_TABLE_NAMES[slot], reader.buf)
+      : readPointer(reader, ptrTableOffset! + ARMOR_POINTER_INDEX[slot] * 4, JP_BASE_ADDRESS);
+  }
+  return result;
+}
+
 export function readArmorValues(
   reader: BinaryReader,
   resolver?: TableAddressResolver,
 ): Record<ArmorSlot, ArmorValueEntry[]> {
   const result = {} as Record<ArmorSlot, ArmorValueEntry[]>;
-  const ptrTableOffset = resolver ? undefined : tableOffset("armorValuePointers");
+  const offsets = armorValuesOffsets(reader, resolver);
   for (const slot of ARMOR_SLOTS) {
-    const count = ARMOR_SLOT_COUNTS[slot];
-    const arrayBase = resolver
-      ? resolver.resolve(ARMOR_SLOT_TABLE_NAMES[slot], reader.buf)
-      : readPointer(reader, ptrTableOffset! + ARMOR_POINTER_INDEX[slot] * 4, JP_BASE_ADDRESS);
     const entries: ArmorValueEntry[] = [];
-    for (let i = 0; i < count; i++) {
-      entries.push(readArmorValueEntry(reader, arrayBase + i * ARMOR_ENTRY_SIZE, i));
+    for (let i = 0; i < ARMOR_SLOT_COUNTS[slot]; i++) {
+      entries.push(readArmorValueEntry(reader, offsets[slot] + i * ARMOR_ENTRY_SIZE, i));
     }
     result[slot] = entries;
   }

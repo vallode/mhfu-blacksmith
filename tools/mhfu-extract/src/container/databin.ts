@@ -35,6 +35,11 @@ function exceptionsFor(region: Region): Set<number> {
   return region === "jp" ? JP_EXCEPTIONS : NA_EXCEPTIONS;
 }
 
+/** True if DATA.BIN entry `index` is stored unencrypted on `region`'s disc (see the exception lists above). */
+export function isStoredRaw(index: number, region: Region): boolean {
+  return exceptionsFor(region).has(index);
+}
+
 class LcgKeyStream {
   private key0: number;
   private key1: number;
