@@ -24,10 +24,16 @@ const dist = path.join(web, "dist");
 execFileSync(process.execPath, [path.join(web, "build.mjs")], { stdio: "inherit" });
 
 const dir = tempDir();
+// The disc's EBOOT is encrypted, as on a real disc, so the app decrypts it itself.
 const isoPath = path.join(dir, "MHFU test disc.iso");
-writeFileSync(isoPath, buildFixtureDisc());
+writeFileSync(isoPath, buildFixtureDisc({ ebootTag: 0xd91609f0 }));
+// A disc whose EBOOT tag the app doesn't know, which needs a PPSSPP dump instead.
+const unknownTagIso = path.join(dir, "Unknown tag.iso");
+writeFileSync(unknownTagIso, buildFixtureDisc({ ebootTag: 0x12345678 }));
+const plainIso = path.join(dir, "plain.iso");
+writeFileSync(plainIso, buildFixtureDisc());
 const ebootPath = path.join(dir, "ULES01213_EBOOT.BIN");
-const source = new FileSource(isoPath);
+const source = new FileSource(plainIso);
 writeFileSync(ebootPath, new Iso9660Reader(source).readFile("/PSP_GAME/SYSDIR/EBOOT.BIN"));
 source.close();
 
@@ -39,12 +45,9 @@ const settings = applySettings(defaultSettings("WEB-E2E"), {
 });
 const settingsString = encodeSettings(settings);
 
-// The CLI's output for the same settings.
+// The CLI's output for the same disc and settings: it decrypts the EBOOT in-process too.
 const cliOut = path.join(dir, "cli.iso");
-await runRandomizer(
-  { iso: isoPath, out: cliOut, settings, eboot: ebootPath, force: true },
-  () => {},
-);
+await runRandomizer({ iso: isoPath, out: cliOut, settings, force: true }, () => {});
 
 const types: Record<string, string> = {
   ".html": "text/html",
@@ -98,20 +101,13 @@ try {
   await page.click("#apply-paste");
   assert.match((await page.textContent("#share-status"))!, /Loaded the settings string/);
 
-  // Through every option step to the EBOOT, which these settings need.
-  for (const name of ["Logic", "Rewards", "Gathering", "Smithy", "Shops", "EBOOT"]) {
+  // Through every option step to the review: these settings change the EBOOT, but the
+  // app decrypts the disc's own, so there's no EBOOT step.
+  for (const name of ["Logic", "Rewards", "Gathering", "Smithy", "Shops", "Review"]) {
     await page.click("#next");
     assert.equal(await title(), name);
   }
-  await page.click("#next");
-  assert.match((await page.textContent("#nav-status"))!, /Add your decrypted EBOOT/);
-  await page.setInputFiles("#eboot", ebootPath);
-  await page.waitForFunction(() =>
-    /decrypted \(ELF\)/.test(document.getElementById("eboot-status")!.textContent ?? ""),
-  );
-  await page.click("#next");
-
-  assert.equal(await title(), "Review");
+  assert.match((await page.textContent("#summary"))!, /Decrypted from your disc/);
   assert.equal(
     await page.inputValue("#share"),
     settingsString,
@@ -144,8 +140,40 @@ try {
   assert.ok(!fromWeb.equals(readFileSync(isoPath)));
   const spoiler = (await page.textContent("#spoiler"))!;
   assert.match(spoiler, /Settings: RF/);
+
+  // A disc whose EBOOT the app can't decrypt asks for a PPSSPP dump, and runs with it.
+  await page.reload();
+  await page.waitForSelector("[data-key='shops.pool']", { state: "attached" });
+  await page.setInputFiles("#iso", unknownTagIso);
+  await page.waitForFunction(() =>
+    /supported/.test(document.getElementById("check-status")!.textContent ?? ""),
+  );
+  await page.click("#next");
+  await page.click("#load summary");
+  await page.fill("#paste", settingsString);
+  await page.click("#apply-paste");
+  await page.click("#skip");
+  assert.equal(await title(), "EBOOT");
+  assert.match((await page.textContent("#eboot-why"))!, /Unknown EBOOT tag 0x12345678/);
+  await page.click("#next");
+  assert.match((await page.textContent("#nav-status"))!, /Add your decrypted EBOOT/);
+  await page.setInputFiles("#eboot", ebootPath);
+  await page.waitForFunction(() =>
+    /decrypted \(ELF\)/.test(document.getElementById("eboot-status")!.textContent ?? ""),
+  );
+  await page.click("#next");
+  assert.equal(await title(), "Review");
+  await page.click("#dry-run");
+  await page.waitForFunction(
+    () => /^Preview ready/.test(document.getElementById("run-status")!.textContent ?? ""),
+    null,
+    { timeout: 60_000 },
+  );
+
   assert.deepEqual(errors, []);
-  console.log("Web app end to end: the downloaded ISO matches the CLI's byte for byte.");
+  console.log(
+    "Web app end to end: the EBOOT decrypts in the browser, the downloaded ISO matches the CLI's byte for byte, and a PPSSPP dump still works.",
+  );
 } finally {
   await browser.close();
   server.close();

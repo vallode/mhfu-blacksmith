@@ -7,6 +7,8 @@
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
+import { GAME_TAG_KEYS } from "../../mhfu-extract/src/container/prx.js";
+import { encryptGameEboot } from "../../mhfu-extract/test/prx-fixture.js";
 import { encryptDataBinBlock } from "../../mhfu-extract/src/container/databin.js";
 import {
   CAP_BREAK_POINTER_COUNT,
@@ -913,7 +915,25 @@ export const JP_RAW = new Set([
   22, 23, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
 ]);
 
-export function buildFixtureDisc(): Buffer {
+/**
+ * The fixture EBOOT, plain or encrypted. A tag decryptPrx doesn't know is
+ * written over a known one after encrypting, for a disc it can't open.
+ */
+function fixtureEboot(options: FixtureDiscOptions): Buffer {
+  const elf = buildEboot(FIXTURE_RECIPES);
+  if (options.ebootTag === undefined) return elf;
+  const known = GAME_TAG_KEYS.has(options.ebootTag);
+  const raw = encryptGameEboot(elf, { tag: known ? options.ebootTag : undefined, compress: true });
+  if (!known) raw.writeUInt32LE(options.ebootTag, 0xd0);
+  return raw;
+}
+
+export interface FixtureDiscOptions {
+  /** Encrypt the EBOOT as a game EBOOT ("~PSP") with this tag, as on a real disc. */
+  ebootTag?: number;
+}
+
+export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   const files = new Map<number, Buffer>();
   FIXTURE_QUESTS.forEach((q, i) =>
     files.set(QUEST_INDICES[i]!, buildQuestEntry(buildQuestPayload(q))),
@@ -925,7 +945,7 @@ export function buildFixtureDisc(): Buffer {
   const dataBin = buildDataBin(QUEST_INDICES.at(-1)! + 2, files, JP_RAW);
   return buildIso([
     { path: "PSP_GAME/PARAM.SFO", data: buildSfo("ULJM05500") },
-    { path: "PSP_GAME/SYSDIR/EBOOT.BIN", data: buildEboot(FIXTURE_RECIPES) },
+    { path: "PSP_GAME/SYSDIR/EBOOT.BIN", data: fixtureEboot(options) },
     { path: "PSP_GAME/USRDIR/DATA.BIN", data: dataBin },
   ]);
 }

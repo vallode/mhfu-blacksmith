@@ -2,25 +2,24 @@
  * EBOOT.BIN decryption strategy chain.
  *
  * The disc's `EBOOT.BIN` is a KIRK-CMD1-encrypted PSP executable (magic
- * `~PSP`). We don't reimplement KIRK decryption in-process yet, so this
- * tries, in order:
+ * `~PSP`). This tries, in order:
  *
  *   1. Passthrough — the buffer is already a plain ELF (magic `\x7fELF`),
  *      e.g. because the caller already decrypted it.
  *   2. `--eboot <path>` override — a pre-decrypted dump the caller supplies
  *      (e.g. from PPSSPP's Debug -> Dump Decrypted EBOOT.BIN).
- *   3. An external `pspdecrypt` binary on PATH (GPL-3.0,
+ *   3. In-process decryption of game EBOOTs (prx.ts), which also runs in
+ *      the browser.
+ *   4. An external `pspdecrypt` binary on PATH (GPL-3.0,
  *      https://github.com/John-K/pspdecrypt) — validated against real JP
- *      and EU EBOOTs, see README.
- *
- * Native in-process KIRK decryption is a possible follow-up but is real
- * cryptographic engine work, not attempted here.
+ *      and EU EBOOTs, see README — for a module prx.ts can't open.
  */
 import { execFile } from "node:child_process";
 import { mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import { join } from "node:path";
 import { promisify } from "node:util";
+import { decryptGameEboot } from "./prx.js";
 
 const execFileAsync = promisify(execFile);
 
@@ -34,6 +33,8 @@ export interface DecryptEbootOptions {
   overridePath?: string;
   /** Name or path of the pspdecrypt binary. Defaults to "pspdecrypt" (resolved via PATH). */
   pspdecryptBin?: string;
+  /** False to skip the pspdecrypt fallback (the browser, which can't run it). */
+  external?: boolean;
 }
 
 function isElf(buf: Buffer): boolean {
@@ -73,6 +74,17 @@ export async function decryptEboot(
     );
   }
 
+  let nativeError: unknown;
+  try {
+    return Buffer.from(await decryptGameEboot(raw));
+  } catch (err) {
+    nativeError = err;
+  }
+  if (options.external === false) {
+    throw new EbootDecryptionError(
+      `Couldn't decrypt EBOOT.BIN: ${nativeError instanceof Error ? nativeError.message : nativeError}`,
+    );
+  }
   return decryptViaPspdecrypt(raw, options.pspdecryptBin ?? "pspdecrypt");
 }
 

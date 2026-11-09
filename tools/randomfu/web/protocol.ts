@@ -14,6 +14,8 @@ export type Response =
       discId: string | null;
       region: string | null;
       supported: boolean;
+      /** Whether the disc's own EBOOT decrypts in the browser (null for an unsupported disc). */
+      discEboot: { ok: boolean; detail: string } | null;
       eboot: { ok: boolean; detail: string } | null;
     }
   | { type: "log"; line: string }

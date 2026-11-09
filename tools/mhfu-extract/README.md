@@ -190,21 +190,32 @@ Open:
 
 `EBOOT.BIN` on the disc is KIRK-encrypted. `unpack` tries, in order:
 
-1. Passthrough, if the file already starts with the ELF magic (i.e. you
-   already have a decrypted dump).
-2. An external `pspdecrypt` binary on `PATH`, if present.
-3. A `--eboot <path>` flag pointing at a pre-decrypted dump (e.g. from
+1. A `--eboot <path>` flag pointing at a pre-decrypted dump (e.g. from
    PPSSPP's `Debug → Dump Decrypted EBOOT.BIN`).
+2. Passthrough, if the file already starts with the ELF magic (i.e. you
+   already have a decrypted dump).
+3. In-process decryption (`src/container/prx.ts`, below).
+4. An external `pspdecrypt` binary on `PATH`, if present.
 
 If you only need `DATA.BIN`'s files (models, textures, quests), pass
 `--skip-eboot` to skip this step entirely. The manifest then records
 `"eboot": false`, and `extract` refuses to run on that output since it reads
 equipment tables from the EBOOT.
 
-Native in-process KIRK decryption is not implemented. Path 2 (external
-`pspdecrypt`, GPL-3.0, built from https://github.com/John-K/pspdecrypt) has
-been validated against both real JP and EU EBOOTs: `pspdecrypt -o out.elf
-EBOOT.BIN` produces a valid ELF.
+In-process decryption (`src/container/prx.ts`, with AES in `aes.ts`) is a
+port of the scheme game EBOOTs use, PPSSPP's "type 2" PRX decryption
+(Core/ELF/PrxDecrypter.cpp and libkirk, GPL-2.0+), with the keys published
+there for every game EBOOT tag (`0xD916xxF0` and `0x8004FD03`). It's pure
+TypeScript, so it also runs in randomfu's web app; a compressed EBOOT is
+unzipped after. KIRK 1's CMAC isn't checked, but the header's SHA-1, the
+ELF magic and the table signatures `extract` resolves all are. It's tested
+against Node's AES and FIPS-197, and on EBOOTs built by running its steps
+backwards (`test/prx-fixture.ts`); **it hasn't yet been run on a real
+disc's EBOOT.** A module it can't open falls through to path 4.
+
+Path 4 (external `pspdecrypt`, GPL-3.0, built from
+https://github.com/John-K/pspdecrypt) has been validated against both real
+JP and EU EBOOTs: `pspdecrypt -o out.elf EBOOT.BIN` produces a valid ELF.
 
 ### `DATA.BIN`
 

@@ -16,7 +16,9 @@ Early. On the EU disc, PPSSPP boots a randomized image and the smithy shows
 the shuffled recipe materials. Star-level tiers, gathering sources,
 `recipe-amounts`, `costs`, `armor` and `gathering` are so far tested only
 against the synthetic disc the tests build (`test/fixtures.ts`). A PSP
-with custom firmware isn't tested. Run `roundtrip` on a new disc first.
+with custom firmware isn't tested. Run `roundtrip` on a new disc first. In-process EBOOT
+decryption is also tested only on synthetic EBOOTs so far; until it has run
+on a real disc, a PPSSPP dump (`--eboot`) is the proven path.
 
 ## Usage
 
@@ -30,8 +32,8 @@ pnpm gui
 This starts a small server on your computer and opens a page in your
 browser (or prints its address). On it you can:
 
-- enter the paths to your disc, the output and the decrypted EBOOT, and
-  check them;
+- enter the paths to your disc and the output (and a decrypted EBOOT, if
+  the disc's can't be decrypted in-process), and check them;
 - set every option, with its explanation, or start from a preset
   (Rewards only, Full, Chaos);
 - copy the **settings string** (seed and settings in one line), load one,
@@ -50,9 +52,10 @@ websites can't use it. Keep `pnpm gui` running while you use the page.
 `web/` is the same randomizer as a static web app that runs entirely in the
 browser. It's a step-by-step builder: pick your ISO, choose a seed and a
 preset (or load a shared settings string), go through the options a group
-at a time (Logic, Rewards, Gathering, Smithy, Shops), add your PPSSPP EBOOT
-dump if those settings need it, review, and download the randomized ISO
-and spoiler log. Nothing is uploaded.
+at a time (Logic, Rewards, Gathering, Smithy, Shops), review, and download
+the randomized ISO and spoiler log. Nothing is uploaded. Settings that
+change the EBOOT decrypt the disc's own in the browser; only if that fails
+does the app ask for a PPSSPP EBOOT dump.
 
 The steps for options come from `OPTIONS`' sections (`OPTION_STEPS` in
 `web/app.ts`); a section no step lists gets a step of its own, so new
@@ -79,13 +82,17 @@ any web server). How it works:
   versions at build time (`web/shims`): SHA-1/SHA-256 (tested against
   Node's), the vendored file list and name tables (embedded), and
   `Buffer` (the `buffer` package).
-- `pnpm test:web` walks through every step with the test fixture disc and
-  EBOOT, randomizes with every shuffle on, and checks the downloaded ISO is byte for byte the
-  CLI's for the same settings. It needs Playwright's Chromium.
+- The EBOOT is decrypted in-process (`mhfu-extract/src/container/prx.ts`,
+  see its README), which runs in the worker as it does in Node.
+- `pnpm test:web` walks through every step with a fixture disc whose EBOOT
+  is encrypted like a real one, randomizes with every shuffle on, and
+  checks the downloaded ISO is byte for byte the CLI's for the same
+  settings; then a disc whose EBOOT can't be decrypted, with a dump
+  instead. It needs Playwright's Chromium.
 - CSO images aren't read in the browser yet: decompress to ISO first.
 
-It's licensed GPL-3.0-or-later like the rest of randomfu; the page links to
-the source and the build ships `LICENSE.txt`.
+It's licensed GPL-3.0-or-later like the rest of randomfu; the build ships
+`LICENSE.txt`, and its source maps carry the full source.
 
 ### The command line
 
@@ -105,10 +112,10 @@ pnpm settings --write my.json       # write every setting to a file to edit
   back to check it, and writes `random.spoiler.txt` next to the output.
   - `--dry-run` prints the spoiler log without writing an image.
   - `--spoiler <path>` writes the log somewhere else.
-  - `--eboot <path>` / `--pspdecrypt-bin <name>`: how to decrypt the EBOOT
-    for settings that edit it, as for `mhfu-extract unpack`. PPSSPP can
-    dump it: turn on "Dump Decrypted Eboot.bin on game boot" and boot the
-    game once.
+  - `--eboot <path>` / `--pspdecrypt-bin <name>`: only needed if the
+    disc's EBOOT can't be decrypted in-process (see `mhfu-extract unpack`).
+    PPSSPP can dump it: turn on "Dump Decrypted Eboot.bin on game boot" and
+    boot the game once.
   - `--force` overwrites an existing output file.
 
 Settings come from these flags, later ones winning:

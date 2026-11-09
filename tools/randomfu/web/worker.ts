@@ -5,11 +5,12 @@
  * user's file plus changed sectors. Nothing leaves the browser.
  */
 import { Buffer } from "buffer";
+import { decryptEboot } from "../../mhfu-extract/src/container/eboot.js";
 import { Iso9660Reader } from "../../mhfu-extract/src/container/iso9660.js";
 import { detectRegion, parseSfo } from "../../mhfu-extract/src/container/sfo.js";
 import type { RandomAccessSource } from "../../mhfu-extract/src/container/source.js";
 import { OverlaySource, PatchableImage } from "../src/disc/image.js";
-import { loadGame } from "../src/game/load.js";
+import { EBOOT_PATH, loadGame } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import {
   applySettings,
@@ -62,9 +63,20 @@ function openIso(file: File): BlobSource {
 
 const ELF = Buffer.from([0x7f, 0x45, 0x4c, 0x46]);
 
-function check(iso: File, eboot: File | null): Response {
+async function check(iso: File, eboot: File | null): Promise<Response> {
   const reader = new Iso9660Reader(openIso(iso));
   const { region, discId } = detectRegion(parseSfo(reader.readFile("/PSP_GAME/PARAM.SFO")));
+  const supported = region === "jp" || region === "eu";
+  // Whether the disc's own EBOOT decrypts here, so no dump is needed.
+  let discEboot: { ok: boolean; detail: string } | null = null;
+  if (supported) {
+    try {
+      await decryptEboot(reader.readFile(EBOOT_PATH), { external: false });
+      discEboot = { ok: true, detail: "decrypted from the disc" };
+    } catch (error) {
+      discEboot = { ok: false, detail: error instanceof Error ? error.message : String(error) };
+    }
+  }
   let ebootCheck: { ok: boolean; detail: string } | null = null;
   if (eboot) {
     const head = new BlobSource(eboot).read(0, Math.min(4, eboot.size));
@@ -75,7 +87,8 @@ function check(iso: File, eboot: File | null): Response {
     type: "checked",
     discId,
     region,
-    supported: region === "jp" || region === "eu",
+    supported,
+    discEboot,
     eboot: ebootCheck,
   };
 }
@@ -84,14 +97,15 @@ async function run(request: Extract<Request, { type: "run" }>): Promise<Response
   const log = (line: string) => post({ type: "log", line });
   const settings = applySettings(defaultSettings(request.settings.seed), { ...request.settings });
   const needs = needsEboot(settings);
-  if (needs && !request.eboot) {
-    throw new Error("These settings change the EBOOT: add your decrypted EBOOT dump.");
-  }
   const overlay = new OverlaySource(openIso(request.iso));
   const image = new PatchableImage(overlay);
   log("Reading the disc...");
-  const dump = needs ? new BlobSource(request.eboot!).read(0, request.eboot!.size) : undefined;
-  const game = await loadGame(overlay, image.iso, { eboot: needs ? { dump } : null });
+  // A dump if the player gave one, else the disc's own EBOOT, decrypted here.
+  const dump =
+    needs && request.eboot ? new BlobSource(request.eboot).read(0, request.eboot.size) : undefined;
+  const game = await loadGame(overlay, image.iso, {
+    eboot: needs ? (dump ? { dump } : { external: false }) : null,
+  });
   log(
     `${game.discId} (${game.region}): ${game.quests.length} quests, ${game.skippedQuests.length} skipped.`,
   );
@@ -130,7 +144,7 @@ scope.onmessage = (event) => {
   void (async () => {
     try {
       const response =
-        request.type === "check" ? check(request.iso, request.eboot) : await run(request);
+        request.type === "check" ? await check(request.iso, request.eboot) : await run(request);
       const transfer =
         response.type === "done" && response.segments
           ? response.segments.flatMap((s) => ("data" in s ? [s.data.buffer] : []))

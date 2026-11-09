@@ -42,6 +42,8 @@ export interface EbootOptions {
   /** A decrypted EBOOT dump to use instead of decrypting the disc's. */
   overridePath?: string;
   pspdecryptBin?: string;
+  /** False to only decrypt in-process, never with pspdecrypt (the browser). */
+  external?: boolean;
 }
 
 export interface GameData {

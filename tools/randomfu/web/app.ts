@@ -1,8 +1,9 @@
 /**
  * The randomfu web app's page: a step-by-step builder over the same
  * `OPTIONS` and `PRESETS` the CLI uses. The steps are the disc, the seed and
- * a preset, one step per group of option sections, the decrypted EBOOT (only
- * when the settings need it), a review, and the run.
+ * a preset, one step per group of option sections, a decrypted EBOOT dump
+ * (only when the settings change the EBOOT and the disc's own can't be
+ * decrypted in the browser), a review, and the run.
  *
  * Runs happen in a worker. The finished ISO is assembled as a Blob from
  * slices of the user's own file plus the changed bytes, so a whole disc
@@ -79,7 +80,7 @@ const OPTION_STEPS: Step[] = [
     icon: "hammer",
     sections: ["Crafting", "Costs", "Weapons", "Armor"],
     intro:
-      "What the smithy makes and what it asks for. Settings marked EBOOT need a decrypted EBOOT dump, which you'll add before randomizing.",
+      "What the smithy makes and what it asks for. Settings marked EBOOT change the game's program, which randomfu decrypts from your disc.",
   },
   {
     id: "shops",
@@ -107,7 +108,7 @@ const STEPS: Step[] = [
     title: "EBOOT",
     icon: "deco",
     tint: "var(--color-gem-cyan)",
-    when: () => needsEboot(settings),
+    when: () => ebootStepNeeded(),
   },
   { id: "review", title: "Review", icon: "ticket", tint: "var(--color-parchment)" },
   { id: "run", title: "Randomize", icon: "max" },
@@ -138,6 +139,10 @@ const urls: string[] = [];
 const visibleSteps = () => STEPS.filter((s) => !s.when || s.when());
 const discOk = () => disc?.supported === true;
 const ebootOk = () => disc?.eboot?.ok === true;
+/** The disc's own EBOOT decrypts here, so no dump is needed. */
+const ebootFromDisc = () => disc?.discEboot?.ok === true;
+/** The settings change the EBOOT and the disc's can't be decrypted here: ask for a dump. */
+const ebootStepNeeded = () => needsEboot(settings) && !ebootFromDisc();
 
 // ---------------------------------------------------------------- the worker
 
@@ -398,6 +403,7 @@ function render(): void {
   }
 
   $<HTMLTextAreaElement>("share").value = encodeSettings(settings);
+  $("eboot-why").textContent = disc?.discEboot?.detail ?? "it hasn't been checked yet";
   $("eboot-list").replaceChildren(
     ...OPTIONS.filter((o) => o.eboot && settings[o.key] === true && isActive(settings, o)).map(
       (o) => el("li", {}, o.label),
@@ -509,7 +515,9 @@ function renderSummary(preset: Preset | undefined): void {
   }
   if (needsEboot(settings)) {
     group(byId("eboot"), [
-      { text: eboot ? eboot.name : "No EBOOT yet", off: !eboot || !ebootOk() },
+      ebootFromDisc()
+        ? { text: "Decrypted from your disc" }
+        : { text: eboot ? eboot.name : "No EBOOT yet", off: !eboot || !ebootOk() },
     ]);
   }
   $("summary").replaceChildren(...groups);
@@ -526,7 +534,7 @@ function blocker(step: string): string | null {
     if (!discOk()) return "That disc isn't supported: use the EU or JP disc.";
   }
   if (step === "start" && !$<HTMLInputElement>("seed").value.trim()) return "Enter a seed.";
-  if (step === "eboot" && needsEboot(settings)) {
+  if (step === "eboot" && ebootStepNeeded()) {
     if (!eboot) return "Add your decrypted EBOOT, or turn these settings off.";
     if (checking) return "Still checking your EBOOT…";
     if (!ebootOk()) return "That EBOOT isn't decrypted: dump it with PPSSPP.";
