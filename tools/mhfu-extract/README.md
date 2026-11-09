@@ -516,6 +516,15 @@ variants 0-2), 4 (Gravios, 0, 1, 3), 3 (Yian Kut-Ku), 0x12 (Kushala Daora)
 and 0x26 or 1 (Lavasioth). So each class computes its record from its own
 code, and mapping monsters to records means decoding each class's setup.
 
+For decoding each class, `setters` lists the record copiers, found by shape
+(`CodeGraph.recordCopiers`: twelve or more loads of record byte `k` each
+followed by a store to shell byte `0x1C + k`, and the entry functions
+tail-jumping to them), and every call or tail jump (`j`, now recorded by
+`scanCode`) to one. Each comes with the caller's code (in `code`), the
+argument registers, and the vtables with a slot reaching the caller within
+two calls. `data` holds 0x40 bytes at each constant address those callers
+use (such as a class's start-of-kind array), from the overlays or the EBOOT.
+
 Still open: that per-class mapping, and what the remaining bytes mean.
 
 ## 3D models (experimental)

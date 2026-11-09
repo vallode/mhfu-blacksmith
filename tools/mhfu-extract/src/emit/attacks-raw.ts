@@ -104,6 +104,21 @@ export interface SpawnSite {
   monster?: { emId: number; at: string; depth: number };
 }
 
+/** A call or tail jump to a record copier. */
+export interface SetterSite {
+  file: string;
+  offset: number;
+  /** The calling function; its code is in `code` under `codeKey`. */
+  func: number;
+  codeKey: string;
+  kind: "jal" | "j";
+  /** The copier reached, as "file:0xoffset". */
+  target: string;
+  args: (string | null)[];
+  /** Vtables (of `spawners`) with a slot reaching the caller within two calls. */
+  classes: string[];
+}
+
 /** A vtable entry: the function it points at and the attack tables that function uses. */
 export interface VtableSlot {
   slot: number;
@@ -186,8 +201,19 @@ export interface AttackRawDump {
    * whose vtable reaches an attack table first. Probe output.
    */
   spawners?: Spawner[];
-  /** Code by "file:0xoffset" (`FUNCTION_BYTES` each), for the spawners' inits. */
+  /** Code by "file:0xoffset", for the spawners' inits and the setters' callers. */
   code?: Record<string, string>;
+  /**
+   * The record copiers (`CodeGraph.recordCopiers`) and every call or tail
+   * jump to them, for decoding how each shell class picks its record. Probe
+   * output.
+   */
+  setters?: {
+    copiers: { file: string; offset: number; entry: boolean }[];
+    sites: SetterSite[];
+  };
+  /** `DATA_BYTES` at each constant address the setters' callers use, by "file:0xoffset". */
+  data?: Record<string, string>;
   files: {
     name: string;
     emId?: number;
@@ -203,6 +229,10 @@ const AFTER = 0x200;
 const FUNCTION_BYTES = 0x400;
 const CALLEE_DEPTH = 2;
 const MAX_CALLEES = 80;
+/** Code dumped per setter caller (up to its end), and data per constant address. */
+const SETTER_CODE_BYTES = 0x800;
+const DATA_BYTES = 0x40;
+const MAX_DATA_BLOCKS = 800;
 /** Vtable entries read, and how many of the first 8 must be functions. */
 const VTABLE_WORDS = 24;
 const VTABLE_MIN_FUNCTIONS = 3;
@@ -541,6 +571,80 @@ function findSpawners(
   return kept;
 }
 
+/**
+ * Every call or tail jump to a record copier, with the caller's code, its
+ * argument registers, the classes reaching it, and the data it reads.
+ */
+function findSetters(
+  graph: CodeGraph,
+  files: ReadonlyMap<string, SearchFile>,
+  spawners: readonly Spawner[],
+  eboot: EbootImage | null,
+  code: Record<string, string>,
+  data: Record<string, string>,
+): NonNullable<AttackRawDump["setters"]> {
+  const copiers = graph.recordCopiers();
+  // Vtables by the functions in their slots.
+  const vtablesBySlot = new Map<string, Set<string>>();
+  for (const spawner of spawners) {
+    for (const slot of spawner.slots) {
+      if (slot.file === undefined) continue;
+      const key = `${slot.file}:${slot.offset}`;
+      const set = vtablesBySlot.get(key) ?? new Set<string>();
+      set.add(spawner.vtable);
+      vtablesBySlot.set(key, set);
+    }
+  }
+  const dumped = new Set<string>();
+  const sites: SetterSite[] = [];
+  for (const copier of copiers) {
+    for (const site of graph.sitesTo(copier.file, copier.offset)) {
+      const end = Math.min(graph.funcEnd(site.file, site.func), site.func + SETTER_CODE_BYTES);
+      const codeKey = `${site.file}:${hex(site.func)}`;
+      if (!(codeKey in code)) {
+        code[codeKey] = files.get(site.file)!.buf.subarray(site.func, end).toString("hex");
+      }
+      if (!dumped.has(codeKey)) {
+        dumped.add(codeKey);
+        for (const { address } of graph.addressesIn(site.file, site.func, end)) {
+          if (Object.keys(data).length >= MAX_DATA_BLOCKS) break;
+          const where = graph.locate(address, site.file)[0];
+          if (where) {
+            const key = `${where.file}:${hex(where.offset)}`;
+            if (!(key in data)) {
+              data[key] = files
+                .get(where.file)!
+                .buf.subarray(where.offset, where.offset + DATA_BYTES)
+                .toString("hex");
+            }
+          } else if (eboot) {
+            const at = address - eboot.base;
+            const key = `eboot:${hex(at)}`;
+            if (at >= 0 && at < eboot.buf.length && !(key in data)) {
+              data[key] = eboot.buf.subarray(at, at + DATA_BYTES).toString("hex");
+            }
+          }
+        }
+      }
+      const classes = new Set<string>();
+      for (const fn of graph.reachers(site.file, site.func, 2)) {
+        for (const vt of vtablesBySlot.get(`${fn.file}:${fn.offset}`) ?? []) classes.add(vt);
+      }
+      sites.push({
+        file: site.file,
+        offset: site.offset,
+        func: site.func,
+        codeKey,
+        kind: site.kind,
+        target: `${copier.file}:${hex(copier.offset)}`,
+        args: site.args.map((a) => (a === null ? null : hex(a))),
+        classes: [...classes],
+      });
+    }
+  }
+  return { copiers, sites };
+}
+
 /** How far `rel` is from the table [0, size): 0 inside it. */
 const distance = (rel: number, size: number) => (rel < 0 ? -rel : rel >= size ? rel - size + 1 : 0);
 
@@ -591,15 +695,16 @@ export function dumpAttacksRaw(
     }
   }
   const code: Record<string, string> = {};
+  const data: Record<string, string> = {};
+  if (!graph) return { files: dumped };
+  const spawners = findSpawners(graph, byName, tablesByUser, eboot, code);
   return {
-    ...(graph
-      ? {
-          scan: graph.stats(),
-          callees: calleeCode(graph, byName, users),
-          spawners: findSpawners(graph, byName, tablesByUser, eboot, code),
-          code,
-        }
-      : {}),
+    scan: graph.stats(),
+    callees: calleeCode(graph, byName, users),
+    spawners,
+    setters: findSetters(graph, byName, spawners, eboot, code, data),
+    code,
+    data,
     files: dumped,
   };
 }

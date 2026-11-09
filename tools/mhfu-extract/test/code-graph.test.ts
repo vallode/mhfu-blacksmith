@@ -15,6 +15,9 @@ const [A0, A1, A2, A3, V0, V1, RA, SP] = [4, 5, 6, 7, 2, 3, 31, 29];
 const lui = (rt: number, imm: number) => ((0x0f << 26) | (rt << 16) | (imm & 0xffff)) >>> 0;
 const addiu = (rt: number, rs: number, imm: number) =>
   ((0x09 << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
+const sbOp = (rt: number, imm: number, rs: number) =>
+  ((0x28 << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
+const j = (target: number) => ((0x02 << 26) | ((target >>> 2) & 0x03ffffff)) >>> 0;
 const sw = (rt: number, imm: number, rs: number) =>
   ((0x2b << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
 const lbu = (rt: number, imm: number, rs: number) =>
@@ -224,7 +227,29 @@ test("dumpAttacksRaw finds constructors, their vtables' attack tables and their 
   const init = after + 0x60;
   const ctor = after + 0x80;
   const ctor2 = after + 0xc0;
-  writeWords(task, u, [PROLOGUE, ...loadAddress(A0, at(table + ATTACK_RECORD_SIZE)), JR_RA, NOP]);
+  // The record copier C (record byte k to shell byte 0x1C + k) and its entry E.
+  const copier = after + 0x200 + 5 * ATTACK_RECORD_SIZE + 0x10;
+  const entry = copier - 0x10;
+  writeWords(task, copier, [
+    PROLOGUE,
+    ...Array.from({ length: 12 }, (_, k) => [lbu(A3, k, V0), sbOp(A3, 0x1c + k, A0)]).flat(),
+    JR_RA,
+    NOP,
+  ]);
+  writeWords(task, entry, [sw(A3, 200, A0), j(at(copier)), NOP]);
+  // U: reads a per-kind array, builds a record's address, calls E with kind 2.
+  const kinds = after + 0x1c0;
+  writeWords(task, kinds, [0x11223344]);
+  writeWords(task, u, [
+    PROLOGUE,
+    ...loadAddress(V0, at(kinds)),
+    ...loadAddress(A0, at(table + ATTACK_RECORD_SIZE)),
+    addiu(A2, 0, 2),
+    jal(at(entry)),
+    NOP,
+    JR_RA,
+    NOP,
+  ]);
   for (const f of [x, y, init]) writeWords(task, f, [PROLOGUE, JR_RA, NOP]);
   // The vtable: U, X, Y.
   const vtable = after + 0x180;
@@ -286,6 +311,18 @@ test("dumpAttacksRaw finds constructors, their vtables' attack tables and their 
     first!.sites.map((site) => [site.file, site.func, site.args.slice(0, 3)]),
     [["overlay/em01.ovl", m, [null, null, "0x5"]]],
   );
+  // The copier, its entry, and U's call to the entry with its class and data.
+  assert.deepEqual(dump.setters?.copiers, [
+    { file: "game_task.ovl", offset: copier, entry: false },
+    { file: "game_task.ovl", offset: entry, entry: true },
+  ]);
+  const setter = dump.setters!.sites.find((site) => site.func === u)!;
+  assert.equal(setter.kind, "jal");
+  assert.equal(setter.target, `game_task.ovl:${hex(entry)}`);
+  assert.equal(setter.args[2], "0x2");
+  assert.deepEqual(setter.classes, [hex(at(vtable))]);
+  assert.ok(dump.code?.[setter.codeKey]);
+  assert.equal(dump.data?.[`game_task.ovl:${hex(kinds)}`]?.slice(0, 8), "44332211");
   assert.equal(second!.func, ctor2);
   assert.equal(second!.vtableIn, "eboot");
   assert.equal(second!.slots[2]!.offset, init);

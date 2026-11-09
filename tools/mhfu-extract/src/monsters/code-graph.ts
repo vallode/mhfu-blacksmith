@@ -71,6 +71,8 @@ export class CodeGraph {
   /** Callee (file name + offset) -> call sites. */
   private readonly callers = new Map<string, { file: CodeFile; offset: number }[]>();
   private readonly linkCache = new Map<string, MonsterLink[]>();
+  /** Each file's address uses by instruction offset, built on demand. */
+  private readonly useIndex = new Map<CodeFile, { offset: number; address: number }[]>();
   /** Each file's calls by file offset. */
   private readonly callAt = new Map<CodeFile, Map<number, CodeScan["calls"][number]>>();
 
@@ -337,6 +339,129 @@ export class CodeGraph {
               : null,
         });
       }
+    }
+    return out;
+  }
+
+  /** The next known function start after `offset` (or the end of the file). */
+  funcEnd(fileName: string, offset: number): number {
+    const file = this.files.find((f) => f.name === fileName)!;
+    return this.starts.get(file)!.find((s) => s > offset) ?? file.ovl.reader.length;
+  }
+
+  /**
+   * Functions copying a 24-byte attack record into a shell: at least
+   * `minPairs` loads of record byte `k` (`lbu`/`lhu`) each followed by a
+   * store to shell byte `0x1C + k` (`sb`/`sh`). Plus, as entry points, the
+   * functions that tail-jump (`j`) to one within their first 4 instructions.
+   */
+  recordCopiers(minPairs = 12): { file: string; offset: number; entry: boolean }[] {
+    const out: { file: string; offset: number; entry: boolean }[] = [];
+    for (const file of this.files) {
+      const r = file.ovl.reader;
+      const found = new Set<number>();
+      let run = 0;
+      for (let at = OVL_HEADER_SIZE; at + 8 <= r.length; at += 4) {
+        const load = r.u32(at);
+        const store = r.u32(at + 4);
+        const lop = load >>> 26;
+        const sop = store >>> 26;
+        const k = load & 0xffff;
+        const pair =
+          ((lop === 0x24 && sop === 0x28) || (lop === 0x25 && sop === 0x29)) &&
+          ((load >>> 16) & 31) === ((store >>> 16) & 31) &&
+          (store & 0xffff) === 0x1c + k;
+        if (pair) {
+          run++;
+          at += 4;
+          if (run === minPairs) found.add(this.funcOf(file, at));
+        } else {
+          run = 0;
+        }
+      }
+      for (const offset of found) out.push({ file: file.name, offset, entry: false });
+      // Entry points jumping to a copier early on.
+      for (const jump of this.scans.get(file)!.jumps) {
+        const func = this.funcOf(file, jump.offset);
+        if (jump.offset - func > 12) continue;
+        for (const target of this.resolve(jump.target, file)) {
+          const at = target.ovl.vaddrToOffset(jump.target);
+          if (found.has(at) && target === file && !found.has(func)) {
+            out.push({ file: file.name, offset: func, entry: true });
+          }
+        }
+      }
+    }
+    return out;
+  }
+
+  /** `jal` and `j` sites reaching the function at `offset` of the named file. */
+  sitesTo(
+    fileName: string,
+    offset: number,
+  ): { file: string; offset: number; func: number; kind: "jal" | "j"; args: (number | null)[] }[] {
+    const target = this.files.find((f) => f.name === fileName);
+    if (!target) return [];
+    const vaddr = target.ovl.loadBase + offset;
+    const out: ReturnType<CodeGraph["sitesTo"]> = [];
+    for (const file of this.referrers(target)) {
+      const scan = this.scans.get(file)!;
+      for (const [kind, list] of [
+        ["jal", scan.calls],
+        ["j", scan.jumps],
+      ] as const) {
+        for (const site of list) {
+          if (site.target !== vaddr) continue;
+          out.push({
+            file: file.name,
+            offset: site.offset,
+            func: this.funcOf(file, site.offset),
+            kind,
+            args: site.args,
+          });
+        }
+      }
+    }
+    return out;
+  }
+
+  /** Constant addresses the code in [`from`, `to`) of the named file builds or touches. */
+  addressesIn(fileName: string, from: number, to: number): { offset: number; address: number }[] {
+    const file = this.files.find((f) => f.name === fileName);
+    if (!file) return [];
+    let index = this.useIndex.get(file);
+    if (!index) {
+      index = [];
+      for (const [address, uses] of this.scans.get(file)!.addresses) {
+        for (const use of uses) index.push({ offset: use.offset, address });
+      }
+      index.sort((a, b) => a.offset - b.offset);
+      this.useIndex.set(file, index);
+    }
+    return index.filter((u) => u.offset >= from && u.offset < to);
+  }
+
+  /**
+   * Functions reaching the function at `offset` of the named file through
+   * `jal` or `j`, up to `depth` steps, nearest first (the function itself
+   * first).
+   */
+  reachers(fileName: string, offset: number, depth: number): { file: string; offset: number }[] {
+    const out = [{ file: fileName, offset }];
+    const seen = new Set([`${fileName}:${offset}`]);
+    let frontier = out.slice();
+    for (let d = 0; d < depth; d++) {
+      const next: typeof frontier = [];
+      for (const fn of frontier) {
+        for (const site of this.sitesTo(fn.file, fn.offset)) {
+          const key = `${site.file}:${site.func}`;
+          if (seen.has(key)) continue;
+          seen.add(key);
+          next.push({ file: site.file, offset: site.func });
+        }
+      }
+      out.push(...next);
+      frontier = next;
     }
     return out;
   }

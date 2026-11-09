@@ -29,6 +29,8 @@ export interface CodeScan {
    * the delay slot), null where unknown.
    */
   calls: { offset: number; target: number; args: (number | null)[] }[];
+  /** `j` jumps (tail calls, mostly), with the same argument snapshot as calls. */
+  jumps: { offset: number; target: number; args: (number | null)[] }[];
   /** File offsets of `addiu sp, sp, -n` (function prologues). */
   prologues: number[];
   /**
@@ -66,6 +68,7 @@ export function scanCode(ovl: OvlFile): CodeScan {
   const r = ovl.reader;
   const addresses = new Map<number, AddressUse[]>();
   const calls: CodeScan["calls"] = [];
+  const jumps: CodeScan["jumps"] = [];
   const prologues: number[] = [];
   const pointerStores: CodeScan["pointerStores"] = [];
   const regs: (number | undefined)[] = new Array(32).fill(undefined);
@@ -124,7 +127,13 @@ export function scanCode(ovl: OvlFile): CodeScan {
       calls.push(call);
       pending = { at: at + 4, clear: "call", call };
     } else if (op === OP_J) {
-      pending = { at: at + 4, clear: "all" };
+      const jump = {
+        offset: at,
+        target: (((ovl.loadBase + at + 4) & 0xf0000000) | ((w & 0x03ffffff) << 2)) >>> 0,
+        args: [] as (number | null)[],
+      };
+      jumps.push(jump);
+      pending = { at: at + 4, clear: "all", call: jump };
     } else if (op === OP_SPECIAL) {
       const rd = (w >>> 11) & 31;
       const funct = w & 0x3f;
@@ -152,5 +161,5 @@ export function scanCode(ovl: OvlFile): CodeScan {
       pending = null;
     }
   }
-  return { addresses, calls, prologues, pointerStores };
+  return { addresses, calls, jumps, prologues, pointerStores };
 }
