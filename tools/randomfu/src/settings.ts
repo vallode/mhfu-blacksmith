@@ -16,6 +16,8 @@ export interface Settings {
   "monsterRewards.enabled": boolean;
   "monsterRewards.captureAndBreaks": boolean;
   "gathering.enabled": boolean;
+  "gathering.pool": "gathered" | "rank" | "any";
+  "gathering.keepItems": boolean;
   "recipes.materials": boolean;
   "recipes.amounts": boolean;
   "recipes.amountSpread": number;
@@ -119,6 +121,43 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Items from mining, gathering and bug catching points move between Village and Guild quests (see Logic); each spot keeps its odds. Training School and Treasure Hunting quests are left alone.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "gathering.pool",
+    section: "Gathering",
+    label: "What gathering points give",
+    help: "Where gathering points' items come from.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "gathered",
+          label: "Items you could gather",
+          help: "The same items, moved between spots at the same point in the game.",
+        },
+        {
+          value: "rank",
+          label: "Any item from the same rank",
+          help: "A Low Rank quest's spots can give anything first found in Low Rank, monster parts included; likewise High and G Rank.",
+        },
+        {
+          value: "any",
+          label: "Any item (chaos)",
+          help: "Any item in the game, at any rank.",
+        },
+      ],
+    },
+    default: "gathered",
+    enabledBy: "gathering.enabled",
+  },
+  {
+    key: "gathering.keepItems",
+    section: "Gathering",
+    label: "Keep every gatherable item findable",
+    help: "With a wider pool, each item you could gather is still at one or more spots at the same point in the game, so recipes stay craftable. The rest of the spots get random items.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "gathering.enabled",
   },
   {
     key: "recipes.materials",
@@ -508,6 +547,7 @@ export const PRESETS: readonly Preset[] = [
       "shops.prices": true,
       "shops.stacks": true,
       "gathering.enabled": true,
+      "gathering.pool": "rank",
     },
   },
   {
@@ -534,6 +574,8 @@ export const PRESETS: readonly Preset[] = [
       "shops.stacks": true,
       "shops.stackSpread": 0.9,
       "gathering.enabled": true,
+      "gathering.pool": "any",
+      "gathering.keepItems": false,
     },
   },
 ];

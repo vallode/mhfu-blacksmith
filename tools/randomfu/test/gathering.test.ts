@@ -151,3 +151,76 @@ test("gathering: deterministic, own random stream, and in the spoiler", async ()
   assert.match(formatSpoiler(game, s, a), /== Gathering points ==/);
   close();
 });
+
+test("gathering pools: same rank keeps every gatherable item and fills the rest from that rank", async () => {
+  const { game, close } = await load();
+  let fromElsewhere = false;
+  // Kept: every gatherable item is still in its tier. (The fixture's tiers have no spare
+  // slots once each item is kept; the real disc's spots repeat items, leaving room.)
+  // Not kept: every spot draws from its quest's rank.
+  for (const keepItems of [true, false]) {
+    for (const seed of ["a", "b", "c", "d", "e", "f"]) {
+      const s = settingsWith(seed, ["gathering"], {
+        "gathering.pool": "rank",
+        "gathering.keepItems": keepItems,
+      });
+      const result = randomize(game, s);
+      const payloadOf = (i: number) =>
+        result.edits.quests.get(i)?.payload ?? game.quests.find((q) => q.index === i)!.file.payload;
+      const after = gathering(game, payloadOf);
+      const bands = result.sources.tiers;
+      for (const [tier, { quests, items }] of Object.entries(TIERS)) {
+        const now = quests.flatMap((id) => after.get(id)!.map((slot) => slot.itemId));
+        if (keepItems) {
+          for (const item of items) assert.ok(now.includes(item), `${tier} still has item ${item}`);
+          continue;
+        }
+        const band = tier.startsWith("Low") ? "low" : "high";
+        for (const item of now) {
+          assert.equal(
+            bands.get(item)?.band,
+            band,
+            `${tier}: item ${item} is first found in ${band} rank`,
+          );
+          if (!items.includes(item)) fromElsewhere = true;
+        }
+      }
+    }
+  }
+  assert.ok(fromElsewhere, "some spots give items that were never gatherable");
+  close();
+});
+
+test("gathering pools: with any item and nothing kept, spots can give anything", async () => {
+  const { game, close } = await load();
+  const gatherable = new Set(Object.values(TIERS).flatMap((t) => t.items));
+  let outside = 0;
+  for (const seed of ["a", "b", "c"]) {
+    const s = settingsWith(seed, ["gathering"], {
+      "gathering.pool": "any",
+      "gathering.keepItems": false,
+    });
+    const result = randomize(game, s);
+    const after = gathering(
+      game,
+      (i) =>
+        result.edits.quests.get(i)?.payload ?? game.quests.find((q) => q.index === i)!.file.payload,
+    );
+    const all = [...after.values()].flat().map((slot) => slot.itemId);
+    outside += all.filter(
+      (v) => !gatherable.has(v) && result.sources.tiers.get(v) === undefined,
+    ).length;
+    assert.match(
+      result.reports.find((r) => r.title === "Gathering points")!.notes.join(" "),
+      /may now be found nowhere/,
+    );
+  }
+  assert.ok(outside > 0, "some spots give items found nowhere else in the fixture");
+
+  // With the same-rank pool and items kept, recipes stay craftable.
+  for (const seed of ["a", "b", "c", "d"]) {
+    const s = settingsWith(seed, ["gathering", "recipes"], { "gathering.pool": "rank" });
+    assert.deepEqual(randomize(game, s).problems, [], `seed ${seed}`);
+  }
+  close();
+});

@@ -93,32 +93,34 @@ All of them are defined once, in `src/settings.ts` (`OPTIONS`), which the
 CLI, settings files, settings strings and the page all read: a new option
 added there shows up everywhere.
 
-| Setting                           | Default     | What it does                                                         |
-| --------------------------------- | ----------- | -------------------------------------------------------------------- |
-| `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`) |
-| `questRewards.enabled`            | on          | Shuffle quest rewards                                                |
-| `monsterRewards.enabled`          | on          | Shuffle carves                                                       |
-| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                    |
-| `gathering.enabled`               | off         | Shuffle gathering points                                             |
-| `recipes.materials`               | off         | Shuffle crafting and upgrade materials (EBOOT)                       |
-| `recipes.amounts`                 | off         | Randomize material amounts (EBOOT)                                   |
-| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                             |
-| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                        |
-| `costs.enabled`                   | off         | Randomize crafting costs (EBOOT)                                     |
-| `costs.spread`                    | 0.5         | How far costs move                                                   |
-| `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                   |
-| `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)  |
-| `armor.enabled`                   | off         | Shuffle armor progression (EBOOT)                                    |
-| `shops.enabled`                   | off         | Randomize shops                                                      |
-| `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`  |
-| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them              |
-| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo      |
-| `shops.special`                   | off         | Include the Armor Sphere, jewel and Pokke Ticket shop                |
-| `shops.countSpread`               | 0           | How much more or fewer items each shop sells                         |
-| `shops.prices`                    | off         | Randomize prices of what shops sell (EBOOT)                          |
-| `shops.priceSpread`               | 0.5         | How far prices move                                                  |
-| `shops.stacks`                    | off         | Randomize carry limits of what shops sell (EBOOT)                    |
-| `shops.stackSpread`               | 0.5         | How far carry limits move                                            |
+| Setting                           | Default     | What it does                                                                     |
+| --------------------------------- | ----------- | -------------------------------------------------------------------------------- |
+| `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`)             |
+| `questRewards.enabled`            | on          | Shuffle quest rewards                                                            |
+| `monsterRewards.enabled`          | on          | Shuffle carves                                                                   |
+| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                |
+| `gathering.enabled`               | off         | Shuffle gathering points                                                         |
+| `gathering.pool`                  | `gathered`  | What spots give: items you could gather, any item of the same `rank`, or `any`   |
+| `gathering.keepItems`             | on          | With a wider pool, every gatherable item stays findable at its point in the game |
+| `recipes.materials`               | off         | Shuffle crafting and upgrade materials (EBOOT)                                   |
+| `recipes.amounts`                 | off         | Randomize material amounts (EBOOT)                                               |
+| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                         |
+| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                    |
+| `costs.enabled`                   | off         | Randomize crafting costs (EBOOT)                                                 |
+| `costs.spread`                    | 0.5         | How far costs move                                                               |
+| `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                               |
+| `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)              |
+| `armor.enabled`                   | off         | Shuffle armor progression (EBOOT)                                                |
+| `shops.enabled`                   | off         | Randomize shops                                                                  |
+| `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`              |
+| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                          |
+| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                  |
+| `shops.special`                   | off         | Include the Armor Sphere, jewel and Pokke Ticket shop                            |
+| `shops.countSpread`               | 0           | How much more or fewer items each shop sells                                     |
+| `shops.prices`                    | off         | Randomize prices of what shops sell (EBOOT)                                      |
+| `shops.priceSpread`               | 0.5         | How far prices move                                                              |
+| `shops.stacks`                    | off         | Randomize carry limits of what shops sell (EBOOT)                                |
+| `shops.stackSpread`               | 0.5         | How far carry limits move                                                        |
 
 ## Shuffles
 
@@ -198,6 +200,15 @@ node keeps its odds; tables keep their length and the quest file its
 size. Only pairs in tables a node uses move: an unused table keeps its
 items, and so do Training School, Treasure Hunting and the unused
 gathering copies. A pair with item 0 is left as it is.
+
+`gathering.pool` widens what spots give. `rank`: any item first found at
+the quest's rank (Low, High or G), monster parts included; `any`: any item
+in the game. With `gathering.keepItems` (on by default), each item the
+spots of a tier gave is first put back in one random spot of that tier,
+so it's still found at the same point in the game and recipes stay
+craftable; the other spots get random pool items (avoiding repeats within
+a table). Off, items you could gather may be found nowhere, and the recipe
+check reports any recipe that can't be made as early as before.
 
 `armor` gives each armor place in the smithy (a create entry) a different
 piece of the same slot and rarity, wearable by the same hunters. A piece's

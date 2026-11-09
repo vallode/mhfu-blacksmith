@@ -107,7 +107,16 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
   // Gathering points are item sources too: the recipe check below uses them as shuffled.
   let gatheringAfter: { itemId: number; tier: Tier }[] = grouped(gathering.slots);
   if (settings["gathering.enabled"]) {
-    const result = shuffleGathering(grouped(gathering.slots), rng.fork("gathering"), edits);
+    const result = shuffleGathering(
+      grouped(gathering.slots),
+      { pool: settings["gathering.pool"], keepItems: settings["gathering.keepItems"] },
+      {
+        bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
+        allItems: sellableItems(),
+      },
+      rng.fork("gathering"),
+      edits,
+    );
     reports.push(result.report);
     gatheringAfter = result.after;
   }
