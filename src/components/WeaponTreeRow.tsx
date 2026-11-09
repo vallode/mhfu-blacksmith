@@ -26,6 +26,12 @@ interface WeaponTreeRowProps {
   nested?: boolean;
   /** A later sibling follows, so the vertical connector runs on past this row. */
   hasNextSibling?: boolean;
+  /**
+   * Let the router scroll the page to the new page on click (the default).
+   * Trees in a layout that stays mounted turn it off: on phones the detail
+   * card sits below the tree, and the page would jump down to it.
+   */
+  scroll?: boolean;
 }
 
 // Each row is a full-width line with a highlight strip drawn by ::before.
@@ -109,6 +115,7 @@ export default function WeaponTreeRow({
   parentHref,
   nested = false,
   hasNextSibling = false,
+  scroll = true,
 }: WeaponTreeRowProps) {
   const [collapsed, setCollapsed] = useState(() => isNodeCollapsed(treeKey, node.slug));
 
@@ -219,6 +226,7 @@ export default function WeaponTreeRow({
           id={node.slug}
           className={rowClass}
           href={href}
+          scroll={scroll}
           title={
             ready
               ? `You can ${ready.via === "upgrade" ? "make this upgrade" : "forge this"} now (${ready.cost.toLocaleString()}z, materials in your item box)`
@@ -250,6 +258,7 @@ export default function WeaponTreeRow({
               parentHref={href}
               nested
               hasNextSibling={i < node.children!.length - 1}
+              scroll={scroll}
             />
           ))}
         </ul>

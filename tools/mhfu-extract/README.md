@@ -228,7 +228,7 @@ retail quests are wrapped in it too — confirmed against a real JP disc quest
 alone the bytes are indistinguishable from noise, but decrypting with
 `QuestCipher` (JP salt) yields a matching SHA1 header, the exact
 `quest.hexpat` magic, and a plausible `questHeader` (rank 0, 1-star, fee
-100z, reward 1200z, quest ID 1 — sensible for the very first quest).
+100z, reward 1200z, quest ID 1 — sensible for the first quest file).
 
 Once decrypted, `src/quests/parser.ts` reads the struct layout itself
 (header, supplies, rewards, large/small monster spawn tables, and quest
@@ -291,10 +291,10 @@ the module comments:
   follow the hitzone pool in sets of three, reached from a master list of
   four sets (EU: master list at file offset `0x168c80`). Set 1's first row,
   HP 0.35 / attack 1.02, matches a published figure for the first Village
-  Elder quest. A quest's header `rank` byte picks the set (0 village → set
-  0, 1/2/5 guild low/high/G → set 1, 3 treasure → set 2, 4 training school
-  → set 3): sets 2 and 3 hold real values exactly on the rows those hubs
-  use, and set 1 is the harder set. Which of the set's three tables
+  Elder quest. A quest's header `rank` byte picks the set (0 → set 0, the
+  1/2/5 low/high/G tiers of Village and Guild quests → set 1, 3 treasure →
+  set 2, 4 subjugation training → set 3): sets 2 and 3 hold real values
+  exactly on the rows those quests use, and set 1 is the harder set. Which of the set's three tables
   applies isn't stored in the quest (the large monsters' `attr1`/`attr2`
   are almost always 0), so it is probably chosen at run time; set 1's
   three differ mostly in HP. `extract --raw` writes the tables to
@@ -346,13 +346,14 @@ the membranes, the legs the legs, and the rows match the parts
   joint 0xFFFF: u16 joint, u16 unknown flag, u16 hitzone row, u16 body part
   (left and right separate), u32 flags, f32 radius, f32[3] start and end
   relative to the joint.
-- **Skeleton** (`src/models/skeleton.ts`): index 0 of `emmodel/emNN.pac`.
-  A 0x10-byte header (`0xC0000000`, joint count + 1, size), an unknown
-  0x10-byte block, then 0x10C-byte joint records: id, parent, child,
-  sibling, scale, rotation and translation (relative to the parent), and a
-  chain number (body, neck and head, tail, severed tail). All rotations
-  seen are zero, so a joint's model-space position is the sum of the
-  translations down to it. That is the same space as the converted mesh.
+- **Skeleton**: the `.ahi` before the model's PMO (`src/models/ahi.ts`, see
+  "Severable tails"). A joint's model-space position is the sum of the
+  translations down to it, the same space as the converted mesh, as long as
+  every bone on the way is unrotated and unscaled (`isRigidBone` in
+  `attach.ts`). Capsules on joints below a rotated or scaled bone (Yian
+  Garuga's crest, Basarios's neck) are skipped and logged, since their
+  offsets would need the rotation. Joints of a detached severed-tail chain
+  move with the tail tip.
 - **Site file** (`src/monsters/hitboxes.ts`): `export-site` writes
   `public/models/monsters/emNN.hitboxes.json` next to each monster's model:
   each capsule's ends and radius in model space, its row, and the site's
@@ -360,14 +361,13 @@ the membranes, the legs the legs, and the rows match the parts
 
 Open questions:
 
-- Rathian's last tail capsule reaches about 250 units past the end of the
-  mesh, and its tail joints run past the mesh too.
 - Rathian's two spheres on the root joint (row 0, flags 5 and 0x300) sit at
   the body's centre, so they are probably body collision. `hitboxes.ts`
   skips records with flag bits not seen on damage capsules (0x1, 0x100,
   0x08000000) and logs each skip, so check the `export-site` log for
   damage capsules with new flags.
 - The second u16 (0 or 1) and the rest of the flags are unknown.
+- The `.ahi` rotation format, which capsules on rotated chains would need.
 
 `extract --raw` still dumps the bytes these came from
 (`src/emit/collision-raw.ts`), for checking the format on more monsters:
@@ -399,8 +399,9 @@ pnpm --filter mhfu-extract export-site --unpacked .cache/mhfu
 `models` converts `.pac` model packages (a PMO 1.0 mesh plus a `.TMH`
 texture set) into `.glb` files. The source lives in `src/models/`: `pac.ts`
 is the container, `pmo.ts` the mesh tables, `ge.ts` the PSP GE display lists
-that hold the geometry, `tmh.ts` the textures, `gltf.ts`/`texture.ts`/
-`png.ts` the output. Two corrections to mhff's description of PMO 1.0, both
+that hold the geometry, `tmh.ts` the textures, `ahi.ts` the skeleton,
+`attach.ts` puts severable tails together, `gltf.ts`/`texture.ts`/`png.ts`
+the output. Two corrections to mhff's description of PMO 1.0, both
 confirmed on real files: mesh records are 0x18 bytes, and materials go
 through a per-slot byte map at header offset 0x28.
 
@@ -442,9 +443,27 @@ Status:
   Armor pieces (`player/**`) convert the same way.
 - Output is the static bind pose: mesh pieces are already in model space, so
   no skeleton is needed to assemble them, but skinning weights are dropped
-  and there's no animation (`motion/*.bin` isn't decoded).
-- A package's second PMO isn't converted. On large monsters it's a few
-  small flat quads (probably shadow or effect planes).
+  and there's no animation (`motion/*.bin` and a monster package's entry 3,
+  its motion bank, aren't decoded). The one exception is a severable tail,
+  below.
+- **Severable tails.** A monster package is `[.ahi skeleton, PMO, .TMH,
+motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
+  byte (0x50 in its record): 1 the head chain, 2 the tail chain, 3 a
+  parentless copy of the tail's last bones. Where the tail can be cut, the
+  body's tail ends at the cut (closed by a flesh cap), and the tail tip is
+  skinned to that copy and modelled around the origin, i.e. inside the
+  body, so the game can drop it once cut. `attach.ts` moves the copy onto
+  the bones it copies (matched by the leaf's offset from its parent, e.g.
+  Cephalos's 46 -> 47 and 43 -> 44 are both +73.07 along z) and the tip's
+  vertices with it, through each vertex group's bone palette (`pmo.ts`).
+  Only the bones the offset sums need to be unrotated and unscaled (within
+  0.01 rad / 1%): Yian Garuga's crest and Basarios's neck don't count, and
+  Gravios's ~0.001 rad of authoring noise is ignored. Renders checked for
+  all 32 monsters it changes; Lavasioth's copy is already in place, and
+  small monsters have none.
+- A package's second PMO isn't converted: it's effect geometry (a shadow
+  quad on the Raths, Cephalos's sand spray, Tigrex's roar ring, Lavasioth's
+  lava).
 - Names come from the region-aware file list (see "`DATA.BIN`"), so an EU
   dump unpacked before that existed has wrong names (e.g. its
   `weapon/we000.pac` is male waist armor); unpack it again.
@@ -612,17 +631,43 @@ on both the JP and EU discs. Unused slots, whose every text field is one
 placeholder literal, are dropped: `"**********"` on JP (`m50001`-`m50003`,
 0 zenny fee, 1 zenny reward) and `"none"` on EU (those 3, plus
 `m40001`-`m40008`: 0 zenny fee with real monsters and rewards, but no text
-in any language). The EU disc leaves 540 emitted: village 39, guild 465,
-training-school 29, treasure-hunting 7.
+in any language). So are `m00001`-`m00010` and `m00103`-`m00107`, which
+are on no confirmed quest board (below). The EU disc leaves 525 emitted:
+village 152, guild 319, training-school 47, treasure-hunting 7.
 
-**The `hub`/`rank` split** comes from `questHeader.Rank` (0-5), confirmed
-against real data rather than assumed: rank 3's `client` string is always
-"トレジィ" ("Treshi", the real Treasure Hunting NPC per community guides)
-and rank 4's is always "教官" ("Instructor", the Training School NPC) with
-every title ending in "討伐訓練" ("... Subjugation Training"); ranks 0/1/2/5's
-star ranges (1-5,8,10 / 1-6 / mostly 6-9 / 9-11) line up with
-community-documented Village / Guild-Low-Rank / Guild-High-Rank /
-Guild-G-Rank star bands. `map` is resolved through a small hand-transcribed
+**The `hub` comes from the quest ID** (`questHub`). The disc numbers quests
+in blocks, one per board and star level: `1xxx`/`2xxx`/`3xxx` Guild Low /
+High / G Rank, `4xxx` Treasure Hunting (client always "Treshi"),
+`10xxx`/`11xxx` Village (★1-★6, then ★7-★9; many from the "Pokke Village
+Chief"), `20xxx`-`22xxx` Training School (client always "Instructor": Basic
+Training, weapon Mastery, then Subjugation Training), and `30001`-`30090`
+the 90 identical "Gathering - Snowy Mountains" copies, kept on Guild Low
+Rank. `101`, `102`, `108` and `109` are Village ★2 quests (header rank 0),
+some of which appear once a prerequisite is cleared (`109` "Attack of the
+Rathian", 250z / 3000z in the Jungle (Day), after `10203` "Shadow in the
+Snow"); they hold the Village's low-star Rathalos and Rathian. The Monster
+Hunter Wiki lists all four with the disc's fee, reward, locale and client.
+`103`-`107` share the block but aren't emitted until they're confirmed: the
+wiki only has the regular Village quests of the same titles, with different
+fees and rewards. The disc doesn't say what unlocks a quest, so the
+prerequisites we know are hand-entered in `src/tables/quest-prerequisites.ts`
+and emitted as `requires` (the quest ID to clear first, else null). `1`-`10`
+fit no confirmed block and aren't emitted: some repeat a Village quest with
+different values (`2` and `10105` are both "Reckless Bulldrome Hunter" for
+the "Troubled Father"; "Mountain Herb Picking" is 100z as `4` and free as
+`10001`), others match nothing else on the disc. They may be ★1 unlockables
+or unused.
+
+**`urgent`** marks the 22 Urgent Quests, which unlock the next star level.
+Their flag on the disc isn't decoded, so they are hand-entered in
+`src/tables/urgent-quests.ts` from the Monster Hunter Wiki's "MHFU Urgent
+Quests" category, matched to quest IDs by title, fee and reward.
+
+**The `rank` is `questHeader.Rank`'s tier**: 1/2/5 are low/high/G rank,
+and 0, 3 and 4 have none. It is not the board: an earlier version read the
+hub from it and filed the Village's `10xxx`/`11xxx` quests (rank 1/2, like
+the Guild's) under Guild, and `1`-`109` plus the Basic Training and Mastery
+quests (rank 0) under Village. `map` is resolved through a small hand-transcribed
 table (`src/tables/quest-maps.ts`) sourced from `quest.hexpat`'s own inline
 comments — the only place any vendored source names these IDs.
 

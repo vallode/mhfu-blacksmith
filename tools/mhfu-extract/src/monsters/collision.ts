@@ -5,7 +5,7 @@
  * models (see the README's "Monster hitboxes").
  *
  * 0x28-byte records up to one whose joint is 0xFFFF:
- *   0x00 u16 joint (into the model's skeleton, `models/skeleton.ts`)
+ *   0x00 u16 joint (a bone of the model's skeleton, `models/ahi.ts`)
  *   0x02 u16 unknown flag (0 or 1)
  *   0x04 u16 hitzone row, into the monster's `HitzoneTbl` rows
  *   0x06 u16 body part (left and right separate, e.g. Rathian's wings 1/2)

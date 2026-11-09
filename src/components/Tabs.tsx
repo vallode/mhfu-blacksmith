@@ -18,11 +18,26 @@ const tabButton = [
 /**
  * A tab row in the style of the game's menu headers, showing one panel at a
  * time. The first tab starts selected; give the component a `key` to reset
- * it when its subject changes.
+ * it when its subject changes. Pass `active` and `onChange` to control it.
  */
-export default function Tabs({ tabs, label }: { tabs: Tab[]; label: string }) {
+export default function Tabs({
+  tabs,
+  label,
+  active: controlled,
+  onChange,
+}: {
+  tabs: Tab[];
+  label: string;
+  active?: string;
+  onChange?: (id: string) => void;
+}) {
   const prefix = useId();
-  const [active, setActive] = useState(tabs[0]?.id);
+  const [uncontrolled, setUncontrolled] = useState(tabs[0]?.id);
+  const active = controlled ?? uncontrolled;
+  const setActive = (id: string) => {
+    setUncontrolled(id);
+    onChange?.(id);
+  };
   const current = tabs.find((t) => t.id === active) ?? tabs[0];
   if (!current) return null;
 

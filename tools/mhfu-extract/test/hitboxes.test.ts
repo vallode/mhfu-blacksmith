@@ -12,14 +12,15 @@ import {
   readCollisionRecords,
   type CollisionRecord,
 } from "../src/monsters/collision.js";
-import { buildSiteHitboxes } from "../src/monsters/hitboxes.js";
+import { buildSiteHitboxes, jointPositions } from "../src/monsters/hitboxes.js";
 import {
   GAME_TASK_JP,
   HITZONE_POINTER_OFFSET,
   MONSTER_CHUNK_COUNT,
   MONSTER_CHUNK_SIZE,
 } from "../src/monsters/hitzones.js";
-import { isSkeleton, jointPositions, readSkeleton, type Vec3 } from "../src/models/skeleton.js";
+import { readAhi } from "../src/models/ahi.js";
+import type { Vec3 } from "../src/monsters/collision.js";
 import { pac, pmo } from "./model-fixtures.js";
 
 interface JointSpec {
@@ -29,14 +30,15 @@ interface JointSpec {
   rotation?: Vec3;
 }
 
-/** A skeleton entry as in `emmodel/emNN.pac` index 0 (see `models/skeleton.ts`). */
+/** An `.ahi` skeleton as in `emmodel/emNN.pac` index 0 (see `models/ahi.ts`). */
 function skeleton(joints: JointSpec[]): Buffer {
   const size = 0x20 + joints.length * 0x10c;
   const buf = Buffer.alloc(size);
   buf.writeUInt32LE(0xc0000000, 0);
   buf.writeUInt32LE(joints.length + 1, 4);
   buf.writeUInt32LE(size, 8);
-  buf.set([2, 0, 0, 0, 0x14], 0x10); // the unknown block
+  buf.writeUInt32LE(2, 0x10);
+  buf.writeUInt32LE(0x14, 0x14); // header length: bones start at 0x0c + 0x14
   joints.forEach((joint, i) => {
     const at = 0x20 + i * 0x10c;
     buf.writeUInt32LE(0x40000001, at);
@@ -64,29 +66,25 @@ const RATHIAN_JOINTS: JointSpec[] = [
   { id: 2, parent: 1, translation: [100, -10, 0] },
 ];
 
-test("readSkeleton reads joint records and jointPositions adds translations down the chain", () => {
-  const buf = skeleton(RATHIAN_JOINTS);
-  assert.ok(isSkeleton(buf));
-  const joints = readSkeleton(buf);
-  assert.deepEqual(
-    joints.map((j) => [j.id, j.parent]),
-    [
-      [0, null],
-      [1, 0],
-      [2, 1],
-    ],
-  );
-  assert.deepEqual(jointPositions(joints).get(2), [100, -10, 50]);
+test("jointPositions adds translations down the chain", () => {
+  const { positions, rotated } = jointPositions(readAhi(skeleton(RATHIAN_JOINTS)));
+  assert.deepEqual(positions.get(2), [100, -10, 50]);
+  assert.equal(rotated.size, 0);
 });
 
-test("jointPositions refuses rotated joints instead of placing them wrongly", () => {
-  const joints = readSkeleton(
-    skeleton([
-      { id: 0, parent: null, translation: [0, 0, 0] },
-      { id: 1, parent: 0, translation: [0, 0, 50], rotation: [0, 1.5, 0] },
-    ]),
+test("jointPositions leaves out joints below a rotated bone instead of placing them wrongly", () => {
+  const { positions, rotated } = jointPositions(
+    readAhi(
+      skeleton([
+        { id: 0, parent: null, translation: [0, 0, 0] },
+        { id: 1, parent: 0, translation: [0, 0, 50], rotation: [0, 1.5, 0] },
+        { id: 2, parent: 1, translation: [10, 0, 0] },
+        { id: 3, parent: 0, translation: [0, 20, 0], rotation: [0.001, 0, 0] }, // noise
+      ]),
+    ),
   );
-  assert.throws(() => jointPositions(joints), /Joint 1 is rotated/);
+  assert.deepEqual([...rotated], [1, 2]);
+  assert.deepEqual(positions.get(3), [0, 20, 0]);
 });
 
 interface RecordSpec {
@@ -154,15 +152,18 @@ test("buildSiteHitboxes places capsules in model space and names them by hitzone
         { ...WING, row: 6 }, // a row no part uses
         { ...WING, joint: 1, row: 0, flags: 0x08000000 }, // the head's flag
         { ...WING, joint: 0, row: 0, flags: 5 }, // Rathian's body-centre sphere
+        { ...WING, joint: 7 },
       ]),
     ),
     0,
   )!;
-  const { hitboxes, skipped } = buildSiteHitboxes(
-    records,
-    jointPositions(readSkeleton(skeleton(RATHIAN_JOINTS))),
-    { head: [0, 0], wing: [0, 5], "wing-broken": [1, 5] },
-  );
+  const joints = jointPositions(readAhi(skeleton(RATHIAN_JOINTS)));
+  joints.rotated.add(7); // as if joint 7 sat below a rotated bone
+  const { hitboxes, skipped } = buildSiteHitboxes(records, joints, {
+    head: [0, 0],
+    wing: [0, 5],
+    "wing-broken": [1, 5],
+  });
   assert.deepEqual(hitboxes.capsules[0], {
     row: 5,
     parts: ["wing", "wing-broken"],
@@ -179,6 +180,7 @@ test("buildSiteHitboxes places capsules in model space and names them by hitzone
     "record 1: joint 125 isn't in the skeleton",
     "record 2: no size (radius 0)",
     "record 5: flags 0x5 aren't a damage capsule's (joint 0, row 0)",
+    "record 6: joint 7 has a rotated or scaled bone in its chain",
   ]);
 });
 

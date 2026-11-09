@@ -1,11 +1,12 @@
 /**
  * The site's hitbox file for one monster (`public/models/monsters/emNN.hitboxes.json`,
  * written by `export-site`): the collision records (`collision.ts`) moved from
- * joint space into the model's space with the skeleton (`models/skeleton.ts`),
+ * joint space into the model's space with the skeleton (`models/ahi.ts`),
  * each named by the site's hitzone parts that use its row.
  */
-import type { CollisionRecord } from "./collision.js";
-import type { Vec3 } from "../models/skeleton.js";
+import type { CollisionRecord, Vec3 } from "./collision.js";
+import type { Bone } from "../models/ahi.js";
+import { detachedBoneOffsets, isRigidBone } from "../models/attach.js";
 
 export interface SiteCapsule {
   /** Hitzone row (into each of the monster's hitzone tables). */
@@ -41,9 +42,43 @@ const round = (v: number) => Math.round(v * 10) / 10;
  */
 export const DAMAGE_FLAG_BITS = 0x08000101;
 
+export interface JointPositions {
+  /** Model-space position of each joint whose chain is rigid. */
+  positions: Map<number, Vec3>;
+  /** Joints with a rotated or scaled bone on the way from the root. */
+  rotated: Set<number>;
+}
+
+/**
+ * Bind-pose position of each joint: the translations summed from the root,
+ * as the mesh's vertices are (see attach.ts). Only exact while every bone on
+ * the way is unrotated and unscaled; a capsule's offsets are in its joint's
+ * frame too, so joints with a rotated or scaled bone anywhere up their
+ * chain (Yian Garuga's crest, Basarios's neck) are left out. A parentless
+ * severed-tail chain moves onto the tail with the tail tip's vertices.
+ */
+export function jointPositions(bones: Bone[]): JointPositions {
+  const offsets = detachedBoneOffsets(bones);
+  const positions = new Map<number, Vec3>();
+  const rotated = new Set<number>();
+  for (const bone of bones) {
+    const sum: Vec3 = [...(offsets.get(bone.id) ?? [0, 0, 0])];
+    let rigid = true;
+    // Bounded by the bone count, in case the parents loop.
+    for (let b: Bone | undefined = bone, n = 0; b && n <= bones.length; n++) {
+      if (!isRigidBone(b)) rigid = false;
+      b.translation.forEach((c, k) => (sum[k] = sum[k]! + c));
+      b = b.parent >= 0 ? bones[b.parent] : undefined;
+    }
+    if (rigid) positions.set(bone.id, sum);
+    else rotated.add(bone.id);
+  }
+  return { positions, rotated };
+}
+
 export function buildSiteHitboxes(
   records: CollisionRecord[],
-  joints: ReadonlyMap<number, Vec3>,
+  joints: JointPositions,
   slots: HitzoneSlots = {},
 ): { hitboxes: SiteHitboxes; skipped: string[] } {
   const partsByRow = new Map<number, string[]>();
@@ -55,9 +90,13 @@ export function buildSiteHitboxes(
   const capsules: SiteCapsule[] = [];
   const skipped: string[] = [];
   records.forEach((record, i) => {
-    const origin = joints.get(record.joint);
+    const origin = joints.positions.get(record.joint);
     if (!origin) {
-      skipped.push(`record ${i}: joint ${record.joint} isn't in the skeleton`);
+      skipped.push(
+        joints.rotated.has(record.joint)
+          ? `record ${i}: joint ${record.joint} has a rotated or scaled bone in its chain`
+          : `record ${i}: joint ${record.joint} isn't in the skeleton`,
+      );
       return;
     }
     if (!(record.radius > 0) || ![...record.start, ...record.end].every(Number.isFinite)) {

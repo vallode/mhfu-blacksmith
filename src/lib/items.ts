@@ -54,3 +54,17 @@ export function buildItemNameIndex(items: ItemRecord[]): {
   }
   return { index, collisions };
 }
+
+/**
+ * Decorations whose name in data/decorations.json is spelled differently from
+ * their item in data/items.json (the game's shortened item names).
+ */
+export const DECORATION_ITEM_ALIASES: Record<string, string> = {
+  "Constitutn Jewel": "ConstitutnJewel",
+  "StrongShot Jewel+": "StrongShotJewel+",
+};
+
+/** A decoration's in-game item ID, or undefined if no item matches its name. */
+export function decorationItemId(name: string, index: Map<string, number>): number | undefined {
+  return index.get(normalizeItemName(DECORATION_ITEM_ALIASES[name] ?? name));
+}

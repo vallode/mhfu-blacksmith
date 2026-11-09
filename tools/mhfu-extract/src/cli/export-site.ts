@@ -35,14 +35,14 @@ import path from "node:path";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { MHP2G_PROFILE } from "../games/mhp2g.js";
+import { attachDetachedParts, skeletonFor } from "../models/attach.js";
 import { buildGlb, type GlbOptions } from "../models/gltf.js";
 import { isPac, readPac } from "../models/pac.js";
 import { isPmo, readPmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
-import { isSkeleton, jointPositions, readSkeleton } from "../models/skeleton.js";
 import { parseOvl, type OvlFile } from "../container/ovl.js";
 import { readMonsterCollision } from "../monsters/collision.js";
-import { buildSiteHitboxes } from "../monsters/hitboxes.js";
+import { buildSiteHitboxes, jointPositions } from "../monsters/hitboxes.js";
 import { locateMonsterChunks } from "../monsters/hitzones.js";
 import { OVERLAY_DIR } from "../monsters/overlays.js";
 import { MONSTER_OVERLAY } from "../overlay/monsters.js";
@@ -88,7 +88,10 @@ const MONSTER_NAME_ALIASES: Record<string, string> = {
 
 type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string } | null)[]>;
 
-/** Convert the first PMO + TMH in a package to GLB bytes, or null when it has no mesh. */
+/**
+ * Convert the first PMO + TMH in a package to GLB bytes, or null when it has
+ * no mesh. A severable tail tip is put back on (attach.ts).
+ */
 async function packageToGlb(
   buf: Buffer,
   name: string,
@@ -99,9 +102,8 @@ async function packageToGlb(
   const pmoEntry = entries.find((entry) => isPmo(entry.data));
   if (!pmoEntry) return null;
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
-  return (
-    await buildGlb(readPmo(pmoEntry.data), tmhEntry ? readTmh(tmhEntry.data) : [], name, options)
-  ).glb;
+  const pmo = attachDetachedParts(readPmo(pmoEntry.data), skeletonFor(entries, pmoEntry.index));
+  return (await buildGlb(pmo, tmhEntry ? readTmh(tmhEntry.data) : [], name, options)).glb;
 }
 
 async function exists(file: string): Promise<boolean> {
@@ -212,14 +214,13 @@ async function exportHitboxes(
     const records = readMonsterCollision(source.gameTask, source.chunksOffset, emId, emOvl);
     if (!records) return await fail("CollisionPTR doesn't lead to a collision table");
     const pac = await readFile(pacPath);
-    const skeleton = isPac(pac) ? readPac(pac).find((entry) => isSkeleton(entry.data)) : undefined;
-    if (!skeleton) return await fail("no skeleton in the model package");
+    const entries = isPac(pac) ? readPac(pac) : [];
+    const pmoEntry = entries.find((entry) => isPmo(entry.data));
+    // The skeleton the model's mesh (the first PMO) is bound to.
+    const bones = pmoEntry ? skeletonFor(entries, pmoEntry.index) : [];
+    if (bones.length === 0) return await fail("no skeleton in the model package");
     const slots = MONSTER_OVERLAY.find((m) => m.id === emId)?.hitzones;
-    const { hitboxes, skipped } = buildSiteHitboxes(
-      records,
-      jointPositions(readSkeleton(skeleton.data)),
-      slots,
-    );
+    const { hitboxes, skipped } = buildSiteHitboxes(records, jointPositions(bones), slots);
     for (const reason of skipped) console.log(`${siteName} hitboxes: skipped ${reason}`);
     if (hitboxes.capsules.length === 0) return await fail("no usable collision records");
     await writeFile(file, `${JSON.stringify(hitboxes)}\n`);

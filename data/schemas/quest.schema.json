@@ -113,7 +113,15 @@
         "goal":    { "type": ["string", "null"], "$comment": "See 'title'." },
         "details": { "type": ["string", "null"], "$comment": "See 'title'." },
         "fail":    { "type": ["string", "null"], "$comment": "See 'title'." },
-        "client":  { "type": ["string", "null"], "$comment": "See 'title'." }
+        "client":  { "type": ["string", "null"], "$comment": "See 'title'." },
+        "requires": {
+          "type": ["integer", "null"],
+          "$comment": "ID of the quest that must be cleared before this one appears. Not on the disc: hand-entered in mhfu-extract's src/tables/quest-prerequisites.ts. Null when there is none or none is known."
+        },
+        "urgent": {
+          "type": "boolean",
+          "$comment": "An Urgent Quest, which unlocks the next star level. Not decoded from the disc: hand-entered in mhfu-extract's src/tables/urgent-quests.ts."
+        }
       }
     }
   }

@@ -10,6 +10,7 @@ import {
   DetailBody,
   DetailCard,
   DetailHeader,
+  DetailName,
   DetailRule,
   MaterialList,
   Requirements,
@@ -21,7 +22,13 @@ import {
   StatValue,
 } from "@/components/DetailPanel";
 import { cn } from "@/lib/cn";
-import { melodyNote, melodyTable, statTable } from "@/styles/tables";
+import {
+  melodyDuration,
+  melodyDurationBelow,
+  melodyNote,
+  melodyTable,
+  statTable,
+} from "@/styles/tables";
 import type { WeaponType } from "@/lib/constants";
 import { useWeapon, useMelodies } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
@@ -97,7 +104,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               alt={weapon.name}
             />
 
-            <p id="weapon_name">{weapon.name}</p>
+            <DetailName id="weapon_name">{weapon.name}</DetailName>
 
             {modelUrl && (
               <ModelButton
@@ -177,16 +184,21 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               )}
 
               {weapon.elements?.map((el, i) => (
-                <p key={i} className="inline-block text-element">
-                  {el.name} Attrib: {el.attack}
+                <p key={i} className="inline-block whitespace-normal text-element">
+                  {el.name} Attrib: <span className="whitespace-nowrap">{el.attack}</span>
                   {showRawValues && typeof el.attack === "number" && (
-                    <StatValue className="opacity-20"> [ {el.attack / 10} ]</StatValue>
+                    <>
+                      {" "}
+                      <StatValue className="whitespace-nowrap opacity-20">
+                        [ {el.attack / 10} ]
+                      </StatValue>
+                    </>
                   )}
                 </p>
               ))}
 
               {weapon.skills?.map((skill, i) => (
-                <p key={i} className="inline-block text-element">
+                <p key={i} className="inline-block whitespace-normal text-element">
                   {skill}
                 </p>
               ))}
@@ -206,7 +218,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                     id: "materials",
                     label: "Materials",
                     content: (
-                      <RequirementsPage>
+                      <RequirementsPage stacked>
                         {weapon.improve_mats && (
                           <MaterialList
                             label="Improve cost"
@@ -423,7 +435,10 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                             return (
                               <p
                                 key={coating}
-                                className={cn("w-[calc(50%-13px)]", !usable && "text-unavailable")}
+                                className={cn(
+                                  "w-[calc(50%-13px)] mobile:w-full",
+                                  !usable && "text-unavailable",
+                                )}
                               >
                                 {coating}
                               </p>
@@ -443,7 +458,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                             <tr>
                               <th>Combo</th>
                               <th>Effect</th>
-                              <th>Duration</th>
+                              <th className={melodyDuration}>Duration</th>
                             </tr>
                           </thead>
                           <tbody>
@@ -462,8 +477,13 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                                     ))}
                                   </span>
                                 </td>
-                                <td>{melody.effect}</td>
-                                <td>{melody.duration}</td>
+                                <td>
+                                  {melody.effect}
+                                  {melody.duration && (
+                                    <span className={melodyDurationBelow}>{melody.duration}</span>
+                                  )}
+                                </td>
+                                <td className={melodyDuration}>{melody.duration}</td>
                               </tr>
                             ))}
                           </tbody>

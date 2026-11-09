@@ -1,7 +1,7 @@
 /**
  * Raw dumps for working out monster hitboxes (`extract --raw`): the bytes
  * the collision table (`monsters/collision.ts`) and skeleton
- * (`models/skeleton.ts`) were decoded from, kept for checking the decoding
+ * (`models/ahi.ts`) were decoded from, kept for checking the decoding
  * on more monsters.
  *
  * `raw/collision.json`, one entry per `MonChunk` (emID 0-89):

@@ -19,7 +19,8 @@
  * fewer colours per texture.
  *
  * Skinning weights are dropped (static bind pose only); mesh pieces are
- * already in model space, so they assemble without the skeleton.
+ * already in model space, so they assemble without the skeleton, apart from
+ * severable tail tips, which attach.ts puts in place before this runs.
  */
 import { MeshoptEncoder } from "meshoptimizer";
 import type { DecodedVertex } from "./ge.js";

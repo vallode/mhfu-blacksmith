@@ -26,14 +26,10 @@ import {
   decodeDecoration,
   decodeTree,
 } from "./schema";
-import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "./constants";
+import { ARMOR_RANKS, ARMOR_SLOTS } from "./constants";
 import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
-import {
-  prepareSearchData,
-  type ArmorInput,
-  type SearchData,
-  type SkillTreeData,
-} from "./set-search";
+import type { SearchData, SkillTreeData } from "./set-search";
+import { setSearchDataFromBundles } from "./set-data";
 
 export interface MonsterListItem {
   slug: string;
@@ -411,32 +407,14 @@ export function loadSetSearchData(): Promise<SearchData> {
       getBundle("decorations"),
       ...armorFiles.map((f) => getBundle(f)),
     ])
-      .then(([dict, skills, decoBundle, ...armorBundles]) => {
-        const armor: ArmorInput[] = (armorBundles as ArmorBundle[]).flatMap((b) =>
-          b.items.map((ca) => {
-            const a = decodeArmor(dict, ca, b.slot);
-            return {
-              slot: b.slot as ArmorSlot,
-              rank: b.rank as ArmorRank,
-              name: a.name,
-              slug: a.slug,
-              defence: Number(a.defence ?? 0),
-              res: ca.re,
-              slots: a.slots,
-              rarity: Number(a.rarity ?? 0) || undefined,
-              minRank: a.min_rank,
-              sex: a.sex,
-              hunterType: a.hunter_type,
-              skills: a.skills?.map((s) => ({ name: s.name, amount: Number(s.amount) })),
-            };
-          }),
-        );
-        const decorations = (decoBundle as DecorationBundle).items.map((cd) => {
-          const d = decodeDecoration(dict, cd);
-          return { ...d, skills: d.skills ?? [], minRank: d.min_rank };
-        });
-        return prepareSearchData(skills.skills, armor, decorations);
-      })
+      .then(([dict, skills, decoBundle, ...armorBundles]) =>
+        setSearchDataFromBundles(
+          dict,
+          skills.skills,
+          decoBundle as DecorationBundle,
+          armorBundles as ArmorBundle[],
+        ),
+      )
       .catch((e) => {
         setSearchPromise = null; // allow a retry
         throw e;
