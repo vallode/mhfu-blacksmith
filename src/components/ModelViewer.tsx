@@ -3,6 +3,17 @@
 import { useEffect, useRef, useState } from "react";
 import Loading from "@/components/Loading";
 
+/** A capsule drawn over the model, in the model's space: a sphere of `radius` swept from `start` to `end`. */
+export interface ModelCapsule {
+  start: [number, number, number];
+  end: [number, number, number];
+  radius: number;
+  /** A CSS colour, or a `var(--color-…)` token. */
+  color: string;
+  /** 0 hides it. */
+  opacity: number;
+}
+
 interface Props {
   /** URL of a .glb file. */
   src: string;
@@ -13,6 +24,16 @@ interface Props {
    * shows a pair of dual blades (each blade's file holds only one).
    */
   pair?: boolean;
+  /** Translucent capsules over the model, e.g. a monster's hitboxes. */
+  capsules?: ModelCapsule[];
+}
+
+type Three = typeof import("three");
+
+/** Resolves a `var(--name)` colour against `element`; other colours pass through. */
+function resolveColor(element: Element, color: string): string {
+  const match = /^var\((--[\w-]+)\)$/.exec(color);
+  return match ? getComputedStyle(element).getPropertyValue(match[1]!).trim() : color;
 }
 
 /** Angle of each blade of a pair from the centre line. */
@@ -24,9 +45,11 @@ type Status = "loading" | "ready" | "error";
  * Interactive 3D view of a .glb model: drag to rotate, scroll/pinch to zoom.
  * three.js is imported on demand so it only loads on pages that show a model.
  */
-export default function ModelViewer({ src, label, pair = false }: Props) {
+export default function ModelViewer({ src, label, pair = false, capsules }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("loading");
+  /** Set while a model is shown, for the capsule effect below. */
+  const sceneRef = useRef<{ THREE: Three; scene: import("three").Scene } | null>(null);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -95,6 +118,7 @@ export default function ModelViewer({ src, label, pair = false }: Props) {
 
       let model: import("three").Object3D | null = null;
       cleanup = () => {
+        sceneRef.current = null;
         cancelAnimationFrame(frame);
         observer.disconnect();
         controls.dispose();
@@ -204,6 +228,7 @@ export default function ModelViewer({ src, label, pair = false }: Props) {
         controls.target.set(0, 0, 0);
         fit();
 
+        sceneRef.current = { THREE, scene };
         setStatus("ready");
         animate();
       } catch {
@@ -218,6 +243,49 @@ export default function ModelViewer({ src, label, pair = false }: Props) {
       cleanup();
     };
   }, [src, pair]);
+
+  // Capsules live in their own group, rebuilt when they change; there are
+  // few (Rathian has 32), so rebuilding is cheaper than diffing.
+  useEffect(() => {
+    const target = sceneRef.current;
+    const container = containerRef.current;
+    if (status !== "ready" || !target || !container || !capsules?.length) return;
+    const { THREE, scene } = target;
+    const group = new THREE.Group();
+    const up = new THREE.Vector3(0, 1, 0);
+    for (const capsule of capsules) {
+      if (capsule.opacity <= 0) continue;
+      const start = new THREE.Vector3(...capsule.start);
+      const end = new THREE.Vector3(...capsule.end);
+      const length = start.distanceTo(end);
+      const mesh = new THREE.Mesh(
+        new THREE.CapsuleGeometry(capsule.radius, length, 8, 24),
+        new THREE.MeshBasicMaterial({
+          color: new THREE.Color(resolveColor(container, capsule.color)),
+          transparent: true,
+          opacity: capsule.opacity,
+          // Drawn after the model and not hidden by it, so capsules inside
+          // the body still show; not writing depth keeps overlaps visible.
+          depthTest: false,
+          depthWrite: false,
+        }),
+      );
+      mesh.position.copy(start).lerp(end, 0.5);
+      if (length > 0) mesh.quaternion.setFromUnitVectors(up, end.clone().sub(start).normalize());
+      mesh.renderOrder = 1;
+      group.add(mesh);
+    }
+    scene.add(group);
+    return () => {
+      scene.remove(group);
+      group.traverse((object) => {
+        const mesh = object as import("three").Mesh;
+        if (!mesh.isMesh) return;
+        mesh.geometry.dispose();
+        (mesh.material as import("three").Material).dispose();
+      });
+    };
+  }, [capsules, status]);
 
   return (
     <div className="relative h-full min-h-48 w-full">

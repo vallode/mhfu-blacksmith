@@ -1,11 +1,9 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { OVL_HEADER_SIZE, parseOvl } from "../src/container/ovl.js";
-import {
-  COLLISION_POINTER_OFFSET,
-  dumpCollisionRaw,
-  dumpEmModelRaw,
-} from "../src/emit/collision-raw.js";
+import { dumpCollisionRaw, dumpEmModelRaw } from "../src/emit/collision-raw.js";
+import { COLLISION_POINTER_OFFSET } from "../src/monsters/collision.js";
+import { pac } from "./model-fixtures.js";
 import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "../src/monsters/hitzones.js";
 
 const GAME_TASK_BASE = 0x09a5a580;
@@ -72,19 +70,6 @@ test("dumpCollisionRaw follows CollisionPTR into game_task.ovl and the monster's
   assert.equal(em3!.collision, null);
   assert.equal(em3!.pointers[0]!.file, "other");
 });
-
-function pac(entries: Buffer[]): Buffer {
-  const header = Buffer.alloc(4 + entries.length * 8);
-  header.writeUInt32LE(entries.length, 0);
-  let offset = header.length;
-  entries.forEach((entry, i) => {
-    if (entry.length === 0) return; // unused (0, 0) slot
-    header.writeUInt32LE(offset, 4 + i * 8);
-    header.writeUInt32LE(entry.length, 8 + i * 8);
-    offset += entry.length;
-  });
-  return Buffer.concat([header, ...entries]);
-}
 
 /** One mesh, one weighted vertex group: a 3-vertex non-indexed triangle list. */
 function weightedPmo(): Buffer {

@@ -1,7 +1,8 @@
 /**
- * Raw dumps for working out monster hitboxes (`extract --raw`): which shapes
- * on a monster's body each hitzone row applies to. Nothing here is decoded
- * yet; the dumps hold the bytes that are most likely to answer it.
+ * Raw dumps for working out monster hitboxes (`extract --raw`): the bytes
+ * the collision table (`monsters/collision.ts`) and skeleton
+ * (`models/skeleton.ts`) were decoded from, kept for checking the decoding
+ * on more monsters.
  *
  * `raw/collision.json`, one entry per `MonChunk` (emID 0-89):
  * - the whole 0x1D0-byte chunk as hex, and every u32 in it that holds a
@@ -22,21 +23,22 @@
  */
 import type { OvlFile } from "../container/ovl.js";
 import { BinaryReader } from "../binary/reader.js";
+import {
+  COLLISION_POINTER_OFFSET,
+  isUserAddress,
+  resolveChunkPointer as resolve,
+  type ResolvedPointer as Resolved,
+} from "../monsters/collision.js";
 import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "../monsters/hitzones.js";
 import { runDisplayList } from "../models/ge.js";
 import { isPac, readPac } from "../models/pac.js";
 import { isPmo } from "../models/pmo.js";
 import { isTmh } from "../models/tmh.js";
 
-/** `CollisionPTR` in `emChunk`, after BaseScale (+0x40), the shadow scales and one float. */
-export const COLLISION_POINTER_OFFSET = 0x50;
 const TARGET_WINDOW = 0x800;
 const LIST_TARGET_WINDOW = 0x200;
 const MAX_LIST_POINTERS = 64;
 const PAC_HEAD_BYTES = 0x40;
-
-/** PSP user-memory vaddrs: anything a chunk pointer could reasonably hold. */
-const isUserAddress = (v: number) => v >= 0x08800000 && v < 0x0a000000;
 
 const hex = (n: number) => `0x${n.toString(16).padStart(8, "0")}`;
 
@@ -74,21 +76,6 @@ export interface CollisionRawEntry {
   collision: CollisionTarget | null;
   /** The monster's own `overlay/emNN.ovl`, if the disc has one. */
   emOvl: { loadBase: string; loadEnd: string; length: number } | null;
-}
-
-interface Resolved {
-  file: Exclude<PointerFile, "other">;
-  ovl: OvlFile;
-  offset: number;
-}
-
-function resolve(vaddr: number, gameTask: OvlFile, emOvl: OvlFile | undefined): Resolved | null {
-  if (!isUserAddress(vaddr)) return null;
-  if (gameTask.isOwnVaddr(vaddr))
-    return { file: "game_task", ovl: gameTask, offset: gameTask.vaddrToOffset(vaddr) };
-  if (emOvl?.isOwnVaddr(vaddr))
-    return { file: "em_ovl", ovl: emOvl, offset: emOvl.vaddrToOffset(vaddr) };
-  return null;
 }
 
 function window(target: Resolved, vaddr: number, size: number): ByteWindow {

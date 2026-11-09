@@ -332,27 +332,56 @@ Monsters pair with the site by emID through the same overlay (the enum
 spells two differently: "One-Ear Yian Garuga", "Terra Shogun Ceanatur").
 `base_hp` is written to `data/monsters` and shown on the monster page; `tolerances` is extracted but has no committed field yet.
 
-### Monster hitboxes (raw dump only)
+### Monster hitboxes
 
-To highlight hitzones on the 3D models, the site needs the shapes each
-hitzone row applies to. They aren't decoded yet. `extract --raw` dumps
-the bytes most likely to hold them (`src/emit/collision-raw.ts`):
+Each monster's hitboxes are capsules on its skeleton joints, and each
+capsule takes its values from one hitzone row. Worked out on Rathian and
+Kelbi (EU disc) by drawing them over the models: the wing capsules trace
+the membranes, the legs the legs, and the rows match the parts
+`overlay/monsters.json` maps them to.
+
+- **Collision table** (`src/monsters/collision.ts`): the chunk's
+  `CollisionPTR` (`+0x50`) points into `game_task.ovl` (Kelbi) or the
+  monster's own `overlay/emNN.ovl` (Rathian). 0x28-byte records, ending at
+  joint 0xFFFF: u16 joint, u16 unknown flag, u16 hitzone row, u16 body part
+  (left and right separate), u32 flags, f32 radius, f32[3] start and end
+  relative to the joint.
+- **Skeleton** (`src/models/skeleton.ts`): index 0 of `emmodel/emNN.pac`.
+  A 0x10-byte header (`0xC0000000`, joint count + 1, size), an unknown
+  0x10-byte block, then 0x10C-byte joint records: id, parent, child,
+  sibling, scale, rotation and translation (relative to the parent), and a
+  chain number (body, neck and head, tail, severed tail). All rotations
+  seen are zero, so a joint's model-space position is the sum of the
+  translations down to it. That is the same space as the converted mesh.
+- **Site file** (`src/monsters/hitboxes.ts`): `export-site` writes
+  `public/models/monsters/emNN.hitboxes.json` next to each monster's model:
+  each capsule's ends and radius in model space, its row, and the site's
+  hitzone parts on that row. The monster page draws them over the 3D model.
+
+Open questions:
+
+- Rathian's last tail capsule reaches about 250 units past the end of the
+  mesh, and its tail joints run past the mesh too.
+- Rathian's two spheres on the root joint (row 0, flags 5 and 0x300) sit at
+  the body's centre, so they are probably body collision. `hitboxes.ts`
+  skips records with flag bits not seen on damage capsules (0x1, 0x100,
+  0x08000000) and logs each skip, so check the `export-site` log for
+  damage capsules with new flags.
+- The second u16 (0 or 1) and the rest of the flags are unknown.
+
+`extract --raw` still dumps the bytes these came from
+(`src/emit/collision-raw.ts`), for checking the format on more monsters:
 
 - `raw/collision.json`: each `MonChunk` as hex, every u32 in it that holds a
   user-memory address (and whether it points into `game_task.ovl`, the
   monster's own `overlay/emNN.ovl` or elsewhere), and the target of
-  `CollisionPTR` (`+0x50` in `game_task.hexpat`): 0x800 bytes as hex and
-  f32s, plus 0x200 bytes at each pointer if the target starts with a pointer
-  list.
+  `CollisionPTR`: 0x800 bytes as hex and f32s, plus 0x200 bytes at each
+  pointer if the target starts with a pointer list.
 - `raw/emmodel.json`: each `emmodel/emNN.pac`'s entries (size, magic, first
   0x40 bytes) and its PMO header, mesh records and vertex-group records,
   with each group's vertex count, weights per vertex and position bounds.
-  The mesh converter ignores the record fields that probably bind groups to
-  skeleton joints. The display lists don't use the GE's bone-matrix
-  commands (the decoder would reject them), so the matrices must be set
-  from these records.
 - `raw/emmodel/emNN.<index>.bin`: package entries that are neither PMO nor
-  TMH, whole (skeleton and collision candidates).
+  TMH, whole: index 0 is the skeleton, index 3 (`d`) probably the motions.
 
 These dumps come from the disc, so they stay in `.cache/` like the rest of
 the extracted output.
@@ -430,7 +459,10 @@ file paths:
 - **Monsters** map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the
   vendored `monster.enum`, matched to `data/monsters/*.json` by name (with
   aliases for the two names that differ). IDs without a monster page
-  (Veggie Elder, Poogie, ...) are skipped.
+  (Veggie Elder, Poogie, ...) are skipped. Each monster also gets
+  `monsters/emNN.hitboxes.json` (see "Monster hitboxes"), which needs
+  `overlay/game_task.ovl` and the `emNN.ovl` files in the unpacked
+  directory; the log names any monster without one, and why.
 - **Weapons** need `eboot.bin`: each blademaster/gunner table entry, indexed
   by the equipment ID that `data/equipment-ids.json` names, holds the model
   ID of its `weapon/weNNN.pac`. Verified on an EU EBOOT: all 1,500 weapons
