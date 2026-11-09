@@ -23,6 +23,9 @@ import type { Pmo } from "./pmo.js";
 type Vec3 = [number, number, number];
 
 const EPSILON = 1e-3;
+/** Radians; see `rigid` in detachedBoneOffsets. */
+const ANGLE_TOLERANCE = 0.01;
+const SCALE_TOLERANCE = 0.01;
 
 const near = (a: readonly number[], b: readonly number[]): boolean =>
   a.every((c, k) => Math.abs(c - b[k]!) < EPSILON);
@@ -51,22 +54,29 @@ export function skeletonFor(entries: PacEntry[], pmoIndex: number): Bone[] {
  */
 export function detachedBoneOffsets(bones: Bone[]): Map<number, Vec3> {
   const offsets = new Map<number, Vec3>();
-  // Only pure translations are handled: every MHFU skeleton seen so far has
-  // identity rotations and unit scales in its bind pose.
-  if (!bones.every((b) => near(b.rotation, [0, 0, 0]) && near(b.scale, [1, 1, 1]))) return offsets;
 
   const children = new Map<number, number[]>();
   for (const bone of bones) {
     if (bone.parent >= 0)
       children.set(bone.parent, [...(children.get(bone.parent) ?? []), bone.id]);
   }
+  const ancestry = (id: number): Bone[] => {
+    const path: Bone[] = [];
+    for (let b = bones[id]; b; b = b.parent >= 0 ? bones[b.parent] : undefined) path.push(b);
+    return path;
+  };
   const world = (id: number): Vec3 => {
     const sum: Vec3 = [0, 0, 0];
-    for (let b = bones[id]; b; b = b.parent >= 0 ? bones[b.parent] : undefined) {
-      b.translation.forEach((c, k) => (sum[k] = sum[k]! + c));
-    }
+    for (const b of ancestry(id)) b.translation.forEach((c, k) => (sum[k] = sum[k]! + c));
     return sum;
   };
+  // Positions are summed as pure translations, so every bone that feeds one
+  // must be (close to) unrotated and unscaled. Other bones may be anything
+  // (Yian Garuga's crest bones turn 75 degrees, Basarios's neck scales to
+  // 0.77); Gravios's bones carry ~0.001 rad of noise, worth ~0.1 units here.
+  const rigid = (b: Bone) =>
+    b.rotation.every((c) => Math.abs(c) < ANGLE_TOLERANCE) &&
+    b.scale.every((c) => Math.abs(c - 1) < SCALE_TOLERANCE);
   const subtree = (root: number): number[] => {
     const ids = [root];
     for (let i = 0; i < ids.length; i++) ids.push(...(children.get(ids[i]!) ?? []));
@@ -86,6 +96,11 @@ export function detachedBoneOffsets(bones: Bone[]): Map<number, Vec3> {
         near(bones[id]!.translation, bones[leaf]!.translation),
       );
       if (matches.length !== 1) continue;
+      const path = [...ancestry(bones[matches[0]!]!.parent), ...chain.map((id) => bones[id]!)];
+      if (!path.every(rigid)) {
+        consistent = false;
+        continue;
+      }
       const target = world(bones[matches[0]!]!.parent);
       const source = world(bones[leaf]!.parent);
       const candidate = target.map((c, k) => c - source[k]!) as Vec3;

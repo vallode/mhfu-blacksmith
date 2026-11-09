@@ -402,9 +402,11 @@ motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   the bones it copies (matched by the leaf's offset from its parent, e.g.
   Cephalos's 46 -> 47 and 43 -> 44 are both +73.07 along z) and the tip's
   vertices with it, through each vertex group's bone palette (`pmo.ts`).
-  Checked on Cephalos, Rathian, Rathalos, Silver Rathalos, Tigrex and
-  Ukanlos; Lavasioth's copy is already in place, and small monsters have
-  none.
+  Only the bones the offset sums need to be unrotated and unscaled (within
+  0.01 rad / 1%): Yian Garuga's crest and Basarios's neck don't count, and
+  Gravios's ~0.001 rad of authoring noise is ignored. Renders checked for
+  all 32 monsters it changes; Lavasioth's copy is already in place, and
+  small monsters have none.
 - A package's second PMO isn't converted: it's effect geometry (a shadow
   quad on the Raths, Cephalos's sand spray, Tigrex's roar ring, Lavasioth's
   lava).

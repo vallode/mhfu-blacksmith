@@ -9,7 +9,9 @@ import { readPmo, type Pmo } from "../src/models/pmo.js";
 type Vec3 = [number, number, number];
 
 /** A .ahi file as monster packages store it: 0x20-byte header, then 0x10c-byte bones. */
-function ahi(bones: { parent: number; translation: Vec3; part?: number }[]): Buffer {
+function ahi(
+  bones: { parent: number; translation: Vec3; part?: number; rotation?: Vec3; scale?: Vec3 }[],
+): Buffer {
   const buf = Buffer.alloc(0x20 + bones.length * 0x10c);
   buf.writeUInt32LE(0xc0000000, 0);
   buf.writeUInt32LE(buf.length, 8);
@@ -24,8 +26,8 @@ function ahi(bones: { parent: number; translation: Vec3; part?: number }[]): Buf
     buf.writeInt32LE(bone.parent, at + 0x10);
     buf.writeInt32LE(-1, at + 0x14);
     buf.writeInt32LE(-1, at + 0x18);
-    [1, 1, 1, 1].forEach((v, k) => buf.writeFloatLE(v, at + 0x1c + k * 4));
-    [0, 0, 0, 1].forEach((v, k) => buf.writeFloatLE(v, at + 0x2c + k * 4));
+    [...(bone.scale ?? [1, 1, 1]), 1].forEach((v, k) => buf.writeFloatLE(v, at + 0x1c + k * 4));
+    [...(bone.rotation ?? [0, 0, 0]), 1].forEach((v, k) => buf.writeFloatLE(v, at + 0x2c + k * 4));
     [...bone.translation, 1].forEach((v, k) => buf.writeFloatLE(v, at + 0x3c + k * 4));
     buf.writeInt32LE(-1, at + 0x4c);
     buf.writeUInt8(bone.part ?? 0, at + 0x50);
@@ -75,6 +77,20 @@ test("detachedBoneOffsets leaves a chain alone when it is already in place or am
   assert.equal(detachedBoneOffsets(readAhi(ahi(ambiguous))).size, 0);
   // No detached chain at all (small monsters).
   assert.equal(detachedBoneOffsets(readAhi(ahi(TAIL.slice(0, 3)))).size, 0);
+});
+
+test("detachedBoneOffsets only needs the bones it sums to be unrotated and unscaled", () => {
+  // A turned or scaled bone elsewhere (Yian Garuga's crest, Basarios's neck)
+  // and authoring noise on the path (Gravios, ~0.001 rad) don't matter.
+  const crest = { parent: 0, translation: [0, 50, 100] as Vec3, rotation: [0, 0, 1.309] as Vec3 };
+  const neck = { parent: 0, translation: [0, 20, 80] as Vec3, scale: [1, 1, 0.767] as Vec3 };
+  const noisy = TAIL.map((b, i) => (i === 1 ? { ...b, rotation: [0.001, 0, 0] as Vec3 } : b));
+  for (const bones of [[...TAIL, crest], [...TAIL, neck], noisy]) {
+    assert.deepEqual(detachedBoneOffsets(readAhi(ahi(bones))).get(4), [0, 10, -100]);
+  }
+  // A real turn on the path would move the attach point: leave it alone.
+  const turned = TAIL.map((b, i) => (i === 1 ? { ...b, rotation: [0, 0.5, 0] as Vec3 } : b));
+  assert.equal(detachedBoneOffsets(readAhi(ahi(turned))).size, 0);
 });
 
 function vertex(position: Vec3, weights: number[]): DecodedVertex {
