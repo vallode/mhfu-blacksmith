@@ -12,7 +12,10 @@ import type { RandomAccessSource } from "../../../mhfu-extract/src/container/sou
 import { MHP2G_PROFILE } from "../../../mhfu-extract/src/games/mhp2g.js";
 import { listQuestFiles } from "../../../mhfu-extract/src/quests/discovery.js";
 import { parseQuest, type ParsedQuest } from "../../../mhfu-extract/src/quests/parser.js";
-import type { TableAddressResolver } from "../../../mhfu-extract/src/tables/resolver.js";
+import {
+  PinnedResolver,
+  type TableAddressResolver,
+} from "../../../mhfu-extract/src/tables/resolver.js";
 import { DataBin } from "../disc/databin.js";
 import { openQuestFile, type QuestFile } from "../disc/quest-file.js";
 
@@ -119,8 +122,11 @@ export async function loadGame(
       ? checkedDump(options.eboot.dump)
       : await decryptEboot(iso.readFile(EBOOT_PATH), options.eboot);
     if (region !== "jp") {
-      resolver = MHP2G_PROFILE.resolverForRegion(region) ?? undefined;
-      if (!resolver) throw new Error(`No EBOOT table addresses for region ${region} yet`);
+      const found = MHP2G_PROFILE.resolverForRegion(region);
+      if (!found) throw new Error(`No EBOOT table addresses for region ${region} yet`);
+      // Signatures are found in the unedited EBOOT: shuffles that run first
+      // (weapons, armor) change the tables later ones (recipes) look up.
+      resolver = new PinnedResolver(found, Buffer.from(eboot));
     }
   }
 

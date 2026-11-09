@@ -12,6 +12,17 @@ import {
   equipmentCreateLayout,
   equipmentUpgradeLayout,
 } from "../../mhfu-extract/src/tables/recipes.js";
+import { MHP2G_PROFILE } from "../../mhfu-extract/src/games/mhp2g.js";
+import {
+  ARMOR_SLOT_TABLE_NAMES,
+  ARMOR_SLOTS,
+  armorValuesOffsets,
+} from "../../mhfu-extract/src/tables/armor.js";
+import {
+  PinnedResolver,
+  TableResolutionError,
+  type TableAddressResolver,
+} from "../../mhfu-extract/src/tables/resolver.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import type { Settings } from "../src/settings.js";
@@ -146,5 +157,47 @@ test("weapons and recipes together: recipes shuffle the tables weapons left", as
   const report = both.reports.find((r) => r.title === "Weapon progression")!;
   assert.ok(report.lines.every((l) => l.text.includes(" -> ")));
   assert.deepEqual(both.problems, []);
+  close();
+});
+
+/**
+ * Finds tables as the EU disc's signature resolver does: by the table's own
+ * bytes, so it fails once those bytes are edited. Built on the fixture's
+ * static (JP) offsets, checking the 2 KB there against the
+ * unedited EBOOT's.
+ */
+function signatureLike(original: Buffer): TableAddressResolver {
+  const jp = MHP2G_PROFILE.resolverForRegion("jp")!;
+  // JP finds armor values through a pointer table rather than an address.
+  const armor = armorValuesOffsets(new BinaryReader(original));
+  const armorTables = new Map(
+    ARMOR_SLOTS.map((slot) => [ARMOR_SLOT_TABLE_NAMES[slot], armor[slot]]),
+  );
+  return {
+    resolve(table: string, buf?: Buffer): number {
+      const at = armorTables.get(table) ?? jp.resolve(table);
+      if (!buf || !buf.subarray(at, at + 0x800).equals(original.subarray(at, at + 0x800))) {
+        throw new TableResolutionError(`signature for table "${table}" not found in buffer`);
+      }
+      return at;
+    },
+  };
+}
+
+test("tables found by signature stay found once weapons and armor edit them", async () => {
+  const { game, close } = await load();
+  const original = Buffer.from(game.eboot!);
+  const all = settingsWith("z", ["weapons", "armor", "recipes", "costs"]);
+
+  // The bug this guards against: searching the edited EBOOT loses the tables.
+  game.resolver = signatureLike(original);
+  assert.throws(() => randomize(game, all), /not found in buffer/);
+
+  // As loadGame sets it up for a signature region: found once, in the unedited EBOOT.
+  game.resolver = new PinnedResolver(signatureLike(original), original);
+  const pinned = randomize(game, all);
+  game.resolver = undefined;
+  const staticOffsets = randomize(game, all);
+  assert.ok(pinned.edits.eboot().equals(staticOffsets.edits.eboot()));
   close();
 });
