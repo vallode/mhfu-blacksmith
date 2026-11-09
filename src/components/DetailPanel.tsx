@@ -8,9 +8,13 @@ import type { Material } from "@/lib/types";
 // decoration and monster pages. Text in the panel is yellow (text-stat) by
 // default; values are white.
 
-/** The detail card; shares the row equally with the tree card. */
+/**
+ * The detail card; shares the row equally with the tree card. Long content
+ * (a quest's rewards, a monster's drops) scrolls inside it on desktop, where
+ * the card is the height of the page; on a phone the card grows instead.
+ */
 export function DetailCard({ children }: { children: React.ReactNode }) {
-  return <Card className="min-w-0">{children}</Card>;
+  return <Card className="min-w-0 overflow-auto">{children}</Card>;
 }
 
 /** Icon + name (+ sharpness) row at the top of the panel. */
@@ -39,7 +43,7 @@ export function NoDataCard({ children }: { children?: React.ReactNode }) {
 
 /** Everything below the header. */
 export function DetailBody({ children }: { children: React.ReactNode }) {
-  return <div className="mt-[2rem] flex h-full flex-col gap-[1.3rem] text-stat">{children}</div>;
+  return <div className="mt-[2rem] flex flex-none flex-col gap-[1.3rem] text-stat">{children}</div>;
 }
 
 /** Divider between sections of the panel. */
