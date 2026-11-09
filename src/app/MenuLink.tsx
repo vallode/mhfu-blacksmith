@@ -29,6 +29,24 @@ const SECTIONS = {
 
 export type MenuSection = keyof typeof SECTIONS;
 
+/**
+ * The page the user last viewed in a section (its first page at first).
+ * `pathname` re-reads the stored choice after each navigation, so a nav that
+ * stays mounted (the app sidebar) follows the latest page.
+ */
+export function useSectionHref(section: MenuSection, pathname?: string): string {
+  const { initial, last } = SECTIONS[section];
+  // The server-rendered page has no stored choice, so start on the default and switch after mount.
+  const [href, setHref] = useState(initial);
+  // Read on the next frame: the page's nav stores its choice in its own effect,
+  // which can run after this one in the same commit.
+  useEffect(() => {
+    const frame = requestAnimationFrame(() => setHref(last()));
+    return () => cancelAnimationFrame(frame);
+  }, [last, pathname]);
+  return href;
+}
+
 /** A main-menu entry that opens the page the user last viewed in that section (the first page at first). */
 export default function MenuLink({
   section,
@@ -37,10 +55,8 @@ export default function MenuLink({
   section: MenuSection;
   className?: string;
 }) {
-  const { label, initial, last } = SECTIONS[section];
-  // The server-rendered page has no stored choice, so start on the default and switch after mount.
-  const [href, setHref] = useState(initial);
-  useEffect(() => setHref(last()), [last]);
+  const { label } = SECTIONS[section];
+  const href = useSectionHref(section);
 
   return (
     <Link className={className} href={href}>

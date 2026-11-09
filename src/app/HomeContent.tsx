@@ -18,7 +18,7 @@ const MENU: { href: string; label: string; section?: MenuSection }[] = [
 // white with a red shadow and the green glow behind it on hover.
 const menuItem = [
   "relative text-center text-[2.3em] leading-[1.5] tracking-[0.5ch] text-parchment uppercase text-shadow-[0.2rem_0.2rem_black]",
-  "hover:text-white hover:text-shadow-[0.2rem_0.2rem_#ff5068]",
+  "hover:text-white hover:text-shadow-[0.2rem_0.2rem_var(--color-menu-hover)]",
   "before:absolute before:top-0 before:left-0 before:-z-1 before:block before:size-full before:bg-transparent",
   "hover:before:hover-glow focus:before:hover-glow",
 ].join(" ");

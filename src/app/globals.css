@@ -42,6 +42,10 @@
      glyph. Unregistered, so ch and em resolve on the element using it. */
   --cell: calc(1ch + 0.14em);
 
+  /* Height of the phone tab bar (AppShell), so fixed things above the page
+     bottom (toasts) clear it: bottom-[calc(var(--spacing-tabbar)+1.4rem)]. */
+  --spacing-tabbar: 8rem;
+
   /* UI palette */
   --color-accent: #037703;
   --color-hr: #6e905f;
@@ -56,6 +60,7 @@
   --color-unavailable: #808080; /* greyed-out entries: ammo you cannot load, etc. */
   --color-parchment: #c3be9f; /* menu labels and toast titles */
   --color-selector: rgb(96 102 94 / 0.78); /* flat grey bar of in-game selectors and menu headers */
+  --color-menu-hover: #ff5068; /* drop shadow of a hovered menu entry (main menu, sidebar) */
 
   /* Item rarity tints (rarities 1–3 are untinted) */
   --color-rarity-4: #52f152;
@@ -122,6 +127,18 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* The phone menu drawer (AppShell) slides in from the left */
+  --animate-drawer-in: drawer-in 160ms ease-out;
+
+  @keyframes drawer-in {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
     }
   }
 
