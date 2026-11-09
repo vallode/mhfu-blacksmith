@@ -555,8 +555,8 @@ on both the JP and EU discs. Unused slots, whose every text field is one
 placeholder literal, are dropped: `"**********"` on JP (`m50001`-`m50003`,
 0 zenny fee, 1 zenny reward) and `"none"` on EU (those 3, plus
 `m40001`-`m40008`: 0 zenny fee with real monsters and rewards, but no text
-in any language). So are `m00001`-`m00010` and `m00101`-`m00109`, which
-are on no quest board (below). The EU disc leaves 521 emitted: village 148,
+in any language). So are `m00001`-`m00010`, which are on no confirmed
+quest board (below). The EU disc leaves 530 emitted: village 157,
 guild 319, training-school 47, treasure-hunting 7.
 
 **The `hub` comes from the quest ID** (`questHub`). The disc numbers quests
@@ -566,10 +566,17 @@ High / G Rank, `4xxx` Treasure Hunting (client always "Treshi"),
 Chief"), `20xxx`-`22xxx` Training School (client always "Instructor": Basic
 Training, weapon Mastery, then Subjugation Training), and `30001`-`30090`
 the 90 identical "Gathering - Snowy Mountains" copies, kept on Guild Low
-Rank. `1`-`10` and `101`-`109` fit no block, and most repeat the title and
-client of a Village or Guild High Rank quest (`2` and `10105` are both
-"Reckless Bulldrome Hunter" for the "Troubled Father"; `108` and `2116` are
-both "Eliminate the Rathalos!"), so they aren't emitted.
+Rank. `101`-`109` are Village quests that appear once a prerequisite is
+cleared (`109` "Attack of the Rathian", 250z / 3000z in the Jungle (Day),
+after `10203` "Shadow in the Snow"): header rank 0 and ★2, with the
+Village's low-star Rathalos and Rathian. The disc doesn't say what unlocks
+them, so the prerequisites we know are hand-entered in
+`src/tables/quest-prerequisites.ts` and emitted as `requires` (the quest ID
+to clear first, else null). `1`-`10` fit no confirmed block and aren't emitted: some repeat a
+Village quest with different values (`2` and `10105` are both "Reckless
+Bulldrome Hunter" for the "Troubled Father"; "Mountain Herb Picking" is
+100z as `4` and free as `10001`), others match nothing else on the disc.
+They may be ★1 unlockables or unused.
 
 **The `rank` is `questHeader.Rank`'s tier**: 1/2/5 are low/high/G rank,
 and 0, 3 and 4 have none. It is not the board: an earlier version read the

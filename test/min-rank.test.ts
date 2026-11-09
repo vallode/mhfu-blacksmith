@@ -66,6 +66,23 @@ describe("earliestSources", () => {
     assert.deepEqual(s.get("tigrex fang"), { rank: "high-rank", stars: 6 });
   });
 
+  it("counts a quest no earlier than the quest it requires", () => {
+    // Village ★2 "Attack of the Rathian" (109) appears after ★3 "Shadow in the Snow" (10203).
+    const rathian: MonsterLike[] = [
+      { name: "Rathian", drops: { "low rank": { carve: [{ name: "Rathian Scale" }] } } },
+    ];
+    const s = earliestSources(
+      [
+        { ...quest("village", null, 2, ["Gem"], ["Rathian"]), id: 109, requires: 10203 },
+        { ...quest("village", "low-rank", 3, []), id: 10203 },
+      ],
+      rathian,
+      key,
+    );
+    assert.deepEqual(s.get("gem"), { rank: "low-rank", stars: 3 });
+    assert.deepEqual(s.get("rathian scale"), { rank: "low-rank", stars: 3 });
+  });
+
   it("ignores gathered items", () => {
     const s = earliestSources(
       [quest("guild", "low-rank", 2, ["Iron Ore"])],

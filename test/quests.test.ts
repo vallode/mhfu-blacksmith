@@ -169,6 +169,14 @@ describe("encodeQuestBundle / decodeQuests", () => {
       { name: "Scarred Yian Garuga", href: "/monsters/bird-wyvern/scarred-yian-garuga/" },
     ]);
   });
+
+  test("keeps the quest a quest requires, and null when there is none", () => {
+    const { bundle } = encode([quest({ id: 109, requires: 10203 }), quest({ id: 10203 })]);
+    assert.deepEqual(
+      decodeQuests(bundle).map((q) => q.requires),
+      [10203, null],
+    );
+  });
 });
 
 describe("quest lookups", () => {

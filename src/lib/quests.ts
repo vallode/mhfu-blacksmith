@@ -83,6 +83,7 @@ export type CompactQuest = [
   fail: number | null,
   details: number | null,
   client: number | null,
+  requires: number | null, // quest ID cleared before this one appears
 ];
 
 export interface QuestsBundle {
@@ -138,6 +139,8 @@ export interface Quest {
   fail: string | null;
   details: string | null;
   client: string | null;
+  /** ID of the quest that must be cleared before this one appears. */
+  requires: number | null;
 }
 
 export function decodeQuests(b: QuestsBundle): Quest[] {
@@ -153,7 +156,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
     items: items.map(([chance, itemId, amount]) => ({ chance, itemId, amount: amount ?? 1 })),
   }));
   return b.items.map(
-    ([id, hub, stars, map, fee, reward, timeLimit, tg, lm, sm, su, rw, n, g, x, d, c]) => ({
+    ([id, hub, stars, map, fee, reward, timeLimit, tg, lm, sm, su, rw, n, g, x, d, c, rq]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
       stars,
@@ -175,6 +178,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       fail: str(x),
       details: str(d),
       client: str(c),
+      requires: rq ?? null,
     }),
   );
 }

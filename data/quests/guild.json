@@ -105,7 +105,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 1002,
@@ -212,7 +213,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest in\nthe jungle. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 1003,
@@ -323,7 +325,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest in\nthe desert. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 1004,
@@ -548,7 +551,8 @@
       "goal": "Hunt the Giadrome",
       "details": "After you killed those\nGiaprey, their leader showed\nup and it's not a happy\ncamper! It's bigger, and has\na green crest. Find it and\nkill it!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Young Guardsman"
+      "client": "Young Guardsman",
+      "requires": null
     },
     {
       "id": 1005,
@@ -755,7 +759,8 @@
       "goal": "Hunt the Bulldrome",
       "details": "The thick skinned Bulldrome\nis well adapted to life in\nthe mountains. Yet it's\nnothing but a pest for those\nof us living amongst the\npeaks! Which is why I'd like\nyou to get rid of it!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Familiar Villager"
+      "client": "Familiar Villager",
+      "requires": null
     },
     {
       "id": 1006,
@@ -962,7 +967,8 @@
       "goal": "Slay 20 Giaprey",
       "details": "I chased off a Giaprey that\nwas feeding on my Popos, but\nnow it's back with 19 of its\nbuddies! I can't take on the\nwhole lot of them! Hunters,\nthis is your chance! Please\nget rid of them for me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Proud Farmer"
+      "client": "Proud Farmer",
+      "requires": null
     },
     {
       "id": 1007,
@@ -1141,7 +1147,8 @@
       "goal": "Deliver 20 Mountain Herbs",
       "details": "Steeping Mountain Herbs in\nthis special brew has\nmiraculous medical effects.\nHowever, I've run out of the\nherbs essential to the\nconcoction. Find 20 of them\nand bring them to me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Loudmouth Lady"
+      "client": "Loudmouth Lady",
+      "requires": null
     },
     {
       "id": 1008,
@@ -1350,7 +1357,8 @@
       "goal": "Hunt the Velocidrome",
       "details": "It seems that whenever my\nwife goes to pick mushrooms\nin the Jungle, a large\ncarnivore appears! There's\nno way I can let her go pick\nmushrooms now... Please!\nMake the Jungle safe again!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Newly Wedded Husband"
+      "client": "Newly Wedded Husband",
+      "requires": null
     },
     {
       "id": 1009,
@@ -1556,7 +1564,8 @@
       "goal": "Hunt the Blue Yian Kut-Ku",
       "details": "I want you to hunt and kill\nthe giant bird-like monster\nthat has appeared in our \njungle. It's wreaking havoc\non our environment!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Jungle Envoy"
+      "client": "Jungle Envoy",
+      "requires": null
     },
     {
       "id": 1010,
@@ -1760,7 +1769,8 @@
       "goal": "Slay 20 Velociprey",
       "details": "A group of blue scaled, pack\nhunting carnivores called\nVelociprey have infested the\njungle. Please slay 20 of\nthem for us... But beware of\ntheir boss!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Resident Farmers"
+      "client": "Resident Farmers",
+      "requires": null
     },
     {
       "id": 1011,
@@ -1967,7 +1977,8 @@
       "goal": "Slay 50 Vespoids",
       "details": "My village is under attack\nby a swarm of bug monsters!\nIt seems there are about 50\nof them. One on one they are\nnot a threat, but as a group\nthey are deadly. So be\ncareful.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Jungle Envoy"
+      "client": "Jungle Envoy",
+      "requires": null
     },
     {
       "id": 1012,
@@ -2139,7 +2150,8 @@
       "goal": "Deliver 20 Special Mushrooms",
       "details": "My doggie just looooves\nSpecial Mushrooms! I'd like\nyou to bring me 20 of them,\nas I can't resist his puppy\ndog eyes. However, beware of\nthat filthy pink vagrant\nbrute!",
       "fail": "Reward Zero\nTime Over",
-      "client": "The Lady Gourmet"
+      "client": "The Lady Gourmet",
+      "requires": null
     },
     {
       "id": 1013,
@@ -2310,7 +2322,8 @@
       "goal": "Deliver 3 Goldenfish",
       "details": "I'd do anything to get my\nhands on some legendary\nGoldenfish! I'm begging you\nto bring me 2 of them! Wait!\nMake that 3! Please catch\nthese fish and bring them\nhere!",
       "fail": "Reward Zero\nTime Over",
-      "client": "The Collector"
+      "client": "The Collector",
+      "requires": null
     },
     {
       "id": 1014,
@@ -2526,7 +2539,8 @@
       "goal": "Hunt the Gendrome",
       "details": "My caravans are being hit by\npacks of Genprey. It appears\nthere is an extraordinarily\npowerful boss among them!\nHunt down the monster and\nmake the roads safe again\nfor all!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Ambitious Noble"
+      "client": "Ambitious Noble",
+      "requires": null
     },
     {
       "id": 1015,
@@ -2748,7 +2762,8 @@
       "goal": "Hunt the Cephadrome",
       "details": "Our pack-animals were eaten\nby something in the desert.\nBut nobody actually saw the\nmonster attack! Track down\nthis vile beast and take \nit out!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Oasis Village Chief"
+      "client": "Oasis Village Chief",
+      "requires": null
     },
     {
       "id": 1016,
@@ -2964,7 +2979,8 @@
       "goal": "Hunt the Daimyo Hermitaur",
       "details": "When some of my clan went\ngathering in the desert,\nthey were attacked by an\nenormous crab, nya! As long\nas he's around, we can't do\nbusiness. Help us, nya!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Lynian Clan Leader"
+      "client": "Lynian Clan Leader",
+      "requires": null
     },
     {
       "id": 1017,
@@ -3167,7 +3183,8 @@
       "goal": "Slay 20 Genprey",
       "details": "I'm too injured to go on...\nThe Genprey living in the\ndesert have the power to\nparalyze their foes. I'd\nlike you to find the pack\nthat did this to me and kill\n20 of the fiends!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Injured Soldier"
+      "client": "Injured Soldier",
+      "requires": null
     },
     {
       "id": 1018,
@@ -3388,7 +3405,8 @@
       "goal": "Deliver 10 Piscine Livers",
       "details": "Hello sirs and madams! I\ndeal in rare items that I\nfind in the desert. Recently\nI've got a buyer for Piscine\nWyvern and Sand Wyvern\nlivers. Deliver 10 of them\nto me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Foreign Peddler"
+      "client": "Foreign Peddler",
+      "requires": null
     },
     {
       "id": 1019,
@@ -3579,7 +3597,8 @@
       "goal": "Deliver 3 Goldenfish",
       "details": "Fishing. It carries on in\nthe hearts of children and\nremains a simple pleasure\nfor adults. Hearken back to\na simpler time and bring me\nback 3 of the desert's most\nprecious gift... Goldenfish!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Twilight Fisherman"
+      "client": "Twilight Fisherman",
+      "requires": null
     },
     {
       "id": 1020,
@@ -3801,7 +3820,8 @@
       "goal": "Hunt the Yian Kut-Ku",
       "details": "That big eared Yian Kut-Ku\nreally made mincemeat out of\nme! It's out of my league,\nso I want you to hunt it\ndown for me! He's all yours!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Novice Hunter"
+      "client": "Novice Hunter",
+      "requires": null
     },
     {
       "id": 1021,
@@ -4004,7 +4024,8 @@
       "goal": "Hunt the Bulldrome",
       "details": "We have a plan to rid the\nswamp of the scourge of the\nBulldrome; however, we do\nnot have enough hunters for\nthe job. That is why we need\nyour help! Let us rid the\nswamp of this foul beast!",
       "fail": "Reward Zero\nTime Over",
-      "client": "The Shocked Lord"
+      "client": "The Shocked Lord",
+      "requires": null
     },
     {
       "id": 1022,
@@ -4212,7 +4233,8 @@
       "goal": "Hunt the Congalala",
       "details": "I took a trip to the swamp\nand saw a pretty pink animal\nwith fangs. But when I tried\nto call it to the carriage,\nit threw something dirty at\nme and now I can't get the\nsmell off! Punish it!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Oblivious Daughter"
+      "client": "Oblivious Daughter",
+      "requires": null
     },
     {
       "id": 1101,
@@ -4335,7 +4357,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest in\nthe swamp. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 1102,
@@ -4450,7 +4473,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest in\nthe forest and hills. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 1103,
@@ -4565,7 +4589,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest in\nthe volcanic zone. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 1104,
@@ -4773,7 +4798,8 @@
       "goal": "Hunt the Blangonga",
       "details": "As the representative of the\nHunter's Guild, allow me to\nlay out our request. We\nwould like you to hunt down\nthe proud ruler of the\nmountains, the Blangonga...\nBut you must be prepared!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 1105,
@@ -5003,7 +5029,8 @@
       "goal": "Hunt the Khezu",
       "details": "We were exploring a cave\nnear here, but stumbled on\nthis disgusting blob-like\nmonster! If you can't get\nrid of that thing, our\nresearch is doomed! Help us!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Old Geologist"
+      "client": "Old Geologist",
+      "requires": null
     },
     {
       "id": 1106,
@@ -5221,7 +5248,8 @@
       "goal": "Hunt the Red Khezu",
       "details": "I've always longed to\nventure into the snowy\nmountains! I think I could\nhunt down an Anteka, but I\ncould never fight a wyvern.\nMaybe you could take care of\na special monster for me...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Uncomfortable Butler"
+      "client": "Uncomfortable Butler",
+      "requires": null
     },
     {
       "id": 1107,
@@ -5438,7 +5466,8 @@
       "goal": "Slay 20 Blangos",
       "details": "The pelt of a Blango can be\nmade into various pieces of\narmor that are useful in\neveryday life. Slay 20 of\nthe beasts and bring me\ntheir pelts. Beware of the\nBlangonga.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Armory Owner"
+      "client": "Armory Owner",
+      "requires": null
     },
     {
       "id": 1108,
@@ -5653,7 +5682,8 @@
       "goal": "Deliver 5 Khezu Whelps",
       "details": "I'm after the rare larvae of\nthe Khezu. They should be\non the summit, so search\nthere. These whelps aren't\nto be taken lightly. If you\nrun out of Pickaxes, combine\na bone with a rock!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Delicacy Collector"
+      "client": "Delicacy Collector",
+      "requires": null
     },
     {
       "id": 1109,
@@ -5875,7 +5905,8 @@
       "goal": "Hunt the Plesioth",
       "details": "Hunt down the water wyvern\nthat keeps harassing my\nshipyard! Your target is a\nmonster that can shoot water\nwith incredible force, so\nbeware! Heh heh heh!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Master Shipwright"
+      "client": "Master Shipwright",
+      "requires": null
     },
     {
       "id": 1110,
@@ -6080,7 +6111,8 @@
       "goal": "Slay 20 Congas",
       "details": "A huge group of Congas,\nalong with one of their big\npink bosses are gathering\ntogether. Please get rid of\n20 of them... I think it\nwill drive the rest away!\nHelp me, pretty please!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Curly Haired Girl"
+      "client": "Curly Haired Girl",
+      "requires": null
     },
     {
       "id": 1111,
@@ -6277,7 +6309,8 @@
       "goal": "Slay 50 Hornetaurs",
       "details": "I thought dark clouds had\ncovered the moon, but it was\nactually a swarm of\nHornetaurs! The jungle is\ncovered with the bugs and I\nneed you to exterminate 50\nof the Hornetaur pests!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Pale Boy"
+      "client": "Pale Boy",
+      "requires": null
     },
     {
       "id": 1112,
@@ -6503,7 +6536,8 @@
       "goal": "Hunt the Green Plesioth",
       "details": "The lake underneath the\ndesert is connected to an\nunderground river and\npatrolled by a green-scaled\nwater wyvern... If you are\ntruly a hunter, then it\nshould pose no problem.",
       "fail": "Reward Zero\nTime Over",
-      "client": "The Old Misanthrope"
+      "client": "The Old Misanthrope",
+      "requires": null
     },
     {
       "id": 1113,
@@ -6726,7 +6760,8 @@
       "goal": "Slay 20 Hermitaurs",
       "details": "Those pesky Hermitaurs are\nstarting to get in the way\nof business. They hide in\nthe sand and ambush you at a\nmoment's notice. I also\nspotted a Daimyo Hermitaur,\nso be extremely careful!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Merchant Envoy"
+      "client": "Merchant Envoy",
+      "requires": null
     },
     {
       "id": 1114,
@@ -6944,7 +6979,8 @@
       "goal": "Hunt the Purple Gypceros",
       "details": "I saw a gigantic bird-like\nmonster deep in the swamp!\nIt scared everyone so bad\nthat I can't do business\nwith a thing like that out\nthere! Please hunt it down\nso I can work in peace!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guarded Merchant"
+      "client": "Guarded Merchant",
+      "requires": null
     },
     {
       "id": 1115,
@@ -7168,7 +7204,8 @@
       "goal": "Hunt the Shogun Ceanataur",
       "details": "A Shogun Ceanataur is\nrunning rampant over the\nswamp zone! Whether it be\nhuman or animal, it is\nattacking everything in\nsight. Head to the swamp\nand end its reign of terror!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Furious Merchant"
+      "client": "Furious Merchant",
+      "requires": null
     },
     {
       "id": 1116,
@@ -7390,7 +7427,8 @@
       "goal": "Hunt the Gypceros",
       "details": "The Gypceros is known to\nhave a fondness for shiny\nobjects. It is also known to\noccasionally steal ore from\nhumans. Slaying a Gypceros\nmay net you some great\ntreasures.",
       "fail": "Reward Zero\nTime Over",
-      "client": "The Gem Hunter"
+      "client": "The Gem Hunter",
+      "requires": null
     },
     {
       "id": 1117,
@@ -7577,7 +7615,8 @@
       "goal": "Slay 20 Bullfangos",
       "details": "I'm a lumberjack and I'm not\nOK. Those boar-monsters, the\nBullfangos, have been a lot\nof trouble lately. Can you\nthin the herd by 20? Much\nobliged.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Lumberjack"
+      "client": "Lumberjack",
+      "requires": null
     },
     {
       "id": 1118,
@@ -7773,7 +7812,8 @@
       "goal": "Slay 10 Shakalakas",
       "details": "This is awful! The princess\nsaw some strange masked\nmonsters that made her run \nfor the hills! We're sending\ntroops on a hunt for the\nfiends, so track down the\nmasked marauders!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Princess's Attendant"
+      "client": "Princess's Attendant",
+      "requires": null
     },
     {
       "id": 1119,
@@ -7994,7 +8034,8 @@
       "goal": "Hunt the Iodrome",
       "details": "We were just in a fight with\na pack of Ioprey, but were\nrouted and had to retreat\nbefore we could defeat their\nleader. Hunt it down for us,\nbut beware of its poison\nattacks.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Hardened Mercenary"
+      "client": "Hardened Mercenary",
+      "requires": null
     },
     {
       "id": 1120,
@@ -8202,7 +8243,8 @@
       "goal": "Hunt the Shogun Ceanataur",
       "details": "Upon our trip into the cave\nat the volcano, an enormous\nShogun Ceanataur dropped\ndown from the ceiling right\non top of us! Its ambush\ncaused massive damage! Rid\nthe world of that scourge!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Chief Weapon smith"
+      "client": "Chief Weapon smith",
+      "requires": null
     },
     {
       "id": 1121,
@@ -8428,7 +8470,8 @@
       "goal": "Hunt the Basarios",
       "details": "A wyvern attacked my team\nfrom out of the blue while\nwe were on an expedition to\nthe Volcanic Belt. Where did\nit come from? Please slay\nit!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Survivor"
+      "client": "Survivor",
+      "requires": null
     },
     {
       "id": 1122,
@@ -8646,7 +8689,8 @@
       "goal": "Slay 20 Ceanataurs",
       "details": "I wanted to keep digging in\nsearch of the ultimate\ntreasure trove... But some\nCeanataurs smashed my\nPickaxe! If you don't get\nrid of them, there will be\nno digging for me! Help me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Digging Fanatic"
+      "client": "Digging Fanatic",
+      "requires": null
     },
     {
       "id": 1123,
@@ -8856,7 +8900,8 @@
       "goal": "Deliver 20 pcs of Coal",
       "details": "In a corner of the volcanic\nbelt, I discovered a great\nvein of coal in the rocks.\nI'd like you to mine the\ncoal, but beware the Shogun\nCeanataur! Take care and get\nmining!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Famed Ore Merchant"
+      "client": "Famed Ore Merchant",
+      "requires": null
     },
     {
       "id": 1124,
@@ -9077,7 +9122,8 @@
       "goal": "Defend the Fortress from\nLao-Shan Lung",
       "details": "A giant dragon has attacked\nour fort! If the fort falls,\nso too do our lands! Use its\ninstalled weaponry to make\nthis beast pay for its\nindiscretions!",
       "fail": "Time Over, Reward Zero, or\nFort Integrity Zero",
-      "client": "Loyal Minister"
+      "client": "Loyal Minister",
+      "requires": null
     },
     {
       "id": 1125,
@@ -9371,7 +9417,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "Help! There has been an\nexplosion of so many Daimyo\nHermitaurs near our fishing\ngrounds that we can't handle\nthings by ourselves! Get rid\nof as many as you can so we\ncan get back to fishing!",
       "fail": "Hunt less than two Daimyo\nbefore Time Up, Reward Zero",
-      "client": "Tanned Fisherman"
+      "client": "Tanned Fisherman",
+      "requires": null
     },
     {
       "id": 1126,
@@ -9568,7 +9615,8 @@
       "goal": "Deliver 8 Goldenfish",
       "details": "I've come from across the\nsands to sell all manners of\nstrange and unusual wares,\nbut I have a request. Please\ndeliver to me 8 Goldenfish\nfrom the desert. I promise\nto reward you well!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Foreign Peddler"
+      "client": "Foreign Peddler",
+      "requires": null
     },
     {
       "id": 1201,
@@ -9796,7 +9844,8 @@
       "goal": "Hunt the Tigrex",
       "details": "At last, the Tigrex has\nappeared! It is said the\nbeast's origins are as a\nflying wyvern. It is too\npowerful to be allowed to\nrun free. The village is in\ndanger! Hunt it quickly!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 1202,
@@ -10028,7 +10077,8 @@
       "goal": "Hunt the Tigrex",
       "details": "I have an urgent request\nfrom a hunter on an\nexpedition in the desert! It\nseems he has encountered the\nmighty Tigrex! Go to his aid\nand crush this beast at\nonce!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Messenger"
+      "client": "Guild Messenger",
+      "requires": null
     },
     {
       "id": 1203,
@@ -10254,7 +10304,8 @@
       "goal": "Hunt the Diablos",
       "details": "A giant wyvern smashed the\nborder-wall and ran into\nthis area. We need to find\nand kill it before it\ncauses any more trouble! ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Border Captain"
+      "client": "Border Captain",
+      "requires": null
     },
     {
       "id": 1204,
@@ -10481,7 +10532,8 @@
       "goal": "Hunt the Black Diablos",
       "details": "I had hired the most skilled\nhunters imaginable, and went\non a safari for the famed\nDiablos... But what we found\nwas no mere Diablos! We must\nslay that black horned\nwyvern! No matter what!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Failed Millionaire"
+      "client": "Failed Millionaire",
+      "requires": null
     },
     {
       "id": 1205,
@@ -10703,7 +10755,8 @@
       "goal": "Hunt the Gravios",
       "details": "Even in the relative calm of\nthe swamp zone, something\nhas stirred up the monsters.\nIn particular, heavily\narmored wyverns have been\nattacking us. Can you help\nus out? ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Swamp Townsman"
+      "client": "Swamp Townsman",
+      "requires": null
     },
     {
       "id": 1206,
@@ -10929,7 +10982,8 @@
       "goal": "Hunt the Black Gravios",
       "details": "A fearsome Gravios has\nappeared amidst the magma\nand desolation of the\nVolcanic Belt. Hunt down the\nfire breather for us!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Troubled Noble"
+      "client": "Troubled Noble",
+      "requires": null
     },
     {
       "id": 1207,
@@ -11153,7 +11207,8 @@
       "goal": "Hunt the Rathalos",
       "details": "Did you hear it!? That voice\nthat shook the ground? It\neven scared the fearless\nmercenaries! It must have\nbeen the king of the skies!\nBut if you're a real hunter,\nit won't be a problem!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Brave Boys"
+      "client": "Brave Boys",
+      "requires": null
     },
     {
       "id": 1208,
@@ -11377,7 +11432,8 @@
       "goal": "Hunt the Azure Rathalos",
       "details": "It cannot be... We tried so\nhard to kill it... But... My\nentire war band was wiped\nout by a wyvern. Now it all\nrests upon your shoulders,\nmonster hunter! Slay it!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Proud Soldier"
+      "client": "Proud Soldier",
+      "requires": null
     },
     {
       "id": 1209,
@@ -11593,7 +11649,8 @@
       "goal": "Hunt the Rathian",
       "details": "A Rathian is making its nest\nin the jungle. This\nprotective mother has made\neven stepping into the\njungle a death sentence.\nPlease clear the jungle of\nher threat.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Nomadic Botanist"
+      "client": "Nomadic Botanist",
+      "requires": null
     },
     {
       "id": 1210,
@@ -11825,7 +11882,8 @@
       "goal": "Hunt the Pink Rathian",
       "details": "A remarkably fierce Pink\nRathian has rampaged through\nlands held by other monsters\nand caused a great upheaval.\nYou must hunt down and\neliminate her to restore\norder!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Sharp Eyed Count"
+      "client": "Sharp Eyed Count",
+      "requires": null
     },
     {
       "id": 1211,
@@ -12036,7 +12094,8 @@
       "goal": "Slay the Kirin",
       "details": "That must have been the \nphantom beast... The faint\nglow, and how it seemed to\nglide over land... There's\nno doubt that amazing riches\nawait its slayer!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Mountain Explorer"
+      "client": "Mountain Explorer",
+      "requires": null
     },
     {
       "id": 1212,
@@ -12244,7 +12303,8 @@
       "goal": "Hunt the Rathalos\nand Rathian",
       "details": "I must gather Herbs from the\nhillside if I am to cure my\nmother's illness. However, a\nfire breathing wyvern has\nsettled into the area... If\nI do nothing, mama will only\nget worse. Please! Help me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Braided Maiden"
+      "client": "Braided Maiden",
+      "requires": null
     },
     {
       "id": 1213,
@@ -12474,7 +12534,8 @@
       "goal": "Slay the Kushala Daora",
       "details": "A brown metal dragon is\nrapidly closing on the town.\nScouts report that outlying\nareas have already been\nrazed. If we don't stop this\ndragon, our town will be\nannihilated! We need you!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 1214,
@@ -12725,7 +12786,8 @@
       "goal": "Slay the Teostra",
       "details": "While in the secluded desert\nvillage, I spotted an elder\ndragon with red scales!\nWhile I do know some\nhunters, it would be wrong\nto make this request of\nthem... So it's up to you!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Wyverian Pioneer"
+      "client": "Wyverian Pioneer",
+      "requires": null
     },
     {
       "id": 1215,
@@ -12971,7 +13033,8 @@
       "goal": "Slay the Teostra",
       "details": "I have an earnest request of\nyou... As the last of my\nresponsibilities, I request\nyour help. I want you to\nfight the elder fire dragon\nwe cornered in the Volcanic\nBelt, but beware its flames!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Heroic General"
+      "client": "Heroic General",
+      "requires": null
     },
     {
       "id": 1216,
@@ -13191,7 +13254,8 @@
       "goal": "Slay the Chameleos",
       "details": "Our intuition told us to\nturn around, but we thought\nno one was there... Yet even\nthough no one should've been\nthere, we were attacked from\nbehind! Beware! It was an\nenemy never before seen! ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Injured Hero"
+      "client": "Injured Hero",
+      "requires": null
     },
     {
       "id": 1217,
@@ -13407,7 +13471,8 @@
       "goal": "Slay the Chameleos",
       "details": "It seems an unknown elder\ndragon has appeared in the\nswamp zone. However, no one\ntruly got a clear look at\nit. What could the beast\nhave been? Slay it, but\nproceed with caution!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Grim Aristocrat"
+      "client": "Grim Aristocrat",
+      "requires": null
     },
     {
       "id": 1218,
@@ -13618,7 +13683,8 @@
       "goal": "Defend the Fortress from\nShen Gaoren",
       "details": "Hmm... This is quite\nserious. The fort which lies\nat the heart of our defenses\nis under siege by a giant\nmonster. We need your\nstrength to hold our\nposition!",
       "fail": "Time Over, Reward Zero, or\nFort Integrity Zero",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 1219,
@@ -13811,7 +13877,8 @@
       "goal": "Hunt 2 Khezu",
       "details": "I was exploring the caverns\nwith my assistants when two\nsmall, white shadows popped\nout of nowhere. Please do\nsomething about them as they\nare hindering my research!\n...Actually, what are they??",
       "fail": "Reward Zero\nTime Over",
-      "client": "Old Geologist"
+      "client": "Old Geologist",
+      "requires": null
     },
     {
       "id": 1220,
@@ -14121,7 +14188,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "Large Congalalas continue to\ngather, and at this rate,\nthey'll completely trash the\nSwamp and affect our town's\nway of life. I'm not asking\nthat you get rid of them\nall, but even 2 would help!",
       "fail": "Hunt less than 2 Congalalas\nbefore Time Up, Reward Zero",
-      "client": "Swamp Townsman"
+      "client": "Swamp Townsman",
+      "requires": null
     },
     {
       "id": 2001,
@@ -14239,7 +14307,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A nighttime gathering quest\nin the snowy mountains.\nGather all the materials you\ncan from the field, then\ndeliver the Paw Pass Ticket\nto finish up. Be careful!\nLarge monsters lurk nearby!",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 2002,
@@ -14385,7 +14454,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A nighttime gathering quest\nin the jungle. Gather all\nthe materials you can from\nthe field, then deliver the\nPaw Pass Ticket to finish\nup. Be careful! Large\nmonsters lurk nearby!",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 2003,
@@ -14519,7 +14589,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A nighttime gathering quest\nin the desert. Gather all\nthe materials you can from\nthe field, then deliver the\nPaw Pass Ticket to finish\nup. Be careful! Large\nmonsters lurk nearby!",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 2004,
@@ -14741,7 +14812,8 @@
       "goal": "Hunt the Giadrome",
       "details": "Within a group of the sly\ncarnivorous Giaprey, there\nis a leader. They call it\nthe Giadrome. I need a\nhunter's strength to show\nthat pack of beasts and\ntheir leader who's boss!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Spirited Boy"
+      "client": "Spirited Boy",
+      "requires": null
     },
     {
       "id": 2005,
@@ -14953,7 +15025,8 @@
       "goal": "Hunt the Bulldrome",
       "details": "My son decided to become a\nhunter and ran off after a\nBulldrome on his own! Of\ncourse, now the tables have\nturned and I'm worried!\nHunt down the Bulldrome on\nthe snowy mountains!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Troubled Father"
+      "client": "Troubled Father",
+      "requires": null
     },
     {
       "id": 2006,
@@ -15160,7 +15233,8 @@
       "goal": "Hunt 2 Velocidrome",
       "details": "All the children in the\nvillage have gathered their\nallowances to pay you to get\nrid of two carnivores. Our\nparents couldn't do it, so\nit's up to you to defend our\nfields and animals!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Village Children"
+      "client": "Village Children",
+      "requires": null
     },
     {
       "id": 2007,
@@ -15384,7 +15458,8 @@
       "goal": "Hunt the Daimyo Hermitaur",
       "details": "I've always longed to go\nhunting in the jungle!\nHowever, if a huge monster\nappeared, I'd be finished!\nMaybe you could take out \nthe Daimyo Hermitaur for me?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Uncomfortable Butler"
+      "client": "Uncomfortable Butler",
+      "requires": null
     },
     {
       "id": 2008,
@@ -15619,7 +15694,8 @@
       "goal": "Hunt 2 Gendrome",
       "details": "There appears to be two\nGendrome among the pack of\nGenprey ravaging the desert.\nThis has caused the Genprey\nto become frenzied and\nattack humans. You must get\nrid of the leaders! ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Desert Lover"
+      "client": "Desert Lover",
+      "requires": null
     },
     {
       "id": 2009,
@@ -15834,7 +15910,8 @@
       "goal": "Hunt the Cephadrome",
       "details": "A giant sand wyvern has\nappeared in the desert along\nwith a pack of Genprey.\nForget about the Genprey,\nbut take care of the\nCephadrome so the merchants\ncan return to work!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Desert Millionaire"
+      "client": "Desert Millionaire",
+      "requires": null
     },
     {
       "id": 2010,
@@ -16044,7 +16121,8 @@
       "goal": "Hunt 2 Daimyo Hermitaurs",
       "details": "I am a true connoisseur of\ncrab cuisine, and as such a\nconnoisseur, I suspect the\nDaimyo Hermitaurs found in\nthe desert are incredibly\ntasty! One is never enough,\nso hunt down two!",
       "fail": "Reward Zero\nTime Over",
-      "client": "The Lady Gourmet"
+      "client": "The Lady Gourmet",
+      "requires": null
     },
     {
       "id": 2011,
@@ -16248,7 +16326,8 @@
       "goal": "Hunt the Yian Kut-Ku\nand Blue Yian Kut-Ku",
       "details": "The Yian Kut-Ku are\ncircling, screaming in their\nshrill voices. Everyone is\ntrapped inside the town!\nPlease do something!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Beautiful Lady"
+      "client": "Beautiful Lady",
+      "requires": null
     },
     {
       "id": 2012,
@@ -16437,7 +16516,8 @@
       "goal": "Hunt the Congalala",
       "details": "I asked some hunters to slay\na Congalala for me; however,\nthey met defeat at the\nhooves of a Bulldrome. I\ndidn't think it would come\nto this, but I need your\nhelp!",
       "fail": "Reward Zero\nTime Over",
-      "client": "The Skinny Lord"
+      "client": "The Skinny Lord",
+      "requires": null
     },
     {
       "id": 2013,
@@ -16664,7 +16744,8 @@
       "goal": "Slay the Vespoid Queen",
       "details": "It's no use. No matter where\nI look, I can't seem to find\nthe Vespoid Queen! Perhaps\nif you slayed a large number\nof Vespoids to make her feel\nthat her swarm was in grave\ndanger, she might appear...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Jungle Researcher"
+      "client": "Jungle Researcher",
+      "requires": null
     },
     {
       "id": 2101,
@@ -16810,7 +16891,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A nighttime gathering quest\nin the swamp. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up. Be\ncareful! Large monsters lurk\nnearby!",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 2102,
@@ -16936,7 +17018,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest\nin the forest and hills.\nGather all the materials you\ncan from the field, then\ndeliver the Paw Pass Ticket\nto finish up. Be careful!\nLarge monsters lurk nearby!",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 2103,
@@ -17066,7 +17149,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A nighttime gathering quest\nin the volcanic zone. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up. Be careful! Large\nmonsters lurk nearby!",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 2104,
@@ -17281,7 +17365,8 @@
       "goal": "Hunt 2 Blangongas",
       "details": "It happened in an instant...\nTwo Blangongas destroyed all\nthe trees around my house.\nNow all I want to do is hunt\nthem down so I can get my \nrevenge. Please help me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Alpine Survivor"
+      "client": "Alpine Survivor",
+      "requires": null
     },
     {
       "id": 2105,
@@ -17490,7 +17575,8 @@
       "goal": "Hunt the Blangonga",
       "details": "A Blangonga has staked its\nclaim to a piece of the\nsnowy mountains. Now we\ncan't enter the area to\ngather firewood. Exterminate\nthe Blangonga! ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Foothills Villager"
+      "client": "Foothills Villager",
+      "requires": null
     },
     {
       "id": 2106,
@@ -17711,7 +17797,8 @@
       "goal": "Hunt the Khezu",
       "details": "I wanted to test myself, so\nI went off in search of\nspotting a Bulldrome in the\nsnowy mountains. But all of\na sudden, a weird wyvern\nappeared and it shocked me!\nI'm still smoking! ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Shocked Child"
+      "client": "Shocked Child",
+      "requires": null
     },
     {
       "id": 2107,
@@ -17967,7 +18054,8 @@
       "goal": "Hunt the Red Khezu",
       "details": "I've always longed to\nventure into the swamp! I\nthink I could hunt down a\nKelbi, but I could never\nfight a wyvern. Maybe you'd\ntake care of this special\nmonster for me...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Uncomfortable Butler"
+      "client": "Uncomfortable Butler",
+      "requires": null
     },
     {
       "id": 2108,
@@ -18166,7 +18254,8 @@
       "goal": "Hunt the Gypceros\nand Purple Gypceros",
       "details": "*cough* While I was\npracticing in the jungle, I\nwas attacked by two poison\nwyverns! You can see their\nthick poison gas before your\nvery eyes... They are tough,\nplease defeat them! *cough*",
       "fail": "Reward Zero\nTime Over",
-      "client": "Poisoned Soldier"
+      "client": "Poisoned Soldier",
+      "requires": null
     },
     {
       "id": 2109,
@@ -18382,7 +18471,8 @@
       "goal": "Hunt the Plesioth and\nGreen Plesioth",
       "details": "The water wyvern known as\nPlesioth is raging in the\njungle. And not just one of\nthem! Head off immediately\nto slay them!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Lovely Princess"
+      "client": "Lovely Princess",
+      "requires": null
     },
     {
       "id": 2110,
@@ -18596,7 +18686,8 @@
       "goal": "Hunt the Rathian",
       "details": "My caravan was wiped out by\nthe queen of the skies, the\nkiller Rathian! I'll pay you\nwhatever you ask if you hunt\ndown that foul creature!\nHelp me kind hunter, you're\nmy only hope!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Caravan Leader"
+      "client": "Caravan Leader",
+      "requires": null
     },
     {
       "id": 2111,
@@ -18831,7 +18922,8 @@
       "goal": "Hunt the Plesioth",
       "details": "I found a giant water wyvern\nin a cave in the desert! I\ncan't defeat it because it \nstays underwater. Slay it\nfor me and the glory is all\nyours!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Proud Hunter"
+      "client": "Proud Hunter",
+      "requires": null
     },
     {
       "id": 2112,
@@ -19051,7 +19143,8 @@
       "goal": "Hunt the Green Plesioth",
       "details": "The lake underneath the\ndesert is connected to an\nunderground river and\npatrolled by a green-scaled\nwater wyvern... If you are\ntruly a hunter, then it\nshould pose no problem.",
       "fail": "Reward Zero\nTime Over",
-      "client": "The Old Misanthrope"
+      "client": "The Old Misanthrope",
+      "requires": null
     },
     {
       "id": 2113,
@@ -19250,7 +19343,8 @@
       "goal": "Hunt the Iodrome",
       "details": "The swamp's poison is mixing\nwith the Iodrome's poison...\nIt is a terrible scene! We\nneed a professional hunter\nto assist us... Show us your\nskills!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Mercenary Officer"
+      "client": "Mercenary Officer",
+      "requires": null
     },
     {
       "id": 2114,
@@ -19473,7 +19567,8 @@
       "goal": "Hunt the Shogun Ceanataur",
       "details": "Hunters! It is time to hunt\ndown the Shogun Ceanataur.\nLet us rid the swamp zone of\nthis menace and expand our\nstrategic possibilities.\nThis is a highly classified\nhunt. So don't tell a soul!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Scheming Strategist"
+      "client": "Scheming Strategist",
+      "requires": null
     },
     {
       "id": 2115,
@@ -19679,7 +19774,8 @@
       "goal": "Hunt the Purple Gypceros",
       "details": "I saw a gigantic bird-like\nmonster deep in the swamp!\nIt scared everyone so bad\nthat I can't do business\nwith a thing like that out\nthere! Please hunt it down\nso I can work in peace!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guarded Merchant"
+      "client": "Guarded Merchant",
+      "requires": null
     },
     {
       "id": 2116,
@@ -19908,7 +20004,8 @@
       "goal": "Hunt the Rathalos",
       "details": "I request the assistance of\nonly the bravest of hunters\nto find and hunt the\nRathalos that has appeared\nnear here. Of course, a\nhandsome reward will be paid\nupon success.",
       "fail": "Reward Zero\nTime Over",
-      "client": "The Kindly Lord"
+      "client": "The Kindly Lord",
+      "requires": null
     },
     {
       "id": 2117,
@@ -20124,7 +20221,8 @@
       "goal": "Hunt 2 Shogun Ceanataurs",
       "details": "Hey! Hey! Have you heard the\nnews!? There's a rumor that\ntwo enormous monsters with\nthick shells have appeared\nin the Volcanic Belt! There\nmust be a hunter somewhere\nwho can face them!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Hunter In Training"
+      "client": "Hunter In Training",
+      "requires": null
     },
     {
       "id": 2118,
@@ -20353,7 +20451,8 @@
       "goal": "Hunt the Basarios",
       "details": "A wyvern attacked my team\nfrom out of the blue while\nwe were on an expedition to\nthe Volcanic Belt. Where did\nit come from? Please slay\nit!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Survivor"
+      "client": "Survivor",
+      "requires": null
     },
     {
       "id": 2119,
@@ -20579,7 +20678,8 @@
       "goal": "Slay 20 Remobras",
       "details": "The volcano has erupted with\na deluge of black snake-like\nwyverns. They are the envoys\nto disaster. Hunt 20 of\nthese Remobras down and\nappease the mountain gods.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Foreign Monk"
+      "client": "Foreign Monk",
+      "requires": null
     },
     {
       "id": 2120,
@@ -20805,7 +20905,8 @@
       "goal": "Defend the Fortress from\nLao-Shan Lung",
       "details": "It seems that once again our\nland is in crisis. The giant\nelder dragon Lao-Shan Lung\nis approaching the village\nfrom the mountains. Head to\nthe fort and defend our way\nof life!",
       "fail": "Time Over, Reward Zero, or\nFort Integrity Zero",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 2121,
@@ -21110,7 +21211,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "It-it-it's awful! A group of\nBlangongas are gathering on\nthe mountain! With all those\nbrutes in one spot, it means\ntrouble for the village!\nPlease help us!",
       "fail": "Hunt less than 2 Blangongas\nbefore Time Up, Reward Zero",
-      "client": "Snow-Covered Boy"
+      "client": "Snow-Covered Boy",
+      "requires": null
     },
     {
       "id": 2122,
@@ -21326,7 +21428,8 @@
       "goal": "Slay the Kirin",
       "details": "We came to this land seeking\nthe fabled Kirin, and at\nlast we had found it! But\nthe heavens opened and\nlightning struck, scattering\nour team. We need your help\nto save our co-workers!",
       "fail": "Reward Zero\nTime Over",
-      "client": "King's Surveyors"
+      "client": "King's Surveyors",
+      "requires": null
     },
     {
       "id": 2123,
@@ -21533,7 +21636,8 @@
       "goal": "Deliver 3 Select Mushrooms",
       "details": "Have you ever heard of\n\"Select Mushrooms\"? Collect\njust 3 of them and you'll be\nrich beyond belief! Although\nI have heard that the King\nShakalaka keeps a tight\nwatch over those things...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Shifty Merchant"
+      "client": "Shifty Merchant",
+      "requires": null
     },
     {
       "id": 2124,
@@ -21733,7 +21837,8 @@
       "goal": "Hunt the Hypnocatrice",
       "details": "The Hypnocatrice, the sleep-\ninducing bird wyvern of the\nGreat Forest. Those who face\nit usually end up taking a\ndirt nap, so its materials\nare highly coveted. So...\nYou gonna give it a shot?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Shifty Merchant"
+      "client": "Shifty Merchant",
+      "requires": null
     },
     {
       "id": 2125,
@@ -22027,7 +22132,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "Oh, the atmosphere is abuzz,\nand the land tells me of the\nmonsters' fury! Great\nHunter, I call upon you to\nput a stop to the Blue Yian\nKut-Ku and the Rathian that\nappears after it falls!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Jungle Psychic"
+      "client": "Jungle Psychic",
+      "requires": null
     },
     {
       "id": 2126,
@@ -22314,7 +22420,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "Oh me, oh my! A Daimyo\nHermitaur and a Green\nPlesioth have both appeared\nin the same area. I'm in\nsearch of a hunter who'll\nrid me of them one by one.\nWon't anyone step forward?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Desert Zone Chief"
+      "client": "Desert Zone Chief",
+      "requires": null
     },
     {
       "id": 2127,
@@ -22597,7 +22704,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "A Khezu and a Shogun\nCeanataur have descended\nupon the swampland and\nare really going at it! If\nwe don't put an end to them\nquick, we may end up with a\nlot of casualties! Heeeeelp!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Swamp Envoy"
+      "client": "Swamp Envoy",
+      "requires": null
     },
     {
       "id": 2201,
@@ -22822,7 +22930,8 @@
       "goal": "Hunt 2 Tigrex",
       "details": "A group of highly skilled\nhunters went off to slay two\nTigrex, but they became\nthe hunted. Please destroy \nthe two Tigrex and open \na clear route for our\nrescue team.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 2202,
@@ -23042,7 +23151,8 @@
       "goal": "Hunt the Rajang",
       "details": "I had never seen the fanged\nbeast with two horns on its\nhead before, and I never\nwant to again with the way\nit was rampaging across the\nsnow! ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Wounded Guard"
+      "client": "Wounded Guard",
+      "requires": null
     },
     {
       "id": 2203,
@@ -23273,7 +23383,8 @@
       "goal": "Hunt the Tigrex",
       "details": "I have an urgent request\nfrom a hunter on an\nexpedition in the desert! It\nseems he has encountered the\nmighty Tigrex! Go to his aid\nand crush this beast at\nonce!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Messenger"
+      "client": "Guild Messenger",
+      "requires": null
     },
     {
       "id": 2204,
@@ -23499,7 +23610,8 @@
       "goal": "Hunt the Pink Rathian",
       "details": "I've always longed to\nbe a hunter, but a meeting\nwith a Rathian ended that!\nNow that I know what it\ntakes, I'll start over, but\nyou have the spirit to hunt\ndown that Rathian!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Uncomfortable Butler"
+      "client": "Uncomfortable Butler",
+      "requires": null
     },
     {
       "id": 2205,
@@ -23719,7 +23831,8 @@
       "goal": "Hunt the Diablos",
       "details": "A giant wyvern smashed the\nborder-wall and ran into\nthis area. We need to find\nand kill it before it\ncauses any more trouble! ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Border Captain"
+      "client": "Border Captain",
+      "requires": null
     },
     {
       "id": 2206,
@@ -23964,7 +24077,8 @@
       "goal": "Hunt the Black Diablos",
       "details": "I had hired the most skilled\nhunters imaginable, and went\non a safari for the famed\nDiablos... But what we found\nwas no mere Diablos! We must\nslay that black horned\nwyvern! No matter what!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Failed Millionaire"
+      "client": "Failed Millionaire",
+      "requires": null
     },
     {
       "id": 2207,
@@ -24194,7 +24308,8 @@
       "goal": "Hunt the Diablos and\nBlack Diablos",
       "details": "I simply can't bear to think\nabout the terror and pain\nthose Diablos are causing my\npeople. I can't sleep at\nnight with that worry! Hunt \ndown those 2 Diablos for me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Lovely Princess"
+      "client": "Lovely Princess",
+      "requires": null
     },
     {
       "id": 2208,
@@ -24414,7 +24529,8 @@
       "goal": "Hunt the Rajang",
       "details": "I went up to the snowy\nmountains to view the\naurora, but the truth is\nthat I hate the cold! That's\nwhen it hit me! I should\nhave a coat made from Rajang\nfur! Hunt one for me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Selfish Princess"
+      "client": "Selfish Princess",
+      "requires": null
     },
     {
       "id": 2209,
@@ -24648,7 +24764,8 @@
       "goal": "Hunt the Gravios",
       "details": "A fearsome Gravios has\nappeared amidst the magma\nand desolation of the\nVolcanic Belt. Hunt down the\nfire breather for us!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Troubled Noble"
+      "client": "Troubled Noble",
+      "requires": null
     },
     {
       "id": 2210,
@@ -24902,7 +25019,8 @@
       "goal": "Hunt the Black Gravios",
       "details": "Even in the relative calm of\nthe swamp zone, something\nhas stirred up the monsters.\nIn particular, heavily\narmored wyverns have been\nattacking us. Can you help\nus out? ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Swamp Townsman"
+      "client": "Swamp Townsman",
+      "requires": null
     },
     {
       "id": 2211,
@@ -25116,7 +25234,8 @@
       "goal": "Hunt the Rathalos\nand Rathian",
       "details": "A Rathalos and Rathian have\npaired up and are ravaging\nmy country! I wanted to end\ntheir reign of terror, but\nmy father will not allow it!\nPlease! Defeat them for me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Brave Prince"
+      "client": "Brave Prince",
+      "requires": null
     },
     {
       "id": 2212,
@@ -25330,7 +25449,8 @@
       "goal": "Hunt the Azure Rathalos\nand the Pink Rathian",
       "details": "Did you see the two wyverns\nthat appeared in the hills?\nAn azure-shelled Rathalos\nand a pink-scaled Rathian...\nHunting them down would\nsurely make you a top\nhunter! ...Try your luck?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Gambling Shopkeep"
+      "client": "Gambling Shopkeep",
+      "requires": null
     },
     {
       "id": 2213,
@@ -25559,7 +25679,8 @@
       "goal": "Hunt the Azure Rathalos",
       "details": "It cannot be... We tried so\nhard to kill it... But... My\nentire war band was wiped\nout by a wyvern. Now it all\nrests upon your shoulders,\nmonster hunter! Slay it!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Proud Soldier"
+      "client": "Proud Soldier",
+      "requires": null
     },
     {
       "id": 2214,
@@ -25780,7 +25901,8 @@
       "goal": "Hunt the Silver Rathalos",
       "details": "I have a request to all\nexcellent hunters. I would\nlike you to hunt down the\nsilver wyvern that lives in\nthe forgotten tower. OK...\nYou don't even have to be\nexcellent.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Wyverian Maiden"
+      "client": "Wyverian Maiden",
+      "requires": null
     },
     {
       "id": 2215,
@@ -26001,7 +26123,8 @@
       "goal": "Hunt the Gold Rathian",
       "details": "All of my rations were gone\nand I was fading out of\nconsciousness when out of\nthe corner of my eye I saw\nancient ruins and a golden\nwyvern up above. Was it all\na dream? Find the truth!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Aloof Adventurer"
+      "client": "Aloof Adventurer",
+      "requires": null
     },
     {
       "id": 2216,
@@ -26099,7 +26222,8 @@
       "goal": "Slay 2 Kirin",
       "details": "I saw them! I really did!\nThe ground was bathed in\nsparks as two phantom beasts\nbathed in a lava pool! It\nwas not a dream! You've\ngotta believe me! Go see for\nyourself!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Eccentric Old Man"
+      "client": "Eccentric Old Man",
+      "requires": null
     },
     {
       "id": 2217,
@@ -26355,7 +26479,8 @@
       "goal": "Slay the Kushala Daora",
       "details": "I saw it! I saw it! In the\nmiddle of a blinding snow\nstorm, there it was; dark\nblack wings were dancing in\nthe sky... No mere human\ncould stand up to it! Don't\neven think of hunting it!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Fleeing Villager"
+      "client": "Fleeing Villager",
+      "requires": null
     },
     {
       "id": 2218,
@@ -26590,7 +26715,8 @@
       "goal": "Slay the Kushala Daora",
       "details": "There was surely a vortex\ninside of that downpour. The\nwind wrapped around and\nrevealed the elder dragon,\nKushala Daora! There isn't\na single soul who can combat\nit alone, so fight together!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Jungle Psychic"
+      "client": "Jungle Psychic",
+      "requires": null
     },
     {
       "id": 2219,
@@ -26830,7 +26956,8 @@
       "goal": "Slay the Teostra",
       "details": "This is truly an emergency!\nA red fire-breathing dragon\nis approaching this very\ntown! This is no time to\ndilly-dally! We need the\nhelp of every skilled hunter\nin this land!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 2220,
@@ -27086,7 +27213,8 @@
       "goal": "Slay the Teostra",
       "details": "I have an earnest request of\nyou... As the last of my\nresponsibilities, I request\nyour help. I want you to\nfight the elder fire dragon\nwe cornered in the Volcanic\nBelt, but beware its flames!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Heroic General"
+      "client": "Heroic General",
+      "requires": null
     },
     {
       "id": 2221,
@@ -27330,7 +27458,8 @@
       "goal": "Slay the Chameleos",
       "details": "Our intuition told us to\nturn around, but we thought\nno one was there... Yet even\nthough no one should've been\nthere, we were attacked from\nbehind! Beware! It was an\nenemy never before seen! ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Injured Hero"
+      "client": "Injured Hero",
+      "requires": null
     },
     {
       "id": 2222,
@@ -27574,7 +27703,8 @@
       "goal": "Slay the Chameleos",
       "details": "It seems an unknown elder\ndragon has appeared in the\nswamp zone. However, no one\ntruly got a clear look at\nit. What could the beast\nhave been? Slay it, but\nproceed with caution!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Grim Aristocrat"
+      "client": "Grim Aristocrat",
+      "requires": null
     },
     {
       "id": 2223,
@@ -27815,7 +27945,8 @@
       "goal": "Slay the Fatalis",
       "details": "The legendary black\ndragon... It really exists\nthen? We've prepared all\ninstruments of war to assist\nyou in your quest to destroy\nthe dragon. The fate of the\nnation lies in your hands.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Benevolent Monarch"
+      "client": "Benevolent Monarch",
+      "requires": null
     },
     {
       "id": 2224,
@@ -27955,7 +28086,8 @@
       "goal": "Slay the Fatalis",
       "details": "It appears the time has\nfinally come. The\nbloodstained scales of the\nred dragon have graced the\nearth again in flaming\nglory. If you can stop this\nbeast...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Scarlet Mystery Man"
+      "client": "Scarlet Mystery Man",
+      "requires": null
     },
     {
       "id": 2225,
@@ -28154,7 +28286,8 @@
       "goal": "Defend the Town from\nShen Gaoren",
       "details": "Our town is embroiled in an\nunprecedented conflict. A\nfortress-like shelled\nmonster is threatening our\nsafety. We need help \nimmediately!",
       "fail": "Time Over, Reward Zero, or\nTown Integrity Zero",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 2226,
@@ -28247,7 +28380,8 @@
       "goal": "Slay the Akantor",
       "details": "The combined strength of the\nHunter's Guild has\nsuccessfully cornered an\nAkantor in the Volcanic\nBelt. Now all that is left\nis to slay the beast, a task\nfor only the most valiant.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 2227,
@@ -28493,7 +28627,8 @@
       "goal": "Slay the Fatalis",
       "details": "Hee hee hee... The time has\ncome. Here is your\ninvitation to the ball. Wear\nyour Sunday best and bring\nyour greatest weapon, for it\nis time to go to the dance\nwith the king of disaster.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Scarlet Mystery Man"
+      "client": "Scarlet Mystery Man",
+      "requires": null
     },
     {
       "id": 2228,
@@ -28709,7 +28844,8 @@
       "goal": "Hunt the Nargacuga",
       "details": "The Nargacuga of the Great\nForest... It's so fast, I\ncould barely see it. But\nplease, if there is one\nrequest that needs to be\nfulfilled, it's this one!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Wounded Hunter"
+      "client": "Wounded Hunter",
+      "requires": null
     },
     {
       "id": 2229,
@@ -28945,7 +29081,8 @@
       "goal": "Hunt the Nargacuga",
       "details": "All of my friends... gone.\nI saw a tail swish through\nthe air, and 2 red lights.\nThat's all. That thing's\nnot a monster; it's a\ndemon! Someone exorcise it,\nplease!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Dazed Traveler"
+      "client": "Dazed Traveler",
+      "requires": null
     },
     {
       "id": 2230,
@@ -29136,7 +29273,8 @@
       "goal": "Hunt the Rathian and\nthe Pink Rathian",
       "details": "Think you can handle two\nRathian at the same time!?\nThen come on down to the\nArena, the only place to\ntest your might! We eagerly\nawait your arrival, Hunter!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Arena Manager"
+      "client": "Arena Manager",
+      "requires": null
     },
     {
       "id": 2231,
@@ -29370,7 +29508,8 @@
       "goal": "Hunt the Diablos",
       "details": "Ah, I tried to slay it, but\nI was in way over my head.\nStill, I can't let it go, so\nI ask that if you have the\ncourage to face this beast,\nto please step forward.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Wounded Hunter"
+      "client": "Wounded Hunter",
+      "requires": null
     },
     {
       "id": 2232,
@@ -29453,7 +29592,8 @@
       "goal": "Slay the Kirin",
       "details": "I've received an urgent\ncommunique from my colleague\nwho went to investigate deep\ninside the volcano. Please\nhurry, but be careful. The\nmonster is a bit... unique.",
       "fail": "Reward Zero\nTime Over",
-      "client": "King's Surveyors"
+      "client": "King's Surveyors",
+      "requires": null
     },
     {
       "id": 2233,
@@ -29753,7 +29893,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "Wh-What's going on...?\nAll of a sudden, a ton of\nmonsters just showed up in\nthe Snowy Mountains! Any\nhunter willing to lend a\nhand, please come help us\non the hunt!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Slashed L Cheek Hntr"
+      "client": "Slashed L Cheek Hntr",
+      "requires": null
     },
     {
       "id": 2234,
@@ -30054,7 +30195,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "Help! There are some\ndangerous monsters lurking\nin the Forest and Hills,\nmaking it impossible for me\nto enter the area. But if I\ndon't gather what I need,\nmy mother's illness will...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Maiden of Sorrows"
+      "client": "Maiden of Sorrows",
+      "requires": null
     },
     {
       "id": 2235,
@@ -30365,7 +30507,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "We've received word that a\nBasarios and a Gravios are\ngoing wild inside due to\nvolcanic activity. This is\na very dire situation, and\nwe require the immediate\ndispatch of a hunter.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Volcano Investi Team"
+      "client": "Volcano Investi Team",
+      "requires": null
     },
     {
       "id": 2236,
@@ -30673,7 +30816,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "My sister and I are in an\nargument over which is the\nmost beautiful: Daimyo\nshells, Cephadrome scales,\nor Diablos horns. Seeing is\nbelieving, so I demand you\nbring all three to me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Selfish Princess"
+      "client": "Selfish Princess",
+      "requires": null
     },
     {
       "id": 3001,
@@ -30815,7 +30959,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest in\nthe Great Forest. Gather all\nthe materials you can from\nthe field, then deliver the\nPaw Pass Ticket to finish\nup. Just be aware of the\nG-Level monsters, OK?",
       "fail": "Reward Zero",
-      "client": "Guild Manager"
+      "client": "Guild Manager",
+      "requires": null
     },
     {
       "id": 3002,
@@ -30946,7 +31091,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A gathering quest in the\nOld Jungle. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.\nJust be aware of the\nG-Level monsters, OK?",
       "fail": "Reward Zero",
-      "client": "Guild Manager"
+      "client": "Guild Manager",
+      "requires": null
     },
     {
       "id": 3003,
@@ -31064,7 +31210,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A gathering quest in the\nOld Desert. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.\nJust be aware of the\nG-Level monsters, OK?",
       "fail": "Reward Zero",
-      "client": "Guild Manager"
+      "client": "Guild Manager",
+      "requires": null
     },
     {
       "id": 3004,
@@ -31206,7 +31353,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A gathering quest in the\nOld Swamp. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.\nJust be aware of the\nG-Level monsters, OK?",
       "fail": "Reward Zero",
-      "client": "Guild Manager"
+      "client": "Guild Manager",
+      "requires": null
     },
     {
       "id": 3005,
@@ -31324,7 +31472,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A gathering quest in the\nSnowy Mountains. Gather all\nthe materials you can from\nthe field, then deliver the\nPaw Pass Ticket to finish\nup. Just be aware of the\nG-Level monsters, OK?",
       "fail": "Reward Zero",
-      "client": "Guild Manager"
+      "client": "Guild Manager",
+      "requires": null
     },
     {
       "id": 3006,
@@ -31554,7 +31703,8 @@
       "goal": "Slay 20 Shakalakas",
       "details": "This time, I need a hunter\nto come with us as we go in\nsearch of treasure in the\nheart of the Great Forest.\nMore specifically, I need\nyou to be on the look-out\nfor Shakalakas as we travel.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Shifty Merchant"
+      "client": "Shifty Merchant",
+      "requires": null
     },
     {
       "id": 3007,
@@ -31786,7 +31936,8 @@
       "goal": "Slay the Vespoid Queen",
       "details": "It's no use. No matter where\nI look, I can't seem to find\nthe Vespoid Queen! Perhaps\nif you slayed a large number\nof Vespoids to make her feel\nthat her swarm was in grave\ndanger, she might appear...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Jungle Researcher"
+      "client": "Jungle Researcher",
+      "requires": null
     },
     {
       "id": 3008,
@@ -31995,7 +32146,8 @@
       "goal": "Hunt the Hypnocatrice",
       "details": "The Hypnocatrice, the sleep-\ninducing bird wyvern of the\nGreat Forest. Those who face\nit usually end up taking a\ndirt nap, so its materials\nare highly coveted. So...\nYou gonna give it a shot?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Shifty Merchant"
+      "client": "Shifty Merchant",
+      "requires": null
     },
     {
       "id": 3009,
@@ -32178,7 +32330,8 @@
       "goal": "Hunt 2 Hypnocatrices",
       "details": "The Hypnocatrice is hurting\nso many people, so I tried\nto sneak out to the Great\nForest. Unfortunately, I was\nspotted by a guard. Please,\nI ask that someone deal with\nthat menace in my stead!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Brave Prince"
+      "client": "Brave Prince",
+      "requires": null
     },
     {
       "id": 3010,
@@ -32412,7 +32565,8 @@
       "goal": "Hunt the Yian Kut-Ku\nand Blue Yian Kut-Ku",
       "details": "The Yian Kut-Ku are\ncircling, screaming in their\nshrill voices. Everyone is\ntrapped inside the town!\nPlease do something!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Beautiful Lady"
+      "client": "Beautiful Lady",
+      "requires": null
     },
     {
       "id": 3011,
@@ -32621,7 +32775,8 @@
       "goal": "Hunt the Daimyo Hermitaur",
       "details": "We came here to the Old\nJungle in search of some\nmaterials when a giant crab\nchased us out of the area,\nnya!  We can't make a living\nas long as that cretin is\nthere. Please help us, nya!!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Lynian Clan Leader"
+      "client": "Lynian Clan Leader",
+      "requires": null
     },
     {
       "id": 3012,
@@ -32856,7 +33011,8 @@
       "goal": "Hunt the Plum D.Hermitaur",
       "details": "I spotted an unusual variety\nof Daimyo Hermitaur out in\nthe Old Desert. I don't know\nwhat it was, but I swear it\nwas evil! Anyway, here's my\nproposition: Hunt the crab\nand make a fortune. Deal?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Merchant of the East"
+      "client": "Merchant of the East",
+      "requires": null
     },
     {
       "id": 3013,
@@ -33086,7 +33242,8 @@
       "goal": "Hunt the Daimyo Hermitaur\nand the Plum D.Hermitaur",
       "details": "My grandfather stumbled on a\nfight between two famous\nwarriors. They say that it's\nthe dream of a warrior to\ndie on the battlefield, but\nnot by their own hands!\nPlease go and help them!",
       "fail": "Reward Zero\nTime Over",
-      "client": "TrinketLover'sGrddtr"
+      "client": "TrinketLover'sGrddtr",
+      "requires": null
     },
     {
       "id": 3014,
@@ -33322,7 +33479,8 @@
       "goal": "Hunt the Khezu",
       "details": "Just when I thought that\nmaybe this time the peace\nwould last, this happens!\nAs long as that Khezu just\nsits there, we can't get out\nof the Old Jungle. Please,\ncome to our rescue, hunter!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Madam Merchant"
+      "client": "Madam Merchant",
+      "requires": null
     },
     {
       "id": 3015,
@@ -33554,7 +33712,8 @@
       "goal": "Hunt the Red Khezu",
       "details": "I've always longed to\nventure into the Snowy\nMountains! I think I could\nhunt down an Anteka, but I\ncould never fight a wyvern.\nMaybe you could take care of\na special monster for me...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Uncomfortable Butler"
+      "client": "Uncomfortable Butler",
+      "requires": null
     },
     {
       "id": 3016,
@@ -33762,7 +33921,8 @@
       "goal": "Hunt 2 Red Khezu",
       "details": "Ever since a long time ago,\n2 gruesome wyverns have\nlived in the depths of the\ncave in the Old Swamp, their\nblood-red bodies surrounded\nin a sharp, blue glow...\n*gasp!* Look, behind you!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Horror-Loving Youth"
+      "client": "Horror-Loving Youth",
+      "requires": null
     },
     {
       "id": 3017,
@@ -33989,7 +34149,8 @@
       "goal": "Hunt the Plesioth",
       "details": "The Plesioth of the Old\nDesert's underground lake...\nWe've received an SOS from\nthe group of secret hunters\nwho were hunting this beast.\nCan you keep the Plesioth at\nbay while we rescue them?",
       "fail": "Reward Zero\nTime Over",
-      "client": "OldDesertWepnSmiths"
+      "client": "OldDesertWepnSmiths",
+      "requires": null
     },
     {
       "id": 3018,
@@ -34208,7 +34369,8 @@
       "goal": "Hunt the Green Plesioth",
       "details": "Help! I've received word\nthat a Green Plesioth has\nappeared along our Queen's\nroute to another land.\nPlease take care of it in\nsecret for us before she\nenters the area!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Hasty High Official"
+      "client": "Hasty High Official",
+      "requires": null
     },
     {
       "id": 3019,
@@ -34436,7 +34598,8 @@
       "goal": "Hunt the Congalala",
       "details": "Congas have gathered in the\nSwamp and are destroying all\nthe good mining points. Now,\nI'd hate for this to leak,\nbut there's a great mining\npoint in a secret place.\nJust keep that mum, OK?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Very Suspect Peddler"
+      "client": "Very Suspect Peddler",
+      "requires": null
     },
     {
       "id": 3020,
@@ -34658,7 +34821,8 @@
       "goal": "Hunt the Emerald Congalala",
       "details": "Hmph, how rude! Can you\nbelieve that awful beast\nspewed some nasty gunk at\nme three times in a row!?\n...I beg your pardon?\nI still stink!? How dare\nyou, you uncouth heathen!?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Beautiful Swordsman"
+      "client": "Beautiful Swordsman",
+      "requires": null
     },
     {
       "id": 3021,
@@ -34884,7 +35048,8 @@
       "goal": "Hunt the Emerald Congalala",
       "details": "There is a child wandering\nlost deep in the Great\nForest. Our rescue efforts\nhave thus far failed due to\na strange and rare, bearded\nbeast... I ask that someone\nplease hunt that thing down!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Distinguished Lady"
+      "client": "Distinguished Lady",
+      "requires": null
     },
     {
       "id": 3022,
@@ -35112,7 +35277,8 @@
       "goal": "Hunt the Gypceros",
       "details": "That Gypceros stole my very\nimportant Book of Combos,\nand then, right after that,\na band of Melynx stole my\nBBQ Spit! At this rate, I'm\ngoing to be forced into\nearly retirement! Heeeeelp!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Compassionate Hunter"
+      "client": "Compassionate Hunter",
+      "requires": null
     },
     {
       "id": 3023,
@@ -35313,7 +35479,8 @@
       "goal": "Hunt 2 Purple Gypceros",
       "details": "Gypceros are covered in a\nrubbery skin that's mostly\nwaterproof, yet despite\nthis, they like to live in\nareas of high humidity.\nHmm... To solve this riddle,\nI'll require more data!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Wyverian Workshop"
+      "client": "Wyverian Workshop",
+      "requires": null
     },
     {
       "id": 3024,
@@ -35620,7 +35787,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "Add a Blue Yian Kut-Ku to a\nGreen Plesioth and you get a\nPlum D.Hermitaur. Seriously,\nuniquely-colored equipment\nis selling like hotcakes,\nespecially with young folks.\nWish I could get in on that.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Materials Old-Timer"
+      "client": "Materials Old-Timer",
+      "requires": null
     },
     {
       "id": 3025,
@@ -35947,7 +36115,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "Recently, the number of\npeople disappearing in the\nswamplands has been on the\nrise and we think the reason\nis linked to monsters in the\narea. If you can, please\nhelp look into this for us.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Honest Retainer"
+      "client": "Honest Retainer",
+      "requires": null
     },
     {
       "id": 3101,
@@ -36082,7 +36251,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A gathering quest in the\nForest & Hills. Gather all\nthe materials you can from\nthe field, then deliver the\nPaw Pass Ticket to finish\nup. Just be aware of the\nG-Level monsters, OK?",
       "fail": "Reward Zero",
-      "client": "Guild Manager"
+      "client": "Guild Manager",
+      "requires": null
     },
     {
       "id": 3102,
@@ -36208,7 +36378,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A gathering quest in the\nOld Volcano. Gather all the\nmaterials you can from the\nfield, then deliver the Paw\nPass Ticket to finish up.\nJust be aware of the\nG-Level monsters, OK?",
       "fail": "Reward Zero",
-      "client": "Guild Manager"
+      "client": "Guild Manager",
+      "requires": null
     },
     {
       "id": 3103,
@@ -36448,7 +36619,8 @@
       "goal": "Hunt the Nargacuga",
       "details": "I saw a demon in the Great\nForest so fast that I could\nbarely even register its\nshadow as it flew by. My\ntrusty partner is my sword,\nand I hate to beg, but I\nneed some backup here!",
       "fail": "Reward Zero\nTime Over",
-      "client": "PrivilegedLadyKnight"
+      "client": "PrivilegedLadyKnight",
+      "requires": null
     },
     {
       "id": 3104,
@@ -36688,7 +36860,8 @@
       "goal": "Hunt the Nargacuga",
       "details": "Our head drill sergeant was\nattacked while out on an\nexpedition in the Old Swamp\nby an unknown assailant. We\nthink it's probably a\nmonster, but we require the\nassistance of a hunter!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Bearded Soldier"
+      "client": "Bearded Soldier",
+      "requires": null
     },
     {
       "id": 3105,
@@ -36891,7 +37064,8 @@
       "goal": "Hunt 2 Nargacugas",
       "details": "From within the midst of the\nGreat Forest's mist, I saw\ntwo blood-red eyes! Rest\nassured I will pay you well,\njust please, someone come\ndefeat this creature quick!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Terrified Aristocrat"
+      "client": "Terrified Aristocrat",
+      "requires": null
     },
     {
       "id": 3106,
@@ -37114,7 +37288,8 @@
       "goal": "Hunt the Lavasioth",
       "details": "I'm in a fishing competition\nwith my elder brother. We\nagreed to compare rubbings\nto determine the winner.\nWell, imagine how much I'd\nwin by if I had a Lavasioth\nrubbing! I'm a genius!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Selfish Princess"
+      "client": "Selfish Princess",
+      "requires": null
     },
     {
       "id": 3107,
@@ -37323,7 +37498,8 @@
       "goal": "Hunt 2 Lavasioths",
       "details": "From out of the rivers of\nlava came 2 Lavasioths! I am\ndead serious. And right in\nfront of a good Powderstone\ndeposit! Please, dear\nhunter! Hunt these two down\nso we may get back to work!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Mine Owner"
+      "client": "Mine Owner",
+      "requires": null
     },
     {
       "id": 3108,
@@ -37514,7 +37690,8 @@
       "goal": "Hunt the Daimyo Hermitaur\nand Shogun Ceanataur",
       "details": "The Arena! A place to show\nyour skills to the world!\nFor this event, we have\nreleased two crab-like\nenemies into the arena! All\nthose ready to test their\nskills are welcome!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Arena Manager"
+      "client": "Arena Manager",
+      "requires": null
     },
     {
       "id": 3109,
@@ -37729,7 +37906,8 @@
       "goal": "Hunt the Shogun Ceanataur",
       "details": "Upon our trip into the cave\nat the volcano, an enormous\nShogun Ceanataur dropped\ndown from the ceiling right\non top of us! Its ambush\ncaused massive damage! Rid\nthe world of that scourge!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Chief Weapon Smith"
+      "client": "Chief Weapon Smith",
+      "requires": null
     },
     {
       "id": 3110,
@@ -37964,7 +38142,8 @@
       "goal": "Hunt the Terra S.Ceanataur",
       "details": "I was going to get some\nmaterials after my catnap\nfrom what I thought was an\nempty black shell, but it\ntook off, nya! I'm so mad\nthat I didn't get anything!\nYou'd better help me, nya!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Selfish Felyne"
+      "client": "Selfish Felyne",
+      "requires": null
     },
     {
       "id": 3111,
@@ -38176,7 +38355,8 @@
       "goal": "Hunt the Shogun Ceanataur\nand the Terra S.Ceanataur",
       "details": "My grandfather stumbled on a\nfight between two famous\nwarriors. They say that it's\nthe dream of a warrior to\ndie on the battlefield, but\nnot by their own hands!\nPlease go and help them!",
       "fail": "Reward Zero\nTime Over",
-      "client": "TrinketLover'sGrddtr"
+      "client": "TrinketLover'sGrddtr",
+      "requires": null
     },
     {
       "id": 3112,
@@ -38393,7 +38573,8 @@
       "goal": "Hunt the Yian Kut-Ku?",
       "details": "We were enjoying a lovely\npicnic in the forest, where\neven the small birds had\ncome out of hiding to bathe\nin the sunlight. But then,\na lick of flame came out of\nnowhere! What was that!?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Gaggle of Mistresses"
+      "client": "Gaggle of Mistresses",
+      "requires": null
     },
     {
       "id": 3113,
@@ -38634,7 +38815,8 @@
       "goal": "Hunt the Rathalos",
       "details": "Unbelievably, the king of\nall wyverns has appeared in\nthe Old Volcano belt. To\nprotect our temple, we went\nto fight it, but to no\navail. Please, we humbly ask\nfor your assistance, hunter!",
       "fail": "Reward Zero\nTime Over",
-      "client": "MightyMountainMonks"
+      "client": "MightyMountainMonks",
+      "requires": null
     },
     {
       "id": 3114,
@@ -38872,7 +39054,8 @@
       "goal": "Hunt the Azure Rathalos",
       "details": "Do you hear that? A voice\nthat makes the earth\ntremble. Soldiers who have\nnever known defeat are\nknocked about by this sky\nking's roar, but that's what\nhunters are for, right?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Brave Boys"
+      "client": "Brave Boys",
+      "requires": null
     },
     {
       "id": 3115,
@@ -39097,7 +39280,8 @@
       "goal": "Hunt the Rathian",
       "details": "In order to hunt down the\nferocious Rathian in our\nlands, we are asking for\nvolunteers. Hunters! Show us\nyour strength and hunt that\nwhich is called \"Empress\".",
       "fail": "Reward Zero\nTime Over",
-      "client": "Powerful Ambassador"
+      "client": "Powerful Ambassador",
+      "requires": null
     },
     {
       "id": 3116,
@@ -39318,7 +39502,8 @@
       "goal": "Hunt the Pink Rathian",
       "details": "The terrible Pink Rathian.\nIt invades other monsters'\nterritory and throws them\ninto disarray, and picks\nfights with them as well. We\nmust quickly rid the world\nof such a dangerous monster!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Sharp Eyed Count"
+      "client": "Sharp Eyed Count",
+      "requires": null
     },
     {
       "id": 3117,
@@ -39520,7 +39705,8 @@
       "goal": "Hunt the Yian Garuga",
       "details": "Heh, at long last I have\nlaid eyes upon my prey, the\nGreat Forest's Yian Garuga,\nthough never in my wildest\ndreams did I think it would\nbe so strong! Hunter, I call\nupon your assistance now.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Lone Wolf Hunter"
+      "client": "Lone Wolf Hunter",
+      "requires": null
     },
     {
       "id": 3118,
@@ -39733,7 +39919,8 @@
       "goal": "Hunt 2 Yian Garuga",
       "details": "Yian Garuga have appeared\nin the forest areas one by\none. Unending cycles of\ninflamed violence has caused\nmany casualties in the area.\nFor the sake of the people,\nplease do something quick!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Lovely Princess"
+      "client": "Lovely Princess",
+      "requires": null
     },
     {
       "id": 3119,
@@ -39946,7 +40133,8 @@
       "goal": "Hunt the Blangonga",
       "details": "A Blangonga has staked its\nclaim to a piece of the\nsnowy mountains. Now we\ncan't enter the area to\ngather firewood. Exterminate\nthe Blangonga! ",
       "fail": "Reward Zero\nTime Over",
-      "client": "Foothills Villager"
+      "client": "Foothills Villager",
+      "requires": null
     },
     {
       "id": 3120,
@@ -40168,7 +40356,8 @@
       "goal": "Hunt the Copper Blangonga",
       "details": "My teacher believed that a\nsubspecies of Blangonga\nlives in the arid sands of\na desert, and went in search\nof it. People have forgotten\nabout my teacher, but I want\nto know what happened!",
       "fail": "Reward Zero\nTime Over",
-      "client": "ForgttnScholarStudnt"
+      "client": "ForgttnScholarStudnt",
+      "requires": null
     },
     {
       "id": 3121,
@@ -40386,7 +40575,8 @@
       "goal": "Hunt the Copper Blangonga",
       "details": "Oh my! I'm sure that was a\nBlangonga, but they only\nlive in areas of extreme\ncold! What is one doing out\nhere!? Ahh, I have no idea\nwhat's going on anymore, but\nplease do something!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Confused Bar Owner"
+      "client": "Confused Bar Owner",
+      "requires": null
     },
     {
       "id": 3122,
@@ -40696,7 +40886,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "I was hiding from a Basarios\nbehind some boulders when it\nturned out to be another\none! I thought I could hide\nbehind some other boulders\nahead of me, but it was yet\nanother one! Somebody, help!",
       "fail": "Hunt less than two Basarios\nbefore Time Up, Reward Zero",
-      "client": "Unlucky Journey Lady"
+      "client": "Unlucky Journey Lady",
+      "requires": null
     },
     {
       "id": 3123,
@@ -40988,7 +41179,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "We've received word that an\nairship made an emergency\nlanding in the Jungle, but\nthe area is home to a Daimyo\nHermitaur, a Gypceros, and a\nRathian. Hurry to the region\nand help hunt them down!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Messenger"
+      "client": "Guild Messenger",
+      "requires": null
     },
     {
       "id": 3124,
@@ -41296,7 +41488,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "There's something strange in\nthe air, and it's attracting\nall manner of monsters all\nat once! Right now, there's\nonly 1 hunter for every 3\nmonsters so any help you can \ngive would be fantastic!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Big-Wig"
+      "client": "Guild Big-Wig",
+      "requires": null
     },
     {
       "id": 3125,
@@ -41607,7 +41800,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "The young master has gone on\na most impossible hunt, I'm\nafraid; all for the hand of\na certain beautiful lady\nknight. I fear it will not\nend well, so I ask that you\nplease help him along!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Uncomfortable Butler"
+      "client": "Uncomfortable Butler",
+      "requires": null
     },
     {
       "id": 3126,
@@ -41866,7 +42060,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "I went to open up the arena\nthat no one has used in a\nwhile. Lo and behold, it's\nnow a den of monsters! They\nseem to like it there so\nmuch they were immediately\nup in arms. Please help me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "DesertedArenaManager"
+      "client": "DesertedArenaManager",
+      "requires": null
     },
     {
       "id": 3127,
@@ -42082,7 +42277,8 @@
       "goal": "Defend the Fortress from\nLao-Shan Lung",
       "details": "It seems that once again our\nland is in crisis. The giant\nelder dragon Lao-Shan Lung\nis approaching the village\nfrom the mountains. Head to\nthe fort and defend our way\nof life!",
       "fail": "Time Over, Reward Zero, or\nFort Integrity Zero",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 3201,
@@ -42311,7 +42507,8 @@
       "goal": "Hunt the Tigrex",
       "details": "At last, the Tigrex has\nappeared! It is said the\nbeast's origins are as a\nflying wyvern. It is too\npowerful to be allowed to\nrun free. The village is in\ndanger! Hunt it quickly!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 3202,
@@ -42536,7 +42733,8 @@
       "goal": "Hunt 2 Tigrex",
       "details": "A group of highly skilled\nhunters went off to slay two\nTigrex, but they became\nthe hunted. Please destroy \nthe two Tigrex and open \na clear route for our\nrescue team.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 3203,
@@ -42776,7 +42974,8 @@
       "goal": "Hunt the Diablos",
       "details": "I have heard that there is a\nhunter in this village of\ngreat skill. We have sent\nscores of soldiers, yet they\nare no match for the Diablos\nof the Old Desert. Please\nlend us your power, Hunter!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Envoy to the King"
+      "client": "Envoy to the King",
+      "requires": null
     },
     {
       "id": 3204,
@@ -43025,7 +43224,8 @@
       "goal": "Hunt the Black Diablos",
       "details": "I had hired the most skilled\nhunters imaginable, and went\non a safari for the famed\nDiablos... But what we found\nwas no mere Diablos! We must\nslay that black horned\nwyvern! No matter what!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Failed Millionaire"
+      "client": "Failed Millionaire",
+      "requires": null
     },
     {
       "id": 3205,
@@ -43242,7 +43442,8 @@
       "goal": "Hunt 2 Black Diablos",
       "details": "SOS! Two gigantic black\ntowers came rising out of\nthe ground and threw us into\ndisarray. The pressure of\ntens of thousands of troops\non us; so this is a wyvern's\nmight. Please help us out!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Surviving Trooper"
+      "client": "Surviving Trooper",
+      "requires": null
     },
     {
       "id": 3206,
@@ -43468,7 +43669,8 @@
       "goal": "Hunt the Gravios",
       "details": "Even us knights can't stand\nup to the Gravios's mighty\nheat ray. I know this is a\nbig request, but can you\nplease go and hunt this\narmored beast in our stead?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Friendly Head Knight"
+      "client": "Friendly Head Knight",
+      "requires": null
     },
     {
       "id": 3207,
@@ -43714,7 +43916,8 @@
       "goal": "Hunt the Black Gravios",
       "details": "A fearsome Gravios has\nappeared amidst the magma\nand desolation of the\nVolcanic Belt. Hunt down the\nfire breather for us!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Troubled Noble"
+      "client": "Troubled Noble",
+      "requires": null
     },
     {
       "id": 3208,
@@ -43943,7 +44146,8 @@
       "goal": "Hunt 2 Black Gravios",
       "details": "Hunters who were escorting\nsome scholars were attacked\nby a few Gravios. They\nmanaged to fend them off,\nbut they are unable to leave\nthe area. Please hurry to\ntheir rescue!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Messenger"
+      "client": "Guild Messenger",
+      "requires": null
     },
     {
       "id": 3209,
@@ -44041,7 +44245,8 @@
       "goal": "Hunt the Silver Rathalos",
       "details": "I'll tell you about a secret\nhunting ground, I will. It\ndoesn't matter if it's day\nor night, the silver sun\nalways shines, giving would-\nbe hunters a good workout...\nHeh, heh, heh...!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Hunchbacked Old Lady"
+      "client": "Hunchbacked Old Lady",
+      "requires": null
     },
     {
       "id": 3210,
@@ -44139,7 +44344,8 @@
       "goal": "Hunt the Gold Rathian",
       "details": "We were dazed and lost in a\nhaze for days when we came\nupon a mysterious land.\nThere, we spied a golden\nmoon. If I tell you the\nlocation, will you look into\nthe area for me in secret?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Well-Dressed Youth"
+      "client": "Well-Dressed Youth",
+      "requires": null
     },
     {
       "id": 3211,
@@ -44348,7 +44554,8 @@
       "goal": "Hunt the Silver Rathalos\nand the Gold Rathian",
       "details": "The silver-winged king and\nhis gold-bodied queen. \nWhoever successfully hunts\nthem both shall be known as\nthe King of Hunters. I await\nyour return with a glass\nheld high!",
       "fail": "Reward Zero\nTime Over",
-      "client": "SharpWittedGentleman"
+      "client": "SharpWittedGentleman",
+      "requires": null
     },
     {
       "id": 3212,
@@ -44562,7 +44769,8 @@
       "goal": "Hunt the Rajang",
       "details": "The legendary Rajang has\nappeared at last, however, I\nwill leave it for you other\nhunters as I have other\nmatters to attend to. I have\npeople back home waiting for\nmy return, after all.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Elite Hunter"
+      "client": "Elite Hunter",
+      "requires": null
     },
     {
       "id": 3213,
@@ -44765,7 +44973,8 @@
       "goal": "Hunt 2 Rajang",
       "details": "There are two Rajang, each\nwith golden fur. Hunters, I\nhave prepared a special\nstage for your grandest\nperformance. Demonstrate\nyour true power... He he\nhe...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Scarlet Mystery Man"
+      "client": "Scarlet Mystery Man",
+      "requires": null
     },
     {
       "id": 3214,
@@ -44860,7 +45069,8 @@
       "goal": "Slay the Kirin",
       "details": "They say there's a secret\nplace where all manners of\nancient monsters live\ntogether, and I have found\nit at long last... If you\nwant, I will show this\nvirgin land to you!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Exploration Junkie"
+      "client": "Exploration Junkie",
+      "requires": null
     },
     {
       "id": 3215,
@@ -45081,7 +45291,8 @@
       "goal": "Slay the Kirin",
       "details": "There's something causing\nlightning strikes in the\nheart of the Old Swamp. My\ntheory is that this is proof\nthat the mythical beast has\ncome out of hiding. Isn't\nit absolutely fascinating?",
       "fail": "Reward Zero\nTime Over",
-      "client": "Practicality Scholar"
+      "client": "Practicality Scholar",
+      "requires": null
     },
     {
       "id": 3216,
@@ -45398,7 +45609,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "The sprawling city in the\noasis is under siege by a\nnumber of monsters. This is\nunprecedented! We must do\nwhat we can before something\nterrible befalls the city!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 3217,
@@ -45726,7 +45938,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "I'm checking out the\ndisturbance in the Swamp.\nThe large monsters are\ngoing crazy and there are a\nton of casualties. Help fend\nthem off so that we can find\nthe source of the trouble.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Guild Heavyweight"
+      "client": "Guild Heavyweight",
+      "requires": null
     },
     {
       "id": 3218,
@@ -46029,7 +46242,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "I don't usually make\nrequests, but today's an\nexception since I don't feel\nmy best. ...What? H-How dare\nyou!? I-I could do this job\nin my sleep! It's that easy!\nAh, just come back safe...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Mantled Huntress"
+      "client": "Mantled Huntress",
+      "requires": null
     },
     {
       "id": 3219,
@@ -46310,7 +46524,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "Recently, the weather around\nthe Snowy Mountains has been\nbad nonstop. Further, the\nmonsters are hungry from a\nlack of food, and have\nstarted to violently attack\neach other. Please help us!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Base Village Elder"
+      "client": "Base Village Elder",
+      "requires": null
     },
     {
       "id": 3220,
@@ -46596,7 +46811,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "I went to open up the arena\nthat no one has used in a\nwhile. Lo and behold, it's\nnow a den of monsters! They\nseem to like it there so\nmuch they were immediately\nup in arms. Please help me!",
       "fail": "Reward Zero\nTime Over",
-      "client": "DesertedArenaManager"
+      "client": "DesertedArenaManager",
+      "requires": null
     },
     {
       "id": 3221,
@@ -46865,7 +47081,8 @@
       "goal": "Hunt all of the Large\nMonsters",
       "details": "If I don't pass this\nexercise, my father will\nforce me to marry. But I've\nalready sworn to myself that\nmy only partner in life\nwould be my trusty sword.\nPlease, I need your help!",
       "fail": "Reward Zero\nTime Over",
-      "client": "PrivilegedLadyKnight"
+      "client": "PrivilegedLadyKnight",
+      "requires": null
     },
     {
       "id": 3222,
@@ -47130,7 +47347,8 @@
       "goal": "Slay the Kushala Daora",
       "details": "If you see a giant twister\nat night out on the dunes,\nyou'd best run. That is no\nordinary sandstorm, but a\nlegendary Elder Dragon. But\nif you think you can defeat\nit, then please go ahead!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Old Tribe's Prince"
+      "client": "Old Tribe's Prince",
+      "requires": null
     },
     {
       "id": 3223,
@@ -47370,7 +47588,8 @@
       "goal": "Slay the Kushala Daora",
       "details": "There was surely a vortex\ninside of that downpour. The\nwind wrapped around and\nrevealed the elder dragon,\nKushala Daora! There isn't\na single soul who can combat\nit alone, so fight together!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Jungle Psychic"
+      "client": "Jungle Psychic",
+      "requires": null
     },
     {
       "id": 3224,
@@ -47637,7 +47856,8 @@
       "goal": "Slay the Teostra",
       "details": "The Teostra's hideaway can\nonly be found during the\ndarkest hour, but I have\ndone it. Now, if you can\nkeep a secret, I'll tell you\nwhere it is, and of course\nyou will be well rewarded...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Ill-ReputedInformant"
+      "client": "Ill-ReputedInformant",
+      "requires": null
     },
     {
       "id": 3225,
@@ -47898,7 +48118,8 @@
       "goal": "Slay the Teostra",
       "details": "I have an earnest request of\nyou... As the last of my\nresponsibilities, I request\nyour help. I want you to\nfight the elder fire dragon\nwe cornered in the Volcanic\nBelt, but beware its flames!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Heroic General"
+      "client": "Heroic General",
+      "requires": null
     },
     {
       "id": 3226,
@@ -48134,7 +48355,8 @@
       "goal": "Slay the Chameleos",
       "details": "People think it's impossible\nto fight an enemy you cannot\nsee, however, if one were to\nfocus and \"see\" with their\ngut instinct... Well, if all\nelse fails, just swing your\nweapon round and round!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Jungle Ancient"
+      "client": "Jungle Ancient",
+      "requires": null
     },
     {
       "id": 3227,
@@ -48383,7 +48605,8 @@
       "goal": "Slay the Chameleos",
       "details": "It seems an unknown elder\ndragon has appeared in the\nswamp zone. However, no one\ntruly got a clear look at\nit. What could the beast\nhave been? Slay it, but\nproceed with caution!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Grim Aristocrat"
+      "client": "Grim Aristocrat",
+      "requires": null
     },
     {
       "id": 3228,
@@ -48567,7 +48790,8 @@
       "goal": "Slay the Yama Tsukami",
       "details": "We have confirmed the Yama\nTsukami's location at the\nold Tower! There is so much\nwe have yet to understand\nabout this floating dragon\nthat we can't let this\nchance escape! Move out!",
       "fail": "Reward Zero\nTime Over",
-      "client": "E. Dragon Obs Office"
+      "client": "E. Dragon Obs Office",
+      "requires": null
     },
     {
       "id": 3229,
@@ -48771,7 +48995,8 @@
       "goal": "Defend the Town from\nShen Gaoren",
       "details": "Our town is embroiled in an\nunprecedented conflict. A\nfortress-like shelled\nmonster is threatening our\nsafety. We need help \nimmediately!",
       "fail": "Time Over, Reward Zero, or\nTown Integrity Zero",
-      "client": "Guild Master"
+      "client": "Guild Master",
+      "requires": null
     },
     {
       "id": 3230,
@@ -49017,7 +49242,8 @@
       "goal": "Slay the Fatalis",
       "details": "The legendary black\ndragon... It really exists\nthen? We've prepared all\ninstruments of war to assist\nyou in your quest to destroy\nthe dragon. The fate of the\nnation lies in your hands.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Benevolent Monarch"
+      "client": "Benevolent Monarch",
+      "requires": null
     },
     {
       "id": 3231,
@@ -49157,7 +49383,8 @@
       "goal": "Slay the Fatalis",
       "details": "It appears the time has\nfinally come. The\nbloodstained scales of the\nred dragon have graced the\nearth again in flaming\nglory. If you can stop this\nbeast...",
       "fail": "Reward Zero\nTime Over",
-      "client": "Scarlet Mystery Man"
+      "client": "Scarlet Mystery Man",
+      "requires": null
     },
     {
       "id": 3232,
@@ -49403,7 +49630,8 @@
       "goal": "Slay the Fatalis",
       "details": "Hee hee hee... The time has\ncome. Here is your\ninvitation to the ball. Wear\nyour Sunday best and bring\nyour greatest weapon, for it\nis time to go to the dance\nwith the king of disaster.",
       "fail": "Reward Zero\nTime Over",
-      "client": "Scarlet Mystery Man"
+      "client": "Scarlet Mystery Man",
+      "requires": null
     },
     {
       "id": 3233,
@@ -49518,7 +49746,8 @@
       "goal": "Slay the Ukanlos",
       "details": "This village already owes\nyou so much, but we need you\nnow more than ever. I truly\nbelieve it has to be you.\nPlease, go forth to the\nSnowy Mountain Peaks and\nfight the final fight!",
       "fail": "Reward Zero\nTime Over",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30001,
@@ -49625,7 +49854,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30002,
@@ -49732,7 +49962,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30003,
@@ -49839,7 +50070,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30004,
@@ -49946,7 +50178,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30005,
@@ -50053,7 +50286,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30006,
@@ -50160,7 +50394,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30007,
@@ -50267,7 +50502,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30008,
@@ -50374,7 +50610,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30009,
@@ -50481,7 +50718,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30010,
@@ -50588,7 +50826,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30011,
@@ -50695,7 +50934,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30012,
@@ -50802,7 +51042,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30013,
@@ -50909,7 +51150,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30014,
@@ -51016,7 +51258,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30015,
@@ -51123,7 +51366,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30016,
@@ -51230,7 +51474,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30017,
@@ -51337,7 +51582,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30018,
@@ -51444,7 +51690,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30019,
@@ -51551,7 +51798,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30020,
@@ -51658,7 +51906,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30021,
@@ -51765,7 +52014,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30022,
@@ -51872,7 +52122,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30023,
@@ -51979,7 +52230,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30024,
@@ -52086,7 +52338,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30025,
@@ -52193,7 +52446,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30026,
@@ -52300,7 +52554,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30027,
@@ -52407,7 +52662,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30028,
@@ -52514,7 +52770,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30029,
@@ -52621,7 +52878,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30030,
@@ -52728,7 +52986,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30031,
@@ -52835,7 +53094,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30032,
@@ -52942,7 +53202,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30033,
@@ -53049,7 +53310,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30034,
@@ -53156,7 +53418,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30035,
@@ -53263,7 +53526,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30036,
@@ -53370,7 +53634,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30037,
@@ -53477,7 +53742,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30038,
@@ -53584,7 +53850,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30039,
@@ -53691,7 +53958,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30040,
@@ -53798,7 +54066,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30041,
@@ -53905,7 +54174,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30042,
@@ -54012,7 +54282,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30043,
@@ -54119,7 +54390,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30044,
@@ -54226,7 +54498,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30045,
@@ -54333,7 +54606,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30046,
@@ -54440,7 +54714,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30047,
@@ -54547,7 +54822,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30048,
@@ -54654,7 +54930,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30049,
@@ -54761,7 +55038,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30050,
@@ -54868,7 +55146,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30051,
@@ -54975,7 +55254,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30052,
@@ -55082,7 +55362,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30053,
@@ -55189,7 +55470,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30054,
@@ -55296,7 +55578,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30055,
@@ -55403,7 +55686,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30056,
@@ -55510,7 +55794,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30057,
@@ -55617,7 +55902,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30058,
@@ -55724,7 +56010,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30059,
@@ -55831,7 +56118,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30060,
@@ -55938,7 +56226,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30061,
@@ -56045,7 +56334,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30062,
@@ -56152,7 +56442,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30063,
@@ -56259,7 +56550,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30064,
@@ -56366,7 +56658,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30065,
@@ -56473,7 +56766,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30066,
@@ -56580,7 +56874,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30067,
@@ -56687,7 +56982,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30068,
@@ -56794,7 +57090,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30069,
@@ -56901,7 +57198,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30070,
@@ -57008,7 +57306,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30071,
@@ -57115,7 +57414,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30072,
@@ -57222,7 +57522,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30073,
@@ -57329,7 +57630,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30074,
@@ -57436,7 +57738,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30075,
@@ -57543,7 +57846,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30076,
@@ -57650,7 +57954,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30077,
@@ -57757,7 +58062,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30078,
@@ -57864,7 +58170,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30079,
@@ -57971,7 +58278,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30080,
@@ -58078,7 +58386,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30081,
@@ -58185,7 +58494,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30082,
@@ -58292,7 +58602,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30083,
@@ -58399,7 +58710,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30084,
@@ -58506,7 +58818,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30085,
@@ -58613,7 +58926,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30086,
@@ -58720,7 +59034,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30087,
@@ -58827,7 +59142,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30088,
@@ -58934,7 +59250,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30089,
@@ -59041,7 +59358,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     },
     {
       "id": 30090,
@@ -59148,7 +59466,8 @@
       "goal": "Survive until Time Over or\nDeliver the Paw Pass Ticket",
       "details": "A daytime gathering quest on\nthe snowy mountains. Gather\nall the materials you can\nfrom the field, then deliver\nthe Paw Pass Ticket to\nfinish up.",
       "fail": "Reward Zero",
-      "client": "Pokke Village Chief"
+      "client": "Pokke Village Chief",
+      "requires": null
     }
   ]
 }

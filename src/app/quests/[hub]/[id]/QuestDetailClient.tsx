@@ -5,7 +5,13 @@ import { DetailBody, DetailCard, DetailRule, Stat, StatList } from "@/components
 import { QuestRewards, QuestSupplies } from "@/components/QuestRewards";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { useQuests } from "@/lib/client-data";
-import { questHubLabel, questsOnHub, type QuestHubSlug, type QuestMonster } from "@/lib/quests";
+import {
+  questHref,
+  questHubLabel,
+  questsOnHub,
+  type QuestHubSlug,
+  type QuestMonster,
+} from "@/lib/quests";
 import Loading from "@/components/Loading";
 
 interface Props {
@@ -38,6 +44,8 @@ export default function QuestDetailClient({ hub, id }: Props) {
   const { quests, error } = useQuests();
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const quest = onHub.find((q) => q.id === id);
+  const requires =
+    quest?.requires == null ? undefined : quests?.find((q) => q.id === quest.requires);
 
   if (!quest) {
     return (
@@ -83,6 +91,16 @@ export default function QuestDetailClient({ hub, id }: Props) {
           <Stat label="Contract fee:">
             <span className="text-white tabular-nums">{zenny(quest.fee)}</span>
           </Stat>
+          {requires && (
+            <Stat label="Requires:">
+              <Link
+                href={questHref(requires)}
+                className="whitespace-normal text-white underline-offset-4 hover:underline"
+              >
+                {requires.title} ({questHubLabel(requires.hub)} {requires.stars}★)
+              </Link>
+            </Stat>
+          )}
           {quest.largeMonsters.length > 0 && (
             <Stat label="Monsters:">
               <MonsterLinks monsters={quest.largeMonsters} />

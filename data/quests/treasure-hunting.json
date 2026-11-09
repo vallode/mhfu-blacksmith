@@ -374,7 +374,8 @@
       "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
-      "client": "Treshi"
+      "client": "Treshi",
+      "requires": null
     },
     {
       "id": 4002,
@@ -766,7 +767,8 @@
       "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
-      "client": "Treshi"
+      "client": "Treshi",
+      "requires": null
     },
     {
       "id": 4003,
@@ -1154,7 +1156,8 @@
       "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
-      "client": "Treshi"
+      "client": "Treshi",
+      "requires": null
     },
     {
       "id": 4004,
@@ -1543,7 +1546,8 @@
       "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
-      "client": "Treshi"
+      "client": "Treshi",
+      "requires": null
     },
     {
       "id": 4005,
@@ -1936,7 +1940,8 @@
       "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
-      "client": "Treshi"
+      "client": "Treshi",
+      "requires": null
     },
     {
       "id": 4006,
@@ -2316,7 +2321,8 @@
       "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
-      "client": "Treshi"
+      "client": "Treshi",
+      "requires": null
     },
     {
       "id": 4007,
@@ -2709,7 +2715,8 @@
       "goal": "2000 Pts Before Time Over or\n2000 Pts Plus Ltd Paw Pass",
       "details": "Gather the treasure that\nlies sleeping in the field\nto earn points. I will\ncalculate your total and\nreward you based on how much\nyou can collect. Leave no\ntreasure undiscovered!",
       "fail": "Reward Zero or Gather Less\nthan 2000pts, Time Over",
-      "client": "Treshi"
+      "client": "Treshi",
+      "requires": null
     }
   ]
 }
