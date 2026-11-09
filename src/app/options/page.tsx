@@ -1,4 +1,4 @@
-import Link from "next/link";
+import SiteTitle from "@/components/SiteTitle";
 import BorderRule from "@/components/BorderRule";
 import type { Metadata } from "next";
 import OfflineSettings from "@/components/OfflineSettings";
@@ -15,9 +15,7 @@ export const metadata: Metadata = pageMetadata({
 export default function OptionsPage() {
   return (
     <div className="flex flex-col items-center px-[1.3rem] pb-[4rem]">
-      <Link className="blacksmith__title" href="/">
-        <img src="/images/blacksmith.png" alt="Blacksmith" />
-      </Link>
+      <SiteTitle />
 
       <BorderRule />
 

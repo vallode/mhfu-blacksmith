@@ -2,18 +2,17 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useT } from "@/context/LanguageContext";
 import { DEFAULT_WEAPON, readLastWeapon } from "@/lib/last-weapon";
 import { DEFAULT_ARMOR, readLastArmor } from "@/lib/armor-last-store";
 import { DEFAULT_MONSTER, readLastMonster } from "@/lib/last-monster";
 
 const SECTIONS = {
   weapons: {
-    label: "Weapons",
     initial: `/blacksmith/${DEFAULT_WEAPON}/`,
     last: () => `/blacksmith/${readLastWeapon()}/`,
   },
   armor: {
-    label: "Armor",
     initial: `/armorsmith/${DEFAULT_ARMOR.slot}/${DEFAULT_ARMOR.rank}/`,
     last: () => {
       const { slot, rank } = readLastArmor();
@@ -21,7 +20,6 @@ const SECTIONS = {
     },
   },
   monsters: {
-    label: "Monsters",
     initial: `/monsters/${DEFAULT_MONSTER}/`,
     last: () => `/monsters/${readLastMonster()}/`,
   },
@@ -37,7 +35,8 @@ export default function MenuLink({
   section: MenuSection;
   className?: string;
 }) {
-  const { label, initial, last } = SECTIONS[section];
+  const { initial, last } = SECTIONS[section];
+  const label = useT().common.sections[section];
   // The server-rendered page has no stored choice, so start on the default and switch after mount.
   const [href, setHref] = useState(initial);
   useEffect(() => setHref(last()), [last]);

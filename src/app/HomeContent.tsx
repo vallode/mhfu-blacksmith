@@ -1,17 +1,23 @@
+"use client";
+
 import Link from "next/link";
 import BorderRule from "@/components/BorderRule";
+import { useT } from "@/context/LanguageContext";
+import type { Messages } from "@/lib/i18n/messages";
 import MenuLink, { type MenuSection } from "./MenuLink";
 
+type Section = keyof Messages["common"]["sections"];
+
 // Entries with a `section` open the page last viewed there (see MenuLink).
-const MENU: { href: string; label: string; section?: MenuSection }[] = [
-  { href: "/blacksmith/", label: "Weapons", section: "weapons" },
-  { href: "/armorsmith/", label: "Armor", section: "armor" },
-  { href: "/decorations/", label: "Decorations" },
-  { href: "/set-builder/", label: "Set Builder" },
-  { href: "/monsters/", label: "Monsters", section: "monsters" },
-  { href: "/quests/", label: "Quests" },
-  { href: "/hunter/", label: "Hunter Profile" },
-  { href: "/options/", label: "Options" },
+const MENU: { href: string; label: Section; section?: MenuSection }[] = [
+  { href: "/blacksmith/", label: "weapons", section: "weapons" },
+  { href: "/armorsmith/", label: "armor", section: "armor" },
+  { href: "/decorations/", label: "decorations" },
+  { href: "/set-builder/", label: "setBuilder" },
+  { href: "/monsters/", label: "monsters", section: "monsters" },
+  { href: "/quests/", label: "quests" },
+  { href: "/hunter/", label: "hunter" },
+  { href: "/options/", label: "options" },
 ];
 
 // A main-menu entry: large spaced capitals with a drop shadow that turns
@@ -24,10 +30,11 @@ const menuItem = [
 ].join(" ");
 
 export default function HomeContent() {
+  const t = useT();
   return (
     <main className="flex flex-1 flex-col items-center">
       <Link className="h-auto max-h-[5.2rem] w-full max-w-[51rem] flex-[0_0_0%]" href="/">
-        <img className="h-auto w-full" src="/images/blacksmith.png" alt="Blacksmith" />
+        <img className="h-auto w-full" src="/images/blacksmith.png" alt={t.site.logoAlt} />
       </Link>
 
       <BorderRule />
@@ -41,7 +48,7 @@ export default function HomeContent() {
                   <MenuLink section={section} className="block" />
                 ) : (
                   <Link className="block" href={href}>
-                    {label}
+                    {t.common.sections[label]}
                   </Link>
                 )}
               </li>

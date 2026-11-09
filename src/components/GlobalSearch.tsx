@@ -6,6 +6,8 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import Card from "@/components/Card";
 import { cn } from "@/lib/cn";
+import { useGameText, useT } from "@/context/LanguageContext";
+import { isRank } from "@/lib/i18n/labels";
 import { iconImgClass, iconStyle } from "@/lib/icon-style";
 
 interface SearchEntry {
@@ -67,6 +69,15 @@ function iconSrcFor(item: SearchEntry): string {
 export default function GlobalSearch() {
   const router = useRouter();
   const [isOpen, setIsOpen] = useState(false);
+  const t = useT();
+  const game = useGameText();
+
+  /** "low-rank" (gear) or "Low 3★" (quests) in the site's language. */
+  const rankLabel = (rank: string) => {
+    if (isRank(rank)) return t.common.ranks[rank];
+    const board = /^(\S+) (.*)$/.exec(rank);
+    return board ? `${t.site.search.boards[board[1]] ?? board[1]} ${board[2]}` : rank;
+  };
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ item: SearchEntry; score?: number }[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
@@ -177,7 +188,7 @@ export default function GlobalSearch() {
       )}
       role="dialog"
       aria-modal="true"
-      aria-label="Search"
+      aria-label={t.site.search.label}
       aria-hidden={isOpen ? undefined : "true"}
     >
       <div className="absolute inset-0 bg-black/70" onClick={close} />
@@ -206,7 +217,7 @@ export default function GlobalSearch() {
               ref={inputRef}
               className="min-w-0 flex-1 border-none bg-transparent px-[1.6rem] py-0 font-[inherit] text-main leading-none text-white outline-none placeholder:text-white/35 [&::-webkit-search-cancel-button]:hidden"
               type="search"
-              placeholder="Search weapons, armor, monsters…"
+              placeholder={t.site.search.placeholder}
               value={query}
               onChange={handleQueryChange}
               onKeyDown={handleInputKeydown}
@@ -220,7 +231,7 @@ export default function GlobalSearch() {
           <div className="min-h-0 flex-1 overflow-y-auto" role="listbox">
             {results.length === 0 && query.trim().length >= 2 && (
               <p className="px-[1.6rem] py-[2rem] text-center text-sub text-white/40">
-                No results found
+                {t.site.search.noResults}
               </p>
             )}
 
@@ -249,9 +260,15 @@ export default function GlobalSearch() {
                       }}
                     />
                   </div>
-                  <p className="m-0 min-w-0 flex-1 truncate">{item.name}</p>
+                  <p className="m-0 min-w-0 flex-1 truncate">
+                    {item.category === "quest"
+                      ? game.quest(item.slug, "title", item.name)
+                      : game.name(item.category, item.name)}
+                  </p>
                   {item.rank && (
-                    <span className="shrink-0 text-fine text-white/50 capitalize">{item.rank}</span>
+                    <span className="shrink-0 text-fine text-white/50 capitalize">
+                      {rankLabel(item.rank)}
+                    </span>
                   )}
                 </Link>
               );

@@ -1,5 +1,6 @@
 "use client";
 
+import { useT } from "@/context/LanguageContext";
 import { progressBar } from "@/styles/progress";
 
 export interface ToastAction {
@@ -26,6 +27,7 @@ const actionButton = [
 ].join(" ");
 
 export default function ToastViewport({ toasts, onDismiss }: ToastViewportProps) {
+  const dismissLabel = useT().site.toast.dismiss;
   if (toasts.length === 0) return null;
 
   return (
@@ -46,7 +48,7 @@ export default function ToastViewport({ toasts, onDismiss }: ToastViewportProps)
             type="button"
             className="absolute top-[1.2rem] right-[1.8rem] cursor-pointer border-none bg-transparent px-[0.4rem] py-[0.2rem] font-[inherit] text-sub leading-none text-white/50 hover:text-white focus-visible:text-white"
             onClick={() => onDismiss(t.id)}
-            aria-label="Dismiss"
+            aria-label={dismissLabel}
           >
             ×
           </button>
