@@ -9,18 +9,22 @@ import type { MonsterCategory } from "@/lib/constants";
 import { useMonster, useQuests } from "@/lib/client-data";
 import ModelViewer, { type ModelCapsule } from "@/components/ModelViewer";
 import HitzoneControls, { type HitzonePart } from "@/components/HitzoneControls";
+import MonsterBreaks from "@/components/MonsterBreaks";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
+import { breakIndex, breakKey } from "@/lib/monster-breaks";
 import { formatRank } from "@/lib/monster-drops";
 import { monsterRecordFor } from "@/lib/monster-ids";
 import { clearedQuestIds, questsWithMonster } from "@/lib/quests";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
-import { useMonsterHitboxes, useMonsterModel } from "@/lib/models";
+import { useMonsterHitboxes, useMonsterModel, type HitboxCapsule } from "@/lib/models";
+import type { MonsterBreak } from "@/lib/types";
 import { useLocale } from "@/context/LanguageContext";
 import type { Messages } from "@/lib/i18n/messages";
+import { breakLabel, partLabel } from "@/lib/i18n/monster-labels";
 import Loading from "@/components/Loading";
 
 interface Props {
@@ -29,14 +33,6 @@ interface Props {
 }
 
 const HITZONE_COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
-
-/**
- * A hitzone part's name in the site's language. A part id the dictionary
- * doesn't list shows capitalised, as "front-legs" -> "Front-Legs".
- */
-function partLabel(t: Messages, part: string): string {
-  return t.monsters.hitzones.parts[part] ?? part.replace(/(^|[\s-])\w/g, (c) => c.toUpperCase());
-}
 
 /**
  * A drop table rank's tab label: one of the common ranks ("low rank",
@@ -51,8 +47,25 @@ function rankLabel(t: Messages, rank: string): string {
 /** A hitzone part's colour on the model, by its place in the hitzone table. */
 const hitboxColor = (index: number) => `var(--color-hitbox-${(index % 8) + 1})`;
 
+/**
+ * The flinch column is wider than the value columns: it can hold a range
+ * ("100–160"). A phone has no room for it; there the value goes under the
+ * part name (`flinchBelow`).
+ */
+const flinchColumn = "w-cells-8 mobile:hidden";
+const flinchBelow = "hidden text-fine text-muted mobile:block";
+
 /** Hitbox opacity: all shown, a highlighted part, and the rest while one is highlighted. */
 const HITBOX_OPACITY = { shown: 0.35, highlighted: 0.6, dimmed: 0.08 };
+
+/** Whether a capsule belongs to a highlight key: a hitzone part name, or a break's `breakKey`. */
+function capsuleMatches(capsule: HitboxCapsule, key: string, breaks: MonsterBreak[]): boolean {
+  const index = breakIndex(key);
+  if (index === null) return capsule.parts.includes(key);
+  return breaks[index]?.parts.includes(capsule.part) ?? false;
+}
+
+const NO_BREAKS: MonsterBreak[] = [];
 
 // Some monsters have no art; keep the layout and hide the broken-image glyph.
 const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
@@ -71,11 +84,14 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const modelOpen = modelUrl !== null && openModel === modelUrl;
   const hitboxes = useMonsterHitboxes(modelUrl);
   const [showHitzones, setShowHitzones] = useState(false);
-  // A part hovered in the hitzone table or the legend, and one picked in the
-  // legend (which only shows with the hitboxes, so a pick ends with them).
+  // A part or break hovered in the hitzone tab or the legend, and one picked
+  // in the legend (which only shows with the hitboxes, so a pick ends with
+  // them). Hitzone parts go by name, breaks by `breakKey`.
   const [hoveredPart, setHoveredPart] = useState<string | null>(null);
   const [pinnedPart, setPinnedPart] = useState<string | null>(null);
   const highlight = hoveredPart ?? (showHitzones ? pinnedPart : null);
+
+  const breaks = monster?.breaks ?? NO_BREAKS;
 
   // Hitzone parts that have hitboxes, coloured by their place in the table.
   const hitboxParts = useMemo<HitzonePart[]>(() => {
@@ -91,14 +107,25 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       const part = hitboxParts.find(({ name }) => capsule.parts.includes(name));
       const opacity = !highlight
         ? HITBOX_OPACITY.shown
-        : capsule.parts.includes(highlight)
+        : capsuleMatches(capsule, highlight, breaks)
           ? HITBOX_OPACITY.highlighted
           : showHitzones
             ? HITBOX_OPACITY.dimmed
             : 0;
       return { ...capsule, color: part?.color ?? "var(--color-unavailable)", opacity };
     });
-  }, [hitboxes, hitboxParts, showHitzones, highlight]);
+  }, [hitboxes, hitboxParts, showHitzones, highlight, breaks]);
+
+  // The hitzone parts each break's hitboxes belong to, in table order.
+  const breakHitzones = useMemo<string[][]>(() => {
+    if (!hitboxes || !monster?.hitzones) return [];
+    const order = Object.keys(monster.hitzones);
+    return breaks.map((b) =>
+      order.filter((name) =>
+        hitboxes.some((c) => b.parts.includes(c.part) && c.parts.includes(name)),
+      ),
+    );
+  }, [hitboxes, monster?.hitzones, breaks]);
 
   // The nav and the list of monsters on the left come from the monsters
   // layout (MonsterShell), which stays mounted; this is only the detail panel.
@@ -115,12 +142,17 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const formatSize = (cm: number) => formatNumber(Math.round(cm));
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
+  // Each hitzone row's flinch threshold, worked out by the data build; no
+  // column for a monster without hitboxes or thresholds.
+  const flinchByRow = monster.hitzone_flinch;
   // The most effective part per column, to highlight it
   const bestHitzone: Partial<Record<(typeof HITZONE_COLS)[number], number>> = {};
   for (const col of HITZONE_COLS) {
     const values = hitzoneEntries.map(([, v]) => Number(v[col])).filter((n) => n > 0);
     if (values.length > 1) bestHitzone[col] = Math.max(...values);
   }
+
+  const breakable = new Set(breakHitzones.flat());
 
   // While the model shows hitboxes, part names take their hitbox colour as a legend.
   const partColor = (part: string) =>
@@ -135,50 +167,84 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             id: "hitzones",
             label: t.monsters.detail.tabs.hitzones,
             content: (
-              <table className={hitzoneTable}>
-                <thead>
-                  <tr>
-                    <th>{t.monsters.hitzones.part}</th>
-                    {HITZONE_COLS.map((col) => (
-                      <th key={col}>{t.monsters.hitzones.columns[col]}</th>
-                    ))}
-                  </tr>
-                </thead>
-                <tbody>
-                  {hitzoneEntries.map(([part, values]) => (
-                    <tr
-                      key={part}
-                      // With the model open, hovering a part highlights its hitboxes.
-                      onPointerEnter={(e) =>
-                        modelOpen && e.pointerType === "mouse" && setHoveredPart(part)
-                      }
-                      onPointerLeave={() => setHoveredPart(null)}
-                      className={cn(modelOpen && hoveredPart === part && "bg-white/10")}
-                    >
-                      <td style={{ color: partColor(part) }}>
-                        {/* The table capitalises each word of a part id; the
-                            label is already cased as the language writes it. */}
-                        <span className="normal-case">{partLabel(t, part)}</span>
-                      </td>
-                      {HITZONE_COLS.map((col) => {
-                        const value = values[col];
-                        const n = Number(value);
-                        return (
-                          <td
-                            key={col}
-                            className={cn(
-                              value !== undefined && n === 0 && hitzoneZero,
-                              value !== undefined && n === bestHitzone[col] && hitzoneBest,
-                            )}
-                          >
-                            {value ?? "—"}
-                          </td>
-                        );
-                      })}
+              <>
+                <table className={hitzoneTable}>
+                  <thead>
+                    <tr>
+                      <th>
+                        {t.monsters.hitzones.part}
+                        {flinchByRow && (
+                          <span className={flinchBelow}>{t.monsters.hitzones.flinch}</span>
+                        )}
+                      </th>
+                      {HITZONE_COLS.map((col) => (
+                        <th key={col}>{t.monsters.hitzones.columns[col]}</th>
+                      ))}
+                      {flinchByRow && (
+                        <th className={flinchColumn}>{t.monsters.hitzones.flinch}</th>
+                      )}
                     </tr>
-                  ))}
-                </tbody>
-              </table>
+                  </thead>
+                  <tbody>
+                    {hitzoneEntries.map(([part, values]) => (
+                      <tr
+                        key={part}
+                        // With the model open, hovering a part highlights its hitboxes.
+                        onPointerEnter={(e) =>
+                          modelOpen && e.pointerType === "mouse" && setHoveredPart(part)
+                        }
+                        onPointerLeave={() => setHoveredPart(null)}
+                        className={cn(modelOpen && hoveredPart === part && "bg-white/10")}
+                      >
+                        <td style={{ color: partColor(part) }}>
+                          {/* The table capitalises each word of a part id; the
+                              label is already cased as the language writes it. */}
+                          <span className="normal-case">{partLabel(t, part)}</span>
+                          {breakable.has(part) && (
+                            <span
+                              className="ml-[0.4rem] text-fine text-gold"
+                              title={t.monsters.breaks.breakable}
+                            >
+                              ◆<span className="sr-only">{t.monsters.breaks.breakableSr}</span>
+                            </span>
+                          )}
+                          {flinchByRow?.[part] && (
+                            <span className={flinchBelow}>{flinchByRow[part]}</span>
+                          )}
+                        </td>
+                        {HITZONE_COLS.map((col) => {
+                          const value = values[col];
+                          const n = Number(value);
+                          return (
+                            <td
+                              key={col}
+                              className={cn(
+                                value !== undefined && n === 0 && hitzoneZero,
+                                value !== undefined && n === bestHitzone[col] && hitzoneBest,
+                                // On a phone KO ends the row (the flinch column is hidden).
+                                col === "ko" && flinchByRow && "mobile:after:hidden",
+                              )}
+                            >
+                              {value ?? "—"}
+                            </td>
+                          );
+                        })}
+                        {flinchByRow && (
+                          <td className={flinchColumn}>{flinchByRow[part] ?? "—"}</td>
+                        )}
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+                {breaks.length > 0 && (
+                  <MonsterBreaks
+                    breaks={breaks}
+                    hitzones={breakHitzones}
+                    highlight={modelOpen ? hoveredPart : null}
+                    onHover={modelOpen ? setHoveredPart : undefined}
+                  />
+                )}
+              </>
             ),
           },
         ]
@@ -288,6 +354,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             {hitboxParts.length > 0 && (
               <HitzoneControls
                 parts={hitboxParts}
+                breaks={breaks
+                  .map((b, i) => ({ key: breakKey(i), name: breakLabel(t, b.name) }))
+                  .filter((_, i) => (breakHitzones[i]?.length ?? 0) > 0)}
                 show={showHitzones}
                 onShowChange={setShowHitzones}
                 pinned={pinnedPart}

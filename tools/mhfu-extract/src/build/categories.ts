@@ -12,7 +12,6 @@
  * decoration `category`), is kept
  * from the committed file.
  */
-import type { MaterialContext } from "../overlay/item-name-corrections.js";
 import type { NameTable } from "../strings/names.js";
 import type { FieldSpec } from "./fields.js";
 import type { EquipmentSlot } from "./ids.js";
@@ -31,6 +30,9 @@ export interface CategoryFile {
   /** Category `take` fields kept from the committed file for this file only. */
   keepFields?: string[];
 }
+
+/** Which kind of recipe a material or skill belongs to; armor spells some skills differently. */
+export type MaterialContext = "armor" | "weapon" | "decoration";
 
 export interface Category {
   name: CategoryName;
@@ -108,6 +110,8 @@ const MONSTERS: Category = {
     { field: "base_hp", kind: "scalar" },
     { field: "hitzones", kind: "hitzones" },
     { field: "drops", kind: "drops" },
+    { field: "breaks", kind: "scalar" },
+    { field: "flinch_thresholds", kind: "scalar" },
   ],
   // Reviewed against the EU disc (README "Monster overlays"): of 400
   // mapped hitzone parts 389 agree and the 11 that don't are site errors;
@@ -116,7 +120,9 @@ const MONSTERS: Category = {
   // rank's list pasted in).
   // `base_hp` (chunk +0x100) is new to the site: it has no committed value
   // to disagree with, and is the HP before a quest's multiplier.
-  take: ["base_hp", "hitzones", "drops"],
+  // `breaks` (monsters/breaks.ts, overlay/breaks.json) and
+  // `flinch_thresholds` (hitzones.ts) are new too.
+  take: ["base_hp", "hitzones", "drops", "breaks", "flinch_thresholds"],
 };
 
 export const CATEGORIES: Record<CategoryName, Category> = {

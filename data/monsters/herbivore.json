@@ -87,7 +87,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 78
+      "base_hp": 78,
+      "flinch_thresholds": [
+        60
+      ]
     },
     {
       "name": "Popo",
@@ -167,7 +170,10 @@
           "ko": "0"
         }
       },
-      "base_hp": 96
+      "base_hp": 96,
+      "flinch_thresholds": [
+        60
+      ]
     },
     {
       "name": "Kelbi",
@@ -256,7 +262,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 60
+      "base_hp": 60,
+      "flinch_thresholds": [
+        30
+      ]
     },
     {
       "name": "Mosswine",
@@ -345,7 +354,10 @@
           "ko": "0"
         }
       },
-      "base_hp": 50
+      "base_hp": 50,
+      "flinch_thresholds": [
+        10
+      ]
     },
     {
       "name": "Aptonoth",
@@ -402,7 +414,10 @@
           "ko": "0"
         }
       },
-      "base_hp": 80
+      "base_hp": 80,
+      "flinch_thresholds": [
+        20
+      ]
     },
     {
       "name": "Apceros",
@@ -490,7 +505,10 @@
           "ko": "0"
         }
       },
-      "base_hp": 200
+      "base_hp": 200,
+      "flinch_thresholds": [
+        60
+      ]
     }
   ]
 }

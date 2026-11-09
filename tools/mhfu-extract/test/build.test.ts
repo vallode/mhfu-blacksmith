@@ -8,7 +8,7 @@ import { compareCategory, loadInputs } from "../src/build/compare.js";
 import { canonical, percentValue, toSite, type FieldContext } from "../src/build/fields.js";
 import { assignDiscIds, discMaterialId, loadSiteIndex } from "../src/build/ids.js";
 import { mergeCategory, serializeDataFile } from "../src/build/merge.js";
-import { runBuildData } from "../src/cli/build-data.js";
+import { nameQuestItems, runBuildData } from "../src/cli/build-data.js";
 
 // Real enum IDs from the vendored mhp2g-patterns tables.
 const LEATHER_HELM = 1;
@@ -95,13 +95,17 @@ const extractedHelmets = {
   ],
 };
 
-/** Chain Helm after a merge: the disc's skill order, in the site's spelling. */
+/**
+ * Chain Helm after a merge: the disc's skill order, in the site's spelling,
+ * and its material under the game's name instead of the committed "iron  ore".
+ */
 const mergedChainHelm = {
   ...committedHelmets.armor[0],
   skills: [
     { name: "Load", amount: 1 },
     { name: "Defence", amount: 2 },
   ],
+  create_mats: [{ name: "Iron Ore", amount: 2, type: "ore", color: "gray" }],
 };
 
 async function fixture(): Promise<{ root: string; data: string; extracted: string }> {
@@ -144,9 +148,12 @@ test("assignDiscIds recovers IDs from enum names, pairing repeated names by orde
   );
 });
 
-test("discMaterialId inverts the recipe-context item name correction", () => {
-  assert.equal(discMaterialId("Iron Ore", "armor"), IRON_ORE);
-  assert.equal(discMaterialId("Definitely Not An Item", "weapon"), null);
+test("discMaterialId looks up the game's own item name", () => {
+  assert.equal(discMaterialId("Iron Ore"), IRON_ORE);
+  assert.equal(discMaterialId("Eldr Dragon Bone"), 287);
+  // A site spelling is not a game name.
+  assert.equal(discMaterialId("Elder Drgn Bone"), null);
+  assert.equal(discMaterialId("Definitely Not An Item"), null);
 });
 
 test("site index resolves equipment through equipment-ids.json and items loosely", async () => {
@@ -235,6 +242,14 @@ test("mergeCategory takes disc values in disc order, keeps site-only fields and 
       },
       {
         file: "armor/helmet.json",
+        name: "Chain Helm (site name)",
+        id: CHAIN_HELM,
+        field: "create_mats",
+        before: committedHelmets.armor[0]!.create_mats,
+        after: mergedChainHelm.create_mats,
+      },
+      {
+        file: "armor/helmet.json",
         name: "Leather Helm",
         id: LEATHER_HELM,
         field: "slots",
@@ -267,7 +282,11 @@ test("mergeCategory keeps a file's keepFields as committed", async () => {
     );
     // Leather Helm's disc slots (1) disagree with the site (0) but aren't taken.
     assert.deepEqual(result.files.get("armor/helmet.json")![1], committedHelmets.armor[1]);
-    assert.deepEqual(result.changes, []);
+    // Only Chain Helm's material name changes, to the game's spelling.
+    assert.deepEqual(
+      result.changes.map((c) => [c.name, c.field]),
+      [["Chain Helm (site name)", "create_mats"]],
+    );
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -278,7 +297,7 @@ test("every weapon file takes elements", () => {
   assert.ok(CATEGORIES.weapons.files.every((f) => !f.keepFields?.includes("elements")));
 });
 
-test("mergeCategory writes new skills and materials in the site's spelling", async () => {
+test("mergeCategory writes new skills in the site's spelling and materials by their game name", async () => {
   const { root, data, extracted } = await fixture();
   try {
     const disc = structuredClone(extractedHelmets);
@@ -309,10 +328,10 @@ test("mergeCategory writes new skills and materials in the site's spelling", asy
       { name: "Load", amount: 1 },
       { name: "Capacity", amount: 2 },
     ]);
-    // "Iron Ore" is spelled the way the committed data spells item 202.
+    // Item 202 takes its game name, not the committed spelling ("iron  ore").
     assert.deepEqual(leather!.create_mats, [
       { name: "Kelbi Hide", amount: 1, type: "pelt", color: "blue" },
-      { name: "iron  ore", amount: 5, type: "ore", color: "gray" },
+      { name: "Iron Ore", amount: 5, type: "ore", color: "gray" },
     ]);
   } finally {
     await rm(root, { recursive: true, force: true });
@@ -381,6 +400,69 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("runBuildData writes game names in material fields it doesn't take", async () => {
+  const { root, data, extracted } = await fixture();
+  try {
+    const committed = structuredClone(committedHelmets) as {
+      armor: Record<string, unknown>[];
+    };
+    // Armor doesn't take alternative_create_mats, and Site Only Helm has no disc match.
+    committed.armor[1]!.alternative_create_mats = [
+      { name: "IRON ORE", amount: 3, type: "ore", color: "gray" },
+    ];
+    committed.armor[2]!.create_mats = [
+      { name: "kelbi hide", amount: 1, type: "pelt", color: "blue" },
+    ];
+    await writeFile(path.join(data, "armor", "helmet.json"), JSON.stringify(committed));
+    const report = await runBuildData({ extracted, data, only: ["armor"] });
+    const written = JSON.parse(await readFile(path.join(data, "armor", "helmet.json"), "utf-8"));
+    assert.deepEqual(written.armor[1].alternative_create_mats, [
+      { name: "Iron Ore", amount: 3, type: "ore", color: "gray" },
+    ]);
+    assert.deepEqual(written.armor[2].create_mats, [
+      { name: "Kelbi Hide", amount: 1, type: "pelt", color: "blue" },
+    ]);
+    assert.deepEqual(
+      report.categories[0]!.materials.map((m) => [m.before.name, m.after.name, m.count]),
+      [
+        ["IRON ORE", "Iron Ore", 1],
+        ["kelbi hide", "Kelbi Hide", 1],
+      ],
+    );
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
+test("nameQuestItems writes quest supplies and rewards under their game names", () => {
+  const site = {
+    items: new Map([
+      [IRON_ORE, { id: IRON_ORE, name: "Iron Ore" }],
+      // ItemID[932] is "FamitsuCustomTkt" in the enum.
+      [932, { id: 932, name: "SpecFamitsuTckt" }],
+    ]),
+  } as unknown as Parameters<typeof nameQuestItems>[1];
+  const quest = {
+    id: 1,
+    supplies: [{ item: "Iron Ore", amount: 1 }],
+    reward_tables: [
+      {
+        kind: "main",
+        items: [
+          { chance: 50, item: "FamitsuCustomTkt", amount: 1 },
+          { chance: 50, item: "Not An Item", amount: 1 },
+        ],
+      },
+    ],
+  };
+  const out = nameQuestItems({ quests: [quest] }, site) as { quests: (typeof quest)[] };
+  assert.deepEqual(out.quests[0]!.supplies, quest.supplies);
+  assert.deepEqual(out.quests[0]!.reward_tables[0]!.items, [
+    { chance: 50, item: "SpecFamitsuTckt", amount: 1 },
+    { chance: 50, item: "Not An Item", amount: 1 },
+  ]);
 });
 
 test("mergeCategory writes a skill the committed list repeats once", async () => {

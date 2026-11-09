@@ -181,7 +181,7 @@ function emitSlot(
       }));
 
     const [primaryRecipe] = createByEquipId.get(armor.index) ?? [];
-    const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names, "armor") : [];
+    const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names) : [];
 
     out.push({
       name,

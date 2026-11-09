@@ -1,8 +1,7 @@
 /**
  * Legacy-spelling aliases for `SkillID` names, used only by `diff`.
  *
- * Unlike `item-name-corrections.ts`, this table does **not** change what
- * `extract` emits. The extracted output keeps the extractor's own skill
+ * This table does **not** change what `extract` emits. The extracted output keeps the extractor's own skill
  * names (the `SkillID` table, currently bootstrapped from the vendored
  * mhp2g-patterns `.enum` file; see `strings/names.ts`). The goal is to
  * build all of `data/` from the disc eventually, so the extractor's

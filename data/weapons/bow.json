@@ -722,7 +722,7 @@
           "color": "white"
         },
         {
-          "name": "PureCrystal",
+          "name": "Purecrystal",
           "amount": 3,
           "type": "ore",
           "color": "cyan"
@@ -1470,7 +1470,7 @@
           "color": "white"
         },
         {
-          "name": "CarpenterBug",
+          "name": "Carpenterbug",
           "amount": 10,
           "type": "insect",
           "color": "gray"
@@ -1525,7 +1525,7 @@
       "improve_from": "Blango Fur Bow II",
       "create_mats": [
         {
-          "name": "Blangonga pelt",
+          "name": "Blangonga Pelt",
           "amount": 4,
           "type": "pelt",
           "color": "white"
@@ -1838,7 +1838,7 @@
           "color": "red"
         },
         {
-          "name": "CarpenterBug",
+          "name": "Carpenterbug",
           "amount": 4,
           "type": "insect",
           "color": "gray"
@@ -3521,7 +3521,7 @@
           "color": "blue"
         },
         {
-          "name": "Hrd monster Bone",
+          "name": "Hrd Monster Bone",
           "amount": 3,
           "type": "bone",
           "color": "red"
@@ -7212,7 +7212,7 @@
           "color": "gray"
         },
         {
-          "name": "Big Wyvern stone",
+          "name": "Big Wyvern Stone",
           "amount": 4,
           "type": "stone",
           "color": "blue"

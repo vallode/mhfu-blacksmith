@@ -44,38 +44,24 @@ test("formatSignedAmount always shows a sign", () => {
 });
 
 test("resolveMaterial resolves a craft slot to the data/ material shape", () => {
-  const material = resolveMaterial({ itemId: 201, quantity: 1 }, fakeNames, "weapon");
+  const material = resolveMaterial({ itemId: 201, quantity: 1 }, fakeNames);
   assert.deepEqual(material, { name: "Disk Stone", amount: 1, type: "ore", color: "gray" });
 });
 
 test("resolveMaterial returns null for an unused craft slot", () => {
-  assert.equal(resolveMaterial({ itemId: 0, quantity: 0 }, fakeNames, "weapon"), null);
+  assert.equal(resolveMaterial({ itemId: 0, quantity: 0 }, fakeNames), null);
 });
 
 test("resolveMaterial returns null when the item name can't be resolved", () => {
-  assert.equal(resolveMaterial({ itemId: 9999, quantity: 1 }, fakeNames, "weapon"), null);
+  assert.equal(resolveMaterial({ itemId: 9999, quantity: 1 }, fakeNames), null);
 });
 
-test("resolveMaterial applies a global item-name correction regardless of context", () => {
+test("resolveMaterial keeps the game's own spelling for every recipe", () => {
   const names: NameResolver = {
     source: "mhp2g-patterns-enum",
     resolve: (t, i) => (t === "ItemID" && i === 1 ? "High Qualty Pelt" : null),
   };
-  const material = resolveMaterial({ itemId: 1, quantity: 1 }, names, "weapon");
-  assert.equal(material?.name, "High Quality Pelt");
-});
-
-test("resolveMaterial applies an armor-scoped item-name correction only for armor context", () => {
-  const names: NameResolver = {
-    source: "mhp2g-patterns-enum",
-    resolve: (t, i) => (t === "ItemID" && i === 2 ? "Firestone" : null),
-  };
-  const armorMaterial = resolveMaterial({ itemId: 2, quantity: 1 }, names, "armor");
-  assert.equal(armorMaterial?.name, "Fire Stone");
-  const weaponMaterial = resolveMaterial({ itemId: 2, quantity: 1 }, names, "weapon");
-  assert.equal(weaponMaterial?.name, "Firestone");
-  const decorationMaterial = resolveMaterial({ itemId: 2, quantity: 1 }, names, "decoration");
-  assert.equal(decorationMaterial?.name, "Firestone");
+  assert.equal(resolveMaterial({ itemId: 1, quantity: 1 }, names)?.name, "High Qualty Pelt");
 });
 
 test("resolveMaterials drops unused slots and resolves the rest", () => {
@@ -87,7 +73,6 @@ test("resolveMaterials drops unused slots and resolves the rest", () => {
       { itemId: 0, quantity: 0 },
     ],
     fakeNames,
-    "weapon",
   );
   assert.equal(materials.length, 1);
   assert.equal(materials[0]!.name, "Disk Stone");

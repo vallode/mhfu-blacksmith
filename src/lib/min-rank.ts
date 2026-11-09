@@ -80,7 +80,7 @@ export interface WeaponLike {
  * materials from low to high rank (Hi-Metal vs Chain), so without this the
  * recipe graph can't tell the ranks apart. Hand-entered, not in the game data:
  * checked against the armor ranks in data/armor, but worth confirming in game.
- * Ores left out (Fire Stone, Antiseptic Stone, ...) are ungated, which hides
+ * Ores left out (Firestone, Antiseptic Stone, ...) are ungated, which hides
  * too little rather than too much.
  */
 export const GATHER_TIERS: Readonly<Record<string, Tier>> = (() => {

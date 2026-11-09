@@ -133,6 +133,8 @@ export interface HitboxCapsule {
   row: number;
   /** The monster's hitzone parts (`Monster.hitzones` keys) on that row. */
   parts: string[];
+  /** Body part number (left and right separate): what `Monster.breaks` parts refer to. */
+  part: number;
   radius: number;
   start: [number, number, number];
   end: [number, number, number];

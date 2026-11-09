@@ -1,7 +1,7 @@
 "use client";
 
 import Icon from "@/components/Icon";
-import { DropGrid, DropList, dropName } from "@/components/MonsterDrops";
+import { DropGrid, DropList, dropName, dropQuantity } from "@/components/MonsterDrops";
 import { useGameText, useT } from "@/context/LanguageContext";
 import { useItems, type ItemLookup } from "@/lib/client-data";
 import type { GameText } from "@/lib/i18n/game-text";
@@ -73,7 +73,7 @@ export function QuestSupplies({ supplies }: { supplies: Quest["supplies"] }) {
           <li key={i} className="flex items-center gap-[0.8rem] leading-none text-white">
             <Icon type={item?.type ?? "ukwn"} color={item?.color} />
             <span className={dropName}>{itemName(s.itemId, items, t, game)}</span>
-            <span className="flex-none text-muted">×{s.amount}</span>
+            <span className={dropQuantity}>×{s.amount}</span>
             <span className="w-cells-9 flex-none text-right text-fine text-white/60">
               {s.stacks > 1 ? t.rewards.stacks(s.stacks) : ""}
             </span>

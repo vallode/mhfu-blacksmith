@@ -32,6 +32,8 @@ export const monsters = {
       drg: "Drg",
       ko: "KO",
     },
+    /** The flinch threshold column ("Fln", like the game's short headers). */
+    flinch: "Fln",
     /** Hitzone part names, by the data's part id. Unlisted ids show as they are. */
     parts: {
       all: "All",
@@ -75,6 +77,62 @@ export const monsters = {
     /** The switch over the 3D model, and its legend of parts. */
     show: "Hitzones",
     legend: "Hitzone parts",
+  },
+  breaks: {
+    /** Heading over the list under the hitzone table. */
+    title: "Breakable parts",
+    /** The hitzone parts a break is on: "on head, wings". */
+    on: (parts: string) => `on ${parts}`,
+    /** The table's mark on a breakable part. */
+    breakable: "Breakable",
+    breakableSr: " (breakable)",
+    /** The group heading in the 3D model's legend, and its screen-reader prefix. */
+    legend: "Breaks",
+    legendPrefix: "Break: ",
+    /** What it takes: "2nd flinch (of each)", "under 50% HP", "dragon damage". */
+    flinch: (n: number, each: boolean) => {
+      const teen = n % 100 >= 11 && n % 100 <= 13;
+      const suffix = teen
+        ? "th"
+        : (({ 1: "st", 2: "nd", 3: "rd" } as Record<number, string>)[n % 10] ?? "th");
+      return `${n}${suffix} flinch${each ? " of each" : ""}`;
+    },
+    belowHp: (percent: number) => `under ${percent}% HP`,
+    damage: { cut: "cutting damage", fire: "fire damage", dragon: "dragon damage" },
+    /** Break reward names, by the data's name ("1st horn"). Others use the hitzone part names. */
+    names: {
+      ears: "Ears",
+      beak: "Beak",
+      back: "Back",
+      wings: "Wings",
+      head: "Head",
+      shell: "Shell",
+      claw: "Claw",
+      "shell - gravios skull": "Shell - Gravios Skull",
+      "shell - brown skull": "Shell - Brown Skull",
+      "shell - white skull": "Shell - White Skull",
+      horn: "Horn",
+      "left shoulder": "Left Shoulder",
+      tentacles: "Tentacles",
+      eye: "Eye",
+      "2nd horn": "2nd Horn",
+      "1st horn": "1st Horn",
+      wing: "Wing",
+      chest: "Chest",
+      "head/back": "Head/Back",
+      stomach: "Stomach",
+      horns: "Horns",
+      tail: "Tail",
+      claws: "Claws",
+      fangs: "Fangs",
+      "spikes - back": "Spikes - Back",
+      "chest - requires fire element": "Chest - Requires Fire Element",
+      "dorsal fin": "Dorsal Fin",
+      fang: "Fang",
+      "back fin": "Back Fin",
+      face: "Face",
+      fin: "Fin",
+    } as Record<string, string>,
   },
   drops: {
     /**

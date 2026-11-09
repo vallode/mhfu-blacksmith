@@ -20,6 +20,7 @@ import type {
   WeaponTreeNode,
   Melody,
   MinRank,
+  MonsterBreak,
   MonsterDrop,
 } from "./types";
 import { splitDropQuantity } from "./monster-drops";
@@ -143,6 +144,10 @@ export interface CompactMonster {
   sz?: [number, number];
   /** base_hp */
   hp?: number;
+  /** breaks, as is */
+  bk?: MonsterBreak[];
+  /** hitzone_flinch: a flinch stringIdx (or null) per `hz` row, in its order */
+  hf?: (number | null)[];
 }
 
 export interface CompactDecoration {
@@ -370,6 +375,15 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     }
   }
 
+  let hitzoneFlinch: Monster["hitzone_flinch"];
+  if (m.hz && m.hf) {
+    hitzoneFlinch = {};
+    for (const [i, [partIdx]] of m.hz.entries()) {
+      const flinch = m.hf[i];
+      if (flinch != null) hitzoneFlinch[str(d, partIdx)] = str(d, flinch);
+    }
+  }
+
   const drops: Monster["drops"] = {};
   if (m.dr) {
     for (const [rankIdx, sources] of m.dr) {
@@ -403,6 +417,8 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     drops: m.dr ? drops : undefined,
     sizes: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     base_hp: m.hp,
+    breaks: m.bk,
+    hitzone_flinch: hitzoneFlinch,
   };
 }
 
