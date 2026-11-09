@@ -22,7 +22,9 @@ import { BinaryReader } from "../binary/reader.js";
 import type { OvlFile } from "../container/ovl.js";
 import {
   ATTACK_RECORD_SIZE,
+  boundTables,
   findAttackTables,
+  type AttackTable,
   readAttackRecord,
   type AttackRecord,
 } from "../monsters/attacks.js";
@@ -108,6 +110,8 @@ export interface AttackTableDump {
   /** vaddr of the first record, for overlays. */
   vaddr?: string;
   count: number;
+  /** File offset of the struct after the table that points at it (`boundTables`). */
+  struct?: number;
   /** The crib monster with the most different attacks matched here, and how many. */
   monster?: { name: string; attacks: number };
   /** The `BEFORE` bytes before the table and `AFTER` after it, as hex. */
@@ -234,7 +238,7 @@ function cribIndex(crib: readonly CribAttack[]): Map<string, CribAttack[]> {
 function dumpTable(
   file: SearchFile,
   reader: BinaryReader,
-  run: { offset: number; count: number },
+  run: AttackTable,
   byNumbers: ReadonlyMap<string, CribAttack[]>,
   pointers: PointerIndex,
   graph: CodeGraph | null,
@@ -274,6 +278,7 @@ function dumpTable(
     offset: run.offset,
     ...(ovl ? { vaddr: hex(ovl.loadBase + run.offset) } : {}),
     count: run.count,
+    ...(run.struct !== undefined ? { struct: run.struct } : {}),
     ...(monster ? { monster } : {}),
     before: file.buf.subarray(Math.max(0, run.offset - BEFORE), run.offset).toString("hex"),
     after: file.buf
@@ -416,9 +421,10 @@ export function dumpAttacksRaw(
       ...(file.emId !== undefined ? { emId: file.emId } : {}),
       ...(file.ovl ? { loadBase: hex(file.ovl.loadBase) } : {}),
       length: file.buf.length,
-      tables: findAttackTables(file.buf).map((run) =>
-        dumpTable(file, reader, run, byNumbers, pointers, graph, byName),
-      ),
+      tables: (file.ovl
+        ? boundTables(file.buf, file.ovl.loadBase)
+        : findAttackTables(file.buf)
+      ).map((run) => dumpTable(file, reader, run, byNumbers, pointers, graph, byName)),
     };
   });
   const users = dumped.flatMap((f) => f.tables.flatMap((t) => t.code?.functions ?? []));

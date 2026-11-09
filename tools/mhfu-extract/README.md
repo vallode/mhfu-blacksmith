@@ -460,30 +460,33 @@ around each), grouped by function with the records each touches, and the
 nearest such addresses outside that window. `scan` gives the decoder's
 counts per overlay.
 
-On the EU disc no code builds an address inside a table. Every table sits
-at the end of the same layout: a block of structs (often 0x50 bytes
-apart), a list of pointers into them, zero padding to the table. In the
-MHP2G decompilation's (`tclamb/mhp2g-decomp`) JP layout, the
-`game_task.ovl` tables fall in the data of the `shell` units, its
-attack-hit objects, and `em58.ovl`'s in `shell32`'s. Each shell's setup
-code (the fourth EU run) reads byte `0x26` of the shell as an index into
-that pointer list, stores the struct it picks at `+0x34`, and calls one
-shared `game_task.ovl` function with the address just past the table. So
-the records are reached from there, not by address.
+How the game reaches the records (fourth and fifth EU runs): every table
+sits at the end of the same layout, a block of structs (often 0x50 bytes
+apart), a list of pointers into them, then the table, and is followed by a
+struct whose first word points at the table. In the MHP2G decompilation's
+(`tclamb/mhp2g-decomp`) JP layout these fall in the data of the `shell`
+units, the game's attack-hit objects (`em58.ovl`'s in `shell32`'s). A
+shell's setup code picks its struct from the pointer list by its byte
+`0x26`, keeps it at `+0x34`, and calls one `game_task.ovl` function
+(`0x09b674c0` on the EU disc) with the shell, its owner, its byte `0x0D`
+and the address of the struct after the table. That keeps the struct at
+`+0xC8` and copies the record at `table + byte 0x0D * 24` into the shell at
+`+0x1C` (halving bytes `0x00`, `0x01`, `0x15` and `0x16`); `0x09b674d0`
+sets another index later. So a shell's attack is chosen by its byte `0x0D`,
+set by whatever spawns it. No code addresses a record directly.
 
-For finding where, `raw/attacks.json` also carries probe output, to be
+The pointer gives each table's true extent (`boundTables`): record 0, which
+the shape test misses (a placeholder), is part of it, and runs the shape
+test splits are one table (`em75.ovl`'s 107 records are one pool for
+Tigrex, Akantor and Ukanlos).
+
+For finding the spawns, `raw/attacks.json` also carries probe output, to be
 dropped once that is known: 0x800 bytes before each table and 0x200 after,
 each user function's code (0x400 bytes), and the functions they call two
-calls deep (`callees`, most widely called first). From each function
-`CodeGraph` searches upward, through its callers, the pointer lists holding
-its address and the code building that address, until a `MonChunk` slot
-points at the chain. That slot names the monster, and the path is given.
-`game_task.ovl` and `game_sub.ovl` are always loaded, so anything may point
-into them; a per-monster overlay is only followed from itself and from the
-chunk slots.
+calls deep (`callees`, most widely called first).
 
-Still open: which records each monster uses, and what the remaining bytes
-mean.
+Still open: which spawns (and so which monster) set which index, and what
+the remaining bytes mean.
 
 ## 3D models (experimental)
 

@@ -27,6 +27,16 @@
  * `em17.ovl`), and `game_task.ovl`'s mix small monsters with large. So they
  * are found by shape: runs of records whose always-zero bytes are zero and
  * whose +0x07 has its top two bits set (`isAttackRecord`).
+ *
+ * How the game reaches them (fifth EU run): each table is followed by a
+ * struct whose first word points at the table. A shell (attack hit) is
+ * given that struct by its setup code, which calls one `game_task.ovl`
+ * function (`0x09b674c0` on the EU disc) with the struct's address; it
+ * keeps it at `+0xC8` and copies the record at `table + index * 24`, the
+ * index being the shell's byte `+0x0D`, into the shell at `+0x1C`
+ * (`0x09b674d0` sets another index later). The pointer gives each table's
+ * true start: record 0, which the shape test misses, is part of it, and a
+ * table the shape test splits is one table (`boundTables`).
  */
 import type { BinaryReader } from "../binary/reader.js";
 
@@ -66,6 +76,40 @@ export function findAttackTables(buf: Buffer): AttackTableRun[] {
     }
   }
   return runs;
+}
+
+export interface AttackTable extends AttackTableRun {
+  /**
+   * File offset of the struct after the table whose first word points at
+   * its start, when there is one; the table then runs from that pointer to
+   * the struct.
+   */
+  struct?: number;
+}
+
+/**
+ * The tables in `buf` (an overlay loaded at `loadBase`): each run of records
+ * followed by a pointer to a start at or before it, on a record boundary,
+ * becomes the table from that start to the pointer; runs inside it are
+ * merged into it. Runs without such a pointer stay as found.
+ */
+export function boundTables(buf: Buffer, loadBase: number): AttackTable[] {
+  const runs = findAttackTables(buf);
+  const bound: AttackTable[] = [];
+  for (const run of runs) {
+    const end = run.offset + run.count * ATTACK_RECORD_SIZE;
+    if (end + 4 > buf.length) continue;
+    const start = buf.readUInt32LE(end) - loadBase;
+    if (start < 0 || start > run.offset || (end - start) % ATTACK_RECORD_SIZE !== 0) continue;
+    bound.push({ offset: start, count: (end - start) / ATTACK_RECORD_SIZE, struct: end });
+  }
+  const inside = (run: AttackTableRun) =>
+    bound.some(
+      (t) =>
+        run.offset >= t.offset &&
+        run.offset + run.count * ATTACK_RECORD_SIZE <= t.offset + t.count * ATTACK_RECORD_SIZE,
+    );
+  return [...bound, ...runs.filter((run) => !inside(run))].sort((a, b) => a.offset - b.offset);
 }
 
 /** +0x09 bits, matched against the wiki's elements on the EU disc. */

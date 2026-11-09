@@ -16,6 +16,7 @@ import {
 } from "../src/emit/attacks-raw.js";
 import {
   ATTACK_RECORD_SIZE,
+  boundTables,
   findAttackTables,
   isAttackRecord,
   readAttackRecord,
@@ -103,6 +104,31 @@ test("findAttackTables finds runs of records in noise", () => {
   assert.equal(isAttackRecord(buf, 0x48), true);
   assert.equal(isAttackRecord(buf, 0x48 + 4), false);
   assert.deepEqual(findAttackTables(buf), [{ offset: 0x48, count: 6 }]);
+});
+
+test("boundTables takes a table from the pointer after it, record 0 and split runs included", () => {
+  const LOAD_BASE = 0x09d1a180;
+  const buf = noise(Buffer.alloc(0x400), 21);
+  // A placeholder record 0 (zeros), then 10 records, the fifth broken.
+  const start = 0x40;
+  buf.fill(0, start, start + ATTACK_RECORD_SIZE);
+  const records = [...BLANGONGA, ...BLANGONGA.slice(0, 4)];
+  writeRecords(buf, start + ATTACK_RECORD_SIZE, records);
+  buf[start + 5 * ATTACK_RECORD_SIZE + 0x15] = 7;
+  const end = start + (1 + records.length) * ATTACK_RECORD_SIZE;
+  buf.writeUInt32LE(LOAD_BASE + start, end);
+  // Another run with no pointer after it.
+  writeRecords(buf, 0x300, BLANGONGA.slice(0, 4));
+  // By shape alone: record 0 is missed and the table is split in two.
+  assert.deepEqual(findAttackTables(buf), [
+    { offset: start + ATTACK_RECORD_SIZE, count: 4 },
+    { offset: start + 6 * ATTACK_RECORD_SIZE, count: 5 },
+    { offset: 0x300, count: 4 },
+  ]);
+  assert.deepEqual(boundTables(buf, LOAD_BASE), [
+    { offset: start, count: 1 + records.length, struct: end },
+    { offset: 0x300, count: 4 },
+  ]);
 });
 
 test("dumpAttacksRaw labels tables from the crib and lists pointers to records", () => {
