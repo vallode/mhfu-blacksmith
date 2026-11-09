@@ -18,9 +18,13 @@ import type {
 } from "../quests/parser.js";
 import { getNameResolver } from "../strings/names.js";
 import { resolveMapName } from "../tables/quest-maps.js";
+import { QUEST_PREREQUISITES } from "../tables/quest-prerequisites.js";
 import type { Rank } from "./common.js";
 
 export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunting";
+
+/** The quests in the `101`-`109` block confirmed as Village quests (see `questHub`). */
+const CONFIRMED_VILLAGE_EXTRAS: ReadonlySet<number> = new Set([101, 102, 108, 109]);
 
 /**
  * The quest board, from the quest ID (`m#####.mib`). The disc numbers its
@@ -30,24 +34,33 @@ export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunti
  *  - `4xxx`: Treasure Hunting (client always "Treshi").
  *  - `10xxx`/`11xxx`: Village, ★1-★6 then ★7-★9 (many from the "Pokke
  *    Village Chief"; `10004`/`10108` are the Village's two Tigrex quests).
+ *  - `101`, `102`, `108`, `109`: Village ★2 quests, some of which only
+ *    appear once a prerequisite is cleared (`109` "Attack of the Rathian"
+ *    after `10203` "Shadow in the Snow"). Header rank 0; they hold the
+ *    Village's low-star Rathalos and Rathian. The Monster Hunter Wiki lists
+ *    all four with the disc's fee, reward, locale and client.
  *  - `20xxx`-`22xxx`: Training School (client always "Instructor"):
  *    Basic Training and the weapon Mastery quests, then the Subjugation
  *    Training quests.
  *  - `30001`-`30090`: 90 identical "Gathering - Snowy Mountains" copies
  *    with Guild Low Rank's header rank; kept there (the site hides them).
  *
- * `1`-`10` and `101`-`109` fit no board, so they aren't emitted. Most
- * repeat the title and client of a Village quest (`Reckless Bulldrome
- * Hunter` is both `2` and `10105`, from the same "Troubled Father") or a
- * Guild High Rank one (`Eliminate the Rathalos!` is `108` and `2116`).
- * Filed as Village, they put a ★2 Rathalos and Rathian on the Village
- * board, which the Village's own ★2 block (`10101`-`10118`) doesn't have.
+ * `103`-`107` share that block but aren't emitted until they're confirmed:
+ * the wiki only has the regular Village quests of the same titles
+ * (`10208`, `10211`, `10213`, `10217`, `10309`), with different fees and
+ * rewards. `1`-`10` fit no confirmed board either, so they aren't emitted.
+ * Some repeat a Village quest with different values (`Reckless Bulldrome
+ * Hunter` is both `2` and `10105`, from the same "Troubled Father";
+ * `Mountain Herb Picking` is 100z as `4` and free as `10001`), and some
+ * match nothing else on the disc (`The Lady Gourmet`). They may be ★1 unlockables like `108`/`109`,
+ * or unused.
  *
  * The header's `rank` byte is not the board: the Village's `10xxx` quests
  * carry the same values as Guild Low Rank. It is the quest's rank tier
  * (`RANK_TIER`).
  */
 export function questHub(questId: number): QuestHub | null {
+  if (CONFIRMED_VILLAGE_EXTRAS.has(questId)) return "village";
   if (questId >= 1000 && questId < 4000) return "guild";
   if (questId >= 4000 && questId < 5000) return "treasure-hunting";
   if (questId >= 10000 && questId < 12000) return "village";
@@ -61,8 +74,9 @@ export function questHub(questId: number): QuestHub | null {
  * stat multiplier set (src/monsters/multipliers.ts). 1/2/5 agree with the
  * quest ID block on every Guild quest. Village quests use them too: `10xxx`
  * are 1 (one ★6 is 2), `11xxx` 2 (one ★9 is 5). 0 (the Training School's
- * Basic/Mastery quests, the Village's two Tigrex quests), 3 (Treasure
- * Hunting) and 4 (Subjugation Training) have no tier.
+ * Basic/Mastery quests, the Village's two Tigrex quests and `101`/`102`/
+ * `108`/`109`),
+ * 3 (Treasure Hunting) and 4 (Subjugation Training) have no tier.
  */
 const RANK_TIER: Record<number, Rank> = {
   1: "low-rank",
@@ -148,6 +162,8 @@ export interface EmittedQuest {
   details: string | null;
   fail: string | null;
   client: string | null;
+  /** Quest ID that must be cleared before this one appears, or null if none is known. */
+  requires: number | null;
 }
 
 function resolveSupplies(supplies: SupplyItem[]): EmittedSupply[] {
@@ -284,6 +300,7 @@ export function emitQuest(parsed: ParsedQuest): EmittedQuest | null {
     details: parsed.strings?.details ?? null,
     fail: parsed.strings?.fail ?? null,
     client: parsed.strings?.client ?? null,
+    requires: QUEST_PREREQUISITES[header.questId] ?? null,
   };
 }
 

@@ -193,7 +193,15 @@ test("emitQuest puts the Village's quests on the Village board, whatever their r
 test("questHub reads the board from the quest ID block", () => {
   const cases: [number, ReturnType<typeof questHub>][] = [
     [1, null],
-    [109, null],
+    [10, null],
+    [100, null],
+    [101, "village"],
+    [102, "village"],
+    [103, null],
+    [107, null],
+    [108, "village"],
+    [109, "village"],
+    [110, null],
     [1001, "guild"],
     [2116, "guild"],
     [3233, "guild"],
@@ -210,10 +218,26 @@ test("questHub reads the board from the quest ID block", () => {
   for (const [id, hub] of cases) assert.equal(questHub(id), hub, `quest ${id}`);
 });
 
-test("emitQuest drops quests 1-109, which are on no board", () => {
-  // Real quest 1 itself, and 108 "Eliminate the Rathalos!" (rank 0, ★2).
+test("emitQuest drops quests 1-10, which are on no confirmed board", () => {
+  // Real quest 1 itself, and 10 "The Lady Gourmet".
   assert.equal(emitQuest(GIADROME_HUNT), null);
-  assert.equal(withHeader(108, 0), null);
+  assert.equal(withHeader(10, 0), null);
+});
+
+test("emitQuest puts the confirmed quests 101, 102, 108 and 109 on the Village board", () => {
+  // Real headers: 101 "The Shadow in the Mountains" and 109 "Attack of the
+  // Rathian" are both rank 0, so they carry no rank tier.
+  const first = withHeader(101, 0);
+  const rathian = withHeader(109, 0);
+  assert.deepEqual([first?.hub, first?.rank], ["village", null]);
+  assert.deepEqual([rathian?.hub, rathian?.rank], ["village", null]);
+});
+
+test("emitQuest records a known prerequisite in requires, else null", () => {
+  // 109 "Attack of the Rathian" appears once 10203 "Shadow in the Snow" is cleared.
+  assert.equal(withHeader(109, 0)?.requires, 10203);
+  assert.equal(withHeader(101, 0)?.requires, null);
+  assert.equal(withHeader(10203, 1)?.requires, null);
 });
 
 test("emitQuest returns null for the disc's unused/disabled quest slots (real 'm5000x' placeholder text)", () => {
