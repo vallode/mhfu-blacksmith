@@ -39,6 +39,17 @@ below.
 - **Overlay format** (`MWo3` header, base-address rebasing) documented by
   [SiD3W4y/mhfu-re](https://github.com/SiD3W4y/mhfu-re).
 
+## Search crib
+
+- **`src/overlay/attack-crib.json`** — monster attack damage, stun and guard
+  knockback for Monster Hunter Freedom Unite, from the
+  [Monster Hunter Wiki](https://monsterhunterwiki.org/) (the
+  `monsters_games_attacks` data behind its "<Monster> (MHFU)" pages,
+  retrieved 2026-11-09), licensed
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Only the
+  numbers and attack names are kept, for searching the disc
+  (`src/emit/attacks-raw.ts`); the file is shared under the same licence.
+
 None of the above vendors game assets, copyrighted Capcom text, or ROM data —
 only third-party reverse-engineering documentation and code. The game disc
 itself is never committed to this repository; see `README.md`.

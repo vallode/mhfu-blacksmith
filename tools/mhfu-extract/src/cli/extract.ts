@@ -16,6 +16,7 @@ import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
 import { dumpArmorRaw } from "../emit/armor-raw.js";
+import { writeAttacksRaw } from "./attacks-raw.js";
 import { writeCollisionRaw } from "./collision-raw.js";
 import {
   committedMelodyCombos,
@@ -39,7 +40,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts), and monster attack table candidates in `raw/attacks.json` (emit/attacks-raw.ts). */
   raw?: boolean;
 }
 
@@ -253,6 +254,21 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       overlays,
       monsters.locations.chunks.offset,
     );
+
+    // Monster attack table candidates: searched against overlay/attack-crib.json.
+    // A failed search mustn't stop the rest of the extract.
+    console.log("Searching for monster attack tables...");
+    try {
+      await writeAttacksRaw(
+        options.unpacked,
+        options.out,
+        ebootBuf,
+        overlays,
+        monsters.locations.chunks.offset,
+      );
+    } catch (err) {
+      console.log(`Attack search failed: ${err instanceof Error ? err.message : String(err)}`);
+    }
   }
   Object.assign(output, emitMonsters(monsters));
 

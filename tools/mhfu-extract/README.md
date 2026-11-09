@@ -54,6 +54,10 @@ pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data .
   table whose entry `NoteGLType` holds each horn's committed notes, plus
   the blocks densest in the committed melody note sequences and the bytes
   around both (`src/emit/melody-raw.ts`).
+  And `attacks.json`: candidate monster attack tables, found by searching
+  the EBOOT, the overlays and the monster packages for the Monster Hunter
+  Wiki's damage, stun and guard knockback per attack (see "Monster
+  attacks").
 - `diff` compares extracted output against the repo's committed `data/`
   directory field-by-field and classifies mismatches.
 - `compare` reports per-file, per-field agreement between the two, pairing
@@ -397,6 +401,46 @@ Open questions:
 
 These dumps come from the disc, so they stay in `.cache/` like the rest of
 the extracted output.
+
+### Monster attacks (search in progress)
+
+Nobody has mapped where an attack's damage, stun and guard knockback live.
+The likeliest place is behind one of `emPTRChunk`'s 27 unidentified
+pointers (in Rathian's chunk, those from `+0x158` on lead to lists of further
+pointers), with records shaped like the player's `PlayerMotVal` (one byte
+per field). `extract --raw` searches for them and writes
+`raw/attacks.json` (`src/emit/attacks-raw.ts`, `src/cli/attacks-raw.ts`):
+
+- **Crib** (`src/overlay/attack-crib.json`): per attack, the numbers the
+  Monster Hunter Wiki lists for MHFU (283 attacks of 38 monsters, 244 with
+  damage, stun and guard knockback all given). CC BY-SA 4.0, see
+  `NOTICE.md`; it is only used for the search, never written to `data/`.
+  No subspecies or variants are in it.
+- **Searched:** `eboot.bin`, `game_task.ovl`, `game_sub.ovl`, every
+  `overlay/emNN.ovl` and each `emmodel/emNN.pac` entry that is neither mesh
+  nor textures (skeletons and motion banks).
+- **Anchors:** for each attack, every place its three numbers sit within
+  0x20 bytes of each other, as bytes (which also catches little-endian u16
+  and u32 fields) or as aligned f32s. The pattern is the field type and
+  where stun and knockback sit relative to damage.
+- **Tables:** one monster at a time, a pattern's anchors are grouped while
+  they are at most 0x200 apart. A group is kept when at least three
+  different attacks line up as rows of one stride (from the fields' span
+  up to 0x80 bytes, at most 48 rows apart, the hits filling at least one
+  row in four). Stray anchors that don't line up are dropped.
+- **Ranking:** patterns by how many monsters' tables agree on one stride,
+  then by monsters with any table. The real layout should come out for
+  many monsters at one record size; chance alignments for one or two.
+
+Each kept table lists its hits (attack and offset), the rows around it, and
+every pointer into it from the overlays. A pointer from the chunk array
+names its `emID` and chunk offset; a pointer inside a list of pointers also
+gives the list and the pointers to its start. Per-monster overlays share
+load addresses, so a pointer into one `emNN.ovl`'s range may mean another's.
+
+On synthetic overlays of the real files' sizes (25 MB, with tables planted
+for 10 monsters) the planted layout ranks first for 8 of them, and the
+search takes about 15 seconds. `raw/attacks.json` is about 1 MB.
 
 ## 3D models (experimental)
 

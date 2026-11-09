@@ -1,0 +1,1926 @@
+{
+  "$comment": [
+    "Search crib for monster attack tables (`extract --raw`, src/emit/attacks-raw.ts): per attack,",
+    "the numbers the Monster Hunter Wiki lists for MHFU, keyed by the site's monster names. Not",
+    "written to data/; only used to find where the disc keeps attack data. damage is the wiki's base",
+    "damage, or its elemental damage where it gives only that (element names the element); stun is",
+    "its stun buildup and guard its guard knockback; status holds any other buildup. Attacks the",
+    "wiki lists without numbers have only a name.",
+    "Source: Monster Hunter Wiki (monsterhunterwiki.org), bucket monsters_games_attacks, pages",
+    "\"<Monster> (MHFU)/Data\", retrieved 2026-11-09. CC BY-SA 4.0: see NOTICE.md."
+  ],
+  "monsters": {
+    "Giadrome": [
+      {
+        "name": "Snap"
+      },
+      {
+        "name": "Bite",
+        "damage": 20,
+        "stun": 5,
+        "guard": 40
+      },
+      {
+        "name": "Pounce",
+        "damage": 30,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Snowball Spit",
+        "element": "Ice",
+        "damage": 20,
+        "guard": 11,
+        "status": {
+          "Snowman": 0
+        }
+      }
+    ],
+    "Velocidrome": [
+      {
+        "name": "Snap"
+      },
+      {
+        "name": "Bite",
+        "damage": 20,
+        "stun": 5,
+        "guard": 40
+      },
+      {
+        "name": "Pounce",
+        "damage": 30,
+        "stun": 10,
+        "guard": 40
+      }
+    ],
+    "Gendrome": [
+      {
+        "name": "Snap"
+      },
+      {
+        "name": "Bite",
+        "damage": 30,
+        "stun": 5,
+        "guard": 40
+      },
+      {
+        "name": "Paralysis Bite",
+        "damage": 20,
+        "stun": 5,
+        "guard": 40,
+        "status": {
+          "Paralysis": 0
+        }
+      },
+      {
+        "name": "Pounce",
+        "damage": 35,
+        "stun": 10,
+        "guard": 40
+      }
+    ],
+    "Iodrome": [
+      {
+        "name": "Snap"
+      },
+      {
+        "name": "Bite",
+        "damage": 30,
+        "stun": 5,
+        "guard": 40
+      },
+      {
+        "name": "Pounce",
+        "damage": 40,
+        "stun": 15,
+        "guard": 40
+      },
+      {
+        "name": "Poison Spit",
+        "damage": 10,
+        "guard": 11,
+        "status": {
+          "Poison": 0
+        }
+      }
+    ],
+    "Yian Kut-Ku": [
+      {
+        "name": "Bite",
+        "damage": 30,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Peck",
+        "damage": 25,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Charging Fire Spit",
+        "damage": 25,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 35,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Fire Spit",
+        "element": "Fire",
+        "damage": 40,
+        "stun": 20,
+        "guard": 39
+      },
+      {
+        "name": "Flailing Fire",
+        "element": "Fire",
+        "damage": 40,
+        "stun": 20,
+        "guard": 39
+      },
+      {
+        "name": "Back-Glide",
+        "damage": 30,
+        "stun": 20,
+        "guard": 40
+      }
+    ],
+    "Yian Garuga": [
+      {
+        "name": "Bite",
+        "damage": 30,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Peck",
+        "damage": 35,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Beak Slam",
+        "damage": 60,
+        "stun": 5,
+        "guard": 50
+      },
+      {
+        "name": "Charge",
+        "damage": 40,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 35,
+        "stun": 20,
+        "guard": 30,
+        "status": {
+          "Poison": 0
+        }
+      },
+      {
+        "name": "Backflip",
+        "damage": 75,
+        "stun": 40,
+        "guard": 40,
+        "status": {
+          "Poison": 0
+        }
+      },
+      {
+        "name": "Fireball",
+        "element": "Fire",
+        "damage": 65,
+        "stun": 10,
+        "guard": 20
+      },
+      {
+        "name": "Back-Glide",
+        "damage": 35,
+        "stun": 30,
+        "guard": 40
+      }
+    ],
+    "Gypceros": [
+      {
+        "name": "Bite",
+        "damage": 30,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Peck",
+        "damage": 25,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Flashbang",
+        "damage": 0,
+        "stun": 100,
+        "guard": 10
+      },
+      {
+        "name": "Charging Poison Spit",
+        "damage": 25,
+        "stun": 25,
+        "guard": 40
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 35,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Tail Whip",
+        "damage": 30,
+        "stun": 10,
+        "guard": 16
+      },
+      {
+        "name": "Poison Spit",
+        "damage": 35,
+        "stun": 20,
+        "guard": 40,
+        "status": {
+          "Poison": 0
+        }
+      },
+      {
+        "name": "Back-Glide"
+      },
+      {
+        "name": "Playing Dead",
+        "damage": 80,
+        "stun": 10,
+        "guard": 10
+      }
+    ],
+    "Hypnocatrice": [
+      {
+        "name": "Peck",
+        "damage": 35,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Leaping Kicks",
+        "damage": 60,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 35,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Sleep Spit",
+        "damage": 0,
+        "stun": 20,
+        "guard": 40,
+        "status": {
+          "Sleep": 0
+        }
+      },
+      {
+        "name": "Sleep-Glide",
+        "damage": 0,
+        "stun": 20,
+        "guard": 40,
+        "status": {
+          "Sleep": 0
+        }
+      }
+    ],
+    "Daimyo Hermitaur": [
+      {
+        "name": "Claw Shove",
+        "damage": 20,
+        "stun": 10,
+        "guard": 15
+      },
+      {
+        "name": "Claw Side-Swipe",
+        "damage": 20,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Claw Crush",
+        "damage": 30,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Skull Charge",
+        "damage": 50,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Jumping Slam",
+        "damage": 60,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Water Beam",
+        "element": "Water",
+        "damage": 60,
+        "stun": 10,
+        "guard": 20
+      },
+      {
+        "name": "Burrowing Skull Stab",
+        "damage": 60,
+        "stun": 20,
+        "guard": 50
+      }
+    ],
+    "Shogun Ceanataur": [
+      {
+        "name": "Claw Stab",
+        "damage": 20,
+        "stun": 10,
+        "guard": 15
+      },
+      {
+        "name": "Claw Side-Swipe",
+        "damage": 30,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Claw Hug",
+        "damage": 70,
+        "stun": 20,
+        "guard": 60
+      },
+      {
+        "name": "Claw Ground Stab",
+        "damage": 35
+      },
+      {
+        "name": "Claw Spin",
+        "damage": 40,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Rushing Claws",
+        "damage": 40,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Urine Beam",
+        "element": "Water",
+        "damage": 80,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Walking Urine",
+        "element": "Water",
+        "damage": 75,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Ceiling Slam",
+        "damage": 70,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Emerging Claw Stab",
+        "damage": 50,
+        "stun": 20,
+        "guard": 50
+      }
+    ],
+    "Shen Gaoren": [
+      {
+        "name": "Walking",
+        "damage": 50,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Left Claw Slam",
+        "damage": 60,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Right Claw Slam",
+        "damage": 50,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Claw Swipe",
+        "damage": 70,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Tantrum Stomps",
+        "damage": 55,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Acid Cannon",
+        "damage": 150,
+        "stun": 10,
+        "guard": 50
+      }
+    ],
+    "Kirin": [
+      {
+        "name": "Horn Jab",
+        "damage": 40,
+        "stun": 2,
+        "guard": 40
+      },
+      {
+        "name": "Horn Charge",
+        "damage": 40,
+        "stun": 2,
+        "guard": 16
+      },
+      {
+        "name": "Lightning Charge",
+        "damage": 70,
+        "stun": 2,
+        "guard": 40
+      },
+      {
+        "name": "Lightning Slash",
+        "damage": 50,
+        "stun": 2,
+        "guard": 16
+      },
+      {
+        "name": "Kelbi Hop",
+        "damage": 35,
+        "stun": 2,
+        "guard": 16
+      },
+      {
+        "name": "Targeted Lightning",
+        "element": "Thunder",
+        "damage": 50,
+        "stun": 30,
+        "guard": 29,
+        "status": {
+          "Paralysis": 0
+        }
+      },
+      {
+        "name": "Lightning Summon",
+        "element": "Thunder",
+        "damage": 50,
+        "stun": 30,
+        "guard": 29
+      },
+      {
+        "name": "Lightning Ring",
+        "element": "Thunder",
+        "damage": 50,
+        "stun": 30,
+        "guard": 29
+      }
+    ],
+    "Kushala Daora": [
+      {
+        "name": "Charge",
+        "element": "Dragon",
+        "damage": 65,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Claw Swipe",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Air Blast",
+        "damage": 100,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Flying Bite",
+        "element": "Dragon",
+        "damage": 45,
+        "stun": 10,
+        "guard": 10
+      },
+      {
+        "name": "Swoop"
+      },
+      {
+        "name": "Flying Claw Slam",
+        "element": "Dragon",
+        "damage": 65,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Flying Tail Slam",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 10,
+        "guard": 20
+      },
+      {
+        "name": "Triple Air Blast",
+        "damage": 60,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Wind Beam",
+        "damage": 100,
+        "stun": 20,
+        "guard": 40
+      }
+    ],
+    "Chameleos": [
+      {
+        "name": "Tongue Lash",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Tongue Whip",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Creeping Dash",
+        "element": "Dragon",
+        "damage": 65,
+        "stun": 25,
+        "guard": 40
+      },
+      {
+        "name": "Claw Swipe",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Tail Slams",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Acid Spit",
+        "damage": 70,
+        "stun": 20,
+        "guard": 40,
+        "status": {
+          "Defense Down": 0
+        }
+      },
+      {
+        "name": "Fatigue Spray",
+        "damage": 70,
+        "stun": 20,
+        "guard": 40,
+        "status": {
+          "Fatigued": 0
+        }
+      },
+      {
+        "name": "Giant Poison Spit",
+        "damage": 30,
+        "stun": 20,
+        "guard": 40,
+        "status": {
+          "Poison": 0
+        }
+      }
+    ],
+    "Lunastra": [
+      {
+        "name": "Charge",
+        "element": "Dragon",
+        "damage": 70,
+        "stun": 20,
+        "guard": 50
+      },
+      {
+        "name": "Pounce",
+        "element": "Dragon",
+        "damage": 70,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Claw Swipe",
+        "element": "Dragon",
+        "damage": 55,
+        "stun": 20,
+        "guard": 39
+      },
+      {
+        "name": "Turning Claw Swipe",
+        "element": "Dragon",
+        "damage": 35,
+        "stun": 10,
+        "guard": 20
+      },
+      {
+        "name": "Tail Swipe",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 10,
+        "guard": 39
+      },
+      {
+        "name": "Flamethrower",
+        "element": "Fire",
+        "damage": 100,
+        "stun": 10,
+        "guard": 70
+      },
+      {
+        "name": "Blast Powder",
+        "damage": 80,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Aerial Flamethrower",
+        "element": "Fire",
+        "damage": 100,
+        "stun": 10,
+        "guard": 70
+      }
+    ],
+    "Teostra": [
+      {
+        "name": "Charge",
+        "element": "Dragon",
+        "damage": 70,
+        "stun": 20,
+        "guard": 50
+      },
+      {
+        "name": "Pounce",
+        "element": "Dragon",
+        "damage": 65,
+        "stun": 20,
+        "guard": 39
+      },
+      {
+        "name": "Claw Swipe",
+        "element": "Dragon",
+        "damage": 55,
+        "stun": 20,
+        "guard": 39
+      },
+      {
+        "name": "Turning Claw Swipe",
+        "element": "Dragon",
+        "damage": 35,
+        "stun": 10,
+        "guard": 20
+      },
+      {
+        "name": "Tail Swipe",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 10,
+        "guard": 39
+      },
+      {
+        "name": "Flamethrower",
+        "element": "Fire",
+        "damage": 100,
+        "stun": 10,
+        "guard": 70
+      },
+      {
+        "name": "Blast Powder",
+        "damage": 80,
+        "stun": 10,
+        "guard": 30
+      }
+    ],
+    "Lao-Shan Lung": [
+      {
+        "name": "Walking",
+        "element": "Dragon",
+        "damage": 50,
+        "stun": 2,
+        "guard": 40
+      },
+      {
+        "name": "Tail Flick",
+        "element": "Dragon",
+        "damage": 50,
+        "stun": 2,
+        "guard": 40
+      },
+      {
+        "name": "Standing Bite",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 2,
+        "guard": 40
+      },
+      {
+        "name": "Head Smash",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 2,
+        "guard": 40
+      },
+      {
+        "name": "Shoulder Barge",
+        "element": "Dragon",
+        "damage": 50,
+        "stun": 2,
+        "guard": 40
+      }
+    ],
+    "Yama Tsukami": [
+      {
+        "name": "Whisker Slam",
+        "element": "Dragon",
+        "damage": 50,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Tentacle Slap",
+        "element": "Dragon",
+        "damage": 60,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Tentacle Slam",
+        "element": "Dragon",
+        "damage": 70,
+        "stun": 10,
+        "guard": 60
+      },
+      {
+        "name": "Helicopter Spin",
+        "element": "Dragon",
+        "damage": 80,
+        "stun": 10,
+        "guard": 70
+      },
+      {
+        "name": "Flame Gas",
+        "element": "Fire",
+        "damage": 35,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Great Thunderbug Summon",
+        "damage": 0,
+        "guard": 0
+      },
+      {
+        "name": "Vortex Beam",
+        "element": "Dragon",
+        "damage": 200,
+        "stun": 10,
+        "guard": 30
+      }
+    ],
+    "Rathian": [
+      {
+        "name": "Bite",
+        "damage": 20,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Charge",
+        "damage": 50,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 35,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Backflip",
+        "damage": 75,
+        "stun": 40,
+        "guard": 40,
+        "status": {
+          "Poison": 0
+        }
+      },
+      {
+        "name": "Fireball",
+        "element": "Fire",
+        "damage": 65,
+        "stun": 10,
+        "guard": 20
+      },
+      {
+        "name": "Back-Glide"
+      }
+    ],
+    "Rathalos": [
+      {
+        "name": "Bite",
+        "damage": 50,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Charge",
+        "damage": 64,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Swoop",
+        "element": "Dragon",
+        "damage": 60,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 35,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Fireball",
+        "element": "Fire",
+        "damage": 65,
+        "stun": 10,
+        "guard": 20
+      },
+      {
+        "name": "Fly-Back Fireball",
+        "element": "Fire",
+        "damage": 75,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Talon Divebomb",
+        "damage": 55,
+        "stun": 50,
+        "guard": 40,
+        "status": {
+          "Poison": 0
+        }
+      },
+      {
+        "name": "Flying Fireball",
+        "element": "Fire",
+        "damage": 75,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Rathalos World Tour",
+        "element": "Dragon",
+        "damage": 75,
+        "stun": 30,
+        "guard": 40
+      }
+    ],
+    "Khezu": [
+      {
+        "name": "Bite",
+        "damage": 55,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Side Bite",
+        "damage": 55,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Creeping Lunge",
+        "damage": 60,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Electric Lunge",
+        "element": "Thunder",
+        "damage": 75,
+        "stun": 30,
+        "guard": 60
+      },
+      {
+        "name": "Pounce",
+        "damage": 50,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Electric Pounce",
+        "element": "Thunder",
+        "damage": 65,
+        "stun": 20,
+        "guard": 50
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 50,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Electric Discharge",
+        "element": "Thunder",
+        "damage": 55,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Electric Ground Shot",
+        "element": "Thunder",
+        "damage": 80,
+        "stun": 30,
+        "guard": 9,
+        "status": {
+          "Paralysis": 0
+        }
+      },
+      {
+        "name": "Ceiling Drop",
+        "damage": 60,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Drool",
+        "damage": 25,
+        "stun": 30,
+        "guard": 10
+      }
+    ],
+    "Basarios": [
+      {
+        "name": "Emerge",
+        "damage": 30,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Bite"
+      },
+      {
+        "name": "Charge",
+        "damage": 60,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Hipcheck",
+        "damage": 40,
+        "stun": 10,
+        "guard": 20
+      },
+      {
+        "name": "Gas Expel (Poison)",
+        "damage": 20,
+        "stun": 10,
+        "guard": 40,
+        "status": {
+          "Poison": 0
+        }
+      },
+      {
+        "name": "Gas Expel (Sleep)",
+        "damage": 0,
+        "stun": 10,
+        "guard": 9,
+        "status": {
+          "Sleep": 0
+        }
+      },
+      {
+        "name": "Tail Whip"
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 35,
+        "stun": 20,
+        "guard": 16
+      },
+      {
+        "name": "Fire Lob",
+        "element": "Fire",
+        "damage": 55,
+        "stun": 20,
+        "guard": 39
+      },
+      {
+        "name": "Lava Laser",
+        "element": "Fire",
+        "damage": 100,
+        "stun": 20,
+        "guard": 50
+      }
+    ],
+    "Gravios": [
+      {
+        "name": "Bite"
+      },
+      {
+        "name": "Charge",
+        "damage": 70,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Hipcheck",
+        "damage": 50,
+        "stun": 10,
+        "guard": 20
+      },
+      {
+        "name": "Flying Slam",
+        "damage": 40,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Gas Expel (Sleep)",
+        "damage": 0,
+        "stun": 10,
+        "status": {
+          "Sleep": 0
+        }
+      },
+      {
+        "name": "Gas Expel (Fire)",
+        "element": "Fire",
+        "damage": 20,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Tail Whip",
+        "damage": 50,
+        "stun": 10,
+        "guard": 16
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 45,
+        "stun": 20,
+        "guard": 16
+      },
+      {
+        "name": "Lava Laser",
+        "element": "Fire",
+        "damage": 100,
+        "stun": 20,
+        "guard": 50
+      },
+      {
+        "name": "Laser Gas Expel",
+        "element": "Fire",
+        "damage": 50,
+        "stun": 10,
+        "guard": 40
+      }
+    ],
+    "Monoblos": [
+      {
+        "name": "Bite",
+        "damage": 50,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Horn Charge",
+        "damage": 55,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Horn Uppercut",
+        "damage": 55,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Hipcheck",
+        "damage": 50,
+        "stun": 30,
+        "guard": 15
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 40,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Tail Club",
+        "damage": 45,
+        "stun": 10,
+        "guard": 15
+      },
+      {
+        "name": "Burrow",
+        "damage": 60,
+        "stun": 2,
+        "guard": 40
+      }
+    ],
+    "Diablos": [
+      {
+        "name": "Bite",
+        "damage": 50,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Horn Sweep",
+        "damage": 50,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Horn Charge",
+        "damage": 55,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Horn Uppercut",
+        "damage": 55,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "Hipcheck",
+        "damage": 50,
+        "stun": 30,
+        "guard": 15
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 40,
+        "stun": 20,
+        "guard": 30
+      },
+      {
+        "name": "Tail Club",
+        "damage": 45,
+        "stun": 10,
+        "guard": 15
+      },
+      {
+        "name": "Burrow",
+        "damage": 60,
+        "stun": 2,
+        "guard": 40
+      }
+    ],
+    "Tigrex": [
+      {
+        "name": "Bite",
+        "element": "Dragon",
+        "damage": 30,
+        "stun": 10,
+        "guard": 39
+      },
+      {
+        "name": "Double Bite",
+        "element": "Dragon",
+        "damage": 70,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Charge",
+        "element": "Dragon",
+        "damage": 64,
+        "stun": 25,
+        "guard": 40
+      },
+      {
+        "name": "Pounce",
+        "element": "Dragon",
+        "damage": 65,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Tail Spin",
+        "element": "Dragon",
+        "damage": 40,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Rock Push",
+        "element": "Dragon",
+        "damage": 65,
+        "stun": 30,
+        "guard": 40
+      },
+      {
+        "name": "Roar",
+        "damage": 40,
+        "stun": 10,
+        "guard": 35
+      }
+    ],
+    "Nargacuga": [
+      {
+        "name": "Bite",
+        "damage": 30
+      },
+      {
+        "name": "Sneak Slash",
+        "damage": 65,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Wing Slash",
+        "damage": 50,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Pounce"
+      },
+      {
+        "name": "Tail Swipe",
+        "damage": 50,
+        "stun": 20,
+        "guard": 50
+      },
+      {
+        "name": "Tail Slam",
+        "damage": 110,
+        "stun": 20,
+        "guard": 60
+      },
+      {
+        "name": "Spike Throw",
+        "damage": 65,
+        "stun": 10,
+        "guard": 40
+      }
+    ],
+    "Akantor": [
+      {
+        "name": "Bite",
+        "element": "Dragon",
+        "damage": 60,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Tusk Drag",
+        "element": "Dragon",
+        "damage": 85,
+        "stun": 30,
+        "guard": 50
+      },
+      {
+        "name": "Charge",
+        "element": "Dragon",
+        "damage": 70,
+        "stun": 20,
+        "guard": 60
+      },
+      {
+        "name": "Body Slam",
+        "element": "Dragon",
+        "damage": 90,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Tail Sweep",
+        "element": "Dragon",
+        "damage": 70,
+        "stun": 30,
+        "guard": 50
+      },
+      {
+        "name": "Sonic Beam",
+        "element": "Dragon",
+        "damage": 180,
+        "stun": 10,
+        "guard": 60
+      },
+      {
+        "name": "Burrow",
+        "element": "Dragon",
+        "damage": 90,
+        "stun": 30,
+        "guard": 50,
+        "status": {
+          "Defense Down": 0
+        }
+      },
+      {
+        "name": "Roar",
+        "damage": 60,
+        "guard": 10
+      },
+      {
+        "name": "Lava Plume",
+        "element": "Fire",
+        "damage": 80,
+        "stun": 10,
+        "guard": 40
+      }
+    ],
+    "Ukanlos": [
+      {
+        "name": "Bite",
+        "damage": 60
+      },
+      {
+        "name": "Chin Shovel",
+        "element": "Ice",
+        "damage": 85,
+        "stun": 30,
+        "guard": 50
+      },
+      {
+        "name": "Charge",
+        "damage": 70
+      },
+      {
+        "name": "Leap",
+        "element": "Ice",
+        "damage": 70,
+        "stun": 20,
+        "guard": 60
+      },
+      {
+        "name": "Tail Sweep",
+        "element": "Dragon",
+        "damage": 70,
+        "stun": 30,
+        "guard": 50,
+        "status": {
+          "Snowman": 0
+        }
+      },
+      {
+        "name": "Ice Beam",
+        "element": "Ice",
+        "damage": 180,
+        "stun": 10,
+        "guard": 60,
+        "status": {
+          "Snowman": 0
+        }
+      },
+      {
+        "name": "Snowballs",
+        "element": "Ice",
+        "damage": 70,
+        "status": {
+          "Snowman": 0
+        }
+      },
+      {
+        "name": "Burrow",
+        "damage": 90,
+        "status": {
+          "Defense Down": 0
+        }
+      },
+      {
+        "name": "Shark Swim",
+        "element": "Ice",
+        "damage": 70,
+        "stun": 20,
+        "guard": 60
+      },
+      {
+        "name": "Roar",
+        "damage": 60,
+        "guard": 10
+      }
+    ],
+    "King Shakalaka": [
+      {
+        "name": "Flurry Swing",
+        "damage": 30,
+        "stun": 5,
+        "guard": 40
+      },
+      {
+        "name": "Meat Swing",
+        "damage": 20,
+        "stun": 5,
+        "guard": 10
+      },
+      {
+        "name": "Swinging Dive",
+        "damage": 30,
+        "stun": 5,
+        "guard": 10
+      },
+      {
+        "name": "Leaping Pound",
+        "damage": 40,
+        "stun": 10,
+        "guard": 30
+      },
+      {
+        "name": "BBQ Fire",
+        "element": "Fire",
+        "damage": 30,
+        "stun": 10,
+        "guard": 39
+      },
+      {
+        "name": "Bomb Throw"
+      },
+      {
+        "name": "Tranq Throw",
+        "status": {
+          "Sleep": 0
+        }
+      },
+      {
+        "name": "Fake Shiny"
+      }
+    ],
+    "Vespoid Queen": [
+      {
+        "name": "Glide",
+        "damage": 30,
+        "stun": 2,
+        "guard": 10
+      },
+      {
+        "name": "Stinger Jab",
+        "damage": 30,
+        "stun": 2,
+        "guard": 20,
+        "status": {
+          "Paralysis": 0
+        }
+      },
+      {
+        "name": "Corrosive Gas",
+        "damage": 30,
+        "stun": 2,
+        "guard": 10,
+        "status": {
+          "Defense Down": 0
+        }
+      }
+    ],
+    "Bulldrome": [
+      {
+        "name": "Tusk Swing",
+        "damage": 35,
+        "stun": 2,
+        "guard": 15
+      },
+      {
+        "name": "Instant-Charge",
+        "damage": 30,
+        "stun": 2,
+        "guard": 15
+      },
+      {
+        "name": "Charge",
+        "damage": 40,
+        "stun": 2,
+        "guard": 15
+      }
+    ],
+    "Congalala": [
+      {
+        "name": "Charge",
+        "damage": 50,
+        "stun": 10,
+        "guard": 15
+      },
+      {
+        "name": "Claw Swipe",
+        "damage": 35
+      },
+      {
+        "name": "Standing Claw Swipes",
+        "damage": 75,
+        "stun": 15,
+        "guard": 50
+      },
+      {
+        "name": "Body Slam"
+      },
+      {
+        "name": "Jumping Slam",
+        "damage": 50,
+        "stun": 15,
+        "guard": 50
+      },
+      {
+        "name": "Belly Inflate",
+        "damage": 50,
+        "stun": 15,
+        "guard": 50
+      },
+      {
+        "name": "Fart",
+        "damage": 30,
+        "stun": 30,
+        "guard": 15,
+        "status": {
+          "Soiled": 0
+        }
+      },
+      {
+        "name": "Stink Breath",
+        "damage": 50,
+        "guard": 40,
+        "status": {
+          "Soiled": 0
+        }
+      },
+      {
+        "name": "Fire Breath",
+        "element": "Fire",
+        "damage": 60,
+        "guard": 40
+      },
+      {
+        "name": "Poison Breath",
+        "damage": 35,
+        "stun": 10,
+        "guard": 40,
+        "status": {
+          "Poison": 0
+        }
+      },
+      {
+        "name": "Paralysis Breath",
+        "damage": 20,
+        "guard": 40,
+        "status": {
+          "Paralysis": 0
+        }
+      },
+      {
+        "name": "Sleep Breath",
+        "damage": 10,
+        "guard": 40,
+        "status": {
+          "Sleep": 0
+        }
+      },
+      {
+        "name": "Dung Toss",
+        "damage": 30,
+        "stun": 10,
+        "guard": 39,
+        "status": {
+          "Soiled": 0
+        }
+      }
+    ],
+    "Blangonga": [
+      {
+        "name": "Pounce",
+        "damage": 55,
+        "stun": 30,
+        "guard": 16
+      },
+      {
+        "name": "Back Hop",
+        "element": "Ice",
+        "damage": 55,
+        "stun": 25,
+        "guard": 16
+      },
+      {
+        "name": "Claw Swipe",
+        "damage": 35,
+        "stun": 10,
+        "guard": 16
+      },
+      {
+        "name": "Arm Lunge",
+        "damage": 65,
+        "stun": 25,
+        "guard": 40
+      },
+      {
+        "name": "Body Slam",
+        "damage": 65,
+        "stun": 30,
+        "guard": 16
+      },
+      {
+        "name": "Snow Breath",
+        "element": "Ice",
+        "damage": 60,
+        "guard": 40,
+        "status": {
+          "Snowman": 0
+        }
+      },
+      {
+        "name": "Snowball Throw",
+        "element": "Ice",
+        "damage": 55,
+        "guard": 40,
+        "status": {
+          "Snowman": 0
+        }
+      },
+      {
+        "name": "Burrow",
+        "element": "Ice",
+        "damage": 65,
+        "stun": 20,
+        "guard": 16
+      }
+    ],
+    "Rajang": [
+      {
+        "name": "Bull Charge",
+        "damage": 75,
+        "guard": 50
+      },
+      {
+        "name": "Zigzag Hops",
+        "damage": 55,
+        "stun": 15,
+        "guard": 50
+      },
+      {
+        "name": "Back Hop",
+        "damage": 55,
+        "guard": 16
+      },
+      {
+        "name": "Rushing Punches",
+        "damage": 75,
+        "stun": 15,
+        "guard": 50
+      },
+      {
+        "name": "Forward Spin",
+        "damage": 85,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Body Slam",
+        "damage": 65,
+        "guard": 16
+      },
+      {
+        "name": "Jumping Ball",
+        "damage": 100,
+        "stun": 20,
+        "guard": 50
+      },
+      {
+        "name": "Electric Blast",
+        "element": "Thunder",
+        "damage": 80,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Light Beam",
+        "damage": 100,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Jumping Blast",
+        "element": "Thunder",
+        "damage": 80,
+        "guard": 40
+      }
+    ],
+    "Cephadrome": [
+      {
+        "name": "Bite",
+        "damage": 40,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Land Swim",
+        "element": "Water",
+        "damage": 40,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Hipcheck",
+        "element": "Water",
+        "damage": 50,
+        "stun": 40,
+        "guard": 40
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 40,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Sand Shot",
+        "element": "Water",
+        "damage": 50,
+        "stun": 20,
+        "guard": 10
+      },
+      {
+        "name": "Swimming Bite",
+        "damage": 20,
+        "stun": 10,
+        "guard": 40,
+        "status": {
+          "Paralysis": 0
+        }
+      },
+      {
+        "name": "Paralysing Lunge",
+        "damage": 50,
+        "stun": 10,
+        "guard": 40,
+        "status": {
+          "Paralysis": 0
+        }
+      },
+      {
+        "name": "Emerging Spit",
+        "element": "Water",
+        "damage": 50,
+        "stun": 20,
+        "guard": 10
+      },
+      {
+        "name": "Emerging Spray",
+        "element": "Water",
+        "damage": 50,
+        "stun": 20,
+        "guard": 10
+      }
+    ],
+    "Plesioth": [
+      {
+        "name": "Swimming Straight Beam",
+        "element": "Water",
+        "damage": 70,
+        "stun": 20,
+        "guard": 10
+      },
+      {
+        "name": "Swimming Curving Beam",
+        "element": "Water",
+        "damage": 70,
+        "stun": 20,
+        "guard": 10
+      },
+      {
+        "name": "Sleep Lunge",
+        "damage": 40,
+        "stun": 10,
+        "guard": 40,
+        "status": {
+          "Sleep": 0
+        }
+      },
+      {
+        "name": "Bite",
+        "damage": 65,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Land Swim",
+        "element": "Water",
+        "damage": 50,
+        "stun": 10,
+        "guard": 40
+      },
+      {
+        "name": "Hipcheck",
+        "element": "Water",
+        "damage": 50,
+        "stun": 40,
+        "guard": 40
+      },
+      {
+        "name": "Tail Spin",
+        "damage": 50,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Water Beam",
+        "element": "Water",
+        "damage": 70,
+        "stun": 20,
+        "guard": 10
+      },
+      {
+        "name": "Curving Water Beam",
+        "element": "Water",
+        "damage": 70,
+        "stun": 20,
+        "guard": 10
+      }
+    ],
+    "Lavasioth": [
+      {
+        "name": "Bite",
+        "damage": 65
+      },
+      {
+        "name": "Land Swim",
+        "element": "Fire",
+        "damage": 65,
+        "stun": 10,
+        "guard": 50
+      },
+      {
+        "name": "Giga Flop",
+        "element": "Fire",
+        "damage": 80,
+        "stun": 10,
+        "guard": 60
+      },
+      {
+        "name": "Hipcheck",
+        "element": "Fire",
+        "damage": 70,
+        "stun": 40,
+        "guard": 70
+      },
+      {
+        "name": "Tail Whip",
+        "element": "Fire",
+        "damage": 40,
+        "stun": 20,
+        "guard": 40
+      },
+      {
+        "name": "Lava Rock",
+        "element": "Fire",
+        "damage": 80,
+        "stun": 20,
+        "guard": 50
+      },
+      {
+        "name": "Lava Splash",
+        "element": "Fire",
+        "damage": 80,
+        "stun": 5,
+        "guard": 50
+      }
+    ]
+  }
+}

@@ -12,7 +12,7 @@ import { loadEnums, lookupName } from "../strings/enums.js";
 
 const EM_FILE = /^em(\d+)\.(ovl|pac)$/;
 
-async function listEmFiles(dir: string, ext: "ovl" | "pac"): Promise<[number, string][]> {
+export async function listEmFiles(dir: string, ext: "ovl" | "pac"): Promise<[number, string][]> {
   let names: string[];
   try {
     names = await readdir(dir);
@@ -27,7 +27,7 @@ async function listEmFiles(dir: string, ext: "ovl" | "pac"): Promise<[number, st
 }
 
 /** Loads the per-monster `overlay/emNN.ovl` files by emID, skipping any that aren't MWo3. */
-async function loadEmOverlays(unpackedDir: string): Promise<Map<number, OvlFile>> {
+export async function loadEmOverlays(unpackedDir: string): Promise<Map<number, OvlFile>> {
   const dir = path.join(unpackedDir, OVERLAY_DIR);
   const overlays = new Map<number, OvlFile>();
   for (const [emId, name] of await listEmFiles(dir, "ovl")) {
