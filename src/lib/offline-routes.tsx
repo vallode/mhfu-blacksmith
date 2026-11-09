@@ -12,6 +12,7 @@ import HomeContent from "@/app/HomeContent";
 import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
 import ArmorRedirect from "@/app/armorsmith/ArmorRedirect";
 import MonsterRedirect from "@/app/monsters/MonsterRedirect";
+import { MonsterShell } from "@/app/monsters/MonsterShell";
 import QuestBoardsContent from "@/app/quests/QuestBoardsContent";
 import QuestHubShell from "@/app/quests/[hub]/QuestHubShell";
 import QuestListClient from "@/app/quests/[hub]/QuestListClient";
@@ -128,11 +129,23 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
     case "armor-detail":
       return <ArmorDetailClient slot={match.slot} rank={match.rank} slug={match.slug} />;
     case "monster-list":
-      return <MonsterRedirect />;
+      return (
+        <MonsterShell>
+          <MonsterRedirect />
+        </MonsterShell>
+      );
     case "monster-tree":
-      return <MonsterListClient category={match.category} />;
+      return (
+        <MonsterShell category={match.category}>
+          <MonsterListClient />
+        </MonsterShell>
+      );
     case "monster-detail":
-      return <MonsterDetailClient category={match.category} slug={match.slug} />;
+      return (
+        <MonsterShell category={match.category} slug={match.slug}>
+          <MonsterDetailClient category={match.category} slug={match.slug} />
+        </MonsterShell>
+      );
     case "decoration-list":
       return <DecorationsListClient />;
     case "decoration-detail":

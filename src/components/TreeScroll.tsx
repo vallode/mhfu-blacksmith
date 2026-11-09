@@ -41,6 +41,10 @@ export default function TreeScroll({
   children: React.ReactNode;
 }) {
   const ref = useRef<HTMLDivElement>(null);
+  // The tree this instance has already put on screen. A list that stays
+  // mounted while the active item changes (the bestiary sidebar, which lives
+  // in a layout) is left where the user has it instead of being re-scrolled.
+  const shownTree = useRef<string | null>(null);
 
   useLayoutEffect(() => {
     const el = ref.current;
@@ -49,8 +53,11 @@ export default function TreeScroll({
 
     // Only hide if there's a position to restore or an active item to reveal;
     // a plain first visit with neither needs no work and stays visible.
-    const needsRestore = sessionStorage.getItem(`tree-scroll:${treeKey}`) !== null || !!activeSlug;
+    const needsRestore =
+      shownTree.current !== treeKey &&
+      (sessionStorage.getItem(`tree-scroll:${treeKey}`) !== null || !!activeSlug);
     if (!needsRestore) {
+      shownTree.current = treeKey;
       // Still track scrolling so later visits restore correctly.
       const onScrollPassive = () => {
         sessionStorage.setItem(`tree-scroll:${treeKey}`, String(scroller.scrollTop));
@@ -76,9 +83,11 @@ export default function TreeScroll({
     let restored = false;
     const restore = () => {
       if (restored) return;
-      // No content yet — wait for it (empty tree renders zero rows).
-      if (!el.querySelector("li")) return;
+      // No content yet — wait for it (empty tree renders zero rows). Tree
+      // rows are <li>s; flat lists (the bestiary sidebar) are bare links.
+      if (!el.querySelector("li, a")) return;
       restored = true;
+      shownTree.current = treeKey;
 
       const saved = sessionStorage.getItem(`tree-scroll:${treeKey}`);
       if (saved !== null) {
