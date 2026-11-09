@@ -149,30 +149,26 @@ export default function QuestDetailClient({ hub, id }: Props) {
     <DetailCard>
       {/* Title, board and description, like the quest scroll: the title
           centred in white, the details in white with the game's roomy lines.
-          URGENT!!! sits in the top-right corner, level with the title's first
-          line, which keeps clear of it; on a phone it takes its own line. */}
+          CLEAR!! (a quest the loaded hunter has cleared) and URGENT!!! sit in
+          the top corners, level with the title's first line, which keeps
+          clear of them; on a phone they take their own line. */}
       <div className="relative flex flex-col gap-2 text-main text-white">
-        {quest.urgent && (
-          <p className="absolute top-0 right-0 text-small leading-[2.75rem] text-negative mobile:static mobile:self-end mobile:leading-[1.25]">
-            URGENT!!!
-          </p>
+        {(cleared || quest.urgent) && (
+          <div className="pointer-events-none absolute inset-x-0 top-0 flex text-small leading-[2.75rem] mobile:static mobile:leading-[1.25]">
+            {cleared && <p className="text-stat">CLEAR!!</p>}
+            {quest.urgent && <p className="ml-auto text-negative">URGENT!!!</p>}
+          </div>
         )}
         <p
           className={cn(
             "text-center leading-[1.25] whitespace-normal",
-            quest.urgent && "px-[9.6rem] mobile:px-0",
+            (cleared || quest.urgent) && "px-[9.6rem] mobile:px-0",
           )}
         >
           {quest.title}
         </p>
         <p className="text-center text-small leading-[1.25] whitespace-normal text-stat">
           {questHubLabel(hub)} · <StarMarks {...questStarLevel(hub, quest.stars)} />
-          {cleared && (
-            <>
-              {" · "}
-              <span className="whitespace-nowrap text-gold">Cleared</span>
-            </>
-          )}
         </p>
         {quest.details && (
           <p className="mt-2 text-small leading-[1.4] whitespace-normal">{quest.details}</p>
