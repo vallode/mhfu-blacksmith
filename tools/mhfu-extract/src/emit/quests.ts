@@ -19,6 +19,7 @@ import type {
 import { getNameResolver } from "../strings/names.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import { QUEST_PREREQUISITES } from "../tables/quest-prerequisites.js";
+import { URGENT_QUESTS } from "../tables/urgent-quests.js";
 import type { Rank } from "./common.js";
 
 export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunting";
@@ -164,6 +165,8 @@ export interface EmittedQuest {
   client: string | null;
   /** Quest ID that must be cleared before this one appears, or null if none is known. */
   requires: number | null;
+  /** An Urgent Quest: the one that unlocks the next star level. Hand-entered, not on the disc. */
+  urgent: boolean;
 }
 
 function resolveSupplies(supplies: SupplyItem[]): EmittedSupply[] {
@@ -301,6 +304,7 @@ export function emitQuest(parsed: ParsedQuest): EmittedQuest | null {
     fail: parsed.strings?.fail ?? null,
     client: parsed.strings?.client ?? null,
     requires: QUEST_PREREQUISITES[header.questId] ?? null,
+    urgent: URGENT_QUESTS.has(header.questId),
   };
 }
 

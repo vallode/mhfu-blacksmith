@@ -170,6 +170,14 @@ describe("encodeQuestBundle / decodeQuests", () => {
     ]);
   });
 
+  test("keeps the urgent flag", () => {
+    const { bundle } = encode([quest({ id: 10203, urgent: true }), quest({ id: 109 })]);
+    assert.deepEqual(
+      decodeQuests(bundle).map((q) => q.urgent),
+      [true, false],
+    );
+  });
+
   test("keeps the quest a quest requires, and null when there is none", () => {
     const { bundle } = encode([quest({ id: 109, requires: 10203 }), quest({ id: 10203 })]);
     assert.deepEqual(

@@ -67,6 +67,7 @@ export default function QuestHubShell({
               >
                 <span className="w-cells-3 flex-none text-stat">{q.stars}★</span>
                 <p className="truncate">{q.title}</p>
+                {q.urgent && <span className="ml-auto flex-none text-negative">Urgent</span>}
               </Link>
             ))}
           </div>
