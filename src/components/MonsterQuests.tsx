@@ -17,7 +17,7 @@ export default function MonsterQuests({ quests }: { quests: Quest[] }) {
                   <span className="w-cells-3 flex-none text-stat">{q.stars}★</span>
                   <Link
                     href={questHref(q)}
-                    className="min-w-0 truncate text-white underline-offset-4 hover:underline"
+                    className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
                   >
                     {q.title}
                   </Link>
