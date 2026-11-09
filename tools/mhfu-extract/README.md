@@ -228,7 +228,7 @@ retail quests are wrapped in it too — confirmed against a real JP disc quest
 alone the bytes are indistinguishable from noise, but decrypting with
 `QuestCipher` (JP salt) yields a matching SHA1 header, the exact
 `quest.hexpat` magic, and a plausible `questHeader` (rank 0, 1-star, fee
-100z, reward 1200z, quest ID 1 — sensible for the very first quest).
+100z, reward 1200z, quest ID 1 — sensible for the first quest file).
 
 Once decrypted, `src/quests/parser.ts` reads the struct layout itself
 (header, supplies, rewards, large/small monster spawn tables, and quest
@@ -291,10 +291,10 @@ the module comments:
   follow the hitzone pool in sets of three, reached from a master list of
   four sets (EU: master list at file offset `0x168c80`). Set 1's first row,
   HP 0.35 / attack 1.02, matches a published figure for the first Village
-  Elder quest. A quest's header `rank` byte picks the set (0 village → set
-  0, 1/2/5 guild low/high/G → set 1, 3 treasure → set 2, 4 training school
-  → set 3): sets 2 and 3 hold real values exactly on the rows those hubs
-  use, and set 1 is the harder set. Which of the set's three tables
+  Elder quest. A quest's header `rank` byte picks the set (0 → set 0, the
+  1/2/5 low/high/G tiers of Village and Guild quests → set 1, 3 treasure →
+  set 2, 4 subjugation training → set 3): sets 2 and 3 hold real values
+  exactly on the rows those quests use, and set 1 is the harder set. Which of the set's three tables
   applies isn't stored in the quest (the large monsters' `attr1`/`attr2`
   are almost always 0), so it is probably chosen at run time; set 1's
   three differ mostly in HP. `extract --raw` writes the tables to
@@ -555,17 +555,43 @@ on both the JP and EU discs. Unused slots, whose every text field is one
 placeholder literal, are dropped: `"**********"` on JP (`m50001`-`m50003`,
 0 zenny fee, 1 zenny reward) and `"none"` on EU (those 3, plus
 `m40001`-`m40008`: 0 zenny fee with real monsters and rewards, but no text
-in any language). The EU disc leaves 540 emitted: village 39, guild 465,
-training-school 29, treasure-hunting 7.
+in any language). So are `m00001`-`m00010` and `m00103`-`m00107`, which
+are on no confirmed quest board (below). The EU disc leaves 525 emitted:
+village 152, guild 319, training-school 47, treasure-hunting 7.
 
-**The `hub`/`rank` split** comes from `questHeader.Rank` (0-5), confirmed
-against real data rather than assumed: rank 3's `client` string is always
-"トレジィ" ("Treshi", the real Treasure Hunting NPC per community guides)
-and rank 4's is always "教官" ("Instructor", the Training School NPC) with
-every title ending in "討伐訓練" ("... Subjugation Training"); ranks 0/1/2/5's
-star ranges (1-5,8,10 / 1-6 / mostly 6-9 / 9-11) line up with
-community-documented Village / Guild-Low-Rank / Guild-High-Rank /
-Guild-G-Rank star bands. `map` is resolved through a small hand-transcribed
+**The `hub` comes from the quest ID** (`questHub`). The disc numbers quests
+in blocks, one per board and star level: `1xxx`/`2xxx`/`3xxx` Guild Low /
+High / G Rank, `4xxx` Treasure Hunting (client always "Treshi"),
+`10xxx`/`11xxx` Village (★1-★6, then ★7-★9; many from the "Pokke Village
+Chief"), `20xxx`-`22xxx` Training School (client always "Instructor": Basic
+Training, weapon Mastery, then Subjugation Training), and `30001`-`30090`
+the 90 identical "Gathering - Snowy Mountains" copies, kept on Guild Low
+Rank. `101`, `102`, `108` and `109` are Village ★2 quests (header rank 0),
+some of which appear once a prerequisite is cleared (`109` "Attack of the
+Rathian", 250z / 3000z in the Jungle (Day), after `10203` "Shadow in the
+Snow"); they hold the Village's low-star Rathalos and Rathian. The Monster
+Hunter Wiki lists all four with the disc's fee, reward, locale and client.
+`103`-`107` share the block but aren't emitted until they're confirmed: the
+wiki only has the regular Village quests of the same titles, with different
+fees and rewards. The disc doesn't say what unlocks a quest, so the
+prerequisites we know are hand-entered in `src/tables/quest-prerequisites.ts`
+and emitted as `requires` (the quest ID to clear first, else null). `1`-`10`
+fit no confirmed block and aren't emitted: some repeat a Village quest with
+different values (`2` and `10105` are both "Reckless Bulldrome Hunter" for
+the "Troubled Father"; "Mountain Herb Picking" is 100z as `4` and free as
+`10001`), others match nothing else on the disc. They may be ★1 unlockables
+or unused.
+
+**`urgent`** marks the 22 Urgent Quests, which unlock the next star level.
+Their flag on the disc isn't decoded, so they are hand-entered in
+`src/tables/urgent-quests.ts` from the Monster Hunter Wiki's "MHFU Urgent
+Quests" category, matched to quest IDs by title, fee and reward.
+
+**The `rank` is `questHeader.Rank`'s tier**: 1/2/5 are low/high/G rank,
+and 0, 3 and 4 have none. It is not the board: an earlier version read the
+hub from it and filed the Village's `10xxx`/`11xxx` quests (rank 1/2, like
+the Guild's) under Guild, and `1`-`109` plus the Basic Training and Mastery
+quests (rank 0) under Village. `map` is resolved through a small hand-transcribed
 table (`src/tables/quest-maps.ts`) sourced from `quest.hexpat`'s own inline
 comments — the only place any vendored source names these IDs.
 

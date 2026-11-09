@@ -31,7 +31,9 @@ export default function ArmorTreePanel({ slot, rank, children }: Props) {
     const i = ARMOR_RANKS.indexOf(rank);
     const next = ARMOR_RANKS[(i + by + ARMOR_RANKS.length) % ARMOR_RANKS.length];
     prefetchBundle(`armor-${slot}-${next}`);
-    router.push(`/armorsmith/${slot}/${next}/`);
+    // The panel stays mounted (armorsmith layout); keep the page where it is
+    // rather than letting the router scroll to the new rank's card.
+    router.push(`/armorsmith/${slot}/${next}/`, { scroll: false });
   };
 
   return (

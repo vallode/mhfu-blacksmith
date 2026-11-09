@@ -17,16 +17,27 @@ import { useEffect, useState } from "react";
 type Manifest = Record<string, number | [number, number]>;
 
 const manifests = new Map<string, Promise<Manifest | null>>();
+/** Manifests that have finished loading, so hooks can read them synchronously. */
+const loadedManifests = new Map<string, Manifest | null>();
 
 function loadManifest(name: string): Promise<Manifest | null> {
   let promise = manifests.get(name);
   if (!promise) {
     promise = fetch(`/models/manifest/${name}.json`)
       .then((res) => (res.ok ? (res.json() as Promise<Manifest>) : null))
-      .catch(() => null);
+      .catch(() => null)
+      .then((m) => {
+        loadedManifests.set(name, m);
+        return m;
+      });
     manifests.set(name, promise);
   }
   return promise;
+}
+
+/** Start loading a manifest ahead of the page that needs it (e.g. from a layout). */
+export function prefetchManifest(name: string): void {
+  void loadManifest(name);
 }
 
 const pad = (id: number, digits: number) => String(id).padStart(digits, "0");
@@ -61,6 +72,10 @@ function useManifestValue<T>(
     // `pick` only reads values `item` encodes, so it isn't a dependency itself.
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [manifest, item]);
+  // An already-loaded manifest answers during render, so the model button
+  // shows up with the rest of the page instead of a frame later.
+  const loaded = manifest ? loadedManifests.get(manifest) : undefined;
+  if (loaded !== undefined) return loaded ? pick(loaded) : null;
   return value;
 }
 

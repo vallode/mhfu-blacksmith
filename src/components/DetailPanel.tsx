@@ -31,6 +31,21 @@ export function DetailName({ children, id }: { children: React.ReactNode; id?: s
   );
 }
 
+/**
+ * The detail card with nothing selected (a section's own page, beside its
+ * tree): NO DATA where the item's name would be, plus an optional note.
+ */
+export function NoDataCard({ children }: { children?: React.ReactNode }) {
+  return (
+    <DetailCard>
+      <DetailHeader>
+        <p className="uppercase">No data</p>
+      </DetailHeader>
+      {children && <DetailBody>{children}</DetailBody>}
+    </DetailCard>
+  );
+}
+
 /** Everything below the header. */
 export function DetailBody({ children }: { children: React.ReactNode }) {
   return <div className="mt-[2rem] flex h-full flex-col gap-[1.3rem] text-stat">{children}</div>;

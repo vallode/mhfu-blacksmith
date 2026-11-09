@@ -5,7 +5,13 @@ import { DetailBody, DetailCard, DetailRule, Stat, StatList } from "@/components
 import { QuestRewards, QuestSupplies } from "@/components/QuestRewards";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { useQuests } from "@/lib/client-data";
-import { questHubLabel, questsOnHub, type QuestHubSlug, type QuestMonster } from "@/lib/quests";
+import {
+  questHref,
+  questHubLabel,
+  questsOnHub,
+  type QuestHubSlug,
+  type QuestMonster,
+} from "@/lib/quests";
 import Loading from "@/components/Loading";
 
 interface Props {
@@ -38,6 +44,8 @@ export default function QuestDetailClient({ hub, id }: Props) {
   const { quests, error } = useQuests();
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const quest = onHub.find((q) => q.id === id);
+  const requires =
+    quest?.requires == null ? undefined : quests?.find((q) => q.id === quest.requires);
 
   if (!quest) {
     return (
@@ -83,6 +91,16 @@ export default function QuestDetailClient({ hub, id }: Props) {
           <Stat label="Contract fee:">
             <span className="text-white tabular-nums">{zenny(quest.fee)}</span>
           </Stat>
+          {requires && (
+            <Stat label="Requires:">
+              <Link
+                href={questHref(requires)}
+                className="whitespace-normal text-white underline-offset-4 hover:underline"
+              >
+                {requires.title} ({questHubLabel(requires.hub)} {requires.stars}★)
+              </Link>
+            </Stat>
+          )}
           {quest.largeMonsters.length > 0 && (
             <Stat label="Monsters:">
               <MonsterLinks monsters={quest.largeMonsters} />
@@ -122,8 +140,14 @@ export default function QuestDetailClient({ hub, id }: Props) {
       {/* Title, board and description, like the quest sheet */}
       <div className="flex flex-col gap-2 text-[2.2rem] text-gold">
         <p className="leading-[1.25] whitespace-normal">{quest.title}</p>
-        <p className="text-[1.6rem] leading-[1.25] text-stat">
+        <p className="text-[1.6rem] leading-[1.25] whitespace-normal text-stat">
           {questHubLabel(hub)} · {quest.stars}★
+          {quest.urgent && (
+            <>
+              {" · "}
+              <span className="whitespace-nowrap text-negative">Urgent Quest</span>
+            </>
+          )}
         </p>
         {quest.details && (
           <p className="text-[1.6rem] whitespace-normal text-white">{quest.details}</p>

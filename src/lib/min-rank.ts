@@ -27,9 +27,12 @@ export interface Tier {
 export type Progress = Tier | null;
 
 export interface QuestLike {
+  id?: number;
   hub: string;
   rank: string | null;
   stars: number;
+  /** Quest that must be cleared before this one appears. */
+  requires?: number | null;
   large_monsters: { monster: string }[];
   reward_tables: { items: { item: string }[] }[];
 }
@@ -170,12 +173,33 @@ export function either(a: Progress, b: Progress): Progress {
   return compareTiers(a, b) <= 0 ? a : b;
 }
 
-/** Quest progress: village is low rank at its own stars; other hubs don't gate. */
+/**
+ * Quest progress: village and guild quests are their rank tier at their own
+ * stars (a village quest without one counts as low rank); other hubs don't gate.
+ */
 function questTier(q: QuestLike): Tier | null {
-  if (q.hub === "village") return { rank: "low-rank", stars: q.stars };
-  if (q.hub === "guild" && GUILD_RANKS.includes(q.rank as GuildRank))
-    return { rank: q.rank as GuildRank, stars: q.stars };
+  const ranked = GUILD_RANKS.includes(q.rank as GuildRank);
+  if (q.hub === "village")
+    return { rank: ranked ? (q.rank as GuildRank) : "low-rank", stars: q.stars };
+  if (q.hub === "guild" && ranked) return { rank: q.rank as GuildRank, stars: q.stars };
   return null;
+}
+
+/**
+ * A quest's tier, but no earlier than the quest it requires: Village ★2
+ * "Attack of the Rathian" only appears after ★3 "Shadow in the Snow".
+ */
+function gatedQuestTier(
+  q: QuestLike,
+  byId: ReadonlyMap<number, QuestLike>,
+  seen: Set<QuestLike> = new Set(),
+): Tier | null {
+  const tier = questTier(q);
+  const prereq = q.requires == null ? undefined : byId.get(q.requires);
+  if (!tier || !prereq || seen.has(prereq)) return tier;
+  seen.add(q);
+  const needs = gatedQuestTier(prereq, byId, seen);
+  return needs ? both(tier, needs) : tier;
 }
 
 /** "low rank", "high-rank", "g rank" -> the rank. "1-2 star..." is the first low-rank stars. */
@@ -204,9 +228,11 @@ export function earliestSources(
   };
 
   // First quest each large monster appears in, per rank.
+  const byId = new Map<number, QuestLike>();
+  for (const q of quests) if (q.id !== undefined) byId.set(q.id, q);
   const firstSeen = new Map<string, Tier>();
   for (const q of quests) {
-    const tier = questTier(q);
+    const tier = gatedQuestTier(q, byId);
     if (!tier) continue;
     for (const table of q.reward_tables) for (const { item } of table.items) add(item, tier);
     for (const { monster } of q.large_monsters) {
