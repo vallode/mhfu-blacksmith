@@ -40,7 +40,7 @@ export default function StarMarks({
       {g && (
         <span
           aria-hidden="true"
-          className={cn("flex-none leading-none tracking-normal text-gold", size.g)}
+          className={cn("flex-none leading-none tracking-normal text-stat", size.g)}
         >
           G
         </span>

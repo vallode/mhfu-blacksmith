@@ -140,20 +140,21 @@ export default function QuestDetailClient({ hub, id }: Props) {
 
   return (
     <DetailCard>
-      {/* Title, board and description, like the quest sheet */}
-      <div className="flex flex-col gap-2 text-main text-gold">
-        <p className="leading-[1.25] whitespace-normal">{quest.title}</p>
-        <p className="text-small leading-[1.25] whitespace-normal text-stat">
+      {/* Title, board and description, like the quest scroll: the title
+          centred in white, the details in white with the game's roomy lines. */}
+      <div className="flex flex-col gap-2 text-main text-white">
+        <p className="text-center leading-[1.25] whitespace-normal">{quest.title}</p>
+        <p className="text-center text-small leading-[1.25] whitespace-normal text-stat">
           {questHubLabel(hub)} · <StarMarks {...questStarLevel(hub, quest.stars)} />
           {quest.urgent && (
             <>
               {" · "}
-              <span className="whitespace-nowrap text-negative">Urgent Quest</span>
+              <span className="whitespace-nowrap text-negative">URGENT!!!</span>
             </>
           )}
         </p>
         {quest.details && (
-          <p className="text-small whitespace-normal text-white">{quest.details}</p>
+          <p className="mt-2 text-small leading-[1.4] whitespace-normal">{quest.details}</p>
         )}
       </div>
 
