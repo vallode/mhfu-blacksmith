@@ -39,9 +39,18 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
 - **New values:** if a value is used in more than one place, add a token.
   A true one-off can be an arbitrary value (`bg-[#22281c]`).
 - **The root font size is 62.5%,** so `1rem` = 10px. The spacing scale is
-  4px per step (`--spacing: 0.4rem`): `p-4` = 16px, `gap-2` = 8px. Much of the
-  existing code uses exact rem values (`text-[1.6rem]` = 16px); keep the sizes
-  the game UI uses.
+  4px per step (`--spacing: 0.4rem`): `p-4` = 16px, `gap-2` = 8px.
+- **Text comes in four sizes,** the `--text-*` tokens in `@theme`. Use these
+  instead of `text-[…rem]`:
+  - `text-main` (22px, 20px on phones): the game's text. Lists, values,
+    titles and selector bars; `Card`'s default.
+  - `text-sub` (18px): labels, notices and set-builder rows.
+  - `text-small` (16px): descriptions, tabs, meta lines and settings.
+  - `text-fine` (14px): hints, badges and the dense hitzone table.
+
+  Only display text (the home menu) and glyph-only buttons (`×`) size
+  themselves. A new size goes into the scale, and into `cn()`'s list.
+
 - **Type is BIZ UDGothic on the game's character pitch.** Its Latin glyphs
   are fixed width (0.5em), and `body` adds `--tracking-game` letter-spacing
   (14% of each element's own font size), so every character takes one
@@ -91,9 +100,10 @@ delayed fade-in on `Loading`, the loading GIF next to a status message).
 defaults first and the caller's `className` last, so a later class replaces a
 conflicting earlier one: `<Card className="overflow-auto py-7">`.
 
-`tailwind-merge` only replaces a class with one of the same variant. `Card`
-sets `text-[2.6rem] mobile:text-[2rem]`, so to change its font size everywhere
-pass both, e.g. `text-[1.6rem] mobile:text-[1.6rem]`.
+`tailwind-merge` only replaces a class with one of the same variant: a
+`mobile:` class only replaces another `mobile:` class. `cn()` is told the type
+scale's names, so `text-main` and `text-gold` don't replace each other, and
+`<Card className="text-small">` replaces `Card`'s `text-main` at every width.
 
 ### Good to know
 

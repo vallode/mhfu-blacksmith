@@ -9,10 +9,13 @@ import {
   questHref,
   questHubLabel,
   questsOnHub,
+  questStarLevel,
   type QuestHubSlug,
   type QuestMonster,
 } from "@/lib/quests";
 import Loading from "@/components/Loading";
+import { cn } from "@/lib/cn";
+import StarMarks from "@/components/StarMarks";
 
 interface Props {
   hub: QuestHubSlug;
@@ -97,7 +100,8 @@ export default function QuestDetailClient({ hub, id }: Props) {
                 href={questHref(requires)}
                 className="whitespace-normal text-white underline-offset-4 hover:underline"
               >
-                {requires.title} ({questHubLabel(requires.hub)} {requires.stars}★)
+                {requires.title} ({questHubLabel(requires.hub)}{" "}
+                <StarMarks {...questStarLevel(requires.hub, requires.stars)} />)
               </Link>
             </Stat>
           )}
@@ -137,20 +141,29 @@ export default function QuestDetailClient({ hub, id }: Props) {
 
   return (
     <DetailCard>
-      {/* Title, board and description, like the quest sheet */}
-      <div className="flex flex-col gap-2 text-[2.2rem] text-gold">
-        <p className="leading-[1.25] whitespace-normal">{quest.title}</p>
-        <p className="text-[1.6rem] leading-[1.25] whitespace-normal text-stat">
-          {questHubLabel(hub)} · {quest.stars}★
-          {quest.urgent && (
-            <>
-              {" · "}
-              <span className="whitespace-nowrap text-negative">Urgent Quest</span>
-            </>
+      {/* Title, board and description, like the quest scroll: the title
+          centred in white, the details in white with the game's roomy lines.
+          URGENT!!! sits in the top-right corner, level with the title's first
+          line, which keeps clear of it; on a phone it takes its own line. */}
+      <div className="relative flex flex-col gap-2 text-main text-white">
+        {quest.urgent && (
+          <p className="absolute top-0 right-0 text-small leading-[2.75rem] text-negative mobile:static mobile:self-end mobile:leading-[1.25]">
+            URGENT!!!
+          </p>
+        )}
+        <p
+          className={cn(
+            "text-center leading-[1.25] whitespace-normal",
+            quest.urgent && "px-[9.6rem] mobile:px-0",
           )}
+        >
+          {quest.title}
+        </p>
+        <p className="text-center text-small leading-[1.25] whitespace-normal text-stat">
+          {questHubLabel(hub)} · <StarMarks {...questStarLevel(hub, quest.stars)} />
         </p>
         {quest.details && (
-          <p className="text-[1.6rem] whitespace-normal text-white">{quest.details}</p>
+          <p className="mt-2 text-small leading-[1.4] whitespace-normal">{quest.details}</p>
         )}
       </div>
 

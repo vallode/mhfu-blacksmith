@@ -183,7 +183,7 @@ export default function GlobalSearch() {
       <div className="absolute inset-0 bg-black/70" onClick={close} />
 
       <div className="relative z-1 mx-[1.4rem] flex max-h-[80%] min-h-0 min-w-0 flex-[0_1_62rem] mobile:mx-4 mobile:max-h-none mobile:flex-auto">
-        <Card className="min-h-0 min-w-0 gap-0 px-[1.6rem] py-[1.6rem] text-[1.8rem] mobile:text-[1.8rem]">
+        <Card className="min-h-0 min-w-0 gap-0 px-[1.6rem] py-[1.6rem] text-sub">
           {/* The frame's top band ends 11px into the card. This margin and the
               divider's leave 11px above and below the 22px row. */}
           <div className="mt-[0.6rem] flex shrink-0 items-center gap-[1rem]">
@@ -204,7 +204,7 @@ export default function GlobalSearch() {
             </svg>
             <input
               ref={inputRef}
-              className="min-w-0 flex-1 border-none bg-transparent px-[1.6rem] py-0 font-[inherit] text-[2.2rem] leading-none text-white outline-none placeholder:text-white/35 [&::-webkit-search-cancel-button]:hidden"
+              className="min-w-0 flex-1 border-none bg-transparent px-[1.6rem] py-0 font-[inherit] text-main leading-none text-white outline-none placeholder:text-white/35 [&::-webkit-search-cancel-button]:hidden"
               type="search"
               placeholder="Search weapons, armor, monsters…"
               value={query}
@@ -219,7 +219,7 @@ export default function GlobalSearch() {
 
           <div className="min-h-0 flex-1 overflow-y-auto" role="listbox">
             {results.length === 0 && query.trim().length >= 2 && (
-              <p className="px-[1.6rem] py-[2rem] text-center text-[1.8rem] text-white/40">
+              <p className="px-[1.6rem] py-[2rem] text-center text-sub text-white/40">
                 No results found
               </p>
             )}
@@ -251,9 +251,7 @@ export default function GlobalSearch() {
                   </div>
                   <p className="m-0 min-w-0 flex-1 truncate">{item.name}</p>
                   {item.rank && (
-                    <span className="shrink-0 text-[1.4rem] text-white/50 capitalize">
-                      {item.rank}
-                    </span>
+                    <span className="shrink-0 text-fine text-white/50 capitalize">{item.rank}</span>
                   )}
                 </Link>
               );

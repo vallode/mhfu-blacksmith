@@ -67,13 +67,13 @@ describe("earliestSources", () => {
   });
 
   it("counts a quest no earlier than the quest it requires", () => {
-    // Village ★2 "Attack of the Rathian" (109) appears after ★3 "Shadow in the Snow" (10203).
+    // Guild ★2 "Attack of the Rathian" (109) appears after Village ★3 "Shadow in the Snow" (10203).
     const rathian: MonsterLike[] = [
       { name: "Rathian", drops: { "low rank": { carve: [{ name: "Rathian Scale" }] } } },
     ];
     const s = earliestSources(
       [
-        { ...quest("village", null, 2, ["Gem"], ["Rathian"]), id: 109, requires: 10203 },
+        { ...quest("guild", "low-rank", 2, ["Gem"], ["Rathian"]), id: 109, requires: 10203 },
         { ...quest("village", "low-rank", 3, []), id: 10203 },
       ],
       rathian,
@@ -185,6 +185,7 @@ describe("stages and availability", () => {
     assert.ok(!isStage({ rank: "low-rank", stars: 7 }));
     assert.ok(!isStage(null) && !isStage("g-rank") && !isStage({}));
     assert.equal(tierLabel({ rank: "high-rank", stars: 7 }), "High Rank ★7");
+    assert.equal(tierLabel({ rank: "g-rank", stars: 9 }), "G-Rank ★1");
   });
 
   it("hides gear that needs a later tier and never hides unknowns", () => {

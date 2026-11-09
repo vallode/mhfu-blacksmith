@@ -642,32 +642,28 @@ on both the JP and EU discs. Unused slots, whose every text field is one
 placeholder literal, are dropped: `"**********"` on JP (`m50001`-`m50003`,
 0 zenny fee, 1 zenny reward) and `"none"` on EU (those 3, plus
 `m40001`-`m40008`: 0 zenny fee with real monsters and rewards, but no text
-in any language). So are `m00001`-`m00010` and `m00103`-`m00107`, which
-are on no confirmed quest board (below). The EU disc leaves 525 emitted:
-village 152, guild 319, training-school 47, treasure-hunting 7.
+in any language). The EU disc leaves 540 emitted: village 148, guild 338,
+training-school 47, treasure-hunting 7.
 
 **The `hub` comes from the quest ID** (`questHub`). The disc numbers quests
-in blocks, one per board and star level: `1xxx`/`2xxx`/`3xxx` Guild Low /
-High / G Rank, `4xxx` Treasure Hunting (client always "Treshi"),
-`10xxx`/`11xxx` Village (★1-★6, then ★7-★9; many from the "Pokke Village
-Chief"), `20xxx`-`22xxx` Training School (client always "Instructor": Basic
+in blocks, one per board and star level: `1`-`10` and `101`-`109` Guild Low
+Rank ★1 and ★2, `1xxx`/`2xxx`/`3xxx` Guild Low (★3-★5) / High (★6-★8) / G
+Rank, `4xxx` Treasure Hunting (client always "Treshi"), `10xxx`/`11xxx`
+Village (★1-★6, then ★7-★9; many from the "Pokke Village Chief"),
+`20xxx`-`22xxx` Training School (client always "Instructor": Basic
 Training, weapon Mastery, then Subjugation Training), and `30001`-`30090`
 the 90 identical "Gathering - Snowy Mountains" copies, kept on Guild Low
-Rank. `101`, `102`, `108` and `109` are Village ★2 quests (header rank 0),
-some of which appear once a prerequisite is cleared (`109` "Attack of the
-Rathian", 250z / 3000z in the Jungle (Day), after `10203` "Shadow in the
-Snow"); they hold the Village's low-star Rathalos and Rathian. The Monster
-Hunter Wiki lists all four with the disc's fee, reward, locale and client.
-`103`-`107` share the block but aren't emitted until they're confirmed: the
-wiki only has the regular Village quests of the same titles, with different
-fees and rewards. The disc doesn't say what unlocks a quest, so the
-prerequisites we know are hand-entered in `src/tables/quest-prerequisites.ts`
-and emitted as `requires` (the quest ID to clear first, else null). `1`-`10`
-fit no confirmed block and aren't emitted: some repeat a Village quest with
-different values (`2` and `10105` are both "Reckless Bulldrome Hunter" for
-the "Troubled Father"; "Mountain Herb Picking" is 100z as `4` and free as
-`10001`), others match nothing else on the disc. They may be ★1 unlockables
-or unused.
+Rank. The Monster Hunter Wiki's Guild Hall list has all 19 of the Guild's
+★1/★2 quests with the disc's fee, reward, locale and client. Many share a
+title and client with a Village quest (`2` and `10105` are both "Reckless
+Bulldrome Hunter" for the "Troubled Father"), but pay 12x their fee like
+every Guild quest, where the Village pays 6x. Their header rank is 0, so
+they are emitted as `low-rank`, the board they're on. Some appear once a
+prerequisite is cleared (`109` "Attack of the Rathian", 250z / 3000z in the
+Jungle (Day), after `10203` "Shadow in the Snow"). The disc doesn't say
+what unlocks a quest, so the prerequisites we know are hand-entered in
+`src/tables/quest-prerequisites.ts` and emitted as `requires` (the quest ID
+to clear first, else null).
 
 **`urgent`** marks the 22 Urgent Quests, which unlock the next star level.
 Their flag on the disc isn't decoded, so they are hand-entered in
@@ -675,10 +671,11 @@ Their flag on the disc isn't decoded, so they are hand-entered in
 Quests" category, matched to quest IDs by title, fee and reward.
 
 **The `rank` is `questHeader.Rank`'s tier**: 1/2/5 are low/high/G rank,
-and 0, 3 and 4 have none. It is not the board: an earlier version read the
-hub from it and filed the Village's `10xxx`/`11xxx` quests (rank 1/2, like
-the Guild's) under Guild, and `1`-`109` plus the Basic Training and Mastery
-quests (rank 0) under Village. `map` is resolved through a small hand-transcribed
+and 0, 3 and 4 have none (except the Guild's rank-0 ★1/★2 quests, emitted
+as low rank). It is not the board: an earlier version read the hub from it
+and filed the Village's `10xxx`/`11xxx` quests (rank 1/2, like the Guild's)
+under Guild, and `1`-`109` plus the Basic Training and Mastery quests
+(rank 0) under Village. `map` is resolved through a small hand-transcribed
 table (`src/tables/quest-maps.ts`) sourced from `quest.hexpat`'s own inline
 comments — the only place any vendored source names these IDs.
 

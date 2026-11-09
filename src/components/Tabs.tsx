@@ -10,7 +10,7 @@ export interface Tab {
 
 const tabButton = [
   "cursor-pointer border-0 border-b-[3px] border-transparent bg-transparent px-[1.2rem] py-[0.4rem]",
-  "font-[inherit] text-[1.6rem] tracking-game text-parchment",
+  "font-[inherit] text-small tracking-game text-parchment",
   "hover:text-white focus-visible:text-white focus-visible:outline-none",
   "aria-selected:border-stat aria-selected:bg-selector aria-selected:text-stat",
 ].join(" ");

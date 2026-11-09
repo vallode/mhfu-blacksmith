@@ -1,5 +1,11 @@
 import { clsx, type ClassValue } from "clsx";
-import { twMerge } from "tailwind-merge";
+import { extendTailwindMerge } from "tailwind-merge";
+
+/** tailwind-merge, told about the type scale in globals.css's @theme so
+ * `text-main` counts as a font size, not a colour that `text-gold` replaces. */
+const twMerge = extendTailwindMerge({
+  extend: { theme: { text: ["main", "sub", "small", "fine"] } },
+});
 
 /**
  * Merge conditional class names.

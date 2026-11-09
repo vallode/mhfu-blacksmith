@@ -202,6 +202,28 @@ export function questsOnHub(quests: Quest[], hub: string): Quest[] {
     .sort((a, b) => a.stars - b.stars || a.id - b.id);
 }
 
+/**
+ * G Rank quests are stored at ★9-★11, after High Rank's ★6-★8. The game
+ * shows them as G★1-G★3.
+ */
+export const G_RANK_STAR_OFFSET = 8;
+
+/** A star level as the game shows it: G Rank's are "G" and 1-3 stars. */
+export interface StarLevel {
+  g: boolean;
+  stars: number;
+}
+
+/** The star level a quest on this hub (a QuestHubSlug) shows. */
+export function questStarLevel(hub: string, stars: number): StarLevel {
+  return hub === "g-rank" ? { g: true, stars: stars - G_RANK_STAR_OFFSET } : { g: false, stars };
+}
+
+/** The star levels a hub's quests span, lowest first. */
+export function questStarLevels(quests: Pick<Quest, "stars">[]): number[] {
+  return [...new Set(quests.map((q) => q.stars))].sort((a, b) => a - b);
+}
+
 /** Quests a monster appears in as a large monster or the target, by hub order, stars and ID. */
 export function questsWithMonster(quests: Quest[], name: string): Quest[] {
   const hubOrder = (q: Quest) => QUEST_HUB_SLUGS.indexOf(q.hub);
