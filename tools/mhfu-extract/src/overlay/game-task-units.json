@@ -1,0 +1,375 @@
+{
+  "$comment": [
+    "Code units of game_task.ovl in the JP layout (file offset of each unit's start), from the",
+    "MHP2G decompilation tclamb/mhp2g-decomp (config/task/game_task.splat.yaml, CC0), with its notes on",
+    "which monsters each emNN unit holds. Used to name the monster family of attack spawns from",
+    "game_task.ovl code (src/emit/attacks-raw.ts); EU offsets are found through the monster chunk",
+    "array's shift. Only the units, not the decompilation's code."
+  ],
+  "units": [
+    {
+      "offset": "0x80",
+      "unit": "game_task_ovl"
+    },
+    {
+      "offset": "0x4818",
+      "unit": "bgm_server_game_task"
+    },
+    {
+      "offset": "0x6020",
+      "unit": "player_quest"
+    },
+    {
+      "offset": "0x139d0",
+      "unit": "player_cat"
+    },
+    {
+      "offset": "0x2bb38",
+      "unit": "pl_attack"
+    },
+    {
+      "offset": "0x2c930",
+      "unit": "pl_chat"
+    },
+    {
+      "offset": "0x2da40",
+      "unit": "pl_damage"
+    },
+    {
+      "offset": "0x31ce8",
+      "unit": "pl_demo"
+    },
+    {
+      "offset": "0x326f0",
+      "unit": "pl_die"
+    },
+    {
+      "offset": "0x32ea8",
+      "unit": "pl_draw"
+    },
+    {
+      "offset": "0x37eb8",
+      "unit": "pl_effect"
+    },
+    {
+      "offset": "0x39a68",
+      "unit": "pl_egg"
+    },
+    {
+      "offset": "0x3b660",
+      "unit": "pl_normal"
+    },
+    {
+      "offset": "0x4e068",
+      "unit": "effect51"
+    },
+    {
+      "offset": "0x4ec80",
+      "unit": "effect53"
+    },
+    {
+      "offset": "0x4f858",
+      "unit": "effect58"
+    },
+    {
+      "offset": "0x50cd8",
+      "unit": "effect59"
+    },
+    {
+      "offset": "0x51320",
+      "unit": "effect68"
+    },
+    {
+      "offset": "0x51880",
+      "unit": "effect72"
+    },
+    {
+      "offset": "0x52028",
+      "unit": "enemy_manager"
+    },
+    {
+      "offset": "0x558b8",
+      "unit": "em_cmd"
+    },
+    {
+      "offset": "0x65400",
+      "unit": "enemy"
+    },
+    {
+      "offset": "0x7b5d8",
+      "unit": "em03",
+      "note": "kelbi & anteka"
+    },
+    {
+      "offset": "0x81360",
+      "unit": "em04",
+      "note": "mosswine, bullfango, poogie"
+    },
+    {
+      "offset": "0x862c0",
+      "unit": "em08",
+      "note": "cephadrome & cephalos"
+    },
+    {
+      "offset": "0x949f8",
+      "unit": "em09",
+      "note": "felyne & melynx"
+    },
+    {
+      "offset": "0x9a858",
+      "unit": "em10",
+      "note": "veggie elder"
+    },
+    {
+      "offset": "0x9f3b8",
+      "unit": "em12",
+      "note": "aptonoth & apceros"
+    },
+    {
+      "offset": "0xa7d80",
+      "unit": "em16",
+      "note": "velociprey, genprey, ioprey, giaprey"
+    },
+    {
+      "offset": "0xaf560",
+      "unit": "em18",
+      "note": "cat cart"
+    },
+    {
+      "offset": "0xafea8",
+      "unit": "em19",
+      "note": "vespoid & vespoid queen"
+    },
+    {
+      "offset": "0xb5fb8",
+      "unit": "em27",
+      "note": "velocidrome, gendrome, iodrome, giadrome"
+    },
+    {
+      "offset": "0xbd858",
+      "unit": "em29",
+      "note": "rock"
+    },
+    {
+      "offset": "0xbdf48",
+      "unit": "em48",
+      "note": "daimyo hermitaur"
+    },
+    {
+      "offset": "0xd1380",
+      "unit": "em51",
+      "note": "blangonga, congalala, blango, conga, rajang"
+    },
+    {
+      "offset": "0xeeb80",
+      "unit": "em56",
+      "note": "great thunderbug"
+    },
+    {
+      "offset": "0xf1590",
+      "unit": "em57",
+      "note": "shakalaka & king shakalaka"
+    },
+    {
+      "offset": "0xf7e68",
+      "unit": "em63",
+      "note": "remobra"
+    },
+    {
+      "offset": "0xfc290",
+      "unit": "em68",
+      "note": "bulldrome"
+    },
+    {
+      "offset": "0x101c10",
+      "unit": "em74",
+      "note": "treshi"
+    },
+    {
+      "offset": "0x103630",
+      "unit": "shell_manager"
+    },
+    {
+      "offset": "0x107da0",
+      "unit": "shell_base"
+    },
+    {
+      "offset": "0x108e80",
+      "unit": "shell00"
+    },
+    {
+      "offset": "0x109ff0",
+      "unit": "shell01"
+    },
+    {
+      "offset": "0x10a700",
+      "unit": "shell02"
+    },
+    {
+      "offset": "0x10ad60",
+      "unit": "shell03"
+    },
+    {
+      "offset": "0x10ded8",
+      "unit": "shell06"
+    },
+    {
+      "offset": "0x113b18",
+      "unit": "shell07"
+    },
+    {
+      "offset": "0x113fc0",
+      "unit": "shell08"
+    },
+    {
+      "offset": "0x121c28",
+      "unit": "shell09"
+    },
+    {
+      "offset": "0x122d18",
+      "unit": "shell10"
+    },
+    {
+      "offset": "0x125c90",
+      "unit": "shell11"
+    },
+    {
+      "offset": "0x126218",
+      "unit": "shell12"
+    },
+    {
+      "offset": "0x127560",
+      "unit": "shell13"
+    },
+    {
+      "offset": "0x127a60",
+      "unit": "shell14"
+    },
+    {
+      "offset": "0x1295c0",
+      "unit": "shell15"
+    },
+    {
+      "offset": "0x129ad0",
+      "unit": "shell21"
+    },
+    {
+      "offset": "0x129f90",
+      "unit": "shell22"
+    },
+    {
+      "offset": "0x12cb88",
+      "unit": "shell23"
+    },
+    {
+      "offset": "0x12d048",
+      "unit": "shell24"
+    },
+    {
+      "offset": "0x12fe28",
+      "unit": "shell26"
+    },
+    {
+      "offset": "0x130578",
+      "unit": "shell27"
+    },
+    {
+      "offset": "0x130ff8",
+      "unit": "shell28"
+    },
+    {
+      "offset": "0x1333f0",
+      "unit": "shell33"
+    },
+    {
+      "offset": "0x13bfe8",
+      "unit": "shell34"
+    },
+    {
+      "offset": "0x13c570",
+      "unit": "shell36"
+    },
+    {
+      "offset": "0x13cac8",
+      "unit": "shell37"
+    },
+    {
+      "offset": "0x13cd40",
+      "unit": "shell38"
+    },
+    {
+      "offset": "0x13d8d0",
+      "unit": "shell41"
+    },
+    {
+      "offset": "0x13dd48",
+      "unit": "shell48"
+    },
+    {
+      "offset": "0x13e330",
+      "unit": "shell49"
+    },
+    {
+      "offset": "0x13f328",
+      "unit": "shell50"
+    },
+    {
+      "offset": "0x13f748",
+      "unit": "shell51"
+    },
+    {
+      "offset": "0x1406c8",
+      "unit": "effect52"
+    },
+    {
+      "offset": "0x141710",
+      "unit": "we00",
+      "note": "gs"
+    },
+    {
+      "offset": "0x143ff8",
+      "unit": "we01",
+      "note": "hbg/lbg"
+    },
+    {
+      "offset": "0x1451d0",
+      "unit": "we02",
+      "note": "hammer"
+    },
+    {
+      "offset": "0x1476c0",
+      "unit": "we03",
+      "note": "lance"
+    },
+    {
+      "offset": "0x148b20",
+      "unit": "we04",
+      "note": "sns"
+    },
+    {
+      "offset": "0x149c50",
+      "unit": "we06",
+      "note": "dual blade"
+    },
+    {
+      "offset": "0x14bc28",
+      "unit": "we07",
+      "note": "ls"
+    },
+    {
+      "offset": "0x14f0a8",
+      "unit": "we08",
+      "note": "hh"
+    },
+    {
+      "offset": "0x153828",
+      "unit": "we09",
+      "note": "gl"
+    },
+    {
+      "offset": "0x155b48",
+      "unit": "we10",
+      "note": "bow"
+    }
+  ]
+}

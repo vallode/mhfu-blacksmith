@@ -143,3 +143,17 @@ test("fieldArg follows a spawner's arguments through its init to the kind byte",
   assert.equal(fieldArg(graph, "game_task.ovl", wrapper, 0x0d, false, new Set([at(ctor)])), 2);
   assert.equal(fieldArg(graph, "game_task.ovl", wrapper, 0x0d, false, new Set()), null);
 });
+
+test("gameTaskUnit names a caller's code unit when the region shift can't move it out", async () => {
+  const { gameTaskUnit } = await import("../src/emit/attacks-raw.js");
+  // em51 (Blangonga, Congalala, Rajang) starts at JP 0xd1380, em48 before it.
+  assert.deepEqual(gameTaskUnit(0xd2000, 0x110), {
+    offset: 0xd1380,
+    unit: "em51",
+    note: "blangonga, congalala, blango, conga, rajang",
+  });
+  // Within 0x110 of the start, the EU caller could be at the end of em48.
+  assert.equal(gameTaskUnit(0xd13d0, 0x110), undefined);
+  // JP (no shift) needs no margin.
+  assert.equal(gameTaskUnit(0xd13d0, 0)?.unit, "em51");
+});

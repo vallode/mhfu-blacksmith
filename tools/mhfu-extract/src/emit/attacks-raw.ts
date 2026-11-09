@@ -43,7 +43,8 @@ import {
   type TableUse,
 } from "../monsters/code-graph.js";
 import { isUserAddress } from "../monsters/collision.js";
-import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "../monsters/hitzones.js";
+import { GAME_TASK_JP, MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "../monsters/hitzones.js";
+import gameTaskUnits from "../overlay/game-task-units.json" with { type: "json" };
 
 /** A file to search. `ovl` is set for overlays, so pointers into them can be found. */
 export interface SearchFile {
@@ -135,13 +136,21 @@ export interface UsedRecord {
   index: number;
   kinds: number[];
   calls: number;
+  /** Calling functions, as "file:0xoffset" (up to `MAX_RECORD_CALLERS`). */
+  callers: string[];
   record: AttackRecordDump;
 }
 
 export interface AttackUsage {
   classes: UsageClass[];
-  /** By the file of the calling code: a per-monster overlay is a monster family. */
+  /**
+   * By the calling code: a per-monster overlay's file (a monster family), or
+   * for `game_task.ovl` its code unit ("game_task.ovl:em51") when the
+   * decompilation's layout places the caller in one (`gameTaskUnit`).
+   */
   families: Record<string, UsedRecord[]>;
+  /** The decompilation's note on each `game_task.ovl` unit family ("blangonga, congalala, ..."). */
+  notes: Record<string, string>;
   /** Spawn calls whose kind isn't a constant, or whose record falls outside its table. */
   unresolved: number;
 }
@@ -717,6 +726,36 @@ function findSetters(
   return { copiers, sites };
 }
 
+const MAX_RECORD_CALLERS = 10;
+
+const UNITS = (gameTaskUnits as { units: { offset: string; unit: string; note?: string }[] }).units
+  .map((u) => ({ offset: parseInt(u.offset, 16), unit: u.unit, note: u.note }))
+  .sort((a, b) => a.offset - b.offset);
+
+function unitAt(jpOffset: number): (typeof UNITS)[number] | undefined {
+  let found: (typeof UNITS)[number] | undefined;
+  for (const u of UNITS) {
+    if (u.offset > jpOffset) break;
+    found = u;
+  }
+  return found;
+}
+
+/**
+ * The `game_task.ovl` code unit (in the decompilation's JP layout) holding
+ * the function at `offset`, when every shift between 0 and `shift` (the
+ * monster chunk array's, the most the code can have moved) lands in the
+ * same unit.
+ */
+export function gameTaskUnit(
+  offset: number,
+  shift: number,
+): { unit: string; note?: string } | undefined {
+  const a = unitAt(offset - Math.min(0, shift));
+  const b = unitAt(offset - Math.max(0, shift));
+  return a && a === b ? a : undefined;
+}
+
 const KIND_FIELD = 0x0d;
 const VARIANT_FIELD = 0x8b;
 
@@ -732,7 +771,18 @@ function attackUsage(
   graph: CodeGraph,
   spawners: readonly Spawner[],
   tables: ReadonlyMap<string, AttackTableDump>,
+  chunks: ChunkArray | null,
 ): AttackUsage {
+  const shift = chunks ? chunks.offset - (GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase) : 0;
+  const notes: Record<string, string> = {};
+  const familyOf = (file: string, func: number) => {
+    if (file !== "game_task.ovl") return file;
+    const unit = gameTaskUnit(func, shift);
+    if (!unit) return file;
+    const key = `${file}:${unit.unit}`;
+    if (unit.note) notes[key] = unit.note;
+    return key;
+  };
   const structs = new Map<string, { table: string; count: number }>();
   for (const [label, table] of tables) {
     if (table.struct === undefined) continue;
@@ -814,7 +864,8 @@ function attackUsage(
           const index = recordFor(rule, kind, variant, memoryReader(graph, rule.site.file));
           if (index === null) continue;
           resolved = true;
-          const family = used.get(call.file) ?? new Map<string, UsedRecord>();
+          const familyKey = familyOf(call.file, call.func);
+          const family = used.get(familyKey) ?? new Map<string, UsedRecord>();
           const key = `${rule.table}#${index}`;
           const record = tables.get(rule.table)!.records[index]!;
           const entryRecord: UsedRecord = family.get(key) ?? {
@@ -822,12 +873,20 @@ function attackUsage(
             index,
             kinds: [],
             calls: 0,
+            callers: [],
             record,
           };
           if (!entryRecord.kinds.includes(kind)) entryRecord.kinds.push(kind);
           entryRecord.calls++;
+          const caller = `${call.file}:${hex(call.func)}`;
+          if (
+            !entryRecord.callers.includes(caller) &&
+            entryRecord.callers.length < MAX_RECORD_CALLERS
+          ) {
+            entryRecord.callers.push(caller);
+          }
           family.set(key, entryRecord);
-          used.set(call.file, family);
+          used.set(familyKey, family);
         }
         if (!resolved) unresolved++;
       }
@@ -839,7 +898,7 @@ function attackUsage(
       (a, b) => a.table.localeCompare(b.table) || a.index - b.index,
     );
   }
-  return { classes, families, unresolved };
+  return { classes, families, notes, unresolved };
 }
 
 /** Most records a table bound from a copier call's struct may have. */
@@ -954,7 +1013,7 @@ export function dumpAttacksRaw(
     callees: calleeCode(graph, byName, users),
     spawners,
     setters: findSetters(graph, byName, spawners, eboot, code, data),
-    usage: attackUsage(graph, spawners, tableByLabel),
+    usage: attackUsage(graph, spawners, tableByLabel, chunks),
     code,
     data,
     files: dumped,

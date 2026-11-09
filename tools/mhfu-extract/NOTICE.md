@@ -39,6 +39,15 @@ below.
 - **Overlay format** (`MWo3` header, base-address rebasing) documented by
   [SiD3W4y/mhfu-re](https://github.com/SiD3W4y/mhfu-re).
 
+## Code layout
+
+- **`src/overlay/game-task-units.json`** — the start of each code unit of
+  `game_task.ovl` in the JP layout, with its notes on which monsters each
+  `emNN` unit holds, from the MHP2G decompilation
+  [tclamb/mhp2g-decomp](https://github.com/tclamb/mhp2g-decomp)
+  (`config/task/game_task.splat.yaml`, CC0). Only the unit offsets and
+  names; none of its code.
+
 ## Search crib
 
 - **`src/overlay/attack-crib.json`** — monster attack damage, stun and guard

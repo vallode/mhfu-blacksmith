@@ -575,6 +575,21 @@ overlay are read in that overlay (Gypceros's and Hypnocatrice's spawners
 are in `game_task.ovl`), and masking to a byte or halfword (`andi`,
 `seb`, `seh`) keeps an argument's origin.
 
+The eleventh EU run: 50 classes, with Gravios's (40 records), Gypceros's
+(41) and Hypnocatrice's (38) families now resolved, 84 calls unresolved.
+Monsters without an overlay of their own (Blangonga, Congalala, Rajang, the
+Hermitaurs, the raptor leaders, Cephadrome, Bulldrome, Vespoid Queen, ...)
+have their code in `game_task.ovl`, so their spawns came out as one
+`game_task.ovl` family. The decompilation splits `game_task.ovl` into code
+units by monster (`em51`: Blangonga, Congalala, Rajang; `em48`: the
+Hermitaurs and Ceanataur; ...), in the JP layout. Code sits before the
+monster chunk array, which moves 0x110 bytes on the EU disc, so a caller
+belongs to a unit when every shift from 0 to that one lands in it
+(`gameTaskUnit`, units in `src/overlay/game-task-units.json`). On that run's
+callers only one of about 1,200 was too close to a unit boundary to name.
+Families from `game_task.ovl` are now keyed by unit, with the decompilation's
+note in `notes`, and each used record lists its callers.
+
 Still open: classes reached in other ways (those whose spawns pass the kind
 in a register the code computes), which monster of a family (Diablos or
 Monoblos) makes each call, and what the remaining bytes mean.
