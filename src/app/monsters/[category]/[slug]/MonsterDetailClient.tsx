@@ -174,12 +174,12 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                     <tr>
                       <th>
                         Part
-                        {flinchByRow && <span className={flinchBelow}>Flinch</span>}
+                        {flinchByRow && <span className={flinchBelow}>Fln</span>}
                       </th>
                       {HITZONE_COLS.map((col) => (
                         <th key={col}>{HITZONE_LABELS[col]}</th>
                       ))}
-                      {flinchByRow && <th className={flinchColumn}>Flinch</th>}
+                      {flinchByRow && <th className={flinchColumn}>Fln</th>}
                     </tr>
                   </thead>
                   <tbody>
@@ -228,12 +228,6 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                     ))}
                   </tbody>
                 </table>
-                {flinchByRow && (
-                  <p className="mt-[0.8rem] text-fine leading-[1.25] whitespace-normal text-white/60">
-                    Flinch: damage a part takes before the monster flinches, a range where the row
-                    covers several parts. G-rank quests can raise it up to ×2.5.
-                  </p>
-                )}
                 {breaks.length > 0 && (
                   <MonsterBreaks
                     breaks={breaks}
