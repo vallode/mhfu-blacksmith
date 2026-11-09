@@ -148,78 +148,6 @@ code {
   image-rendering: pixelated;
 }
 
-/* ─── Steps ────────────────────────────────────────────────────────────────── */
-
-.stepper {
-  max-width: 120rem;
-  margin: 0 auto 1.4rem;
-  overflow-x: auto;
-  scrollbar-width: none;
-
-  & ol {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 0.4rem;
-    margin: 0;
-    padding: 0;
-    list-style: none;
-  }
-}
-
-.step {
-  display: flex;
-  align-items: center;
-  gap: 0.8rem;
-  padding: 0.6rem 1.2rem;
-  border: 0;
-  border-bottom: 3px solid transparent;
-  background: rgb(0 0 0 / 0.45);
-  cursor: pointer;
-  font-size: var(--text-small);
-  color: var(--color-parchment);
-  text-shadow: 0.15rem 0.15rem 0 black;
-  white-space: nowrap;
-
-  & .icon {
-    width: 2.4rem;
-    height: 2.4rem;
-  }
-
-  &:disabled {
-    cursor: default;
-    color: var(--color-unavailable);
-
-    & .icon {
-      opacity: 0.4;
-    }
-  }
-
-  &[aria-current="step"] {
-    border-bottom-color: var(--color-stat);
-    background: var(--color-selector);
-    color: var(--color-stat);
-  }
-
-  &.done:not([aria-current]) .step-label::after {
-    content: " ✓";
-    color: var(--color-positive);
-  }
-
-  &:focus-visible {
-    outline: 2px solid white;
-    outline-offset: -2px;
-  }
-
-  @media (hover: hover) {
-    &:enabled:not([aria-current]):hover {
-      color: white;
-      background: var(--gradient-hover-glow);
-      animation: var(--animate-hover-glow);
-    }
-  }
-}
-
 /* ─── The card ─────────────────────────────────────────────────────────────── */
 
 /* The site's teal in-game frame (card-frame-teal), as on its Options menu. */
@@ -238,33 +166,170 @@ code {
 }
 
 /* Yellow title on the flat grey selector bar, pulled out to sit just inside
-   the frame's bands. */
+   the frame's bands. The title is also the button that opens the step menu. */
 .menu-header {
-  display: flex;
-  align-items: baseline;
-  gap: 1.6rem;
-  margin: -0.4rem -1.2rem 1.6rem;
-  padding: 0.8rem 1.6rem;
+  position: relative;
+  margin: -0.4rem -1.2rem 0;
   border-bottom: 3px solid rgb(255 255 255 / 0.45);
   background: var(--color-selector);
-}
-
-.step-count {
-  flex: none;
-  font-size: var(--text-small);
-  color: var(--color-parchment);
-  text-shadow: 0.15rem 0.15rem 0 black;
 }
 
 .menu-title {
   margin: 0;
   font-size: var(--text-main);
   font-weight: normal;
+}
+
+.step-menu {
+  display: flex;
+  align-items: baseline;
+  gap: 1.6rem;
+  width: 100%;
+  padding: 0.8rem 1.6rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
   letter-spacing: 0.2em;
   text-transform: uppercase;
   color: var(--color-stat);
   text-shadow: 0.15rem 0.15rem 0 black;
-  outline: none;
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: -2px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background: var(--gradient-hover-glow);
+      animation: var(--animate-hover-glow);
+    }
+  }
+}
+
+.step-count {
+  flex: none;
+  font-size: var(--text-small);
+  letter-spacing: var(--tracking-game);
+  text-transform: none;
+  color: var(--color-parchment);
+}
+
+/* The game's green arrow, turned to point down (up while the menu is open). */
+.caret {
+  flex: none;
+  align-self: center;
+  width: 1.6rem;
+  height: 1.7rem;
+  margin-left: auto;
+  background: url("images/arrow.png") center / contain no-repeat;
+  transform: rotate(-90deg);
+  image-rendering: pixelated;
+  transition: transform 120ms;
+
+  [aria-expanded="true"] > & {
+    transform: rotate(90deg);
+  }
+}
+
+/* The step menu: every step, the ones you've been to selectable. */
+.step-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  margin: 3px 0 0;
+  padding: 0.6rem;
+  list-style: none;
+  border: 3px solid var(--color-hr);
+  background: rgb(16 20 13 / 0.97);
+  box-shadow: 0.4rem 0.4rem 0 black;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border: 0;
+  border-left: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-size: var(--text-sub);
+  color: white;
+  text-shadow: 0.15rem 0.15rem 0 black;
+
+  & .icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  &:disabled {
+    cursor: default;
+    color: var(--color-unavailable);
+
+    & .icon {
+      opacity: 0.4;
+    }
+  }
+
+  &[aria-current="step"] {
+    border-left-color: var(--color-stat);
+    background: var(--color-selector);
+    color: var(--color-stat);
+  }
+
+  &.done .step-label::after {
+    content: " ✓";
+    color: var(--color-positive);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: -2px;
+  }
+
+  @media (hover: hover) {
+    &:enabled:not([aria-current]):hover {
+      background: var(--gradient-hover-glow);
+      animation: var(--animate-hover-glow);
+    }
+  }
+}
+
+.step-number {
+  width: 2ch;
+  text-align: right;
+  font-size: var(--text-small);
+  color: var(--color-parchment);
+}
+
+/* One segment per step under the header: done, current, still to come. */
+.progress {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.8rem 0 1.8rem;
+
+  & span {
+    flex: 1 1 0;
+    height: 0.6rem;
+    background: rgb(255 255 255 / 0.15);
+    box-shadow: 0.15rem 0.15rem 0 black;
+  }
+
+  & .done {
+    background: var(--color-hr);
+  }
+
+  & .current {
+    background: var(--color-stat);
+  }
 }
 
 .panel {
@@ -1077,27 +1142,17 @@ input[type="range"] {
     margin-right: -0.25em;
   }
 
-  /* One scrolling row on phones. */
-  .stepper ol {
-    flex-wrap: nowrap;
-    justify-content: flex-start;
-    width: max-content;
-    min-width: 100%;
-  }
-
-  /* Icons only, except the current step. */
-  .step:not([aria-current]) .step-label {
-    display: none;
-  }
-
   .frame {
     padding: 1.8rem 1.6rem 1.6rem;
   }
 
   .menu-header {
-    flex-direction: column;
-    gap: 0.2rem;
     margin-inline: -0.8rem;
+  }
+
+  .step-menu {
+    flex-wrap: wrap;
+    gap: 0.2rem 1.2rem;
   }
 
   .summary {

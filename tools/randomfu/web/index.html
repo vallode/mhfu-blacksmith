@@ -21,15 +21,24 @@
     </header>
     <hr class="divider" />
 
-    <nav class="stepper" aria-label="Steps">
-      <ol id="steps"></ol>
-    </nav>
-
     <main class="frame" aria-labelledby="step-title">
-      <div class="menu-header">
-        <span class="step-count" id="step-count"></span>
-        <h2 class="menu-title" id="step-title" tabindex="-1"></h2>
-      </div>
+      <nav class="menu-header" aria-label="Steps">
+        <h2 class="menu-title">
+          <button
+            type="button"
+            class="step-menu"
+            id="step-menu"
+            aria-expanded="false"
+            aria-controls="steps"
+          >
+            <span class="step-count" id="step-count"></span>
+            <span id="step-title"></span>
+            <span class="caret" aria-hidden="true"></span>
+          </button>
+        </h2>
+        <ol class="step-list" id="steps" hidden></ol>
+      </nav>
+      <div class="progress" id="progress" aria-hidden="true"></div>
 
       <!-- 1. The disc -->
       <section class="panel" data-step="game" hidden>
@@ -202,11 +211,7 @@
     </main>
 
     <footer class="footer">
-      randomfu runs entirely in your browser: your disc image and EBOOT never leave your computer.
-      Free software under the GNU GPL v3 or later;
-      <a href="https://github.com/vallode/mhfu-blacksmith/tree/main/tools/randomfu">source code</a>.
-      In the style of <a href="https://mhfu-blacksmith.netlify.app/">MHFU Blacksmith</a>. Not
-      affiliated with Capcom.
+      randomfu runs entirely in your browser. Not affiliated with Capcom.
     </footer>
 
     <script src="app.js"></script>

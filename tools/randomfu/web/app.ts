@@ -424,15 +424,26 @@ function renderSteps(): void {
       const button = el(
         "button",
         { type: "button", class: "step", "data-goto": s.id },
+        el("span", { class: "step-number" }, String(i + 1)),
         icon(s),
         el("span", { class: "step-label" }, s.title),
       );
       button.disabled = !reached.has(s.id) || (s.id === "run" && !ranOnce);
       button.classList.toggle("done", i < at && reached.has(s.id));
       if (s.id === current) button.setAttribute("aria-current", "step");
-      button.addEventListener("click", () => go(s.id));
+      button.addEventListener("click", () => {
+        closeStepMenu();
+        go(s.id);
+      });
       return el("li", {}, button);
     }),
+  );
+  $("progress").replaceChildren(
+    ...steps.map((s, i) =>
+      el("span", {
+        class: s.id === current ? "current" : i < at && reached.has(s.id) ? "done" : "",
+      }),
+    ),
   );
 
   $("step-count").textContent = `Step ${at + 1}/${steps.length}`;
@@ -528,11 +539,37 @@ function go(id: string): void {
   reached.add(id);
   say($("nav-status"), "");
   render();
-  const stepButton = document.querySelector<HTMLElement>(`[data-goto="${id}"]`);
-  stepButton?.scrollIntoView({ block: "nearest", inline: "nearest" });
-  $("step-title").focus({ preventScroll: true });
-  const top = document.querySelector(".stepper")!.getBoundingClientRect().top;
+  $("step-menu").focus({ preventScroll: true });
+  const top = document.querySelector(".frame")!.getBoundingClientRect().top;
   if (top < 0) window.scrollBy({ top: top - 8, behavior: "smooth" });
+}
+
+/** The step menu in the card's header: open, close, and close on Escape or a click elsewhere. */
+function closeStepMenu(): void {
+  $("steps").hidden = true;
+  $("step-menu").setAttribute("aria-expanded", "false");
+}
+
+function stepMenu(): void {
+  const menu = $("step-menu");
+  const list = $("steps");
+  menu.addEventListener("click", () => {
+    const open = list.hidden;
+    list.hidden = !open;
+    menu.setAttribute("aria-expanded", String(open));
+    if (open) list.querySelector<HTMLElement>("[aria-current]")?.focus();
+  });
+  document.addEventListener("click", (event) => {
+    if (!list.hidden && !menu.parentElement!.parentElement!.contains(event.target as Node)) {
+      closeStepMenu();
+    }
+  });
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && !list.hidden) {
+      closeStepMenu();
+      menu.focus();
+    }
+  });
 }
 
 function step(by: 1 | -1): void {
@@ -763,8 +800,8 @@ function init(): void {
   buildPresets();
   droppable("iso");
   droppable("eboot");
+  stepMenu();
   render();
-  $("step-title").focus({ preventScroll: true });
 
   $("back").addEventListener("click", () => step(-1));
   $("next").addEventListener("click", () => step(1));
