@@ -277,9 +277,11 @@ test("dumpAttacksRaw finds constructors, their vtables' attack tables and their 
     JR_RA,
     NOP,
   ]);
-  // em01.ovl: M calls C with attack 5.
+  // em01.ovl: M calls C with attack 5; W calls M with 9 in a3.
   const m = OVL_HEADER_SIZE + 0x10;
+  const w = OVL_HEADER_SIZE + 0x40;
   writeWords(em, m, [PROLOGUE, addiu(A2, 0, 5), jal(at(ctor)), NOP, JR_RA, NOP]);
+  writeWords(em, w, [PROLOGUE, addiu(A3, 0, 9), jal(EM_BASE + m), NOP, JR_RA, NOP]);
 
   const gameTask = parseOvl(task);
   const files: SearchFile[] = [
@@ -323,6 +325,16 @@ test("dumpAttacksRaw finds constructors, their vtables' attack tables and their 
   assert.deepEqual(setter.classes, [hex(at(vtable))]);
   assert.ok(dump.code?.[setter.codeKey]);
   assert.equal(dump.data?.[`game_task.ovl:${hex(kinds)}`]?.slice(0, 8), "44332211");
+  // The spawn chain: the constructor's code, the caller's code, and calls into the caller.
+  assert.equal(
+    dump.code?.[first!.codeKey!]?.slice(0, 8),
+    task.subarray(ctor, ctor + 4).toString("hex"),
+  );
+  assert.equal(first!.sites[0]!.codeKey, `overlay/em01.ovl:${hex(m)}`);
+  assert.deepEqual(
+    first!.sites[0]!.callers?.map((c) => [c.file, c.func, c.kind, c.args[3]]),
+    [["overlay/em01.ovl", w, "jal", "0x9"]],
+  );
   assert.equal(second!.func, ctor2);
   assert.equal(second!.vtableIn, "eboot");
   assert.equal(second!.slots[2]!.offset, init);

@@ -102,6 +102,15 @@ export interface SpawnSite {
   args: (string | null)[];
   /** The nearest monster chunk leading to the calling function, if found. */
   monster?: { emId: number; at: string; depth: number };
+  /** For spawners reaching a table: the caller's code key, and the calls into the caller. */
+  codeKey?: string;
+  callers?: {
+    file: string;
+    offset: number;
+    func: number;
+    kind: "jal" | "j";
+    args: (string | null)[];
+  }[];
 }
 
 /** A call or tail jump to a record copier. */
@@ -146,6 +155,9 @@ export interface Spawner {
   slots: VtableSlot[];
   /** The init called after the store; its code (and its callees') is in `code`. */
   init: { file: string; offset: number; callees: string[] } | null;
+  /** For spawners reaching a table: the constructor's code key and its callees' keys. */
+  codeKey?: string;
+  callees?: string[];
   sites: SpawnSite[];
 }
 
@@ -231,6 +243,8 @@ const CALLEE_DEPTH = 2;
 const MAX_CALLEES = 80;
 /** Code dumped per setter caller (up to its end), and data per constant address. */
 const SETTER_CODE_BYTES = 0x800;
+/** Calls into a spawner's caller, per site. */
+const MAX_WRAPPER_CALLERS = 80;
 const DATA_BYTES = 0x40;
 const MAX_DATA_BLOCKS = 800;
 /** Vtable entries read, and how many of the first 8 must be functions. */
@@ -559,6 +573,29 @@ function findSpawners(
   const kept = spawners
     .sort((a, b) => Number(reaches(b)) - Number(reaches(a)) || b.sites.length - a.sites.length)
     .slice(0, MAX_SPAWNERS);
+  // For the spawn chains of spawners reaching a table: the constructor's code
+  // and callees, each caller's code, and the calls into each caller.
+  const addFunction = (file: string, offset: number) => {
+    const key = `${file}:${hex(offset)}`;
+    if (!(key in code)) {
+      const end = Math.min(graph.funcEnd(file, offset), offset + SETTER_CODE_BYTES);
+      code[key] = files.get(file)!.buf.subarray(offset, end).toString("hex");
+    }
+    return key;
+  };
+  for (const spawner of kept.filter(reaches)) {
+    spawner.codeKey = addFunction(spawner.file, spawner.func);
+    spawner.callees = graph
+      .callsFrom(spawner.file, spawner.func, SETTER_CODE_BYTES)
+      .map((c) => addFunction(c.file, c.offset));
+    for (const site of spawner.sites) {
+      site.codeKey = addFunction(site.file, site.func);
+      site.callers = graph
+        .sitesTo(site.file, site.func)
+        .slice(0, MAX_WRAPPER_CALLERS)
+        .map((c) => ({ ...c, args: c.args.map((a) => (a === null ? null : hex(a))) }));
+    }
+  }
   // Monster links only for the kept spawners' first sites: the search is slow.
   for (const spawner of kept) {
     spawner.sites.slice(0, LINKED_SITES).forEach((site) => {

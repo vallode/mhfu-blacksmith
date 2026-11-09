@@ -525,6 +525,16 @@ argument registers, and the vtables with a slot reaching the caller within
 two calls. `data` holds 0x40 bytes at each constant address those callers
 use (such as a class's start-of-kind array), from the overlays or the EBOOT.
 
+The eighth EU run: of the 75 calls to the copiers, every shell class in a
+per-monster overlay (all 15) passes byte `0x0D` itself (`lbu a2, 13(s1)`), so
+there the record is the kind. Classes in `game_task.ovl` mostly do too; the
+rest add 1, read a per-kind array, or pass a constant. Those classes'
+constructors are called from `ShellManager` wrappers in `game_task.ovl`
+(Diablos's at `0x1057d8`), which monster code calls. So for each spawner
+reaching a table, `raw/attacks.json` now also gives the constructor's code
+and callees, each caller's code (`codeKey`), and the calls into each caller
+with their argument registers (`callers`): the whole spawn chain.
+
 Still open: that per-class mapping, and what the remaining bytes mean.
 
 ## 3D models (experimental)
