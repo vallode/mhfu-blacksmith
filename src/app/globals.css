@@ -60,7 +60,6 @@
   --color-unavailable: #808080; /* greyed-out entries: ammo you cannot load, etc. */
   --color-parchment: #c3be9f; /* menu labels and toast titles */
   --color-selector: rgb(96 102 94 / 0.78); /* flat grey bar of in-game selectors and menu headers */
-  --color-menu-hover: #ff5068; /* drop shadow of a hovered menu entry (main menu, sidebar) */
 
   /* Item rarity tints (rarities 1–3 are untinted) */
   --color-rarity-4: #52f152;

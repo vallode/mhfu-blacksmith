@@ -54,15 +54,13 @@ function useNavHrefs(pathname: string): (item: NavItem) => string {
   return (item) => item.href ?? sections[item.section!];
 }
 
-// A sidebar entry: parchment label with a drop shadow (the main menu's look,
-// smaller) that turns white with a red shadow and the green glow on hover.
-// The current page's entry holds the glow still.
+// A sidebar entry, like a row in the trees and lists: plain white text with
+// the green glow on hover. The current page's entry holds the glow still.
 const sidebarRow = cn(
-  "group relative flex h-[4.4rem] flex-none cursor-pointer items-center gap-4 border-none bg-transparent px-6 text-left whitespace-nowrap text-parchment text-shadow-[0.2rem_0.2rem_black]",
-  "hover:hover-glow hover:text-white hover:text-shadow-[0.2rem_0.2rem_var(--color-menu-hover)]",
-  "focus-visible:hover-glow focus-visible:text-white focus-visible:outline-none",
+  "group relative flex h-[4.4rem] flex-none cursor-pointer items-center gap-4 border-none bg-transparent px-6 text-left whitespace-nowrap text-white",
+  "hover:hover-glow focus-visible:hover-glow focus-visible:outline-none",
 );
-const sidebarRowActive = "bg-(image:--gradient-hover-glow) text-white";
+const sidebarRowActive = "bg-(image:--gradient-hover-glow)";
 
 // Nav icons are grey until hovered; brighten them with their row too.
 const rowIcon = "mr-0 group-hover:before:bg-white";
@@ -173,8 +171,8 @@ function TabBar({
   onMenu: () => void;
 }) {
   const tab =
-    "group flex min-w-0 flex-1 cursor-pointer flex-col items-center justify-center gap-[0.3rem] border-none bg-transparent p-0 text-parchment text-shadow-[0.1rem_0.1rem_black]";
-  const tabActive = "bg-(image:--gradient-hover-glow) text-white";
+    "group flex min-w-0 flex-1 cursor-pointer flex-col items-center justify-center gap-[0.3rem] border-none bg-transparent p-0 text-white";
+  const tabActive = "bg-(image:--gradient-hover-glow)";
   // Inside the frame art, which is drawn over the card's padding.
   const label = "text-[1.1rem] leading-none tracking-game";
   const tabs = NAV.filter((item) => item.tab);
