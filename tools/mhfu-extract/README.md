@@ -360,8 +360,9 @@ the membranes, the legs the legs, and the rows match the parts
   by its joint's (its radius isn't). Gravios's and Basarios's neck base
   scales to 0.77 along z: only with the scale carried down do the eye and
   jaw joints land inside the head (ignored, they'd sit past the snout).
-  Rotations aren't handled, so capsules below a rotated bone (Yama
-  Tsukami's) are skipped and logged. Joints of a detached severed-tail
+  Rotations aren't handled, so capsules below a rotated bone are skipped
+  and logged; on the EU disc no capsule is (Yama Tsukami's bones that
+  first looked rotated are only scaled). Joints of a detached severed-tail
   chain move with the tail tip.
 - **Site file** (`src/monsters/hitboxes.ts`): `export-site` writes
   `public/models/monsters/emNN.hitboxes.json` next to each monster's model:

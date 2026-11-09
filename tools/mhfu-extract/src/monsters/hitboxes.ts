@@ -63,7 +63,8 @@ export interface JointPositions {
  * only then do the eye and jaw joints land inside the head.
  *
  * Rotations aren't handled (their format is unknown), so joints with a
- * rotated bone anywhere up their chain (Yama Tsukami's) are left out. A
+ * rotated bone anywhere up their chain are left out (none under a capsule
+ * on the EU disc; noise up to 0.01 rad is ignored). A
  * parentless severed-tail chain moves onto the tail with the tail tip's
  * vertices.
  */
