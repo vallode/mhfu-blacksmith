@@ -11,6 +11,7 @@
  */
 import type { OvlFile } from "../container/ovl.js";
 import { OVL_HEADER_SIZE } from "../container/ovl.js";
+import { isUserAddress } from "./collision.js";
 
 export interface AddressUse {
   /** File offset of the instruction that completes the address. */
@@ -30,6 +31,11 @@ export interface CodeScan {
   calls: { offset: number; target: number; args: (number | null)[] }[];
   /** File offsets of `addiu sp, sp, -n` (function prologues). */
   prologues: number[];
+  /**
+   * `sw` of a known user-memory address to offset 0 of an object: where a
+   * constructor sets an object's vtable (and any other pointer field 0).
+   */
+  pointerStores: { offset: number; value: number }[];
 }
 
 const OP_SPECIAL = 0x00;
@@ -38,6 +44,7 @@ const OP_JAL = 0x03;
 const OP_ADDIU = 0x09;
 const OP_ORI = 0x0d;
 const OP_LUI = 0x0f;
+const OP_SW = 0x2b;
 /** lb lh lwl lw lbu lhu lwr; sb sh swl sw swr; lwc1 swc1 (FPU register in rt). */
 const LOADS = new Set([0x20, 0x21, 0x22, 0x23, 0x24, 0x25, 0x26]);
 const STORES = new Set([0x28, 0x29, 0x2a, 0x2b, 0x2e]);
@@ -60,6 +67,7 @@ export function scanCode(ovl: OvlFile): CodeScan {
   const addresses = new Map<number, AddressUse[]>();
   const calls: CodeScan["calls"] = [];
   const prologues: number[] = [];
+  const pointerStores: CodeScan["pointerStores"] = [];
   const regs: (number | undefined)[] = new Array(32).fill(undefined);
   const record = (address: number, offset: number, kind: AddressUse["kind"]) => {
     const list = addresses.get(address);
@@ -100,6 +108,10 @@ export function scanCode(ovl: OvlFile): CodeScan {
       }
     } else if (LOADS.has(op) || STORES.has(op) || FPU_MEM.has(op)) {
       if (base !== undefined && rs !== SP) record((base + simm) >>> 0, at, "mem");
+      const value = regs[rt];
+      if (op === OP_SW && simm === 0 && rs !== SP && value !== undefined && isUserAddress(value)) {
+        pointerStores.push({ offset: at, value });
+      }
       if (LOADS.has(op)) regs[rt] = undefined;
     } else if (WRITES_RT.has(op)) {
       regs[rt] = undefined;
@@ -140,5 +152,5 @@ export function scanCode(ovl: OvlFile): CodeScan {
       pending = null;
     }
   }
-  return { addresses, calls, prologues };
+  return { addresses, calls, prologues, pointerStores };
 }

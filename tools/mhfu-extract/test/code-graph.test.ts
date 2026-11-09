@@ -15,8 +15,8 @@ const [A0, A1, A2, A3, V0, V1, RA, SP] = [4, 5, 6, 7, 2, 3, 31, 29];
 const lui = (rt: number, imm: number) => ((0x0f << 26) | (rt << 16) | (imm & 0xffff)) >>> 0;
 const addiu = (rt: number, rs: number, imm: number) =>
   ((0x09 << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
-const sb = (rt: number, imm: number, rs: number) =>
-  ((0x28 << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
+const sw = (rt: number, imm: number, rs: number) =>
+  ((0x2b << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
 const lbu = (rt: number, imm: number, rs: number) =>
   ((0x24 << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
 const jal = (target: number) => ((0x03 << 26) | ((target >>> 2) & 0x03ffffff)) >>> 0;
@@ -206,61 +206,88 @@ test("dumpAttacksRaw gives each table's code users and their monsters", () => {
   );
 });
 
-test("storers and callSites find a spawner and the constants it is called with", () => {
+test("dumpAttacksRaw finds constructors, their vtables' attack tables and their callers", () => {
   const chunks = OVL_HEADER_SIZE;
-  const task = ovl(
-    "game_task.ovl",
-    GAME_TASK_BASE,
-    MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE + 0x100,
-  );
+  const after = chunks + MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
+  const task = ovl("game_task.ovl", GAME_TASK_BASE, after - OVL_HEADER_SIZE + 0x400);
   const em = ovl("em01.ovl", EM_BASE, 0x100);
-  // game_task.ovl: S(shell, attack, struct, owner) fills in bytes 0x0D, 0x26 and 0x15.
-  const spawner = chunks + MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
-  writeWords(task, spawner, [
+  const at = (offset: number) => GAME_TASK_BASE + offset;
+  // A table of 5 records, and U, a setup function building record 1's address.
+  const table = after + 0x200;
+  for (let i = 0; i < 5; i++) {
+    task[table + i * ATTACK_RECORD_SIZE + 0x02] = 20 + i;
+    task[table + i * ATTACK_RECORD_SIZE + 0x07] = 0xe0;
+  }
+  const u = after;
+  const x = after + 0x20;
+  const y = after + 0x40;
+  const init = after + 0x60;
+  const ctor = after + 0x80;
+  const ctor2 = after + 0xc0;
+  writeWords(task, u, [PROLOGUE, ...loadAddress(A0, at(table + ATTACK_RECORD_SIZE)), JR_RA, NOP]);
+  for (const f of [x, y, init]) writeWords(task, f, [PROLOGUE, JR_RA, NOP]);
+  // The vtable: U, X, Y.
+  const vtable = after + 0x180;
+  writeWords(task, vtable, [at(u), at(x), at(y)]);
+  // C: obj->vtable = vtable; init(obj, ...).
+  writeWords(task, ctor, [
     PROLOGUE,
-    sb(A1, 0x0d, A0),
-    sb(A2, 0x26, A0),
-    sb(A3, 0x15, A0),
+    ...loadAddress(V1, at(vtable)),
+    sw(V1, 0, A0),
+    jal(at(init)),
+    NOP,
     JR_RA,
     NOP,
   ]);
-  // em01.ovl: M spawns attack 5 with struct 2, setting a3 in the delay slot.
+  // C2: a vtable in the EBOOT.
+  const EBOOT_BASE = 0x08804000;
+  const eboot = Buffer.alloc(0x100);
+  writeWords(eboot, 0x40, [at(x), at(y), at(init)]);
+  writeWords(task, ctor2, [
+    PROLOGUE,
+    ...loadAddress(V1, EBOOT_BASE + 0x40),
+    sw(V1, 0, A0),
+    jal(at(init)),
+    NOP,
+    JR_RA,
+    NOP,
+  ]);
+  // em01.ovl: M calls C with attack 5.
   const m = OVL_HEADER_SIZE + 0x10;
-  writeWords(em, m, [
-    PROLOGUE,
-    addiu(A1, 0, 5),
-    addiu(A2, 0, 2),
-    jal(GAME_TASK_BASE + spawner),
-    addiu(A3, 0, 7),
-    JR_RA,
-    NOP,
-  ]);
+  writeWords(em, m, [PROLOGUE, addiu(A2, 0, 5), jal(at(ctor)), NOP, JR_RA, NOP]);
+
   const gameTask = parseOvl(task);
   const files: SearchFile[] = [
     { name: "game_task.ovl", buf: task, ovl: gameTask },
     { name: "overlay/em01.ovl", buf: em, ovl: parseOvl(em), emId: 1 },
   ];
-  const graph = new CodeGraph(
-    files.map((f) => ({ name: f.name, ovl: f.ovl!, shared: f.name === "game_task.ovl" })),
+  const dump = dumpAttacksRaw(
+    files,
+    [],
     { ovl: gameTask, offset: chunks },
+    { buf: eboot, base: EBOOT_BASE },
   );
-  assert.deepEqual(graph.storers([0x0d, 0x15, 0x26], 2)[0], {
+  const hex = (n: number) => `0x${n.toString(16)}`;
+  const [first, second] = dump.spawners!;
+  // The spawner reaching a table comes first.
+  assert.equal(first!.func, ctor);
+  assert.equal(first!.vtable, hex(at(vtable)));
+  assert.equal(first!.vtableIn, "game_task.ovl");
+  assert.deepEqual(first!.slots[0], {
+    slot: 0,
+    value: hex(at(u)),
     file: "game_task.ovl",
-    offset: spawner,
-    fields: [0x0d, 0x15, 0x26],
-    callers: 1,
+    offset: u,
+    tables: [`game_task.ovl@${hex(table)}`],
   });
-  assert.deepEqual(graph.callSites("game_task.ovl", spawner), [
-    {
-      file: "overlay/em01.ovl",
-      offset: m + 12,
-      func: m,
-      args: [null, 5, 2, 7, null, null, null, null],
-    },
-  ]);
-  const dump = dumpAttacksRaw(files, [], { ovl: gameTask, offset: chunks });
+  assert.deepEqual(first!.init, { file: "game_task.ovl", offset: init, callees: [] });
+  assert.ok(dump.code?.[`game_task.ovl:${hex(init)}`]);
   assert.deepEqual(
-    dump.spawns?.[0]?.sites.map((site) => site.args.slice(0, 4)),
-    [[null, "0x5", "0x2", "0x7"]],
+    first!.sites.map((site) => [site.file, site.func, site.args.slice(0, 3)]),
+    [["overlay/em01.ovl", m, [null, null, "0x5"]]],
   );
+  assert.equal(second!.func, ctor2);
+  assert.equal(second!.vtableIn, "eboot");
+  assert.equal(second!.slots[2]!.offset, init);
+  assert.equal(second!.slots[0]!.tables, undefined);
 });

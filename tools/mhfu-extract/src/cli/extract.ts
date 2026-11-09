@@ -29,7 +29,12 @@ import { readMonsterTables } from "../monsters/read.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
-import { verifyOffsets, type OffsetVerificationResult } from "../tables/offsets.js";
+import {
+  resolveTableOffset,
+  verifyOffsets,
+  type OffsetVerificationResult,
+} from "../tables/offsets.js";
+import { sharpnessVaddrBase } from "../tables/sharpness.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -259,12 +264,23 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     // A failed search mustn't stop the rest of the extract.
     console.log("Searching for monster attack tables...");
     try {
+      // The EBOOT's vaddr base, as the sharpness tables calibrate it, for vtables there.
+      const resolver =
+        manifest.region === "jp"
+          ? undefined
+          : (MHP2G_PROFILE.resolverForRegion(manifest.region) ?? undefined);
+      const ebootBase = sharpnessVaddrBase(
+        resolveTableOffset("sharpnessTable", reader, resolver),
+        reader,
+      );
+      console.log(`EBOOT vaddr base 0x${ebootBase.toString(16)}.`);
       await writeAttacksRaw(
         options.unpacked,
         options.out,
         ebootBuf,
         overlays,
         monsters.locations.chunks.offset,
+        ebootBase,
       );
     } catch (err) {
       console.log(`Attack search failed: ${err instanceof Error ? err.message : String(err)}`);

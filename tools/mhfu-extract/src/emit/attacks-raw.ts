@@ -104,12 +104,33 @@ export interface SpawnSite {
   monster?: { emId: number; at: string; depth: number };
 }
 
-export interface SpawnCandidate {
+/** A vtable entry: the function it points at and the attack tables that function uses. */
+export interface VtableSlot {
+  slot: number;
+  value: string;
+  /** Where the function is (file and offset), when it is a known function. */
+  file?: string;
+  offset?: number;
+  /** Attack tables this function uses, as "file@offset". */
+  tables?: string[];
+}
+
+/**
+ * A constructor: code that stores a vtable at offset 0 of a new object and
+ * calls the class's init. For shells, the vtable leads to the class's
+ * attack table and the call sites give the attack index (an argument).
+ */
+export interface Spawner {
   file: string;
-  offset: number;
-  fields: number[];
-  callers: number;
-  code: string;
+  func: number;
+  /** File offset of the vtable store. */
+  store: number;
+  vtable: string;
+  /** "eboot" or the overlay holding the vtable. */
+  vtableIn: string;
+  slots: VtableSlot[];
+  /** The init called after the store; its code (and its callees') is in `code`. */
+  init: { file: string; offset: number; callees: string[] } | null;
   sites: SpawnSite[];
 }
 
@@ -161,12 +182,12 @@ export interface AttackRawDump {
    */
   callees?: { file: string; offset: number; calledBy: string[]; code: string }[];
   /**
-   * Candidates for the code that spawns shells (`spawnCandidates`): functions
-   * storing to two or more of a shell's bytes 0x0D (attack index), 0x15
-   * (owner) and 0x26 (struct index), with their code and their call sites'
-   * argument registers.
+   * Constructors whose stored address is a vtable (`findSpawners`), those
+   * whose vtable reaches an attack table first. Probe output.
    */
-  spawns?: SpawnCandidate[];
+  spawners?: Spawner[];
+  /** Code by "file:0xoffset" (`FUNCTION_BYTES` each), for the spawners' inits. */
+  code?: Record<string, string>;
   files: {
     name: string;
     emId?: number;
@@ -182,12 +203,13 @@ const AFTER = 0x200;
 const FUNCTION_BYTES = 0x400;
 const CALLEE_DEPTH = 2;
 const MAX_CALLEES = 80;
-/** A shell's attack index, owner and struct index bytes, set by its spawner. */
-const SPAWN_FIELDS = [0x0d, 0x15, 0x26];
-const MAX_SPAWN_CANDIDATES = 15;
-/** Candidates whose sites also get monster links (the search is slower). */
-const LINKED_CANDIDATES = 5;
-const MAX_SPAWN_SITES = 300;
+/** Vtable entries read, and how many of the first 8 must be functions. */
+const VTABLE_WORDS = 24;
+const VTABLE_MIN_FUNCTIONS = 3;
+const MAX_SPAWNERS = 150;
+const MAX_SPAWN_SITES = 60;
+/** Sites per spawner that also get a monster link (the search is slower). */
+const LINKED_SITES = 25;
 /** Caps that keep `raw/attacks.json` small. */
 const MAX_USES = 60;
 const NEAR_BEFORE = 0x800;
@@ -425,34 +447,98 @@ function calleeCode(
   return [...out.values()].sort((a, b) => b.calledBy.length - a.calledBy.length);
 }
 
-/** The likeliest shell spawners, their code, and their call sites. */
-function spawnCandidates(
+/** The EBOOT's bytes and the vaddr of its offset 0, for reading vtables there. */
+export interface EbootImage {
+  buf: Buffer;
+  base: number;
+}
+
+/**
+ * Constructors whose stored address holds a vtable (at least
+ * `VTABLE_MIN_FUNCTIONS` of its first 8 words are known functions), with
+ * the attack tables their vtable entries use, their init's code and their
+ * call sites. Spawners reaching a table come first.
+ */
+function findSpawners(
   graph: CodeGraph,
   files: ReadonlyMap<string, SearchFile>,
-): SpawnCandidate[] {
-  return graph
-    .storers(SPAWN_FIELDS, 2)
-    .slice(0, MAX_SPAWN_CANDIDATES)
-    .map((candidate, rank) => ({
-      ...candidate,
-      code: codeAt(files.get(candidate.file)!.buf, candidate.offset),
-      sites: graph
-        .callSites(candidate.file, candidate.offset)
-        .slice(0, MAX_SPAWN_SITES)
-        .map((site): SpawnSite => {
-          const link =
-            rank < LINKED_CANDIDATES
-              ? graph
-                  .monstersOf(site.file, site.func)
-                  .sort((a, b) => a.depth - b.depth || a.emId - b.emId)[0]
-              : undefined;
-          return {
-            ...site,
-            args: site.args.map((a) => (a === null ? null : hex(a))),
-            ...(link ? { monster: { emId: link.emId, at: link.at, depth: link.depth } } : {}),
-          };
-        }),
-    }));
+  users: ReadonlyMap<string, string[]>,
+  eboot: EbootImage | null,
+  code: Record<string, string>,
+): Spawner[] {
+  const seen = new Set<string>();
+  const spawners: Spawner[] = [];
+  for (const setup of graph.objectSetups()) {
+    const key = `${setup.file}:${setup.func}:${setup.value}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    let words = graph.wordsAt(setup.value, setup.file, VTABLE_WORDS);
+    let vtableIn = words ? graph.locate(setup.value, setup.file)[0]!.file : "";
+    if (!words && eboot) {
+      const at = setup.value - eboot.base;
+      if (at >= 0 && at + VTABLE_WORDS * 4 <= eboot.buf.length) {
+        words = Array.from({ length: VTABLE_WORDS }, (_, i) => eboot.buf.readUInt32LE(at + i * 4));
+        vtableIn = "eboot";
+      }
+    }
+    if (!words) continue;
+    const functions = words.slice(0, 8).filter((w) => graph.isFunction(w, setup.file)).length;
+    if (functions < VTABLE_MIN_FUNCTIONS) continue;
+    const slots = words.map((w, slot): VtableSlot => {
+      const where = graph.isFunction(w, setup.file) ? graph.locate(w, setup.file)[0] : undefined;
+      const tables = where ? users.get(`${where.file}:${where.offset}`) : undefined;
+      return {
+        slot,
+        value: hex(w),
+        ...(where ? { file: where.file, offset: where.offset } : {}),
+        ...(tables ? { tables } : {}),
+      };
+    });
+    let init: Spawner["init"] = null;
+    if (setup.init) {
+      const addCode = (file: string, offset: number) => {
+        const k = `${file}:${hex(offset)}`;
+        if (!(k in code)) code[k] = codeAt(files.get(file)!.buf, offset);
+        return k;
+      };
+      addCode(setup.init.file, setup.init.offset);
+      const callees = graph
+        .callsFrom(setup.init.file, setup.init.offset, FUNCTION_BYTES)
+        .map((c) => addCode(c.file, c.offset));
+      init = { ...setup.init, callees };
+    }
+    const sites = graph
+      .callSites(setup.file, setup.func)
+      .slice(0, MAX_SPAWN_SITES)
+      .map((site): SpawnSite => ({
+        ...site,
+        args: site.args.map((a) => (a === null ? null : hex(a))),
+      }));
+    spawners.push({
+      file: setup.file,
+      func: setup.func,
+      store: setup.store,
+      vtable: hex(setup.value),
+      vtableIn,
+      slots,
+      init,
+      sites,
+    });
+  }
+  const reaches = (s: Spawner) => s.slots.some((slot) => slot.tables);
+  const kept = spawners
+    .sort((a, b) => Number(reaches(b)) - Number(reaches(a)) || b.sites.length - a.sites.length)
+    .slice(0, MAX_SPAWNERS);
+  // Monster links only for the kept spawners' first sites: the search is slow.
+  for (const spawner of kept) {
+    spawner.sites.slice(0, LINKED_SITES).forEach((site) => {
+      const link = graph
+        .monstersOf(site.file, site.func)
+        .sort((a, b) => a.depth - b.depth || a.emId - b.emId)[0];
+      if (link) site.monster = { emId: link.emId, at: link.at, depth: link.depth };
+    });
+  }
+  return kept;
 }
 
 /** How far `rel` is from the table [0, size): 0 inside it. */
@@ -463,6 +549,7 @@ export function dumpAttacksRaw(
   files: readonly SearchFile[],
   crib: readonly CribAttack[],
   chunks: ChunkArray | null,
+  eboot: EbootImage | null = null,
 ): AttackRawDump {
   const byNumbers = cribIndex(crib);
   const pointers = new PointerIndex(files, chunks);
@@ -490,12 +577,27 @@ export function dumpAttacksRaw(
     };
   });
   const users = dumped.flatMap((f) => f.tables.flatMap((t) => t.code?.functions ?? []));
+  // Each table user's tables, by "file:offset".
+  const tablesByUser = new Map<string, string[]>();
+  for (const f of dumped) {
+    for (const t of f.tables) {
+      for (const fn of t.code?.functions ?? []) {
+        const key = `${fn.file}:${fn.offset}`;
+        const label = `${f.name}@${hex(t.offset)}`;
+        const list = tablesByUser.get(key) ?? [];
+        if (!list.includes(label)) list.push(label);
+        tablesByUser.set(key, list);
+      }
+    }
+  }
+  const code: Record<string, string> = {};
   return {
     ...(graph
       ? {
           scan: graph.stats(),
           callees: calleeCode(graph, byName, users),
-          spawns: spawnCandidates(graph, byName),
+          spawners: findSpawners(graph, byName, tablesByUser, eboot, code),
+          code,
         }
       : {}),
     files: dumped,

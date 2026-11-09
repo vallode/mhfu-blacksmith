@@ -486,13 +486,20 @@ each user function's code (0x400 bytes), and the functions they call two
 calls deep (`callees`, most widely called first).
 
 A shell's setup takes only the shell; its owner comes from a global table
-by its byte `0x15`. So the spawner fills in `0x0D`, `0x15` and `0x26`
-first. `spawns` lists the likeliest spawners (`CodeGraph.storers`: functions
-storing to two or more of those bytes off one register), with their code
-and every call to them: the calling function, the argument registers a0-a3
-and t0-t3 where the code sets them to constants (`scanCode` records them at
-each `jal`), and, for the first five, the nearest monster chunk leading to
-the caller.
+by its byte `0x15`, so its spawner fills in `0x0D`, `0x15` and `0x26` first.
+The sixth EU run found one spawner (`game_task.ovl` `0x104c40`): it
+allocates a 0x250-byte shell, stores a vtable (`0x089bd428`, in the EBOOT)
+at `+0`, and passes its arguments to the class's init. Monster code calls it
+with constants (Gravios, Plesioth, Lavasioth, Kushala Daora, Yian Kut-Ku).
+
+`spawners` in `raw/attacks.json` lists every such constructor
+(`CodeGraph.objectSetups`: a constant address stored at offset 0, then a
+call) whose address holds a vtable (three or more of its first eight words
+are known functions; read from the EBOOT through the vaddr base the
+sharpness tables calibrate). Each comes with its vtable's entries and the
+attack tables they use, its init (whose code, and its callees', is in
+`code`), and its call sites with their argument registers and monster
+links. Those reaching an attack table come first.
 
 Still open: which spawns (and so which monster) set which index, and what
 the remaining bytes mean.

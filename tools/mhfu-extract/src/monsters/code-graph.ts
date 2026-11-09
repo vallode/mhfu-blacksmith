@@ -59,8 +59,6 @@ interface Node {
 }
 
 const MAX_DEPTH = 6;
-/** Longest function `storers` reads when no later start bounds it. */
-const MAX_FUNCTION = 0x2000;
 const MAX_NODES = 400;
 const hex = (n: number) => `0x${n.toString(16)}`;
 
@@ -251,51 +249,6 @@ export class CodeGraph {
   }
 
   /**
-   * Functions that store to at least `min` of `fields` (byte offsets) off
-   * one base register: candidates for code filling in an object's fields,
-   * such as the shell spawner (bytes 0x0D, 0x15 and 0x26). Most fields
-   * matched first, then most callers.
-   */
-  storers(
-    fields: readonly number[],
-    min: number,
-  ): { file: string; offset: number; fields: number[]; callers: number }[] {
-    const out: { file: string; offset: number; fields: number[]; callers: number }[] = [];
-    for (const file of this.files) {
-      const r = file.ovl.reader;
-      const starts = this.starts.get(file)!;
-      starts.forEach((start, i) => {
-        const end = Math.min(starts[i + 1] ?? r.length, start + MAX_FUNCTION, r.length);
-        const byBase = new Map<number, Set<number>>();
-        for (let at = start; at + 4 <= end; at += 4) {
-          const w = r.u32(at);
-          const op = w >>> 26;
-          const width = op === 0x28 ? 1 : op === 0x29 ? 2 : op === 0x2b ? 4 : 0;
-          if (!width) continue;
-          const base = (w >>> 21) & 31;
-          const imm = ((w & 0xffff) << 16) >> 16;
-          for (const field of fields) {
-            if (field < imm || field >= imm + width) continue;
-            const set = byBase.get(base) ?? new Set<number>();
-            set.add(field);
-            byBase.set(base, set);
-          }
-        }
-        let best: number[] = [];
-        for (const set of byBase.values()) if (set.size > best.length) best = [...set];
-        if (best.length < min) return;
-        out.push({
-          file: file.name,
-          offset: start,
-          fields: best.sort((a, b) => a - b),
-          callers: (this.callers.get(`${file.name}:${start}`) ?? []).length,
-        });
-      });
-    }
-    return out.sort((a, b) => b.fields.length - a.fields.length || b.callers - a.callers);
-  }
-
-  /**
    * The `jal` sites calling the function at `offset` of the named file, each
    * with its calling function and argument registers (`CodeScan` calls).
    */
@@ -312,6 +265,80 @@ export class CodeGraph {
         args: call.args,
       };
     });
+  }
+
+  /** Where `vaddr`, read from the named file, can be: file name and offset. */
+  locate(vaddr: number, fromFileName: string): { file: string; offset: number }[] {
+    const from = this.files.find((f) => f.name === fromFileName);
+    if (!from) return [];
+    return this.resolve(vaddr, from).map((f) => ({
+      file: f.name,
+      offset: f.ovl.vaddrToOffset(vaddr),
+    }));
+  }
+
+  /** True if `vaddr`, read from the named file, is a known function start. */
+  isFunction(vaddr: number, fromFileName: string): boolean {
+    return this.locate(vaddr, fromFileName).some(({ file, offset }) => {
+      const starts = this.starts.get(this.files.find((f) => f.name === file)!)!;
+      let lo = 0;
+      let hi = starts.length;
+      while (lo < hi) {
+        const mid = (lo + hi) >>> 1;
+        if (starts[mid]! < offset) lo = mid + 1;
+        else hi = mid;
+      }
+      return starts[lo] === offset;
+    });
+  }
+
+  /** `count` words at `vaddr` from the overlay it means when read from the named file. */
+  wordsAt(vaddr: number, fromFileName: string, count: number): number[] | null {
+    const [where] = this.locate(vaddr, fromFileName);
+    if (!where) return null;
+    const r = this.files.find((f) => f.name === where.file)!.ovl.reader;
+    const out: number[] = [];
+    for (let i = 0; i < count && where.offset + i * 4 + 4 <= r.length; i++) {
+      out.push(r.u32(where.offset + i * 4));
+    }
+    return out;
+  }
+
+  /**
+   * Constructor-like code: a function that stores a constant address to
+   * offset 0 of an object (a vtable, when the address holds function
+   * pointers) and then calls a function (the class's init). Each with the
+   * store, the stored address and the first call after it.
+   */
+  objectSetups(): {
+    file: string;
+    func: number;
+    store: number;
+    value: number;
+    init: { file: string; offset: number } | null;
+  }[] {
+    const out: ReturnType<CodeGraph["objectSetups"]> = [];
+    for (const file of this.files) {
+      const scan = this.scans.get(file)!;
+      const starts = this.starts.get(file)!;
+      for (const store of scan.pointerStores) {
+        const func = this.funcOf(file, store.offset);
+        const next = starts.find((s) => s > store.offset) ?? file.ovl.reader.length;
+        const call = scan.calls.find((c) => c.offset > store.offset && c.offset < next);
+        const target = call ? this.resolve(call.target, file)[0] : undefined;
+        out.push({
+          file: file.name,
+          func,
+          store: store.offset,
+          value: store.value,
+          init:
+            call && target
+              ? { file: target.name, offset: target.ovl.vaddrToOffset(call.target) }
+              : null,
+        });
+      }
+    }
+    return out;
   }
 
   /** How much the decoder found per file, to check it reads real code. */

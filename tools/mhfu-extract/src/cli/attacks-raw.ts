@@ -44,6 +44,8 @@ export async function writeAttacksRaw(
   eboot: Buffer,
   overlays: MonsterOverlays,
   chunksOffset: number,
+  /** vaddr of the EBOOT's offset 0, for reading vtables there; null if unknown. */
+  ebootBase: number | null = null,
 ): Promise<void> {
   const emOvls = await loadEmOverlays(unpackedDir);
   const files: SearchFile[] = [
@@ -59,15 +61,20 @@ export async function writeAttacksRaw(
     ...(await modelEntries(unpackedDir)),
   ];
   const started = Date.now();
-  const dump = dumpAttacksRaw(files, cribAttacks(crib as AttackCrib), {
-    ovl: overlays.gameTask,
-    offset: chunksOffset,
-  });
+  const dump = dumpAttacksRaw(
+    files,
+    cribAttacks(crib as AttackCrib),
+    { ovl: overlays.gameTask, offset: chunksOffset },
+    ebootBase === null ? null : { buf: eboot, base: ebootBase },
+  );
   const rawPath = path.join(outDir, "raw", "attacks.json");
   await mkdir(path.dirname(rawPath), { recursive: true });
   await writeFile(rawPath, `${JSON.stringify(dump)}\n`, "utf-8");
   const tables = dump.files.flatMap((f) => f.tables);
   const records = tables.reduce((sum, t) => sum + t.count, 0);
+  console.log(
+    `Spawners: ${dump.spawners?.length ?? 0} (${dump.spawners?.filter((sp) => sp.slots.some((slot) => slot.tables)).length ?? 0} reaching an attack table).`,
+  );
   console.log(
     `Wrote ${rawPath}: ${tables.length} attack tables (${records} records) in ${dump.files.filter((f) => f.tables.length).length} of ${files.length} files, ${((Date.now() - started) / 1000).toFixed(1)}s.`,
   );
