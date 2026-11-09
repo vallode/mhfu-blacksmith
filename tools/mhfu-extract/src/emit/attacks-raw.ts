@@ -29,6 +29,13 @@ import {
   type AttackRecord,
 } from "../monsters/attacks.js";
 import {
+  fieldArg,
+  indexRules,
+  memoryReader,
+  recordFor,
+  type IndexRule,
+} from "../monsters/attack-usage.js";
+import {
   CodeGraph,
   type CodeFile,
   type MonsterLink,
@@ -111,6 +118,31 @@ export interface SpawnSite {
     kind: "jal" | "j";
     args: (string | null)[];
   }[];
+}
+
+/** A shell class: its index rules, its spawn entries, and the records its spawns use. */
+export interface UsageClass {
+  vtable: string;
+  rules: Omit<IndexRule, "expr">[];
+  /** Functions whose argument `kindArg` (and `variantArg`) becomes the shell's kind (variant). */
+  entries: { file: string; offset: number; kindArg: number; variantArg: number | null }[];
+}
+
+/** A record some family's code spawns, with the kinds and calls leading to it. */
+export interface UsedRecord {
+  table: string;
+  index: number;
+  kinds: number[];
+  calls: number;
+  record: AttackRecordDump;
+}
+
+export interface AttackUsage {
+  classes: UsageClass[];
+  /** By the file of the calling code: a per-monster overlay is a monster family. */
+  families: Record<string, UsedRecord[]>;
+  /** Spawn calls whose kind isn't a constant, or whose record falls outside its table. */
+  unresolved: number;
 }
 
 /** A call or tail jump to a record copier. */
@@ -226,6 +258,8 @@ export interface AttackRawDump {
   };
   /** `DATA_BYTES` at each constant address the setters' callers use, by "file:0xoffset". */
   data?: Record<string, string>;
+  /** Which records each monster family's code uses (`monsters/attack-usage.ts`). */
+  usage?: AttackUsage;
   files: {
     name: string;
     emId?: number;
@@ -682,6 +716,125 @@ function findSetters(
   return { copiers, sites };
 }
 
+const KIND_FIELD = 0x0d;
+const VARIANT_FIELD = 0x8b;
+
+/**
+ * Ties spawns to records: each class's rules (from the copier calls its
+ * vtable reaches), its spawn entries (the constructor, or the functions
+ * calling it, whose argument reaches the shell's kind), and every call to
+ * an entry with a constant kind, evaluated to a record. A table in a
+ * per-monster overlay is only used by code in that overlay (the overlays
+ * share addresses, so a wrapper in `game_task.ovl` serves each of them).
+ */
+function attackUsage(
+  graph: CodeGraph,
+  spawners: readonly Spawner[],
+  tables: ReadonlyMap<string, AttackTableDump>,
+): AttackUsage {
+  const structs = new Map<string, { table: string; count: number }>();
+  for (const [label, table] of tables) {
+    if (table.struct === undefined) continue;
+    const file = label.slice(0, label.lastIndexOf("@"));
+    structs.set(`${file}:${table.struct}`, { table: label, count: table.count });
+  }
+  const rules = indexRules(graph, structs);
+  // Rules by the vtables reaching their function.
+  const vtablesBySlot = new Map<string, Set<string>>();
+  for (const spawner of spawners) {
+    for (const slot of spawner.slots) {
+      if (slot.file === undefined) continue;
+      const key = `${slot.file}:${slot.offset}`;
+      vtablesBySlot.set(key, (vtablesBySlot.get(key) ?? new Set()).add(spawner.vtable));
+    }
+  }
+  const rulesByVtable = new Map<string, IndexRule[]>();
+  for (const { func, rule } of rules) {
+    for (const fn of graph.reachers(func.file, func.offset, 2)) {
+      for (const vtable of vtablesBySlot.get(`${fn.file}:${fn.offset}`) ?? []) {
+        const list = rulesByVtable.get(vtable) ?? [];
+        if (
+          !list.some((r) => r.site.offset === rule.site.offset && r.site.file === rule.site.file)
+        ) {
+          list.push(rule);
+        }
+        rulesByVtable.set(vtable, list);
+      }
+    }
+  }
+
+  const classes: UsageClass[] = [];
+  const used = new Map<string, Map<string, UsedRecord>>();
+  let unresolved = 0;
+  for (const [vtable, classRules] of rulesByVtable) {
+    const ctors = spawners.filter((s) => s.vtable === vtable);
+    const ctorVaddrs = new Set(ctors.map((c) => graph.overlay(c.file)!.loadBase + c.func));
+    const entries: UsageClass["entries"] = [];
+    const addEntry = (file: string, offset: number, prefer: string) => {
+      if (entries.some((e) => e.file === file && e.offset === offset)) return true;
+      const kindArg = fieldArg(graph, file, offset, KIND_FIELD, false, ctorVaddrs, prefer);
+      if (kindArg === null) return false;
+      const variantArg = fieldArg(graph, file, offset, VARIANT_FIELD, false, ctorVaddrs, prefer);
+      entries.push({ file, offset, kindArg, variantArg });
+      return true;
+    };
+    for (const ctor of ctors) {
+      if (addEntry(ctor.file, ctor.func, ctor.file)) continue;
+      for (const site of graph.sitesTo(ctor.file, ctor.func))
+        addEntry(site.file, site.func, ctor.file);
+    }
+    classes.push({
+      vtable,
+      rules: classRules.map(({ expr: _expr, ...rule }) => rule),
+      entries,
+    });
+    for (const entry of entries) {
+      for (const call of graph.sitesTo(entry.file, entry.offset)) {
+        const kind = call.args[entry.kindArg];
+        const variant = entry.variantArg === null ? 0 : (call.args[entry.variantArg] ?? 0);
+        let resolved = false;
+        for (const rule of classRules) {
+          const tableFile = rule.table.slice(0, rule.table.lastIndexOf("@"));
+          // A per-monster overlay's table: only that overlay's code spawns from it.
+          if (
+            tableFile !== "game_task.ovl" &&
+            tableFile !== "game_sub.ovl" &&
+            call.file !== tableFile
+          ) {
+            continue;
+          }
+          if (kind === null || kind === undefined) continue;
+          const index = recordFor(rule, kind, variant, memoryReader(graph, rule.site.file));
+          if (index === null) continue;
+          resolved = true;
+          const family = used.get(call.file) ?? new Map<string, UsedRecord>();
+          const key = `${rule.table}#${index}`;
+          const record = tables.get(rule.table)!.records[index]!;
+          const entryRecord: UsedRecord = family.get(key) ?? {
+            table: rule.table,
+            index,
+            kinds: [],
+            calls: 0,
+            record,
+          };
+          if (!entryRecord.kinds.includes(kind)) entryRecord.kinds.push(kind);
+          entryRecord.calls++;
+          family.set(key, entryRecord);
+          used.set(call.file, family);
+        }
+        if (!resolved) unresolved++;
+      }
+    }
+  }
+  const families: Record<string, UsedRecord[]> = {};
+  for (const [file, records] of [...used].sort((a, b) => a[0].localeCompare(b[0]))) {
+    families[file] = [...records.values()].sort(
+      (a, b) => a.table.localeCompare(b.table) || a.index - b.index,
+    );
+  }
+  return { classes, families, unresolved };
+}
+
 /** How far `rel` is from the table [0, size): 0 inside it. */
 const distance = (rel: number, size: number) => (rel < 0 ? -rel : rel >= size ? rel - size + 1 : 0);
 
@@ -735,11 +888,15 @@ export function dumpAttacksRaw(
   const data: Record<string, string> = {};
   if (!graph) return { files: dumped };
   const spawners = findSpawners(graph, byName, tablesByUser, eboot, code);
+  const tableByLabel = new Map<string, AttackTableDump>();
+  for (const f of dumped)
+    for (const t of f.tables) tableByLabel.set(`${f.name}@${hex(t.offset)}`, t);
   return {
     scan: graph.stats(),
     callees: calleeCode(graph, byName, users),
     spawners,
     setters: findSetters(graph, byName, spawners, eboot, code, data),
+    usage: attackUsage(graph, spawners, tableByLabel),
     code,
     data,
     files: dumped,

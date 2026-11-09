@@ -72,6 +72,12 @@ export async function writeAttacksRaw(
   await writeFile(rawPath, `${JSON.stringify(dump)}\n`, "utf-8");
   const tables = dump.files.flatMap((f) => f.tables);
   const records = tables.reduce((sum, t) => sum + t.count, 0);
+  const families = Object.entries(dump.usage?.families ?? {});
+  console.log(
+    `Attack usage: ${dump.usage?.classes.length ?? 0} shell classes, ${families.length} calling files (${families
+      .map(([file, records]) => `${file.replace(/^overlay\//, "")} ${records.length}`)
+      .join(", ")}), ${dump.usage?.unresolved ?? 0} spawn calls unresolved.`,
+  );
   console.log(
     `Spawners: ${dump.spawners?.length ?? 0} (${dump.spawners?.filter((sp) => sp.slots.some((slot) => slot.tables)).length ?? 0} reaching an attack table).`,
   );

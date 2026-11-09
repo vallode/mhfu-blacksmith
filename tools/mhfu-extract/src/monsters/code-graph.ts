@@ -466,6 +466,11 @@ export class CodeGraph {
     return out;
   }
 
+  /** The named overlay, if the graph has it. */
+  overlay(fileName: string): OvlFile | undefined {
+    return this.files.find((f) => f.name === fileName)?.ovl;
+  }
+
   /** How much the decoder found per file, to check it reads real code. */
   stats(): {
     file: string;

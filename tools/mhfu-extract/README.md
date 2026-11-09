@@ -535,7 +535,38 @@ reaching a table, `raw/attacks.json` now also gives the constructor's code
 and callees, each caller's code (`codeKey`), and the calls into each caller
 with their argument registers (`callers`): the whole spawn chain.
 
-Still open: that per-class mapping, and what the remaining bytes mean.
+The ninth EU run gave the whole chain for Diablos's class: monster code in
+`em14.ovl` calls its wrapper (`game_task.ovl` `0x1057d8`) with the kind in
+a2 (1 to 0x22, 40 calls), the wrapper allocates the shell, runs the
+constructor in `em14.ovl` and its init, and the class's setup copies record
+`kind`. Those kinds fall on the records the wiki names for Diablos and
+Monoblos (14 Horn Charge, 16 Horn Uppercut, 21 Burrow, 29 Tail Club, 30
+Hipcheck, ...). Every per-monster overlay's class works the same way
+through its own wrapper, always with the kind in a2. For `0x104c40`'s class,
+Plesioth's spawns (kind 1, variants 0-2) give records 4-6 of
+`game_task.ovl` `0x1a0c60` (its water beams), Gravios's kind 4 record 11
+(Lava Laser), Yian Kut-Ku's kind 3 record 9 (Fire Spit) and Kushala Daora's
+kind 0x12 records 51-52 (Air Blast, the second with snowman).
+
+`src/monsters/attack-usage.ts` does this for every class, and `usage` in
+`raw/attacks.json` holds the result:
+
+- **Rules** (`indexRules`, `valueOf`): at each call to a copier entry whose
+  a3 is a table's struct, the index in a2 read back through the
+  instructions before it, as an expression of the kind (`0x0D`), the
+  variant (`0x8B`), constants and loads (`variant + s16[0x9c00f68 + kind << 1]`).
+  A class's rules are those its vtable's slots reach within two calls.
+- **Spawn entries** (`fieldArg`): which argument of the constructor, or of
+  each function calling it, reaches the shell's kind and variant, walking
+  the code forward (following moves, unconditional branches, and calls
+  passing the shell in a0) into the init chain.
+- **Families**: every call to an entry with a constant kind, evaluated to a
+  record, by the file of the calling code. A per-monster overlay's table is
+  only used by that overlay's code, since the overlays share addresses.
+
+Still open: classes reached in other ways (those whose spawns pass the kind
+in a register the code computes), which monster of a family (Diablos or
+Monoblos) makes each call, and what the remaining bytes mean.
 
 ## 3D models (experimental)
 
