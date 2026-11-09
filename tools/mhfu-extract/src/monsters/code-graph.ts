@@ -34,7 +34,8 @@ export interface TableUse {
   kind: AddressUse["kind"];
   /** Function the instruction is in (file offset of its start). */
   func: number;
-  /** Record index and byte within it. */
+  /** Bytes from the table's start (negative before it), record index and byte within it. */
+  rel: number;
   record: number;
   byte: number;
 }
@@ -138,32 +139,104 @@ export class CodeGraph {
     return lo > 0 ? starts[lo - 1]! : offset;
   }
 
-  /** Code locations building or touching an address in [`from`, `to`) of the named file. */
-  usesOf(fileName: string, from: number, to: number, recordSize: number): TableUse[] {
+  /**
+   * Code locations building or touching an address in [`from`, `to`) of the
+   * named file, placed relative to the table at `origin`.
+   */
+  usesOf(
+    fileName: string,
+    from: number,
+    to: number,
+    origin: number,
+    recordSize: number,
+  ): TableUse[] {
     const file = this.files.find((f) => f.name === fileName);
     if (!file) return [];
     const lo = file.ovl.loadBase + from;
     const hi = file.ovl.loadBase + to;
+    const base = file.ovl.loadBase + origin;
     const uses: TableUse[] = [];
     for (const h of this.referrers(file)) {
       const sorted = this.sortedAddresses.get(h)!;
       const scan = this.scans.get(h)!;
       for (let i = lowerBound(sorted, lo); i < sorted.length && sorted[i]! < hi; i++) {
         const address = sorted[i]!;
-        const rel = address - lo;
+        const rel = address - base;
         for (const use of scan.addresses.get(address)!) {
           uses.push({
             file: h.name,
             offset: use.offset,
             kind: use.kind,
             func: this.funcOf(h, use.offset),
+            rel,
             record: Math.floor(rel / recordSize),
-            byte: rel % recordSize,
+            byte: ((rel % recordSize) + recordSize) % recordSize,
           });
         }
       }
     }
     return uses;
+  }
+
+  /**
+   * The nearest code-built addresses below `from` and at or above `to` in
+   * the named file, from any file that may refer to it, placed relative to
+   * `origin`.
+   */
+  nearest(
+    fileName: string,
+    from: number,
+    to: number,
+    origin: number,
+  ): {
+    below?: { file: string; offset: number; rel: number };
+    above?: { file: string; offset: number; rel: number };
+  } {
+    const file = this.files.find((f) => f.name === fileName);
+    if (!file) return {};
+    const lo = file.ovl.loadBase + from;
+    const hi = file.ovl.loadBase + to;
+    let below: { file: string; offset: number; rel: number } | undefined;
+    let above: { file: string; offset: number; rel: number } | undefined;
+    for (const h of this.referrers(file)) {
+      const sorted = this.sortedAddresses.get(h)!;
+      const scan = this.scans.get(h)!;
+      const i = lowerBound(sorted, lo) - 1;
+      if (i >= 0 && file.ovl.isOwnVaddr(sorted[i]!)) {
+        const rel = sorted[i]! - file.ovl.loadBase - origin;
+        if (!below || rel > below.rel) {
+          below = { file: h.name, offset: scan.addresses.get(sorted[i]!)![0]!.offset, rel };
+        }
+      }
+      const j = lowerBound(sorted, hi);
+      if (j < sorted.length && file.ovl.isOwnVaddr(sorted[j]!)) {
+        const rel = sorted[j]! - file.ovl.loadBase - origin;
+        if (!above || rel < above.rel) {
+          above = { file: h.name, offset: scan.addresses.get(sorted[j]!)![0]!.offset, rel };
+        }
+      }
+    }
+    return { ...(below ? { below } : {}), ...(above ? { above } : {}) };
+  }
+
+  /** How much the decoder found per file, to check it reads real code. */
+  stats(): {
+    file: string;
+    prologues: number;
+    calls: number;
+    callsResolved: number;
+    addresses: number;
+  }[] {
+    return this.files.map((file) => {
+      const scan = this.scans.get(file)!;
+      return {
+        file: file.name,
+        prologues: scan.prologues.length,
+        calls: scan.calls.length,
+        callsResolved: scan.calls.filter((c) => this.resolve(c.target, file).length > 0).length,
+        addresses: scan.addresses.size,
+      };
+    });
   }
 
   /** The monsters whose chunks lead to the function at `offset` in the named file. */

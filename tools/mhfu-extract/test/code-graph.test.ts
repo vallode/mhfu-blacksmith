@@ -106,9 +106,18 @@ test("CodeGraph leads from a table's user up to the chunk slot naming its monste
     ],
     { ovl: gameTask, offset: chunks },
   );
-  const uses = graph.usesOf("overlay/em01.ovl", tableAt, tableAt + 5 * ATTACK_RECORD_SIZE, 24);
+  const end = tableAt + 5 * ATTACK_RECORD_SIZE;
+  const uses = graph.usesOf("overlay/em01.ovl", tableAt, end, tableAt, 24);
   assert.deepEqual(uses, [
-    { file: "overlay/em01.ovl", offset: f + 8, kind: "addiu", func: f, record: 3, byte: 0 },
+    {
+      file: "overlay/em01.ovl",
+      offset: f + 8,
+      kind: "addiu",
+      func: f,
+      rel: 72,
+      record: 3,
+      byte: 0,
+    },
   ]);
   const links = graph.monstersOf("overlay/em01.ovl", f);
   const hex = (n: number) => `0x${n.toString(16)}`;
@@ -127,6 +136,9 @@ test("CodeGraph leads from a table's user up to the chunk slot naming its monste
 
 test("dumpAttacksRaw gives each table's code users and their monsters", () => {
   const { task, em, chunks, tableAt, f } = fixture();
+  // H builds an address 0x30 before the table (a struct the table is part of).
+  const h = OVL_HEADER_SIZE + 0x90;
+  writeWords(em, h, [PROLOGUE, ...loadAddress(V0, EM_BASE + tableAt - 0x30), JR_RA, NOP]);
   const gameTask = parseOvl(task);
   const files: SearchFile[] = [
     { name: "game_task.ovl", buf: task, ovl: gameTask },
@@ -135,8 +147,36 @@ test("dumpAttacksRaw gives each table's code users and their monsters", () => {
   const dump = dumpAttacksRaw(files, [], { ovl: gameTask, offset: chunks });
   const table = dump.files[1]!.tables[0]!;
   assert.equal(table.offset, tableAt);
+  // Inside the table first, then the nearest outside it.
+  assert.deepEqual(
+    table.code?.uses.map((u) => [u.offset, u.rel, u.record, u.byte]),
+    [
+      [f + 8, 72, 3, 0],
+      [h + 8, -0x30, -2, 0],
+    ],
+  );
+  // The instruction words around a use: the use is the ninth.
+  const words = table.code!.uses[1]!.words;
+  assert.equal(
+    words[8],
+    em
+      .readUInt32LE(h + 8)
+      .toString(16)
+      .padStart(8, "0"),
+  );
+  assert.equal(words.length, 17);
   assert.deepEqual(
     table.code?.functions.map((fn) => [fn.file, fn.offset, fn.records, fn.monsters[0]?.emId]),
-    [["overlay/em01.ovl", f, [3], 1]],
+    [
+      ["overlay/em01.ovl", f, [3], 1],
+      ["overlay/em01.ovl", h, [-2], undefined],
+    ],
+  );
+  // Nothing else in em01.ovl's code builds an address.
+  assert.deepEqual(table.code?.nearest, {});
+  // The decoder's counts per overlay.
+  assert.deepEqual(
+    dump.scan?.find((s) => s.file === "overlay/em01.ovl"),
+    { file: "overlay/em01.ovl", prologues: 3, calls: 1, callsResolved: 1, addresses: 2 },
   );
 });

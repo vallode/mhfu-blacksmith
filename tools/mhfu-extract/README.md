@@ -454,8 +454,19 @@ Which monster uses which records is traced through the code
 every overlay word as an Allegrex instruction and follows the constant
 addresses that `lui` + `addiu`/`ori` pairs build, the loads and stores at
 them, `jal` calls and function prologues. Each table's `code` in
-`raw/attacks.json` lists the instructions that build or read an address in
-it, grouped by function (with the records each touches). From each function
+`raw/attacks.json` lists the instructions that build or read an address
+from 0x800 bytes before it to 0x100 after (with the 17 instruction words
+around each), grouped by function with the records each touches, and the
+nearest such addresses outside that window. `scan` gives the decoder's
+counts per overlay.
+
+On the EU disc no code builds an address inside a table. Every table sits
+at the end of the same layout: a block of structs (often 0x50 bytes
+apart), a list of pointers into them, zero padding to the table. In the
+MHP2G decompilation's (`tclamb/mhp2g-decomp`) JP layout, the
+`game_task.ovl` tables fall in the data of the `shell` units, its
+attack-hit objects, and `em58.ovl`'s in `shell32`'s. So the code is
+probably reaching a table from the start of that layout. From each function
 `CodeGraph` searches upward, through its callers, the pointer lists holding
 its address and the code building that address, until a `MonChunk` slot
 points at the chain. That slot names the monster, and the path is given.

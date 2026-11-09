@@ -86,6 +86,12 @@ export interface AttackRecordDump extends AttackRecord {
   refs?: PointerRef[];
 }
 
+/** A code location near a table, with the instruction words around it. */
+export interface NearUse extends TableUse {
+  /** 8 instructions before to 8 after, as hex words (the use is the ninth). */
+  words: string[];
+}
+
 /** A function using a table: what it touches and which monsters lead to it. */
 export interface TableFunction {
   file: string;
@@ -104,12 +110,24 @@ export interface AttackTableDump {
   monster?: { name: string; attacks: number };
   /** The 0x80 bytes before the table, as hex. */
   before: string;
-  /** Code using the table (`monsters/code-graph.ts`), for overlays. */
-  code?: { uses: TableUse[]; functions: TableFunction[] };
+  /**
+   * Code using the table (`monsters/code-graph.ts`), for overlays: every
+   * code-built address from `NEAR_BEFORE` bytes before the table to
+   * `NEAR_AFTER` after it (the code may index from a struct before it),
+   * nearest first, and the functions behind them with their monsters.
+   */
+  code?: {
+    uses: NearUse[];
+    functions: TableFunction[];
+    /** The nearest code-built addresses outside the window, relative to the table's start. */
+    nearest: ReturnType<CodeGraph["nearest"]>;
+  };
   records: AttackRecordDump[];
 }
 
 export interface AttackRawDump {
+  /** What the MIPS decoder found per overlay. */
+  scan?: ReturnType<CodeGraph["stats"]>;
   files: {
     name: string;
     emId?: number;
@@ -121,7 +139,10 @@ export interface AttackRawDump {
 
 const BEFORE = 0x80;
 /** Caps that keep `raw/attacks.json` small. */
-const MAX_USES = 120;
+const MAX_USES = 60;
+const NEAR_BEFORE = 0x800;
+const NEAR_AFTER = 0x100;
+const WORDS_AROUND = 8;
 const MAX_LINKS = 12;
 const hex = (n: number) => `0x${n.toString(16)}`;
 
@@ -203,6 +224,7 @@ function dumpTable(
   byNumbers: ReadonlyMap<string, CribAttack[]>,
   pointers: PointerIndex,
   graph: CodeGraph | null,
+  byName: ReadonlyMap<string, SearchFile>,
 ): AttackTableDump {
   const ovl = file.ovl;
   // Pointers from the same file or game_task.ovl (always loaded); into
@@ -240,7 +262,7 @@ function dumpTable(
     count: run.count,
     ...(monster ? { monster } : {}),
     before: file.buf.subarray(Math.max(0, run.offset - BEFORE), run.offset).toString("hex"),
-    ...(graph && ovl ? { code: tableCode(graph, file.name, run) } : {}),
+    ...(graph && ovl ? { code: tableCode(graph, byName, file.name, run) } : {}),
     records,
   };
 }
@@ -248,15 +270,21 @@ function dumpTable(
 /** The code using a table, grouped by function, with the monsters leading to each. */
 function tableCode(
   graph: CodeGraph,
+  files: ReadonlyMap<string, SearchFile>,
   fileName: string,
   run: { offset: number; count: number },
-): { uses: TableUse[]; functions: TableFunction[] } {
-  const uses = graph.usesOf(
-    fileName,
-    run.offset,
-    run.offset + run.count * ATTACK_RECORD_SIZE,
-    ATTACK_RECORD_SIZE,
-  );
+): NonNullable<AttackTableDump["code"]> {
+  const end = run.offset + run.count * ATTACK_RECORD_SIZE;
+  const uses = graph
+    .usesOf(
+      fileName,
+      Math.max(0, run.offset - NEAR_BEFORE),
+      end + NEAR_AFTER,
+      run.offset,
+      ATTACK_RECORD_SIZE,
+    )
+    .sort((a, b) => distance(a.rel, end - run.offset) - distance(b.rel, end - run.offset))
+    .slice(0, MAX_USES);
   const byFunction = new Map<string, TableFunction>();
   for (const use of uses) {
     const key = `${use.file}:${use.func}`;
@@ -275,8 +303,30 @@ function tableCode(
       .sort((a, b) => a.depth - b.depth || a.emId - b.emId)
       .slice(0, MAX_LINKS),
   }));
-  return { uses: uses.slice(0, MAX_USES), functions };
+  const withWords = uses.map((use): NearUse => {
+    const buf = files.get(use.file)!.buf;
+    const words: string[] = [];
+    for (let i = -WORDS_AROUND; i <= WORDS_AROUND; i++) {
+      const at = use.offset + i * 4;
+      if (at >= 0 && at + 4 <= buf.length)
+        words.push(buf.readUInt32LE(at).toString(16).padStart(8, "0"));
+    }
+    return { ...use, words };
+  });
+  return {
+    uses: withWords,
+    functions,
+    nearest: graph.nearest(
+      fileName,
+      Math.max(0, run.offset - NEAR_BEFORE),
+      end + NEAR_AFTER,
+      run.offset,
+    ),
+  };
 }
+
+/** How far `rel` is from the table [0, size): 0 inside it. */
+const distance = (rel: number, size: number) => (rel < 0 ? -rel : rel >= size ? rel - size + 1 : 0);
 
 /** Finds and dumps every attack table in `files`, labelled from `crib`. */
 export function dumpAttacksRaw(
@@ -295,7 +345,9 @@ export function dumpAttacksRaw(
       shared: f.name === "game_task.ovl" || f.name === "game_sub.ovl",
     }));
   const graph = codeFiles.length ? new CodeGraph(codeFiles, chunks) : null;
+  const byName = new Map(files.map((f) => [f.name, f]));
   return {
+    ...(graph ? { scan: graph.stats() } : {}),
     files: files.map((file) => {
       const reader = file.ovl?.reader ?? new BinaryReader(file.buf);
       return {
@@ -304,7 +356,7 @@ export function dumpAttacksRaw(
         ...(file.ovl ? { loadBase: hex(file.ovl.loadBase) } : {}),
         length: file.buf.length,
         tables: findAttackTables(file.buf).map((run) =>
-          dumpTable(file, reader, run, byNumbers, pointers, graph),
+          dumpTable(file, reader, run, byNumbers, pointers, graph, byName),
         ),
       };
     }),
