@@ -14,6 +14,8 @@
  * as `unsourced` so the output can be audited.
  */
 
+import { G_RANK_STAR_OFFSET } from "./quests";
+
 export const GUILD_RANKS = ["low-rank", "high-rank", "g-rank"] as const;
 export type GuildRank = (typeof GUILD_RANKS)[number];
 
@@ -139,7 +141,9 @@ const RANK_NAMES: Record<GuildRank, string> = {
 
 export const rankName = (rank: GuildRank): string => RANK_NAMES[rank];
 
-export const tierLabel = (t: Tier): string => `${RANK_NAMES[t.rank]} ★${t.stars}`;
+/** "High Rank ★7"; G Rank's ★9-★11 are the game's G★1-G★3. */
+export const tierLabel = (t: Tier): string =>
+  `${RANK_NAMES[t.rank]} ★${t.rank === "g-rank" ? t.stars - G_RANK_STAR_OFFSET : t.stars}`;
 
 /** Is this one of the offered stages? Guards values read back from storage. */
 export function isStage(value: unknown): value is Tier {

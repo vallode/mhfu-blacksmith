@@ -185,6 +185,7 @@ describe("stages and availability", () => {
     assert.ok(!isStage({ rank: "low-rank", stars: 7 }));
     assert.ok(!isStage(null) && !isStage("g-rank") && !isStage({}));
     assert.equal(tierLabel({ rank: "high-rank", stars: 7 }), "High Rank ★7");
+    assert.equal(tierLabel({ rank: "g-rank", stars: 9 }), "G-Rank ★1");
   });
 
   it("hides gear that needs a later tier and never hides unknowns", () => {

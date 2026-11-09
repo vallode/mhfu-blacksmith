@@ -10,7 +10,13 @@ import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import StarMarks from "@/components/StarMarks";
 import { cn } from "@/lib/cn";
 import { useQuests } from "@/lib/client-data";
-import { questHref, questsOnHub, questStarLevels, type QuestHubSlug } from "@/lib/quests";
+import {
+  questHref,
+  questsOnHub,
+  questStarLevel,
+  questStarLevels,
+  type QuestHubSlug,
+} from "@/lib/quests";
 
 /** The quest ID in /quests/<hub>/<id>/, if the path has one. */
 function activeQuestId(pathname: string, hub: string): number | null {
@@ -99,11 +105,19 @@ export default function QuestHubShell({
               ))}
             </div>
             {/* Room to scroll the last rows clear of the star bar. */}
-            {index >= 0 && <div style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />}
+            {index >= 0 && (
+              <div
+                className="flex-none"
+                style={{ height: SELECTOR_BAR_HEIGHT }}
+                aria-hidden="true"
+              />
+            )}
           </Card>
           {index >= 0 && (
             <SelectorBar
-              label={<StarMarks stars={current ?? 0} scale={2} className="flex" />}
+              label={
+                <StarMarks {...questStarLevel(hub, current ?? 0)} scale={2} className="flex" />
+              }
               groupLabel="Quest star level"
               previousLabel="Previous star level"
               nextLabel="Next star level"
