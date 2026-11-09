@@ -423,7 +423,7 @@ gives break rewards:
 - The EBOOT's reward code gives a `capbreakindex` reward for each bit set
   in the quest's per-monster byte (`+0x5C2 + emID`). One function in
   `game_task.ovl` sets those bits (EU `0x09AD7F48`, `setBroken(monster,
-  type)`).
+type)`).
 - **The break table** (`monsters/breaks.ts`), in `game_task.ovl` right after
   the part durability records (`emChunk` `+0x1B4`), has 0x20-byte records:
   emID, body part, flinch count, a broken-hitzones flag, the effect's
