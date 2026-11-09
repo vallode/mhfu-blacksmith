@@ -40,6 +40,7 @@ pnpm --filter mhfu-extract extract --unpacked .cache/mhfu --out .cache/mhfu/extr
 pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
+pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 ```
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
@@ -61,6 +62,9 @@ pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data .
   from the disc".
 - `build-data` rewrites committed `data/` from the extracted output. See
   "Building `data/` from the disc".
+- `quest-flags` searches the unpacked EBOOT and overlays for the table
+  that maps quest IDs to their "cleared" bit in a save, and writes
+  `quest-flags.json` (or `--out`). See "Save quest flags".
 
 ### Region support: JP and EU equipment both fully wired into `extract`
 
@@ -672,6 +676,46 @@ rows.
 Not implemented (out of scope for now, same as the underlying parser —
 see "Quests (.mib)" above): `QuestScript`, gathering node locations/items,
 and arena sets.
+
+### Save quest flags
+
+A hunter's cleared quests are a 448-bit field (14 little-endian u32 words)
+at offset `0x3f88` of each hunter's block in the decrypted `MHP2NDG.BIN`,
+right after the item pouch. The location is confirmed three ways: the EU
+"All quests clear" CWCheat writes exactly those 14 words (its address sits
+at the same distance from the Zenny, Guild Points and Pokke Points codes as
+`0x3f88` does from their save offsets); a fresh hunter's only cleared
+quest set one bit; and clearing one more quest set one more.
+
+Which bit is which quest isn't on record anywhere found. What saves show
+so far is in `src/tables/quest-flags.ts`:
+
+- **Anchors** (quests cleared on purpose in an unedited save): `10001`
+  Mountain Herb Picking is bit 279, `1001` Gathering - Snowy Mountains is
+  bit 19, and a third hunter's three bits are `1004`, `1005` and `1020`.
+- **The rest** is fitted to a heavily played, possibly edited hunter. Its
+  cleared bits form runs exactly as long as each star level (27, 36, 25,
+  27, 33 for Guild ★7-G★3; 19, 18, 11, 14, 19, 26 for Village ★4-★9) with
+  unused bits between them, and every Urgent Quest lands on a set bit.
+  Bits 0-18 are assumed to be quests 1-10 and 101-109. Training School and
+  Treasure Hunting aren't in this field.
+
+The game must turn a quest ID into its bit somehow, so `quest-flags`
+searches the EBOOT and every `*_task.ovl`/`*_sub.ovl` overlay
+(`src/quests/flag-scan.ts`) two ways:
+
+- **Quest ID lists**: u16/u32 arrays of disc quest IDs (one field every
+  2-32 bytes), with 0 or all-ones entries allowed for unused slots. Each
+  list is placed by the anchors (`bitOfFirstEntry` = anchor bit minus its
+  index) and compared with the save-derived layout (`vsSaves`). A list with
+  all five anchors and no disagreements is the table.
+- **Ordered values**: strided runs, in order, of each star level's first
+  quest ID, first bit, quest count or slot count (count plus unused bits),
+  as u8/u16/u32. A table of ranges shows up here; each hit keeps its
+  records (and one either side) as hex so the other fields can be read.
+
+Neither search reads MIPS code, so a mapping computed only in code
+(e.g. `base + id - first` with immediates) wouldn't be found.
 
 ## Building `data/` from the disc
 
