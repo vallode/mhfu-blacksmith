@@ -14,7 +14,7 @@ import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
-import { breakIndex, breakKey, flinchThreshold } from "@/lib/monster-breaks";
+import { breakIndex, breakKey } from "@/lib/monster-breaks";
 import { formatRank } from "@/lib/monster-drops";
 import { monsterRecordFor } from "@/lib/monster-ids";
 import { clearedQuestIds, questsWithMonster } from "@/lib/quests";
@@ -128,22 +128,6 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     );
   }, [hitboxes, monster?.hitzones, breaks]);
 
-  // Each hitzone row's flinch threshold, from the body parts of its hitboxes;
-  // null (no column) without hitboxes or thresholds.
-  const flinchByRow = useMemo<Record<string, string | null> | null>(() => {
-    const thresholds = monster?.flinch_thresholds;
-    if (!hitboxes || !thresholds || !monster?.hitzones) return null;
-    return Object.fromEntries(
-      Object.keys(monster.hitzones).map((name) => [
-        name,
-        flinchThreshold(
-          thresholds,
-          hitboxes.filter((c) => c.parts.includes(name)).map((c) => c.part),
-        ),
-      ]),
-    );
-  }, [hitboxes, monster?.flinch_thresholds, monster?.hitzones]);
-
   // The nav and the list of monsters on the left come from the monsters
   // layout (MonsterShell), which stays mounted; this is only the detail panel.
   if (loading || !monster) {
@@ -151,6 +135,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   }
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
+  // Each hitzone row's flinch threshold, worked out by the data build; no
+  // column without any.
+  const flinchByRow = monster.hitzone_flinch;
   // The most effective part per column, to highlight it
   const bestHitzone: Partial<Record<(typeof HITZONE_COLS)[number], number>> = {};
   for (const col of HITZONE_COLS) {

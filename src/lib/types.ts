@@ -193,9 +193,17 @@ export interface Monster {
   breaks?: MonsterBreak[];
   /**
    * Damage each body part (hitbox capsule `part`) takes before the monster
-   * flinches, before quest scaling; null where there's no such part.
+   * flinches, before quest scaling; null where there's no such part. Only in
+   * `data/`: the site's bundles carry `hitzone_flinch` instead.
    */
   flinch_thresholds?: (number | null)[];
+  /**
+   * Each hitzone row's flinch threshold, by hitzone part: one value or a
+   * range ("100–160", see `flinchThreshold`). Worked out by the data build
+   * from `flinch_thresholds` and the monster's hitboxes; rows without one
+   * are absent, and so is the field when no row has one.
+   */
+  hitzone_flinch?: Record<string, string>;
 }
 
 export interface Decoration {

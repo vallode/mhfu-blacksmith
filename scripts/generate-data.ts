@@ -62,6 +62,8 @@ import {
   type ItemRecord,
 } from "../src/lib/items";
 import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
+import { flinchThreshold } from "../src/lib/monster-breaks";
+import type { HitboxCapsule } from "../src/lib/models";
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
@@ -271,6 +273,44 @@ function encodeArmor(a: ArmorPiece, minRank: Progress): CompactArmor {
   return out;
 }
 
+// ---------------------------------------------------------------------------
+// Monster hitboxes (public/models, see src/lib/models.ts)
+// ---------------------------------------------------------------------------
+const modelsDir = path.join(root, "public", "models");
+const monsterModelsPath = path.join(modelsDir, "manifest", "monsters.json");
+const monsterModels: Record<string, number> = fs.existsSync(monsterModelsPath)
+  ? readJson(monsterModelsPath)
+  : {};
+
+/** A monster's hitbox capsules, from the file next to its model; null if it has none. */
+function monsterHitboxes(name: string): HitboxCapsule[] | null {
+  const id = monsterModels[name];
+  if (!id) return null;
+  const p = path.join(modelsDir, "monsters", `em${String(id).padStart(2, "0")}.hitboxes.json`);
+  if (!fs.existsSync(p)) return null;
+  const { capsules } = readJson<{ capsules: HitboxCapsule[] }>(p);
+  return capsules.length ? capsules : null;
+}
+
+/**
+ * Each hitzone row's flinch threshold, from the body parts of the row's
+ * hitboxes: the site needs the hitboxes to tell which `flinch_thresholds`
+ * belong to a row, so the build works it out rather than the page.
+ */
+function hitzoneFlinch(m: Monster): (string | null)[] | null {
+  const thresholds = m.flinch_thresholds;
+  if (!m.hitzones || !thresholds) return null;
+  const hitboxes = monsterHitboxes(m.name);
+  if (!hitboxes) return null;
+  const rows = Object.keys(m.hitzones).map((name) =>
+    flinchThreshold(
+      thresholds,
+      hitboxes.filter((c) => c.parts.includes(name)).map((c) => c.part),
+    ),
+  );
+  return rows.some((v) => v !== null) ? rows : null;
+}
+
 function encodeMonster(m: Monster): CompactMonster {
   const out: CompactMonster = { n: m.name, s: m.slug };
   const d = internString(m.description);
@@ -293,8 +333,8 @@ function encodeMonster(m: Monster): CompactMonster {
   }
   if (typeof m.base_hp === "number") out.hp = m.base_hp;
   if (Array.isArray(m.breaks) && m.breaks.length > 0) out.bk = m.breaks;
-  if (Array.isArray(m.flinch_thresholds) && m.flinch_thresholds.length > 0)
-    out.ft = m.flinch_thresholds;
+  const flinch = out.hz && hitzoneFlinch(m);
+  if (flinch) out.hf = flinch.map((v) => (v === null ? null : intern(stringIndex, v)));
   if (m.drops && Object.keys(m.drops).length > 0) {
     out.dr = Object.entries(m.drops).map(([rankName, sources]) => [
       intern(stringIndex, rankName),
