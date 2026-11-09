@@ -202,11 +202,6 @@ export function questsOnHub(quests: Quest[], hub: string): Quest[] {
     .sort((a, b) => a.stars - b.stars || a.id - b.id);
 }
 
-/** A star level as the game writes it: one ★ per star (3 -> "★★★"). */
-export function starMarks(stars: number): string {
-  return "★".repeat(Math.max(0, stars));
-}
-
 /** The star levels a hub's quests span, lowest first. */
 export function questStarLevels(quests: Pick<Quest, "stars">[]): number[] {
   return [...new Set(quests.map((q) => q.stars))].sort((a, b) => a - b);

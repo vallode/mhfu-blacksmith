@@ -23,9 +23,8 @@ const barText =
   "text-[25px] leading-none tracking-[0.08em] whitespace-nowrap text-shadow-[2px_2px_0_rgb(0_0_0/0.6)] mobile:text-[20px]";
 
 interface Props {
-  label: string;
-  /** Screen-reader version of `label`, e.g. "3 stars" for "★★★". */
-  labelText?: string;
+  /** Text, or an element such as `StarMarks`. */
+  label: React.ReactNode;
   /** Accessible name of the group, e.g. "Weapon tree filter". */
   groupLabel: string;
   previousLabel: string;
@@ -39,7 +38,6 @@ interface Props {
 
 export default function SelectorBar({
   label,
-  labelText,
   groupLabel,
   previousLabel,
   nextLabel,
@@ -67,14 +65,7 @@ export default function SelectorBar({
         onClick={() => onStep(-1)}
       />
       <span className={cn(barText, "min-w-0 flex-auto truncate text-stat")} aria-live="polite">
-        {labelText ? (
-          <>
-            <span aria-hidden="true">{label}</span>
-            <span className="sr-only">{labelText}</span>
-          </>
-        ) : (
-          label
-        )}
+        {label}
       </span>
       {count && (
         <span className={cn(barText, "flex-none text-white")}>
