@@ -26,6 +26,15 @@ export function DetailHeader({ children }: { children: React.ReactNode }) {
   );
 }
 
+/** The item's name in the header; wraps (mid-word if it must) when it doesn't fit on a phone. */
+export function DetailName({ children, id }: { children: React.ReactNode; id?: string }) {
+  return (
+    <p id={id} className="min-w-0 wrap-anywhere whitespace-normal mobile:leading-[1.25]">
+      {children}
+    </p>
+  );
+}
+
 /**
  * The detail card with nothing selected (a section's own page, beside its
  * tree): NO DATA where the item's name would be, plus an optional note.
@@ -81,7 +90,9 @@ export function Stat({
   armor?: boolean;
 }) {
   return (
-    <div>
+    // Unless the value's longest word fits beside the label (min-content
+    // basis), it drops below it rather than running out of the card.
+    <div className={cn(!armor && "flex-wrap")}>
       <h3
         className={cn(
           "m-0 shrink-0 leading-none font-normal",
@@ -93,7 +104,7 @@ export function Stat({
       <p
         className={cn(
           "flex min-w-0 flex-wrap gap-y-[0.6rem]",
-          armor && "w-cells-4 justify-end text-white",
+          armor ? "w-cells-4 justify-end text-white" : "grow basis-[min-content]",
         )}
       >
         {children}
@@ -139,9 +150,9 @@ export function MaterialList({
 }) {
   return (
     <div className="flex flex-auto flex-col gap-x-0 gap-y-[13px]">
-      <p>
+      <p className="whitespace-normal">
         <span className="text-stat">{label}: </span>
-        {cost}z
+        <span className="whitespace-nowrap">{cost}z</span>
       </p>
       {materials.map((m, i) => (
         <MaterialRow key={i} material={m} />

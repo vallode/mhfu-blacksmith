@@ -5,9 +5,10 @@
 /**
  * Compact stat tables on weapon pages: ammo capacities.
  * First header is gold, the rest orange; the last column takes the slack.
+ * Smaller on a phone, where three capacity columns don't fit at full size.
  */
 export const statTable = [
-  "h-min flex-1 border-collapse text-main leading-[1.25] font-medium",
+  "h-min flex-1 border-collapse text-main leading-[1.25] font-medium mobile:text-small",
   "[&_td]:w-min [&_td]:pr-[1rem] [&_td]:text-left [&_td]:font-medium [&_td]:whitespace-nowrap",
   "[&_th]:w-min [&_th]:pr-[1rem] [&_th]:text-left [&_th]:font-medium [&_th]:whitespace-nowrap [&_th]:text-warm",
   "[&_th:first-of-type]:text-gold [&_th:last-of-type]:w-full",
@@ -17,18 +18,27 @@ export const statTable = [
 
 /**
  * Hunting horn melodies: note icons, effect, duration. The effect column
- * takes the slack and wraps on a phone; the notes stay on one line, and so
- * does the duration except on a phone, where four notes leave no room.
+ * takes the slack and wraps on a phone; the notes and the duration stay on
+ * one line. A phone has no room for the duration column next to four notes,
+ * so there the duration goes under the effect (`melodyDuration`,
+ * `melodyDurationBelow`) and the effect column ends the row.
  */
 export const melodyTable = [
   "h-min w-full border-collapse text-main leading-[1.25] font-medium mobile:text-small",
   "[&_th]:pr-[1rem] [&_th]:pb-[0.4rem] [&_th]:text-left [&_th]:font-medium [&_th]:whitespace-nowrap [&_th]:text-warm [&_th:first-of-type]:text-gold",
-  "[&_td]:py-[0.2rem] [&_td]:pr-[1rem] [&_td]:text-left [&_td]:align-middle [&_td:last-of-type]:whitespace-nowrap mobile:[&_td:last-of-type]:whitespace-normal",
+  "[&_td]:py-[0.2rem] [&_td]:pr-[1rem] [&_td]:text-left [&_td]:align-middle [&_td:last-of-type]:whitespace-nowrap",
   "[&_th:last-of-type]:pr-0 [&_td:last-of-type]:pr-0 [&_th:nth-of-type(2)]:w-full",
+  "mobile:[&_td:nth-of-type(2)]:pr-0 mobile:[&_th:nth-of-type(2)]:pr-0",
 ].join(" ");
 
 /** A melody's note icon: no gap between notes on a phone, where four would not fit. */
 export const melodyNote = "mobile:mr-0";
+
+/** The duration column (header and cells): hidden on a phone. */
+export const melodyDuration = "mobile:hidden";
+
+/** The duration under the effect, shown only on a phone. */
+export const melodyDurationBelow = "hidden text-muted mobile:block";
 
 /**
  * Monster hitzone table: part names left-aligned, values right-aligned in

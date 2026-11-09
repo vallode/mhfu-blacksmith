@@ -134,7 +134,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
         <div className="flex flex-row items-start gap-4 mobile:flex-col-reverse mobile:items-stretch">
           <div className="flex min-w-0 flex-1 flex-col gap-2 text-main text-gold">
             <div className="flex items-center">
-              <p className="leading-[1.25]">{monster.name}</p>
+              <p className="min-w-0 leading-[1.25] whitespace-normal">{monster.name}</p>
               {modelUrl && (
                 <ModelButton
                   open={modelOpen}
@@ -143,7 +143,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 />
               )}
             </div>
-            {monster.habitats && <p className="leading-[1.25]">{monster.habitats.join(", ")}</p>}
+            {monster.habitats && (
+              <p className="leading-[1.25] whitespace-normal">{monster.habitats.join(", ")}</p>
+            )}
             {monster.description && (
               <p className="text-small whitespace-normal text-white">{monster.description}</p>
             )}

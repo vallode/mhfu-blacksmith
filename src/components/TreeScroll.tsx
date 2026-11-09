@@ -123,8 +123,11 @@ export default function TreeScroll({
   return (
     // Every tree list is unstyled and sizes to its content, so deep branches
     // scroll horizontally instead of being clipped; nested branches indent.
+    // The wrapper is as tall as its rows (flex-none, not the card's height), so
+    // anything after it in the scrolling card, such as a spacer clearing a
+    // selector bar, comes after the last row.
     <div
-      className="h-full pl-[13px] [&_li_ul]:pl-[26px] [&_ul]:m-0 [&_ul]:w-max [&_ul]:min-w-full [&_ul]:list-none [&_ul]:p-0"
+      className="flex-none pl-[13px] [&_li_ul]:pl-[26px] [&_ul]:m-0 [&_ul]:w-max [&_ul]:min-w-full [&_ul]:list-none [&_ul]:p-0"
       ref={ref}
     >
       {children}

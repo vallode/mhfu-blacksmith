@@ -1,7 +1,7 @@
 "use client";
 
 import Icon from "@/components/Icon";
-import { DropGrid, DropList } from "@/components/MonsterDrops";
+import { DropGrid, DropList, dropName } from "@/components/MonsterDrops";
 import { useItems, type ItemLookup } from "@/lib/client-data";
 import { rewardTableHeading, type Quest, type QuestRewardTable } from "@/lib/quests";
 import type { MonsterDrop } from "@/lib/types";
@@ -41,7 +41,7 @@ export function QuestSupplies({ supplies }: { supplies: Quest["supplies"] }) {
         return (
           <li key={i} className="flex items-center gap-[0.8rem] leading-none text-white">
             <Icon type={item?.type ?? "ukwn"} color={item?.color} />
-            <span className="min-w-0 flex-auto truncate">{item?.name ?? `Item #${s.itemId}`}</span>
+            <span className={dropName}>{item?.name ?? `Item #${s.itemId}`}</span>
             <span className="flex-none text-muted">×{s.amount}</span>
             <span className="w-cells-9 flex-none text-right text-fine text-white/60">
               {s.stacks > 1 ? `${s.stacks} stacks` : ""}
