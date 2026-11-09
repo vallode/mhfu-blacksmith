@@ -55,6 +55,12 @@ pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
   table whose entry `NoteGLType` holds each horn's committed notes, plus
   the blocks densest in the committed melody note sequences and the bytes
   around both (`src/emit/melody-raw.ts`).
+  And `attacks.json`: every monster attack table, found by their record
+  layout and labelled with the Monster Hunter Wiki's numbers (see "Monster
+  attacks"), with `monster-attacks.json` beside the output (the site's
+  `data/monster-attacks.json`).
+- `attack-data --dump <raw/attacks.json> [--out <path>]` writes
+  `data/monster-attacks.json` from an existing dump.
 - `diff` compares extracted output against the repo's committed `data/`
   directory field-by-field and classifies mismatches.
 - `compare` reports per-file, per-field agreement between the two, pairing
@@ -415,6 +421,207 @@ Open questions:
 
 These dumps come from the disc, so they stay in `.cache/` like the rest of
 the extracted output.
+
+### Monster attacks (in progress)
+
+A monster attack is a 24-byte record with the same layout as the player's
+`PlayerMotVal` (`src/monsters/attacks.ts`):
+
+| Offset         | `PlayerMotVal` name | Monsters                                                                                                              |
+| -------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `0x02`         | MotionValue         | damage                                                                                                                |
+| `0x03`         | KnockbackStrength   | 2 or 1 in most records: probably the hunter's reaction                                                                |
+| `0x07`         |                     | `0xE0` in nearly every record                                                                                         |
+| `0x08`         |                     | guard knockback                                                                                                       |
+| `0x09`         | DamageType          | element bits: `0x04` fire, `0x10` water, `0x20` dragon, `0x40` thunder, `0x80` ice; bit 0 is set in all but 3 records |
+| `0x0A`         |                     | varies within a table (an index?)                                                                                     |
+| `0x0C`, `0x0D` | EffectonHit1, 2     | status bits: `0x0C` 1 sleep, 2 poison, 4 paralysis; `0x0D` 2 snowman, 4 soiled, 16 defense down                       |
+| `0x0E`         | StatusDuration      | the status's value (Rathian's Backflip: poison 25)                                                                    |
+| `0x14`         | KO                  | stun                                                                                                                  |
+
+It was found on the EU disc by searching every file for the Monster Hunter
+Wiki's damage, stun and guard knockback per attack
+(`src/overlay/attack-crib.json`: 283 attacks of 38 monsters, no
+subspecies or variants; CC BY-SA 4.0, see `NOTICE.md`). With the numbers
+as bytes, stun 18 bytes after damage and guard knockback 6 after, 27 of the
+32 monsters found agree on a 24-byte stride.
+
+The element and status bits are named by the wiki's elements and statuses
+for the records whose numbers match one of its attacks.
+
+On the EU disc there are 41 tables, 1,112 records, in `game_task.ovl` (23)
+and 15 of the 17 `emNN.ovl` files (not `em01` or `em33`); none in the EBOOT, `game_sub.ovl` or
+the model packages. Of the wiki's 259 attacks with damage and guard
+knockback, 249 have a record with the same numbers. Nothing in the monster
+chunks points at the tables. A table is not one monster's: monsters that
+share a skeleton share one (Diablos and Monoblos in `em14.ovl`, Gravios
+and Basarios in `em17.ovl`, Tigrex, Akantor and Ukanlos in `em75.ovl`),
+and the tables in `game_task.ovl` mix small monsters with large ones
+(Rathian's and Rathalos's attacks sit with 10-damage bites there; `em01.ovl`
+has no table). So `findAttackTables` finds them by shape: runs
+of at least four records whose bytes `0x04`, `0x11`, `0x13`, `0x15` and
+`0x17` are zero (as in all 691 records the search saw), with the top two
+bits of `0x07` set and `0x10` at most 5.
+
+`extract --raw` writes `raw/attacks.json` (`src/emit/attacks-raw.ts`):
+every table in `eboot.bin`, both main overlays, every `emNN.ovl` and the
+monster packages' skeleton and motion entries, with each record whole and
+decoded, the crib attacks with the same numbers, the 0x80 bytes before the
+table (a pointer list precedes several), and the pointers to each record
+from the same file or `game_task.ovl`.
+
+Which monster uses which records is traced through the code
+(`src/monsters/mips.ts`, `src/monsters/code-graph.ts`). `scanCode` reads
+every overlay word as an Allegrex instruction and follows the constant
+addresses that `lui` + `addiu`/`ori` pairs build, the loads and stores at
+them, `jal` calls and function prologues. Each table's `code` in
+`raw/attacks.json` lists the instructions that build or read an address
+from 0x800 bytes before it to 0x100 after (with the 17 instruction words
+around each), grouped by function with the records each touches, and the
+nearest such addresses outside that window. `scan` gives the decoder's
+counts per overlay.
+
+How the game reaches the records (fourth and fifth EU runs): every table
+sits at the end of the same layout, a block of structs (often 0x50 bytes
+apart), a list of pointers into them, then the table, and is followed by a
+struct whose first word points at the table. In the MHP2G decompilation's
+(`tclamb/mhp2g-decomp`) JP layout these fall in the data of the `shell`
+units, the game's attack-hit objects (`em58.ovl`'s in `shell32`'s). A
+shell's setup code picks its struct from the pointer list by its byte
+`0x26`, keeps it at `+0x34`, and calls one `game_task.ovl` function
+(`0x09b674c0` on the EU disc) with the shell, its owner, its byte `0x0D`
+and the address of the struct after the table. That keeps the struct at
+`+0xC8` and copies the record at `table + byte 0x0D * 24` into the shell at
+`+0x1C` (halving bytes `0x00`, `0x01`, `0x15` and `0x16`); `0x09b674d0`
+sets another index later. So a shell's attack is chosen by its byte `0x0D`,
+set by whatever spawns it. No code addresses a record directly.
+
+The pointer gives each table's true extent (`boundTables`): record 0, which
+the shape test misses (a placeholder), is part of it, and runs the shape
+test splits are one table (`em75.ovl`'s 107 records are one pool for
+Tigrex, Akantor and Ukanlos).
+
+For finding the spawns, `raw/attacks.json` also carries probe output, to be
+dropped once that is known: 0x800 bytes before each table and 0x200 after,
+each user function's code (0x400 bytes), and the functions they call two
+calls deep (`callees`, most widely called first).
+
+A shell's setup takes only the shell; its owner comes from a global table
+by its byte `0x15`, so its spawner fills in `0x0D`, `0x15` and `0x26` first.
+The sixth EU run found one spawner (`game_task.ovl` `0x104c40`): it
+allocates a 0x250-byte shell, stores a vtable (`0x089bd428`, in the EBOOT)
+at `+0`, and passes its arguments to the class's init. Monster code calls it
+with constants (Gravios, Plesioth, Lavasioth, Kushala Daora, Yian Kut-Ku).
+
+`spawners` in `raw/attacks.json` lists every such constructor
+(`CodeGraph.objectSetups`: a constant address stored at offset 0, then a
+call) whose address holds a vtable (three or more of its first eight words
+are known functions; read from the EBOOT through the vaddr base the
+sharpness tables calibrate). Each comes with its vtable's entries and the
+attack tables they use, its init (whose code, and its callees', is in
+`code`), and its call sites with their argument registers and monster
+links. Those reaching an attack table come first.
+
+What the seventh EU run showed (EBOOT vaddr base `0x8801a4c`, the same as
+JP): 110 of 150 constructors' vtables (in the EBOOT) reach an attack table,
+through slots 8-10 (the shell's setup). `0x104c40`'s class (vtable
+`0x089bd428`, table `game_task.ovl` `0x1a0c60`, 79 records) shows that the
+record is not simply byte `0x0D`. Its init passes the spawner's `a3` to
+`0x1189e8`, which stores it at `+0x0D` (a kind) and the spawner's `t0` at
+`+0x8B` (a variant), with the owner's slot at `+0x15`. Its setup
+(`0x118a58`) then takes record `start[kind] + variant` (the variant is 0
+for a few kinds), `start` being an s16 array at `0x09c00f68`. Byte `0x0D`
+also indexes the class's other per-kind arrays (floats at `0x09c00fc0`, three
+floats at `0x09c01110`). Monster code spawns it with kind 1 (Plesioth,
+variants 0-2), 4 (Gravios, 0, 1, 3), 3 (Yian Kut-Ku), 0x12 (Kushala Daora)
+and 0x26 or 1 (Lavasioth). So each class computes its record from its own
+code, and mapping monsters to records means decoding each class's setup.
+
+For decoding each class, `setters` lists the record copiers, found by shape
+(`CodeGraph.recordCopiers`: twelve or more loads of record byte `k` each
+followed by a store to shell byte `0x1C + k`, and the entry functions
+tail-jumping to them), and every call or tail jump (`j`, now recorded by
+`scanCode`) to one. Each comes with the caller's code (in `code`), the
+argument registers, and the vtables with a slot reaching the caller within
+two calls. `data` holds 0x40 bytes at each constant address those callers
+use (such as a class's start-of-kind array), from the overlays or the EBOOT.
+
+The eighth EU run: of the 75 calls to the copiers, every shell class in a
+per-monster overlay (all 15) passes byte `0x0D` itself (`lbu a2, 13(s1)`), so
+there the record is the kind. Classes in `game_task.ovl` mostly do too; the
+rest add 1, read a per-kind array, or pass a constant. Those classes'
+constructors are called from `ShellManager` wrappers in `game_task.ovl`
+(Diablos's at `0x1057d8`), which monster code calls. So for each spawner
+reaching a table, `raw/attacks.json` now also gives the constructor's code
+and callees, each caller's code (`codeKey`), and the calls into each caller
+with their argument registers (`callers`): the whole spawn chain.
+
+The ninth EU run gave the whole chain for Diablos's class: monster code in
+`em14.ovl` calls its wrapper (`game_task.ovl` `0x1057d8`) with the kind in
+a2 (1 to 0x22, 40 calls), the wrapper allocates the shell, runs the
+constructor in `em14.ovl` and its init, and the class's setup copies record
+`kind`. Those kinds fall on the records the wiki names for Diablos and
+Monoblos (14 Horn Charge, 16 Horn Uppercut, 21 Burrow, 29 Tail Club, 30
+Hipcheck, ...). Every per-monster overlay's class works the same way
+through its own wrapper, always with the kind in a2. For `0x104c40`'s class,
+Plesioth's spawns (kind 1, variants 0-2) give records 4-6 of
+`game_task.ovl` `0x1a0c60` (its water beams), Gravios's kind 4 record 11
+(Lava Laser), Yian Kut-Ku's kind 3 record 9 (Fire Spit) and Kushala Daora's
+kind 0x12 records 51-52 (Air Blast, the second with snowman).
+
+`src/monsters/attack-usage.ts` does this for every class, and `usage` in
+`raw/attacks.json` holds the result:
+
+- **Rules** (`indexRules`, `valueOf`): at each call to a copier entry whose
+  a3 is a table's struct, the index in a2 read back through the
+  instructions before it, as an expression of the kind (`0x0D`), the
+  variant (`0x8B`), constants and loads (`variant + s16[0x9c00f68 + kind << 1]`).
+  A class's rules are those its vtable's slots reach within two calls.
+- **Spawn entries** (`fieldArg`): which argument of the constructor, or of
+  each function calling it, reaches the shell's kind and variant, walking
+  the code forward (following moves, unconditional branches, and calls
+  passing the shell in a0) into the init chain.
+- **Families**: every call to an entry with a constant kind, evaluated to a
+  record, by the file of the calling code. A per-monster overlay's table is
+  only used by that overlay's code, since the overlays share addresses.
+
+The tenth EU run resolved 35 classes and records for 19 calling files
+(Rathian's family: Bite, Charge, Backflip with poison 25, Talon Divebomb with
+poison 50, three fireballs; Diablos's: Horn Charge, Horn Uppercut, Tail
+Spin, Burrow, Tail Club, Hipcheck), with 58 spawn calls unresolved. Three
+fixes since: tables are also bound from the struct each copier call passes
+(Gravios's table ends three records past where the shape test stops),
+calls into the shared per-monster range from a class whose table is in one
+overlay are read in that overlay (Gypceros's and Hypnocatrice's spawners
+are in `game_task.ovl`), and masking to a byte or halfword (`andi`,
+`seb`, `seh`) keeps an argument's origin.
+
+The eleventh EU run: 50 classes, with Gravios's (40 records), Gypceros's
+(41) and Hypnocatrice's (38) families now resolved, 84 calls unresolved.
+Monsters without an overlay of their own (Blangonga, Congalala, Rajang, the
+Hermitaurs, the raptor leaders, Cephadrome, Bulldrome, Vespoid Queen, ...)
+have their code in `game_task.ovl`, so their spawns came out as one
+`game_task.ovl` family. The decompilation splits `game_task.ovl` into code
+units by monster (`em51`: Blangonga, Congalala, Rajang; `em48`: the
+Hermitaurs and Ceanataur; ...), in the JP layout. Code sits before the
+monster chunk array, which moves 0x110 bytes on the EU disc, so a caller
+belongs to a unit when every shift from 0 to that one lands in it
+(`gameTaskUnit`, units in `src/overlay/game-task-units.json`). On that run's
+callers only one of about 1,200 was too close to a unit boundary to name.
+Families from `game_task.ovl` are now keyed by unit, with the decompilation's
+note in `notes`, and each used record lists its callers.
+
+The twelfth EU run: 50 classes, 55 calling files, 84 calls unresolved.
+`attack-data` (`src/emit/monster-attacks.ts`) turns its `usage` into
+`data/monster-attacks.json`: each monster family's records (damage, guard
+knockback, elements, statuses and stun; no wiki names), with the family's
+site monsters from `src/overlay/attack-families.json`.
+
+Still open: classes reached in other ways (those whose spawns pass the kind
+in a register the code computes), which monster of a family (Diablos or
+Monoblos) makes each call, and what the remaining bytes mean.
+`docs/monster-attacks.md` is the hand-off for continuing: the loop, the
+addresses, and the open questions.
 
 ### Monster breaks
 

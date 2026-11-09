@@ -16,6 +16,7 @@ import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
 import { dumpArmorRaw } from "../emit/armor-raw.js";
+import { writeAttacksRaw } from "./attacks-raw.js";
 import { writeCollisionRaw } from "./collision-raw.js";
 import { writeBreakCodeRaw } from "./break-code-raw.js";
 import {
@@ -31,9 +32,11 @@ import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
 import {
   JP_BASE_ADDRESS,
+  resolveTableOffset,
   verifyOffsets,
   type OffsetVerificationResult,
 } from "../tables/offsets.js";
+import { sharpnessVaddrBase } from "../tables/sharpness.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -44,7 +47,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts), and the break reward code references in `raw/break-code.json` with the overlays in `raw/overlays/` (emit/break-code-raw.ts). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts), the break reward code references in `raw/break-code.json` with the overlays in `raw/overlays/` (emit/break-code-raw.ts), and monster attack table candidates in `raw/attacks.json` (emit/attacks-raw.ts). */
   raw?: boolean;
 }
 
@@ -274,6 +277,32 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       monsters.locations.rewards,
       monsters.capBreak.length,
     );
+
+    // Monster attack table candidates: searched against overlay/attack-crib.json.
+    // A failed search mustn't stop the rest of the extract.
+    console.log("Searching for monster attack tables...");
+    try {
+      // The EBOOT's vaddr base, as the sharpness tables calibrate it, for vtables there.
+      const resolver =
+        manifest.region === "jp"
+          ? undefined
+          : (MHP2G_PROFILE.resolverForRegion(manifest.region) ?? undefined);
+      const ebootBase = sharpnessVaddrBase(
+        resolveTableOffset("sharpnessTable", reader, resolver),
+        reader,
+      );
+      console.log(`EBOOT vaddr base 0x${ebootBase.toString(16)}.`);
+      await writeAttacksRaw(
+        options.unpacked,
+        options.out,
+        ebootBuf,
+        overlays,
+        monsters.locations.chunks.offset,
+        ebootBase,
+      );
+    } catch (err) {
+      console.log(`Attack search failed: ${err instanceof Error ? err.message : String(err)}`);
+    }
   }
   Object.assign(output, emitMonsters(monsters));
 

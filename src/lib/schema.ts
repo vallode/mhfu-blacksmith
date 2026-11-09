@@ -24,6 +24,7 @@ import type {
   MonsterDrop,
 } from "./types";
 import { splitDropQuantity } from "./monster-drops";
+import { slugify } from "./slug";
 
 // ---------------------------------------------------------------------------
 // Dictionaries (shared across all bundles, emitted as dictionaries.json)
@@ -144,6 +145,12 @@ export interface CompactMonster {
   sz?: [number, number];
   /** base_hp */
   hp?: number;
+  /**
+   * attacks: [rows, sharedWith]. A row is [damage, guard, count, stun, statusValue,
+   * elements, statuses] (zeros and empty arrays when absent); sharedWith is
+   * [category, name][] of the family's other monsters.
+   */
+  at?: [[number, number, number, number, number, string[], string[]][], [string, string][]];
   /** breaks, as is */
   bk?: MonsterBreak[];
   /** hitzone_flinch: a flinch stringIdx (or null) per `hz` row, in its order */
@@ -407,6 +414,19 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     }
   }
 
+  const attacks: Monster["attacks"] = m.at && {
+    rows: m.at[0].map(([damage, guard, count, stun, statusValue, elements, statuses]) => ({
+      damage,
+      guard,
+      count,
+      ...(elements.length && { elements }),
+      ...(statuses.length && { statuses }),
+      ...(statusValue && { statusValue }),
+      ...(stun && { stun }),
+    })),
+    sharedWith: m.at[1].map(([cat, name]) => ({ name, category: cat, slug: slugify(name) })),
+  };
+
   return {
     name: m.n,
     slug: m.s,
@@ -417,6 +437,7 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     drops: m.dr ? drops : undefined,
     sizes: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     base_hp: m.hp,
+    attacks,
     breaks: m.bk,
     hitzone_flinch: hitzoneFlinch,
   };

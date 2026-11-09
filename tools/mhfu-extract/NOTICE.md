@@ -39,6 +39,27 @@ below.
 - **Overlay format** (`MWo3` header, base-address rebasing) documented by
   [SiD3W4y/mhfu-re](https://github.com/SiD3W4y/mhfu-re).
 
+## Code layout
+
+- **`src/overlay/game-task-units.json`** — the start of each code unit of
+  `game_task.ovl` in the JP layout, with its notes on which monsters each
+  `emNN` unit holds, from the MHP2G decompilation
+  [tclamb/mhp2g-decomp](https://github.com/tclamb/mhp2g-decomp)
+  (`config/task/game_task.splat.yaml`, CC0). Only the unit offsets and
+  names; none of its code.
+
+## Search crib
+
+- **`src/overlay/attack-crib.json`** — monster attack damage, stun and guard
+  knockback for Monster Hunter Freedom Unite, from the
+  [Monster Hunter Wiki](https://monsterhunterwiki.org/) (the
+  `monsters_games_attacks` data behind its "<Monster> (MHFU)" pages,
+  retrieved 2026-11-09), licensed
+  [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Only the
+  numbers and attack names are kept, for finding and labelling attack
+  tables on the disc (`src/emit/attacks-raw.ts`); the file is shared under
+  the same licence.
+
 None of the above vendors game assets, copyrighted Capcom text, or ROM data —
 only third-party reverse-engineering documentation and code. The game disc
 itself is never committed to this repository; see `README.md`.

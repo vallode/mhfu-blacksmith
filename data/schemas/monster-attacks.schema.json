@@ -1,0 +1,85 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Monster attacks file",
+  "description": "Monster attack records read off the disc (tools/mhfu-extract attack-data), grouped by the code that spawns them. A family's monsters share its code (subspecies, and species without code of their own), and the disc doesn't say which of them uses which record, so each family lists its monsters and records together. Damage is the base damage before the quest's attack multiplier. Records with the same numbers are separate records (other hitboxes or attacks), listed once each.",
+  "type": "object",
+  "required": ["families"],
+  "additionalProperties": false,
+  "properties": {
+    "families": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/family" }
+    }
+  },
+  "definitions": {
+    "family": {
+      "type": "object",
+      "required": ["code", "monsters", "attacks"],
+      "additionalProperties": false,
+      "properties": {
+        "code": {
+          "description": "The calling code: a per-monster overlay (\"overlay/em14.ovl\") or a game_task.ovl code unit (\"game_task.ovl:em51\").",
+          "type": "string",
+          "minLength": 1
+        },
+        "monsters": {
+          "description": "Site monster names (data/monsters/*.json).",
+          "type": "array",
+          "minItems": 1,
+          "items": { "type": "string", "minLength": 1 },
+          "uniqueItems": true
+        },
+        "attacks": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/attack" }
+        }
+      }
+    },
+    "attack": {
+      "type": "object",
+      "required": ["record", "damage", "guard"],
+      "additionalProperties": false,
+      "properties": {
+        "record": {
+          "description": "Where the record is: \"file@0xtable#index\".",
+          "type": "string",
+          "pattern": "^.+@0x[0-9a-f]+#\\d+$"
+        },
+        "damage": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "guard": {
+          "description": "Guard knockback.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "elements": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "enum": ["fire", "water", "thunder", "ice", "dragon"] },
+          "uniqueItems": true
+        },
+        "statuses": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "enum": ["sleep", "poison", "paralysis", "snowman", "soiled", "defense down"]
+          },
+          "uniqueItems": true
+        },
+        "statusValue": {
+          "description": "Buildup of the statuses.",
+          "type": "integer",
+          "minimum": 0,
+          "maximum": 255
+        },
+        "stun": {
+          "description": "Stun (KO) buildup.",
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 255
+        }
+      }
+    }
+  }
+}

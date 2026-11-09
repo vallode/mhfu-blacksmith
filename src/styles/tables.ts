@@ -59,3 +59,17 @@ export const hitzoneTable = [
 /** Hitzone value: the highest in its column is highlighted; zero is dimmed. */
 export const hitzoneBest = "text-positive";
 export const hitzoneZero = "text-unavailable";
+
+/**
+ * Monster attack table: damage, guard, stun and status columns for each
+ * group of identical attack records. Numbers right-aligned; the effects
+ * column takes the slack and wraps. Scrolls inside its container on phones.
+ */
+export const attackTable = [
+  "h-min w-full border-collapse text-small tracking-normal tabular-nums mobile:text-fine",
+  "[&_th]:pr-[1.2rem] [&_th]:pb-[0.4rem] [&_th]:text-right [&_th]:font-normal [&_th]:whitespace-nowrap [&_th]:text-warm",
+  "[&_td]:py-[0.2rem] [&_td]:pr-[1.2rem] [&_td]:text-right [&_td]:align-top [&_td]:text-white",
+  "[&_th:last-of-type]:pr-0 [&_td:last-of-type]:pr-0",
+  "[&_th:last-of-type]:text-left [&_td:last-of-type]:text-left",
+  "[&_th:first-of-type]:text-gold",
+].join(" ");

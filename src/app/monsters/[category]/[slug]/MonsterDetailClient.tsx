@@ -11,6 +11,7 @@ import ModelViewer, { type ModelCapsule } from "@/components/ModelViewer";
 import HitzoneControls, { type HitzonePart } from "@/components/HitzoneControls";
 import MonsterBreaks from "@/components/MonsterBreaks";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
+import MonsterAttacks from "@/components/MonsterAttacks";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
@@ -233,6 +234,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           },
         ]
       : [];
+  const attackTab: Tab[] = monster.attacks
+    ? [{ id: "attacks", label: "Attacks", content: <MonsterAttacks attacks={monster.attacks} /> }]
+    : [];
   // One tab per rank's drop tables
   const dropTabs: Tab[] = Object.entries(monster.drops ?? {}).map(([rank, sources]) => ({
     id: rank,
@@ -254,7 +258,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The loaded hunter's Guild Card counts. Only large monsters (the ones with
   // sizes) can be captured.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
-  const tabs = [...hitzoneTab, ...dropTabs, ...questTab];
+  const tabs = [...hitzoneTab, ...attackTab, ...dropTabs, ...questTab];
 
   return (
     <>

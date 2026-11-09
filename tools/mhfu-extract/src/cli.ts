@@ -9,6 +9,7 @@
  *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
  *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
+ *   tsx src/cli.ts attack-data --dump <attacks.json> [--out <path>]
  *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
  */
 import { fileURLToPath } from "node:url";
@@ -16,6 +17,7 @@ import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.
 import { parseCategories, runCompare } from "./cli/compare.js";
 import { printDiffSummary, runDiff } from "./cli/diff.js";
 import { runExportSite } from "./cli/export-site.js";
+import { runAttackData } from "./cli/attacks-raw.js";
 import { runExtract } from "./cli/extract.js";
 import { runModels } from "./cli/models.js";
 import { runQuestFlags } from "./cli/quest-flags.js";
@@ -59,6 +61,7 @@ const USAGE = `Usage:
   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,quests] [--report <path>] [--markdown <path>] [--dry-run]
+  tsx src/cli.ts attack-data --dump <attacks.json> [--out <path>]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]`;
 
 export async function main(argv: string[]): Promise<void> {
@@ -106,6 +109,13 @@ export async function main(argv: string[]): Promise<void> {
       });
       const converted = results.filter((result) => !result.error).length;
       console.log(`\nDone. Converted ${converted} of ${results.length} packages.`);
+      return;
+    }
+    case "attack-data": {
+      await runAttackData({
+        raw: requireFlag(flags, "dump"),
+        out: flags.out ?? "../../data/monster-attacks.json",
+      });
       return;
     }
     case "export-site": {

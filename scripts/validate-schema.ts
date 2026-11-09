@@ -25,6 +25,7 @@ const checks: [label: string, schema: string, files: string[]][] = [
   ["quests", "quest", jsonFiles("quests")],
   ["items", "item", ["items.json"]],
   ["skills", "skill", ["skills.json"]],
+  ["monster attacks", "monster-attacks", ["monster-attacks.json"]],
   ["equipment IDs", "equipment-ids", ["equipment-ids.json"]],
 ];
 

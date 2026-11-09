@@ -61,9 +61,15 @@ import {
   normalizeItemName,
   type ItemRecord,
 } from "../src/lib/items";
+import { groupAttacks, type RawAttack } from "../src/lib/monster-attacks";
 import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import type { HitboxCapsule } from "../src/lib/models";
+
+interface AttackFamily {
+  monsters: string[];
+  attacks: RawAttack[];
+}
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
@@ -314,6 +320,23 @@ function hitzoneFlinch(m: Monster): (string | null)[] | null {
 
 function encodeMonster(m: Monster): CompactMonster {
   const out: CompactMonster = { n: m.name, s: m.slug };
+  const fam = attackFamilyOf.get(m.name);
+  if (fam) {
+    out.at = [
+      groupAttacks(fam.attacks).map((r) => [
+        r.damage,
+        r.guard,
+        r.count,
+        r.stun ?? 0,
+        r.statusValue ?? 0,
+        r.elements ?? [],
+        r.statuses ?? [],
+      ]),
+      fam.monsters
+        .filter((n) => n !== m.name)
+        .map((n) => [monsterCategoryOf.get(n) ?? "", n] as [string, string]),
+    ];
+  }
   const d = internString(m.description);
   if (d !== undefined) out.d = d;
   if (Array.isArray(m.habitats) && m.habitats.length > 0) {
@@ -482,6 +505,22 @@ for (const slot of ARMOR_SLOTS) {
 }
 
 // Monsters
+const monsterCategoryOf = new Map<string, string>();
+for (const category of MONSTER_CATEGORIES) {
+  const p = path.join(dataDir, "monsters", `${category}.json`);
+  if (!fs.existsSync(p)) continue;
+  for (const m of readJson<{ monsters: Monster[] }>(p).monsters)
+    monsterCategoryOf.set(m.name, category);
+}
+const attackFamilyOf = new Map<string, AttackFamily>();
+for (const fam of readJson<{ families: AttackFamily[] }>(path.join(dataDir, "monster-attacks.json"))
+  .families) {
+  for (const name of fam.monsters) {
+    if (!monsterCategoryOf.has(name))
+      throw new Error(`monster-attacks.json: unknown monster ${name}`);
+    attackFamilyOf.set(name, fam);
+  }
+}
 for (const category of MONSTER_CATEGORIES) {
   const p = path.join(dataDir, "monsters", `${category}.json`);
   if (!fs.existsSync(p)) continue;

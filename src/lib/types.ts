@@ -161,6 +161,27 @@ export interface MonsterDrop {
   color?: string;
 }
 
+/** Identical attack records (same numbers), listed once with a count. */
+export interface MonsterAttackRow {
+  /** Base damage, before the quest's attack multiplier */
+  damage: number;
+  /** Guard knockback */
+  guard: number;
+  count: number;
+  elements?: string[];
+  statuses?: string[];
+  /** Buildup of the statuses */
+  statusValue?: number;
+  /** Stun (KO) buildup */
+  stun?: number;
+}
+
+/** A monster's attacks. The disc gives them per code family, so `sharedWith` are the other monsters on the same numbers. */
+export interface MonsterAttacks {
+  rows: MonsterAttackRow[];
+  sharedWith: { name: string; category: string; slug: string }[];
+}
+
 /** One break reward and the body parts behind it (from the disc; see tools/mhfu-extract `monsters/breaks.ts`). */
 export interface MonsterBreak {
   /** The break's drop group label without "break " ("head", "wing"). */
@@ -189,6 +210,7 @@ export interface Monster {
   sizes?: { min: number; max: number };
   /** HP before a quest's multiplier, from the disc */
   base_hp?: number;
+  attacks?: MonsterAttacks;
   /** Breakable parts, one entry per break reward */
   breaks?: MonsterBreak[];
   /**
