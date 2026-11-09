@@ -62,6 +62,20 @@ export async function runQuestFlags(options: QuestFlagsOptions): Promise<QuestFl
 }
 
 export function printQuestFlagSummary(report: QuestFlagReport): void {
+  const t = report.table;
+  if (t) {
+    const ids = Object.keys(t.bits).length;
+    console.log(
+      `\nFlag table: ${t.file} @0x${t.offset.toString(16)} u${t.width * 8} stride ${t.stride} (from ${t.hits} lists), ${t.entries.length} bits, ${ids} quest IDs placed.` +
+        `\n  anchors ${t.anchorsMatched.join(",") || "none"}` +
+        (t.anchorsMissed.length ? ` (missed ${t.anchorsMissed.join(",")})` : "") +
+        `\n  vs saves: ${t.vsSaves.agree} agree, ${t.vsSaves.disagree} disagree, ${t.vsSaves.onlyInTable} only in the table, ${t.vsSaves.onlyInSaves} only in the saves` +
+        `\n  ${Object.keys(t.otherEntries).length} entries aren't disc quest IDs, ${Object.keys(t.repeats).length} repeat one`,
+    );
+    for (const d of t.vsSaves.firstDisagreements.slice(0, 5)) console.log(`  ${d}`);
+  } else {
+    console.log("\nFlag table: no ID list was placed by the anchors.");
+  }
   const anchored = report.idLists.filter((h) => h.anchorsMatched.length > 0);
   console.log(
     `\nQuest ID lists: ${report.idLists.length} found, ${anchored.length} placed by the anchor bits.`,

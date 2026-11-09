@@ -1,12 +1,13 @@
 /**
  * Where each quest's "cleared" flag sits in a hunter's save, as far as it is
- * known from real saves (see `quest-flags` in the README). The `quest-flags`
- * command searches the disc for the game's own table and checks it against
- * these.
+ * known from real saves and the game's table (see "Save quest flags" in the
+ * README). The `quest-flags` command finds that table on the disc and
+ * checks it against these.
  *
- * The flags are a 448-bit field (14 little-endian u32 words) at offset 0x3f88
- * of each hunter's block in the decrypted MHP2NDG.BIN, right after the item
- * pouch. Bit `n` is byte `n >> 3`, mask `1 << (n & 7)`.
+ * The flags are a 512-bit field (64 bytes) at offset 0x3f88 of each hunter's
+ * block in the decrypted MHP2NDG.BIN, between the item pouch and the play
+ * time. Bit `n` is byte `n >> 3`, mask `1 << (n & 7)`. The EU "All quests
+ * clear" cheat only sets the first 448; the Training School is after them.
  */
 
 /**
@@ -52,6 +53,7 @@ export const SAVE_DERIVED_GROUPS: readonly QuestFlagGroup[] = [
   { firstId: 3001, count: 25, firstBit: 172 },
   { firstId: 3101, count: 27, firstBit: 202 },
   { firstId: 3201, count: 33, firstBit: 232 },
+  { firstId: 4001, count: 7, firstBit: 272 },
   // Village: ★1-★3 are contiguous.
   { firstId: 10001, count: 5, firstBit: 279 },
   { firstId: 10101, count: 18, firstBit: 284 },
@@ -62,9 +64,12 @@ export const SAVE_DERIVED_GROUPS: readonly QuestFlagGroup[] = [
   { firstId: 11001, count: 14, firstBit: 375 },
   { firstId: 11101, count: 19, firstBit: 395 },
   { firstId: 11201, count: 26, firstBit: 420 },
+  // Training School: Basic Training, then Mastery.
+  { firstId: 20001, count: 18, firstBit: 450 },
+  { firstId: 21001, count: 23, firstBit: 468 },
 ];
 
-export const QUEST_FLAG_BITS = 448;
+export const QUEST_FLAG_BITS = 512;
 
 /** Quest ID -> bit for every quest in `groups`. */
 export function groupsToBitMap(groups: readonly QuestFlagGroup[]): Map<number, number> {

@@ -679,40 +679,49 @@ and arena sets.
 
 ### Save quest flags
 
-A hunter's cleared quests are a 448-bit field (14 little-endian u32 words)
-at offset `0x3f88` of each hunter's block in the decrypted `MHP2NDG.BIN`,
-right after the item pouch. The location is confirmed three ways: the EU
-"All quests clear" CWCheat writes exactly those 14 words (its address sits
-at the same distance from the Zenny, Guild Points and Pokke Points codes as
-`0x3f88` does from their save offsets); a fresh hunter's only cleared
-quest set one bit; and clearing one more quest set one more.
+A hunter's cleared quests are a 512-bit field (64 bytes) at offset `0x3f88`
+of each hunter's block in the decrypted `MHP2NDG.BIN`, between the item
+pouch and the play time (`0x3fc8`). Bit `n` is byte `n >> 3`, mask
+`1 << (n & 7)`. The location is confirmed three ways: the EU "All quests
+clear" CWCheat writes the first 14 u32 words (its address sits at the same
+distance from the Zenny, Guild Points and Pokke Points codes as `0x3f88`
+does from their save offsets); a fresh hunter's only cleared quest set one
+bit; and clearing one more quest set one more. The cheat's 448 bits stop
+short of the Training School, which starts at bit 450.
 
-Which bit is which quest isn't on record anywhere found. What saves show
-so far is in `src/tables/quest-flags.ts`:
+**The game's table** is an array with one u16 quest ID per bit: on the EU
+disc it is at EBOOT `0x19a65c` (bit 0 = quest 1). In bit order it holds
+quests 1-10 and 101-109, the Guild (1001-3233), Treasure Hunting
+(4001-4007, bits 272-278), the Village (10001-11226, from bit 279) and the
+Training School (20001-20018 from bit 450, 21001-21023 from 468). Each
+star level starts on its own boundary, so there are entries between groups
+that aren't disc quest IDs.
+
+It agrees with what saves showed first (`src/tables/quest-flags.ts`):
 
 - **Anchors** (quests cleared on purpose in an unedited save): `10001`
   Mountain Herb Picking is bit 279, `1001` Gathering - Snowy Mountains is
   bit 19, and a third hunter's three bits are `1004`, `1005` and `1020`.
-- **The rest** is fitted to a heavily played, possibly edited hunter. Its
-  cleared bits form runs exactly as long as each star level (27, 36, 25,
-  27, 33 for Guild ★7-G★3; 19, 18, 11, 14, 19, 26 for Village ★4-★9) with
-  unused bits between them, and every Urgent Quest lands on a set bit.
-  Bits 0-18 are assumed to be quests 1-10 and 101-109. Training School and
-  Treasure Hunting aren't in this field.
+- **Group starts** fitted to a heavily played, possibly edited hunter,
+  whose cleared bits form runs exactly as long as each star level (27, 36,
+  25, 27, 33 for Guild ★7-G★3; 19, 18, 11, 14, 19, 26 for Village ★4-★9),
+  and whose Training School bits are 450-458 and 468-490.
 
-The game must turn a quest ID into its bit somehow, so `quest-flags`
-searches the EBOOT and every `*_task.ovl`/`*_sub.ovl` overlay
-(`src/quests/flag-scan.ts`) two ways:
+`quest-flags` searches the EBOOT and every `*_task.ovl`/`*_sub.ovl`
+overlay (`src/quests/flag-scan.ts`) for it:
 
 - **Quest ID lists**: u16/u32 arrays of disc quest IDs (one field every
   2-32 bytes), with 0 or all-ones entries allowed for unused slots. Each
   list is placed by the anchors (`bitOfFirstEntry` = anchor bit minus its
-  index) and compared with the save-derived layout (`vsSaves`). A list with
-  all five anchors and no disagreements is the table.
+  index) and compared with the save-derived layout (`vsSaves`).
+- **The table** (`table` in the report): the lists are pieces of one table
+  split up by the entries that aren't quest IDs, so the bit-0 position most
+  lists point to is read whole. `bits` maps every quest ID to its bit,
+  `otherEntries` keeps the values between groups, and `entries` has all
+  512 raw values.
 - **Ordered values**: strided runs, in order, of each star level's first
-  quest ID, first bit, quest count or slot count (count plus unused bits),
-  as u8/u16/u32. A table of ranges shows up here; each hit keeps its
-  records (and one either side) as hex so the other fields can be read.
+  quest ID, first bit, quest count or slot count, as u8/u16/u32, in case a
+  disc keeps the layout as a table of ranges instead.
 
 Neither search reads MIPS code, so a mapping computed only in code
 (e.g. `base + id - first` with immediates) wouldn't be found.

@@ -313,8 +313,8 @@ export function findSequenceTables(
 
 /** The values `findSequenceTables` looks for: each star level's first ID, first bit and size. */
 export function flagSequences(): NamedSequence[] {
-  const guild = SAVE_DERIVED_GROUPS.filter((g) => g.firstId >= 1000 && g.firstId < 10000);
-  const village = SAVE_DERIVED_GROUPS.filter((g) => g.firstId >= 10000);
+  const guild = SAVE_DERIVED_GROUPS.filter((g) => g.firstId >= 1000 && g.firstId < 4000);
+  const village = SAVE_DERIVED_GROUPS.filter((g) => g.firstId >= 10000 && g.firstId < 20000);
   return [
     { name: "guild first IDs", values: guild.map((g) => g.firstId) },
     { name: "village first IDs", values: village.map((g) => g.firstId) },
@@ -326,31 +326,156 @@ export function flagSequences(): NamedSequence[] {
     // table stores capacities: the next group's first bit minus this one's.
     {
       name: "guild slot counts",
-      values: guild.map((g, i) => (guild[i + 1]?.firstBit ?? 277) - g.firstBit),
+      values: guild.map((g, i) => (guild[i + 1]?.firstBit ?? 272) - g.firstBit),
     },
     {
       name: "village slot counts",
-      values: village.map((g, i) => (village[i + 1]?.firstBit ?? QUEST_FLAG_BITS) - g.firstBit),
+      values: village.map((g, i) => (village[i + 1]?.firstBit ?? 450) - g.firstBit),
     },
   ];
+}
+
+export interface FlagTable {
+  file: string;
+  /** File offset of the entry for bit 0. */
+  offset: number;
+  width: 2 | 4;
+  stride: number;
+  /** ID-list hits that put bit 0 here. */
+  hits: number;
+  /** The raw value at every bit, `QUEST_FLAG_BITS` of them (fewer if the file ends first). */
+  entries: number[];
+  /** Disc quest ID -> bit (its first entry, if it appears twice). */
+  bits: Record<number, number>;
+  /** Later entries for a quest ID already placed: `bit: id`. */
+  repeats: Record<number, number>;
+  /** Bits whose value isn't a disc quest ID, 0 or all-ones: `bit: value`. */
+  otherEntries: Record<number, number>;
+  anchorsMatched: number[];
+  anchorsMissed: number[];
+  vsSaves: {
+    agree: number;
+    disagree: number;
+    onlyInTable: number;
+    onlyInSaves: number;
+    firstDisagreements: string[];
+  };
+}
+
+/**
+ * The anchored ID lists are often one table split up by entries that aren't
+ * disc quest IDs. Each list implies where bit 0 is (`offset -
+ * bitOfFirstEntry * stride`); the start most lists agree on (most anchors
+ * matched, then most lists) is read whole, every entry kept as found.
+ */
+export function assembleFlagTable(
+  files: readonly ScanFile[],
+  lists: readonly IdListHit[],
+  questIds: ReadonlySet<number>,
+  anchors: Readonly<Record<number, number>> = QUEST_FLAG_ANCHORS,
+  saveMap: Map<number, number> = groupsToBitMap(SAVE_DERIVED_GROUPS),
+): FlagTable | null {
+  const starts = new Map<
+    string,
+    {
+      file: string;
+      offset: number;
+      width: 2 | 4;
+      stride: number;
+      hits: number;
+      anchors: Set<number>;
+    }
+  >();
+  for (const h of lists) {
+    if (h.bitOfFirstEntry === null) continue;
+    const offset = h.offset - h.bitOfFirstEntry * h.stride;
+    if (offset < 0) continue;
+    const key = `${h.file}|${h.width}|${h.stride}|${offset}`;
+    const start = starts.get(key) ?? {
+      file: h.file,
+      offset,
+      width: h.width,
+      stride: h.stride,
+      hits: 0,
+      anchors: new Set<number>(),
+    };
+    start.hits++;
+    for (const id of h.anchorsMatched) start.anchors.add(id);
+    starts.set(key, start);
+  }
+  const best = [...starts.values()].sort(
+    (a, b) => b.anchors.size - a.anchors.size || b.hits - a.hits,
+  )[0];
+  if (!best) return null;
+  const buf = files.find((f) => f.name === best.file)!.buf;
+
+  const entries: number[] = [];
+  const bits: Record<number, number> = {};
+  const repeats: Record<number, number> = {};
+  const otherEntries: Record<number, number> = {};
+  for (let bit = 0; bit < QUEST_FLAG_BITS; bit++) {
+    const at = best.offset + bit * best.stride;
+    if (at + best.width > buf.length) break;
+    const v = readValue(buf, at, best.width);
+    entries.push(v);
+    if (questIds.has(v)) {
+      if (bits[v] === undefined) bits[v] = bit;
+      else repeats[bit] = v;
+    } else if (v !== 0 && v !== FILLER_MAX[best.width]) {
+      otherEntries[bit] = v;
+    }
+  }
+
+  const anchorIds = Object.keys(anchors).map(Number);
+  let agree = 0;
+  let disagree = 0;
+  let onlyInTable = 0;
+  const firstDisagreements: string[] = [];
+  for (const [id, bit] of Object.entries(bits).map(([k, v]) => [Number(k), v] as const)) {
+    const expected = saveMap.get(id);
+    if (expected === undefined) onlyInTable++;
+    else if (expected === bit) agree++;
+    else {
+      disagree++;
+      if (firstDisagreements.length < 20)
+        firstDisagreements.push(`${id}: table bit ${bit}, saves ${expected}`);
+    }
+  }
+  const onlyInSaves = [...saveMap.keys()].filter((id) => bits[id] === undefined).length;
+  return {
+    file: best.file,
+    offset: best.offset,
+    width: best.width,
+    stride: best.stride,
+    hits: best.hits,
+    entries,
+    bits,
+    repeats,
+    otherEntries,
+    anchorsMatched: anchorIds.filter((id) => bits[id] === anchors[id]),
+    anchorsMissed: anchorIds.filter((id) => bits[id] !== anchors[id]),
+    vsSaves: { agree, disagree, onlyInTable, onlyInSaves, firstDisagreements },
+  };
 }
 
 export interface QuestFlagReport {
   files: { name: string; bytes: number }[];
   anchors: Readonly<Record<number, number>>;
+  /** The table the anchored lists point to, read whole; null if no list was anchored. */
+  table: FlagTable | null;
   idLists: IdListHit[];
   sequences: SequenceHit[];
 }
 
 const MAX_REPORTED = 60;
 
-/** Both searches over every file; ID lists that agree with the anchors first. */
+/** Both searches over every file, plus the table the anchored lists point to; ID lists that agree with the anchors first. */
 export function scanQuestFlags(
   files: readonly ScanFile[],
   questIds: ReadonlySet<number>,
 ): QuestFlagReport {
-  const idLists = files
-    .flatMap((f) => findQuestIdLists(f, questIds))
+  const allLists = files.flatMap((f) => findQuestIdLists(f, questIds));
+  const idLists = [...allLists]
     .sort(
       (a, b) =>
         b.anchorsMatched.length - a.anchorsMatched.length ||
@@ -364,6 +489,7 @@ export function scanQuestFlags(
   return {
     files: files.map((f) => ({ name: f.name, bytes: f.buf.length })),
     anchors: QUEST_FLAG_ANCHORS,
+    table: assembleFlagTable(files, allLists, questIds),
     idLists,
     sequences,
   };

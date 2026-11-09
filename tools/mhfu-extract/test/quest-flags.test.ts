@@ -2,6 +2,7 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { discQuestIds } from "../src/cli/quest-flags.js";
 import {
+  assembleFlagTable,
   findQuestIdLists,
   findSequenceTables,
   flagSequences,
@@ -114,7 +115,7 @@ test("random data has no quest ID lists", () => {
 test("finds a range table by its first IDs and first bits", () => {
   const buf = noise(0x4000, 5);
   const base = 0x2000;
-  const guild = SAVE_DERIVED_GROUPS.filter((g) => g.firstId >= 1000 && g.firstId < 10000);
+  const guild = SAVE_DERIVED_GROUPS.filter((g) => g.firstId >= 1000 && g.firstId < 4000);
   guild.forEach((g, i) => {
     buf.writeUInt16LE(g.firstId, base + i * 8);
     buf.writeUInt16LE(g.firstBit, base + i * 8 + 2);
@@ -148,4 +149,38 @@ test("scanQuestFlags ranks anchored lists first", () => {
   assert.equal(report.idLists.length, 2);
   assert.equal(report.idLists[0]!.file, "b");
   assert.equal(report.idLists[1]!.bitOfFirstEntry, null);
+});
+
+test("assembles a table split up by entries that aren't quest IDs, gaps and all", () => {
+  const buf = noise(0x4000, 17);
+  const base = 0x1000;
+  // Every unused bit holds a value the list search doesn't accept (like a
+  // downloadable quest's ID), so the table only shows up in pieces.
+  const entries = layoutEntries().map((id, bit) => id ?? 0xc000 + bit);
+  // A short group the list search alone wouldn't report: 22001-22006 at 491.
+  for (let k = 0; k < 6; k++) entries[491 + k] = 22001 + k;
+  while (entries.length < QUEST_FLAG_BITS) entries.push(0);
+  entries.forEach((v, i) => buf.writeUInt16LE(v, base + i * 2));
+  const files = [{ name: "eboot.bin", buf }];
+  const lists = findQuestIdLists(files[0]!, questIds);
+  assert.ok(lists.length > 5, "the table is found in pieces");
+  const table = assembleFlagTable(files, lists, questIds);
+  assert.ok(table);
+  assert.equal(table.offset, base);
+  assert.equal(table.entries.length, QUEST_FLAG_BITS);
+  assert.deepEqual(table.anchorsMatched, [1001, 1004, 1005, 1020, 10001]);
+  assert.equal(table.bits[22003], 493);
+  assert.equal(table.otherEntries[100], 0xc000 + 100);
+  assert.equal(table.vsSaves.disagree, 0);
+  assert.equal(table.vsSaves.agree, saveMap.size);
+  assert.equal(table.vsSaves.onlyInTable, 6);
+});
+
+test("no anchored list, no table", () => {
+  const buf = noise(0x2000, 19);
+  [3101, 3102, 3103, 3104, 3105, 3106, 3107, 3108, 3109, 3110, 3111, 3112].forEach((id, i) =>
+    buf.writeUInt16LE(id, 0x400 + i * 2),
+  );
+  const files = [{ name: "eboot.bin", buf }];
+  assert.equal(assembleFlagTable(files, findQuestIdLists(files[0]!, questIds), questIds), null);
 });
