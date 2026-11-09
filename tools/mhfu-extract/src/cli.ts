@@ -10,6 +10,7 @@
  *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
  *   tsx src/cli.ts attack-data --dump <attacks.json> [--out <path>]
+ *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
  */
 import { fileURLToPath } from "node:url";
 import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.js";
@@ -19,6 +20,7 @@ import { runExportSite } from "./cli/export-site.js";
 import { runAttackData } from "./cli/attacks-raw.js";
 import { runExtract } from "./cli/extract.js";
 import { runModels } from "./cli/models.js";
+import { runQuestFlags } from "./cli/quest-flags.js";
 import { runUnpack } from "./cli/unpack.js";
 
 /** Flags that take no value; present means `"true"`. */
@@ -59,7 +61,8 @@ const USAGE = `Usage:
   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,quests] [--report <path>] [--markdown <path>] [--dry-run]
-  tsx src/cli.ts attack-data --dump <attacks.json> [--out <path>]`;
+  tsx src/cli.ts attack-data --dump <attacks.json> [--out <path>]
+  tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]`;
 
 export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
@@ -150,6 +153,10 @@ export async function main(argv: string[]): Promise<void> {
         dryRun,
       });
       printBuildSummary(report, dryRun);
+      return;
+    }
+    case "quest-flags": {
+      await runQuestFlags({ unpacked: requireFlag(flags, "unpacked"), out: flags.out });
       return;
     }
     default:

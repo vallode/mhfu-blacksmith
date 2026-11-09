@@ -5,6 +5,13 @@
  * resolves).
  */
 
+/**
+ * The game caps item names at this many characters (hence spellings like
+ * "Eldr Dragon Bone"). Material names are padded to it when rendered, so a
+ * list lines up in one column the way the game's does.
+ */
+export const ITEM_NAME_LENGTH = 16;
+
 /** One entry of data/items.json (see data/schemas/item.schema.json). */
 export interface ItemRecord {
   id: number;

@@ -13,6 +13,12 @@
  *   0x200 bytes at each of them too. A target outside `game_task.ovl` is
  *   read from the monster's own `overlay/emNN.ovl` when there is one.
  *
+ * `raw/parts.json`, one entry per `MonChunk`, for finding the breakable
+ * parts: the 28 u32s of the hexpat's `emPTRChunk` (`+0x158` to `+0x1C8`,
+ * after the tolerances; `PartDurabilityPTR` is its 24th, `+0x1B4`), and for
+ * each that resolves, 0x200 bytes at its target, plus 0x100 bytes at each
+ * pointer in a list the target starts with.
+ *
  * `raw/emmodel.json`, one entry per `emmodel/emNN.pac`: every package entry
  * (size, magic, first 0x40 bytes) and, for the PMO mesh, the header and the
  * raw mesh and vertex-group records with each group's vertex count, weights
@@ -102,10 +108,12 @@ function collisionTarget(
   vaddr: number,
   gameTask: OvlFile,
   emOvl: OvlFile | undefined,
+  size = TARGET_WINDOW,
+  listSize = LIST_TARGET_WINDOW,
 ): CollisionTarget | null {
   const target = resolve(vaddr, gameTask, emOvl);
   if (!target) return null;
-  const main = window(target, vaddr, TARGET_WINDOW);
+  const main = window(target, vaddr, size);
   const list: ByteWindow[] = [];
   const reader = target.ovl.reader;
   for (
@@ -116,7 +124,7 @@ function collisionTarget(
     const pointer = reader.u32(at);
     const sub = resolve(pointer, gameTask, emOvl);
     if (!sub || sub.ovl !== target.ovl) break;
-    list.push(window(sub, pointer, LIST_TARGET_WINDOW));
+    list.push(window(sub, pointer, listSize));
   }
   return { ...main, f32: f32View(Buffer.from(main.hex, "hex")), list };
 }
@@ -161,6 +169,58 @@ export function dumpCollisionRaw(
           }
         : null,
     });
+  }
+  return entries;
+}
+
+/** The hexpat's `emPTRChunk`: 28 u32s from `+0x158`, then the u64 `TERM` to the chunk's end. */
+export const PTR_TABLE_OFFSET = 0x158;
+export const PTR_TABLE_COUNT = 28;
+/** `PartDurabilityPTR`, the table's 24th pointer. */
+export const PART_DURABILITY_OFFSET = PTR_TABLE_OFFSET + 23 * 4;
+const PARTS_TARGET_WINDOW = 0x200;
+const PARTS_LIST_WINDOW = 0x100;
+
+export interface PartsRawPointer {
+  /** Byte offset within the chunk. */
+  at: string;
+  /** Index in `emPTRChunk` (23 = `PartDurabilityPTR`). */
+  index: number;
+  value: string;
+  target: CollisionTarget | null;
+}
+
+export interface PartsRawEntry {
+  emId: number;
+  name: string | null;
+  /** Every pointer slot in `emPTRChunk`, resolved or not. */
+  pointers: PartsRawPointer[];
+}
+
+/** Dumps each chunk's `emPTRChunk` and the bytes its pointers lead to; see `raw/parts.json` above. */
+export function dumpPartsRaw(
+  gameTask: OvlFile,
+  chunksOffset: number,
+  emOvls: ReadonlyMap<number, OvlFile>,
+  names: (emId: number) => string | null,
+): PartsRawEntry[] {
+  const reader = gameTask.reader;
+  const entries: PartsRawEntry[] = [];
+  for (let emId = 0; emId < MONSTER_CHUNK_COUNT; emId++) {
+    const base = chunksOffset + emId * MONSTER_CHUNK_SIZE;
+    const emOvl = emOvls.get(emId);
+    const pointers: PartsRawPointer[] = [];
+    for (let index = 0; index < PTR_TABLE_COUNT; index++) {
+      const at = PTR_TABLE_OFFSET + index * 4;
+      const value = reader.u32(base + at);
+      pointers.push({
+        at: `0x${at.toString(16)}`,
+        index,
+        value: hex(value),
+        target: collisionTarget(value, gameTask, emOvl, PARTS_TARGET_WINDOW, PARTS_LIST_WINDOW),
+      });
+    }
+    entries.push({ emId, name: names(emId), pointers });
   }
   return entries;
 }

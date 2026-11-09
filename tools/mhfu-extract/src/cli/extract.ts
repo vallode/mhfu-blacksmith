@@ -18,6 +18,7 @@ import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
 import { dumpArmorRaw } from "../emit/armor-raw.js";
 import { writeAttacksRaw } from "./attacks-raw.js";
 import { writeCollisionRaw } from "./collision-raw.js";
+import { writeBreakCodeRaw } from "./break-code-raw.js";
 import {
   committedMelodyCombos,
   dumpMelodyRaw,
@@ -30,6 +31,7 @@ import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
 import {
+  JP_BASE_ADDRESS,
   resolveTableOffset,
   verifyOffsets,
   type OffsetVerificationResult,
@@ -45,7 +47,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts), and monster attack table candidates in `raw/attacks.json` (emit/attacks-raw.ts). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts), the break reward code references in `raw/break-code.json` with the overlays in `raw/overlays/` (emit/break-code-raw.ts), and monster attack table candidates in `raw/attacks.json` (emit/attacks-raw.ts). */
   raw?: boolean;
 }
 
@@ -203,7 +205,14 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   Object.assign(output, emitQuestsFile(quests));
 
   console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");
-  const monsters = readMonsterTables(overlays);
+  // The EBOOT's species table maps subspecies to their base species' breaks;
+  // EU and JP load it at the same address.
+  const monsters = readMonsterTables(overlays, { reader, baseAddress: JP_BASE_ADDRESS });
+  console.log(
+    monsters.locations.breaks === null
+      ? "Break table not found; monsters get no breaks."
+      : `Break table at 0x${monsters.locations.breaks.toString(16)} (${monsters.breaks!.length} records), species table ${monsters.species ? "found" : "not found"}.`,
+  );
   console.log(
     `Monster chunks at 0x${monsters.locations.chunks.offset.toString(16)}, reward tables at 0x${monsters.locations.rewards.carves.pointers.toString(16)} / 0x${monsters.locations.rewards.capBreak.pointers.toString(16)}.`,
   );
@@ -258,6 +267,15 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       options.out,
       overlays,
       monsters.locations.chunks.offset,
+    );
+    // Breakable parts: code that reads the break reward tables, and the overlays.
+    await writeBreakCodeRaw(
+      options.unpacked,
+      options.out,
+      ebootBuf,
+      overlays,
+      monsters.locations.rewards,
+      monsters.capBreak.length,
     );
 
     // Monster attack table candidates: searched against overlay/attack-crib.json.

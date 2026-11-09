@@ -10,9 +10,14 @@ interface MaterialRowProps {
 
 /** Amounts are padded to two characters so the columns stay monospaced. */
 const pad = (n: string | number) => String(n).padStart(2, " ");
+/**
+ * Names are the game's own, padded to its 16-character cap
+ * (`ITEM_NAME_LENGTH`), so every material's colon and amount line up in one
+ * column. On a narrow phone with a 3-digit owned count the column shrinks and
+ * the name wraps rather than pushing the amount out of the card.
+ */
+const nameClass = "w-cells-16 min-w-0 wrap-anywhere whitespace-normal mobile:leading-[1.25]";
 const amountClass = "flex-none text-right whitespace-pre";
-/** Long names wrap (mid-word if they must) so the amount stays in the card on a phone. */
-const nameClass = "min-w-0 flex-auto wrap-anywhere whitespace-normal mobile:leading-[1.25]";
 
 /**
  * One recipe material. With a save loaded, the amount reads "owned/required"
@@ -27,8 +32,8 @@ export default function MaterialRow({ material }: MaterialRowProps) {
     return (
       <div className="flex items-center">
         <Icon type={material.type} color={material.color} />
-        <p className={nameClass}>{material.name}:</p>
-        <p className={amountClass}>{pad(material.amount)}</p>
+        <p className={nameClass}>{material.name}</p>
+        <p className={amountClass}>:{pad(material.amount)}</p>
       </div>
     );
   }
@@ -39,9 +44,9 @@ export default function MaterialRow({ material }: MaterialRowProps) {
   return (
     <div className="flex items-center" title={`You have ${shown} in your item box and pouch`}>
       <Icon type={material.type} color={material.color} />
-      <p className={nameClass}>{material.name}:</p>
+      <p className={nameClass}>{material.name}</p>
       <p className={amountClass}>
-        {short ? <span className="text-negative">{pad(shown)}</span> : pad(shown)}/{pad(required)}
+        :{short ? <span className="text-negative">{pad(shown)}</span> : pad(shown)}/{pad(required)}
       </p>
     </div>
   );

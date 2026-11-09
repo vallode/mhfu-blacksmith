@@ -14,6 +14,8 @@
  *           recovery time, recovery, duration, increase), then Poison (7
  *           u16: initial, recovery time, recovery, damage, total time,
  *           damage per second, increase)
+ *   +0x1B4  u32 `PartDurabilityPTR`: each body part's flinch threshold (see
+ *           `readFlinchThresholds`)
  *
  * Each `HitzoneTbl` pointer leads to 10-byte `HitZoneVal` rows ending in a
  * zero u16: a lead byte (100, 90, 80, … on big monsters; meaning unknown),
@@ -96,6 +98,37 @@ export interface MonsterChunk {
   /** Hitzone tables, or null if the pointer doesn't lead to well-formed ones. */
   hitzones: HitzoneRow[][] | null;
   tolerances: Tolerances;
+  /** Each body part's flinch threshold, or null if the pointer doesn't lead to a record. */
+  flinchThresholds: (number | null)[] | null;
+}
+
+/** `emChunk` `+0x1B4` (`PartDurabilityPTR` in the hexpat). */
+export const FLINCH_THRESHOLD_POINTER_OFFSET = 0x1b4;
+const FLINCH_THRESHOLD_SLOTS = 9;
+const NO_PART = 0xffff;
+
+/**
+ * The record `PartDurabilityPTR` points to: nine u16 values, one per body
+ * part as the hitbox capsules number them (0xFFFF: no such part), then a u16
+ * count of parts and a zero u32. Each is the damage a part takes before the
+ * monster flinches: on a flinch, `game_task` (EU `0x09AD3B10`) refills the
+ * part's counter (monster `+0x580 + part * 8`) from it, and the damage
+ * routine (EU `0x09AC7B04`) subtracts each hit's damage to the part from
+ * that counter and flinches the monster when it runs out. In some cases
+ * (EU `0x09AD3B88`) the refill multiplies it by the fourth float of the
+ * quest's stat multiplier row (`multipliers.ts`): 1.0 up to 2.5 in G rank.
+ * Part 8, where present, has no hitbox capsules (the severed tail?).
+ */
+export function readFlinchThresholds(ovl: OvlFile, pointer: number): (number | null)[] | null {
+  if (!ovl.isOwnVaddr(pointer)) return null;
+  const at = ovl.vaddrToOffset(pointer);
+  if (at + FLINCH_THRESHOLD_SLOTS * 2 + 2 > ovl.reader.length) return null;
+  const count = ovl.reader.u16(at + FLINCH_THRESHOLD_SLOTS * 2);
+  if (count < 1 || count > FLINCH_THRESHOLD_SLOTS) return null;
+  return Array.from({ length: count }, (_, part) => {
+    const value = ovl.reader.u16(at + part * 2);
+    return value === NO_PART ? null : value;
+  });
 }
 
 function readStatus(ovl: OvlFile, offset: number): StatusTolerance {
@@ -177,6 +210,10 @@ export function readMonsterChunks(ovl: OvlFile, chunksOffset: number): MonsterCh
       hitzonePointer: pointer,
       hitzones: readHitzoneTables(ovl, pointer),
       tolerances: readTolerances(ovl, base),
+      flinchThresholds: readFlinchThresholds(
+        ovl,
+        ovl.reader.u32(base + FLINCH_THRESHOLD_POINTER_OFFSET),
+      ),
     });
   }
   return chunks;

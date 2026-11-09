@@ -73,10 +73,8 @@ export function emitDecorations(
       );
 
     const [primaryRecipe, altRecipe] = createByEquipId.get(itemId) ?? [];
-    const createMats = primaryRecipe
-      ? resolveMaterials(primaryRecipe.craft, names, "decoration")
-      : [];
-    const altMats = altRecipe ? resolveMaterials(altRecipe.craft, names, "decoration") : [];
+    const createMats = primaryRecipe ? resolveMaterials(primaryRecipe.craft, names) : [];
+    const altMats = altRecipe ? resolveMaterials(altRecipe.craft, names) : [];
 
     out.push({
       name,

@@ -3,8 +3,10 @@
  *
  * A quest's large-monster entry carries a `power` byte (0-31). It selects a
  * row of 4 floats: HP, attack, defense (lower means less damage taken) and a
- * fourth that is 1.0 in low rank and rises to 2.3-2.5 in G rank (probably
- * status buildup). HP multiplies the chunk's base HP (`hitzones.ts`).
+ * fourth that is 1.0 in low rank and rises to 2.3-2.5 in G rank. HP
+ * multiplies the chunk's base HP (`hitzones.ts`); the fourth multiplies the
+ * parts' flinch thresholds when the game refills them (EU `0x09AD3B88`,
+ * `readFlinchThresholds`), and maybe more.
  *
  * The rows come in tables of 32 (512 bytes), three tables to a set, and the
  * sets are reached from one master list:
@@ -42,7 +44,7 @@ export interface MultiplierRow {
   hp: number;
   attack: number;
   defense: number;
-  /** 1.0 in low rank, 2.3-2.5 in G rank; probably status buildup. */
+  /** 1.0 in low rank, 2.3-2.5 in G rank; scales flinch thresholds (and maybe more). */
   status: number;
 }
 

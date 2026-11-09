@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
@@ -8,9 +8,12 @@ import BorderRule from "@/components/BorderRule";
 import QuestNav from "@/components/QuestNav";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import StarMarks from "@/components/StarMarks";
+import { usePreferences } from "@/context/PreferencesContext";
+import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
 import { useQuests } from "@/lib/client-data";
 import {
+  clearedQuestIds,
   questHref,
   questsOnHub,
   questStarLevel,
@@ -30,7 +33,8 @@ function activeQuestId(pathname: string, hub: string): number | null {
  * A quest board: one star level's quests down the left, with a selector at
  * the bottom of the card (like the weapon tree's filter bar) that steps
  * through the board's star levels, and the selected quest (or a prompt to
- * pick one) on the right. Lives in the hub's layout so the list stays
+ * pick one) on the right. With a hunter loaded, the quests they have
+ * cleared are marked CLEAR!!, like the game's quest sheet. Lives in the hub's layout so the list stays
  * mounted, keeping its scroll position, when a quest is selected.
  */
 export default function QuestHubShell({
@@ -46,6 +50,9 @@ export default function QuestHubShell({
   const id = activeQuestId(usePathname(), hub);
   const activeStars = onHub.find((q) => q.id === id)?.stars;
   const listRef = useRef<HTMLDivElement>(null);
+  const { save } = useSave();
+  const { markCleared } = usePreferences().prefs;
+  const cleared = useMemo(() => (markCleared ? clearedQuestIds(save) : null), [markCleared, save]);
   const revealed = useRef(false);
 
   // The star level shown. Opening a quest switches to its level; the
@@ -100,7 +107,12 @@ export default function QuestHubShell({
                   className={cn("list-row", q.id === id && "bg-white/10")}
                 >
                   <p className="truncate">{q.title}</p>
-                  {q.urgent && <span className="ml-auto flex-none text-negative">Urgent</span>}
+                  {(cleared?.has(q.id) || q.urgent) && (
+                    <span className="ml-auto flex flex-none gap-[1rem]">
+                      {cleared?.has(q.id) && <span className="text-stat">CLEAR!!</span>}
+                      {q.urgent && <span className="text-negative">Urgent</span>}
+                    </span>
+                  )}
                 </Link>
               ))}
             </div>

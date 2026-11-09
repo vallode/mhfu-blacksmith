@@ -1,7 +1,14 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { OVL_HEADER_SIZE, parseOvl } from "../src/container/ovl.js";
-import { dumpCollisionRaw, dumpEmModelRaw } from "../src/emit/collision-raw.js";
+import {
+  dumpCollisionRaw,
+  dumpEmModelRaw,
+  dumpPartsRaw,
+  PART_DURABILITY_OFFSET,
+  PTR_TABLE_COUNT,
+  PTR_TABLE_OFFSET,
+} from "../src/emit/collision-raw.js";
 import { COLLISION_POINTER_OFFSET } from "../src/monsters/collision.js";
 import { pac } from "./model-fixtures.js";
 import { MONSTER_CHUNK_COUNT, MONSTER_CHUNK_SIZE } from "../src/monsters/hitzones.js";
@@ -149,4 +156,37 @@ test("dumpEmModelRaw reports non-packages instead of throwing", () => {
   const { entry, unknown } = dumpEmModelRaw("emmodel/em99.pac", Buffer.from("nope"));
   assert.equal(entry.error, "not a .pac");
   assert.deepEqual(unknown, []);
+});
+
+test("dumpPartsRaw dumps emPTRChunk and follows PartDurabilityPTR", () => {
+  const chunks = OVL_HEADER_SIZE;
+  const tableAt = chunks + MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
+  const task = ovl("game_task.ovl", GAME_TASK_BASE, tableAt - OVL_HEADER_SIZE + 0x300);
+  const chunk1 = chunks + MONSTER_CHUNK_SIZE;
+  // emID 1: PartDurabilityPTR -> a pointer to 0x10 bytes further on, then 7.
+  task.writeUInt32LE(GAME_TASK_BASE + tableAt, chunk1 + PART_DURABILITY_OFFSET);
+  task.writeUInt32LE(GAME_TASK_BASE + tableAt + 0x10, tableAt);
+  task.writeUInt32LE(7, tableAt + 4);
+  // The first slot, outside any file.
+  task.writeUInt32LE(0x08900000, chunk1 + PTR_TABLE_OFFSET);
+
+  const dump = dumpPartsRaw(parseOvl(task), chunks, new Map(), (id) =>
+    id === 1 ? "Rathian" : null,
+  );
+  assert.equal(dump.length, MONSTER_CHUNK_COUNT);
+  const rathian = dump[1]!;
+  assert.equal(rathian.name, "Rathian");
+  assert.equal(rathian.pointers.length, PTR_TABLE_COUNT);
+  assert.equal(PART_DURABILITY_OFFSET, 0x1b4);
+  assert.equal(rathian.pointers[0]!.value, hex(0x08900000));
+  assert.equal(rathian.pointers[0]!.target, null);
+  const durability = rathian.pointers[23]!;
+  assert.equal(durability.at, "0x1b4");
+  assert.equal(durability.target!.fileOffset, hex(tableAt));
+  assert.equal(durability.target!.hex.length, 0x200 * 2);
+  assert.equal(durability.target!.hex.slice(8, 16), "07000000");
+  assert.deepEqual(
+    durability.target!.list.map((w) => [w.fileOffset, w.hex.length]),
+    [[hex(tableAt + 0x10), 0x100 * 2]],
+  );
 });

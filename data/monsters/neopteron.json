@@ -83,7 +83,10 @@
           "ko": "0"
         }
       },
-      "base_hp": 40
+      "base_hp": 40,
+      "flinch_thresholds": [
+        60
+      ]
     },
     {
       "name": "Vespoid Queen",
@@ -104,7 +107,10 @@
           "ko": "0"
         }
       },
-      "base_hp": 1800
+      "base_hp": 1800,
+      "flinch_thresholds": [
+        400
+      ]
     },
     {
       "name": "Hornetaur",
@@ -197,7 +203,10 @@
           "ko": "0"
         }
       },
-      "base_hp": 50
+      "base_hp": 50,
+      "flinch_thresholds": [
+        60
+      ]
     },
     {
       "name": "Great Thunderbug",
@@ -266,7 +275,10 @@
           "ko": "0"
         }
       },
-      "base_hp": 40
+      "base_hp": 40,
+      "flinch_thresholds": [
+        50
+      ]
     }
   ]
 }

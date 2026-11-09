@@ -1,6 +1,7 @@
 /**
  * Material icon "type"/"color" presentation metadata (e.g. "Iron Ore" ->
- * `{ type: "ore", color: "gray" }`), keyed by material display name.
+ * `{ type: "ore", color: "gray" }`), keyed by the game's item name (the
+ * `ItemID` enum spelling `extract` emits).
  *
  * This is **not derived from the disc**. `itemTable`'s `iconId`/`color`
  * bytes (tables/items.ts) were checked against this exact classification
@@ -18,7 +19,8 @@
  * `materials.json` is a one-time snapshot of every `{name, type, color}`
  * combination already present in the committed `data/` directory (armor,
  * weapons, and decoration `create_mats`/`improve_mats`/`alternative_create_mats`),
- * bootstrapped by scanning it once — see the emit layer's README section
+ * bootstrapped by scanning it once and later re-keyed by game item name,
+ * with each item's style as `build-data` normalized it — see the emit layer's README section
  * "Overlay data" for the general pattern this follows. Regenerate it with
  * the same scan if `data/` picks up new materials this table doesn't know
  * about yet (`resolveMaterial()` below falls back to a clearly-marked
