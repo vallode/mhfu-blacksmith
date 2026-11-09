@@ -2132,11 +2132,18 @@
           "flinches": 3
         },
         {
-          "name": "1st horn",
+          "name": "2nd horn",
           "parts": [
             5
           ],
           "flinches": 2
+        },
+        {
+          "name": "1st horn",
+          "parts": [
+            5
+          ],
+          "flinches": 1
         },
         {
           "name": "wing",
