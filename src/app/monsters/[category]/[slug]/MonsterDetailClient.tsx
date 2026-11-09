@@ -24,18 +24,17 @@ interface Props {
 }
 
 const HITZONE_COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
-// Full label, and the game's abbreviation for phones, where nine columns
-// leave no room for "Thunder".
-const HITZONE_LABELS: Record<string, [full: string, short: string]> = {
-  cut: ["Cut", "Cut"],
-  bash: ["Bash", "Bsh"],
-  shot: ["Shot", "Sht"],
-  fir: ["Fire", "Fir"],
-  wtr: ["Water", "Wtr"],
-  thn: ["Thunder", "Thn"],
-  ice: ["Ice", "Ice"],
-  drg: ["Dragon", "Drg"],
-  ko: ["KO", "KO"],
+// The game's abbreviated column headers.
+const HITZONE_LABELS: Record<string, string> = {
+  cut: "Cut",
+  bash: "Bsh",
+  shot: "Sht",
+  fir: "Fir",
+  wtr: "Wtr",
+  thn: "Thn",
+  ice: "Ice",
+  drg: "Drg",
+  ko: "KO",
 };
 
 /** A hitzone part's colour on the model, by its place in the hitzone table. */
@@ -122,10 +121,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                   <tr>
                     <th>Part</th>
                     {HITZONE_COLS.map((col) => (
-                      <th key={col}>
-                        <span className="mobile:hidden">{HITZONE_LABELS[col][0]}</span>
-                        <span className="hidden mobile:inline">{HITZONE_LABELS[col][1]}</span>
-                      </th>
+                      <th key={col}>{HITZONE_LABELS[col]}</th>
                     ))}
                   </tr>
                 </thead>
