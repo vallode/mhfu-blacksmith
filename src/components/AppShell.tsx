@@ -170,8 +170,9 @@ function TabBar({
   const tab =
     "group flex min-w-0 flex-1 cursor-pointer flex-col items-center justify-center gap-[0.3rem] border-none bg-transparent p-0 text-white";
   const tabActive = "bg-(image:--gradient-hover-glow)";
-  // Inside the frame art, which is drawn over the card's padding.
-  const label = "text-[1.1rem] leading-none tracking-game";
+  // The scale's smallest size, without the game's wide tracking so
+  // "Monsters" fits a fifth of a phone's width.
+  const label = "text-fine leading-none tracking-normal";
   const tabs = NAV.filter((item) => item.tab);
   const inTab = tabs.some((item) => pathname.startsWith(item.match));
 
@@ -180,7 +181,7 @@ function TabBar({
       aria-label="Main"
       className="fixed inset-x-0 bottom-0 z-800 hidden pb-[env(safe-area-inset-bottom)] mobile:flex"
     >
-      <Card className="h-tabbar flex-row items-stretch bg-black/60 px-[1.6rem] py-[1.3rem] text-[1.1rem] backdrop-blur-sm mobile:text-[1.1rem]">
+      <Card className="h-tabbar flex-row items-stretch bg-black/60 px-[1.6rem] py-[1.3rem] backdrop-blur-sm">
         {tabs.map((item) => {
           const active = !menuOpen && pathname.startsWith(item.match);
           return (
@@ -267,7 +268,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <aside className="flex flex-none mobile:hidden">
         <Card
           className={cn(
-            "w-[26rem] flex-none overflow-x-hidden overflow-y-auto px-0 py-[2.2rem] text-[1.8rem] transition-[width] duration-150 mobile:text-[1.8rem]",
+            "w-[26rem] flex-none overflow-x-hidden overflow-y-auto px-0 py-[2.2rem] text-sub transition-[width] duration-150",
             collapsed && "w-[8.6rem]",
           )}
         >
@@ -302,7 +303,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         aria-label="Menu"
       >
         <div className="absolute inset-0 bg-black/60" onClick={closeMenu} />
-        <Card className="relative h-[calc(100%-var(--spacing-tabbar))] w-[28rem] max-w-[85vw] flex-none animate-drawer-in overflow-y-auto bg-black/70 px-0 py-[2.2rem] text-[1.8rem] mobile:text-[1.8rem]">
+        <Card className="relative h-[calc(100%-var(--spacing-tabbar))] w-[28rem] max-w-[85vw] flex-none animate-drawer-in overflow-y-auto bg-black/70 px-0 py-[2.2rem] text-sub">
           <SidebarContents pathname={pathname} hrefFor={hrefFor} onSearch={closeMenu} />
         </Card>
       </div>
