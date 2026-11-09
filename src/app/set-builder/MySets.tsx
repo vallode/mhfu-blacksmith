@@ -8,6 +8,7 @@
  */
 import { useState } from "react";
 import Icon from "@/components/Icon";
+import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import type { SavedSet } from "@/lib/saved-sets-store";
 import { evaluateBuild } from "@/lib/set-build";
@@ -17,18 +18,32 @@ import * as ui from "@/styles/settings";
 import { PanelTitle } from "./ArmorSetView";
 
 function Summary({ set, data, tables }: { set: SavedSet; data: SearchData; tables: CodecTables }) {
+  const t = useT();
+  const game = useGameText();
+  const { formatNumber } = useLocale();
   const r = decodeSet(set.code, tables);
-  if (!r.ok) return <span className={ui.error}>Can&apos;t be opened in this version.</span>;
+  if (!r.ok) return <span className={ui.error}>{t.setBuilder.mySets.cantOpen}</span>;
   const stats = evaluateBuild(data, r.set);
-  const good = stats.skills.filter((s) => s.threshold > 0).map((s) => s.name);
+  const good = stats.skills.filter((s) => s.threshold > 0).map((s) => game.name("skill", s.name));
   return (
     <span className="flex flex-col gap-[0.2rem] text-fine text-white/60">
       <span className="flex flex-wrap items-center gap-x-[0.4rem]">
         {r.set.pieces.map((p, i) =>
-          p ? <Icon key={i} type={p.slot} size="mini" rarity={p.rarity} alt={p.name} /> : null,
+          p ? (
+            <Icon
+              key={i}
+              type={p.slot}
+              size="mini"
+              rarity={p.rarity}
+              alt={game.name("armor", p.name)}
+            />
+          ) : null,
         )}
         <span className="ml-[0.4rem]">
-          {r.set.hunterType}, Defense {stats.defence}
+          {t.setBuilder.mySets.summary(
+            t.setBuilder.hunterTypes[r.set.hunterType],
+            formatNumber(stats.defence),
+          )}
         </span>
       </span>
       {good.length > 0 && (
@@ -58,18 +73,15 @@ export default function MySets({
   onDuplicate: (id: string) => void;
   onDelete: (id: string) => void;
 }) {
+  const t = useT();
+  const text = t.setBuilder.mySets;
   const [renaming, setRenaming] = useState<string | null>(null);
   const [name, setName] = useState("");
 
   return (
     <div className="flex flex-col gap-[1.3rem]">
-      <PanelTitle>My sets</PanelTitle>
-      {sets.length === 0 && (
-        <p className={ui.note}>
-          No saved sets yet. Open a set in the editor (from a search result, or from nothing) and
-          press Save. Sets are kept in this browser.
-        </p>
-      )}
+      <PanelTitle>{t.setBuilder.tabs.sets}</PanelTitle>
+      {sets.length === 0 && <p className={ui.note}>{text.empty}</p>}
       <ul className="m-0 flex list-none flex-col p-0">
         {sets.map((s) => (
           <li
@@ -90,7 +102,7 @@ export default function MySets({
               >
                 <input
                   className={ui.searchInput}
-                  aria-label="Set name"
+                  aria-label={text.nameLabel}
                   value={name}
                   maxLength={40}
                   autoFocus
@@ -98,13 +110,13 @@ export default function MySets({
                   onKeyDown={(e) => e.key === "Escape" && setRenaming(null)}
                 />
                 <button type="submit" className={ui.button}>
-                  OK
+                  {text.ok}
                 </button>
               </form>
             ) : (
               <span className="flex items-baseline gap-[0.8rem]">
                 <span className="min-w-0 flex-1 truncate text-sub text-white">{s.name}</span>
-                {s.id === openId && <span className="text-fine text-stat">In editor</span>}
+                {s.id === openId && <span className="text-fine text-stat">{text.inEditor}</span>}
               </span>
             )}
             {data && tables && <Summary set={s} data={data} tables={tables} />}
@@ -115,34 +127,34 @@ export default function MySets({
                 disabled={!tables}
                 onClick={() => onOpen(s)}
               >
-                Open
+                {text.open}
               </button>
               <button
                 type="button"
                 className={ui.button}
-                aria-label={`Rename ${s.name}`}
+                aria-label={text.renameLabel(s.name)}
                 onClick={() => {
                   setName(s.name);
                   setRenaming(s.id);
                 }}
               >
-                Rename
+                {text.rename}
               </button>
               <button
                 type="button"
                 className={ui.button}
-                aria-label={`Duplicate ${s.name}`}
+                aria-label={text.duplicateLabel(s.name)}
                 onClick={() => onDuplicate(s.id)}
               >
-                Duplicate
+                {text.duplicate}
               </button>
               <button
                 type="button"
                 className={ui.buttonSecondary}
-                aria-label={`Delete ${s.name}`}
+                aria-label={text.deleteLabel(s.name)}
                 onClick={() => onDelete(s.id)}
               >
-                Delete
+                {text.delete}
               </button>
             </div>
           </li>

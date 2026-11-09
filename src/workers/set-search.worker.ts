@@ -11,7 +11,8 @@ export type SetSearchRequest =
 export type SetSearchResponse =
   | { type: "progress"; id: number; found: number }
   | { type: "result"; id: number; result: SearchResult }
-  | { type: "error"; id: number; error: string };
+  /** `reason`: the data wasn't sent yet, or the search threw (`error` is its message). */
+  | { type: "error"; id: number; reason: "not-loaded" | "failed"; error: string };
 
 // The DOM lib types `self` as a Window; in a worker it's the worker scope.
 const scope = self as unknown as {
@@ -28,7 +29,7 @@ scope.onmessage = ({ data: message }) => {
   }
   const { id, query } = message;
   if (!data) {
-    scope.postMessage({ type: "error", id, error: "The armor data hasn't loaded yet." });
+    scope.postMessage({ type: "error", id, reason: "not-loaded", error: "No search data" });
     return;
   }
   try {
@@ -37,6 +38,11 @@ scope.onmessage = ({ data: message }) => {
     );
     scope.postMessage({ type: "result", id, result });
   } catch (e) {
-    scope.postMessage({ type: "error", id, error: e instanceof Error ? e.message : String(e) });
+    scope.postMessage({
+      type: "error",
+      id,
+      reason: "failed",
+      error: e instanceof Error ? e.message : String(e),
+    });
   }
 };

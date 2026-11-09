@@ -75,14 +75,18 @@ export function updateSet(
   return sets.map((s) => (s.id === id ? { ...s, ...patch, savedAt: Date.now() } : s));
 }
 
-/** A copy of a set, just after it, named "<name> (copy)". */
-export function duplicateSet(sets: SavedSet[], id: string): SavedSet[] {
+/** A copy of a set, just after it, named "<name> (copy)" (or `copyName(name)`). */
+export function duplicateSet(
+  sets: SavedSet[],
+  id: string,
+  copyName: (name: string) => string = (name) => `${name} (copy)`,
+): SavedSet[] {
   const i = sets.findIndex((s) => s.id === id);
   if (i < 0) return sets;
   const copy: SavedSet = {
     ...sets[i],
     id: newId(),
-    name: `${sets[i].name} (copy)`,
+    name: copyName(sets[i].name),
     savedAt: Date.now(),
   };
   return [...sets.slice(0, i + 1), copy, ...sets.slice(i + 1)];
@@ -92,12 +96,15 @@ export function deleteSet(sets: SavedSet[], id: string): SavedSet[] {
   return sets.filter((s) => s.id !== id);
 }
 
-/** A name for a new set that no saved set has yet ("Set 3"). */
-export function nextSetName(sets: SavedSet[]): string {
+/** A name for a new set that no saved set has yet ("Set 3", or `name(3)`). */
+export function nextSetName(
+  sets: SavedSet[],
+  name: (n: number) => string = (n) => `Set ${n}`,
+): string {
   const names = new Set(sets.map((s) => s.name));
   let n = sets.length + 1;
-  while (names.has(`Set ${n}`)) n++;
-  return `Set ${n}`;
+  while (names.has(name(n))) n++;
+  return name(n);
 }
 
 export function readDraft(): Draft | null {

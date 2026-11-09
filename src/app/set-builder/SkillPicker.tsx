@@ -7,6 +7,7 @@
  * "Attack Up (Large)").
  */
 import { useId, useMemo, useState } from "react";
+import { useGameText, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import * as ui from "@/styles/settings";
 import type { SkillActivation } from "@/lib/set-search";
@@ -29,6 +30,8 @@ export default function SkillPicker({
   onChange: (value: string[]) => void;
 }) {
   const id = useId();
+  const text = useT().setBuilder.skillPicker;
+  const game = useGameText();
   const [query, setQuery] = useState("");
   const [open, setOpen] = useState(false);
   const [active, setActive] = useState(0);
@@ -39,14 +42,13 @@ export default function SkillPicker({
   const suggestions = useMemo(() => {
     const q = query.trim().toLowerCase();
     if (!q) return [];
+    // English or translated skill and tree names.
+    const has = (english: string) =>
+      english.toLowerCase().includes(q) || game.name("skill", english).toLowerCase().includes(q);
     return skills
-      .filter(
-        (s) =>
-          !value.includes(s.name) &&
-          (s.name.toLowerCase().includes(q) || s.tree.toLowerCase().includes(q)),
-      )
+      .filter((s) => !value.includes(s.name) && (has(s.name) || has(s.tree)))
       .slice(0, MAX_SUGGESTIONS);
-  }, [skills, value, query]);
+  }, [skills, value, query, game]);
 
   const pick = (skill: SkillOption) => {
     const sameTree = value.findIndex((name) => byName.get(name)?.tree === skill.tree);
@@ -68,14 +70,16 @@ export default function SkillPicker({
         <ul className="m-0 list-none p-0">
           {chosen.map((s) => (
             <li key={s.name} className={row}>
-              <span className="min-w-0 flex-1 truncate text-white">{s.name}</span>
+              <span className="min-w-0 flex-1 truncate text-white">
+                {game.name("skill", s.name)}
+              </span>
               <span className="text-fine text-white/50">
-                {s.tree} {s.points}
+                {game.name("skill", s.tree)} {s.points}
               </span>
               <button
                 type="button"
                 className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-sub leading-none text-white/50 hover:text-negative focus-visible:text-negative"
-                aria-label={`Remove ${s.name}`}
+                aria-label={text.remove(game.name("skill", s.name))}
                 onClick={() => onChange(value.filter((v) => v !== s.name))}
               >
                 ×
@@ -90,12 +94,12 @@ export default function SkillPicker({
           className={ui.searchInput}
           type="search"
           role="combobox"
-          aria-label="Add a skill"
+          aria-label={text.add}
           aria-expanded={expanded}
           aria-controls={listId}
           aria-autocomplete="list"
           aria-activedescendant={expanded ? `${id}-${active}` : undefined}
-          placeholder={chosen.length ? "Add another skill…" : "Add a skill, e.g. Attack Up"}
+          placeholder={chosen.length ? text.placeholderMore : text.placeholder}
           value={query}
           autoComplete="off"
           spellCheck={false}
@@ -140,9 +144,11 @@ export default function SkillPicker({
                 }}
                 onMouseEnter={() => setActive(i)}
               >
-                <span className="min-w-0 flex-1 truncate text-white">{s.name}</span>
+                <span className="min-w-0 flex-1 truncate text-white">
+                  {game.name("skill", s.name)}
+                </span>
                 <span className="text-fine text-white/50">
-                  {s.tree} {s.points}
+                  {game.name("skill", s.tree)} {s.points}
                 </span>
               </li>
             ))}

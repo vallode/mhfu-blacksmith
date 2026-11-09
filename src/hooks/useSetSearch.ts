@@ -5,6 +5,15 @@ import { loadSetSearchData } from "@/lib/client-data";
 import type { SearchData, SearchQuery, SearchResult } from "@/lib/set-search";
 import type { SetSearchRequest, SetSearchResponse } from "@/workers/set-search.worker";
 
+/**
+ * Why a search failed: the data wasn't in the worker yet, the worker died,
+ * or the search threw (`detail` is the error's message, in English).
+ */
+export type SetSearchError =
+  | { kind: "not-loaded" }
+  | { kind: "crashed"; detail?: string }
+  | { kind: "failed"; detail: string };
+
 export interface SetSearchState {
   /** Armor, decorations and skills; null while loading. */
   data: SearchData | null;
@@ -18,7 +27,7 @@ export interface SetSearchState {
   /** The set being shown, an index into `result.sets`. */
   index: number;
   setIndex: (index: number) => void;
-  error: string | null;
+  error: SetSearchError | null;
   search: (query: SearchQuery) => void;
   cancel: () => void;
 }
@@ -69,7 +78,7 @@ export function useSetSearch(): SetSearchState {
   const [result, setResult] = useState<SearchResult | null>(null);
   const [query, setQuery] = useState<SearchQuery | null>(null);
   const [index, setIndexState] = useState(0);
-  const [error, setError] = useState<string | null>(null);
+  const [error, setError] = useState<SetSearchError | null>(null);
   const workerRef = useRef<Worker | null>(null);
   const searchId = useRef(0);
   /** The query of the running search, and the set to show when it's done. */
@@ -126,12 +135,16 @@ export function useSetSearch(): SetSearchState {
         setError(null);
         writeLast({ query: done.query, index: shown, result: msg.result });
       } else if (msg.type === "error") {
-        setError(msg.error);
+        setError(
+          msg.reason === "not-loaded"
+            ? { kind: "not-loaded" }
+            : { kind: "failed", detail: msg.error },
+        );
       }
     };
     worker.onerror = (event) => {
       setSearching(false);
-      setError(event.message || "The search stopped unexpectedly.");
+      setError({ kind: "crashed", detail: event.message || undefined });
     };
     worker.postMessage({ type: "init", data: d } satisfies SetSearchRequest);
     workerRef.current = worker;
