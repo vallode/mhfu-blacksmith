@@ -13,6 +13,7 @@
     "export-site": "tsx src/cli.ts export-site",
     "compare": "tsx src/cli.ts compare",
     "build-data": "tsx src/cli.ts build-data",
+    "attack-data": "tsx src/cli.ts attack-data",
     "test": "tsx --test test/**/*.test.ts"
   },
   "dependencies": {

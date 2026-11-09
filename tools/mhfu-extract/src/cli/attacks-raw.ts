@@ -11,13 +11,16 @@ import {
   cribAttacks,
   dumpAttacksRaw,
   type AttackCrib,
+  type AttackRawDump,
   type SearchFile,
 } from "../emit/attacks-raw.js";
 import { isPac, readPac } from "../models/pac.js";
 import { isPmo } from "../models/pmo.js";
 import { isTmh } from "../models/tmh.js";
+import { emitMonsterAttacks, type AttackFamilies } from "../emit/monster-attacks.js";
 import type { MonsterOverlays } from "../monsters/overlays.js";
 import crib from "../overlay/attack-crib.json" with { type: "json" };
+import families from "../overlay/attack-families.json" with { type: "json" };
 import { listEmFiles, loadEmOverlays } from "./collision-raw.js";
 
 const emName = (id: number) => `em${String(id).padStart(2, "0")}`;
@@ -70,6 +73,7 @@ export async function writeAttacksRaw(
   const rawPath = path.join(outDir, "raw", "attacks.json");
   await mkdir(path.dirname(rawPath), { recursive: true });
   await writeFile(rawPath, `${JSON.stringify(dump)}\n`, "utf-8");
+  await writeMonsterAttacks(dump, path.join(outDir, "monster-attacks.json"));
   const tables = dump.files.flatMap((f) => f.tables);
   const records = tables.reduce((sum, t) => sum + t.count, 0);
   const families = Object.entries(dump.usage?.families ?? {});
@@ -84,4 +88,19 @@ export async function writeAttacksRaw(
   console.log(
     `Wrote ${rawPath}: ${tables.length} attack tables (${records} records) in ${dump.files.filter((f) => f.tables.length).length} of ${files.length} files, ${((Date.now() - started) / 1000).toFixed(1)}s.`,
   );
+}
+
+/** Writes `data/monster-attacks.json` (`emit/monster-attacks.ts`) from a `raw/attacks.json` dump. */
+export async function writeMonsterAttacks(dump: AttackRawDump, out: string): Promise<void> {
+  const file = emitMonsterAttacks(dump, families as AttackFamilies);
+  await mkdir(path.dirname(out), { recursive: true });
+  await writeFile(out, `${JSON.stringify(file, null, 2)}\n`, "utf-8");
+  const attacks = file.families.reduce((sum, f) => sum + f.attacks.length, 0);
+  console.log(`Wrote ${out}: ${attacks} attacks in ${file.families.length} monster families.`);
+}
+
+/** `attack-data`: `data/monster-attacks.json` from an existing `raw/attacks.json`. */
+export async function runAttackData(options: { raw: string; out: string }): Promise<void> {
+  const dump = JSON.parse(await readFile(options.raw, "utf-8")) as AttackRawDump;
+  await writeMonsterAttacks(dump, options.out);
 }

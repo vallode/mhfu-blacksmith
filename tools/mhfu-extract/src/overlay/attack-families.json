@@ -1,0 +1,69 @@
+{
+  "$comment": [
+    "Monster families for attack usage (src/emit/monster-attacks.ts): the calling code's file, or",
+    "game_task.ovl code unit (src/overlay/game-task-units.json), -> the site monsters whose code it is.",
+    "Hand-made: a per-monster overlay is its own monster's (monster.enum emNN), plus the monsters",
+    "that use it (subspecies, and species without an overlay of their own: Rathalos in em01,",
+    "Monoblos in em14, Basarios in em17, Yian Kut-Ku in em20 and Nargacuga, Akantor, Ukanlos in",
+    "em75, where their wiki attacks matched that overlay's table; Teostra and Lunastra in em54,",
+    "whose tables sit there). game_task.ovl units follow the decompilation's notes, with",
+    "subspecies added. Families not listed (player weapons, shells spawning shells) are not",
+    "monsters'."
+  ],
+  "families": {
+    "overlay/em01.ovl": [
+      "Rathian",
+      "Pink Rathian",
+      "Gold Rathian",
+      "Rathalos",
+      "Azure Rathalos",
+      "Silver Rathalos"
+    ],
+    "overlay/em02.ovl": ["Fatalis", "Crimson Fatalis", "White Fatalis"],
+    "overlay/em07.ovl": ["Lao-Shan Lung", "Ashen Lao-Shan Lung"],
+    "overlay/em14.ovl": ["Diablos", "Black Diablos", "Monoblos", "White Monoblos"],
+    "overlay/em15.ovl": ["Khezu", "Red Khezu"],
+    "overlay/em17.ovl": ["Gravios", "Black Gravios", "Basarios"],
+    "overlay/em20.ovl": ["Gypceros", "Purple Gypceros", "Yian Kut-Ku", "Blue Yian Kut-Ku"],
+    "overlay/em21.ovl": ["Plesioth", "Green Plesioth"],
+    "overlay/em33.ovl": ["Kirin"],
+    "overlay/em40.ovl": ["Yian Garuga", "Scarred Yian Garuga"],
+    "overlay/em54.ovl": ["Kushala Daora", "Rusted Kushala Daora", "Teostra", "Lunastra"],
+    "overlay/em55.ovl": ["Shen Gaoren"],
+    "overlay/em58.ovl": ["Yama Tsukami"],
+    "overlay/em59.ovl": ["Chameleos"],
+    "overlay/em75.ovl": ["Tigrex", "Nargacuga", "Akantor", "Ukanlos"],
+    "overlay/em82.ovl": ["Hypnocatrice"],
+    "overlay/em83.ovl": ["Lavasioth"],
+    "game_task.ovl:em03": ["Kelbi", "Anteka"],
+    "game_task.ovl:em04": ["Mosswine", "Bullfango"],
+    "game_task.ovl:em08": ["Cephadrome", "Cephalos"],
+    "game_task.ovl:em09": ["Felyne", "Melynx"],
+    "game_task.ovl:em12": ["Aptonoth", "Apceros"],
+    "game_task.ovl:em16": ["Velociprey", "Genprey", "Ioprey", "Giaprey"],
+    "game_task.ovl:em19": ["Vespoid", "Vespoid Queen"],
+    "game_task.ovl:em27": ["Velocidrome", "Gendrome", "Iodrome", "Giadrome"],
+    "game_task.ovl:em48": [
+      "Hermitaur",
+      "Daimyo Hermitaur",
+      "Plum Daimyo Hermitaur",
+      "Ceanataur",
+      "Shogun Ceanataur",
+      "Terra Shogun Ceanataur"
+    ],
+    "game_task.ovl:em51": [
+      "Blango",
+      "Blangonga",
+      "Copper Blangonga",
+      "Conga",
+      "Congalala",
+      "Emerald Congalala",
+      "Rajang",
+      "Furious Rajang"
+    ],
+    "game_task.ovl:em56": ["Great Thunderbug"],
+    "game_task.ovl:em57": ["Shakalaka", "King Shakalaka"],
+    "game_task.ovl:em63": ["Remobra"],
+    "game_task.ovl:em68": ["Bulldrome"]
+  }
+}

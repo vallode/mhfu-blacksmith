@@ -56,7 +56,10 @@ pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data .
   around both (`src/emit/melody-raw.ts`).
   And `attacks.json`: every monster attack table, found by their record
   layout and labelled with the Monster Hunter Wiki's numbers (see "Monster
-  attacks").
+  attacks"), with `monster-attacks.json` beside the output (the site's
+  `data/monster-attacks.json`).
+- `attack-data --dump <raw/attacks.json> [--out <path>]` writes
+  `data/monster-attacks.json` from an existing dump.
 - `diff` compares extracted output against the repo's committed `data/`
   directory field-by-field and classifies mismatches.
 - `compare` reports per-file, per-field agreement between the two, pairing
@@ -590,9 +593,17 @@ callers only one of about 1,200 was too close to a unit boundary to name.
 Families from `game_task.ovl` are now keyed by unit, with the decompilation's
 note in `notes`, and each used record lists its callers.
 
+The twelfth EU run: 50 classes, 55 calling files, 84 calls unresolved.
+`attack-data` (`src/emit/monster-attacks.ts`) turns its `usage` into
+`data/monster-attacks.json`: each monster family's records (damage, guard
+knockback, elements, statuses and stun; no wiki names), with the family's
+site monsters from `src/overlay/attack-families.json`.
+
 Still open: classes reached in other ways (those whose spawns pass the kind
 in a register the code computes), which monster of a family (Diablos or
 Monoblos) makes each call, and what the remaining bytes mean.
+`docs/monster-attacks.md` is the hand-off for continuing: the loop, the
+addresses, and the open questions.
 
 ## 3D models (experimental)
 

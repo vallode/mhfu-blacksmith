@@ -1,0 +1,5759 @@
+{
+  "families": [
+    {
+      "code": "overlay/em01.ovl",
+      "monsters": [
+        "Rathian",
+        "Pink Rathian",
+        "Gold Rathian",
+        "Rathalos",
+        "Azure Rathalos",
+        "Silver Rathalos"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x19df70#1",
+          "damage": 20,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x19df70#2",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#3",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#4",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#5",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#6",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#7",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#8",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#9",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#10",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#11",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#12",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#13",
+          "damage": 10,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x19df70#15",
+          "damage": 20,
+          "guard": 40
+        },
+        {
+          "record": "game_task.ovl@0x19df70#16",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#17",
+          "damage": 35,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x19df70#18",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#19",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "game_task.ovl@0x19df70#20",
+          "damage": 76,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#21",
+          "damage": 76,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#22",
+          "damage": 55,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 50,
+          "stun": 50
+        },
+        {
+          "record": "game_task.ovl@0x19df70#23",
+          "damage": 55,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 50,
+          "stun": 50
+        },
+        {
+          "record": "game_task.ovl@0x19df70#24",
+          "damage": 50,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x19df70#25",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "game_task.ovl@0x19df70#26",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "game_task.ovl@0x19df70#27",
+          "damage": 20,
+          "guard": 40
+        },
+        {
+          "record": "game_task.ovl@0x19df70#28",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#29",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#30",
+          "damage": 75,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 25,
+          "stun": 40
+        },
+        {
+          "record": "game_task.ovl@0x19df70#31",
+          "damage": 10,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x19df70#34",
+          "damage": 50,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x19df70#35",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#36",
+          "damage": 64,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#37",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x19df70#40",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x19df70#41",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x19df70#49",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "game_task.ovl@0x19df70#51",
+          "damage": 76,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 25,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x19df70#52",
+          "damage": 76,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 25,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#1",
+          "damage": 65,
+          "guard": 20,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#2",
+          "damage": 75,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#3",
+          "damage": 80,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        }
+      ]
+    },
+    {
+      "code": "overlay/em02.ovl",
+      "monsters": [
+        "Fatalis",
+        "Crimson Fatalis",
+        "White Fatalis"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#44",
+          "damage": 200,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#45",
+          "damage": 150,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#22",
+          "damage": 150,
+          "guard": 40,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#23",
+          "damage": 200,
+          "guard": 40,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#24",
+          "damage": 200,
+          "guard": 40,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#1",
+          "damage": 80,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#2",
+          "damage": 190,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#3",
+          "damage": 100,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#4",
+          "damage": 80,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#5",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#6",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#7",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#8",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#9",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#10",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#11",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#12",
+          "damage": 120,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#13",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#14",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#16",
+          "damage": 0,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#17",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ]
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#18",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ]
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#19",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ]
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#20",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ]
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#22",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#23",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ]
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#24",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ]
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#25",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ]
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#26",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ]
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#27",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ]
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#28",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#29",
+          "damage": 120,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#30",
+          "damage": 230,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#31",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#32",
+          "damage": 120,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#33",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#34",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em02.ovl@0x12248#35",
+          "damage": 120,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "overlay/em07.ovl",
+      "monsters": [
+        "Lao-Shan Lung",
+        "Ashen Lao-Shan Lung"
+      ],
+      "attacks": [
+        {
+          "record": "overlay/em07.ovl@0xc450#1",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#2",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#3",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#4",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#5",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#6",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#7",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#8",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#9",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#10",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#11",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#12",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#13",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#14",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#15",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#16",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#17",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#18",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#19",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#20",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#21",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#22",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#23",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#24",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#25",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#26",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#27",
+          "damage": 40,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#28",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#29",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#30",
+          "damage": 40,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#31",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#32",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#33",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#34",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#35",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#36",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#37",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#38",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#39",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#40",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#41",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#42",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#43",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#44",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#45",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#46",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#47",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#48",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#49",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#50",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#51",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#52",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#53",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#54",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#55",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#56",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#57",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#58",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#59",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#60",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#61",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#62",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#63",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#64",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#65",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#68",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#69",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#70",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#71",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#72",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#73",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#74",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#75",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#76",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#77",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#78",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#79",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#81",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#82",
+          "damage": 60,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#83",
+          "damage": 60,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#84",
+          "damage": 60,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#85",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#86",
+          "damage": 5,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "overlay/em07.ovl@0xc450#87",
+          "damage": 5,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 2
+        }
+      ]
+    },
+    {
+      "code": "overlay/em14.ovl",
+      "monsters": [
+        "Diablos",
+        "Black Diablos",
+        "Monoblos",
+        "White Monoblos"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#8",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#1",
+          "damage": 50,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#2",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#3",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#4",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#5",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#6",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#7",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#8",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#9",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#10",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#11",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#12",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#13",
+          "damage": 10,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#14",
+          "damage": 55,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#15",
+          "damage": 20,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#16",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#17",
+          "damage": 40,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#18",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#19",
+          "damage": 0,
+          "guard": 10,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#20",
+          "damage": 35,
+          "guard": 16,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#21",
+          "damage": 60,
+          "guard": 40,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#22",
+          "damage": 45,
+          "guard": 30,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#25",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#26",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#27",
+          "damage": 10,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#28",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#29",
+          "damage": 45,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#30",
+          "damage": 50,
+          "guard": 15,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#31",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#32",
+          "damage": 25,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#33",
+          "damage": 20,
+          "guard": 15,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#34",
+          "damage": 80,
+          "guard": 100,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#35",
+          "damage": 50,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#36",
+          "damage": 40,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#37",
+          "damage": 40,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em14.ovl@0x15660#38",
+          "damage": 0,
+          "guard": 10,
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "overlay/em15.ovl",
+      "monsters": [
+        "Khezu",
+        "Red Khezu"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#14",
+          "damage": 25,
+          "guard": 10,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#16",
+          "damage": 80,
+          "guard": 9,
+          "elements": [
+            "thunder"
+          ],
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 10,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#1",
+          "damage": 55,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#2",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#3",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#5",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#6",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#7",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#8",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#9",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#10",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#11",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#12",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#13",
+          "damage": 10,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#14",
+          "damage": 55,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#15",
+          "damage": 20,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#16",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#17",
+          "damage": 50,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#19",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#20",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#21",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#22",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#23",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#24",
+          "damage": 60,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#25",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#26",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#27",
+          "damage": 55,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#28",
+          "damage": 60,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#29",
+          "damage": 50,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#30",
+          "damage": 65,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#31",
+          "damage": 50,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#34",
+          "damage": 60,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#37",
+          "damage": 20,
+          "guard": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#39",
+          "damage": 55,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#40",
+          "damage": 55,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#41",
+          "damage": 65,
+          "guard": 50,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#42",
+          "damage": 75,
+          "guard": 60,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#43",
+          "damage": 75,
+          "guard": 60,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em15.ovl@0x16e60#44",
+          "damage": 15,
+          "guard": 50,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 20
+        }
+      ]
+    },
+    {
+      "code": "overlay/em17.ovl",
+      "monsters": [
+        "Gravios",
+        "Black Gravios",
+        "Basarios"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#10",
+          "damage": 80,
+          "guard": 50,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#11",
+          "damage": 100,
+          "guard": 50,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#13",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#46",
+          "damage": 55,
+          "guard": 39,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#1",
+          "damage": 50,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#2",
+          "damage": 50,
+          "guard": 20,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#3",
+          "damage": 30,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#4",
+          "damage": 40,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#5",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#6",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#7",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#8",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#9",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#10",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#11",
+          "damage": 70,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#12",
+          "damage": 0,
+          "guard": 9,
+          "statuses": [
+            "sleep"
+          ],
+          "statusValue": 10,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#13",
+          "damage": 10,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#14",
+          "damage": 20,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#15",
+          "damage": 20,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#16",
+          "damage": 45,
+          "guard": 16,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#17",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#18",
+          "damage": 0,
+          "guard": 16
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#19",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#20",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#21",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#23",
+          "damage": 50,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#24",
+          "damage": 20,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#25",
+          "damage": 40,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#26",
+          "damage": 40,
+          "guard": 20,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#27",
+          "damage": 60,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#28",
+          "damage": 35,
+          "guard": 16,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#29",
+          "damage": 30,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#30",
+          "damage": 40,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#31",
+          "damage": 20,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#32",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#33",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#34",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#35",
+          "damage": 30,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#36",
+          "damage": 0,
+          "guard": 16
+        },
+        {
+          "record": "overlay/em17.ovl@0x176e8#37",
+          "damage": 0,
+          "guard": 16
+        }
+      ]
+    },
+    {
+      "code": "overlay/em20.ovl",
+      "monsters": [
+        "Gypceros",
+        "Purple Gypceros",
+        "Yian Kut-Ku",
+        "Blue Yian Kut-Ku"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#9",
+          "damage": 40,
+          "guard": 39,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#64",
+          "damage": 40,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 180,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#1",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#2",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#3",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#4",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#5",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#6",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#7",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#8",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#9",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#10",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#11",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#12",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#13",
+          "damage": 10,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#14",
+          "damage": 80,
+          "guard": 10,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#15",
+          "damage": 20,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#16",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#17",
+          "damage": 35,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#18",
+          "damage": 10,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#19",
+          "damage": 25,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#20",
+          "damage": 65,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#21",
+          "damage": 65,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#22",
+          "damage": 0,
+          "guard": 10,
+          "stun": 100
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#23",
+          "damage": 20,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#24",
+          "damage": 25,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#25",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#26",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#27",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#28",
+          "damage": 30,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#29",
+          "damage": 30,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#31",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#32",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#33",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#34",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#35",
+          "damage": 10,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#36",
+          "damage": 40,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#37",
+          "damage": 80,
+          "guard": 10,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#38",
+          "damage": 40,
+          "guard": 10,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 60,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#39",
+          "damage": 25,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 20,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em20.ovl@0x1f030#40",
+          "damage": 30,
+          "guard": 16,
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "overlay/em21.ovl",
+      "monsters": [
+        "Plesioth",
+        "Green Plesioth"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#4",
+          "damage": 70,
+          "guard": 10,
+          "elements": [
+            "water"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#5",
+          "damage": 75,
+          "guard": 10,
+          "elements": [
+            "water"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#6",
+          "damage": 70,
+          "guard": 10,
+          "elements": [
+            "water"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#1",
+          "damage": 65,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#2",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#3",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#4",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#5",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#6",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#7",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#8",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#13",
+          "damage": 60,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#14",
+          "damage": 70,
+          "guard": 40,
+          "statuses": [
+            "sleep"
+          ],
+          "statusValue": 50,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#15",
+          "damage": 10,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#16",
+          "damage": 50,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#17",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#18",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#19",
+          "damage": 40,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#20",
+          "damage": 70,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#21",
+          "damage": 70,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#22",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "water"
+          ],
+          "stun": 40
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#23",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "water"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#24",
+          "damage": 60,
+          "guard": 40,
+          "stun": 40
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#25",
+          "damage": 30,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em21.ovl@0x14090#26",
+          "damage": 40,
+          "guard": 40,
+          "statuses": [
+            "sleep"
+          ],
+          "statusValue": 50,
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "overlay/em33.ovl",
+      "monsters": [
+        "Kirin"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x19e7e8#12",
+          "damage": 40,
+          "guard": 40,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#13",
+          "damage": 50,
+          "guard": 16,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#14",
+          "damage": 35,
+          "guard": 16,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#17",
+          "damage": 40,
+          "guard": 16,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#24",
+          "damage": 70,
+          "guard": 40,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#19",
+          "damage": 40,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 30,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#20",
+          "damage": 40,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 30,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#21",
+          "damage": 40,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 30,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#22",
+          "damage": 40,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 30,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#23",
+          "damage": 40,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 30,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#24",
+          "damage": 40,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 30,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#25",
+          "damage": 50,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#26",
+          "damage": 50,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#29",
+          "damage": 50,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#30",
+          "damage": 50,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#31",
+          "damage": 40,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 30,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#32",
+          "damage": 50,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#33",
+          "damage": 40,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 30,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#34",
+          "damage": 50,
+          "guard": 29,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 30
+        }
+      ]
+    },
+    {
+      "code": "overlay/em40.ovl",
+      "monsters": [
+        "Yian Garuga",
+        "Scarred Yian Garuga"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#1",
+          "damage": 65,
+          "guard": 20,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#1",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#2",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#3",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#4",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#5",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#6",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#7",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#8",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#9",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#10",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#11",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#12",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#13",
+          "damage": 10,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#14",
+          "damage": 80,
+          "guard": 10,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#15",
+          "damage": 20,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#16",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#17",
+          "damage": 35,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#18",
+          "damage": 10,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#19",
+          "damage": 40,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#22",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#23",
+          "damage": 20,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#24",
+          "damage": 35,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#25",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#26",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#27",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#31",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#32",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#33",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#34",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#35",
+          "damage": 10,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#36",
+          "damage": 40,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#37",
+          "damage": 75,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 25,
+          "stun": 40
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#38",
+          "damage": 10,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#39",
+          "damage": 35,
+          "guard": 30,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 25,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#40",
+          "damage": 75,
+          "guard": 40,
+          "stun": 40
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#41",
+          "damage": 60,
+          "guard": 50,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em40.ovl@0x20220#42",
+          "damage": 45,
+          "guard": 40,
+          "stun": 5
+        }
+      ]
+    },
+    {
+      "code": "overlay/em54.ovl",
+      "monsters": [
+        "Kushala Daora",
+        "Rusted Kushala Daora",
+        "Teostra",
+        "Lunastra"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#1",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#2",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#4",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#51",
+          "damage": 100,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#52",
+          "damage": 100,
+          "guard": 40,
+          "elements": [
+            "ice"
+          ],
+          "statuses": [
+            "snowman"
+          ],
+          "statusValue": 10,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a34e0#31",
+          "damage": 80,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#25",
+          "damage": 100,
+          "guard": 70,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#26",
+          "damage": 100,
+          "guard": 70,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em54.ovl@0x1d390#1",
+          "damage": 80,
+          "guard": 30,
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "overlay/em55.ovl",
+      "monsters": [
+        "Shen Gaoren"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#9",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#9",
+          "damage": 120,
+          "guard": 50,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#11",
+          "damage": 150,
+          "guard": 50,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#1",
+          "damage": 70,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#2",
+          "damage": 70,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#3",
+          "damage": 50,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#4",
+          "damage": 60,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#5",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#6",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#7",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#8",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#9",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#10",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#11",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#12",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#13",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#14",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#15",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#16",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#17",
+          "damage": 55,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#19",
+          "damage": 50,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#20",
+          "damage": 50,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#21",
+          "damage": 50,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#22",
+          "damage": 50,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#23",
+          "damage": 50,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#24",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em55.ovl@0xedb8#25",
+          "damage": 70,
+          "guard": 30,
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "overlay/em58.ovl",
+      "monsters": [
+        "Yama Tsukami"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#10",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#11",
+          "damage": 65,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ]
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#1",
+          "damage": 0,
+          "guard": 70
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#1",
+          "damage": 80,
+          "guard": 70,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#2",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#3",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#4",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#5",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#6",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#7",
+          "damage": 60,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#8",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#9",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#10",
+          "damage": 70,
+          "guard": 60,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#11",
+          "damage": 90,
+          "guard": 90,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#12",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#13",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#14",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#15",
+          "damage": 80,
+          "guard": 30,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#16",
+          "damage": 200,
+          "guard": 30,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#19",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#20",
+          "damage": 0,
+          "guard": 90
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#21",
+          "damage": 0,
+          "guard": 90
+        },
+        {
+          "record": "overlay/em58.ovl@0x10388#22",
+          "damage": 35,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "overlay/em59.ovl",
+      "monsters": [
+        "Chameleos"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#3",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#17",
+          "damage": 70,
+          "guard": 40,
+          "statuses": [
+            "defense down"
+          ],
+          "statusValue": 10,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#18",
+          "damage": 30,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 40,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#21",
+          "damage": 70,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em59.ovl@0xcd88#1",
+          "damage": 40,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em59.ovl@0xcd88#2",
+          "damage": 40,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em59.ovl@0xcd88#3",
+          "damage": 40,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em59.ovl@0xcd88#4",
+          "damage": 50,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em59.ovl@0xcd88#5",
+          "damage": 40,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em59.ovl@0xcd88#6",
+          "damage": 65,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 25
+        },
+        {
+          "record": "overlay/em59.ovl@0xcd88#7",
+          "damage": 40,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em59.ovl@0xcd88#8",
+          "damage": 15,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em59.ovl@0xcd88#9",
+          "damage": 25,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        }
+      ]
+    },
+    {
+      "code": "overlay/em75.ovl",
+      "monsters": [
+        "Tigrex",
+        "Nargacuga",
+        "Akantor",
+        "Ukanlos"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#2",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#5",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#17",
+          "damage": 65,
+          "guard": 39,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#18",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#19",
+          "damage": 65,
+          "guard": 39,
+          "statuses": [
+            "defense down"
+          ],
+          "statusValue": 10,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#22",
+          "damage": 40,
+          "guard": 10,
+          "elements": [
+            "ice"
+          ],
+          "statuses": [
+            "snowman"
+          ],
+          "statusValue": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#1",
+          "damage": 30,
+          "guard": 39,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#2",
+          "damage": 70,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#3",
+          "damage": 45,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#4",
+          "damage": 40,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#5",
+          "damage": 65,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#6",
+          "damage": 64,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 25
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#7",
+          "damage": 40,
+          "guard": 50,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#8",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#9",
+          "damage": 70,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#10",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#11",
+          "damage": 10,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#12",
+          "damage": 10,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#13",
+          "damage": 15,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#14",
+          "damage": 15,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#15",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#16",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#17",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#18",
+          "damage": 40,
+          "guard": 35,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#19",
+          "damage": 50,
+          "guard": 50,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#20",
+          "damage": 50,
+          "guard": 50,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#21",
+          "damage": 50,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#22",
+          "damage": 50,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#23",
+          "damage": 110,
+          "guard": 60,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#24",
+          "damage": 80,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#25",
+          "damage": 10,
+          "guard": 40,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#26",
+          "damage": 10,
+          "guard": 40,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#27",
+          "damage": 10,
+          "guard": 40,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#28",
+          "damage": 65,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#29",
+          "damage": 10,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#30",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#31",
+          "damage": 30,
+          "guard": 20,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#32",
+          "damage": 30,
+          "guard": 39,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#33",
+          "damage": 0,
+          "guard": 0
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#34",
+          "damage": 70,
+          "guard": 50,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#35",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em75.ovl@0x466c8#36",
+          "damage": 80,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em75.ovl@0x47270#1",
+          "damage": 180,
+          "guard": 60,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x47270#2",
+          "damage": 90,
+          "guard": 50,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x47588#1",
+          "damage": 65,
+          "guard": 40,
+          "elements": [
+            "dragon"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "overlay/em75.ovl@0x47588#3",
+          "damage": 60,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em75.ovl@0x48198#3",
+          "damage": 70,
+          "guard": 60,
+          "elements": [
+            "ice"
+          ],
+          "statuses": [
+            "snowman"
+          ],
+          "statusValue": 10,
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "overlay/em82.ovl",
+      "monsters": [
+        "Hypnocatrice"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#67",
+          "damage": 0,
+          "guard": 40,
+          "statuses": [
+            "sleep"
+          ],
+          "statusValue": 50,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#77",
+          "damage": 0,
+          "guard": 40,
+          "statuses": [
+            "sleep"
+          ],
+          "statusValue": 50,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#1",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#2",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#3",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#4",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#5",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#6",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#7",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#8",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#9",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#10",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#11",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#12",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#13",
+          "damage": 10,
+          "guard": 30,
+          "stun": 5
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#15",
+          "damage": 20,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#16",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#17",
+          "damage": 35,
+          "guard": 30,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#18",
+          "damage": 10,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#19",
+          "damage": 45,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#20",
+          "damage": 65,
+          "guard": 40,
+          "stun": 50
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#21",
+          "damage": 65,
+          "guard": 40,
+          "stun": 50
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#23",
+          "damage": 40,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#24",
+          "damage": 35,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#25",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#26",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#27",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#28",
+          "damage": 60,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#29",
+          "damage": 50,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#31",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#32",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#33",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#34",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#35",
+          "damage": 60,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#36",
+          "damage": 40,
+          "guard": 30,
+          "stun": 40
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#37",
+          "damage": 40,
+          "guard": 40,
+          "stun": 40
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#38",
+          "damage": 0,
+          "guard": 40,
+          "statuses": [
+            "sleep"
+          ],
+          "statusValue": 5,
+          "stun": 20
+        },
+        {
+          "record": "overlay/em82.ovl@0x1d688#40",
+          "damage": 35,
+          "guard": 19,
+          "stun": 20
+        }
+      ]
+    },
+    {
+      "code": "overlay/em83.ovl",
+      "monsters": [
+        "Lavasioth"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#20",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#4",
+          "damage": 70,
+          "guard": 10,
+          "elements": [
+            "water"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#73",
+          "damage": 80,
+          "guard": 50,
+          "elements": [
+            "fire"
+          ],
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#75",
+          "damage": 80,
+          "guard": 50,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#1",
+          "damage": 65,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#2",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#3",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#4",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#5",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#6",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#7",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#8",
+          "damage": 10,
+          "guard": 30
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#9",
+          "damage": 70,
+          "guard": 70,
+          "elements": [
+            "fire"
+          ],
+          "stun": 40
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#10",
+          "damage": 65,
+          "guard": 50,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#11",
+          "damage": 80,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 40
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#12",
+          "damage": 30,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ]
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#13",
+          "damage": 60,
+          "guard": 30,
+          "elements": [
+            "fire"
+          ],
+          "stun": 5
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#14",
+          "damage": 80,
+          "guard": 60,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#15",
+          "damage": 10,
+          "guard": 40
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#16",
+          "damage": 40,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#17",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#18",
+          "damage": 10,
+          "guard": 9
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#19",
+          "damage": 45,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "overlay/em83.ovl@0x15ed0#20",
+          "damage": 20,
+          "guard": 40,
+          "elements": [
+            "fire"
+          ]
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em03",
+      "monsters": [
+        "Kelbi",
+        "Anteka"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x19e7e8#12",
+          "damage": 40,
+          "guard": 40,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#13",
+          "damage": 50,
+          "guard": 16,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#18",
+          "damage": 10,
+          "guard": 11,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#19",
+          "damage": 10,
+          "guard": 11,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#20",
+          "damage": 20,
+          "guard": 30,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#21",
+          "damage": 20,
+          "guard": 30,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#22",
+          "damage": 20,
+          "guard": 30,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#23",
+          "damage": 25,
+          "guard": 30,
+          "stun": 2
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em04",
+      "monsters": [
+        "Mosswine",
+        "Bullfango"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x19e7e8#4",
+          "damage": 10,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#9",
+          "damage": 20,
+          "guard": 11,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#10",
+          "damage": 20,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#11",
+          "damage": 40,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#15",
+          "damage": 20,
+          "guard": 11,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#16",
+          "damage": 20,
+          "guard": 11,
+          "stun": 2
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em08",
+      "monsters": [
+        "Cephadrome",
+        "Cephalos"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#17",
+          "damage": 50,
+          "guard": 10,
+          "elements": [
+            "water"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#18",
+          "damage": 30,
+          "guard": 10,
+          "elements": [
+            "water"
+          ],
+          "stun": 20
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em09",
+      "monsters": [
+        "Felyne",
+        "Melynx"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x19e7e8#2",
+          "damage": 10,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#3",
+          "damage": 0,
+          "guard": 11,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#5",
+          "damage": 0,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x19e7e8#8",
+          "damage": 0,
+          "guard": 11,
+          "stun": 2
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em12",
+      "monsters": [
+        "Aptonoth",
+        "Apceros"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a4328#1",
+          "damage": 10,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#2",
+          "damage": 15,
+          "guard": 11,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#3",
+          "damage": 15,
+          "guard": 11,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#9",
+          "damage": 10,
+          "guard": 41,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#10",
+          "damage": 15,
+          "guard": 41,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#13",
+          "damage": 20,
+          "guard": 41,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#18",
+          "damage": 15,
+          "guard": 11,
+          "stun": 2
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em16",
+      "monsters": [
+        "Velociprey",
+        "Genprey",
+        "Ioprey",
+        "Giaprey"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#39",
+          "damage": 10,
+          "guard": 11,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#41",
+          "damage": 10,
+          "guard": 11,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#58",
+          "damage": 20,
+          "guard": 11,
+          "elements": [
+            "ice"
+          ]
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#59",
+          "damage": 20,
+          "guard": 11,
+          "elements": [
+            "ice"
+          ]
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#1",
+          "damage": 15,
+          "guard": 14,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#2",
+          "damage": 20,
+          "guard": 40,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#3",
+          "damage": 20,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#5",
+          "damage": 10,
+          "guard": 9,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#7",
+          "damage": 15,
+          "guard": 40,
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#9",
+          "damage": 20,
+          "guard": 16,
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 10,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#10",
+          "damage": 10,
+          "guard": 9,
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#11",
+          "damage": 20,
+          "guard": 14,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#12",
+          "damage": 20,
+          "guard": 16,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#13",
+          "damage": 20,
+          "guard": 16,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#14",
+          "damage": 10,
+          "guard": 9,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#15",
+          "damage": 30,
+          "guard": 16,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#16",
+          "damage": 15,
+          "guard": 16,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a4870#17",
+          "damage": 20,
+          "guard": 14,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 10,
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em19",
+      "monsters": [
+        "Vespoid",
+        "Vespoid Queen"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a4328#6",
+          "damage": 10,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#7",
+          "damage": 10,
+          "guard": 10,
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 3,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#8",
+          "damage": 10,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#11",
+          "damage": 5,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#12",
+          "damage": 10,
+          "guard": 10,
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 12,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#14",
+          "damage": 10,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#15",
+          "damage": 10,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#16",
+          "damage": 20,
+          "guard": 10,
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 3,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#17",
+          "damage": 20,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#20",
+          "damage": 30,
+          "guard": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#21",
+          "damage": 30,
+          "guard": 10,
+          "statuses": [
+            "defense down"
+          ],
+          "statusValue": 10,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#22",
+          "damage": 30,
+          "guard": 20,
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 3,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4328#23",
+          "damage": 30,
+          "guard": 20,
+          "stun": 2
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em27",
+      "monsters": [
+        "Velocidrome",
+        "Gendrome",
+        "Iodrome",
+        "Giadrome"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#40",
+          "damage": 10,
+          "guard": 11,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 50
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#42",
+          "damage": 10,
+          "guard": 11,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 50
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#60",
+          "damage": 20,
+          "guard": 11,
+          "elements": [
+            "ice"
+          ],
+          "statuses": [
+            "snowman"
+          ],
+          "statusValue": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#61",
+          "damage": 20,
+          "guard": 11,
+          "elements": [
+            "ice"
+          ],
+          "statuses": [
+            "snowman"
+          ],
+          "statusValue": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#1",
+          "damage": 20,
+          "guard": 40,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#2",
+          "damage": 20,
+          "guard": 40,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#3",
+          "damage": 30,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#5",
+          "damage": 10,
+          "guard": 40,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#6",
+          "damage": 20,
+          "guard": 40,
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 10,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#7",
+          "damage": 30,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#8",
+          "damage": 35,
+          "guard": 40,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#9",
+          "damage": 40,
+          "guard": 40,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#10",
+          "damage": 20,
+          "guard": 40,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#11",
+          "damage": 25,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#12",
+          "damage": 30,
+          "guard": 40,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 10,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a4d08#13",
+          "damage": 30,
+          "guard": 40,
+          "stun": 5
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em48",
+      "monsters": [
+        "Hermitaur",
+        "Daimyo Hermitaur",
+        "Plum Daimyo Hermitaur",
+        "Ceanataur",
+        "Shogun Ceanataur",
+        "Terra Shogun Ceanataur"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#5",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#6",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#57",
+          "damage": 30,
+          "guard": 20,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#1",
+          "damage": 20,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#2",
+          "damage": 25,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#3",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#4",
+          "damage": 15,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#5",
+          "damage": 15,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#6",
+          "damage": 20,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#7",
+          "damage": 15,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#8",
+          "damage": 15,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#9",
+          "damage": 40,
+          "guard": 50,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#10",
+          "damage": 60,
+          "guard": 50,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#11",
+          "damage": 60,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#12",
+          "damage": 40,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#13",
+          "damage": 20,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#14",
+          "damage": 20,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#15",
+          "damage": 20,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#16",
+          "damage": 15,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#17",
+          "damage": 20,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#18",
+          "damage": 35,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#19",
+          "damage": 50,
+          "guard": 50,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#20",
+          "damage": 50,
+          "guard": 50,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#21",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#22",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#23",
+          "damage": 40,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#24",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#25",
+          "damage": 40,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#26",
+          "damage": 35,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#27",
+          "damage": 25,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#28",
+          "damage": 40,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#29",
+          "damage": 40,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#30",
+          "damage": 40,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#31",
+          "damage": 40,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#32",
+          "damage": 10,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#33",
+          "damage": 70,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#34",
+          "damage": 60,
+          "guard": 40,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#35",
+          "damage": 50,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#36",
+          "damage": 60,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#37",
+          "damage": 60,
+          "guard": 60,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#38",
+          "damage": 60,
+          "guard": 60,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a7c40#39",
+          "damage": 70,
+          "guard": 60,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#10",
+          "damage": 60,
+          "guard": 20,
+          "elements": [
+            "water"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#19",
+          "damage": 80,
+          "guard": 40,
+          "elements": [
+            "water"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#27",
+          "damage": 60,
+          "guard": 20,
+          "elements": [
+            "water"
+          ],
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em51",
+      "monsters": [
+        "Blango",
+        "Blangonga",
+        "Copper Blangonga",
+        "Conga",
+        "Congalala",
+        "Emerald Congalala",
+        "Rajang",
+        "Furious Rajang"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#15",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#16",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a02a0#20",
+          "damage": 0,
+          "guard": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#48",
+          "damage": 55,
+          "guard": 40,
+          "elements": [
+            "ice"
+          ],
+          "statuses": [
+            "snowman"
+          ],
+          "statusValue": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#49",
+          "damage": 30,
+          "guard": 39,
+          "elements": [
+            "ice"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#50",
+          "damage": 30,
+          "guard": 39,
+          "elements": [
+            "ice"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#53",
+          "damage": 30,
+          "guard": 39,
+          "statuses": [
+            "soiled"
+          ],
+          "statusValue": 0,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#55",
+          "damage": 100,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#69",
+          "damage": 60,
+          "guard": 50,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a0c60#71",
+          "damage": 60,
+          "guard": 50,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#1",
+          "damage": 65,
+          "guard": 40,
+          "stun": 25
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#2",
+          "damage": 65,
+          "guard": 16,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#3",
+          "damage": 35,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#4",
+          "damage": 35,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#5",
+          "damage": 55,
+          "guard": 16,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#6",
+          "damage": 65,
+          "guard": 16,
+          "elements": [
+            "ice"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#7",
+          "damage": 30,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#8",
+          "damage": 0,
+          "guard": 16
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#9",
+          "damage": 55,
+          "guard": 16,
+          "elements": [
+            "ice"
+          ],
+          "stun": 25
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#10",
+          "damage": 60,
+          "guard": 40,
+          "elements": [
+            "ice"
+          ],
+          "statuses": [
+            "snowman"
+          ],
+          "statusValue": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#11",
+          "damage": 10,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#12",
+          "damage": 10,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#13",
+          "damage": 10,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#14",
+          "damage": 10,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#15",
+          "damage": 20,
+          "guard": 20,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#16",
+          "damage": 10,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#17",
+          "damage": 35,
+          "guard": 15,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#18",
+          "damage": 15,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#19",
+          "damage": 55,
+          "guard": 15,
+          "elements": [
+            "ice"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#20",
+          "damage": 20,
+          "guard": 16,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#21",
+          "damage": 25,
+          "guard": 16,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#22",
+          "damage": 25,
+          "guard": 16,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#23",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#24",
+          "damage": 40,
+          "guard": 16,
+          "elements": [
+            "ice"
+          ],
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#25",
+          "damage": 0,
+          "guard": 16
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#26",
+          "damage": 40,
+          "guard": 16,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#27",
+          "damage": 20,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#28",
+          "damage": 30,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#29",
+          "damage": 50,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#31",
+          "damage": 75,
+          "guard": 50,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#32",
+          "damage": 50,
+          "guard": 50,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#33",
+          "damage": 50,
+          "guard": 50,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#34",
+          "damage": 0,
+          "guard": 40
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#35",
+          "damage": 40,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#36",
+          "damage": 75,
+          "guard": 50,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#37",
+          "damage": 75,
+          "guard": 50,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#38",
+          "damage": 85,
+          "guard": 40,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#39",
+          "damage": 55,
+          "guard": 50,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#40",
+          "damage": 30,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#41",
+          "damage": 15,
+          "guard": 16,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#42",
+          "damage": 100,
+          "guard": 50,
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#43",
+          "damage": 70,
+          "guard": 60,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#44",
+          "damage": 0,
+          "guard": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#45",
+          "damage": 0,
+          "guard": 10,
+          "stun": 60
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#46",
+          "damage": 0,
+          "guard": 35,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#47",
+          "damage": 70,
+          "guard": 16,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#48",
+          "damage": 0,
+          "guard": 16
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#49",
+          "damage": 75,
+          "guard": 50,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a8f80#50",
+          "damage": 85,
+          "guard": 40,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#7",
+          "damage": 80,
+          "guard": 40,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#8",
+          "damage": 80,
+          "guard": 40,
+          "elements": [
+            "thunder"
+          ],
+          "stun": 20
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#12",
+          "damage": 30,
+          "guard": 15,
+          "statuses": [
+            "soiled"
+          ],
+          "statusValue": 0,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#13",
+          "damage": 15,
+          "guard": 10,
+          "statuses": [
+            "soiled"
+          ],
+          "statusValue": 0,
+          "stun": 30
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#14",
+          "damage": 50,
+          "guard": 40,
+          "statuses": [
+            "soiled"
+          ],
+          "statusValue": 0,
+          "stun": 15
+        },
+        {
+          "record": "game_task.ovl@0x1a9c00#15",
+          "damage": 30,
+          "guard": 15,
+          "statuses": [
+            "soiled"
+          ],
+          "statusValue": 0,
+          "stun": 30
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em56",
+      "monsters": [
+        "Great Thunderbug"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a34e0#35",
+          "damage": 20,
+          "guard": 50,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1abcc0#3",
+          "damage": 15,
+          "guard": 15,
+          "statuses": [
+            "paralysis"
+          ],
+          "statusValue": 3,
+          "stun": 2
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em57",
+      "monsters": [
+        "Shakalaka",
+        "King Shakalaka"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a02a0#13",
+          "damage": 40,
+          "guard": 30,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1abaf8#1",
+          "damage": 20,
+          "guard": 10,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1abaf8#2",
+          "damage": 30,
+          "guard": 10,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1abaf8#3",
+          "damage": 30,
+          "guard": 40,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1abaf8#4",
+          "damage": 40,
+          "guard": 10,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1abaf8#5",
+          "damage": 20,
+          "guard": 10,
+          "stun": 5
+        },
+        {
+          "record": "game_task.ovl@0x1ac650#1",
+          "damage": 30,
+          "guard": 39,
+          "elements": [
+            "fire"
+          ],
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em63",
+      "monsters": [
+        "Remobra"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1a0c60#62",
+          "damage": 15,
+          "guard": 11,
+          "statuses": [
+            "poison"
+          ],
+          "statusValue": 20
+        },
+        {
+          "record": "game_task.ovl@0x1ac2a0#1",
+          "damage": 30,
+          "guard": 15,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1ac2a0#2",
+          "damage": 20,
+          "guard": 40,
+          "stun": 10
+        },
+        {
+          "record": "game_task.ovl@0x1ac2a0#3",
+          "damage": 30,
+          "guard": 30,
+          "stun": 10
+        }
+      ]
+    },
+    {
+      "code": "game_task.ovl:em68",
+      "monsters": [
+        "Bulldrome"
+      ],
+      "attacks": [
+        {
+          "record": "game_task.ovl@0x1abcc0#5",
+          "damage": 40,
+          "guard": 15,
+          "stun": 2
+        },
+        {
+          "record": "game_task.ovl@0x1abcc0#6",
+          "damage": 35,
+          "guard": 15,
+          "stun": 2
+        }
+      ]
+    }
+  ]
+}
