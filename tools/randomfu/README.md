@@ -45,6 +45,39 @@ page has, and requests naming any other host are refused, so other
 websites can't use it. Keep `pnpm gui` running while you use the page.
 `--port <n>` picks the port; `--no-open` doesn't open a browser.
 
+### The web app
+
+`web/` is the same randomizer as a static web app that runs entirely in the
+browser: players pick their own ISO (and, for EBOOT settings, their PPSSPP
+EBOOT dump), set options, and download the randomized ISO and spoiler log.
+Nothing is uploaded.
+
+```bash
+pnpm build:web      # builds web/dist: index.html, app.js, worker.js
+pnpm test:web       # builds, then checks the app in Chromium against the CLI
+```
+
+`web/dist` is a plain static site: host it anywhere (GitHub Pages, Netlify,
+any web server). How it works:
+
+- The randomizer runs in a worker (`web/worker.ts`) and reads the ISO with
+  `FileReaderSync`, so the shared code's synchronous reads work unchanged.
+- Writes go to an `OverlaySource` (`src/disc/image.ts`): a 2 KB sector is
+  copied into memory the first time it's written. The finished ISO is a
+  Blob of slices of the user's own file plus the changed sectors, so the
+  disc is never copied into memory (a few MB of changes for a full run).
+- The Node-only modules the shared code imports are swapped for browser
+  versions at build time (`web/shims`): SHA-1/SHA-256 (tested against
+  Node's), the vendored file list and name tables (embedded), and
+  `Buffer` (the `buffer` package).
+- `pnpm test:web` uploads the test fixture disc and EBOOT, randomizes with
+  every shuffle on, and checks the downloaded ISO is byte for byte the
+  CLI's for the same settings. It needs Playwright's Chromium.
+- CSO images aren't read in the browser yet: decompress to ISO first.
+
+It's licensed GPL-3.0-or-later like the rest of randomfu; the page links to
+the source and the build ships `LICENSE.txt`.
+
 ### The command line
 
 ```bash

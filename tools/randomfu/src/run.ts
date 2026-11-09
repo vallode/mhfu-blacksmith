@@ -7,7 +7,7 @@ import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { openDiscImage } from "../../mhfu-extract/src/container/image.js";
 import { detectRegion, parseSfo } from "../../mhfu-extract/src/container/sfo.js";
-import { copyAsIso, PatchableImage } from "./disc/image.js";
+import { copyAsIso, openPatchableImage } from "./disc/node-file.js";
 import { loadGame } from "./game/load.js";
 import { randomize } from "./randomize.js";
 import { describeSettings, encodeSettings, needsEboot, type Settings } from "./settings.js";
@@ -57,7 +57,7 @@ export async function runRandomizer(options: RunOptions, log: Log): Promise<RunR
   }
 
   // Read from the copy when there is one, so the same file is read and patched.
-  const image = output ? new PatchableImage(output) : null;
+  const image = output ? openPatchableImage(output) : null;
   const opened = image ? null : openDiscImage(input);
   let finished = false;
   try {

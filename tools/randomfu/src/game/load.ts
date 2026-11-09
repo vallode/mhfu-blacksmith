@@ -37,6 +37,8 @@ export interface LoadedOverlay {
 }
 
 export interface EbootOptions {
+  /** A decrypted EBOOT dump's bytes (the browser app's upload). */
+  dump?: Buffer;
   /** A decrypted EBOOT dump to use instead of decrypting the disc's. */
   overridePath?: string;
   pspdecryptBin?: string;
@@ -57,6 +59,16 @@ export interface GameData {
   eboot: Buffer | null;
   /** How EBOOT tables are found: undefined means JP's static addresses. */
   resolver: TableAddressResolver | undefined;
+}
+
+/** A decrypted EBOOT is a plain ELF; anything else is the wrong file. */
+function checkedDump(dump: Buffer): Buffer {
+  if (!dump.subarray(0, 4).equals(Buffer.from([0x7f, 0x45, 0x4c, 0x46]))) {
+    throw new Error(
+      "That EBOOT isn't decrypted (no ELF header). Use PPSSPP's dump: Settings, Tools, Developer tools, “Dump Decrypted Eboot.bin on game boot”.",
+    );
+  }
+  return dump;
 }
 
 function indexOf(region: Region, path: string): number {
@@ -101,7 +113,9 @@ export async function loadGame(
   let eboot: Buffer | null = null;
   let resolver: TableAddressResolver | undefined;
   if (options.eboot) {
-    eboot = await decryptEboot(iso.readFile(EBOOT_PATH), options.eboot);
+    eboot = options.eboot.dump
+      ? checkedDump(options.eboot.dump)
+      : await decryptEboot(iso.readFile(EBOOT_PATH), options.eboot);
     if (region !== "jp") {
       resolver = MHP2G_PROFILE.resolverForRegion(region) ?? undefined;
       if (!resolver) throw new Error(`No EBOOT table addresses for region ${region} yet`);

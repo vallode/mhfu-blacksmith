@@ -458,12 +458,23 @@ export function isActive(settings: Settings, option: OptionDef): boolean {
   return settings[option.enabledBy] === true && isActive(settings, parent);
 }
 
+// base64url by hand: the browser's Buffer has plain base64 only.
+function toBase64Url(buf: Buffer): string {
+  return buf.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
+}
+
+function fromBase64Url(text: string): Buffer {
+  if (!/^[A-Za-z0-9_-]*$/.test(text)) throw new SettingsError("That settings string is damaged");
+  const b64 = text.replace(/-/g, "+").replace(/_/g, "/");
+  return Buffer.from(b64 + "=".repeat((4 - (b64.length % 4)) % 4), "base64");
+}
+
 export function encodeSettings(settings: Settings): string {
   const payload: Record<string, unknown> = { v: LOGIC_VERSION, seed: settings.seed };
   for (const option of OPTIONS) {
     if (settings[option.key] !== option.default) payload[option.key] = settings[option.key];
   }
-  return `RF${Buffer.from(JSON.stringify(payload), "utf8").toString("base64url")}`;
+  return `RF${toBase64Url(Buffer.from(JSON.stringify(payload), "utf8"))}`;
 }
 
 /** Decodes a settings string. `version` is the logic version it was made with. */
@@ -472,7 +483,7 @@ export function decodeSettings(value: string): { settings: Settings; version: nu
   if (!text.startsWith("RF")) throw new SettingsError("A settings string starts with RF");
   let payload: unknown;
   try {
-    payload = JSON.parse(Buffer.from(text.slice(2), "base64url").toString("utf8"));
+    payload = JSON.parse(fromBase64Url(text.slice(2)).toString("utf8"));
   } catch {
     throw new SettingsError("That settings string is damaged");
   }

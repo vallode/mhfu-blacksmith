@@ -1,14 +1,13 @@
 /**
- * The output disc image: a plain ISO copied from the user's ISO or CSO,
- * then patched in place.
+ * The output disc image, patched in place: on disk for the CLI
+ * (`node-file.ts`), or as an in-memory layer over the user's file in the
+ * browser (`OverlaySource`).
  *
  * Files are rewritten where they are when they still fit in their sectors.
  * A file that has grown is moved to the end of the image, and its
  * directory record and the volume size are updated. Nothing else in the
  * image moves, so the ISO never needs a full rebuild.
  */
-import { closeSync, fstatSync, ftruncateSync, openSync, readSync, writeSync } from "node:fs";
-import { openDiscImage } from "../../../mhfu-extract/src/container/image.js";
 import { Iso9660Reader, type DirEntry } from "../../../mhfu-extract/src/container/iso9660.js";
 import type { RandomAccessSource } from "../../../mhfu-extract/src/container/source.js";
 
@@ -19,60 +18,132 @@ const PVD_VOLUME_SIZE = 80;
 /** Directory record fields, both-endian u32: extent LBA and data length. */
 const RECORD_LBA = 2;
 const RECORD_SIZE = 10;
-const COPY_CHUNK = 4 * 1024 * 1024;
 
-/** A read/write file source, so the ISO 9660 reader can read the image being patched. */
-class ReadWriteFile implements RandomAccessSource {
-  private readonly fd: number;
+/** A source that can also be written to and resized. */
+export interface WritableSource extends RandomAccessSource {
+  write(offset: number, data: Buffer): void;
+  truncate(length: number): void;
+}
 
-  constructor(path: string) {
-    this.fd = openSync(path, "r+");
+/** One piece of a finished image: a byte range of the original, or new bytes. */
+export type ImageSegment =
+  { kind: "original"; start: number; end: number } | { kind: "data"; data: Buffer };
+
+/**
+ * Writes kept in memory over a read-only source: a 2 KB sector is copied in
+ * the first time it's written. `segments()` describes the finished image as
+ * ranges of the original plus the changed sectors, so it can be assembled
+ * (for a download, say) without copying the original.
+ */
+export class OverlaySource implements WritableSource {
+  private readonly sectors = new Map<number, Buffer>();
+  private size: number;
+
+  constructor(private readonly base: RandomAccessSource) {
+    this.size = base.totalBytes;
   }
 
   get totalBytes(): number {
-    return fstatSync(this.fd).size;
+    return this.size;
+  }
+
+  private baseSector(index: number): Buffer {
+    const sector = Buffer.alloc(SECTOR_SIZE);
+    const start = index * SECTOR_SIZE;
+    const end = Math.min(start + SECTOR_SIZE, this.base.totalBytes);
+    if (end > start) this.base.read(start, end - start).copy(sector);
+    return sector;
   }
 
   read(offset: number, length: number): Buffer {
-    const buf = Buffer.alloc(length);
+    if (offset < 0 || offset + length > this.size) {
+      throw new RangeError(`OverlaySource: read past the end at 0x${offset.toString(16)}`);
+    }
+    const out = Buffer.alloc(length);
     let done = 0;
     while (done < length) {
-      const n = readSync(this.fd, buf, done, length - done, offset + done);
-      if (n === 0) throw new RangeError(`short read at 0x${offset.toString(16)}`);
+      const at = offset + done;
+      const index = Math.floor(at / SECTOR_SIZE);
+      const changed = this.sectors.get(index);
+      if (changed) {
+        const from = at - index * SECTOR_SIZE;
+        const n = Math.min(SECTOR_SIZE - from, length - done);
+        changed.copy(out, done, from, from + n);
+        done += n;
+        continue;
+      }
+      // A run of unchanged sectors: one read from the original.
+      let end = (index + 1) * SECTOR_SIZE;
+      while (end < offset + length && !this.sectors.has(end / SECTOR_SIZE)) end += SECTOR_SIZE;
+      const n = Math.min(end, offset + length) - at;
+      const fromBase = Math.min(n, Math.max(0, this.base.totalBytes - at));
+      if (fromBase > 0) this.base.read(at, fromBase).copy(out, done);
       done += n;
     }
-    return buf;
+    return out;
   }
 
   write(offset: number, data: Buffer): void {
     let done = 0;
     while (done < data.length) {
-      done += writeSync(this.fd, data, done, data.length - done, offset + done);
+      const at = offset + done;
+      const index = Math.floor(at / SECTOR_SIZE);
+      let sector = this.sectors.get(index);
+      if (!sector) {
+        sector = this.baseSector(index);
+        this.sectors.set(index, sector);
+      }
+      const from = at - index * SECTOR_SIZE;
+      const n = Math.min(SECTOR_SIZE - from, data.length - done);
+      data.copy(sector, from, done, done + n);
+      done += n;
     }
+    this.size = Math.max(this.size, offset + data.length);
   }
 
   truncate(length: number): void {
-    ftruncateSync(this.fd, length);
+    this.size = length;
+    for (const index of [...this.sectors.keys()]) {
+      if (index * SECTOR_SIZE >= length) this.sectors.delete(index);
+    }
+  }
+
+  /** The finished image, in order: original ranges and changed bytes. */
+  segments(): ImageSegment[] {
+    const out: ImageSegment[] = [];
+    const sectorCount = Math.ceil(this.size / SECTOR_SIZE);
+    let i = 0;
+    while (i < sectorCount) {
+      const start = i * SECTOR_SIZE;
+      if (this.sectors.has(i)) {
+        const run: Buffer[] = [];
+        while (i < sectorCount && this.sectors.has(i)) run.push(this.sectors.get(i++)!);
+        const data = Buffer.concat(run);
+        out.push({
+          kind: "data",
+          data: data.subarray(0, Math.min(data.length, this.size - start)),
+        });
+      } else {
+        while (i < sectorCount && !this.sectors.has(i)) i++;
+        const end = Math.min(i * SECTOR_SIZE, this.size);
+        const baseEnd = Math.min(end, this.base.totalBytes);
+        if (baseEnd > start) out.push({ kind: "original", start, end: baseEnd });
+        // Past the original's end (only after a move to the end): zeros.
+        if (end > Math.max(start, baseEnd)) {
+          out.push({ kind: "data", data: Buffer.alloc(end - Math.max(start, baseEnd)) });
+        }
+      }
+    }
+    return out;
+  }
+
+  /** How many sectors are held in memory. */
+  get changedSectors(): number {
+    return this.sectors.size;
   }
 
   close(): void {
-    closeSync(this.fd);
-  }
-}
-
-/** Copies `inputPath` (ISO or CSO) to `outputPath` as a plain ISO. */
-export function copyAsIso(inputPath: string, outputPath: string): void {
-  const { source } = openDiscImage(inputPath);
-  const out = openSync(outputPath, "w");
-  try {
-    for (let offset = 0; offset < source.totalBytes; offset += COPY_CHUNK) {
-      const chunk = source.read(offset, Math.min(COPY_CHUNK, source.totalBytes - offset));
-      let done = 0;
-      while (done < chunk.length) done += writeSync(out, chunk, done, chunk.length - done);
-    }
-  } finally {
-    closeSync(out);
-    source.close();
+    this.base.close();
   }
 }
 
@@ -89,15 +160,13 @@ export interface ReplaceResult {
 }
 
 export class PatchableImage {
-  private readonly file: ReadWriteFile;
   readonly iso: Iso9660Reader;
 
-  constructor(path: string) {
-    this.file = new ReadWriteFile(path);
-    this.iso = new Iso9660Reader(this.file);
+  constructor(private readonly file: WritableSource) {
+    this.iso = new Iso9660Reader(file);
   }
 
-  get source(): RandomAccessSource {
+  get source(): WritableSource {
     return this.file;
   }
 

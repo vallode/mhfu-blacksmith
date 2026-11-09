@@ -5,7 +5,7 @@ import { test } from "node:test";
 import { openDiscImage } from "../../mhfu-extract/src/container/image.js";
 import { decryptQuest } from "../../mhfu-extract/src/quests/mib.js";
 import { DataBin } from "../src/disc/databin.js";
-import { copyAsIso, PatchableImage } from "../src/disc/image.js";
+import { copyAsIso, openPatchableImage } from "../src/disc/node-file.js";
 import { openQuestFile } from "../src/disc/quest-file.js";
 import {
   buildCso,
@@ -38,7 +38,7 @@ test("replaceFile rewrites a file in place when it still fits", () => {
     { path: "D/B.BIN", data: Buffer.alloc(100, 2) },
   ]);
   const file = writeTemp("img.iso", iso);
-  const image = new PatchableImage(file);
+  const image = openPatchableImage(file);
   const before = image.stat("/D/A.BIN");
   const result = image.replaceFile("/D/A.BIN", Buffer.alloc(3500, 9));
   image.close();
@@ -58,7 +58,7 @@ test("replaceFile moves a grown file to the end and updates the volume size", ()
     { path: "D/B.BIN", data: Buffer.alloc(100, 2) },
   ]);
   const file = writeTemp("img.iso", iso);
-  const image = new PatchableImage(file);
+  const image = openPatchableImage(file);
   const result = image.replaceFile("/D/A.BIN", Buffer.alloc(5000, 7));
   image.close();
   assert.equal(result.moved, true);

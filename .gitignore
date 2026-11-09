@@ -48,3 +48,5 @@ mhef/
 tools/mhfu-extract/.cache/
 tools/mhfu-extract/**/*.iso
 tools/mhfu-extract/**/*.cso
+# randomfu web app build output
+tools/randomfu/web/dist/

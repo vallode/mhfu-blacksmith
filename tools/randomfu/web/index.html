@@ -1,0 +1,171 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>randomfu</title>
+    <meta
+      name="description"
+      content="A seeded randomizer for Monster Hunter Freedom Unite that runs in your browser on your own disc image."
+    />
+    <style>
+      /*STYLE*/
+      .drop {
+        display: grid;
+        gap: 4px;
+        padding: 12px;
+        border: 1px dashed var(--line);
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .drop:hover,
+      .drop:focus-within {
+        border-color: var(--accent);
+      }
+      .drop input {
+        font: inherit;
+        max-width: 100%;
+      }
+      .downloads {
+        display: flex;
+        gap: 8px;
+        flex-wrap: wrap;
+      }
+      .downloads a {
+        text-decoration: none;
+      }
+      footer {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 0 16px 120px;
+        color: var(--muted);
+        font-size: 13px;
+      }
+      footer a {
+        color: inherit;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>randomfu</h1>
+      <span class="sub">Monster Hunter Freedom Unite randomizer</span>
+      <span class="sub" id="version"></span>
+    </header>
+
+    <main>
+      <div class="col">
+        <section class="card" aria-labelledby="disc-h">
+          <h2 id="disc-h">Your game</h2>
+          <label class="field drop">
+            <span>Disc image (.iso)</span>
+            <input type="file" id="iso" accept=".iso" />
+            <span class="hint"
+              >MHFU (EU) or MHP2G (JP), dumped from your own disc. It stays on your computer:
+              nothing is uploaded.</span
+            >
+          </label>
+          <label class="field drop">
+            <span
+              >Decrypted EBOOT
+              <span class="badge" id="eboot-needed" hidden>needed for these settings</span></span
+            >
+            <input type="file" id="eboot" />
+            <span class="hint"
+              >For crafting, cost, weapon, armor and shop price settings. In PPSSPP turn on Settings
+              → Tools → Developer tools → “Dump Decrypted Eboot.bin on game boot” and start the game
+              once; the file is in PSP/SYSTEM/DUMP.</span
+            >
+          </label>
+          <div class="status" id="check-status" role="status"></div>
+        </section>
+
+        <section class="card" aria-labelledby="seed-h">
+          <h2 id="seed-h">Seed</h2>
+          <div class="row">
+            <input type="text" id="seed" aria-label="Seed" autocomplete="off" spellcheck="false" />
+            <button type="button" id="new-seed">New seed</button>
+          </div>
+          <p class="hint">The same disc, seed and settings always make the same game.</p>
+        </section>
+
+        <section class="card" aria-labelledby="presets-h">
+          <h2 id="presets-h">Presets</h2>
+          <div class="presets" id="presets"></div>
+          <p class="hint">A preset keeps your seed. Change anything after.</p>
+        </section>
+
+        <section class="card" aria-labelledby="share-h">
+          <h2 id="share-h">Share</h2>
+          <label class="field">
+            <span>Settings string</span>
+            <textarea id="share" rows="3" readonly></textarea>
+            <span class="hint"
+              >Seed and settings in one line. Anyone with the same disc gets the same game.</span
+            >
+          </label>
+          <div class="row">
+            <button type="button" id="copy">Copy</button>
+            <button type="button" id="export">Save settings file</button>
+            <button type="button" id="import">Load settings file</button>
+            <input type="file" id="import-file" accept=".json,application/json" hidden />
+          </div>
+          <label class="field" style="margin-top: 12px">
+            <span>Load a settings string</span>
+            <div class="row">
+              <input
+                type="text"
+                id="paste"
+                placeholder="RF…"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="button" id="apply-paste">Load</button>
+            </div>
+          </label>
+          <div class="status" id="share-status" role="status"></div>
+        </section>
+      </div>
+
+      <div class="col" id="options"></div>
+
+      <section class="card" id="results" hidden aria-labelledby="results-h">
+        <h2 id="results-h">Run</h2>
+        <div class="results-grid">
+          <div class="downloads" id="downloads"></div>
+          <pre id="log" aria-live="polite"></pre>
+          <div id="spoiler-wrap" hidden>
+            <div class="row" style="margin-bottom: 8px">
+              <strong style="flex: 1">Spoiler log</strong>
+              <input
+                type="text"
+                id="filter"
+                placeholder="Filter lines, e.g. Buster Sword"
+                aria-label="Filter the spoiler log"
+                style="flex: 0 1 280px"
+              />
+            </div>
+            <pre id="spoiler"></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer>
+      randomfu runs entirely in your browser: your disc image and EBOOT never leave your computer.
+      Free software under the GNU GPL v3 or later;
+      <a href="https://github.com/vallode/mhfu-blacksmith/tree/main/tools/randomfu">source code</a>.
+      Not affiliated with Capcom.
+    </footer>
+
+    <div class="actions">
+      <div class="inner">
+        <span class="status grow" id="run-status">Pick your disc image, then randomize.</span>
+        <button type="button" id="dry-run">Preview spoiler</button>
+        <button type="button" class="primary" id="run">Randomize</button>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>

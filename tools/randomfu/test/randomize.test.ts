@@ -10,7 +10,7 @@ import {
 } from "../../mhfu-extract/src/tables/offsets.js";
 import { equipmentCreateLayout } from "../../mhfu-extract/src/tables/recipes.js";
 import { BinaryReader } from "../../mhfu-extract/src/binary/reader.js";
-import { PatchableImage } from "../src/disc/image.js";
+import { openPatchableImage } from "../src/disc/node-file.js";
 import { EBOOT_PATH, loadGame, type GameData } from "../src/game/load.js";
 import { tierLabel } from "../src/game/tiers.js";
 import { randomize } from "../src/randomize.js";
@@ -253,7 +253,7 @@ test("written output reads back with the shuffled data, and nothing else changes
   const input = fixtureFile();
   const output = path.join(tempDir(), "out.iso");
   writeFileSync(output, readFileSync(input));
-  const image = new PatchableImage(output);
+  const image = openPatchableImage(output);
   const game = await loadGame(image.source, image.iso, { eboot: {} });
   const all = settings(
     "fixture",

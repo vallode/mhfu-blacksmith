@@ -12,13 +12,17 @@
     "settings": "tsx src/cli.ts settings",
     "test": "tsx --test test/**/*.test.ts",
     "shop-scan": "tsx src/cli.ts shop-scan",
-    "shop-lists": "tsx src/cli.ts shop-lists"
+    "shop-lists": "tsx src/cli.ts shop-lists",
+    "build:web": "node web/build.mjs",
+    "test:web": "tsx web/e2e.mts"
   },
   "dependencies": {
     "tsx": "^4.22.4"
   },
   "devDependencies": {
     "@types/node": "^22",
+    "buffer": "6.0.3",
+    "esbuild": "0.25.10",
     "typescript": "^5"
   }
 }
