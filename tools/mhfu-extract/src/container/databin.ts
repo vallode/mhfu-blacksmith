@@ -91,30 +91,59 @@ export interface DataBinFile {
 }
 
 /**
- * Decrypts the DATA.BIN table of contents and every file it references.
+ * Reads the TOC from `raw`, either through the cipher or as plain u32s.
+ * Returns null unless it is a real TOC: it fits in the file, its first entry
+ * is its own size, the LBAs never go backwards, and one of them is the
+ * file's size in sectors.
+ */
+function readToc(raw: Buffer, encrypted: boolean): { toc: Uint32Array; fileCount: number } | null {
+  if (raw.length < 4) return null;
+  const head = raw.subarray(0, 4);
+  const tocSizeSectors = (encrypted ? decryptDataBinBlock(head, 0) : head).readUInt32LE(0);
+  const tocBytes = tocSizeSectors * SECTOR_SIZE;
+  if (tocBytes === 0 || tocBytes > raw.length) return null;
+
+  const tocRaw = raw.subarray(0, tocBytes);
+  const tocBuf = encrypted ? decryptDataBinBlock(tocRaw, 0) : tocRaw;
+  const toc = new Uint32Array(tocBytes / 4);
+  for (let i = 0; i < toc.length; i++) toc[i] = tocBuf.readUInt32LE(i * 4);
+
+  const totalSectors = raw.length / SECTOR_SIZE;
+  const fileCount = toc.indexOf(totalSectors);
+  if (fileCount <= 0) return null;
+  for (let i = 0; i < fileCount; i++) if (toc[i + 1]! < toc[i]!) return null;
+  return { toc, fileCount };
+}
+
+export interface UnpackedDataBin {
+  files: DataBinFile[];
+  /** False for a DATA.BIN stored without the cipher, as FUComplete's patcher leaves it. */
+  encrypted: boolean;
+}
+
+/**
+ * Reads the DATA.BIN table of contents and every file it references,
+ * decrypting them unless the container is stored plain.
  *
  * TOC layout: a u32 at offset 0 (once decrypted) gives the TOC size in
  * sectors; the TOC itself is an array of u32 LBAs, one per file plus a
  * final sentinel equal to the total file size in sectors. `file_count` is
  * the index of the entry equal to that sentinel.
+ *
+ * FUComplete (a patched JP disc, still ULJM05500) ships DATA.BIN with the
+ * cipher removed: same TOC and files, no substitution or XOR. Which of the
+ * two this is shows in the TOC, so both are tried.
  */
-export function unpackDataBin(raw: Buffer, region: Region): DataBinFile[] {
-  const tocSizeWord = decryptDataBinBlock(raw.subarray(0, 4), 0);
-  const tocSizeSectors = tocSizeWord.readUInt32LE(0);
-  const tocBytes = tocSizeSectors * SECTOR_SIZE;
-
-  const tocDecrypted = decryptDataBinBlock(raw.subarray(0, tocBytes), 0);
-  const tocEntryCount = tocBytes / 4;
-  const toc = new Uint32Array(tocEntryCount);
-  for (let i = 0; i < tocEntryCount; i++) toc[i] = tocDecrypted.readUInt32LE(i * 4);
-
-  const totalSectors = raw.length / SECTOR_SIZE;
-  const fileCount = toc.indexOf(totalSectors);
-  if (fileCount === -1) {
+export function readDataBin(raw: Buffer, region: Region): UnpackedDataBin {
+  const encryptedToc = readToc(raw, true);
+  const parsed = encryptedToc ?? readToc(raw, false);
+  if (!parsed) {
     throw new Error(
-      "unpackDataBin: could not find TOC sentinel matching file size — is this really a decrypted-container-shaped DATA.BIN?",
+      "DATA.BIN has no valid table of contents, encrypted or plain: no run of sector offsets ending at the file's size. Is this really a MHP2G/MHFU DATA.BIN?",
     );
   }
+  const encrypted = encryptedToc !== null;
+  const { toc, fileCount } = parsed;
 
   const exceptions = exceptionsFor(region);
   const files: DataBinFile[] = [];
@@ -122,8 +151,14 @@ export function unpackDataBin(raw: Buffer, region: Region): DataBinFile[] {
     const startLba = toc[i]!;
     const endLba = toc[i + 1]!;
     const raw_ = raw.subarray(startLba * SECTOR_SIZE, endLba * SECTOR_SIZE);
-    const data = exceptions.has(i) ? Buffer.from(raw_) : decryptDataBinBlock(raw_, startLba);
+    const data =
+      !encrypted || exceptions.has(i) ? Buffer.from(raw_) : decryptDataBinBlock(raw_, startLba);
     files.push({ index: i, startLba, data });
   }
-  return files;
+  return { files, encrypted };
+}
+
+/** `readDataBin`'s files alone. */
+export function unpackDataBin(raw: Buffer, region: Region): DataBinFile[] {
+  return readDataBin(raw, region).files;
 }

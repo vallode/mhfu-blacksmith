@@ -5,7 +5,7 @@
  */
 import { mkdir, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { unpackDataBin } from "../container/databin.js";
+import { readDataBin } from "../container/databin.js";
 import { decryptEboot } from "../container/eboot.js";
 import { loadFileList } from "../container/filelist.js";
 import { openDiscImage } from "../container/image.js";
@@ -47,6 +47,10 @@ export interface UnpackManifest {
   discId: string;
   isoPath: string;
   fileCount: number;
+  /** False when DATA.BIN was stored without its cipher (FUComplete). Absent in older manifests. */
+  dataBinEncrypted?: boolean;
+  /** PARAM.SFO's TITLE; tells a patched disc (FUComplete) from the retail one with the same disc ID. Absent in older manifests. */
+  title?: string;
   /**
    * How DATA.BIN entries were named: 2 = region-aware (EU via
    * filelist-eu.json). Absent in older unpacks, whose EU file names are off by
@@ -74,7 +78,10 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
         `Unrecognized disc (PARAM.SFO DISC_ID="${discId ?? "?"}") — expected one of ULJM05500 (JP), ULUS10391 (US), ULES01213 (EU).`,
       );
     }
-    console.log(`Detected region: ${region} (${discId})`);
+    const title = sfo.get("TITLE");
+    console.log(
+      `Detected region: ${region} (${discId}${typeof title === "string" ? `, "${title}"` : ""})`,
+    );
 
     if (options.skipEboot && options.eboot) {
       throw new Error("--skip-eboot and --eboot are mutually exclusive.");
@@ -95,7 +102,8 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
 
     console.log("Reading + decrypting DATA.BIN (this reads the whole file into memory)...");
     const rawDataBin = iso.readFile("/PSP_GAME/USRDIR/DATA.BIN");
-    const files = unpackDataBin(rawDataBin, region);
+    const { files, encrypted } = readDataBin(rawDataBin, region);
+    if (!encrypted) console.log("DATA.BIN is stored without encryption (a patched disc).");
     const fileList = loadFileList(region);
 
     const dataBinDir = path.join(options.out, "data-bin");
@@ -111,6 +119,8 @@ export async function runUnpack(options: UnpackOptions): Promise<UnpackManifest>
       discId,
       isoPath: path.resolve(options.iso),
       fileCount: files.length,
+      dataBinEncrypted: encrypted,
+      ...(typeof title === "string" ? { title } : {}),
       eboot: !options.skipEboot,
       fileList: FILE_LIST_VERSION,
       unpackedAt: new Date().toISOString(),

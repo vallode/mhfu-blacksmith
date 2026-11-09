@@ -212,6 +212,12 @@ EBOOT.BIN` produces a valid ELF.
 ported from `mhef`) and is decrypted fully in-process; no external tool
 needed.
 
+FUComplete (a patched JP disc, still `ULJM05500`) stores `DATA.BIN` without
+the cipher. `unpack` reads the table of contents both ways and uses the one
+that is valid, so it takes either disc; `manifest.json` records which in
+`dataBinEncrypted`, and the disc's `TITLE`. FUComplete's `EBOOT.BIN` is
+already decrypted and keeps every equipment table at its JP address.
+
 `unpack` names each entry from `vendor/fuctool/filelist.csv`, which indexes
 the **JP** disc's 6,602 entries. The EU disc has 6,657: 57 EU-only entries
 (mostly localized text and UI) and two JP modules it lacks, which shift
