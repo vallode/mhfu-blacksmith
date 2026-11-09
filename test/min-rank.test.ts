@@ -67,13 +67,13 @@ describe("earliestSources", () => {
   });
 
   it("counts a quest no earlier than the quest it requires", () => {
-    // Village ★2 "Attack of the Rathian" (109) appears after ★3 "Shadow in the Snow" (10203).
+    // Guild ★2 "Attack of the Rathian" (109) appears after Village ★3 "Shadow in the Snow" (10203).
     const rathian: MonsterLike[] = [
       { name: "Rathian", drops: { "low rank": { carve: [{ name: "Rathian Scale" }] } } },
     ];
     const s = earliestSources(
       [
-        { ...quest("village", null, 2, ["Gem"], ["Rathian"]), id: 109, requires: 10203 },
+        { ...quest("guild", "low-rank", 2, ["Gem"], ["Rathian"]), id: 109, requires: 10203 },
         { ...quest("village", "low-rank", 3, []), id: 10203 },
       ],
       rathian,

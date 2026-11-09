@@ -186,8 +186,8 @@ function questTier(q: QuestLike): Tier | null {
 }
 
 /**
- * A quest's tier, but no earlier than the quest it requires: Village ★2
- * "Attack of the Rathian" only appears after ★3 "Shadow in the Snow".
+ * A quest's tier, but no earlier than the quest it requires: Guild ★2
+ * "Attack of the Rathian" only appears after Village ★3 "Shadow in the Snow".
  */
 function gatedQuestTier(
   q: QuestLike,
