@@ -3,6 +3,7 @@ import { test } from "node:test";
 import {
   decryptDataBinBlock,
   encryptDataBinBlock,
+  readDataBin,
   unpackDataBin,
 } from "../src/container/databin.js";
 
@@ -51,6 +52,15 @@ test("unpackDataBin walks a synthetic TOC and decrypts each file", () => {
 
   const raw = Buffer.concat([encryptedToc, ...encryptedFiles]);
   const files = unpackDataBin(raw, "jp");
+  assert.equal(readDataBin(raw, "jp").encrypted, true);
+
+  // The same container with the cipher removed (FUComplete) reads the same.
+  const plain = readDataBin(Buffer.concat([tocBuf, ...fileContents]), "jp");
+  assert.equal(plain.encrypted, false);
+  assert.deepEqual(
+    plain.files.map((f) => f.data),
+    fileContents,
+  );
 
   assert.equal(files.length, 3);
   for (let i = 0; i < 3; i++) {
@@ -58,4 +68,8 @@ test("unpackDataBin walks a synthetic TOC and decrypts each file", () => {
     assert.equal(files[i]!.startLba, tocSectors + i);
     assert.deepEqual(files[i]!.data, fileContents[i]);
   }
+});
+
+test("readDataBin rejects a buffer with no valid TOC either way", () => {
+  assert.throws(() => readDataBin(Buffer.alloc(4096, 0xab), "jp"), /no valid table of contents/);
 });

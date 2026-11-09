@@ -19,6 +19,7 @@ export function parseSfo(buf: Buffer): Map<string, SfoValue> {
     const keyOffset = buf.readUInt16LE(entryOffset);
     const dataFmt = buf.readUInt16LE(entryOffset + 2);
     const dataLen = buf.readUInt32LE(entryOffset + 4);
+    const dataMaxLen = buf.readUInt32LE(entryOffset + 8);
     const dataOffset = buf.readUInt32LE(entryOffset + 12);
 
     const keyStart = keyTableStart + keyOffset;
@@ -31,8 +32,11 @@ export function parseSfo(buf: Buffer): Map<string, SfoValue> {
       result.set(key, buf.readUInt32LE(valueStart));
     } else {
       // 0x0204 = UTF-8 string, 0x0004 = UTF-8 (non-NUL-terminated) — either
-      // way, trim trailing NULs/padding.
-      let raw = buf.toString("utf8", valueStart, valueStart + dataLen);
+      // way, trim trailing NULs/padding. A NUL-terminated string is read to
+      // its NUL within the field, not to its recorded length: FUComplete
+      // writes a longer TITLE over the retail one and leaves the length.
+      const len = dataFmt === 0x0204 ? Math.max(dataLen, dataMaxLen) : dataLen;
+      let raw = buf.toString("utf8", valueStart, valueStart + len);
       const nul = raw.indexOf("\0");
       if (nul !== -1) raw = raw.slice(0, nul);
       result.set(key, raw);
