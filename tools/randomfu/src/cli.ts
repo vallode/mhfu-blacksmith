@@ -6,6 +6,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { openDiscImage } from "../../mhfu-extract/src/container/image.js";
+import { ebootInfo } from "./eboot-info.js";
 import { loadGame } from "./game/load.js";
 import { randomSeed } from "./rng.js";
 import { runRandomizer } from "./run.js";
@@ -119,6 +120,7 @@ const USAGE = `Usage:
             [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--force]
   randomize --iso <in> --dry-run [settings]         print the spoiler log, write nothing
   roundtrip --iso <in>                              check files re-encrypt to the disc's bytes
+  eboot-info --iso <in> [--eboot <dump>]            how the disc's EBOOT decrypts (vs a dump)
   gui [--port <n>] [--no-open]                      open the settings page in a browser
   settings [--write <file.json>]                    list every setting, or write the defaults
   shop-scan --iso <in> [--eboot <dump>] [--out <report.txt>]
@@ -198,6 +200,9 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "roundtrip":
       return runRoundTrip(flags);
+    case "eboot-info":
+      for (const line of ebootInfo(requireFlag(flags, "iso"), flags.eboot)) console.log(line);
+      return;
     case "gui": {
       const { startGui } = await import("./gui/server.js");
       await startGui({

@@ -98,6 +98,7 @@ It's licensed GPL-3.0-or-later like the rest of randomfu; the build ships
 
 ```bash
 pnpm roundtrip --iso /path/to/mhp2g.iso
+pnpm eboot-info --iso /path/to/mhp2g.iso [--eboot dump.bin]   # how the EBOOT decrypts
 pnpm randomize --iso /path/to/mhp2g.iso --out /path/to/random.iso --seed MYSEED
 pnpm settings                       # list every setting with its values and help
 pnpm settings --write my.json       # write every setting to a file to edit

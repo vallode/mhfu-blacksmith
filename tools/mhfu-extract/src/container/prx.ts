@@ -227,22 +227,29 @@ function kirk1(raw: Uint8Array, { header, moduleHead }: Kirk1Input): Uint8Array 
  * when the module is compressed (see `decryptGameEboot`).
  */
 export function decryptPrx(raw: Uint8Array): Uint8Array {
+  return decryptPrxDetailed(raw).data;
+}
+
+/** As `decryptPrx`, also saying which scheme opened the module (for diagnostics). */
+export function decryptPrxDetailed(raw: Uint8Array): { data: Uint8Array; type: 0 | 1 | 2 } {
   if (!isPspModule(raw) || raw.length < PSP_HEADER_SIZE) {
     throw new PrxDecryptionError("Not a PSP module (no ~PSP header)");
   }
   const tag = u32(raw, 0xd0);
   const type2Key = GAME_TAG_KEYS.get(tag);
-  if (type2Key) return kirk1(raw, type2(raw, type2Key));
+  if (type2Key) return { data: kirk1(raw, type2(raw, type2Key)), type: 2 };
   const mask = TYPE01_TAG_KEYS.get(tag);
   if (!mask) throw new PrxDecryptionError(`Unknown EBOOT tag ${tagName(tag)}`);
   // A tag doesn't say which of the two it is; only the right one passes the header check.
   let input: Kirk1Input;
+  let type: 0 | 1 = 0;
   try {
     input = type01(raw, mask, 0);
   } catch {
+    type = 1;
     input = type01(raw, mask, 1);
   }
-  return kirk1(raw, input);
+  return { data: kirk1(raw, input), type };
 }
 
 const ELF_MAGIC = [0x7f, 0x45, 0x4c, 0x46];

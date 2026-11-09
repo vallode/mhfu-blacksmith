@@ -46,7 +46,7 @@ export function encryptGameEboot(elf: Uint8Array, options: EncryptOptions = {}):
   raw.set(PSP_MAGIC, 0);
   raw.writeUInt16LE(options.compress ? 1 : 0, 6);
   raw.write("randomfu test", 0x0a, "latin1");
-  raw.writeUInt32LE(dataSize, 0x28);
+  raw.writeUInt32LE(elf.length, 0x28); // elf_size: the ELF, unzipped
   raw.set(metadata, 0xb0); // also the decrypted size at 0xB0
   raw.writeUInt32LE(tag, 0xd0);
   raw.set(cbcEncrypt(aesKey, padded), 0x150);
