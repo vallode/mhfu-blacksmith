@@ -29,6 +29,7 @@ import path from "node:path";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { MHP2G_PROFILE } from "../games/mhp2g.js";
+import { attachDetachedParts, skeletonFor } from "../models/attach.js";
 import { buildGlb, type GlbOptions } from "../models/gltf.js";
 import { isPac, readPac } from "../models/pac.js";
 import { isPmo, readPmo } from "../models/pmo.js";
@@ -75,7 +76,10 @@ const MONSTER_NAME_ALIASES: Record<string, string> = {
 
 type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string } | null)[]>;
 
-/** Convert the first PMO + TMH in a package to GLB bytes, or null when it has no mesh. */
+/**
+ * Convert the first PMO + TMH in a package to GLB bytes, or null when it has
+ * no mesh. A severable tail tip is put back on (attach.ts).
+ */
 async function packageToGlb(
   buf: Buffer,
   name: string,
@@ -86,9 +90,8 @@ async function packageToGlb(
   const pmoEntry = entries.find((entry) => isPmo(entry.data));
   if (!pmoEntry) return null;
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
-  return (
-    await buildGlb(readPmo(pmoEntry.data), tmhEntry ? readTmh(tmhEntry.data) : [], name, options)
-  ).glb;
+  const pmo = attachDetachedParts(readPmo(pmoEntry.data), skeletonFor(entries, pmoEntry.index));
+  return (await buildGlb(pmo, tmhEntry ? readTmh(tmhEntry.data) : [], name, options)).glb;
 }
 
 async function exists(file: string): Promise<boolean> {

@@ -9,12 +9,17 @@
  *   0x0c f32 bounding radius   0x10 f32[3] position scale (x, y, z)
  *   0x1c u16 mesh count        0x1e u16 material count
  *   0x20 u32 mesh table        0x24 u32 vertex-group table
- *   0x28 u32 material map      0x2c u32 ?
+ *   0x28 u32 material map      0x2c u32 bone palette
  *   0x30 u32 material table    0x34 u32 display-list base
  * Mesh (0x18): f32[2] UV scale (u, v), u32 ?, u32 ?, u16 ?, u16 material
  *   slot base, u16 vertex-group count, u16 first vertex group.
- * Vertex group (0x10): u8 material slot (relative to the mesh's base), u8,
- *   u16, u32 display-list offset (relative to display-list base), u32, u32.
+ * Vertex group (0x10): u8 material slot (relative to the mesh's base), u8
+ *   palette entry count, u16 first palette entry, u32 display-list offset
+ *   (relative to display-list base), u32, u32.
+ * Bone palette: (u8 matrix slot, u8 bone) pairs. Before drawing, a group
+ *   loads its entries into the GE's bone matrix slots; a vertex's weights
+ *   apply to slots 0, 1, ... Slots keep their bone until reloaded, within a
+ *   mesh and across meshes.
  * Material map: u8 per material slot -> index into the material table. mhff
  *   indexes the material table with the slot directly, which happens to work
  *   for weapons but overruns it on monsters (e.g. em01: 48 slots, 41 materials).
@@ -31,6 +36,8 @@ export interface PmoMaterial {
 
 export interface PmoPrimitive {
   materialIndex: number;
+  /** Bone (skeleton index) in each matrix slot, i.e. for each of a vertex's weights; -1 = unset. */
+  bones: number[];
   geometry: DecodedGeometry;
 }
 
@@ -67,6 +74,7 @@ export function readPmo(buf: Buffer): Pmo {
   const meshTable = reader.u32(0x20);
   const vertexGroupTable = reader.u32(0x24);
   const materialMap = reader.u32(0x28);
+  const bonePalette = reader.u32(0x2c);
   const materialTable = reader.u32(0x30);
   const displayListBase = reader.u32(0x34);
 
@@ -81,6 +89,7 @@ export function readPmo(buf: Buffer): Pmo {
   }
 
   const meshes: PmoMesh[] = [];
+  const slots: number[] = [];
   for (let m = 0; m < meshCount; m++) {
     const at = meshTable + m * MESH_STRIDE;
     const uvScale: [number, number] = [reader.f32(at), reader.f32(at + 4)];
@@ -92,6 +101,15 @@ export function readPmo(buf: Buffer): Pmo {
       const groupAt = vertexGroupTable + (firstGroup + g) * VERTEX_GROUP_STRIDE;
       const slot = materialBase + reader.u8(groupAt);
       const materialIndex = reader.u8(materialMap + slot);
+      const paletteCount = reader.u8(groupAt + 1);
+      const paletteStart = reader.u16(groupAt + 2);
+      // Only skinned models with an .ahi use the bones (attach.ts); never let a
+      // palette this reader misunderstands stop a mesh from converting.
+      for (let i = 0; i < paletteCount; i++) {
+        const entry = bonePalette + (paletteStart + i) * 2;
+        if (bonePalette === 0 || entry + 2 > buf.length) break;
+        slots[reader.u8(entry)] = reader.u8(entry + 1);
+      }
       const listOffset = reader.u32(groupAt + 4);
       if (materialIndex >= materials.length) {
         throw new Error(
@@ -100,6 +118,7 @@ export function readPmo(buf: Buffer): Pmo {
       }
       primitives.push({
         materialIndex,
+        bones: Array.from(slots, (bone) => bone ?? -1),
         geometry: runDisplayList(reader, displayListBase + listOffset),
       });
     }
