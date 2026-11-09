@@ -66,7 +66,13 @@ function createName(section: keyof EquipmentCreateTables, equipId: number): stri
   return (table && tableName(table, equipId)) ?? `${section} ${equipId}`;
 }
 
-/** Every material slot in use: crafting recipes of visible equipment, and weapon upgrades. */
+/**
+ * Every material slot in use: crafting recipes and weapon upgrades.
+ *
+ * Every create entry is included, whatever its `Hide` byte says: the field
+ * isn't documented, and on the EU disc starter gear such as Buster Sword
+ * has it set. Shuffling an unused entry's materials does no harm.
+ */
 export function collectRecipeSlots(
   eboot: Buffer,
   resolver: TableAddressResolver | undefined,
@@ -91,7 +97,6 @@ export function collectRecipeSlots(
   ][]) {
     for (let i = 0; i < count; i++) {
       const at = offset + i * EQUIP_CREATE_ENTRY_SIZE;
-      if (reader.u8(at + 1) !== 0) continue; // hidden: unused equipment
       addMaterials(`Create: ${createName(section, reader.u16(at + 2))}`, at + 4);
     }
   }

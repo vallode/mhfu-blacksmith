@@ -316,6 +316,8 @@ export function buildGameSub(carves: CarveListSpec[], captures: CaptureListSpec[
 export interface FixtureRecipe {
   /** Index in the head armor section. */
   index: number;
+  /** Sets the entry's `Hide` byte (meaning unknown; starter gear has it set). */
+  hide?: boolean;
   materials: { itemId: number; quantity: number }[];
 }
 
@@ -327,6 +329,7 @@ export function buildEboot(recipes: FixtureRecipe[]): Buffer {
   const { offset } = equipmentCreateLayout(new BinaryReader(buf)).head;
   for (const r of recipes) {
     const at = offset + r.index * EQUIP_CREATE_ENTRY_SIZE;
+    buf[at + 1] = r.hide ? 1 : 0;
     buf.writeUInt16LE(r.index, at + 2);
     r.materials.forEach((m, k) => {
       buf.writeUInt16LE(m.itemId, at + 4 + k * 4);
@@ -440,6 +443,7 @@ export const FIXTURE_CAPTURES: CaptureListSpec[] = [
 export const FIXTURE_RECIPES: FixtureRecipe[] = [
   {
     index: 1,
+    hide: true,
     materials: [
       { itemId: 100, quantity: 2 },
       { itemId: 102, quantity: 1 },

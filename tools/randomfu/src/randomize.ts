@@ -34,7 +34,7 @@ export interface RandomizeResult {
 }
 
 /** Version of the randomization logic, in the spoiler log. Bump when a seed's output changes. */
-export const LOGIC_VERSION = 1;
+export const LOGIC_VERSION = 2;
 
 export function parseShuffles(value: string): ShuffleName[] {
   const names = value

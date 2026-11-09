@@ -90,6 +90,8 @@ test("randomizing is deterministic and keeps items within their rank", async () 
   assert.equal(quest.lines.length, 6, "training quest left out");
   const monster = a.reports.find((r) => r.title.startsWith("Monster"))!;
   assert.equal(monster.lines.length, 6, "monster 3's list (no quest) left out");
+  const recipes = a.reports.find((r) => r.title.startsWith("Crafting"))!;
+  assert.equal(recipes.lines.length, 7, "includes the entry with Hide set; item 300 has no source");
   close();
 });
 
