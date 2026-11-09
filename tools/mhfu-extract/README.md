@@ -393,6 +393,16 @@ Open questions:
   `emPTRChunk` (the 28 u32s at `+0x158`; the hexpat names the 24th, `+0x1B4`,
   `PartDurabilityPTR`) and 0x200 bytes at each pointer's target, plus
   0x100 bytes at each pointer if the target starts with a pointer list.
+  The 24th leads to one 0x18-byte record per monster: nine u16 values,
+  one per body part as the hitbox capsules number them (`0xFFFF` unused),
+  a u16 part count and a zero u32. Every part has one, unbreakable ones
+  too, so they look like flinch damage rather than break data.
+- `raw/break-code.json`: every MIPS `lui` + low-half pair in the EBOOT and
+  each overlay that builds an address inside `game_sub.ovl`'s reward tables
+  (`capbreakindex`, the cap/break pointers, `bodytailshiny`, the carve
+  pointers), with 0x200 bytes of code either side, for finding the code
+  that links break numbers to body parts. `raw/overlays/` has every overlay
+  from `data-bin/overlay/`, copied as is.
 - `raw/emmodel.json`: each `emmodel/emNN.pac`'s entries (size, magic, first
   0x40 bytes) and its PMO header, mesh records and vertex-group records,
   with each group's vertex count, weights per vertex and position bounds.

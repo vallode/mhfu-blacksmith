@@ -17,6 +17,7 @@ import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
 import { dumpWeaponsRaw } from "../emit/weapons-raw.js";
 import { dumpArmorRaw } from "../emit/armor-raw.js";
 import { writeCollisionRaw } from "./collision-raw.js";
+import { writeBreakCodeRaw } from "./break-code-raw.js";
 import {
   committedMelodyCombos,
   dumpMelodyRaw,
@@ -39,7 +40,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts), and the break reward code references in `raw/break-code.json` with the overlays in `raw/overlays/` (emit/break-code-raw.ts). */
   raw?: boolean;
 }
 
@@ -252,6 +253,15 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
       options.out,
       overlays,
       monsters.locations.chunks.offset,
+    );
+    // Breakable parts: code that reads the break reward tables, and the overlays.
+    await writeBreakCodeRaw(
+      options.unpacked,
+      options.out,
+      ebootBuf,
+      overlays,
+      monsters.locations.rewards,
+      monsters.capBreak.length,
     );
   }
   Object.assign(output, emitMonsters(monsters));
