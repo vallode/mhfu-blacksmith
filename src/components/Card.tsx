@@ -38,7 +38,7 @@ export default function Card({
           ? "card-frame-blue"
           : "card-frame",
     // card-copy: paragraph defaults (globals.css, components layer)
-    "card-copy relative z-1 flex flex-1 flex-col overflow-hidden px-5 py-[2.6rem] text-[2.6rem] mobile:text-[2rem]",
+    "card-copy relative z-1 flex flex-1 flex-col overflow-hidden px-5 py-[2.6rem] text-main",
     // Border widths are deliberately thinner than the frame art's
     // border-image-width, so the scroll area (and its rows) runs close to the
     // card edges and slightly under the frame.

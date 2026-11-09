@@ -102,7 +102,7 @@ export default function SetEditor({
     <div className="flex flex-col gap-[1.3rem]">
       {title}
       {extraWarnings?.map((w, i) => (
-        <p key={i} role="alert" className="m-0 text-[1.4rem] whitespace-normal text-negative">
+        <p key={i} role="alert" className="m-0 text-fine whitespace-normal text-negative">
           {w}
         </p>
       ))}

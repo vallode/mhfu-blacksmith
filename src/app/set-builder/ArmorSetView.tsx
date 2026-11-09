@@ -35,7 +35,7 @@ export interface SetEditing {
 }
 
 const smallButton =
-  "cursor-pointer border-none bg-transparent p-0 font-[inherit] text-[1.4rem] text-white/50 hover:text-white focus-visible:text-white";
+  "cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white";
 
 function Decorations({
   decos,
@@ -46,7 +46,7 @@ function Decorations({
 }) {
   if (decos.length === 0) return null;
   return (
-    <ul className="m-0 flex list-none flex-wrap gap-x-[1.6rem] gap-y-[0.2rem] p-0 text-[1.4rem]">
+    <ul className="m-0 flex list-none flex-wrap gap-x-[1.6rem] gap-y-[0.2rem] p-0 text-fine">
       {decos.map(({ placed: d, index }) => (
         <li key={index} className="flex items-center">
           <Icon type="decoration" size="mini" color={d.deco.color} className="scale-75" />
@@ -56,10 +56,7 @@ function Decorations({
           {edit && (
             <button
               type="button"
-              className={cn(
-                smallButton,
-                "px-[0.6rem] text-[1.6rem] leading-none hover:text-negative",
-              )}
+              className={cn(smallButton, "px-[0.6rem] text-small leading-none hover:text-negative")}
               aria-label={`Remove ${d.deco.name}`}
               onClick={() => edit.onRemoveDecoration(index)}
             >
@@ -98,13 +95,13 @@ function EquipRow({
       <span className="text-stat">:</span>
       <span
         className={cn(
-          "truncate text-[1.9rem] text-white mobile:text-[1.6rem] mobile:wrap-break-word mobile:whitespace-normal",
+          "truncate text-sub text-white mobile:text-small mobile:wrap-break-word mobile:whitespace-normal",
         )}
       >
         {name}
         {alternatives}
       </span>
-      <span className="pl-[0.8rem] text-[1.4rem]">{slots}</span>
+      <span className="pl-[0.8rem] text-fine">{slots}</span>
       <div className="col-start-3 col-end-5 flex flex-wrap items-center gap-x-[1.6rem] empty:hidden">
         <Decorations decos={decos} edit={edit} />
         {edit && free > 0 && (
@@ -122,7 +119,7 @@ function EquipRow({
         <p
           key={i}
           role="alert"
-          className="col-start-3 col-end-5 m-0 text-[1.4rem] whitespace-normal text-negative"
+          className="col-start-3 col-end-5 m-0 text-fine whitespace-normal text-negative"
         >
           {w.message}
         </p>
@@ -187,18 +184,12 @@ export function SetHeader({
     >
       <SelectorArrow className="size-[3.4rem]" label="Previous set" onClick={() => onStep(-1)} />
       <span
-        className={cn(
-          "flex-1 text-[2.2rem] text-stat text-shadow-[0.15rem_0.15rem_black] mobile:text-[1.8rem]",
-        )}
+        className={cn("flex-1 text-main text-stat text-shadow-[0.15rem_0.15rem_black]")}
         aria-live="polite"
       >
         Set {index + 1}
       </span>
-      <span
-        className={cn(
-          "text-[2.2rem] text-white text-shadow-[0.15rem_0.15rem_black] mobile:text-[1.8rem]",
-        )}
-      >
+      <span className={cn("text-main text-white text-shadow-[0.15rem_0.15rem_black]")}>
         {index + 1}/{count}
       </span>
       <SelectorArrow next className="size-[3.4rem]" label="Next set" onClick={() => onStep(1)} />
@@ -234,9 +225,9 @@ function PieceName({
     >
       {piece ? piece.name : <span className="text-white/40">- Choose -</span>}
       {piece && edit.isOwned?.(piece) && (
-        <span className="ml-[0.8rem] text-[1.3rem] text-positive">Owned</span>
+        <span className="ml-[0.8rem] text-fine text-positive">Owned</span>
       )}
-      {piece?.torsoUp && <span className="ml-[0.8rem] text-[1.3rem] text-white/50">Torso Up</span>}
+      {piece?.torsoUp && <span className="ml-[0.8rem] text-fine text-white/50">Torso Up</span>}
     </button>
   );
 }
@@ -295,7 +286,7 @@ export default function ArmorSetView({
               alternatives={
                 alts.length > 0 && (
                   <span
-                    className="ml-[0.8rem] text-[1.4rem] text-white/40"
+                    className="ml-[0.8rem] text-fine text-white/40"
                     title={alts.map((a) => a.name).join(", ")}
                   >
                     +{alts.length}
@@ -310,7 +301,7 @@ export default function ArmorSetView({
       {edit?.warnings
         .filter((w) => !w.bin)
         .map((w, i) => (
-          <p key={i} role="alert" className="m-0 px-[0.8rem] text-[1.4rem] text-negative">
+          <p key={i} role="alert" className="m-0 px-[0.8rem] text-fine text-negative">
             {w.message}
           </p>
         ))}
@@ -319,26 +310,26 @@ export default function ArmorSetView({
 
       <div className="flex flex-wrap gap-x-[3.2rem] gap-y-[2rem] px-[0.8rem]">
         <div className="flex min-w-[24rem] flex-1 flex-col gap-[0.6rem]">
-          <h3 className={cn("m-0 text-[1.9rem] font-normal text-stat")}>[Activate Skill]</h3>
-          {set.skills.length === 0 && <p className="m-0 text-[1.6rem] text-white/40">None</p>}
+          <h3 className={cn("m-0 text-sub font-normal text-stat")}>[Activate Skill]</h3>
+          {set.skills.length === 0 && <p className="m-0 text-small text-white/40">None</p>}
           <ul className="m-0 list-none p-0">
             {set.skills.map((s) => (
               <li
                 key={s.tree}
                 className={cn(
-                  "flex items-baseline gap-[1rem] text-[1.9rem] leading-[1.4] mobile:text-[1.6rem]",
+                  "flex items-baseline gap-[1rem] text-sub leading-[1.4] mobile:text-small",
                   s.threshold < 0 ? "text-negative" : "text-white",
                 )}
               >
                 {s.name}
-                <span className="text-[1.3rem] text-white/40">
+                <span className="text-fine text-white/40">
                   {s.tree} {s.points > 0 ? `+${s.points}` : s.points}
                 </span>
               </li>
             ))}
           </ul>
           {edit && points.length > 0 && (
-            <details className="text-[1.4rem] text-white/60">
+            <details className="text-fine text-white/60">
               <summary className="cursor-pointer hover:text-white">All skill points</summary>
               <ul className="m-0 mt-[0.6rem] list-none p-0">
                 {points.map(([tree, v]) => (
@@ -357,7 +348,7 @@ export default function ArmorSetView({
       </div>
 
       {alternatives > 0 && set.alternatives && (
-        <details className="px-[0.8rem] text-[1.4rem] text-white/60">
+        <details className="px-[0.8rem] text-fine text-white/60">
           <summary className="cursor-pointer hover:text-white">
             {alternatives} other {alternatives === 1 ? "piece gives" : "pieces give"} the same
             points in your skills
@@ -393,11 +384,7 @@ export default function ArmorSetView({
 /** A panel's title: yellow heading, as on the game's selector bar. */
 export function PanelTitle({ children }: { children: React.ReactNode }) {
   return (
-    <h2
-      className={cn(
-        "m-0 text-[2.2rem] font-normal text-stat text-shadow-[0.15rem_0.15rem_black] mobile:text-[1.8rem]",
-      )}
-    >
+    <h2 className={cn("m-0 text-main font-normal text-stat text-shadow-[0.15rem_0.15rem_black]")}>
       {children}
     </h2>
   );
@@ -415,7 +402,7 @@ export function SetStatus({
     ["Free Slots", set?.freeSlots ?? "-"],
   ];
   return (
-    <dl className="m-0 grid grid-cols-[max-content_calc(var(--cell)*2)_calc(var(--cell)*5)] gap-y-[0.4rem] text-[1.9rem] mobile:text-[1.6rem]">
+    <dl className="m-0 grid grid-cols-[max-content_calc(var(--cell)*2)_calc(var(--cell)*5)] gap-y-[0.4rem] text-sub mobile:text-small">
       {rows.map(([label, value], i) => (
         <div
           key={label}

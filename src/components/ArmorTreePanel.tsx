@@ -40,8 +40,9 @@ export default function ArmorTreePanel({ slot, rank, children }: Props) {
     <div data-tree-panel className="relative z-2 flex min-h-0 min-w-0 flex-1 flex-col">
       <Card variant="weapon-tree">
         {children}
-        {/* Room to scroll the last rows clear of the rank bar. */}
-        <div style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
+        {/* Room to scroll the last rows clear of the rank bar. flex-none: the
+            card is a flex column, and an empty item would shrink to nothing. */}
+        <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
       </Card>
       <SelectorBar
         label={RANK_LABELS[rank]}

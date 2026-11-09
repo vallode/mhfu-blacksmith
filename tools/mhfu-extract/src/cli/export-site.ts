@@ -23,6 +23,12 @@
  *
  * Each run replaces the categories it exported and keeps the others from the
  * previous manifest, so a monsters-only run doesn't drop weapons.
+ *
+ * Next to each monster's model goes its hitboxes, `monsters/emNN.hitboxes.json`
+ * (`monsters/hitboxes.ts`): the collision capsules from `game_task.ovl` or the
+ * monster's `overlay/emNN.ovl`, placed with the package's skeleton. The site
+ * fetches it by the model's path; a monster whose hitboxes can't be read has
+ * none, and the reason is logged.
  */
 import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -34,6 +40,12 @@ import { buildGlb, type GlbOptions } from "../models/gltf.js";
 import { isPac, readPac } from "../models/pac.js";
 import { isPmo, readPmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
+import { parseOvl, type OvlFile } from "../container/ovl.js";
+import { readMonsterCollision } from "../monsters/collision.js";
+import { buildSiteHitboxes, jointPositions } from "../monsters/hitboxes.js";
+import { locateMonsterChunks } from "../monsters/hitzones.js";
+import { OVERLAY_DIR } from "../monsters/overlays.js";
+import { MONSTER_OVERLAY } from "../overlay/monsters.js";
 import { loadEnums, lookupName } from "../strings/enums.js";
 import { armorModelPath, readArmorModelIds, type SiteArmorSlot } from "../tables/armor-models.js";
 import { readBlademasterWeapons, readGunnerWeapons } from "../tables/weapons.js";
@@ -156,6 +168,90 @@ async function siteMonsterNames(dataDir: string): Promise<Set<string>> {
   return names;
 }
 
+/** What monster hitboxes are read from: `game_task.ovl`, its chunk array and every `emNN.ovl`. */
+interface CollisionSource {
+  gameTask: OvlFile;
+  chunksOffset: number;
+  emOvls: Map<number, OvlFile>;
+}
+
+async function loadCollisionSource(unpacked: string): Promise<CollisionSource | null> {
+  const overlayDir = path.join(unpacked, OVERLAY_DIR);
+  const gameTaskPath = path.join(overlayDir, "game_task.ovl");
+  if (!(await exists(gameTaskPath))) {
+    console.log("No overlay/game_task.ovl: skipping monster hitboxes.");
+    return null;
+  }
+  const gameTask = parseOvl(await readFile(gameTaskPath));
+  const chunks = locateMonsterChunks(gameTask);
+  if (!chunks) {
+    console.log("game_task.ovl: monster chunk array not found, skipping monster hitboxes.");
+    return null;
+  }
+  const emOvls = new Map<number, OvlFile>();
+  for (const name of await readdir(overlayDir)) {
+    const match = /^em(\d+)\.ovl$/.exec(name);
+    if (!match) continue;
+    try {
+      emOvls.set(Number(match[1]), parseOvl(await readFile(path.join(overlayDir, name))));
+    } catch (err) {
+      console.log(`skip overlay/${name}: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  }
+  return { gameTask, chunksOffset: chunks.offset, emOvls };
+}
+
+/**
+ * Writes `monsters/emNN.hitboxes.json` for one exported monster, or removes
+ * a stale one and logs why there is none.
+ */
+async function exportHitboxes(
+  source: CollisionSource,
+  pacPath: string,
+  emId: number,
+  siteName: string,
+  out: string,
+): Promise<boolean> {
+  const file = path.join(out, "monsters", `em${String(emId).padStart(2, "0")}.hitboxes.json`);
+  const fail = async (reason: string) => {
+    console.log(`no hitboxes for ${siteName}: ${reason}`);
+    await rm(file, { force: true });
+    return false;
+  };
+  try {
+    const pac = await readFile(pacPath);
+    const entries = isPac(pac) ? readPac(pac) : [];
+    const pmoEntry = entries.find((entry) => isPmo(entry.data));
+    // The skeleton the model's mesh (the first PMO) is bound to.
+    const bones = pmoEntry ? skeletonFor(entries, pmoEntry.index) : [];
+    if (bones.length === 0) return await fail("no skeleton in the model package");
+    const collision = readMonsterCollision(
+      source.gameTask,
+      source.chunksOffset,
+      emId,
+      source.emOvls,
+      bones.length,
+    );
+    if ("error" in collision) return await fail(collision.error);
+    if (collision.borrowedFrom !== undefined)
+      console.log(
+        `${siteName} hitboxes: table from em${String(collision.borrowedFrom).padStart(2, "0")}.ovl`,
+      );
+    const slots = MONSTER_OVERLAY.find((m) => m.id === emId)?.hitzones;
+    const { hitboxes, skipped } = buildSiteHitboxes(
+      collision.records,
+      jointPositions(bones),
+      slots,
+    );
+    for (const reason of skipped) console.log(`${siteName} hitboxes: skipped ${reason}`);
+    if (hitboxes.capsules.length === 0) return await fail("no usable collision records");
+    await writeFile(file, `${JSON.stringify(hitboxes)}\n`);
+    return true;
+  } catch (err) {
+    return fail(err instanceof Error ? err.message : String(err));
+  }
+}
+
 async function exportMonsters(
   options: ExportSiteOptions,
   converter: Converter,
@@ -166,6 +262,8 @@ async function exportMonsters(
   const emDir = path.join(options.unpacked, "data-bin", "emmodel");
   if (!(await exists(emDir))) return monsters;
   const files = (await readdir(emDir)).filter((f) => /^em\d+\.pac$/.test(f)).sort();
+  const collision = await loadCollisionSource(options.unpacked);
+  let hitboxCount = 0;
   for (const file of files) {
     const id = Number.parseInt(file.slice(2), 10);
     const gameName = lookupName(enums, "emID", id);
@@ -179,9 +277,15 @@ async function exportMonsters(
       `emmodel/${file}`,
       `monsters/${file.replace(/\.pac$/, ".glb")}`,
     );
-    if (relative) monsters[siteName] = id;
+    if (!relative) continue;
+    monsters[siteName] = id;
+    if (
+      collision &&
+      (await exportHitboxes(collision, path.join(emDir, file), id, siteName, options.out))
+    )
+      hitboxCount++;
   }
-  console.log(`monsters: ${Object.keys(monsters).length}`);
+  console.log(`monsters: ${Object.keys(monsters).length}, with hitboxes: ${hitboxCount}`);
   return monsters;
 }
 

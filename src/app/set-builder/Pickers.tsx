@@ -20,7 +20,7 @@ import * as ui from "@/styles/settings";
 const MAX_ROWS = 150;
 
 const rowButton =
-  "grid w-full cursor-pointer grid-cols-[3.8rem_minmax(0,1fr)_auto] items-center gap-x-[0.8rem] border-0 border-b border-white/15 bg-transparent px-[0.4rem] py-[0.6rem] text-left font-[inherit] text-[1.6rem] text-white hover:hover-glow focus-visible:hover-glow focus-visible:outline-none";
+  "grid w-full cursor-pointer grid-cols-[3.8rem_minmax(0,1fr)_auto] items-center gap-x-[0.8rem] border-0 border-b border-white/15 bg-transparent px-[0.4rem] py-[0.6rem] text-left font-[inherit] text-small text-white hover:hover-glow focus-visible:hover-glow focus-visible:outline-none";
 
 function PickerFrame({
   title,
@@ -39,7 +39,7 @@ function PickerFrame({
       }}
     >
       <div className="flex items-center gap-[1rem] bg-selector px-[0.8rem] py-[0.4rem]">
-        <h3 className="m-0 flex-1 text-[2rem] font-normal text-stat text-shadow-[0.15rem_0.15rem_black] mobile:text-[1.7rem]">
+        <h3 className="m-0 flex-1 text-main font-normal text-stat text-shadow-[0.15rem_0.15rem_black]">
           {title}
         </h3>
         <button type="button" className={ui.button} onClick={onClose}>
@@ -58,7 +58,7 @@ function PointsList({ points, wanted }: { points: Record<string, number>; wanted
     .sort((a, b) => Number(wanted.includes(b[0])) - Number(wanted.includes(a[0])));
   if (entries.length === 0) return null;
   return (
-    <span className="flex flex-wrap gap-x-[1.2rem] text-[1.3rem]">
+    <span className="flex flex-wrap gap-x-[1.2rem] text-fine">
       {entries.map(([t, v]) => (
         <span
           key={t}
@@ -201,15 +201,15 @@ export function PiecePicker({
                 <span className="truncate mobile:whitespace-normal">
                   {p.name}
                   {isOwned?.(p) && (
-                    <span className="ml-[0.8rem] text-[1.3rem] text-positive">Owned</span>
+                    <span className="ml-[0.8rem] text-fine text-positive">Owned</span>
                   )}
                   {p.torsoUp && (
-                    <span className="ml-[0.8rem] text-[1.3rem] text-white/50">Torso Up</span>
+                    <span className="ml-[0.8rem] text-fine text-white/50">Torso Up</span>
                   )}
                 </span>
                 <PointsList points={p.points} wanted={wanted} />
               </span>
-              <span className="flex flex-col items-end text-[1.4rem]">
+              <span className="flex flex-col items-end text-fine">
                 <Slots count={p.slots} />
                 <span className="text-white/60">{p.defence}</span>
               </span>
@@ -287,7 +287,7 @@ export function DecorationPicker({
                 <span className="truncate mobile:whitespace-normal">{d.name}</span>
                 <PointsList points={d.points} wanted={wanted} />
               </span>
-              <span className="text-[1.4rem]">
+              <span className="text-fine">
                 <Slots count={d.slots} />
               </span>
             </button>
