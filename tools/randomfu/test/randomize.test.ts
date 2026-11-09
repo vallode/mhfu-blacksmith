@@ -16,6 +16,7 @@ import { tierLabel } from "../src/game/tiers.js";
 import { DEFAULT_SPREAD, randomize, type Settings, type ShuffleName } from "../src/randomize.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
+import { collectRecipeSlots } from "../src/shuffles/recipes.js";
 import { roundTrip, writeEdits } from "../src/write.js";
 import { main } from "../src/cli.js";
 import {
@@ -29,7 +30,13 @@ import {
 } from "./fixtures.js";
 
 function settings(seed: string, ...shuffles: ShuffleName[]): Settings {
-  return { seed, shuffles, amountSpread: DEFAULT_SPREAD, costSpread: DEFAULT_SPREAD };
+  return {
+    seed,
+    shuffles,
+    amountSpread: DEFAULT_SPREAD,
+    costSpread: DEFAULT_SPREAD,
+    weaponMix: "same-type",
+  };
 }
 
 const ALL = settings("fixture", "quest-rewards", "monster-rewards", "recipes");
@@ -132,8 +139,8 @@ test("randomizing is deterministic and keeps items within their tier", async () 
   const monster = a.reports.find((r) => r.title.startsWith("Monster"))!;
   assert.equal(monster.lines.length, 6, "monster 3's list (no quest) left out");
   const crafting = a.reports.find((r) => r.title.startsWith("Crafting"))!;
-  assert.equal(crafting.lines.length, 10, "every slot, including the entry with Hide set");
-  assert.ok(crafting.notes.some((n) => n.startsWith("1 of 10 slots keep their material")));
+  assert.equal(crafting.lines.length, 18, "every slot, including the entry with Hide set");
+  assert.ok(crafting.notes.some((n) => n.startsWith("2 of 18 slots keep their material")));
 
   // Recipe materials only swap within a tier: 1★ slots get 1★ items, and so on.
   const tierOf = (item: number) => a.sources.tiers.get(item);
@@ -176,19 +183,16 @@ test("recipe amounts follow each material's usual quantity and stay in range", a
   );
 
   // With materials swapped and no spread, a slot scales to its new item's usual amount:
-  // recipe 4 asks for 4 of item 120 (usually 4); if it gets item 100 (usually 2), it asks for 2.
+  // a slot asking for 4 of an item usually wanted x4 that now takes one usually wanted x2 asks for 2.
   const both = randomize(game, { ...settings("b", "recipes", "recipe-amounts"), amountSpread: 0 });
-  const typical = new Map([
-    [100, 2],
-    [101, 1],
-    [110, 1],
-    [104, 1],
-    [120, 4],
-    [102, 1],
-    [103, 3],
-    [200, 1],
-    [300, 5],
-  ]);
+  // Each item's median quantity over every recipe slot on the disc.
+  const quantities = new Map<number, number[]>();
+  for (const slot of collectRecipeSlots(game.eboot!, undefined)) {
+    quantities.set(slot.itemId, [...(quantities.get(slot.itemId) ?? []), slot.quantity]);
+  }
+  const typical = new Map(
+    [...quantities].map(([item, qs]) => [item, sorted(qs)[Math.floor(qs.length / 2)]!]),
+  );
   const swapped = recipes(both.edits.eboot());
   vanilla.forEach((recipe, r) =>
     recipe.forEach(([item, quantity], k) => {

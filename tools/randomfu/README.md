@@ -36,6 +36,8 @@ pnpm randomize --iso /path/to/mhp2g.iso --out /path/to/random.iso --seed MYSEED
   - `--seed` picks the seed; without it a random one is chosen and printed.
   - `--shuffles` is a comma-separated list. The default is
     `quest-rewards,monster-rewards`.
+  - `--weapon-mix same-type|any-type` (default `same-type`): whether
+    `weapons` keeps each place's weapon type.
   - `--amount-spread` / `--cost-spread` (0 up to 1, default 0.5): how far
     `recipe-amounts` and `costs` may move a value, e.g. 0.5 means 50% to
     150%.
@@ -43,7 +45,8 @@ pnpm randomize --iso /path/to/mhp2g.iso --out /path/to/random.iso --seed MYSEED
   - `--dry-run` reads the disc and prints the spoiler log without writing
     an image (`--out` isn't needed).
   - `--eboot <path>` / `--pspdecrypt-bin <name>`: how to decrypt the EBOOT
-    for the EBOOT shuffles (`recipes`, `recipe-amounts`, `costs`), as for
+    for the EBOOT shuffles (`recipes`, `recipe-amounts`, `costs`,
+    `weapons`), as for
     `mhfu-extract unpack`. PPSSPP can dump it: turn on "Dump Decrypted
     Eboot.bin on game boot" and boot the game once.
   - `--force` overwrites an existing output file.
@@ -101,6 +104,19 @@ random factor within `--amount-spread` and kept between 1 and 99.
 `costs` multiplies each price by a random factor within `--cost-spread`. A
 weapon's upgrade cost is its own price, so it changes too. A decoration's
 price is also its sell price.
+
+`weapons` gives each place in the smithy a different weapon of the same
+rarity, and by default the same type. A place is a weapon's create entry
+and its upgrade entry (the materials to make it by upgrading, and the
+weapons it upgrades into). The place keeps its materials and links, so
+every tree keeps its shape and pacing. The weapon keeps its own stats,
+horn notes, shells, ammo and price. With `--weapon-mix any-type`, a place
+can take any weapon of the same rarity in the same family (Blademaster or
+Gunner). The game already upgrades across types within a family (Great
+Sword to Long Sword, Lance to Gunlance and more), but never between bows
+and bowguns, so that pairing is untested. Weapons from Ancient/Rusted
+shards stay put. It runs before the recipe shuffles, which then shuffle
+the tables it left.
 
 ## How it writes the disc
 

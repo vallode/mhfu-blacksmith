@@ -17,10 +17,15 @@ import {
 } from "../../mhfu-extract/src/monsters/rewards.js";
 import { encryptQuestBlock, questHash, QUEST_MAGIC } from "../../mhfu-extract/src/quests/mib.js";
 import { BinaryReader } from "../../mhfu-extract/src/binary/reader.js";
-import { equipmentCreateLayout } from "../../mhfu-extract/src/tables/recipes.js";
+import {
+  equipmentCreateLayout,
+  equipmentUpgradeLayout,
+} from "../../mhfu-extract/src/tables/recipes.js";
+import { WEAPON_TYPE_NAMES } from "../../mhfu-extract/src/tables/weapons.js";
 import {
   ARMOR_ENTRY_SIZE,
   EQUIP_CREATE_ENTRY_SIZE,
+  EQUIP_UPGRADE_ENTRY_SIZE,
   ITEM_ENTRY_SIZE,
   JP_BASE_ADDRESS,
   WEAPON_BM_ENTRY_SIZE,
@@ -383,6 +388,57 @@ export const FIXTURE_PRICES: FixturePrices = {
   decoration: [[0, 1600]],
 };
 
+export interface FixtureWeapon {
+  index: number;
+  type: "great-sword" | "long-sword";
+  /** Raw rarity (shown as rarity + 1). */
+  rarity: number;
+}
+
+/**
+ * Blademaster weapons. Model ID = index. Great Sword rarity 1: 1, 3, 9
+ * (2 is in no tree; 7 comes from rust shards); rarity 2: 4, 5. Long Sword
+ * rarity 1: 6; rarity 2: 8 (an upgrade from Great Sword 3, as the game has).
+ */
+export const FIXTURE_WEAPONS: FixtureWeapon[] = [
+  { index: 1, type: "great-sword", rarity: 0 },
+  { index: 2, type: "great-sword", rarity: 0 },
+  { index: 3, type: "great-sword", rarity: 0 },
+  { index: 4, type: "great-sword", rarity: 1 },
+  { index: 5, type: "great-sword", rarity: 1 },
+  { index: 6, type: "long-sword", rarity: 0 },
+  { index: 7, type: "great-sword", rarity: 0 },
+  { index: 8, type: "long-sword", rarity: 1 },
+  { index: 9, type: "great-sword", rarity: 0 },
+];
+
+type Materials = { itemId: number; quantity: number }[];
+
+/** Great Sword/Long Sword create entries, in order: [weapon, materials]. */
+export const FIXTURE_WEAPON_CREATE: [number, Materials][] = [
+  [1, [{ itemId: 100, quantity: 1 }]],
+  [3, [{ itemId: 101, quantity: 2 }]],
+  [6, [{ itemId: 110, quantity: 1 }]],
+  [9, [{ itemId: 104, quantity: 1 }]],
+];
+export const FIXTURE_RUST_CREATE: [number, Materials][] = [[7, [{ itemId: 300, quantity: 1 }]]];
+
+/** Upgrade entries by weapon: materials to make it by upgrading, and what it upgrades into. */
+export const FIXTURE_UPGRADES: { index: number; craft: Materials; targets: number[] }[] = [
+  { index: 1, craft: [], targets: [4] },
+  { index: 3, craft: [], targets: [5, 8] },
+  { index: 4, craft: [{ itemId: 102, quantity: 1 }], targets: [] },
+  { index: 5, craft: [{ itemId: 103, quantity: 2 }], targets: [] },
+  { index: 8, craft: [{ itemId: 103, quantity: 1 }], targets: [] },
+];
+
+function writeMaterials(buf: Buffer, at: number, materials: Materials): void {
+  materials.forEach((m, k) => {
+    buf.writeUInt16LE(m.itemId, at + k * 4);
+    buf.writeUInt16LE(m.quantity, at + k * 4 + 2);
+  });
+}
+
 export function buildEboot(
   recipes: FixtureRecipe[],
   prices: FixturePrices = FIXTURE_PRICES,
@@ -399,6 +455,29 @@ export function buildEboot(
       buf.writeUInt16LE(m.itemId, at + 4 + k * 4);
       buf.writeUInt16LE(m.quantity, at + 6 + k * 4);
     });
+  }
+
+  const create = equipmentCreateLayout(reader);
+  const createAt = (section: keyof typeof create, entries: [number, Materials][]) =>
+    entries.forEach(([weapon, materials], i) => {
+      const at = create[section].offset + i * EQUIP_CREATE_ENTRY_SIZE;
+      buf.writeUInt16LE(weapon, at + 2);
+      writeMaterials(buf, at + 4, materials);
+    });
+  createAt("greatSwordLongSword", FIXTURE_WEAPON_CREATE);
+  createAt("ancientRustBlademaster", FIXTURE_RUST_CREATE);
+  const upgrade = equipmentUpgradeLayout(reader).blademaster.offset;
+  for (const u of FIXTURE_UPGRADES) {
+    const at = upgrade + u.index * EQUIP_UPGRADE_ENTRY_SIZE;
+    writeMaterials(buf, at, u.craft);
+    u.targets.forEach((t, k) => buf.writeUInt16LE(t, at + 16 + k * 2));
+  }
+  const weapons = tableOffset("weaponsBlademaster");
+  const models = tableOffset("modelToWeaponType");
+  for (const w of FIXTURE_WEAPONS) {
+    buf.writeUInt16LE(w.index, weapons + w.index * WEAPON_BM_ENTRY_SIZE);
+    buf[weapons + w.index * WEAPON_BM_ENTRY_SIZE + 2] = w.rarity;
+    buf[models + w.index] = WEAPON_TYPE_NAMES.indexOf(w.type);
   }
 
   ARMOR_SLOTS.forEach((slot, i) => {

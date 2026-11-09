@@ -16,6 +16,7 @@ import {
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import type { ShuffleReport } from "./shuffles/shuffle.js";
+import { shuffleWeapons, type WeaponMix } from "./shuffles/weapons.js";
 
 export const SHUFFLES = [
   "quest-rewards",
@@ -23,12 +24,18 @@ export const SHUFFLES = [
   "recipes",
   "recipe-amounts",
   "costs",
+  "weapons",
 ] as const;
 export type ShuffleName = (typeof SHUFFLES)[number];
 
 /** The EBOOT shuffles need the decrypted EBOOT, so they're opt-in. */
 export const DEFAULT_SHUFFLES: readonly ShuffleName[] = ["quest-rewards", "monster-rewards"];
-export const EBOOT_SHUFFLES: readonly ShuffleName[] = ["recipes", "recipe-amounts", "costs"];
+export const EBOOT_SHUFFLES: readonly ShuffleName[] = [
+  "recipes",
+  "recipe-amounts",
+  "costs",
+  "weapons",
+];
 
 export interface Settings {
   seed: string;
@@ -37,6 +44,8 @@ export interface Settings {
   amountSpread: number;
   /** `costs`: prices vary by up to this fraction. */
   costSpread: number;
+  /** `weapons`: whether a place in the smithy keeps its weapon type. */
+  weaponMix: WeaponMix;
 }
 
 export const DEFAULT_SPREAD = 0.5;
@@ -57,7 +66,7 @@ export interface RandomizeResult {
 }
 
 /** Version of the randomization logic, in the spoiler log. Bump when a seed's output changes. */
-export const LOGIC_VERSION = 3;
+export const LOGIC_VERSION = 4;
 
 export function parseShuffles(value: string): ShuffleName[] {
   const names = value
@@ -137,9 +146,17 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
   const needsEboot = EBOOT_SHUFFLES.some((s) => enabled.has(s));
   if (needsEboot && !game.eboot) throw new Error("This shuffle needs the decrypted EBOOT");
 
+  // Weapons first: it moves upgrade materials between entries, and the
+  // recipe shuffles then work on the tables as it left them.
+  if (enabled.has("weapons")) {
+    reports.push(
+      shuffleWeapons(game.eboot!, game.resolver, settings.weaponMix, rng.fork("weapons"), edits),
+    );
+  }
+
   if (enabled.has("recipes") || enabled.has("recipe-amounts")) {
     const result = randomizeRecipes(
-      collectRecipeSlots(game.eboot!, game.resolver),
+      collectRecipeSlots(edits.eboot(), game.resolver),
       tiers,
       {
         materials: enabled.has("recipes"),

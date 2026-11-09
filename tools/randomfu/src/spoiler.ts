@@ -16,6 +16,7 @@ export function formatSpoiler(game: GameData, settings: Settings, result: Random
     `Shuffles: ${settings.shuffles.join(", ") || "none"}`,
     ...(on("recipe-amounts") ? [`Amounts:  ±${Math.round(settings.amountSpread * 100)}%`] : []),
     ...(on("costs") ? [`Costs:    ±${Math.round(settings.costSpread * 100)}%`] : []),
+    ...(on("weapons") ? [`Weapons:  ${settings.weaponMix}`] : []),
     `Disc:     ${game.discId} (${game.region})`,
     `Logic:    v${LOGIC_VERSION}`,
     "",

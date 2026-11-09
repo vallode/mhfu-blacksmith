@@ -3,7 +3,8 @@
  * randomfu CLI. See README.md.
  *
  *   tsx src/cli.ts randomize --iso <in> --out <out.iso> [--seed <seed>] [--shuffles <list>]
- *                            [--amount-spread <0-1>] [--cost-spread <0-1>] [--spoiler <path>]
+ *                            [--amount-spread <0-1>] [--cost-spread <0-1>]
+ *                            [--weapon-mix same-type|any-type] [--spoiler <path>]
  *                            [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--dry-run] [--force]
  *   tsx src/cli.ts roundtrip --iso <in>
  */
@@ -24,6 +25,7 @@ import {
   type Settings,
 } from "./randomize.js";
 import { randomSeed } from "./rng.js";
+import { WEAPON_MIXES, type WeaponMix } from "./shuffles/weapons.js";
 import { formatSpoiler } from "./spoiler.js";
 import { roundTrip, writeEdits } from "./write.js";
 
@@ -48,6 +50,13 @@ export function parseFlags(argv: string[]): Record<string, string> {
   return flags;
 }
 
+function parseWeaponMix(value: string): WeaponMix {
+  if (!(WEAPON_MIXES as readonly string[]).includes(value)) {
+    throw new Error(`--weapon-mix must be one of ${WEAPON_MIXES.join(", ")}`);
+  }
+  return value as WeaponMix;
+}
+
 function requireFlag(flags: Record<string, string>, name: string): string {
   const value = flags[name];
   if (!value) throw new Error(`Missing required flag --${name}`);
@@ -56,8 +65,8 @@ function requireFlag(flags: Record<string, string>, name: string): string {
 
 const USAGE = `Usage:
   randomize --iso <in.iso|in.cso> --out <out.iso> [--seed <seed>] [--shuffles ${SHUFFLES.join(",")}]
-            [--amount-spread <0-1>] [--cost-spread <0-1>] [--spoiler <path>]
-            [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--dry-run] [--force]
+            [--amount-spread <0-1>] [--cost-spread <0-1>] [--weapon-mix same-type|any-type]
+            [--spoiler <path>] [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--dry-run] [--force]
   roundtrip --iso <in.iso|in.cso>
 
 Default shuffles: ${DEFAULT_SHUFFLES.join(", ")}. ${EBOOT_SHUFFLES.join(", ")} also need the
@@ -76,6 +85,7 @@ async function runRandomize(flags: Record<string, string>): Promise<void> {
     costSpread: flags["cost-spread"]
       ? parseSpread(flags["cost-spread"], "cost-spread")
       : DEFAULT_SPREAD,
+    weaponMix: parseWeaponMix(flags["weapon-mix"] ?? "same-type"),
   };
   const eboot: EbootOptions | null = settings.shuffles.some((s) => EBOOT_SHUFFLES.includes(s))
     ? { overridePath: flags.eboot, pspdecryptBin: flags["pspdecrypt-bin"] }
