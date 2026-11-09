@@ -118,6 +118,8 @@ const USAGE = `Usage:
   roundtrip --iso <in>                              check files re-encrypt to the disc's bytes
   gui [--port <n>] [--no-open]                      open the settings page in a browser
   settings [--write <file.json>]                    list every setting, or write the defaults
+  shop-scan --iso <in> [--eboot <dump>] [--out <report.txt>]
+                                                    research: look for the shops' item lists
 
 Settings (later ones win):
   --settings <file.json>       any subset of settings (see "settings")
@@ -198,6 +200,25 @@ export async function main(argv: string[]): Promise<void> {
         port: flags.port ? Number(flags.port) : 0,
         open: flags["no-open"] !== "true",
       });
+      return;
+    }
+    case "shop-scan": {
+      const { formatShopScan, runShopScan } = await import("./research/shop-scan.js");
+      const candidates = await runShopScan(requireFlag(flags, "iso"), flags.eboot, (l) =>
+        console.log(l),
+      );
+      const report = formatShopScan(candidates);
+      if (flags.out) {
+        writeFileSync(flags.out, `${report}\n`, "utf-8");
+        writeFileSync(
+          flags.out.replace(/(\.txt)?$/, ".json"),
+          `${JSON.stringify(candidates, null, 1)}\n`,
+          "utf-8",
+        );
+        console.log(`Wrote ${flags.out} and the full candidate list as JSON next to it.`);
+      } else {
+        console.log(report);
+      }
       return;
     }
     case "settings":
