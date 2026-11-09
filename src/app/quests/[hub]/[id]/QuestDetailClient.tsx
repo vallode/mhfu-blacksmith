@@ -4,8 +4,11 @@ import Link from "next/link";
 import { DetailBody, DetailCard, DetailRule, Stat, StatList } from "@/components/DetailPanel";
 import { QuestRewards, QuestSupplies } from "@/components/QuestRewards";
 import Tabs, { type Tab } from "@/components/Tabs";
+import { usePreferences } from "@/context/PreferencesContext";
+import { useSave } from "@/context/SaveContext";
 import { useQuests } from "@/lib/client-data";
 import {
+  clearedQuestIds,
   questHref,
   questHubLabel,
   questsOnHub,
@@ -42,8 +45,11 @@ function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
 
 export default function QuestDetailClient({ hub, id }: Props) {
   const { quests, error } = useQuests();
+  const { save } = useSave();
+  const { markCleared } = usePreferences().prefs;
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const quest = onHub.find((q) => q.id === id);
+  const cleared = markCleared && (clearedQuestIds(save)?.has(id) ?? false);
   const requires =
     quest?.requires == null ? undefined : quests?.find((q) => q.id === quest.requires);
 
@@ -146,6 +152,12 @@ export default function QuestDetailClient({ hub, id }: Props) {
             <>
               {" · "}
               <span className="whitespace-nowrap text-negative">Urgent Quest</span>
+            </>
+          )}
+          {cleared && (
+            <>
+              {" · "}
+              <span className="whitespace-nowrap text-gold">Cleared</span>
             </>
           )}
         </p>

@@ -1,8 +1,18 @@
 import Link from "next/link";
+import { cn } from "@/lib/cn";
 import { QUEST_HUBS, questHref, type Quest } from "@/lib/quests";
 
-/** A monster's quests, one titled list per quest board, linking to each quest. */
-export default function MonsterQuests({ quests }: { quests: Quest[] }) {
+/**
+ * A monster's quests, one titled list per quest board, linking to each quest.
+ * Quests in `cleared` (the loaded hunter's) get gold titles.
+ */
+export default function MonsterQuests({
+  quests,
+  cleared,
+}: {
+  quests: Quest[];
+  cleared?: ReadonlySet<number> | null;
+}) {
   return (
     <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-[1.6rem] mobile:grid-cols-1">
       {QUEST_HUBS.map((hub) => {
@@ -17,9 +27,13 @@ export default function MonsterQuests({ quests }: { quests: Quest[] }) {
                   <span className="w-cells-3 flex-none text-stat">{q.stars}★</span>
                   <Link
                     href={questHref(q)}
-                    className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
+                    className={cn(
+                      "min-w-0 truncate underline-offset-4 hover:underline mobile:whitespace-normal",
+                      cleared?.has(q.id) ? "text-gold" : "text-white",
+                    )}
                   >
                     {q.title}
+                    {cleared?.has(q.id) && <span className="sr-only"> (cleared)</span>}
                   </Link>
                 </li>
               ))}

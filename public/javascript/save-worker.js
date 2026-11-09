@@ -12,7 +12,33 @@ const OFFSETS = {
   EQUIP_CHEST: 0x0000a8, // 400 slots × 12 bytes (see parseEquipSlot)
   ITEM_CHEST:  0x002f88, // 1000 slots × 4 bytes
   ITEM_POUCH:  0x003f28, // 24 slots × 4 bytes
+  CLEARED:     0x003f88, // 64 bytes: one "cleared" bit per quest (see QUEST_FLAG_RUNS)
+  CAPTURES:    0x00402c, // the four monster tables: 90 × uint16 each, indexed
+  LARGEST:     0x0040e0, //   by the game's monster ID (src/lib/monster-ids.ts)
+  SMALLEST:    0x004194,
+  KILLS:       0x004248,
 };
+
+// The game's quest ID -> cleared-bit table (EBOOT 0x19a65c on the EU disc,
+// found by tools/mhfu-extract's `quest-flags`; its src/tables/quest-flags.ts
+// has the evidence). One bit per ID, in this order: each run is `slots`
+// consecutive IDs from `firstId`, the first `count` of them real quests and
+// the rest reserved IDs no quest uses. Bit n is byte n >> 3, mask 1 << (n & 7).
+const QUEST_FLAG_RUNS = [
+  [1, 10, 10], [101, 9, 9],
+  // Guild
+  [1001, 22, 22], [1101, 26, 26], [1201, 20, 20], [2001, 13, 15], [2101, 27, 30],
+  [2201, 36, 40], [3001, 25, 30], [3101, 27, 30], [3201, 33, 40],
+  // Treasure Hunting
+  [4001, 7, 7],
+  // Village
+  [10001, 5, 5], [10101, 18, 18], [10201, 18, 18], [10301, 19, 20], [10401, 18, 20],
+  [10501, 11, 15], [11001, 14, 20], [11101, 19, 25], [11201, 26, 30],
+  // Training School
+  [20001, 18, 18], [21001, 23, 30], [22001, 6, 6],
+].map(([firstId, count, slots]) => ({ firstId, count, slots }));
+
+const MONSTER_TABLE_SIZE = 90;
 
 // Equipment box slot: the first two bytes, read as one big-endian u16, are
 // 0x0000 for an empty slot and 0x0100–0x0106 for the seven equip types, so
@@ -54,6 +80,41 @@ function parseItemSlot(view, offset) {
   return { id, qty };
 }
 
+/** IDs of the quests whose cleared bit is set, in table order. */
+function parseClearedQuests(view, base) {
+  const cleared = [];
+  let bit = 0;
+  for (const { firstId, count, slots } of QUEST_FLAG_RUNS) {
+    for (let k = 0; k < count; k++) {
+      const b = bit + k;
+      if (view.getUint8(base + OFFSETS.CLEARED + (b >> 3)) & (1 << (b & 7))) cleared.push(firstId + k);
+    }
+    bit += slots;
+  }
+  return cleared;
+}
+
+/**
+ * Every monster with a record: kills, captures, and the largest and smallest
+ * size recorded (raw values; their unit isn't decoded). Monster ID 0 is
+ * "none" and never set.
+ */
+function parseMonsterRecords(view, base) {
+  const read = (table, id) => view.getUint16(base + table + id * 2, true);
+  const records = [];
+  for (let id = 1; id < MONSTER_TABLE_SIZE; id++) {
+    const record = {
+      id,
+      kills: read(OFFSETS.KILLS, id),
+      captures: read(OFFSETS.CAPTURES, id),
+      largest: read(OFFSETS.LARGEST, id),
+      smallest: read(OFFSETS.SMALLEST, id),
+    };
+    if (record.kills || record.captures || record.largest || record.smallest) records.push(record);
+  }
+  return records;
+}
+
 function parseCharacter(view, charIndex) {
   const base = CHAR_BASES[charIndex];
   // Empty slot: first two name bytes are both 0x00
@@ -84,7 +145,12 @@ function parseCharacter(view, charIndex) {
     if (slot) itemPouch.push(slot);
   }
 
-  return { name, sex, zenny, playTime, hunterRank, equipBox, itemChest, itemPouch };
+  const clearedQuests = parseClearedQuests(view, base);
+  const monsters = parseMonsterRecords(view, base);
+
+  return {
+    name, sex, zenny, playTime, hunterRank, equipBox, itemChest, itemPouch, clearedQuests, monsters,
+  };
 }
 
 const ENCRYPTED_SIZE   = 0x16A100; // game-layer only (PPSSPP default)

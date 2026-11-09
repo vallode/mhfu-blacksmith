@@ -1,14 +1,16 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useMemo, useRef } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
 import BorderRule from "@/components/BorderRule";
 import QuestNav from "@/components/QuestNav";
+import { usePreferences } from "@/context/PreferencesContext";
+import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
 import { useQuests } from "@/lib/client-data";
-import { questHref, questsOnHub, type QuestHubSlug } from "@/lib/quests";
+import { clearedQuestIds, questHref, questsOnHub, type QuestHubSlug } from "@/lib/quests";
 
 /** The quest ID in /quests/<hub>/<id>/, if the path has one. */
 function activeQuestId(pathname: string, hub: string): number | null {
@@ -20,7 +22,8 @@ function activeQuestId(pathname: string, hub: string): number | null {
 
 /**
  * A quest board: the board's quests down the left, the selected quest (or a
- * prompt to pick one) on the right. Lives in the hub's layout so the list
+ * prompt to pick one) on the right. With a hunter loaded, the quests they
+ * have cleared get gold titles. Lives in the hub's layout so the list
  * stays mounted, keeping its scroll position, when a quest is selected.
  */
 export default function QuestHubShell({
@@ -34,6 +37,9 @@ export default function QuestHubShell({
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const id = activeQuestId(usePathname(), hub);
   const listRef = useRef<HTMLDivElement>(null);
+  const { save } = useSave();
+  const { markCleared } = usePreferences().prefs;
+  const cleared = useMemo(() => (markCleared ? clearedQuestIds(save) : null), [markCleared, save]);
   const revealed = useRef(false);
 
   // On the first load of a quest page, bring its row into view.
@@ -66,7 +72,8 @@ export default function QuestHubShell({
                 className={cn("list-row", q.id === id && "bg-white/10")}
               >
                 <span className="w-cells-3 flex-none text-stat">{q.stars}★</span>
-                <p className="truncate">{q.title}</p>
+                <p className={cn("truncate", cleared?.has(q.id) && "text-gold")}>{q.title}</p>
+                {cleared?.has(q.id) && <span className="sr-only"> (cleared)</span>}
                 {q.urgent && <span className="ml-auto flex-none text-negative">Urgent</span>}
               </Link>
             ))}
