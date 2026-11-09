@@ -89,6 +89,7 @@ const GIADROME_HUNT: ParsedQuest = {
     monsters: "ドスギアノス\nギアノス",
     client: "元気のいい少年",
   },
+  languages: {},
 };
 
 /**
