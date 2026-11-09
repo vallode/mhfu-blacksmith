@@ -432,7 +432,7 @@ export default function SetBuilderClient() {
       <BorderRule />
 
       <div className="split-page">
-        <Card className="max-w-[56rem] gap-[1.3rem] overflow-auto py-7 text-[1.6rem] mobile:max-w-none mobile:flex-none mobile:text-[1.6rem]">
+        <Card className="max-w-[56rem] gap-[1.3rem] overflow-auto py-7 text-small mobile:max-w-none mobile:flex-none">
           <PanelTitle>Skills</PanelTitle>
           <form
             className="flex flex-col gap-[1.3rem]"
@@ -518,7 +518,7 @@ export default function SetBuilderClient() {
           </form>
         </Card>
 
-        <Card className="gap-[1.3rem] overflow-auto py-7 text-[1.6rem] mobile:text-[1.6rem]">
+        <Card className="gap-[1.3rem] overflow-auto py-7 text-small">
           <Tabs
             label="Set builder"
             active={view}

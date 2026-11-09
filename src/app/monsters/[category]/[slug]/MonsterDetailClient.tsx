@@ -132,7 +132,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       <DetailCard>
         {/* Name, habitats and description left of the portrait scroll (stacked on phones) */}
         <div className="flex flex-row items-start gap-4 mobile:flex-col-reverse mobile:items-stretch">
-          <div className="flex min-w-0 flex-1 flex-col gap-2 text-[2.2rem] text-gold">
+          <div className="flex min-w-0 flex-1 flex-col gap-2 text-main text-gold">
             <div className="flex items-center">
               <p className="leading-[1.25]">{monster.name}</p>
               {modelUrl && (
@@ -145,10 +145,10 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             </div>
             {monster.habitats && <p className="leading-[1.25]">{monster.habitats.join(", ")}</p>}
             {monster.description && (
-              <p className="text-[1.6rem] whitespace-normal text-white">{monster.description}</p>
+              <p className="text-small whitespace-normal text-white">{monster.description}</p>
             )}
             {monster.sizes && (
-              <p className="text-[1.6rem] text-stat">
+              <p className="text-small text-stat">
                 Size:{" "}
                 <span className="text-white tabular-nums">
                   {formatSize(monster.sizes.min)}–{formatSize(monster.sizes.max)} cm
@@ -156,7 +156,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               </p>
             )}
             {monster.base_hp !== undefined && (
-              <p className="text-[1.6rem] text-stat">
+              <p className="text-small text-stat">
                 Base HP:{" "}
                 <span className="text-white tabular-nums">
                   {monster.base_hp.toLocaleString("en-US")}

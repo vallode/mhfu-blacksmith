@@ -9,6 +9,7 @@ import {
   questHref,
   questHubLabel,
   questsOnHub,
+  questStarLevel,
   type QuestHubSlug,
   type QuestMonster,
 } from "@/lib/quests";
@@ -98,8 +99,8 @@ export default function QuestDetailClient({ hub, id }: Props) {
                 href={questHref(requires)}
                 className="whitespace-normal text-white underline-offset-4 hover:underline"
               >
-                {requires.title} ({questHubLabel(requires.hub)} <StarMarks stars={requires.stars} />
-                )
+                {requires.title} ({questHubLabel(requires.hub)}{" "}
+                <StarMarks {...questStarLevel(requires.hub, requires.stars)} />)
               </Link>
             </Stat>
           )}
@@ -140,10 +141,10 @@ export default function QuestDetailClient({ hub, id }: Props) {
   return (
     <DetailCard>
       {/* Title, board and description, like the quest sheet */}
-      <div className="flex flex-col gap-2 text-[2.2rem] text-gold">
+      <div className="flex flex-col gap-2 text-main text-gold">
         <p className="leading-[1.25] whitespace-normal">{quest.title}</p>
-        <p className="text-[1.6rem] leading-[1.25] whitespace-normal text-stat">
-          {questHubLabel(hub)} · <StarMarks stars={quest.stars} />
+        <p className="text-small leading-[1.25] whitespace-normal text-stat">
+          {questHubLabel(hub)} · <StarMarks {...questStarLevel(hub, quest.stars)} />
           {quest.urgent && (
             <>
               {" · "}
@@ -152,7 +153,7 @@ export default function QuestDetailClient({ hub, id }: Props) {
           )}
         </p>
         {quest.details && (
-          <p className="text-[1.6rem] whitespace-normal text-white">{quest.details}</p>
+          <p className="text-small whitespace-normal text-white">{quest.details}</p>
         )}
       </div>
 

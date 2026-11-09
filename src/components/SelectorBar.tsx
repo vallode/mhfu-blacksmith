@@ -20,7 +20,7 @@ const arrowPosition = "absolute top-[calc(50%-22px)] size-[44px]";
 
 /** Label and count text in the bar. */
 const barText =
-  "text-[25px] leading-none tracking-[0.08em] whitespace-nowrap text-shadow-[2px_2px_0_rgb(0_0_0/0.6)] mobile:text-[20px]";
+  "text-main leading-none tracking-[0.08em] whitespace-nowrap text-shadow-[2px_2px_0_rgb(0_0_0/0.6)]";
 
 interface Props {
   /** Text, or an element such as `StarMarks`. */

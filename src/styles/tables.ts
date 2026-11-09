@@ -7,7 +7,7 @@
  * First header is gold, the rest orange; the last column takes the slack.
  */
 export const statTable = [
-  "h-min flex-1 border-collapse text-[2.6rem] leading-[1.25] font-medium",
+  "h-min flex-1 border-collapse text-main leading-[1.25] font-medium",
   "[&_td]:w-min [&_td]:pr-[1rem] [&_td]:text-left [&_td]:font-medium [&_td]:whitespace-nowrap",
   "[&_th]:w-min [&_th]:pr-[1rem] [&_th]:text-left [&_th]:font-medium [&_th]:whitespace-nowrap [&_th]:text-warm",
   "[&_th:first-of-type]:text-gold [&_th:last-of-type]:w-full",
@@ -21,7 +21,7 @@ export const statTable = [
  * does the duration except on a phone, where four notes leave no room.
  */
 export const melodyTable = [
-  "h-min w-full border-collapse text-[2.6rem] leading-[1.25] font-medium mobile:text-[1.6rem]",
+  "h-min w-full border-collapse text-main leading-[1.25] font-medium mobile:text-small",
   "[&_th]:pr-[1rem] [&_th]:pb-[0.4rem] [&_th]:text-left [&_th]:font-medium [&_th]:whitespace-nowrap [&_th]:text-warm [&_th:first-of-type]:text-gold",
   "[&_td]:py-[0.2rem] [&_td]:pr-[1rem] [&_td]:text-left [&_td]:align-middle [&_td:last-of-type]:whitespace-nowrap mobile:[&_td:last-of-type]:whitespace-normal",
   "[&_th:last-of-type]:pr-0 [&_td:last-of-type]:pr-0 [&_th:nth-of-type(2)]:w-full",
@@ -36,7 +36,7 @@ export const melodyNote = "mobile:mr-0";
  * nine columns are too tight for the game tracking on a phone.
  */
 export const hitzoneTable = [
-  "h-min w-full table-fixed border-collapse text-[1.6rem] tracking-normal tabular-nums mobile:text-[1.4rem]",
+  "h-min w-full table-fixed border-collapse text-small tracking-normal tabular-nums mobile:text-fine",
   "[&_th]:pr-[0.8rem] [&_th]:pb-[0.4rem] [&_th]:text-right [&_th]:font-normal [&_th]:text-warm",
   // Part names ("Chest-Broken") fit on one line; on a phone the column is
   // narrower and they wrap instead.

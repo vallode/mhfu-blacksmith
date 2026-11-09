@@ -35,7 +35,7 @@ export function QuestRewards({ tables }: { tables: QuestRewardTable[] }) {
 export function QuestSupplies({ supplies }: { supplies: Quest["supplies"] }) {
   const { items } = useItems();
   return (
-    <ul className="m-0 flex max-w-[48rem] list-none flex-col gap-[0.2rem] p-0 text-[1.6rem]">
+    <ul className="m-0 flex max-w-[48rem] list-none flex-col gap-[0.2rem] p-0 text-small">
       {supplies.map((s, i) => {
         const item = items?.get(s.itemId);
         return (
@@ -43,7 +43,7 @@ export function QuestSupplies({ supplies }: { supplies: Quest["supplies"] }) {
             <Icon type={item?.type ?? "ukwn"} color={item?.color} />
             <span className="min-w-0 flex-auto truncate">{item?.name ?? `Item #${s.itemId}`}</span>
             <span className="flex-none text-muted">×{s.amount}</span>
-            <span className="w-cells-9 flex-none text-right text-[1.3rem] text-white/60">
+            <span className="w-cells-9 flex-none text-right text-fine text-white/60">
               {s.stacks > 1 ? `${s.stacks} stacks` : ""}
             </span>
           </li>

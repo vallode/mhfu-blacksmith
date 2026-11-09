@@ -42,6 +42,16 @@
      glyph. Unregistered, so ch and em resolve on the element using it. */
   --cell: calc(1ch + 0.14em);
 
+  /* Type scale: the only four text sizes. text-main is the game's text:
+     lists, values, titles and selector bars, 22px (20px on phones, set in
+     the base layer below). sub, small and fine step down for secondary
+     text: 18px labels and notices, 16px descriptions, tabs and meta lines,
+     14px hints and dense tables. */
+  --text-main: 2.2rem;
+  --text-sub: 1.8rem;
+  --text-small: 1.6rem;
+  --text-fine: 1.4rem;
+
   /* UI palette */
   --color-accent: #037703;
   --color-hr: #6e905f;
@@ -387,6 +397,15 @@ img {
 /* Default divider. In the base layer so utilities can adjust it (e.g. the
    search overlay's tighter margins). The tiled page-header divider is the
    BorderRule component. */
+/* text-main is 20px on phones (the @theme block can't hold a media query). */
+@layer base {
+  @media screen and (max-width: 600px) {
+    :root {
+      --text-main: 2rem;
+    }
+  }
+}
+
 @layer base {
   hr {
     background-color: var(--color-hr);
