@@ -8,6 +8,10 @@ interface MonsterDropsProps {
   sources: Record<string, MonsterDrop[]>;
 }
 
+/** An item name in a drop or supply row: truncated, but wrapped on a phone, where the column is narrow. */
+export const dropName =
+  "min-w-0 flex-auto truncate mobile:leading-[1.25] mobile:wrap-anywhere mobile:whitespace-normal";
+
 /** Two-across grid of DropLists (one per column on phones). */
 export function DropGrid({ children }: { children: React.ReactNode }) {
   return (
@@ -68,7 +72,7 @@ function DropRow({ drop }: { drop: MonsterDrop }) {
   return (
     <li className="flex items-center gap-[0.8rem] leading-none text-white">
       <Icon type={drop.type || "ukwn"} color={drop.color} />
-      <span className="min-w-0 flex-auto truncate">{drop.name}</span>
+      <span className={dropName}>{drop.name}</span>
       {drop.quantity !== undefined && (
         <span className="flex-none text-muted">×{drop.quantity}</span>
       )}

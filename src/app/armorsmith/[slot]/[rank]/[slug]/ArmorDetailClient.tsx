@@ -12,6 +12,7 @@ import {
   DetailBody,
   DetailCard,
   DetailHeader,
+  DetailName,
   DetailRule,
   MaterialList,
   RequirementsPage,
@@ -94,7 +95,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
         <DetailCard>
           <DetailHeader>
             <Icon type={slot} size="large" alt={piece.name} />
-            <p>{piece.name}</p>
+            <DetailName>{piece.name}</DetailName>
             {modelKey && (
               <ModelButton
                 open={modelOpen}

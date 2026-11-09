@@ -9,6 +9,7 @@ import {
   DetailBody,
   DetailCard,
   DetailHeader,
+  DetailName,
   DetailRule,
   MaterialList,
   Requirements,
@@ -17,6 +18,7 @@ import {
   StatList,
   StatValue,
 } from "@/components/DetailPanel";
+import { cn } from "@/lib/cn";
 import { useDecoration } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
 import Loading from "@/components/Loading";
@@ -84,7 +86,7 @@ export default function DecorationDetailClient({ slug }: Props) {
         <DetailCard>
           <DetailHeader>
             <Icon type="decoration" size="large" color={deco.color} alt={deco.name} />
-            <p>{deco.name}</p>
+            <DetailName>{deco.name}</DetailName>
           </DetailHeader>
 
           <DetailBody>
@@ -104,7 +106,7 @@ export default function DecorationDetailClient({ slug }: Props) {
                 <DetailRule />
                 <div className="flex flex-1 flex-col gap-[13px]">
                   {deco.skills.map((skill, i) => (
-                    <p key={i} className={i === 0 ? "w-full font-normal" : undefined}>
+                    <p key={i} className={cn("whitespace-normal", i === 0 && "w-full font-normal")}>
                       {skill}
                     </p>
                   ))}
