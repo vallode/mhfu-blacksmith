@@ -12,12 +12,13 @@ import {
 import {
   QUEST_FLAG_ANCHORS,
   QUEST_FLAG_BITS,
-  SAVE_DERIVED_GROUPS,
-  groupsToBitMap,
+  QUEST_FLAG_RUNS,
+  questFlagBits,
+  runFirstBits,
 } from "../src/tables/quest-flags.js";
 
 const questIds = discQuestIds();
-const saveMap = groupsToBitMap(SAVE_DERIVED_GROUPS);
+const saveMap = questFlagBits();
 
 /** Deterministic noise, so a search has something to reject. */
 function noise(length: number, seed = 1): Buffer {
@@ -30,7 +31,7 @@ function noise(length: number, seed = 1): Buffer {
   return buf;
 }
 
-/** The save-derived layout as one entry per bit: quest ID, or `null` for an unused bit. */
+/** The known layout as one entry per bit: quest ID, or `null` for a reserved or unused bit. */
 function layoutEntries(): (number | null)[] {
   const entries: (number | null)[] = Array(QUEST_FLAG_BITS).fill(null);
   for (const [id, bit] of saveMap) entries[bit] = id;
@@ -43,7 +44,16 @@ test("the disc has 551 quest IDs", () => {
   assert.ok(questIds.has(1001) && questIds.has(10001) && questIds.has(1));
 });
 
-test("the save-derived layout fits the field, the disc and the anchors", () => {
+test("the table fits the field, the disc and the anchors", () => {
+  assert.equal(
+    QUEST_FLAG_RUNS.reduce((sum, run) => sum + run.slots, 0),
+    504,
+    "the EU table has 504 entries",
+  );
+  assert.ok(QUEST_FLAG_RUNS.every((run) => run.count <= run.slots));
+  // Every quest on the disc except the 90 hidden Guild quests (30001-30090),
+  // the 8 in 40001-40008 and the 3 in 50001-50003.
+  assert.equal(saveMap.size, questIds.size - 90 - 8 - 3);
   const bits = [...saveMap.values()];
   assert.equal(new Set(bits).size, bits.length, "no two quests share a bit");
   assert.ok(bits.every((b) => b >= 0 && b < QUEST_FLAG_BITS));
@@ -115,7 +125,10 @@ test("random data has no quest ID lists", () => {
 test("finds a range table by its first IDs and first bits", () => {
   const buf = noise(0x4000, 5);
   const base = 0x2000;
-  const guild = SAVE_DERIVED_GROUPS.filter((g) => g.firstId >= 1000 && g.firstId < 4000);
+  const firstBits = runFirstBits();
+  const guild = QUEST_FLAG_RUNS.map((run, i) => ({ ...run, firstBit: firstBits[i]! })).filter(
+    (g) => g.firstId >= 1000 && g.firstId < 4000,
+  );
   guild.forEach((g, i) => {
     buf.writeUInt16LE(g.firstId, base + i * 8);
     buf.writeUInt16LE(g.firstBit, base + i * 8 + 2);
@@ -157,8 +170,6 @@ test("assembles a table split up by entries that aren't quest IDs, gaps and all"
   // Every unused bit holds a value the list search doesn't accept (like a
   // downloadable quest's ID), so the table only shows up in pieces.
   const entries = layoutEntries().map((id, bit) => id ?? 0xc000 + bit);
-  // A short group the list search alone wouldn't report: 22001-22006 at 491.
-  for (let k = 0; k < 6; k++) entries[491 + k] = 22001 + k;
   while (entries.length < QUEST_FLAG_BITS) entries.push(0);
   entries.forEach((v, i) => buf.writeUInt16LE(v, base + i * 2));
   const files = [{ name: "eboot.bin", buf }];
@@ -169,11 +180,13 @@ test("assembles a table split up by entries that aren't quest IDs, gaps and all"
   assert.equal(table.offset, base);
   assert.equal(table.entries.length, QUEST_FLAG_BITS);
   assert.deepEqual(table.anchorsMatched, [1001, 1004, 1005, 1020, 10001]);
-  assert.equal(table.bits[22003], 493);
+  // 22001-22006 is too short a run for the list search: only the whole table places it.
+  assert.ok(!lists.some((h) => h.entries.includes(22003)));
+  assert.equal(table.bits[22003], 500);
   assert.equal(table.otherEntries[100], 0xc000 + 100);
   assert.equal(table.vsSaves.disagree, 0);
   assert.equal(table.vsSaves.agree, saveMap.size);
-  assert.equal(table.vsSaves.onlyInTable, 6);
+  assert.equal(table.vsSaves.onlyInTable, 0);
 });
 
 test("no anchored list, no table", () => {

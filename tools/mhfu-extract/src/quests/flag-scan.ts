@@ -1,7 +1,7 @@
 /**
  * `quest-flags`: searches the EBOOT and overlays for the table the game uses
  * to turn a quest ID into its "cleared" bit in the save (see
- * `tables/quest-flags.ts` for what saves have shown so far). Numbers only;
+ * `tables/quest-flags.ts` for the table found on the EU disc). Numbers only;
  * the format of the table is unknown, so two kinds of search run:
  *
  * - **Quest ID lists** (`findQuestIdLists`): arrays of u16/u32 quest IDs,
@@ -16,8 +16,9 @@
 import {
   QUEST_FLAG_ANCHORS,
   QUEST_FLAG_BITS,
-  SAVE_DERIVED_GROUPS,
-  groupsToBitMap,
+  QUEST_FLAG_RUNS,
+  questFlagBits,
+  runFirstBits,
 } from "../tables/quest-flags.js";
 
 export interface ScanFile {
@@ -61,7 +62,7 @@ export interface IdListHit {
   bitOfFirstEntry: number | null;
   anchorsMatched: number[];
   anchorsMissed: number[];
-  /** With `bitOfFirstEntry`: how the run's bits compare with the save-derived layout. */
+  /** With `bitOfFirstEntry`: how the run's bits compare with the known layout (`tables/quest-flags.ts`). */
   vsSaves: {
     agree: number;
     disagree: number;
@@ -139,7 +140,7 @@ export function findQuestIdLists(
   file: ScanFile,
   questIds: ReadonlySet<number>,
   anchors: Readonly<Record<number, number>> = QUEST_FLAG_ANCHORS,
-  saveMap: Map<number, number> = groupsToBitMap(SAVE_DERIVED_GROUPS),
+  saveMap: Map<number, number> = questFlagBits(),
 ): IdListHit[] {
   const { buf } = file;
   const raw: Omit<IdListHit, "bitOfFirstEntry" | "anchorsMatched" | "anchorsMissed" | "vsSaves">[] =
@@ -311,27 +312,21 @@ export function findSequenceTables(
   return hits.sort((a, b) => b.length - a.length);
 }
 
-/** The values `findSequenceTables` looks for: each star level's first ID, first bit and size. */
+/** The values `findSequenceTables` looks for: each star level's first ID, first bit, size and slots. */
 export function flagSequences(): NamedSequence[] {
-  const guild = SAVE_DERIVED_GROUPS.filter((g) => g.firstId >= 1000 && g.firstId < 4000);
-  const village = SAVE_DERIVED_GROUPS.filter((g) => g.firstId >= 10000 && g.firstId < 20000);
+  const firstBits = runFirstBits();
+  const runs = QUEST_FLAG_RUNS.map((run, i) => ({ ...run, firstBit: firstBits[i]! }));
+  const guild = runs.filter((r) => r.firstId >= 1000 && r.firstId < 4000);
+  const village = runs.filter((r) => r.firstId >= 10000 && r.firstId < 20000);
   return [
-    { name: "guild first IDs", values: guild.map((g) => g.firstId) },
-    { name: "village first IDs", values: village.map((g) => g.firstId) },
-    { name: "guild first bits", values: guild.map((g) => g.firstBit) },
-    { name: "village first bits", values: village.map((g) => g.firstBit) },
-    { name: "guild quest counts", values: guild.map((g) => g.count) },
-    { name: "village quest counts", values: village.map((g) => g.count) },
-    // Slots per star level (count plus the unused bits after it) in case the
-    // table stores capacities: the next group's first bit minus this one's.
-    {
-      name: "guild slot counts",
-      values: guild.map((g, i) => (guild[i + 1]?.firstBit ?? 272) - g.firstBit),
-    },
-    {
-      name: "village slot counts",
-      values: village.map((g, i) => (village[i + 1]?.firstBit ?? 450) - g.firstBit),
-    },
+    { name: "guild first IDs", values: guild.map((r) => r.firstId) },
+    { name: "village first IDs", values: village.map((r) => r.firstId) },
+    { name: "guild first bits", values: guild.map((r) => r.firstBit) },
+    { name: "village first bits", values: village.map((r) => r.firstBit) },
+    { name: "guild quest counts", values: guild.map((r) => r.count) },
+    { name: "village quest counts", values: village.map((r) => r.count) },
+    { name: "guild slot counts", values: guild.map((r) => r.slots) },
+    { name: "village slot counts", values: village.map((r) => r.slots) },
   ];
 }
 
@@ -373,7 +368,7 @@ export function assembleFlagTable(
   lists: readonly IdListHit[],
   questIds: ReadonlySet<number>,
   anchors: Readonly<Record<number, number>> = QUEST_FLAG_ANCHORS,
-  saveMap: Map<number, number> = groupsToBitMap(SAVE_DERIVED_GROUPS),
+  saveMap: Map<number, number> = questFlagBits(),
 ): FlagTable | null {
   const starts = new Map<
     string,

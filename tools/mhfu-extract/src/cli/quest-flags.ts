@@ -69,7 +69,7 @@ export function printQuestFlagSummary(report: QuestFlagReport): void {
       `\nFlag table: ${t.file} @0x${t.offset.toString(16)} u${t.width * 8} stride ${t.stride} (from ${t.hits} lists), ${t.entries.length} bits, ${ids} quest IDs placed.` +
         `\n  anchors ${t.anchorsMatched.join(",") || "none"}` +
         (t.anchorsMissed.length ? ` (missed ${t.anchorsMissed.join(",")})` : "") +
-        `\n  vs saves: ${t.vsSaves.agree} agree, ${t.vsSaves.disagree} disagree, ${t.vsSaves.onlyInTable} only in the table, ${t.vsSaves.onlyInSaves} only in the saves` +
+        `\n  vs tables/quest-flags.ts: ${t.vsSaves.agree} agree, ${t.vsSaves.disagree} disagree, ${t.vsSaves.onlyInTable} only in the table, ${t.vsSaves.onlyInSaves} only in tables/quest-flags.ts` +
         `\n  ${Object.keys(t.otherEntries).length} entries aren't disc quest IDs, ${Object.keys(t.repeats).length} repeat one`,
     );
     for (const d of t.vsSaves.firstDisagreements.slice(0, 5)) console.log(`  ${d}`);
@@ -85,7 +85,7 @@ export function printQuestFlagSummary(report: QuestFlagReport): void {
     const anchors = h.anchorsMatched.length
       ? `entry 0 = bit ${h.bitOfFirstEntry}, anchors ${h.anchorsMatched.join(",")}` +
         (h.anchorsMissed.length ? ` (missed ${h.anchorsMissed.join(",")})` : "") +
-        `; vs saves: ${h.vsSaves!.agree} agree, ${h.vsSaves!.disagree} disagree, ${h.vsSaves!.notInSaves} not in saves`
+        `; vs tables/quest-flags.ts: ${h.vsSaves!.agree} agree, ${h.vsSaves!.disagree} disagree, ${h.vsSaves!.notInSaves} not in it`
       : "no anchor IDs";
     console.log(`  ${where}\n    ${anchors}\n    ${h.summary.slice(0, 160)}`);
   }

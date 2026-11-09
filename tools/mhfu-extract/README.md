@@ -690,22 +690,28 @@ bit; and clearing one more quest set one more. The cheat's 448 bits stop
 short of the Training School, which starts at bit 450.
 
 **The game's table** is an array with one u16 quest ID per bit: on the EU
-disc it is at EBOOT `0x19a65c` (bit 0 = quest 1). In bit order it holds
-quests 1-10 and 101-109, the Guild (1001-3233), Treasure Hunting
-(4001-4007, bits 272-278), the Village (10001-11226, from bit 279) and the
-Training School (20001-20018 from bit 450, 21001-21023 from 468). Each
-star level starts on its own boundary, so there are entries between groups
-that aren't disc quest IDs.
+disc it is at EBOOT `0x19a65c` (bit 0 = quest 1), 504 entries followed by
+the value 60000. In bit order it holds quests 1-10 and 101-109, the Guild
+(1001-3233), Treasure Hunting (4001-4007, bits 272-278), the Village
+(10001-11226, from bit 279) and the Training School (20001 from bit 450,
+21001 from 468, the Exercises 22001-22006 at 498-503). Each star level has
+a fixed number of slots, filled after its last quest with reserved IDs no
+quest uses (2014-2015, 2128-2130, 2237-2240, …). `src/tables/quest-flags.ts`
+holds it as 24 runs of consecutive IDs (`QUEST_FLAG_RUNS`): a quest's bit
+is its position.
 
-It agrees with what saves showed first (`src/tables/quest-flags.ts`):
+Saves agree with every bit of it:
 
 - **Anchors** (quests cleared on purpose in an unedited save): `10001`
   Mountain Herb Picking is bit 279, `1001` Gathering - Snowy Mountains is
   bit 19, and a third hunter's three bits are `1004`, `1005` and `1020`.
-- **Group starts** fitted to a heavily played, possibly edited hunter,
-  whose cleared bits form runs exactly as long as each star level (27, 36,
-  25, 27, 33 for Guild ★7-G★3; 19, 18, 11, 14, 19, 26 for Village ★4-★9),
-  and whose Training School bits are 450-458 and 468-490.
+  The scan uses these to find the table.
+- **A heavily played (possibly edited) hunter**: its cleared bits are runs
+  exactly as long as each star level, every Urgent Quest is set, and its
+  Treasure Hunting and Training School bits fall on those quests.
+
+The hidden Guild quests (30001-30090) and 40001-40008 / 50001-50003 have
+no bit.
 
 `quest-flags` searches the EBOOT and every `*_task.ovl`/`*_sub.ovl`
 overlay (`src/quests/flag-scan.ts`) for it:
@@ -713,7 +719,7 @@ overlay (`src/quests/flag-scan.ts`) for it:
 - **Quest ID lists**: u16/u32 arrays of disc quest IDs (one field every
   2-32 bytes), with 0 or all-ones entries allowed for unused slots. Each
   list is placed by the anchors (`bitOfFirstEntry` = anchor bit minus its
-  index) and compared with the save-derived layout (`vsSaves`).
+  index) and compared with `QUEST_FLAG_RUNS` (`vsSaves`).
 - **The table** (`table` in the report): the lists are pieces of one table
   split up by the entries that aren't quest IDs, so the bit-0 position most
   lists point to is read whole. `bits` maps every quest ID to its bit,
