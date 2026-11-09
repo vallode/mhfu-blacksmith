@@ -161,6 +161,22 @@ export interface MonsterDrop {
   color?: string;
 }
 
+/** One break reward and the body parts behind it (from the disc; see tools/mhfu-extract `monsters/breaks.ts`). */
+export interface MonsterBreak {
+  /** The break's drop group label without "break " ("head", "wing"). */
+  name: string;
+  /** Body parts: the `part` numbers of the monster's hitbox capsules. */
+  parts: number[];
+  /** Flinches of a part that break it; null when another event does. */
+  flinches: number | null;
+  /** Every listed part must reach the count (else any one). */
+  all_parts?: boolean;
+  /** Fraction of max HP the monster must be under. */
+  below_hp?: number;
+  /** Damage the part must have taken. */
+  damage?: "cut" | "fire" | "dragon";
+}
+
 export interface Monster {
   name: string;
   slug: string;
@@ -173,6 +189,8 @@ export interface Monster {
   sizes?: { min: number; max: number };
   /** HP before a quest's multiplier, from the disc */
   base_hp?: number;
+  /** Breakable parts, one entry per break reward */
+  breaks?: MonsterBreak[];
 }
 
 export interface Decoration {

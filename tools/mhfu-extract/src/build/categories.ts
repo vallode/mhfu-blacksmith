@@ -108,6 +108,7 @@ const MONSTERS: Category = {
     { field: "base_hp", kind: "scalar" },
     { field: "hitzones", kind: "hitzones" },
     { field: "drops", kind: "drops" },
+    { field: "breaks", kind: "scalar" },
   ],
   // Reviewed against the EU disc (README "Monster overlays"): of 400
   // mapped hitzone parts 389 agree and the 11 that don't are site errors;
@@ -116,7 +117,8 @@ const MONSTERS: Category = {
   // rank's list pasted in).
   // `base_hp` (chunk +0x100) is new to the site: it has no committed value
   // to disagree with, and is the HP before a quest's multiplier.
-  take: ["base_hp", "hitzones", "drops"],
+  // `breaks` (monsters/breaks.ts, overlay/breaks.json) is new too.
+  take: ["base_hp", "hitzones", "drops", "breaks"],
 };
 
 export const CATEGORIES: Record<CategoryName, Category> = {

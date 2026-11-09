@@ -29,7 +29,11 @@ import { readMonsterTables } from "../monsters/read.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
-import { verifyOffsets, type OffsetVerificationResult } from "../tables/offsets.js";
+import {
+  JP_BASE_ADDRESS,
+  verifyOffsets,
+  type OffsetVerificationResult,
+} from "../tables/offsets.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -198,7 +202,14 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   Object.assign(output, emitQuestsFile(quests));
 
   console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");
-  const monsters = readMonsterTables(overlays);
+  // The EBOOT's species table maps subspecies to their base species' breaks;
+  // EU and JP load it at the same address.
+  const monsters = readMonsterTables(overlays, { reader, baseAddress: JP_BASE_ADDRESS });
+  console.log(
+    monsters.locations.breaks === null
+      ? "Break table not found; monsters get no breaks."
+      : `Break table at 0x${monsters.locations.breaks.toString(16)} (${monsters.breaks!.length} records), species table ${monsters.species ? "found" : "not found"}.`,
+  );
   console.log(
     `Monster chunks at 0x${monsters.locations.chunks.offset.toString(16)}, reward tables at 0x${monsters.locations.rewards.carves.pointers.toString(16)} / 0x${monsters.locations.rewards.capBreak.pointers.toString(16)}.`,
   );

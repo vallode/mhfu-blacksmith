@@ -624,7 +624,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "wing",
+          "parts": [
+            1,
+            2
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Pink Rathian",
@@ -1069,7 +1086,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 4400
+      "base_hp": 4400,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "wing",
+          "parts": [
+            1,
+            2
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Gold Rathian",
@@ -1400,7 +1434,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 4400
+      "base_hp": 4400,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "wing",
+          "parts": [
+            1,
+            2
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Rathalos",
@@ -1923,7 +1974,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 3200
+      "base_hp": 3200,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "wing",
+          "parts": [
+            1,
+            2
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Azure Rathalos",
@@ -2365,7 +2433,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 3600
+      "base_hp": 3600,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "wing",
+          "parts": [
+            1,
+            2
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Silver Rathalos",
@@ -2693,7 +2778,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "wing",
+          "parts": [
+            1,
+            2
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Khezu",
@@ -3060,7 +3162,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 3200
+      "base_hp": 3200,
+      "breaks": [
+        {
+          "name": "head/back",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Red Khezu",
@@ -3374,7 +3485,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 3600
+      "base_hp": 3600,
+      "breaks": [
+        {
+          "name": "head/back",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Basarios",
@@ -3736,7 +3856,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 2400
+      "base_hp": 2400,
+      "breaks": [
+        {
+          "name": "stomach",
+          "parts": [
+            6
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Gravios",
@@ -4102,7 +4231,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "stomach",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Black Gravios",
@@ -4469,7 +4607,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 4400
+      "base_hp": 4400,
+      "breaks": [
+        {
+          "name": "stomach",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Monoblos",
@@ -4696,7 +4843,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "White Monoblos",
@@ -4924,7 +5080,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 6000
+      "base_hp": 6000,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Diablos",
@@ -5250,7 +5415,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "horns",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Black Diablos",
@@ -5592,7 +5766,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 4400
+      "base_hp": 4400,
+      "breaks": [
+        {
+          "name": "horns",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Tigrex",
@@ -6047,7 +6230,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "claw",
+          "parts": [
+            4,
+            6
+          ],
+          "flinches": 1
+        },
+        {
+          "name": "head",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Nargacuga",
@@ -6409,7 +6609,31 @@
           "ko": "0"
         }
       },
-      "base_hp": 3600
+      "base_hp": 3600,
+      "breaks": [
+        {
+          "name": "wings",
+          "parts": [
+            2,
+            6
+          ],
+          "flinches": 1
+        },
+        {
+          "name": "head",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "tail",
+          "parts": [
+            3
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Akantor",
@@ -6597,7 +6821,32 @@
           "ko": "0"
         }
       },
-      "base_hp": 12000
+      "base_hp": 12000,
+      "breaks": [
+        {
+          "name": "claws",
+          "parts": [
+            4,
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "fangs",
+          "parts": [
+            0
+          ],
+          "flinches": 4,
+          "below_hp": 0.5
+        },
+        {
+          "name": "spikes - back",
+          "parts": [
+            2
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Ukanlos",
@@ -6779,7 +7028,32 @@
           "ko": "0"
         }
       },
-      "base_hp": 12000
+      "base_hp": 12000,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            0
+          ],
+          "flinches": 4,
+          "below_hp": 0.5
+        },
+        {
+          "name": "chest - requires fire element",
+          "parts": [
+            2
+          ],
+          "flinches": 2,
+          "damage": "fire"
+        },
+        {
+          "name": "dorsal fin",
+          "parts": [
+            1
+          ],
+          "flinches": 2
+        }
+      ]
     }
   ]
 }

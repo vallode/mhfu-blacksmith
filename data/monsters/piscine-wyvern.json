@@ -423,7 +423,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 1600
+      "base_hp": 1600,
+      "breaks": [
+        {
+          "name": "back fin",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Plesioth",
@@ -786,7 +795,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "back fin",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Green Plesioth",
@@ -1100,7 +1118,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 4400
+      "base_hp": 4400,
+      "breaks": [
+        {
+          "name": "back fin",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Lavasioth",
@@ -1279,7 +1306,23 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "face",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "fin",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        }
+      ]
     }
   ]
 }

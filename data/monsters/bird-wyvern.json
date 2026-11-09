@@ -1146,7 +1146,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 1600
+      "base_hp": 1600,
+      "breaks": [
+        {
+          "name": "ears",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Blue Yian Kut-Ku",
@@ -1459,7 +1468,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 2800
+      "base_hp": 2800,
+      "breaks": [
+        {
+          "name": "ears",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Yian Garuga",
@@ -1856,7 +1874,38 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "beak",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "ears",
+          "parts": [
+            6
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "back",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "wings",
+          "parts": [
+            1,
+            2
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Scarred Yian Garuga",
@@ -2329,7 +2378,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 2400
+      "base_hp": 2400,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Purple Gypceros",
@@ -2663,7 +2721,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 2800
+      "base_hp": 2800,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Hypnocatrice",
@@ -2918,7 +2985,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 2600
+      "base_hp": 2600,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ]
     }
   ]
 }

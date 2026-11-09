@@ -826,7 +826,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 2800
+      "base_hp": 2800,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "claw",
+          "parts": [
+            2,
+            3
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Emerald Congalala",
@@ -1003,7 +1020,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 3000
+      "base_hp": 3000,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "claw",
+          "parts": [
+            2,
+            3
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Blango",
@@ -1460,7 +1494,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 2800
+      "base_hp": 2800,
+      "breaks": [
+        {
+          "name": "fang",
+          "parts": [
+            0
+          ],
+          "flinches": null
+        },
+        {
+          "name": "tail",
+          "parts": [
+            4
+          ],
+          "flinches": 1,
+          "damage": "cut"
+        }
+      ]
     },
     {
       "name": "Copper Blangonga",
@@ -1609,7 +1660,24 @@
           "ko": "0"
         }
       },
-      "base_hp": 3400
+      "base_hp": 3400,
+      "breaks": [
+        {
+          "name": "fang",
+          "parts": [
+            0
+          ],
+          "flinches": null
+        },
+        {
+          "name": "tail",
+          "parts": [
+            4
+          ],
+          "flinches": 1,
+          "damage": "cut"
+        }
+      ]
     },
     {
       "name": "Rajang",
@@ -1868,7 +1936,23 @@
           "ko": "0"
         }
       },
-      "base_hp": 3600
+      "base_hp": 3600,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "tail",
+          "parts": [
+            4
+          ],
+          "flinches": null
+        }
+      ]
     },
     {
       "name": "Furious Rajang",

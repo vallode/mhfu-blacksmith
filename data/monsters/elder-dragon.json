@@ -623,7 +623,17 @@
           "ko": "0"
         }
       },
-      "base_hp": 5600
+      "base_hp": 5600,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            0
+          ],
+          "flinches": 1,
+          "damage": "dragon"
+        }
+      ]
     },
     {
       "name": "Lunastra",
@@ -886,7 +896,25 @@
           "ko": "0"
         }
       },
-      "base_hp": 4800
+      "base_hp": 4800,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            0
+          ],
+          "flinches": 2,
+          "below_hp": 0.6,
+          "damage": "dragon"
+        },
+        {
+          "name": "wings",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Teostra",
@@ -1265,7 +1293,25 @@
           "ko": "0"
         }
       },
-      "base_hp": 4800
+      "base_hp": 4800,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            0
+          ],
+          "flinches": 2,
+          "below_hp": 0.6,
+          "damage": "dragon"
+        },
+        {
+          "name": "wings",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Lao-Shan Lung",
@@ -1475,7 +1521,37 @@
           "ko": "0"
         }
       },
-      "base_hp": 26666
+      "base_hp": 26666,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            0
+          ],
+          "flinches": 1
+        },
+        {
+          "name": "head",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "back",
+          "parts": [
+            4
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "left shoulder",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        }
+      ]
     },
     {
       "name": "Ashen Lao-Shan Lung",
@@ -1742,7 +1818,16 @@
           "ko": "0"
         }
       },
-      "base_hp": 26666
+      "base_hp": 26666,
+      "breaks": [
+        {
+          "name": "tentacles",
+          "parts": [
+            6
+          ],
+          "flinches": 4
+        }
+      ]
     },
     {
       "name": "Fatalis",
@@ -1949,7 +2034,37 @@
           "ko": "0"
         }
       },
-      "base_hp": 26666
+      "base_hp": 26666,
+      "breaks": [
+        {
+          "name": "eye",
+          "parts": [
+            5
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "1st horn",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "wing",
+          "parts": [
+            7
+          ],
+          "flinches": 5
+        },
+        {
+          "name": "chest",
+          "parts": [
+            0
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Crimson Fatalis",
@@ -2172,7 +2287,44 @@
           "ko": "0"
         }
       },
-      "base_hp": 20000
+      "base_hp": 20000,
+      "breaks": [
+        {
+          "name": "eye",
+          "parts": [
+            5
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "2nd horn",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "1st horn",
+          "parts": [
+            5
+          ],
+          "flinches": 1
+        },
+        {
+          "name": "wing",
+          "parts": [
+            7
+          ],
+          "flinches": 5
+        },
+        {
+          "name": "chest",
+          "parts": [
+            0
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "White Fatalis",
@@ -2395,7 +2547,44 @@
           "ko": "0"
         }
       },
-      "base_hp": 20000
+      "base_hp": 20000,
+      "breaks": [
+        {
+          "name": "eye",
+          "parts": [
+            5
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "2nd horn",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "1st horn",
+          "parts": [
+            5
+          ],
+          "flinches": 1
+        },
+        {
+          "name": "wing",
+          "parts": [
+            7
+          ],
+          "flinches": 5
+        },
+        {
+          "name": "chest",
+          "parts": [
+            0
+          ],
+          "flinches": 1
+        }
+      ]
     }
   ]
 }

@@ -512,7 +512,25 @@
           "ko": "0"
         }
       },
-      "base_hp": 2400
+      "base_hp": 2400,
+      "breaks": [
+        {
+          "name": "shell",
+          "parts": [
+            2
+          ],
+          "flinches": null
+        },
+        {
+          "name": "claw",
+          "parts": [
+            5,
+            6
+          ],
+          "flinches": 2,
+          "all_parts": true
+        }
+      ]
     },
     {
       "name": "Plum Daimyo Hermitaur",
@@ -681,7 +699,25 @@
           "ko": "0"
         }
       },
-      "base_hp": 3150
+      "base_hp": 3150,
+      "breaks": [
+        {
+          "name": "shell",
+          "parts": [
+            2
+          ],
+          "flinches": null
+        },
+        {
+          "name": "claw",
+          "parts": [
+            5,
+            6
+          ],
+          "flinches": 2,
+          "all_parts": true
+        }
+      ]
     },
     {
       "name": "Ceanataur",
@@ -1251,7 +1287,38 @@
           "ko": "0"
         }
       },
-      "base_hp": 3200
+      "base_hp": 3200,
+      "breaks": [
+        {
+          "name": "shell - gravios skull",
+          "parts": [
+            2
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "shell - brown skull",
+          "parts": [
+            2
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "shell - white skull",
+          "parts": [
+            2
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "claw",
+          "parts": [
+            5,
+            6
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Terra Shogun Ceanataur",
@@ -1416,7 +1483,17 @@
           "ko": "0"
         }
       },
-      "base_hp": 3700
+      "base_hp": 3700,
+      "breaks": [
+        {
+          "name": "claw",
+          "parts": [
+            5,
+            6
+          ],
+          "flinches": 1
+        }
+      ]
     },
     {
       "name": "Shen Gaoren",

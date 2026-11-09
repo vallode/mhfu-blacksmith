@@ -20,6 +20,7 @@ import type {
   WeaponTreeNode,
   Melody,
   MinRank,
+  MonsterBreak,
   MonsterDrop,
 } from "./types";
 import { splitDropQuantity } from "./monster-drops";
@@ -143,6 +144,8 @@ export interface CompactMonster {
   sz?: [number, number];
   /** base_hp */
   hp?: number;
+  /** breaks, as is */
+  bk?: MonsterBreak[];
 }
 
 export interface CompactDecoration {
@@ -403,6 +406,7 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     drops: m.dr ? drops : undefined,
     sizes: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     base_hp: m.hp,
+    breaks: m.bk,
   };
 }
 

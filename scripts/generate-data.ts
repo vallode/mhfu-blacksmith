@@ -292,6 +292,7 @@ function encodeMonster(m: Monster): CompactMonster {
     out.sz = [m.sizes.min, m.sizes.max];
   }
   if (typeof m.base_hp === "number") out.hp = m.base_hp;
+  if (Array.isArray(m.breaks) && m.breaks.length > 0) out.bk = m.breaks;
   if (m.drops && Object.keys(m.drops).length > 0) {
     out.dr = Object.entries(m.drops).map(([rankName, sources]) => [
       intern(stringIndex, rankName),

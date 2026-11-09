@@ -412,6 +412,38 @@ Open questions:
 These dumps come from the disc, so they stay in `.cache/` like the rest of
 the extracted output.
 
+### Monster breaks
+
+Each monster's `breaks` (`data/monsters/*.json`) lists the body parts
+behind each of its break rewards. A body part is a hitbox capsule's `part`
+number, and each has a flinch counter (`monster + 0x582 + part * 8`).
+Worked out on the EU disc (vallode/mhfu-blacksmith#121) from the code that
+gives break rewards:
+
+- The EBOOT's reward code gives a `capbreakindex` reward for each bit set
+  in the quest's per-monster byte (`+0x5C2 + emID`). One function in
+  `game_task.ovl` sets those bits (EU `0x09AD7F48`, `setBroken(monster,
+  type)`).
+- **The break table** (`monsters/breaks.ts`), in `game_task.ovl` right after
+  the part durability records (`emChunk` `+0x1B4`), has 0x20-byte records:
+  emID, body part, flinch count, a broken-hitzones flag, the effect's
+  joint, and the break type (0xFFFF for a visual break with no reward). A
+  routine (EU `0x09AD4940`) calls `setBroken` for each record whose part
+  has just reached its flinch count. It covers 21 species on the EU disc.
+- **Species**: the record's emID is compared to the monster's through an
+  EBOOT table of 90 pointers to records whose first byte is the species,
+  so subspecies use their base species' records. `readSpeciesTable` finds
+  the table by its shape.
+- **Code-set breaks** (`overlay/breaks.json`): the rest call `setBroken`,
+  or queue a break in `+0x776`, from each species' own code in
+  `game_task.ovl` or its `emNN.ovl`. Some of these also need HP under a
+  fraction of the maximum, or a damage type on the part (`+0x3B0 + part`:
+  2 cut, 4 fire, 0x20 dragon). They were read by hand, and each entry
+  cites its call.
+
+The part durability records themselves (nine u16 per monster) look like
+each part's flinch threshold; they aren't emitted yet.
+
 ## 3D models (experimental)
 
 ```bash
