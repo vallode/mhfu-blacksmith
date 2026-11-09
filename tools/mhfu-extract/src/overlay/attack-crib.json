@@ -1,8 +1,8 @@
 {
   "$comment": [
-    "Search crib for monster attack tables (`extract --raw`, src/emit/attacks-raw.ts): per attack,",
-    "the numbers the Monster Hunter Wiki lists for MHFU, keyed by the site's monster names. Not",
-    "written to data/; only used to find where the disc keeps attack data. damage is the wiki's base",
+    "Crib for monster attack tables (`extract --raw`, src/emit/attacks-raw.ts): per attack, the",
+    "numbers the Monster Hunter Wiki lists for MHFU, keyed by the site's monster names. Not written",
+    "to data/; used to find the record layout and to label tables. damage is the wiki's base",
     "damage, or its elemental damage where it gives only that (element names the element); stun is",
     "its stun buildup and guard its guard knockback; status holds any other buildup. Attacks the",
     "wiki lists without numbers have only a name.",

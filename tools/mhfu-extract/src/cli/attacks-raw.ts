@@ -1,6 +1,6 @@
 /**
- * Writes `raw/attacks.json` for `extract --raw`: candidate monster attack
- * tables (see `emit/attacks-raw.ts`). Searched: `eboot.bin`, `game_task.ovl`,
+ * Writes `raw/attacks.json` for `extract --raw`: every monster attack table
+ * (see `emit/attacks-raw.ts`). Searched: `eboot.bin`, `game_task.ovl`,
  * `game_sub.ovl`, every per-monster `overlay/emNN.ovl`, and the entries of
  * each `emmodel/emNN.pac` that are neither mesh nor textures (skeletons and
  * motion banks).
@@ -58,17 +58,17 @@ export async function writeAttacksRaw(
     })),
     ...(await modelEntries(unpackedDir)),
   ];
-  const attacks = cribAttacks(crib as AttackCrib);
   const started = Date.now();
-  const dump = dumpAttacksRaw(files, attacks, { ovl: overlays.gameTask, offset: chunksOffset });
+  const dump = dumpAttacksRaw(files, cribAttacks(crib as AttackCrib), {
+    ovl: overlays.gameTask,
+    offset: chunksOffset,
+  });
   const rawPath = path.join(outDir, "raw", "attacks.json");
   await mkdir(path.dirname(rawPath), { recursive: true });
   await writeFile(rawPath, `${JSON.stringify(dump)}\n`, "utf-8");
-  const best = dump.patterns[0];
+  const tables = dump.files.flatMap((f) => f.tables);
+  const records = tables.reduce((sum, t) => sum + t.count, 0);
   console.log(
-    `Wrote ${rawPath}: ${dump.crib.attacks} crib attacks over ${files.length} files in ${((Date.now() - started) / 1000).toFixed(1)}s; ` +
-      (best
-        ? `best pattern ${best.pattern.kind} stun ${best.pattern.stun} guard ${best.pattern.guard}, stride ${best.stride ?? "?"} for ${best.monstersAtStride} of ${best.monsters} monsters.`
-        : "no pattern kept."),
+    `Wrote ${rawPath}: ${tables.length} attack tables (${records} records) in ${dump.files.filter((f) => f.tables.length).length} of ${files.length} files, ${((Date.now() - started) / 1000).toFixed(1)}s.`,
   );
 }

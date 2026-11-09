@@ -47,8 +47,9 @@ below.
   `monsters_games_attacks` data behind its "<Monster> (MHFU)" pages,
   retrieved 2026-11-09), licensed
   [CC BY-SA 4.0](https://creativecommons.org/licenses/by-sa/4.0/). Only the
-  numbers and attack names are kept, for searching the disc
-  (`src/emit/attacks-raw.ts`); the file is shared under the same licence.
+  numbers and attack names are kept, for finding and labelling attack
+  tables on the disc (`src/emit/attacks-raw.ts`); the file is shared under
+  the same licence.
 
 None of the above vendors game assets, copyrighted Capcom text, or ROM data —
 only third-party reverse-engineering documentation and code. The game disc
