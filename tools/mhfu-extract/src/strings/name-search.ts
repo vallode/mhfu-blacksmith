@@ -448,9 +448,11 @@ export function findEnglishTables(idx: FileIndex, names: (string | null)[]): Eng
     for (const [key] of best) {
       const stride = Math.floor(key / 2 ** 32);
       const offset = key - stride * 2 ** 32;
-      tables.push(
-        scoreEnglish(idx, { file: idx.name, offset, stride, base, count: names.length }, names),
-      );
+      // A table near the end of a file may be shorter than the enum: keep the
+      // entries that fit (the result's `enumCount` still shows the full length).
+      const count = Math.min(names.length, Math.floor((idx.buf.length - 4 - offset) / stride) + 1);
+      if (count < 1) continue;
+      tables.push(scoreEnglish(idx, { file: idx.name, offset, stride, base, count }, names));
     }
   }
   tables.sort((a, b) => b.matchRatio - a.matchRatio || b.exact - a.exact || a.stride - b.stride);
@@ -693,14 +695,17 @@ export function findLanguageTables(
   }
 
   // One file or package entry per language: the same place in a sibling.
-  const homeSegment = home.segments
-    .filter((s) => s.start <= offset && offset + span <= s.end)
-    .sort((a, b) => a.end - a.start - (b.end - b.start))[0]!;
-  const rel = offset - homeSegment.start;
-  for (const idx of indexes) {
+  // The smallest segment holding the whole table, else the one it starts in.
+  const smallest = (fits: (seg: Segment) => boolean) =>
+    home.segments.filter(fits).sort((a, b) => a.end - a.start - (b.end - b.start))[0];
+  const homeSegment =
+    smallest((seg) => seg.start <= offset && offset + span <= seg.end) ??
+    smallest((seg) => seg.start <= offset && offset < seg.end);
+  const rel = homeSegment ? offset - homeSegment.start : 0;
+  for (const idx of homeSegment ? indexes : []) {
     for (const seg of idx.segments) {
-      if (seg.label === "file" && homeSegment.label !== "file") continue;
-      if (seg.label !== "file" && homeSegment.label === "file") continue;
+      if (seg.label === "file" && homeSegment!.label !== "file") continue;
+      if (seg.label !== "file" && homeSegment!.label === "file") continue;
       const at = seg.start + rel;
       if (at + span > seg.end) continue;
       const where = `same offset as the English table in ${idx.name}${seg.label === "file" ? "" : ` ${seg.label}`}`;
@@ -789,6 +794,20 @@ export interface NameTableResult {
   notes: string[];
 }
 
+/** The result for a table whose search threw: no candidates, and the error as a note. */
+export function failedResult(table: NameTable, message: string): NameTableResult {
+  return {
+    table,
+    enumCount: enumNames(table).length,
+    clusters: [],
+    bases: [],
+    english: [],
+    languages: [],
+    confident: {},
+    notes: [`Search failed (please include this in your report): ${message}`],
+  };
+}
+
 /** Runs the whole search for one name table over `indexes`. */
 export function searchNameTable(table: NameTable, indexes: FileIndex[]): NameTableResult {
   const names = enumNames(table);
@@ -821,6 +840,11 @@ export function searchNameTable(table: NameTable, indexes: FileIndex[]): NameTab
       confident: {},
       notes,
     };
+  }
+  if (best.count < names.length) {
+    notes.push(
+      `The best English table is cut off by the end of ${best.file} after ${best.count} of ${names.length} entries.`,
+    );
   }
   const languages = findLanguageTables(best, indexes);
   const confident: NameTableResult["confident"] = {};

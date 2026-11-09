@@ -12,6 +12,7 @@ import { MHP2G_PROFILE } from "../games/mhp2g.js";
 import { BinaryReader } from "../binary/reader.js";
 import {
   confidenceProblem,
+  failedResult,
   FileIndex,
   searchNameTable,
   SEARCHED_TABLES,
@@ -117,9 +118,17 @@ export function searchAll(files: ScanFile[], tables: readonly NameTable[]): Name
   const indexes = files.map((f) => new FileIndex(f));
   return tables.map((table) => {
     const started = Date.now();
-    const result = searchNameTable(table, indexes);
-    console.log(`  ${table}: ${((Date.now() - started) / 1000).toFixed(1)}s`);
-    return result;
+    const seconds = () => ((Date.now() - started) / 1000).toFixed(1);
+    try {
+      const result = searchNameTable(table, indexes);
+      console.log(`  ${table}: ${seconds()}s`);
+      return result;
+    } catch (err) {
+      // One table's failure shouldn't lose the others' results.
+      const message = err instanceof Error ? (err.stack ?? err.message) : String(err);
+      console.log(`  ${table}: failed after ${seconds()}s`);
+      return failedResult(table, message);
+    }
   });
 }
 

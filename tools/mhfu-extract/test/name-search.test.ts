@@ -163,6 +163,35 @@ describe("[table][lang]: arrays back to back in an EBOOT-like file", () => {
   });
 });
 
+describe("a table shorter than its enum, at the end of its file", () => {
+  // Like ArmArmorID on the EU disc: the voted table runs past the file's end
+  // if it is assumed to be as long as the enum.
+  const names = enumNames("emID");
+  const kept = names.length - 20;
+  const b = new Builder();
+  elfHeader(b);
+  b.noise(4000, 5);
+  const en = b.strings(names.slice(0, kept).map((n) => n ?? ""));
+  b.noise(500, 6);
+  const enTable = b.u32s(en.map((o) => o + BASE));
+  const file: ScanFile = { name: "eboot.bin", buf: b.done() };
+
+  test("keeps the entries that fit, and the search completes", () => {
+    assert.ok(enTable + names.length * 4 > file.buf.length, "the enum-length table would overrun");
+    const result = searchNameTable("emID", [new FileIndex(file)]);
+    const best = result.english[0]!;
+    assert.equal(best.offset, enTable);
+    assert.ok(best.count < names.length && best.count >= kept, `count ${best.count}`);
+    assert.equal(result.enumCount, names.length);
+    // Scored against the whole enum: the missing entries count as misses.
+    assert.equal(best.exact, kept);
+    assert.ok(
+      result.notes.some((n) => /cut off/.test(n)),
+      result.notes.join("; "),
+    );
+  });
+});
+
 describe("[lang][table]: per-language lists of table pointers", () => {
   const tables = ["emID", "SkillID"] as const;
   const names = Object.fromEntries(tables.map((t) => [t, enumNames(t)])) as Record<
