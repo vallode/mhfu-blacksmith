@@ -70,14 +70,27 @@ test("readAttackRecord decodes Blangonga's Arm Lunge", () => {
     damage: 65,
     reaction: 2,
     guard: 40,
-    element: 1,
+    elementBits: 1,
+    elements: [],
     index: 16,
-    status: 0,
+    statusBits: 0,
+    statuses: [],
     statusValue: 0,
     stun: 25,
   });
   // Burrow is one of its ice attacks.
-  assert.equal(readAttackRecord(new BinaryReader(BLANGONGA[5]!), 0).element, 0x81);
+  assert.deepEqual(readAttackRecord(new BinaryReader(BLANGONGA[5]!), 0).elements, ["ice"]);
+});
+
+test("readAttackRecord names status bits", () => {
+  // Rathian's Backflip (game_task.ovl 0x19e240): poison 25.
+  const backflip = Buffer.from("00204b02000000e028010400020019010500000028000000", "hex");
+  const record = readAttackRecord(new BinaryReader(backflip), 0);
+  assert.deepEqual([record.statuses, record.statusValue], [["poison"], 25]);
+  // Blangonga's Snow Breath (0x1a9070): snowman 10; an unknown bit stays as hex.
+  const snow = Buffer.from("12123c01000000e02881070000020a190500000000000000", "hex");
+  snow[0x0d] = 0x22;
+  assert.deepEqual(readAttackRecord(new BinaryReader(snow), 0).statuses, ["snowman", "0x2000"]);
 });
 
 test("findAttackTables finds runs of records in noise", () => {

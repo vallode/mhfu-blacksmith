@@ -406,16 +406,17 @@ the extracted output.
 A monster attack is a 24-byte record with the same layout as the player's
 `PlayerMotVal` (`src/monsters/attacks.ts`):
 
-| Offset | `PlayerMotVal` name | Monsters                                                                                         |
-| ------ | ------------------- | ------------------------------------------------------------------------------------------------ |
-| `0x02` | MotionValue         | damage                                                                                           |
-| `0x03` | KnockbackStrength   | 1, 2, 3, 5, ...: probably the hunter's reaction                                                  |
-| `0x07` |                     | `0xE0` in nearly every record                                                                    |
-| `0x08` |                     | guard knockback                                                                                  |
-| `0x09` | DamageType          | element bits: 1 plain, 5 Lavasioth's fire, `0x81` Blangonga's ice, `0x21` Yama Tsukami's attacks |
-| `0x0A` |                     | varies within a table (an index?)                                                                |
-| `0x0D` | EffectonHit2        | a status (Blangonga's Snow Breath: 2), with its value at `0x0E`                                  |
-| `0x14` | KO                  | stun                                                                                             |
+| Offset         | `PlayerMotVal` name | Monsters                                                                                                              |
+| -------------- | ------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| `0x02`         | MotionValue         | damage                                                                                                                |
+| `0x03`         | KnockbackStrength   | 2 or 1 in most records: probably the hunter's reaction                                                                |
+| `0x07`         |                     | `0xE0` in nearly every record                                                                                         |
+| `0x08`         |                     | guard knockback                                                                                                       |
+| `0x09`         | DamageType          | element bits: `0x04` fire, `0x10` water, `0x20` dragon, `0x40` thunder, `0x80` ice; bit 0 is set in all but 3 records |
+| `0x0A`         |                     | varies within a table (an index?)                                                                                     |
+| `0x0C`, `0x0D` | EffectonHit1, 2     | status bits: `0x0C` 1 sleep, 2 poison, 4 paralysis; `0x0D` 2 snowman, 4 soiled, 16 defense down                       |
+| `0x0E`         | StatusDuration      | the status's value (Rathian's Backflip: poison 25)                                                                    |
+| `0x14`         | KO                  | stun                                                                                                                  |
 
 It was found on the EU disc by searching every file for the Monster Hunter
 Wiki's damage, stun and guard knockback per attack
@@ -424,10 +425,19 @@ subspecies or variants; CC BY-SA 4.0, see `NOTICE.md`). With the numbers
 as bytes, stun 18 bytes after damage and guard knockback 6 after, 27 of the
 32 monsters found agree on a 24-byte stride.
 
-Nothing in the monster chunks points at the tables. They sit in the
-monster's own `overlay/emNN.ovl`, or in `game_task.ovl` for monsters
-without one, several back to back (`em75.ovl` holds Tigrex's, Akantor's,
-Ukanlos's and Nargacuga's). So `findAttackTables` finds them by shape: runs
+The element and status bits are named by the wiki's elements and statuses
+for the records whose numbers match one of its attacks.
+
+On the EU disc there are 41 tables, 1,112 records, in `game_task.ovl` (23)
+and 15 of the 17 `emNN.ovl` files (not `em01` or `em33`); none in the EBOOT, `game_sub.ovl` or
+the model packages. Of the wiki's 259 attacks with damage and guard
+knockback, 249 have a record with the same numbers. Nothing in the monster
+chunks points at the tables. A table is not one monster's: monsters that
+share a skeleton share one (Diablos and Monoblos in `em14.ovl`, Gravios
+and Basarios in `em17.ovl`, Tigrex, Akantor and Ukanlos in `em75.ovl`),
+and the tables in `game_task.ovl` mix small monsters with large ones
+(Rathian's and Rathalos's attacks sit with 10-damage bites there; `em01.ovl`
+has no table). So `findAttackTables` finds them by shape: runs
 of at least four records whose bytes `0x04`, `0x11`, `0x13`, `0x15` and
 `0x17` are zero (as in all 691 records the search saw), with the top two
 bits of `0x07` set and `0x10` at most 5.
@@ -437,9 +447,9 @@ every table in `eboot.bin`, both main overlays, every `emNN.ovl` and the
 monster packages' skeleton and motion entries, with each record whole and
 decoded, the crib attacks with the same numbers, the 0x80 bytes before the
 table (a pointer list precedes several), and the pointers to each record
-from the same file or `game_task.ovl`. Still open: where one monster's
-table ends and the next begins, which table belongs to the monsters the
-crib lacks, and what the remaining bytes mean.
+from the same file or `game_task.ovl`. Still open: which records each
+monster uses (probably chosen by index from its own code), and what the
+remaining bytes mean.
 
 ## 3D models (experimental)
 
