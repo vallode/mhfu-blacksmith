@@ -1,6 +1,6 @@
 "use client";
 
-import { useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
@@ -23,16 +23,22 @@ interface NavItem {
   tab?: boolean;
 }
 
-const NAV: NavItem[] = [
-  { label: "Weapons", icon: "great-sword", match: "/blacksmith/", section: "weapons", tab: true },
-  { label: "Armor", icon: "helmet", match: "/armorsmith/", section: "armor", tab: true },
-  { label: "Decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
-  { label: "Set Builder", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
-  { label: "Monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
-  { label: "Quests", icon: "ticket", match: "/quests/", href: "/quests/", tab: true },
-  { label: "Hunter Profile", short: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
-  { label: "Options", icon: "part", match: "/options/", href: "/options/" },
+/** The sidebar's entries, in groups with a divider between them: the game's data, then your own. */
+const NAV_GROUPS: NavItem[][] = [
+  [
+    { label: "Weapons", icon: "great-sword", match: "/blacksmith/", section: "weapons", tab: true },
+    { label: "Armor", icon: "helmet", match: "/armorsmith/", section: "armor", tab: true },
+    { label: "Monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
+    { label: "Decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
+    { label: "Quests", icon: "ticket", match: "/quests/", href: "/quests/", tab: true },
+  ],
+  [
+    { label: "Set Builder", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
+    { label: "Hunter Profile", short: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
+    { label: "Options", icon: "part", match: "/options/", href: "/options/" },
+  ],
 ];
+const NAV = NAV_GROUPS.flat();
 
 const COLLAPSED_KEY = "sidebar-collapsed";
 
@@ -86,21 +92,26 @@ function SidebarContents({
       </Link>
 
       <nav className="flex flex-col" aria-label="Main">
-        {NAV.map((item) => {
-          const active = pathname.startsWith(item.match);
-          return (
-            <Link
-              key={item.match}
-              href={hrefFor(item)}
-              title={collapsed ? item.label : undefined}
-              aria-current={active ? "page" : undefined}
-              className={cn(sidebarRow, active && sidebarRowActive)}
-            >
-              <Icon type={item.icon} nav active={active} className={rowIcon} />
-              <span className={cn(collapsed && "sr-only")}>{item.label}</span>
-            </Link>
-          );
-        })}
+        {NAV_GROUPS.map((group, i) => (
+          <Fragment key={i}>
+            {i > 0 && <hr className="mx-6 my-[1rem] h-[3px] w-auto" />}
+            {group.map((item) => {
+              const active = pathname.startsWith(item.match);
+              return (
+                <Link
+                  key={item.match}
+                  href={hrefFor(item)}
+                  title={collapsed ? item.label : undefined}
+                  aria-current={active ? "page" : undefined}
+                  className={cn(sidebarRow, active && sidebarRowActive)}
+                >
+                  <Icon type={item.icon} nav active={active} className={rowIcon} />
+                  <span className={cn(collapsed && "sr-only")}>{item.label}</span>
+                </Link>
+              );
+            })}
+          </Fragment>
+        ))}
       </nav>
 
       <div className="mt-auto flex flex-col pt-4">
