@@ -157,7 +157,14 @@ test("dumpAttacksRaw labels tables from the crib and lists pointers to records",
       chunk: { emId: BLANGONGA_ID, at: "0x160" },
     },
   ]);
-  assert.equal(table.before.length, 0x80 * 2);
+  // 0x800 bytes before (or from the start of the file), 0x200 after.
+  assert.equal(table.before.length, 0x800 * 2);
+  assert.equal(
+    table.after,
+    task
+      .subarray(tableAt + 6 * ATTACK_RECORD_SIZE, tableAt + 6 * ATTACK_RECORD_SIZE + 0x200)
+      .toString("hex"),
+  );
 
   // em02.ovl's pointer to the same address isn't em01's.
   assert.deepEqual(em1File!.tables[0]!.records[0]!.refs, [

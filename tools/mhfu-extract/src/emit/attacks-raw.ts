@@ -99,6 +99,8 @@ export interface TableFunction {
   /** Records it builds the address of or reads, by index. */
   records: number[];
   monsters: MonsterLink[];
+  /** `FUNCTION_BYTES` of its code from its start, as hex. */
+  code: string;
 }
 
 export interface AttackTableDump {
@@ -108,8 +110,9 @@ export interface AttackTableDump {
   count: number;
   /** The crib monster with the most different attacks matched here, and how many. */
   monster?: { name: string; attacks: number };
-  /** The 0x80 bytes before the table, as hex. */
+  /** The `BEFORE` bytes before the table and `AFTER` after it, as hex. */
   before: string;
+  after: string;
   /**
    * Code using the table (`monsters/code-graph.ts`), for overlays: every
    * code-built address from `NEAR_BEFORE` bytes before the table to
@@ -128,6 +131,12 @@ export interface AttackTableDump {
 export interface AttackRawDump {
   /** What the MIPS decoder found per overlay. */
   scan?: ReturnType<CodeGraph["stats"]>;
+  /**
+   * The functions the tables' users call (two calls deep, most widely
+   * called first), with `FUNCTION_BYTES` of code each: a probe for the code
+   * that reads the records.
+   */
+  callees?: { file: string; offset: number; calledBy: string[]; code: string }[];
   files: {
     name: string;
     emId?: number;
@@ -137,7 +146,12 @@ export interface AttackRawDump {
   }[];
 }
 
-const BEFORE = 0x80;
+const BEFORE = 0x800;
+const AFTER = 0x200;
+/** Code dumped per function using a table, and per function those call. */
+const FUNCTION_BYTES = 0x400;
+const CALLEE_DEPTH = 2;
+const MAX_CALLEES = 80;
 /** Caps that keep `raw/attacks.json` small. */
 const MAX_USES = 60;
 const NEAR_BEFORE = 0x800;
@@ -262,6 +276,12 @@ function dumpTable(
     count: run.count,
     ...(monster ? { monster } : {}),
     before: file.buf.subarray(Math.max(0, run.offset - BEFORE), run.offset).toString("hex"),
+    after: file.buf
+      .subarray(
+        run.offset + run.count * ATTACK_RECORD_SIZE,
+        run.offset + run.count * ATTACK_RECORD_SIZE + AFTER,
+      )
+      .toString("hex"),
     ...(graph && ovl ? { code: tableCode(graph, byName, file.name, run) } : {}),
     records,
   };
@@ -290,13 +310,14 @@ function tableCode(
     const key = `${use.file}:${use.func}`;
     let fn = byFunction.get(key);
     if (!fn) {
-      fn = { file: use.file, offset: use.func, records: [], monsters: [] };
+      fn = { file: use.file, offset: use.func, records: [], monsters: [], code: "" };
       byFunction.set(key, fn);
     }
     if (!fn.records.includes(use.record)) fn.records.push(use.record);
   }
   const functions = [...byFunction.values()].map((fn) => ({
     ...fn,
+    code: codeAt(files.get(fn.file)!.buf, fn.offset),
     records: fn.records.sort((a, b) => a - b),
     monsters: graph
       .monstersOf(fn.file, fn.offset)
@@ -325,6 +346,48 @@ function tableCode(
   };
 }
 
+const codeAt = (buf: Buffer, offset: number) =>
+  buf.subarray(offset, Math.min(buf.length, offset + FUNCTION_BYTES)).toString("hex");
+
+/**
+ * The functions that the tables' users call, `CALLEE_DEPTH` calls deep, with
+ * their code: one of them likely reads the records.
+ */
+function calleeCode(
+  graph: CodeGraph,
+  files: ReadonlyMap<string, SearchFile>,
+  users: readonly TableFunction[],
+): { file: string; offset: number; calledBy: string[]; code: string }[] {
+  const out = new Map<string, { file: string; offset: number; calledBy: string[]; code: string }>();
+  let frontier = users.map((u) => ({ file: u.file, offset: u.offset }));
+  const userKeys = new Set(users.map((u) => `${u.file}:${u.offset}`));
+  for (let depth = 0; depth < CALLEE_DEPTH && frontier.length > 0; depth++) {
+    const next: typeof frontier = [];
+    for (const caller of frontier) {
+      for (const callee of graph.callsFrom(caller.file, caller.offset, FUNCTION_BYTES)) {
+        const key = `${callee.file}:${callee.offset}`;
+        if (userKeys.has(key)) continue;
+        const from = `${caller.file}:${hex(caller.offset)}`;
+        const known = out.get(key);
+        if (known) {
+          if (!known.calledBy.includes(from)) known.calledBy.push(from);
+          continue;
+        }
+        if (out.size >= MAX_CALLEES) continue;
+        out.set(key, {
+          ...callee,
+          calledBy: [from],
+          code: codeAt(files.get(callee.file)!.buf, callee.offset),
+        });
+        next.push(callee);
+      }
+    }
+    frontier = next;
+  }
+  // Most widely called first: shared shell code.
+  return [...out.values()].sort((a, b) => b.calledBy.length - a.calledBy.length);
+}
+
 /** How far `rel` is from the table [0, size): 0 inside it. */
 const distance = (rel: number, size: number) => (rel < 0 ? -rel : rel >= size ? rel - size + 1 : 0);
 
@@ -346,19 +409,21 @@ export function dumpAttacksRaw(
     }));
   const graph = codeFiles.length ? new CodeGraph(codeFiles, chunks) : null;
   const byName = new Map(files.map((f) => [f.name, f]));
+  const dumped = files.map((file) => {
+    const reader = file.ovl?.reader ?? new BinaryReader(file.buf);
+    return {
+      name: file.name,
+      ...(file.emId !== undefined ? { emId: file.emId } : {}),
+      ...(file.ovl ? { loadBase: hex(file.ovl.loadBase) } : {}),
+      length: file.buf.length,
+      tables: findAttackTables(file.buf).map((run) =>
+        dumpTable(file, reader, run, byNumbers, pointers, graph, byName),
+      ),
+    };
+  });
+  const users = dumped.flatMap((f) => f.tables.flatMap((t) => t.code?.functions ?? []));
   return {
-    ...(graph ? { scan: graph.stats() } : {}),
-    files: files.map((file) => {
-      const reader = file.ovl?.reader ?? new BinaryReader(file.buf);
-      return {
-        name: file.name,
-        ...(file.emId !== undefined ? { emId: file.emId } : {}),
-        ...(file.ovl ? { loadBase: hex(file.ovl.loadBase) } : {}),
-        length: file.buf.length,
-        tables: findAttackTables(file.buf).map((run) =>
-          dumpTable(file, reader, run, byNumbers, pointers, graph, byName),
-        ),
-      };
-    }),
+    ...(graph ? { scan: graph.stats(), callees: calleeCode(graph, byName, users) } : {}),
+    files: dumped,
   };
 }

@@ -465,8 +465,16 @@ at the end of the same layout: a block of structs (often 0x50 bytes
 apart), a list of pointers into them, zero padding to the table. In the
 MHP2G decompilation's (`tclamb/mhp2g-decomp`) JP layout, the
 `game_task.ovl` tables fall in the data of the `shell` units, its
-attack-hit objects, and `em58.ovl`'s in `shell32`'s. So the code is
-probably reaching a table from the start of that layout. From each function
+attack-hit objects, and `em58.ovl`'s in `shell32`'s. Each shell's setup
+code (the fourth EU run) reads byte `0x26` of the shell as an index into
+that pointer list, stores the struct it picks at `+0x34`, and calls one
+shared `game_task.ovl` function with the address just past the table. So
+the records are reached from there, not by address.
+
+For finding where, `raw/attacks.json` also carries probe output, to be
+dropped once that is known: 0x800 bytes before each table and 0x200 after,
+each user function's code (0x400 bytes), and the functions they call two
+calls deep (`callees`, most widely called first). From each function
 `CodeGraph` searches upward, through its callers, the pointer lists holding
 its address and the code building that address, until a `MonChunk` slot
 points at the chain. That slot names the monster, and the path is given.

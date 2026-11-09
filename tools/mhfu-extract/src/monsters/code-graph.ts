@@ -219,6 +219,32 @@ export class CodeGraph {
     return { ...(below ? { below } : {}), ...(above ? { above } : {}) };
   }
 
+  /**
+   * Functions called (`jal`) from the function at `offset` of the named file,
+   * up to the next known function start or `length` bytes, as file and
+   * offset, in call order without repeats.
+   */
+  callsFrom(fileName: string, offset: number, length: number): { file: string; offset: number }[] {
+    const file = this.files.find((f) => f.name === fileName);
+    if (!file) return [];
+    const starts = this.starts.get(file)!;
+    const next = starts.find((s) => s > offset) ?? Infinity;
+    const end = Math.min(offset + length, next);
+    const out: { file: string; offset: number }[] = [];
+    const seen = new Set<string>();
+    for (const call of this.scans.get(file)!.calls) {
+      if (call.offset < offset || call.offset >= end) continue;
+      for (const target of this.resolve(call.target, file)) {
+        const at = target.ovl.vaddrToOffset(call.target);
+        const key = `${target.name}:${at}`;
+        if (seen.has(key)) continue;
+        seen.add(key);
+        out.push({ file: target.name, offset: at });
+      }
+    }
+    return out;
+  }
+
   /** How much the decoder found per file, to check it reads real code. */
   stats(): {
     file: string;

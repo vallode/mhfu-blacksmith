@@ -136,9 +136,19 @@ test("CodeGraph leads from a table's user up to the chunk slot naming its monste
 
 test("dumpAttacksRaw gives each table's code users and their monsters", () => {
   const { task, em, chunks, tableAt, f } = fixture();
-  // H builds an address 0x30 before the table (a struct the table is part of).
+  // H builds an address 0x30 before the table (a struct the table is part of)
+  // and calls K.
   const h = OVL_HEADER_SIZE + 0x90;
-  writeWords(em, h, [PROLOGUE, ...loadAddress(V0, EM_BASE + tableAt - 0x30), JR_RA, NOP]);
+  const k = OVL_HEADER_SIZE + 0xc0;
+  writeWords(em, h, [
+    PROLOGUE,
+    ...loadAddress(V0, EM_BASE + tableAt - 0x30),
+    jal(EM_BASE + k),
+    NOP,
+    JR_RA,
+    NOP,
+  ]);
+  writeWords(em, k, [JR_RA, NOP]);
   const gameTask = parseOvl(task);
   const files: SearchFile[] = [
     { name: "game_task.ovl", buf: task, ovl: gameTask },
@@ -177,6 +187,12 @@ test("dumpAttacksRaw gives each table's code users and their monsters", () => {
   // The decoder's counts per overlay.
   assert.deepEqual(
     dump.scan?.find((s) => s.file === "overlay/em01.ovl"),
-    { file: "overlay/em01.ovl", prologues: 3, calls: 1, callsResolved: 1, addresses: 2 },
+    { file: "overlay/em01.ovl", prologues: 3, calls: 2, callsResolved: 2, addresses: 2 },
+  );
+  // Each user's code, and the code of what it calls.
+  assert.equal(table.code!.functions[1]!.code.slice(0, 8), em.subarray(h, h + 4).toString("hex"));
+  assert.deepEqual(
+    dump.callees?.map((c) => [c.file, c.offset, c.calledBy]),
+    [["overlay/em01.ovl", k, [`overlay/em01.ovl:0x${h.toString(16)}`]]],
   );
 });
