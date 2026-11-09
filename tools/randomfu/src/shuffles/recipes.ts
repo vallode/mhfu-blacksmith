@@ -2,14 +2,19 @@
  * Crafting and upgrade materials, from the EBOOT's `EquipmentCreate` and
  * `EquipmentUpgrade` tables (mhfu-extract's `tables/recipes.ts`).
  *
- * Each material slot keeps its quantity; its item is swapped with another
- * slot whose item is first found at the same rank. Items are only moved
- * within a rank, and the reward shuffles keep every rank's items at that
- * rank, so a recipe never needs anything from a higher rank than before.
+ * Materials: each slot's item is swapped with another slot whose item is
+ * first found at the same tier (rank and star level). The reward shuffles
+ * keep every tier's items in that tier, and gathering isn't shuffled, so a
+ * recipe never needs anything from a later star level than before.
  * `checkRecipes` confirms that against the shuffled rewards.
  *
- * Items with no known source here (gathered ores and plants, shop items,
- * combinations) stay where they are: their sources aren't read yet.
+ * Items with no known source here (shop items, combinations, tickets) stay
+ * where they are.
+ *
+ * Amounts: each slot's quantity is rescaled to its (new) item's typical
+ * quantity, keeping the slot's size relative to that, then varied by a
+ * random factor. A slot that wanted 10 Iron Ore and now takes a Tigrex Claw
+ * asks for about as many claws as recipes usually do.
  */
 import { BinaryReader } from "../../../mhfu-extract/src/binary/reader.js";
 import { DECORATION_ITEM_ID_OFFSET } from "../../../mhfu-extract/src/emit/decorations.js";
@@ -24,7 +29,7 @@ import {
 } from "../../../mhfu-extract/src/tables/recipes.js";
 import type { NameTable } from "../../../mhfu-extract/src/strings/names.js";
 import type { TableAddressResolver } from "../../../mhfu-extract/src/tables/resolver.js";
-import { BAND_NAMES, bandOrder, type Band } from "../game/bands.js";
+import { tierKey, tierLabel, tierOrder, type Tier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import type { Rng } from "../rng.js";
 import { itemName, tableName } from "../names.js";
@@ -115,60 +120,112 @@ export function collectRecipeSlots(
   return slots;
 }
 
-export function shuffleRecipes(
+export interface RecipeOptions {
+  /** Swap materials between slots of the same tier. */
+  materials: boolean;
+  /** Vary quantities by up to this fraction (0.5 = 50% to 150%), or null to keep them. */
+  amountSpread: number | null;
+}
+
+export interface AssignedSlot {
+  slot: RecipeSlot;
+  /** The tier the slot's original item is first found at. */
+  tier: Tier;
+  itemId: number;
+}
+
+/** Most quantities in the game are 1-10; the menus show two digits. */
+const MAX_QUANTITY = 99;
+
+export function randomizeRecipes(
   slots: readonly RecipeSlot[],
-  bands: ReadonlyMap<number, Band>,
-  rng: Rng,
+  tiers: ReadonlyMap<number, Tier>,
+  options: RecipeOptions,
+  rng: { materials: Rng; amounts: Rng },
   edits: Edits,
-): { report: ShuffleReport; assigned: { slot: RecipeSlot; band: Band; itemId: number }[] } {
-  const shuffled = slots
-    .map((slot) => ({ slot, band: bands.get(slot.itemId) }))
-    .filter((s): s is { slot: RecipeSlot; band: Band } => s.band !== undefined);
-  const next = permuteWithinGroups(
-    shuffled,
-    (s) => s.band,
-    (s) => s.slot.itemId,
-    rng,
-  );
-  const assigned = shuffled.map((s, i) => ({ ...s, itemId: next[i]! }));
-  const duplicates = separateDuplicates(assigned, rng);
+): { report: ShuffleReport; assigned: AssignedSlot[] } {
+  const notes: string[] = [];
+  const items = slots.map((slot) => slot.itemId);
+  let assigned: AssignedSlot[] = [];
+
+  if (options.materials) {
+    const shuffled = slots
+      .map((slot) => ({ slot, tier: tiers.get(slot.itemId) }))
+      .filter((s): s is { slot: RecipeSlot; tier: Tier } => s.tier !== undefined);
+    const next = permuteWithinGroups(
+      shuffled,
+      (s) => tierKey(s.tier),
+      (s) => s.slot.itemId,
+      rng.materials,
+    );
+    assigned = shuffled.map((s, i) => ({ ...s, itemId: next[i]! }));
+    const repeats = separateDuplicates(assigned, rng.materials);
+    const bySlot = new Map(assigned.map((a) => [a.slot, a.itemId]));
+    slots.forEach((slot, i) => (items[i] = bySlot.get(slot) ?? slot.itemId));
+    notes.push(
+      "Each material is replaced by another first found at the same rank and star level.",
+      `${slots.length - shuffled.length} of ${slots.length} slots keep their material: no quest, monster or gathering source for it was found (shops, combining, tickets).`,
+      repeats > 0
+        ? `${repeats} recipes still list one material twice.`
+        : "No recipe lists the same material twice.",
+    );
+  }
+
+  const quantities = slots.map((slot) => slot.quantity);
+  if (options.amountSpread !== null) {
+    const typical = typicalQuantities(slots);
+    const spread = options.amountSpread;
+    slots.forEach((slot, i) => {
+      const scale = typical.get(items[i]!)! / typical.get(slot.itemId)!;
+      const factor = 1 - spread + rng.amounts.float() * 2 * spread;
+      quantities[i] = clamp(Math.round(slot.quantity * scale * factor), 1, MAX_QUANTITY);
+    });
+    notes.push(
+      `Quantities are rescaled to each material's usual amount in recipes, then varied by up to ${Math.round(spread * 100)}%.`,
+    );
+  }
 
   const buf = edits.eboot();
-  const lines = assigned.map(({ slot, itemId }) => {
-    buf.writeUInt16LE(itemId, slot.offset);
+  const lines = slots.map((slot, i) => {
+    buf.writeUInt16LE(items[i]!, slot.offset);
+    buf.writeUInt16LE(quantities[i]!, slot.offset + 2);
     return {
       where: slot.recipe,
-      text: `${itemName(itemId)} x${slot.quantity} (was ${itemName(slot.itemId)})`,
+      text: `${itemName(items[i]!)} x${quantities[i]} (was ${itemName(slot.itemId)} x${slot.quantity})`,
     };
   });
 
-  return {
-    report: {
-      title: "Crafting and upgrade materials",
-      notes: [
-        "Each material is replaced by another found first at the same rank; quantities stay with each slot.",
-        `${slots.length - shuffled.length} of ${slots.length} slots are unchanged: their items have no monster or quest source the randomizer reads yet (gathering, shops, combining).`,
-        ...(duplicates > 0
-          ? [`${duplicates} recipes still list one material twice.`]
-          : ["No recipe lists the same material twice."]),
-      ],
-      lines,
-    },
-    assigned,
-  };
+  return { report: { title: "Crafting and upgrade materials", notes, lines }, assigned };
+}
+
+function clamp(x: number, lo: number, hi: number): number {
+  return Math.min(hi, Math.max(lo, x));
+}
+
+/** The median quantity each item is asked for across all recipes. */
+function typicalQuantities(slots: readonly RecipeSlot[]): Map<number, number> {
+  const byItem = new Map<number, number[]>();
+  for (const slot of slots) {
+    const list = byItem.get(slot.itemId);
+    if (list) list.push(slot.quantity);
+    else byItem.set(slot.itemId, [slot.quantity]);
+  }
+  const out = new Map<number, number>();
+  for (const [item, qs] of byItem) {
+    qs.sort((a, b) => a - b);
+    out.set(item, qs[Math.floor(qs.length / 2)]!);
+  }
+  return out;
 }
 
 /**
  * Swaps items so no recipe asks for the same material in two slots, which
- * the permutation can produce. Swaps stay within a band. Returns how many
- * recipes still have a repeat after a bounded number of tries.
+ * the permutation can produce. Swaps stay within a tier. Returns how many
+ * slots still repeat a material after a bounded number of tries.
  */
-function separateDuplicates(
-  assigned: { slot: RecipeSlot; band: Band; itemId: number }[],
-  rng: Rng,
-): number {
+function separateDuplicates(assigned: AssignedSlot[], rng: Rng): number {
   const byRecipe = new Map<number, number[]>();
-  const byBand = new Map<Band, number[]>();
+  const byTier = new Map<string, number[]>();
   const push = <K>(map: Map<K, number[]>, key: K, i: number): void => {
     const list = map.get(key);
     if (list) list.push(i);
@@ -176,7 +233,7 @@ function separateDuplicates(
   };
   assigned.forEach((a, i) => {
     push(byRecipe, a.slot.entry, i);
-    push(byBand, a.band, i);
+    push(byTier, tierKey(a.tier), i);
   });
   const hasRepeat = (recipe: number, itemId: number, except: number): boolean =>
     byRecipe.get(recipe)!.some((j) => j !== except && assigned[j]!.itemId === itemId);
@@ -186,7 +243,7 @@ function separateDuplicates(
     for (const i of indices) {
       const a = assigned[i]!;
       if (!hasRepeat(a.slot.entry, a.itemId, i)) continue;
-      const pool = byBand.get(a.band)!;
+      const pool = byTier.get(tierKey(a.tier))!;
       let fixed = false;
       for (let attempt = 0; attempt < 200 && !fixed; attempt++) {
         const j = pool[rng.int(pool.length)]!;
@@ -210,21 +267,21 @@ export interface RecipeProblem {
 
 /**
  * Checks every shuffled material against the shuffled rewards: it must be
- * found at or below the rank its slot was at before. Returns the slots that
+ * found at or before the tier its slot was at. Returns the slots that
  * aren't, which should always be none.
  */
 export function checkRecipes(
-  assigned: readonly { slot: RecipeSlot; band: Band; itemId: number }[],
-  bandsAfter: ReadonlyMap<number, Band>,
+  assigned: readonly AssignedSlot[],
+  tiersAfter: ReadonlyMap<number, Tier>,
 ): RecipeProblem[] {
   const problems: RecipeProblem[] = [];
-  for (const { slot, band, itemId } of assigned) {
-    const found = bandsAfter.get(itemId);
-    if (found === undefined || bandOrder(found) > bandOrder(band)) {
+  for (const { slot, tier, itemId } of assigned) {
+    const found = tiersAfter.get(itemId);
+    if (found === undefined || tierOrder(found) > tierOrder(tier)) {
       problems.push({
         recipe: slot.recipe,
         item: itemName(itemId),
-        needs: found ? `${BAND_NAMES[found]}, was ${BAND_NAMES[band]}` : "no source",
+        needs: found ? `${tierLabel(found)}, was ${tierLabel(tier)}` : "no source",
       });
     }
   }

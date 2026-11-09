@@ -38,6 +38,11 @@ export class Rng {
     return result;
   }
 
+  /** A uniform number in `[0, 1)`. */
+  float(): number {
+    return this.nextU32() / 0x100000000;
+  }
+
   /** A uniform integer in `[0, n)`, without modulo bias. */
   int(n: number): number {
     if (!Number.isInteger(n) || n <= 0 || n > 0x100000000) throw new RangeError(`int(${n})`);

@@ -18,7 +18,15 @@ import {
 import { encryptQuestBlock, questHash, QUEST_MAGIC } from "../../mhfu-extract/src/quests/mib.js";
 import { BinaryReader } from "../../mhfu-extract/src/binary/reader.js";
 import { equipmentCreateLayout } from "../../mhfu-extract/src/tables/recipes.js";
-import { EQUIP_CREATE_ENTRY_SIZE } from "../../mhfu-extract/src/tables/offsets.js";
+import {
+  ARMOR_ENTRY_SIZE,
+  EQUIP_CREATE_ENTRY_SIZE,
+  ITEM_ENTRY_SIZE,
+  JP_BASE_ADDRESS,
+  WEAPON_BM_ENTRY_SIZE,
+  tableOffset,
+} from "../../mhfu-extract/src/tables/offsets.js";
+import { ARMOR_POINTER_INDEX, ARMOR_SLOTS } from "../../mhfu-extract/src/tables/armor.js";
 
 export const SECTOR = 2048;
 
@@ -164,9 +172,15 @@ export interface FixtureReward {
 export interface FixtureQuest {
   questId: number;
   rank: number;
+  stars: number;
   monsters: number[];
   rewards: FixtureReward[][];
+  /** Gathering: item tables (one item each); `nodes` lists which tables area 0's nodes use. */
+  gathering?: { tables: number[]; nodes: number[] };
 }
+
+/** Snowy Mountains (Day): 10 areas. */
+const GATHERING_MAP = 11;
 
 /** A plaintext `.mib`: header, RewardTBL and item lists, one LargeMonTable. Odd length on purpose. */
 export function buildQuestPayload(q: FixtureQuest): Buffer {
@@ -208,14 +222,43 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   table.writeUInt32LE(1, 0);
   table.writeUInt32LE(dataPtr, 12);
   const largeMonPtr = place(table);
+  let gatheringLocPtr = 0;
+  let gatheringItemsPtr = 0;
+  if (q.gathering) {
+    const tablePtrs = q.gathering.tables.map((item) => {
+      const t = Buffer.alloc(8);
+      t.writeUInt16LE(10, 0); // value
+      t.writeUInt16LE(item, 2);
+      t.writeUInt16LE(0xffff, 4);
+      return place(t);
+    });
+    const list = Buffer.alloc(tablePtrs.length * 4 + 4);
+    tablePtrs.forEach((ptr, i) => list.writeUInt32LE(ptr, i * 4));
+    gatheringItemsPtr = place(list);
+    const nodes = Buffer.alloc(q.gathering.nodes.length * 24 + 4);
+    q.gathering.nodes.forEach((table, i) => {
+      nodes.writeFloatLE(100 + i, i * 24);
+      nodes.writeUInt16LE(table, i * 24 + 16);
+      nodes.writeUInt16LE(3, i * 24 + 20); // mining
+    });
+    nodes.writeUInt32LE(0xbf800000, q.gathering.nodes.length * 24);
+    const nodesPtr = place(nodes);
+    const areas = Buffer.alloc(10 * 4);
+    areas.writeUInt32LE(nodesPtr, 0);
+    gatheringLocPtr = place(areas);
+  }
   place(Buffer.from([0x55])); // odd length
 
   const header = Buffer.alloc(0x80);
   QUEST_MAGIC.copy(header, 0);
   header.writeUInt32LE(rewardsPtr, 12);
   header.writeUInt32LE(largeMonPtr, 20);
+  header.writeUInt32LE(gatheringLocPtr, 28);
+  header.writeUInt32LE(gatheringItemsPtr, 36);
   header[68] = q.rank;
   header.writeUInt16LE(q.questId, 100);
+  header[102] = q.stars;
+  header[104] = GATHERING_MAP;
   return Buffer.concat([header, ...parts]);
 }
 
@@ -321,12 +364,33 @@ export interface FixtureRecipe {
   materials: { itemId: number; quantity: number }[];
 }
 
-export const EBOOT_SIZE = 1_500_000;
+export const EBOOT_SIZE = 2_000_000;
+/** Where the fixture's armor arrays go (the JP EBOOT finds them through a pointer table). */
+const ARMOR_ARRAYS = 1_850_000;
 
-export function buildEboot(recipes: FixtureRecipe[]): Buffer {
+export interface FixturePrices {
+  blademaster: [index: number, price: number][];
+  armorHead: [index: number, price: number][];
+  decoration: [index: number, price: number][];
+}
+
+export const FIXTURE_PRICES: FixturePrices = {
+  blademaster: [
+    [1, 200],
+    [3, 1000],
+  ],
+  armorHead: [[1, 300]],
+  decoration: [[0, 1600]],
+};
+
+export function buildEboot(
+  recipes: FixtureRecipe[],
+  prices: FixturePrices = FIXTURE_PRICES,
+): Buffer {
   const buf = Buffer.alloc(EBOOT_SIZE);
   Buffer.from([0x7f, 0x45, 0x4c, 0x46]).copy(buf, 0);
-  const { offset } = equipmentCreateLayout(new BinaryReader(buf)).head;
+  const reader = new BinaryReader(buf);
+  const { offset } = equipmentCreateLayout(reader).head;
   for (const r of recipes) {
     const at = offset + r.index * EQUIP_CREATE_ENTRY_SIZE;
     buf[at + 1] = r.hide ? 1 : 0;
@@ -336,6 +400,22 @@ export function buildEboot(recipes: FixtureRecipe[]): Buffer {
       buf.writeUInt16LE(m.quantity, at + 6 + k * 4);
     });
   }
+
+  ARMOR_SLOTS.forEach((slot, i) => {
+    const array = ARMOR_ARRAYS + i * 20_000;
+    buf.writeUInt32LE(
+      JP_BASE_ADDRESS + array,
+      tableOffset("armorValuePointers") + ARMOR_POINTER_INDEX[slot] * 4,
+    );
+  });
+  const bm = tableOffset("weaponsBlademaster");
+  for (const [i, price] of prices.blademaster)
+    buf.writeUInt32LE(price, bm + i * WEAPON_BM_ENTRY_SIZE + 4);
+  for (const [i, price] of prices.armorHead)
+    buf.writeUInt32LE(price, ARMOR_ARRAYS + i * ARMOR_ENTRY_SIZE + 8);
+  const deco = tableOffset("decorationValues");
+  for (const [i, price] of prices.decoration)
+    buf.writeUInt32LE(price, deco + i * ITEM_ENTRY_SIZE + 12);
   return buf;
 }
 
@@ -377,11 +457,18 @@ export const QUEST_INDICES = [4759, 4760, 4761, 4762];
 export const GAME_TASK_INDEX = 51;
 export const GAME_SUB_INDEX = 56;
 
-/** Low Rank: monsters 1 and 2; High Rank: monster 1. Items 1xx are Low Rank, 2xx High Rank. */
+/**
+ * Low Rank 1★: quest 1001 (monster 1, mines item 120); Low Rank 2★: quest
+ * 10101 (monster 2); High Rank 6★: quest 2001 (monster 1). Items 1xx are
+ * Low Rank, 2xx High Rank.
+ */
 export const FIXTURE_QUESTS: FixtureQuest[] = [
   {
     questId: 1001,
     rank: 1,
+    stars: 1,
+    // Item 120 is mined here; table 1 (item 121) is used by no node, so it doesn't count.
+    gathering: { tables: [120, 121], nodes: [0, 0] },
     monsters: [1],
     rewards: [
       [
@@ -394,12 +481,14 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
   {
     questId: 10101,
     rank: 1,
+    stars: 2,
     monsters: [2],
     rewards: [[{ chance: 100, itemId: 113, amount: 3 }]],
   },
   {
     questId: 2001,
     rank: 2,
+    stars: 6,
     monsters: [1],
     rewards: [
       [
@@ -409,7 +498,13 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     ],
   },
   // Training School: never shuffled.
-  { questId: 20001, rank: 0, monsters: [1], rewards: [[{ chance: 100, itemId: 999, amount: 1 }]] },
+  {
+    questId: 20001,
+    rank: 0,
+    stars: 1,
+    monsters: [1],
+    rewards: [[{ chance: 100, itemId: 999, amount: 1 }]],
+  },
 ];
 
 export const FIXTURE_CARVES: CarveListSpec[] = [
@@ -463,6 +558,13 @@ export const FIXTURE_RECIPES: FixtureRecipe[] = [
       { itemId: 200, quantity: 1 },
       { itemId: 104, quantity: 1 },
       { itemId: 300, quantity: 5 },
+    ],
+  },
+  {
+    index: 4,
+    materials: [
+      { itemId: 120, quantity: 4 },
+      { itemId: 102, quantity: 2 },
     ],
   },
 ];

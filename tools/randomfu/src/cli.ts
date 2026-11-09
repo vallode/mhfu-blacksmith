@@ -3,7 +3,8 @@
  * randomfu CLI. See README.md.
  *
  *   tsx src/cli.ts randomize --iso <in> --out <out.iso> [--seed <seed>] [--shuffles <list>]
- *                            [--spoiler <path>] [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--dry-run]
+ *                            [--amount-spread <0-1>] [--cost-spread <0-1>] [--spoiler <path>]
+ *                            [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--dry-run] [--force]
  *   tsx src/cli.ts roundtrip --iso <in>
  */
 import { existsSync, rmSync, writeFileSync } from "node:fs";
@@ -14,8 +15,11 @@ import { copyAsIso, PatchableImage } from "./disc/image.js";
 import { loadGame, type EbootOptions } from "./game/load.js";
 import {
   DEFAULT_SHUFFLES,
+  DEFAULT_SPREAD,
+  EBOOT_SHUFFLES,
   SHUFFLES,
   parseShuffles,
+  parseSpread,
   randomize,
   type Settings,
 } from "./randomize.js";
@@ -52,11 +56,12 @@ function requireFlag(flags: Record<string, string>, name: string): string {
 
 const USAGE = `Usage:
   randomize --iso <in.iso|in.cso> --out <out.iso> [--seed <seed>] [--shuffles ${SHUFFLES.join(",")}]
-            [--spoiler <path>] [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--dry-run] [--force]
+            [--amount-spread <0-1>] [--cost-spread <0-1>] [--spoiler <path>]
+            [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--dry-run] [--force]
   roundtrip --iso <in.iso|in.cso>
 
-Default shuffles: ${DEFAULT_SHUFFLES.join(", ")}. "recipes" also needs the decrypted EBOOT
-(pspdecrypt on PATH, or --eboot).`;
+Default shuffles: ${DEFAULT_SHUFFLES.join(", ")}. ${EBOOT_SHUFFLES.join(", ")} also need the
+decrypted EBOOT (pspdecrypt on PATH, or --eboot). Spreads default to ${DEFAULT_SPREAD} (50% to 150%).`;
 
 async function runRandomize(flags: Record<string, string>): Promise<void> {
   const input = requireFlag(flags, "iso");
@@ -65,8 +70,14 @@ async function runRandomize(flags: Record<string, string>): Promise<void> {
   const settings: Settings = {
     seed: flags.seed ?? randomSeed(),
     shuffles: flags.shuffles ? parseShuffles(flags.shuffles) : DEFAULT_SHUFFLES,
+    amountSpread: flags["amount-spread"]
+      ? parseSpread(flags["amount-spread"], "amount-spread")
+      : DEFAULT_SPREAD,
+    costSpread: flags["cost-spread"]
+      ? parseSpread(flags["cost-spread"], "cost-spread")
+      : DEFAULT_SPREAD,
   };
-  const eboot: EbootOptions | null = settings.shuffles.includes("recipes")
+  const eboot: EbootOptions | null = settings.shuffles.some((s) => EBOOT_SHUFFLES.includes(s))
     ? { overridePath: flags.eboot, pspdecryptBin: flags["pspdecrypt-bin"] }
     : null;
 

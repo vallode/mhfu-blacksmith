@@ -4,8 +4,10 @@
  * shared lists through index and pointer tables; this collects each list
  * once, with every monster and rank slot that uses it.
  *
- * Item IDs move between lists of the same band. Chances and amounts stay
- * with the slot, and no list changes length, so the overlay keeps its size.
+ * Item IDs move between lists of the same tier. A list's tier is its rank
+ * slot and the lowest star level at which any monster using it appears in
+ * a quest. Chances and amounts stay with the slot, and no list changes
+ * length, so the overlay keeps its size.
  */
 import type { OvlFile } from "../../../mhfu-extract/src/container/ovl.js";
 import {
@@ -23,7 +25,7 @@ import {
   type RewardRank,
   type TablePair,
 } from "../../../mhfu-extract/src/monsters/rewards.js";
-import { monsterKey, rewardRankBand, type Band } from "../game/bands.js";
+import { monsterKey, rewardRankBand, tierKey, type Tier } from "../game/tiers.js";
 import type { LoadedOverlay } from "../game/load.js";
 import type { Edits } from "../edits.js";
 import type { Rng } from "../rng.js";
@@ -108,7 +110,7 @@ export function collectRewardLists(ovl: OvlFile): RewardList[] {
 
 export interface MonsterRewardSlot {
   list: RewardList;
-  band: Band;
+  tier: Tier;
   /** File offset of the entry in the overlay. */
   offset: number;
   chance: number;
@@ -119,10 +121,11 @@ export interface MonsterRewardSlot {
 /**
  * The slots to shuffle: entries of lists used in exactly one band, by a
  * monster that appears in a quest the player can take at that band.
+ * `stars` is `monsterStars()`.
  */
 export function collectMonsterRewardSlots(
   lists: readonly RewardList[],
-  reachable: ReadonlySet<string>,
+  stars: ReadonlyMap<string, number>,
 ): MonsterRewardSlot[] {
   const slots: MonsterRewardSlot[] = [];
   for (const list of lists) {
@@ -130,12 +133,16 @@ export function collectMonsterRewardSlots(
     if (bands.size !== 1) continue;
     const [band] = bands;
     if (!band) continue;
-    if (!list.refs.some((ref) => reachable.has(monsterKey(ref.emId, band)))) continue;
+    const appears = list.refs
+      .map((ref) => stars.get(monsterKey(ref.emId, band)))
+      .filter((s): s is number => s !== undefined);
+    if (appears.length === 0) continue;
+    const tier: Tier = { band, stars: Math.min(...appears) };
     list.entries.forEach((entry, i) => {
       if (entry.itemId === 0) return;
       slots.push({
         list,
-        band,
+        tier,
         offset: list.offset + i * list.stride,
         chance: entry.chance,
         itemId: entry.itemId,
@@ -156,10 +163,10 @@ export function shuffleMonsterRewards(
   rng: Rng,
   edits: Edits,
   gameSub: LoadedOverlay,
-): { report: ShuffleReport; after: { itemId: number; band: Band }[] } {
+): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
   const next = permuteWithinGroups(
     slots,
-    (s) => s.band,
+    (s) => tierKey(s.tier),
     (s) => s.itemId,
     rng,
   );
@@ -169,7 +176,7 @@ export function shuffleMonsterRewards(
     buf.writeUInt16LE(itemId, slot.offset + 2);
     const amount = slot.amount === undefined ? "" : ` x${slot.amount}`;
     return {
-      where: `${listLabel(slot.list)} (${slot.band})`,
+      where: `${listLabel(slot.list)} (${slot.tier.band} ${slot.tier.stars}★)`,
       text: `${slot.chance}% ${itemName(itemId)}${amount} (was ${itemName(slot.itemId)})`,
     };
   });
@@ -177,11 +184,11 @@ export function shuffleMonsterRewards(
     report: {
       title: "Monster carves, captures and breaks",
       notes: [
-        "Items move between Low, High and G Rank lists of their own rank; chances and amounts stay with each slot.",
+        "Items move between lists of the same rank and star level (the earliest quest the monster is in); chances and amounts stay with each slot.",
         "Lists shared across ranks, treasure and training lists, and lists of monsters no quest uses at that rank are unchanged.",
       ],
       lines,
     },
-    after: slots.map((s, i) => ({ itemId: next[i]!, band: s.band })),
+    after: slots.map((s, i) => ({ itemId: next[i]!, tier: s.tier })),
   };
 }
