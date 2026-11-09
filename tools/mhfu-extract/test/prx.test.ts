@@ -50,6 +50,19 @@ test("decryptGameEboot opens a game EBOOT for every known tag", async () => {
   }
 });
 
+test("decryptGameEboot opens a firmware 2.xx EBOOT (tag 0xC0CB167C), type 0 or 1", async () => {
+  const elf = fakeElf(5000);
+  for (const type of [0, 1] as const) {
+    const raw = encryptGameEboot(elf, { tag: 0xc0cb167c, type });
+    const before = Buffer.from(raw);
+    assert.deepEqual(Buffer.from(await decryptGameEboot(raw)), elf, `type ${type}`);
+    assert.deepEqual(raw, before, "the input is left as it was");
+    const damaged = Buffer.from(raw);
+    damaged[0xd4]! ^= 1;
+    assert.throws(() => decryptPrx(damaged), /header check failed/, `type ${type}`);
+  }
+});
+
 test("decryptGameEboot unzips a compressed EBOOT", async () => {
   const elf = fakeElf(200_000);
   const raw = encryptGameEboot(elf, { compress: true });

@@ -26,7 +26,7 @@ execFileSync(process.execPath, [path.join(web, "build.mjs")], { stdio: "inherit"
 const dir = tempDir();
 // The disc's EBOOT is encrypted, as on a real disc, so the app decrypts it itself.
 const isoPath = path.join(dir, "MHFU test disc.iso");
-writeFileSync(isoPath, buildFixtureDisc({ ebootTag: 0xd91609f0 }));
+writeFileSync(isoPath, buildFixtureDisc({ ebootTag: 0xc0cb167c })); // a real disc's tag
 // A disc whose EBOOT tag the app doesn't know, which needs a PPSSPP dump instead.
 const unknownTagIso = path.join(dir, "Unknown tag.iso");
 writeFileSync(unknownTagIso, buildFixtureDisc({ ebootTag: 0x12345678 }));

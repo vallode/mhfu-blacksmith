@@ -7,7 +7,7 @@
 import { mkdtempSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
-import { GAME_TAG_KEYS } from "../../mhfu-extract/src/container/prx.js";
+import { GAME_TAG_KEYS, TYPE01_TAG_KEYS } from "../../mhfu-extract/src/container/prx.js";
 import { encryptGameEboot } from "../../mhfu-extract/test/prx-fixture.js";
 import { encryptDataBinBlock } from "../../mhfu-extract/src/container/databin.js";
 import {
@@ -922,7 +922,7 @@ export const JP_RAW = new Set([
 function fixtureEboot(options: FixtureDiscOptions): Buffer {
   const elf = buildEboot(FIXTURE_RECIPES);
   if (options.ebootTag === undefined) return elf;
-  const known = GAME_TAG_KEYS.has(options.ebootTag);
+  const known = GAME_TAG_KEYS.has(options.ebootTag) || TYPE01_TAG_KEYS.has(options.ebootTag);
   const raw = encryptGameEboot(elf, { tag: known ? options.ebootTag : undefined, compress: true });
   if (!known) raw.writeUInt32LE(options.ebootTag, 0xd0);
   return raw;

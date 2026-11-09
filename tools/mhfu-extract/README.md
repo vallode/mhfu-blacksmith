@@ -203,9 +203,11 @@ If you only need `DATA.BIN`'s files (models, textures, quests), pass
 equipment tables from the EBOOT.
 
 In-process decryption (`src/container/prx.ts`, with AES in `aes.ts`) is a
-port of the scheme game EBOOTs use, PPSSPP's "type 2" PRX decryption
+port of the schemes game EBOOTs use, PPSSPP's PRX decryption
 (Core/ELF/PrxDecrypter.cpp and libkirk, GPL-2.0+), with the keys published
-there for every game EBOOT tag (`0xD916xxF0` and `0x8004FD03`). It's pure
+there: "type 0" and "type 1" for tag `0xC0CB167C` (firmware 2.xx EBOOTs,
+which is what a real MHFU/MHP2G disc's EBOOT turned out to use), and
+"type 2" for the later game tags (`0xD916xxF0`, `0x8004FD03`). It's pure
 TypeScript, so it also runs in randomfu's web app; a compressed EBOOT is
 unzipped after. KIRK 1's CMAC isn't checked, but the header's SHA-1, the
 ELF magic and the table signatures `extract` resolves all are. It's tested

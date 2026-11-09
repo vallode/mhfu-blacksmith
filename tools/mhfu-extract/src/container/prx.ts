@@ -1,12 +1,16 @@
 /**
  * Decrypts a PSP game EBOOT (a "~PSP" module) in-process, so neither
- * pspdecrypt nor a PPSSPP dump is needed. A port of the one scheme game
- * EBOOTs use ("type 2" in PPSSPP's Core/ELF/PrxDecrypter.cpp, GPL-2.0+; see
- * also libkirk), with the keys published in those projects:
+ * pspdecrypt nor a PPSSPP dump is needed. A port of the schemes game EBOOTs
+ * use (PPSSPP's Core/ELF/PrxDecrypter.cpp, GPL-2.0+; see also libkirk), with
+ * the keys published in those projects:
  *
- *   1. The module's tag (at 0xD0) picks a 16-byte key. Expanded with KIRK
- *      command 7 (AES-128-CBC under key-vault entry 0x5D), it XOR-masks the
- *      KIRK header and a SHA-1 over the module header checks the result.
+ *   1. The module's tag (at 0xD0) picks a key, which XOR-masks the KIRK
+ *      header, and a SHA-1 over the module header checks the result. Newer
+ *      EBOOTs ("type 2", tags 0xD916xxF0) have a 16-byte key expanded with
+ *      KIRK command 7 (AES-128-CBC under key-vault entry 0x5D); older ones
+ *      ("type 0" and "type 1", tag 0xC0CB167C for firmware 2.xx EBOOTs)
+ *      have the 0x90-byte mask itself, and type 1 also encrypts its SHA-1
+ *      and most of the header with KIRK 7.
  *   2. The rebuilt KIRK command 1 header holds the module's AES key,
  *      encrypted under the KIRK 1 key, and the size and offset of the data.
  *   3. The data is AES-128-CBC under that key: the ELF, gzipped when the
@@ -26,7 +30,7 @@ export const KIRK1_KEY = hex("98c940975c1d10e87fe60ea3fd03a8ba");
 export const TAG_CODE = 0x5d;
 export const KEYVAULT_5D = hex("115a5d20d53a8dd39cc5af410f0f186f");
 
-/** Game EBOOT tags (the u32 at 0xD0) and their keys. */
+/** Type 2 game EBOOT tags (the u32 at 0xD0) and their keys. */
 export const GAME_TAG_KEYS: ReadonlyMap<number, Uint8Array> = new Map(
   (
     [
@@ -56,6 +60,19 @@ export const GAME_TAG_KEYS: ReadonlyMap<number, Uint8Array> = new Map(
     ] as const
   ).map(([tag, key]) => [tag, hex(key)]),
 );
+
+/** Type 0/1 game EBOOT tags and their 0x90-byte masks (PPSSPP's g_keyEBOOT2xx, as stored). */
+export const TYPE01_TAG_KEYS: ReadonlyMap<number, Uint8Array> = new Map([
+  [
+    0xc0cb167c,
+    hex(
+      "fa368eda4774d95d7498c176af7ee597bd09ab1cc6ba35988192d303cf05b20334e7822863f614e775276eb9" +
+        "c7af8abd29ecd31d6ca1a4ec87ec695f921e988521aefc7c16dde9ba0478a9e6fc02ee2e3d8adf61640531dd" +
+        "49e197963b3f45c256841df9c86bda39f5fee5b3a393c589bc8a5cfb12720b6ccbd30de1a8b2d0984718d65f" +
+        "5723dcf06a160177683b5c0f",
+    ),
+  ],
+]);
 
 export const PSP_MAGIC = [0x7e, 0x50, 0x53, 0x50]; // "~PSP"
 /** The module header; the KIRK 1 header is rebuilt inside a copy of it. */
@@ -100,19 +117,22 @@ export function isPspModule(data: Uint8Array): boolean {
   return data.length >= 4 && PSP_MAGIC.every((b, i) => data[i] === b);
 }
 
-/**
- * Decrypts a game EBOOT's module. The result is the ELF, or its gzip stream
- * when the module is compressed (see `decryptGameEboot`).
- */
-export function decryptPrx(raw: Uint8Array): Uint8Array {
-  if (!isPspModule(raw) || raw.length < PSP_HEADER_SIZE) {
-    throw new PrxDecryptionError("Not a PSP module (no ~PSP header)");
+/** A rebuilt KIRK 1 header and the module's first 0x80 bytes, which follow it. */
+interface Kirk1Input {
+  header: Uint8Array;
+  moduleHead: Uint8Array;
+}
+
+const tagName = (tag: number) => `0x${tag.toString(16).padStart(8, "0")}`;
+
+function headerCheck(actual: Uint8Array, expected: Uint8Array): void {
+  if (!equal(actual, expected)) {
+    throw new PrxDecryptionError("The EBOOT's header check failed: wrong key or a damaged file");
   }
-  const tag = u32(raw, 0xd0);
-  const tagKey = GAME_TAG_KEYS.get(tag);
-  if (!tagKey) {
-    throw new PrxDecryptionError(`Unknown EBOOT tag 0x${tag.toString(16).padStart(8, "0")}`);
-  }
+}
+
+/** Type 2: the tag key expanded with KIRK 7 masks the header. */
+function type2(raw: Uint8Array, tagKey: Uint8Array): Kirk1Input {
   if (raw.subarray(0xd4, 0xd4 + 0x58).some((b) => b !== 0)) {
     throw new PrxDecryptionError("Not a game EBOOT (its signature-check area isn't empty)");
   }
@@ -129,25 +149,21 @@ export function decryptPrx(raw: Uint8Array): Uint8Array {
   t.set(raw.subarray(0xb0, 0xc0), 0xc0);
   t.set(raw.subarray(0x00, 0x80), 0xd0);
   t.set(kirk7(t.subarray(0x5c, 0xbc), TAG_CODE), 0x5c);
-  const tagBytes = t.subarray(0x00, 0x04);
-  const empty = t.subarray(0x04, 0x5c);
-  const id = t.subarray(0x5c, 0x6c);
-  const expected = t.subarray(0x6c, 0x80);
   const kirkHeader = t.subarray(0x80, 0xc0);
   const kirkMetadata = t.subarray(0xc0, 0xd0);
   const moduleHead = t.subarray(0xd0, 0x150);
-  const actual = sha1(
-    tagBytes,
-    xor.subarray(0, 0x10),
-    empty,
-    id,
-    kirkHeader,
-    kirkMetadata,
-    moduleHead,
+  headerCheck(
+    sha1(
+      t.subarray(0x00, 0x04), // tag
+      xor.subarray(0, 0x10),
+      t.subarray(0x04, 0x5c), // empty
+      t.subarray(0x5c, 0x6c), // id
+      kirkHeader,
+      kirkMetadata,
+      moduleHead,
+    ),
+    t.subarray(0x6c, 0x80),
   );
-  if (!equal(actual, expected)) {
-    throw new PrxDecryptionError("The EBOOT's header check failed: wrong key or a damaged file");
-  }
 
   // The KIRK 1 header: the unmasked key block, then the data's size and offset.
   const header = new Uint8Array(KIRK1_HEADER_SIZE);
@@ -155,9 +171,38 @@ export function decryptPrx(raw: Uint8Array): Uint8Array {
   header.set(kirk7(header.subarray(0, 0x40), TAG_CODE));
   for (let i = 0; i < 0x40; i++) header[i]! ^= xor[0x50 + i]!;
   header.set(kirkMetadata, 0x70);
+  return { header, moduleHead };
+}
+
+/** Types 0 and 1: the tag's 0x90-byte mask is stored as is; type 1 also KIRK 7s its header. */
+function type01(raw: Uint8Array, xor: Uint8Array, type: 0 | 1): Kirk1Input {
+  // tag, SHA-1, 0x28 unused, the KIRK block (0x90), the first 0x80 of the module.
+  const t = new Uint8Array(PSP_HEADER_SIZE);
+  t.set(raw.subarray(0xd0, 0xe8), 0x00);
+  t.set(raw.subarray(0xe8, 0x110), 0x18);
+  t.set(raw.subarray(0x110, 0x150), 0x40);
+  t.set(raw.subarray(0x80, 0xd0), 0x80);
+  t.set(raw.subarray(0x00, 0x80), 0xd0);
+  if (type === 1) t.set(kirk7(t.subarray(0x10, 0xb0), TAG_CODE), 0x10);
+  const kirkBlock = t.subarray(0x40, 0xd0);
+  const moduleHead = t.subarray(0xd0, 0x150);
+  headerCheck(
+    sha1(xor.subarray(0, 0x14), t.subarray(0x18, 0x40), kirkBlock, moduleHead),
+    t.subarray(0x04, 0x18),
+  );
+
+  // The KIRK 1 header: the first 0x70 bytes unmasked, the size and offset as they are.
+  const header = kirkBlock.slice();
+  for (let i = 0; i < 0x70; i++) header[i] = kirkBlock[i]! ^ xor[0x14 + i]!;
+  header.set(kirk7(header.subarray(0, 0x70), TAG_CODE));
+  for (let i = 0; i < 0x70; i++) header[i]! ^= xor[0x20 + i]!;
+  return { header, moduleHead };
+}
+
+/** KIRK command 1: the module key from the header, then the data under it. */
+function kirk1(raw: Uint8Array, { header, moduleHead }: Kirk1Input): Uint8Array {
   const dataSize = u32(header, 0x70);
   const dataOffset = u32(header, 0x74);
-
   // KIRK 1 reads the data from after the header it's handed, which sits at
   // KIRK1_AT in a copy of the module with the module's first 0x80 bytes after it.
   const start = KIRK1_AT + KIRK1_HEADER_SIZE + dataOffset;
@@ -165,7 +210,8 @@ export function decryptPrx(raw: Uint8Array): Uint8Array {
   if (start + length > raw.length) {
     throw new PrxDecryptionError("The EBOOT is shorter than its header says");
   }
-  const source = raw.slice(0, start + length);
+  // A copy: a Buffer's slice() is a view, and the caller's EBOOT must stay as it is.
+  const source = Uint8Array.from(raw.subarray(0, start + length));
   source.set(moduleHead, KIRK1_AT + KIRK1_HEADER_SIZE);
   const aesKey = cbcDecrypt(KIRK1_KEY, header.subarray(0, 0x20)).subarray(0, 0x10);
   const decrypted = cbcDecrypt(aesKey, source.subarray(start, start + length));
@@ -174,6 +220,29 @@ export function decryptPrx(raw: Uint8Array): Uint8Array {
     throw new PrxDecryptionError("The EBOOT's decrypted size is out of range");
   }
   return decrypted.subarray(0, size);
+}
+
+/**
+ * Decrypts a game EBOOT's module. The result is the ELF, or its gzip stream
+ * when the module is compressed (see `decryptGameEboot`).
+ */
+export function decryptPrx(raw: Uint8Array): Uint8Array {
+  if (!isPspModule(raw) || raw.length < PSP_HEADER_SIZE) {
+    throw new PrxDecryptionError("Not a PSP module (no ~PSP header)");
+  }
+  const tag = u32(raw, 0xd0);
+  const type2Key = GAME_TAG_KEYS.get(tag);
+  if (type2Key) return kirk1(raw, type2(raw, type2Key));
+  const mask = TYPE01_TAG_KEYS.get(tag);
+  if (!mask) throw new PrxDecryptionError(`Unknown EBOOT tag ${tagName(tag)}`);
+  // A tag doesn't say which of the two it is; only the right one passes the header check.
+  let input: Kirk1Input;
+  try {
+    input = type01(raw, mask, 0);
+  } catch {
+    input = type01(raw, mask, 1);
+  }
+  return kirk1(raw, input);
 }
 
 const ELF_MAGIC = [0x7f, 0x45, 0x4c, 0x46];

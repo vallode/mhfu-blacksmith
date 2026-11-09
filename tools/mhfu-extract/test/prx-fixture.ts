@@ -12,18 +12,21 @@ import {
   KIRK1_KEY,
   PSP_MAGIC,
   TAG_CODE,
+  TYPE01_TAG_KEYS,
   expandSeed,
 } from "../src/container/prx.js";
 
 export interface EncryptOptions {
+  /** A type 2 tag (the default, 0xD91609F0) or a type 0/1 one (0xC0CB167C). */
   tag?: number;
+  /** For a type 0/1 tag: which of the two (default 0). */
+  type?: 0 | 1;
   /** Gzip the ELF first and set comp_attribute bit 0, as compressed EBOOTs do. */
   compress?: boolean;
 }
 
 export function encryptGameEboot(elf: Uint8Array, options: EncryptOptions = {}): Buffer {
   const tag = options.tag ?? 0xd91609f0;
-  const tagKey = GAME_TAG_KEYS.get(tag)!;
   const payload = options.compress ? new Uint8Array(gzipSync(elf)) : elf;
   const dataSize = payload.length;
   const dataOffset = 0x80;
@@ -48,6 +51,13 @@ export function encryptGameEboot(elf: Uint8Array, options: EncryptOptions = {}):
   raw.writeUInt32LE(tag, 0xd0);
   raw.set(cbcEncrypt(aesKey, padded), 0x150);
 
+  const mask = TYPE01_TAG_KEYS.get(tag);
+  if (mask) {
+    header.set(metadata, 0x70);
+    writeType01(raw, header, mask, options.type ?? 0);
+    return raw;
+  }
+  const tagKey = GAME_TAG_KEYS.get(tag)!;
   // The masked KIRK header: XOR, KIRK 4 (encrypt), XOR, the reverse of decryptPrx.
   const xor = expandSeed(tagKey, TAG_CODE);
   const block = new Uint8Array(0x40);
@@ -78,4 +88,31 @@ export function encryptGameEboot(elf: Uint8Array, options: EncryptOptions = {}):
   raw.set(storedHeader.subarray(0, 0x30), 0x80);
   raw.set(storedHeader.subarray(0x30, 0x40), 0xc0);
   return raw;
+}
+
+/** Types 0 and 1, backwards: mask the KIRK header, hash, and for type 1 KIRK 4 the lot. */
+function writeType01(raw: Buffer, header: Uint8Array, mask: Uint8Array, type: 0 | 1): void {
+  const kirkBlock = header.slice();
+  const masked = new Uint8Array(0x70);
+  for (let i = 0; i < 0x70; i++) masked[i] = header[i]! ^ mask[0x20 + i]!;
+  const encrypted = cbcEncrypt(KEYVAULT_5D, masked);
+  for (let i = 0; i < 0x70; i++) kirkBlock[i] = encrypted[i]! ^ mask[0x14 + i]!;
+
+  const unused = new Uint8Array(0x28);
+  const hash = createHash("sha1")
+    .update(mask.subarray(0, 0x14))
+    .update(unused)
+    .update(kirkBlock)
+    .update(raw.subarray(0, 0x80))
+    .digest();
+  // As decryptPrx lays it out: tag, SHA-1, unused, KIRK block.
+  const t = new Uint8Array(0xd0);
+  t.set(raw.subarray(0xd0, 0xd4), 0);
+  t.set(hash, 0x04);
+  t.set(unused, 0x18);
+  t.set(kirkBlock, 0x40);
+  if (type === 1) t.set(cbcEncrypt(KEYVAULT_5D, t.subarray(0x10, 0xb0)), 0x10);
+  raw.set(t.subarray(0x04, 0x40), 0xd4);
+  raw.set(t.subarray(0x40, 0x80), 0x110);
+  raw.set(t.subarray(0x80, 0xd0), 0x80);
 }
