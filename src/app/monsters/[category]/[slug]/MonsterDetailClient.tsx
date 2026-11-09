@@ -277,7 +277,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               <p className="leading-[1.25] whitespace-normal">{monster.habitats.join(", ")}</p>
             )}
             {monster.description && (
-              <p className="text-small whitespace-normal text-white">{monster.description}</p>
+              <p className="text-small leading-[1.4] whitespace-normal text-white">
+                {monster.description}
+              </p>
             )}
             {monster.sizes && (
               <p className="text-small text-stat">
