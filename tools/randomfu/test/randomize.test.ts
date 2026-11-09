@@ -27,6 +27,7 @@ import {
   FIXTURE_PRICES,
   FIXTURE_RECIPES,
   GAME_SUB_INDEX,
+  LOBBY_TASK_INDEX,
   QUEST_INDICES,
   tempDir,
 } from "./fixtures.js";
@@ -96,7 +97,7 @@ test("roundtrip finds every file re-encrypts to the disc's bytes", async () => {
   const game = await loadGame(source, iso, { eboot: null });
   const result = roundTrip(game, (o, l) => source.read(o, l));
   source.close();
-  assert.deepEqual(result, { checked: 6, mismatches: [] });
+  assert.deepEqual(result, { checked: 7, mismatches: [] });
 });
 
 test("items get the earliest star level of a reward, monster or used gathering point", async () => {
@@ -302,7 +303,7 @@ test("written output reads back with the shuffled data, and nothing else changes
   const a = dataBinBytes(output);
   const bin = before.game.dataBin;
   // (A shuffle can leave a small pool as it was, so edited files may also match.)
-  const editable = new Set([...QUEST_INDICES.slice(0, 3), GAME_SUB_INDEX]);
+  const editable = new Set([...QUEST_INDICES.slice(0, 3), GAME_SUB_INDEX, LOBBY_TASK_INDEX]);
   const changed: number[] = [];
   for (let i = 0; i < bin.fileCount; i++) {
     const range = [bin.offsetOf(i), bin.offsetOf(i) + bin.lengthOf(i)] as const;

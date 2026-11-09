@@ -23,6 +23,10 @@ export interface Settings {
   "costs.spread": number;
   "weapons.enabled": boolean;
   "weapons.mix": "same-type" | "any-type";
+  "shops.enabled": boolean;
+  "shops.keepEssentials": boolean;
+  "shops.mix": "each" | "all";
+  "shops.special": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -186,6 +190,55 @@ export const OPTIONS: readonly OptionDef[] = [
     default: "same-type",
     enabledBy: "weapons.enabled",
   },
+  {
+    key: "shops.enabled",
+    section: "Shops",
+    label: "Shuffle what shops sell",
+    help: "Each item a shop sells is swapped for another in every stage of that shop, so later stock still includes earlier stock. Prices follow the item.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "shops.keepEssentials",
+    section: "Shops",
+    label: "Keep the essentials on sale",
+    help: "Potion, Whetstone, pickaxes, bugnets, BBQ Spit, Normal S Lv1/2 and Empty Bottle stay where they are.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "shops.enabled",
+  },
+  {
+    key: "shops.mix",
+    section: "Shops",
+    label: "Which items can swap",
+    help: "Whether shops swap only among their own stock.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "each",
+          label: "Within each shop",
+          help: "The village store sells its own items in a new order of stages; the granny and Guild Hall swap among theirs.",
+        },
+        {
+          value: "all",
+          label: "Across all shops",
+          help: "One swap for every shop: granny's herbs and Wyvern Claws can turn up in the general store.",
+        },
+      ],
+    },
+    default: "each",
+    enabledBy: "shops.enabled",
+  },
+  {
+    key: "shops.special",
+    section: "Shops",
+    label: "Include the sphere and jewel shop",
+    help: "Armor Spheres, jewels, Pokke Tickets and Gourmet BBQ Spit. Off keeps armor upgrades as usual.",
+    type: { kind: "boolean" },
+    default: false,
+    enabledBy: "shops.enabled",
+  },
 ];
 
 const BY_KEY = new Map(OPTIONS.map((o) => [o.key, o]));
@@ -342,6 +395,7 @@ export const PRESETS: readonly Preset[] = [
       "recipes.amounts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
+      "shops.enabled": true,
     },
   },
   {
@@ -356,6 +410,10 @@ export const PRESETS: readonly Preset[] = [
       "costs.spread": 0.9,
       "weapons.enabled": true,
       "weapons.mix": "any-type",
+      "shops.enabled": true,
+      "shops.keepEssentials": false,
+      "shops.mix": "all",
+      "shops.special": true,
     },
   },
 ];

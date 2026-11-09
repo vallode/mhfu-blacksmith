@@ -20,6 +20,7 @@ export const DATA_BIN_PATH = "/PSP_GAME/USRDIR/DATA.BIN";
 export const EBOOT_PATH = "/PSP_GAME/SYSDIR/EBOOT.BIN";
 const GAME_SUB_PATH = "overlay/game_sub.ovl";
 const GAME_TASK_PATH = "overlay/game_task.ovl";
+const LOBBY_TASK_PATH = "overlay/lobby_task.ovl";
 
 export interface LoadedQuest {
   /** DATA.BIN file index. */
@@ -50,6 +51,8 @@ export interface GameData {
   skippedQuests: { path: string; reason: string }[];
   gameSub: LoadedOverlay;
   gameTask: LoadedOverlay;
+  /** Town code and data, including the shops' item lists. */
+  lobbyTask: LoadedOverlay;
   /** The decrypted EBOOT, when loaded. */
   eboot: Buffer | null;
   /** How EBOOT tables are found: undefined means JP's static addresses. */
@@ -114,6 +117,7 @@ export async function loadGame(
     skippedQuests,
     gameSub: overlay(GAME_SUB_PATH),
     gameTask: overlay(GAME_TASK_PATH),
+    lobbyTask: overlay(LOBBY_TASK_PATH),
     eboot,
     resolver,
   };

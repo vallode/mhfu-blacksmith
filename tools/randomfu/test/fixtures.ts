@@ -498,6 +498,61 @@ export function buildEboot(
   return buf;
 }
 
+// ---------------------------------------------------------------- shops
+
+export const LOBBY_LOAD = 0x09a5f200;
+
+/** Shop lists in the fixture's lobby_task.ovl, by name. */
+export const FIXTURE_SHOP_LISTS: Record<string, number[]> = {
+  village1: [163, 7, 11, 153, 21, 22, 144],
+  village2: [163, 7, 11, 153, 21, 22, 144, 97, 300],
+  empty: [],
+  granny1: [164, 167, 165],
+  granny2: [168, 169, 166, 170],
+  guild1: [7, 11, 153, 156],
+  guild2: [7, 11, 153, 156, 38],
+  special1: [223],
+  special2: [223, 224, 865],
+};
+
+/** Tables in order, as the EU disc has them: village, granny (sharing a Guild list), Guild, special. */
+export const FIXTURE_SHOP_TABLES: string[][] = [
+  ["village1", "village2", "empty"],
+  ["granny1", "granny2", "guild2"],
+  ["guild1", "guild2"],
+  ["special1", "special2"],
+];
+
+/** `lobby_task.ovl` with the shop lists (0xFFFF-ended) and their pointer tables. */
+export function buildLobbyTask(): {
+  buf: Buffer;
+  listAt: Record<string, number>;
+  tablesAt: number;
+} {
+  const buf = ovlHeader("lobby_task.ovl", LOBBY_LOAD, 0x1000);
+  buf.fill(0x77, 0x80); // not items, not pointers
+  const listAt: Record<string, number> = {};
+  let at = 0x200;
+  for (const [name, items] of Object.entries(FIXTURE_SHOP_LISTS)) {
+    listAt[name] = at;
+    items.forEach((v, i) => buf.writeUInt16LE(v, at + i * 2));
+    buf.writeUInt16LE(0xffff, at + items.length * 2);
+    at += items.length * 2 + 2;
+    at += at % 4; // the EU lists are 4-byte aligned
+  }
+  const tablesAt = 0x600;
+  let p = tablesAt;
+  for (const table of FIXTURE_SHOP_TABLES) {
+    for (const name of table) {
+      buf.writeUInt32LE(LOBBY_LOAD + listAt[name]!, p);
+      p += 4;
+    }
+    buf.writeUInt32LE(0, p);
+    p += 4;
+  }
+  return { buf, listAt, tablesAt };
+}
+
 // ---------------------------------------------------------------- DATA.BIN
 
 /** Encrypted DATA.BIN with `count` files of one sector each, except those given. */
@@ -535,6 +590,7 @@ export function buildDataBin(
 export const QUEST_INDICES = [4759, 4760, 4761, 4762];
 export const GAME_TASK_INDEX = 51;
 export const GAME_SUB_INDEX = 56;
+export const LOBBY_TASK_INDEX = 50;
 
 /**
  * Low Rank 1★: quest 1001 (monster 1, mines item 120); Low Rank 2★: quest
@@ -660,6 +716,7 @@ export function buildFixtureDisc(): Buffer {
   );
   files.set(GAME_TASK_INDEX, ovlHeader("game_task.ovl", 0x09a5a580, 0x100));
   files.set(GAME_SUB_INDEX, buildGameSub(FIXTURE_CARVES, FIXTURE_CAPTURES));
+  files.set(LOBBY_TASK_INDEX, buildLobbyTask().buf);
   files.set(22, Buffer.from("stored raw"));
   const dataBin = buildDataBin(QUEST_INDICES.at(-1)! + 2, files, JP_RAW);
   return buildIso([

@@ -17,6 +17,7 @@ import {
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import type { ShuffleReport } from "./shuffles/shuffle.js";
+import { findShops, shuffleShops } from "./shuffles/shops.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -138,6 +139,22 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     for (const p of checkRecipes(result.assigned, tiersAfter)) {
       problems.push(`${p.recipe}: ${p.item} (${p.needs})`);
     }
+  }
+
+  if (settings["shops.enabled"]) {
+    reports.push(
+      shuffleShops(
+        findShops(game.lobbyTask.ovl),
+        {
+          keepEssentials: settings["shops.keepEssentials"],
+          mix: settings["shops.mix"],
+          special: settings["shops.special"],
+        },
+        rng.fork("shops"),
+        edits,
+        game.lobbyTask,
+      ),
+    );
   }
 
   if (settings["costs.enabled"]) {

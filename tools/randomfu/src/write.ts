@@ -81,7 +81,7 @@ export interface RoundTripResult {
 
 /**
  * Re-encrypts files without changing them and compares with the disc's own
- * bytes: every quest (both cipher layers) and both monster overlays. A
+ * bytes: every quest (both cipher layers) and the overlays shuffles edit. A
  * clean result means edited files will be written in the format the game
  * reads. Nothing is written.
  */
@@ -101,7 +101,7 @@ export function roundTrip(
       mismatches.push(quest.path);
     }
   }
-  for (const { index } of [game.gameSub, game.gameTask]) {
+  for (const { index } of [game.gameSub, game.gameTask, game.lobbyTask]) {
     checked++;
     if (!game.dataBin.encode(index, game.dataBin.read(index)).equals(onDisc(index))) {
       mismatches.push(`DATA.BIN file ${index}`);

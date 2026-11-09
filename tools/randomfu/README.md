@@ -173,6 +173,21 @@ and bowguns, so that pairing is untested. Weapons from Ancient/Rusted
 shards stay put. It runs before the recipe shuffles, which then shuffle
 the tables it left.
 
+`shops` changes what the shops sell. The shops live in
+`overlay/lobby_task.ovl`: each shop's stock is a list of u16 item IDs
+ending in 0xFFFF, one list per stage of the game, and the game picks one
+from a table of pointers per shop (each ending in a 0 word). On the EU disc
+the tables are at 0xa7da8: the village general store (8 stages), the
+peddling granny's pools (her table also uses two Guild lists), the Guild
+Hall store (9 stages) and a shop of Armor Spheres, jewels and Pokke
+Tickets. The shuffle finds the tables by their shape, from the table that
+holds the general store's list (Herb, Potion, Antidote, Whetstone), not by
+address. Each item is swapped for the same other item in every list of a
+shop (or of every shop, with `shops.mix all`), so later stages still sell
+everything earlier ones did; lists keep their length, and prices follow the
+item. `shop-scan` and `shop-lists` are the research commands that found
+them.
+
 ## How it writes the disc
 
 - **DATA.BIN** files are encrypted with a key seeded from their start
