@@ -98,7 +98,7 @@ export default function PreferencesSettings() {
       {toggle(
         "markCleared",
         "Mark cleared quests",
-        "Give the quests you have cleared gold titles on the quest boards.",
+        "Mark the quests you have cleared with CLEAR!! on the quest boards and quest pages.",
       )}
       {toggle(
         "showHuntRecords",

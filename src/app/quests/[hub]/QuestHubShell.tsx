@@ -34,7 +34,7 @@ function activeQuestId(pathname: string, hub: string): number | null {
  * the bottom of the card (like the weapon tree's filter bar) that steps
  * through the board's star levels, and the selected quest (or a prompt to
  * pick one) on the right. With a hunter loaded, the quests they have
- * cleared get gold titles. Lives in the hub's layout so the list stays
+ * cleared are marked CLEAR!!, like the game's quest sheet. Lives in the hub's layout so the list stays
  * mounted, keeping its scroll position, when a quest is selected.
  */
 export default function QuestHubShell({
@@ -106,9 +106,13 @@ export default function QuestHubShell({
                   aria-current={q.id === id ? "page" : undefined}
                   className={cn("list-row", q.id === id && "bg-white/10")}
                 >
-                  <p className={cn("truncate", cleared?.has(q.id) && "text-gold")}>{q.title}</p>
-                  {cleared?.has(q.id) && <span className="sr-only"> (cleared)</span>}
-                  {q.urgent && <span className="ml-auto flex-none text-negative">Urgent</span>}
+                  <p className="truncate">{q.title}</p>
+                  {(cleared?.has(q.id) || q.urgent) && (
+                    <span className="ml-auto flex flex-none gap-[1rem]">
+                      {cleared?.has(q.id) && <span className="text-stat">CLEAR!!</span>}
+                      {q.urgent && <span className="text-negative">Urgent</span>}
+                    </span>
+                  )}
                 </Link>
               ))}
             </div>

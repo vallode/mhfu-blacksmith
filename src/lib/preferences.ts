@@ -20,7 +20,7 @@ export interface Preferences {
   showMaterialCounts: boolean;
   /** Count a recipe's zenny cost when deciding whether a weapon can be made. */
   checkZenny: boolean;
-  /** Gold titles for quests the loaded hunter has cleared. */
+  /** CLEAR!! on quests the loaded hunter has cleared. */
   markCleared: boolean;
   /** The loaded hunter's kill and capture counts on monster pages. */
   showHuntRecords: boolean;

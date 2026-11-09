@@ -1,10 +1,9 @@
 import Link from "next/link";
-import { cn } from "@/lib/cn";
 import { QUEST_HUBS, questHref, type Quest } from "@/lib/quests";
 
 /**
  * A monster's quests, one titled list per quest board, linking to each quest.
- * Quests in `cleared` (the loaded hunter's) get gold titles.
+ * Quests in `cleared` (the loaded hunter's) are marked CLEAR!!.
  */
 export default function MonsterQuests({
   quests,
@@ -27,14 +26,13 @@ export default function MonsterQuests({
                   <span className="w-cells-3 flex-none text-stat">{q.stars}★</span>
                   <Link
                     href={questHref(q)}
-                    className={cn(
-                      "min-w-0 truncate underline-offset-4 hover:underline mobile:whitespace-normal",
-                      cleared?.has(q.id) ? "text-gold" : "text-white",
-                    )}
+                    className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
                   >
                     {q.title}
-                    {cleared?.has(q.id) && <span className="sr-only"> (cleared)</span>}
                   </Link>
+                  {cleared?.has(q.id) && (
+                    <span className="ml-auto flex-none text-stat">CLEAR!!</span>
+                  )}
                 </li>
               ))}
             </ul>
