@@ -200,8 +200,8 @@ export interface Monster {
   /**
    * Each hitzone row's flinch threshold, by hitzone part: one value or a
    * range ("100–160", see `flinchThreshold`). Worked out by the data build
-   * from `flinch_thresholds` and the monster's hitboxes; rows without one
-   * are absent, and so is the field when no row has one.
+   * from `flinch_thresholds` and the monster's hitboxes. Rows without one
+   * are absent; the field is absent without hitboxes or thresholds.
    */
   hitzone_flinch?: Record<string, string>;
 }

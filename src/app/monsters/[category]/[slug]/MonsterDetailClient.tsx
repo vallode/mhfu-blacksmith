@@ -136,7 +136,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
   // Each hitzone row's flinch threshold, worked out by the data build; no
-  // column without any.
+  // column for a monster without hitboxes or thresholds.
   const flinchByRow = monster.hitzone_flinch;
   // The most effective part per column, to highlight it
   const bestHitzone: Partial<Record<(typeof HITZONE_COLS)[number], number>> = {};

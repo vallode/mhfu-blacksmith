@@ -46,6 +46,15 @@ test("decodeMonster leaves out rows without a flinch threshold", () => {
   assert.deepEqual(monster.hitzone_flinch, { Tail: "100–160" });
 });
 
+test("decodeMonster keeps flinch thresholds when no row has one", () => {
+  const monster = decodeMonster(
+    dict,
+    { n: "Felyne", s: "felyne", hz: [[0, values]], hf: [null] },
+    "lynian",
+  );
+  assert.deepEqual(monster.hitzone_flinch, {});
+});
+
 test("decodeMonster has no flinch thresholds when the bundle has none", () => {
   const monster = decodeMonster(dict, { n: "Kelbi", s: "kelbi", hz: [[0, values]] }, "herbivore");
   assert.equal(monster.hitzone_flinch, undefined);

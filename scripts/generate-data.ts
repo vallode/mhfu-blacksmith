@@ -302,13 +302,14 @@ function hitzoneFlinch(m: Monster): (string | null)[] | null {
   if (!m.hitzones || !thresholds) return null;
   const hitboxes = monsterHitboxes(m.name);
   if (!hitboxes) return null;
-  const rows = Object.keys(m.hitzones).map((name) =>
+  // Rows without a threshold stay null: the page shows "—" for them, even
+  // when no row has one.
+  return Object.keys(m.hitzones).map((name) =>
     flinchThreshold(
       thresholds,
       hitboxes.filter((c) => c.parts.includes(name)).map((c) => c.part),
     ),
   );
-  return rows.some((v) => v !== null) ? rows : null;
 }
 
 function encodeMonster(m: Monster): CompactMonster {
