@@ -41,9 +41,15 @@ export function DetailName({ children, id }: { children: React.ReactNode; id?: s
  * The detail card with nothing selected (a section's own page, beside its
  * tree): NO DATA where the item's name would be, plus an optional note.
  */
-export function NoDataCard({ children }: { children?: React.ReactNode }) {
+export function NoDataCard({
+  children,
+  className,
+}: {
+  children?: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <DetailCard>
+    <DetailCard className={className}>
       <DetailHeader>
         <p className="uppercase">No data</p>
       </DetailHeader>

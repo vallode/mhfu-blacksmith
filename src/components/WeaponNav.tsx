@@ -29,8 +29,7 @@ export default function WeaponNav({ activeType, detail }: WeaponNavProps) {
 
   return (
     <PageBar
-      section="Weapons"
-      title={typeName}
+      title={`${typeName} weapons`}
       back={detail ? { href: `/blacksmith/${activeType}/`, label: `${typeName} tree` } : undefined}
       tabs={
         <PageTabs label="Weapon types">
