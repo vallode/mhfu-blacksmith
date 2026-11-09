@@ -94,6 +94,25 @@ export interface NearUse extends TableUse {
   words: string[];
 }
 
+export interface SpawnSite {
+  file: string;
+  offset: number;
+  func: number;
+  /** a0-a3, t0-t3 as hex where the code sets them to constants, else null. */
+  args: (string | null)[];
+  /** The nearest monster chunk leading to the calling function, if found. */
+  monster?: { emId: number; at: string; depth: number };
+}
+
+export interface SpawnCandidate {
+  file: string;
+  offset: number;
+  fields: number[];
+  callers: number;
+  code: string;
+  sites: SpawnSite[];
+}
+
 /** A function using a table: what it touches and which monsters lead to it. */
 export interface TableFunction {
   file: string;
@@ -141,6 +160,13 @@ export interface AttackRawDump {
    * that reads the records.
    */
   callees?: { file: string; offset: number; calledBy: string[]; code: string }[];
+  /**
+   * Candidates for the code that spawns shells (`spawnCandidates`): functions
+   * storing to two or more of a shell's bytes 0x0D (attack index), 0x15
+   * (owner) and 0x26 (struct index), with their code and their call sites'
+   * argument registers.
+   */
+  spawns?: SpawnCandidate[];
   files: {
     name: string;
     emId?: number;
@@ -156,6 +182,12 @@ const AFTER = 0x200;
 const FUNCTION_BYTES = 0x400;
 const CALLEE_DEPTH = 2;
 const MAX_CALLEES = 80;
+/** A shell's attack index, owner and struct index bytes, set by its spawner. */
+const SPAWN_FIELDS = [0x0d, 0x15, 0x26];
+const MAX_SPAWN_CANDIDATES = 15;
+/** Candidates whose sites also get monster links (the search is slower). */
+const LINKED_CANDIDATES = 5;
+const MAX_SPAWN_SITES = 300;
 /** Caps that keep `raw/attacks.json` small. */
 const MAX_USES = 60;
 const NEAR_BEFORE = 0x800;
@@ -393,6 +425,36 @@ function calleeCode(
   return [...out.values()].sort((a, b) => b.calledBy.length - a.calledBy.length);
 }
 
+/** The likeliest shell spawners, their code, and their call sites. */
+function spawnCandidates(
+  graph: CodeGraph,
+  files: ReadonlyMap<string, SearchFile>,
+): SpawnCandidate[] {
+  return graph
+    .storers(SPAWN_FIELDS, 2)
+    .slice(0, MAX_SPAWN_CANDIDATES)
+    .map((candidate, rank) => ({
+      ...candidate,
+      code: codeAt(files.get(candidate.file)!.buf, candidate.offset),
+      sites: graph
+        .callSites(candidate.file, candidate.offset)
+        .slice(0, MAX_SPAWN_SITES)
+        .map((site): SpawnSite => {
+          const link =
+            rank < LINKED_CANDIDATES
+              ? graph
+                  .monstersOf(site.file, site.func)
+                  .sort((a, b) => a.depth - b.depth || a.emId - b.emId)[0]
+              : undefined;
+          return {
+            ...site,
+            args: site.args.map((a) => (a === null ? null : hex(a))),
+            ...(link ? { monster: { emId: link.emId, at: link.at, depth: link.depth } } : {}),
+          };
+        }),
+    }));
+}
+
 /** How far `rel` is from the table [0, size): 0 inside it. */
 const distance = (rel: number, size: number) => (rel < 0 ? -rel : rel >= size ? rel - size + 1 : 0);
 
@@ -429,7 +491,13 @@ export function dumpAttacksRaw(
   });
   const users = dumped.flatMap((f) => f.tables.flatMap((t) => t.code?.functions ?? []));
   return {
-    ...(graph ? { scan: graph.stats(), callees: calleeCode(graph, byName, users) } : {}),
+    ...(graph
+      ? {
+          scan: graph.stats(),
+          callees: calleeCode(graph, byName, users),
+          spawns: spawnCandidates(graph, byName),
+        }
+      : {}),
     files: dumped,
   };
 }

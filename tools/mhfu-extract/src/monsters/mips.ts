@@ -22,8 +22,12 @@ export interface AddressUse {
 export interface CodeScan {
   /** Every constant address the code builds or touches, by address. */
   addresses: Map<number, AddressUse[]>;
-  /** `jal` calls: file offset of the call and its target vaddr. */
-  calls: { offset: number; target: number }[];
+  /**
+   * `jal` calls: file offset of the call, its target vaddr, and the known
+   * values of a0-a3 and t0-t3 (the EABI's a4-a7) as the call is made (after
+   * the delay slot), null where unknown.
+   */
+  calls: { offset: number; target: number; args: (number | null)[] }[];
   /** File offsets of `addiu sp, sp, -n` (function prologues). */
   prologues: number[];
 }
@@ -46,6 +50,8 @@ const FUNCT_ADDU = 0x21;
 const FUNCT_OR = 0x25;
 const RA = 31;
 const SP = 29;
+/** a0-a3, then t0-t3: the EABI's eight argument registers. */
+const ARG_REGS = [4, 5, 6, 7, 8, 9, 10, 11];
 /** Registers a call may change: at, v0-v1, a0-a3, t0-t9, ra. */
 const CALLER_SAVED = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 24, 25, 31];
 
@@ -61,7 +67,8 @@ export function scanCode(ovl: OvlFile): CodeScan {
     else addresses.set(address, [{ offset, kind }]);
   };
   // After the delay slot: "all" clears every register, "call" the caller-saved ones.
-  let pending: { at: number; clear: "all" | "call" } | null = null;
+  let pending: { at: number; clear: "all" | "call"; call?: CodeScan["calls"][number] } | null =
+    null;
 
   for (let at = OVL_HEADER_SIZE; at + 4 <= r.length; at += 4) {
     const w = r.u32(at);
@@ -97,11 +104,13 @@ export function scanCode(ovl: OvlFile): CodeScan {
     } else if (WRITES_RT.has(op)) {
       regs[rt] = undefined;
     } else if (op === OP_JAL) {
-      calls.push({
+      const call = {
         offset: at,
         target: (((ovl.loadBase + at + 4) & 0xf0000000) | ((w & 0x03ffffff) << 2)) >>> 0,
-      });
-      pending = { at: at + 4, clear: "call" };
+        args: [] as (number | null)[],
+      };
+      calls.push(call);
+      pending = { at: at + 4, clear: "call", call };
     } else if (op === OP_J) {
       pending = { at: at + 4, clear: "all" };
     } else if (op === OP_SPECIAL) {
@@ -124,6 +133,7 @@ export function scanCode(ovl: OvlFile): CodeScan {
     regs[0] = 0;
 
     if (pending && pending.at === at) {
+      if (pending.call) pending.call.args = ARG_REGS.map((reg) => regs[reg] ?? null);
       if (pending.clear === "all") regs.fill(undefined);
       else for (const reg of CALLER_SAVED) regs[reg] = undefined;
       regs[0] = 0;

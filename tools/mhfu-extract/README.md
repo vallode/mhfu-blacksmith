@@ -485,6 +485,15 @@ dropped once that is known: 0x800 bytes before each table and 0x200 after,
 each user function's code (0x400 bytes), and the functions they call two
 calls deep (`callees`, most widely called first).
 
+A shell's setup takes only the shell; its owner comes from a global table
+by its byte `0x15`. So the spawner fills in `0x0D`, `0x15` and `0x26`
+first. `spawns` lists the likeliest spawners (`CodeGraph.storers`: functions
+storing to two or more of those bytes off one register), with their code
+and every call to them: the calling function, the argument registers a0-a3
+and t0-t3 where the code sets them to constants (`scanCode` records them at
+each `jal`), and, for the first five, the nearest monster chunk leading to
+the caller.
+
 Still open: which spawns (and so which monster) set which index, and what
 the remaining bytes mean.
 

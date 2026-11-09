@@ -59,6 +59,8 @@ interface Node {
 }
 
 const MAX_DEPTH = 6;
+/** Longest function `storers` reads when no later start bounds it. */
+const MAX_FUNCTION = 0x2000;
 const MAX_NODES = 400;
 const hex = (n: number) => `0x${n.toString(16)}`;
 
@@ -71,6 +73,8 @@ export class CodeGraph {
   /** Callee (file name + offset) -> call sites. */
   private readonly callers = new Map<string, { file: CodeFile; offset: number }[]>();
   private readonly linkCache = new Map<string, MonsterLink[]>();
+  /** Each file's calls by file offset. */
+  private readonly callAt = new Map<CodeFile, Map<number, CodeScan["calls"][number]>>();
 
   constructor(
     private readonly files: readonly CodeFile[],
@@ -79,6 +83,7 @@ export class CodeGraph {
     for (const file of files) {
       const scan = scanCode(file.ovl);
       this.scans.set(file, scan);
+      this.callAt.set(file, new Map(scan.calls.map((c) => [c.offset, c])));
       this.sortedAddresses.set(file, Float64Array.from(scan.addresses.keys()).sort());
       const r = file.ovl.reader;
       for (let at = OVL_HEADER_SIZE; at + 4 <= r.length; at += 4) {
@@ -243,6 +248,70 @@ export class CodeGraph {
       }
     }
     return out;
+  }
+
+  /**
+   * Functions that store to at least `min` of `fields` (byte offsets) off
+   * one base register: candidates for code filling in an object's fields,
+   * such as the shell spawner (bytes 0x0D, 0x15 and 0x26). Most fields
+   * matched first, then most callers.
+   */
+  storers(
+    fields: readonly number[],
+    min: number,
+  ): { file: string; offset: number; fields: number[]; callers: number }[] {
+    const out: { file: string; offset: number; fields: number[]; callers: number }[] = [];
+    for (const file of this.files) {
+      const r = file.ovl.reader;
+      const starts = this.starts.get(file)!;
+      starts.forEach((start, i) => {
+        const end = Math.min(starts[i + 1] ?? r.length, start + MAX_FUNCTION, r.length);
+        const byBase = new Map<number, Set<number>>();
+        for (let at = start; at + 4 <= end; at += 4) {
+          const w = r.u32(at);
+          const op = w >>> 26;
+          const width = op === 0x28 ? 1 : op === 0x29 ? 2 : op === 0x2b ? 4 : 0;
+          if (!width) continue;
+          const base = (w >>> 21) & 31;
+          const imm = ((w & 0xffff) << 16) >> 16;
+          for (const field of fields) {
+            if (field < imm || field >= imm + width) continue;
+            const set = byBase.get(base) ?? new Set<number>();
+            set.add(field);
+            byBase.set(base, set);
+          }
+        }
+        let best: number[] = [];
+        for (const set of byBase.values()) if (set.size > best.length) best = [...set];
+        if (best.length < min) return;
+        out.push({
+          file: file.name,
+          offset: start,
+          fields: best.sort((a, b) => a - b),
+          callers: (this.callers.get(`${file.name}:${start}`) ?? []).length,
+        });
+      });
+    }
+    return out.sort((a, b) => b.fields.length - a.fields.length || b.callers - a.callers);
+  }
+
+  /**
+   * The `jal` sites calling the function at `offset` of the named file, each
+   * with its calling function and argument registers (`CodeScan` calls).
+   */
+  callSites(
+    fileName: string,
+    offset: number,
+  ): { file: string; offset: number; func: number; args: (number | null)[] }[] {
+    return (this.callers.get(`${fileName}:${offset}`) ?? []).map((site) => {
+      const call = this.callAt.get(site.file)!.get(site.offset)!;
+      return {
+        file: site.file.name,
+        offset: site.offset,
+        func: this.funcOf(site.file, site.offset),
+        args: call.args,
+      };
+    });
   }
 
   /** How much the decoder found per file, to check it reads real code. */

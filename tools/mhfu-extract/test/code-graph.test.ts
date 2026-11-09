@@ -9,12 +9,14 @@ import { scanCode } from "../src/monsters/mips.js";
 
 const GAME_TASK_BASE = 0x09a5f200;
 const EM_BASE = 0x09d1a180;
-const [A0, V0, V1, RA, SP] = [4, 2, 3, 31, 29];
+const [A0, A1, A2, A3, V0, V1, RA, SP] = [4, 5, 6, 7, 2, 3, 31, 29];
 
 // MIPS encodings.
 const lui = (rt: number, imm: number) => ((0x0f << 26) | (rt << 16) | (imm & 0xffff)) >>> 0;
 const addiu = (rt: number, rs: number, imm: number) =>
   ((0x09 << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
+const sb = (rt: number, imm: number, rs: number) =>
+  ((0x28 << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
 const lbu = (rt: number, imm: number, rs: number) =>
   ((0x24 << 26) | (rs << 21) | (rt << 16) | (imm & 0xffff)) >>> 0;
 const jal = (target: number) => ((0x03 << 26) | ((target >>> 2) & 0x03ffffff)) >>> 0;
@@ -61,7 +63,14 @@ test("scanCode follows lui/addiu pairs, loads, calls and prologues", () => {
   assert.deepEqual(scan.addresses.get(address), [{ offset: fn + 8, kind: "addiu" }]);
   assert.deepEqual(scan.addresses.get(address + 2), [{ offset: fn + 12, kind: "mem" }]);
   assert.equal(scan.addresses.get(address + 4), undefined);
-  assert.deepEqual(scan.calls, [{ offset: fn + 16, target: EM_BASE + 0x200 }]);
+  // a0 holds the address as the call is made; nothing else is known.
+  assert.deepEqual(scan.calls, [
+    {
+      offset: fn + 16,
+      target: EM_BASE + 0x200,
+      args: [address, null, null, null, null, null, null, null],
+    },
+  ]);
 });
 
 /**
@@ -194,5 +203,64 @@ test("dumpAttacksRaw gives each table's code users and their monsters", () => {
   assert.deepEqual(
     dump.callees?.map((c) => [c.file, c.offset, c.calledBy]),
     [["overlay/em01.ovl", k, [`overlay/em01.ovl:0x${h.toString(16)}`]]],
+  );
+});
+
+test("storers and callSites find a spawner and the constants it is called with", () => {
+  const chunks = OVL_HEADER_SIZE;
+  const task = ovl(
+    "game_task.ovl",
+    GAME_TASK_BASE,
+    MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE + 0x100,
+  );
+  const em = ovl("em01.ovl", EM_BASE, 0x100);
+  // game_task.ovl: S(shell, attack, struct, owner) fills in bytes 0x0D, 0x26 and 0x15.
+  const spawner = chunks + MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
+  writeWords(task, spawner, [
+    PROLOGUE,
+    sb(A1, 0x0d, A0),
+    sb(A2, 0x26, A0),
+    sb(A3, 0x15, A0),
+    JR_RA,
+    NOP,
+  ]);
+  // em01.ovl: M spawns attack 5 with struct 2, setting a3 in the delay slot.
+  const m = OVL_HEADER_SIZE + 0x10;
+  writeWords(em, m, [
+    PROLOGUE,
+    addiu(A1, 0, 5),
+    addiu(A2, 0, 2),
+    jal(GAME_TASK_BASE + spawner),
+    addiu(A3, 0, 7),
+    JR_RA,
+    NOP,
+  ]);
+  const gameTask = parseOvl(task);
+  const files: SearchFile[] = [
+    { name: "game_task.ovl", buf: task, ovl: gameTask },
+    { name: "overlay/em01.ovl", buf: em, ovl: parseOvl(em), emId: 1 },
+  ];
+  const graph = new CodeGraph(
+    files.map((f) => ({ name: f.name, ovl: f.ovl!, shared: f.name === "game_task.ovl" })),
+    { ovl: gameTask, offset: chunks },
+  );
+  assert.deepEqual(graph.storers([0x0d, 0x15, 0x26], 2)[0], {
+    file: "game_task.ovl",
+    offset: spawner,
+    fields: [0x0d, 0x15, 0x26],
+    callers: 1,
+  });
+  assert.deepEqual(graph.callSites("game_task.ovl", spawner), [
+    {
+      file: "overlay/em01.ovl",
+      offset: m + 12,
+      func: m,
+      args: [null, 5, 2, 7, null, null, null, null],
+    },
+  ]);
+  const dump = dumpAttacksRaw(files, [], { ovl: gameTask, offset: chunks });
+  assert.deepEqual(
+    dump.spawns?.[0]?.sites.map((site) => site.args.slice(0, 4)),
+    [[null, "0x5", "0x2", "0x7"]],
   );
 });
