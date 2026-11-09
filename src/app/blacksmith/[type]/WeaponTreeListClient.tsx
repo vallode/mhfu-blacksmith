@@ -7,6 +7,7 @@ import type { WeaponType } from "@/lib/constants";
 import { useWeaponTree } from "@/lib/client-data";
 import BorderRule from "@/components/BorderRule";
 import Loading from "@/components/Loading";
+import { useT } from "@/context/LanguageContext";
 
 interface Props {
   type: WeaponType;
@@ -14,6 +15,7 @@ interface Props {
 
 export default function WeaponTreeListClient({ type }: Props) {
   const { tree, loading } = useWeaponTree(type);
+  const t = useT();
 
   return (
     <>
@@ -25,9 +27,9 @@ export default function WeaponTreeListClient({ type }: Props) {
 
         <Card>
           {loading ? (
-            <Loading>Loading…</Loading>
+            <Loading>{t.common.loading}</Loading>
           ) : (
-            <p className="leading-[1.2] whitespace-normal">Select a weapon from the tree.</p>
+            <p className="leading-[1.2] whitespace-normal">{t.equipment.tree.selectWeapon}</p>
           )}
         </Card>
       </div>

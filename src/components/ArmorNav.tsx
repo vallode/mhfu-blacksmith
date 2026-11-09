@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import Link from "next/link";
 import { ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
 import Icon from "./Icon";
+import { useT } from "@/context/LanguageContext";
 import { writeLastArmor } from "@/lib/armor-last-store";
 
 interface ArmorNavProps {
@@ -12,11 +13,8 @@ interface ArmorNavProps {
   rank?: ArmorRank;
 }
 
-function formatSlotName(slot: string): string {
-  return slot.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
-}
-
 export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProps) {
+  const t = useT();
   // Remember this page for the main menu's Armor entry.
   useEffect(() => {
     if (activeSlot) writeLastArmor({ slot: activeSlot, rank });
@@ -25,13 +23,13 @@ export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProp
   return (
     <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
       <div>
-        <Link href="/" aria-label="Back">
-          <Icon type="arrow" nav alt="Back" />
+        <Link href="/" aria-label={t.common.back}>
+          <Icon type="arrow" nav alt={t.common.back} />
         </Link>
       </div>
 
       {ARMOR_SLOTS.map((slot) => {
-        const name = formatSlotName(slot);
+        const name = t.common.armorSlots[slot];
         return (
           <div key={slot}>
             <Link href={`/armorsmith/${slot}/${rank}/`} title={name}>
@@ -44,9 +42,9 @@ export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProp
       <div className="ml-auto">
         <button
           className="search-trigger flex h-[52px] w-[52px] cursor-pointer items-center border-none bg-transparent p-0 text-white/60 hover:text-white [&>img]:h-full"
-          aria-label="Search"
+          aria-label={t.equipment.nav.search}
         >
-          <img src="/images/binoculars.png" alt="Search" decoding="sync" />
+          <img src="/images/binoculars.png" alt={t.equipment.nav.search} decoding="sync" />
         </button>
       </div>
     </nav>

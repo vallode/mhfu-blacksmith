@@ -14,9 +14,10 @@ import SelectorBar, { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
 import { useVisibleTree } from "@/hooks/useVisibleTree";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { TreeFilterContext } from "@/context/TreeFilterContext";
-import { cycleTreeFilter, filterTree, TREE_FILTERS, type TreeFilterId } from "@/lib/tree-filter";
+import { cycleTreeFilter, filterTree, type TreeFilterId } from "@/lib/tree-filter";
 import { readTreeFilter, writeTreeFilter } from "@/lib/tree-filter-store";
 import type { WeaponTreeNode } from "@/lib/types";
+import { useT } from "@/context/LanguageContext";
 
 interface Props {
   type: string;
@@ -27,6 +28,8 @@ interface Props {
 
 export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   const progress = useHunterProgress();
+  const t = useT();
+  const tt = t.equipment.tree;
   const basePath = `/blacksmith/${type}/`;
   const treeKey = `weapon-${type}`;
   // Read on mount: nothing renders from it until a hunter is loaded, which
@@ -50,8 +53,6 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
       return next;
     });
   };
-
-  const label = TREE_FILTERS.find((f) => f.id === filter)?.label;
 
   return (
     // Takes the tree card's place in .split-page; above the card (z-1) so the
@@ -79,13 +80,13 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
 
       {result && (
         <SelectorBar
-          label={label ?? ""}
-          groupLabel="Weapon tree filter"
-          previousLabel="Previous filter"
-          nextLabel="Next filter"
+          label={t.equipment.treeFilters[filter]}
+          groupLabel={tt.filterGroup}
+          previousLabel={tt.previousFilter}
+          nextLabel={tt.nextFilter}
           onStep={step}
           count={`${result.matched}/${result.total}`}
-          countLabel={`${result.matched} of ${result.total} weapons`}
+          countLabel={tt.filterCount(result.matched, result.total)}
         />
       )}
     </div>

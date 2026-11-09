@@ -12,7 +12,7 @@ import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
 import { usePreferences, type Preferences } from "@/context/PreferencesContext";
 import { useT } from "@/context/LanguageContext";
 import { LOCALES, LOCALE_NAMES, type Locale } from "@/lib/i18n/locales";
-import { STAGES, tierLabel, type Tier } from "@/lib/min-rank";
+import { STAGES, type Tier } from "@/lib/min-rank";
 import { DEFAULT_PREFERENCES } from "@/lib/preferences";
 import { TREE_FILTERS } from "@/lib/tree-filter";
 import { writeTreeFilter } from "@/lib/tree-filter-store";
@@ -34,9 +34,12 @@ export default function PreferencesSettings() {
   ];
   const progressChoices: Choice<Tier | null>[] = [
     { value: null, label: text.questProgress.all },
-    ...STAGES.map((stage) => ({ value: stage, label: tierLabel(stage) })),
+    ...STAGES.map((stage) => ({ value: stage, label: t.equipment.tierLabel(stage) })),
   ];
-  const treeFilterChoices = TREE_FILTERS.map((f) => ({ value: f.id, label: f.label }));
+  const treeFilterChoices = TREE_FILTERS.map((f) => ({
+    value: f.id,
+    label: t.equipment.treeFilters[f.id],
+  }));
 
   /** An On/Off row for a boolean preference. */
   const toggle = (key: ToggleKey) => (

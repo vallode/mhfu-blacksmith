@@ -3,6 +3,7 @@
 import Icon from "./Icon";
 import { useOwnedMaterials } from "@/hooks/useOwnedMaterials";
 import type { Material } from "@/lib/types";
+import { useLocale } from "@/context/LanguageContext";
 
 interface MaterialRowProps {
   material: Material;
@@ -20,6 +21,8 @@ const nameClass = "min-w-0 flex-auto wrap-anywhere whitespace-normal mobile:lead
  */
 export default function MaterialRow({ material }: MaterialRowProps) {
   const ownedOf = useOwnedMaterials();
+  const { t, game } = useLocale();
+  const name = game.name("item", material.name);
   const owned = ownedOf(material.name);
   const required = Number(material.amount);
 
@@ -27,7 +30,7 @@ export default function MaterialRow({ material }: MaterialRowProps) {
     return (
       <div className="flex items-center">
         <Icon type={material.type} color={material.color} />
-        <p className={nameClass}>{material.name}:</p>
+        <p className={nameClass}>{name}:</p>
         <p className={amountClass}>{pad(material.amount)}</p>
       </div>
     );
@@ -37,9 +40,9 @@ export default function MaterialRow({ material }: MaterialRowProps) {
   const shown = owned === Infinity ? "∞" : owned;
 
   return (
-    <div className="flex items-center" title={`You have ${shown} in your item box and pouch`}>
+    <div className="flex items-center" title={t.equipment.detail.haveTitle(String(shown))}>
       <Icon type={material.type} color={material.color} />
-      <p className={nameClass}>{material.name}:</p>
+      <p className={nameClass}>{name}:</p>
       <p className={amountClass}>
         {short ? <span className="text-negative">{pad(shown)}</span> : pad(shown)}/{pad(required)}
       </p>

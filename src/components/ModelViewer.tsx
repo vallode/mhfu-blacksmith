@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Loading from "@/components/Loading";
+import { useT } from "@/context/LanguageContext";
 
 /** A capsule drawn over the model, in the model's space: a sphere of `radius` swept from `start` to `end`. */
 export interface ModelCapsule {
@@ -46,6 +47,7 @@ type Status = "loading" | "ready" | "error";
  * three.js is imported on demand so it only loads on pages that show a model.
  */
 export default function ModelViewer({ src, label, pair = false, capsules }: Props) {
+  const t = useT();
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("loading");
   /** Set while a model is shown, for the capsule effect below. */
@@ -293,14 +295,16 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         ref={containerRef}
         className="absolute inset-0"
         role="img"
-        aria-label={`3D model of ${label}`}
+        aria-label={t.equipment.model.label(label)}
       />
       {status === "loading" && (
-        <Loading className="absolute inset-0 justify-center opacity-70">Loading model…</Loading>
+        <Loading className="absolute inset-0 justify-center opacity-70">
+          {t.equipment.model.loading}
+        </Loading>
       )}
       {status === "error" && (
         <p className="absolute inset-0 flex items-center justify-center text-center opacity-70">
-          Model unavailable.
+          {t.equipment.model.unavailable}
         </p>
       )}
     </div>

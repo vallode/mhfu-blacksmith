@@ -25,6 +25,7 @@ import ArmorModelViewer from "@/components/ArmorModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useArmorModel } from "@/lib/models";
 import Loading from "@/components/Loading";
+import { useGameText, useT } from "@/context/LanguageContext";
 
 interface Props {
   slot: ArmorSlot;
@@ -39,19 +40,25 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   const [openModel, setOpenModel] = useState<string | null>(null);
   const modelKey = models ? `${slot}/${piece?.name}` : null;
   const modelOpen = modelKey !== null && openModel === modelKey;
+  const t = useT();
+  const game = useGameText();
+  const ta = t.equipment.armor;
+  const td = t.equipment.detail;
 
   // The nav and the tree on the left come from the armorsmith layout
   // (ArmorShell), which stays mounted; this is only the detail panel.
   if (loading || !piece) {
-    return <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>;
+    return <Card>{loading ? <Loading>{t.common.loading}</Loading> : <p>{td.notFound}</p>}</Card>;
   }
+
+  const name = game.name("armor", piece.name);
 
   return (
     <>
       <DetailCard>
         <DetailHeader>
-          <Icon type={slot} size="large" alt={piece.name} />
-          <DetailName>{piece.name}</DetailName>
+          <Icon type={slot} size="large" alt={name} />
+          <DetailName>{name}</DetailName>
           {modelKey && (
             <ModelButton
               open={modelOpen}
@@ -61,19 +68,21 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
           )}
           {(piece.sex || piece.hunter_type) && (
             <div className="ml-[1.6rem] flex flex-wrap gap-x-[1.6rem] mobile:ml-0">
-              {piece.sex && <span>{piece.sex}</span>}
-              {piece.hunter_type && <span>{piece.hunter_type}</span>}
+              {piece.sex && <span>{ta.sex[piece.sex] ?? piece.sex}</span>}
+              {piece.hunter_type && (
+                <span>{ta.hunterType[piece.hunter_type] ?? piece.hunter_type}</span>
+              )}
             </div>
           )}
         </DetailHeader>
 
         <DetailBody>
           <StatList armor>
-            <Stat armor label="Defence:">
+            <Stat armor label={ta.defence}>
               <StatValue>{piece.defence}</StatValue>
             </Stat>
             {piece.max_defence !== undefined && (
-              <Stat armor label="Max defence:">
+              <Stat armor label={ta.maxDefence}>
                 {piece.max_defence_pre_ukanlos !== undefined &&
                 piece.max_defence_pre_ukanlos !== piece.max_defence ? (
                   <>
@@ -85,31 +94,31 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 )}
               </Stat>
             )}
-            <Stat armor label="Slots:">
+            <Stat armor label={td.slots}>
               <Slots count={piece.slots} />
             </Stat>
             {piece.fire_res !== undefined && (
-              <Stat armor label="Fire res:">
+              <Stat armor label={ta.fireRes}>
                 <StatValue>{piece.fire_res}</StatValue>
               </Stat>
             )}
             {piece.water_res !== undefined && (
-              <Stat armor label="Water res:">
+              <Stat armor label={ta.waterRes}>
                 <StatValue>{piece.water_res}</StatValue>
               </Stat>
             )}
             {piece.thunder_res !== undefined && (
-              <Stat armor label="Thunder res:">
+              <Stat armor label={ta.thunderRes}>
                 <StatValue>{piece.thunder_res}</StatValue>
               </Stat>
             )}
             {piece.ice_res !== undefined && (
-              <Stat armor label="Ice res:">
+              <Stat armor label={ta.iceRes}>
                 <StatValue>{piece.ice_res}</StatValue>
               </Stat>
             )}
             {piece.dragon_res !== undefined && (
-              <Stat armor label="Dragon res:">
+              <Stat armor label={ta.dragonRes}>
                 <StatValue>{piece.dragon_res}</StatValue>
               </Stat>
             )}
@@ -121,19 +130,19 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
           <Requirements>
             <RequirementTabs
               key={slug}
-              label={`${piece.name} details`}
+              label={ta.detailsLabel(name)}
               tabs={[
                 piece.skills &&
                   piece.skills.length > 0 && {
                     id: "skills",
-                    label: "Skills",
+                    label: ta.tabs.skills,
                     content: (
                       <RequirementsPage>
                         <div className="flex flex-1 flex-col gap-[13px]">
                           {piece.skills.map((skill, i) => (
                             <div key={i} className="flex">
                               <h3 className="m-0 flex w-cells-10 leading-none font-normal">
-                                {skill.name}
+                                {game.name("skill", skill.name)}
                               </h3>
                               <p
                                 className={cn(
@@ -152,11 +161,11 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 piece.create_mats &&
                   piece.create_mats.length > 0 && {
                     id: "create",
-                    label: "Create cost",
+                    label: ta.tabs.create,
                     content: (
                       <RequirementsPage>
                         <MaterialList
-                          label="Create cost"
+                          label={td.createCost}
                           cost={piece.create_cost}
                           materials={piece.create_mats}
                         />
@@ -166,11 +175,11 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 piece.alternative_create_mats &&
                   piece.alternative_create_mats.length > 0 && {
                     id: "alt-recipe",
-                    label: "Alt. Recipe",
+                    label: td.altRecipe,
                     content: (
                       <RequirementsPage>
                         <MaterialList
-                          label="Create cost"
+                          label={td.createCost}
                           cost={piece.create_cost}
                           materials={piece.alternative_create_mats}
                         />
@@ -183,8 +192,8 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
         </DetailBody>
       </DetailCard>
       {modelOpen && models && (
-        <ModelPopover title={piece.name} onClose={() => setOpenModel(null)}>
-          <ArmorModelViewer models={models} label={piece.name} />
+        <ModelPopover title={name} onClose={() => setOpenModel(null)}>
+          <ArmorModelViewer models={models} label={name} />
         </ModelPopover>
       )}
     </>

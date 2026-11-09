@@ -1,8 +1,11 @@
+"use client";
+
 import Card from "@/components/Card";
 import MaterialRow from "@/components/MaterialRow";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { cn } from "@/lib/cn";
 import type { Material } from "@/lib/types";
+import { useT } from "@/context/LanguageContext";
 
 // Building blocks for the right-hand detail panel on weapon, armor,
 // decoration and monster pages. Text in the panel is yellow (text-stat) by
@@ -40,10 +43,11 @@ export function DetailName({ children, id }: { children: React.ReactNode; id?: s
  * tree): NO DATA where the item's name would be, plus an optional note.
  */
 export function NoDataCard({ children }: { children?: React.ReactNode }) {
+  const t = useT();
   return (
     <DetailCard>
       <DetailHeader>
-        <p className="uppercase">No data</p>
+        <p className="uppercase">{t.equipment.detail.noData}</p>
       </DetailHeader>
       {children && <DetailBody>{children}</DetailBody>}
     </DetailCard>
@@ -145,14 +149,15 @@ export function MaterialList({
   materials,
 }: {
   label: string;
-  cost: React.ReactNode;
+  cost: number | string | null | undefined;
   materials: Material[];
 }) {
+  const t = useT();
   return (
     <div className="flex flex-auto flex-col gap-x-0 gap-y-[13px]">
       <p className="whitespace-normal">
         <span className="text-stat">{label}: </span>
-        <span className="whitespace-nowrap">{cost}z</span>
+        <span className="whitespace-nowrap">{t.common.zenny(String(cost ?? ""))}</span>
       </p>
       {materials.map((m, i) => (
         <MaterialRow key={i} material={m} />

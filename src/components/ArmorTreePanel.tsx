@@ -10,12 +10,7 @@ import Card from "./Card";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
 import { ARMOR_RANKS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
 import { prefetchBundle } from "@/lib/client-data";
-
-export const RANK_LABELS: Record<ArmorRank, string> = {
-  "low-rank": "Low Rank",
-  "high-rank": "High Rank",
-  "g-rank": "G Rank",
-};
+import { useT } from "@/context/LanguageContext";
 
 interface Props {
   slot: ArmorSlot;
@@ -26,6 +21,8 @@ interface Props {
 
 export default function ArmorTreePanel({ slot, rank, children }: Props) {
   const router = useRouter();
+  const t = useT();
+  const tt = t.equipment.tree;
 
   const step = (by: 1 | -1) => {
     const i = ARMOR_RANKS.indexOf(rank);
@@ -45,10 +42,10 @@ export default function ArmorTreePanel({ slot, rank, children }: Props) {
         <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
       </Card>
       <SelectorBar
-        label={RANK_LABELS[rank]}
-        groupLabel="Armor rank"
-        previousLabel="Previous rank"
-        nextLabel="Next rank"
+        label={t.common.ranks[rank]}
+        groupLabel={tt.rankGroup}
+        previousLabel={tt.previousRank}
+        nextLabel={tt.nextRank}
         onStep={step}
       />
     </div>
