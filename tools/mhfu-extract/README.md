@@ -564,6 +564,17 @@ kind 0x12 records 51-52 (Air Blast, the second with snowman).
   record, by the file of the calling code. A per-monster overlay's table is
   only used by that overlay's code, since the overlays share addresses.
 
+The tenth EU run resolved 35 classes and records for 19 calling files
+(Rathian's family: Bite, Charge, Backflip with poison 25, Talon Divebomb with
+poison 50, three fireballs; Diablos's: Horn Charge, Horn Uppercut, Tail
+Spin, Burrow, Tail Club, Hipcheck), with 58 spawn calls unresolved. Three
+fixes since: tables are also bound from the struct each copier call passes
+(Gravios's table ends three records past where the shape test stops),
+calls into the shared per-monster range from a class whose table is in one
+overlay are read in that overlay (Gypceros's and Hypnocatrice's spawners
+are in `game_task.ovl`), and masking to a byte or halfword (`andi`,
+`seb`, `seh`) keeps an argument's origin.
+
 Still open: classes reached in other ways (those whose spawns pass the kind
 in a register the code computes), which monster of a family (Diablos or
 Monoblos) makes each call, and what the remaining bytes mean.

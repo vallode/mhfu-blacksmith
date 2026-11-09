@@ -221,14 +221,14 @@ test("dumpAttacksRaw finds constructors, their vtables' attack tables and their 
     task[table + i * ATTACK_RECORD_SIZE + 0x02] = 20 + i;
     task[table + i * ATTACK_RECORD_SIZE + 0x07] = 0xe0;
   }
-  const u = after;
+  const u = after + 0x3a0;
   const x = after + 0x20;
   const y = after + 0x40;
   const init = after + 0x60;
   const ctor = after + 0x80;
   const ctor2 = after + 0xc0;
   // The record copier C (record byte k to shell byte 0x1C + k) and its entry E.
-  const copier = after + 0x200 + 5 * ATTACK_RECORD_SIZE + 0x10;
+  const copier = after + 0x300;
   const entry = copier - 0x10;
   writeWords(task, copier, [
     PROLOGUE,
@@ -240,10 +240,14 @@ test("dumpAttacksRaw finds constructors, their vtables' attack tables and their 
   // U: reads a per-kind array, builds a record's address, calls E with kind 2.
   const kinds = after + 0x1c0;
   writeWords(task, kinds, [0x11223344]);
+  // The struct after the table, three records past where the shape test stops.
+  const struct = table + 8 * ATTACK_RECORD_SIZE;
+  writeWords(task, struct, [at(table)]);
   writeWords(task, u, [
     PROLOGUE,
     ...loadAddress(V0, at(kinds)),
     ...loadAddress(A0, at(table + ATTACK_RECORD_SIZE)),
+    ...loadAddress(A3, at(struct)),
     addiu(A2, 0, 2),
     jal(at(entry)),
     NOP,
@@ -312,6 +316,11 @@ test("dumpAttacksRaw finds constructors, their vtables' attack tables and their 
   assert.deepEqual(
     first!.sites.map((site) => [site.file, site.func, site.args.slice(0, 3)]),
     [["overlay/em01.ovl", m, [null, null, "0x5"]]],
+  );
+  // The table bound from the struct U passes: 8 records, not the 5 the shape test finds.
+  assert.deepEqual(
+    dump.files[0]!.tables.map((t) => [t.offset, t.count, t.struct]),
+    [[table, 8, struct]],
   );
   // The copier, its entry, and U's call to the entry with its class and data.
   assert.deepEqual(dump.setters?.copiers, [

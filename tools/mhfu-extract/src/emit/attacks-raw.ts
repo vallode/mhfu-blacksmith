@@ -33,6 +33,7 @@ import {
   indexRules,
   memoryReader,
   recordFor,
+  valueOf,
   type IndexRule,
 } from "../monsters/attack-usage.js";
 import {
@@ -778,10 +779,16 @@ function attackUsage(
       entries.push({ file, offset, kindArg, variantArg });
       return true;
     };
+    // Calls into the shared per-monster range mean the overlay holding the
+    // class's table (or the constructor's own).
+    const tableFile = classRules
+      .map((rule) => rule.table.slice(0, rule.table.lastIndexOf("@")))
+      .find((file) => file !== "game_task.ovl" && file !== "game_sub.ovl");
     for (const ctor of ctors) {
-      if (addEntry(ctor.file, ctor.func, ctor.file)) continue;
+      const prefer = tableFile ?? ctor.file;
+      if (addEntry(ctor.file, ctor.func, prefer)) continue;
       for (const site of graph.sitesTo(ctor.file, ctor.func))
-        addEntry(site.file, site.func, ctor.file);
+        addEntry(site.file, site.func, prefer);
     }
     classes.push({
       vtable,
@@ -835,6 +842,56 @@ function attackUsage(
   return { classes, families, unresolved };
 }
 
+/** Most records a table bound from a copier call's struct may have. */
+const MAX_STRUCT_TABLE = 512;
+
+/**
+ * Tables bound from the structs the copier calls pass in a3: the struct's
+ * first word points at the table, which runs up to the struct. These catch
+ * tables whose end the shape test misses (records after the last it
+ * accepts), by file.
+ */
+function structTables(graph: CodeGraph): Map<string, AttackTable[]> {
+  const out = new Map<string, AttackTable[]>();
+  for (const copier of graph.recordCopiers().filter((c) => c.entry)) {
+    for (const site of graph.sitesTo(copier.file, copier.offset)) {
+      const r = graph.overlay(site.file)!.reader;
+      const struct = valueOf(r, site.func, site.offset, 7, site.offset + 4);
+      if (struct.k !== "const") continue;
+      const candidates = graph.locate(struct.v, site.file);
+      const where = candidates.find((c) => c.file === site.file) ?? candidates[0];
+      if (!where) continue;
+      const ovl = graph.overlay(where.file)!;
+      if (where.offset + 4 > ovl.reader.length) continue;
+      const start = ovl.reader.u32(where.offset) - ovl.loadBase;
+      const size = where.offset - start;
+      if (start < 0 || size <= 0 || size % ATTACK_RECORD_SIZE !== 0) continue;
+      if (size / ATTACK_RECORD_SIZE > MAX_STRUCT_TABLE) continue;
+      const list = out.get(where.file) ?? [];
+      if (!list.some((t) => t.offset === start)) {
+        list.push({ offset: start, count: size / ATTACK_RECORD_SIZE, struct: where.offset });
+      }
+      out.set(where.file, list);
+    }
+  }
+  return out;
+}
+
+/** `found` plus `extra`, dropping found runs inside an extra table. */
+function mergeTables(found: AttackTable[], extra: readonly AttackTable[]): AttackTable[] {
+  const end = (t: AttackTable) => t.offset + t.count * ATTACK_RECORD_SIZE;
+  const kept = found.filter(
+    (t) => !extra.some((x) => t.offset >= x.offset && end(t) <= end(x) && t.offset !== x.offset),
+  );
+  const out = [...kept];
+  for (const x of extra) {
+    const same = out.findIndex((t) => t.offset === x.offset);
+    if (same === -1) out.push(x);
+    else out[same] = x;
+  }
+  return out.sort((a, b) => a.offset - b.offset);
+}
+
 /** How far `rel` is from the table [0, size): 0 inside it. */
 const distance = (rel: number, size: number) => (rel < 0 ? -rel : rel >= size ? rel - size + 1 : 0);
 
@@ -857,6 +914,7 @@ export function dumpAttacksRaw(
     }));
   const graph = codeFiles.length ? new CodeGraph(codeFiles, chunks) : null;
   const byName = new Map(files.map((f) => [f.name, f]));
+  const extraTables = graph ? structTables(graph) : new Map<string, AttackTable[]>();
   const dumped = files.map((file) => {
     const reader = file.ovl?.reader ?? new BinaryReader(file.buf);
     return {
@@ -865,7 +923,7 @@ export function dumpAttacksRaw(
       ...(file.ovl ? { loadBase: hex(file.ovl.loadBase) } : {}),
       length: file.buf.length,
       tables: (file.ovl
-        ? boundTables(file.buf, file.ovl.loadBase)
+        ? mergeTables(boundTables(file.buf, file.ovl.loadBase), extraTables.get(file.name) ?? [])
         : findAttackTables(file.buf)
       ).map((run) => dumpTable(file, reader, run, byNumbers, pointers, graph, byName)),
     };

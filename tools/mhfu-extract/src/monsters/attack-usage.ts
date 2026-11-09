@@ -246,6 +246,12 @@ export function fieldArg(
       regs[rs] = { k: "obj" };
     } else if (op === 0 && ((w & 0x3f) === 0x21 || (w & 0x3f) === 0x25) && rt === 0) {
       regs[(w >>> 11) & 31] = regs[rs] ?? null;
+    } else if (op === 0x0c && ((w & 0xffff) === 0xff || (w & 0xffff) === 0xffff)) {
+      // Masking to a byte or halfword keeps the value.
+      regs[rt] = regs[rs] ?? null;
+    } else if (op === 0x1f && (w & 0x3f) === 0x20) {
+      // seb / seh likewise.
+      regs[(w >>> 11) & 31] = regs[rt] ?? null;
     } else if (op === 0x03 || op === 0x02) {
       const target = (((ovl.loadBase + at + 4) & 0xf0000000) | ((w & 0x03ffffff) << 2)) >>> 0;
       pendingCall = { target, tail: op === 0x02 };
