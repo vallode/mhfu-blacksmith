@@ -27,13 +27,16 @@ const EPSILON = 1e-3;
 const ANGLE_TOLERANCE = 0.01;
 const SCALE_TOLERANCE = 0.01;
 
+/** True if a bone is (close to) unrotated; Gravios's bones carry ~0.001 rad of noise. */
+export const isUnrotatedBone = (b: Bone): boolean =>
+  b.rotation.every((c) => Math.abs(c) < ANGLE_TOLERANCE);
+
 /**
  * True if a bone is (close to) unrotated and unscaled, so positions can be
  * summed through it as pure translations; see `rigid` in detachedBoneOffsets.
  */
 export const isRigidBone = (b: Bone): boolean =>
-  b.rotation.every((c) => Math.abs(c) < ANGLE_TOLERANCE) &&
-  b.scale.every((c) => Math.abs(c - 1) < SCALE_TOLERANCE);
+  isUnrotatedBone(b) && b.scale.every((c) => Math.abs(c - 1) < SCALE_TOLERANCE);
 
 const near = (a: readonly number[], b: readonly number[]): boolean =>
   a.every((c, k) => Math.abs(c - b[k]!) < EPSILON);

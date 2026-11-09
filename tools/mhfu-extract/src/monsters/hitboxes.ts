@@ -6,7 +6,7 @@
  */
 import type { CollisionRecord, Vec3 } from "./collision.js";
 import type { Bone } from "../models/ahi.js";
-import { detachedBoneOffsets, isRigidBone } from "../models/attach.js";
+import { detachedBoneOffsets, isUnrotatedBone } from "../models/attach.js";
 
 export interface SiteCapsule {
   /** Hitzone row (into each of the monster's hitzone tables). */
@@ -42,38 +42,60 @@ const round = (v: number) => Math.round(v * 10) / 10;
  */
 export const BODY_COLLISION_FLAG_BITS = 0x204;
 
+/** A joint's bind-pose frame without rotation: where it is, and its scale along each axis. */
+export interface JointFrame {
+  origin: Vec3;
+  scale: Vec3;
+}
+
 export interface JointPositions {
-  /** Model-space position of each joint whose chain is rigid. */
-  positions: Map<number, Vec3>;
-  /** Joints with a rotated or scaled bone on the way from the root. */
+  /** Each joint whose chain is unrotated. */
+  frames: Map<number, JointFrame>;
+  /** Joints with a rotated bone on the way from the root. */
   rotated: Set<number>;
 }
 
 /**
- * Bind-pose position of each joint: the translations summed from the root,
- * as the mesh's vertices are (see attach.ts). Only exact while every bone on
- * the way is unrotated and unscaled; a capsule's offsets are in its joint's
- * frame too, so joints with a rotated or scaled bone anywhere up their
- * chain (Yian Garuga's crest, Basarios's neck) are left out. A parentless
- * severed-tail chain moves onto the tail with the tail tip's vertices.
+ * Bind-pose frame of each joint, the same space as the mesh's vertices (see
+ * attach.ts): each bone's translation is in its parent's frame, so scaled by
+ * the parent's scale, and scales multiply down the chain. Gravios's and
+ * Basarios's neck base scales to 0.77 along z; that shortens the neck, and
+ * only then do the eye and jaw joints land inside the head.
+ *
+ * Rotations aren't handled (their format is unknown), so joints with a
+ * rotated bone anywhere up their chain (Yama Tsukami's) are left out. A
+ * parentless severed-tail chain moves onto the tail with the tail tip's
+ * vertices.
  */
 export function jointPositions(bones: Bone[]): JointPositions {
   const offsets = detachedBoneOffsets(bones);
-  const positions = new Map<number, Vec3>();
+  const frames = new Map<number, JointFrame>();
   const rotated = new Set<number>();
-  for (const bone of bones) {
-    const sum: Vec3 = [...(offsets.get(bone.id) ?? [0, 0, 0])];
-    let rigid = true;
+  const visit = (id: number, depth: number): JointFrame | null => {
+    const known = frames.get(id);
+    if (known) return known;
+    const bone = bones[id];
     // Bounded by the bone count, in case the parents loop.
-    for (let b: Bone | undefined = bone, n = 0; b && n <= bones.length; n++) {
-      if (!isRigidBone(b)) rigid = false;
-      b.translation.forEach((c, k) => (sum[k] = sum[k]! + c));
-      b = b.parent >= 0 ? bones[b.parent] : undefined;
+    if (!bone || rotated.has(id) || depth > bones.length) return null;
+    const parent = bone.parent >= 0 ? visit(bone.parent, depth + 1) : null;
+    if ((bone.parent >= 0 && !parent) || !isUnrotatedBone(bone)) {
+      rotated.add(id);
+      return null;
     }
-    if (rigid) positions.set(bone.id, sum);
-    else rotated.add(bone.id);
+    const base = parent ?? { origin: [0, 0, 0] as Vec3, scale: [1, 1, 1] as Vec3 };
+    const frame: JointFrame = {
+      origin: base.origin.map((c, k) => c + base.scale[k]! * bone.translation[k]!) as Vec3,
+      scale: base.scale.map((c, k) => c * bone.scale[k]!) as Vec3,
+    };
+    frames.set(id, frame);
+    return frame;
+  };
+  for (const bone of bones) visit(bone.id, 0);
+  for (const [id, offset] of offsets) {
+    const frame = frames.get(id);
+    if (frame) frame.origin = frame.origin.map((c, k) => c + offset[k]!) as Vec3;
   }
-  return { positions, rotated };
+  return { frames, rotated };
 }
 
 export function buildSiteHitboxes(
@@ -90,11 +112,11 @@ export function buildSiteHitboxes(
   const capsules: SiteCapsule[] = [];
   const skipped: string[] = [];
   records.forEach((record, i) => {
-    const origin = joints.positions.get(record.joint);
-    if (!origin) {
+    const frame = joints.frames.get(record.joint);
+    if (!frame) {
       skipped.push(
         joints.rotated.has(record.joint)
-          ? `record ${i}: joint ${record.joint} has a rotated or scaled bone in its chain`
+          ? `record ${i}: joint ${record.joint} has a rotated bone in its chain`
           : `record ${i}: joint ${record.joint} isn't in the skeleton`,
       );
       return;
@@ -109,7 +131,10 @@ export function buildSiteHitboxes(
       );
       return;
     }
-    const place = (offset: Vec3) => offset.map((v, k) => round(origin[k]! + v)) as Vec3;
+    // Offsets are in the joint's frame; the radius isn't scaled, as a sphere
+    // under a non-uniform scale would no longer be one.
+    const place = (offset: Vec3) =>
+      offset.map((v, k) => round(frame.origin[k]! + frame.scale[k]! * v)) as Vec3;
     capsules.push({
       row: record.row,
       parts: partsByRow.get(record.row) ?? [],

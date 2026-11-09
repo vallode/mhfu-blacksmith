@@ -354,13 +354,15 @@ the membranes, the legs the legs, and the rows match the parts
   (left and right separate), u32 flags, f32 radius, f32[3] start and end
   relative to the joint.
 - **Skeleton**: the `.ahi` before the model's PMO (`src/models/ahi.ts`, see
-  "Severable tails"). A joint's model-space position is the sum of the
-  translations down to it, the same space as the converted mesh, as long as
-  every bone on the way is unrotated and unscaled (`isRigidBone` in
-  `attach.ts`). Capsules on joints below a rotated or scaled bone (Yian
-  Garuga's crest, Basarios's neck) are skipped and logged, since their
-  offsets would need the rotation. Joints of a detached severed-tail chain
-  move with the tail tip.
+  "Severable tails"), in the same space as the converted mesh. Each bone's
+  translation is in its parent's frame, so it is scaled by the parent's
+  scale, and scales multiply down the chain; a capsule's offsets are scaled
+  by its joint's (its radius isn't). Gravios's and Basarios's neck base
+  scales to 0.77 along z: only with the scale carried down do the eye and
+  jaw joints land inside the head (ignored, they'd sit past the snout).
+  Rotations aren't handled, so capsules below a rotated bone (Yama
+  Tsukami's) are skipped and logged. Joints of a detached severed-tail
+  chain move with the tail tip.
 - **Site file** (`src/monsters/hitboxes.ts`): `export-site` writes
   `public/models/monsters/emNN.hitboxes.json` next to each monster's model:
   each capsule's ends and radius in model space, its row, and the site's
@@ -375,7 +377,8 @@ Open questions:
   logs each skip; no other record seen has either bit. The other flag bits
   (0x1, 0x2, 0x100, 0x20000, 0x40000, 0x8000000, ...) appear on whole bodies.
 - The second u16 (0 or 1) and the rest of the flags are unknown.
-- The `.ahi` rotation format, which capsules on rotated chains would need.
+- The `.ahi` rotation format, which capsules on rotated chains would need,
+  and whether the game scales a capsule's radius with its joint.
 
 `extract --raw` still dumps the bytes these came from
 (`src/emit/collision-raw.ts`), for checking the format on more monsters:

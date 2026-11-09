@@ -29,6 +29,7 @@ interface JointSpec {
   parent: number | null;
   translation: Vec3;
   rotation?: Vec3;
+  scale?: Vec3;
 }
 
 /** An `.ahi` skeleton as in `emmodel/emNN.pac` index 0 (see `models/ahi.ts`). */
@@ -53,7 +54,7 @@ function skeleton(joints: JointSpec[]): Buffer {
       v.forEach((c, k) => buf.writeFloatLE(c, at + offset + k * 4));
       buf.writeFloatLE(1, at + offset + 12);
     };
-    vec4(0x1c, [1, 1, 1]);
+    vec4(0x1c, joint.scale ?? [1, 1, 1]);
     vec4(0x2c, joint.rotation ?? [0, 0, 0]);
     vec4(0x3c, joint.translation);
     buf.writeUInt32LE(0xffffffff, at + 0x4c);
@@ -68,13 +69,13 @@ const RATHIAN_JOINTS: JointSpec[] = [
 ];
 
 test("jointPositions adds translations down the chain", () => {
-  const { positions, rotated } = jointPositions(readAhi(skeleton(RATHIAN_JOINTS)));
-  assert.deepEqual(positions.get(2), [100, -10, 50]);
+  const { frames, rotated } = jointPositions(readAhi(skeleton(RATHIAN_JOINTS)));
+  assert.deepEqual(frames.get(2), { origin: [100, -10, 50], scale: [1, 1, 1] });
   assert.equal(rotated.size, 0);
 });
 
 test("jointPositions leaves out joints below a rotated bone instead of placing them wrongly", () => {
-  const { positions, rotated } = jointPositions(
+  const { frames, rotated } = jointPositions(
     readAhi(
       skeleton([
         { id: 0, parent: null, translation: [0, 0, 0] },
@@ -85,7 +86,32 @@ test("jointPositions leaves out joints below a rotated bone instead of placing t
     ),
   );
   assert.deepEqual([...rotated], [1, 2]);
-  assert.deepEqual(positions.get(3), [0, 20, 0]);
+  assert.deepEqual(frames.get(3)?.origin, [0, 20, 0]);
+});
+
+test("a scaled bone stretches the joints below it and their capsules, as Gravios's neck", () => {
+  const joints = jointPositions(
+    readAhi(
+      skeleton([
+        { id: 0, parent: null, translation: [0, 0, 0] },
+        { id: 1, parent: 0, translation: [0, 0, 50], scale: [1, 1, 0.5] },
+        { id: 2, parent: 1, translation: [10, 0, 20] },
+      ]),
+    ),
+  );
+  assert.deepEqual(joints.frames.get(2), { origin: [10, 0, 60], scale: [1, 1, 0.5] });
+  const records = readCollisionRecords(
+    new BinaryReader(
+      collisionTable([{ joint: 2, row: 0, radius: 30, start: [0, 0, 10], end: [4, 0, 0] }]),
+    ),
+    0,
+  )!;
+  const { hitboxes, skipped } = buildSiteHitboxes(records, joints);
+  assert.deepEqual(skipped, []);
+  assert.deepEqual(
+    hitboxes.capsules.map((c) => [c.start, c.end, c.radius]),
+    [[[10, 0, 65], [14, 0, 60], 30]],
+  );
 });
 
 interface RecordSpec {
@@ -181,7 +207,7 @@ test("buildSiteHitboxes places capsules in model space and names them by hitzone
     "record 1: joint 125 isn't in the skeleton",
     "record 2: no size (radius 0)",
     "record 5: flags 0x5 mark body collision (joint 0, row 0)",
-    "record 6: joint 7 has a rotated or scaled bone in its chain",
+    "record 6: joint 7 has a rotated bone in its chain",
   ]);
 });
 
