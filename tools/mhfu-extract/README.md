@@ -342,7 +342,14 @@ the membranes, the legs the legs, and the rows match the parts
 
 - **Collision table** (`src/monsters/collision.ts`): the chunk's
   `CollisionPTR` (`+0x50`) points into `game_task.ovl` (Kelbi) or the
-  monster's own `overlay/emNN.ovl` (Rathian). 0x28-byte records, ending at
+  monster's own `overlay/emNN.ovl` (Rathian). Monsters without an overlay
+  of their own (variants such as Pink Rathian, and species such as
+  Rathalos) point into another monster's: the overlays share load
+  addresses, so `export-site` tries those of monsters with the same pointer
+  first, then all of them, and takes the one table that fits the monster's
+  skeleton (every joint exists, sane sizes). It logs where each borrowed
+  table came from, and gives up when several different tables fit.
+  0x28-byte records, ending at
   joint 0xFFFF: u16 joint, u16 unknown flag, u16 hitzone row, u16 body part
   (left and right separate), u32 flags, f32 radius, f32[3] start and end
   relative to the joint.
@@ -361,11 +368,12 @@ the membranes, the legs the legs, and the rows match the parts
 
 Open questions:
 
-- Rathian's two spheres on the root joint (row 0, flags 5 and 0x300) sit at
-  the body's centre, so they are probably body collision. `hitboxes.ts`
-  skips records with flag bits not seen on damage capsules (0x1, 0x100,
-  0x08000000) and logs each skip, so check the `export-site` log for
-  damage capsules with new flags.
+- Every monster exported has one or two spheres on its root joint (flags 5
+  and 0x300, on joint 1 or 2) around the body's centre, on a row that
+  doesn't fit the place (Rathian's on her head's row). They are probably
+  body collision, so `hitboxes.ts` skips records with bit 0x4 or 0x200, and
+  logs each skip; no other record seen has either bit. The other flag bits
+  (0x1, 0x2, 0x100, 0x20000, 0x40000, 0x8000000, ...) appear on whole bodies.
 - The second u16 (0 or 1) and the rest of the flags are unknown.
 - The `.ahi` rotation format, which capsules on rotated chains would need.
 

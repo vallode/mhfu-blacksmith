@@ -168,11 +168,11 @@ async function siteMonsterNames(dataDir: string): Promise<Set<string>> {
   return names;
 }
 
-/** What monster hitboxes are read from: `game_task.ovl` and its chunk array. */
+/** What monster hitboxes are read from: `game_task.ovl`, its chunk array and every `emNN.ovl`. */
 interface CollisionSource {
   gameTask: OvlFile;
   chunksOffset: number;
-  overlayDir: string;
+  emOvls: Map<number, OvlFile>;
 }
 
 async function loadCollisionSource(unpacked: string): Promise<CollisionSource | null> {
@@ -188,7 +188,17 @@ async function loadCollisionSource(unpacked: string): Promise<CollisionSource | 
     console.log("game_task.ovl: monster chunk array not found, skipping monster hitboxes.");
     return null;
   }
-  return { gameTask, chunksOffset: chunks.offset, overlayDir };
+  const emOvls = new Map<number, OvlFile>();
+  for (const name of await readdir(overlayDir)) {
+    const match = /^em(\d+)\.ovl$/.exec(name);
+    if (!match) continue;
+    try {
+      emOvls.set(Number(match[1]), parseOvl(await readFile(path.join(overlayDir, name))));
+    } catch (err) {
+      console.log(`skip overlay/${name}: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  }
+  return { gameTask, chunksOffset: chunks.offset, emOvls };
 }
 
 /**
@@ -209,18 +219,30 @@ async function exportHitboxes(
     return false;
   };
   try {
-    const emOvlPath = path.join(source.overlayDir, `em${String(emId).padStart(2, "0")}.ovl`);
-    const emOvl = (await exists(emOvlPath)) ? parseOvl(await readFile(emOvlPath)) : undefined;
-    const records = readMonsterCollision(source.gameTask, source.chunksOffset, emId, emOvl);
-    if (!records) return await fail("CollisionPTR doesn't lead to a collision table");
     const pac = await readFile(pacPath);
     const entries = isPac(pac) ? readPac(pac) : [];
     const pmoEntry = entries.find((entry) => isPmo(entry.data));
     // The skeleton the model's mesh (the first PMO) is bound to.
     const bones = pmoEntry ? skeletonFor(entries, pmoEntry.index) : [];
     if (bones.length === 0) return await fail("no skeleton in the model package");
+    const collision = readMonsterCollision(
+      source.gameTask,
+      source.chunksOffset,
+      emId,
+      source.emOvls,
+      bones.length,
+    );
+    if ("error" in collision) return await fail(collision.error);
+    if (collision.borrowedFrom !== undefined)
+      console.log(
+        `${siteName} hitboxes: table from em${String(collision.borrowedFrom).padStart(2, "0")}.ovl`,
+      );
     const slots = MONSTER_OVERLAY.find((m) => m.id === emId)?.hitzones;
-    const { hitboxes, skipped } = buildSiteHitboxes(records, jointPositions(bones), slots);
+    const { hitboxes, skipped } = buildSiteHitboxes(
+      collision.records,
+      jointPositions(bones),
+      slots,
+    );
     for (const reason of skipped) console.log(`${siteName} hitboxes: skipped ${reason}`);
     if (hitboxes.capsules.length === 0) return await fail("no usable collision records");
     await writeFile(file, `${JSON.stringify(hitboxes)}\n`);

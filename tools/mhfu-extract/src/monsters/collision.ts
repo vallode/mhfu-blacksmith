@@ -13,9 +13,9 @@
  *   0x0C f32 radius, then f32[3] start and f32[3] end, relative to the joint
  *
  * Each record is a capsule: a sphere of the radius swept from start to end.
- * Rathian's two records on joint 1 (row 0, flags 5 and 0x300) sit around
- * the body's centre, not the head, and are probably for body collision
- * rather than damage; `hitboxes.ts` leaves them out by their flags.
+ * Every monster has one or two records on its root joint (flags 5 and
+ * 0x300) around the body's centre, probably for body collision rather than
+ * damage; `hitboxes.ts` leaves them out by their flags.
  */
 import type { OvlFile } from "../container/ovl.js";
 import type { BinaryReader } from "../binary/reader.js";
@@ -90,16 +90,104 @@ export function readCollisionRecords(
   return null;
 }
 
-/** Reads one monster's collision records through its chunk's `CollisionPTR`. */
+/** Joint number of placeholder records (no size) between real ones. */
+export const PLACEHOLDER_JOINT = 125;
+/** Generous bounds for a real record, in model units (Rathian is ~1600 long). */
+const MAX_RADIUS = 2000;
+const MAX_OFFSET = 10000;
+const MAX_ROW = 16;
+
+/**
+ * True if `records` look like a collision table for a skeleton of
+ * `jointCount` joints: every record is a placeholder or a capsule of sane
+ * size on one of its joints, and at least one is a capsule. A pointer read
+ * from the wrong overlay hits unrelated bytes, which practically never pass.
+ */
+export function fitsSkeleton(records: CollisionRecord[], jointCount: number): boolean {
+  let capsules = 0;
+  for (const record of records) {
+    if (record.joint === PLACEHOLDER_JOINT) continue;
+    const sane =
+      record.joint < jointCount &&
+      record.row < MAX_ROW &&
+      record.radius > 0 &&
+      record.radius < MAX_RADIUS &&
+      [...record.start, ...record.end].every((c) => Number.isFinite(c) && Math.abs(c) < MAX_OFFSET);
+    if (!sane) return false;
+    capsules++;
+  }
+  return capsules > 0;
+}
+
+export type MonsterCollision =
+  | {
+      records: CollisionRecord[];
+      /** emID whose overlay held the table, when it isn't the monster's own. */
+      borrowedFrom?: number;
+    }
+  | { error: string };
+
+const emName = (id: number) => `em${String(id).padStart(2, "0")}.ovl`;
+
+/**
+ * Reads one monster's collision records through its chunk's `CollisionPTR`,
+ * checked against its skeleton (`jointCount` joints).
+ *
+ * The pointer leads into `game_task.ovl`, the monster's own `emNN.ovl`, or,
+ * for monsters without one (variants such as Pink Rathian, and species such
+ * as Rathalos), into another monster's overlay that the game loads for
+ * them: per-monster overlays share load addresses, so the address alone
+ * doesn't say which. In that case `emOvls` (every `emNN.ovl` by emID) are
+ * tried: first those of monsters whose own chunk holds the same pointer,
+ * then the rest; the table must fit the skeleton and be the only distinct
+ * one that does.
+ */
 export function readMonsterCollision(
   gameTask: OvlFile,
   chunksOffset: number,
   emId: number,
-  emOvl: OvlFile | undefined,
-): CollisionRecord[] | null {
-  const pointer = gameTask.reader.u32(
-    chunksOffset + emId * MONSTER_CHUNK_SIZE + COLLISION_POINTER_OFFSET,
-  );
-  const target = resolveChunkPointer(pointer, gameTask, emOvl);
-  return target ? readCollisionRecords(target.ovl.reader, target.offset) : null;
+  emOvls: ReadonlyMap<number, OvlFile>,
+  jointCount: number,
+): MonsterCollision {
+  const pointerOf = (id: number) =>
+    gameTask.reader.u32(chunksOffset + id * MONSTER_CHUNK_SIZE + COLLISION_POINTER_OFFSET);
+  const pointer = pointerOf(emId);
+  const read = (ovl: OvlFile) => {
+    const records = readCollisionRecords(ovl.reader, ovl.vaddrToOffset(pointer));
+    return records && fitsSkeleton(records, jointCount) ? records : null;
+  };
+  if (!isUserAddress(pointer)) return { error: "no CollisionPTR" };
+  if (gameTask.isOwnVaddr(pointer)) {
+    const records = read(gameTask);
+    return records ? { records } : { error: "the table in game_task.ovl doesn't fit the skeleton" };
+  }
+  const own = emOvls.get(emId);
+  if (own?.isOwnVaddr(pointer)) {
+    const records = read(own);
+    return records
+      ? { records }
+      : { error: `the table in ${emName(emId)} doesn't fit the skeleton` };
+  }
+  const holders = [...emOvls].filter(([, ovl]) => ovl.isOwnVaddr(pointer));
+  if (holders.length === 0) return { error: "CollisionPTR is outside every overlay" };
+  // Monsters whose own chunk holds the same pointer read it from their own overlay.
+  const sharing = holders.filter(([id]) => id !== emId && pointerOf(id) === pointer);
+  for (const [id, ovl] of sharing) {
+    const records = read(ovl);
+    if (records) return { records, borrowedFrom: id };
+  }
+  const fits = holders
+    .map(([id, ovl]) => ({ id, records: read(ovl) }))
+    .filter((c): c is { id: number; records: CollisionRecord[] } => c.records !== null);
+  const distinct = new Map(fits.map((c) => [JSON.stringify(c.records), c]));
+  if (distinct.size === 1) {
+    const [only] = distinct.values();
+    return { records: only!.records, borrowedFrom: only!.id };
+  }
+  return {
+    error:
+      fits.length === 0
+        ? `no overlay holds a table at the pointer that fits the skeleton (tried ${holders.map(([id]) => emName(id)).join(", ")})`
+        : `tables in ${fits.map((c) => emName(c.id)).join(", ")} all fit the skeleton`,
+  };
 }

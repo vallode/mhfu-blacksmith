@@ -5,11 +5,12 @@ import path from "node:path";
 import { test } from "node:test";
 import { BinaryReader } from "../src/binary/reader.js";
 import { runExportSite } from "../src/cli/export-site.js";
-import { OVL_HEADER_SIZE } from "../src/container/ovl.js";
+import { OVL_HEADER_SIZE, parseOvl } from "../src/container/ovl.js";
 import {
   COLLISION_POINTER_OFFSET,
   COLLISION_RECORD_SIZE,
   readCollisionRecords,
+  readMonsterCollision,
   type CollisionRecord,
 } from "../src/monsters/collision.js";
 import { buildSiteHitboxes, jointPositions } from "../src/monsters/hitboxes.js";
@@ -150,7 +151,7 @@ test("buildSiteHitboxes places capsules in model space and names them by hitzone
         { ...WING, joint: 125 }, // not in the skeleton
         { ...WING, row: 0, radius: 0 }, // a placeholder with no size
         { ...WING, row: 6 }, // a row no part uses
-        { ...WING, joint: 1, row: 0, flags: 0x08000000 }, // the head's flag
+        { ...WING, joint: 1, row: 0, flags: 0x08000002 }, // a head's flags
         { ...WING, joint: 0, row: 0, flags: 5 }, // Rathian's body-centre sphere
         { ...WING, joint: 7 },
       ]),
@@ -179,7 +180,7 @@ test("buildSiteHitboxes places capsules in model space and names them by hitzone
   assert.deepEqual(skipped, [
     "record 1: joint 125 isn't in the skeleton",
     "record 2: no size (radius 0)",
-    "record 5: flags 0x5 aren't a damage capsule's (joint 0, row 0)",
+    "record 5: flags 0x5 mark body collision (joint 0, row 0)",
     "record 6: joint 7 has a rotated or scaled bone in its chain",
   ]);
 });
@@ -201,17 +202,69 @@ function gameTask(collisionPointers: Record<number, number>): Buffer {
   return buf;
 }
 
+/** Where per-monster overlays load (Rathian's em01.ovl on the EU disc); they all share it. */
 const EM_BASE = 0x09d1a180;
 
-function emOvl(table: Buffer): Buffer {
-  const buf = Buffer.alloc(OVL_HEADER_SIZE + table.length);
+/** An `emNN.ovl` with `tables` at image offsets (from just past the header). */
+function emOvl(tables: Record<number, Buffer>, size = 0x400): Buffer {
+  const buf = Buffer.alloc(OVL_HEADER_SIZE + size);
   buf.write("MWo3", 0, "latin1");
   buf.writeUInt32LE(EM_BASE, 0x08);
   buf.writeUInt32LE(EM_BASE + buf.length, 0x1c);
-  buf.write("em01.ovl", 0x20, "latin1");
-  table.copy(buf, OVL_HEADER_SIZE);
+  for (const [at, table] of Object.entries(tables)) table.copy(buf, OVL_HEADER_SIZE + Number(at));
   return buf;
 }
+
+const emPointer = (at: number) => EM_BASE + OVL_HEADER_SIZE + at;
+
+test("readMonsterCollision finds a table in another monster's overlay only when exactly one fits", () => {
+  const chunks = GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase;
+  const task = parseOvl(
+    gameTask({
+      1: emPointer(0), // Rathian: her own em01.ovl
+      37: emPointer(0), // Pink Rathian: the same pointer, no overlay of her own
+      11: emPointer(0x100), // Rathalos: only em01.ovl holds a table there that fits
+      6: emPointer(0x200), // two overlays hold different tables that fit
+      3: 0, // no pointer
+    }),
+  );
+  const other = { ...WING, start: [0, 0, 0] as Vec3 };
+  const emOvls = new Map([
+    [
+      1,
+      parseOvl(
+        emOvl({
+          0: collisionTable([WING]),
+          0x100: collisionTable([other]),
+          0x200: collisionTable([WING]),
+        }),
+      ),
+    ],
+    // joint 40 doesn't exist in a 3-joint skeleton
+    [
+      14,
+      parseOvl(
+        emOvl({ 0x100: collisionTable([{ ...WING, joint: 40 }]), 0x200: collisionTable([other]) }),
+      ),
+    ],
+  ]);
+  const read = (id: number) => readMonsterCollision(task, chunks, id, emOvls, 3);
+
+  assert.deepEqual(read(1), {
+    records: readCollisionRecords(new BinaryReader(collisionTable([WING])), 0),
+  });
+  const pink = read(37);
+  assert.ok("records" in pink && pink.borrowedFrom === 1);
+  const rathalos = read(11);
+  assert.ok("records" in rathalos && rathalos.borrowedFrom === 1);
+  assert.deepEqual(rathalos.records[0]!.start, [0, 0, 0]);
+  assert.deepEqual(read(6), { error: "tables in em01.ovl, em14.ovl all fit the skeleton" });
+  assert.deepEqual(read(3), { error: "no CollisionPTR" });
+  // A table in the monster's own overlay that doesn't fit its skeleton is refused.
+  assert.deepEqual(readMonsterCollision(task, chunks, 1, emOvls, 2), {
+    error: "the table in em01.ovl doesn't fit the skeleton",
+  });
+});
 
 test("export-site writes hitboxes next to a monster's model and removes stale ones", async () => {
   const root = await mkdtemp(path.join(tmpdir(), "hitboxes-"));
@@ -241,7 +294,7 @@ test("export-site writes hitboxes next to a monster's model and removes stale on
     );
     await writeFile(
       path.join(unpacked, "data-bin", "overlay", "em01.ovl"),
-      emOvl(collisionTable([WING])),
+      emOvl({ 0: collisionTable([WING]) }),
     );
     const stale = path.join(out, "monsters", "em03.hitboxes.json");
     await writeFile(stale, "{}");

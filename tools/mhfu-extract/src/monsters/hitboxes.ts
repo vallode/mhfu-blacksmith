@@ -33,14 +33,14 @@ export type HitzoneSlots = Record<string, [number, number]>;
 const round = (v: number) => Math.round(v * 10) / 10;
 
 /**
- * Flag bits seen on damage capsules: 0x1 and 0x100 (Rathian's legs, belly
- * and thighs) and 0x08000000 (its head). Records with any other bit are
- * skipped: on Rathian those are the two root-joint spheres (flags 5 and
- * 0x300) around the body's centre, on row 0 but nowhere near the head, so
- * probably body collision. Each skip is logged, so a damage capsule with a
- * new flag shows up in the export log rather than going missing silently.
+ * Flag bits of the root-joint spheres that are probably body collision, not
+ * damage: every monster exported so far has one or two (flags 5 and 0x300,
+ * on joint 1 or 2) around the body's centre, on a row that doesn't fit the
+ * place (Rathian's on row 0, her head's). No damage capsule seen has bit
+ * 0x4 or 0x200; the other bits (0x1, 0x2, 0x100, 0x20000, 0x40000, ...)
+ * appear on whole bodies and are kept. Each skip is logged.
  */
-export const DAMAGE_FLAG_BITS = 0x08000101;
+export const BODY_COLLISION_FLAG_BITS = 0x204;
 
 export interface JointPositions {
   /** Model-space position of each joint whose chain is rigid. */
@@ -103,9 +103,9 @@ export function buildSiteHitboxes(
       skipped.push(`record ${i}: no size (radius ${record.radius})`);
       return;
     }
-    if ((record.flags & ~DAMAGE_FLAG_BITS) >>> 0 !== 0) {
+    if (record.flags & BODY_COLLISION_FLAG_BITS) {
       skipped.push(
-        `record ${i}: flags 0x${record.flags.toString(16)} aren't a damage capsule's (joint ${record.joint}, row ${record.row})`,
+        `record ${i}: flags 0x${record.flags.toString(16)} mark body collision (joint ${record.joint}, row ${record.row})`,
       );
       return;
     }
