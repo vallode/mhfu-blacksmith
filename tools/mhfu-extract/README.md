@@ -216,7 +216,9 @@ FUComplete (a patched JP disc, still `ULJM05500`) stores `DATA.BIN` without
 the cipher. `unpack` reads the table of contents both ways and uses the one
 that is valid, so it takes either disc; `manifest.json` records which in
 `dataBinEncrypted`, and the disc's `TITLE`. FUComplete's `EBOOT.BIN` is
-already decrypted and keeps every equipment table at its JP address.
+already decrypted and keeps every equipment table at its JP address, and its
+overlays keep the monster tables at theirs. A v1.4.0 disc extracts in full
+(6,602 entries, all 551 quests).
 
 `unpack` names each entry from `vendor/fuctool/filelist.csv`, which indexes
 the **JP** disc's 6,602 entries. The EU disc has 6,657: 57 EU-only entries
