@@ -446,7 +446,7 @@ if (!fs.existsSync(itemsFile)) {
   // the same item is one entity across recipes and the save loader. Fix a miss
   // by correcting the spelling in the recipe data or adding an alias.
   //
-  // Recipe materials and drops must also be spelled exactly like the game,
+  // Recipe materials, drops and quest items must also be spelled exactly like the game,
   // which is the item's `name` (aliases are older site spellings, kept so they
   // still link). A drop's " xN" amount suffix isn't part of the name.
   const gameName = new Map(data.items.map((it) => [it.id, it.name]));
@@ -504,6 +504,27 @@ if (!fs.existsSync(itemsFile)) {
   }
   walk(path.join(dataDir, "decorations.json"));
 
+  // Quest supply boxes and reward tables.
+  const questDir = path.join(dataDir, "quests");
+  for (const f of fs
+    .readdirSync(questDir)
+    .filter((e) => e.endsWith(".json"))
+    .sort()) {
+    const { quests } = JSON.parse(fs.readFileSync(path.join(questDir, f), "utf-8")) as {
+      quests: {
+        id: number;
+        supplies?: { item?: unknown }[];
+        reward_tables?: { items?: { item?: unknown }[] }[];
+      }[];
+    };
+    for (const q of quests) {
+      const where = `quests/${f} #${q.id}`;
+      for (const s of q.supplies ?? []) note(s?.item, `${where} (supplies)`, true);
+      for (const t of q.reward_tables ?? [])
+        for (const r of t.items ?? []) note(r?.item, `${where} (rewards)`, true);
+    }
+  }
+
   for (const [name, where] of unresolved) {
     error(
       `items: material "${name}" matches no item name or alias (used in ${[...where].slice(0, 2).join("; ")})`,
@@ -511,7 +532,7 @@ if (!fs.existsSync(itemsFile)) {
   }
   for (const [name, { game, where }] of misspelled) {
     error(
-      `items: material "${name}" isn't the game's spelling "${game}" (used in ${[...where].slice(0, 2).join("; ")})`,
+      `items: "${name}" isn't the game's spelling "${game}" (used in ${[...where].slice(0, 2).join("; ")})`,
     );
   }
 

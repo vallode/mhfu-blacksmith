@@ -8,7 +8,7 @@ import { compareCategory, loadInputs } from "../src/build/compare.js";
 import { canonical, percentValue, toSite, type FieldContext } from "../src/build/fields.js";
 import { assignDiscIds, discMaterialId, loadSiteIndex } from "../src/build/ids.js";
 import { mergeCategory, serializeDataFile } from "../src/build/merge.js";
-import { runBuildData } from "../src/cli/build-data.js";
+import { nameQuestItems, runBuildData } from "../src/cli/build-data.js";
 
 // Real enum IDs from the vendored mhp2g-patterns tables.
 const LEATHER_HELM = 1;
@@ -434,6 +434,35 @@ test("runBuildData writes game names in material fields it doesn't take", async 
   } finally {
     await rm(root, { recursive: true, force: true });
   }
+});
+
+test("nameQuestItems writes quest supplies and rewards under their game names", () => {
+  const site = {
+    items: new Map([
+      [IRON_ORE, { id: IRON_ORE, name: "Iron Ore" }],
+      // ItemID[932] is "FamitsuCustomTkt" in the enum.
+      [932, { id: 932, name: "SpecFamitsuTckt" }],
+    ]),
+  } as unknown as Parameters<typeof nameQuestItems>[1];
+  const quest = {
+    id: 1,
+    supplies: [{ item: "Iron Ore", amount: 1 }],
+    reward_tables: [
+      {
+        kind: "main",
+        items: [
+          { chance: 50, item: "FamitsuCustomTkt", amount: 1 },
+          { chance: 50, item: "Not An Item", amount: 1 },
+        ],
+      },
+    ],
+  };
+  const out = nameQuestItems({ quests: [quest] }, site) as { quests: (typeof quest)[] };
+  assert.deepEqual(out.quests[0]!.supplies, quest.supplies);
+  assert.deepEqual(out.quests[0]!.reward_tables[0]!.items, [
+    { chance: 50, item: "SpecFamitsuTckt", amount: 1 },
+    { chance: 50, item: "Not An Item", amount: 1 },
+  ]);
 });
 
 test("mergeCategory writes a skill the committed list repeats once", async () => {

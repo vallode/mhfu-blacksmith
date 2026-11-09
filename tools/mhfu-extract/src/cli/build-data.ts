@@ -2,7 +2,7 @@
  * `build-data` subcommand: rewrites committed `data/` files from `extract`
  * output. Equipment categories are merged field by field
  * (`build/merge.ts`); quests have no committed counterpart and are copied
- * through. Prints, and optionally writes, a report of every value the disc
+ * through, with each supply and reward item under its game name. Prints, and optionally writes, a report of every value the disc
  * changed, every reviewed disagreement kept as committed, and every item
  * only one side has.
  */
@@ -10,6 +10,7 @@ import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { CATEGORIES, CATEGORY_NAMES, type CategoryName } from "../build/categories.js";
 import { loadInputs, type Unpaired } from "../build/compare.js";
+import { discMaterialId, loadSiteIndex, type SiteIndex } from "../build/ids.js";
 import {
   loadKeepSiteValues,
   mergeCategory,
@@ -81,14 +82,49 @@ async function readJsonOrNull(file: string): Promise<Record<string, unknown> | n
   }
 }
 
+interface QuestItem {
+  item: string;
+}
+
+/**
+ * Writes each quest supply and reward item under its game name
+ * (`data/items.json`). `extract` names them from the `ItemID` enum, which
+ * only differs from `items.json` on a few Japanese promo tickets.
+ */
+export function nameQuestItems(content: unknown, site: SiteIndex): unknown {
+  const rename = (entry: QuestItem) => {
+    const id = discMaterialId(entry.item);
+    const name = id === null ? undefined : site.items.get(id)?.name;
+    return name && name !== entry.item ? { ...entry, item: name } : entry;
+  };
+  const doc = content as { quests?: Record<string, unknown>[] };
+  if (!Array.isArray(doc?.quests)) return content;
+  return {
+    ...doc,
+    quests: doc.quests.map((quest) => {
+      const out = { ...quest };
+      if (Array.isArray(quest.supplies)) out.supplies = (quest.supplies as QuestItem[]).map(rename);
+      if (Array.isArray(quest.reward_tables))
+        out.reward_tables = (quest.reward_tables as { items?: QuestItem[] }[]).map((table) =>
+          Array.isArray(table.items) ? { ...table, items: table.items.map(rename) } : table,
+        );
+      return out;
+    }),
+  };
+}
+
 async function copyQuests(options: BuildDataOptions): Promise<string[]> {
   const from = path.join(options.extracted, "quests");
   const files = (await readdir(from)).filter((f) => f.endsWith(".json")).sort();
   if (files.length === 0)
     throw new Error(`${from} has no quest files; rerun extract with DATA.BIN unpacked`);
+  const site = loadSiteIndex(options.data);
   const written: string[] = [];
   for (const file of files) {
-    const content = JSON.parse(await readFile(path.join(from, file), "utf-8"));
+    const content = nameQuestItems(
+      JSON.parse(await readFile(path.join(from, file), "utf-8")),
+      site,
+    );
     const rel = path.join("quests", file);
     if (!options.dryRun) {
       await mkdir(path.join(options.data, "quests"), { recursive: true });

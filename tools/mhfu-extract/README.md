@@ -829,18 +829,20 @@ order, key order and file layout don't change, and a second run is a no-op. Disc
 Piercings, Pink Metal Boots, Rookie Knife, Swordfish Bow G) aren't added.
 `overlay/keep-site-values.json` lists reviewed disagreements where the site
 is right, currently the 10 Ruststone weapons, which have no `EquipCreate`
-recipe on the disc. Quests are copied through.
+recipe on the disc. Quests are copied through (see "Material names").
 
-**Material names.** Materials and drops are always written with the
-game's own item name (`data/items.json` `name`, the same string as the
+**Material names.** Materials, drops and quest supply and reward items are
+always written with the game's own item name (`data/items.json` `name`, the same string as the
 `ItemID` enum), never the spelling the committed files used: "Fire Stone"
 is written "Firestone", "Elder Drgn Bone" "Eldr Dragon Bone". The game
 caps item names at 16 characters, so many are abbreviated, and the site
 pads them to that width when it renders them. `build-data` renames every
 material in the files it writes, including fields it doesn't take (weapon
-`alternative_create_mats`) and items with no disc match, and `pnpm
-validate` fails on a recipe material or drop that isn't spelled like its
-item. Old site spellings stay in `data/items.json` as `aliases`, so they
+`alternative_create_mats`) and items with no disc match. Quests are
+copied through with each item under its game name (the `ItemID` enum
+differs from `items.json` only on a few Japanese promo tickets). `pnpm
+validate` fails on a recipe material, drop or quest item that isn't spelled
+like its item. Old site spellings stay in `data/items.json` as `aliases`, so they
 still resolve to an item. This replaced an earlier table that respelled
 the disc's names to match the committed files, which spelled about 240
 items differently in armor and weapon recipes.
