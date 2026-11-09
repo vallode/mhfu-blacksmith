@@ -265,11 +265,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     // (less the body's padding) and that pane scrolls inside it, under a page
     // bar that stays put.
     <div className="flex min-h-0 flex-1 gap-[1.3rem] mobile:flex-col mobile:has-data-fill-screen:max-h-[calc(100dvh-3.9rem)]">
-      <aside className="flex flex-none mobile:hidden">
+      {/* Pulled left past the body's 1.4rem padding, so the frame's left edge
+          dips 1.2rem under the edge of the screen; the card's left padding
+          gives that back to its rows. */}
+      <aside className="-ml-[2.6rem] flex flex-none mobile:hidden">
         <Card
+          frame="green"
           className={cn(
-            "w-[26rem] flex-none overflow-x-hidden overflow-y-auto px-0 py-[2.2rem] text-sub transition-[width] duration-150",
-            collapsed && "w-[8.6rem]",
+            "w-[27.2rem] flex-none overflow-x-hidden overflow-y-auto py-[2.2rem] pr-0 pl-[1.2rem] text-sub transition-[width] duration-150",
+            collapsed && "w-[9.8rem]",
           )}
         >
           <SidebarContents
@@ -303,7 +307,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         aria-label="Menu"
       >
         <div className="absolute inset-0 bg-black/60" onClick={closeMenu} />
-        <Card className="relative h-[calc(100%-var(--spacing-tabbar))] w-[28rem] max-w-[85vw] flex-none animate-drawer-in overflow-y-auto bg-black/70 px-0 py-[2.2rem] text-sub">
+        {/* Dips under the screen's left edge, like the desktop sidebar. */}
+        <Card
+          frame="green"
+          className="relative -ml-[1.2rem] h-[calc(100%-var(--spacing-tabbar))] w-[29.2rem] max-w-[85vw] flex-none animate-drawer-in overflow-y-auto bg-black/70 py-[2.2rem] pr-0 pl-[1.2rem] text-sub"
+        >
           <SidebarContents pathname={pathname} hrefFor={hrefFor} onSearch={closeMenu} />
         </Card>
       </div>
