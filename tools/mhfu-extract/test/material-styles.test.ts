@@ -1,6 +1,10 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { buildStyleIndex, loadStyleOverrides, restyleItem } from "../src/build/material-styles.js";
+import {
+  buildStyleIndex,
+  loadStyleOverrides,
+  normalizeMaterials,
+} from "../src/build/material-styles.js";
 import type { SiteIndex } from "../src/build/ids.js";
 
 const IDS: Record<string, number> = {
@@ -10,8 +14,16 @@ const IDS: Record<string, number> = {
   "elder bone": 287,
   ticket: 381,
 };
+// Game names (data/items.json) by ID.
+const NAMES = new Map([
+  [543, "FireWyvern Claw"],
+  [294, "Brute Bone"],
+  [287, "Elder Bone"],
+  [381, "Ticket"],
+]);
 const site = {
   itemIdOf: (name: string) => IDS[name.toLowerCase()] ?? null,
+  items: new Map([...NAMES].map(([id, name]) => [id, { id, name }])),
 } as unknown as SiteIndex;
 const mat = (name: string, type: string, color: string) => ({ name, amount: 1, type, color });
 
@@ -58,20 +70,26 @@ test("overrides win over committed styles", () => {
   assert.deepEqual(styleOf(381), { type: "ticket", color: "orange" });
 });
 
-test("restyleItem rewrites styles in place, keeping names, amounts and key order", () => {
+test("normalizeMaterials writes game names and styles in place, keeping amounts and key order", () => {
   const styleOf = buildStyleIndex(byContext, site, new Map());
   const changes: string[] = [];
   const item = {
     name: "Helm",
     create_mats: [mat("FireWyvern Claw", "bone", "white"), mat("Brute Bone", "bone", "white")],
+    improve_mats: [mat("Fire Wyvern Claw", "claw", "red"), mat("Not An Item", "ore", "gray")],
     skills: null,
   };
-  const out = restyleItem(item, site, styleOf, (m, after) =>
-    changes.push(`${m.name} -> ${after.type}/${after.color}`),
+  const out = normalizeMaterials(item, site, styleOf, (m, after) =>
+    changes.push(`${m.name} -> ${after.name} ${after.type}/${after.color}`),
   );
   assert.deepEqual(out.create_mats, [
     mat("FireWyvern Claw", "claw", "red"),
     mat("Brute Bone", "bone", "white"),
+  ]);
+  // A site spelling becomes the game name; an unknown material is left alone.
+  assert.deepEqual(out.improve_mats, [
+    mat("FireWyvern Claw", "claw", "red"),
+    mat("Not An Item", "ore", "gray"),
   ]);
   assert.deepEqual(Object.keys((out.create_mats as object[])[0]!), [
     "name",
@@ -79,10 +97,13 @@ test("restyleItem rewrites styles in place, keeping names, amounts and key order
     "type",
     "color",
   ]);
-  assert.deepEqual(changes, ["FireWyvern Claw -> claw/red"]);
+  assert.deepEqual(changes, [
+    "FireWyvern Claw -> FireWyvern Claw claw/red",
+    "Fire Wyvern Claw -> FireWyvern Claw claw/red",
+  ]);
   // Nothing to change returns the same object.
   assert.equal(
-    restyleItem(out, site, styleOf, () => {}),
+    normalizeMaterials(out, site, styleOf, () => {}),
     out,
   );
 });

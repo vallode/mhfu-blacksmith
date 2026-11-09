@@ -4260,7 +4260,7 @@
       ],
       "create_mats": [
         {
-          "name": "TwstBlkBlosHorn",
+          "name": "TwstBlkBlosHrn",
           "amount": 1,
           "type": "claw",
           "color": "gray"
@@ -4324,7 +4324,7 @@
       ],
       "create_mats": [
         {
-          "name": "TwstBlkBlosHorn",
+          "name": "TwstBlkBlosHrn",
           "amount": 1,
           "type": "claw",
           "color": "gray"
@@ -4740,7 +4740,7 @@
       ],
       "create_mats": [
         {
-          "name": "Hunter Soul Tckt",
+          "name": "Hunter Soul Tkt",
           "amount": 5,
           "type": "ticket",
           "color": "white"
@@ -5116,7 +5116,7 @@
           "color": "white"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -5180,7 +5180,7 @@
           "color": "white"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -5244,7 +5244,7 @@
           "color": "gray"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -5308,7 +5308,7 @@
           "color": "gray"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -5372,7 +5372,7 @@
           "color": "white"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -5436,7 +5436,7 @@
           "color": "white"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -5500,7 +5500,7 @@
           "color": "gray"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -5564,7 +5564,7 @@
           "color": "gray"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -6002,19 +6002,19 @@
       ],
       "create_mats": [
         {
-          "name": "Hypnoc Ticket",
+          "name": "Hypno Ticket",
           "amount": 1,
           "type": "ticket",
           "color": "orange"
         },
         {
-          "name": "Hypnoc Feather+",
+          "name": "OrangeHypnoPelt+",
           "amount": 3,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Hypnoc StrngClaw",
+          "name": "Hypno Claw+",
           "amount": 2,
           "type": "claw",
           "color": "orange"
@@ -6062,19 +6062,19 @@
       ],
       "create_mats": [
         {
-          "name": "Hypnoc Ticket",
+          "name": "Hypno Ticket",
           "amount": 1,
           "type": "ticket",
           "color": "orange"
         },
         {
-          "name": "Hypnoc Feather+",
+          "name": "OrangeHypnoPelt+",
           "amount": 3,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "HypncFangedBeak",
+          "name": "Hypno Fang",
           "amount": 1,
           "type": "bone",
           "color": "orange"
@@ -6490,7 +6490,7 @@
           "color": "yellow"
         },
         {
-          "name": "Elder Drgn Bone",
+          "name": "Eldr Dragon Bone",
           "amount": 3,
           "type": "bone",
           "color": "slate"
@@ -6550,7 +6550,7 @@
           "color": "yellow"
         },
         {
-          "name": "Elder Drgn Bone",
+          "name": "Eldr Dragon Bone",
           "amount": 3,
           "type": "bone",
           "color": "slate"
@@ -6596,25 +6596,25 @@
       ],
       "create_mats": [
         {
-          "name": "Lava Ticket",
+          "name": "Lavasioth Ticket",
           "amount": 1,
           "type": "ticket",
           "color": "red"
         },
         {
-          "name": "Volganos Thk Scl",
+          "name": "ThckLavasiothScl",
           "amount": 3,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Volganos HvyFang",
+          "name": "HvyLavasiothFang",
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 1,
           "type": "ore",
           "color": "red"
@@ -6660,25 +6660,25 @@
       ],
       "create_mats": [
         {
-          "name": "Lava Ticket",
+          "name": "Lavasioth Ticket",
           "amount": 1,
           "type": "ticket",
           "color": "red"
         },
         {
-          "name": "Volganos Thk Scl",
+          "name": "ThckLavasiothScl",
           "amount": 3,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Volganos HvyFang",
+          "name": "HvyLavasiothFang",
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 1,
           "type": "ore",
           "color": "red"
@@ -7226,7 +7226,7 @@
           "color": "red"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 2,
           "type": "ore",
           "color": "red"
@@ -7290,7 +7290,7 @@
           "color": "red"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 2,
           "type": "ore",
           "color": "red"
@@ -7354,7 +7354,7 @@
           "color": "red"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 2,
           "type": "ore",
           "color": "red"
@@ -7418,7 +7418,7 @@
           "color": "red"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 2,
           "type": "ore",
           "color": "red"
@@ -7482,7 +7482,7 @@
           "color": "blue"
         },
         {
-          "name": "Fire Drgn Wbng",
+          "name": "Fire Drgn Webbng",
           "amount": 2,
           "type": "webbing",
           "color": "red"
@@ -7494,7 +7494,7 @@
           "color": "red"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 2,
           "type": "ore",
           "color": "red"
@@ -7546,7 +7546,7 @@
           "color": "blue"
         },
         {
-          "name": "Fire Drgn Wbng",
+          "name": "Fire Drgn Webbng",
           "amount": 2,
           "type": "webbing",
           "color": "red"
@@ -7558,7 +7558,7 @@
           "color": "red"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 2,
           "type": "ore",
           "color": "red"
@@ -7730,13 +7730,13 @@
           "color": "red"
         },
         {
-          "name": "Fire Drgn Wbng",
+          "name": "Fire Drgn Webbng",
           "amount": 2,
           "type": "webbing",
           "color": "red"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 3,
           "type": "ore",
           "color": "red"
@@ -7790,13 +7790,13 @@
           "color": "red"
         },
         {
-          "name": "Fire Drgn Wbng",
+          "name": "Fire Drgn Webbng",
           "amount": 2,
           "type": "webbing",
           "color": "red"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 3,
           "type": "ore",
           "color": "red"
@@ -7848,7 +7848,7 @@
       ],
       "create_mats": [
         {
-          "name": "King Lobster Shl",
+          "name": "Amezari Shell",
           "amount": 1,
           "type": "shell",
           "color": "red"
@@ -7906,7 +7906,7 @@
       ],
       "create_mats": [
         {
-          "name": "King Lobster Shl",
+          "name": "Amezari Shell",
           "amount": 1,
           "type": "shell",
           "color": "red"
@@ -8104,7 +8104,7 @@
           "color": "pink"
         },
         {
-          "name": "FireWyvern Claw",
+          "name": "Fire Wyvern Claw",
           "amount": 3,
           "type": "claw",
           "color": "red"
@@ -8168,7 +8168,7 @@
           "color": "pink"
         },
         {
-          "name": "FireWyvern Claw",
+          "name": "Fire Wyvern Claw",
           "amount": 3,
           "type": "claw",
           "color": "red"
@@ -8220,13 +8220,13 @@
       ],
       "create_mats": [
         {
-          "name": "Azre Rathlos Shl",
+          "name": "Azure Rthlos Shl",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Azr Rathlos Scl",
+          "name": "Azure Rthlos Scl",
           "amount": 2,
           "type": "scale",
           "color": "blue"
@@ -8284,13 +8284,13 @@
       ],
       "create_mats": [
         {
-          "name": "Azre Rathlos Shl",
+          "name": "Azure Rthlos Shl",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Azr Rathlos Scl",
+          "name": "Azure Rthlos Scl",
           "amount": 2,
           "type": "scale",
           "color": "blue"
@@ -8344,7 +8344,7 @@
       ],
       "create_mats": [
         {
-          "name": "High Quality Pelt",
+          "name": "High Qualty Pelt",
           "amount": 3,
           "type": "pelt",
           "color": "white"
@@ -8902,7 +8902,7 @@
       ],
       "create_mats": [
         {
-          "name": "Velociprey Scl+",
+          "name": "Velociprey Scle+",
           "amount": 4,
           "type": "scale",
           "color": "blue"
@@ -8920,7 +8920,7 @@
           "color": "green"
         },
         {
-          "name": "High Quality Pelt",
+          "name": "High Qualty Pelt",
           "amount": 2,
           "type": "pelt",
           "color": "white"
@@ -8962,7 +8962,7 @@
       ],
       "create_mats": [
         {
-          "name": "Velociprey Scl+",
+          "name": "Velociprey Scle+",
           "amount": 4,
           "type": "scale",
           "color": "blue"
@@ -8980,7 +8980,7 @@
           "color": "green"
         },
         {
-          "name": "High Quality Pelt",
+          "name": "High Qualty Pelt",
           "amount": 2,
           "type": "pelt",
           "color": "white"
@@ -9258,7 +9258,7 @@
       ],
       "create_mats": [
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -9324,7 +9324,7 @@
           "color": "gray"
         },
         {
-          "name": "Hornetaur Carpce",
+          "name": "Hornetaur Crapce",
           "amount": 3,
           "type": "insect",
           "color": "gray"
@@ -9384,7 +9384,7 @@
           "color": "gray"
         },
         {
-          "name": "Hornetaur Carpce",
+          "name": "Hornetaur Crapce",
           "amount": 3,
           "type": "insect",
           "color": "gray"
@@ -10406,25 +10406,25 @@
       ],
       "create_mats": [
         {
-          "name": "Hypnoc Feather",
+          "name": "OrangeHypnoPelt",
           "amount": 3,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Hypnoc Claw+",
+          "name": "Top-GrdHypnoClaw",
           "amount": 2,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Rainbow Down",
+          "name": "RainbowTailFeath",
           "amount": 5,
           "type": "scale",
           "color": "orange"
         },
         {
-          "name": "HypncGizzardStne",
+          "name": "Hypno Bezoar",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -10466,25 +10466,25 @@
       ],
       "create_mats": [
         {
-          "name": "Hypnoc Feather",
+          "name": "OrangeHypnoPelt",
           "amount": 3,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Hypnoc Claw+",
+          "name": "Top-GrdHypnoClaw",
           "amount": 2,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Rainbow Down",
+          "name": "RainbowTailFeath",
           "amount": 5,
           "type": "scale",
           "color": "orange"
         },
         {
-          "name": "HypncGizzardStne",
+          "name": "Hypno Bezoar",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -10536,7 +10536,7 @@
           "color": "gray"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 1,
           "type": "ore",
           "color": "red"
@@ -10600,7 +10600,7 @@
           "color": "gray"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 1,
           "type": "ore",
           "color": "red"
@@ -10782,19 +10782,19 @@
       ],
       "create_mats": [
         {
-          "name": "Monoblos Thrcic",
+          "name": "MonoblosThoracic",
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Majestic Red Hrn",
+          "name": "Top-GrdRedHorn",
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Monoblos Carpce",
+          "name": "MonoblosCarapace",
           "amount": 3,
           "type": "part",
           "color": "red"
@@ -10842,19 +10842,19 @@
       ],
       "create_mats": [
         {
-          "name": "Monoblos Thrcic",
+          "name": "MonoblosThoracic",
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Majestic Red Hrn",
+          "name": "Top-GrdRedHorn",
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Monoblos Carpce",
+          "name": "MonoblosCarapace",
           "amount": 3,
           "type": "part",
           "color": "red"
@@ -11292,7 +11292,7 @@
           "color": "green"
         },
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -11352,7 +11352,7 @@
           "color": "green"
         },
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -11394,19 +11394,19 @@
       ],
       "create_mats": [
         {
-          "name": "Naruga Pelt",
+          "name": "Black Narga Pelt",
           "amount": 3,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Naruga Scale+",
+          "name": "Narga Scale+",
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Naruga Fang+",
+          "name": "Nargacuga Fang+",
           "amount": 4,
           "type": "claw",
           "color": "gray"
@@ -11454,19 +11454,19 @@
       ],
       "create_mats": [
         {
-          "name": "Naruga Pelt",
+          "name": "Black Narga Pelt",
           "amount": 3,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Naruga Scale+",
+          "name": "Narga Scale+",
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Naruga Fang+",
+          "name": "Nargacuga Fang+",
           "amount": 4,
           "type": "claw",
           "color": "gray"
@@ -11660,7 +11660,7 @@
           "color": "red"
         },
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -11720,7 +11720,7 @@
           "color": "red"
         },
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -11900,7 +11900,7 @@
           "color": "orange"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 2,
           "type": "ore",
           "color": "red"
@@ -11960,7 +11960,7 @@
           "color": "orange"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 2,
           "type": "ore",
           "color": "red"
@@ -12014,7 +12014,7 @@
           "color": "gray"
         },
         {
-          "name": "High Quality Pelt",
+          "name": "High Qualty Pelt",
           "amount": 2,
           "type": "pelt",
           "color": "white"
@@ -12842,7 +12842,7 @@
       ],
       "create_mats": [
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -12908,7 +12908,7 @@
           "color": "gray"
         },
         {
-          "name": "Hornetaur Carpce",
+          "name": "Hornetaur Crapce",
           "amount": 3,
           "type": "insect",
           "color": "gray"
@@ -12920,7 +12920,7 @@
           "color": "pink"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 1,
           "type": "ore",
           "color": "red"
@@ -12968,7 +12968,7 @@
           "color": "gray"
         },
         {
-          "name": "Hornetaur Carpce",
+          "name": "Hornetaur Crapce",
           "amount": 3,
           "type": "insect",
           "color": "gray"
@@ -12980,7 +12980,7 @@
           "color": "pink"
         },
         {
-          "name": "Fire Stone",
+          "name": "Firestone",
           "amount": 1,
           "type": "ore",
           "color": "red"
@@ -13622,7 +13622,7 @@
       ],
       "create_mats": [
         {
-          "name": "Pur GypcerosWng",
+          "name": "Pur Gypceros Wng",
           "amount": 4,
           "type": "part",
           "color": "slate"
@@ -13682,7 +13682,7 @@
       ],
       "create_mats": [
         {
-          "name": "Pur GypcerosWng",
+          "name": "Pur Gypceros Wng",
           "amount": 4,
           "type": "part",
           "color": "slate"
@@ -14698,7 +14698,7 @@
       ],
       "create_mats": [
         {
-          "name": "Famitsu Invoice",
+          "name": "Famitsu PO",
           "amount": 5,
           "type": "ticket",
           "color": "red"
@@ -15122,7 +15122,7 @@
       ],
       "create_mats": [
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -15182,7 +15182,7 @@
       ],
       "create_mats": [
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -15370,7 +15370,7 @@
       ],
       "create_mats": [
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -15430,7 +15430,7 @@
       ],
       "create_mats": [
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -15494,7 +15494,7 @@
       ],
       "create_mats": [
         {
-          "name": "One-HornedTicket",
+          "name": "DemonKingTicket",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -15558,7 +15558,7 @@
       ],
       "create_mats": [
         {
-          "name": "One-HornedTicket",
+          "name": "DemonKingTicket",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -15622,7 +15622,7 @@
       ],
       "create_mats": [
         {
-          "name": "Pirate J Ticket",
+          "name": "Pirate Ticket J",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -15686,7 +15686,7 @@
       ],
       "create_mats": [
         {
-          "name": "Pirate J Ticket",
+          "name": "Pirate Ticket J",
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -16126,7 +16126,7 @@
           "color": "yellow"
         },
         {
-          "name": "Elder Drgn Bone",
+          "name": "Eldr Dragon Bone",
           "amount": 3,
           "type": "bone",
           "color": "slate"
@@ -16186,7 +16186,7 @@
           "color": "yellow"
         },
         {
-          "name": "Elder Drgn Bone",
+          "name": "Eldr Dragon Bone",
           "amount": 3,
           "type": "bone",
           "color": "slate"
@@ -16494,7 +16494,7 @@
           "color": "white"
         },
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -16554,7 +16554,7 @@
           "color": "white"
         },
         {
-          "name": "Nova Crystal",
+          "name": "Novacrystal",
           "amount": 1,
           "type": "ore",
           "color": "white"
@@ -17524,7 +17524,7 @@
           "color": "pink"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -17584,7 +17584,7 @@
           "color": "pink"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -17644,7 +17644,7 @@
           "color": "pink"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -17704,7 +17704,7 @@
           "color": "pink"
         },
         {
-          "name": "Chaoshroom",
+          "name": "Chaos Mushroom",
           "amount": 4,
           "type": "mushroom",
           "color": "slate"
@@ -18002,7 +18002,7 @@
       ],
       "create_mats": [
         {
-          "name": "WhtMnoblosThrcic",
+          "name": "WhtMonoblosThora",
           "amount": 3,
           "type": "part",
           "color": "white"
@@ -18014,7 +18014,7 @@
           "color": "white"
         },
         {
-          "name": "Majestic Wht Hrn",
+          "name": "Top-GrdPlatHorn",
           "amount": 2,
           "type": "claw",
           "color": "white"
@@ -18066,7 +18066,7 @@
       ],
       "create_mats": [
         {
-          "name": "WhtMnoblosThrcic",
+          "name": "WhtMonoblosThora",
           "amount": 3,
           "type": "part",
           "color": "white"
@@ -18078,7 +18078,7 @@
           "color": "white"
         },
         {
-          "name": "Majestic Wht Hrn",
+          "name": "Top-GrdPlatHorn",
           "amount": 2,
           "type": "claw",
           "color": "white"
@@ -18130,7 +18130,7 @@
       ],
       "create_mats": [
         {
-          "name": "PnkRathian Scl+",
+          "name": "Pnk Rathian Scl+",
           "amount": 3,
           "type": "scale",
           "color": "pink"
@@ -18194,7 +18194,7 @@
       ],
       "create_mats": [
         {
-          "name": "PnkRathian Scl+",
+          "name": "Pnk Rathian Scl+",
           "amount": 3,
           "type": "scale",
           "color": "pink"
@@ -18254,13 +18254,13 @@
       ],
       "create_mats": [
         {
-          "name": "Azre Rathlos Cpc",
+          "name": "Azure Rthlos Cpc",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Azr Rathlos Scl+",
+          "name": "Azre Rthlos Scl+",
           "amount": 3,
           "type": "scale",
           "color": "blue"
@@ -18314,13 +18314,13 @@
       ],
       "create_mats": [
         {
-          "name": "Azre Rathlos Cpc",
+          "name": "Azure Rthlos Cpc",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Azr Rathlos Scl+",
+          "name": "Azre Rthlos Scl+",
           "amount": 3,
           "type": "scale",
           "color": "blue"
@@ -18494,13 +18494,13 @@
       ],
       "create_mats": [
         {
-          "name": "Slvr Rathlos Cpc",
+          "name": "Slvr Rthlos Cpc",
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Slvr Ratlos Scl+",
+          "name": "Slvr Rthlos Scl+",
           "amount": 3,
           "type": "scale",
           "color": "white"
@@ -18554,13 +18554,13 @@
       ],
       "create_mats": [
         {
-          "name": "Slvr Rathlos Cpc",
+          "name": "Slvr Rthlos Cpc",
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Slvr Ratlos Scl+",
+          "name": "Slvr Rthlos Scl+",
           "amount": 3,
           "type": "scale",
           "color": "white"
@@ -18986,13 +18986,13 @@
       ],
       "create_mats": [
         {
-          "name": "White Ftalis Hrn",
+          "name": "Wht Fatalis Horn",
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Wht Fatalis Cpc",
+          "name": "Wht Fatalis Shl",
           "amount": 3,
           "type": "part",
           "color": "white"
@@ -19050,13 +19050,13 @@
       ],
       "create_mats": [
         {
-          "name": "White Ftalis Hrn",
+          "name": "Wht Fatalis Horn",
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Wht Fatalis Cpc",
+          "name": "Wht Fatalis Shl",
           "amount": 3,
           "type": "part",
           "color": "white"
@@ -19114,25 +19114,25 @@
       ],
       "create_mats": [
         {
-          "name": "Kut-Ku Thck Scl",
+          "name": "Thick Kut-Ku Scl",
           "amount": 2,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Kut-Ku Hvy Cpc",
+          "name": "Hvy Kut-Ku Shell",
           "amount": 3,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Kut-Ku Hrd Wbbng",
+          "name": "Str Kut-Ku Wing",
           "amount": 1,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 3,
           "type": "ore",
           "color": "red"
@@ -19178,25 +19178,25 @@
       ],
       "create_mats": [
         {
-          "name": "Kut-Ku Thck Scl",
+          "name": "Thick Kut-Ku Scl",
           "amount": 2,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Kut-Ku Hvy Cpc",
+          "name": "Hvy Kut-Ku Shell",
           "amount": 3,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Kut-Ku Hrd Wbbng",
+          "name": "Str Kut-Ku Wing",
           "amount": 1,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 3,
           "type": "ore",
           "color": "red"
@@ -19242,7 +19242,7 @@
       ],
       "create_mats": [
         {
-          "name": "Congalala Pelt G",
+          "name": "HrdCongalalaPlt+",
           "amount": 3,
           "type": "pelt",
           "color": "pink"
@@ -19260,7 +19260,7 @@
           "color": "white"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 3,
           "type": "insect",
           "color": "orange"
@@ -19306,7 +19306,7 @@
       ],
       "create_mats": [
         {
-          "name": "Congalala Pelt G",
+          "name": "HrdCongalalaPlt+",
           "amount": 3,
           "type": "pelt",
           "color": "pink"
@@ -19324,7 +19324,7 @@
           "color": "white"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 3,
           "type": "insect",
           "color": "orange"
@@ -19366,7 +19366,7 @@
       ],
       "create_mats": [
         {
-          "name": "Rubbery Hide G",
+          "name": "SpecRubberyHide+",
           "amount": 5,
           "type": "pelt",
           "color": "blue"
@@ -19378,13 +19378,13 @@
           "color": "blue"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 1,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "BirdWyvnStoutBne",
+          "name": "RobustWyvernBone",
           "amount": 6,
           "type": "bone",
           "color": "cyan"
@@ -19426,7 +19426,7 @@
       ],
       "create_mats": [
         {
-          "name": "Rubbery Hide G",
+          "name": "SpecRubberyHide+",
           "amount": 5,
           "type": "pelt",
           "color": "blue"
@@ -19438,13 +19438,13 @@
           "color": "blue"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 1,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "BirdWyvnStoutBne",
+          "name": "RobustWyvernBone",
           "amount": 6,
           "type": "bone",
           "color": "cyan"
@@ -19490,13 +19490,13 @@
       ],
       "create_mats": [
         {
-          "name": "Khezu Hide-Gloss",
+          "name": "KhezuHide-Cream",
           "amount": 3,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "ChoiceKhezuSteak",
+          "name": "KhezuSpecialCut",
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -19554,13 +19554,13 @@
       ],
       "create_mats": [
         {
-          "name": "Khezu Hide-Gloss",
+          "name": "KhezuHide-Cream",
           "amount": 3,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "ChoiceKhezuSteak",
+          "name": "KhezuSpecialCut",
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -19614,7 +19614,7 @@
       ],
       "create_mats": [
         {
-          "name": "Hermitaur HvyCpc",
+          "name": "HvyHermitaurShl",
           "amount": 4,
           "type": "shell",
           "color": "red"
@@ -19626,7 +19626,7 @@
           "color": "red"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 3,
           "type": "insect",
           "color": "orange"
@@ -19674,7 +19674,7 @@
       ],
       "create_mats": [
         {
-          "name": "Hermitaur HvyCpc",
+          "name": "HvyHermitaurShl",
           "amount": 4,
           "type": "shell",
           "color": "red"
@@ -19686,7 +19686,7 @@
           "color": "red"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 3,
           "type": "insect",
           "color": "orange"
@@ -19734,25 +19734,25 @@
       ],
       "create_mats": [
         {
-          "name": "Hypnoc Feather+",
+          "name": "OrangeHypnoPelt+",
           "amount": 3,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Hypnoc StrngClaw",
+          "name": "Hypno Claw+",
           "amount": 4,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Rainbow Down",
+          "name": "RainbowTailFeath",
           "amount": 4,
           "type": "scale",
           "color": "orange"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 5,
           "type": "ore",
           "color": "red"
@@ -19794,25 +19794,25 @@
       ],
       "create_mats": [
         {
-          "name": "Hypnoc Feather+",
+          "name": "OrangeHypnoPelt+",
           "amount": 3,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Hypnoc StrngClaw",
+          "name": "Hypno Claw+",
           "amount": 4,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Rainbow Down",
+          "name": "RainbowTailFeath",
           "amount": 4,
           "type": "scale",
           "color": "orange"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 5,
           "type": "ore",
           "color": "red"
@@ -19858,7 +19858,7 @@
       ],
       "create_mats": [
         {
-          "name": "Basarios Hvy Cpc",
+          "name": "HvyBasariosShell",
           "amount": 5,
           "type": "part",
           "color": "gray"
@@ -19870,13 +19870,13 @@
           "color": "orange"
         },
         {
-          "name": "Venom Sac",
+          "name": "DeadlyPoisonSac",
           "amount": 3,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 4,
           "type": "ore",
           "color": "red"
@@ -19922,7 +19922,7 @@
       ],
       "create_mats": [
         {
-          "name": "Basarios Hvy Cpc",
+          "name": "HvyBasariosShell",
           "amount": 5,
           "type": "part",
           "color": "gray"
@@ -19934,13 +19934,13 @@
           "color": "orange"
         },
         {
-          "name": "Venom Sac",
+          "name": "DeadlyPoisonSac",
           "amount": 3,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 4,
           "type": "ore",
           "color": "red"
@@ -19982,13 +19982,13 @@
       ],
       "create_mats": [
         {
-          "name": "Plesioth Fin G",
+          "name": "SpecPlesiothFin+",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Plsioth Thck Scl",
+          "name": "ThckPlesiothScl",
           "amount": 2,
           "type": "scale",
           "color": "blue"
@@ -20000,7 +20000,7 @@
           "color": "blue"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 4,
           "type": "ore",
           "color": "red"
@@ -20042,13 +20042,13 @@
       ],
       "create_mats": [
         {
-          "name": "Plesioth Fin G",
+          "name": "SpecPlesiothFin+",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Plsioth Thck Scl",
+          "name": "ThckPlesiothScl",
           "amount": 2,
           "type": "scale",
           "color": "blue"
@@ -20060,7 +20060,7 @@
           "color": "blue"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 4,
           "type": "ore",
           "color": "red"
@@ -20106,19 +20106,19 @@
       ],
       "create_mats": [
         {
-          "name": "Melange Ore",
+          "name": "Mellanje Ore",
           "amount": 3,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Majestic Red Hrn",
+          "name": "Top-GrdRedHorn",
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Monoblos Thrcic",
+          "name": "MonoblosThoracic",
           "amount": 4,
           "type": "part",
           "color": "red"
@@ -20170,19 +20170,19 @@
       ],
       "create_mats": [
         {
-          "name": "Melange Ore",
+          "name": "Mellanje Ore",
           "amount": 3,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Majestic Red Hrn",
+          "name": "Top-GrdRedHorn",
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Monoblos Thrcic",
+          "name": "MonoblosThoracic",
           "amount": 4,
           "type": "part",
           "color": "red"
@@ -20230,25 +20230,25 @@
       ],
       "create_mats": [
         {
-          "name": "Garuga Scale G",
+          "name": "ThickGarugaScale",
           "amount": 4,
           "type": "scale",
           "color": "slate"
         },
         {
-          "name": "Garuga Hvy Cpc",
+          "name": "Hvy Garuga Shell",
           "amount": 4,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga StrngWng",
+          "name": "Str Garuga Wing",
           "amount": 3,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "BirdWyvnStoutBne",
+          "name": "RobustWyvernBone",
           "amount": 6,
           "type": "bone",
           "color": "cyan"
@@ -20290,25 +20290,25 @@
       ],
       "create_mats": [
         {
-          "name": "Garuga Scale G",
+          "name": "ThickGarugaScale",
           "amount": 4,
           "type": "scale",
           "color": "slate"
         },
         {
-          "name": "Garuga Hvy Cpc",
+          "name": "Hvy Garuga Shell",
           "amount": 4,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Garuga StrngWng",
+          "name": "Str Garuga Wing",
           "amount": 3,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "BirdWyvnStoutBne",
+          "name": "RobustWyvernBone",
           "amount": 6,
           "type": "bone",
           "color": "cyan"
@@ -20350,7 +20350,7 @@
       ],
       "create_mats": [
         {
-          "name": "Blangonga Pelt G",
+          "name": "HrdBlangongaPlt+",
           "amount": 3,
           "type": "pelt",
           "color": "white"
@@ -20368,7 +20368,7 @@
           "color": "white"
         },
         {
-          "name": "Colossal Bone",
+          "name": "Massive Bone",
           "amount": 3,
           "type": "bone",
           "color": "white"
@@ -20410,7 +20410,7 @@
       ],
       "create_mats": [
         {
-          "name": "Blangonga Pelt G",
+          "name": "HrdBlangongaPlt+",
           "amount": 3,
           "type": "pelt",
           "color": "white"
@@ -20428,7 +20428,7 @@
           "color": "white"
         },
         {
-          "name": "Colossal Bone",
+          "name": "Massive Bone",
           "amount": 3,
           "type": "bone",
           "color": "white"
@@ -20470,7 +20470,7 @@
       ],
       "create_mats": [
         {
-          "name": "CeanataurHvyCpc",
+          "name": "HvyCeanataurShl",
           "amount": 3,
           "type": "shell",
           "color": "blue"
@@ -20482,7 +20482,7 @@
           "color": "blue"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 4,
           "type": "ore",
           "color": "red"
@@ -20530,7 +20530,7 @@
       ],
       "create_mats": [
         {
-          "name": "CeanataurHvyCpc",
+          "name": "HvyCeanataurShl",
           "amount": 3,
           "type": "shell",
           "color": "blue"
@@ -20542,7 +20542,7 @@
           "color": "blue"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 4,
           "type": "ore",
           "color": "red"
@@ -20590,13 +20590,13 @@
       ],
       "create_mats": [
         {
-          "name": "Rathian Thck Scl",
+          "name": "ThckRathianScl",
           "amount": 3,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "RathianDvnePlate",
+          "name": "HvnlyRathianScl",
           "amount": 1,
           "type": "heavenly",
           "color": "green"
@@ -20608,7 +20608,7 @@
           "color": "green"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 1,
           "type": "ore",
           "color": "cyan"
@@ -20650,13 +20650,13 @@
       ],
       "create_mats": [
         {
-          "name": "Rathian Thck Scl",
+          "name": "ThckRathianScl",
           "amount": 3,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "RathianDvnePlate",
+          "name": "HvnlyRathianScl",
           "amount": 1,
           "type": "heavenly",
           "color": "green"
@@ -20668,7 +20668,7 @@
           "color": "green"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 1,
           "type": "ore",
           "color": "cyan"
@@ -20710,25 +20710,25 @@
       ],
       "create_mats": [
         {
-          "name": "Naruga Blk Pelt",
+          "name": "BlackNargaPelt+",
           "amount": 3,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Naruga Thck Scl",
+          "name": "ThickNargaScale",
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Naruga Hvy Fang",
+          "name": "HvyNargacugaFang",
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Melange Ore",
+          "name": "Mellanje Ore",
           "amount": 4,
           "type": "ore",
           "color": "white"
@@ -20770,25 +20770,25 @@
       ],
       "create_mats": [
         {
-          "name": "Naruga Blk Pelt",
+          "name": "BlackNargaPelt+",
           "amount": 3,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Naruga Thck Scl",
+          "name": "ThickNargaScale",
           "amount": 2,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Naruga Hvy Fang",
+          "name": "HvyNargacugaFang",
           "amount": 4,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Melange Ore",
+          "name": "Mellanje Ore",
           "amount": 4,
           "type": "ore",
           "color": "white"
@@ -20830,25 +20830,25 @@
       ],
       "create_mats": [
         {
-          "name": "Volganos Hvy Cpc",
+          "name": "HvyLavasiothShl",
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Volganos Fin+",
+          "name": "SpecLavasioFin+",
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Blaze Sac",
+          "name": "Blazing Fire Sac",
           "amount": 2,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Melange Ore",
+          "name": "Mellanje Ore",
           "amount": 4,
           "type": "ore",
           "color": "white"
@@ -20890,25 +20890,25 @@
       ],
       "create_mats": [
         {
-          "name": "Volganos Hvy Cpc",
+          "name": "HvyLavasiothShl",
           "amount": 5,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Volganos Fin+",
+          "name": "SpecLavasioFin+",
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Blaze Sac",
+          "name": "Blazing Fire Sac",
           "amount": 2,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Melange Ore",
+          "name": "Mellanje Ore",
           "amount": 4,
           "type": "ore",
           "color": "white"
@@ -20954,19 +20954,19 @@
       ],
       "create_mats": [
         {
-          "name": "Tigrex Hvy Cpc",
+          "name": "Hvy Tigrex Shell",
           "amount": 2,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Hvy Fang",
+          "name": "Hvy Tigrex Fang",
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Tigrex StrngClaw",
+          "name": "Hard Tigrex Claw",
           "amount": 3,
           "type": "claw",
           "color": "yellow"
@@ -21018,19 +21018,19 @@
       ],
       "create_mats": [
         {
-          "name": "Tigrex Hvy Cpc",
+          "name": "Hvy Tigrex Shell",
           "amount": 2,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Hvy Fang",
+          "name": "Hvy Tigrex Fang",
           "amount": 2,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Tigrex StrngClaw",
+          "name": "Hard Tigrex Claw",
           "amount": 3,
           "type": "claw",
           "color": "yellow"
@@ -21078,13 +21078,13 @@
       ],
       "create_mats": [
         {
-          "name": "Rathalos ThckScl",
+          "name": "Hrd Rathalos Scl",
           "amount": 3,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Rathalos Hvy Cpc",
+          "name": "HvyRathalosShl",
           "amount": 3,
           "type": "part",
           "color": "red"
@@ -21096,7 +21096,7 @@
           "color": "gray"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 1,
           "type": "ore",
           "color": "cyan"
@@ -21138,13 +21138,13 @@
       ],
       "create_mats": [
         {
-          "name": "Rathalos ThckScl",
+          "name": "Hrd Rathalos Scl",
           "amount": 3,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Rathalos Hvy Cpc",
+          "name": "HvyRathalosShl",
           "amount": 3,
           "type": "part",
           "color": "red"
@@ -21156,7 +21156,7 @@
           "color": "gray"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 1,
           "type": "ore",
           "color": "cyan"
@@ -21198,13 +21198,13 @@
       ],
       "create_mats": [
         {
-          "name": "Diablos HvySpne",
+          "name": "HvyDiablosSpine",
           "amount": 1,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Glorious Horn",
+          "name": "StoutWarpedHorn",
           "amount": 2,
           "type": "claw",
           "color": "yellow"
@@ -21258,13 +21258,13 @@
       ],
       "create_mats": [
         {
-          "name": "Diablos HvySpne",
+          "name": "HvyDiablosSpine",
           "amount": 1,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Glorious Horn",
+          "name": "StoutWarpedHorn",
           "amount": 2,
           "type": "claw",
           "color": "yellow"
@@ -21322,7 +21322,7 @@
       ],
       "create_mats": [
         {
-          "name": "Gravios Hvy Cpc",
+          "name": "HvyGraviosShell",
           "amount": 5,
           "type": "part",
           "color": "white"
@@ -21386,7 +21386,7 @@
       ],
       "create_mats": [
         {
-          "name": "Gravios Hvy Cpc",
+          "name": "HvyGraviosShell",
           "amount": 5,
           "type": "part",
           "color": "white"
@@ -21450,25 +21450,25 @@
       ],
       "create_mats": [
         {
-          "name": "BlueKut-KuThkScl",
+          "name": "ThkBlueKut-KuScl",
           "amount": 2,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "BlueKut-KuHvyCpc",
+          "name": "HvyBlueKut-KuShl",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Bullfango Pelt+",
+          "name": "ThkBullfangoPelt",
           "amount": 1,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 3,
           "type": "ore",
           "color": "red"
@@ -21514,25 +21514,25 @@
       ],
       "create_mats": [
         {
-          "name": "BlueKut-KuThkScl",
+          "name": "ThkBlueKut-KuScl",
           "amount": 2,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "BlueKut-KuHvyCpc",
+          "name": "HvyBlueKut-KuShl",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Bullfango Pelt+",
+          "name": "ThkBullfangoPelt",
           "amount": 1,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 3,
           "type": "ore",
           "color": "red"
@@ -21574,7 +21574,7 @@
       ],
       "create_mats": [
         {
-          "name": "GrnCongalalaPelt",
+          "name": "E.CongalalaPelt+",
           "amount": 3,
           "type": "pelt",
           "color": "green"
@@ -21586,13 +21586,13 @@
           "color": "pink"
         },
         {
-          "name": "Colossal Bone",
+          "name": "Massive Bone",
           "amount": 2,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Razor Claw",
+          "name": "Piercing Claw",
           "amount": 6,
           "type": "claw",
           "color": "gray"
@@ -21634,7 +21634,7 @@
       ],
       "create_mats": [
         {
-          "name": "GrnCongalalaPelt",
+          "name": "E.CongalalaPelt+",
           "amount": 3,
           "type": "pelt",
           "color": "green"
@@ -21646,13 +21646,13 @@
           "color": "pink"
         },
         {
-          "name": "Colossal Bone",
+          "name": "Massive Bone",
           "amount": 2,
           "type": "bone",
           "color": "white"
         },
         {
-          "name": "Razor Claw",
+          "name": "Piercing Claw",
           "amount": 6,
           "type": "claw",
           "color": "gray"
@@ -21694,13 +21694,13 @@
       ],
       "create_mats": [
         {
-          "name": "Pur Gyp StrngWng",
+          "name": "HrdPuGypcerosWng",
           "amount": 4,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 1,
           "type": "ore",
           "color": "cyan"
@@ -21712,7 +21712,7 @@
           "color": "yellow"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 2,
           "type": "insect",
           "color": "orange"
@@ -21754,13 +21754,13 @@
       ],
       "create_mats": [
         {
-          "name": "Pur Gyp StrngWng",
+          "name": "HrdPuGypcerosWng",
           "amount": 4,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 1,
           "type": "ore",
           "color": "cyan"
@@ -21772,7 +21772,7 @@
           "color": "yellow"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 2,
           "type": "insect",
           "color": "orange"
@@ -21814,7 +21814,7 @@
       ],
       "create_mats": [
         {
-          "name": "Alluring Wing",
+          "name": "StrAlluringWing",
           "amount": 3,
           "type": "part",
           "color": "pink"
@@ -21874,7 +21874,7 @@
       ],
       "create_mats": [
         {
-          "name": "Alluring Wing",
+          "name": "StrAlluringWing",
           "amount": 3,
           "type": "part",
           "color": "pink"
@@ -21938,19 +21938,19 @@
       ],
       "create_mats": [
         {
-          "name": "Pur HermitaurShl",
+          "name": "PlumD.HermitrShl",
           "amount": 3,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "Black Pearl+",
+          "name": "Giant Blk Pearl",
           "amount": 1,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Colossal Bone",
+          "name": "Massive Bone",
           "amount": 1,
           "type": "bone",
           "color": "white"
@@ -22002,19 +22002,19 @@
       ],
       "create_mats": [
         {
-          "name": "Pur HermitaurShl",
+          "name": "PlumD.HermitrShl",
           "amount": 3,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "Black Pearl+",
+          "name": "Giant Blk Pearl",
           "amount": 1,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Colossal Bone",
+          "name": "Massive Bone",
           "amount": 1,
           "type": "bone",
           "color": "white"
@@ -22062,13 +22062,13 @@
       ],
       "create_mats": [
         {
-          "name": "GrnPlsioth Fin G",
+          "name": "SpecGrnPlesioFn+",
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "GrnPlsiothThkScl",
+          "name": "ThckGrnPlesioScl",
           "amount": 2,
           "type": "scale",
           "color": "green"
@@ -22080,7 +22080,7 @@
           "color": "green"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 3,
           "type": "insect",
           "color": "orange"
@@ -22122,13 +22122,13 @@
       ],
       "create_mats": [
         {
-          "name": "GrnPlsioth Fin G",
+          "name": "SpecGrnPlesioFn+",
           "amount": 3,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "GrnPlsiothThkScl",
+          "name": "ThckGrnPlesioScl",
           "amount": 2,
           "type": "scale",
           "color": "green"
@@ -22140,7 +22140,7 @@
           "color": "green"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 3,
           "type": "insect",
           "color": "orange"
@@ -22186,13 +22186,13 @@
       ],
       "create_mats": [
         {
-          "name": "Brwn BlngngaPelt",
+          "name": "C.BlangongaPelt+",
           "amount": 3,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Blngnga HrdWhskr",
+          "name": "Lthr Pelagus Plt",
           "amount": 2,
           "type": "part",
           "color": "yellow"
@@ -22204,7 +22204,7 @@
           "color": "white"
         },
         {
-          "name": "Colossal Bone",
+          "name": "Massive Bone",
           "amount": 3,
           "type": "bone",
           "color": "white"
@@ -22250,13 +22250,13 @@
       ],
       "create_mats": [
         {
-          "name": "Brwn BlngngaPelt",
+          "name": "C.BlangongaPelt+",
           "amount": 3,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Blngnga HrdWhskr",
+          "name": "Lthr Pelagus Plt",
           "amount": 2,
           "type": "part",
           "color": "yellow"
@@ -22268,7 +22268,7 @@
           "color": "white"
         },
         {
-          "name": "Colossal Bone",
+          "name": "Massive Bone",
           "amount": 3,
           "type": "bone",
           "color": "white"
@@ -22310,13 +22310,13 @@
       ],
       "create_mats": [
         {
-          "name": "RedCeanataurShl",
+          "name": "TerraCeanatrShl",
           "amount": 3,
           "type": "shell",
           "color": "orange"
         },
         {
-          "name": "RedCeanataurClaw",
+          "name": "TerraCeanatrClaw",
           "amount": 1,
           "type": "claw",
           "color": "orange"
@@ -22370,13 +22370,13 @@
       ],
       "create_mats": [
         {
-          "name": "RedCeanataurShl",
+          "name": "TerraCeanatrShl",
           "amount": 3,
           "type": "shell",
           "color": "orange"
         },
         {
-          "name": "RedCeanataurClaw",
+          "name": "TerraCeanatrClaw",
           "amount": 1,
           "type": "claw",
           "color": "orange"
@@ -22434,13 +22434,13 @@
       ],
       "create_mats": [
         {
-          "name": "Blk Blos Hvy Spn",
+          "name": "HvyBlkBlosSpine",
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "RobustBlkBlosHrn",
+          "name": "StoutBlkTwstdHrn",
           "amount": 2,
           "type": "claw",
           "color": "gray"
@@ -22498,13 +22498,13 @@
       ],
       "create_mats": [
         {
-          "name": "Blk Blos Hvy Spn",
+          "name": "HvyBlkBlosSpine",
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "RobustBlkBlosHrn",
+          "name": "StoutBlkTwstdHrn",
           "amount": 2,
           "type": "claw",
           "color": "gray"
@@ -22558,7 +22558,7 @@
       ],
       "create_mats": [
         {
-          "name": "BlkGraviosHvyShl",
+          "name": "HvyBlkGraviosShl",
           "amount": 5,
           "type": "part",
           "color": "gray"
@@ -22576,7 +22576,7 @@
           "color": "gray"
         },
         {
-          "name": "BlkGravDvnePlate",
+          "name": "HvnlyBlkGraviShl",
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
@@ -22618,7 +22618,7 @@
       ],
       "create_mats": [
         {
-          "name": "BlkGraviosHvyShl",
+          "name": "HvyBlkGraviosShl",
           "amount": 5,
           "type": "part",
           "color": "gray"
@@ -22636,7 +22636,7 @@
           "color": "gray"
         },
         {
-          "name": "BlkGravDvnePlate",
+          "name": "HvnlyBlkGraviShl",
           "amount": 1,
           "type": "heavenly",
           "color": "gray"
@@ -22665,19 +22665,19 @@
       "skills": null,
       "create_mats": [
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 1,
           "type": "ore",
           "color": "cyan"
         },
         {
-          "name": "HypncGizzardStn+",
+          "name": "Hypno Bezoar+",
           "amount": 1,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 3,
           "type": "insect",
           "color": "orange"
@@ -22715,7 +22715,7 @@
       ],
       "create_mats": [
         {
-          "name": "FamitsuSpcialTkt",
+          "name": "SpecFamitsuTckt",
           "amount": 5,
           "type": "ticket",
           "color": "cyan"
@@ -22727,7 +22727,7 @@
           "color": "white"
         },
         {
-          "name": "Blackbelt Coin G",
+          "name": "BlackBeltCoinG",
           "amount": 6,
           "type": "coin",
           "color": "gray"
@@ -22767,13 +22767,13 @@
       ],
       "create_mats": [
         {
-          "name": "Puppet Ticket+",
+          "name": "SpecPuppetTicket",
           "amount": 5,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Hunter Soul Tckt",
+          "name": "Hunter Soul Tkt",
           "amount": 5,
           "type": "ticket",
           "color": "white"
@@ -22785,7 +22785,7 @@
           "color": "cyan"
         },
         {
-          "name": "Blackbelt Coin G",
+          "name": "BlackBeltCoinG",
           "amount": 4,
           "type": "coin",
           "color": "gray"
@@ -22819,7 +22819,7 @@
       ],
       "create_mats": [
         {
-          "name": "Puppet Ticket+",
+          "name": "SpecPuppetTicket",
           "amount": 5,
           "type": "ticket",
           "color": "white"
@@ -22883,25 +22883,25 @@
       ],
       "create_mats": [
         {
-          "name": "Rajang StrngClaw",
+          "name": "Hard Rajang Claw",
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "ShiningRajangPlt",
+          "name": "GoldRajangPelt+",
           "amount": 2,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "BlkRajangThkPelt",
+          "name": "Blk Rajang Pelt+",
           "amount": 2,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "GldRathianThkScl",
+          "name": "ThckGldRathnScl",
           "amount": 2,
           "type": "scale",
           "color": "yellow"
@@ -22947,13 +22947,13 @@
       ],
       "create_mats": [
         {
-          "name": "ShiningRajangPlt",
+          "name": "GoldRajangPelt+",
           "amount": 1,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "Rajang Hvy Fang",
+          "name": "Hvy Rajang Fang",
           "amount": 4,
           "type": "claw",
           "color": "yellow"
@@ -22965,7 +22965,7 @@
           "color": "yellow"
         },
         {
-          "name": "GldRathianThkScl",
+          "name": "ThckGldRathnScl",
           "amount": 3,
           "type": "scale",
           "color": "yellow"
@@ -23017,13 +23017,13 @@
           "color": "blue"
         },
         {
-          "name": "Blackbelt Coin G",
+          "name": "BlackBeltCoinG",
           "amount": 10,
           "type": "coin",
           "color": "gray"
         },
         {
-          "name": "Fighter Coin G",
+          "name": "Warrior Coin G",
           "amount": 12,
           "type": "coin",
           "color": "cyan"
@@ -23081,13 +23081,13 @@
           "color": "blue"
         },
         {
-          "name": "Blackbelt Coin G",
+          "name": "BlackBeltCoinG",
           "amount": 10,
           "type": "coin",
           "color": "gray"
         },
         {
-          "name": "Fighter Coin G",
+          "name": "Warrior Coin G",
           "amount": 12,
           "type": "coin",
           "color": "cyan"
@@ -23147,13 +23147,13 @@
           "color": "yellow"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 8,
           "type": "insect",
           "color": "orange"
         },
         {
-          "name": "Venom Sac",
+          "name": "DeadlyPoisonSac",
           "amount": 4,
           "type": "sac",
           "color": "slate"
@@ -23207,13 +23207,13 @@
           "color": "yellow"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 8,
           "type": "insect",
           "color": "orange"
         },
         {
-          "name": "Venom Sac",
+          "name": "DeadlyPoisonSac",
           "amount": 4,
           "type": "sac",
           "color": "slate"
@@ -23267,13 +23267,13 @@
           "color": "yellow"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 8,
           "type": "insect",
           "color": "orange"
         },
         {
-          "name": "Venom Sac",
+          "name": "DeadlyPoisonSac",
           "amount": 4,
           "type": "sac",
           "color": "slate"
@@ -23327,13 +23327,13 @@
           "color": "yellow"
         },
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 8,
           "type": "insect",
           "color": "orange"
         },
         {
-          "name": "Venom Sac",
+          "name": "DeadlyPoisonSac",
           "amount": 4,
           "type": "sac",
           "color": "slate"
@@ -23379,7 +23379,7 @@
       ],
       "create_mats": [
         {
-          "name": "Chameleos Hide G",
+          "name": "SpecChameleHide+",
           "amount": 2,
           "type": "pelt",
           "color": "slate"
@@ -23391,7 +23391,7 @@
           "color": "slate"
         },
         {
-          "name": "Ancient DrgnBone",
+          "name": "BigEDragonBone",
           "amount": 2,
           "type": "bone",
           "color": "slate"
@@ -23443,7 +23443,7 @@
       ],
       "create_mats": [
         {
-          "name": "Chameleos Hide G",
+          "name": "SpecChameleHide+",
           "amount": 2,
           "type": "pelt",
           "color": "slate"
@@ -23455,7 +23455,7 @@
           "color": "slate"
         },
         {
-          "name": "Ancient DrgnBone",
+          "name": "BigEDragonBone",
           "amount": 2,
           "type": "bone",
           "color": "slate"
@@ -23503,13 +23503,13 @@
       ],
       "create_mats": [
         {
-          "name": "Daora Hvy Carpce",
+          "name": "Hvy Daora Shell",
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Daora Webbing G",
+          "name": "Str Daora Wing",
           "amount": 2,
           "type": "part",
           "color": "gray"
@@ -23563,13 +23563,13 @@
       ],
       "create_mats": [
         {
-          "name": "Daora Hvy Carpce",
+          "name": "Hvy Daora Shell",
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Daora Webbing G",
+          "name": "Str Daora Wing",
           "amount": 2,
           "type": "part",
           "color": "gray"
@@ -23627,25 +23627,25 @@
       ],
       "create_mats": [
         {
-          "name": "Kirin Hide G",
+          "name": "SpecialKirinHide",
           "amount": 1,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "KirinThndrTail G",
+          "name": "LthrKirinThndrTl",
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "ChoiceKhezuSteak",
+          "name": "KhezuSpecialCut",
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 3,
           "type": "ore",
           "color": "cyan"
@@ -23691,25 +23691,25 @@
       ],
       "create_mats": [
         {
-          "name": "Kirin Hide G",
+          "name": "SpecialKirinHide",
           "amount": 1,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "KirinThndrTail G",
+          "name": "LthrKirinThndrTl",
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "ChoiceKhezuSteak",
+          "name": "KhezuSpecialCut",
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Pure Crystal",
+          "name": "Purecrystal",
           "amount": 3,
           "type": "ore",
           "color": "cyan"
@@ -23755,25 +23755,25 @@
       ],
       "create_mats": [
         {
-          "name": "Fire Drgn HvyScl",
+          "name": "ThckFireDrgnScl",
           "amount": 3,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Lunastra Horn G",
+          "name": "Lunastra Spike",
           "amount": 1,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Lunastra Carpace",
+          "name": "LunastraCarapace",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Ancient DrgnBone",
+          "name": "BigEDragonBone",
           "amount": 3,
           "type": "bone",
           "color": "slate"
@@ -23819,25 +23819,25 @@
       ],
       "create_mats": [
         {
-          "name": "Fire Drgn HvyScl",
+          "name": "ThckFireDrgnScl",
           "amount": 3,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Lunastra Horn G",
+          "name": "Lunastra Spike",
           "amount": 1,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Lunastra Carpace",
+          "name": "LunastraCarapace",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Ancient DrgnBone",
+          "name": "BigEDragonBone",
           "amount": 3,
           "type": "bone",
           "color": "slate"
@@ -23883,19 +23883,19 @@
       ],
       "create_mats": [
         {
-          "name": "Gaoren Hvy Cpc",
+          "name": "HvyGaorenShell",
           "amount": 2,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Hvy Spn",
+          "name": "Hvy Gaoren Spine",
           "amount": 1,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Daora Hvy Carpce",
+          "name": "Hvy Daora Shell",
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -23947,19 +23947,19 @@
       ],
       "create_mats": [
         {
-          "name": "Gaoren Hvy Cpc",
+          "name": "HvyGaorenShell",
           "amount": 2,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gaoren Hvy Spn",
+          "name": "Hvy Gaoren Spine",
           "amount": 1,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Daora Hvy Carpce",
+          "name": "Hvy Daora Shell",
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -24007,7 +24007,7 @@
       ],
       "create_mats": [
         {
-          "name": "Teostra Hvy Cpc",
+          "name": "HvyTeostraShell",
           "amount": 3,
           "type": "part",
           "color": "red"
@@ -24067,7 +24067,7 @@
       ],
       "create_mats": [
         {
-          "name": "Teostra Hvy Cpc",
+          "name": "HvyTeostraShell",
           "amount": 3,
           "type": "part",
           "color": "red"
@@ -24143,7 +24143,7 @@
           "color": "green"
         },
         {
-          "name": "Yamatsukami Fin",
+          "name": "YamaTsukaFillet",
           "amount": 2,
           "type": "part",
           "color": "green"
@@ -24207,7 +24207,7 @@
           "color": "green"
         },
         {
-          "name": "Yamatsukami Fin",
+          "name": "YamaTsukaFillet",
           "amount": 2,
           "type": "part",
           "color": "green"
@@ -24259,25 +24259,25 @@
       ],
       "create_mats": [
         {
-          "name": "Fatalis Hvy Horn",
+          "name": "HardFatalisHorn",
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fatalis Hvy Shl",
+          "name": "Hvy Fatalis Shl",
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Fatalis Hrd Wbng",
+          "name": "Str Fatalis Wng",
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "RathlosDvnePlate",
+          "name": "HvnlyRathalosScl",
           "amount": 1,
           "type": "heavenly",
           "color": "red"
@@ -24323,25 +24323,25 @@
       ],
       "create_mats": [
         {
-          "name": "Fatalis Hvy Horn",
+          "name": "HardFatalisHorn",
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Fatalis Hvy Shl",
+          "name": "Hvy Fatalis Shl",
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Fatalis Hrd Wbng",
+          "name": "Str Fatalis Wng",
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "RathlosDvnePlate",
+          "name": "HvnlyRathalosScl",
           "amount": 1,
           "type": "heavenly",
           "color": "red"
@@ -24383,25 +24383,25 @@
       ],
       "create_mats": [
         {
-          "name": "Ucamulbas Jaw",
+          "name": "UkanlosShovelJaw",
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Ucamulbas Fin",
+          "name": "StrongUkanlosFin",
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Ucamulbas Scale",
+          "name": "UkanlosUnderscl",
           "amount": 3,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Ucamu Divine Jwl",
+          "name": "Ukanlos Stone",
           "amount": 1,
           "type": "heavenly",
           "color": "white"
@@ -24443,25 +24443,25 @@
       ],
       "create_mats": [
         {
-          "name": "Ucamulbas Jaw",
+          "name": "UkanlosShovelJaw",
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Ucamulbas Fin",
+          "name": "StrongUkanlosFin",
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Ucamulbas Scale",
+          "name": "UkanlosUnderscl",
           "amount": 3,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Ucamu Divine Jwl",
+          "name": "Ukanlos Stone",
           "amount": 1,
           "type": "heavenly",
           "color": "white"
@@ -24503,7 +24503,7 @@
       ],
       "create_mats": [
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 4,
           "type": "insect",
           "color": "orange"
@@ -24521,7 +24521,7 @@
           "color": "pink"
         },
         {
-          "name": "Monster Broth+",
+          "name": "Monster Essence",
           "amount": 4,
           "type": "fluid",
           "color": "blue"
@@ -24563,7 +24563,7 @@
       ],
       "create_mats": [
         {
-          "name": "Emperor Locust",
+          "name": "Emperor Cricket",
           "amount": 4,
           "type": "insect",
           "color": "orange"
@@ -24581,7 +24581,7 @@
           "color": "pink"
         },
         {
-          "name": "Monster Broth+",
+          "name": "Monster Essence",
           "amount": 4,
           "type": "fluid",
           "color": "blue"
@@ -24623,13 +24623,13 @@
       ],
       "create_mats": [
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 5,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Plesioth Fin G",
+          "name": "SpecPlesiothFin+",
           "amount": 4,
           "type": "part",
           "color": "blue"
@@ -24683,13 +24683,13 @@
       ],
       "create_mats": [
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 5,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Plesioth Fin G",
+          "name": "SpecPlesiothFin+",
           "amount": 4,
           "type": "part",
           "color": "blue"
@@ -24743,25 +24743,25 @@
       ],
       "create_mats": [
         {
-          "name": "PnkRathianThkScl",
+          "name": "ThckPnkRathnScl",
           "amount": 3,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "PnkRathianHvyCpc",
+          "name": "HvyPnkRathianShl",
           "amount": 2,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 4,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "RathianDvnePlate",
+          "name": "HvnlyRathianScl",
           "amount": 1,
           "type": "heavenly",
           "color": "green"
@@ -24803,25 +24803,25 @@
       ],
       "create_mats": [
         {
-          "name": "PnkRathianThkScl",
+          "name": "ThckPnkRathnScl",
           "amount": 3,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "PnkRathianHvyCpc",
+          "name": "HvyPnkRathianShl",
           "amount": 2,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Etherlite Ore",
+          "name": "Eltalite Ore",
           "amount": 4,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "RathianDvnePlate",
+          "name": "HvnlyRathianScl",
           "amount": 1,
           "type": "heavenly",
           "color": "green"
@@ -24867,19 +24867,19 @@
       ],
       "create_mats": [
         {
-          "name": "AzrRathlosHvyCpc",
+          "name": "HvyAzurRthlsShl",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "AzrRathlosThkScl",
+          "name": "ThckAzurRthlsScl",
           "amount": 3,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Blaze Sac",
+          "name": "Blazing Fire Sac",
           "amount": 3,
           "type": "sac",
           "color": "red"
@@ -24931,19 +24931,19 @@
       ],
       "create_mats": [
         {
-          "name": "AzrRathlosHvyCpc",
+          "name": "HvyAzurRthlsShl",
           "amount": 3,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "AzrRathlosThkScl",
+          "name": "ThckAzurRthlsScl",
           "amount": 3,
           "type": "scale",
           "color": "blue"
         },
         {
-          "name": "Blaze Sac",
+          "name": "Blazing Fire Sac",
           "amount": 3,
           "type": "sac",
           "color": "red"
@@ -24991,13 +24991,13 @@
       ],
       "create_mats": [
         {
-          "name": "GldRathianThkScl",
+          "name": "ThckGldRathnScl",
           "amount": 3,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "GldRathianHvyCpc",
+          "name": "HvyGldRathianShl",
           "amount": 3,
           "type": "part",
           "color": "yellow"
@@ -25009,7 +25009,7 @@
           "color": "green"
         },
         {
-          "name": "RathianDvnePlate",
+          "name": "HvnlyRathianScl",
           "amount": 1,
           "type": "heavenly",
           "color": "green"
@@ -25051,13 +25051,13 @@
       ],
       "create_mats": [
         {
-          "name": "GldRathianThkScl",
+          "name": "ThckGldRathnScl",
           "amount": 3,
           "type": "scale",
           "color": "yellow"
         },
         {
-          "name": "GldRathianHvyCpc",
+          "name": "HvyGldRathianShl",
           "amount": 3,
           "type": "part",
           "color": "yellow"
@@ -25069,7 +25069,7 @@
           "color": "green"
         },
         {
-          "name": "RathianDvnePlate",
+          "name": "HvnlyRathianScl",
           "amount": 1,
           "type": "heavenly",
           "color": "green"
@@ -25111,19 +25111,19 @@
       ],
       "create_mats": [
         {
-          "name": "SlvrRthlosHvyCpc",
+          "name": "HvySlvrRthlsShl",
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "SlvrRthlosThkScl",
+          "name": "ThckSlvrRthlsScl",
           "amount": 3,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "RathlosDvnePlate",
+          "name": "HvnlyRathalosScl",
           "amount": 1,
           "type": "heavenly",
           "color": "red"
@@ -25171,19 +25171,19 @@
       ],
       "create_mats": [
         {
-          "name": "SlvrRthlosHvyCpc",
+          "name": "HvySlvrRthlsShl",
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "SlvrRthlosThkScl",
+          "name": "ThckSlvrRthlsScl",
           "amount": 3,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "RathlosDvnePlate",
+          "name": "HvnlyRathalosScl",
           "amount": 1,
           "type": "heavenly",
           "color": "red"
@@ -25231,7 +25231,7 @@
       ],
       "create_mats": [
         {
-          "name": "Lao-Shan Hvy Cpc",
+          "name": "Lao-Shan'sHvyShl",
           "amount": 5,
           "type": "part",
           "color": "red"
@@ -25243,7 +25243,7 @@
           "color": "blue"
         },
         {
-          "name": "TigrexDvinePlate",
+          "name": "HvnlyTigrexScale",
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
@@ -25291,7 +25291,7 @@
       ],
       "create_mats": [
         {
-          "name": "Lao-Shan Hvy Cpc",
+          "name": "Lao-Shan'sHvyShl",
           "amount": 5,
           "type": "part",
           "color": "red"
@@ -25303,7 +25303,7 @@
           "color": "blue"
         },
         {
-          "name": "TigrexDvinePlate",
+          "name": "HvnlyTigrexScale",
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
@@ -25351,7 +25351,7 @@
       ],
       "create_mats": [
         {
-          "name": "Lao-Shan Hvy Cpc",
+          "name": "Lao-Shan'sHvyShl",
           "amount": 5,
           "type": "part",
           "color": "red"
@@ -25363,7 +25363,7 @@
           "color": "blue"
         },
         {
-          "name": "TigrexDvinePlate",
+          "name": "HvnlyTigrexScale",
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
@@ -25411,7 +25411,7 @@
       ],
       "create_mats": [
         {
-          "name": "Lao-Shan Hvy Cpc",
+          "name": "Lao-Shan'sHvyShl",
           "amount": 5,
           "type": "part",
           "color": "red"
@@ -25423,7 +25423,7 @@
           "color": "blue"
         },
         {
-          "name": "TigrexDvinePlate",
+          "name": "HvnlyTigrexScale",
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
@@ -25475,25 +25475,25 @@
       ],
       "create_mats": [
         {
-          "name": "FataHvyCrmsnHrn",
+          "name": "HrdFatlisCrmHorn",
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "FataHvyCrmsnShl",
+          "name": "HvyFatalisCrmShl",
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "FataThkCrmsnScl",
+          "name": "ThckFatlisCrmScl",
           "amount": 2,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "TigrexDvinePlate",
+          "name": "HvnlyTigrexScale",
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
@@ -25539,25 +25539,25 @@
       ],
       "create_mats": [
         {
-          "name": "FataHvyCrmsnHrn",
+          "name": "HrdFatlisCrmHorn",
           "amount": 2,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "FataHvyCrmsnShl",
+          "name": "HvyFatalisCrmShl",
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "FataThkCrmsnScl",
+          "name": "ThckFatlisCrmScl",
           "amount": 2,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "TigrexDvinePlate",
+          "name": "HvnlyTigrexScale",
           "amount": 1,
           "type": "heavenly",
           "color": "yellow"
@@ -25599,25 +25599,25 @@
       ],
       "create_mats": [
         {
-          "name": "WhtFatalisHvyHrn",
+          "name": "HrdWhtFatlisHorn",
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "WhtFatalisHvyCpc",
+          "name": "HvyWhtFatalisShl",
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "WhtFatalisThkScl",
+          "name": "ThckWhtFatlisScl",
           "amount": 2,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Elder Dragon Jwl",
+          "name": "BigEDragonJewel",
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -25659,25 +25659,25 @@
       ],
       "create_mats": [
         {
-          "name": "WhtFatalisHvyHrn",
+          "name": "HrdWhtFatlisHorn",
           "amount": 2,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "WhtFatalisHvyCpc",
+          "name": "HvyWhtFatalisShl",
           "amount": 3,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "WhtFatalisThkScl",
+          "name": "ThckWhtFatlisScl",
           "amount": 2,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Elder Dragon Jwl",
+          "name": "BigEDragonJewel",
           "amount": 1,
           "type": "stone",
           "color": "slate"

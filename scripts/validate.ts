@@ -5,7 +5,12 @@
 import fs from "fs";
 import path from "path";
 import { slugify, armorSlugs } from "../src/lib/slug";
-import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
+import {
+  buildItemNameIndex,
+  ITEM_NAME_LENGTH,
+  normalizeItemName,
+  type ItemRecord,
+} from "../src/lib/items";
 import { parseDecorationSkill, treeNameIndex, type SkillTreeData } from "../src/lib/set-search";
 
 const root = process.cwd();
@@ -402,6 +407,8 @@ if (!fs.existsSync(itemsFile)) {
     ids.add(it.id);
     if (typeof it.name !== "string" || !it.name.trim()) error(`${label}: missing name`);
     else if (it.name !== it.name.trim()) error(`${label}: name has surrounding whitespace`);
+    else if (it.name.length > ITEM_NAME_LENGTH)
+      error(`${label}: name "${it.name}" is longer than the game's ${ITEM_NAME_LENGTH} characters`);
     if (typeof it.name_jp !== "string" || !it.name_jp) error(`${label}: missing name_jp`);
     if (it.aliases !== undefined) {
       if (
@@ -438,9 +445,26 @@ if (!fs.existsSync(itemsFile)) {
   // Every material used by recipes and monster drops must link to an item, so
   // the same item is one entity across recipes and the save loader. Fix a miss
   // by correcting the spelling in the recipe data or adding an alias.
+  //
+  // Recipe materials and drops must also be spelled exactly like the game,
+  // which is the item's `name` (aliases are older site spellings, kept so they
+  // still link). A drop's " xN" amount suffix isn't part of the name.
+  const gameName = new Map(data.items.map((it) => [it.id, it.name]));
   const unresolved = new Map<string, Set<string>>(); // name -> where used
-  const note = (name: unknown, where: string) => {
-    if (typeof name !== "string" || index.has(normalizeItemName(name))) return;
+  const misspelled = new Map<string, { game: string; where: Set<string> }>();
+  const note = (name: unknown, where: string, exact = false) => {
+    if (typeof name !== "string") return;
+    const id = index.get(normalizeItemName(name));
+    if (id !== undefined) {
+      const game = gameName.get(id)!;
+      const spelled = name.replace(/\s+x\d+$/i, "");
+      if (exact && spelled !== game) {
+        const entry = misspelled.get(spelled) ?? { game, where: new Set<string>() };
+        entry.where.add(where);
+        misspelled.set(spelled, entry);
+      }
+      return;
+    }
     const set = unresolved.get(name) ?? new Set<string>();
     set.add(where);
     unresolved.set(name, set);
@@ -454,7 +478,8 @@ if (!fs.existsSync(itemsFile)) {
         if (!entry || typeof entry !== "object") continue;
         for (const [key, val] of Object.entries(entry)) {
           if (key.endsWith("_mats") && Array.isArray(val)) {
-            for (const m of val as { name?: unknown }[]) note(m?.name, `${rel} ${entry.name}`);
+            for (const m of val as { name?: unknown }[])
+              note(m?.name, `${rel} ${entry.name}`, true);
           }
         }
         const drops = entry.drops as
@@ -462,7 +487,7 @@ if (!fs.existsSync(itemsFile)) {
         if (drops && typeof drops === "object") {
           for (const sources of Object.values(drops)) {
             for (const list2 of Object.values(sources ?? {})) {
-              for (const d of list2 ?? []) note(d?.name, `${rel} ${entry.name} (drop)`);
+              for (const d of list2 ?? []) note(d?.name, `${rel} ${entry.name} (drop)`, true);
             }
           }
         }
@@ -482,6 +507,11 @@ if (!fs.existsSync(itemsFile)) {
   for (const [name, where] of unresolved) {
     error(
       `items: material "${name}" matches no item name or alias (used in ${[...where].slice(0, 2).join("; ")})`,
+    );
+  }
+  for (const [name, { game, where }] of misspelled) {
+    error(
+      `items: material "${name}" isn't the game's spelling "${game}" (used in ${[...where].slice(0, 2).join("; ")})`,
     );
   }
 

@@ -9,7 +9,7 @@ import { monsterIdOf, parseDropSlot } from "../src/overlay/monsters.js";
 const DATA = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "data");
 const ctx: FieldContext = {
   site: loadSiteIndex(DATA),
-  spellings: { skill: () => undefined, material: () => undefined },
+  spellings: { skill: () => undefined, materialStyle: () => undefined },
   materialContext: "decoration",
 };
 const HITZONES: FieldSpec = { field: "hitzones", kind: "hitzones" };
@@ -130,7 +130,7 @@ test("drop amounts come from the site's xN suffix", () => {
   assert.equal(fieldsAgree(DROPS, committed, disc(1), ctx), false);
 });
 
-test("drops toSite keeps committed order and spelling, drops missing items and appends new ones", () => {
+test("drops toSite keeps committed order, writes game names, drops missing items and appends new ones", () => {
   const untouched = [{ name: "Giaprey Scale", chance: "100%" }];
   const committed = {
     "low-rank": {
@@ -158,7 +158,7 @@ test("drops toSite keeps committed order and spelling, drops missing items and a
   >;
   assert.deepEqual(after["low-rank"]!["body carves (x1)"], [
     { name: "Giaprey Hide", chance: "30%" },
-    { name: "GIAPREY SCALE", chance: "52%" },
+    { name: "Giaprey Scale", chance: "52%" },
     { name: "Sm Monster Bone", chance: "18%" },
   ]);
   assert.equal(after["low-rank"]!["shiny drop"], untouched);

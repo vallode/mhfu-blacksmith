@@ -4571,7 +4571,7 @@
           "color": "green"
         },
         {
-          "name": "Firewyvern Fluid",
+          "name": "FireWyvern Fluid",
           "amount": 5,
           "type": "part",
           "color": "red"
@@ -5541,7 +5541,7 @@
           "color": "green"
         },
         {
-          "name": "YamatsukamiFluid",
+          "name": "YamaTsukamiFluid",
           "amount": 2,
           "type": "fluid",
           "color": "green"
@@ -5601,7 +5601,7 @@
           "color": "green"
         },
         {
-          "name": "YamatsukaFillet",
+          "name": "YamaTsukaFillet",
           "amount": 3,
           "type": "part",
           "color": "green"
@@ -5885,7 +5885,7 @@
       "create_mats": null,
       "improve_mats": [
         {
-          "name": "Elder Thank You+",
+          "name": "Elder Thnk You+",
           "amount": 1,
           "type": "ticket",
           "color": "yellow"

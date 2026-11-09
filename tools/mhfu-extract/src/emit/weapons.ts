@@ -375,18 +375,18 @@ export function emitBlademasterWeapons(
         upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0) ? halveCost(w.price) : null,
       improve_from: resolveImproveFrom(upgradeGraph, w.index, "WepBMID", names),
       create_mats: primaryRecipe
-        ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names, "weapon"))
+        ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names))
         : null,
       improve_mats:
         upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0)
-          ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names, "weapon"))
+          ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names))
           : null,
       improve_to: resolveImproveTo(upgradeEntry, "WepBMID", names),
       elements: dual
         ? emitDualElements(dual)
         : emitElements(w.eleType, w.eleValue, w.statusType, w.statusValue),
       alternative_create_mats: altRecipe
-        ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon"))
+        ? materialsOrNull(resolveMaterials(altRecipe.craft, names))
         : null,
     });
   }
@@ -451,16 +451,16 @@ export function emitGunnerWeapons(
         upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0) ? halveCost(w.price) : null,
       improve_from: resolveImproveFrom(upgradeGraph, w.index, "WepGunID", names),
       create_mats: primaryRecipe
-        ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names, "weapon"))
+        ? materialsOrNull(resolveMaterials(primaryRecipe.craft, names))
         : null,
       improve_mats:
         upgradeEntry && upgradeEntry.craft.some((c) => c.itemId !== 0)
-          ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names, "weapon"))
+          ? materialsOrNull(resolveMaterials(upgradeEntry.craft, names))
           : null,
       improve_to: resolveImproveTo(upgradeEntry, "WepGunID", names),
       elements: elements.length > 0 ? elements : null,
       alternative_create_mats: altRecipe
-        ? materialsOrNull(resolveMaterials(altRecipe.craft, names, "weapon"))
+        ? materialsOrNull(resolveMaterials(altRecipe.craft, names))
         : null,
       ...emitGunnerDetails(w, type, classMod, gunnerTables),
     });

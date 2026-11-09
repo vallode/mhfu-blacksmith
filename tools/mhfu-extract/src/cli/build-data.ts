@@ -20,8 +20,8 @@ import {
 import {
   buildStyleIndex,
   loadStyleOverrides,
-  restyleItem,
-  type Style,
+  normalizeMaterials,
+  type MaterialLook,
 } from "../build/material-styles.js";
 
 export type BuildTarget = CategoryName | "quests";
@@ -39,19 +39,18 @@ export interface BuildDataOptions {
   dryRun?: boolean;
 }
 
-/** One material spelling restyled, with how many recipe rows it touched. */
-export interface Restyle {
-  name: string;
-  before: Style;
-  after: Style;
+/** One material renamed to its game name and/or restyled, with how many recipe rows it touched. */
+export interface MaterialChange {
+  before: MaterialLook;
+  after: MaterialLook;
   count: number;
 }
 
 export interface CategoryBuildReport {
   category: CategoryName;
   changes: Change[];
-  /** Material icon styles normalized per item (`build/material-styles.ts`). */
-  restyled: Restyle[];
+  /** Material names and icon styles normalized per item (`build/material-styles.ts`). */
+  materials: MaterialChange[];
   kept: KeptDisagreement[];
   siteOnly: Unpaired[];
   discOnly: Unpaired[];
@@ -128,21 +127,17 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
       spellings,
       keep,
     );
-    const restyles = new Map<string, Restyle>();
+    const materials = new Map<string, MaterialChange>();
     for (const [file, items] of result.files) {
       result.files.set(
         file,
         items.map((item) =>
-          restyleItem(item, site, styleOf, (m, after) => {
-            const key = JSON.stringify([m.name, m.type, m.color, after]);
-            const entry = restyles.get(key) ?? {
-              name: m.name,
-              before: { type: m.type, color: m.color },
-              after,
-              count: 0,
-            };
+          normalizeMaterials(item, site, styleOf, (m, after) => {
+            const before = { name: m.name, type: m.type, color: m.color };
+            const key = JSON.stringify([before, after]);
+            const entry = materials.get(key) ?? { before, after, count: 0 };
             entry.count++;
-            restyles.set(key, entry);
+            materials.set(key, entry);
           }),
         ),
       );
@@ -161,7 +156,7 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
     categories.push({
       category: name,
       changes: result.changes,
-      restyled: [...restyles.values()].sort((a, b) => a.name.localeCompare(b.name)),
+      materials: [...materials.values()].sort((a, b) => a.before.name.localeCompare(b.before.name)),
       kept: result.kept,
       siteOnly: result.pairing.siteOnly,
       discOnly: result.pairing.discOnly,
@@ -183,9 +178,9 @@ export function printBuildSummary(report: BuildDataReport, dryRun = false): void
     const byField = new Map<string, number>();
     for (const change of c.changes) byField.set(change.field, (byField.get(change.field) ?? 0) + 1);
     const fields = [...byField].map(([f, n]) => `${f} ${n}`).join(", ") || "none";
-    const restyledRows = c.restyled.reduce((n, r) => n + r.count, 0);
+    const materialRows = c.materials.reduce((n, r) => n + r.count, 0);
     console.log(
-      `${c.category}: ${c.changes.length} value(s) changed (${fields}); ${restyledRows} material style(s) normalized; ${c.kept.length} kept as committed; ${verb} ${c.filesWritten.length} file(s).`,
+      `${c.category}: ${c.changes.length} value(s) changed (${fields}); ${materialRows} material(s) renamed or restyled; ${c.kept.length} kept as committed; ${verb} ${c.filesWritten.length} file(s).`,
     );
     if (c.siteOnly.length > 0)
       console.log(
@@ -285,18 +280,17 @@ export function formatBuildReport(report: BuildDataReport): string {
       }
       out.push("");
     }
-    if (c.restyled.length > 0) {
-      const rows = c.restyled.reduce((n, r) => n + r.count, 0);
+    if (c.materials.length > 0) {
+      const rows = c.materials.reduce((n, r) => n + r.count, 0);
+      const look = (m: MaterialLook) => `${cell(m.name)} (${m.type}/${m.color})`;
       out.push(
-        `### Material styles normalized (${rows} rows, ${c.restyled.length} spellings)`,
+        `### Materials renamed or restyled (${rows} rows, ${c.materials.length} spellings)`,
         "",
-        "| material | before | after | rows |",
-        "|---|---|---|---|",
+        "| before | after | rows |",
+        "|---|---|---|",
       );
-      for (const r of c.restyled)
-        out.push(
-          `| ${cell(r.name)} | ${r.before.type}/${r.before.color} | ${r.after.type}/${r.after.color} | ${r.count} |`,
-        );
+      for (const r of c.materials)
+        out.push(`| ${look(r.before)} | ${look(r.after)} | ${r.count} |`);
       out.push("");
     }
     if (c.kept.length > 0) {
