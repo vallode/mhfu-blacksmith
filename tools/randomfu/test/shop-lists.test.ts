@@ -18,6 +18,9 @@ function ovl(): Buffer {
   put(0x1000, [163, 7, 11, 153, 21, 22, 144, 145]);
   put(0x1020, [163, 7, 11, 153, 21, 22, 144, 145, 100]);
   put(0x1040, [96, 97, 99, 102]);
+  buf.writeUInt16LE(0xffff, 0x1048); // an ammo list ending in 0xFFFF instead
+  [96, 99, 105].forEach((v, i) => buf.writeUInt16LE(v, 0x1060 + i * 2));
+  buf.writeUInt16LE(0xffff, 0x1066);
   // A pointer table: { u32 condition, u32 list } x 3.
   [
     [0, 0x1000],
@@ -38,13 +41,14 @@ test("findItemLists reads 0-terminated item lists and nothing else", () => {
       [0x1000, 8],
       [0x1020, 9],
       [0x1040, 4],
+      [0x1060, 3],
     ],
   );
 });
 
 test("mapShopLists finds the lists around the shop and the pointers to them", () => {
   const report = mapShopLists(parseOvl(ovl()));
-  assert.equal(report.lists.length, 3, "the ammo list is found next to the store's");
+  assert.equal(report.lists.length, 4, "the ammo lists are found next to the store's");
   assert.deepEqual(
     report.pointers.map((p) => [p.at, p.target]),
     [
@@ -54,5 +58,14 @@ test("mapShopLists finds the lists around the shop and the pointers to them", ()
     ],
   );
   assert.match(report.pointers[1]!.context, /00000005 \[09c01020\]/);
-  assert.match(formatShopLists(report), /0x1020: 9 items, 7 shop items/);
+  const text = formatShopLists(report);
+  assert.match(text, /0x1020: 9 items, 7 shop items/);
+  // The labelled dump starts 0x80 before the store's first list.
+  const [store] = report.dumps;
+  assert.equal(store!.offset, 0x1000);
+  assert.equal(store!.lines[0], "0xf80  eeee");
+  assert.ok(store!.lines.includes("0x1000  00a3  Herb"));
+  assert.ok(store!.lines.includes("0x1010  0000  ----"));
+  assert.equal(report.dumps.length, 1);
+  assert.match(text, /Peddling granny .*: not found in this order/);
 });

@@ -23,7 +23,10 @@ export interface ItemList {
   anchors: number;
 }
 
-/** Every run of valid, mostly distinct item IDs that ends in a 0 u16 and follows a 0 (or a non-item). */
+/** List ends seen so far: 0 and 0xFFFF. */
+const ENDS = new Set([0, 0xffff]);
+
+/** Every run of valid, mostly distinct item IDs that ends in 0 or 0xFFFF and doesn't follow an item. */
 export function findItemLists(buf: Buffer, from = 0x80, to = buf.length): ItemList[] {
   const lists: ItemList[] = [];
   const isItem = (v: number) => v > 0 && v < ITEM_COUNT;
@@ -40,7 +43,7 @@ export function findItemLists(buf: Buffer, from = 0x80, to = buf.length): ItemLi
       items.push(buf.readUInt16LE(end));
       end += 2;
     }
-    const terminated = end + 2 <= to && buf.readUInt16LE(end) === 0;
+    const terminated = end + 2 <= to && ENDS.has(buf.readUInt16LE(end));
     if (terminated && items.length >= MIN_ITEMS && new Set(items).size >= items.length * 0.8) {
       lists.push({ offset: at, items, anchors: items.filter((v) => SHOP_ANCHORS.has(v)).length });
     }
@@ -61,12 +64,54 @@ export interface PointerRef {
 export interface ShopListReport {
   lists: ItemList[];
   pointers: PointerRef[];
+  /** Labelled dumps around each known shop that was found, one u16 per line. */
+  dumps: { name: string; offset: number; lines: string[] }[];
+}
+
+/** First items of shops seen in the game (EU disc), to find their area. */
+export const KNOWN_SHOPS: readonly { name: string; start: number[] }[] = [
+  { name: "General store (Herb, Potion, Antidote, Whetstone)", start: [163, 7, 11, 153] },
+  {
+    name: "Peddling granny (Antidote Herb, Sleep Herb, Fire Herb, Sap Plant)",
+    start: [164, 167, 165, 168],
+  },
+];
+const DUMP_BEFORE = 0x80;
+const DUMP_AFTER = 0x900;
+
+/** Offset of the first place `start` appears as consecutive u16s, or -1. */
+function findSequence(buf: Buffer, start: readonly number[]): number {
+  outer: for (let at = 0; at + start.length * 2 <= buf.length; at += 2) {
+    for (let k = 0; k < start.length; k++) {
+      if (buf.readUInt16LE(at + k * 2) !== start[k]) continue outer;
+    }
+    return at;
+  }
+  return -1;
+}
+
+/** One line per u16: offset, hex value, and the item name when it's a valid item ID. */
+export function dumpRegion(buf: Buffer, from: number, to: number): string[] {
+  const lines: string[] = [];
+  for (let at = from - (from % 2); at + 2 <= Math.min(to, buf.length); at += 2) {
+    const v = buf.readUInt16LE(at);
+    const label =
+      v > 0 && v < ITEM_COUNT ? `  ${itemName(v)}` : v === 0 || v === 0xffff ? "  ----" : "";
+    lines.push(`0x${at.toString(16)}  ${v.toString(16).padStart(4, "0")}${label}`);
+  }
+  return lines;
 }
 
 export function mapShopLists(ovl: OvlFile): ShopListReport {
   const buf = ovl.reader.buf;
   const anchored = findItemLists(buf).filter((l) => l.anchors >= 4);
-  if (anchored.length === 0) return { lists: [], pointers: [] };
+  const dumps = KNOWN_SHOPS.map((shop) => ({
+    name: shop.name,
+    offset: findSequence(buf, shop.start),
+  }))
+    .filter((d) => d.offset !== -1)
+    .map((d) => ({ ...d, lines: dumpRegion(buf, d.offset - DUMP_BEFORE, d.offset + DUMP_AFTER) }));
+  if (anchored.length === 0) return { lists: [], pointers: [], dumps };
   const from = Math.max(0x80, anchored[0]!.offset - WINDOW);
   const last = anchored.at(-1)!;
   const to = Math.min(buf.length, last.offset + last.items.length * 2 + WINDOW);
@@ -86,11 +131,26 @@ export function mapShopLists(ovl: OvlFile): ShopListReport {
     }
     pointers.push({ at, target, context: words.join(" ") });
   }
-  return { lists, pointers };
+  return { lists, pointers, dumps };
 }
 
 export function formatShopLists(report: ShopListReport): string {
   const out = [`${report.lists.length} item lists:`, ""];
+  const head: string[] = [];
+  for (const shop of KNOWN_SHOPS) {
+    const dump = report.dumps.find((d) => d.name === shop.name);
+    if (!dump) {
+      head.push(`${shop.name}: not found in this order.`, "");
+      continue;
+    }
+    head.push(
+      `${shop.name} at 0x${dump.offset.toString(16)}, one u16 per line:`,
+      "",
+      ...dump.lines,
+      "",
+    );
+  }
+  out.unshift(...head);
   for (const l of report.lists) {
     out.push(`0x${l.offset.toString(16)}: ${l.items.length} items, ${l.anchors} shop items`);
     out.push(`  ${l.items.map((v) => `${itemName(v)} (${v})`).join(", ")}`);
