@@ -41,7 +41,7 @@ export interface EmittedDecoration {
 }
 
 /** DecorationValues -> ItemID index offset (see tables/decorations.ts). */
-const DECORATION_ITEM_ID_OFFSET = 948;
+export const DECORATION_ITEM_ID_OFFSET = 948;
 
 export function emitDecorations(
   reader: BinaryReader,

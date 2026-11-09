@@ -43,6 +43,13 @@ export const QUEST_MAGIC = Buffer.from([0x4c, 0x00, 0x00, 0x00, 0x32, 0x4e, 0x44
 
 export class QuestCipherError extends Error {}
 
+/** The SHA1 a quest's header carries: SHA1(plaintext .mib bytes + the region's salt). */
+export function questHash(payload: Buffer, region: Region): Buffer {
+  return createHash("sha1")
+    .update(Buffer.concat([payload, Buffer.from(HASH_SALT[region], "ascii")]))
+    .digest();
+}
+
 class QuestKeyStream {
   private readonly key: [number, number, number, number];
 
@@ -127,10 +134,7 @@ export function decryptQuest(buf: Buffer, region: Region): Buffer {
   }
   const payload = rest.subarray(0, size);
 
-  const expected = createHash("sha1")
-    .update(Buffer.concat([payload, Buffer.from(HASH_SALT[region], "ascii")]))
-    .digest();
-  if (!expected.equals(hash)) {
+  if (!questHash(payload, region).equals(hash)) {
     throw new QuestCipherError(
       `quest SHA1 mismatch for region "${region}" — wrong region, or not QuestCipher-wrapped`,
     );
@@ -145,9 +149,7 @@ export function encryptQuest(
   region: Region,
   seeds: readonly [number, number, number, number] = [0, 0, 0, 0],
 ): Buffer {
-  const hash = createHash("sha1")
-    .update(Buffer.concat([payload, Buffer.from(HASH_SALT[region], "ascii")]))
-    .digest();
+  const hash = questHash(payload, region);
   const header = Buffer.alloc(24);
   header.writeUInt32LE(payload.length, 0);
   hash.copy(header, 4);

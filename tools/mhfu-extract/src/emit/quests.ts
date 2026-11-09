@@ -88,7 +88,7 @@ function questRank(hub: QuestHub, headerRank: number): Rank | null {
 
 const PLACEHOLDER_TITLES = new Set(["**********", "none"]);
 
-function isPlaceholderQuest(parsed: ParsedQuest): boolean {
+export function isPlaceholderQuest(parsed: ParsedQuest): boolean {
   return PLACEHOLDER_TITLES.has(parsed.strings?.title ?? "");
 }
 
