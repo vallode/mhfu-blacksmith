@@ -20,10 +20,38 @@ tested. Run `roundtrip` on a new disc first.
 
 ## Usage
 
+### The settings page
+
 ```bash
 # from tools/randomfu
+pnpm gui
+```
+
+This starts a small server on your computer and opens a page in your
+browser (or prints its address). On it you can:
+
+- enter the paths to your disc, the output and the decrypted EBOOT, and
+  check them;
+- set every option, with its explanation, or start from a preset
+  (Rewards only, Full, Chaos);
+- copy the **settings string** (seed and settings in one line), load one,
+  or save and load settings files;
+- preview the spoiler log, randomize, watch the log and search the
+  spoiler.
+
+The page remembers your paths and settings in the browser. The server
+only listens on 127.0.0.1, every request needs a token that only the
+page has, and requests naming any other host are refused, so other
+websites can't use it. Keep `pnpm gui` running while you use the page.
+`--port <n>` picks the port; `--no-open` doesn't open a browser.
+
+### The command line
+
+```bash
 pnpm roundtrip --iso /path/to/mhp2g.iso
 pnpm randomize --iso /path/to/mhp2g.iso --out /path/to/random.iso --seed MYSEED
+pnpm settings                       # list every setting with its values and help
+pnpm settings --write my.json       # write every setting to a file to edit
 ```
 
 - `roundtrip` re-encrypts every quest and both monster overlays without
@@ -33,28 +61,52 @@ pnpm randomize --iso /path/to/mhp2g.iso --out /path/to/random.iso --seed MYSEED
 - `randomize` copies the image (`.iso` or `.cso`; the output is always an
   `.iso`), shuffles, writes the changes in place, reads every changed file
   back to check it, and writes `random.spoiler.txt` next to the output.
-  - `--seed` picks the seed; without it a random one is chosen and printed.
-  - `--shuffles` is a comma-separated list. The default is
-    `quest-rewards,monster-rewards`.
-  - `--weapon-mix same-type|any-type` (default `same-type`): whether
-    `weapons` keeps each place's weapon type.
-  - `--amount-spread` / `--cost-spread` (0 up to 1, default 0.5): how far
-    `recipe-amounts` and `costs` may move a value, e.g. 0.5 means 50% to
-    150%.
+  - `--dry-run` prints the spoiler log without writing an image.
   - `--spoiler <path>` writes the log somewhere else.
-  - `--dry-run` reads the disc and prints the spoiler log without writing
-    an image (`--out` isn't needed).
   - `--eboot <path>` / `--pspdecrypt-bin <name>`: how to decrypt the EBOOT
-    for the EBOOT shuffles (`recipes`, `recipe-amounts`, `costs`,
-    `weapons`), as for
-    `mhfu-extract unpack`. PPSSPP can dump it: turn on "Dump Decrypted
-    Eboot.bin on game boot" and boot the game once.
+    for settings that edit it, as for `mhfu-extract unpack`. PPSSPP can
+    dump it: turn on "Dump Decrypted Eboot.bin on game boot" and boot the
+    game once.
   - `--force` overwrites an existing output file.
+
+Settings come from these flags, later ones winning:
+
+| Flag                                                          | What it sets                                                                              |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                              |
+| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                   |
+| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, recipes, recipe-amounts, costs, weapons |
+| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                             |
+| `--set key=value,key=value`                                   | Any setting by name                                                                       |
+| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                            |
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
-what the others do. `LOGIC_VERSION` in `src/randomize.ts` is printed in the
-spoiler log and must be bumped whenever a change alters a seed's output.
+what the others do. A settings string records the logic version
+(`src/version.ts`); it must be bumped whenever a change alters a seed's
+output, and loading a string made with another version warns that the
+game will differ.
+
+### Settings
+
+All of them are defined once, in `src/settings.ts` (`OPTIONS`), which the
+CLI, settings files, settings strings and the page all read: a new option
+added there shows up everywhere.
+
+| Setting                           | Default     | What it does                                                         |
+| --------------------------------- | ----------- | -------------------------------------------------------------------- |
+| `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`) |
+| `questRewards.enabled`            | on          | Shuffle quest rewards                                                |
+| `monsterRewards.enabled`          | on          | Shuffle carves                                                       |
+| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                    |
+| `recipes.materials`               | off         | Shuffle crafting and upgrade materials (EBOOT)                       |
+| `recipes.amounts`                 | off         | Randomize material amounts (EBOOT)                                   |
+| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                             |
+| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                        |
+| `costs.enabled`                   | off         | Randomize crafting costs (EBOOT)                                     |
+| `costs.spread`                    | 0.5         | How far costs move                                                   |
+| `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                   |
+| `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)  |
 
 ## Shuffles
 
@@ -71,6 +123,9 @@ No shuffle changes a list's length, so every edited file keeps its size.
 ### Logic
 
 Items only move within a **tier**: a rank (Low, High or G) and a star level.
+`logic.tiers` sets how strict that is: `star` (the default), `rank` (any
+star level within Low, High or G Rank) or `none` (one pool: no logic, and
+the recipe check below no longer means anything).
 
 - A quest's tier is its header rank and star level. Only Village and Guild
   quests take part, on one star scale (Village 3★ and Guild 3★ are the same

@@ -22,6 +22,16 @@ export interface Tier {
   stars: number;
 }
 
+/** How strictly shuffles keep items in place: see the `logic.tiers` setting. */
+export type TierMode = "star" | "rank" | "none";
+
+/** The tier shuffles group by under `mode`: star level, rank only, or one pool. */
+export function coarsen(tier: Tier, mode: TierMode): Tier {
+  if (mode === "rank") return { band: tier.band, stars: 0 };
+  if (mode === "none") return { band: "low", stars: 0 };
+  return tier;
+}
+
 export function tierKey(tier: Tier): string {
   return `${tier.band}:${tier.stars}`;
 }
@@ -32,7 +42,7 @@ export function tierOrder(tier: Tier): number {
 }
 
 export function tierLabel(tier: Tier): string {
-  return `${BAND_NAMES[tier.band]} ${tier.stars}★`;
+  return tier.stars === 0 ? BAND_NAMES[tier.band] : `${BAND_NAMES[tier.band]} ${tier.stars}★`;
 }
 
 /** `questHeader.Rank` -> band (see `RANK_TIER` in mhfu-extract's emit/quests.ts). */

@@ -25,7 +25,7 @@ import {
   type RewardRank,
   type TablePair,
 } from "../../../mhfu-extract/src/monsters/rewards.js";
-import { monsterKey, rewardRankBand, tierKey, type Tier } from "../game/tiers.js";
+import { monsterKey, rewardRankBand, tierKey, tierLabel, type Tier } from "../game/tiers.js";
 import type { LoadedOverlay } from "../game/load.js";
 import type { Edits } from "../edits.js";
 import type { Rng } from "../rng.js";
@@ -176,7 +176,7 @@ export function shuffleMonsterRewards(
     buf.writeUInt16LE(itemId, slot.offset + 2);
     const amount = slot.amount === undefined ? "" : ` x${slot.amount}`;
     return {
-      where: `${listLabel(slot.list)} (${slot.tier.band} ${slot.tier.stars}★)`,
+      where: `${listLabel(slot.list)} (${tierLabel(slot.tier)})`,
       text: `${slot.chance}% ${itemName(itemId)}${amount} (was ${itemName(slot.itemId)})`,
     };
   });

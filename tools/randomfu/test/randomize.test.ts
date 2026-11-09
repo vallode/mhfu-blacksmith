@@ -13,7 +13,9 @@ import { BinaryReader } from "../../mhfu-extract/src/binary/reader.js";
 import { PatchableImage } from "../src/disc/image.js";
 import { EBOOT_PATH, loadGame, type GameData } from "../src/game/load.js";
 import { tierLabel } from "../src/game/tiers.js";
-import { DEFAULT_SPREAD, randomize, type Settings, type ShuffleName } from "../src/randomize.js";
+import { randomize } from "../src/randomize.js";
+import type { Settings } from "../src/settings.js";
+import { settingsWith, type ShuffleName } from "./settings-helper.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
 import { collectRecipeSlots } from "../src/shuffles/recipes.js";
@@ -30,13 +32,7 @@ import {
 } from "./fixtures.js";
 
 function settings(seed: string, ...shuffles: ShuffleName[]): Settings {
-  return {
-    seed,
-    shuffles,
-    amountSpread: DEFAULT_SPREAD,
-    costSpread: DEFAULT_SPREAD,
-    weaponMix: "same-type",
-  };
+  return settingsWith(seed, shuffles);
 }
 
 const ALL = settings("fixture", "quest-rewards", "monster-rewards", "recipes");
@@ -161,7 +157,10 @@ test("recipe amounts follow each material's usual quantity and stay in range", a
   const { game, close } = await load(fixtureFile());
   const vanilla = recipes(game.eboot!);
 
-  const unchanged = randomize(game, { ...settings("a", "recipe-amounts"), amountSpread: 0 });
+  const unchanged = randomize(
+    game,
+    settingsWith("a", ["recipe-amounts"], { "recipes.amountSpread": 0 }),
+  );
   assert.equal(
     unchanged.edits.changedEboot(),
     null,
@@ -184,7 +183,10 @@ test("recipe amounts follow each material's usual quantity and stay in range", a
 
   // With materials swapped and no spread, a slot scales to its new item's usual amount:
   // a slot asking for 4 of an item usually wanted x4 that now takes one usually wanted x2 asks for 2.
-  const both = randomize(game, { ...settings("b", "recipes", "recipe-amounts"), amountSpread: 0 });
+  const both = randomize(
+    game,
+    settingsWith("b", ["recipes", "recipe-amounts"], { "recipes.amountSpread": 0 }),
+  );
   // Each item's median quantity over every recipe slot on the disc.
   const quantities = new Map<number, number[]>();
   for (const slot of collectRecipeSlots(game.eboot!, undefined)) {
@@ -236,7 +238,7 @@ test("costs vary within the spread in steps of 10z", async () => {
     if (after !== before) changed++;
   }
   assert.ok(changed > 0);
-  assert.match(formatSpoiler(game, settings("c", "costs"), result), /Costs:\s+±50%/);
+  assert.match(formatSpoiler(game, settings("c", "costs"), result), /Cost variation: ±50%/);
   close();
 });
 
@@ -336,7 +338,7 @@ test("the CLI writes an ISO and a spoiler log, and refuses to overwrite", async 
     ]);
     const spoiler = readFileSync(path.join(dir, "random.spoiler.txt"), "utf-8");
     assert.match(spoiler, /Seed:\s+cli/);
-    assert.match(spoiler, /Costs:\s+±25%/);
+    assert.match(spoiler, /Cost variation: ±25%/);
     assert.match(spoiler, /== Quest rewards ==/);
     assert.match(spoiler, /== Where items are first found ==/);
     assert.match(spoiler, /Low Rank 1★ \(\d+\)/);
@@ -346,7 +348,7 @@ test("the CLI writes an ISO and a spoiler log, and refuses to overwrite", async 
     );
     await assert.rejects(
       main(["randomize", "--iso", input, "--out", output, "--cost-spread", "2", "--force"]),
-      /cost-spread/,
+      /costs\.spread must be a number from 0 to 0\.95/,
     );
   } finally {
     console.log = log;

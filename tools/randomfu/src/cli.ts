@@ -1,35 +1,29 @@
 #!/usr/bin/env node
 /**
- * randomfu CLI. See README.md.
- *
- *   tsx src/cli.ts randomize --iso <in> --out <out.iso> [--seed <seed>] [--shuffles <list>]
- *                            [--amount-spread <0-1>] [--cost-spread <0-1>]
- *                            [--weapon-mix same-type|any-type] [--spoiler <path>]
- *                            [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--dry-run] [--force]
- *   tsx src/cli.ts roundtrip --iso <in>
+ * randomfu CLI. See README.md and `tsx src/cli.ts help`.
  */
-import { existsSync, rmSync, writeFileSync } from "node:fs";
+import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { openDiscImage } from "../../mhfu-extract/src/container/image.js";
-import { copyAsIso, PatchableImage } from "./disc/image.js";
-import { loadGame, type EbootOptions } from "./game/load.js";
-import {
-  DEFAULT_SHUFFLES,
-  DEFAULT_SPREAD,
-  EBOOT_SHUFFLES,
-  SHUFFLES,
-  parseShuffles,
-  parseSpread,
-  randomize,
-  type Settings,
-} from "./randomize.js";
+import { loadGame } from "./game/load.js";
 import { randomSeed } from "./rng.js";
-import { WEAPON_MIXES, type WeaponMix } from "./shuffles/weapons.js";
-import { formatSpoiler } from "./spoiler.js";
-import { roundTrip, writeEdits } from "./write.js";
+import { runRandomizer } from "./run.js";
+import {
+  OPTIONS,
+  applySettings,
+  decodeSettings,
+  defaultSettings,
+  parseAssignments,
+  settingsFromJson,
+  settingsToJson,
+  type OptionKey,
+  type Settings,
+} from "./settings.js";
+import { LOGIC_VERSION } from "./version.js";
+import { roundTrip } from "./write.js";
 
-const BOOLEAN_FLAGS = new Set(["dry-run", "force"]);
+const BOOLEAN_FLAGS = new Set(["dry-run", "force", "no-open"]);
 
 export function parseFlags(argv: string[]): Record<string, string> {
   const flags: Record<string, string> = {};
@@ -42,19 +36,13 @@ export function parseFlags(argv: string[]): Record<string, string> {
       continue;
     }
     const value = argv[i + 1];
-    if (value === undefined || value.startsWith("--"))
+    if (value === undefined || value.startsWith("--")) {
       throw new Error(`Missing value for --${key}`);
+    }
     flags[key] = value;
     i++;
   }
   return flags;
-}
-
-function parseWeaponMix(value: string): WeaponMix {
-  if (!(WEAPON_MIXES as readonly string[]).includes(value)) {
-    throw new Error(`--weapon-mix must be one of ${WEAPON_MIXES.join(", ")}`);
-  }
-  return value as WeaponMix;
 }
 
 function requireFlag(flags: Record<string, string>, name: string): string {
@@ -63,89 +51,99 @@ function requireFlag(flags: Record<string, string>, name: string): string {
   return value;
 }
 
-const USAGE = `Usage:
-  randomize --iso <in.iso|in.cso> --out <out.iso> [--seed <seed>] [--shuffles ${SHUFFLES.join(",")}]
-            [--amount-spread <0-1>] [--cost-spread <0-1>] [--weapon-mix same-type|any-type]
-            [--spoiler <path>] [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--dry-run] [--force]
-  roundtrip --iso <in.iso|in.cso>
+/** `--shuffles` names, kept from before settings files existed. */
+const SHUFFLE_FLAGS: Record<string, OptionKey> = {
+  "quest-rewards": "questRewards.enabled",
+  "monster-rewards": "monsterRewards.enabled",
+  recipes: "recipes.materials",
+  "recipe-amounts": "recipes.amounts",
+  costs: "costs.enabled",
+  weapons: "weapons.enabled",
+};
 
-Default shuffles: ${DEFAULT_SHUFFLES.join(", ")}. ${EBOOT_SHUFFLES.join(", ")} also need the
-decrypted EBOOT (pspdecrypt on PATH, or --eboot). Spreads default to ${DEFAULT_SPREAD} (50% to 150%).`;
+/** Shorthand flags for single settings. */
+const SETTING_FLAGS: Record<string, OptionKey> = {
+  "amount-spread": "recipes.amountSpread",
+  "cost-spread": "costs.spread",
+  "weapon-mix": "weapons.mix",
+  tiers: "logic.tiers",
+};
 
-async function runRandomize(flags: Record<string, string>): Promise<void> {
-  const input = requireFlag(flags, "iso");
-  const dryRun = flags["dry-run"] === "true";
-  const output = dryRun ? null : requireFlag(flags, "out");
-  const settings: Settings = {
-    seed: flags.seed ?? randomSeed(),
-    shuffles: flags.shuffles ? parseShuffles(flags.shuffles) : DEFAULT_SHUFFLES,
-    amountSpread: flags["amount-spread"]
-      ? parseSpread(flags["amount-spread"], "amount-spread")
-      : DEFAULT_SPREAD,
-    costSpread: flags["cost-spread"]
-      ? parseSpread(flags["cost-spread"], "cost-spread")
-      : DEFAULT_SPREAD,
-    weaponMix: parseWeaponMix(flags["weapon-mix"] ?? "same-type"),
-  };
-  const eboot: EbootOptions | null = settings.shuffles.some((s) => EBOOT_SHUFFLES.includes(s))
-    ? { overridePath: flags.eboot, pspdecryptBin: flags["pspdecrypt-bin"] }
-    : null;
-
-  if (output) {
-    if (path.resolve(output) === path.resolve(input))
-      throw new Error("--out must differ from --iso");
-    if (existsSync(output) && flags.force !== "true") {
-      throw new Error(`${output} already exists (pass --force to overwrite it)`);
-    }
-    console.log(`Copying ${input} to ${output}...`);
-    copyAsIso(input, output);
-  }
-
-  // Read from the copy when there is one, so the same file is read and patched.
-  const image = output ? new PatchableImage(output) : null;
-  const opened = image ? null : openDiscImage(input);
-  let finished = false;
-  try {
-    const source = image?.source ?? opened!.source;
-    const iso = image?.iso ?? opened!.iso;
-    const game = await loadGame(source, iso, { eboot });
-    console.log(
-      `${game.discId} (${game.region}): ${game.quests.length} quests, ${game.skippedQuests.length} skipped.`,
-    );
-    console.log(`Seed ${settings.seed}; shuffling ${settings.shuffles.join(", ") || "nothing"}.`);
-
-    const result = randomize(game, settings);
-    for (const report of result.reports)
-      console.log(`  ${report.title}: ${report.lines.length} slots`);
-    if (result.problems.length > 0) {
+/**
+ * Settings from flags, later ones winning: defaults, `--settings` file,
+ * `--settings-string`, `--shuffles`, shorthand flags, `--set`, `--seed`.
+ */
+export function settingsFromFlags(flags: Record<string, string>): Settings {
+  let settings = defaultSettings(randomSeed());
+  if (flags.settings)
+    settings = settingsFromJson(readFileSync(flags.settings, "utf-8"), settings.seed);
+  if (flags["settings-string"]) {
+    const decoded = decodeSettings(flags["settings-string"]);
+    if (decoded.version !== LOGIC_VERSION) {
       console.warn(
-        `Warning: ${result.problems.length} recipe materials moved up a rank; see the spoiler log.`,
+        `Warning: this settings string was made with logic v${decoded.version}; this is v${LOGIC_VERSION}, so the same seed gives a different game.`,
       );
     }
-
-    if (image) {
-      const summary = writeEdits(image, game, result.edits);
-      console.log(
-        `Wrote ${summary.quests} quests and ${summary.files} other DATA.BIN files; EBOOT ${summary.eboot}. Read-back check passed.`,
-      );
+    settings = decoded.settings;
+  }
+  if (flags.shuffles) {
+    const changes: Record<string, boolean> = {};
+    for (const key of Object.values(SHUFFLE_FLAGS)) changes[key] = false;
+    for (const name of flags.shuffles
+      .split(",")
+      .map((s) => s.trim())
+      .filter(Boolean)) {
+      const key = SHUFFLE_FLAGS[name];
+      if (!key) {
+        throw new Error(
+          `Unknown shuffle "${name}" (expected ${Object.keys(SHUFFLE_FLAGS).join(", ")})`,
+        );
+      }
+      changes[key] = true;
     }
+    settings = applySettings(settings, changes);
+  }
+  for (const [flag, key] of Object.entries(SETTING_FLAGS)) {
+    if (flags[flag] !== undefined) settings = applySettings(settings, { [key]: flags[flag] });
+  }
+  if (flags.set) settings = applySettings(settings, parseAssignments(flags.set));
+  if (flags.seed) settings = applySettings(settings, { seed: flags.seed });
+  return settings;
+}
 
-    const spoilerPath =
-      flags.spoiler ?? (output ? output.replace(/\.iso$/i, "") + ".spoiler.txt" : null);
-    const spoiler = formatSpoiler(game, settings, result);
-    if (spoilerPath) {
-      writeFileSync(spoilerPath, spoiler, "utf-8");
-      console.log(`Wrote ${spoilerPath}`);
-    } else {
-      process.stdout.write(spoiler);
+const USAGE = `Usage:
+  randomize --iso <in.iso|in.cso> --out <out.iso> [settings] [--spoiler <path>]
+            [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--force]
+  randomize --iso <in> --dry-run [settings]         print the spoiler log, write nothing
+  roundtrip --iso <in>                              check files re-encrypt to the disc's bytes
+  gui [--port <n>] [--no-open]                      open the settings page in a browser
+  settings [--write <file.json>]                    list every setting, or write the defaults
+
+Settings (later ones win):
+  --settings <file.json>       any subset of settings (see "settings")
+  --settings-string <RF...>    a shared settings string, seed included
+  --shuffles <list>            turn on exactly these: ${Object.keys(SHUFFLE_FLAGS).join(", ")}
+  --tiers star|rank|none       --amount-spread <0-0.95>   --cost-spread <0-0.95>
+  --weapon-mix same-type|any-type
+  --set key=value,key=value    any setting by name
+  --seed <seed>`;
+
+function printSettings(): void {
+  let section = "";
+  for (const option of OPTIONS) {
+    if (option.section !== section) {
+      section = option.section;
+      console.log(`\n${section}`);
     }
-    if (output) console.log(`Done: ${output}`);
-    finished = true;
-  } finally {
-    image?.close();
-    opened?.source.close();
-    // Don't leave a half-patched image behind.
-    if (output && !finished) rmSync(output, { force: true });
+    const type = option.type;
+    const values =
+      type.kind === "boolean"
+        ? "true|false"
+        : type.kind === "number"
+          ? `${type.min}-${type.max}`
+          : type.choices.map((c) => c.value).join("|");
+    console.log(`  ${option.key} = ${String(option.default)}   (${values})`);
+    console.log(`      ${option.label}. ${option.help}`);
   }
 }
 
@@ -175,10 +173,41 @@ export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
   const flags = parseFlags(rest);
   switch (command) {
-    case "randomize":
-      return runRandomize(flags);
+    case "randomize": {
+      const dryRun = flags["dry-run"] === "true";
+      const result = await runRandomizer(
+        {
+          iso: requireFlag(flags, "iso"),
+          out: dryRun ? null : requireFlag(flags, "out"),
+          settings: settingsFromFlags(flags),
+          eboot: flags.eboot,
+          pspdecryptBin: flags["pspdecrypt-bin"],
+          spoiler: flags.spoiler,
+          force: flags.force === "true",
+        },
+        (line) => console.log(line),
+      );
+      if (!result.spoilerPath) process.stdout.write(result.spoiler);
+      return;
+    }
     case "roundtrip":
       return runRoundTrip(flags);
+    case "gui": {
+      const { startGui } = await import("./gui/server.js");
+      await startGui({
+        port: flags.port ? Number(flags.port) : 0,
+        open: flags["no-open"] !== "true",
+      });
+      return;
+    }
+    case "settings":
+      if (flags.write) {
+        writeFileSync(flags.write, settingsToJson(defaultSettings("MYSEED")), "utf-8");
+        console.log(`Wrote ${flags.write}`);
+      } else {
+        printSettings();
+      }
+      return;
     default:
       console.log(USAGE);
       if (command !== undefined && command !== "help") process.exitCode = 1;

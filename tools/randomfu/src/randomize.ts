@@ -5,8 +5,9 @@
 import { Edits } from "./edits.js";
 import { readGatheringItems } from "./game/gathering.js";
 import type { GameData } from "./game/load.js";
-import { itemTiers, monsterStars, questTier, type Tier } from "./game/tiers.js";
+import { coarsen, itemTiers, monsterStars, questTier, type Tier } from "./game/tiers.js";
 import { Rng } from "./rng.js";
+import { needsEboot, type Settings } from "./settings.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
 import {
   collectMonsterRewardSlots,
@@ -16,39 +17,10 @@ import {
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import type { ShuffleReport } from "./shuffles/shuffle.js";
-import { shuffleWeapons, type WeaponMix } from "./shuffles/weapons.js";
+import { shuffleWeapons } from "./shuffles/weapons.js";
+import { LOGIC_VERSION } from "./version.js";
 
-export const SHUFFLES = [
-  "quest-rewards",
-  "monster-rewards",
-  "recipes",
-  "recipe-amounts",
-  "costs",
-  "weapons",
-] as const;
-export type ShuffleName = (typeof SHUFFLES)[number];
-
-/** The EBOOT shuffles need the decrypted EBOOT, so they're opt-in. */
-export const DEFAULT_SHUFFLES: readonly ShuffleName[] = ["quest-rewards", "monster-rewards"];
-export const EBOOT_SHUFFLES: readonly ShuffleName[] = [
-  "recipes",
-  "recipe-amounts",
-  "costs",
-  "weapons",
-];
-
-export interface Settings {
-  seed: string;
-  shuffles: readonly ShuffleName[];
-  /** `recipe-amounts`: quantities vary by up to this fraction. */
-  amountSpread: number;
-  /** `costs`: prices vary by up to this fraction. */
-  costSpread: number;
-  /** `weapons`: whether a place in the smithy keeps its weapon type. */
-  weaponMix: WeaponMix;
-}
-
-export const DEFAULT_SPREAD = 0.5;
+export { LOGIC_VERSION };
 
 export interface SourceSummary {
   /** Each item's earliest tier in the unshuffled game, from rewards and gathering. */
@@ -63,30 +35,6 @@ export interface RandomizeResult {
   sources: SourceSummary;
   /** Recipe materials that can't be found at their old tier any more. Should be empty. */
   problems: string[];
-}
-
-/** Version of the randomization logic, in the spoiler log. Bump when a seed's output changes. */
-export const LOGIC_VERSION = 4;
-
-export function parseShuffles(value: string): ShuffleName[] {
-  const names = value
-    .split(",")
-    .map((s) => s.trim())
-    .filter(Boolean);
-  for (const name of names) {
-    if (!(SHUFFLES as readonly string[]).includes(name)) {
-      throw new Error(`Unknown shuffle "${name}" (expected ${SHUFFLES.join(", ")})`);
-    }
-  }
-  return names as ShuffleName[];
-}
-
-export function parseSpread(value: string, flag: string): number {
-  const spread = Number(value);
-  if (!Number.isFinite(spread) || spread < 0 || spread >= 1) {
-    throw new Error(`--${flag} must be a number from 0 up to (not including) 1, e.g. 0.5`);
-  }
-  return spread;
 }
 
 /** Items from gathering points in quests the player can take. Never shuffled. */
@@ -111,9 +59,12 @@ function gatheringSources(game: GameData): {
 
 export function randomize(game: GameData, settings: Settings): RandomizeResult {
   const rng = new Rng(`randomfu/${LOGIC_VERSION}/${settings.seed}`);
-  const enabled = new Set(settings.shuffles);
   const edits = new Edits(game);
   const reports: ShuffleReport[] = [];
+  const mode = settings["logic.tiers"];
+  // Shuffles group by these tiers; the spoiler's item list keeps the real ones.
+  const grouped = <T extends { tier: Tier }>(slots: T[]): T[] =>
+    slots.map((s) => ({ ...s, tier: coarsen(s.tier, mode) }));
 
   const questSlots = collectQuestRewardSlots(game.quests);
   const monsterSlots = collectMonsterRewardSlots(
@@ -121,62 +72,79 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     monsterStars(game.quests.map((q) => q.parsed)),
   );
   const gathering = gatheringSources(game);
-  const tiers = itemTiers([...questSlots, ...monsterSlots, ...gathering.sources]);
+  const realTiers = itemTiers([...questSlots, ...monsterSlots, ...gathering.sources]);
+  const gatheringGrouped = grouped(gathering.sources);
 
-  let questAfter: { itemId: number; tier: Tier }[] = questSlots;
-  if (enabled.has("quest-rewards")) {
-    const result = shuffleQuestRewards(questSlots, rng.fork("quest-rewards"), edits);
+  let questAfter: { itemId: number; tier: Tier }[] = grouped(questSlots);
+  if (settings["questRewards.enabled"]) {
+    const result = shuffleQuestRewards(grouped(questSlots), rng.fork("quest-rewards"), edits);
     reports.push(result.report);
     questAfter = result.after;
   }
 
-  let monsterAfter: { itemId: number; tier: Tier }[] = monsterSlots;
-  if (enabled.has("monster-rewards")) {
+  let monsterAfter: { itemId: number; tier: Tier }[] = grouped(monsterSlots);
+  if (settings["monsterRewards.enabled"]) {
+    const withCaptures = settings["monsterRewards.captureAndBreaks"];
+    const shuffled = grouped(monsterSlots.filter((s) => withCaptures || s.list.stride === 4));
+    const kept = grouped(monsterSlots.filter((s) => !withCaptures && s.list.stride !== 4));
     const result = shuffleMonsterRewards(
-      monsterSlots,
+      shuffled,
       rng.fork("monster-rewards"),
       edits,
       game.gameSub,
     );
     reports.push(result.report);
-    monsterAfter = result.after;
+    monsterAfter = [...result.after, ...kept];
   }
 
   const problems: string[] = [];
-  const needsEboot = EBOOT_SHUFFLES.some((s) => enabled.has(s));
-  if (needsEboot && !game.eboot) throw new Error("This shuffle needs the decrypted EBOOT");
+  if (needsEboot(settings) && !game.eboot) {
+    throw new Error("These settings need the decrypted EBOOT");
+  }
 
   // Weapons first: it moves upgrade materials between entries, and the
   // recipe shuffles then work on the tables as it left them.
-  if (enabled.has("weapons")) {
+  if (settings["weapons.enabled"]) {
     reports.push(
-      shuffleWeapons(game.eboot!, game.resolver, settings.weaponMix, rng.fork("weapons"), edits),
+      shuffleWeapons(
+        game.eboot!,
+        game.resolver,
+        settings["weapons.mix"],
+        rng.fork("weapons"),
+        edits,
+      ),
     );
   }
 
-  if (enabled.has("recipes") || enabled.has("recipe-amounts")) {
+  if (settings["recipes.materials"] || settings["recipes.amounts"]) {
+    const vanillaTiers = itemTiers([
+      ...grouped(questSlots),
+      ...grouped(monsterSlots),
+      ...gatheringGrouped,
+    ]);
     const result = randomizeRecipes(
       collectRecipeSlots(edits.eboot(), game.resolver),
-      tiers,
+      vanillaTiers,
       {
-        materials: enabled.has("recipes"),
-        amountSpread: enabled.has("recipe-amounts") ? settings.amountSpread : null,
+        materials: settings["recipes.materials"],
+        amountSpread: settings["recipes.amounts"] ? settings["recipes.amountSpread"] : null,
+        maxQuantity: settings["recipes.maxQuantity"],
       },
       { materials: rng.fork("recipes"), amounts: rng.fork("recipe-amounts") },
       edits,
     );
     reports.push(result.report);
-    const tiersAfter = itemTiers([...questAfter, ...monsterAfter, ...gathering.sources]);
+    const tiersAfter = itemTiers([...questAfter, ...monsterAfter, ...gatheringGrouped]);
     for (const p of checkRecipes(result.assigned, tiersAfter)) {
       problems.push(`${p.recipe}: ${p.item} (${p.needs})`);
     }
   }
 
-  if (enabled.has("costs")) {
+  if (settings["costs.enabled"]) {
     reports.push(
       randomizeCosts(
         collectPriceSlots(game.eboot!, game.resolver),
-        settings.costSpread,
+        settings["costs.spread"],
         rng.fork("costs"),
         edits,
       ),
@@ -187,7 +155,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     edits,
     reports,
     sources: {
-      tiers,
+      tiers: realTiers,
       gatheringQuests: gathering.quests,
       gatheringProblems: gathering.problems,
     },

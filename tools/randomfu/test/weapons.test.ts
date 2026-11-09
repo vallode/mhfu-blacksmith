@@ -13,8 +13,9 @@ import {
   equipmentUpgradeLayout,
 } from "../../mhfu-extract/src/tables/recipes.js";
 import { loadGame, type GameData } from "../src/game/load.js";
-import { DEFAULT_SPREAD, randomize, type Settings } from "../src/randomize.js";
-import type { WeaponMix } from "../src/shuffles/weapons.js";
+import { randomize } from "../src/randomize.js";
+import type { Settings } from "../src/settings.js";
+import { settingsWith } from "./settings-helper.js";
 import {
   buildFixtureDisc,
   FIXTURE_RUST_CREATE,
@@ -24,14 +25,8 @@ import {
   tempDir,
 } from "./fixtures.js";
 
-function settings(seed: string, weaponMix: WeaponMix = "same-type"): Settings {
-  return {
-    seed,
-    shuffles: ["weapons"],
-    amountSpread: DEFAULT_SPREAD,
-    costSpread: DEFAULT_SPREAD,
-    weaponMix,
-  };
+function settings(seed: string, mix: "same-type" | "any-type" = "same-type"): Settings {
+  return settingsWith(seed, ["weapons"], { "weapons.mix": mix });
 }
 
 async function load(): Promise<{ game: GameData; close: () => void }> {
@@ -144,7 +139,7 @@ test("any-type: places keep their rarity but can change type", async () => {
 
 test("weapons and recipes together: recipes shuffle the tables weapons left", async () => {
   const { game, close } = await load();
-  const both = randomize(game, { ...settings("z"), shuffles: ["weapons", "recipes"] });
+  const both = randomize(game, settingsWith("z", ["weapons", "recipes"]));
   const weaponsOnly = randomize(game, settings("z"));
   // Same weapon permutation (each shuffle has its own random stream).
   assert.deepEqual(tables(both.edits.eboot()).create, tables(weaponsOnly.edits.eboot()).create);

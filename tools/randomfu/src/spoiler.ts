@@ -5,20 +5,19 @@
 import type { GameData } from "./game/load.js";
 import { tierKey, tierLabel, tierOrder, type Tier } from "./game/tiers.js";
 import { itemName } from "./names.js";
-import { LOGIC_VERSION, type RandomizeResult, type Settings } from "./randomize.js";
+import { LOGIC_VERSION, type RandomizeResult } from "./randomize.js";
+import { describeSettings, encodeSettings, type Settings } from "./settings.js";
 
 export function formatSpoiler(game: GameData, settings: Settings, result: RandomizeResult): string {
-  const on = (name: string) => settings.shuffles.includes(name as never);
   const out: string[] = [
     "randomfu spoiler log",
     "",
     `Seed:     ${settings.seed}`,
-    `Shuffles: ${settings.shuffles.join(", ") || "none"}`,
-    ...(on("recipe-amounts") ? [`Amounts:  ±${Math.round(settings.amountSpread * 100)}%`] : []),
-    ...(on("costs") ? [`Costs:    ±${Math.round(settings.costSpread * 100)}%`] : []),
-    ...(on("weapons") ? [`Weapons:  ${settings.weaponMix}`] : []),
+    `Settings: ${encodeSettings(settings)}`,
     `Disc:     ${game.discId} (${game.region})`,
     `Logic:    v${LOGIC_VERSION}`,
+    "",
+    ...describeSettings(settings).map((line) => `  ${line}`),
     "",
   ];
   if (result.problems.length > 0) {

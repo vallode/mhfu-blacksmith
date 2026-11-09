@@ -125,6 +125,8 @@ export interface RecipeOptions {
   materials: boolean;
   /** Vary quantities by up to this fraction (0.5 = 50% to 150%), or null to keep them. */
   amountSpread: number | null;
+  /** The most of one material a slot can ask for when amounts vary. */
+  maxQuantity: number;
 }
 
 export interface AssignedSlot {
@@ -133,9 +135,6 @@ export interface AssignedSlot {
   tier: Tier;
   itemId: number;
 }
-
-/** Most quantities in the game are 1-10; the menus show two digits. */
-const MAX_QUANTITY = 99;
 
 export function randomizeRecipes(
   slots: readonly RecipeSlot[],
@@ -178,7 +177,7 @@ export function randomizeRecipes(
     slots.forEach((slot, i) => {
       const scale = typical.get(items[i]!)! / typical.get(slot.itemId)!;
       const factor = 1 - spread + rng.amounts.float() * 2 * spread;
-      quantities[i] = clamp(Math.round(slot.quantity * scale * factor), 1, MAX_QUANTITY);
+      quantities[i] = clamp(Math.round(slot.quantity * scale * factor), 1, options.maxQuantity);
     });
     notes.push(
       `Quantities are rescaled to each material's usual amount in recipes, then varied by up to ${Math.round(spread * 100)}%.`,
