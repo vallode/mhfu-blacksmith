@@ -30,6 +30,11 @@ test("every option has a default its own checks accept", () => {
   }
   assert.equal(needsEboot(defaults), false, "the defaults run without the EBOOT");
   for (const preset of PRESETS) applySettings(defaults, preset.changes);
+  for (const name of ["Full", "Chaos"]) {
+    const preset = PRESETS.find((p) => p.name === name)!;
+    assert.equal(preset.changes["gathering.enabled"], true, `${name} shuffles gathering`);
+  }
+  assert.ok(!OPTIONS.find((o) => o.key === "gathering.enabled")!.eboot);
 });
 
 test("settings strings round-trip, seed included, and stay short for the defaults", () => {
@@ -107,5 +112,8 @@ test("CLI flags layer: file < string < --shuffles < shorthand < --set < --seed",
   assert.equal(s["costs.spread"], 0.2);
   assert.equal(s["recipes.maxQuantity"], 5);
   assert.throws(() => settingsFromFlags({ shuffles: "everything" }), /Unknown shuffle/);
+  const named = settingsFromFlags({ shuffles: "gathering" });
+  assert.equal(named["gathering.enabled"], true);
+  assert.equal(named["weapons.enabled"], false);
   assert.ok(readFileSync(file, "utf-8").includes("FROMFILE"));
 });

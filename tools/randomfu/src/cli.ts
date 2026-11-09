@@ -60,6 +60,7 @@ const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   costs: "costs.enabled",
   weapons: "weapons.enabled",
   shops: "shops.enabled",
+  gathering: "gathering.enabled",
 };
 
 /** Shorthand flags for single settings. */

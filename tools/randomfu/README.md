@@ -14,9 +14,9 @@ Licensed **GPL-3.0-or-later** (see `LICENSE`), because it builds on
 
 Early. On the EU disc, PPSSPP boots a randomized image and the smithy shows
 the shuffled recipe materials. Star-level tiers, gathering sources,
-`recipe-amounts` and `costs` are so far tested only against the synthetic
-disc the tests build (`test/fixtures.ts`). A PSP with custom firmware isn't
-tested. Run `roundtrip` on a new disc first.
+`recipe-amounts`, `costs` and `gathering` are so far tested only against the
+synthetic disc the tests build (`test/fixtures.ts`). A PSP with custom
+firmware isn't tested. Run `roundtrip` on a new disc first.
 
 ## Usage
 
@@ -71,14 +71,14 @@ pnpm settings --write my.json       # write every setting to a file to edit
 
 Settings come from these flags, later ones winning:
 
-| Flag                                                          | What it sets                                                                              |
-| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                              |
-| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                   |
-| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, recipes, recipe-amounts, costs, weapons |
-| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                             |
-| `--set key=value,key=value`                                   | Any setting by name                                                                       |
-| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                            |
+| Flag                                                          | What it sets                                                                                                |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------- |
+| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                |
+| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                     |
+| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, shops |
+| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                               |
+| `--set key=value,key=value`                                   | Any setting by name                                                                                         |
+| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                              |
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
@@ -99,6 +99,7 @@ added there shows up everywhere.
 | `questRewards.enabled`            | on          | Shuffle quest rewards                                                |
 | `monsterRewards.enabled`          | on          | Shuffle carves                                                       |
 | `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                    |
+| `gathering.enabled`               | off         | Shuffle gathering points                                             |
 | `recipes.materials`               | off         | Shuffle crafting and upgrade materials (EBOOT)                       |
 | `recipes.amounts`                 | off         | Randomize material amounts (EBOOT)                                   |
 | `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                             |
@@ -126,9 +127,12 @@ No shuffle changes a list's length, so every edited file keeps its size.
 | ----------------- | --------------------------------------------------- | ---------------------------------------------------- |
 | `quest-rewards`   | `RewardTBL` items in each quest `.mib`              | Item and amount move; the chance stays with the slot |
 | `monster-rewards` | Carve, capture and break lists in `game_sub.ovl`    | Item moves; chance and amount stay with the slot     |
+| `gathering`       | Gathering item tables in each quest `.mib`          | Item moves; the value (weight) stays with the slot   |
 | `recipes`         | `EquipmentCreate` / `EquipmentUpgrade` in the EBOOT | Material moves; quantity stays with the slot         |
 | `recipe-amounts`  | The same recipe tables                              | Quantities, rescaled and varied (see below)          |
 | `costs`           | Weapon, armor and decoration prices in the EBOOT    | Crafting and upgrade costs, varied in steps of 10z   |
+| `weapons`         | Weapon create and upgrade entries in the EBOOT      | Which weapon each place makes (see below)            |
+| `shops`           | Shop item lists in `lobby_task.ovl`                 | Which items each shop sells (see below)              |
 
 ### Logic
 
@@ -145,17 +149,19 @@ the recipe check below no longer means anything).
 - A monster reward list takes part if it's used at exactly one rank, by a
   monster that appears in a Village or Guild quest at that rank. Its tier is
   the lowest star level of those quests.
-- Gathering points count as sources but aren't shuffled. Only item tables a
-  node uses count (`src/game/gathering.ts`).
+- Gathering points count as sources. Only item tables a node uses count
+  (`src/game/gathering.ts`), each `{ value, item }` pair once even when
+  several nodes or table indices lead to it.
 - An item's tier is the earliest one it's found at among those quest
   rewards, monster rewards and gathering points. A recipe slot is shuffled
   with other slots whose items have the same tier.
 
-The reward shuffles keep every tier's items within that tier, so every
-recipe material is still found at or before the star level it was before.
-`checkRecipes` confirms this against the shuffled rewards; any failure is
-printed and listed at the top of the spoiler log. The end of the log lists
-the tier found for every item, to check against the game.
+The reward and gathering shuffles keep every tier's items within that
+tier, so every recipe material is still found at or before the star level
+it was before. `checkRecipes` confirms this against the shuffled rewards
+and gathering points; any failure is printed and listed at the top of the
+spoiler log. The end of the log lists the tier found for every item, to
+check against the game.
 
 Items found only in shops, by combining or as tickets keep their recipe
 slots.
@@ -182,6 +188,14 @@ Sword to Long Sword, Lance to Gunlance and more), but never between bows
 and bowguns, so that pairing is untested. Weapons from Ancient/Rusted
 shards stay put. It runs before the recipe shuffles, which then shuffle
 the tables it left.
+
+`gathering` moves item IDs between the gathering item tables of Village
+and Guild quests of the same tier, like the quest reward shuffle. A pair's
+first field (taken to be the item's weight) stays with the pair, so a
+node keeps its odds; tables keep their length and the quest file its
+size. Only pairs in tables a node uses move: an unused table keeps its
+items, and so do Training School, Treasure Hunting and the unused
+gathering copies. A pair with item 0 is left as it is.
 
 `shops` changes the shops. They live in `overlay/lobby_task.ovl`: each
 shop's stock is a list of u16 item IDs ending in 0xFFFF, one list per stage

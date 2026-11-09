@@ -3,12 +3,12 @@
  * the same game, seed and settings always give the same edits and spoiler.
  */
 import { Edits } from "./edits.js";
-import { readGatheringItems } from "./game/gathering.js";
 import type { GameData } from "./game/load.js";
-import { coarsen, itemTiers, monsterStars, questTier, type Tier } from "./game/tiers.js";
+import { coarsen, itemTiers, monsterStars, type Tier } from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import { needsEboot, type Settings } from "./settings.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
+import { collectGatheringSlots, shuffleGathering } from "./shuffles/gathering.js";
 import {
   collectMonsterRewardSlots,
   collectRewardLists,
@@ -64,26 +64,6 @@ function sellableItems(): number[] {
   return out;
 }
 
-/** Items from gathering points in quests the player can take. Never shuffled. */
-function gatheringSources(game: GameData): {
-  sources: { itemId: number; tier: Tier }[];
-  quests: number;
-  problems: string[];
-} {
-  const sources: { itemId: number; tier: Tier }[] = [];
-  const problems: string[] = [];
-  let quests = 0;
-  for (const quest of game.quests) {
-    const tier = questTier(quest.parsed);
-    if (!tier) continue;
-    const result = readGatheringItems(quest.file.payload, quest.parsed);
-    if (result.problem) problems.push(`${quest.path}: ${result.problem}`);
-    if (result.items.length > 0) quests++;
-    for (const itemId of result.items) sources.push({ itemId, tier });
-  }
-  return { sources, quests, problems };
-}
-
 export function randomize(game: GameData, settings: Settings): RandomizeResult {
   const rng = new Rng(`randomfu/${LOGIC_VERSION}/${settings.seed}`);
   const edits = new Edits(game);
@@ -98,9 +78,8 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     collectRewardLists(game.gameSub.ovl),
     monsterStars(game.quests.map((q) => q.parsed)),
   );
-  const gathering = gatheringSources(game);
-  const realTiers = itemTiers([...questSlots, ...monsterSlots, ...gathering.sources]);
-  const gatheringGrouped = grouped(gathering.sources);
+  const gathering = collectGatheringSlots(game.quests);
+  const realTiers = itemTiers([...questSlots, ...monsterSlots, ...gathering.slots]);
 
   let questAfter: { itemId: number; tier: Tier }[] = grouped(questSlots);
   if (settings["questRewards.enabled"]) {
@@ -122,6 +101,14 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     );
     reports.push(result.report);
     monsterAfter = [...result.after, ...kept];
+  }
+
+  // Gathering points are item sources too: the recipe check below uses them as shuffled.
+  let gatheringAfter: { itemId: number; tier: Tier }[] = grouped(gathering.slots);
+  if (settings["gathering.enabled"]) {
+    const result = shuffleGathering(grouped(gathering.slots), rng.fork("gathering"), edits);
+    reports.push(result.report);
+    gatheringAfter = result.after;
   }
 
   const problems: string[] = [];
@@ -147,7 +134,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     const vanillaTiers = itemTiers([
       ...grouped(questSlots),
       ...grouped(monsterSlots),
-      ...gatheringGrouped,
+      ...grouped(gathering.slots),
     ]);
     const result = randomizeRecipes(
       collectRecipeSlots(edits.eboot(), game.resolver),
@@ -161,7 +148,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       edits,
     );
     reports.push(result.report);
-    const tiersAfter = itemTiers([...questAfter, ...monsterAfter, ...gatheringGrouped]);
+    const tiersAfter = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
     for (const p of checkRecipes(result.assigned, tiersAfter)) {
       problems.push(`${p.recipe}: ${p.item} (${p.needs})`);
     }

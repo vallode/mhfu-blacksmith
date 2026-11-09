@@ -19,12 +19,14 @@ import { settingsWith, type ShuffleName } from "./settings-helper.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
 import { collectRecipeSlots } from "../src/shuffles/recipes.js";
+import { readGatheringItems } from "../src/game/gathering.js";
 import { roundTrip, writeEdits } from "../src/write.js";
 import { main } from "../src/cli.js";
 import {
   buildFixtureDisc,
   EBOOT_SIZE,
   FIXTURE_PRICES,
+  FIXTURE_QUESTS,
   FIXTURE_RECIPES,
   GAME_SUB_INDEX,
   LOBBY_TASK_INDEX,
@@ -81,7 +83,7 @@ const sorted = (xs: number[]) => [...xs].sort((a, b) => a - b);
 test("the fixture disc loads like a real one", async () => {
   const { game, close } = await load(fixtureFile());
   assert.equal(game.region, "jp");
-  assert.equal(game.quests.length, 4);
+  assert.equal(game.quests.length, 5);
   assert.deepEqual(
     game.quests.map((q) => q.index),
     QUEST_INDICES,
@@ -97,7 +99,7 @@ test("roundtrip finds every file re-encrypts to the disc's bytes", async () => {
   const game = await loadGame(source, iso, { eboot: null });
   const result = roundTrip(game, (o, l) => source.read(o, l));
   source.close();
-  assert.deepEqual(result, { checked: 7, mismatches: [] });
+  assert.deepEqual(result, { checked: 8, mismatches: [] });
 });
 
 test("items get the earliest star level of a reward, monster or used gathering point", async () => {
@@ -109,6 +111,10 @@ test("items get the earliest star level of a reward, monster or used gathering p
   };
   assert.equal(tier(120), "Low Rank 1★", "mined in a 1★ quest");
   assert.equal(tier(121), null, "in an item table no node uses");
+  assert.equal(tier(124), "Low Rank 1★", "gathered in the other 1★ quest");
+  assert.equal(tier(131), "Low Rank 2★", "gathered at 2★");
+  assert.equal(tier(222), "High Rank 6★", "gathered at 6★");
+  assert.equal(tier(998), null, "gathered in Training School");
   assert.equal(tier(100), "Low Rank 1★", "carved from a monster in a 1★ quest");
   assert.equal(tier(110), "Low Rank 1★", "1★ quest reward");
   assert.equal(tier(102), "Low Rank 2★", "monster 2 first appears at 2★");
@@ -116,7 +122,7 @@ test("items get the earliest star level of a reward, monster or used gathering p
   assert.equal(tier(200), "High Rank 6★");
   assert.equal(tier(150), null, "monster 3 is in no quest");
   assert.equal(tier(999), null, "Training School");
-  assert.equal(sources.gatheringQuests, 1);
+  assert.equal(sources.gatheringQuests, 4);
   assert.deepEqual(sources.gatheringProblems, []);
   close();
 });
@@ -256,6 +262,7 @@ test("written output reads back with the shuffled data, and nothing else changes
     "recipes",
     "recipe-amounts",
     "costs",
+    "gathering",
   );
   const result = randomize(game, all);
   const summary = writeEdits(image, game, result.edits);
@@ -272,6 +279,17 @@ test("written output reads back with the shuffled data, and nothing else changes
     assert.deepEqual(sorted(itemsAfter.get(id)!), sorted(itemsBefore.get(id)!), `quest ${id}`);
   }
   assert.deepEqual(itemsAfter.get(20001), [999]);
+
+  // Gathering points: re-read from the written disc, each tier keeps its items.
+  const gathered = (g: GameData, ids: number[]) =>
+    sorted(
+      g.quests
+        .filter((q) => ids.includes(q.parsed.header.questId))
+        .flatMap((q) => readGatheringItems(q.file.payload, q.parsed).slots.map((s) => s.itemId)),
+    );
+  for (const ids of [[1001, 10102], [10101], [2001], [20001]]) {
+    assert.deepEqual(gathered(after.game, ids), gathered(before.game, ids), `gathering ${ids}`);
+  }
 
   // Monster lists: same lengths and chances; each tier keeps its items.
   const listsBefore = collectRewardLists(before.game.gameSub.ovl);
@@ -303,7 +321,12 @@ test("written output reads back with the shuffled data, and nothing else changes
   const a = dataBinBytes(output);
   const bin = before.game.dataBin;
   // (A shuffle can leave a small pool as it was, so edited files may also match.)
-  const editable = new Set([...QUEST_INDICES.slice(0, 3), GAME_SUB_INDEX, LOBBY_TASK_INDEX]);
+  const training = QUEST_INDICES[FIXTURE_QUESTS.findIndex((q) => q.questId === 20001)];
+  const editable = new Set([
+    ...QUEST_INDICES.filter((i) => i !== training),
+    GAME_SUB_INDEX,
+    LOBBY_TASK_INDEX,
+  ]);
   const changed: number[] = [];
   for (let i = 0; i < bin.fileCount; i++) {
     const range = [bin.offsetOf(i), bin.offsetOf(i) + bin.lengthOf(i)] as const;
@@ -333,7 +356,7 @@ test("the CLI writes an ISO and a spoiler log, and refuses to overwrite", async 
       "--seed",
       "cli",
       "--shuffles",
-      "quest-rewards,monster-rewards,recipes,recipe-amounts,costs",
+      "quest-rewards,monster-rewards,recipes,recipe-amounts,costs,gathering",
       "--cost-spread",
       "0.25",
     ]);
@@ -341,6 +364,7 @@ test("the CLI writes an ISO and a spoiler log, and refuses to overwrite", async 
     assert.match(spoiler, /Seed:\s+cli/);
     assert.match(spoiler, /Cost variation: ±25%/);
     assert.match(spoiler, /== Quest rewards ==/);
+    assert.match(spoiler, /== Gathering points ==/);
     assert.match(spoiler, /== Where items are first found ==/);
     assert.match(spoiler, /Low Rank 1★ \(\d+\)/);
     await assert.rejects(

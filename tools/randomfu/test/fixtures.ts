@@ -180,8 +180,17 @@ export interface FixtureQuest {
   stars: number;
   monsters: number[];
   rewards: FixtureReward[][];
-  /** Gathering: item tables (one item each); `nodes` lists which tables area 0's nodes use. */
-  gathering?: { tables: number[]; nodes: number[] };
+  gathering?: FixtureGathering;
+}
+
+/**
+ * Gathering points: item tables as `[value, item]` pairs (or the index of
+ * an earlier table, to point at the same data), and the tables each area's
+ * nodes use.
+ */
+export interface FixtureGathering {
+  tables: ([value: number, item: number][] | number)[];
+  areas: Record<number, number[]>;
 }
 
 /** Snowy Mountains (Day): 10 areas. */
@@ -230,26 +239,34 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   let gatheringLocPtr = 0;
   let gatheringItemsPtr = 0;
   if (q.gathering) {
-    const tablePtrs = q.gathering.tables.map((item) => {
-      const t = Buffer.alloc(8);
-      t.writeUInt16LE(10, 0); // value
-      t.writeUInt16LE(item, 2);
-      t.writeUInt16LE(0xffff, 4);
-      return place(t);
-    });
+    const tablePtrs: number[] = [];
+    for (const table of q.gathering.tables) {
+      if (typeof table === "number") {
+        tablePtrs.push(tablePtrs[table]!);
+        continue;
+      }
+      const t = Buffer.alloc(table.length * 4 + 4);
+      table.forEach(([value, item], k) => {
+        t.writeUInt16LE(value, k * 4);
+        t.writeUInt16LE(item, k * 4 + 2);
+      });
+      t.writeUInt16LE(0xffff, table.length * 4);
+      tablePtrs.push(place(t));
+    }
     const list = Buffer.alloc(tablePtrs.length * 4 + 4);
     tablePtrs.forEach((ptr, i) => list.writeUInt32LE(ptr, i * 4));
     gatheringItemsPtr = place(list);
-    const nodes = Buffer.alloc(q.gathering.nodes.length * 24 + 4);
-    q.gathering.nodes.forEach((table, i) => {
-      nodes.writeFloatLE(100 + i, i * 24);
-      nodes.writeUInt16LE(table, i * 24 + 16);
-      nodes.writeUInt16LE(3, i * 24 + 20); // mining
-    });
-    nodes.writeUInt32LE(0xbf800000, q.gathering.nodes.length * 24);
-    const nodesPtr = place(nodes);
     const areas = Buffer.alloc(10 * 4);
-    areas.writeUInt32LE(nodesPtr, 0);
+    for (const [area, used] of Object.entries(q.gathering.areas)) {
+      const nodes = Buffer.alloc(used.length * 24 + 4);
+      used.forEach((table, i) => {
+        nodes.writeFloatLE(100 + i, i * 24);
+        nodes.writeUInt16LE(table, i * 24 + 16);
+        nodes.writeUInt16LE(3, i * 24 + 20); // mining
+      });
+      nodes.writeUInt32LE(0xbf800000, used.length * 24);
+      areas.writeUInt32LE(place(nodes), Number(area) * 4);
+    }
     gatheringLocPtr = place(areas);
   }
   place(Buffer.from([0x55])); // odd length
@@ -622,23 +639,39 @@ export function buildDataBin(
 
 // ---------------------------------------------------------------- the disc
 
-export const QUEST_INDICES = [4759, 4760, 4761, 4762];
+export const QUEST_INDICES = [4759, 4760, 4761, 4762, 4763];
 export const GAME_TASK_INDEX = 51;
 export const GAME_SUB_INDEX = 56;
 export const LOBBY_TASK_INDEX = 50;
 
 /**
- * Low Rank 1★: quest 1001 (monster 1, mines item 120); Low Rank 2★: quest
- * 10101 (monster 2); High Rank 6★: quest 2001 (monster 1). Items 1xx are
- * Low Rank, 2xx High Rank.
+ * Low Rank 1★: quests 1001 (monster 1, mines item 120) and 10102 (a Village
+ * quest with only gathering points); Low Rank 2★: quest 10101 (monster 2);
+ * High Rank 6★: quest 2001 (monster 1). Items 1xx are Low Rank, 2xx High
+ * Rank. Every Village and Guild quest has gathering points.
  */
 export const FIXTURE_QUESTS: FixtureQuest[] = [
   {
     questId: 1001,
     rank: 1,
     stars: 1,
-    // Item 120 is mined here; table 1 (item 121) is used by no node, so it doesn't count.
-    gathering: { tables: [120, 121], nodes: [0, 0] },
+    // Table 1 (item 121) is used by no node, so it doesn't count. Table 3 is
+    // table 0 again, so its two slots are read once. Table 2's item 0 isn't an item.
+    gathering: {
+      tables: [
+        [
+          [10, 120],
+          [30, 122],
+        ],
+        [[10, 121]],
+        [
+          [20, 123],
+          [40, 0],
+        ],
+        0,
+      ],
+      areas: { 0: [0, 0], 3: [2, 3] },
+    },
     monsters: [1],
     rewards: [
       [
@@ -652,6 +685,15 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     questId: 10101,
     rank: 1,
     stars: 2,
+    gathering: {
+      tables: [
+        [
+          [10, 130],
+          [20, 131],
+        ],
+      ],
+      areas: { 0: [0] },
+    },
     monsters: [2],
     rewards: [[{ chance: 100, itemId: 113, amount: 3 }]],
   },
@@ -659,6 +701,16 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     questId: 2001,
     rank: 2,
     stars: 6,
+    gathering: {
+      tables: [
+        [
+          [50, 220],
+          [50, 221],
+        ],
+        [[100, 222]],
+      ],
+      areas: { 0: [0], 2: [1] },
+    },
     monsters: [1],
     rewards: [
       [
@@ -672,8 +724,26 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     questId: 20001,
     rank: 0,
     stars: 1,
+    gathering: { tables: [[[10, 998]]], areas: { 0: [0] } },
     monsters: [1],
     rewards: [[{ chance: 100, itemId: 999, amount: 1 }]],
+  },
+  {
+    questId: 10102,
+    rank: 1,
+    stars: 1,
+    gathering: {
+      tables: [
+        [
+          [25, 124],
+          [25, 125],
+          [50, 126],
+        ],
+      ],
+      areas: { 1: [0] },
+    },
+    monsters: [1],
+    rewards: [],
   },
 ];
 

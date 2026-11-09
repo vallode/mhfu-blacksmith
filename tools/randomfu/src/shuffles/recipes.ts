@@ -3,10 +3,11 @@
  * `EquipmentUpgrade` tables (mhfu-extract's `tables/recipes.ts`).
  *
  * Materials: each slot's item is swapped with another slot whose item is
- * first found at the same tier (rank and star level). The reward shuffles
- * keep every tier's items in that tier, and gathering isn't shuffled, so a
- * recipe never needs anything from a later star level than before.
- * `checkRecipes` confirms that against the shuffled rewards.
+ * first found at the same tier (rank and star level). The reward and
+ * gathering shuffles keep every tier's items in that tier, so a recipe
+ * never needs anything from a later star level than before.
+ * `checkRecipes` confirms that against the shuffled rewards and gathering
+ * points.
  *
  * Items with no known source here (shop items, combinations, tickets) stay
  * where they are.

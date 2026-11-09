@@ -15,6 +15,7 @@ export interface Settings {
   "questRewards.enabled": boolean;
   "monsterRewards.enabled": boolean;
   "monsterRewards.captureAndBreaks": boolean;
+  "gathering.enabled": boolean;
   "recipes.materials": boolean;
   "recipes.amounts": boolean;
   "recipes.amountSpread": number;
@@ -109,6 +110,14 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: true,
     enabledBy: "monsterRewards.enabled",
+  },
+  {
+    key: "gathering.enabled",
+    section: "Gathering",
+    label: "Shuffle gathering points",
+    help: "Items from mining, gathering and bug catching points move between Village and Guild quests (see Logic); each spot keeps its odds. Training School and Treasure Hunting quests are left alone.",
+    type: { kind: "boolean" },
+    default: false,
   },
   {
     key: "recipes.materials",
@@ -487,6 +496,7 @@ export const PRESETS: readonly Preset[] = [
       "shops.pool": "low",
       "shops.prices": true,
       "shops.stacks": true,
+      "gathering.enabled": true,
     },
   },
   {
@@ -511,6 +521,7 @@ export const PRESETS: readonly Preset[] = [
       "shops.priceSpread": 0.9,
       "shops.stacks": true,
       "shops.stackSpread": 0.9,
+      "gathering.enabled": true,
     },
   },
 ];
