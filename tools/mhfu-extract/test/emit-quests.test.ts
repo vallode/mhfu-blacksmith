@@ -196,6 +196,10 @@ test("questHub reads the board from the quest ID block", () => {
     [10, null],
     [100, null],
     [101, "village"],
+    [102, "village"],
+    [103, null],
+    [107, null],
+    [108, "village"],
     [109, "village"],
     [110, null],
     [1001, "guild"],
@@ -220,7 +224,7 @@ test("emitQuest drops quests 1-10, which are on no confirmed board", () => {
   assert.equal(withHeader(10, 0), null);
 });
 
-test("emitQuest puts the unlockable quests 101-109 on the Village board", () => {
+test("emitQuest puts the confirmed quests 101, 102, 108 and 109 on the Village board", () => {
   // Real headers: 101 "The Shadow in the Mountains" and 109 "Attack of the
   // Rathian" are both rank 0, so they carry no rank tier.
   const first = withHeader(101, 0);

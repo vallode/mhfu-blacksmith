@@ -23,6 +23,9 @@ import type { Rank } from "./common.js";
 
 export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunting";
 
+/** The quests in the `101`-`109` block confirmed as Village quests (see `questHub`). */
+const CONFIRMED_VILLAGE_EXTRAS: ReadonlySet<number> = new Set([101, 102, 108, 109]);
+
 /**
  * The quest board, from the quest ID (`m#####.mib`). The disc numbers its
  * quests in blocks, one block per board and star level (`1001`-`1022` is
@@ -31,21 +34,25 @@ export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunti
  *  - `4xxx`: Treasure Hunting (client always "Treshi").
  *  - `10xxx`/`11xxx`: Village, ★1-★6 then ★7-★9 (many from the "Pokke
  *    Village Chief"; `10004`/`10108` are the Village's two Tigrex quests).
- *  - `101`-`109`: Village quests that only appear once a prerequisite is
- *    cleared (`109` "Attack of the Rathian" after `10203` "Shadow in the
- *    Snow"). Header rank 0 and ★2; this block holds the Village's low-star
- *    Rathalos and Rathian.
+ *  - `101`, `102`, `108`, `109`: Village ★2 quests, some of which only
+ *    appear once a prerequisite is cleared (`109` "Attack of the Rathian"
+ *    after `10203` "Shadow in the Snow"). Header rank 0; they hold the
+ *    Village's low-star Rathalos and Rathian. The Monster Hunter Wiki lists
+ *    all four with the disc's fee, reward, locale and client.
  *  - `20xxx`-`22xxx`: Training School (client always "Instructor"):
  *    Basic Training and the weapon Mastery quests, then the Subjugation
  *    Training quests.
  *  - `30001`-`30090`: 90 identical "Gathering - Snowy Mountains" copies
  *    with Guild Low Rank's header rank; kept there (the site hides them).
  *
- * `1`-`10` fit no confirmed board, so they aren't emitted. Some repeat a
- * Village quest with different values (`Reckless Bulldrome Hunter` is both
- * `2` and `10105`, from the same "Troubled Father"; `Mountain Herb Picking`
- * is 100z as `4` and free as `10001`), and some match nothing else on the
- * disc (`The Lady Gourmet`). They may be ★1 unlockables like `101`-`109`,
+ * `103`-`107` share that block but aren't emitted until they're confirmed:
+ * the wiki only has the regular Village quests of the same titles
+ * (`10208`, `10211`, `10213`, `10217`, `10309`), with different fees and
+ * rewards. `1`-`10` fit no confirmed board either, so they aren't emitted.
+ * Some repeat a Village quest with different values (`Reckless Bulldrome
+ * Hunter` is both `2` and `10105`, from the same "Troubled Father";
+ * `Mountain Herb Picking` is 100z as `4` and free as `10001`), and some
+ * match nothing else on the disc (`The Lady Gourmet`). They may be ★1 unlockables like `108`/`109`,
  * or unused.
  *
  * The header's `rank` byte is not the board: the Village's `10xxx` quests
@@ -53,7 +60,7 @@ export type QuestHub = "village" | "guild" | "training-school" | "treasure-hunti
  * (`RANK_TIER`).
  */
 export function questHub(questId: number): QuestHub | null {
-  if (questId >= 101 && questId <= 109) return "village";
+  if (CONFIRMED_VILLAGE_EXTRAS.has(questId)) return "village";
   if (questId >= 1000 && questId < 4000) return "guild";
   if (questId >= 4000 && questId < 5000) return "treasure-hunting";
   if (questId >= 10000 && questId < 12000) return "village";
@@ -67,7 +74,8 @@ export function questHub(questId: number): QuestHub | null {
  * stat multiplier set (src/monsters/multipliers.ts). 1/2/5 agree with the
  * quest ID block on every Guild quest. Village quests use them too: `10xxx`
  * are 1 (one ★6 is 2), `11xxx` 2 (one ★9 is 5). 0 (the Training School's
- * Basic/Mastery quests, the Village's two Tigrex quests and `101`-`109`),
+ * Basic/Mastery quests, the Village's two Tigrex quests and `101`/`102`/
+ * `108`/`109`),
  * 3 (Treasure Hunting) and 4 (Subjugation Training) have no tier.
  */
 const RANK_TIER: Record<number, Rank> = {
