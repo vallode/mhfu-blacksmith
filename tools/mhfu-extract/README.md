@@ -332,6 +332,31 @@ Monsters pair with the site by emID through the same overlay (the enum
 spells two differently: "One-Ear Yian Garuga", "Terra Shogun Ceanatur").
 `base_hp` is written to `data/monsters` and shown on the monster page; `tolerances` is extracted but has no committed field yet.
 
+### Monster hitboxes (raw dump only)
+
+To highlight hitzones on the 3D models, the site needs the shapes each
+hitzone row applies to. They aren't decoded yet. `extract --raw` dumps
+the bytes most likely to hold them (`src/emit/collision-raw.ts`):
+
+- `raw/collision.json`: each `MonChunk` as hex, every u32 in it that holds a
+  user-memory address (and whether it points into `game_task.ovl`, the
+  monster's own `overlay/emNN.ovl` or elsewhere), and the target of
+  `CollisionPTR` (`+0x50` in `game_task.hexpat`): 0x800 bytes as hex and
+  f32s, plus 0x200 bytes at each pointer if the target starts with a pointer
+  list.
+- `raw/emmodel.json`: each `emmodel/emNN.pac`'s entries (size, magic, first
+  0x40 bytes) and its PMO header, mesh records and vertex-group records,
+  with each group's vertex count, weights per vertex and position bounds.
+  The mesh converter ignores the record fields that probably bind groups to
+  skeleton joints. The display lists don't use the GE's bone-matrix
+  commands (the decoder would reject them), so the matrices must be set
+  from these records.
+- `raw/emmodel/emNN.<index>.bin`: package entries that are neither PMO nor
+  TMH, whole (skeleton and collision candidates).
+
+These dumps come from the disc, so they stay in `.cache/` like the rest of
+the extracted output.
+
 ## 3D models (experimental)
 
 ```bash
