@@ -7,6 +7,7 @@ import {
   questHref,
   questHubSlug,
   questsOnHub,
+  questStarLevels,
   questsWithMonster,
   rewardTableHeading,
 } from "../src/lib/quests";
@@ -202,6 +203,14 @@ describe("quest lookups", () => {
       questsOnHub(quests, "village").map((q) => q.id),
       [2, 4, 1, 3],
     );
+  });
+
+  test("questStarLevels lists each star level once, lowest first", () => {
+    assert.deepEqual(
+      questStarLevels([{ stars: 3 }, { stars: 1 }, { stars: 3 }, { stars: 8 }]),
+      [1, 3, 8],
+    );
+    assert.deepEqual(questStarLevels([]), []);
   });
 
   test("questsWithMonster finds targets and large monsters, village before guild", () => {

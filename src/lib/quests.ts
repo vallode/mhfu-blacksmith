@@ -202,6 +202,11 @@ export function questsOnHub(quests: Quest[], hub: string): Quest[] {
     .sort((a, b) => a.stars - b.stars || a.id - b.id);
 }
 
+/** The star levels a hub's quests span, lowest first. */
+export function questStarLevels(quests: Pick<Quest, "stars">[]): number[] {
+  return [...new Set(quests.map((q) => q.stars))].sort((a, b) => a - b);
+}
+
 /** Quests a monster appears in as a large monster or the target, by hub order, stars and ID. */
 export function questsWithMonster(quests: Quest[], name: string): Quest[] {
   const hubOrder = (q: Quest) => QUEST_HUB_SLUGS.indexOf(q.hub);
