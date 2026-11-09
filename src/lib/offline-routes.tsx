@@ -11,6 +11,8 @@ import DecorationDetailClient from "@/app/decorations/[slug]/DecorationDetailCli
 import HomeContent from "@/app/HomeContent";
 import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
 import ArmorRedirect from "@/app/armorsmith/ArmorRedirect";
+import { ArmorShell } from "@/app/armorsmith/ArmorShell";
+import { DecorationShell } from "@/app/decorations/DecorationShell";
 import MonsterRedirect from "@/app/monsters/MonsterRedirect";
 import { MonsterShell } from "@/app/monsters/MonsterShell";
 import QuestBoardsContent from "@/app/quests/QuestBoardsContent";
@@ -123,11 +125,23 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
     case "weapon-detail":
       return <WeaponDetailClient type={match.type} slug={match.slug} />;
     case "armor-list":
-      return <ArmorRedirect />;
+      return (
+        <ArmorShell>
+          <ArmorRedirect />
+        </ArmorShell>
+      );
     case "armor-tree":
-      return <ArmorTreeListClient slot={match.slot} rank={match.rank} />;
+      return (
+        <ArmorShell slot={match.slot} rank={match.rank}>
+          <ArmorTreeListClient slot={match.slot} rank={match.rank} />
+        </ArmorShell>
+      );
     case "armor-detail":
-      return <ArmorDetailClient slot={match.slot} rank={match.rank} slug={match.slug} />;
+      return (
+        <ArmorShell slot={match.slot} rank={match.rank} slug={match.slug}>
+          <ArmorDetailClient slot={match.slot} rank={match.rank} slug={match.slug} />
+        </ArmorShell>
+      );
     case "monster-list":
       return (
         <MonsterShell>
@@ -147,9 +161,17 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
         </MonsterShell>
       );
     case "decoration-list":
-      return <DecorationsListClient />;
+      return (
+        <DecorationShell>
+          <DecorationsListClient />
+        </DecorationShell>
+      );
     case "decoration-detail":
-      return <DecorationDetailClient slug={match.slug} />;
+      return (
+        <DecorationShell slug={match.slug}>
+          <DecorationDetailClient slug={match.slug} />
+        </DecorationShell>
+      );
     case "quest-list":
       return <QuestBoardsContent />;
     case "quest-hub":
