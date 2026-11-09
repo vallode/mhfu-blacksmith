@@ -8,163 +8,202 @@
       name="description"
       content="A seeded randomizer for Monster Hunter Freedom Unite that runs in your browser on your own disc image."
     />
+    <meta name="theme-color" content="#1b2016" />
+    <link rel="icon" href="images/favicons/felyne-favicon.png" />
     <style>
       /*STYLE*/
-      .drop {
-        display: grid;
-        gap: 4px;
-        padding: 12px;
-        border: 1px dashed var(--line);
-        border-radius: 8px;
-        cursor: pointer;
-      }
-      .drop:hover,
-      .drop:focus-within {
-        border-color: var(--accent);
-      }
-      .drop input {
-        font: inherit;
-        max-width: 100%;
-      }
-      .downloads {
-        display: flex;
-        gap: 8px;
-        flex-wrap: wrap;
-      }
-      .downloads a {
-        text-decoration: none;
-      }
-      footer {
-        max-width: 980px;
-        margin: 0 auto;
-        padding: 0 16px 120px;
-        color: var(--muted);
-        font-size: 13px;
-      }
-      footer a {
-        color: inherit;
-      }
     </style>
   </head>
   <body>
-    <header>
-      <h1>randomfu</h1>
-      <span class="sub">Monster Hunter Freedom Unite randomizer</span>
-      <span class="sub" id="version"></span>
+    <header class="masthead">
+      <h1 class="masthead-title">Randomfu</h1>
+      <p class="masthead-sub">Monster Hunter Freedom Unite randomizer <span id="version"></span></p>
     </header>
+    <hr class="divider" />
 
-    <main>
-      <div class="col">
-        <section class="card" aria-labelledby="disc-h">
-          <h2 id="disc-h">Your game</h2>
-          <label class="field drop">
-            <span>Disc image (.iso)</span>
-            <input type="file" id="iso" accept=".iso" />
-            <span class="hint"
-              >MHFU (EU) or MHP2G (JP), dumped from your own disc. It stays on your computer:
-              nothing is uploaded.</span
-            >
-          </label>
-          <label class="field drop">
-            <span
-              >Decrypted EBOOT
-              <span class="badge" id="eboot-needed" hidden>needed for these settings</span></span
-            >
-            <input type="file" id="eboot" />
-            <span class="hint"
-              >For crafting, cost, weapon, armor and shop price settings. In PPSSPP turn on Settings
-              → Tools → Developer tools → “Dump Decrypted Eboot.bin on game boot” and start the game
-              once; the file is in PSP/SYSTEM/DUMP.</span
-            >
-          </label>
-          <div class="status" id="check-status" role="status"></div>
-        </section>
+    <nav class="stepper" aria-label="Steps">
+      <ol id="steps"></ol>
+    </nav>
 
-        <section class="card" aria-labelledby="seed-h">
-          <h2 id="seed-h">Seed</h2>
-          <div class="row">
-            <input type="text" id="seed" aria-label="Seed" autocomplete="off" spellcheck="false" />
-            <button type="button" id="new-seed">New seed</button>
-          </div>
-          <p class="hint">The same disc, seed and settings always make the same game.</p>
-        </section>
+    <main class="frame" aria-labelledby="step-title">
+      <div class="menu-header">
+        <span class="step-count" id="step-count"></span>
+        <h2 class="menu-title" id="step-title" tabindex="-1"></h2>
+      </div>
 
-        <section class="card" aria-labelledby="presets-h">
-          <h2 id="presets-h">Presets</h2>
-          <div class="presets" id="presets"></div>
-          <p class="hint">A preset keeps your seed. Change anything after.</p>
-        </section>
+      <!-- 1. The disc -->
+      <section class="panel" data-step="game" hidden>
+        <p class="intro">
+          Pick a disc image of <b>Monster Hunter Freedom Unite</b> (EU) or
+          <b>Monster Hunter Portable 2nd G</b> (JP), dumped from your own disc. It stays on your
+          computer: randomfu runs in this page and nothing is uploaded.
+        </p>
+        <label class="drop" id="iso-drop">
+          <span class="drop-icon icon" style="--icon: url(images/binoculars.png)"></span>
+          <span class="drop-text">
+            <span class="drop-title" id="iso-name">Choose your disc image (.iso)</span>
+            <span class="drop-hint">or drop it here</span>
+          </span>
+          <input type="file" id="iso" accept=".iso" class="visually-hidden" />
+        </label>
+        <p class="status" id="check-status" role="status"></p>
+        <p class="note">
+          Have a CSO? Decompress it to an ISO first, for example with maxcso or PPSSPP.
+        </p>
+      </section>
 
-        <section class="card" aria-labelledby="share-h">
-          <h2 id="share-h">Share</h2>
+      <!-- 2. Seed, presets and shared settings -->
+      <section class="panel" data-step="start" hidden>
+        <p class="intro">
+          The seed decides every shuffle: the same disc, seed and settings always make the same
+          game. Then start from a preset, or load settings someone shared with you.
+        </p>
+        <h3 class="subheading">Seed</h3>
+        <div class="row">
+          <input
+            type="text"
+            id="seed"
+            class="text-input grow"
+            aria-label="Seed"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="button" class="button" id="new-seed">New seed</button>
+        </div>
+
+        <h3 class="subheading">Preset</h3>
+        <div class="choices" id="presets" role="radiogroup" aria-label="Preset"></div>
+        <p class="note">A preset keeps your seed. You can change anything in the next steps.</p>
+
+        <details class="load" id="load">
+          <summary class="subheading">Load shared settings</summary>
           <label class="field">
-            <span>Settings string</span>
-            <textarea id="share" rows="3" readonly></textarea>
-            <span class="hint"
-              >Seed and settings in one line. Anyone with the same disc gets the same game.</span
-            >
-          </label>
-          <div class="row">
-            <button type="button" id="copy">Copy</button>
-            <button type="button" id="export">Save settings file</button>
-            <button type="button" id="import">Load settings file</button>
-            <input type="file" id="import-file" accept=".json,application/json" hidden />
-          </div>
-          <label class="field" style="margin-top: 12px">
-            <span>Load a settings string</span>
-            <div class="row">
+            <span class="label">Settings string</span>
+            <span class="row">
               <input
                 type="text"
                 id="paste"
+                class="text-input grow"
                 placeholder="RF…"
                 autocomplete="off"
                 spellcheck="false"
               />
-              <button type="button" id="apply-paste">Load</button>
-            </div>
+              <button type="button" class="button" id="apply-paste">Load</button>
+            </span>
           </label>
-          <div class="status" id="share-status" role="status"></div>
-        </section>
-      </div>
-
-      <div class="col" id="options"></div>
-
-      <section class="card" id="results" hidden aria-labelledby="results-h">
-        <h2 id="results-h">Run</h2>
-        <div class="results-grid">
-          <div class="downloads" id="downloads"></div>
-          <pre id="log" aria-live="polite"></pre>
-          <div id="spoiler-wrap" hidden>
-            <div class="row" style="margin-bottom: 8px">
-              <strong style="flex: 1">Spoiler log</strong>
-              <input
-                type="text"
-                id="filter"
-                placeholder="Filter lines, e.g. Buster Sword"
-                aria-label="Filter the spoiler log"
-                style="flex: 0 1 280px"
-              />
-            </div>
-            <pre id="spoiler"></pre>
+          <div class="row">
+            <button type="button" class="button" id="import">Load settings file</button>
+            <input type="file" id="import-file" accept=".json,application/json" hidden />
           </div>
+        </details>
+        <p class="status" id="share-status" role="status"></p>
+        <div class="row" id="skip-row" hidden>
+          <button type="button" class="button" id="skip">Skip to review ▶</button>
         </div>
       </section>
+
+      <!-- The option steps are built from OPTIONS here. -->
+      <div id="option-panels"></div>
+
+      <!-- The decrypted EBOOT, only when the settings need it -->
+      <section class="panel" data-step="eboot" hidden>
+        <p class="intro">
+          These settings change the game's EBOOT, which is encrypted on the disc. randomfu needs a
+          decrypted copy, which PPSSPP can make for you:
+        </p>
+        <ul class="eboot-list" id="eboot-list"></ul>
+        <ol class="howto">
+          <li>In PPSSPP, open Settings → Tools → Developer tools.</li>
+          <li>Turn on “Dump Decrypted Eboot.bin on game boot”.</li>
+          <li>Start the game once. The file is in <code>PSP/SYSTEM/DUMP</code>.</li>
+        </ol>
+        <label class="drop" id="eboot-drop">
+          <span
+            class="drop-icon icon"
+            style="--icon: url(images/deco.png); --tint: var(--color-gem-cyan)"
+          ></span>
+          <span class="drop-text">
+            <span class="drop-title" id="eboot-name">Choose your decrypted EBOOT</span>
+            <span class="drop-hint">or drop it here</span>
+          </span>
+          <input type="file" id="eboot" class="visually-hidden" />
+        </label>
+        <p class="status" id="eboot-status" role="status"></p>
+        <div class="row">
+          <button type="button" class="button secondary" id="drop-eboot">
+            Turn these settings off instead
+          </button>
+        </div>
+      </section>
+
+      <!-- Review, share and run -->
+      <section class="panel" data-step="review" hidden>
+        <p class="intro">Check your choices, then randomize. Select a step to change it.</p>
+        <dl class="summary" id="summary"></dl>
+
+        <h3 class="subheading">Share</h3>
+        <label class="field">
+          <span class="label">Settings string</span>
+          <textarea id="share" class="text-input" rows="3" readonly></textarea>
+          <span class="note"
+            >Seed and settings in one line. Anyone with the same disc gets the same game.</span
+          >
+        </label>
+        <div class="row">
+          <button type="button" class="button" id="copy">Copy</button>
+          <button type="button" class="button" id="export">Save settings file</button>
+        </div>
+        <p class="status" id="copy-status" role="status"></p>
+
+        <div class="go">
+          <button type="button" class="button" id="dry-run">Preview spoiler</button>
+          <button type="button" class="button primary" id="run">Randomize!</button>
+        </div>
+      </section>
+
+      <!-- The run -->
+      <section class="panel" data-step="run" hidden>
+        <p class="status big" id="run-status" role="status"></p>
+        <div class="downloads" id="downloads"></div>
+        <details class="log-wrap" id="log-wrap" open>
+          <summary class="subheading">Log</summary>
+          <pre class="log" id="log" aria-live="polite"></pre>
+        </details>
+        <div id="spoiler-wrap" hidden>
+          <div class="row spoiler-head">
+            <h3 class="subheading grow">Spoiler log</h3>
+            <input
+              type="text"
+              id="filter"
+              class="text-input"
+              placeholder="Filter, e.g. Buster Sword"
+              aria-label="Filter the spoiler log"
+            />
+          </div>
+          <pre class="log spoiler" id="spoiler"></pre>
+        </div>
+      </section>
+
+      <div class="nav">
+        <button type="button" class="nav-button" id="back">
+          <img src="images/arrow.png" alt="" aria-hidden="true" />
+          <span>Back</span>
+        </button>
+        <p class="status nav-status" id="nav-status" role="status"></p>
+        <button type="button" class="nav-button next" id="next">
+          <span>Next</span>
+          <img src="images/arrow.png" alt="" aria-hidden="true" />
+        </button>
+      </div>
     </main>
 
-    <footer>
+    <footer class="footer">
       randomfu runs entirely in your browser: your disc image and EBOOT never leave your computer.
       Free software under the GNU GPL v3 or later;
       <a href="https://github.com/vallode/mhfu-blacksmith/tree/main/tools/randomfu">source code</a>.
-      Not affiliated with Capcom.
+      In the style of <a href="https://mhfu-blacksmith.netlify.app/">MHFU Blacksmith</a>. Not
+      affiliated with Capcom.
     </footer>
-
-    <div class="actions">
-      <div class="inner">
-        <span class="status grow" id="run-status">Pick your disc image, then randomize.</span>
-        <button type="button" id="dry-run">Preview spoiler</button>
-        <button type="button" class="primary" id="run">Randomize</button>
-      </div>
-    </div>
 
     <script src="app.js"></script>
   </body>

@@ -77,18 +77,41 @@ try {
     if (m.type() === "error") errors.push(m.text());
   });
   await page.goto(url);
-  await page.waitForSelector("[data-key='shops.pool']");
+  await page.waitForSelector("[data-key='shops.pool']", { state: "attached" });
+  const title = () => page.textContent("#step-title");
 
+  // Step 1: the disc. Next waits for one.
+  assert.equal(await title(), "Your game");
+  await page.click("#next");
+  assert.match((await page.textContent("#nav-status"))!, /Pick your disc image first/);
   await page.setInputFiles("#iso", isoPath);
-  await page.setInputFiles("#eboot", ebootPath);
   await page.waitForFunction(() =>
     /supported/.test(document.getElementById("check-status")!.textContent ?? ""),
   );
-  const check = await page.textContent("#check-status");
-  assert.match(check!, /ULJM05500 \(JP\) is supported\. EBOOT: decrypted/);
+  assert.match((await page.textContent("#check-status"))!, /ULJM05500 \(JP\) is supported/);
+  await page.click("#next");
 
+  // Step 2: seed and presets; load the shared settings.
+  assert.equal(await title(), "Seed");
+  await page.click("#load summary");
   await page.fill("#paste", settingsString);
   await page.click("#apply-paste");
+  assert.match((await page.textContent("#share-status"))!, /Loaded the settings string/);
+
+  // Through every option step to the EBOOT, which these settings need.
+  for (const name of ["Logic", "Rewards", "Gathering", "Smithy", "Shops", "EBOOT"]) {
+    await page.click("#next");
+    assert.equal(await title(), name);
+  }
+  await page.click("#next");
+  assert.match((await page.textContent("#nav-status"))!, /Add your decrypted EBOOT/);
+  await page.setInputFiles("#eboot", ebootPath);
+  await page.waitForFunction(() =>
+    /decrypted \(ELF\)/.test(document.getElementById("eboot-status")!.textContent ?? ""),
+  );
+  await page.click("#next");
+
+  assert.equal(await title(), "Review");
   assert.equal(
     await page.inputValue("#share"),
     settingsString,
@@ -97,19 +120,18 @@ try {
 
   await page.click("#dry-run");
   await page.waitForSelector("#spoiler-wrap:not([hidden])");
+  assert.equal(await title(), "Randomize");
   assert.match((await page.textContent("#run-status"))!, /Preview ready/);
 
-  await page.click("#run");
+  await page.click("#run-now");
   await page.waitForFunction(
     () => /^Done/.test(document.getElementById("run-status")!.textContent ?? ""),
     null,
-    {
-      timeout: 60_000,
-    },
+    { timeout: 60_000 },
   );
   const [download] = await Promise.all([
     page.waitForEvent("download"),
-    page.click("#downloads a:first-child button"),
+    page.click("#downloads a:first-child"),
   ]);
   assert.equal(download.suggestedFilename(), "MHFU test disc (randomfu WEB-E2E).iso");
   const webOut = path.join(dir, "web.iso");

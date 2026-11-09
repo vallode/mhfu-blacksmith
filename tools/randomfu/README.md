@@ -48,9 +48,18 @@ websites can't use it. Keep `pnpm gui` running while you use the page.
 ### The web app
 
 `web/` is the same randomizer as a static web app that runs entirely in the
-browser: players pick their own ISO (and, for EBOOT settings, their PPSSPP
-EBOOT dump), set options, and download the randomized ISO and spoiler log.
-Nothing is uploaded.
+browser. It's a step-by-step builder: pick your ISO, choose a seed and a
+preset (or load a shared settings string), go through the options a group
+at a time (Logic, Rewards, Gathering, Smithy, Shops), add your PPSSPP EBOOT
+dump if those settings need it, review, and download the randomized ISO
+and spoiler log. Nothing is uploaded.
+
+The steps for options come from `OPTIONS`' sections (`OPTION_STEPS` in
+`web/app.ts`); a section no step lists gets a step of its own, so new
+options always show up. The page is styled after the MHFU Blacksmith site:
+`web/build.mjs` reads the site's design tokens and in-game frames from
+`src/app/globals.css` and copies its font and sprites from `public/`, and
+`web/style.css` uses them.
 
 ```bash
 pnpm build:web      # builds web/dist: index.html, app.js, worker.js
@@ -70,8 +79,8 @@ any web server). How it works:
   versions at build time (`web/shims`): SHA-1/SHA-256 (tested against
   Node's), the vendored file list and name tables (embedded), and
   `Buffer` (the `buffer` package).
-- `pnpm test:web` uploads the test fixture disc and EBOOT, randomizes with
-  every shuffle on, and checks the downloaded ISO is byte for byte the
+- `pnpm test:web` walks through every step with the test fixture disc and
+  EBOOT, randomizes with every shuffle on, and checks the downloaded ISO is byte for byte the
   CLI's for the same settings. It needs Playwright's Chromium.
 - CSO images aren't read in the browser yet: decompress to ISO first.
 

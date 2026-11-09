@@ -1,7 +1,12 @@
 /**
- * Builds the randomfu web app into web/dist: index.html (with the settings
- * page's styles inlined), app.js and worker.js. Node-only modules the shared
- * code imports are swapped for the browser versions in web/shims.
+ * Builds the randomfu web app into web/dist: index.html (with web/style.css
+ * inlined), app.js, worker.js and the few images and the font it shares with
+ * the MHFU Blacksmith site. Node-only modules the shared code imports are
+ * swapped for the browser versions in web/shims.
+ *
+ * The look comes from the site: its design tokens (the `@theme` block) and
+ * its in-game frames are read from src/app/globals.css, and its sprites and
+ * font are copied from public/, so the two stay in step.
  *
  *   node web/build.mjs
  */
@@ -12,6 +17,7 @@ import { fileURLToPath } from "node:url";
 
 const web = path.dirname(fileURLToPath(import.meta.url));
 const root = path.dirname(web);
+const site = path.resolve(root, "..", "..");
 const dist = path.join(web, "dist");
 const shim = (name) => path.join(web, "shims", name);
 const unavailable = shim("unavailable.ts");
@@ -46,10 +52,72 @@ await build({
   logLevel: "warning",
 });
 
-const page = readFileSync(path.join(root, "src", "gui", "page.html"), "utf8");
-const style = page.match(/<style>([\s\S]*?)<\/style>/)?.[1];
-if (!style) throw new Error("Couldn't find the settings page's styles");
-const html = readFileSync(path.join(web, "index.html"), "utf8").replace("/*STYLE*/", style.trim());
+// ---------------------------------------------------------------- the site's look
+
+const globals = readFileSync(path.join(site, "src", "app", "globals.css"), "utf8");
+
+/** The site's design tokens: every top-level custom property in its `@theme` block. */
+function siteTokens() {
+  const theme = globals.match(/@theme static \{([\s\S]*?)\n\}/)?.[1];
+  if (!theme) throw new Error("Couldn't find the @theme block in globals.css");
+  const tokens = [...theme.matchAll(/^ {2}(--[\w-]+):\s*([^;]+);/gm)].map(
+    ([, name, value]) => `${name}: ${value.trim()};`,
+  );
+  if (!tokens.some((t) => t.startsWith("--color-stat:"))) {
+    throw new Error("The @theme block in globals.css has no colour tokens");
+  }
+  return tokens;
+}
+
+/** The image of one of the site's `@utility` rules (its in-game frames and divider). */
+function utilityImage(name) {
+  const rule = globals.match(new RegExp(`@utility ${name} \\{([\\s\\S]*?)\\n\\}`))?.[1];
+  const url = rule?.match(/url\("(data:image\/png;base64,[^"]+)"\)/)?.[1];
+  if (!url) throw new Error(`Couldn't find the image of @utility ${name} in globals.css`);
+  return url;
+}
+
+const images = {
+  "--image-card-frame": utilityImage("card-frame"),
+  "--image-card-frame-teal": utilityImage("card-frame-teal"),
+  "--image-divider": utilityImage("divider-tile"),
+};
+const rootRule = [
+  ":root {",
+  ...siteTokens().map((t) => `  ${t}`),
+  ...Object.entries(images).map(([name, url]) => `  ${name}: url("${url}");`),
+  "}",
+].join("\n");
+
+const style = readFileSync(path.join(web, "style.css"), "utf8");
+const html = readFileSync(path.join(web, "index.html"), "utf8").replace(
+  "/*STYLE*/",
+  `${rootRule}\n${style.trim()}`,
+);
 writeFileSync(path.join(dist, "index.html"), html);
+
+// Sprites, background and font from the site's public/ folder.
+const assets = [
+  "fonts/biz-udgothic-latin-400-normal.woff2",
+  "fonts/biz-udgothic-OFL.txt",
+  "images/bg.png",
+  "images/arrow.png",
+  "images/loading.gif",
+  "images/binoculars.png",
+  "images/seed.png",
+  "images/star.png",
+  "images/claw.png",
+  "images/ore.png",
+  "images/hammer.png",
+  "images/coin.png",
+  "images/deco.png",
+  "images/ticket.png",
+  "images/max.png",
+  "images/favicons/felyne-favicon.png",
+];
+for (const asset of assets) {
+  mkdirSync(path.join(dist, path.dirname(asset)), { recursive: true });
+  copyFileSync(path.join(site, "public", asset), path.join(dist, asset));
+}
 copyFileSync(path.join(root, "LICENSE"), path.join(dist, "LICENSE.txt"));
 console.log(`Built ${path.relative(process.cwd(), dist)}`);
