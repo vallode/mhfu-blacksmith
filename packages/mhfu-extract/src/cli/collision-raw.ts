@@ -1,5 +1,5 @@
 /**
- * Writes the monster hitbox raw dumps for `extract --raw` (see
+ * Writes the monster hurtbox raw dumps for `extract --raw` (see
  * `emit/collision-raw.ts`): `raw/collision.json`, `raw/parts.json`, `raw/emmodel.json` and the
  * model packages' unidentified entries as `raw/emmodel/emNN.<index>.bin`.
  */

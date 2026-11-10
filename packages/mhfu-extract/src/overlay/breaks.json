@@ -3,7 +3,7 @@
     "Breaks set by a species' own code rather than the game_task break table (monsters/breaks.ts),",
     "read by hand from the EU disc's code (vallode/mhfu-blacksmith#121). Keyed by species emID (the",
     "EBOOT species table maps subspecies to it); each entry: the capbreakindex break type, the body",
-    "parts (hitbox capsule part numbers), and the flinch count of those parts that triggers it.",
+    "parts (hurtbox capsule part numbers), and the flinch count of those parts that triggers it.",
     "Optional: all_parts (every listed part must reach the count, else any), below_hp (fraction of",
     "max HP the monster must be under), damage (the part must have taken that damage: fire is",
     "part flag 4, set from attack flag 0x10, and the Ukanlos label confirms it; dragon is part",

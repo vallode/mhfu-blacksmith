@@ -5,7 +5,7 @@
  * The break reward tables (`capbreakindex` and its pointer table in
  * `game_sub.ovl`, see `monsters/rewards.ts`) number each monster's breaks
  * (Rathalos: 1 head, 2 wing), but nothing in the monster chunk links those
- * numbers to the body parts the hitbox capsules and the part durability
+ * numbers to the body parts the hurtbox capsules and the part durability
  * records use (`raw/parts.json`). That link is probably code: the monster
  * overlays record a break when a part's durability runs out, and the reward
  * code reads the table by break number.

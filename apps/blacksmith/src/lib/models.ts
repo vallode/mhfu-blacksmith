@@ -127,8 +127,8 @@ export function useArmorModel(
   return result;
 }
 
-/** One monster hitbox: a capsule in the model's space (see packages/mhfu-extract `monsters/hitboxes.ts`). */
-export interface HitboxCapsule {
+/** One monster hurtbox: a capsule in the model's space (see packages/mhfu-extract `monsters/hurtboxes.ts`). */
+export interface HurtboxCapsule {
   /** Hitzone row the capsule takes its values from. */
   row: number;
   /** The monster's hitzone parts (`Monster.hitzones` keys) on that row. */
@@ -140,26 +140,26 @@ export interface HitboxCapsule {
   end: [number, number, number];
 }
 
-const hitboxFiles = new Map<string, Promise<HitboxCapsule[] | null>>();
+const hurtboxFiles = new Map<string, Promise<HurtboxCapsule[] | null>>();
 
 /**
- * A monster's hitboxes, from the file next to its model
- * (`/models/monsters/emNN.hitboxes.json`); null while loading or if it has none.
+ * A monster's hurtboxes, from the file next to its model
+ * (`/models/monsters/emNN.hurtboxes.json`); null while loading or if it has none.
  */
-export function useMonsterHitboxes(modelUrl: string | null): HitboxCapsule[] | null {
-  const [capsules, setCapsules] = useState<HitboxCapsule[] | null>(null);
+export function useMonsterHurtboxes(modelUrl: string | null): HurtboxCapsule[] | null {
+  const [capsules, setCapsules] = useState<HurtboxCapsule[] | null>(null);
   useEffect(() => {
     let cancelled = false;
     setCapsules(null);
     if (!modelUrl) return;
-    const url = modelUrl.replace(/\.glb$/, ".hitboxes.json");
-    let promise = hitboxFiles.get(url);
+    const url = modelUrl.replace(/\.glb$/, ".hurtboxes.json");
+    let promise = hurtboxFiles.get(url);
     if (!promise) {
       promise = fetch(url)
-        .then((res) => (res.ok ? (res.json() as Promise<{ capsules: HitboxCapsule[] }>) : null))
+        .then((res) => (res.ok ? (res.json() as Promise<{ capsules: HurtboxCapsule[] }>) : null))
         .then((file) => (file?.capsules.length ? file.capsules : null))
         .catch(() => null);
-      hitboxFiles.set(url, promise);
+      hurtboxFiles.set(url, promise);
     }
     promise.then((found) => {
       if (!cancelled) setCapsules(found);

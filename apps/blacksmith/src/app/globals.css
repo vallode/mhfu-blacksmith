@@ -112,14 +112,14 @@
 
   /* Monster hitzone parts on the 3D model, in hitzone-table order (the 3D
      viewer reads them through var() and getComputedStyle) */
-  --color-hitbox-1: #ff5a4f;
-  --color-hitbox-2: #ffa63d;
-  --color-hitbox-3: #ffe14d;
-  --color-hitbox-4: #6ee05a;
-  --color-hitbox-5: #4fc3ff;
-  --color-hitbox-6: #7d86ff;
-  --color-hitbox-7: #d36cff;
-  --color-hitbox-8: #ff7ac8;
+  --color-hurtbox-1: #ff5a4f;
+  --color-hurtbox-2: #ffa63d;
+  --color-hurtbox-3: #ffe14d;
+  --color-hurtbox-4: #6ee05a;
+  --color-hurtbox-5: #4fc3ff;
+  --color-hurtbox-6: #7d86ff;
+  --color-hurtbox-7: #d36cff;
+  --color-hurtbox-8: #ff7ac8;
 
   /* Pulsing green highlight behind hovered rows, cards and search results.
      Use the `hover-glow` utility, or in a CSS module:

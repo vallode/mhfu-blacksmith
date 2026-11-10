@@ -28,7 +28,7 @@ interface Props {
    * shows a pair of dual blades (each blade's file holds only one).
    */
   pair?: boolean;
-  /** Translucent capsules over the model, e.g. a monster's hitboxes. */
+  /** Translucent capsules over the model, e.g. a monster's hurtboxes. */
   capsules?: ModelCapsule[];
 }
 

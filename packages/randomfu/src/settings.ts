@@ -629,7 +629,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "questMonsters.size",
     section: "Quest monsters",
     label: "Randomize monster size per quest",
-    help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, up to 120% in others). Seen working in game (a tiny Giadrome); whether hitboxes follow the size is untested.",
+    help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, up to 120% in others). Seen working in game (a tiny Giadrome); whether hurtboxes follow the size is untested.",
     type: { kind: "boolean" },
     default: false,
   },

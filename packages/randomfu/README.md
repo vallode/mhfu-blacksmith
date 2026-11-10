@@ -588,7 +588,7 @@ quest can still be finished.
 - Quest size. `questMonsters.size` visibly changes a quest's monsters in
   game, but whether the value is exactly a percentage hasn't been measured.
   What sets the crown spread around it (`Unkn6`/`Unkn7` are the lead)
-  isn't known. Whether hitboxes scale with either size option is untested.
+  isn't known. Whether hurtboxes scale with either size option is untested.
 - Quest text in game. Renaming the board files (`level*.mib`) shows on the
   EU Quest Details screen: a quest swapped from Velocidrome to Daimyo
   Hermitaur showed the new monster in game. Where the game shows the quest

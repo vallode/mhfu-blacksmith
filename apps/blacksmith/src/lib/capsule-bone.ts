@@ -1,7 +1,7 @@
 /**
- * Which bone a hitbox capsule rides on when its model animates. The site's
- * hitbox files place each capsule in the bind pose without naming its joint
- * (see packages/mhfu-extract `monsters/hitboxes.ts`), so ModelViewer works it
+ * Which bone a hurtbox capsule rides on when its model animates. The site's
+ * hurtbox files place each capsule in the bind pose without naming its joint
+ * (see packages/mhfu-extract `monsters/hurtboxes.ts`), so ModelViewer works it
  * out from the skin: the bone that carries most of the mesh inside the
  * capsule. Plain data here, so it can be tested without three.js.
  */

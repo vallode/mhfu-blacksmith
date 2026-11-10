@@ -73,7 +73,7 @@ import {
   type ShopsFile,
 } from "../src/lib/item-places";
 import { flinchThreshold } from "../src/lib/monster-breaks";
-import type { HitboxCapsule } from "../src/lib/models";
+import type { HurtboxCapsule } from "../src/lib/models";
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
@@ -285,7 +285,7 @@ function encodeArmor(a: ArmorPiece, minRank: Progress): CompactArmor {
 }
 
 // ---------------------------------------------------------------------------
-// Monster hitboxes (public/models, see src/lib/models.ts)
+// Monster hurtboxes (public/models, see src/lib/models.ts)
 // ---------------------------------------------------------------------------
 const modelsDir = path.join(root, "public", "models");
 const monsterModelsPath = path.join(modelsDir, "manifest", "monsters.json");
@@ -293,32 +293,32 @@ const monsterModels: Record<string, number> = fs.existsSync(monsterModelsPath)
   ? readJson(monsterModelsPath)
   : {};
 
-/** A monster's hitbox capsules, from the file next to its model; null if it has none. */
-function monsterHitboxes(name: string): HitboxCapsule[] | null {
+/** A monster's hurtbox capsules, from the file next to its model; null if it has none. */
+function monsterHurtboxes(name: string): HurtboxCapsule[] | null {
   const id = monsterModels[name];
   if (!id) return null;
-  const p = path.join(modelsDir, "monsters", `em${String(id).padStart(2, "0")}.hitboxes.json`);
+  const p = path.join(modelsDir, "monsters", `em${String(id).padStart(2, "0")}.hurtboxes.json`);
   if (!fs.existsSync(p)) return null;
-  const { capsules } = readJson<{ capsules: HitboxCapsule[] }>(p);
+  const { capsules } = readJson<{ capsules: HurtboxCapsule[] }>(p);
   return capsules.length ? capsules : null;
 }
 
 /**
  * Each hitzone row's flinch threshold, from the body parts of the row's
- * hitboxes: the site needs the hitboxes to tell which `flinch_thresholds`
+ * hurtboxes: the site needs the hurtboxes to tell which `flinch_thresholds`
  * belong to a row, so the build works it out rather than the page.
  */
 function hitzoneFlinch(m: Monster): (string | null)[] | null {
   const thresholds = m.flinch_thresholds;
   if (!m.hitzones || !thresholds) return null;
-  const hitboxes = monsterHitboxes(m.name);
-  if (!hitboxes) return null;
+  const hurtboxes = monsterHurtboxes(m.name);
+  if (!hurtboxes) return null;
   // Rows without a threshold stay null: the page shows "—" for them, even
   // when no row has one.
   return Object.keys(m.hitzones).map((name) =>
     flinchThreshold(
       thresholds,
-      hitboxes.filter((c) => c.parts.includes(name)).map((c) => c.part),
+      hurtboxes.filter((c) => c.parts.includes(name)).map((c) => c.part),
     ),
   );
 }

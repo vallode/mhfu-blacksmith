@@ -59,7 +59,7 @@ export interface EmittedMonster {
   drops?: Record<string, Record<string, EmittedDrop[]>>;
   tolerances: EmittedTolerances;
   breaks?: EmittedBreak[];
-  /** Damage each body part (hitbox capsule `part`) takes before a flinch; null: no such part. */
+  /** Damage each body part (hurtbox capsule `part`) takes before a flinch; null: no such part. */
   flinch_thresholds?: (number | null)[];
 }
 
@@ -135,7 +135,7 @@ export function siteTolerances(t: Tolerances): EmittedTolerances {
 export interface EmittedBreak {
   /** The break's drop group label without "break " ("head", "wing"). */
   name: string;
-  /** Body parts: the hitbox capsules' `part` numbers. */
+  /** Body parts: the hurtbox capsules' `part` numbers. */
   parts: number[];
   /** Flinches of a part that break it; null when an event counter does. */
   flinches: number | null;

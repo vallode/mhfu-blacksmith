@@ -171,7 +171,7 @@ export interface MonsterDrop {
 export interface MonsterBreak {
   /** The break's drop group label without "break " ("head", "wing"). */
   name: string;
-  /** Body parts: the `part` numbers of the monster's hitbox capsules. */
+  /** Body parts: the `part` numbers of the monster's hurtbox capsules. */
   parts: number[];
   /** Flinches of a part that break it; null when another event does. */
   flinches: number | null;
@@ -198,7 +198,7 @@ export interface Monster {
   /** Breakable parts, one entry per break reward */
   breaks?: MonsterBreak[];
   /**
-   * Damage each body part (hitbox capsule `part`) takes before the monster
+   * Damage each body part (hurtbox capsule `part`) takes before the monster
    * flinches, before quest scaling; null where there's no such part. Only in
    * `data/`: the site's bundles carry `hitzone_flinch` instead.
    */
@@ -206,8 +206,8 @@ export interface Monster {
   /**
    * Each hitzone row's flinch threshold, by hitzone part: one value or a
    * range ("100–160", see `flinchThreshold`). Worked out by the data build
-   * from `flinch_thresholds` and the monster's hitboxes. Rows without one
-   * are absent; the field is absent without hitboxes or thresholds.
+   * from `flinch_thresholds` and the monster's hurtboxes. Rows without one
+   * are absent; the field is absent without hurtboxes or thresholds.
    */
   hitzone_flinch?: Record<string, string>;
   /** Status tolerances from the disc; null where the monster is immune. Only in `data/` so far. */

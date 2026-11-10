@@ -360,7 +360,7 @@ export function randomizeQuestSize(
     title: "Quest monster size",
     notes: [
       `Each quest's monster size (its header's size percentage) moved by up to ${Math.round(spread * 100)}%, kept between ${SIZE_LIMITS[0]}% and ${SIZE_LIMITS[1]}%.`,
-      "Changing it was seen to resize a quest's monsters in game; whether hitboxes follow is untested.",
+      "Changing it was seen to resize a quest's monsters in game; whether hurtboxes follow is untested.",
     ],
     lines,
   };

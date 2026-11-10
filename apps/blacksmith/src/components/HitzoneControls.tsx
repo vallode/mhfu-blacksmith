@@ -5,7 +5,7 @@ import { modelPanel, modelPanelButton } from "@/styles/model";
 
 export interface HitzonePart {
   name: string;
-  /** `var(--color-hitbox-N)`. */
+  /** `var(--color-hurtbox-N)`. */
   color: string;
 }
 
@@ -29,9 +29,9 @@ interface Props {
 }
 
 /**
- * Over a monster's 3D model: a switch for its hitboxes and, while they show,
+ * Over a monster's 3D model: a switch for its hurtboxes and, while they show,
  * a legend of the hitzone parts in their colours, then its breakable parts.
- * Hovering or focusing an entry highlights its hitboxes; clicking pins it.
+ * Hovering or focusing an entry highlights its hurtboxes; clicking pins it.
  */
 export default function HitzoneControls({
   parts,
@@ -55,7 +55,7 @@ export default function HitzoneControls({
           show ? "text-stat" : "text-parchment",
         )}
       >
-        Hitzones
+        Hurtboxes
       </button>
       {show && (
         <ul

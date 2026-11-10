@@ -1,5 +1,5 @@
 /**
- * Raw dumps for working out monster hitboxes (`extract --raw`): the bytes
+ * Raw dumps for working out monster hurtboxes (`extract --raw`): the bytes
  * the collision table (`monsters/collision.ts`) and skeleton
  * (`models/ahi.ts`) were decoded from, kept for checking the decoding
  * on more monsters.

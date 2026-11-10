@@ -3,7 +3,7 @@
  *
  * The break reward tables (`capbreakindex`, `rewards.ts`) number each
  * monster's breaks; these say which body part each number belongs to. Body
- * parts are the numbers the hitbox capsules carry (`collision.ts` `part`),
+ * parts are the numbers the hurtbox capsules carry (`collision.ts` `part`),
  * and each has a flinch counter (`monster + 0x582 + part * 8`).
  *
  * **The break table** (`game_task.ovl`, right after the per-monster part

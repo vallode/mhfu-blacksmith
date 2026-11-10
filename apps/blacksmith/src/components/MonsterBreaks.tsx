@@ -9,7 +9,7 @@ const singular = (name: string) => name.replace(/s$/, "");
 
 interface Props {
   breaks: MonsterBreak[];
-  /** Hitzone parts each break's body parts belong to, by break index; empty without hitboxes. */
+  /** Hitzone parts each break's body parts belong to, by break index; empty without hurtboxes. */
   hitzones: string[][];
   /** The highlighted part or break key, to mark its row. */
   highlight: string | null;
@@ -19,9 +19,9 @@ interface Props {
 
 /**
  * Under the hitzone table: each break reward, the hitzone parts it's on
- * (when its hitboxes are known and the name doesn't already say), and what
+ * (when its hurtboxes are known and the name doesn't already say), and what
  * it takes ("2nd flinch", "dragon damage"). With the model open, hovering a
- * row highlights the break's hitboxes.
+ * row highlights the break's hurtboxes.
  */
 export default function MonsterBreaks({ breaks, hitzones, highlight, onHover }: Props) {
   return (

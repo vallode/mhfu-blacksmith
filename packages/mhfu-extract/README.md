@@ -389,9 +389,9 @@ is 0xFFFF (immune). The fourth status is left out until it is identified
 poison's `damagePerSecond` is written as `damage_interval`: it is 150 on
 every monster, so it is likely the ticks between hits.
 
-### Monster hitboxes
+### Monster hurtboxes
 
-Each monster's hitboxes are capsules on its skeleton joints, and each
+Each monster's hurtboxes are capsules on its skeleton joints, and each
 capsule takes its values from one hitzone row. Worked out on Rathian and
 Kelbi (EU disc) by drawing them over the models: the wing capsules trace
 the membranes, the legs the legs, and the rows match the parts
@@ -421,8 +421,8 @@ the membranes, the legs the legs, and the rows match the parts
   and logged; on the EU disc no capsule is (Yama Tsukami's bones that
   first looked rotated are only scaled). Joints of a detached severed-tail
   chain move with the tail tip.
-- **Site file** (`src/monsters/hitboxes.ts`): `export-site` writes
-  `public/models/monsters/emNN.hitboxes.json` next to each monster's model:
+- **Site file** (`src/monsters/hurtboxes.ts`): `export-site` writes
+  `public/models/monsters/emNN.hurtboxes.json` next to each monster's model:
   each capsule's ends and radius in model space, its row, and the site's
   hitzone parts on that row. The monster page draws them over the 3D model.
 
@@ -431,7 +431,7 @@ Open questions:
 - Every monster exported has one or two spheres on its root joint (flags 5
   and 0x300, on joint 1 or 2) around the body's centre, on a row that
   doesn't fit the place (Rathian's on her head's row). They are probably
-  body collision, so `hitboxes.ts` skips records with bit 0x4 or 0x200, and
+  body collision, so `hurtboxes.ts` skips records with bit 0x4 or 0x200, and
   logs each skip; no other record seen has either bit. The other flag bits
   (0x1, 0x2, 0x100, 0x20000, 0x40000, 0x8000000, ...) appear on whole bodies.
 - The second u16 (0 or 1) and the rest of the flags are unknown.
@@ -451,7 +451,7 @@ Open questions:
   `PartDurabilityPTR`) and 0x200 bytes at each pointer's target, plus
   0x100 bytes at each pointer if the target starts with a pointer list.
   The 24th leads to one 0x18-byte record per monster: nine u16 values,
-  one per body part as the hitbox capsules number them (`0xFFFF` unused),
+  one per body part as the hurtbox capsules number them (`0xFFFF` unused),
   a u16 part count and a zero u32. Every part has one, unbreakable ones
   too, so they look like flinch damage rather than break data.
 - `raw/break-code.json`: every MIPS `lui` + low-half pair in the EBOOT and
@@ -472,7 +472,7 @@ the extracted output.
 ### Monster breaks
 
 Each monster's `breaks` (`data/monsters/*.json`) lists the body parts
-behind each of its break rewards. A body part is a hitbox capsule's `part`
+behind each of its break rewards. A body part is a hurtbox capsule's `part`
 number, and each has a flinch counter (`monster + 0x582 + part * 8`).
 Worked out on the EU disc (vallode/mhfu-blacksmith#121) from the code that
 gives break rewards:
@@ -667,7 +667,7 @@ file paths:
   vendored `monster.enum`, matched to `data/monsters/*.json` by name (with
   aliases for the two names that differ). IDs without a monster page
   (Veggie Elder, Poogie, ...) are skipped. Each monster also gets
-  `monsters/emNN.hitboxes.json` (see "Monster hitboxes"), which needs
+  `monsters/emNN.hurtboxes.json` (see "Monster hurtboxes"), which needs
   `overlay/game_task.ovl` and the `emNN.ovl` files in the unpacked
   directory; the log names any monster without one, and why.
 - **Weapons** need `eboot.bin`: each blademaster/gunner table entry, indexed
@@ -690,7 +690,7 @@ file: the `.glb` names its own in `asset.extras.motions`. Skinning grew the
 (`apps/blacksmith/src/lib/motions.ts`, `ModelViewer.tsx`) plays them in
 place (the hips keep their horizontal bind position), loops a looping
 motion from its loop start as the game does (1,847 of the 3,334 looping
-motions have a lead-in before it), and holds the bind pose while hitboxes
+motions have a lead-in before it), and holds the bind pose while hurtboxes
 show, since those are placed in bind-pose space. A model waits up to 1.5 s
 for its motions so it first shows posed, and shows still if they're slower.
 

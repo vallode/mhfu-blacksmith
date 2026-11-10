@@ -1,8 +1,8 @@
 /**
- * Monster hitboxes: the table `CollisionPTR` (`MonChunk` `+0x50`) points to.
+ * Monster hurtboxes: the table `CollisionPTR` (`MonChunk` `+0x50`) points to.
  * Worked out from Rathian (table in its own `overlay/em01.ovl`) and Kelbi
  * (in `game_task.ovl`) on the EU disc, by drawing the records over the
- * models (see the README's "Monster hitboxes").
+ * models (see the README's "Monster hurtboxes").
  *
  * 0x28-byte records up to one whose joint is 0xFFFF:
  *   0x00 u16 joint (a bone of the model's skeleton, `models/ahi.ts`)
@@ -15,7 +15,7 @@
  * Each record is a capsule: a sphere of the radius swept from start to end.
  * Every monster has one or two records on its root joint (flags 5 and
  * 0x300) around the body's centre, probably for body collision rather than
- * damage; `hitboxes.ts` leaves them out by their flags.
+ * damage; `hurtboxes.ts` leaves them out by their flags.
  */
 import type { OvlFile } from "../container/ovl.js";
 import type { BinaryReader } from "../binary/reader.js";

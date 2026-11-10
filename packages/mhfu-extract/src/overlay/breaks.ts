@@ -10,7 +10,7 @@ export type BreakDamage = "cut" | "fire" | "dragon";
 export interface CodeBreak {
   /** `capbreakindex` break type. */
   break: number;
-  /** Body parts (hitbox capsule part numbers). */
+  /** Body parts (hurtbox capsule part numbers). */
   parts: number[];
   /** Flinch count that triggers it, or null when an event counter does. */
   flinches: number | null;

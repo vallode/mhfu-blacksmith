@@ -109,7 +109,7 @@ const NO_PART = 0xffff;
 
 /**
  * The record `PartDurabilityPTR` points to: nine u16 values, one per body
- * part as the hitbox capsules number them (0xFFFF: no such part), then a u16
+ * part as the hurtbox capsules number them (0xFFFF: no such part), then a u16
  * count of parts and a zero u32. Each is the damage a part takes before the
  * monster flinches: on a flinch, `game_task` (EU `0x09AD3B10`) refills the
  * part's counter (monster `+0x580 + part * 8`) from it, and the damage
@@ -117,7 +117,7 @@ const NO_PART = 0xffff;
  * that counter and flinches the monster when it runs out. In some cases
  * (EU `0x09AD3B88`) the refill multiplies it by the fourth float of the
  * quest's stat multiplier row (`multipliers.ts`): 1.0 up to 2.5 in G rank.
- * Part 8, where present, has no hitbox capsules (the severed tail?).
+ * Part 8, where present, has no hurtbox capsules (the severed tail?).
  */
 export function readFlinchThresholds(ovl: OvlFile, pointer: number): (number | null)[] | null {
   if (!ovl.isOwnVaddr(pointer)) return null;

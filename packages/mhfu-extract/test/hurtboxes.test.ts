@@ -13,7 +13,7 @@ import {
   readMonsterCollision,
   type CollisionRecord,
 } from "../src/monsters/collision.js";
-import { buildSiteHitboxes, jointPositions } from "../src/monsters/hitboxes.js";
+import { buildSiteHurtboxes, jointPositions } from "../src/monsters/hurtboxes.js";
 import {
   GAME_TASK_JP,
   HITZONE_POINTER_OFFSET,
@@ -106,10 +106,10 @@ test("a scaled bone stretches the joints below it and their capsules, as Gravios
     ),
     0,
   )!;
-  const { hitboxes, skipped } = buildSiteHitboxes(records, joints);
+  const { hurtboxes, skipped } = buildSiteHurtboxes(records, joints);
   assert.deepEqual(skipped, []);
   assert.deepEqual(
-    hitboxes.capsules.map((c) => [c.start, c.end, c.radius]),
+    hurtboxes.capsules.map((c) => [c.start, c.end, c.radius]),
     [[[10, 0, 65], [14, 0, 60], 30]],
   );
 });
@@ -169,7 +169,7 @@ test("readCollisionRecords reads records up to the 0xFFFF joint", () => {
   assert.equal(readCollisionRecords(new BinaryReader(table.subarray(0, 0x28)), 0), null);
 });
 
-test("buildSiteHitboxes places capsules in model space and names them by hitzone row", () => {
+test("buildSiteHurtboxes places capsules in model space and names them by hitzone row", () => {
   const records = readCollisionRecords(
     new BinaryReader(
       collisionTable([
@@ -186,12 +186,12 @@ test("buildSiteHitboxes places capsules in model space and names them by hitzone
   )!;
   const joints = jointPositions(readAhi(skeleton(RATHIAN_JOINTS)));
   joints.rotated.add(7); // as if joint 7 sat below a rotated bone
-  const { hitboxes, skipped } = buildSiteHitboxes(records, joints, {
+  const { hurtboxes, skipped } = buildSiteHurtboxes(records, joints, {
     head: [0, 0],
     wing: [0, 5],
     "wing-broken": [1, 5],
   });
-  assert.deepEqual(hitboxes.capsules[0], {
+  assert.deepEqual(hurtboxes.capsules[0], {
     row: 5,
     parts: ["wing", "wing-broken"],
     part: 1,
@@ -200,9 +200,9 @@ test("buildSiteHitboxes places capsules in model space and names them by hitzone
     start: [130, -8, 60],
     end: [235, -13, 50],
   });
-  assert.deepEqual(hitboxes.capsules[1]!.parts, []);
-  assert.deepEqual(hitboxes.capsules[2]!.parts, ["head"]);
-  assert.equal(hitboxes.capsules.length, 3);
+  assert.deepEqual(hurtboxes.capsules[1]!.parts, []);
+  assert.deepEqual(hurtboxes.capsules[2]!.parts, ["head"]);
+  assert.equal(hurtboxes.capsules.length, 3);
   assert.deepEqual(skipped, [
     "record 1: joint 125 isn't in the skeleton",
     "record 2: no size (radius 0)",
@@ -292,8 +292,8 @@ test("readMonsterCollision finds a table in another monster's overlay only when 
   });
 });
 
-test("export-site writes hitboxes next to a monster's model and removes stale ones", async () => {
-  const root = await mkdtemp(path.join(tmpdir(), "hitboxes-"));
+test("export-site writes hurtboxes next to a monster's model and removes stale ones", async () => {
+  const root = await mkdtemp(path.join(tmpdir(), "hurtboxes-"));
   try {
     const unpacked = path.join(root, "unpacked");
     const data = path.join(root, "data");
@@ -322,15 +322,15 @@ test("export-site writes hitboxes next to a monster's model and removes stale on
       path.join(unpacked, "data-bin", "overlay", "em01.ovl"),
       emOvl({ 0: collisionTable([WING]) }),
     );
-    const stale = path.join(out, "monsters", "em03.hitboxes.json");
+    const stale = path.join(out, "monsters", "em03.hurtboxes.json");
     await writeFile(stale, "{}");
 
     const manifest = await runExportSite({ unpacked, data, out, lossless: true });
     assert.deepEqual(manifest.monsters, { Kelbi: 3, Rathian: 1 });
-    const hitboxes = JSON.parse(
-      await readFile(path.join(out, "monsters", "em01.hitboxes.json"), "utf-8"),
+    const hurtboxes = JSON.parse(
+      await readFile(path.join(out, "monsters", "em01.hurtboxes.json"), "utf-8"),
     );
-    assert.deepEqual(hitboxes.capsules, [
+    assert.deepEqual(hurtboxes.capsules, [
       {
         row: 5,
         parts: ["wing"],

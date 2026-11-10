@@ -50,7 +50,7 @@ import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 export interface ExtractOptions {
   unpacked: string;
   out: string;
-  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hitbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts), and the break reward code references in `raw/break-code.json` with the overlays in `raw/overlays/` (emit/break-code-raw.ts). */
+  /** Also write numbers-only table dumps to `<out>/raw/` (see emit/sharpness-raw.ts, emit/weapons-raw.ts, emit/gunner-raw.ts, emit/armor-raw.ts, emit/quests-raw.ts), `raw/monsters.json` (the decoded monster tables) and the hurtbox candidates in `raw/collision.json`, `raw/emmodel.json` and `raw/emmodel/` (emit/collision-raw.ts), and the break reward code references in `raw/break-code.json` with the overlays in `raw/overlays/` (emit/break-code-raw.ts). */
   raw?: boolean;
 }
 
@@ -296,7 +296,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     await writeFile(melodyPath, `${JSON.stringify(melodyRaw)}\n`, "utf-8");
     console.log(`Wrote ${melodyPath} (${melodyRaw.hits.length} candidate table(s)).`);
 
-    // Monster hitbox candidates: CollisionPTR targets and the model packages' unknown entries.
+    // Monster hurtbox candidates: CollisionPTR targets and the model packages' unknown entries.
     await writeCollisionRaw(
       options.unpacked,
       options.out,

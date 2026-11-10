@@ -1,5 +1,5 @@
 /**
- * The site's hitbox file for one monster (`public/models/monsters/emNN.hitboxes.json`,
+ * The site's hurtbox file for one monster (`public/models/monsters/emNN.hurtboxes.json`,
  * written by `export-site`): the collision records (`collision.ts`) moved from
  * joint space into the model's space with the skeleton (`models/ahi.ts`),
  * each named by the site's hitzone parts that use its row.
@@ -23,7 +23,7 @@ export interface SiteCapsule {
   end: Vec3;
 }
 
-export interface SiteHitboxes {
+export interface SiteHurtboxes {
   capsules: SiteCapsule[];
 }
 
@@ -99,11 +99,11 @@ export function jointPositions(bones: Bone[]): JointPositions {
   return { frames, rotated };
 }
 
-export function buildSiteHitboxes(
+export function buildSiteHurtboxes(
   records: CollisionRecord[],
   joints: JointPositions,
   slots: HitzoneSlots = {},
-): { hitboxes: SiteHitboxes; skipped: string[] } {
+): { hurtboxes: SiteHurtboxes; skipped: string[] } {
   const partsByRow = new Map<number, string[]>();
   for (const [part, [, row]] of Object.entries(slots)) {
     const parts = partsByRow.get(row) ?? [];
@@ -146,5 +146,5 @@ export function buildSiteHitboxes(
       end: place(record.end),
     });
   });
-  return { hitboxes: { capsules }, skipped };
+  return { hurtboxes: { capsules }, skipped };
 }
