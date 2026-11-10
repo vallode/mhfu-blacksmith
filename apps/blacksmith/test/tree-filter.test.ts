@@ -9,6 +9,7 @@ import {
   cycleTreeFilter,
   filterTree,
   matchesTreeFilter,
+  treeRowKey,
   type ProgressLookups,
   type TreeFilterId,
 } from "../src/lib/tree-filter";
@@ -308,6 +309,46 @@ describe("tree filter", () => {
     );
     assert.equal(matched, 1);
     assert.equal(rows.get("root")?.match, true);
+  });
+
+  test("an alias row has its own status, and its weapon counts once", () => {
+    // m upgrades from both p (not owned) and q (owned); its branch is under p.
+    const merged: WeaponTreeNode[] = [
+      {
+        slug: "p",
+        name: "P",
+        type: "great-sword",
+        rarity: 1,
+        children: [{ slug: "m", name: "M", type: "great-sword", rarity: 2 }],
+      },
+      {
+        slug: "q",
+        name: "Q",
+        type: "great-sword",
+        rarity: 1,
+        children: [{ slug: "m", name: "M", type: "great-sword", rarity: 2, alias: true }],
+      },
+    ];
+    const lookups: ProgressLookups = {
+      active: true,
+      isOwned: (href) => href === "/blacksmith/great-sword/q/",
+      craftCheck: (_type, slug, parentOwned) =>
+        slug === "m" && parentOwned ? ready : { status: "unknown" },
+    };
+    const { rows, matched, total } = filterTree(
+      merged,
+      "great-sword",
+      "/blacksmith/great-sword/",
+      lookups,
+      "craftable",
+    );
+    const first = rows.get(treeRowKey(merged[0].children![0], "/blacksmith/great-sword/p/"));
+    const alias = rows.get(treeRowKey(merged[1].children![0], "/blacksmith/great-sword/q/"));
+    // Only the upgrade from the owned parent, under the alias, is ready.
+    assert.equal(first?.match, false);
+    assert.equal(alias?.match, true);
+    assert.equal(total, 3);
+    assert.equal(matched, 1);
   });
 
   test("cycles in order and wraps around", () => {

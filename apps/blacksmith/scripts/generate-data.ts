@@ -166,6 +166,7 @@ function compactTreeNode(
   if (mr) out.m = mr;
   const md = maxDefenceOf?.(node.slug);
   if (md !== undefined) out.d = md;
+  if (node.alias) out.a = 1;
   if (node.children && node.children.length > 0) {
     out.k = node.children.map((c) => compactTreeNode(c, bundleType, minRankOf, maxDefenceOf));
   }

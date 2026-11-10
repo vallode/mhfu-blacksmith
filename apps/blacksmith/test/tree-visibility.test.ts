@@ -58,6 +58,13 @@ describe("pruneTree", () => {
     assert.deepEqual(outline(pruneTree(tree, progress, { hrefOf, keepSlug: "c" })), ["b", "c"]);
   });
 
+  it("hides an alias row with its hidden parent, rather than moving it up", () => {
+    // m is upgraded from a (in reach) and from b (out of reach); its branch is under a.
+    const alias = { ...node("m", low(2)), alias: true };
+    const tree = [node("a", low(1), [node("m", low(2))]), node("b", high(7), [alias])];
+    assert.deepEqual(outline(pruneTree(tree, progress, { hrefOf })), ["a", "-m"]);
+  });
+
   it("does not change the tree it was given", () => {
     const tree = [node("a", low(1), [node("b", high(7))])];
     pruneTree(tree, progress, { hrefOf });

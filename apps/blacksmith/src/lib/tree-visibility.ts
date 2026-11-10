@@ -9,6 +9,7 @@
  * weapon elsewhere): its own minimum rank is already low enough, so it stays,
  * and moves up into the hidden row's place. It remembers the hidden row as
  * `parentHref`, so "can the hunter upgrade it?" still asks the right weapon.
+ * An alias row (see WeaponTreeNode.alias) goes with its hidden parent.
  */
 import { isAvailable, type Tier } from "./min-rank";
 import type { WeaponTreeNode } from "./types";
@@ -38,6 +39,9 @@ export function pruneTree(
       visit(child, shown ? undefined : node),
     );
     if (!shown) return children;
+    // An alias row only says its parent leads there too: without the parent
+    // it says nothing, and the weapon's first row is still in the tree.
+    if (node.alias && parent) return [];
 
     const row: WeaponTreeNode = { ...node, children: children.length ? children : undefined };
     // Taken out from under a hidden parent: keep pointing at it.
@@ -46,4 +50,17 @@ export function pruneTree(
   };
 
   return nodes.flatMap((node) => visit(node));
+}
+
+/**
+ * The rows enclosing a weapon's first row (not an alias row), top down: the
+ * branches to open to show it. Null when it isn't in the trees.
+ */
+export function rowsAbove(nodes: WeaponTreeNode[], slug: string): WeaponTreeNode[] | null {
+  for (const node of nodes) {
+    if (node.slug === slug && !node.alias) return [];
+    const below = rowsAbove(node.children ?? [], slug);
+    if (below) return [node, ...below];
+  }
+  return null;
 }

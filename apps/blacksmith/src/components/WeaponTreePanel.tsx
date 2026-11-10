@@ -13,7 +13,7 @@ import WeaponTreeRow from "./WeaponTreeRow";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
 import { useVisibleTree } from "@/hooks/useVisibleTree";
 import { useHunterProgress } from "@/context/HunterProgressContext";
-import { TreeFilterContext } from "@/context/TreeFilterContext";
+import { TreeFilterContext, WeaponTreeContext } from "@/context/TreeFilterContext";
 import { cycleTreeFilter, filterTree, TREE_FILTERS, type TreeFilterId } from "@/lib/tree-filter";
 import { readTreeFilter, writeTreeFilter } from "@/lib/tree-filter-store";
 import type { WeaponTreeNode } from "@/lib/types";
@@ -65,17 +65,19 @@ export default function WeaponTreePanel({ type, tree, activeSlug, className }: P
       <Card variant="weapon-tree">
         <TreeScroll treeKey={treeKey} activeSlug={activeSlug}>
           <TreeFilterContext.Provider value={result}>
-            {visibleTree?.map((node) => (
-              <ul key={node.slug}>
-                <WeaponTreeRow
-                  node={node}
-                  sectionType={type}
-                  basePath={basePath}
-                  treeKey={treeKey}
-                  activeSlug={activeSlug}
-                />
-              </ul>
-            ))}
+            <WeaponTreeContext.Provider value={visibleTree}>
+              {visibleTree?.map((node) => (
+                <ul key={node.slug}>
+                  <WeaponTreeRow
+                    node={node}
+                    sectionType={type}
+                    basePath={basePath}
+                    treeKey={treeKey}
+                    activeSlug={activeSlug}
+                  />
+                </ul>
+              ))}
+            </WeaponTreeContext.Provider>
           </TreeFilterContext.Provider>
           {/* Room to scroll the last rows clear of the filter bar. */}
           {result && <div style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />}
