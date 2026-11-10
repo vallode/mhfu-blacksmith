@@ -1,7 +1,8 @@
 /**
  * Gathering points in a quest: which items its mining, gathering and bug
- * catching nodes can give, and where each of those table slots is, for the
- * `gathering` shuffle (`shuffles/gathering.ts`).
+ * catching nodes can give, and where each of those table slots is. randomfu's
+ * `gathering` shuffle edits the slots; `emit/gathering.ts` writes the nodes
+ * to `data/gathering.json`.
  *
  * Layout from `quest.hexpat` (vendor/mhp2g-patterns, MIT):
  *
@@ -29,7 +30,7 @@
  * to the file, and every read is bounds-checked: anything that doesn't fit
  * the layout gives no items rather than wrong ones.
  */
-import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
+import type { ParsedQuest } from "./parser.js";
 
 /** Areas per map, from `quest.hexpat`'s `GatherNodes` count. */
 const MAP_AREAS: Record<number, number> = {
@@ -85,12 +86,29 @@ export interface GatheringSlot {
   itemId: number;
 }
 
+/**
+ * A node's `nodeType` (+20). Read from the items each type gives on the EU
+ * disc: 3 holds the ores, 4 the bugs, and 0 everything else (plants,
+ * mushrooms, bones, honey, eggs, ammo and barrel piles).
+ */
+export const NODE_KINDS: Record<number, "gather" | "mine" | "bug"> = {
+  0: "gather",
+  3: "mine",
+  4: "bug",
+};
+
 /** One mining, gathering or bug catching node. */
 export interface GatheringNode {
+  /** Index into the map's area list: 0 is the Base Camp, then the numbered areas. */
+  area: number;
+  /** Raw `nodeType` (+20); see `NODE_KINDS`. */
+  type: number;
   /** The item table it uses. */
   table: number;
-  /** How many times it can be gathered, at least (header +22); 255 means it doesn't run out. */
+  /** How many times it can be gathered, at least (+22); 255 means it doesn't run out. */
   gathers: number;
+  /** How many times it can be gathered, at most (+18); 255 means it doesn't run out. */
+  mostGathers: number;
 }
 
 export interface GatheringResult {
@@ -160,7 +178,13 @@ export function readGatheringItems(payload: Buffer, quest: ParsedQuest): Gatheri
       if (!fits(at, NODE_SIZE)) return none("node out of bounds");
       const table = payload.readUInt16LE(at + 16);
       used.add(table);
-      nodeList.push({ table, gathers: payload.readUInt16LE(at + 22) });
+      nodeList.push({
+        area,
+        type: payload.readUInt16LE(at + 20),
+        table,
+        gathers: payload.readUInt16LE(at + 22),
+        mostGathers: payload.readUInt16LE(at + 18),
+      });
     }
   }
 
