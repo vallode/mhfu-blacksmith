@@ -13,7 +13,7 @@ export default function QuestBoardsContent() {
       <BorderRule />
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
-        <Card className="overflow-auto py-7">
+        <Card scroll bodyClassName="py-[1.7rem]">
           {QUEST_HUBS.map((hub) => (
             <Link key={hub.slug} href={`/quests/${hub.slug}/`} className="list-row">
               <Icon type="ticket" alt="" />

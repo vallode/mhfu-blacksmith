@@ -257,8 +257,24 @@
   image-rendering: pixelated;
 }
 
-/* Decorative in-game 9-slice frame used by cards and toasts */
+/* Decorative in-game 9-slice frame used by cards and toasts.
+   Each frame is drawn twice: as the element's border image, with its fill,
+   under the content; and its opaque pixels again in ::after, over the
+   content, so whatever runs out to the edge (a highlighted row, a scrolled
+   list) passes under the frame rather than over it. The ::after needs the
+   element to be positioned and not to scroll itself, or it would scroll away
+   with the content: Card scrolls an inner body instead.
+   --card-clip is how deep the transparent notches around the frame's outer
+   edge go, on each side: Card clips its body there, so nothing shows
+   outside the frame. --card-inset-* is where a scrolling body sits: inside
+   the top, right and bottom bands, so its scrollbar is clear of the frame,
+   and at the notches on the left, so rows still run under the frame there. */
 @utility card-frame {
+  --card-clip: 6px 7px 6px 6px;
+  --card-inset-t: 11px;
+  --card-inset-r: 12px;
+  --card-inset-b: 11px;
+  --card-inset-l: 6px;
   border-image-outset: 0;
   border-image-repeat: round round;
   border-image-slice: 84 88 80 88 fill;
@@ -268,10 +284,32 @@
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
+
+  /* The frame again, without its fill, over the content. */
+  &::after {
+    border-image-repeat: round round;
+    border-image-slice: 84 88 80 88;
+    border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAhwAAAD4CAYAAACntD/BAAAFMklEQVR42u3dwVHjMBSA4ecd315ZFEA3KYJuUgBl6ey9hcDuJHKQHFv5vmuAwLMn+kczWFNELMG16cnv73psez3Mu++8zdf97POciIj4YwQAgOAAAAQHAIDgAAAEBwAgOAAABAcAIDgAAAQHACA4AADBAQBw37z2G86nt0P9ge8fn0NfQNfDvEeat/mat8/zca+HHQ4AoDvBAQAIDgBAcAAACA4AQHAAAIIDAEBwAACCAwBAcAAAggMAGMHc+w1aP/t+g2fNL26LXXE9zNt8Me8B1lc7HABAd4IDABAcAIDgAAAQHACA4AAABAcAgOAAAAQHAIDgAAAEBwAwgtkIvtvgrBbzxbzNlxeYd+uzTo7ODgcAIDgAAMEBACA4AADBAQAIDgAAwQEAHED353Ac8P+mJ7cFAA0s1tcvdjgAAMEBAAgOAADBAQAIDgBAcAAACA4AQHAAAAgOAEBwAACCAwCgwhSdn/V+0JkAwG9ZX6/Y4QAABAcAIDgAAAQHACA4AADBAQAgOAAAwQEAIDgAAMEBAAgOAIAKj5wbsurZ8Jl58/VSirNLAKCxzFzurL9bNMOFHQ4AoDvBAQAIDgBAcAAACA4AQHAAAIIDAEBwAACCAwBAcAAAggMAGMEW55jcfJb7vbNWfnL2CgAvamn88zZdT+1wAACCAwAQHAAAggMAEBwAgOAAABAcAIDgAAAQHACA4AAABAcAQIWnn6Wy098ZAHYlM1etp6WUXa2ndjgAAMEBAAgOAADBAQAIDgBAcAAACA4AQHAAAAgOAEBwAACCAwCgwiPPUV/1LPfMvPl6KcXZKADQ2L2zVyrOWmnRDBd2OACA7gQHACA4AADBAQAgOAAAwQEACA4AAMEBAAgOAADBAQAIDgBAcAAACA4AQHAAAIIDAEBwAACCAwBAcAAAggMAGMO0wXsst17MzFU/rJQyuWwAvKDlgA1wYYcDABAcAIDgAAAQHACA4AAABAcAgOAAAAQHAIDgAAAEBwAgOAAAKjz9LJWd/s4AsCuZuWo9LaXsaj21wwEACA4AQHAAAAgOAEBwAACCAwBAcAAAggMAQHAAAIIDABAcAAAVHnmO+qpnuWfmzddLKc5GAYDG7p29UnHWSotmuLDDAQB0JzgAAMEBAAgOAADBAQAIDgBAcAAACA4AQHAAAAgOAEBwAACCAwBAcAAAggMAEBwAAIIDABAcAACCAwAQHADAGGYjAIDxlFJWfX1mNv15P9nhAAC6ExwAgOAAAAQHAIDgAAAEBwAgOAAABAcAIDgAAAQHACA4AIARTBGxGMM/MwGA37K+XrHDAQAIDgBAcAAACA4AQHAAAIIDAEBwAACCAwBAcAAAggMAEBwAABXmtd9wPr0d6g98//h0lQHYvdHXVzscAEB3ggMAEBwAgOAAABAcAIDgAAAEBwCA4AAABAcAgOAAAAQHADCCufcbtD7LpPez5s+nt8VtAcDe1r+jr692OACA7gQHACA4AADBAQAgOAAAwQEACA4AgN+bjeC73v833Vrv/5t+9fmat/m6n82bNuxwAACCAwAQHAAAggMAEBwAgOAAABAcAIDgAAAQHACA4AAABAcAQIXuZ6kc7Vn9ETE9+f0Xt+Wm18O8+87bfN3PPs+trxFhhwMAEBwAgOAAABAcAIDgAAAEBwCA4AAABAcAgOAAAAQHACA4AACqTOHZ+/+byTO5HtteD/PuO2/zdT/7PCci7HAAAIIDABAcAACCAwAQHACA4AAAEBwAgOAAABAcAIDgAAAEBwBAlb/1LZRJm8YIUwAAAABJRU5ErkJggg==");
+    border-image-width: 21px 22px 20px 22px;
+    border-style: solid;
+    content: "";
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+  }
 }
 
 /* Alternative in-game frame: red and teal bands, copper corner squares. 6px slices drawn at 3x. */
 @utility card-frame-teal {
+  --card-clip: 0 6px;
+  --card-inset-t: 18px;
+  --card-inset-r: 12px;
+  --card-inset-b: 18px;
+  --card-inset-l: 6px;
   border-image-outset: 0;
   border-image-repeat: round round;
   border-image-slice: 24 fill;
@@ -281,10 +319,32 @@
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
+
+  /* The frame again, without its fill, over the content. */
+  &::after {
+    border-image-repeat: round round;
+    border-image-slice: 24;
+    border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACM0lEQVR42u3bv0rDUBQH4FQKDnEQFRGcfQvBwaGLUHwAcXZ1cHJ0cnB1Fh9ABJcOHQRfxa1uzVznpmLM/YPRfN+W1kS43B/nnLZ3UBTFoshoZzQqINRsMsn6/DVLTJ8JAAIAfTWsv/B8dRz1wPHtdOl6fXfPKpNM6v2pAqAFAgEAM0BzzxTbk13PP759/2Zj2/3uD+7p2+5PFQAtEAgACAAIAAgACAD8c4Oidh4g9W8t7k9PrDLBLp5eipz7UwVACwQCAGaAZmVZfvt+VVVL15dHh1aZYHevb1H7TwUAAQABgC9ngLpFwD3QFa32rwqAFggEAMwAzT1V/XPYqqrMBPyasiwXtf3Yao+rAGiBQADADNA8AwQ+A3KJ2p8qAFogEAAwA6z2VD735y9p+72ACoAWCAQAzACrM8AP74GucB4AtEAgABDfz/tegM5yHgC0QCAAkH8GCHwG5OI8AGiBQAAgfgbwuT9/lvMAoAUCAYD4GeCH90BXOA8AWiAQAIjv530vQGc5DwBaIBAAyD8DBD4DcnEeALRAIAAQPwPo+enNTKACoAUCAYCezgCLnP/g8ujQKhPs7vVNBQABAAGAtIb1F56vjqMeOL6dLl0fbG1aZZJJvT9VALRAIABgBmjumdr2ZDcb20vX1/OPVn9f5/5+3596f6oAaIFAAEAAQABAAEAA4J9bOQ+Q+rcW+2fnVplg748PRc79qQKgBQIBADNAejujkVUm2GwyUQFAAEAAIK1P6uWv0BH5c0QAAAAASUVORK5CYII=");
+    border-image-width: 18px;
+    border-style: solid;
+    content: "";
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+  }
 }
 
 /* Alternative in-game frame: rows of green squares. 8px slices drawn at 3x. */
 @utility card-frame-green {
+  --card-clip: 0 12px;
+  --card-inset-t: 24px;
+  --card-inset-r: 18px;
+  --card-inset-b: 24px;
+  --card-inset-l: 12px;
   border-image-outset: 0;
   border-image-repeat: round round;
   border-image-slice: 32 fill;
@@ -294,10 +354,32 @@
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
+
+  /* The frame again, without its fill, over the content. */
+  &::after {
+    border-image-repeat: round round;
+    border-image-slice: 32;
+    border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABgCAYAAADVenpJAAABnUlEQVR42u3dMWoDMRRFUU1wp125C2QV3ojxRrwKQ7rsSvWktxkbI31psM4tE5IPw+W9LwVnlpTSmjAtXx4BAUAAzMrh/gvn31PowMv39en3ze87XwKoABAAdoAtbte/qgE/p2PVz5sfO18CqAAQAHaAVp1S21nm950vAVQACAACgAAgAAgA9wAjz7nm950vAVQACAA7wBa1f8+uxfyjBAABQABEsKTGnw3MOXuqgZRSJAAIAAKg1Q7wLmvA78Sg5y8BVAAIADtAq066vwcopdgJKsg5ry/uARYJAAKAANjDDuBeYN/nfgkAAoAAqOgP5/4PuheQACoABIAdwLl/znsBCaACQADYAVp1knuBfZ/7JQAIAAIgagdwL7Dvc78EAAFAAFT0h87/oJ1AAqgAEABT7wCrxyABQAAQANPx8L+Ce7+/3vyx8yWACgABYAfYIvr99eaPnS8BVAAIADtAq06Jfq+e+W3nSwAVAAKAACAACAACwD3AyHOu+X3nSwAVAALADrBF9PvrzR87XwKoABAA0+KzgRIABAABMCf/20+JxVdxCuAAAAAASUVORK5CYII=");
+    border-image-width: 24px;
+    border-style: solid;
+    content: "";
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+  }
 }
 
 /* Alternative in-game frame: blue chain-link bands, patterned fill. 6px slices drawn at 3x. */
 @utility card-frame-blue {
+  --card-clip: 6px;
+  --card-inset-t: 12px;
+  --card-inset-r: 12px;
+  --card-inset-b: 12px;
+  --card-inset-l: 6px;
   border-image-outset: 0;
   border-image-repeat: round round;
   border-image-slice: 24 fill;
@@ -307,6 +389,23 @@
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
+
+  /* The frame again, without its fill, over the content. */
+  &::after {
+    border-image-repeat: round round;
+    border-image-slice: 24;
+    border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACBklEQVR42u3bwXGDMBAFUJHxjbJcgfvh6H6owGVxVs7BmQGxCLD13i2eGBGPdvavibqUUk51dYW/f/b9WL+h/fCToGEKAAUArbrNX7gPY+iCr+dj1xs8+36s/937QQdABAIFAGaA8gy3IpPli/3N2frfs350f+oAiECgAMAMsL/o97bWb3v9vZ8j6ACgAEABwPIMsEOG63zMBOSa+1MHQAQCBQAN6lLh/2b0ff/n52ma1qwBVWaADftRBwAFAAoAM0Bh5pLp+eSZYb5/dQBEIFAAYAZYzlT/fO9qJuA0fd/n2X4s2uM6ACIQKAAwAyzPABuvAbWE9qcOgAgECgDMAO+Zyvf+fJLS5wI6ACIQKAAwA7zPACvfA1fhPACIQKAAIJ7nPRfgspwHABEIFADUnwE2XgNqcR4ARCBQABCfAXzvz8dyHgBEIFAAEJ8BVr4HrsJ5ABCBQAFAPM97LsBlOQ8AIhAoAKg/A2y8BtTiPACIQKAAID4DyPw0MxPoAIhAoACg0RkgH7AG1Mr0OgAoAFAAUOY2f+E+jKELvp4PnyrV7L0/dQBEIFAAYAYoz/RLmew+jNnHTK2ZMro/dQBEIFAAYAY4PsMtOfu5hPW/+7mQDoAIBAoAzAD7Z8BUfh7g7PMJ1j93/aL7ie5PHQARCBQANOiKZ4JlcDPAYfejAyACgQKABv0C9kGdS66+2xoAAAAASUVORK5CYII=");
+    border-image-width: 18px;
+    border-style: solid;
+    content: "";
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    z-index: 1;
+  }
 }
 
 /* ─── Typography ─────────────────────────────────────────────────────────────── */

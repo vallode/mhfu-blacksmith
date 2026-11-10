@@ -13,7 +13,7 @@ export default function SettingsCard({
   children: React.ReactNode;
 }) {
   return (
-    <Card frame="teal" className={ui.section}>
+    <Card frame="teal" className={ui.section} bodyClassName={ui.sectionBody}>
       <div className={ui.menuHeader}>
         <h2 className={ui.menuTitle}>{title}</h2>
       </div>

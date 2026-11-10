@@ -20,7 +20,11 @@ export function DetailCard({
   children: React.ReactNode;
   className?: string;
 }) {
-  return <Card className={cn("min-w-0 overflow-auto", className)}>{children}</Card>;
+  return (
+    <Card className={className} scroll>
+      {children}
+    </Card>
+  );
 }
 
 /** Icon + name (+ sharpness) row at the top of the panel. */

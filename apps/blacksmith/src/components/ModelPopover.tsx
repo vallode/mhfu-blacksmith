@@ -171,20 +171,22 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
       role="dialog"
       aria-label={`3D model of ${title}`}
     >
-      {/* No padding, and a layout border exactly as thick as the blue frame's
-          visible band (4 source px at 3x), so the render ends at the frame. */}
-      <Card frame="blue" className="border-[12px] p-0">
+      {/* No padding, and a margin exactly as thick as the blue frame's
+          visible band (4 source px at 3x), so the render ends at the frame
+          and needs no clip. */}
+      <Card frame="blue" bodyClassName="m-[12px] p-0 [clip-path:none]">
         <div className="flex min-h-0 flex-1">{children}</div>
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          aria-label="Close 3D model"
-          className="absolute top-1 right-2 z-20 cursor-pointer px-2 text-[4.4rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:text-[3.4rem]"
-        >
-          ×
-        </button>
       </Card>
+      {/* Outside the card, so it sits over the frame rather than under it. */}
+      <button
+        ref={closeRef}
+        type="button"
+        onClick={onClose}
+        aria-label="Close 3D model"
+        className="absolute top-1 right-2 z-20 cursor-pointer px-2 text-[4.4rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:text-[3.4rem]"
+      >
+        ×
+      </button>
     </div>
   );
 }

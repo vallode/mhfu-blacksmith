@@ -76,7 +76,7 @@ interface SlotCardProps {
 function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
   if (!hunter) {
     return (
-      <Card className="flex-none p-0">
+      <Card className="flex-none" bodyClassName="p-0">
         <div className={slotBase}>
           <span className={slotName}>
             <span>{slot + 1}</span>
@@ -87,7 +87,7 @@ function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
     );
   }
   return (
-    <Card className="flex-none p-0">
+    <Card className="flex-none" bodyClassName="p-0">
       <button
         type="button"
         className={cn(

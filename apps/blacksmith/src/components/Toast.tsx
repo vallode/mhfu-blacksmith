@@ -39,7 +39,7 @@ export default function ToastViewport({ toasts, onDismiss }: ToastViewportProps)
       {toasts.map((t) => (
         <div
           key={t.id}
-          className="pointer-events-auto relative flex animate-toast-in flex-col gap-[0.8rem] card-frame px-[2.4rem] pt-[2.2rem] pb-[1.8rem] motion-reduce:animate-none"
+          className="card-frame pointer-events-auto relative flex animate-toast-in flex-col gap-[0.8rem] px-[2.4rem] pt-[2.2rem] pb-[1.8rem] motion-reduce:animate-none"
           role="status"
         >
           <button

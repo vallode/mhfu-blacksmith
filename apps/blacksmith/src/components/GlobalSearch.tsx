@@ -189,7 +189,7 @@ export default function GlobalSearch() {
       <div className="absolute inset-0 bg-black/70" onClick={close} />
 
       <div className="relative z-1 mx-[1.4rem] flex max-h-[80%] min-h-0 min-w-0 flex-[0_1_62rem] mobile:mx-4 mobile:max-h-none mobile:flex-auto">
-        <Card className="min-h-0 min-w-0 gap-0 px-[1.6rem] py-[1.6rem] text-sub">
+        <Card className="text-sub" bodyClassName="gap-0 px-[1.6rem] py-[1.6rem]">
           {/* The frame's top band ends 11px into the card. This margin and the
               divider's leave 11px above and below the 22px row. */}
           <div className="mt-[0.6rem] flex shrink-0 items-center gap-[1rem]">

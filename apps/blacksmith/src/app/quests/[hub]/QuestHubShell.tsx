@@ -81,7 +81,7 @@ export default function QuestHubShell({
   const step = (by: 1 | -1) => {
     const i = levels.indexOf(current ?? levels[0]);
     setStars(levels[(i + by + levels.length) % levels.length]);
-    // The list's scroll container is the card around it.
+    // The list's scroll container is the card's body around it.
     listRef.current?.parentElement?.scrollTo({ top: 0 });
   };
 

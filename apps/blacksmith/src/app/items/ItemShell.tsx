@@ -59,7 +59,7 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
     const n = ITEM_CATEGORIES.length;
     setCategory(ITEM_CATEGORIES[(index + by + n) % n]!.slug);
     setQuery("");
-    // The list's scroll container is the card around it.
+    // The list's scroll container is the card's body around it.
     for (let el = listRef.current?.parentElement; el; el = el.parentElement) {
       if (getComputedStyle(el).overflowY === "auto") {
         el.scrollTo({ top: 0 });
@@ -90,7 +90,7 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
             spellCheck={false}
             onChange={(e) => setQuery(e.target.value)}
           />
-          <Card variant="weapon-tree" className="min-h-0">
+          <Card variant="weapon-tree">
             <TreeScroll treeKey={filter ? "items-filter" : `items-${category}`} activeSlug={slug}>
               <div ref={listRef} className="flex flex-col">
                 {error && <p className="px-[16px] text-negative">Couldn&apos;t load items.</p>}
