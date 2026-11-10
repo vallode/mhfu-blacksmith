@@ -9,7 +9,7 @@ import { readQuestText, writeQuestText } from "../src/game/quest-text.js";
 import { readSpawns } from "../src/game/spawns.js";
 import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
-import { learnNames, renameIn, splitNames } from "../src/shuffles/quest-text.js";
+import { learnNames, learnSlotNames, renameIn, splitNames } from "../src/shuffles/quest-text.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import { buildFixtureDisc, buildQuestPayload, tempDir } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
@@ -61,6 +61,21 @@ test("monster names and their articles are learned per language from the quests'
   close();
 });
 
+test("a name is learned even when goals write it in another case", () => {
+  const sample = (species: number[], goal: string, monsters: string) => ({
+    species: new Set(species),
+    texts: ["", goal, "", "", monsters, ""],
+  });
+  const slot = learnSlotNames([
+    sample([80], "Chassez la reine Vespoid", "Reine Vespoid\nVespoid"),
+    sample([80], "Capturez la reine Vespoid", "Reine Vespoid\nVespoid"),
+    sample([], "Tuez 10 Vespoid", "Vespoid"),
+    sample([1], "Chassez la Rathian", "Rathian\nVespoid"),
+  ]);
+  assert.equal(slot.names.get(80), "Reine Vespoid");
+  assert.equal(slot.articles.get(80), "la");
+});
+
 test("renaming reads the longest name first and checks articles and line width", () => {
   const slot = {
     names: new Map([
@@ -86,6 +101,10 @@ test("renaming reads the longest name first and checks articles and line width",
   assert.deepEqual(renameIn("Hunt the Rathian", slot, swap, 16), { problem: "too wide" });
   assert.ok("problem" in renameIn("Hunt the Rathian", slot, new Map([[1, 2]]), 30));
   assert.deepEqual(renameIn("Ratatouille", slot, swap, 30), { text: "Ratatouille" });
+  // "pink Rathian" reads as Rathian, but it names Pink Rathian: leave it whole.
+  assert.deepEqual(renameIn("Hunt the pink Rathian", slot, new Map([[37, 1]]), 30), {
+    problem: "names Pink Rathian in another form",
+  });
   assert.deepEqual(splitNames("Rathian\nPink Rathian, Velociprey、Conga"), [
     "Rathian",
     "Pink Rathian",

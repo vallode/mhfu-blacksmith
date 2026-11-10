@@ -362,10 +362,18 @@ list (`emLoadTable`).
     slot. The monster list is split into names; a monster's name is the
     piece most often in the list and goal of quests that have it, and least
     often in quests that don't. A piece two monsters share, or a tie, names
-    neither. The tests check this only on invented text: how the real
-    monster list is laid out (one name per line, or commas) hasn't been
-    seen, and if it isn't split as expected, no names are learned and no
-    text changes.
+    neither. Goals are matched ignoring case, since a goal can write a name
+    in lower case ("la reine Vespoid") that the list capitalises.
+  - **On the EU disc** (a dry run, seed `TEST`, `variants` swaps): it
+    learned 49 names in the English slots, French and Italian, 47 in
+    Spanish and 36 in German. German misses most variants: their
+    adjectives decline ("den Schwarzen Diablos"), so the list's form isn't
+    found in goals, and those quests keep their German text. Renaming
+    changed text in 82 quests; strings kept their old text for want of a
+    name (82), room (77), the same article (46) or width (39).
+  - A string that names an old monster in a form the rename doesn't read
+    (another case, a declined adjective) keeps its text whole rather than
+    being half renamed.
   - A name's article is the word most often just before it in goals ("the",
     "den", "l'"). A name is only replaced by one with the same article, so
     German, French, Spanish and Italian text keeps the old name when the
@@ -454,8 +462,8 @@ hitzone tables they share.
   (updated on a swap), so its goals probably come from the header, but
   that isn't confirmed (mhfu-extract README, "Quest script"). If a script
   does name the monster, a swapped quest would count the old one.
-- Quest text on a real disc: the monster list's layout, whether the EU
-  English slots share strings, and so how much room there is to rename.
+- Quest text in game: the EU dry run shows names are learned and renames
+  fit, but no renamed quest has been looked at in game yet.
 - Large monster counts. What `quantity` means for a large monster, and how
   it relates to the header's `TargetNum` and the quest script, isn't known.
 - Attack patterns and animations. Monster AI lives in code (`game_task.ovl`

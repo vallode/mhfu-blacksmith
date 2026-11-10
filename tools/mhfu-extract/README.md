@@ -878,9 +878,11 @@ Until then randomfu only scales size per species (`emChunk +0x40`).
 - **Layout.** `readStringLayout` (`src/quests/parser.ts`) gives each
   block's six string offsets and lengths, and `raw/quests.json` has it
   per quest (`strings`), with `entrySize`, the DATA.BIN entry including its
-  sector padding. Whether the strings are packed back to back on the EU
-  disc, and whether the English slots share strings, hasn't been checked
-  on a disc; randomfu's text rewrite works either way.
+  sector padding. On the EU disc the Japanese, English and Korean slots
+  point at one block (seen in a randomfu dry run), and each language's
+  monster list splits into names with `splitNames`. Whether the
+  strings are packed back to back is for `quest-probe` to show; randomfu's
+  text rewrite works either way.
 - **Where else names live.** FUComplete's English text for the P2G disc
   (`FUComplete/Patch`, `data/str_tbl/`) has the monster names in
   `str_tbl.pac`'s first string table, and the JP file list has

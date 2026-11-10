@@ -71,9 +71,12 @@ const isLetter = (ch: string | undefined) => ch !== undefined && /\p{L}/u.test(c
 const chars = (s: string) => [...s].length;
 
 /** Where `name` occurs in `text` as a word start (not inside another word). */
-function occurrences(text: string, name: string): number[] {
+function occurrences(text: string, name: string, ignoreCase = false): number[] {
+  // Lower-casing keeps every position for the Latin scripts the EU disc uses.
+  const hay = ignoreCase ? text.toLowerCase() : text;
+  const needle = ignoreCase ? name.toLowerCase() : name;
   const out: number[] = [];
-  for (let at = text.indexOf(name); at !== -1; at = text.indexOf(name, at + 1)) {
+  for (let at = hay.indexOf(needle); at !== -1; at = hay.indexOf(needle, at + 1)) {
     if (!isLetter(text[at - 1])) out.push(at);
   }
   return out;
@@ -112,7 +115,10 @@ export function learnSlotNames(samples: readonly TextSample[]): SlotNames {
       list.length === 0 ? 0 : list.filter(has).length / list.length;
     const scored = [...new Set(withIt.flatMap((i) => [...pieces[i]!]))].map((piece) => {
       const listed = share(withIt, (i) => pieces[i]!.has(piece));
-      const inGoal = share(withIt, (i) => occurrences(samples[i]!.texts[GOAL]!, piece).length > 0);
+      const inGoal = share(
+        withIt,
+        (i) => occurrences(samples[i]!.texts[GOAL]!, piece, true).length > 0,
+      );
       const elsewhere = share(without, (i) => pieces[i]!.has(piece));
       return { piece, listed, inGoal, score: listed + inGoal - elsewhere };
     });
@@ -133,7 +139,7 @@ export function learnSlotNames(samples: readonly TextSample[]): SlotNames {
     const words = samples
       .filter((s) => s.species.has(id))
       .flatMap((s) =>
-        occurrences(s.texts[GOAL]!, name).map((at) => wordBefore(s.texts[GOAL]!, at)),
+        occurrences(s.texts[GOAL]!, name, true).map((at) => wordBefore(s.texts[GOAL]!, at)),
       );
     const article = words.length === 0 ? null : mode(words);
     // A tie leaves the article unknown: nothing can safely replace the name.
@@ -181,6 +187,8 @@ export function renameIn(
   const known = [...slot.names].sort((a, b) => b[1].length - a[1].length);
   let out = "";
   let changed = false;
+  /** Where known names were read: [start, end). */
+  const spans: [number, number][] = [];
   for (let at = 0; at < text.length;) {
     const hit = isLetter(text[at - 1])
       ? undefined
@@ -191,6 +199,7 @@ export function renameIn(
       continue;
     }
     const [id, name] = hit;
+    spans.push([at, at + name.length]);
     const next = mapping.get(id);
     if (next === undefined) {
       out += name;
@@ -205,6 +214,16 @@ export function renameIn(
       changed = true;
     }
     at += name.length;
+  }
+  // An old name in another case ("reine Vespoid", "rosa Rathian") wasn't read
+  // above: renaming the rest would leave the text half old.
+  for (const old of mapping.keys()) {
+    const name = slot.names.get(old)!;
+    for (const at of occurrences(text, name, true)) {
+      if (!spans.some(([s, e]) => s <= at && at + name.length <= e)) {
+        return { problem: `names ${monsterName(old)} in another form` };
+      }
+    }
   }
   if (!changed) return { text };
   if (out.split("\n").some((line) => chars(line) > width)) return { problem: "too wide" };
