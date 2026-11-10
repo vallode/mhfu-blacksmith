@@ -9,9 +9,9 @@
  *   - decorations.json
  *   - skills.json                (skill trees and activations, for the set builder)
  *   - equipment-ids.json         (save-file equipment IDs -> item pages)
- *   - items.json                 (in-game item ID -> name, linked to materials, and the
- *                                 Combination List)
+ *   - items.json                 (in-game item ID -> name, linked to materials)
  *   - item-places.json           (where each item is gathered or sold, see src/lib/item-places.ts)
+ *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - data-manifest.json         ({ files, version })
  *
  * Reuses the transform logic from src/lib (slugify, raw_attack
@@ -65,7 +65,7 @@ import {
   type ItemRecord,
 } from "../src/lib/items";
 import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
-import { encodeCombination, type CombinationsFile } from "../src/lib/combinations";
+import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
 import {
   buildItemPlaces,
   encodeItemPlaces,
@@ -543,6 +543,10 @@ for (const category of MONSTER_CATEGORIES) {
     (name) => index.get(normalizeItemName(name)),
   );
   push("item-places.json", encodeItemPlaces(places));
+  push(
+    "combinations.json",
+    encodeCombinations(readJson<CombinationsFile>(path.join(dataDir, "combinations.json"))),
+  );
 }
 
 // Decorations
@@ -643,14 +647,7 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
     items[r.id] = out;
   }
   totalItems += records.length;
-  const combos = readJson<CombinationsFile>(path.join(dataDir, "combinations.json"));
-  const bundle: ItemsBundle = {
-    kind: "items",
-    items,
-    materials,
-    combinations: combos.combinations.map(encodeCombination),
-    book_bonus: combos.book_bonus,
-  };
+  const bundle: ItemsBundle = { kind: "items", items, materials };
   push("items.json", bundle);
 }
 

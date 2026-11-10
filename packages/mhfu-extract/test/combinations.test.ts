@@ -99,6 +99,28 @@ test("findRecipeRecords finds the run whose index byte counts up", () => {
   assert.deepEqual(findRecipeRecords(buf), { offset: records, count: RECIPES.length });
 });
 
+test("readCombinations passes over a longer run the index and list don't fit", () => {
+  const { buf, records } = buildEboot();
+  // 100 records whose index bytes count up too, with no index or list for them.
+  const decoy = 0x2000;
+  for (let i = 0; i < 100; i++) {
+    const o = decoy + i * RECIPE_SIZE;
+    buf.writeUInt16LE(600 + i, o);
+    buf.writeUInt16LE(700 + i, o + 2);
+    buf.writeUInt8(i, o + 6);
+  }
+  buf.fill(0xff, decoy + 100 * RECIPE_SIZE, decoy + 100 * RECIPE_SIZE + 16);
+  assert.equal(findRecipeRecords(buf)?.offset, decoy);
+  assert.equal(readCombinations(buf, BASE).offsets.records, records);
+});
+
+test("readCombinations refuses an EBOOT that ends inside the tables", () => {
+  const { buf, list } = buildEboot();
+  // Past the rolls and their pointers, into the largest amounts.
+  const cut = buf.subarray(0, list + RECIPES.length * 4 + 4 + 8 + 8 + 1);
+  assert.throws(() => readCombinations(cut, BASE), /^Error: Combination tables: the EBOOT ending/);
+});
+
 test("readRecipeIndex gives each record its lower-ID ingredient", () => {
   const { buf, records } = buildEboot();
   const firsts = readRecipeIndex(buf, records + RECIPES.length * RECIPE_SIZE, RECIPES.length);

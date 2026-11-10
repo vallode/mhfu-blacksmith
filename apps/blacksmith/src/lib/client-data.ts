@@ -29,7 +29,7 @@ import {
 import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
-import { decodeCombination, indexCombinations, type ItemCombinations } from "./combinations";
+import { decodeCombinations, type CombinationIndex, type CombinationsBundle } from "./combinations";
 import { normalizeItemName } from "./items";
 import { slugify } from "./slug";
 import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
@@ -298,10 +298,6 @@ export interface ItemLookup {
   bySlug(slug: string): ResolvedItem | undefined;
   /** The item a recipe or drop name ("Plesioth Scale", "Akantor Claw x1") is */
   idOf(name: string): number | undefined;
-  /** What each item is combined from and into, by item ID */
-  combinations: Map<number, ItemCombinations>;
-  /** Combination success bonus (percent) for owning the first 0, 1, … Books of Combos */
-  bookBonus: number[];
 }
 
 let itemsPromise: Promise<ItemLookup> | null = null;
@@ -333,8 +329,6 @@ function buildItemLookup(bundle: ItemsBundle, d: Dictionaries): ItemLookup {
     list,
     bySlug: (slug) => slugs.get(slug),
     idOf: (name) => names.get(normalizeItemName(name)),
-    combinations: indexCombinations((bundle.combinations ?? []).map(decodeCombination)),
-    bookBonus: bundle.book_bonus ?? [],
     get(id: number): ResolvedItem {
       return (
         resolve(id) ?? {
@@ -519,6 +513,47 @@ export function useItemPlaces(): { places: Map<number, ItemPlaces> | null; error
     };
   }, []);
   return { places, error };
+}
+
+// ---------------------------------------------------------------------------
+// Combinations: what each item is combined from and into, by item ID
+// ---------------------------------------------------------------------------
+let combinationsPromise: Promise<CombinationIndex> | null = null;
+let combinationsCache: CombinationIndex | null = null;
+
+/** The Combination List by item, from combinations.json. */
+export function getCombinations(): Promise<CombinationIndex> {
+  if (combinationsCache) return Promise.resolve(combinationsCache);
+  if (!combinationsPromise) {
+    combinationsPromise = fetchJson<CombinationsBundle>("/data/combinations.json")
+      .then((bundle) => {
+        combinationsCache = decodeCombinations(bundle);
+        return combinationsCache;
+      })
+      .catch((e) => {
+        combinationsPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return combinationsPromise;
+}
+
+/** `getCombinations` as a hook: null while loading or on error (`error` set). */
+export function useCombinations(): { combinations: CombinationIndex | null; error: boolean } {
+  const [combinations, setCombinations] = useState(combinationsCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (combinationsCache) return;
+    let cancelled = false;
+    getCombinations().then(
+      (c) => !cancelled && setCombinations(c),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { combinations, error };
 }
 
 // ---------------------------------------------------------------------------

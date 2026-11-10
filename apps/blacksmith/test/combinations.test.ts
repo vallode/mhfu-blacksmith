@@ -6,7 +6,9 @@ import { describe, test } from "node:test";
 import {
   combinationNotes,
   decodeCombination,
+  decodeCombinations,
   encodeCombination,
+  encodeCombinations,
   indexCombinations,
   quantityLabel,
   type CombinationRecord,
@@ -79,6 +81,28 @@ describe("combinations", () => {
     );
     assert.equal(index.get(163)?.madeFrom.length, 0);
     assert.equal(index.get(999), undefined);
+  });
+
+  test("a combination that makes one of its ingredients is only listed as made", () => {
+    const more = decodeCombination(encodeCombination({ ...megaPotion, result: ref(7, "Potion") }));
+    const index = indexCombinations([more]);
+    assert.deepEqual(
+      index.get(7)?.madeFrom.map((c) => c.number),
+      [2],
+    );
+    assert.equal(index.get(7)?.usedIn.length, 0);
+    assert.equal(index.get(161)?.usedIn.length, 1);
+  });
+
+  test("the bundle keeps the book bonuses and indexes every item", () => {
+    const decoded = decodeCombinations(
+      encodeCombinations({ books: [], book_bonus: [0, 5, 10], combinations: [potion, megaPotion] }),
+    );
+    assert.deepEqual(decoded.bookBonus, [0, 5, 10]);
+    assert.deepEqual(
+      decoded.byItem.get(7)?.usedIn.map((c) => c.number),
+      [2],
+    );
   });
 
   test("an item combined with itself is listed once", () => {

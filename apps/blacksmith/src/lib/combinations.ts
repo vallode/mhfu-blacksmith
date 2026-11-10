@@ -1,7 +1,7 @@
 /**
  * Item combinations (data/combinations.json, the in-game Combination List):
- * the compact form generate-data puts in the items bundle, and an index of
- * what each item is made from and used to make. Pure, so the item pages
+ * the compact public/data/combinations.json bundle generate-data writes, and
+ * an index of what each item is made from and used to make. Pure, so the item pages
  * build it on the client and the tests build it from data/.
  */
 
@@ -55,6 +55,36 @@ export interface Combination {
   bomb: boolean;
   /** Always succeeds with Trap Master */
   trap: boolean;
+}
+
+/** public/data/combinations.json */
+export interface CombinationsBundle {
+  kind: "combinations";
+  combinations: CompactCombination[];
+  /** Success bonus (percent) for owning the first 0, 1, … Books of Combos */
+  book_bonus: number[];
+}
+
+export function encodeCombinations(file: CombinationsFile): CombinationsBundle {
+  return {
+    kind: "combinations",
+    combinations: file.combinations.map(encodeCombination),
+    book_bonus: file.book_bonus,
+  };
+}
+
+/** The decoded bundle: each item's combinations, and the books' bonuses. */
+export interface CombinationIndex {
+  byItem: Map<number, ItemCombinations>;
+  /** Success bonus (percent) for owning the first 0, 1, … Books of Combos */
+  bookBonus: number[];
+}
+
+export function decodeCombinations(bundle: CombinationsBundle): CombinationIndex {
+  return {
+    byItem: indexCombinations(bundle.combinations.map(decodeCombination)),
+    bookBonus: bundle.book_bonus,
+  };
 }
 
 export function encodeCombination(c: CombinationRecord): CompactCombination {
@@ -112,8 +142,9 @@ export function indexCombinations(list: readonly Combination[]): Map<number, Ite
   };
   for (const c of [...list].sort((a, b) => a.number - b.number)) {
     entry(c.result).madeFrom.push(c);
-    // Once, even if both ingredients are this item.
-    for (const id of new Set(c.ingredients)) entry(id).usedIn.push(c);
+    // Once, even if both ingredients are this item, and not where it makes
+    // itself: that one is already under madeFrom.
+    for (const id of new Set(c.ingredients)) if (id !== c.result) entry(id).usedIn.push(c);
   }
   return out;
 }

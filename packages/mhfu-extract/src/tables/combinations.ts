@@ -29,9 +29,10 @@
  * 15/25/45 or 5/10/15, at most 100.
  *
  * Everything is found by its shape, not a fixed address, so any region's
- * EBOOT works: the recipe records are the run whose index byte counts up
- * from 0, the per-item index follows them, and the Combination List is the
- * `0xffffffff`-ended run of pairs that names every recipe once.
+ * EBOOT works: the recipe records are the longest run whose index byte
+ * counts up from 0 that the rest agrees with, the per-item index follows
+ * them, and the Combination List is the `0xffffffff`-ended run of pairs that
+ * names every recipe once.
  */
 import { JP_BASE_ADDRESS } from "./offsets.js";
 
@@ -95,14 +96,18 @@ export interface CombinationTables {
 const MAX_ITEM_ID = 2048;
 /** Fewer recipes than this is a coincidence, not the table. */
 const MIN_RECIPES = 64;
+/** More rate classes or books than these means the tail isn't the tables. */
+const MAX_RATES = 16;
+const MAX_BOOKS = 8;
 
 /**
- * The recipe records: the longest run of 10-byte records whose index byte
+ * Candidate recipe tables: every run of 10-byte records whose index byte
  * (offset 6) counts up from 0 and whose result and second ingredient are
- * item IDs.
+ * item IDs, longest first. `readCombinations` takes the first one the
+ * per-item index and the Combination List agree with.
  */
-export function findRecipeRecords(buf: Buffer): { offset: number; count: number } | null {
-  let best: { offset: number; count: number } | null = null;
+export function findRecipeRecordRuns(buf: Buffer): { offset: number; count: number }[] {
+  const runs: { offset: number; count: number }[] = [];
   for (let o = 0; o + RECIPE_SIZE * MIN_RECIPES <= buf.length; o += 2) {
     if (buf.readUInt8(o + 6) !== 0 || buf.readUInt8(o + 16) !== 1 || buf.readUInt8(o + 26) !== 2)
       continue;
@@ -115,9 +120,15 @@ export function findRecipeRecords(buf: Buffer): { offset: number; count: number 
       if (result === 0 || result >= MAX_ITEM_ID) break;
       n++;
     }
-    if (n >= MIN_RECIPES && n <= 255 && (!best || n > best.count)) best = { offset: o, count: n };
+    if (n >= MIN_RECIPES && n <= 255) runs.push({ offset: o, count: n });
   }
-  return best;
+  // Stable, so equal runs stay in file order.
+  return runs.sort((a, b) => b.count - a.count);
+}
+
+/** The longest candidate recipe table (see `findRecipeRecordRuns`). */
+export function findRecipeRecords(buf: Buffer): { offset: number; count: number } | null {
+  return findRecipeRecordRuns(buf)[0] ?? null;
 }
 
 /**
@@ -184,8 +195,14 @@ function readTail(
       `Combination tables: ${what} after the Combination List (0x${start.toString(16)}).`,
     );
   };
+  // Reads that stop at the end of the EBOOT instead of throwing a RangeError.
+  const u8 = (p: number) =>
+    p < buf.length ? buf.readUInt8(p) : fail(`the EBOOT ending at 0x${p.toString(16)}`);
+  const u16 = (p: number) =>
+    p + 2 <= buf.length ? buf.readUInt16LE(p) : fail(`the EBOOT ending at 0x${p.toString(16)}`);
   // The pointer table is the first word pointing back between `start` and itself.
   const pointsBack = (at: number) => {
+    if (at + 4 > buf.length) return false;
     const target = buf.readUInt32LE(at) - baseAddress;
     return target >= start && target < at;
   };
@@ -196,11 +213,11 @@ function readTail(
   let at = pointers;
   while (pointsBack(at)) {
     let p = buf.readUInt32LE(at) - baseAddress;
-    const base = buf.readUInt8(p++);
+    const base = u8(p++);
     const rolls: QuantityRoll[] = [];
     let total = 0;
     while (total < 100) {
-      const chance = buf.readUInt8(p++);
+      const chance = u8(p++);
       if (chance === 0) fail(`a quantity roll that doesn't reach 100% (0x${p.toString(16)})`);
       rolls.push({ amount: base + rolls.length, chance });
       total += chance;
@@ -210,18 +227,19 @@ function readTail(
     at += 4;
   }
   const classes = quantities.length;
-  const maxQuantities = [...buf.subarray(at, at + classes)];
+  const maxQuantities = quantities.map((_, i) => u8(at + i));
   const ratesAt = at + align4(classes);
   const rates: number[] = [];
-  for (let p = ratesAt; buf.readUInt8(p) !== 0; p++) rates.push(buf.readUInt8(p));
+  for (let p = ratesAt; u8(p) !== 0 && rates.length <= MAX_RATES; p++) rates.push(u8(p));
   const booksAt = align4(ratesAt + rates.length + 1);
   const books: number[] = [];
-  for (let p = booksAt; buf.readUInt16LE(p) !== 0; p += 2) books.push(buf.readUInt16LE(p));
+  for (let p = booksAt; u16(p) !== 0 && books.length <= MAX_BOOKS; p += 2) books.push(u16(p));
   const bonusAt = align4(booksAt + books.length * 2 + 2);
-  const bookBonus = [...buf.subarray(bonusAt, bonusAt + books.length + 1)];
+  const bookBonus = books.length <= MAX_BOOKS ? [0, ...books].map((_, i) => u8(bonusAt + i)) : [];
 
-  if (rates.length === 0 || rates.some((r) => r > 100)) fail("no success rates");
-  if (books.length === 0 || books.length > 8) fail("no Books of Combos");
+  if (rates.length === 0 || rates.length > MAX_RATES || rates.some((r) => r > 100))
+    fail("no success rates");
+  if (books.length === 0 || books.length > MAX_BOOKS) fail("no Books of Combos");
   if (bookBonus[0] !== 0 || bookBonus.some((b, i) => i > 0 && b < bookBonus[i - 1]!))
     fail("no book bonuses");
   maxQuantities.forEach((max, i) => {
@@ -238,6 +256,28 @@ function readTail(
 }
 
 /**
+ * The per-item index and the Combination List for one candidate run of
+ * recipe records, or why they don't fit it.
+ */
+function matchRecipes(
+  buf: Buffer,
+  records: { offset: number; count: number },
+): { indexAt: number; byKey: Map<number, number>; list: number } | string {
+  const indexAt = records.offset + records.count * RECIPE_SIZE;
+  const firsts = readRecipeIndex(buf, indexAt, records.count);
+  if (!firsts) return `no per-item index after the recipes (0x${indexAt.toString(16)})`;
+  const byKey = new Map<number, number>();
+  for (let i = 0; i < records.count; i++) {
+    const key = pairKey(firsts[i]!, buf.readUInt16LE(records.offset + i * RECIPE_SIZE));
+    if (byKey.has(key)) return `two recipes for one pair (record ${i})`;
+    byKey.set(key, i);
+  }
+  const list = findCombinationList(buf, byKey);
+  if (list === null) return "no Combination List found";
+  return { indexAt, byKey, list };
+}
+
+/**
  * Every combination table in an EBOOT. `baseAddress` maps the quantity roll
  * pointers to file offsets; JP and EU load the EBOOT at the same address.
  */
@@ -245,24 +285,27 @@ export function readCombinations(
   buf: Buffer,
   baseAddress: number = JP_BASE_ADDRESS,
 ): CombinationTables {
-  const records = findRecipeRecords(buf);
-  if (!records) throw new Error("Combination tables: no recipe records found.");
-  const indexAt = records.offset + records.count * RECIPE_SIZE;
-  const firsts = readRecipeIndex(buf, indexAt, records.count);
-  if (!firsts)
-    throw new Error(
-      `Combination tables: no per-item index after the recipes (0x${indexAt.toString(16)}).`,
-    );
-
-  const byKey = new Map<number, number>();
-  for (let i = 0; i < records.count; i++) {
-    const key = pairKey(firsts[i]!, buf.readUInt16LE(records.offset + i * RECIPE_SIZE));
-    if (byKey.has(key))
-      throw new Error(`Combination tables: two recipes for one pair (record ${i}).`);
-    byKey.set(key, i);
+  const runs = findRecipeRecordRuns(buf);
+  if (runs.length === 0) throw new Error("Combination tables: no recipe records found.");
+  // The longest run is the table on the discs seen so far; if a longer
+  // coincidence ever turns up, the next run the index and list agree with wins.
+  let found: {
+    records: (typeof runs)[number];
+    indexAt: number;
+    byKey: Map<number, number>;
+    list: number;
+  } | null = null;
+  let firstError: string | null = null;
+  for (const records of runs) {
+    const tried = matchRecipes(buf, records);
+    if (typeof tried !== "string") {
+      found = { records, ...tried };
+      break;
+    }
+    firstError ??= tried;
   }
-  const list = findCombinationList(buf, byKey);
-  if (list === null) throw new Error("Combination tables: no Combination List found.");
+  if (!found) throw new Error(`Combination tables: ${firstError}.`);
+  const { records, indexAt, byKey, list } = found;
 
   const recipes: CombinationRecipe[] = [];
   for (let i = 0; i < records.count; i++) {

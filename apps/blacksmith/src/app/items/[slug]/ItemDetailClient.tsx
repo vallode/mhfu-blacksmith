@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useMemo } from "react";
+import { Fragment, useMemo, type ReactNode } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
 import {
@@ -21,6 +21,7 @@ import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
 import {
+  useCombinations,
   useItemPlaces,
   useItems,
   useItemSources,
@@ -60,6 +61,7 @@ export default function ItemDetailClient({ slug }: Props) {
   const { items, error } = useItems();
   const { sources, error: sourcesError } = useItemSources();
   const { places, error: placesError } = useItemPlaces();
+  const { combinations, error: combinationsError } = useCombinations();
   const { quests } = useQuests();
   const { save } = useSave();
   const { showMaterialCounts, markCleared } = usePreferences().prefs;
@@ -114,8 +116,8 @@ export default function ItemDetailClient({ slug }: Props) {
   if (placed?.shops.length) {
     tabs.push({ id: "shops", label: "Shops", content: <ShopPlaces places={placed.shops} /> });
   }
-  const combos = items.combinations.get(item.id);
-  if (combos) {
+  const combos = combinations?.byItem.get(item.id);
+  if (combinations && combos) {
     tabs.push({
       id: "combining",
       label: "Combining",
@@ -124,11 +126,16 @@ export default function ItemDetailClient({ slug }: Props) {
           itemId={item.id}
           combos={combos}
           items={items}
-          bookBonus={items.bookBonus}
+          bookBonus={combinations.bookBonus}
         />
       ),
     });
   }
+  // The tabs wait for every bundle to load or fail, so they don't reorder
+  // under the reader; one that fails leaves the others' tabs and a note.
+  const settled =
+    (sources || sourcesError) && (places || placesError) && (combinations || combinationsError);
+  const failed = sourcesError || placesError || combinationsError;
 
   return (
     <DetailCard>
@@ -156,23 +163,29 @@ export default function ItemDetailClient({ slug }: Props) {
 
         <DetailRule />
 
-        {sources && places ? (
-          tabs.length > 0 ? (
-            <Tabs key={slug} tabs={tabs} label="Where to get it and what it makes" />
-          ) : (
+        {!settled ? (
+          <Loading>Loading…</Loading>
+        ) : tabs.length > 0 ? (
+          <Tabs key={slug} tabs={tabs} label="Where to get it and what it makes" />
+        ) : (
+          !failed && (
             <p className="whitespace-normal text-white">
               No monster drop, quest reward, gathering point, shop or combination gives this item.
             </p>
           )
-        ) : sourcesError || placesError ? (
-          <p className="text-negative">Couldn&apos;t load where to get this item.</p>
-        ) : (
-          <Loading>Loading…</Loading>
+        )}
+        {settled && failed && (
+          <p className="text-negative">
+            Couldn&apos;t load {tabs.length > 0 ? "all of " : ""}where to get this item.
+          </p>
         )}
       </DetailBody>
     </DetailCard>
   );
 }
+
+/** "×3", or nothing for one */
+const amountLabel = (n: number) => (n > 1 ? `×${n}` : undefined);
 
 /** "Body carves ×3 · fished out, using frog as bait" */
 function dropSourceLabel({ title, count, note }: DropSource): string {
@@ -191,7 +204,7 @@ function MonsterSources({ sources }: { sources: MonsterSource[] }) {
             name: s.monster.name,
             href: s.monster.href,
             detail: dropSourceLabel(s.source),
-            quantity: s.quantity,
+            amount: amountLabel(s.quantity),
             value: `${s.chance}%`,
             strong: s.chance >= 100,
           }))}
@@ -229,7 +242,7 @@ function QuestSources({
                 .filter(Boolean)
                 .join(" · "),
               cleared: cleared?.has(quest.id),
-              quantity: amount,
+              amount: amountLabel(amount),
               value: `${chance}%`,
               strong: chance >= 100,
             };
@@ -263,7 +276,7 @@ function GatherPlaces({
           rows={rows.flatMap((p): SourceRow[] => {
             const value = `${p.chance}%`;
             const points = gatherPointsLabel(p.points);
-            if (!p.quests) return [{ name: p.map, detail: points, quantity: 1, value }];
+            if (!p.quests) return [{ name: p.map, detail: points, value }];
             return p.quests.map((id) => {
               const quest = byId.get(id);
               return {
@@ -271,7 +284,6 @@ function GatherPlaces({
                 href: quest && questHref(quest),
                 detail: `${p.map} · ${points}`,
                 cleared: cleared?.has(id),
-                quantity: 1,
                 value,
               };
             });
@@ -293,7 +305,6 @@ function ShopPlaces({ places }: { places: ShopPlace[] }) {
           detail: [shopStagesLabel(p), p.currency === "pokke-points" && "Pokke Points"]
             .filter(Boolean)
             .join(" · "),
-          quantity: 1,
           value: p.price === null ? "—" : `${p.price}z`,
         }))}
       />
@@ -326,38 +337,55 @@ function CombinationSources({
     .slice(1)
     .map((b) => `+${b}%`)
     .join(", ");
+  // Amounts only where a combine can give more than one, as in the other lists.
+  const amount = (c: Combination) => {
+    const label = quantityLabel(c.quantity);
+    return label === "×1" ? undefined : label;
+  };
+  const rate = (c: Combination) => ({
+    value: `${c.successRate}%`,
+    strong: c.successRate >= 100,
+  });
+  const detail = (c: Combination) => [...combinationNotes(c), `List No. ${c.number}`].join(" · ");
   return (
     <div className="flex flex-col gap-[1.6rem]">
       <DropGrid>
         {combos.madeFrom.length > 0 && (
-          <CombinationList
+          <SourceList
             title="Made by combining"
             rows={combos.madeFrom.map((c) => ({
-              combo: c,
-              main: c.ingredients.map(link),
-              detail: combinationNotes(c),
+              name: c.ingredients.map(link),
+              detail: detail(c),
+              amount: amount(c),
+              ...rate(c),
             }))}
           />
         )}
         {combos.usedIn.length > 0 && (
-          <CombinationList
+          <SourceList
             title="Used to make"
             rows={combos.usedIn.map((c) => {
               const other = c.ingredients.find((id) => id !== itemId) ?? itemId;
               return {
-                combo: c,
-                main: [link(c.result)],
-                with: link(other),
-                detail: combinationNotes(c),
+                ...link(c.result),
+                detail: (
+                  <>
+                    {"with "}
+                    <NameLink {...link(other)} />
+                    {` · ${detail(c)}`}
+                  </>
+                ),
+                amount: amount(c),
+                ...rate(c),
               };
             })}
           />
         )}
       </DropGrid>
-      {books && (
+      {bookBonus.length > 1 && (
         <p className="m-0 text-fine whitespace-normal text-white/60">
-          Rates are before Books of Combos 1–5 ({books} for owning them in order from 1) and the
-          Combination skill.
+          Rates are before Books of Combos 1–{bookBonus.length - 1} ({books} for owning them in
+          order from 1) and the Combination skill.
         </p>
       )}
     </div>
@@ -366,16 +394,8 @@ function CombinationSources({
 
 interface LinkedName {
   name: string;
+  /** Its page, when it has one */
   href?: string;
-}
-
-interface CombinationRow {
-  combo: Combination;
-  /** The ingredients, or the item made */
-  main: LinkedName[];
-  /** The other ingredient, when the row is what this item makes */
-  with?: LinkedName;
-  detail: string[];
 }
 
 function NameLink({ name, href }: LinkedName) {
@@ -388,63 +408,19 @@ function NameLink({ name, href }: LinkedName) {
   );
 }
 
-/** A titled list of combinations: the items (linked), how many it makes and the success rate. */
-function CombinationList({ title, rows }: { title: string; rows: CombinationRow[] }) {
-  return (
-    <section className="flex min-w-0 flex-col gap-[0.6rem]">
-      <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">{title}</h3>
-      <ul className="m-0 flex list-none flex-col gap-[0.8rem] p-0">
-        {rows.map((r) => (
-          <li key={r.combo.number} className="flex min-w-0 flex-col gap-[0.2rem] leading-[1.25]">
-            <div className="flex min-w-0 items-baseline gap-[0.8rem]">
-              <span className="min-w-0 flex-1 whitespace-normal">
-                {r.main.map((m, i) => (
-                  <Fragment key={i}>
-                    {i > 0 && <span className="text-muted"> + </span>}
-                    <NameLink {...m} />
-                  </Fragment>
-                ))}
-              </span>
-              <span className="w-cells-5 flex-none text-muted">
-                {quantityLabel(r.combo.quantity)}
-              </span>
-              <span
-                className={cn(
-                  "w-cells-4 flex-none text-right text-white tabular-nums",
-                  r.combo.successRate >= 100 && "text-positive",
-                )}
-              >
-                {r.combo.successRate}%
-              </span>
-            </div>
-            <p className="m-0 text-fine whitespace-normal text-white/60">
-              {r.with && (
-                <>
-                  {"with "}
-                  <NameLink {...r.with} />
-                  {" · "}
-                </>
-              )}
-              {[...r.detail, `List No. ${r.combo.number}`].join(" · ")}
-            </p>
-          </li>
-        ))}
-      </ul>
-    </section>
-  );
-}
-
 interface SourceRow {
-  name: string;
+  /** One name, or several joined by "+" (a combination's ingredients), which wrap rather than cut */
+  name: string | LinkedName[];
   /** The row's page, when it has one */
   href?: string;
   /** Before the name: a quest's star level */
   prefix?: string;
   /** How it's obtained, on the line below */
-  detail: string;
+  detail: ReactNode;
   /** The loaded hunter has cleared this quest */
   cleared?: boolean;
-  quantity: number;
+  /** How many each success gives ("×3", "×1-3"), when it can be more than one */
+  amount?: string;
   /** Right-hand column: a chance or a price */
   value: string;
   /** Highlight the value (a sure drop) */
@@ -457,8 +433,10 @@ interface SourceRow {
  * how it's obtained on a line below.
  */
 function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
-  // Only lists with amounts get the quantity column, so chances stay next to the names.
-  const showQuantity = rows.some((r) => r.quantity > 1);
+  // Only lists with amounts get the amount column, so chances stay next to the names.
+  const showAmount = rows.some((r) => r.amount);
+  // "×3" fits three cells; a range ("×1-3") takes five.
+  const wideAmount = rows.some((r) => (r.amount?.length ?? 0) > 3);
   // Chances fit four cells ("100%"); prices can take more ("12000z").
   const wide = rows.some((r) => r.value.length > 4);
   return (
@@ -470,7 +448,16 @@ function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
             {r.prefix && <span className="w-cells-4 flex-none text-stat">{r.prefix}</span>}
             <div className="flex min-w-0 flex-1 flex-col gap-[0.2rem]">
               <div className="flex min-w-0 items-baseline gap-[0.8rem]">
-                {r.href ? (
+                {typeof r.name !== "string" ? (
+                  <span className="min-w-0 flex-1 whitespace-normal">
+                    {r.name.map((n, j) => (
+                      <Fragment key={j}>
+                        {j > 0 && <span className="text-muted"> + </span>}
+                        <NameLink {...n} />
+                      </Fragment>
+                    ))}
+                  </span>
+                ) : r.href ? (
                   <Link href={r.href} title={r.name} className={cn(sourceName, "hover:underline")}>
                     {r.name}
                   </Link>
@@ -479,8 +466,10 @@ function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
                     {r.name}
                   </span>
                 )}
-                {showQuantity && (
-                  <span className={dropQuantity}>{r.quantity > 1 && `×${r.quantity}`}</span>
+                {showAmount && (
+                  <span className={wideAmount ? "w-cells-5 flex-none text-muted" : dropQuantity}>
+                    {r.amount}
+                  </span>
                 )}
                 <span
                   className={cn(

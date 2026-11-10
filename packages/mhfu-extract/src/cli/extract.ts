@@ -201,12 +201,19 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     output = emitAll(reader, resolver, overlays.gameTask.reader);
   }
 
-  // Found by shape, not address, so this is the same for every region.
-  const combinations = readCombinations(ebootBuf, JP_BASE_ADDRESS);
-  console.log(
-    `Combination List at 0x${combinations.offsets.list.toString(16)} (${combinations.recipes.length} combinations), recipes at 0x${combinations.offsets.records.toString(16)}.`,
-  );
-  output["combinations.json"] = emitCombinations(combinations);
+  // Found by shape, not address, so this is the same for every region. A
+  // disc they can't be found on still gets everything else.
+  try {
+    const combinations = readCombinations(ebootBuf, JP_BASE_ADDRESS);
+    console.log(
+      `Combination List at 0x${combinations.offsets.list.toString(16)} (${combinations.recipes.length} combinations), recipes at 0x${combinations.offsets.records.toString(16)}.`,
+    );
+    output["combinations.json"] = emitCombinations(combinations);
+  } catch (error) {
+    console.warn(
+      `Warning: skipping combinations.json. ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
 
   console.log("Reading and parsing quest files...");
   const { quests, skipped, raw, payloads } = await readQuestsFromUnpackedDir(

@@ -11,7 +11,6 @@
  *  - no duplicated tree edges (improve_from/improve_to are derived from map.json)
  */
 
-import type { CompactCombination } from "./combinations";
 import type {
   Weapon,
   ArmorPiece,
@@ -245,10 +244,6 @@ export interface ItemsBundle {
   items: (CompactItem | null)[];
   /** recipe/drop material name (as used in Dictionaries.material_ids) -> item ID */
   materials: Record<string, number>;
-  /** The Combination List (data/combinations.json), see lib/combinations.ts */
-  combinations: CompactCombination[];
-  /** Combination success bonus (percent) for owning the first 0, 1, … Books of Combos */
-  book_bonus: number[];
 }
 
 // ---------------------------------------------------------------------------
