@@ -107,7 +107,7 @@ interface PopoverProps {
 /** Gap between the popover and the side card's edges, on every side. */
 const INSET = 14;
 /** Matches the stacked .split-page layout, where the popover floats instead (see the SCSS). */
-const STACKED = "(max-width: 600px)";
+const STACKED = "(max-width: 899px)";
 
 /**
  * The 3D model, in the alternative blue frame, laid over the side card of

@@ -24,10 +24,13 @@ export const itemLink = "underline-offset-4 hover:underline";
 /** The "×N" column: three cells fit the largest amount, ×99. */
 export const dropQuantity = "w-cells-3 flex-none text-muted";
 
-/** Two-across grid of DropLists (one per column on phones). */
+/**
+ * Two-across grid of DropLists; one across on phones and in a compact
+ * screen's narrower detail pane, where two would cut the item names short.
+ */
 export function DropGrid({ children }: { children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1">
+    <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1 compact:grid-cols-1">
       {children}
     </div>
   );

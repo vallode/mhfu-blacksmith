@@ -1,6 +1,6 @@
 "use client";
 
-import { Fragment, useCallback, useEffect, useState } from "react";
+import { Fragment, useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
@@ -41,6 +41,22 @@ const NAV = NAV_GROUPS.flat();
 
 const COLLAPSED_KEY = "sidebar-collapsed";
 
+/** The `compact` variant's width (globals.css), where the sidebar is a rail that opens over the page. */
+const COMPACT = "(min-width: 900px) and (max-width: 1199px)";
+
+/** Whether the window is in the compact range (false while prerendering). */
+function useCompact(): boolean {
+  return useSyncExternalStore(
+    (onChange) => {
+      const query = window.matchMedia(COMPACT);
+      query.addEventListener("change", onChange);
+      return () => query.removeEventListener("change", onChange);
+    },
+    () => window.matchMedia(COMPACT).matches,
+    () => false,
+  );
+}
+
 /** Where each entry goes: its own href, or the last page viewed in its section. */
 function useNavHrefs(pathname: string): (item: NavItem) => string {
   const sections: Record<MenuSection, string> = {
@@ -65,27 +81,37 @@ const rowIcon = "mr-0 group-hover:before:bg-white";
 /**
  * The entries of the sidebar (and the phone menu drawer): logo, sections,
  * search and, on desktop, the collapse toggle. `collapsed` shrinks it to an
- * icon rail.
+ * icon rail on wide screens; on compact ones it is a rail unless `open`.
  */
 function SidebarContents({
   pathname,
   hrefFor,
   collapsed = false,
+  open = false,
+  railLabel = false,
   onToggle,
   onSearch,
 }: {
   pathname: string;
   hrefFor: (item: NavItem) => string;
   collapsed?: boolean;
+  open?: boolean;
+  /** Whether the toggle currently expands (the sidebar shows as a rail). */
+  railLabel?: boolean;
   onToggle?: () => void;
   onSearch?: () => void;
 }) {
+  // Rail classes, by width: wide screens follow the saved preference, compact
+  // ones are a rail unless opened. (Phones show the drawer, never a rail.)
+  // Both classes are spelled out at each use so Tailwind finds them.
+  const rail = (wide: string, compact: string) =>
+    onToggle && cn(collapsed && wide, !open && compact);
   return (
     <>
       <Link
         href="/"
         aria-label="Home"
-        className={cn("mx-6 mt-2 mb-4 block flex-none", collapsed && "hidden")}
+        className={cn("mx-6 mt-2 mb-4 block flex-none", rail("wide:hidden", "compact:hidden"))}
       >
         <img className="h-auto w-full" src="/images/blacksmith.png" alt="Blacksmith" />
       </Link>
@@ -100,12 +126,12 @@ function SidebarContents({
                 <Link
                   key={item.match}
                   href={hrefFor(item)}
-                  title={collapsed ? item.label : undefined}
+                  title={railLabel ? item.label : undefined}
                   aria-current={active ? "page" : undefined}
                   className={cn(sidebarRow, active && sidebarRowActive)}
                 >
                   <Icon type={item.icon} nav active={active} className={rowIcon} />
-                  <span className={cn(collapsed && "sr-only")}>{item.label}</span>
+                  <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{item.label}</span>
                 </Link>
               );
             })}
@@ -118,7 +144,7 @@ function SidebarContents({
         <button
           type="button"
           className={cn(sidebarRow, "search-trigger")}
-          title={collapsed ? "Search" : undefined}
+          title={railLabel ? "Search" : undefined}
           onClick={onSearch}
         >
           <span className="flex size-[32px] flex-none items-center justify-center">
@@ -128,7 +154,7 @@ function SidebarContents({
               alt=""
             />
           </span>
-          <span className={cn(collapsed && "sr-only")}>Search</span>
+          <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>Search</span>
         </button>
 
         {onToggle && (
@@ -136,17 +162,21 @@ function SidebarContents({
             type="button"
             className={sidebarRow}
             onClick={onToggle}
-            aria-label={collapsed ? "Expand sidebar" : "Collapse sidebar"}
-            title={collapsed ? "Expand sidebar" : undefined}
+            aria-label={railLabel ? "Expand sidebar" : "Collapse sidebar"}
+            aria-expanded={!railLabel}
+            title={railLabel ? "Expand sidebar" : undefined}
           >
             <span className="flex size-[32px] flex-none items-center justify-center">
               <img
-                className={cn("h-[20px] w-[19px] pixelated", collapsed && "rotate-180")}
+                className={cn(
+                  "h-[20px] w-[19px] pixelated",
+                  rail("wide:rotate-180", "compact:rotate-180"),
+                )}
                 src="/images/arrow.png"
                 alt=""
               />
             </span>
-            <span className={cn(collapsed && "sr-only")}>Collapse</span>
+            <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>Collapse</span>
           </button>
         )}
       </div>
@@ -226,10 +256,12 @@ function TabBar({
 
 /**
  * The app frame around every page: a sidebar of the site's sections in the
- * game's card frame down the left, and the page beside it. The sidebar
- * collapses to an icon rail (remembered per browser). On phones it becomes a
- * tab bar along the bottom, whose Menu tab slides the full list in as a
- * drawer.
+ * game's card frame down the left, and the page beside it. On wide screens
+ * the sidebar collapses to an icon rail (remembered per browser). On compact
+ * screens (landscape tablets, small laptops) it is always a rail, and its
+ * toggle opens the full sidebar over the page rather than squeezing it. On
+ * phones and portrait tablets it becomes a tab bar along the bottom, whose
+ * Menu tab slides the full list in as a drawer.
  */
 export default function AppShell({ children }: { children: React.ReactNode }) {
   const pathname = usePathname();
@@ -250,16 +282,29 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     });
   }, []);
 
+  // The compact rail, opened over the page.
+  const compact = useCompact();
+  const [railOpen, setRailOpen] = useState(false);
+  const railShown = compact ? !railOpen : collapsed;
+  const toggleSidebar = useCallback(() => {
+    if (window.matchMedia(COMPACT).matches) setRailOpen((open) => !open);
+    else toggleCollapsed();
+  }, [toggleCollapsed]);
+
   const [menuOpen, setMenuOpen] = useState(false);
-  const closeMenu = useCallback(() => setMenuOpen(false), []);
-  // A link in the drawer navigates; close it behind the new page.
-  useEffect(closeMenu, [pathname, closeMenu]);
+  const closeMenu = useCallback(() => {
+    setMenuOpen(false);
+    setRailOpen(false);
+  }, []);
+  // A link in the drawer (or the opened rail) navigates; close it behind the
+  // new page. Leaving the compact width closes the rail too.
+  useEffect(closeMenu, [pathname, compact, closeMenu]);
   useEffect(() => {
-    if (!menuOpen) return;
+    if (!menuOpen && !railOpen) return;
     const onKey = (e: KeyboardEvent) => e.key === "Escape" && closeMenu();
     document.addEventListener("keydown", onKey);
     return () => document.removeEventListener("keydown", onKey);
-  }, [menuOpen, closeMenu]);
+  }, [menuOpen, railOpen, closeMenu]);
 
   return (
     // On phones the document scrolls, unless the page holds an element marked
@@ -269,13 +314,23 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
     <div className="flex min-h-0 flex-1 gap-[1.3rem] mobile:flex-col mobile:has-data-fill-screen:max-h-[calc(100dvh-3.9rem)]">
       {/* Pulled left past the body's 1.4rem padding, so the frame's left edge
           dips 1.5rem under the edge of the screen; the card's left padding
-          gives that back to its rows. */}
-      <aside className="-ml-[2.9rem] flex flex-none mobile:hidden">
+          gives that back to its rows. On compact screens the aside keeps the
+          rail's width, and the opened sidebar lies over the page. */}
+      <aside className="relative -ml-[2.9rem] flex flex-none mobile:hidden compact:w-[10.1rem]">
+        {railOpen && (
+          <div
+            className="fixed inset-0 z-840 hidden bg-black/60 compact:block"
+            onClick={closeMenu}
+          />
+        )}
         <Card
           frame="teal"
           className={cn(
             "w-[27.5rem] flex-none text-sub transition-[width] duration-150",
-            collapsed && "w-[10.1rem]",
+            collapsed && "wide:w-[10.1rem]",
+            railOpen
+              ? "compact:absolute compact:inset-y-0 compact:left-0 compact:z-850 compact:bg-black/70"
+              : "compact:w-[10.1rem]",
           )}
           scroll
           bodyClassName="overflow-x-hidden card-py-[2.2rem] card-pr-0 card-pl-[1.5rem]"
@@ -284,7 +339,10 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             pathname={pathname}
             hrefFor={hrefFor}
             collapsed={collapsed}
-            onToggle={toggleCollapsed}
+            open={railOpen}
+            railLabel={railShown}
+            onToggle={toggleSidebar}
+            onSearch={closeMenu}
           />
         </Card>
       </aside>
