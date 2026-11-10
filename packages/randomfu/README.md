@@ -297,7 +297,8 @@ records of Village and Guild quests (`src/game/spawns.ts`): each
 list (`emLoadTable`).
 
 - **Species.** A swap rewrites every data and preload entry for the
-  monster, and the header's `TargetID` if it names it. A monster only goes
+  monster, and the header's `TargetID` and two objective slots (`+0x28`
+  and `+0x30`) if they name it. A monster only goes
   to a map (day and night alike) where a Village or Guild quest already has
   it as a large monster: Lao-Shan Lung stays at the Fortress, and swimmers
   stay where there's water, lava or sand. Each species' code is in an

@@ -5,8 +5,8 @@
  * Only Village and Guild quests change (`questTier`).
  *
  * Species. A swap changes every `LargeMonData` and preload (`emLoadTable`)
- * entry for the monster, and the header's `TargetID` if it names it. Two
- * things limit which monsters can trade:
+ * entry for the monster, and the header's `TargetID` and objective slots
+ * if they name it. Two things limit which monsters can trade:
  *
  * - Maps. A monster only goes to a map (day and night alike) where some
  *   Village or Guild quest already has it as a large monster, so Lao-Shan
@@ -30,6 +30,9 @@
 import type { LoadedQuest } from "../game/load.js";
 import {
   readSpawns,
+  OBJECTIVE_ID_OFFSET,
+  OBJECTIVE_KIND_MONSTER,
+  OBJECTIVE_OFFSETS,
   POWER_OFFSET,
   QUANTITY_OFFSET,
   TARGET_ID_OFFSET,
@@ -152,6 +155,12 @@ export function swapSpecies(
     }
     const target = mapping.get(payload.readUInt16LE(TARGET_ID_OFFSET));
     if (target !== undefined) payload.writeUInt16LE(target, TARGET_ID_OFFSET);
+    for (const objective of OBJECTIVE_OFFSETS) {
+      if (payload.readUInt32LE(objective) !== OBJECTIVE_KIND_MONSTER) continue;
+      const idAt = objective + OBJECTIVE_ID_OFFSET;
+      const next = mapping.get(payload.readUInt16LE(idAt));
+      if (next !== undefined) payload.writeUInt16LE(next, idAt);
+    }
     changed.set(quest.index, mapping);
     for (const [old, next] of mapping) {
       lines.push({
