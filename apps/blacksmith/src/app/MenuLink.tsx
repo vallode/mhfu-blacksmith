@@ -1,7 +1,6 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import Link from "next/link";
 import { DEFAULT_WEAPON, readLastWeapon } from "@/lib/last-weapon";
 import { DEFAULT_ARMOR, readLastArmor } from "@/lib/armor-last-store";
 import { DEFAULT_MONSTER, readLastMonster } from "@/lib/last-monster";
@@ -45,22 +44,4 @@ export function useSectionHref(section: MenuSection, pathname?: string): string 
     return () => cancelAnimationFrame(frame);
   }, [last, pathname]);
   return href;
-}
-
-/** A main-menu entry that opens the page the user last viewed in that section (the first page at first). */
-export default function MenuLink({
-  section,
-  className,
-}: {
-  section: MenuSection;
-  className?: string;
-}) {
-  const { label } = SECTIONS[section];
-  const href = useSectionHref(section);
-
-  return (
-    <Link className={className} href={href}>
-      {label}
-    </Link>
-  );
 }

@@ -8,7 +8,6 @@ import MonsterListClient from "@/app/monsters/[category]/MonsterListClient";
 import MonsterDetailClient from "@/app/monsters/[category]/[slug]/MonsterDetailClient";
 import DecorationsListClient from "@/app/decorations/DecorationsListClient";
 import DecorationDetailClient from "@/app/decorations/[slug]/DecorationDetailClient";
-import HomeContent from "@/app/HomeContent";
 import { ItemShell } from "@/app/items/ItemShell";
 import ItemsListClient from "@/app/items/ItemsListClient";
 import ItemDetailClient from "@/app/items/[slug]/ItemDetailClient";
@@ -128,7 +127,7 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
 export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
   switch (match.kind) {
     case "home":
-      return <HomeContent />;
+      return <LastWeaponRedirect />;
     case "weapon-list":
       return <LastWeaponRedirect />;
     case "weapon-tree":
