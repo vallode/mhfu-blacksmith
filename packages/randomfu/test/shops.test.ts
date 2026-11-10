@@ -72,7 +72,7 @@ test("findShops reads every table next to the general store's, and names them", 
       ["Village general store", [7, 9, 0], false],
       ["Peddler", [3, 4, 5], false],
       ["Guild Hall store", [4, 5], false],
-      ["Sphere and jewel shop", [1, 3], true],
+      ["Point Exchange", [1, 3], true],
     ],
   );
   assert.equal(data.tables[0]!.at, lobby.tablesAt);

@@ -137,7 +137,7 @@ added there shows up everywhere.
 | `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`               |
 | `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                           |
 | `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                   |
-| `shops.special`                   | off         | Include the Armor Sphere, jewel and Pokke Ticket shop                             |
+| `shops.special`                   | off         | Include the Point Exchange (Armor Spheres, jewels, Pokke Tickets)                 |
 | `shops.countSpread`               | 0           | How much more or fewer items each shop sells                                      |
 | `shops.prices`                    | off         | Randomize prices of what shops sell (EBOOT)                                       |
 | `shops.priceSpread`               | 0.5         | How far prices move                                                               |
@@ -318,8 +318,9 @@ shop's stock is a list of u16 item IDs ending in 0xFFFF, one list per stage
 of the game, and the game picks one from a table of pointers per shop
 (each ending in a 0 word). On the EU disc the tables are at 0xa7da8: the
 village general store (8 stages), the peddling granny's pools (her table
-also uses two Guild lists), the Guild Hall store (9 stages) and a shop of
-Armor Spheres, jewels and Pokke Tickets. They're found by their shape, from
+also uses two Guild lists), the Guild Hall store (9 stages) and the Point
+Exchange (Armor Spheres, jewels and Pokke Tickets, bought with Pokke
+Points). They're found by their shape, from
 the table holding the general store's list (Herb, Potion, Antidote,
 Whetstone), not by address; `shop-scan` and `shop-lists` are the research
 commands that found them.

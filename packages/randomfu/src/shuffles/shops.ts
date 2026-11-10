@@ -6,8 +6,9 @@
  * item IDs ending in 0xFFFF, one list per stage of the game, picked through
  * a table of u32 pointers per shop (each ending in a 0 word). On the EU disc
  * the tables are at 0xa7da8: the village store, the peddling granny's pools
- * (also using two Guild lists), the Guild Hall store and a shop of Armor
- * Spheres, jewels and Pokke Tickets. Tables can share lists.
+ * (also using two Guild lists), the Guild Hall store and the Point Exchange
+ * (Armor Spheres, jewels and Pokke Tickets, bought with Pokke Points).
+ * Tables can share lists.
  *
  * What changes:
  *
@@ -49,7 +50,7 @@ const MAX_TABLE = 32;
 
 /** The general store's opening items: how the first table is recognised. */
 const STORE_ITEMS = [163, 7, 11, 153]; // Herb, Potion, Antidote, Whetstone
-/** A shop selling Armor Spheres is the special shop. */
+/** A shop selling Armor Spheres is the Point Exchange (`shops.special`). */
 const ARMOR_SPHERE = 223;
 
 /** Items shops keep selling with `keepEssentials`. */
@@ -125,7 +126,7 @@ function startsWith(items: readonly number[], prefix: readonly number[]): boolea
 
 function nameTable(lists: ShopList[]): { name: string; special: boolean } {
   const all = lists.flatMap((l) => l.items);
-  if (all.includes(ARMOR_SPHERE)) return { name: "Sphere and jewel shop", special: true };
+  if (all.includes(ARMOR_SPHERE)) return { name: "Point Exchange", special: true };
   const first = lists.find((l) => l.items.length > 0)?.items ?? [];
   if (startsWith(first, STORE_ITEMS)) return { name: "Village general store", special: false };
   if (startsWith(first, STORE_ITEMS.slice(1))) return { name: "Guild Hall store", special: false };
