@@ -200,6 +200,9 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         // Exact for any shape and aspect ratio, unlike a bounding sphere.
         let corners: import("three").Vector3[] = [];
         const measure = () => {
+          // A skinned mesh comes before its bones in the scene, so their
+          // world matrices must be current before the box reads them.
+          scene.updateMatrixWorld(true);
           box.setFromObject(scene, true);
           box.getCenter(center);
           radius = box.getSize(new THREE.Vector3()).length() / 2;
@@ -272,20 +275,20 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         controls.target.set(0, 0, 0);
         fit();
 
-        sceneRef.current = { THREE, scene };
-        setStatus("ready");
-        animate();
-
-        // Motions come after the model, from the file its GLB names.
+        // Motions come after the model, from the file its GLB names. The
+        // model shows once they're in, already posed and framed: its first
+        // pose can stand far from the bind pose (Rathian's is ~320 units up).
         const motionsFile = (gltf.asset.extras as { motions?: unknown } | undefined)?.motions;
+        let loaded: MotionClip[] = [];
         if (typeof motionsFile === "string" && !pair) {
-          let loaded: MotionClip[];
           try {
             loaded = await fetchMotions(new URL(motionsFile, new URL(src, location.href)).href);
           } catch {
-            return; // the model still shows, just still
+            // The model still shows, just still.
           }
-          if (disposed || loaded.length === 0) return;
+          if (disposed) return;
+        }
+        if (loaded.length > 0) {
           const root = model;
           const node = (bone: number) => root.getObjectByName(`bone_${bone}`);
           const parentOf = (bone: number) => {
@@ -340,16 +343,24 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
             hold: (hold) => {
               state.hold = hold;
               apply();
+              reframe();
             },
           };
-          apply();
-          // Reframe on the first pose: motions lift the monster off its bind pose.
-          if (!state.hold && !interacted) {
-            mixer.update(0);
+          // Frame the pose the model takes (the first motion's, or the bind
+          // pose under hitboxes), unless the visitor has moved the camera.
+          const reframe = () => {
+            if (interacted) return;
+            mixer!.update(0);
             measure();
-            fit();
-          }
+            fit?.();
+          };
+          apply();
+          reframe();
         }
+
+        sceneRef.current = { THREE, scene };
+        setStatus("ready");
+        animate();
       } catch {
         if (!disposed) setStatus("error");
       }
