@@ -74,11 +74,22 @@ function assertShape(before: Buffer, after: Buffer, kept: number[]) {
       if (tree === 0) assert.deepEqual(now[k], [0, 0], `${key} entry ${k} stays empty`);
       else
         assert.equal(Math.sign(newPoints), Math.sign(points), `${key} entry ${k} keeps its sign`);
-      if (kept.includes(tree)) assert.deepEqual(now[k], was[k], `${key} keeps tree ${tree}`);
-      else assert.ok(!kept.includes(newTree), `${key} gets no kept tree (${newTree})`);
+      if (kept.includes(tree) || (tree !== 0 && points === 0)) {
+        assert.deepEqual(now[k], was[k], `${key} keeps entry ${k} (${tree}/${points})`);
+      } else assert.ok(!kept.includes(newTree), `${key} gets no kept tree (${newTree})`);
     });
-    const trees = now.map(([t]) => t).filter((t) => t !== 0);
-    assert.equal(new Set(trees).size, trees.length, `${key}: no tree twice (${trees})`);
+    // No tree twice, unless the disc already had that one twice there.
+    const repeated = (skills: Skill[]) =>
+      skills
+        .map(([t]) => t)
+        .filter((t, i, all) => t !== 0 && all.indexOf(t) !== i)
+        .sort();
+    for (const tree of repeated(now)) {
+      assert.ok(
+        repeated(was).includes(tree),
+        `${key}: tree ${tree} twice (${JSON.stringify(now)})`,
+      );
+    }
   }
   for (const key of ["head:9", "head:10"]) {
     assert.deepEqual(skillsOf(after, key), skillsOf(before, key), `${key} is left alone`);
@@ -114,6 +125,8 @@ test("armor skills, shuffle: entries trade within rarity, hunter type and sign",
       return out;
     };
     assert.deepEqual(groups(after), groups(before));
+    // Head 8's 0-point Protection blocks Protection +3 (head 3's) from moving there.
+    assert.equal(skillsOf(after, "head:8").filter(([t]) => t === TREE.protection).length, 1);
 
     for (const key of PIECES) {
       skillsOf(after, key).forEach(([tree, points], k) => {
@@ -121,6 +134,15 @@ test("armor skills, shuffle: entries trade within rarity, hunter type and sign",
       });
     }
   }
+  // Leg 1's two Defense entries can't be shuffled apart: their group stays, and is reported.
+  const result = randomize(game, skillsWith("a", { "armorSkills.mode": "shuffle" }));
+  const leg1 = skillsOf(result.edits.eboot(), "leg:1");
+  assert.deepEqual(leg1.slice(1, 3), [
+    [TREE.defense, -2],
+    [TREE.defense, -1],
+  ]);
+  const report = result.reports.find((r) => r.title === "Armor skills")!;
+  assert.ok(report.notes.some((n) => n.startsWith("1 group(s)")));
   // Skills do move, Blademaster-only ones between Blademaster pieces.
   assert.ok(
     moved.has(`chest:3:${TREE.sharpness}/2`),
@@ -171,13 +193,18 @@ test("armor skills, randomize: new trees for the piece's hunter type, points siz
     }
     for (const key of PIECES) {
       for (const [tree, points] of skillsOf(after, key)) {
-        if (tree === 0 || tree === TREE.torsoUp || tree === TREE.edgemaster) continue;
+        if (tree === 0 || points === 0 || tree === TREE.torsoUp || tree === TREE.edgemaster) {
+          continue;
+        }
         seen.add(tree);
         const blade = [TREE.sharpness, TREE.guard] as number[];
         const gun = [TREE.reload, TREE.recoil] as number[];
         if (hunter(key) !== "blade")
           assert.ok(!blade.includes(tree), `${key}: no Blademaster tree`);
         if (hunter(key) !== "gun") assert.ok(!gun.includes(tree), `${key}: no Gunner tree`);
+        // Seen only on pieces anyone can wear, like Auto-Guard on the EU disc.
+        const bothOnly = [TREE.health, TREE.stamina, TREE.fate, TREE.protection] as number[];
+        if (hunter(key) !== "both") assert.ok(!bothOnly.includes(tree), `${key}: ${tree}`);
         const group = `${armor(key).rarity}:${Math.sign(points)}`;
         assert.ok(sizes.get(group)!.has(Math.abs(points)), `${key}: ${points} sized for ${group}`);
       }
@@ -225,8 +252,8 @@ test("armor skills: deterministic, with a spoiler line per changed piece", async
     assert.equal(report.lines.length, changed.length);
     assert.ok(report.lines.every((l) => / \(was .+\)$/.test(l.text)));
     assert.ok(
-      report.notes.some((n) => n.includes("Edgemaster +7")),
-      "armor-only reach: 2 + 3 + 2",
+      report.notes.some((n) => n.includes("Edgemaster +8")),
+      "armor-only reach: chest 5's +3, again on head 7 (Torso Up, female), and leg 3's +2",
     );
   }
   close();

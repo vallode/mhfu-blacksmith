@@ -5,8 +5,8 @@
  * at +30, each a skill tree ID (u8) and points (s8). Tree 0 is an empty
  * entry. On the EU disc, 108 pieces have an empty entry between filled
  * ones, so the game reads all five; an entry's position doesn't matter, and
- * empty entries stay empty here. No piece lists a tree twice, and neither
- * mode makes one that does.
+ * empty entries stay empty here. Neither mode gives a piece a tree it
+ * already lists.
  *
  * Two modes:
  *
@@ -15,7 +15,8 @@
  *   Gunner only or both), positive with positive and negative with
  *   negative. Every piece keeps how many skills it has and how many are
  *   negative; every rarity keeps its skill points, so the game has the same
- *   skills, on other pieces.
+ *   skills, on other pieces. A group whose shuffles all put a tree twice on
+ *   some piece keeps its entries where they were.
  * - **randomize**: each filled entry gets a new tree and new points. The
  *   tree is drawn from the trees the disc's armor and decorations use, for
  *   that hunter type (below), never one the piece already has. The points
@@ -23,21 +24,22 @@
  *   that sign have at that rarity on the disc, so a rarity's pieces stay as
  *   strong as before on average.
  *
- * A tree's hunter type comes from the disc: one found on Blademaster-only
- * pieces and never on Gunner-only ones (Sharpness, Guard) is a Blademaster
- * tree, and the other way round (Reload, Recoil); the rest suit anyone.
- * Randomize gives Blademaster-only pieces anyone's trees and Blademaster
- * trees, Gunner-only pieces likewise, and pieces both can wear only trees
- * that suit anyone. Shuffle keeps entries within a hunter type, so this
- * holds as it did on the disc.
+ * Which pieces a tree suits comes from where the disc puts it (`treeUses`):
+ * on Blademaster-only and Gunner-only pieces, anyone; only on Blademaster-
+ * only pieces (and pieces both can wear), Blademasters (Sharpness, Guard);
+ * likewise Gunners (Reload, Recoil); only on pieces both can wear, only
+ * those (Auto-Guard on the EU disc). Trees only decorations have suit
+ * anyone. Randomize draws accordingly; shuffle keeps entries within a
+ * hunter type, so they stay where the disc had them.
  *
  * Left alone: piece 0, pieces no create entry makes, pieces with no
- * `HunterType` bits, and Torso Up (tree 1, `TORSO_UP`) entries, which
- * double the chest's points instead of being a skill; it's never drawn
- * either. With `keepArmorOnly`, so are trees no decoration adds points to
- * (seven on the EU disc, Edgemaster and Fury among them): armor is their
- * only source, usually one set's pieces together. Shuffled on the EU disc,
- * six of the seven fell below +10 from armor alone.
+ * `HunterType` bits, entries with 0 points, and Torso Up (tree 1,
+ * `TORSO_UP`) entries, which add the chest's points again instead of being
+ * a skill; it's never drawn either. With `keepArmorOnly`, so are trees no
+ * decoration adds points to (seven on the EU disc, Edgemaster and Fury
+ * among them): armor is their only source, usually one set's pieces
+ * together. Shuffled on the EU disc, six of the seven fell below +10 from
+ * armor alone.
  *
  * The activation thresholds (10 points for a skill, -10 for a bad one) are
  * not read: mhfu-extract has no table for them and none was found in the
@@ -58,8 +60,8 @@ import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import type { Edits } from "../edits.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport } from "./shuffle.js";
-import { SLOT_NAMES } from "./armor.js";
+import { SLOT_NAMES, wearable } from "./armor.js";
+import { groupBy, permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
 
 export type ArmorSkillMode = "shuffle" | "randomize";
 
@@ -67,12 +69,14 @@ const HUNTER_TYPE_AT = 4;
 const RARITY_AT = 5;
 const SKILLS_AT = 30;
 const SKILL_COUNT = 5;
-/** `SkillID` 1, "Torso Inc": doubles the chest's points. */
-export const TORSO_UP = 1;
-/** How many times shuffle starts over when it can't avoid a piece listing a tree twice. */
+/** `SkillID` 1, "Torso Inc": the piece adds the chest's points again. */
+const TORSO_UP = 1;
+/** Shuffles tried before groups that still repeat a tree keep their entries. */
 const SHUFFLE_ATTEMPTS = 20;
 
 type HunterClass = "blade" | "gun" | "both";
+/** Which pieces a tree suits: anyone's, one hunter type's, or only pieces both can wear. */
+type TreeUse = "anyone" | "blade" | "gun" | "both-only";
 
 interface Skill {
   tree: number;
@@ -85,12 +89,14 @@ interface Piece {
   /** File offset of the `ArmorValue`. */
   at: number;
   rarity: number;
+  /** `HunterType` bits. */
+  bits: number;
   hunter: HunterClass;
   /** The five entries as on the disc. */
   before: Skill[];
 }
 
-/** An entry that takes part: a filled entry that isn't Torso Up. */
+/** An entry that takes part: a filled entry with points whose tree isn't kept. */
 interface Entry {
   piece: Piece;
   /** Position in the piece's five entries. */
@@ -99,13 +105,10 @@ interface Entry {
 }
 
 function hunterClass(bits: number): HunterClass | null {
-  const { male, female, blademaster, gunner } = HUNTER_TYPE_BITS;
-  if (!(bits & (male | female))) return null;
-  const blade = (bits & blademaster) !== 0;
-  const gun = (bits & gunner) !== 0;
-  if (blade && gun) return "both";
-  if (blade) return "blade";
-  return gun ? "gun" : null;
+  if (!wearable(bits)) return null;
+  const blade = (bits & HUNTER_TYPE_BITS.blademaster) !== 0;
+  const gun = (bits & HUNTER_TYPE_BITS.gunner) !== 0;
+  return blade && gun ? "both" : blade ? "blade" : "gun";
 }
 
 function treeName(tree: number): string {
@@ -131,73 +134,59 @@ function readPieces(eboot: Buffer, resolver: TableAddressResolver | undefined): 
     for (const index of [...made].sort((a, b) => a - b)) {
       if (index <= 0 || index >= ARMOR_SLOT_COUNTS[slot]) continue;
       const at = values[slot] + index * ARMOR_ENTRY_SIZE;
-      const hunter = hunterClass(reader.u8(at + HUNTER_TYPE_AT));
+      const bits = reader.u8(at + HUNTER_TYPE_AT);
+      const hunter = hunterClass(bits);
       if (!hunter) continue;
       const before = Array.from({ length: SKILL_COUNT }, (_, k) => ({
         tree: reader.u8(at + SKILLS_AT + k * 2),
         points: reader.s8(at + SKILLS_AT + k * 2 + 1),
       }));
-      pieces.push({ slot, index, at, rarity: reader.u8(at + RARITY_AT), hunter, before });
+      pieces.push({ slot, index, at, rarity: reader.u8(at + RARITY_AT), bits, hunter, before });
     }
   }
   return pieces;
 }
 
-/** Filled entries whose tree isn't one that stays put. */
-function movable(pieces: Piece[], kept: Set<number>): Entry[] {
-  return pieces.flatMap((piece) =>
-    piece.before.flatMap((skill, position) =>
-      skill.tree !== 0 && !kept.has(skill.tree) && skill.points !== 0
-        ? [{ piece, position, skill }]
-        : [],
-    ),
-  );
-}
+const takesPart = (skill: Skill, kept: Set<number>) =>
+  skill.tree !== 0 && skill.points !== 0 && !kept.has(skill.tree);
 
 const sign = (points: number) => (points < 0 ? "-" : "+");
 
+const groupKey = (e: Entry) => `${e.piece.rarity}:${e.piece.hunter}:${sign(e.skill.points)}`;
+
 /**
- * Shuffle: entries trade within (rarity, hunter type, sign). Returns each
- * entry's new skill, or null if no shuffle avoided a repeated tree.
+ * Shuffle: entries trade within (rarity, hunter type, sign), avoiding a
+ * tree twice on a piece. `fixed` is each piece's trees that don't move.
+ * Groups that repeat a tree in every attempt keep their entries.
  */
-function shuffleEntries(entries: Entry[], kept: Set<number>, rng: Rng): Skill[] | null {
-  const groups = new Map<string, number[]>();
-  entries.forEach((e, i) => {
-    const key = `${e.piece.rarity}:${e.piece.hunter}:${sign(e.skill.points)}`;
-    const list = groups.get(key);
-    if (list) list.push(i);
-    else groups.set(key, [i]);
-  });
-  const groupOf = new Map<number, number[]>();
-  for (const members of groups.values()) for (const i of members) groupOf.set(i, members);
-  const onPiece = new Map<Piece, number[]>();
-  entries.forEach((e, i) => {
-    const list = onPiece.get(e.piece);
-    if (list) list.push(i);
-    else onPiece.set(e.piece, [i]);
-  });
+function shuffleEntries(
+  entries: Entry[],
+  fixed: Map<Piece, number[]>,
+  rng: Rng,
+): { skills: Skill[]; keptGroups: number } {
+  const indices = entries.map((_, i) => i);
+  const groups = [...groupBy(indices, (i) => groupKey(entries[i]!)).values()];
+  const groupOf = new Map(groups.flatMap((members) => members.map((i) => [i, members] as const)));
+  const onPiece = groupBy(indices, (i) => entries[i]!.piece);
+
+  let now: Skill[] = [];
+  // Trees on entry `i`'s piece besides its own.
+  const others = (i: number) => {
+    const piece = entries[i]!.piece;
+    return [
+      ...fixed.get(piece)!,
+      ...onPiece
+        .get(piece)!
+        .filter((j) => j !== i)
+        .map((j) => now[j]!.tree),
+    ];
+  };
+  const repeats = (i: number) => others(i).includes(now[i]!.tree);
 
   for (let attempt = 0; attempt < SHUFFLE_ATTEMPTS; attempt++) {
-    const now = new Array<Skill>(entries.length);
-    for (const members of groups.values()) {
-      const skills = rng.shuffle(members.map((i) => entries[i]!.skill));
-      members.forEach((i, k) => (now[i] = skills[k]!));
-    }
-    // Trees on entry `i`'s piece besides its own, the kept ones included.
-    const others = (i: number) => {
-      const piece = entries[i]!.piece;
-      return [
-        ...piece.before.filter((s) => kept.has(s.tree)).map((s) => s.tree),
-        ...onPiece
-          .get(piece)!
-          .filter((j) => j !== i)
-          .map((j) => now[j]!.tree),
-      ];
-    };
-    const repeats = (i: number) => others(i).includes(now[i]!.tree);
-
+    now = permuteWithinGroups(entries, groupKey, (e) => e.skill, rng);
     // Swap each repeated entry with another in its group where neither piece then repeats.
-    for (let i = 0; i < entries.length; i++) {
+    for (const i of indices) {
       if (!repeats(i)) continue;
       const candidates = rng.shuffle(
         groupOf.get(i)!.filter((j) => entries[j]!.piece !== entries[i]!.piece),
@@ -208,34 +197,47 @@ function shuffleEntries(entries: Entry[], kept: Set<number>, rng: Rng): Skill[] 
         break;
       }
     }
-    if (entries.every((_, i) => !repeats(i))) return now;
+    if (!indices.some(repeats)) return { skills: now, keptGroups: 0 };
   }
-  return null;
+
+  // Put back each group with a repeat, until none is left in a moved group.
+  // The disc's own layout is the fallback, so this ends.
+  const putBack = new Set<number[]>();
+  for (;;) {
+    const group = indices
+      .filter(repeats)
+      .map((i) => groupOf.get(i)!)
+      .find((g) => !putBack.has(g));
+    if (!group) break;
+    putBack.add(group);
+    for (const i of group) now[i] = entries[i]!.skill;
+  }
+  return { skills: now, keptGroups: putBack.size };
 }
 
-/** Each tree's hunter type, from the pieces the disc puts it on. */
-function treeClasses(
+/** Which pieces each tree suits, from the pieces the disc puts it on. */
+function treeUses(
   pieces: Piece[],
   decorationTrees: Set<number>,
   kept: Set<number>,
-): Map<number, HunterClass> {
+): Map<number, TreeUse> {
   const on = new Map<number, Set<HunterClass>>();
   for (const piece of pieces) {
     for (const s of piece.before) {
-      if (s.tree === 0 || kept.has(s.tree)) continue;
+      if (!takesPart(s, kept)) continue;
       let set = on.get(s.tree);
       if (!set) on.set(s.tree, (set = new Set()));
       set.add(piece.hunter);
     }
   }
-  const out = new Map<number, HunterClass>();
+  const out = new Map<number, TreeUse>();
   for (const [tree, set] of on) {
-    if (set.has("blade") && !set.has("gun")) out.set(tree, "blade");
-    else if (set.has("gun") && !set.has("blade")) out.set(tree, "gun");
-    else out.set(tree, "both");
+    const blade = set.has("blade");
+    const gun = set.has("gun");
+    out.set(tree, blade && gun ? "anyone" : blade ? "blade" : gun ? "gun" : "both-only");
   }
   for (const tree of decorationTrees) {
-    if (!kept.has(tree) && !out.has(tree)) out.set(tree, "both");
+    if (!kept.has(tree) && !out.has(tree)) out.set(tree, "anyone");
   }
   return out;
 }
@@ -243,40 +245,35 @@ function treeClasses(
 /** Randomize: a new tree for each entry from its hunter type's pool, and new points. */
 function randomizeEntries(
   entries: Entry[],
-  pieces: Piece[],
-  classes: Map<number, HunterClass>,
+  fixed: Map<Piece, number[]>,
+  uses: Map<number, TreeUse>,
   rng: Rng,
 ): Skill[] {
-  const trees = [...classes.keys()].sort((a, b) => a - b);
-  const pools: Record<HunterClass, number[]> = {
-    blade: trees.filter((t) => classes.get(t) !== "gun"),
-    gun: trees.filter((t) => classes.get(t) !== "blade"),
-    both: trees.filter((t) => classes.get(t) === "both"),
+  const trees = [...uses.keys()].sort((a, b) => a - b);
+  const suits: Record<HunterClass, TreeUse[]> = {
+    blade: ["anyone", "blade"],
+    gun: ["anyone", "gun"],
+    both: ["anyone", "both-only"],
   };
+  const pools = (hunter: HunterClass) => trees.filter((t) => suits[hunter].includes(uses.get(t)!));
   // Sizes of points by rarity and sign; all rarities as a fallback.
   const sizes = new Map<string, number[]>();
-  const addSize = (key: string, size: number) => {
-    const list = sizes.get(key);
-    if (list) list.push(size);
-    else sizes.set(key, [size]);
-  };
   for (const e of entries) {
-    addSize(`${e.piece.rarity}:${sign(e.skill.points)}`, Math.abs(e.skill.points));
-    addSize(`*:${sign(e.skill.points)}`, Math.abs(e.skill.points));
+    const size = Math.abs(e.skill.points);
+    for (const key of [`${e.piece.rarity}:${sign(e.skill.points)}`, `*:${sign(e.skill.points)}`]) {
+      sizes.set(key, [...(sizes.get(key) ?? []), size]);
+    }
   }
 
   const now = new Array<Skill>(entries.length);
-  const byPiece = new Map<Piece, number[]>();
-  entries.forEach((e, i) => {
-    const list = byPiece.get(e.piece);
-    if (list) list.push(i);
-    else byPiece.set(e.piece, [i]);
-  });
-  for (const piece of pieces) {
-    const members = byPiece.get(piece);
-    if (!members) continue;
-    // Without repeats; pools never hold the kept trees.
-    const drawn = rng.shuffle([...pools[piece.hunter]]).slice(0, members.length);
+  const byPiece = groupBy(
+    entries.map((_, i) => i),
+    (i) => entries[i]!.piece,
+  );
+  for (const [piece, members] of byPiece) {
+    // Without repeats, and never a tree the piece keeps.
+    const pool = pools(piece.hunter).filter((t) => !fixed.get(piece)!.includes(t));
+    const drawn = rng.shuffle(pool).slice(0, members.length);
     if (drawn.length < members.length) {
       throw new Error(`Too few skill trees for ${piece.slot} ${piece.index}`);
     }
@@ -291,22 +288,32 @@ function randomizeEntries(
 }
 
 /**
- * The most points of `tree` armor alone gives one hunter: the best piece
- * per slot, for whichever of Blademaster and Gunner gets more.
+ * The most points of `tree` armor alone gives one hunter (one hunter type
+ * and sex): a piece per slot, or none. A Torso Up piece adds the chest's
+ * points again, so every chest is tried.
  */
 function bestFromArmor(pieces: Piece[], skillsOf: (p: Piece) => Skill[], tree: number): number {
+  const { male, female, blademaster, gunner } = HUNTER_TYPE_BITS;
+  const pointsOf = (p: Piece) => skillsOf(p).find((s) => s.tree === tree)?.points ?? 0;
+  const torso = (p: Piece) => skillsOf(p).some((s) => s.tree === TORSO_UP);
   let best = 0;
-  for (const hunter of ["blade", "gun"] as const) {
-    let total = 0;
-    for (const slot of ARMOR_SLOTS) {
-      let most = 0;
-      for (const piece of pieces) {
-        if (piece.slot !== slot || (piece.hunter !== hunter && piece.hunter !== "both")) continue;
-        for (const s of skillsOf(piece)) if (s.tree === tree) most = Math.max(most, s.points);
+  for (const type of [blademaster, gunner]) {
+    for (const sex of [male, female]) {
+      const fits = pieces.filter((p) => p.bits & type && p.bits & sex);
+      const chests = new Set([0, ...fits.filter((p) => p.slot === "chest").map(pointsOf)]);
+      for (const chest of chests) {
+        let total = chest;
+        for (const slot of ARMOR_SLOTS) {
+          if (slot === "chest") continue;
+          let most = 0;
+          for (const p of fits) {
+            if (p.slot === slot) most = Math.max(most, pointsOf(p) + (torso(p) ? chest : 0));
+          }
+          total += most;
+        }
+        best = Math.max(best, total);
       }
-      total += most;
     }
-    best = Math.max(best, total);
   }
   return best;
 }
@@ -335,17 +342,31 @@ export function randomizeArmorSkills(
     .filter((t) => t !== 0 && t !== TORSO_UP && !decorationTrees.has(t))
     .sort((a, b) => a - b);
   const kept = new Set([TORSO_UP, ...(keepArmorOnly ? armorOnly : [])]);
-  const entries = movable(pieces, kept);
+  const entries = pieces.flatMap((piece) =>
+    piece.before.flatMap((skill, position) =>
+      takesPart(skill, kept) ? [{ piece, position, skill }] : [],
+    ),
+  );
+  // Each piece's filled entries that stay: kept trees and entries with 0 points.
+  const fixed = new Map(
+    pieces.map((p) => [
+      p,
+      p.before.filter((s) => s.tree !== 0 && !takesPart(s, kept)).map((s) => s.tree),
+    ]),
+  );
 
   let assigned: Skill[];
   const notes: string[] = [];
   if (mode === "shuffle") {
-    const shuffled = shuffleEntries(entries, kept, rng);
-    if (!shuffled)
-      notes.push("No shuffle avoided a piece listing a skill tree twice, so skills are unchanged.");
-    assigned = shuffled ?? entries.map((e) => e.skill);
+    const { skills, keptGroups } = shuffleEntries(entries, fixed, rng);
+    if (keptGroups > 0) {
+      notes.push(
+        `${keptGroups} group(s) of a rarity, hunter type and sign kept their skills: every shuffle put a tree twice on some piece.`,
+      );
+    }
+    assigned = skills;
   } else {
-    assigned = randomizeEntries(entries, pieces, treeClasses(pieces, decorationTrees, kept), rng);
+    assigned = randomizeEntries(entries, fixed, treeUses(pieces, decorationTrees, kept), rng);
   }
 
   const after = new Map<Piece, Skill[]>(pieces.map((p) => [p, p.before.map((s) => ({ ...s }))]));
@@ -382,12 +403,12 @@ export function randomizeArmorSkills(
     notes: [
       mode === "shuffle"
         ? "Skill points traded places between pieces of the same rarity and hunter type (Blademaster, Gunner or both): positive with positive, negative with negative. Every rarity has the same skill points as before."
-        : "Each skill on a piece is a new skill tree (for that piece's hunter type) with new points: positive skills stay positive and negative ones negative, sized like that rarity's skills on the disc.",
+        : "Each skill on a piece is a new skill tree (one that suits who can wear the piece) with new points: positive skills stay positive and negative ones negative, sized like that rarity's skills on the disc.",
       `Pieces keep how many skills they have. Torso Up${keepArmorOnly ? " and skill trees no decoration has stay" : " stays"} where ${keepArmorOnly ? "they are" : "it is"}. Decorations are unchanged.`,
       ...notes,
       ...(reach.length > 0
         ? [
-            `Skill trees no decoration has, and the most points armor alone gives (one piece per slot): ${reach.join(", ")}.`,
+            `Skill trees no decoration has, and the most points armor alone gives one hunter (Torso Up included): ${reach.join(", ")}.`,
           ]
         : []),
       `${changed} of ${pieces.length} pieces have new skills.`,

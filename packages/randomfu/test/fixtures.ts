@@ -938,9 +938,12 @@ export const TREE = {
  * Armor skills (`ArmorValue` +30): [tree, points] per entry, [0, 0] for an
  * empty one. Sharpness and Guard are only on Blademaster pieces, Reload and
  * Recoil only on Gunner ones; the rest are on both or on pieces anyone can
- * wear. Edgemaster has no decoration; Gathering is only on one. Head 7 has
- * Torso Up; head 9 (in no create entry) and 10 (no `HunterType` bits) have
- * skills that must stay.
+ * wear; Health, Stamina, Fate and Protection only on pieces anyone can
+ * wear. Edgemaster has no decoration; Gathering is only on one. Head 7
+ * (female only) has Torso Up; head 8 has a 0-point Protection entry; leg 1
+ * lists Defense twice, alone in its rarity's negative entries, so no
+ * shuffle can avoid the repeat. Head 9 (in no create entry) and 10 (no
+ * `HunterType` bits) have skills that must stay.
  */
 export const FIXTURE_ARMOR_SKILLS: Record<string, [tree: number, points: number][]> = {
   "head:1": [
@@ -973,6 +976,7 @@ export const FIXTURE_ARMOR_SKILLS: Record<string, [tree: number, points: number]
   "head:8": [
     [TREE.defense, 3],
     [TREE.hunger, -1],
+    [TREE.protection, 0],
   ],
   "head:10": [[TREE.attack, 5]],
   "chest:1": [
@@ -1001,6 +1005,7 @@ export const FIXTURE_ARMOR_SKILLS: Record<string, [tree: number, points: number]
   "leg:1": [
     [TREE.attack, 3],
     [TREE.defense, -2],
+    [TREE.defense, -1],
   ],
   "leg:2": [
     [TREE.health, 3],

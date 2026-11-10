@@ -64,7 +64,7 @@ function wearers(bits: number): string {
 }
 
 /** True if a piece has at least one sex bit and one hunter type bit. */
-function wearable(bits: number): boolean {
+export function wearable(bits: number): boolean {
   const { male, female, blademaster, gunner } = HUNTER_TYPE_BITS;
   return (bits & (male | female)) !== 0 && (bits & (blademaster | gunner)) !== 0;
 }

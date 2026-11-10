@@ -244,28 +244,35 @@ A piece's `ArmorValue` has five entries of a skill tree (u8) and points
 (s8); tree 0 is empty. The game reads all five (108 EU pieces have an empty
 entry between filled ones), so entries keep their positions and empty ones
 stay empty. Every piece keeps how many skills it has and which are
-negative, and no piece ends up with a tree twice.
+negative, and no piece gets a tree it already lists.
 
 - **shuffle** (`armorSkills.mode shuffle`): filled entries, tree and points
   together, trade places between pieces of the same rarity and hunter
   type (Blademaster only, Gunner only, or both), positive with positive
   and negative with negative. Each rarity keeps the same skill points, so
-  Gunner skills stay on Gunner pieces as they were.
+  Gunner skills stay on Gunner pieces as they were. If every attempt puts
+  a tree twice on some piece, the groups with a repeat keep their skills
+  where they were (the spoiler says how many).
 - **randomize**: each filled entry gets a new tree, never one the piece
   already has, and new points of the same sign. The trees are the ones
-  the disc's armor and decorations use. A tree only on Blademaster-only
-  pieces (Sharpness, Guard) goes only to Blademaster-only pieces, likewise
-  for Gunner trees (Reload, Recoil); pieces both can wear get only trees
-  that suit anyone. The size of the points is drawn from the sizes of that
-  sign at that rarity on the disc.
+  the disc's armor and decorations use, for the pieces the disc puts them
+  on: a tree on both Blademaster-only and Gunner-only pieces (or only on
+  decorations) suits anyone; one on Blademaster-only pieces but no
+  Gunner-only ones (Sharpness, Guard) goes only to Blademaster-only
+  pieces, and likewise for Gunner trees (Reload, Recoil); one only on
+  pieces both can wear (Auto-Guard) goes only to those. Pieces both can
+  wear get trees that suit anyone and those. The size of the points is
+  drawn from the sizes of that sign at that rarity on the disc.
 
-Torso Up entries (tree 1) never move and are never drawn. With
+Torso Up entries (tree 1) and entries with 0 points never move, and Torso
+Up is never drawn. With
 `armorSkills.keepArmorOnly` (on by default), neither are trees no
 decoration adds points to: armor is their only source, usually a set's
 pieces together (seven trees on the EU disc, Edgemaster and Fury among
 them). Shuffled, six of the seven fell below +10 from armor alone. The
 spoiler lists, for each of these trees, the most points armor alone gives
-(the best piece per slot). Skill activation thresholds aren't read:
+one hunter: a piece per slot that one hunter type and sex can wear, with
+Torso Up pieces adding the chest's points again. Skill activation thresholds aren't read:
 mhfu-extract has no table for them, none was found in the EBOOT, and
 neither mode needs them. Skills are a piece's own, so with `armor` they go
 with the piece to its new place.
