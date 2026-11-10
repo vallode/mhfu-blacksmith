@@ -350,7 +350,13 @@
    this would scroll away with the content: Card scrolls an inner body. */
 @utility frame-cover {
   &::after {
-    border-image: var(--frame-cover) var(--frame-cover-slice) / var(--frame-width) round;
+    /* Longhands, like the frame's own: Safari doesn't reliably draw a
+       border-image shorthand built from var()s. */
+    border-image-outset: 0;
+    border-image-repeat: round;
+    border-image-slice: var(--frame-cover-slice);
+    border-image-source: var(--frame-cover);
+    border-image-width: var(--frame-width);
     border-style: solid;
     content: "";
     image-rendering: -webkit-optimize-contrast;
@@ -359,6 +365,10 @@
     inset: 0;
     pointer-events: none;
     position: absolute;
+    /* Its own compositing layer, ordered by z-index: Safari on macOS gives a
+       scrolling body a layer of its own, which can otherwise draw over an
+       overlay painted into the card's layer. */
+    will-change: transform;
     z-index: 1;
   }
 }
