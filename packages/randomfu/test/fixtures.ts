@@ -181,6 +181,13 @@ export interface FixtureQuest {
   monsters: number[];
   rewards: FixtureReward[][];
   gathering?: FixtureGathering;
+  /** Supply box entries, `[item, amount]`. */
+  supplies?: [item: number, amount: number][];
+  terms?: { fee: number; reward: number; penalty: number; minutes: number };
+  /** Makes it a delivery quest for this item. */
+  delivery?: { itemId: number; amount: number };
+  /** Quest text: English (three slots) and one other language (the other four). */
+  text?: { title: string; goal: string; otherGoal: string };
 }
 
 /**
@@ -192,6 +199,9 @@ export interface FixtureGathering {
   tables: ([value: number, item: number][] | number)[];
   areas: Record<number, number[]>;
 }
+
+/** Every fixture node can be gathered this many times at least (header +22), twice that at most. */
+export const FIXTURE_GATHERS = 3;
 
 /** Snowy Mountains (Day): 10 areas. */
 const GATHERING_MAP = 11;
@@ -206,6 +216,39 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
     at += buf.length;
     return offset;
   };
+  /** A NUL-terminated string on a 4-byte boundary, zero-padded to the next one. */
+  const placeString = (text: string): number => {
+    if (at % 4) place(Buffer.alloc(4 - (at % 4)));
+    const bytes = Buffer.from(text, "utf8");
+    return place(Buffer.concat([bytes, Buffer.alloc(4 - (bytes.length % 4))]));
+  };
+
+  let stringTablePtr = 0;
+  if (q.text) {
+    const block = (goal: string) => {
+      const ptrs = [q.text!.title, goal, "Fail", "Details", "Monsters", "Client"].map(placeString);
+      const buf = Buffer.alloc(24);
+      ptrs.forEach((ptr, i) => buf.writeUInt32LE(ptr, i * 4));
+      return place(buf);
+    };
+    const english = block(q.text.goal);
+    const other = block(q.text.otherGoal);
+    const langs = Buffer.alloc(28);
+    [english, english, other, other, other, other, english].forEach((ptr, i) =>
+      langs.writeUInt32LE(ptr, i * 4),
+    );
+    stringTablePtr = place(langs);
+  }
+  let suppliesPtr = 0;
+  if (q.supplies) {
+    const list = Buffer.alloc(q.supplies.length * 4 + 4);
+    q.supplies.forEach(([item, amount], i) => {
+      list.writeUInt16LE(item, i * 4);
+      list.writeUInt16LE(amount, i * 4 + 2);
+    });
+    list.writeUInt16LE(q.questId, q.supplies.length * 4 + 2);
+    suppliesPtr = place(list);
+  }
 
   const itemPtrs = q.rewards.map((items) => {
     const list = Buffer.alloc(items.length * 6 + 6);
@@ -262,7 +305,9 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
       used.forEach((table, i) => {
         nodes.writeFloatLE(100 + i, i * 24);
         nodes.writeUInt16LE(table, i * 24 + 16);
+        nodes.writeUInt16LE(FIXTURE_GATHERS * 2, i * 24 + 18);
         nodes.writeUInt16LE(3, i * 24 + 20); // mining
+        nodes.writeUInt16LE(FIXTURE_GATHERS, i * 24 + 22);
       });
       nodes.writeUInt32LE(0xbf800000, used.length * 24);
       areas.writeUInt32LE(place(nodes), Number(area) * 4);
@@ -273,11 +318,24 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
 
   const header = Buffer.alloc(0x80);
   QUEST_MAGIC.copy(header, 0);
+  header.writeUInt32LE(suppliesPtr, 8);
   header.writeUInt32LE(rewardsPtr, 12);
   header.writeUInt32LE(largeMonPtr, 20);
   header.writeUInt32LE(gatheringLocPtr, 28);
   header.writeUInt32LE(gatheringItemsPtr, 36);
   header[68] = q.rank;
+  if (q.delivery) {
+    header[76] = 2;
+    header.writeUInt16LE(q.delivery.itemId, 112);
+    header.writeUInt16LE(q.delivery.amount, 114);
+  }
+  if (q.terms) {
+    header.writeUInt32LE(q.terms.fee, 80);
+    header.writeUInt32LE(q.terms.reward, 84);
+    header.writeUInt32LE(q.terms.penalty, 88);
+    header.writeUInt32LE(q.terms.minutes * 1800, 92);
+  }
+  header.writeUInt32LE(stringTablePtr, 96);
   header.writeUInt16LE(q.questId, 100);
   header[102] = q.stars;
   header[104] = GATHERING_MAP;
@@ -679,6 +737,11 @@ export const LOBBY_TASK_INDEX = 50;
  * quest with only gathering points); Low Rank 2★: quest 10101 (monster 2);
  * High Rank 6★: quest 2001 (monster 1). Items 1xx are Low Rank, 2xx High
  * Rank. Every Village and Guild quest has gathering points.
+ *
+ * Supply boxes hold items 14x (and a Map, 863, and Paw Pass Ticket, 927,
+ * which are quest-only items). 10102 is a delivery quest for item 126,
+ * which its gathering points give; 10101 is a Paw Pass Ticket delivery,
+ * with the ticket in its supply box.
  */
 export const FIXTURE_QUESTS: FixtureQuest[] = [
   {
@@ -702,6 +765,14 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       ],
       areas: { 0: [0, 0], 3: [2, 3] },
     },
+    supplies: [
+      [863, 1],
+      [863, 1],
+      [140, 3],
+      [140, 3],
+      [141, 2],
+    ],
+    terms: { fee: 100, reward: 1200, penalty: 400, minutes: 50 },
     monsters: [1],
     rewards: [
       [
@@ -724,6 +795,12 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       ],
       areas: { 0: [0] },
     },
+    supplies: [
+      [927, 1],
+      [142, 4],
+    ],
+    terms: { fee: 200, reward: 2400, penalty: 800, minutes: 50 },
+    delivery: { itemId: 927, amount: 1 },
     monsters: [2],
     rewards: [[{ chance: 100, itemId: 113, amount: 3 }]],
   },
@@ -741,6 +818,8 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       ],
       areas: { 0: [0], 2: [1] },
     },
+    supplies: [[240, 5]],
+    terms: { fee: 0, reward: 6000, penalty: 2000, minutes: 35 },
     monsters: [1],
     rewards: [
       [
@@ -755,6 +834,8 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     rank: 0,
     stars: 1,
     gathering: { tables: [[[10, 998]]], areas: { 0: [0] } },
+    supplies: [[997, 1]],
+    terms: { fee: 10, reward: 100, penalty: 30, minutes: 20 },
     monsters: [1],
     rewards: [[{ chance: 100, itemId: 999, amount: 1 }]],
   },
@@ -770,7 +851,18 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
           [50, 126],
         ],
       ],
-      areas: { 1: [0] },
+      areas: { 1: [0, 0, 0, 0] },
+    },
+    supplies: [
+      [143, 2],
+      [144, 1],
+    ],
+    terms: { fee: 50, reward: 300, penalty: 100, minutes: 20 },
+    delivery: { itemId: 126, amount: 4 },
+    text: {
+      title: "Fixture Delivery",
+      goal: "Deliver 4 of the fixture's own things",
+      otherGoal: "Kurz",
     },
     monsters: [1],
     rewards: [],

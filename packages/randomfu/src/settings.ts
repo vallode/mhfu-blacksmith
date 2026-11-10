@@ -18,6 +18,14 @@ export interface Settings {
   "gathering.enabled": boolean;
   "gathering.pool": "gathered" | "rank" | "any";
   "gathering.keepItems": boolean;
+  "supplies.enabled": boolean;
+  "supplies.pool": "supplies" | "rank" | "add";
+  "supplies.keepEssentials": boolean;
+  "terms.money": boolean;
+  "terms.moneySpread": number;
+  "terms.time": boolean;
+  "terms.timeSpread": number;
+  "deliveries.enabled": boolean;
   "recipes.materials": boolean;
   "recipes.amounts": boolean;
   "recipes.amountSpread": number;
@@ -161,6 +169,93 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: true,
     enabledBy: "gathering.enabled",
+  },
+  {
+    key: "supplies.enabled",
+    section: "Supplies",
+    label: "Randomize supply boxes",
+    help: "What each Village and Guild quest's supply box holds. Stacks laid out once per hunter change together, and a delivery quest's box never gets the item it asks for.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "supplies.pool",
+    section: "Supplies",
+    label: "What supply boxes hold",
+    help: "Where supply box items come from.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "supplies",
+          label: "Supply box items",
+          help: "Items and amounts move between the supply boxes of quests at the same point in the game (see Logic).",
+        },
+        {
+          value: "rank",
+          label: "Any item from the same rank",
+          help: "Any item first found at the quest's rank, or found in any supply box, in its usual amount.",
+        },
+        {
+          value: "add",
+          label: "Add random items (chaos)",
+          help: "Each box keeps what it has and gets up to 4 more stacks of any item in the game, in its usual amount. A Low Rank box can hold G Rank parts.",
+        },
+      ],
+    },
+    default: "supplies",
+    enabledBy: "supplies.enabled",
+  },
+  {
+    key: "supplies.keepEssentials",
+    section: "Supplies",
+    label: "Keep maps and quest items",
+    help: "Maps, ballista and cannon ammo and the other quest-only supplies stay where they are. A quest's Paw Pass Ticket always stays. (Adding random items keeps everything anyway.)",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "supplies.enabled",
+  },
+  {
+    key: "terms.money",
+    section: "Quest terms",
+    label: "Randomize fees and rewards",
+    help: "Each Village and Guild quest's reward and failure penalty change together; its contract fee changes on its own and never costs more than the reward.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "terms.moneySpread",
+    section: "Quest terms",
+    label: "Money variation",
+    help: "How far a fee, reward or penalty can move, up or down, in steps of 10z.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "terms.money",
+  },
+  {
+    key: "terms.time",
+    section: "Quest terms",
+    label: "Randomize time limits",
+    help: "Each Village and Guild quest's time limit changes, in whole minutes, staying between the shortest and longest limits in the game (20 and 50 minutes).",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "terms.timeSpread",
+    section: "Quest terms",
+    label: "Time limit variation",
+    help: "How far a time limit can move, up or down. Limits never go past 50 minutes, so long quests mostly get shorter.",
+    type: SPREAD,
+    default: 0.3,
+    enabledBy: "terms.time",
+  },
+  {
+    key: "deliveries.enabled",
+    section: "Deliveries",
+    label: "Randomize delivery quests",
+    help: "Each Village and Guild delivery quest asks for a different item that its own gathering points give, in an amount they can supply. The goal line changes to match (in English); the description doesn't. Paw Pass Ticket quests stay as they are.",
+    type: { kind: "boolean" },
+    default: false,
   },
   {
     key: "recipes.materials",
@@ -607,6 +702,10 @@ export const PRESETS: readonly Preset[] = [
       "shops.stacks": true,
       "gathering.enabled": true,
       "gathering.pool": "rank",
+      "supplies.enabled": true,
+      "terms.money": true,
+      "terms.time": true,
+      "deliveries.enabled": true,
     },
   },
   {
@@ -637,6 +736,13 @@ export const PRESETS: readonly Preset[] = [
       "gathering.enabled": true,
       "gathering.pool": "any",
       "gathering.keepItems": false,
+      "supplies.enabled": true,
+      "supplies.pool": "add",
+      "terms.money": true,
+      "terms.moneySpread": 0.9,
+      "terms.time": true,
+      "terms.timeSpread": 0.6,
+      "deliveries.enabled": true,
     },
   },
 ];

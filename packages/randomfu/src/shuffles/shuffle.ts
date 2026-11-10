@@ -36,6 +36,18 @@ export function permuteWithinGroups<S, V>(
   return out;
 }
 
+/**
+ * The median of a non-empty list. With an even count, "mean" averages the
+ * two middle values; "lower" takes the smaller one, so the result is always
+ * a value from the list.
+ */
+export function median(values: readonly number[], even: "mean" | "lower" = "mean"): number {
+  const sorted = [...values].sort((a, b) => a - b);
+  const mid = sorted.length >> 1;
+  if (sorted.length % 2) return sorted[mid]!;
+  return even === "lower" ? sorted[mid - 1]! : (sorted[mid - 1]! + sorted[mid]!) / 2;
+}
+
 /** One changed slot, for the spoiler log. */
 export interface SpoilerLine {
   /** Heading the line is listed under, e.g. a quest or a monster. */

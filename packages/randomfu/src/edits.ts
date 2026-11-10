@@ -23,6 +23,26 @@ export class Edits {
     return edit.payload;
   }
 
+  /**
+   * Appends `data` to a quest's payload, on a 4-byte boundary, and returns
+   * its offset. Earlier edits are kept; later `quest()` calls return the
+   * longer payload.
+   */
+  appendToQuest(quest: LoadedQuest, data: Buffer): number {
+    const current = this.quest(quest);
+    const offset = (current.length + 3) & ~3;
+    const next = Buffer.alloc(offset + data.length);
+    current.copy(next);
+    data.copy(next, offset);
+    this.quests.get(quest.index)!.payload = next;
+    return offset;
+  }
+
+  /** A quest's payload as the shuffles so far left it, without marking it edited. Don't write to it. */
+  questNow(quest: LoadedQuest): Buffer {
+    return this.quests.get(quest.index)?.payload ?? quest.file.payload;
+  }
+
   overlay(overlay: LoadedOverlay): Buffer {
     let buf = this.files.get(overlay.index);
     if (!buf) {
