@@ -13,10 +13,12 @@ import {
   questHubLabel,
   questsOnHub,
   questStarLevel,
+  questTypeLabel,
   type QuestHubSlug,
   type QuestMonster,
 } from "@/lib/quests";
 import Loading from "@/components/Loading";
+import MapIcon from "@/components/MapIcon";
 import { cn } from "@/lib/cn";
 import StarMarks from "@/components/StarMarks";
 
@@ -147,11 +149,22 @@ export default function QuestDetailClient({ hub, id }: Props) {
 
   return (
     <DetailCard>
-      {/* Title, board and description, like the quest scroll: the title
-          centred in white, the details in white with the game's roomy lines.
-          CLEAR!! (a quest the loaded hunter has cleared) and URGENT!!! sit in
-          the top corners, level with the title's first line, which keeps
-          clear of them; on a phone they take their own line. */}
+      {/* The map's icon, faded behind the card's bottom-right corner, as on
+          the game's quest card; brightened, as the art is dark on this card.
+          Behind the text (-z-1 inside the card's own stacking context) and
+          out of the way of clicks. */}
+      {quest.map && (
+        <MapIcon
+          map={quest.map}
+          className="pointer-events-none absolute right-[3.2rem] bottom-[3.2rem] -z-1 size-[22rem] opacity-30 brightness-200 mobile:size-[14rem]"
+        />
+      )}
+
+      {/* Type, title, board and description, like the quest scroll: the
+          type and title centred in white, the details in white with the
+          game's roomy lines. CLEAR!! (a quest the loaded hunter has cleared)
+          and URGENT!!! sit in the top corners, level with the type, which
+          keeps clear of them; on a phone they take their own line. */}
       <div className="relative flex flex-col gap-2 text-main text-white">
         {(cleared || quest.urgent) && (
           <div className="pointer-events-none absolute inset-x-0 top-0 flex text-small leading-[2.75rem] mobile:static mobile:leading-[1.25]">
@@ -165,8 +178,9 @@ export default function QuestDetailClient({ hub, id }: Props) {
             (cleared || quest.urgent) && "px-[9.6rem] mobile:px-0",
           )}
         >
-          {quest.title}
+          {questTypeLabel(quest.type)}
         </p>
+        <p className="text-center leading-[1.25] whitespace-normal">{quest.title}</p>
         <p className="text-center text-small leading-[1.25] whitespace-normal text-stat">
           {questHubLabel(hub)} · <StarMarks {...questStarLevel(hub, quest.stars)} />
         </p>
