@@ -10,8 +10,6 @@ import { cn } from "@/lib/cn";
 
 interface NavItem {
   label: string;
-  /** Shorter label for the phone tab bar. */
-  short?: string;
   /** Icon sprite, from /images/<icon>.png. */
   icon: string;
   /** Pages under this path light the entry up. */
@@ -34,8 +32,8 @@ const NAV_GROUPS: NavItem[][] = [
     { label: "Items", icon: "fluid", match: "/items/", href: "/items/" },
   ],
   [
-    { label: "Set Builder", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
-    { label: "Hunter Profile", short: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
+    { label: "Sets", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
+    { label: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
     { label: "Options", icon: "part", match: "/options/", href: "/options/" },
   ],
 ];
@@ -193,7 +191,7 @@ function TabBar({
               className={cn(tab, active && tabActive)}
             >
               <Icon type={item.icon} nav active={active} className={rowIcon} />
-              <span className={label}>{item.short ?? item.label}</span>
+              <span className={label}>{item.label}</span>
             </Link>
           );
         })}
