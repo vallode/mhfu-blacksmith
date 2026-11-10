@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Loading from "@/components/Loading";
+import { capsuleBone } from "@/lib/capsule-bone";
 import { cn } from "@/lib/cn";
 import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
@@ -39,6 +40,24 @@ function resolveColor(element: Element, color: string): string {
   return match ? getComputedStyle(element).getPropertyValue(match[1]!).trim() : color;
 }
 
+/** Where a capsule rides once the model animates: under `parent`, after `inverse` (its bind-pose world matrix, inverted). */
+interface CapsuleMount {
+  parent: import("three").Object3D;
+  inverse: import("three").Matrix4;
+}
+
+/** What the capsule effect needs of a shown model. */
+interface SceneHandle {
+  THREE: Three;
+  scene: import("three").Scene;
+  /** The bone a capsule (in the bind pose) rides on; null for an unskinned model. */
+  mount: (
+    start: ModelCapsule["start"],
+    end: ModelCapsule["end"],
+    radius: number,
+  ) => CapsuleMount | null;
+}
+
 /** Angle of each blade of a pair from the centre line. */
 const PAIR_OFFSET = (32 * Math.PI) / 180;
 
@@ -46,6 +65,11 @@ type Status = "loading" | "ready" | "error";
 
 /** How long a model waits for its motions before showing still (see the effect). */
 const MOTIONS_WAIT_MS = 1500;
+
+/** Poses of the first motion sampled for the ground's height. */
+const GROUND_SAMPLES = 8;
+/** The ground shadow's width, against the model's widest side. */
+const GROUND_SCALE = 1.4;
 
 /** The model's motions, once loaded (monsters only; see src/lib/motions.ts). */
 interface MotionState {
@@ -58,8 +82,6 @@ interface MotionState {
 interface MotionPlayer {
   select: (index: number) => void;
   setPlaying: (playing: boolean) => void;
-  /** Hold the bind pose (while hitboxes show: they're placed on it). */
-  hold: (hold: boolean) => void;
 }
 
 const panelButton = cn(modelPanelButton, "text-parchment");
@@ -72,11 +94,9 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("loading");
   /** Set while a model is shown, for the capsule effect below. */
-  const sceneRef = useRef<{ THREE: Three; scene: import("three").Scene } | null>(null);
+  const sceneRef = useRef<SceneHandle | null>(null);
   const [motion, setMotion] = useState<MotionState | null>(null);
   const playerRef = useRef<MotionPlayer | null>(null);
-  /** Whether the model must hold its bind pose (hitboxes show); read when motions load. */
-  const holdRef = useRef(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -148,6 +168,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       };
 
       let model: import("three").Object3D | null = null;
+      let ground: import("three").Mesh | null = null;
       const abort = new AbortController();
       cleanup = () => {
         abort.abort();
@@ -166,6 +187,12 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
             material.dispose();
           }
         });
+        if (ground) {
+          ground.geometry.dispose();
+          const material = ground.material as import("three").MeshBasicMaterial;
+          material.map?.dispose();
+          material.dispose();
+        }
         renderer.dispose();
         renderer.domElement.remove();
       };
@@ -174,6 +201,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(src);
         if (disposed) return;
         model = gltf.scene;
+        const copies = [model];
         if (pair) {
           // Weapon models hold the grip at the origin with the blade along +Z,
           // flat in the XZ plane: turn each copy PAIR_OFFSET about Y, and
@@ -182,6 +210,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           model.rotation.y = PAIR_OFFSET;
           second.rotation.y = -PAIR_OFFSET;
           second.scale.x = -1;
+          copies.push(second);
           scene.add(model, second);
         } else {
           scene.add(model);
@@ -193,6 +222,56 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           if ((object as import("three").SkinnedMesh).isSkinnedMesh) object.frustumCulled = false;
         });
 
+        // Capsules are placed on the bind pose: each rides the bone that
+        // carries most of the mesh it covers (see capsuleBone), so they
+        // follow the model as it moves. Read now, while it holds that pose.
+        const mount = (() => {
+          if (pair) return () => null;
+          scene.updateMatrixWorld(true);
+          const bones: import("three").Object3D[] = [];
+          const boneIndex = new Map<import("three").Object3D, number>();
+          const skin = {
+            positions: [] as number[],
+            bones: [] as number[],
+            weights: [] as number[],
+          };
+          const vertex = new THREE.Vector3();
+          model.traverse((object) => {
+            const mesh = object as import("three").SkinnedMesh;
+            if (!mesh.isSkinnedMesh) return;
+            const { position, skinIndex, skinWeight } = mesh.geometry.attributes;
+            if (!position || !skinIndex || !skinWeight) return;
+            for (let i = 0; i < position.count; i++) {
+              mesh.getVertexPosition(i, vertex).applyMatrix4(mesh.matrixWorld);
+              skin.positions.push(vertex.x, vertex.y, vertex.z);
+              for (let k = 0; k < 4; k++) {
+                const bone = mesh.skeleton.bones[skinIndex.getComponent(i, k)];
+                let index = bone ? boneIndex.get(bone) : 0;
+                if (bone && index === undefined) {
+                  index = bones.push(bone) - 1;
+                  boneIndex.set(bone, index);
+                }
+                skin.bones.push(index ?? 0);
+                skin.weights.push(bone ? skinWeight.getComponent(i, k) : 0);
+              }
+            }
+          });
+          const inverses = bones.map((bone) => bone.matrixWorld.clone().invert());
+          // The capsule effect re-runs on every highlight; the bones don't change.
+          const found = new Map<string, CapsuleMount | null>();
+          return (start: ModelCapsule["start"], end: ModelCapsule["end"], radius: number) => {
+            const key = `${start}|${end}|${radius}`;
+            if (!found.has(key)) {
+              const index = capsuleBone(skin, start, end, radius);
+              found.set(
+                key,
+                index === null ? null : { parent: bones[index]!, inverse: inverses[index]! },
+              );
+            }
+            return found.get(key)!;
+          };
+        })();
+
         // Frame the model for a turntable, viewed from slightly above (see fit).
         // Measured as posed (precise), so it's redone once a motion poses it.
         const box = new THREE.Box3();
@@ -203,11 +282,21 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         // from all around the turntable, at the current viewing elevation.
         // Exact for any shape and aspect ratio, unlike a bounding sphere.
         let corners: import("three").Vector3[] = [];
-        const measure = () => {
+        /** Bounds of the model as posed, leaving out the capsules on its bones. */
+        const bounds = (target: import("three").Box3) => {
           // A skinned mesh comes before its bones in the scene, so their
           // world matrices must be current before the box reads them.
           scene.updateMatrixWorld(true);
-          box.setFromObject(scene, true);
+          target.makeEmpty();
+          for (const object of copies)
+            object.traverse((child) => {
+              if ((child as import("three").Mesh).isMesh && !child.userData.overlay)
+                target.expandByObject(child, true);
+            });
+          return target;
+        };
+        const measure = () => {
+          bounds(box);
           box.getCenter(center);
           radius = box.getSize(new THREE.Vector3()).length() / 2;
           corners = [0, 1, 2, 3, 4, 5, 6, 7].map(
@@ -283,7 +372,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         const show = () => {
           if (shown) return;
           shown = true;
-          sceneRef.current = { THREE, scene };
+          sceneRef.current = { THREE, scene, mount };
           setStatus("ready");
           animate();
         };
@@ -345,7 +434,22 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           // "finished" handler below restarts it where the game would.
           const actions = clips.map((clip) => mixer!.clipAction(clip).setLoop(THREE.LoopOnce, 1));
           for (const action of actions) action.clampWhenFinished = true;
-          const state = { index: 0, playing: true, hold: holdRef.current };
+
+          // The ground: the lowest the first motion (standing, for most
+          // monsters) reaches. Its height differs between models (Rathian
+          // stands ~290 units below her origin, most monsters near it).
+          const first = actions[0]!;
+          first.play();
+          let floor = Infinity;
+          const sample = new THREE.Box3();
+          for (let i = 0; i < GROUND_SAMPLES; i++) {
+            first.time = (i / GROUND_SAMPLES) * clips[0]!.duration;
+            mixer.update(0);
+            floor = Math.min(floor, bounds(sample).min.y);
+          }
+          first.stop();
+
+          const state = { index: 0, playing: true };
           // A looping motion goes on from its loop start, as in the game, so
           // its lead-in plays once; any other replays from the start.
           mixer.addEventListener("finished", ({ action }) => {
@@ -356,9 +460,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           });
           const apply = () => {
             const action = actions[state.index]!;
-            if (state.hold)
-              action.stop(); // back to the bind pose
-            else if (!action.isRunning() && !action.paused) action.play();
+            if (!action.isRunning() && !action.paused) action.play();
             action.paused = !state.playing;
             setMotion({ count: actions.length, index: state.index, playing: state.playing });
           };
@@ -372,22 +474,48 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
               state.playing = playing;
               apply();
             },
-            hold: (hold) => {
-              state.hold = hold;
-              apply();
-              reframe();
-            },
-          };
-          // Frame the pose the model takes (the first motion's, or the bind
-          // pose under hitboxes), unless the visitor has moved the camera.
-          const reframe = () => {
-            if (interacted) return;
-            mixer!.update(0);
-            measure();
-            fit?.();
           };
           apply();
-          reframe();
+          mixer.update(0);
+          measure();
+          // Frame the first motion's pose, unless the visitor has moved the camera.
+          if (!interacted) fit?.();
+
+          // A patch of ground under the model, lit at the rim and shaded in
+          // the middle, so a motion that rises or sinks reads as one; the
+          // camera stays put meanwhile.
+          const canvas = document.createElement("canvas");
+          canvas.width = canvas.height = 256;
+          const context = canvas.getContext("2d");
+          if (context && Number.isFinite(floor)) {
+            const paint = (stops: [number, string][]) => {
+              const gradient = context.createRadialGradient(128, 128, 0, 128, 128, 128);
+              for (const [at, color] of stops) gradient.addColorStop(at, color);
+              context.fillStyle = gradient;
+              context.fillRect(0, 0, 256, 256);
+            };
+            paint([
+              [0, "rgba(255, 255, 255, 0.14)"],
+              [0.7, "rgba(255, 255, 255, 0.08)"],
+              [1, "rgba(255, 255, 255, 0)"],
+            ]);
+            paint([
+              [0, "rgba(0, 0, 0, 0.6)"],
+              [0.35, "rgba(0, 0, 0, 0.35)"],
+              [0.55, "rgba(0, 0, 0, 0)"],
+            ]);
+            const map = new THREE.CanvasTexture(canvas);
+            map.colorSpace = THREE.SRGBColorSpace;
+            ground = new THREE.Mesh(
+              new THREE.PlaneGeometry(1, 1),
+              new THREE.MeshBasicMaterial({ map, transparent: true, depthWrite: false }),
+            );
+            const size = box.getSize(new THREE.Vector3());
+            ground.scale.setScalar(Math.max(size.x, size.z) * GROUND_SCALE);
+            ground.rotation.x = -Math.PI / 2;
+            ground.position.set(center.x, floor, center.z);
+            scene.add(ground);
+          }
         }
         show();
       } catch {
@@ -403,22 +531,14 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
     };
   }, [src, pair]);
 
-  // Hitboxes are placed on the bind pose, so the model holds it while they show.
-  const holding = !!capsules?.some((capsule) => capsule.opacity > 0);
-  const hasMotion = motion !== null;
-  useEffect(() => {
-    holdRef.current = holding;
-    if (hasMotion) playerRef.current?.hold(holding);
-  }, [holding, hasMotion]);
-
   // Capsules live in their own group, rebuilt when they change; there are
   // few (Rathian has 32), so rebuilding is cheaper than diffing.
   useEffect(() => {
     const target = sceneRef.current;
     const container = containerRef.current;
     if (status !== "ready" || !target || !container || !capsules?.length) return;
-    const { THREE, scene } = target;
-    const group = new THREE.Group();
+    const { THREE, scene, mount } = target;
+    const meshes: import("three").Mesh[] = [];
     const up = new THREE.Vector3(0, 1, 0);
     for (const capsule of capsules) {
       if (capsule.opacity <= 0) continue;
@@ -440,17 +560,25 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       mesh.position.copy(start).lerp(end, 0.5);
       if (length > 0) mesh.quaternion.setFromUnitVectors(up, end.clone().sub(start).normalize());
       mesh.renderOrder = 1;
-      group.add(mesh);
+      mesh.userData.overlay = true;
+      // On its bone, at the same place while the bone holds its bind pose.
+      const mounted = mount(capsule.start, capsule.end, capsule.radius);
+      if (mounted) {
+        mesh.updateMatrix();
+        mesh.matrix.premultiply(mounted.inverse);
+        mesh.matrixAutoUpdate = false;
+        mounted.parent.add(mesh);
+      } else {
+        scene.add(mesh);
+      }
+      meshes.push(mesh);
     }
-    scene.add(group);
     return () => {
-      scene.remove(group);
-      group.traverse((object) => {
-        const mesh = object as import("three").Mesh;
-        if (!mesh.isMesh) return;
+      for (const mesh of meshes) {
+        mesh.removeFromParent();
         mesh.geometry.dispose();
         (mesh.material as import("three").Material).dispose();
-      });
+      }
     };
   }, [capsules, status]);
 
@@ -465,7 +593,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       {status === "loading" && (
         <Loading className="absolute inset-0 justify-center opacity-70">Loading model…</Loading>
       )}
-      {motion && !holding && (
+      {motion && (
         <div
           role="group"
           aria-label="Motions"
@@ -483,7 +611,14 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
             ‹
           </button>
           <span className="tabular-nums" aria-live="polite">
-            Motion {motion.index + 1}/{motion.count}
+            Motion {/* As wide as the largest number, so the panel keeps its size. */}
+            <span
+              className="inline-block text-right"
+              style={{ width: `calc(var(--cell) * ${String(motion.count).length})` }}
+            >
+              {motion.index + 1}
+            </span>
+            /{motion.count}
           </span>
           <button
             type="button"
