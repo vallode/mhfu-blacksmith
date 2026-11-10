@@ -1,7 +1,8 @@
 /**
  * A tiny synthetic disc for tests: an ISO 9660 image with PARAM.SFO, a plain
  * ELF-magic EBOOT.BIN with a few recipes, and an encrypted DATA.BIN holding
- * three quests, `game_task.ovl` and a `game_sub.ovl` with reward tables.
+ * five quests, a `game_task.ovl` with monster chunks and hitzones, and a
+ * `game_sub.ovl` with reward tables.
  * No game data: every value is made up.
  */
 import { mkdtempSync } from "node:fs";
@@ -17,6 +18,15 @@ import {
   CARVE_INDEX_SIZE,
   CARVE_POINTER_COUNT,
 } from "mhfu-extract/src/monsters/rewards.js";
+import {
+  BASE_HP_OFFSET,
+  GAME_TASK_JP,
+  HITZONE_POINTER_OFFSET,
+  HITZONE_ROW_SIZE,
+  MONSTER_CHUNK_COUNT,
+  MONSTER_CHUNK_SIZE,
+  TOLERANCE_OFFSET,
+} from "mhfu-extract/src/monsters/hitzones.js";
 import { encryptQuestBlock, questHash, QUEST_MAGIC } from "mhfu-extract/src/quests/mib.js";
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { equipmentCreateLayout, equipmentUpgradeLayout } from "mhfu-extract/src/tables/recipes.js";
@@ -179,8 +189,20 @@ export interface FixtureQuest {
   rank: number;
   stars: number;
   monsters: number[];
+  /** Each large monster's difficulty level (`power`); 0 if not given. */
+  powers?: number[];
+  /** Small monsters: `[emID, quantity]`, in one table. */
+  small?: [number, number][];
+  /** `MonSizeModifier`, the quest's monster size in percent; 100 if not given. */
+  sizePercent?: number;
   rewards: FixtureReward[][];
   gathering?: FixtureGathering;
+  /**
+   * Quest text by `LangPTRs` slot (for renaming tests): six strings (title, goal, fail, details,
+   * monsters, client) for a block of its own, the number of an earlier slot
+   * to share its block, or null for none. Strings are packed back to back.
+   */
+  slots?: (FixtureText | number | null)[];
   /** Supply box entries, `[item, amount]`. */
   supplies?: [item: number, amount: number][];
   terms?: { fee: number; reward: number; penalty: number; minutes: number };
@@ -189,6 +211,8 @@ export interface FixtureQuest {
   /** Quest text: English (three slots) and one other language (the other four). */
   text?: { title: string; goal: string; otherGoal: string };
 }
+
+export type FixtureText = [string, string, string, string, string, string];
 
 /**
  * Gathering points: item tables as `[value, item]` pairs (or the index of
@@ -272,13 +296,37 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   q.monsters.forEach((id, i) => {
     data.writeUInt16LE(id, i * 60);
     data[i * 60 + 4] = 1;
+    data[i * 60 + 5] = q.powers?.[i] ?? 0;
   });
   data.writeInt16LE(-1, q.monsters.length * 60);
   const dataPtr = place(data);
+  const preload = [...new Set(q.monsters)];
+  const loads = Buffer.alloc(preload.length * 4 + 4);
+  preload.forEach((id, i) => loads.writeUInt16LE(id, i * 4));
+  loads.writeInt16LE(-1, preload.length * 4);
+  const loadsPtr = place(loads);
   const table = Buffer.alloc(32);
   table.writeUInt32LE(1, 0);
+  table.writeUInt32LE(loadsPtr, 8);
   table.writeUInt32LE(dataPtr, 12);
   const largeMonPtr = place(table);
+  let smallMonPtr = 0;
+  if (q.small) {
+    const smallData = Buffer.alloc(q.small.length * 60 + 2);
+    q.small.forEach(([id, quantity], i) => {
+      smallData.writeUInt16LE(id, i * 60);
+      smallData[i * 60 + 4] = quantity;
+    });
+    smallData.writeUInt16LE(0xffff, q.small.length * 60);
+    const smallDataPtr = place(smallData);
+    const smallTable = Buffer.alloc(20);
+    smallTable.writeUInt16LE(1, 0); // stage
+    smallTable.writeUInt32LE(smallDataPtr, 12);
+    const smallTablePtr = place(smallTable);
+    const index = Buffer.alloc(8);
+    index.writeUInt32LE(smallTablePtr, 0);
+    smallMonPtr = place(index);
+  }
   let gatheringLocPtr = 0;
   let gatheringItemsPtr = 0;
   if (q.gathering) {
@@ -314,6 +362,24 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
     }
     gatheringLocPtr = place(areas);
   }
+  let stringPtrTbl = 0;
+  if (q.slots) {
+    const own = q.slots.map((t) =>
+      Array.isArray(t) ? t.map((str) => place(Buffer.from(`${str}\0`, "utf8"))) : null,
+    );
+    const blocks = own.map((ptrs) => {
+      if (!ptrs) return 0;
+      const block = Buffer.alloc(24);
+      ptrs.forEach((ptr, i) => block.writeUInt32LE(ptr, i * 4));
+      return place(block);
+    });
+    const table = Buffer.alloc(28);
+    q.slots.forEach((t, i) => {
+      const block = typeof t === "number" ? blocks[t]! : t ? blocks[i]! : 0;
+      table.writeUInt32LE(block, i * 4);
+    });
+    stringPtrTbl = place(table);
+  }
   place(Buffer.from([0x55])); // odd length
 
   const header = Buffer.alloc(0x80);
@@ -321,8 +387,10 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   header.writeUInt32LE(suppliesPtr, 8);
   header.writeUInt32LE(rewardsPtr, 12);
   header.writeUInt32LE(largeMonPtr, 20);
+  header.writeUInt32LE(smallMonPtr, 24);
   header.writeUInt32LE(gatheringLocPtr, 28);
   header.writeUInt32LE(gatheringItemsPtr, 36);
+  header.writeUInt32LE(q.sizePercent ?? 100, 0x38);
   header[68] = q.rank;
   if (q.delivery) {
     header[76] = 2;
@@ -335,10 +403,17 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
     header.writeUInt32LE(q.terms.penalty, 88);
     header.writeUInt32LE(q.terms.minutes * 1800, 92);
   }
-  header.writeUInt32LE(stringTablePtr, 96);
+  header.writeUInt32LE(stringPtrTbl || stringTablePtr, 96);
   header.writeUInt16LE(q.questId, 100);
   header[102] = q.stars;
   header[104] = GATHERING_MAP;
+  // TargetID: the first monster, unless it's a delivery quest's item (written above).
+  if (!q.delivery) header.writeUInt16LE(q.monsters[0] ?? 0, 112);
+  // Objective slots: one names the monster, the other an item with the same number.
+  header.writeUInt32LE(1, 0x28);
+  header.writeUInt16LE(q.monsters[0] ?? 0, 0x2c);
+  header.writeUInt32LE(2, 0x30);
+  header.writeUInt16LE(q.monsters[0] ?? 0, 0x34);
   return Buffer.concat([header, ...parts]);
 }
 
@@ -362,6 +437,72 @@ function ovlHeader(name: string, loadBase: number, dataSize: number): Buffer {
   buf.writeUInt32LE(loadBase, 8);
   buf.writeUInt32LE(loadBase + buf.length, 0x1c);
   buf.write(name, 0x20, "latin1");
+  return buf;
+}
+
+export const TASK_LOAD = 0x09a5a580;
+
+/** Hitzone row values (cut, bash, shot, fire, water, ice, thunder, dragon, KO), all different. */
+export function fixtureHitzone(emId: number, table: number, row: number): number[] {
+  return Array.from({ length: 9 }, (_, c) => ((emId * 7 + table * 31 + row * 11 + c * 5) % 97) + 1);
+}
+
+/**
+ * Monster chunks with hitzone tables: monster -> number of tables. Pink
+ * Rathian (37) shares Rathian's (1); every other chunk points at one filler
+ * table, as non-monsters do on the disc.
+ */
+export const FIXTURE_HITZONE_TABLES: Record<number, number> = { 1: 2, 2: 1, 16: 1 };
+export const FIXTURE_SHARED_HITZONES: Record<number, number> = { 37: 1 };
+export const FILLER_HITZONE = 0;
+
+/** Base HP: 100 + emID, so every chunk counts as a monster. */
+export const fixtureHp = (emId: number) => 100 + emId;
+
+/** Tolerance fields (+0x110) set on every monster: paralysis initial/increase, poison initial/increase. */
+export const FIXTURE_TOLERANCES = { paralysis: [150, 100], poison: [180, 75] } as const;
+
+/** `game_task.ovl` with `MonChunk[90]` at JP's file offset. */
+export function buildGameTask(): Buffer {
+  const chunks = GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase;
+  let at = chunks + MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
+  const tables: { emId: number; at: number; count: number }[] = [];
+  for (const [emId, count] of [[FILLER_HITZONE, 1], ...Object.entries(FIXTURE_HITZONE_TABLES)]) {
+    tables.push({ emId: Number(emId), at, count: Number(count) });
+    // count pointers + terminator, then count tables of 7 rows + a zero u16.
+    at += (Number(count) + 1) * 4 + Number(count) * (7 * HITZONE_ROW_SIZE + 4);
+  }
+  const buf = ovlHeader("game_task.ovl", TASK_LOAD, at - 0x80);
+  const vaddr = (offset: number) => TASK_LOAD + offset;
+  const listOf = new Map<number, number>();
+  for (const { emId, at: list, count } of tables) {
+    listOf.set(emId, list);
+    let rows = list + (count + 1) * 4;
+    for (let t = 0; t < count; t++) {
+      buf.writeUInt32LE(vaddr(rows), list + t * 4);
+      for (let r = 0; r < 7; r++) {
+        const row = rows + r * HITZONE_ROW_SIZE;
+        buf[row] = 100 - r * 10;
+        fixtureHitzone(emId, t, r).forEach((v, c) => (buf[row + 1 + c] = v));
+      }
+      rows += 7 * HITZONE_ROW_SIZE + 4;
+    }
+  }
+  for (let emId = 0; emId < MONSTER_CHUNK_COUNT; emId++) {
+    const chunk = chunks + emId * MONSTER_CHUNK_SIZE;
+    buf.writeFloatLE(1, chunk + 0x40);
+    buf.writeUInt16LE(fixtureHp(emId), chunk + BASE_HP_OFFSET);
+    const owner = FIXTURE_SHARED_HITZONES[emId] ?? emId;
+    buf.writeUInt32LE(
+      vaddr(listOf.get(owner) ?? listOf.get(FILLER_HITZONE)!),
+      chunk + HITZONE_POINTER_OFFSET,
+    );
+    const tol = chunk + TOLERANCE_OFFSET;
+    buf.writeUInt16LE(FIXTURE_TOLERANCES.paralysis[0], tol);
+    buf.writeUInt16LE(FIXTURE_TOLERANCES.paralysis[1], tol + 8);
+    buf.writeUInt16LE(FIXTURE_TOLERANCES.poison[0], tol + 40);
+    buf.writeUInt16LE(FIXTURE_TOLERANCES.poison[1], tol + 52);
+  }
   return buf;
 }
 
@@ -693,6 +834,54 @@ export function buildLobbyTask(): {
   return { buf, listAt, tablesAt };
 }
 
+// ---------------------------------------------------------------- quest board
+
+/** JP DATA.BIN indices of `mission_jpn/level1.mib` and `level2.mib`. */
+export const BOARD_INDICES = [5310, 5311];
+
+/**
+ * A board file (`level*.mib`, see src/game/board.ts): record offsets, then
+ * per quest a 0x34-byte copy of its header's display section (quest ID,
+ * stars, map, TargetID, and the offset of its `LangPTRs`), its strings back
+ * to back, its `StringPTRs` blocks and its `LangPTRs`.
+ */
+export function buildBoardFile(quests: FixtureQuest[]): Buffer {
+  const parts: Buffer[] = [];
+  let at = quests.length * 4;
+  const place = (buf: Buffer): number => {
+    parts.push(buf);
+    at += buf.length;
+    return at - buf.length;
+  };
+  const table = Buffer.alloc(quests.length * 4);
+  for (const [i, q] of quests.entries()) {
+    const header = Buffer.alloc(0x34);
+    const recordAt = place(header);
+    table.writeUInt32LE(recordAt, i * 4);
+    header.writeUInt16LE(q.questId, 0x18);
+    header[0x1a] = q.stars;
+    header[0x1c] = GATHERING_MAP;
+    header.writeUInt16LE(q.monsters[0] ?? 0, 0x24); // TargetID
+    header.writeUInt16LE(1, 0x26);
+    const text = q.slots ?? FIXTURE_TEXT[q.questId] ?? [];
+    const own = text.map((t) =>
+      Array.isArray(t) ? t.map((str) => place(Buffer.from(`${str}\0`, "utf8"))) : null,
+    );
+    const blocks = own.map((ptrs) => {
+      if (!ptrs) return 0;
+      const block = Buffer.alloc(24);
+      ptrs.forEach((ptr, k) => block.writeUInt32LE(ptr, k * 4));
+      return place(block);
+    });
+    const langs = Buffer.alloc(28);
+    text.forEach((t, k) =>
+      langs.writeUInt32LE(typeof t === "number" ? blocks[t]! : t ? blocks[k]! : 0, k * 4),
+    );
+    header.writeUInt32LE(place(langs), 0x14);
+  }
+  return Buffer.concat([table, ...parts]);
+}
+
 // ---------------------------------------------------------------- DATA.BIN
 
 /** Encrypted DATA.BIN with `count` files of one sector each, except those given. */
@@ -728,13 +917,16 @@ export function buildDataBin(
 // ---------------------------------------------------------------- the disc
 
 export const QUEST_INDICES = [4759, 4760, 4761, 4762, 4763];
+/** Where the text disc puts `FIXTURE_TEXT_QUEST`. */
+export const TEXT_QUEST_INDEX = 4764;
 export const GAME_TASK_INDEX = 51;
 export const GAME_SUB_INDEX = 56;
 export const LOBBY_TASK_INDEX = 50;
 
 /**
  * Low Rank 1★: quests 1001 (monster 1, mines item 120) and 10102 (a Village
- * quest with only gathering points); Low Rank 2★: quest 10101 (monster 2);
+ * quest with only gathering points, and monsters 1 and 37); Low Rank 2★:
+ * quest 10101 (monster 2);
  * High Rank 6★: quest 2001 (monster 1). Items 1xx are Low Rank, 2xx High
  * Rank. Every Village and Guild quest has gathering points.
  *
@@ -743,6 +935,92 @@ export const LOBBY_TASK_INDEX = 50;
  * which its gathering points give; 10101 is a Paw Pass Ticket delivery,
  * with the ticket in its supply box.
  */
+const FAIL_EN = "Reward Zero\nTime Over";
+const FAIL_DE = "Keine Belohnung\nZeit um";
+const en = (title: string, goal: string, details: string, monsters: string): FixtureText => [
+  title,
+  goal,
+  FAIL_EN,
+  details,
+  monsters,
+  "A Hunter",
+];
+const de = (title: string, goal: string, details: string, monsters: string): FixtureText => [
+  title,
+  goal,
+  FAIL_DE,
+  details,
+  monsters,
+  "Ein Jäger",
+];
+
+/**
+ * Invented quest text (not the game's) in an English slot (1, shared by 0
+ * and 6) and a German-style slot (2). German puts "die" before Rathian and
+ * "den" before the other two, so Rathian swaps keep their German text.
+ * Quest 1001 has its own copy of the English text in slot 0, as room to
+ * repack into; 2001's only room is its monster list, the same in both.
+ */
+export const FIXTURE_TEXT: Record<number, (FixtureText | number | null)[]> = {
+  1001: [
+    en(
+      "The Queen of the Land",
+      "Hunt the Rathian",
+      "The Rathian has\nbeen seen nearby.",
+      "Rathian\nVelociprey",
+    ),
+    en(
+      "The Queen of the Land",
+      "Hunt the Rathian",
+      "The Rathian has\nbeen seen nearby.",
+      "Rathian\nVelociprey",
+    ),
+    de("Die Königin", "Jage die Rathian", "Die Rathian wurde\ngesehen.", "Rathian\nVelociprey"),
+    null,
+    null,
+    null,
+    1,
+  ],
+  10101: [
+    1,
+    en(
+      "Black Dragon",
+      "Slay the Fatalis before\nit flies away",
+      "A black dragon was seen\nover the mountains.",
+      "Fatalis",
+    ),
+    de(
+      "Schwarzer Drache",
+      "Erlege den Fatalis bevor\ner wegfliegt",
+      "Ein schwarzer Drache wurde\nüber den Bergen gesehen.",
+      "Fatalis",
+    ),
+    null,
+    null,
+    null,
+    1,
+  ],
+  2001: [
+    1,
+    en("Rathian Returns", "Hunt the Rathian", "She's back.", "Rathian\nVelociprey"),
+    de("Rathian kehrt zurück", "Jage die Rathian", "Sie ist zurück.", "Rathian\nVelociprey"),
+    null,
+    null,
+    null,
+    1,
+  ],
+  20001: [1, en("Training", "Hunt the Rathian", "Practice.", "Rathian"), null, null, null, null, 1],
+  20002: [
+    1,
+    en("Pink Queen", "Hunt the Pink Rathian", "A rare one.", "Pink Rathian\nVelociprey"),
+    de("Rosa Königin", "Jage den Rosa Rathian", "Selten.", "Rosa Rathian\nVelociprey"),
+    null,
+    null,
+    null,
+    1,
+  ],
+};
+
 export const FIXTURE_QUESTS: FixtureQuest[] = [
   {
     questId: 1001,
@@ -774,6 +1052,11 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     ],
     terms: { fee: 100, reward: 1200, penalty: 400, minutes: 50 },
     monsters: [1],
+    powers: [3],
+    small: [
+      [16, 5],
+      [69, 99],
+    ],
     rewards: [
       [
         { chance: 60, itemId: 110, amount: 1 },
@@ -802,12 +1085,15 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     terms: { fee: 200, reward: 2400, penalty: 800, minutes: 50 },
     delivery: { itemId: 927, amount: 1 },
     monsters: [2],
+    powers: [6],
+    small: [[16, 2]],
     rewards: [[{ chance: 100, itemId: 113, amount: 3 }]],
   },
   {
     questId: 2001,
     rank: 2,
     stars: 6,
+    sizePercent: 110,
     gathering: {
       tables: [
         [
@@ -821,6 +1107,8 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     supplies: [[240, 5]],
     terms: { fee: 0, reward: 6000, penalty: 2000, minutes: 35 },
     monsters: [1],
+    powers: [12],
+    small: [[16, 8]],
     rewards: [
       [
         { chance: 70, itemId: 210, amount: 1 },
@@ -864,10 +1152,28 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       goal: "Deliver 4 of the fixture's own things",
       otherGoal: "Kurz",
     },
-    monsters: [1],
+    // Two kinds of large monster: only variant swaps change it.
+    monsters: [1, 37],
+    powers: [4, 4],
     rewards: [],
   },
 ];
+
+/**
+ * Pink Rathian on its own, so the text tests can learn its name (10102's
+ * text is the delivery tests'). A Training School quest, so no shuffle
+ * changes it. Only on the text disc (`buildFixtureDisc({ text: true })`).
+ */
+export const FIXTURE_TEXT_QUEST: FixtureQuest = {
+  questId: 20002,
+  rank: 0,
+  stars: 1,
+  supplies: [[997, 1]],
+  terms: { fee: 10, reward: 100, penalty: 30, minutes: 20 },
+  monsters: [37],
+  powers: [4],
+  rewards: [],
+};
 
 export const FIXTURE_CARVES: CarveListSpec[] = [
   {
@@ -1135,18 +1441,35 @@ function fixtureEboot(options: FixtureDiscOptions): Buffer {
 export interface FixtureDiscOptions {
   /** Encrypt the EBOOT as a game EBOOT ("~PSP") with this tag, as on a real disc. */
   ebootTag?: number;
+  /**
+   * Quest text for the renaming tests: `FIXTURE_TEXT` in the quests that
+   * have no text of their own, `FIXTURE_TEXT_QUEST`, and two quest board
+   * files. Off by default, so the other tests' disc stays as it is.
+   */
+  text?: boolean;
 }
 
 export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   const files = new Map<number, Buffer>();
+  const withText = (q: FixtureQuest): FixtureQuest =>
+    options.text && !q.text ? { ...q, slots: q.slots ?? FIXTURE_TEXT[q.questId] } : q;
   FIXTURE_QUESTS.forEach((q, i) =>
-    files.set(QUEST_INDICES[i]!, buildQuestEntry(buildQuestPayload(q))),
+    files.set(QUEST_INDICES[i]!, buildQuestEntry(buildQuestPayload(withText(q)))),
   );
-  files.set(GAME_TASK_INDEX, ovlHeader("game_task.ovl", 0x09a5a580, 0x100));
+  files.set(GAME_TASK_INDEX, buildGameTask());
   files.set(GAME_SUB_INDEX, buildGameSub(FIXTURE_CARVES, FIXTURE_CAPTURES));
   files.set(LOBBY_TASK_INDEX, buildLobbyTask().buf);
   files.set(22, Buffer.from("stored raw"));
-  const dataBin = buildDataBin(QUEST_INDICES.at(-1)! + 2, files, JP_RAW);
+  let count = QUEST_INDICES.at(-1)! + 2;
+  if (options.text) {
+    files.set(TEXT_QUEST_INDEX, buildQuestEntry(buildQuestPayload(withText(FIXTURE_TEXT_QUEST))));
+    // Quest 2001 is on two boards, as some quests are on the disc.
+    const byId = (id: number) => withText(FIXTURE_QUESTS.find((q) => q.questId === id)!);
+    files.set(BOARD_INDICES[0]!, buildBoardFile([byId(1001), byId(2001), byId(10101)]));
+    files.set(BOARD_INDICES[1]!, buildBoardFile([byId(2001)]));
+    count = BOARD_INDICES.at(-1)! + 1;
+  }
+  const dataBin = buildDataBin(count, files, JP_RAW);
   return buildIso([
     { path: "PSP_GAME/PARAM.SFO", data: buildSfo("ULJM05500") },
     { path: "PSP_GAME/SYSDIR/EBOOT.BIN", data: fixtureEboot(options) },

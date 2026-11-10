@@ -27,6 +27,19 @@ import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
+import {
+  collectQuestMonsters,
+  randomizeDifficulty,
+  randomizeQuestSize,
+  randomizeSmallCounts,
+  swapSpecies,
+} from "./shuffles/quest-monsters.js";
+import { renameQuestText } from "./shuffles/quest-text.js";
+import {
+  collectMonsterChunks,
+  randomizeMonsterStats,
+  shuffleWeaknesses,
+} from "./shuffles/monster-stats.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export { LOGIC_VERSION };
@@ -105,10 +118,102 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
   const grouped = <T extends { tier: Tier }>(slots: T[]): T[] =>
     slots.map((s) => ({ ...s, tier: coarsen(s.tier, mode) }));
 
+  // Monster swaps first: carves are found where their monsters now are.
+  const questMonsters = collectQuestMonsters(game.quests);
+  let questsAfter = game.quests.map((q) => q.parsed);
+  if (settings["questMonsters.species"]) {
+    const result = swapSpecies(
+      questMonsters,
+      settings["questMonsters.speciesPool"],
+      rng.fork("monster-species"),
+      edits,
+      game.quests,
+      game.boards,
+    );
+    reports.push(result.report);
+    questsAfter = result.questsAfter;
+    if (settings["questMonsters.text"]) {
+      reports.push(renameQuestText(result.swaps, game.quests, edits, game.boards));
+    }
+  }
+  if (settings["questMonsters.difficulty"]) {
+    reports.push(
+      randomizeDifficulty(
+        questMonsters,
+        {
+          spread: settings["questMonsters.difficultySpread"],
+          range: settings["questMonsters.difficultyRange"],
+        },
+        rng.fork("monster-difficulty"),
+        edits,
+      ),
+    );
+  }
+  if (settings["questMonsters.size"]) {
+    reports.push(
+      randomizeQuestSize(
+        questMonsters,
+        settings["questMonsters.sizeSpread"],
+        rng.fork("quest-size"),
+        edits,
+      ),
+    );
+  }
+  if (settings["questMonsters.smallCounts"]) {
+    reports.push(
+      randomizeSmallCounts(
+        questMonsters,
+        settings["questMonsters.smallCountSpread"],
+        rng.fork("small-monster-counts"),
+        edits,
+      ),
+    );
+  }
+
+  const stats = {
+    hpSpread: settings["monsterStats.hp"] ? settings["monsterStats.hpSpread"] : null,
+    sizeSpread: settings["monsterStats.size"] ? settings["monsterStats.sizeSpread"] : null,
+    statusSpread: settings["monsterStats.status"] ? settings["monsterStats.statusSpread"] : null,
+  };
+  const weaknesses = {
+    elements: settings["weaknesses.elements"],
+    parts: settings["weaknesses.parts"],
+  };
+  const statsOn = Object.values(stats).some((v) => v !== null);
+  if (statsOn || weaknesses.elements || weaknesses.parts) {
+    const chunks = collectMonsterChunks(game.gameTask.ovl, questsAfter);
+    if (statsOn) {
+      reports.push(
+        randomizeMonsterStats(
+          chunks,
+          stats,
+          {
+            hp: rng.fork("monster-hp"),
+            size: rng.fork("monster-size"),
+            status: rng.fork("monster-status"),
+          },
+          edits,
+          game.gameTask,
+        ),
+      );
+    }
+    if (weaknesses.elements || weaknesses.parts) {
+      reports.push(
+        shuffleWeaknesses(
+          chunks,
+          weaknesses,
+          { elements: rng.fork("weakness-elements"), parts: rng.fork("weakness-parts") },
+          edits,
+          game.gameTask,
+        ),
+      );
+    }
+  }
+
   const questSlots = collectQuestRewardSlots(game.quests);
   const monsterSlots = collectMonsterRewardSlots(
     collectRewardLists(game.gameSub.ovl),
-    monsterStars(game.quests.map((q) => q.parsed)),
+    monsterStars(questsAfter),
   );
   const gathering = collectGatheringSlots(game.quests);
   // A delivery quest's own item stays at its gathering points, so the

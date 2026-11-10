@@ -143,6 +143,24 @@ added there shows up everywhere.
 | `shops.priceSpread`               | 0.5         | How far prices move                                                               |
 | `shops.stacks`                    | off         | Randomize carry limits of what shops sell (EBOOT)                                 |
 | `shops.stackSpread`               | 0.5         | How far carry limits move                                                         |
+| `questMonsters.species`           | off         | Swap large monsters in quests                                                     |
+| `questMonsters.speciesPool`       | `variants`  | Into one of their `variants`, any monster of the same `rank`, or `any`            |
+| `questMonsters.text`              | on          | Rename swapped monsters in the quest's text                                       |
+| `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                         |
+| `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                       |
+| `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                     |
+| `questMonsters.size`              | off         | Randomize each quest's monster size (its size percentage)                         |
+| `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                      |
+| `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                    |
+| `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                               |
+| `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                  |
+| `monsterStats.hpSpread`           | 0.25        | How far HP moves                                                                  |
+| `monsterStats.size`               | off         | Randomize each monster's base size                                                |
+| `monsterStats.sizeSpread`         | 0.2         | How far size moves (at most 50%)                                                  |
+| `monsterStats.status`             | off         | Randomize poison, paralysis, sleep and KO resistance                              |
+| `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                          |
+| `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                       |
+| `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                 |
 
 ## Shuffles
 
@@ -165,6 +183,9 @@ except `supplies.pool add`, which grows quests into their sector padding
 | `supplies`        | Supply box lists in each quest `.mib`               | Item and amount of each stack (see below)            |
 | `terms`           | Quest header fee, reward, penalty, time limit       | The numbers, varied (see below)                      |
 | `deliveries`      | Delivery quest header target and goal line          | Which item and how many (see below)                  |
+| quest monsters    | Spawn records in each quest `.mib`                  | Which large monsters, their level, small counts      |
+| monster stats     | Each monster's `emChunk` in `game_task.ovl`         | Base HP, size, status resistance                     |
+| weaknesses        | Hitzone tables in `game_task.ovl`                   | Elemental weaknesses and weak spots                  |
 
 ### Logic
 
@@ -326,6 +347,142 @@ commands that found them.
   its rarity (100z × (rarity + 1)²), so nothing is free; that needs the
   EBOOT, so without it, wide pools may sell some items for free.
 
+### Monsters
+
+Species swaps, quest size and quest text have been tried on the EU disc in
+PPSSPP; the other monster options haven't. None is in a preset. They're
+all in-place edits, so every file keeps its size.
+
+**Quest monsters** (`src/shuffles/quest-monsters.ts`) edit the spawn
+records of Village and Guild quests (`src/game/spawns.ts`): each
+`LargeMonData` and `SmallMonData` record, and the large monsters' preload
+list (`emLoadTable`).
+
+- **Species.** A swap rewrites every data and preload entry for the
+  monster, and the header's `TargetID` and two objective slots (`+0x28`
+  and `+0x30`) if they name it. A monster only goes
+  to a map (day and night alike) where a Village or Guild quest already has
+  it as a large monster: Lao-Shan Lung stays at the Fortress, and swimmers
+  stay where there's water, lava or sand. Each species' code is in an
+  `emNN.ovl`, and those share load addresses, so nothing shows which
+  monsters can be loaded together. Variants use their base species'
+  overlay, so `variants` (Rathian, Pink Rathian, Gold Rathian; Velocidrome,
+  Gendrome, Iodrome, Giadrome; ... `MONSTER_FAMILIES`) can change quests
+  with several kinds of large monster, but only where another member of the
+  family is on the map: about a third of Village and Guild quests (164 of 486 in `data/quests`)
+  have one, and Velocidrome, alone among the dromes in the Jungle and
+  Forest and Hills, never changes. A quest that has a choice keeps its own
+  monster when the draw picks it. The spoiler's notes count both and list
+  the monsters a pool never changes;
+  `rank` and `any` only change quests with one kind of large monster.
+  Quest scripts name no monsters on the EU disc (mhfu-extract README,
+  "Quest script"), so `TargetID` and the objective slots are all a quest's
+  goal needs. The quest's text is renamed for every swapped monster,
+  whichever of them names it (`questMonsters.text`, below).
+  Carves follow the monster: the reward shuffles and recipe check use
+  the star levels monsters are met at after the swap.
+- **Text** (`questMonsters.text`, `src/shuffles/quest-text.ts`,
+  `src/game/quest-text.ts`). Swapped monsters are renamed in the quest's
+  six strings (title, goal, fail, details, monster list, client) in every
+  language slot. The slots follow the game's language IDs (Japanese,
+  English, German, French, Spanish, Italian, Korean; the EU disc puts
+  English in the Japanese and Korean slots).
+  - **The board has its own copy.** The board and the Quest Details screen
+    read each quest's text from `mission_jpn/level*.mib`, not the quest
+    file (`src/game/board.ts`; found with mhfu-extract `quest-text-scan`):
+    renaming only the quest file left the screen unchanged on the EU disc,
+    and renaming the board changed it (seen in PPSSPP).
+    Each quest's board records get the same renaming, and their
+    `TargetID` follows a swap. The spoiler lists "Board text (levelN.mib)"
+    lines next to the quest file's "Text" lines.
+  - Names aren't shipped: they're learned from the disc's own quests, per
+    slot. The monster list is split into names; a monster's name is the
+    piece most often in the list and goal of quests that have it, and least
+    often in quests that don't. A piece two monsters share, or a tie, names
+    neither. Goals are matched ignoring case, since a goal can write a name
+    in lower case ("la reine Vespoid") that the list capitalises.
+  - **On the EU disc** (a dry run, seed `TEST`, `variants` swaps): it
+    learned 49 names in the English slots, French and Italian, 47 in
+    Spanish and 36 in German. German misses most variants: their
+    adjectives decline ("den Schwarzen Diablos"), so the list's form isn't
+    found in goals, and those quests keep their German text. Renaming
+    changed text in 82 quests; strings kept their old text for want of a
+    name (82), room (77), the same article (46) or width (39).
+  - A string that names an old monster in a form the rename doesn't read
+    (another case, a declined adjective) keeps its text whole rather than
+    being half renamed.
+  - Articles are checked where each name is replaced. The words seen just
+    before a monster's name in goals ("the", "den", "l'") are its articles,
+    and all of them together are the language's. If the word in front of
+    the old name is one of the language's articles, the new monster must
+    have been seen after it too. So "den Rathalos" never becomes "den
+    Rathian", while "the Velocidrome" becomes "the Gendrome" and a bare
+    name in a list is always replaced. Pronouns ("she", "sie") never
+    change.
+  - An earlier version compared each monster's single most common article.
+    On the EU disc that blocked every Velocidrome swap, because its goals
+    put two words before its name equally often ("article unclear").
+  - The text is wrapped by hand, so each field's longest line in that
+    language is its width, and a rename that makes a line longer is
+    skipped.
+  - The quest keeps its size. A rename that isn't longer is written in
+    place. Otherwise the quest's strings are repacked into the bytes they
+    already take: runs of strings with at most 4 zero bytes between them,
+    one per language on the EU disc. The disc's layout is kept: each string
+    starts on a 4-byte boundary and takes its length plus two, rounded up
+    to 4. Identical strings are stored once (the JP disc shows the game
+    reads shared strings), and the pointers are updated.
+    - First each language's strings stay in its own run.
+    - If that run is too small, every distinct string is placed, largest
+      first, in the first run with room. English can then use bytes freed
+      in German's run when German's monster list matches English's.
+    - If strings overlap or a pointer table sits among them, nothing is
+      moved.
+    - Room goes to the goal first, then the monster list, title, client,
+      fail text and details.
+  - On the EU disc (a `rank` run, seed `TEST`, before strings could move
+    between runs), 57 goals and 80 monster lists had no room.
+  - A string that can't be renamed keeps its old text and is listed in the
+    spoiler log with why: no learned name, another article, too wide, or no
+    room.
+- **Difficulty** is the `power` byte, the row of the quest's stat
+  multiplier table (HP, attack, defense, status; mhfu-extract
+  `monsters/multipliers.ts`). New levels stay within the levels Village and
+  Guild quests using the same table set use (header rank 0 picks set 0,
+  the rest set 1), and with `rank`, the same rank too: rows past those may
+  be filler.
+- **Small monster counts** are the records' quantity byte, scaled and kept
+  between 1 and the most any quest has. Counts of 0 and 99 (which looks
+  like "keeps coming") are left alone.
+- **Quest size** (`questMonsters.size`) is the header's `MonSizeModifier`
+  (u32 at `0x38`), the size in percent of every large monster in the
+  quest. On the EU disc it's 100 in half the quests and 98-120 in the rest
+  (mhfu-extract README, "Monster size"). It's confirmed to set the size in
+  game: a Giadrome quest from a 50% spread came out with a tiny Giadrome
+  in PPSSPP. It's scaled by a random factor within
+  `questMonsters.sizeSpread` and kept between 50% and 200%. It's a
+  separate setting from `monsterStats.size` (each species' base scale);
+  both apply. What sets the crown spread around it isn't known.
+
+**Monster stats and weaknesses** (`src/shuffles/monster-stats.ts`) edit the
+`emChunk` of every monster some quest spawns, in `game_task.ovl`
+(mhfu-extract `monsters/hitzones.ts`), so they apply everywhere the
+monster appears. Chunks for non-monsters are left alone, and so are
+hitzone tables they share.
+
+- **HP** is the u16 base HP (`+0x100`), **size** the f32 base scale
+  (`+0x40`), **status resistance** the `initial` and `increase` fields of
+  paralysis, KO, sleep and poison (`+0x110`); 0 and 0xFFFF stay.
+- **Elements**: one random order of fire, water, ice, thunder and dragon
+  per monster, applied to every row of every hitzone table.
+- **Weak spots**: one random order of the monster's body-part rows, applied
+  to each of its tables (normal, broken, enraged), moving the nine values
+  and leaving each row's lead byte. Only rows the site names a part for
+  (mhfu-extract `overlay/monsters.json`) take part, since the rest may be
+  filler; small monsters (one row) don't change. Breaks and flinch
+  thresholds belong to the body part, not the row, so they don't move.
+  Variants that share their base species' tables change with it.
+
 `supplies` changes what each quest's supply box holds. The box is a list
 of `{ u16 item, u16 amount }` at the header's `SuppliesPTR`, ending at item
 0 (whose amount field holds the quest ID). On the EU disc every quest has
@@ -408,10 +565,29 @@ quest can still be finished.
 - Whether files inside DATA.BIN can grow past their sectors. Needed for
   quest edits that add more data than the padding holds, such as new
   monsters. Growing within the padding (`supplies.pool add`) isn't
-  confirmed in game yet either.
-- Monster swaps in quests: each `LargeMonTable` also has a preload list
-  (`emLoadTable`) that would need updating, and which monsters can share a
-  quest is limited by overlay memory.
+  confirmed in game yet either. Other tools rebuild DATA.BIN with bigger
+  files (IncognitoMan's `mhff`, which FUComplete uses, shifts every later
+  file), but the game also loads files into fixed buffers (FUComplete's
+  docs give per-file limits for player models). Quest text renaming
+  doesn't grow anything: it repacks within the bytes the strings use.
+- Which monsters can share a quest. Swaps update the preload list
+  (`emLoadTable`), but overlay memory limits which species load together,
+  so wide swaps only touch quests with one kind of large monster.
+- Whether a swapped monster can spawn in its predecessor's starting area
+  (`LargeMonData.Stage`): swaps only check the map.
+- Quest size. `questMonsters.size` visibly changes a quest's monsters in
+  game, but whether the value is exactly a percentage hasn't been measured.
+  What sets the crown spread around it (`Unkn6`/`Unkn7` are the lead)
+  isn't known. Whether hitboxes scale with either size option is untested.
+- Quest text in game. Renaming the board files (`level*.mib`) shows on the
+  EU Quest Details screen: a quest swapped from Velocidrome to Daimyo
+  Hermitaur showed the new monster in game. Where the game shows the quest
+  file's own copy of the text, if anywhere, isn't known.
+- Large monster counts. What `quantity` means for a large monster (it's 1
+  in 536 of 554 records, 10 or 5 in a few), and how it relates to the
+  header's `TargetNum`, isn't known.
+- Attack patterns and animations. Monster AI lives in code (`game_task.ovl`
+  and each `emNN.ovl`) and the motion banks (each `emmodel/emNN.pac`'s entry 3) aren't decoded, so there's nothing to shuffle yet.
 
 ## Tests
 

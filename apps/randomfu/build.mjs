@@ -119,6 +119,7 @@ const assets = [
   "images/claw.png",
   "images/ore.png",
   "images/herb.png",
+  "images/part.png",
   "images/hammer.png",
   "images/coin.png",
   "images/deco.png",

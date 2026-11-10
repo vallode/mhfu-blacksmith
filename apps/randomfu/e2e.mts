@@ -42,6 +42,15 @@ const chaos = PRESETS.find((p) => p.name === "Chaos")!;
 const settings = applySettings(defaultSettings("WEB-E2E"), {
   ...chaos.changes,
   "logic.tiers": "star",
+  // Not in a preset until they're tried on a real disc.
+  "questMonsters.species": true,
+  "questMonsters.difficulty": true,
+  "questMonsters.smallCounts": true,
+  "monsterStats.hp": true,
+  "monsterStats.size": true,
+  "monsterStats.status": true,
+  "weaknesses.elements": true,
+  "weaknesses.parts": true,
 });
 const settingsString = encodeSettings(settings);
 
@@ -103,7 +112,16 @@ try {
 
   // Through every option step to the review: these settings change the EBOOT, but the
   // app decrypts the disc's own, so there's no EBOOT step.
-  for (const name of ["Logic", "Rewards", "Gathering", "Quests", "Smithy", "Shops", "Review"]) {
+  for (const name of [
+    "Logic",
+    "Rewards",
+    "Gathering",
+    "Quests",
+    "Monsters",
+    "Smithy",
+    "Shops",
+    "Review",
+  ]) {
     await page.click("#next");
     assert.equal(await title(), name);
   }

@@ -84,6 +84,15 @@ const OPTION_STEPS: Step[] = [
       "What quests hand you, what they pay and how long they last, and what delivery quests ask for.",
   },
   {
+    id: "monsters",
+    title: "Monsters",
+    icon: "part",
+    tint: "var(--color-gem-orange)",
+    sections: ["Quest monsters", "Monster stats", "Weaknesses"],
+    intro:
+      "Which monsters quests have and how tough they are. Swaps, quest sizes and quest text have been tried in game; the rest is untested, so try a quest before a long run.",
+  },
+  {
     id: "smithy",
     title: "Smithy",
     icon: "hammer",
