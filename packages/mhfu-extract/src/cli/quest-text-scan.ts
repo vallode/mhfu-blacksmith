@@ -6,7 +6,10 @@
  * headers of the files that are likely message files.
  *
  * The report names each string by language and field ("English goal") with
- * its byte length, offsets and hex words: never the text itself.
+ * its byte length, offsets and hex words. It also lists single words of the
+ * quest's text (monster names and the like) with the files they're in, and
+ * 64 bytes of each likely message file as hex and ASCII: that much game
+ * text is shown, to see how it's stored.
  */
 import { readdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
@@ -19,6 +22,7 @@ import {
   describeFiles,
   formatTextScan,
   scanQuestText,
+  scanWords,
   type TextNeedle,
   type TextScanFile,
 } from "../quests/text-scan.js";
@@ -112,6 +116,8 @@ export async function runQuestTextScan(options: QuestTextScanOptions): Promise<s
     `Quest ${options.questId} (${manifest.region.toUpperCase()} disc): where its own strings are found elsewhere.`,
     "",
     formatTextScan(scanQuestText(files, needles)),
+    "Single words of the quest's text, by file:",
+    scanWords(files, needles),
     "Likely message files (first 16 u32 words):",
     describeFiles(candidates),
   ].join("\n");

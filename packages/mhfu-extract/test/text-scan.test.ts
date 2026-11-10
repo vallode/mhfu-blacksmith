@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { formatTextScan, scanQuestText } from "../src/quests/text-scan.js";
+import {
+  describeFiles,
+  formatTextScan,
+  scanQuestText,
+  scanWords,
+} from "../src/quests/text-scan.js";
 
 /** A .pac with one entry: a table of string offsets (entry-relative), then the strings. */
 function messagePac(strings: string[]): { buf: Buffer; offsets: number[] } {
@@ -48,4 +53,30 @@ test("a string that's only part of a longer one is reported without a NUL", () =
   const { buf } = messagePac(["Hunt the Rathian"]);
   const [result] = scanQuestText([{ name: "msg.pac", buf }], [{ label: "x", text: "the Rath" }]);
   assert.equal(result!.hits[0]!.terminated, false);
+});
+
+test("single words are counted per file in UTF-8 and UTF-16LE", () => {
+  const utf16 = Buffer.from("xxVelocidromexx", "utf16le");
+  const { buf } = messagePac(["Velocidrome", "Velocidrome!"]);
+  const report = scanWords(
+    [
+      { name: "a.pac", buf },
+      { name: "b.bin", buf: utf16 },
+    ],
+    [{ label: "English goal", text: "Hunt the Velocidrome" }],
+  );
+  assert.match(report, /Velocidrome \(utf8\): a\.pac ×2/);
+  assert.match(report, /Velocidrome \(utf16le\): b\.bin ×1/);
+});
+
+test("file descriptions show the bytes where the strings start", () => {
+  const { buf } = messagePac(["Hunt"]);
+  const padded = Buffer.concat([buf, Buffer.alloc(128)]);
+  padded.writeUInt32LE(0x10, 4); // a header word pointing past the first 64 bytes
+  padded.writeUInt32LE(80, 12);
+  padded.write("Rathian", 80, "latin1");
+  assert.match(
+    describeFiles([{ name: "m.bin", buf: padded }]),
+    /@0x50: 52 61 74 68 69 61 6e[\s\S]*Rathian/,
+  );
 });

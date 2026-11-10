@@ -136,17 +136,69 @@ export function formatTextScan(results: readonly TextScanResult[]): string {
 }
 
 /** The first 16 u32 words and `.pac` shape of each file, for files no string was found in. */
+/** 64 bytes as hex, then as text (printable ASCII, "." otherwise). */
+function peek(buf: Buffer, at: number): string {
+  const bytes = buf.subarray(at, at + 64);
+  const hexes = [...bytes].map((b) => b.toString(16).padStart(2, "0")).join(" ");
+  const text = [...bytes]
+    .map((b) => (b >= 0x20 && b < 0x7f ? String.fromCharCode(b) : "."))
+    .join("");
+  return `@0x${at.toString(16)}: ${hexes}\n    ${text}`;
+}
+
+/**
+ * Each file's first 16 u32 words, its `.pac` shape, and 64 bytes at the
+ * first header word that could be an offset into it (where its strings
+ * likely start), to show how text is stored.
+ */
 export function describeFiles(files: readonly TextScanFile[]): string {
   return (
     files
       .map((f) => {
-        const words: string[] = [];
+        const words: number[] = [];
         for (let o = 0; o + 4 <= Math.min(64, f.buf.length); o += 4)
-          words.push(hex(f.buf.readUInt32LE(o)));
+          words.push(f.buf.readUInt32LE(o));
         const pac = pacEntries(f.buf);
         const shape = pac.length > 0 ? `pac, ${pac.length} entries` : "not a pac";
-        return `${f.name}: ${f.buf.length} bytes, ${shape}\n  ${words.join(" ")}`;
+        const first = words.find((w) => w >= 64 && w < f.buf.length);
+        const data = first === undefined ? "" : `\n  ${peek(f.buf, first)}`;
+        return `${f.name}: ${f.buf.length} bytes, ${shape}\n  ${words.map(hex).join(" ")}${data}`;
       })
       .join("\n") + "\n"
   );
+}
+
+/**
+ * Single words of the quest's text (6 letters or more: monster names and
+ * the like) counted in each file as UTF-8 and as UTF-16LE. If whole strings
+ * aren't found but words are, the text is stored differently (wrapped,
+ * split up or built from parts); if words aren't found either, it's in
+ * another encoding or compressed.
+ */
+export function scanWords(files: readonly TextScanFile[], needles: readonly TextNeedle[]): string {
+  const words = [
+    ...new Set(
+      needles.flatMap((n) => n.text.split(/[^\p{L}\p{N}'-]+/u).filter((w) => [...w].length >= 6)),
+    ),
+  ].slice(0, 40);
+  const out: string[] = [];
+  for (const word of words) {
+    for (const encoding of ["utf8", "utf16le"] as const) {
+      const bytes = Buffer.from(word, encoding);
+      const counts: [string, number][] = [];
+      for (const f of files) {
+        let n = 0;
+        for (let at = f.buf.indexOf(bytes); at !== -1; at = f.buf.indexOf(bytes, at + 1)) n++;
+        if (n > 0) counts.push([f.name, n]);
+      }
+      if (counts.length === 0) continue;
+      counts.sort((a, b) => b[1] - a[1]);
+      const shown = counts.slice(0, 6).map(([name, n]) => `${name} ×${n}`);
+      if (counts.length > 6) shown.push(`… (${counts.length} files)`);
+      out.push(`${word} (${encoding}): ${shown.join(", ")}`);
+    }
+  }
+  const missing = words.filter((w) => !out.some((line) => line.startsWith(`${w} (`)));
+  if (missing.length > 0) out.push(`Not found in either encoding: ${missing.join(", ")}`);
+  return out.join("\n") + "\n";
 }
