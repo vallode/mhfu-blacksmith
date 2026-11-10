@@ -43,6 +43,8 @@ export interface Settings {
   "questMonsters.difficulty": boolean;
   "questMonsters.difficultySpread": number;
   "questMonsters.difficultyRange": "rank" | "any";
+  "questMonsters.size": boolean;
+  "questMonsters.sizeSpread": number;
   "questMonsters.smallCounts": boolean;
   "questMonsters.smallCountSpread": number;
   "monsterStats.hp": boolean;
@@ -483,6 +485,23 @@ export const OPTIONS: readonly OptionDef[] = [
     },
     default: "rank",
     enabledBy: "questMonsters.difficulty",
+  },
+  {
+    key: "questMonsters.size",
+    section: "Quest monsters",
+    label: "Randomize monster size per quest",
+    help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, up to 120% in others). Untested on a real disc: the field's meaning is read from its values.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "questMonsters.sizeSpread",
+    section: "Quest monsters",
+    label: "Quest size variation",
+    help: "How far a quest's size can move, up or down. Sizes stay between 50% and 200%.",
+    type: { kind: "number", min: 0.05, max: 0.5, step: 0.05, percent: true },
+    default: 0.2,
+    enabledBy: "questMonsters.size",
   },
   {
     key: "questMonsters.smallCounts",

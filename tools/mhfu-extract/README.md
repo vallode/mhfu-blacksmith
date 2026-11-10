@@ -279,7 +279,7 @@ text). Two things worth flagging for anyone extending it:
 
 Not implemented (out of scope for now): `QuestScript` (opcodes are marked
 "TBD" even in the upstream pattern; see "Quest script" below), gathering
-node locations/items, and arena sets. Monster size isn't decoded either
+node locations/items, and arena sets. The quest-wide monster size is decoded; its spread isn't
 (see "Monster size" below).
 
 ### Monster overlays: hitzones, tolerances and rewards
@@ -824,48 +824,62 @@ Not implemented (out of scope for now, same as the underlying parser —
 see "Quests (.mib)" above): `QuestScript`, gathering node locations/items,
 and arena sets.
 
-### Monster size (not decoded)
+### Monster size
 
-How a quest sets its large monsters' size (and crowns) is **not known**.
-No public source decodes it for MHP2G/MHFU. What there is:
+**`MonSizeModifier` (u32 at `0x38`) is the quest's monster size in
+percent.** This is read from the EU disc's values (`quest-probe` over all
+551 quests), not confirmed in game:
 
-- **Candidates in the file.** The header's `MonSizeModifier` (u32 at
-  `0x38`, named by `quest.hexpat` with no decoding), `Unkn4`-`Unkn7` (u8 at
-  `0x47`-`0x4a`), and in each `LargeMonData` `Attr1`/`Attr2` (u8 at
-  `+6`/`+7`) and the `DynamicData` words (`+0x0c`-`+0x18`, `+0x2c`-`+0x38`).
-- **A related format.** Monster Hunter Frontier's quest editor
-  (`Paxlord/PaxMHFZQuestEditor`, `src/Utils/QuestParams/monsters_utils.js`)
-  reads quest-wide size from its header: a u16 "Size (in %)" at `0x44`,
-  then an unlabelled u16 (probably the size spread) and a u16 difficulty.
-  Its 60-byte (`0x3c`) large monster record has no size field. Frontier's
-  header isn't MHP2G's, so this only suggests that `MonSizeModifier` is
-  quest-wide (a percent and a spread or crown-table index), not that it
-  is.
-- **At run time.** MHFU-ModKit (`include/mhfu/entity.h`,
-  `MHFU_ENT_SIZE_SCALE 0x024`, an f32) scales a live monster. That's the
-  entity in memory, not a quest field.
-- **The MHP2G decomp** (`tclamb/mhp2g-decomp`) has no quest loader yet. Its
+- Only its low byte is ever set. It's 100 in 273 quests and 98-120 in the
+  rest (31 values; 105, 110, 102 and 104 most often after 100).
+- Training and other rank 0, 3 and 4 quests are almost all 100. High Rank
+  (2) and G Rank (5) quests use the wider spread, and fewer than half of
+  them are 100.
+- Monster Hunter Frontier's quest editor (`Paxlord/PaxMHFZQuestEditor`,
+  `src/Utils/QuestParams/monsters_utils.js`) reads the same kind of field
+  from its own header: a u16 labelled "Size (in %)" at `0x44`, then an
+  unlabelled u16 and a difficulty. Its 60-byte large monster record has no
+  size field. Frontier's layout isn't MHP2G's, so this supports the reading
+  rather than proving it.
+
+It applies to the whole quest. randomfu's `questMonsters.size` edits it.
+To confirm, set one quest to 150 and 60 and look at the monster in game
+(or at ModKit's live `MHFU_ENT_SIZE_SCALE`, an f32 at entity `+0x24`).
+
+**Still unknown: how crowns vary.** A quest's monsters vary in size around
+that percentage, and nothing yet shows what sets the spread. Candidates
+from the EU disc:
+
+- `Unkn6`/`Unkn7` (u8 at `0x49`/`0x4a`) take small values: `Unkn7` 0-4,
+  `Unkn6` 0-2, and 20 combinations in all (`0,0,0,0` in 142 quests,
+  `0,0,0,3` in 122, `0,0,0,4` in 86). `Unkn4`/`Unkn5` are always 0. Small
+  indexes like these fit a size-variation (crown) table, or something else
+  entirely. Frontier's unlabelled u16 after its size is the same kind of
+  lead.
+- The large monster records barely vary:
+  - `Attr2` (`+7`) is always 0, and `Attr1` (`+6`) is 0 in 545 of 554
+    records (30, 10, 2 and 1 otherwise).
+  - `DynamicData1[0]` (`+0x0c`) is 96000 in 17 records and 36000 in 5, and
+    `DynamicData1[1]` (`+0x10`) is 60000 in 7. These read like timers in
+    ticks (a quest's time limit is minutes × 1800).
+  - `DynamicData1[3]` (`+0x18`) is 1-4 in 27 records, perhaps a spawn wave
+    or order.
+  - Neither looks like a size.
+
+To settle the crown spread: take `quest-probe --tsv`'s rows for a monster
+whose crowns players report as easy in one quest and rare in another,
+and compare `Unkn6`/`Unkn7`. Or change one in a quest and measure many
+hunts. Before this, randomfu could only scale size per species
+(`emChunk +0x40`); that option stays.
+
+Other sources checked:
+
+- MHFU-ModKit's `MHFU_ENT_SIZE_SCALE` is the live entity's scale, not a
+  quest field.
+- The MHP2G decomp (`tclamb/mhp2g-decomp`) has no quest loader yet. Its
   `Quest` singleton keeps a pointer at `+0x4c` to what looks like the
-  quest header: `Evdemo::map_demo_chk` reads the s8 at `+0x45` of it (the
+  quest header: `Evdemo::map_demo_chk` reads the s8 at `+0x45` (the
   hexpat's `Spawn`) and skips the map intro when it's non-zero.
-
-`extract --raw`'s `raw/quests.json` has what's needed to settle it with a
-disc: all 32 header words (`headerWords[14]` is `MonSizeModifier`,
-`header.unknownFlags` are `Unkn4`-`Unkn7`) and every large and small
-monster record whole (`largeMonsterRecords`, `smallMonsterRecords`: 15
-u32 words each). To decode:
-
-1. Dump an EU disc and run `quest-probe` (with `--tsv`), which tabulates
-   `MonSizeModifier`'s bytes and the record words across quests.
-2. Compare quests that players' crown lists single out (quests where a
-   monster's gold crown is reported to be common, or never seen) with
-   ordinary quests for the same monster, and Arena quests with field
-   quests. A byte that only differs there is the lead.
-3. Change one candidate byte in one quest (randomfu's write path keeps the
-   quest's size) and measure the monster in game (the crown at the result
-   screen, or ModKit's live scale).
-
-Until then randomfu only scales size per species (`emChunk +0x40`).
 
 ### Quest text
 
@@ -878,11 +892,19 @@ Until then randomfu only scales size per species (`emChunk +0x40`).
 - **Layout.** `readStringLayout` (`src/quests/parser.ts`) gives each
   block's six string offsets and lengths, and `raw/quests.json` has it
   per quest (`strings`), with `entrySize`, the DATA.BIN entry including its
-  sector padding. On the EU disc the Japanese, English and Korean slots
-  point at one block (seen in a randomfu dry run), and each language's
-  monster list splits into names with `splitNames`. Whether the
-  strings are packed back to back is for `quest-probe` to show; randomfu's
-  text rewrite works either way.
+  sector padding.
+- **On the EU disc** (`quest-probe`, 551 quests):
+  - In every quest, the Japanese, English and Korean slots point at one
+    block, and the other four languages each have their own.
+  - No two pointers share a string, and no strings overlap.
+  - Each language's strings are packed back to back, each starting on a
+    4-byte boundary and followed by 1-4 zero bytes after its NUL (never
+    0, about evenly), so each takes its length plus two, rounded up to 4.
+  - Each language's pointer block follows its strings (the 25-28 byte
+    gaps).
+  - Each language's monster list splits into names with randomfu's
+    `splitNames`.
+  - Sector padding after the payload is 0-2044 bytes.
 - **Where else names live.** FUComplete's English text for the P2G disc
   (`FUComplete/Patch`, `data/str_tbl/`) has the monster names in
   `str_tbl.pac`'s first string table, and the JP file list has
@@ -904,14 +926,22 @@ arg2" (a monster ID and a count; up to two), `01` waits for those goals,
 `24` waits for a monster goal to drop below arg2, and captures as a
 delivery goal (`04`) for a "wyvern" item.
 
-MHP2G seems to have moved that into the header: the reward-table work
-above found its scripts to be "the same generic packets" across quests,
-and the header has `TargetID`/`TargetNum`, which match each quest's
-monster. The decomp's `Quest` singleton has two `QuestTarget`s (an `emId`
-and a count each, `include/quest.hpp`), which fits two header-or-script
-goals. Not confirmed: tabulating `raw/quests.json`'s `script` packets
-against `TargetID` (do any arguments equal it, quest by quest?) would
-settle it. randomfu updates `TargetID` on a swap and leaves scripts alone.
+**MHP2G's scripts don't name monsters.** On the EU disc (`quest-probe`)
+the 551 quests have only 6 distinct scripts. No argument of any packet
+equals the quest's `TargetID` or one of its large monsters. Packets
+seen:
+
+- `-2`, `-1`, `3`, `10`, `27`, `30`, `31`, `37` and `45` always have zero
+  arguments.
+- `9` always has 150.
+- `26` has 0, or 1 in 10 quests.
+- `11` has 13-15, in 10 quests, together with `42`-`44` and `55`-`57`.
+- `53` has 2000 and `54`, in 7 quests (probably Treasure Hunting's
+  points).
+
+The goals live in the header (`TargetID`/`TargetNum`), like the decomp's
+two `QuestTarget`s (an `emId` and a count each, `include/quest.hpp`). So
+randomfu's swaps update `TargetID` and need nothing in the script.
 
 ### Save quest flags
 

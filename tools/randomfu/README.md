@@ -177,6 +177,8 @@ added there shows up everywhere.
 | `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                        |
 | `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                      |
 | `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                    |
+| `questMonsters.size`              | off         | Randomize each quest's monster size (its size percentage)                        |
+| `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                     |
 | `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                   |
 | `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                              |
 | `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                 |
@@ -348,9 +350,10 @@ list (`emLoadTable`).
   monsters can be loaded together. Variants use their base species'
   overlay, so `variants` (Rathian, Pink Rathian, Gold Rathian; Velocidrome,
   Gendrome, Iodrome, Giadrome; ... `MONSTER_FAMILIES`) changes every quest;
-  `rank` and `any` only change quests with one kind of large monster. Any
-  monster in the quest's script (not decoded, see below) is still the old
-  one. Carves follow the monster: the reward shuffles and recipe check use
+  `rank` and `any` only change quests with one kind of large monster.
+  Quest scripts name no monsters on the EU disc (mhfu-extract README,
+  "Quest script"), so the header's target is all a quest's goal needs.
+  Carves follow the monster: the reward shuffles and recipe check use
   the star levels monsters are met at after the swap.
 - **Text** (`questMonsters.text`, `src/shuffles/quest-text.ts`,
   `src/game/quest-text.ts`). Swapped monsters are renamed in the quest's
@@ -401,6 +404,14 @@ list (`emLoadTable`).
 - **Small monster counts** are the records' quantity byte, scaled and kept
   between 1 and the most any quest has. Counts of 0 and 99 (which looks
   like "keeps coming") are left alone.
+- **Quest size** (`questMonsters.size`) is the header's `MonSizeModifier`
+  (u32 at `0x38`), the size in percent of every large monster in the
+  quest. On the EU disc it's 100 in half the quests and 98-120 in the rest
+  (mhfu-extract README, "Monster size"). That reading is from its values
+  and not confirmed in game. It's scaled by a random factor within
+  `questMonsters.sizeSpread` and kept between 50% and 200%. It's a
+  separate setting from `monsterStats.size` (each species' base scale);
+  both apply. What sets the crown spread around it isn't known.
 
 **Monster stats and weaknesses** (`src/shuffles/monster-stats.ts`) edit the
 `emChunk` of every monster some quest spawns, in `game_task.ovl`
@@ -450,22 +461,16 @@ hitzone tables they share.
   so wide swaps only touch quests with one kind of large monster.
 - Whether a swapped monster can spawn in its predecessor's starting area
   (`LargeMonData.Stage`): swaps only check the map.
-- Per-quest monster size. The header's `MonSizeModifier` and the large
-  monsters' `attr1`/`attr2` bytes are undecoded, and no public source
-  decodes them, so size changes are per species (the chunk's base scale),
-  and whether the hitboxes scale with it is untested. mhfu-extract's
-  README ("Monster size") has what's known and how to settle it with a
-  disc; `extract --raw` dumps every candidate byte.
-- The quest script. Packets are an opcode and three arguments. In MH1,
-  opcode `02` sets a monster goal by monster ID; MHP2G's scripts look
-  generic across quests and its header has `TargetID`/`TargetNum`
-  (updated on a swap), so its goals probably come from the header, but
-  that isn't confirmed (mhfu-extract README, "Quest script"). If a script
-  does name the monster, a swapped quest would count the old one.
+- Quest size in game. `MonSizeModifier` reads as a percentage from its
+  values, and `questMonsters.size` edits it, but no edited quest has been
+  measured. What sets the crown spread around it (`Unkn6`/`Unkn7` are the
+  lead) isn't known. Whether hitboxes scale with either size option is
+  untested.
 - Quest text in game: the EU dry run shows names are learned and renames
   fit, but no renamed quest has been looked at in game yet.
-- Large monster counts. What `quantity` means for a large monster, and how
-  it relates to the header's `TargetNum` and the quest script, isn't known.
+- Large monster counts. What `quantity` means for a large monster (it's 1
+  in 536 of 554 records, 10 or 5 in a few), and how it relates to the
+  header's `TargetNum`, isn't known.
 - Attack patterns and animations. Monster AI lives in code (`game_task.ovl`
   and each `emNN.ovl`) and the motion banks (each `emmodel/emNN.pac`'s entry 3) aren't decoded, so there's nothing to shuffle yet.
 

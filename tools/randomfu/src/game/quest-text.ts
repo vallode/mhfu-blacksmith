@@ -15,7 +15,8 @@
  * than before is written where it was. Otherwise the quest's strings are
  * repacked: the "text area" is the strings' own bytes, merged into runs
  * where only a few zero bytes (alignment) separate them, and every string
- * is written back to back within its run, identical strings once (the JP
+ * is written back to back within its run, keeping the disc's alignment
+ * and padding (`slotSize`), identical strings once (the JP
  * disc shows the game reads shared strings), and the block pointers are
  * updated. If anything else could be in that area (overlapping strings,
  * a pointer table inside it), nothing is repacked.
@@ -58,10 +59,22 @@ export interface QuestText {
   unmovable: string | null;
   /** Runs of the payload the strings may be repacked into. */
   runs: { start: number; end: number }[];
+  /** 4 if every string starts on a 4-byte boundary (the EU disc), else 1. */
+  align: number;
 }
 
 /** At most this many zero bytes between two strings join them into one run. */
-const MAX_GAP = 3;
+const MAX_GAP = 4;
+
+/**
+ * Bytes a string of `length` bytes takes. The EU disc starts every string
+ * on a 4-byte boundary and follows it with 2-5 zero bytes: `quest-probe`
+ * found gaps of 1-4 bytes after each NUL, never 0, evenly spread. That is
+ * the length plus two, rounded up to 4, which repacking keeps.
+ */
+export function slotSize(length: number, align: number): number {
+  return align === 4 ? Math.ceil((length + 2) / 4) * 4 : length + 1;
+}
 
 export function readQuestText(payload: Buffer, header: QuestHeader): QuestText {
   const reader = new BinaryReader(payload);
@@ -75,11 +88,20 @@ export function readQuestText(payload: Buffer, header: QuestHeader): QuestText {
     ),
   }));
 
-  const ranges = new Map<number, number>();
+  const lengths = new Map<number, number>();
   for (const s of layout.strings) {
     s.pointers.forEach((ptr, i) => {
-      if (ptr !== 0) ranges.set(ptr, ptr + s.lengths[i]! + 1);
+      if (ptr !== 0) lengths.set(ptr, s.lengths[i]!);
     });
+  }
+  const align = lengths.size > 0 && [...lengths.keys()].every((p) => p % 4 === 0) ? 4 : 1;
+  // A string's bytes: its slot when the padding there is all zero, else just it and its NUL.
+  const ranges = new Map<number, number>();
+  for (const [ptr, length] of lengths) {
+    const slotEnd = ptr + slotSize(length, align);
+    const padded =
+      slotEnd <= payload.length && payload.subarray(ptr + length, slotEnd).every((b) => b === 0);
+    ranges.set(ptr, padded ? slotEnd : ptr + length + 1);
   }
   const sorted = [...ranges].sort((a, b) => a[0] - b[0]);
   const runs: QuestText["runs"] = [];
@@ -104,7 +126,7 @@ export function readQuestText(payload: Buffer, header: QuestHeader): QuestText {
   ) {
     unmovable = "the strings share bytes with the header or a pointer table";
   }
-  return { blocks, unmovable, runs: unmovable ? [] : runs };
+  return { blocks, unmovable, runs: unmovable ? [] : runs, align };
 }
 
 const encoded = (text: string) => Buffer.byteLength(text, "utf8") + 1;
@@ -154,11 +176,12 @@ export function writeQuestText(
         moved.set(ptr, at);
         continue;
       }
-      if (cursor + encoded(t) > run.end) return false;
+      const size = slotSize(encoded(t) - 1, text.align);
+      if (cursor + size > run.end) return false;
       writes.push({ at: cursor, text: t });
       placed.set(t, cursor);
       moved.set(ptr, cursor);
-      cursor += encoded(t);
+      cursor += size;
     }
   }
   for (const run of text.runs) payload.fill(0, run.start, run.end);

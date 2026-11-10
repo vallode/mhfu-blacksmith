@@ -199,6 +199,8 @@ export interface FixtureQuest {
   powers?: number[];
   /** Small monsters: `[emID, quantity]`, in one table. */
   small?: [number, number][];
+  /** `MonSizeModifier`, the quest's monster size in percent; 100 if not given. */
+  sizePercent?: number;
   rewards: FixtureReward[][];
   gathering?: FixtureGathering;
   /**
@@ -349,6 +351,7 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   header.writeUInt32LE(gatheringLocPtr, 28);
   header.writeUInt32LE(gatheringItemsPtr, 36);
   header.writeUInt32LE(stringPtrTbl, 96);
+  header.writeUInt32LE(q.sizePercent ?? 100, 0x38);
   header[68] = q.rank;
   header.writeUInt16LE(q.questId, 100);
   header[102] = q.stars;
@@ -962,6 +965,7 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     questId: 2001,
     rank: 2,
     stars: 6,
+    sizePercent: 110,
     gathering: {
       tables: [
         [

@@ -25,6 +25,7 @@ import { shuffleWeapons } from "./shuffles/weapons.js";
 import {
   collectQuestMonsters,
   randomizeDifficulty,
+  randomizeQuestSize,
   randomizeSmallCounts,
   swapSpecies,
 } from "./shuffles/quest-monsters.js";
@@ -112,6 +113,16 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
           range: settings["questMonsters.difficultyRange"],
         },
         rng.fork("monster-difficulty"),
+        edits,
+      ),
+    );
+  }
+  if (settings["questMonsters.size"]) {
+    reports.push(
+      randomizeQuestSize(
+        questMonsters,
+        settings["questMonsters.sizeSpread"],
+        rng.fork("quest-size"),
         edits,
       ),
     );

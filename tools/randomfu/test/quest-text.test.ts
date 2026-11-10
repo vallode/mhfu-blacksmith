@@ -5,7 +5,7 @@ import { test } from "node:test";
 import { openDiscImage } from "../../mhfu-extract/src/container/image.js";
 import { parseQuest } from "../../mhfu-extract/src/quests/parser.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
-import { readQuestText, writeQuestText } from "../src/game/quest-text.js";
+import { readQuestText, slotSize, writeQuestText } from "../src/game/quest-text.js";
 import { readSpawns } from "../src/game/spawns.js";
 import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
@@ -216,4 +216,72 @@ test("with renaming off, swaps leave the text alone", async () => {
     assert.equal(goals(after)[1], "Hunt the Rathian");
   }
   close();
+});
+
+/**
+ * Text laid out like the EU disc: each language's strings start on 4-byte
+ * boundaries with `slotSize` padding, then that language's pointer block.
+ */
+function alignedPayload(languages: string[][]): Buffer {
+  const base = buildQuestPayload({ questId: 1, rank: 1, stars: 1, monsters: [1], rewards: [] });
+  const parts: Buffer[] = [];
+  let at = Math.ceil(base.length / 4) * 4;
+  const start = at;
+  const blocks: number[] = [];
+  for (const strings of languages) {
+    const pointers = strings.map((str) => {
+      const bytes = Buffer.alloc(slotSize(Buffer.byteLength(str), 4));
+      bytes.write(str, "utf8");
+      parts.push(bytes);
+      at += bytes.length;
+      return at - bytes.length;
+    });
+    const block = Buffer.alloc(24);
+    pointers.forEach((p, i) => block.writeUInt32LE(p, i * 4));
+    parts.push(block);
+    blocks.push(at);
+    at += 24;
+  }
+  const table = Buffer.alloc(28);
+  [0, 0, 1].forEach((b, slot) => table.writeUInt32LE(blocks[b]!, slot * 4));
+  parts.push(table);
+  const payload = Buffer.concat([base, Buffer.alloc(start - base.length), ...parts]);
+  payload.writeUInt32LE(at, 96);
+  return payload;
+}
+
+test("aligned text keeps its alignment and padding, and uses the padding as room", () => {
+  const en = ["Title", "Hunt the Rathian", "Fail", "Details", "Rathian", "Client"];
+  const de = ["Titel", "Jage die Rathian", "Fehl", "Details", "Rathian", "Kunde"];
+  const payload = alignedPayload([en, de]);
+  const header = parseQuest(payload).header;
+  const text = readQuestText(payload, header);
+  assert.equal(text.align, 4);
+  assert.equal(text.unmovable, null);
+  assert.equal(text.runs.length, 2, "one run per language, its block between them");
+
+  // "Hunt the Rathian" (16 bytes) has a 20-byte slot, and "Hunt the Rathians!" (18)
+  // still fits it: the padding is room, though the string grew.
+  const goal = text.blocks[0]!.pointers[1]!;
+  const grown = Buffer.from(payload);
+  assert.ok(writeQuestText(grown, text, new Map([[goal, "Hunt the Rathians!"]])));
+  assert.equal(
+    writeQuestText(Buffer.from(payload), text, new Map([[goal, "Hunt the Gold Rathian"]])),
+    false,
+    "a 24-byte slot doesn't fit",
+  );
+  const after = readQuestText(grown, header);
+  assert.equal(after.blocks[0]!.texts[1], "Hunt the Rathians!");
+  assert.equal(after.blocks[0]!.texts[3], "Details");
+  const pointers = after.blocks.flatMap((b) => b.pointers);
+  assert.ok(
+    pointers.every((p) => p % 4 === 0),
+    "every string still starts on 4 bytes",
+  );
+  for (const block of after.blocks) {
+    block.pointers.forEach((p, i) => {
+      const length = Buffer.byteLength(block.texts[i]!);
+      assert.ok(grown.subarray(p + length, p + slotSize(length, 4)).every((b) => b === 0));
+    });
+  }
 });

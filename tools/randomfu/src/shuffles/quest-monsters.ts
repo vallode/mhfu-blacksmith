@@ -18,9 +18,9 @@
  *   monster in a quest; the wider pools only touch quests with one kind of
  *   large monster, which then still have one.
  *
- * The quest's text is renamed separately (`quest-text.ts`). Not changed,
- * so possibly wrong after a swap: any monster IDs in its script
- * (`QuestScript`, not decoded).
+ * The quest's text is renamed separately (`quest-text.ts`). Scripts
+ * (`QuestScript`) need nothing: on the EU disc no packet argument is ever
+ * a quest's target or one of its monsters (mhfu-extract `quest-probe`).
  *
  * Difficulty is the `power` byte, the row of the quest's stat multiplier
  * table (HP, attack, defense, status: mhfu-extract `monsters/multipliers.ts`).
@@ -33,6 +33,7 @@ import {
   readSpawns,
   POWER_OFFSET,
   QUANTITY_OFFSET,
+  SIZE_PERCENT_OFFSET,
   TARGET_ID_OFFSET,
   type QuestSpawns,
 } from "../game/spawns.js";
@@ -171,7 +172,6 @@ export function swapSpecies(
     pool === "variants"
       ? "Each large monster became one of its variants, on maps where that variant is found."
       : `Each large monster became any large monster found on the quest's map${pool === "rank" ? " at the quest's rank" : ""}.`,
-    "Any monster in the quest's script (not decoded) is still the old one.",
   ];
   if (mixed > 0)
     notes.push(`${mixed} quests with more than one kind of large monster were left alone.`);
@@ -277,6 +277,42 @@ export function randomizeSmallCounts(
     title: "Small monster counts",
     notes: [
       `Counts moved by up to ${Math.round(spread * 100)}%, between 1 and ${cap} (the most any quest has). Counts of 0 and ${SPECIAL_COUNT} or more are unchanged.`,
+    ],
+    lines,
+  };
+}
+
+/** Size percentages are kept within this (the byte the disc uses holds up to 255). */
+const SIZE_LIMITS = [50, 200] as const;
+
+/**
+ * Each Village and Guild quest's monster size (`MonSizeModifier`, a
+ * percentage), scaled by a random factor within `spread`. Quest-wide: every
+ * large monster in the quest gets it. Values the disc doesn't use (0) are
+ * left alone.
+ */
+export function randomizeQuestSize(
+  list: readonly QuestMonsters[],
+  spread: number,
+  rng: Rng,
+  edits: Edits,
+): ShuffleReport {
+  const lines: ShuffleReport["lines"] = [];
+  for (const q of list) {
+    if (q.spawns.large.length === 0) continue;
+    const size = q.quest.file.payload.readUInt32LE(SIZE_PERCENT_OFFSET);
+    if (size === 0 || size > 255) continue;
+    const factor = 1 - spread + 2 * spread * rng.float();
+    const next = Math.min(SIZE_LIMITS[1], Math.max(SIZE_LIMITS[0], Math.round(size * factor)));
+    if (next === size) continue;
+    edits.quest(q.quest).writeUInt32LE(next, SIZE_PERCENT_OFFSET);
+    lines.push({ where: questLabel(q.quest), text: `size ${next}% (was ${size}%)` });
+  }
+  return {
+    title: "Quest monster size",
+    notes: [
+      `Each quest's monster size (its header's size percentage) moved by up to ${Math.round(spread * 100)}%, kept between ${SIZE_LIMITS[0]}% and ${SIZE_LIMITS[1]}%.`,
+      "The field reads as a percentage from the disc's values; what the game does with it is untested.",
     ],
     lines,
   };

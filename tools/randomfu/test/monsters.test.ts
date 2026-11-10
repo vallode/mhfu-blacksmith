@@ -12,7 +12,7 @@ import {
 } from "../../mhfu-extract/src/monsters/hitzones.js";
 import { openPatchableImage } from "../src/disc/node-file.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
-import { readSpawns, TARGET_ID_OFFSET } from "../src/game/spawns.js";
+import { readSpawns, SIZE_PERCENT_OFFSET, TARGET_ID_OFFSET } from "../src/game/spawns.js";
 import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
 import { MONSTER_FAMILIES } from "../src/shuffles/quest-monsters.js";
@@ -323,4 +323,40 @@ test("monster edits are written and read back; other options don't change", asyn
     withMonsters.reports.find((r) => r.title === "Quest rewards"),
     rewardsOnly.reports.find((r) => r.title === "Quest rewards"),
   );
+});
+
+test("quest size moves each Village and Guild quest's size percentage within the spread", async () => {
+  const { game, close } = await load();
+  let changed = 0;
+  for (const seed of ["q0", "q1", "q2", "q3"]) {
+    const result = randomize(
+      game,
+      only(seed, { "questMonsters.size": true, "questMonsters.sizeSpread": 0.3 }),
+    );
+    for (const quest of game.quests) {
+      const before = quest.file.payload.readUInt32LE(SIZE_PERCENT_OFFSET);
+      const after = payloadAfter(result, quest).readUInt32LE(SIZE_PERCENT_OFFSET);
+      if (quest.parsed.header.questId === 20001) {
+        assert.equal(after, before, "training quests stay");
+        continue;
+      }
+      if (quest.parsed.header.questId === 2001) assert.equal(before, 110);
+      assert.ok(after >= Math.round(before * 0.7) && after <= Math.round(before * 1.3), `${after}`);
+      if (after !== before) changed++;
+    }
+  }
+  assert.ok(changed > 0);
+  close();
+});
+
+test("quest size is off by default and leaves every quest's size alone", async () => {
+  const { game, close } = await load();
+  const result = randomize(game, only("q", { "questMonsters.species": true }));
+  for (const quest of game.quests) {
+    assert.equal(
+      payloadAfter(result, quest).readUInt32LE(SIZE_PERCENT_OFFSET),
+      quest.file.payload.readUInt32LE(SIZE_PERCENT_OFFSET),
+    );
+  }
+  close();
 });

@@ -21,6 +21,13 @@ export const QUANTITY_OFFSET = 4;
 export const POWER_OFFSET = 5;
 /** `questHeader.TargetID`: the quest's main target, by emID. */
 export const TARGET_ID_OFFSET = 112;
+/**
+ * `questHeader.MonSizeModifier` (u32 @ 0x38): the quest's large monster
+ * size, in percent. Read from the EU disc's values (mhfu-extract
+ * `quest-probe`): only the low byte is ever set, 100 in half the quests and
+ * 98-120 in the rest, higher at High and G Rank. Not confirmed in game.
+ */
+export const SIZE_PERCENT_OFFSET = 0x38;
 
 const END = 0xffff;
 /** No real list comes close; stops runaway reads of a damaged file. */
