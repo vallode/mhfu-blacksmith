@@ -70,7 +70,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 70
+      "base_hp": 70,
+      "flinch_thresholds": [
+        100
+      ]
     },
     {
       "name": "Giadrome",
@@ -197,7 +200,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 800
+      "base_hp": 800,
+      "flinch_thresholds": [
+        80
+      ]
     },
     {
       "name": "Velociprey",
@@ -274,7 +280,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 70
+      "base_hp": 70,
+      "flinch_thresholds": [
+        60
+      ]
     },
     {
       "name": "Velocidrome",
@@ -401,7 +410,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 800
+      "base_hp": 800,
+      "flinch_thresholds": [
+        110
+      ]
     },
     {
       "name": "Genprey",
@@ -474,7 +486,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 100
+      "base_hp": 100,
+      "flinch_thresholds": [
+        70
+      ]
     },
     {
       "name": "Gendrome",
@@ -605,7 +620,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 1200
+      "base_hp": 1200,
+      "flinch_thresholds": [
+        180
+      ]
     },
     {
       "name": "Ioprey",
@@ -678,7 +696,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 150
+      "base_hp": 150,
+      "flinch_thresholds": [
+        100
+      ]
     },
     {
       "name": "Iodrome",
@@ -775,7 +796,10 @@
           "ko": "100"
         }
       },
-      "base_hp": 1600
+      "base_hp": 1600,
+      "flinch_thresholds": [
+        220
+      ]
     },
     {
       "name": "Yian Kut-Ku",
@@ -1146,7 +1170,26 @@
           "ko": "0"
         }
       },
-      "base_hp": 1600
+      "base_hp": 1600,
+      "breaks": [
+        {
+          "name": "ears",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        130,
+        100,
+        100,
+        100,
+        100,
+        100,
+        80,
+        80
+      ]
     },
     {
       "name": "Blue Yian Kut-Ku",
@@ -1459,7 +1502,26 @@
           "ko": "0"
         }
       },
-      "base_hp": 2800
+      "base_hp": 2800,
+      "breaks": [
+        {
+          "name": "ears",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        130,
+        100,
+        100,
+        100,
+        100,
+        100,
+        80,
+        80
+      ]
     },
     {
       "name": "Yian Garuga",
@@ -1856,7 +1918,49 @@
           "ko": "0"
         }
       },
-      "base_hp": 4000
+      "base_hp": 4000,
+      "breaks": [
+        {
+          "name": "beak",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "ears",
+          "parts": [
+            6
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "back",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "wings",
+          "parts": [
+            1,
+            2
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        160,
+        150,
+        150,
+        180,
+        180,
+        100,
+        200,
+        150,
+        140
+      ]
     },
     {
       "name": "Scarred Yian Garuga",
@@ -1942,7 +2046,18 @@
           "ko": "0"
         }
       },
-      "base_hp": 3800
+      "base_hp": 3800,
+      "flinch_thresholds": [
+        160,
+        150,
+        150,
+        180,
+        180,
+        100,
+        200,
+        150,
+        140
+      ]
     },
     {
       "name": "Gypceros",
@@ -2329,7 +2444,26 @@
           "ko": "0"
         }
       },
-      "base_hp": 2400
+      "base_hp": 2400,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        150,
+        100,
+        100,
+        120,
+        120,
+        80,
+        130,
+        80
+      ]
     },
     {
       "name": "Purple Gypceros",
@@ -2663,7 +2797,26 @@
           "ko": "0"
         }
       },
-      "base_hp": 2800
+      "base_hp": 2800,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        150,
+        100,
+        100,
+        120,
+        120,
+        80,
+        130,
+        80
+      ]
     },
     {
       "name": "Hypnocatrice",
@@ -2918,7 +3071,26 @@
           "ko": "0"
         }
       },
-      "base_hp": 2600
+      "base_hp": 2600,
+      "breaks": [
+        {
+          "name": "head",
+          "parts": [
+            6
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        130,
+        100,
+        100,
+        100,
+        100,
+        100,
+        80,
+        80
+      ]
     }
   ]
 }

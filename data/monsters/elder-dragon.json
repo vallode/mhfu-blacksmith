@@ -129,7 +129,10 @@
           "ko": "0"
         }
       },
-      "base_hp": 3200
+      "base_hp": 3200,
+      "flinch_thresholds": [
+        200
+      ]
     },
     {
       "name": "Kushala Daora",
@@ -219,7 +222,18 @@
           "ko": "10"
         }
       },
-      "base_hp": 4800
+      "base_hp": 4800,
+      "flinch_thresholds": [
+        150,
+        100,
+        180,
+        180,
+        180,
+        90,
+        200,
+        140,
+        100
+      ]
     },
     {
       "name": "Rusted Kushala Daora",
@@ -310,7 +324,18 @@
           "ko": "10"
         }
       },
-      "base_hp": 4800
+      "base_hp": 4800,
+      "flinch_thresholds": [
+        150,
+        100,
+        100,
+        180,
+        180,
+        90,
+        200,
+        140,
+        100
+      ]
     },
     {
       "name": "Chameleos",
@@ -623,7 +648,28 @@
           "ko": "0"
         }
       },
-      "base_hp": 5600
+      "base_hp": 5600,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            0
+          ],
+          "flinches": 1,
+          "damage": "dragon"
+        }
+      ],
+      "flinch_thresholds": [
+        150,
+        200,
+        200,
+        180,
+        180,
+        90,
+        200,
+        140,
+        140
+      ]
     },
     {
       "name": "Lunastra",
@@ -886,7 +932,36 @@
           "ko": "0"
         }
       },
-      "base_hp": 4800
+      "base_hp": 4800,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            0
+          ],
+          "flinches": 2,
+          "below_hp": 0.6,
+          "damage": "dragon"
+        },
+        {
+          "name": "wings",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        150,
+        160,
+        200,
+        180,
+        180,
+        90,
+        200,
+        140,
+        100
+      ]
     },
     {
       "name": "Teostra",
@@ -1265,7 +1340,36 @@
           "ko": "0"
         }
       },
-      "base_hp": 4800
+      "base_hp": 4800,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            0
+          ],
+          "flinches": 2,
+          "below_hp": 0.6,
+          "damage": "dragon"
+        },
+        {
+          "name": "wings",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        150,
+        100,
+        100,
+        180,
+        180,
+        90,
+        200,
+        140,
+        100
+      ]
     },
     {
       "name": "Lao-Shan Lung",
@@ -1475,7 +1579,47 @@
           "ko": "0"
         }
       },
-      "base_hp": 26666
+      "base_hp": 26666,
+      "breaks": [
+        {
+          "name": "horn",
+          "parts": [
+            0
+          ],
+          "flinches": 1
+        },
+        {
+          "name": "head",
+          "parts": [
+            0
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "back",
+          "parts": [
+            4
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "left shoulder",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        }
+      ],
+      "flinch_thresholds": [
+        400,
+        450,
+        600,
+        880,
+        300,
+        600,
+        600,
+        1200
+      ]
     },
     {
       "name": "Ashen Lao-Shan Lung",
@@ -1573,7 +1717,17 @@
           "ko": "0"
         }
       },
-      "base_hp": 26666
+      "base_hp": 26666,
+      "flinch_thresholds": [
+        400,
+        450,
+        600,
+        880,
+        300,
+        600,
+        600,
+        1200
+      ]
     },
     {
       "name": "Yama Tsukami",
@@ -1742,7 +1896,26 @@
           "ko": "0"
         }
       },
-      "base_hp": 26666
+      "base_hp": 26666,
+      "breaks": [
+        {
+          "name": "tentacles",
+          "parts": [
+            6
+          ],
+          "flinches": 4
+        }
+      ],
+      "flinch_thresholds": [
+        400,
+        700,
+        500,
+        800,
+        400,
+        400,
+        1000,
+        300
+      ]
     },
     {
       "name": "Fatalis",
@@ -1949,7 +2122,54 @@
           "ko": "0"
         }
       },
-      "base_hp": 26666
+      "base_hp": 26666,
+      "breaks": [
+        {
+          "name": "eye",
+          "parts": [
+            5
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "2nd horn",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "1st horn",
+          "parts": [
+            5
+          ],
+          "flinches": 1
+        },
+        {
+          "name": "wing",
+          "parts": [
+            7
+          ],
+          "flinches": 5
+        },
+        {
+          "name": "chest",
+          "parts": [
+            0
+          ],
+          "flinches": 1
+        }
+      ],
+      "flinch_thresholds": [
+        300,
+        180,
+        200,
+        200,
+        250,
+        500,
+        180,
+        240
+      ]
     },
     {
       "name": "Crimson Fatalis",
@@ -2172,7 +2392,54 @@
           "ko": "0"
         }
       },
-      "base_hp": 20000
+      "base_hp": 20000,
+      "breaks": [
+        {
+          "name": "eye",
+          "parts": [
+            5
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "2nd horn",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "1st horn",
+          "parts": [
+            5
+          ],
+          "flinches": 1
+        },
+        {
+          "name": "wing",
+          "parts": [
+            7
+          ],
+          "flinches": 5
+        },
+        {
+          "name": "chest",
+          "parts": [
+            0
+          ],
+          "flinches": 1
+        }
+      ],
+      "flinch_thresholds": [
+        300,
+        180,
+        200,
+        200,
+        250,
+        500,
+        180,
+        240
+      ]
     },
     {
       "name": "White Fatalis",
@@ -2395,7 +2662,54 @@
           "ko": "0"
         }
       },
-      "base_hp": 20000
+      "base_hp": 20000,
+      "breaks": [
+        {
+          "name": "eye",
+          "parts": [
+            5
+          ],
+          "flinches": 3
+        },
+        {
+          "name": "2nd horn",
+          "parts": [
+            5
+          ],
+          "flinches": 2
+        },
+        {
+          "name": "1st horn",
+          "parts": [
+            5
+          ],
+          "flinches": 1
+        },
+        {
+          "name": "wing",
+          "parts": [
+            7
+          ],
+          "flinches": 5
+        },
+        {
+          "name": "chest",
+          "parts": [
+            0
+          ],
+          "flinches": 1
+        }
+      ],
+      "flinch_thresholds": [
+        300,
+        180,
+        200,
+        200,
+        250,
+        500,
+        180,
+        240
+      ]
     }
   ]
 }
