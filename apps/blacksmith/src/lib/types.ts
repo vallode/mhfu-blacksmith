@@ -92,6 +92,12 @@ export interface WeaponTreeNode {
   /** Armor only: defence at the highest upgrade level. */
   max_defence?: number;
   /**
+   * The weapon is also listed further up the tree, under another weapon it
+   * can be upgraded from, and its own upgrades are listed there: this row has
+   * no children of its own.
+   */
+  alias?: boolean;
+  /**
    * The page of the weapon this one is upgraded from, when the tree row isn't
    * nested under it any more (its parent was pruned out of the tree).
    */

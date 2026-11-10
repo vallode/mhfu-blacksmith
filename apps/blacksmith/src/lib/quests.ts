@@ -39,6 +39,34 @@ export const QUEST_MONSTER_ALIASES: Record<string, string> = {
 /** Small-monster spawns that aren't monsters: Treasure Hunting's breakable rocks. */
 export const QUEST_NON_MONSTERS: ReadonlySet<string> = new Set(["Rocks"]);
 
+/** Quest types, in the order the boards' filter steps through them. */
+export const QUEST_TYPES = ["hunting", "slaying", "gathering", "treasure"] as const;
+export type QuestType = (typeof QUEST_TYPES)[number];
+
+/** A quest type as the quest card heads it ("Hunting Quest"). */
+export function questTypeLabel(type: QuestType): string {
+  return `${type[0]!.toUpperCase()}${type.slice(1)} Quest`;
+}
+
+/**
+ * A quest's type, read from its goal: the data has no type of its own (the
+ * disc's quest header has one, not yet extracted). Slay N small monsters is
+ * Slaying; deliveries, and the gathering tours that end on the Paw Pass
+ * Ticket, are Gathering; Treasure Hunting's are Treasure; the rest (hunts
+ * and the fortress defences) are Hunting.
+ */
+export function questType(hub: string, goal: string | null): QuestType {
+  if (hub === "treasure-hunting") return "treasure";
+  if (goal?.startsWith("Slay ")) return "slaying";
+  if (goal?.startsWith("Deliver ") || goal?.includes("Paw Pass Ticket")) return "gathering";
+  return "hunting";
+}
+
+/** The types a list of quests covers, in QUEST_TYPES order. */
+export function questTypesIn(quests: Pick<Quest, "type">[]): QuestType[] {
+  return QUEST_TYPES.filter((t) => quests.some((q) => q.type === t));
+}
+
 // ---------------------------------------------------------------------------
 // Bundle (public/data/quests.json)
 // ---------------------------------------------------------------------------
@@ -124,6 +152,7 @@ export interface QuestRewardTable {
 export interface Quest {
   id: number;
   hub: QuestHubSlug;
+  type: QuestType;
   stars: number;
   map: string | null;
   fee: number;
@@ -162,6 +191,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
     ([id, hub, stars, map, fee, reward, timeLimit, tg, lm, sm, su, rw, n, g, x, d, c, rq, ur]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
+      type: questType(QUEST_HUBS[hub]?.slug ?? "village", str(g)),
       stars,
       map: str(map),
       fee,

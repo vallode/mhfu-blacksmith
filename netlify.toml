@@ -4,6 +4,12 @@
 [build]
   command = "pnpm build"
   publish = "apps/blacksmith/out"
+  # Builds are on demand only: skip every build Netlify starts on its own for
+  # a push or a pull request (exit code 0 skips). A build hook's build is never
+  # skipped, whatever this returns, so the "Deploy to Netlify" workflow
+  # (.github/workflows/netlify-deploy.yml), which calls the hook, is how the
+  # site gets built.
+  ignore = "exit 0"
 
 [build.environment]
   NODE_VERSION = "22"

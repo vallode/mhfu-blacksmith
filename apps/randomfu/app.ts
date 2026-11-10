@@ -98,7 +98,7 @@ const OPTION_STEPS: Step[] = [
     icon: "hammer",
     sections: ["Crafting", "Costs", "Weapons", "Armor"],
     intro:
-      "What the smithy makes and what it asks for. Settings marked EBOOT change the game's program, which randomfu decrypts from your disc.",
+      "What the smithy makes and what it asks for. Settings marked EBOOT change the game's program, which RandomFU decrypts from your disc.",
   },
   {
     id: "shops",
@@ -724,7 +724,7 @@ function droppable(kind: "iso" | "eboot"): void {
 // ---------------------------------------------------------------- runs
 
 function outputName(file: File, seed: string): string {
-  return `${file.name.replace(/\.iso$/i, "")} (randomfu ${seed}).iso`;
+  return `${file.name.replace(/\.iso$/i, "")} (RandomFU ${seed}).iso`;
 }
 
 async function run(dryRun: boolean): Promise<void> {

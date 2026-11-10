@@ -29,8 +29,8 @@ import { mergeItemStats, type ItemStatChange } from "../build/items.js";
 import type { EmittedItem } from "../emit/items.js";
 
 /** Targets copied from the disc whole, rather than merged with committed files. */
-export type CopiedTarget = "quests" | "gathering" | "shops";
-const COPIED_TARGETS: CopiedTarget[] = ["quests", "gathering", "shops"];
+export type CopiedTarget = "quests" | "gathering" | "shops" | "combinations";
+const COPIED_TARGETS: CopiedTarget[] = ["quests", "gathering", "shops", "combinations"];
 export type BuildTarget = CategoryName | "items" | CopiedTarget;
 export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "items", ...COPIED_TARGETS];
 
@@ -75,7 +75,7 @@ export interface ItemsBuildReport {
 export interface BuildDataReport {
   categories: CategoryBuildReport[];
   items: ItemsBuildReport | null;
-  /** Files copied from the disc (quests, gathering points, shops), relative to `data/`. */
+  /** Files copied from the disc (quests, gathering points, shops, combinations), relative to `data/`. */
   copiedFiles: string[];
 }
 
@@ -166,6 +166,33 @@ export function nameShopItems(content: unknown, site: SiteIndex): unknown {
   };
 }
 
+interface ItemRef {
+  id: number;
+  name: string;
+}
+
+/**
+ * Names every item in a `combinations.json` by its ID in
+ * `data/items.json`; `extract` names them from the `ItemID` enum.
+ */
+export function nameCombinationItems(content: unknown, site: SiteIndex): unknown {
+  const rename = (ref: ItemRef): ItemRef => {
+    const name = site.items.get(ref.id)?.name;
+    return name && name !== ref.name ? { ...ref, name } : ref;
+  };
+  const doc = content as { books?: ItemRef[]; combinations?: Record<string, unknown>[] };
+  if (!Array.isArray(doc?.combinations)) return content;
+  return {
+    ...doc,
+    books: (doc.books ?? []).map(rename),
+    combinations: doc.combinations.map((c) => ({
+      ...c,
+      result: rename(c.result as ItemRef),
+      ingredients: (c.ingredients as ItemRef[]).map(rename),
+    })),
+  };
+}
+
 /** Each copied target's files (relative to the extracted and `data/` directories) and renamer. */
 async function copiedFiles(
   target: CopiedTarget,
@@ -173,6 +200,8 @@ async function copiedFiles(
 ): Promise<{ files: string[]; name: (content: unknown, site: SiteIndex) => unknown }> {
   if (target === "gathering") return { files: ["gathering.json"], name: nameGatheringItems };
   if (target === "shops") return { files: ["shops.json"], name: nameShopItems };
+  if (target === "combinations")
+    return { files: ["combinations.json"], name: nameCombinationItems };
   const from = path.join(extractedDir, "quests");
   const files = (await readdir(from)).filter((f) => f.endsWith(".json")).sort();
   if (files.length === 0)
@@ -491,7 +520,7 @@ export function formatBuildReport(report: BuildDataReport): string {
     out.push(
       "## Copied from the disc",
       "",
-      `${report.copiedFiles.length} file(s): quests, gathering points and shops.`,
+      `${report.copiedFiles.length} file(s): quests, gathering points, shops and combinations.`,
       "",
       ...report.copiedFiles.map((f) => `- ${f}`),
       "",

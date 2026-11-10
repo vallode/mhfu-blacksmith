@@ -120,16 +120,15 @@ code {
 
 .masthead-title {
   margin: 0;
-  font-size: 5.2rem;
-  font-weight: normal;
-  line-height: 1.1;
-  letter-spacing: 0.35em;
-  margin-right: -0.35em; /* the trailing tracking would push the title off centre */
-  text-transform: uppercase;
-  color: var(--color-gold);
-  text-shadow:
-    0.3rem 0.3rem 0 black,
-    0 0 1.2rem rgb(0 0 0 / 0.6);
+  line-height: 0;
+}
+
+/* The wordmark, at twice its pixel size: 394×48. */
+.wordmark {
+  width: 39.4rem;
+  max-width: 100%;
+  height: auto;
+  image-rendering: pixelated;
 }
 
 .masthead-sub {
@@ -1162,12 +1161,6 @@ input[type="range"] {
 
   body {
     padding: 1rem 1rem 2rem;
-  }
-
-  .masthead-title {
-    font-size: 3.6rem;
-    letter-spacing: 0.25em;
-    margin-right: -0.25em;
   }
 
   .frame {

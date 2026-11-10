@@ -38,7 +38,9 @@ const SPRITES: [string, string?][] = [
 
 const CARD = `
 <div class="card">
-  <h1 class="masthead-title card-title">Randomfu</h1>
+  <h1 class="masthead-title card-title">
+    <img class="wordmark" src="images/randomfu.png" alt="RandomFU" />
+  </h1>
   <p class="card-sub">Monster Hunter Freedom Unite randomizer</p>
   <hr class="divider card-divider" />
   <div class="frame card-frame">
@@ -61,7 +63,8 @@ body::before { background-color: #1b2016; }
   position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
   background: rgb(0 0 0 / 0.3);
 }
-.card-title { margin-top: 84px; font-size: 96px; letter-spacing: 0.35em; }
+.card-title { margin-top: 84px; }
+.card-title .wordmark { width: 788px; max-width: none; }
 .card-sub {
   margin: 10px 0 0; font-size: 30px; color: var(--color-parchment);
   text-shadow: 0.25rem 0.25rem 0 black;
@@ -117,7 +120,7 @@ try {
     },
     { card: CARD, style: STYLE },
   );
-  // The sprites are CSS backgrounds, so wait for the network rather than the <img>s.
+  // The sprites are CSS backgrounds, so wait for the network rather than the <img>.
   await page.waitForLoadState("networkidle");
   await page.evaluate(() => document.fonts.ready);
   await page.screenshot({ path: out });

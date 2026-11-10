@@ -65,6 +65,7 @@ export interface CompactTreeNode {
   e?: string; // element
   m?: MinRankTuple; // earliest quest progress needed to make it
   d?: number; // armor max defence
+  a?: 1; // alias: listed again under another parent, its branch is under the first
   k?: CompactTreeNode[]; // children
 }
 
@@ -284,6 +285,7 @@ export function decodeTreeNode(node: CompactTreeNode, bundleType: string): Weapo
     element: node.e,
     min_rank: decodeMinRank(node.m),
     max_defence: node.d,
+    alias: node.a === 1 || undefined,
     children: node.k?.map((c) => decodeTreeNode(c, bundleType)),
   };
 }

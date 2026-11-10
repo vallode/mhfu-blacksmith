@@ -17,7 +17,7 @@ root excludes common disc image extensions; double check before committing.
 ## Why this works
 
 Nearly all equipment data (weapons, armor, items, decorations, crafting
-recipes, and the entire weapon upgrade tree) is stored as static, fixed-size
+recipes, the entire weapon upgrade tree, and item combinations) is stored as static, fixed-size
 arrays inside the game's main executable (`EBOOT.BIN`). Quests are
 individual `.mib` files inside `DATA.BIN`. See `NOTICE.md` for the
 reverse-engineering sources this is built on.
@@ -498,6 +498,43 @@ it takes before the monster flinches. On a flinch the game refills the
 part's counter (`+0x580 + part * 8`) from the record (EU `0x09AD3B10`),
 in some cases multiplied by the fourth float of the quest's stat
 multiplier row (EU `0x09AD3B88`, `multipliers.ts`: 1.0 to 2.5).
+
+### Combinations
+
+The Combination List is in `EBOOT.BIN` too, as four tables that
+`eboot.hexpat` doesn't describe. They were decoded from the EU disc by
+following the game's combine code (EBOOT `0x59b6c`-`0x5a6ec` there), and
+`src/tables/combinations.ts` finds them by their shape, not an address.
+EU file offsets:
+
+| Offset     | Table                                                                                                                                                                                                                               |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `0x1a2d84` | 172 recipes of 10 bytes, sorted by lower-ID ingredient: `u16` other ingredient, `u16` result, `u8` rate class, `u8` quantity class, `u8` own index, `u8` flags, `u8` an older list number (255 on most G-rank-only recipes), `u8` 0 |
+| `0x1a343c` | Per item ID, `u8` count and `u8` first recipe of the recipes whose lower-ID ingredient it is: how the game looks a pair up                                                                                                          |
+| `0x1a3e18` | The Combination List: both ingredients of each recipe as `u16` pairs in the in-game order (Potion first), ended by `0xffffffff`                                                                                                     |
+| `0x1a40cc` | The tables below, one after another                                                                                                                                                                                                 |
+
+After the list: one quantity roll per quantity class (a `u8` first amount,
+then the percent chance of that amount and each one after it, summing to
+100), pointers to the 7 rolls, the largest amount per class, the success
+rate per rate class (100, 95, 90, 85, 75, 65, 55), the Books of Combos
+1-5's item IDs, and the rate bonus for owning the first 0-5 of them (0, 5,
+10, 20, 30, 50).
+
+The game's success rate is the rate class's, plus the bonus for the books
+owned in order from Book 1, plus Combination's 15, 25 or 45 (or minus 5,
+10 or 15), at most 100. Flag `0x02` recipes (bombs) always succeed with
+Bomber, flag `0x10` recipes (traps and drugged meats) with Trap Master.
+Flag `0x01` recipes need the Alchemy skill or the Alchemy Guide. The
+Bullet Limit skill makes every combine give the largest amount. Flags
+`0x04` and `0x08` are only read by the combine menu's drawing code. The
+skill numbers are the `Skills 2` list in `equip.enum`: 69 Bomber,
+153-158 Combine Success, 159 Bullet Limit, 160 Alchemy, 194 Trap Master.
+
+`extract` writes `combinations.json` in list order, and `build-data`
+(target `combinations`) writes `data/combinations.json` with each item
+under its `data/items.json` name. `success_rate` is the rate class's,
+before books and skills.
 
 ## 3D models (experimental)
 
@@ -1172,8 +1209,9 @@ Neither search reads MIPS code, so a mapping computed only in code
 ## Building `data/` from the disc
 
 `data/armor/*.json`, `data/weapons/*.json`, `data/decorations.json`,
-the rarity, carry limit and price in `data/items.json`, `data/quests/*.json`, `data/gathering.json`, `data/shops.json` and the
-hitzones and drops in `data/monsters/*.json` are generated from an EU (ULES01213) disc with `build-data`. The disc is the source of truth for every field it holds.
+the rarity, carry limit and price in `data/items.json`, `data/quests/*.json`, `data/gathering.json`, `data/shops.json`,
+`data/combinations.json` and the hitzones and drops in `data/monsters/*.json`
+are generated from an EU (ULES01213) disc with `build-data`. The disc is the source of truth for every field it holds.
 Every field it doesn't hold is kept from the committed files.
 
 **Matching (`src/build/ids.ts`).** Items are paired by game ID, not by
