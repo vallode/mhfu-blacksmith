@@ -90,7 +90,33 @@
       "base_hp": 78,
       "flinch_thresholds": [
         60
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": null,
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Popo",
@@ -173,7 +199,33 @@
       "base_hp": 96,
       "flinch_thresholds": [
         60
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": null,
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Kelbi",
@@ -265,7 +317,33 @@
       "base_hp": 60,
       "flinch_thresholds": [
         30
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": null,
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Mosswine",
@@ -357,7 +435,33 @@
       "base_hp": 50,
       "flinch_thresholds": [
         10
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": null,
+        "poison": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Aptonoth",
@@ -417,7 +521,33 @@
       "base_hp": 80,
       "flinch_thresholds": [
         20
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": null,
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Apceros",
@@ -508,7 +638,33 @@
       "base_hp": 200,
       "flinch_thresholds": [
         60
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": null,
+        "poison": {
+          "initial": 200,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     }
   ]
 }

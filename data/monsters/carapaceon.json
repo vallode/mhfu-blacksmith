@@ -90,7 +90,39 @@
       "base_hp": 120,
       "flinch_thresholds": [
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Daimyo Hermitaur",
@@ -544,7 +576,39 @@
         100,
         100,
         200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 110,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Plum Daimyo Hermitaur",
@@ -742,7 +806,39 @@
         100,
         100,
         200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 110,
+          "increase": 120,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 70,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Ceanataur",
@@ -838,7 +934,39 @@
       "base_hp": 150,
       "flinch_thresholds": [
         130
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Shogun Ceanataur",
@@ -1356,7 +1484,39 @@
         150,
         100,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 125,
+          "increase": 90,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Terra Shogun Ceanataur",
@@ -1541,7 +1701,39 @@
         150,
         100,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 125,
+          "increase": 110,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Shen Gaoren",
@@ -1637,7 +1829,13 @@
         500,
         500,
         880
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": null,
+        "ko": null,
+        "poison": null
+      }
     }
   ]
 }

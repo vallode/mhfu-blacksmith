@@ -381,7 +381,13 @@ matching the committed data against the EU disc, then reviewed:
 
 Monsters pair with the site by emID through the same overlay (the enum
 spells two differently: "One-Ear Yian Garuga", "Terra Shogun Ceanatur").
-`base_hp` is written to `data/monsters` and shown on the monster page; `tolerances` is extracted but has no committed field yet.
+`base_hp` is written to `data/monsters` and shown on the monster page.
+`tolerances` is written to `data/monsters` too (`siteTolerances`):
+paralysis, sleep, KO and poison in snake_case keys, `null` where `initial`
+is 0xFFFF (immune). The fourth status is left out until it is identified
+(`initial` 100 or 160 or immune, the rest the same on every monster), and
+poison's `damagePerSecond` is written as `damage_interval`: it is 150 on
+every monster, so it is likely the ticks between hits.
 
 ### Monster hitboxes
 
@@ -1247,12 +1253,12 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 **Taken fields**, decided from `compare` against the committed data
 (agreement before the first build):
 
-| category    | taken                                                                                                                                  | agreement                                                                             | not taken                                                                                       |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| armor       | rarity, rank, slots, defence, resistances, sex, hunter_type, max_defence, max_defence_pre_ukanlos, create_cost, skills, create_mats    | 97.5–100%                                                                             | `hr`, `elder` (not on the disc), `alternative_create_mats` (not emitted)                        |
-| weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing)     |
-| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                                  |
-| monsters    | base_hp, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                                           | base_hp new; per part 97.3%, per drop group 86.5% (see below)                         | `description`, `habitats`, `sizes`, `icon` (not on the disc), `tolerances` (no committed field) |
+| category    | taken                                                                                                                                  | agreement                                                                             | not taken                                                                                   |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| armor       | rarity, rank, slots, defence, resistances, sex, hunter_type, max_defence, max_defence_pre_ukanlos, create_cost, skills, create_mats    | 97.5–100%                                                                             | `hr`, `elder` (not on the disc), `alternative_create_mats` (not emitted)                    |
+| weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing) |
+| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                              |
+| monsters    | base_hp, tolerances, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                               | base_hp, tolerances new; per part 97.3%, per drop group 86.5% (see below)             | `description`, `habitats`, `sizes`, `icon` (not on the disc)                                |
 
 Affinity was taken later (#33). Before, it agreed on 86.8% (198
 disagreements): heavy bowgun wrote zero as `"0"` (82, now compared by
