@@ -43,6 +43,7 @@ pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data .
 pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests.json --tsv .cache/mhfu/quest-size.tsv
 pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
+pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Velocidrome
 ```
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
@@ -81,6 +82,10 @@ pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
   and shows 64 bytes of each likely message file's string data. The
   report names whole strings only by language and field. See "Quest
   text".
+- `messages` reads one message file (`src/strings/messages.ts`) and prints
+  its tables, the strings containing `--grep`, or a run of strings
+  (`--table`, `--from`, `--count`), with control bytes as `\xNN`. It prints
+  game text, so keep the output out of the repository.
 - `quest-flags` searches the unpacked EBOOT and overlays for the table
   that maps quest IDs to their "cleared" bit in a save, and writes
   `quest-flags.json` (or `--out`). See "Save quest flags".
@@ -943,9 +948,20 @@ Other sources checked:
     three languages of one kind.
   - Each file starts with a table count, then increasing offsets, and none
     is a `.pac`.
-  - Whether the details screen's text is in one of them in another
-    encoding, or built from parts, is what the scan's word counts and
-    string bytes are for.
+  - **Layout** (`src/strings/messages.ts`): u32 table count, u32 8, a u32
+    file offset per table, then each table's u32 string offsets (from the
+    table's start) ending in `0xFFFFFFFF`, then NUL-terminated UTF-8
+    strings.
+  - **Languages:** each group is English, French, German, Italian,
+    Spanish, from the training text that starts 4786-4790. The file list's
+    JP names for 4788-4790 therefore don't match their content on EU.
+  - **Quest text:** single words of quest 10109 cluster in 4781 (English),
+    4782 (French) and 4783 (German), so 4781-4785 look like the quest text.
+    "Velocidrome" is in 4781 only twice, though 13 quests name it, and no
+    whole goal was found. So monster names there are probably a code
+    filled in from the main tables (19-23, where "Velocidrome" and
+    "Velociprey" appear many times). `messages --grep` shows the codes as
+    `\xNN`.
 - **Where else names live.** FUComplete's English text for the P2G disc
   (`FUComplete/Patch`, `data/str_tbl/`) has the monster names in
   `str_tbl.pac`'s first string table, and the JP file list has

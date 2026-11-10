@@ -20,6 +20,7 @@ import { runExtract } from "./cli/extract.js";
 import { runModels } from "./cli/models.js";
 import { runQuestFlags } from "./cli/quest-flags.js";
 import { runQuestTextScan } from "./cli/quest-text-scan.js";
+import { runMessages } from "./cli/messages.js";
 import { readFile, writeFile } from "node:fs/promises";
 import { runUnpack } from "./cli/unpack.js";
 import { probeQuests, sizeTsv } from "./emit/quest-probe.js";
@@ -65,7 +66,8 @@ const USAGE = `Usage:
   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,quests] [--report <path>] [--markdown <path>] [--dry-run]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
   tsx src/cli.ts quest-probe --quests <raw/quests.json> [--tsv <path>]
-  tsx src/cli.ts quest-text-scan --unpacked <dir> --quest <id> [--out <path>]`;
+  tsx src/cli.ts quest-text-scan --unpacked <dir> --quest <id> [--out <path>]
+  tsx src/cli.ts messages --unpacked <dir> --file <index> [--grep <word>] [--table <n> [--from <i>] [--count <n>]]`;
 
 export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
@@ -82,6 +84,20 @@ export async function main(argv: string[]): Promise<void> {
       });
       console.log(
         `\nDone. Region: ${manifest.region}, ${manifest.fileCount} DATA.BIN entries unpacked.`,
+      );
+      return;
+    }
+    case "messages": {
+      const num = (name: string) => (flags[name] === undefined ? undefined : Number(flags[name]));
+      process.stdout.write(
+        await runMessages({
+          unpacked: requireFlag(flags, "unpacked"),
+          file: Number(requireFlag(flags, "file")),
+          grep: flags.grep,
+          table: num("table"),
+          from: num("from"),
+          count: num("count"),
+        }),
       );
       return;
     }
