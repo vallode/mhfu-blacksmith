@@ -100,7 +100,7 @@
         },
         "notes":    { "type": ["string", "array", "null"] },
         "melodies": {
-          "description": "Hunting horn songs the horn's notes can play, from the disc's melody table (game_task.ovl). Effect text is hand-made (tools/mhfu-extract/src/overlay/melody-effects.json).",
+          "description": "Hunting horn songs the horn's notes can play, from the disc's melody table (game_task.ovl). Effect text is hand-made (packages/mhfu-extract/src/overlay/melody-effects.json).",
           "type": "array",
           "items": {
             "type": "object",
