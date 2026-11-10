@@ -250,10 +250,19 @@ Getting data out of them takes a disc of each, then, per game:
 1. `unpack` it, and check `DATA.BIN` came apart (`dataBinUnpacked`,
    `fileCount`) and `eboot.bin` is an ELF.
 2. Find the equipment tables in `eboot.bin`. MHF2 is MHFU's base game, so
-   most of MHFU's structs should carry over with fewer entries: search for
-   runs of a known weapon's stats as MHFU's EU signatures were found
-   (`extractSignature()`, `src/tables/eu-signatures.ts`). MHF1 is further
-   from MHFU; expect to write its readers from scratch.
+   most of MHFU's structs should carry over with fewer entries. `table-probe`
+   searches the target EBOOT for every entry of every fixed-size MHFU table
+   (weapons, armor, items, decorations, sharpness, …) and reports where each
+   table would start, how many entries agree, and where inserted or removed
+   entries split it (`src/tables/probe.ts`; offsets and counts only):
+
+   ```bash
+   pnpm --filter mhfu-extract table-probe --reference .cache/mhfu --target .cache/mhf2
+   ```
+
+   MHF1 is further from MHFU; expect few matches and readers written from
+   scratch.
+
 3. Add `src/games/mhp2.ts` (and `mhp.ts`): a `GameProfile` with that
    game's tables and resolvers, as `src/games/mhp2g.ts` is for MHFU, and
    let `extract` take the game through it.

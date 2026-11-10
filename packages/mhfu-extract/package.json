@@ -17,6 +17,7 @@
     "quest-probe": "tsx src/cli.ts quest-probe",
     "quest-text-scan": "tsx src/cli.ts quest-text-scan",
     "messages": "tsx src/cli.ts messages",
+    "table-probe": "tsx src/cli.ts table-probe",
     "test": "tsx --test test/**/*.test.ts",
     "typecheck": "tsc --noEmit -p ."
   },
