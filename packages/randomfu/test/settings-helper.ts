@@ -9,6 +9,7 @@ export const SHUFFLE_KEYS = {
   costs: "costs.enabled",
   weapons: "weapons.enabled",
   armor: "armor.enabled",
+  "armor-skills": "armorSkills.enabled",
   shops: "shops.enabled",
   gathering: "gathering.enabled",
   supplies: "supplies.enabled",

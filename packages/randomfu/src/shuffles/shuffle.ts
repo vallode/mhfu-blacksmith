@@ -1,6 +1,18 @@
 /** Shared pieces of the shuffles. */
 import type { Rng } from "../rng.js";
 
+/** `items` by key, in first-seen order of keys and items. */
+export function groupBy<T, K>(items: readonly T[], key: (item: T) => K): Map<K, T[]> {
+  const out = new Map<K, T[]>();
+  for (const item of items) {
+    const k = key(item);
+    const list = out.get(k);
+    if (list) list.push(item);
+    else out.set(k, [item]);
+  }
+  return out;
+}
+
 /**
  * Permutes `values` within each group: returns, for each slot, the value it
  * gets. Groups are visited in first-seen order, so the result depends only on
@@ -12,13 +24,10 @@ export function permuteWithinGroups<S, V>(
   value: (slot: S) => V,
   rng: Rng,
 ): V[] {
-  const members = new Map<string, number[]>();
-  slots.forEach((slot, i) => {
-    const key = group(slot);
-    const list = members.get(key);
-    if (list) list.push(i);
-    else members.set(key, [i]);
-  });
+  const members = groupBy(
+    slots.map((_, i) => i),
+    (i) => group(slots[i]!),
+  );
   const out = new Array<V>(slots.length);
   for (const indices of members.values()) {
     const values = rng.shuffle(indices.map((i) => value(slots[i]!)));

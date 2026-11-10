@@ -8,6 +8,7 @@ import { coarsen, itemTiers, monsterStars, type Tier } from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import { needsEboot, type Settings } from "./settings.js";
 import { shuffleArmor } from "./shuffles/armor.js";
+import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
 import { deliveryTargets, isQuestItem, readSupplySlots } from "./game/quest-fields.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
@@ -229,6 +230,22 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
   // shuffles' spoiler names the new pieces.
   if (settings["armor.enabled"]) {
     reports.push(shuffleArmor(game.eboot!, game.resolver, rng.fork("armor"), edits));
+  }
+
+  // Skills are the pieces' own, so they go with a piece wherever the armor shuffle puts it.
+  if (settings["armorSkills.enabled"]) {
+    reports.push(
+      randomizeArmorSkills(
+        game.eboot!,
+        game.resolver,
+        {
+          mode: settings["armorSkills.mode"],
+          keepArmorOnly: settings["armorSkills.keepArmorOnly"],
+        },
+        rng.fork("armor-skills"),
+        edits,
+      ),
+    );
   }
 
   if (settings["recipes.materials"] || settings["recipes.amounts"]) {

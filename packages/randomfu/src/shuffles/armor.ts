@@ -44,7 +44,7 @@ import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
 const HUNTER_TYPE_AT = 4;
 const RARITY_AT = 5;
 
-const SLOT_NAMES: Record<ArmorSlot, { table: NameTable; label: string }> = {
+export const SLOT_NAMES: Record<ArmorSlot, { table: NameTable; label: string }> = {
   head: { table: "HeadArmorID", label: "Head" },
   chest: { table: "ChestArmorID", label: "Chest" },
   arm: { table: "ArmArmorID", label: "Arms" },
@@ -64,7 +64,7 @@ function wearers(bits: number): string {
 }
 
 /** True if a piece has at least one sex bit and one hunter type bit. */
-function wearable(bits: number): boolean {
+export function wearable(bits: number): boolean {
   const { male, female, blademaster, gunner } = HUNTER_TYPE_BITS;
   return (bits & (male | female)) !== 0 && (bits & (blademaster | gunner)) !== 0;
 }
