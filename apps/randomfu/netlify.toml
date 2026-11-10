@@ -1,0 +1,42 @@
+# Build randomfu's web app (apps/randomfu) for randomfu.vallode.com.
+#
+# A second Netlify site on this repository, next to the MHFU Blacksmith one
+# (whose config is the netlify.toml at the root). In its build settings the
+# base directory is apps/randomfu, which is how Netlify finds this file;
+# `publish` is relative to it, and `command` and `ignore` run in it. pnpm
+# finds the workspace from there, so the whole workspace is installed.
+#
+# Netlify reads only one netlify.toml: this one if the deployed commit has it,
+# else the root's. Its paths are written for the site at the root, so they
+# can't work here.
+[build]
+  command = "pnpm build"
+  publish = "dist"
+  # Skip the build unless something the app is built from changed: its own
+  # code, the randomizer, the extractor it reads discs with, the look and
+  # sprites it borrows from the site (see build.mjs), or the dependencies.
+  # Exit code 0 skips the build, anything else runs it. With no earlier build
+  # to compare against (the first deploy, or a retry of the same commit), it
+  # always builds. The paths are from the repository root, whichever
+  # directory Netlify runs this in.
+  ignore = '''
+    cd "$(git rev-parse --show-toplevel)" &&
+    [ -n "$CACHED_COMMIT_REF" ] && [ "$CACHED_COMMIT_REF" != "$COMMIT_REF" ] &&
+    git diff --quiet "$CACHED_COMMIT_REF" "$COMMIT_REF" -- \
+      apps/randomfu packages/randomfu packages/mhfu-extract \
+      apps/blacksmith/src/app/globals.css apps/blacksmith/public/fonts apps/blacksmith/public/images \
+      package.json pnpm-lock.yaml pnpm-workspace.yaml
+  '''
+
+[build.environment]
+  NODE_VERSION = "22"
+
+# The page's own Content-Security-Policy is a <meta> tag in index.html, so it
+# holds wherever dist/ is hosted and pnpm test:e2e checks it. These are the
+# parts a <meta> tag can't set.
+[[headers]]
+  for = "/*"
+  [headers.values]
+    Content-Security-Policy = "frame-ancestors 'none'"
+    X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "no-referrer"
