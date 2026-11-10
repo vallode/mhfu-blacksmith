@@ -2,6 +2,9 @@
 
 import { useEffect, useRef, useState } from "react";
 import Loading from "@/components/Loading";
+import { cn } from "@/lib/cn";
+import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
+import { modelPanel, modelPanelButton } from "@/styles/model";
 
 /** A capsule drawn over the model, in the model's space: a sphere of `radius` swept from `start` to `end`. */
 export interface ModelCapsule {
@@ -41,6 +44,26 @@ const PAIR_OFFSET = (32 * Math.PI) / 180;
 
 type Status = "loading" | "ready" | "error";
 
+/** How long a model waits for its motions before showing still (see the effect). */
+const MOTIONS_WAIT_MS = 1500;
+
+/** The model's motions, once loaded (monsters only; see src/lib/motions.ts). */
+interface MotionState {
+  count: number;
+  index: number;
+  playing: boolean;
+}
+
+/** Drives the loaded motions from React; set while a model with motions shows. */
+interface MotionPlayer {
+  select: (index: number) => void;
+  setPlaying: (playing: boolean) => void;
+  /** Hold the bind pose (while hitboxes show: they're placed on it). */
+  hold: (hold: boolean) => void;
+}
+
+const panelButton = cn(modelPanelButton, "text-parchment");
+
 /**
  * Interactive 3D view of a .glb model: drag to rotate, scroll/pinch to zoom.
  * three.js is imported on demand so it only loads on pages that show a model.
@@ -50,6 +73,10 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
   const [status, setStatus] = useState<Status>("loading");
   /** Set while a model is shown, for the capsule effect below. */
   const sceneRef = useRef<{ THREE: Three; scene: import("three").Scene } | null>(null);
+  const [motion, setMotion] = useState<MotionState | null>(null);
+  const playerRef = useRef<MotionPlayer | null>(null);
+  /** Whether the model must hold its bind pose (hitboxes show); read when motions load. */
+  const holdRef = useRef(false);
 
   useEffect(() => {
     const container = containerRef.current;
@@ -57,6 +84,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
     let disposed = false;
     let cleanup = () => {};
     setStatus("loading");
+    setMotion(null);
 
     (async () => {
       const THREE = await import("three");
@@ -110,15 +138,22 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       resize();
 
       let frame = 0;
+      const clock = new THREE.Clock();
+      let mixer: import("three").AnimationMixer | null = null;
       const animate = () => {
         frame = requestAnimationFrame(animate);
+        mixer?.update(clock.getDelta());
         controls.update();
         renderer.render(scene, camera);
       };
 
       let model: import("three").Object3D | null = null;
+      const abort = new AbortController();
       cleanup = () => {
+        abort.abort();
         sceneRef.current = null;
+        playerRef.current = null;
+        mixer?.stopAllAction();
         cancelAnimationFrame(frame);
         observer.disconnect();
         controls.dispose();
@@ -152,23 +187,39 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           scene.add(model);
         }
 
+        // A skinned model moves away from its bind pose, which is all that
+        // three.js's culling bounds cover.
+        model.traverse((object) => {
+          if ((object as import("three").SkinnedMesh).isSkinnedMesh) object.frustumCulled = false;
+        });
+
         // Frame the model for a turntable, viewed from slightly above (see fit).
-        const box = new THREE.Box3().setFromObject(scene);
-        const size = box.getSize(new THREE.Vector3());
-        const center = box.getCenter(new THREE.Vector3());
-        const radius = size.length() / 2;
+        // Measured as posed (precise), so it's redone once a motion poses it.
+        const box = new THREE.Box3();
+        const center = new THREE.Vector3();
+        let radius = 0;
         // Fit by projection: the closest camera distance at which every corner
         // of the bounding box stays inside the frame (with a small margin)
         // from all around the turntable, at the current viewing elevation.
         // Exact for any shape and aspect ratio, unlike a bounding sphere.
-        const corners = [0, 1, 2, 3, 4, 5, 6, 7].map(
-          (i) =>
-            new THREE.Vector3(
-              i & 1 ? box.max.x : box.min.x,
-              i & 2 ? box.max.y : box.min.y,
-              i & 4 ? box.max.z : box.min.z,
-            ),
-        );
+        let corners: import("three").Vector3[] = [];
+        const measure = () => {
+          // A skinned mesh comes before its bones in the scene, so their
+          // world matrices must be current before the box reads them.
+          scene.updateMatrixWorld(true);
+          box.setFromObject(scene, true);
+          box.getCenter(center);
+          radius = box.getSize(new THREE.Vector3()).length() / 2;
+          corners = [0, 1, 2, 3, 4, 5, 6, 7].map(
+            (i) =>
+              new THREE.Vector3(
+                i & 1 ? box.max.x : box.min.x,
+                i & 2 ? box.max.y : box.min.y,
+                i & 4 ? box.max.z : box.min.z,
+              ),
+          );
+        };
+        measure();
         const MARGIN = 0.92;
         const probe = camera.clone();
         const projected = new THREE.Vector3();
@@ -228,9 +279,117 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         controls.target.set(0, 0, 0);
         fit();
 
-        sceneRef.current = { THREE, scene };
-        setStatus("ready");
-        animate();
+        let shown = false;
+        const show = () => {
+          if (shown) return;
+          shown = true;
+          sceneRef.current = { THREE, scene };
+          setStatus("ready");
+          animate();
+        };
+
+        // Motions come after the model, from the file its GLB names. The
+        // model waits a moment for them, so it first shows already posed and
+        // framed: its first pose can stand far from the bind pose (Rathian's
+        // is ~320 units up). On a slow connection it shows still meanwhile.
+        const motionsFile = (gltf.asset.extras as { motions?: unknown } | undefined)?.motions;
+        const motions: Promise<MotionClip[]> =
+          typeof motionsFile === "string" && !pair
+            ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
+                // The model still shows, just still.
+                .catch(() => [])
+            : Promise.resolve([]);
+        const early = await Promise.race([
+          motions,
+          new Promise<null>((resolve) => setTimeout(() => resolve(null), MOTIONS_WAIT_MS)),
+        ]);
+        if (disposed) return;
+        if (early === null) show();
+        const loaded = early ?? (await motions);
+        if (disposed) return;
+
+        if (loaded.length > 0) {
+          const root = model;
+          const node = (bone: number) => root.getObjectByName(`bone_${bone}`);
+          const parentOf = (bone: number) => {
+            const match = /^bone_(\d+)$/.exec(node(bone)?.parent?.name ?? "");
+            return match ? Number(match[1]) : -1;
+          };
+          const bind = (bone: number) =>
+            (node(bone)?.position.toArray() ?? [0, 0, 0]) as [number, number, number];
+          const sources = loaded.map((source) => inPlace(source, parentOf, bind));
+          const clips = sources.map(
+            (clip) =>
+              new THREE.AnimationClip(
+                `Motion ${clip.slot}`,
+                clip.duration,
+                clip.tracks.map((track) => {
+                  const name = `bone_${track.bone}`;
+                  if (track.path === "rotation")
+                    return new THREE.QuaternionKeyframeTrack(
+                      `${name}.quaternion`,
+                      track.times,
+                      track.values,
+                    );
+                  const property = track.path === "translation" ? "position" : "scale";
+                  return new THREE.VectorKeyframeTrack(
+                    `${name}.${property}`,
+                    track.times,
+                    track.values,
+                  );
+                }),
+              ),
+          );
+          mixer = new THREE.AnimationMixer(root);
+          // Each action plays once and stops on its last frame; the
+          // "finished" handler below restarts it where the game would.
+          const actions = clips.map((clip) => mixer!.clipAction(clip).setLoop(THREE.LoopOnce, 1));
+          for (const action of actions) action.clampWhenFinished = true;
+          const state = { index: 0, playing: true, hold: holdRef.current };
+          // A looping motion goes on from its loop start, as in the game, so
+          // its lead-in plays once; any other replays from the start.
+          mixer.addEventListener("finished", ({ action }) => {
+            const clip = sources[actions.indexOf(action)];
+            if (!clip) return;
+            action.time = clip.loop ? clip.loopStart : 0;
+            action.paused = !state.playing;
+          });
+          const apply = () => {
+            const action = actions[state.index]!;
+            if (state.hold)
+              action.stop(); // back to the bind pose
+            else if (!action.isRunning() && !action.paused) action.play();
+            action.paused = !state.playing;
+            setMotion({ count: actions.length, index: state.index, playing: state.playing });
+          };
+          playerRef.current = {
+            select: (index) => {
+              actions[state.index]!.stop();
+              state.index = (index + actions.length) % actions.length;
+              apply();
+            },
+            setPlaying: (playing) => {
+              state.playing = playing;
+              apply();
+            },
+            hold: (hold) => {
+              state.hold = hold;
+              apply();
+              reframe();
+            },
+          };
+          // Frame the pose the model takes (the first motion's, or the bind
+          // pose under hitboxes), unless the visitor has moved the camera.
+          const reframe = () => {
+            if (interacted) return;
+            mixer!.update(0);
+            measure();
+            fit?.();
+          };
+          apply();
+          reframe();
+        }
+        show();
       } catch {
         if (!disposed) setStatus("error");
       }
@@ -243,6 +402,14 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       cleanup();
     };
   }, [src, pair]);
+
+  // Hitboxes are placed on the bind pose, so the model holds it while they show.
+  const holding = !!capsules?.some((capsule) => capsule.opacity > 0);
+  const hasMotion = motion !== null;
+  useEffect(() => {
+    holdRef.current = holding;
+    if (hasMotion) playerRef.current?.hold(holding);
+  }, [holding, hasMotion]);
 
   // Capsules live in their own group, rebuilt when they change; there are
   // few (Rathian has 32), so rebuilding is cheaper than diffing.
@@ -297,6 +464,43 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       />
       {status === "loading" && (
         <Loading className="absolute inset-0 justify-center opacity-70">Loading model…</Loading>
+      )}
+      {motion && !holding && (
+        <div
+          role="group"
+          aria-label="Motions"
+          className={cn(
+            modelPanel,
+            "absolute right-2 bottom-2 z-10 flex items-center gap-[0.8rem]",
+          )}
+        >
+          <button
+            type="button"
+            className={panelButton}
+            aria-label="Previous motion"
+            onClick={() => playerRef.current?.select(motion.index - 1)}
+          >
+            ‹
+          </button>
+          <span className="tabular-nums" aria-live="polite">
+            Motion {motion.index + 1}/{motion.count}
+          </span>
+          <button
+            type="button"
+            className={panelButton}
+            aria-label="Next motion"
+            onClick={() => playerRef.current?.select(motion.index + 1)}
+          >
+            ›
+          </button>
+          <button
+            type="button"
+            className={cn(panelButton, "w-cells-5 text-left")}
+            onClick={() => playerRef.current?.setPlaying(!motion.playing)}
+          >
+            {motion.playing ? "Pause" : "Play"}
+          </button>
+        </div>
       )}
       {status === "error" && (
         <p className="absolute inset-0 flex items-center justify-center text-center opacity-70">

@@ -30,7 +30,46 @@
           "type": "array",
           "maxItems": 9,
           "items": { "type": ["integer", "null"], "minimum": 1 }
-        }
+        },
+        "tolerances":  { "$ref": "#/definitions/tolerances" }
+      }
+    },
+    "tolerances": {
+      "description": "Status tolerances from the disc; null where the monster is immune. Times are in game ticks.",
+      "type": "object",
+      "required": ["paralysis", "sleep", "ko", "poison"],
+      "additionalProperties": false,
+      "properties": {
+        "paralysis": { "$ref": "#/definitions/status_tolerance" },
+        "sleep":     { "$ref": "#/definitions/status_tolerance" },
+        "ko":        { "$ref": "#/definitions/status_tolerance" },
+        "poison":    { "$ref": "#/definitions/poison_tolerance" }
+      }
+    },
+    "status_tolerance": {
+      "type": ["object", "null"],
+      "required": ["initial", "increase", "recovery", "recovery_time", "duration"],
+      "additionalProperties": false,
+      "properties": {
+        "initial":       { "type": "integer", "minimum": 0 },
+        "increase":      { "type": "integer", "minimum": 0 },
+        "recovery":      { "type": "integer", "minimum": 0 },
+        "recovery_time": { "type": "integer", "minimum": 0 },
+        "duration":      { "type": "integer", "minimum": 0 }
+      }
+    },
+    "poison_tolerance": {
+      "type": ["object", "null"],
+      "required": ["initial", "increase", "recovery", "recovery_time", "damage", "damage_interval", "total_time"],
+      "additionalProperties": false,
+      "properties": {
+        "initial":         { "type": "integer", "minimum": 0 },
+        "increase":        { "type": "integer", "minimum": 0 },
+        "recovery":        { "type": "integer", "minimum": 0 },
+        "recovery_time":   { "type": "integer", "minimum": 0 },
+        "damage":          { "type": "integer", "minimum": 0 },
+        "damage_interval": { "type": "integer", "minimum": 0 },
+        "total_time":      { "type": "integer", "minimum": 0 }
       }
     },
     "break": {

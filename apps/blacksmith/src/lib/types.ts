@@ -210,6 +210,39 @@ export interface Monster {
    * are absent; the field is absent without hitboxes or thresholds.
    */
   hitzone_flinch?: Record<string, string>;
+  /** Status tolerances from the disc; null where the monster is immune. Only in `data/` so far. */
+  tolerances?: MonsterTolerances;
+}
+
+/**
+ * A status's buildup: it takes `initial` to trigger, `increase` more each
+ * time after; the buildup drains by `recovery` every `recovery_time` ticks,
+ * and the status lasts `duration` ticks.
+ */
+export interface StatusTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  duration: number;
+}
+
+/** Poison's buildup, plus `damage` every `damage_interval` ticks for `total_time` ticks. */
+export interface PoisonTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  damage: number;
+  damage_interval: number;
+  total_time: number;
+}
+
+export interface MonsterTolerances {
+  paralysis: StatusTolerance | null;
+  sleep: StatusTolerance | null;
+  ko: StatusTolerance | null;
+  poison: PoisonTolerance | null;
 }
 
 export interface Decoration {

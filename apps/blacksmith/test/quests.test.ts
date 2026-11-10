@@ -10,6 +10,9 @@ import {
   questStarLevel,
   questStarLevels,
   questsWithMonster,
+  questType,
+  questTypeLabel,
+  questTypesIn,
   rewardTableHeading,
 } from "../src/lib/quests";
 
@@ -234,6 +237,40 @@ describe("quest lookups", () => {
 
   test("questHref uses the hub and quest ID", () => {
     assert.equal(questHref({ hub: "low-rank", id: 1101 }), "/quests/low-rank/1101/");
+  });
+});
+
+describe("questType", () => {
+  test("reads the type from the goal", () => {
+    assert.equal(questType("village", "Hunt the Giadrome"), "hunting");
+    assert.equal(questType("guild", "Defend the Fortress from\nLao-Shan Lung"), "hunting");
+    assert.equal(questType("village", "Slay 5 Giaprey"), "slaying");
+    assert.equal(questType("village", "Deliver 5 Mountain Herbs"), "gathering");
+    assert.equal(
+      questType("guild", "Survive until Time Over or\nDeliver the Paw Pass Ticket"),
+      "gathering",
+    );
+    assert.equal(questType("treasure-hunting", "2000 Pts Before Time Over or"), "treasure");
+    assert.equal(questType("village", null), "hunting");
+  });
+
+  test("decodeQuests gives each quest its type", () => {
+    const { bundle } = encode([quest({ id: 1 }), quest({ id: 2, goal: "Slay 5 Giaprey" })]);
+    assert.deepEqual(
+      decodeQuests(bundle).map((q) => q.type),
+      ["hunting", "slaying"],
+    );
+  });
+
+  test("questTypesIn lists the types present, in filter order", () => {
+    assert.deepEqual(questTypesIn([{ type: "gathering" }, { type: "hunting" }]), [
+      "hunting",
+      "gathering",
+    ]);
+  });
+
+  test("questTypeLabel heads the card like the game", () => {
+    assert.equal(questTypeLabel("hunting"), "Hunting Quest");
   });
 });
 

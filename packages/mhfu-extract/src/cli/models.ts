@@ -2,16 +2,17 @@
  * `models` subcommand — converts `.pac` model packages from an `unpack`
  * output (`data-bin/weapon/*.pac`, ...) into `.glb` files.
  *
- * Experimental: output is the static bind pose only (no skeleton or
- * animation). Verified by rendering weapons, armor and monsters from an EU
- * disc; see README "3D models".
+ * Experimental. Weapons and armor come out in their bind pose; monsters are
+ * skinned to their skeleton and carry every motion in their package as an
+ * animation clip. Verified by rendering weapons, armor and monsters from an
+ * EU disc; see README "3D models".
  */
 import { mkdir, readdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { buildGlb, type GlbStats } from "../models/gltf.js";
 import { isPac, readPac } from "../models/pac.js";
-import { attachDetachedParts, skeletonFor } from "../models/attach.js";
-import { isPmo, readPmo } from "../models/pmo.js";
+import { isPmo } from "../models/pmo.js";
+import { packageModel } from "../models/rig.js";
 import { isTmh, readTmh } from "../models/tmh.js";
 
 export interface ModelsOptions {
@@ -49,9 +50,9 @@ export async function convertPac(file: string, outDir: string, root: string): Pr
         error: `no PMO mesh (entries: ${entries.map((e) => e.magic ?? "?").join(", ")})`,
       };
     const tmhEntry = entries.find((entry) => isTmh(entry.data));
-    const pmo = attachDetachedParts(readPmo(pmoEntry.data), skeletonFor(entries, pmoEntry.index));
+    const { pmo, rig } = packageModel(entries, pmoEntry.index);
     const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
-    const { glb, stats } = await buildGlb(pmo, textures, source);
+    const { glb, stats } = await buildGlb(pmo, textures, source, {}, rig);
     const output = path.join(outDir, source.replace(/\.pac$/, ".glb"));
     await mkdir(path.dirname(output), { recursive: true });
     await writeFile(output, glb);
@@ -71,7 +72,7 @@ export async function runModels(options: ModelsOptions): Promise<ModelResult[]> 
     if (result.error) console.log(`skip ${result.source}: ${result.error}`);
     else
       console.log(
-        `ok   ${result.source}: ${result.stats!.primitives} primitives, ${result.stats!.vertices} vertices, ${result.stats!.triangles} triangles`,
+        `ok   ${result.source}: ${result.stats!.primitives} primitives, ${result.stats!.vertices} vertices, ${result.stats!.triangles} triangles${result.stats!.clips ? `, ${result.stats!.clips} clips` : ""}`,
       );
   }
   return results;
