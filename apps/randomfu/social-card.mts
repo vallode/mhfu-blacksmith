@@ -39,7 +39,7 @@ const SPRITES: [string, string?][] = [
 const CARD = `
 <div class="card">
   <h1 class="masthead-title card-title">
-    <img class="wordmark" src="images/randomfu.png" alt="Randomfu" />
+    <img class="wordmark" src="images/randomfu.png" alt="RandomFU" />
   </h1>
   <p class="card-sub">Monster Hunter Freedom Unite randomizer</p>
   <hr class="divider card-divider" />
