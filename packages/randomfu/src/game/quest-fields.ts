@@ -101,20 +101,30 @@ export interface QuestTerms {
   timeLimit: number;
 }
 
-export function readTerms(payload: Buffer): QuestTerms {
+/** `base`: where the header is, 0 in a quest file (a board record's is `recordBase`). */
+export function readTerms(payload: Buffer, base = 0): QuestTerms {
   return {
-    fee: payload.readUInt32LE(FEE),
-    reward: payload.readUInt32LE(REWARD),
-    penalty: payload.readUInt32LE(PENALTY),
-    timeLimit: payload.readUInt32LE(TIME_LIMIT),
+    fee: payload.readUInt32LE(base + FEE),
+    reward: payload.readUInt32LE(base + REWARD),
+    penalty: payload.readUInt32LE(base + PENALTY),
+    timeLimit: payload.readUInt32LE(base + TIME_LIMIT),
   };
 }
 
-export function writeTerms(payload: Buffer, terms: QuestTerms): void {
-  payload.writeUInt32LE(terms.fee, FEE);
-  payload.writeUInt32LE(terms.reward, REWARD);
-  payload.writeUInt32LE(terms.penalty, PENALTY);
-  payload.writeUInt32LE(terms.timeLimit, TIME_LIMIT);
+export function writeTerms(payload: Buffer, terms: QuestTerms, base = 0): void {
+  payload.writeUInt32LE(terms.fee, base + FEE);
+  payload.writeUInt32LE(terms.reward, base + REWARD);
+  payload.writeUInt32LE(terms.penalty, base + PENALTY);
+  payload.writeUInt32LE(terms.timeLimit, base + TIME_LIMIT);
+}
+
+export function sameTerms(a: QuestTerms, b: QuestTerms): boolean {
+  return (
+    a.fee === b.fee &&
+    a.reward === b.reward &&
+    a.penalty === b.penalty &&
+    a.timeLimit === b.timeLimit
+  );
 }
 
 /** Language slots in `LangPTRs`: three English, German, French, Spanish, Italian. */

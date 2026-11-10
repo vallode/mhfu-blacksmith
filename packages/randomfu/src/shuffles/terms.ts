@@ -1,7 +1,9 @@
 /**
  * Quest terms: the contract fee, reward and penalty (zenny) and the time
  * limit in each Village and Guild quest's header (`readTerms`). The quest
- * board shows these numbers from the header; no quest text repeats them.
+ * board files keep their own copy of that part of the header, which the
+ * board and the Quest Details screen read (`game/board.ts`), so each of a
+ * quest's board records gets the same terms. No quest text repeats them.
  *
  * On the disc the penalty is a fixed share of the reward (a third, mostly)
  * and the reward a multiple of the fee (12x in the Guild, 6x in the
@@ -12,7 +14,14 @@
  * minutes on the EU disc): longer ones have never been shown by the game.
  */
 import type { LoadedQuest } from "../game/load.js";
-import { readTerms, TICKS_PER_MINUTE, writeTerms, type QuestTerms } from "../game/quest-fields.js";
+import { boardName, questRecords, recordBase, type BoardFile } from "../game/board.js";
+import {
+  readTerms,
+  sameTerms,
+  TICKS_PER_MINUTE,
+  writeTerms,
+  type QuestTerms,
+} from "../game/quest-fields.js";
 import { questTier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import { questLabel } from "../names.js";
@@ -51,10 +60,12 @@ export function randomizeTerms(
   options: TermsOptions,
   rngs: { money: Rng; time: Rng },
   edits: Edits,
+  boards: readonly BoardFile[] = [],
 ): ShuffleReport {
   const factor = (rng: Rng, spread: number) => 1 - spread + rng.float() * 2 * spread;
   const limits = slots.map((s) => minutes(s.terms.timeLimit)).filter((m) => m > 0);
   const shortest = Math.min(...limits);
+  let boardRecords = 0;
   const longest = Math.max(...limits);
 
   const lines = slots.flatMap(({ quest, terms }) => {
@@ -80,12 +91,18 @@ export function randomizeTerms(
       parts.push(`${limit} min (was ${minutes(terms.timeLimit)})`);
     }
     if (parts.length === 0) return [];
-    const same =
-      next.fee === terms.fee &&
-      next.reward === terms.reward &&
-      next.penalty === terms.penalty &&
-      next.timeLimit === terms.timeLimit;
-    if (!same) writeTerms(edits.quest(quest), next);
+    if (!sameTerms(next, terms)) {
+      writeTerms(edits.quest(quest), next);
+      for (const { board, record } of questRecords(boards, quest.parsed.header.questId)) {
+        // A copy that doesn't match the quest isn't one this knows how to read.
+        if (!sameTerms(readTerms(board.data, recordBase(record)), terms)) {
+          parts.push(`board (${boardName(board)}) kept: its copy differs from the quest's`);
+          continue;
+        }
+        writeTerms(edits.dataFile(board.index), next, recordBase(record));
+        boardRecords++;
+      }
+    }
     return [{ where: questLabel(quest), text: parts.join(", ") }];
   });
 
@@ -101,6 +118,11 @@ export function randomizeTerms(
       `Time limits vary by up to ${Math.round(options.timeSpread * 100)}%, in whole minutes, from ${shortest} to ${longest} minutes (the shortest and longest on the disc).`,
     );
   }
-  notes.push("Training School, Treasure Hunting and unused quests are unchanged.");
+  notes.push(
+    boards.length > 0
+      ? `The quest board's copies, which the board and Quest Details screen show, change with them: ${boardRecords} records in level*.mib.`
+      : "No quest board file (level*.mib) could be read, so the board and Quest Details screen show the old terms.",
+    "Training School, Treasure Hunting and unused quests are unchanged.",
+  );
   return { title: "Quest terms", notes, lines };
 }

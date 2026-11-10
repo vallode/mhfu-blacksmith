@@ -841,9 +841,10 @@ export const BOARD_INDICES = [5310, 5311];
 
 /**
  * A board file (`level*.mib`, see src/game/board.ts): record offsets, then
- * per quest a 0x34-byte copy of its header's display section (quest ID,
- * stars, map, TargetID, and the offset of its `LangPTRs`), its strings back
- * to back, its `StringPTRs` blocks and its `LangPTRs`.
+ * per quest a 0x34-byte copy of its header's display section (quest file
+ * 0x4c-0x7f, with the offset of its `LangPTRs` in place of the quest's),
+ * its strings back to back, its `StringPTRs` blocks and its `LangPTRs`.
+ * A quest's `text` gives the same blocks as its quest file.
  */
 export function buildBoardFile(quests: FixtureQuest[]): Buffer {
   const parts: Buffer[] = [];
@@ -858,12 +859,20 @@ export function buildBoardFile(quests: FixtureQuest[]): Buffer {
     const header = Buffer.alloc(0x34);
     const recordAt = place(header);
     table.writeUInt32LE(recordAt, i * 4);
-    header.writeUInt16LE(q.questId, 0x18);
-    header[0x1a] = q.stars;
-    header[0x1c] = GATHERING_MAP;
-    header.writeUInt16LE(q.monsters[0] ?? 0, 0x24); // TargetID
-    header.writeUInt16LE(1, 0x26);
-    const text = q.slots ?? FIXTURE_TEXT[q.questId] ?? [];
+    buildQuestPayload(q).copy(header, 0, 0x4c, 0x80);
+    const fromText = (goal: string): FixtureText => [
+      q.text!.title,
+      goal,
+      "Fail",
+      "Details",
+      "Monsters",
+      "Client",
+    ];
+    const text =
+      q.slots ??
+      (q.text ? [fromText(q.text.goal), 0, fromText(q.text.otherGoal), 2, 2, 2, 0] : null) ??
+      FIXTURE_TEXT[q.questId] ??
+      [];
     const own = text.map((t) =>
       Array.isArray(t) ? t.map((str) => place(Buffer.from(`${str}\0`, "utf8"))) : null,
     );
@@ -1463,10 +1472,11 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   let count = QUEST_INDICES.at(-1)! + 2;
   if (options.text) {
     files.set(TEXT_QUEST_INDEX, buildQuestEntry(buildQuestPayload(withText(FIXTURE_TEXT_QUEST))));
-    // Quest 2001 is on two boards, as some quests are on the disc.
+    // Quest 2001 is on two boards, as some quests are on the disc. 10102 is
+    // the delivery quest, with its text.
     const byId = (id: number) => withText(FIXTURE_QUESTS.find((q) => q.questId === id)!);
     files.set(BOARD_INDICES[0]!, buildBoardFile([byId(1001), byId(2001), byId(10101)]));
-    files.set(BOARD_INDICES[1]!, buildBoardFile([byId(2001)]));
+    files.set(BOARD_INDICES[1]!, buildBoardFile([byId(2001), byId(10102)]));
     count = BOARD_INDICES.at(-1)! + 1;
   }
   const dataBin = buildDataBin(count, files, JP_RAW);

@@ -352,7 +352,7 @@ test("the quest board's records are read from level*.mib", async () => {
     game.boards.map((b) => [b.index, b.path, b.records.map((r) => r.questId)]),
     [
       [BOARD_INDICES[0], "mission_jpn/level1.mib", [1001, 2001, 10101]],
-      [BOARD_INDICES[1], "mission_jpn/level2.mib", [2001]],
+      [BOARD_INDICES[1], "mission_jpn/level2.mib", [2001, 10102]],
     ],
   );
   close();
