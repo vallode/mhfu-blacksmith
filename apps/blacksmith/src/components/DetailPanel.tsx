@@ -10,20 +10,15 @@ import type { Material } from "@/lib/types";
 
 /**
  * The detail card; shares the row with the tree card. Long content
- * (a quest's rewards, a monster's drops) scrolls inside it on desktop, where
- * the card is the height of the page; on a phone the card grows instead.
+ * (a quest's rewards, a monster's drops) scrolls inside it where the card is
+ * the height of the page, as beside a tree (SplitPage); elsewhere on a phone
+ * the card grows instead.
  */
-export function DetailCard({
-  children,
-  className,
-}: {
-  children: React.ReactNode;
-  className?: string;
-}) {
+export function DetailCard({ children }: { children: React.ReactNode }) {
   return (
     // The 4rem basis keeps the row split it had when Card's 4rem of side
     // padding sat on this flex item (tree card 530px, this 570px at 1400px).
-    <Card className={cn("basis-[4rem] mobile:basis-[0%]", className)} scroll>
+    <Card className="basis-[4rem] mobile:basis-[0%]" scroll>
       {children}
     </Card>
   );
@@ -51,15 +46,9 @@ export function DetailName({ children, id }: { children: React.ReactNode; id?: s
  * The detail card with nothing selected (a section's own page, beside its
  * tree): NO DATA where the item's name would be, plus an optional note.
  */
-export function NoDataCard({
-  children,
-  className,
-}: {
-  children?: React.ReactNode;
-  className?: string;
-}) {
+export function NoDataCard({ children }: { children?: React.ReactNode }) {
   return (
-    <DetailCard className={className}>
+    <DetailCard>
       <DetailHeader>
         <p className="uppercase">No data</p>
       </DetailHeader>

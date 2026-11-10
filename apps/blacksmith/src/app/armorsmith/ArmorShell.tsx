@@ -4,6 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import ArmorNav from "@/components/ArmorNav";
 import ArmorTreePanel from "@/components/ArmorTreePanel";
+import SplitPage from "@/components/SplitPage";
 import TreeScroll from "@/components/TreeScroll";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import { useVisibleTree } from "@/hooks/useVisibleTree";
@@ -30,8 +31,7 @@ function ArmorSidebar({ slot, rank, slug }: { slot: ArmorSlot; rank: ArmorRank; 
   // Warm the model list so a piece's 3D button shows with the rest of its page.
   useEffect(() => prefetchManifest(`armor/${slot}`), [slot]);
   return (
-    // Phones show one pane at a time: on a piece's page, its detail.
-    <ArmorTreePanel slot={slot} rank={rank} className={slug ? "mobile:hidden" : undefined}>
+    <ArmorTreePanel slot={slot} rank={rank}>
       <TreeScroll treeKey={treeKey} activeSlug={slug}>
         {visibleTree?.map((node) => (
           <ul key={node.slug}>
@@ -70,14 +70,14 @@ export function ArmorShell({
 }) {
   return (
     <>
-      <ArmorNav activeSlot={slot} rank={rank} detail={!!slug} />
-      {/* On phones the slot's own page is just the list, which fills the
-          screen and scrolls inside its card (see AppShell). */}
+      <ArmorNav activeSlot={slot} rank={rank} />
       {slot && rank ? (
-        <div className="split-page" data-fill-screen={slug ? undefined : true}>
-          <ArmorSidebar slot={slot} rank={rank} slug={slug} />
+        <SplitPage
+          list={<ArmorSidebar slot={slot} rank={rank} slug={slug} />}
+          closeHref={slug && `/armorsmith/${slot}/${rank}/`}
+        >
           {children}
-        </div>
+        </SplitPage>
       ) : (
         children
       )}

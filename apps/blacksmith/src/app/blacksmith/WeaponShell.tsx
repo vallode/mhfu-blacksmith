@@ -1,6 +1,7 @@
 "use client";
 
 import { usePathname } from "next/navigation";
+import SplitPage from "@/components/SplitPage";
 import WeaponNav from "@/components/WeaponNav";
 import WeaponTreePanel from "@/components/WeaponTreePanel";
 import { useWeaponTree } from "@/lib/client-data";
@@ -17,15 +18,7 @@ function parseWeaponPath(pathname: string): { type?: WeaponType; slug?: string }
 /** The type's weapon tree, down the left. */
 function WeaponSidebar({ type, slug }: { type: WeaponType; slug?: string }) {
   const { tree, loading } = useWeaponTree(type);
-  return (
-    <WeaponTreePanel
-      type={type}
-      tree={loading ? null : tree}
-      activeSlug={slug}
-      // Phones show one pane at a time: on a weapon's page, its detail.
-      className={slug ? "mobile:hidden" : undefined}
-    />
-  );
+  return <WeaponTreePanel type={type} tree={loading ? null : tree} activeSlug={slug} />;
 }
 
 /**
@@ -47,13 +40,13 @@ export function WeaponShell({
   if (!type) return children;
   return (
     <>
-      <WeaponNav activeType={type} detail={!!slug} />
-      {/* On phones the type's own page is just the tree, which fills the
-          screen and scrolls inside its card (see AppShell). */}
-      <div className="split-page" data-fill-screen={slug ? undefined : true}>
-        <WeaponSidebar type={type} slug={slug} />
+      <WeaponNav activeType={type} />
+      <SplitPage
+        list={<WeaponSidebar type={type} slug={slug} />}
+        closeHref={slug && `/blacksmith/${type}/`}
+      >
         {children}
-      </div>
+      </SplitPage>
     </>
   );
 }

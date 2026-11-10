@@ -7,8 +7,6 @@ import PageBar, { PageTab, PageTabs } from "./PageBar";
 
 interface MonsterNavProps {
   activeCategory?: MonsterCategory;
-  /** On a monster's page: phones show only the detail, so lead back to the list. */
-  detail?: boolean;
 }
 
 function formatName(category: string): string {
@@ -16,22 +14,15 @@ function formatName(category: string): string {
 }
 
 /** The bestiary's PageBar: one tab per monster type. */
-export default function MonsterNav({ activeCategory, detail }: MonsterNavProps) {
+export default function MonsterNav({ activeCategory }: MonsterNavProps) {
   // Remember the monster type so the main menu's "Monsters" entry reopens it.
   useEffect(() => {
     if (activeCategory) writeLastMonster(activeCategory);
   }, [activeCategory]);
 
-  const categoryName = activeCategory && formatName(activeCategory);
-
   return (
     <PageBar
-      title={categoryName ? `${categoryName} monsters` : "Monsters"}
-      back={
-        detail && activeCategory
-          ? { href: `/monsters/${activeCategory}/`, label: `${categoryName} list` }
-          : undefined
-      }
+      title={activeCategory ? `${formatName(activeCategory)} monsters` : "Monsters"}
       tabs={
         <PageTabs label="Monster types">
           {MONSTER_CATEGORIES.map((category) => (

@@ -10,7 +10,6 @@ import Card from "./Card";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
 import { ARMOR_RANKS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
 import { prefetchBundle } from "@/lib/client-data";
-import { cn } from "@/lib/cn";
 
 export const RANK_LABELS: Record<ArmorRank, string> = {
   "low-rank": "Low Rank",
@@ -23,10 +22,9 @@ interface Props {
   rank: ArmorRank;
   /** The tree itself (a TreeScroll). */
   children: React.ReactNode;
-  className?: string;
 }
 
-export default function ArmorTreePanel({ slot, rank, children, className }: Props) {
+export default function ArmorTreePanel({ slot, rank, children }: Props) {
   const router = useRouter();
 
   const step = (by: 1 | -1) => {
@@ -39,10 +37,7 @@ export default function ArmorTreePanel({ slot, rank, children, className }: Prop
   };
 
   return (
-    <div
-      data-tree-panel
-      className={cn("relative z-2 flex min-h-0 min-w-0 flex-1 flex-col", className)}
-    >
+    <div data-tree-panel className="relative z-2 flex min-h-0 min-w-0 flex-1 flex-col">
       <Card variant="weapon-tree">
         {children}
         {/* Room to scroll the last rows clear of the rank bar. flex-none: the

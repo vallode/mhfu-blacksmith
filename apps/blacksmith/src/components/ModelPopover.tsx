@@ -7,8 +7,8 @@ import { cn } from "@/lib/cn";
 /**
  * Desktop: absolutely positioned in the .split-page (position: relative); the
  * exact box over the side card is set from measurement in a layout effect.
- * Phone (stacked layout): the cards stack and the page scrolls, so there's no
- * fixed-height side card to sit in; float over the viewport instead.
+ * Phone: the side card is under the detail sheet (SplitPage), so float over
+ * the viewport instead.
  */
 const POPOVER_CLASSES =
   "absolute top-0 bottom-0 left-0 z-30 flex w-1/2 mobile:fixed mobile:top-1/2 mobile:right-4 mobile:bottom-auto mobile:left-4 mobile:z-50 mobile:h-[min(75vh,36rem)] mobile:w-auto mobile:-translate-y-1/2";
@@ -118,10 +118,11 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
   const popoverRef = useRef<HTMLDivElement>(null);
 
   // Center the popover inside the side card (the .split-page's first child),
-  // measured rather than derived from the layout's CSS so it stays exact.
+  // measured rather than derived from the layout's CSS so it stays exact. The
+  // popover can sit in a wrapper inside the page (SplitPage's sheet).
   useLayoutEffect(() => {
     const popover = popoverRef.current;
-    const page = popover?.parentElement;
+    const page = popover?.closest<HTMLElement>(".split-page");
     const side = page?.firstElementChild as HTMLElement | null | undefined;
     if (!popover || !page || !side || side === popover) return;
     const stacked = window.matchMedia(STACKED);

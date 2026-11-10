@@ -13,7 +13,6 @@ interface Props {
 /**
  * /armorsmith/<slot>/<rank>/: the tree is down the left in the armorsmith
  * layout (ArmorShell); with no piece selected, the detail card is empty.
- * Phones show only the list here.
  */
 export default function ArmorTreeListClient({ slot, rank }: Props) {
   const { tree } = useArmorTree(slot, rank);
@@ -22,7 +21,7 @@ export default function ArmorTreeListClient({ slot, rank }: Props) {
   const allHidden = !!tree?.length && visibleTree?.length === 0;
 
   return (
-    <NoDataCard className="mobile:hidden">
+    <NoDataCard>
       {allHidden && (
         <p className="whitespace-normal">Nothing here is within your quest progress yet.</p>
       )}

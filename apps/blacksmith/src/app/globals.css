@@ -153,6 +153,18 @@
   /* The phone menu drawer (AppShell) slides in from the left */
   --animate-drawer-in: drawer-in 160ms ease-out;
 
+  /* The phone detail sheet (SplitPage) slides up over the list */
+  --animate-sheet-in: sheet-in 180ms ease-out;
+
+  @keyframes sheet-in {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
   @keyframes drawer-in {
     from {
       transform: translateX(-100%);

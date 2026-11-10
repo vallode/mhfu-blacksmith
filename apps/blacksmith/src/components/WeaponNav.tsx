@@ -7,8 +7,6 @@ import PageBar, { PageTab, PageTabs } from "./PageBar";
 
 interface WeaponNavProps {
   activeType: WeaponType;
-  /** On a weapon's page: phones show only the detail, so lead back to the tree. */
-  detail?: boolean;
 }
 
 function formatWeaponName(type: string): string {
@@ -19,7 +17,7 @@ function formatWeaponName(type: string): string {
 }
 
 /** The weapon pages' PageBar: the type as title and one tab per weapon type. */
-export default function WeaponNav({ activeType, detail }: WeaponNavProps) {
+export default function WeaponNav({ activeType }: WeaponNavProps) {
   // Remember the weapon type so the sidebar's "Weapons" entry reopens it.
   useEffect(() => {
     writeLastWeapon(activeType);
@@ -30,7 +28,6 @@ export default function WeaponNav({ activeType, detail }: WeaponNavProps) {
   return (
     <PageBar
       title={`${typeName} weapons`}
-      back={detail ? { href: `/blacksmith/${activeType}/`, label: `${typeName} tree` } : undefined}
       tabs={
         <PageTabs label="Weapon types">
           {WEAPON_TYPES.map((type) => (

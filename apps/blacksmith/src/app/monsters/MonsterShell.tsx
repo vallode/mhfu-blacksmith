@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
 import MonsterNav from "@/components/MonsterNav";
+import SplitPage from "@/components/SplitPage";
 import TreeScroll from "@/components/TreeScroll";
 import { cn } from "@/lib/cn";
 import { getQuests, useMonsterList } from "@/lib/client-data";
@@ -34,16 +35,15 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
     ReactDOM.preload(`/images/monsters/${m.slug}.png`, { as: "image" });
   }
   return (
-    // Phones show one pane at a time: on a monster's page, its detail.
-    <Card variant="weapon-tree" className={slug ? "mobile:hidden" : undefined}>
+    <Card variant="weapon-tree">
       <TreeScroll treeKey={`monsters-${category}`} activeSlug={slug}>
         {siblings?.map((m) => (
           <Link
             key={m.slug}
             id={m.slug}
             href={`/monsters/${category}/${m.slug}/`}
-            // The list stays put on desktop; don't let the router scroll the
-            // page to the new detail card.
+            // The list stays put; don't let the router scroll the page to the
+            // new detail card.
             scroll={false}
             aria-current={m.slug === slug ? "page" : undefined}
             // The selected monster gets the weapon tree's active row: the hover
@@ -94,14 +94,14 @@ export function MonsterShell({
 
   return (
     <>
-      <MonsterNav activeCategory={category} detail={!!slug} />
-      {/* On phones the type's own page is just the list, which fills the
-          screen and scrolls inside its card (see AppShell). */}
+      <MonsterNav activeCategory={category} />
       {category ? (
-        <div className="split-page" data-fill-screen={slug ? undefined : true}>
-          <MonsterSidebar category={category} slug={slug} />
+        <SplitPage
+          list={<MonsterSidebar category={category} slug={slug} />}
+          closeHref={slug && `/monsters/${category}/`}
+        >
           {children}
-        </div>
+        </SplitPage>
       ) : (
         children
       )}
