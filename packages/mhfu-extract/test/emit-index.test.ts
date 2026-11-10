@@ -8,6 +8,7 @@ import { JP_BASE_ADDRESS, tableOffset } from "../src/tables/offsets.js";
 import { fixtureReader } from "./helpers.js";
 
 const EXPECTED_FILES = [
+  "items.json",
   "decorations.json",
   "armor/helmet.json",
   "armor/plate.json",
@@ -50,6 +51,7 @@ test("emitAll produces every data/*.json-shaped file with the right top-level ke
   const output = emitAll(reader);
 
   assert.deepEqual(Object.keys(output).sort(), [...EXPECTED_FILES].sort());
+  assert.ok(Array.isArray((output["items.json"] as { items: unknown }).items));
   assert.ok(Array.isArray((output["decorations.json"] as { decorations: unknown }).decorations));
   for (const armorFile of [
     "armor/helmet.json",

@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Items file (in-game item ID -> name)",
+  "title": "Items file (in-game item ID -> name and stats)",
   "type": "object",
   "required": ["items"],
   "additionalProperties": false,
@@ -26,7 +26,9 @@
           "items": { "type": "string", "minLength": 1 },
           "uniqueItems": true
         },
-        "rarity":  { "type": "integer", "minimum": 1, "maximum": 10, "description": "Only present when two sources agree" },
+        "rarity":  { "type": "integer", "minimum": 1, "maximum": 10, "description": "From the disc's item table (mhfu-extract build-data). Omitted on placeholders" },
+        "carry":   { "type": "integer", "minimum": 1, "maximum": 255, "description": "Carry limit, from the disc's item table. 255 on Normal S Lv1, which is unlimited. Omitted on placeholders" },
+        "price":   { "type": "integer", "minimum": 0, "description": "Price in zenny, from the disc's item table: the shops' buy price for items they sell. Omitted on placeholders" },
         "regions": {
           "type": "array",
           "description": "Releases that carry a real name for this ID. Omitted when present in all of jp, us, eu.",

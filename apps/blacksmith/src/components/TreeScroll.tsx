@@ -20,8 +20,8 @@ import { useLayoutEffect, useRef } from "react";
  */
 /**
  * The element that actually scrolls the tree: the wrapper itself if it is a
- * scroll container, otherwise its nearest scrolling ancestor (the tree card,
- * which scrolls instead so Safari keeps painting the card's frame).
+ * scroll container, otherwise its nearest scrolling ancestor (the tree card's
+ * body, which scrolls under the card's frame).
  */
 function scrollContainer(el: HTMLElement): HTMLElement {
   for (let node: HTMLElement | null = el; node; node = node.parentElement) {

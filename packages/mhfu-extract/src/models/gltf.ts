@@ -18,23 +18,35 @@
  * Optional lossy steps (`GlbOptions`): fewer bits for positions and UVs,
  * fewer colours per texture.
  *
- * Skinning weights are dropped (static bind pose only); mesh pieces are
- * already in model space, so they assemble without the skeleton, apart from
- * severable tail tips, which attach.ts puts in place before this runs.
+ * Without a rig the model is the static bind pose: mesh pieces are already in
+ * model space, so they assemble without the skeleton, apart from severable
+ * tail tips, which attach.ts puts in place before this runs. With one
+ * (`Rig`), the mesh is skinned to the skeleton (four weights a vertex, the
+ * model's scale moved into the inverse bind matrices) and can carry
+ * animation clips (animation.ts). Bones are nodes named `bone_<id>`, so a
+ * viewer can bind clips from elsewhere to them (the site's motion files,
+ * motion-pack.ts, named by `Rig.motionsFile`).
  */
 import { MeshoptEncoder } from "meshoptimizer";
+import type { Bone } from "./ahi.js";
+import {
+  bindMatrices,
+  eulerToQuat,
+  invertAffine,
+  multiplyMatrices,
+  type Clip,
+} from "./animation.js";
 import type { DecodedVertex } from "./ge.js";
 import type { Pmo } from "./pmo.js";
 import { encodeTexture, type EncodedTexture } from "./texture.js";
 import type { TmhImage } from "./tmh.js";
 
 const BYTE = 5120;
+const UNSIGNED_BYTE = 5121;
 const SHORT = 5122;
 const UNSIGNED_SHORT = 5123;
 const UNSIGNED_INT = 5125;
 const FLOAT = 5126;
-const ARRAY_BUFFER = 34962;
-const ELEMENT_ARRAY_BUFFER = 34963;
 
 /** UV units per texture repeat in the source data (u16 / 0x8000). */
 const UV_ONE = 0x8000;
@@ -55,10 +67,20 @@ export interface GlbOptions {
   textureQuality?: number;
 }
 
+/** A skeleton to skin the mesh to, and optionally its animation clips. */
+export interface Rig {
+  bones: Bone[];
+  clips?: Clip[];
+  /** Where the model's motions are kept apart, relative to it: `asset.extras.motions`. */
+  motionsFile?: string;
+}
+
 export interface GlbStats {
   primitives: number;
   vertices: number;
   triangles: number;
+  /** Animation clips written. */
+  clips: number;
 }
 
 /** True when every vertex has the s16 position / s8 normal / u16 UV layout all MHFU models use. */
@@ -80,9 +102,294 @@ function roundTo(value: number, step: number, min: number, max: number): number 
   return step <= 1 ? value : Math.min(max, Math.max(min, Math.round(value / step) * step));
 }
 
-/** Interleaved vertex layouts: exact integers (16 bytes) or the float fallback (32 bytes). */
-const EXACT = { stride: 16, position: 0, normal: 8, uv: 12 } as const;
-const FLOATS = { stride: 32, position: 0, normal: 12, uv: 24 } as const;
+interface Layout {
+  stride: number;
+  position: number;
+  normal: number;
+  uv: number;
+  /** u8 x4 bone indices and u8 x4 normalized weights, when skinned. */
+  joints?: number;
+  weights?: number;
+}
+
+/** Interleaved vertex layouts: exact integers (16 bytes) or the float fallback (32 bytes), plus 8 when skinned. */
+const EXACT: Layout = { stride: 16, position: 0, normal: 8, uv: 12 };
+const FLOATS: Layout = { stride: 32, position: 0, normal: 12, uv: 24 };
+const skinnedLayout = (base: Layout): Layout => ({
+  ...base,
+  stride: base.stride + 8,
+  joints: base.stride,
+  weights: base.stride + 4,
+});
+
+/**
+ * A vertex's four strongest bones (by skeleton index) and their weights as
+ * bytes summing to 255. A vertex without weights follows bone 0, the root.
+ */
+function skinWeights(v: DecodedVertex, palette: number[]): { joints: number[]; weights: number[] } {
+  const byBone = new Map<number, number>();
+  v.weights?.forEach((weight, slot) => {
+    const bone = palette[slot] ?? -1;
+    if (bone >= 0 && weight > 0) byBone.set(bone, (byBone.get(bone) ?? 0) + weight);
+  });
+  const top = [...byBone].sort((a, b) => b[1] - a[1]).slice(0, 4);
+  if (top.length === 0) top.push([0, 1]);
+  const total = top.reduce((sum, [, w]) => sum + w, 0);
+  // Largest remainder, so the bytes sum to exactly 255.
+  const exact = top.map(([, w]) => (w / total) * 255);
+  const bytes = exact.map(Math.floor);
+  let left = 255 - bytes.reduce((a, b) => a + b, 0);
+  for (const i of exact.map((e, i) => [e - Math.floor(e), i] as const).sort((a, b) => b[0] - a[0]))
+    if (left-- > 0) bytes[i[1]]!++;
+  const joints = top.map(([bone]) => bone);
+  while (joints.length < 4) {
+    joints.push(0);
+    bytes.push(0);
+  }
+  return { joints, weights: bytes };
+}
+
+/**
+ * The GLB's binary chunk and buffer views. Without compression everything
+ * lives in buffer 0 (the GLB BIN chunk). With EXT_meshopt_compression,
+ * buffer 0 holds the compressed streams and the raw data (images, inverse
+ * bind matrices), and buffer 1 is the extension's data-less fallback buffer
+ * the decoded streams are addressed in.
+ */
+class GlbWriter {
+  readonly bufferViews: object[] = [];
+  private readonly bin: Buffer[] = [];
+  private binLength = 0;
+  private fallbackLength = 0;
+
+  constructor(readonly compress: boolean) {}
+
+  private pushBin(data: Uint8Array): number {
+    const offset = this.binLength;
+    const padded =
+      data.length % 4
+        ? Buffer.concat([data, Buffer.alloc(4 - (data.length % 4))])
+        : Buffer.from(data);
+    this.bin.push(padded);
+    this.binLength += padded.length;
+    return offset;
+  }
+
+  /** Uncompressed data in buffer 0 (images, matrices); returns its buffer view. */
+  addRaw(data: Uint8Array): number {
+    this.bufferViews.push({ buffer: 0, byteOffset: this.pushBin(data), byteLength: data.length });
+    return this.bufferViews.length - 1;
+  }
+
+  /**
+   * `count` elements of `stride` bytes: vertex attributes (with a byteStride),
+   * triangle indices, or animation data (neither); returns its buffer view.
+   */
+  addStream(
+    data: Uint8Array,
+    count: number,
+    stride: number,
+    kind: "vertex" | "index" | "animation",
+  ): number {
+    const strideField = kind === "vertex" ? { byteStride: stride } : {};
+    if (!this.compress) {
+      this.bufferViews.push({
+        buffer: 0,
+        byteOffset: this.pushBin(data),
+        byteLength: data.length,
+        ...strideField,
+      });
+    } else {
+      const mode = kind === "index" ? "TRIANGLES" : "ATTRIBUTES";
+      const encoded = MeshoptEncoder.encodeGltfBuffer(data, count, stride, mode);
+      const meshopt = {
+        buffer: 0,
+        byteOffset: this.pushBin(encoded),
+        byteLength: encoded.length,
+        byteStride: stride,
+        count,
+        mode,
+      };
+      this.bufferViews.push({
+        buffer: 1,
+        byteOffset: this.fallbackLength,
+        byteLength: data.length,
+        ...strideField,
+        extensions: { EXT_meshopt_compression: meshopt },
+      });
+      this.fallbackLength += Math.ceil(data.length / 4) * 4;
+    }
+    return this.bufferViews.length - 1;
+  }
+
+  buffers(): object[] {
+    return [
+      { byteLength: this.binLength },
+      ...(this.compress
+        ? [
+            {
+              byteLength: this.fallbackLength,
+              extensions: { EXT_meshopt_compression: { fallback: true } },
+            },
+          ]
+        : []),
+    ];
+  }
+
+  toGlb(json: object): Buffer {
+    let jsonChunk = Buffer.from(JSON.stringify(json), "utf-8");
+    if (jsonChunk.length % 4)
+      jsonChunk = Buffer.concat([jsonChunk, Buffer.alloc(4 - (jsonChunk.length % 4), 0x20)]);
+    const binChunk = Buffer.concat(this.bin);
+    const header = Buffer.alloc(12);
+    header.write("glTF", 0, "latin1");
+    header.writeUInt32LE(2, 4);
+    header.writeUInt32LE(12 + 8 + jsonChunk.length + 8 + binChunk.length, 8);
+    const chunkHeader = (length: number, type: number) => {
+      const b = Buffer.alloc(8);
+      b.writeUInt32LE(length, 0);
+      b.writeUInt32LE(type, 4);
+      return b;
+    };
+    return Buffer.concat([
+      header,
+      chunkHeader(jsonChunk.length, 0x4e4f534a),
+      jsonChunk,
+      chunkHeader(binChunk.length, 0x004e4942),
+      binChunk,
+    ]);
+  }
+}
+
+const near = (a: readonly number[], b: readonly number[]) =>
+  a.every((c, k) => Math.abs(c - b[k]!) < 1e-6);
+
+/** A node per bone, named `bone_<id>`, from `first` on; plus the roots, in bone order. */
+function skeletonNodes(
+  bones: readonly Bone[],
+  first: number,
+): { nodes: object[]; roots: number[] } {
+  const children = bones.map(() => [] as number[]);
+  for (const bone of bones) if (bone.parent >= 0) children[bone.parent]!.push(first + bone.id);
+  const nodes = bones.map((bone) => {
+    const rotation = eulerToQuat(bone.rotation);
+    return {
+      name: `bone_${bone.id}`,
+      ...(children[bone.id]!.length ? { children: children[bone.id] } : {}),
+      ...(near(bone.translation, [0, 0, 0]) ? {} : { translation: bone.translation.map(f32) }),
+      ...(near(rotation, [0, 0, 0, 1]) ? {} : { rotation: rotation.map(f32) }),
+      ...(near(bone.scale, [1, 1, 1]) ? {} : { scale: bone.scale.map(f32) }),
+    };
+  });
+  const roots = bones.filter((b) => b.parent < 0).map((b) => first + b.id);
+  return { nodes, roots };
+}
+
+/**
+ * The clips as glTF animations on the bone nodes (`first` + bone id), their
+ * data in three streams: key times (shared between tracks with the same
+ * times), rotations as normalized s16 quaternions, and float vectors.
+ */
+function writeAnimations(
+  writer: GlbWriter,
+  accessors: object[],
+  clips: readonly Clip[],
+  first: number,
+): object[] {
+  const times: number[] = [];
+  const timeAccessor = new Map<string, number>();
+  const rotations: number[] = [];
+  const vectors: number[] = [];
+  // Accessors are filled in once the streams' buffer views exist.
+  const pending: { accessor: object; stream: "times" | "rotations" | "vectors" }[] = [];
+  const add = (stream: "times" | "rotations" | "vectors", accessor: object) => {
+    accessors.push(accessor);
+    pending.push({ accessor, stream });
+    return accessors.length - 1;
+  };
+
+  const animations = clips.map((clip) => {
+    const samplers: object[] = [];
+    const channels: object[] = [];
+    for (const track of clip.tracks) {
+      const key = track.times.join(",");
+      let input = timeAccessor.get(key);
+      if (input === undefined) {
+        input = add("times", {
+          byteOffset: times.length * 4,
+          componentType: FLOAT,
+          count: track.times.length,
+          type: "SCALAR",
+          min: [f32(track.times[0]!)],
+          max: [f32(track.times.at(-1)!)],
+        });
+        times.push(...track.times);
+        timeAccessor.set(key, input);
+      }
+      const output =
+        track.path === "rotation"
+          ? add("rotations", {
+              byteOffset: rotations.length * 2,
+              componentType: SHORT,
+              normalized: true,
+              count: track.times.length,
+              type: "VEC4",
+            })
+          : add("vectors", {
+              byteOffset: vectors.length * 4,
+              componentType: FLOAT,
+              count: track.times.length,
+              type: "VEC3",
+            });
+      if (track.path === "rotation")
+        rotations.push(
+          ...track.values.map((c) => Math.round(Math.max(-1, Math.min(1, c)) * 0x7fff)),
+        );
+      else vectors.push(...track.values);
+      samplers.push({ input, output });
+      channels.push({
+        sampler: samplers.length - 1,
+        target: { node: first + track.bone, path: track.path },
+      });
+    }
+    return {
+      name: `motion ${clip.slot}`,
+      samplers,
+      channels,
+      extras: { slot: clip.slot, loop: clip.loop, loopStart: f32(clip.loopStart) },
+    };
+  });
+
+  const views = {
+    times: times.length
+      ? writer.addStream(
+          new Uint8Array(Float32Array.from(times).buffer),
+          times.length,
+          4,
+          "animation",
+        )
+      : -1,
+    rotations: rotations.length
+      ? writer.addStream(
+          new Uint8Array(Int16Array.from(rotations).buffer),
+          rotations.length / 4,
+          8,
+          "animation",
+        )
+      : -1,
+    vectors: vectors.length
+      ? writer.addStream(
+          new Uint8Array(Float32Array.from(vectors).buffer),
+          vectors.length / 3,
+          12,
+          "animation",
+        )
+      : -1,
+  };
+  for (const { accessor, stream } of pending)
+    Object.assign(accessor, { bufferView: views[stream] });
+  return animations;
+}
 
 interface Primitive {
   material: number;
@@ -96,6 +403,7 @@ export async function buildGlb(
   textures: TmhImage[],
   name: string,
   options: GlbOptions = {},
+  rig?: Rig,
 ): Promise<{ glb: Buffer; stats: GlbStats }> {
   const compress = options.compress ?? true;
   const positionStep = 2 ** (16 - (options.positionBits ?? 16));
@@ -105,7 +413,8 @@ export async function buildGlb(
   const exact = pmo.meshes.every((mesh) =>
     mesh.primitives.every((p) => p.geometry.vertices.every(isExactVertex)),
   );
-  const layout = exact ? EXACT : FLOATS;
+  const skinned = !!rig?.bones.length;
+  const layout = skinned ? skinnedLayout(exact ? EXACT : FLOATS) : exact ? EXACT : FLOATS;
 
   // ---- vertex table and primitives ------------------------------------------
   // Vertices are stored as their final record bytes; identical records merge.
@@ -135,11 +444,14 @@ export async function buildGlb(
               EXACT.position + k * 2,
             ),
           );
-          // The model's scale sits on the node, and renderers transform
-          // normals by its inverse-transpose (1/scale per axis). The source
-          // normals are in scaled model space, so pre-multiply by the scale
-          // to cancel that out. Re-rounding to s8 costs well under a degree.
-          const n = v.normal!.map((c, k) => c * pmo.scale[k]!);
+          // Unskinned, the model's scale sits on the node, and renderers
+          // transform normals by its inverse-transpose (1/scale per axis).
+          // The source normals are in scaled model space, so pre-multiply by
+          // the scale to cancel that out. Skinned, the scale is in the
+          // inverse bind matrices, and three.js transforms normals by the
+          // skinning matrix itself (scale per axis): divide instead.
+          // Re-rounding to s8 costs well under a degree.
+          const n = v.normal!.map((c, k) => (skinned ? c / pmo.scale[k]! : c * pmo.scale[k]!));
           const length = Math.hypot(...n) || 1;
           n.forEach((c, k) => record.writeInt8(Math.round((c / length) * 0x7f), EXACT.normal + k));
           v.uv!.forEach((c, k) =>
@@ -150,12 +462,20 @@ export async function buildGlb(
           );
         } else {
           v.position.forEach((c, k) => record.writeFloatLE(c, FLOATS.position + k * 4));
-          const [x, y, z] = v.normal ?? [0, 1, 0];
+          // Skinned, undo the scale the skinning matrix applies (see above).
+          const [x, y, z] = (v.normal ?? [0, 1, 0]).map((c, k) =>
+            skinned ? c / pmo.scale[k]! : c,
+          ) as [number, number, number];
           const length = Math.hypot(x, y, z) || 1;
           [x, y, z].forEach((c, k) => record.writeFloatLE(c / length, FLOATS.normal + k * 4));
           const [u, w] = v.uv ?? [0, 0];
           record.writeFloatLE(u * mesh.uvScale[0], FLOATS.uv);
           record.writeFloatLE(w * mesh.uvScale[1], FLOATS.uv + 4);
+        }
+        if (layout.joints !== undefined && layout.weights !== undefined) {
+          const { joints, weights } = skinWeights(v, source.bones);
+          joints.forEach((j, k) => record.writeUInt8(j, layout.joints! + k));
+          weights.forEach((w, k) => record.writeUInt8(w, layout.weights! + k));
         }
         const id = record.toString("latin1");
         let index = recordIndex.get(id);
@@ -212,68 +532,20 @@ export async function buildGlb(
   const indexData = wide ? new Uint32Array(allIndices) : new Uint16Array(allIndices);
 
   // ---- binary layout ------------------------------------------------------------
-  // Without compression everything lives in buffer 0 (the GLB BIN chunk). With
-  // EXT_meshopt_compression, buffer 0 holds the compressed streams and the
-  // images, and buffer 1 is the extension's data-less fallback buffer the
-  // decoded streams are addressed in.
-  const bin: Buffer[] = [];
-  let binLength = 0;
-  let fallbackLength = 0;
-  const bufferViews: object[] = [];
-  const pushBin = (data: Uint8Array): number => {
-    const offset = binLength;
-    const padded =
-      data.length % 4
-        ? Buffer.concat([data, Buffer.alloc(4 - (data.length % 4))])
-        : Buffer.from(data);
-    bin.push(padded);
-    binLength += padded.length;
-    return offset;
-  };
-  const addStream = (data: Uint8Array, count: number, stride: number, target: number): number => {
-    const isIndex = target === ELEMENT_ARRAY_BUFFER;
-    const strideField = isIndex ? {} : { byteStride: stride };
-    if (!compress) {
-      bufferViews.push({
-        buffer: 0,
-        byteOffset: pushBin(data),
-        byteLength: data.length,
-        ...strideField,
-      });
-    } else {
-      const mode = isIndex ? "TRIANGLES" : "ATTRIBUTES";
-      const encoded = MeshoptEncoder.encodeGltfBuffer(data, count, stride, mode);
-      const meshopt = {
-        buffer: 0,
-        byteOffset: pushBin(encoded),
-        byteLength: encoded.length,
-        byteStride: stride,
-        count,
-        mode,
-      };
-      bufferViews.push({
-        buffer: 1,
-        byteOffset: fallbackLength,
-        byteLength: data.length,
-        ...strideField,
-        extensions: { EXT_meshopt_compression: meshopt },
-      });
-      fallbackLength += Math.ceil(data.length / 4) * 4;
-    }
-    return bufferViews.length - 1;
-  };
+  const writer = new GlbWriter(compress);
+  const { bufferViews } = writer;
 
-  const vertexView = addStream(
+  const vertexView = writer.addStream(
     new Uint8Array(vertexData.buffer, vertexData.byteOffset, vertexData.byteLength),
     vertexCount,
     layout.stride,
-    ARRAY_BUFFER,
+    "vertex",
   );
-  const indexView = addStream(
+  const indexView = writer.addStream(
     new Uint8Array(indexData.buffer, indexData.byteOffset, indexData.byteLength),
     indexData.length,
     indexSize,
-    ELEMENT_ARRAY_BUFFER,
+    "index",
   );
 
   const min = [Infinity, Infinity, Infinity];
@@ -338,6 +610,24 @@ export async function buildGlb(
           type: "VEC2",
         },
       ];
+  if (skinned)
+    accessors.push(
+      {
+        bufferView: vertexView,
+        byteOffset: layout.joints,
+        componentType: UNSIGNED_BYTE,
+        count: vertexCount,
+        type: "VEC4",
+      },
+      {
+        bufferView: vertexView,
+        byteOffset: layout.weights,
+        componentType: UNSIGNED_BYTE,
+        normalized: true,
+        count: vertexCount,
+        type: "VEC4",
+      },
+    );
 
   // ---- textures and materials -------------------------------------------------
   // Encode every texture the primitives use (async), in first-use order.
@@ -360,12 +650,7 @@ export async function buildGlb(
     if (!texture) return undefined;
     let index = textureByTmh.get(tmhIndex);
     if (index === undefined) {
-      bufferViews.push({
-        buffer: 0,
-        byteOffset: pushBin(texture.data),
-        byteLength: texture.data.length,
-      });
-      images.push({ bufferView: bufferViews.length - 1, mimeType: texture.mimeType });
+      images.push({ bufferView: writer.addRaw(texture.data), mimeType: texture.mimeType });
       const source = images.length - 1;
       if (texture.mimeType === "image/webp") usesWebp = true;
       gltfTextures.push(
@@ -424,11 +709,38 @@ export async function buildGlb(
     });
     firstIndex += primitive.indices.length;
     return {
-      attributes: { POSITION: 0, NORMAL: 1, TEXCOORD_0: 2 },
+      attributes: {
+        POSITION: 0,
+        NORMAL: 1,
+        TEXCOORD_0: 2,
+        ...(skinned ? { JOINTS_0: 3, WEIGHTS_0: 4 } : {}),
+      },
       indices: accessors.length - 1,
       material: materialFor(primitive),
     };
   });
+
+  // ---- skeleton and animations -------------------------------------------------
+  // Skinned, the mesh node has no transform (glTF ignores it); the model's
+  // scale goes into each joint's inverse bind matrix instead.
+  let skeleton: { nodes: object[]; roots: number[] } = { nodes: [], roots: [] };
+  let skins: object[] = [];
+  let animations: object[] = [];
+  if (skinned) {
+    const bones = rig!.bones;
+    skeleton = skeletonNodes(bones, 1);
+    const scale = [pmo.scale[0], 0, 0, 0, 0, pmo.scale[1], 0, 0, 0, 0, pmo.scale[2], 0, 0, 0, 0, 1];
+    const matrices = bindMatrices(bones).map((m) => multiplyMatrices(invertAffine(m), scale));
+    const data = Float32Array.from(matrices.flat());
+    accessors.push({
+      bufferView: writer.addRaw(new Uint8Array(data.buffer)),
+      componentType: FLOAT,
+      count: bones.length,
+      type: "MAT4",
+    });
+    skins = [{ joints: bones.map((b) => 1 + b.id), inverseBindMatrices: accessors.length - 1 }];
+    animations = writeAnimations(writer, accessors, rig!.clips ?? [], 1);
+  }
 
   const extensions = [
     ...(exact ? ["KHR_mesh_quantization"] : []),
@@ -437,57 +749,34 @@ export async function buildGlb(
     ...(usesWebp ? ["EXT_texture_webp"] : []),
   ];
   const json = {
-    asset: { version: "2.0" },
+    asset: {
+      version: "2.0",
+      ...(rig?.motionsFile ? { extras: { motions: rig.motionsFile } } : {}),
+    },
     ...(extensions.length ? { extensionsUsed: extensions, extensionsRequired: extensions } : {}),
     scene: 0,
-    scenes: [{ nodes: [0] }],
-    // Positions are in source units (normalized s16); the model's scale goes on the node.
-    nodes: [{ mesh: 0, scale: pmo.scale.map(f32) }],
+    scenes: [{ nodes: [0, ...skeleton.roots] }],
+    // Positions are in source units (normalized s16); unskinned, the model's
+    // scale goes on the node.
+    nodes: [
+      skinned ? { mesh: 0, skin: 0 } : { mesh: 0, scale: pmo.scale.map(f32) },
+      ...skeleton.nodes,
+    ],
     meshes: [{ primitives: gltfPrimitives }],
+    ...(skins.length ? { skins } : {}),
+    ...(animations.length ? { animations } : {}),
     materials,
     ...(images.length ? { images, textures: gltfTextures } : {}),
     accessors,
     bufferViews,
-    buffers: [
-      { byteLength: binLength },
-      ...(compress
-        ? [
-            {
-              byteLength: fallbackLength,
-              extensions: { EXT_meshopt_compression: { fallback: true } },
-            },
-          ]
-        : []),
-    ],
+    buffers: writer.buffers(),
   };
 
   const stats: GlbStats = {
     primitives: gltfPrimitives.length,
     vertices: vertexCount,
     triangles: allIndices.length / 3,
+    clips: animations.length,
   };
-  let jsonChunk = Buffer.from(JSON.stringify(json), "utf-8");
-  if (jsonChunk.length % 4)
-    jsonChunk = Buffer.concat([jsonChunk, Buffer.alloc(4 - (jsonChunk.length % 4), 0x20)]);
-  const binChunk = Buffer.concat(bin);
-  const header = Buffer.alloc(12);
-  header.write("glTF", 0, "latin1");
-  header.writeUInt32LE(2, 4);
-  header.writeUInt32LE(12 + 8 + jsonChunk.length + 8 + binChunk.length, 8);
-  const chunkHeader = (length: number, type: number) => {
-    const b = Buffer.alloc(8);
-    b.writeUInt32LE(length, 0);
-    b.writeUInt32LE(type, 4);
-    return b;
-  };
-  return {
-    glb: Buffer.concat([
-      header,
-      chunkHeader(jsonChunk.length, 0x4e4f534a),
-      jsonChunk,
-      chunkHeader(binChunk.length, 0x004e4942),
-      binChunk,
-    ]),
-    stats,
-  };
+  return { glb: writer.toGlb(json), stats };
 }

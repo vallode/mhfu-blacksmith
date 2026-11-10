@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { OVL_HEADER_SIZE, OvlFormatError, parseOvl, type OvlFile } from "../src/container/ovl.js";
-import { emitMonsters } from "../src/emit/monsters.js";
+import { emitMonsters, siteTolerances } from "../src/emit/monsters.js";
 import {
   BASE_HP_OFFSET,
   HITZONE_POINTER_OFFSET,
@@ -366,4 +366,39 @@ test("quest stat multipliers: master list -> sets of 3 tables of 32 rows", () =>
     status: 1,
   });
   assert.equal(found.sets[0]!.tables[2]!.rows.length, 32);
+});
+
+test("siteTolerances writes data/'s keys and null for an immune status", () => {
+  const status = { initial: 110, recoveryTime: 300, recovery: 5, duration: 300, increase: 75 };
+  const immune = { ...status, initial: 0xffff };
+  const tolerances = siteTolerances({
+    paralysis: status,
+    ko: immune,
+    sleep: status,
+    unknown: status,
+    poison: {
+      initial: 200,
+      recoveryTime: 150,
+      recovery: 10,
+      damage: 20,
+      totalTime: 1800,
+      damagePerSecond: 150,
+      increase: 75,
+    },
+  });
+  const site = { initial: 110, increase: 75, recovery: 5, recovery_time: 300, duration: 300 };
+  assert.deepEqual(tolerances, {
+    paralysis: site,
+    sleep: site,
+    ko: null,
+    poison: {
+      initial: 200,
+      increase: 75,
+      recovery: 10,
+      recovery_time: 150,
+      damage: 20,
+      damage_interval: 150,
+      total_time: 1800,
+    },
+  });
 });

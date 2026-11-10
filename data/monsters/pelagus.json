@@ -90,7 +90,39 @@
       "base_hp": 200,
       "flinch_thresholds": [
         60
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 600
+        },
+        "sleep": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 70,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 600
+        },
+        "poison": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Bulldrome",
@@ -275,7 +307,39 @@
       "base_hp": 1200,
       "flinch_thresholds": [
         120
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 600
+        },
+        "sleep": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 30,
+          "increase": 30,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Conga",
@@ -373,7 +437,39 @@
         1,
         1,
         1
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Congalala",
@@ -869,7 +965,39 @@
         1,
         1,
         1
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 125,
+          "recovery": 10,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Emerald Congalala",
@@ -1073,7 +1201,39 @@
         1,
         1,
         1
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 150,
+          "recovery": 10,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 150,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 125,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Blango",
@@ -1171,7 +1331,39 @@
         1,
         1,
         1
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Blangonga",
@@ -1568,7 +1760,39 @@
         1,
         1,
         350
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Copper Blangonga",
@@ -1745,7 +1969,39 @@
         1,
         1,
         350
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Rajang",
@@ -2031,7 +2287,39 @@
         1,
         1,
         1000
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Furious Rajang",
@@ -2111,7 +2399,39 @@
         1,
         1,
         1000
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     }
   ]
 }

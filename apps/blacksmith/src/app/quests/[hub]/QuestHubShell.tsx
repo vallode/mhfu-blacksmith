@@ -135,7 +135,7 @@ export default function QuestHubShell({
     }
   }, [ready, id]);
 
-  // The list's scroll container is the card around it.
+  // The list's scroll container is the card's body around it.
   const scrollToTop = () => listRef.current?.parentElement?.scrollTo({ top: 0 });
 
   const step = (by: 1 | -1) => {

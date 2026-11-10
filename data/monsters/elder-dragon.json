@@ -132,7 +132,27 @@
       "base_hp": 3200,
       "flinch_thresholds": [
         200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 1200
+        },
+        "ko": null,
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Kushala Daora",
@@ -233,7 +253,39 @@
         200,
         140,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 125,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 600
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 12,
+          "damage_interval": 150,
+          "total_time": 3600
+        }
+      }
     },
     {
       "name": "Rusted Kushala Daora",
@@ -335,7 +387,39 @@
         200,
         140,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 125,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 600
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 12,
+          "damage_interval": 150,
+          "total_time": 3600
+        }
+      }
     },
     {
       "name": "Chameleos",
@@ -669,7 +753,39 @@
         200,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 110,
+          "increase": 120,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Lunastra",
@@ -961,7 +1077,39 @@
         200,
         140,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 175,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 50,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Teostra",
@@ -1369,7 +1517,39 @@
         200,
         140,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 175,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 70,
+          "damage_interval": 150,
+          "total_time": 600
+        }
+      }
     },
     {
       "name": "Lao-Shan Lung",
@@ -1619,7 +1799,13 @@
         600,
         600,
         1200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": null,
+        "ko": null,
+        "poison": null
+      }
     },
     {
       "name": "Ashen Lao-Shan Lung",
@@ -1727,7 +1913,13 @@
         600,
         600,
         1200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": null,
+        "ko": null,
+        "poison": null
+      }
     },
     {
       "name": "Yama Tsukami",
@@ -1915,7 +2107,13 @@
         400,
         1000,
         300
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": null,
+        "ko": null,
+        "poison": null
+      }
     },
     {
       "name": "Fatalis",
@@ -2169,7 +2367,33 @@
         500,
         180,
         240
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": null,
+        "poison": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Crimson Fatalis",
@@ -2439,7 +2663,33 @@
         500,
         180,
         240
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 400,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1800
+        },
+        "ko": null,
+        "poison": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "White Fatalis",
@@ -2709,7 +2959,33 @@
         500,
         180,
         240
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 400,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": null,
+        "poison": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     }
   ]
 }
