@@ -192,7 +192,9 @@ function poolFor(
  * first stage their item appears in (random within a stage), then extras.
  * N grows with floor and shrinks with ceil from one factor per group, capped
  * so the longest list fits, which keeps every gap between stages at least
- * as big as before.
+ * as big as before. A list also keeps everything the lists nested in it
+ * kept, which priority alone doesn't promise when a later stage has more
+ * pinned items than an earlier one.
  */
 function prepareGroup(
   lists: ShopList[],
@@ -246,7 +248,9 @@ function prepareGroup(
   const contents = (requested: number): Map<number, number[]> => {
     const factor = Math.min(requested, maxLength / longest);
     const out = new Map<number, number[]>();
-    for (const list of lists) {
+    const kept = new Map<ShopList, Set<number>>();
+    // Smaller lists first, so a list's nested lists are settled before it.
+    for (const list of [...lists].sort((a, b) => a.items.length - b.items.length)) {
       const replaced = [...new Set(list.items.map((v) => sigma.get(v)!))];
       if (list.items.length === 0) {
         out.set(list.offset, []);
@@ -258,9 +262,16 @@ function prepareGroup(
           ? size + Math.floor((factor - 1) * size)
           : Math.max(1, Math.ceil(factor * size));
       const candidates = factor > 1 ? [...replaced, ...extras] : replaced;
-      const keep = new Set(
-        [...candidates].sort((a, b) => priority.get(a)! - priority.get(b)!).slice(0, target),
-      );
+      // Whatever a nested list kept stays (see above).
+      const keep = new Set<number>();
+      for (const [inner, items] of kept) {
+        if (inner.items.every((v) => list.items.includes(v))) for (const v of items) keep.add(v);
+      }
+      for (const v of [...candidates].sort((a, b) => priority.get(a)! - priority.get(b)!)) {
+        if (keep.size >= target) break;
+        keep.add(v);
+      }
+      kept.set(list, keep);
       out.set(
         list.offset,
         candidates.filter((v) => keep.has(v)),

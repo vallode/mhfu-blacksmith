@@ -30,6 +30,7 @@ import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
 import {
   collectQuestMonsters,
+  multiplierSets,
   randomizeDifficulty,
   randomizeQuestSize,
   randomizeSmallCounts,
@@ -121,6 +122,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
 
   // Monster swaps first: carves are found where their monsters now are.
   const questMonsters = collectQuestMonsters(game.quests);
+  const setOf = multiplierSets(game.gameTask.ovl);
   let questsAfter = game.quests.map((q) => q.parsed);
   if (settings["questMonsters.species"]) {
     const result = swapSpecies(
@@ -129,6 +131,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       rng.fork("monster-species"),
       edits,
       game.quests,
+      setOf,
       game.boards,
     );
     reports.push(result.report);
@@ -147,6 +150,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         },
         rng.fork("monster-difficulty"),
         edits,
+        setOf,
       ),
     );
   }
