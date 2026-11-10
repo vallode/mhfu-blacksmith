@@ -763,6 +763,54 @@ export function buildLobbyTask(): {
   return { buf, listAt, tablesAt };
 }
 
+// ---------------------------------------------------------------- quest board
+
+/** JP DATA.BIN indices of `mission_jpn/level1.mib` and `level2.mib`. */
+export const BOARD_INDICES = [5310, 5311];
+
+/**
+ * A board file (`level*.mib`, see src/game/board.ts): record offsets, then
+ * per quest a 0x34-byte copy of its header's display section (quest ID,
+ * stars, map, TargetID, and the offset of its `LangPTRs`), its strings back
+ * to back, its `StringPTRs` blocks and its `LangPTRs`.
+ */
+export function buildBoardFile(quests: FixtureQuest[]): Buffer {
+  const parts: Buffer[] = [];
+  let at = quests.length * 4;
+  const place = (buf: Buffer): number => {
+    parts.push(buf);
+    at += buf.length;
+    return at - buf.length;
+  };
+  const table = Buffer.alloc(quests.length * 4);
+  for (const [i, q] of quests.entries()) {
+    const header = Buffer.alloc(0x34);
+    const recordAt = place(header);
+    table.writeUInt32LE(recordAt, i * 4);
+    header.writeUInt16LE(q.questId, 0x18);
+    header[0x1a] = q.stars;
+    header[0x1c] = GATHERING_MAP;
+    header.writeUInt16LE(q.monsters[0] ?? 0, 0x24); // TargetID
+    header.writeUInt16LE(1, 0x26);
+    const text = q.text ?? FIXTURE_TEXT[q.questId] ?? [];
+    const own = text.map((t) =>
+      Array.isArray(t) ? t.map((str) => place(Buffer.from(`${str}\0`, "utf8"))) : null,
+    );
+    const blocks = own.map((ptrs) => {
+      if (!ptrs) return 0;
+      const block = Buffer.alloc(24);
+      ptrs.forEach((ptr, k) => block.writeUInt32LE(ptr, k * 4));
+      return place(block);
+    });
+    const langs = Buffer.alloc(28);
+    text.forEach((t, k) =>
+      langs.writeUInt32LE(typeof t === "number" ? blocks[t]! : t ? blocks[k]! : 0, k * 4),
+    );
+    header.writeUInt32LE(place(langs), 0x14);
+  }
+  return Buffer.concat([table, ...parts]);
+}
+
 // ---------------------------------------------------------------- DATA.BIN
 
 /** Encrypted DATA.BIN with `count` files of one sector each, except those given. */
@@ -1188,7 +1236,11 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   files.set(GAME_SUB_INDEX, buildGameSub(FIXTURE_CARVES, FIXTURE_CAPTURES));
   files.set(LOBBY_TASK_INDEX, buildLobbyTask().buf);
   files.set(22, Buffer.from("stored raw"));
-  const dataBin = buildDataBin(QUEST_INDICES.at(-1)! + 2, files, JP_RAW);
+  // Quest 2001 is on two boards, as some quests are on the disc.
+  const byId = (id: number) => FIXTURE_QUESTS.find((q) => q.questId === id)!;
+  files.set(BOARD_INDICES[0]!, buildBoardFile([byId(1001), byId(2001), byId(10101)]));
+  files.set(BOARD_INDICES[1]!, buildBoardFile([byId(2001)]));
+  const dataBin = buildDataBin(BOARD_INDICES.at(-1)! + 1, files, JP_RAW);
   return buildIso([
     { path: "PSP_GAME/PARAM.SFO", data: buildSfo("ULJM05500") },
     { path: "PSP_GAME/SYSDIR/EBOOT.BIN", data: fixtureEboot(options) },

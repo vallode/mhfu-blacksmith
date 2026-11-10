@@ -733,8 +733,8 @@ Known gaps and approximations, tracked in
 `src/quests/discovery.ts`'s `readAllQuests(dataBinFiles, region)` decrypts
 and parses every real quest file (`listQuestFiles()` filters `DATA.BIN`'s
 564 `mission_jpn/*.mib` entries down to the 551 real `m#####.mib` quests,
-excluding 13 `level*.mib` files confirmed to be a different, non-quest
-format). `src/emit/quests.ts`'s `emitQuestsFile(parsedQuests)` then maps
+excluding the 13 `level*.mib` files, which are the quest board, not
+quests: see "Quest text"). `src/emit/quests.ts`'s `emitQuestsFile(parsedQuests)` then maps
 them onto `data/quests/{village,guild,training-school,treasure-hunting}.json`
 (schema: `data/schemas/quest.schema.json`) — the first `data/` category this
 pipeline designed from scratch, since (unlike weapons/armor/monsters/
@@ -931,10 +931,21 @@ Other sources checked:
   left alone as too wide).
   The quest file's own text was rewritten and read back, and the swapped
   monster was in the quest, so the screen reads its text from somewhere
-  else. The likely source is the per-language `quest_str.pac` (JP file
-  4756; EU 4776-4790 fit quest, lobby and arcade strings for five
-  languages). `quest-text-scan --quest <id>` finds where a quest's strings
-  are stored on the disc and which table points at them.
+  else. `quest-text-scan --quest <id>` finds where a quest's strings are
+  stored on the disc and which table points at them.
+- **The quest board: `mission_jpn/level*.mib`.**
+  - These 13 files aren't quest-encrypted (which is why they fail the quest
+    cipher's checks) and hold the board. Quest 10109's title and goal are
+    in `level2.mib` and `level3.mib`, with pointers to them.
+  - Layout: u32 record offsets (as many as the first offset / 4). Each
+    record starts with a 0x34-byte copy of the quest header's display
+    section (quest file `0x4c`-`0x7f`), for example in `level1.mib`'s first
+    record quest type 4, fee 100, reward 1200, quest 1, map 11 and
+    `TargetID` 77 (Giadrome). Its `+0x14` is a file offset to its own
+    `LangPTRs`. Then come the record's strings, `StringPTRs` blocks and
+    `LangPTRs`, laid out as in a quest file, with offsets from the start of
+    the board file.
+  - randomfu reads them in `src/game/board.ts`.
 - **EU message files** (`quest-text-scan`, quest 10109).
   - None of the quest's whole strings is stored anywhere else as UTF-8.
   - The likely message files come in groups of five, one per language, with
@@ -957,11 +968,8 @@ Other sources checked:
     JP names for 4788-4790 therefore don't match their content on EU.
   - **Not the quest board:** 4781's tables are in-game messages (table 0,
     "%d Velocidrome hunted down."), two small tables, and tips (table 3).
-    No quest goal is in it. Quest 10109's own strings weren't found in any
-    unencrypted file, so the details screen's text is either in the quest
-    file after all or in an encrypted file. The 13 `mission_jpn/level*.mib`
-    files are the remaining lead: they fail the quest cipher's checks, and
-    `quest-text-scan` searches them as stored and through the cipher.
+    No quest goal is in it. The board is in `mission_jpn/level*.mib`
+    (above).
 - **Where else names live.** FUComplete's English text for the P2G disc
   (`FUComplete/Patch`, `data/str_tbl/`) has the monster names in
   `str_tbl.pac`'s first string table, and the JP file list has

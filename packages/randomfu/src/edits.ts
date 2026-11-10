@@ -24,10 +24,15 @@ export class Edits {
   }
 
   overlay(overlay: LoadedOverlay): Buffer {
-    let buf = this.files.get(overlay.index);
+    return this.dataFile(overlay.index);
+  }
+
+  /** Any other DATA.BIN file by index, plaintext (the quest board files). */
+  dataFile(index: number): Buffer {
+    let buf = this.files.get(index);
     if (!buf) {
-      buf = Buffer.from(this.game.dataBin.read(overlay.index));
-      this.files.set(overlay.index, buf);
+      buf = Buffer.from(this.game.dataBin.read(index));
+      this.files.set(index, buf);
     }
     return buf;
   }

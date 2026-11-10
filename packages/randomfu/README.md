@@ -328,8 +328,13 @@ list (`emLoadTable`).
   language slot. The slots follow the game's language IDs (Japanese,
   English, German, French, Spanish, Italian, Korean; the EU disc puts
   English in the Japanese and Korean slots).
-  - **In game it doesn't show yet:** the EU Quest Details screen reads
-    its text from another file (see "Open questions").
+  - **The board has its own copy.** The board and the Quest Details screen
+    read each quest's text from `mission_jpn/level*.mib`, not the quest
+    file (`src/game/board.ts`; found with mhfu-extract `quest-text-scan`):
+    renaming only the quest file left the screen unchanged on the EU disc.
+    Each quest's board records get the same renaming, and their
+    `TargetID` follows a swap. The spoiler lists "Board text (levelN.mib)"
+    lines next to the quest file's "Text" lines.
   - Names aren't shipped: they're learned from the disc's own quests, per
     slot. The monster list is split into names; a monster's name is the
     piece most often in the list and goal of quests that have it, and least
@@ -451,13 +456,9 @@ hitzone tables they share.
   game, but whether the value is exactly a percentage hasn't been measured.
   What sets the crown spread around it (`Unkn6`/`Unkn7` are the lead)
   isn't known. Whether hitboxes scale with either size option is untested.
-- Quest text in game. Renaming changes the quest file's own strings, but
-  on the EU disc the Quest Details screen still showed the old monster
-  list after a swap. The game reads that text from elsewhere, probably
-  `quest_str.pac` (mhfu-extract README, "Quest text";
-  `quest-text-scan` finds it). Until that file is rewritten too,
-  `questMonsters.text` only changes the quest file's strings, and where
-  the game shows those, if anywhere, isn't known.
+- Quest text in game. The board files (`level*.mib`) are renamed now, but
+  no renamed board text has been seen in game yet. Where the game shows
+  the quest file's own copy of the text, if anywhere, isn't known.
 - Large monster counts. What `quantity` means for a large monster (it's 1
   in 536 of 554 records, 10 or 5 in a few), and how it relates to the
   header's `TargetNum`, isn't known.

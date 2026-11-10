@@ -97,11 +97,12 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       rng.fork("monster-species"),
       edits,
       game.quests,
+      game.boards,
     );
     reports.push(result.report);
     questsAfter = result.questsAfter;
     if (settings["questMonsters.text"]) {
-      reports.push(renameQuestText(result.swaps, game.quests, edits));
+      reports.push(renameQuestText(result.swaps, game.quests, edits, game.boards));
     }
   }
   if (settings["questMonsters.difficulty"]) {

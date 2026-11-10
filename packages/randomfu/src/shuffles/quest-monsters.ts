@@ -6,7 +6,8 @@
  *
  * Species. A swap changes every `LargeMonData` and preload (`emLoadTable`)
  * entry for the monster, and the header's `TargetID` and objective slots
- * if they name it. Two things limit which monsters can trade:
+ * if they name it, and the `TargetID` of the quest's board records
+ * (`game/board.ts`). Two things limit which monsters can trade:
  *
  * - Maps. A monster only goes to a map (day and night alike) where some
  *   Village or Guild quest already has it as a large monster, so Lao-Shan
@@ -29,6 +30,7 @@
  * rank: rows past them may be filler.
  */
 import type { LoadedQuest } from "../game/load.js";
+import { RECORD_TARGET_ID, type BoardFile } from "../game/board.js";
 import {
   readSpawns,
   OBJECTIVE_ID_OFFSET,
@@ -112,6 +114,7 @@ export function swapSpecies(
   rng: Rng,
   edits: Edits,
   allQuests: readonly LoadedQuest[],
+  boards: readonly BoardFile[] = [],
 ): {
   report: ShuffleReport;
   questsAfter: ParsedQuest[];
@@ -179,6 +182,15 @@ export function swapSpecies(
       const idAt = objective + OBJECTIVE_ID_OFFSET;
       const next = mapping.get(payload.readUInt16LE(idAt));
       if (next !== undefined) payload.writeUInt16LE(next, idAt);
+    }
+    // The board keeps its own copy of the header, TargetID included.
+    for (const board of boards) {
+      for (const record of board.records) {
+        if (record.questId !== quest.parsed.header.questId) continue;
+        const at = record.offset + RECORD_TARGET_ID;
+        const next = mapping.get(board.data.readUInt16LE(at));
+        if (next !== undefined) edits.dataFile(board.index).writeUInt16LE(next, at);
+      }
     }
     changed.set(quest.index, mapping);
     for (const [old, next] of mapping) {

@@ -26,6 +26,7 @@
  * monster ("she", "sie") aren't changed.
  */
 import type { LoadedQuest } from "../game/load.js";
+import { RECORD_HEADER_SIZE, recordHeader, type BoardFile } from "../game/board.js";
 import {
   readQuestText,
   SLOT_LANGUAGES,
@@ -241,10 +242,71 @@ export function renameIn(
 const blockLabel = (block: TextBlock) => block.slots.map((s) => SLOT_LANGUAGES[s]!).join("/");
 
 /** Renames swapped monsters in each changed quest's text. */
+type Note = (lang: string, problem: string) => void;
+
+/**
+ * Renames swapped monsters in one set of strings (a quest file's, or one of
+ * its board records'), in place in `target`. Returns how many strings
+ * changed; problems go to `note`.
+ */
+function renameText(
+  original: Buffer,
+  text: QuestText,
+  target: () => Buffer,
+  mapping: ReadonlyMap<number, number>,
+  slots: readonly SlotNames[],
+  note: Note,
+): number {
+  if (text.blocks.length === 0) {
+    note("all", "no text");
+    return 0;
+  }
+  // A language that lacks a name can't be checked for the old one, so it keeps its text.
+  const usable = text.blocks.filter((block) => {
+    const missing = missingNames(slots[block.slots[0]!]!, mapping);
+    if (missing.length > 0) {
+      note(blockLabel(block), `no name for ${missing.map(monsterName).join(", ")}`);
+    }
+    return missing.length === 0;
+  });
+  const accepted = new Map<number, string>();
+  const done = new Set<number>();
+  for (const field of PRIORITY) {
+    for (const block of usable) {
+      const ptr = block.pointers[field]!;
+      if (ptr === 0 || done.has(ptr)) continue;
+      done.add(ptr);
+      const slot = slots[block.slots[0]!]!;
+      const lang = blockLabel(block);
+      const result = renameIn(block.texts[field]!, slot, mapping, slot.widths[field]!);
+      if ("problem" in result) {
+        note(lang, `${STRING_FIELDS[field]}: ${result.problem}`);
+        continue;
+      }
+      if (result.text === block.texts[field]) continue;
+      // Try it against a scratch copy: keep it only if everything still fits.
+      const trial = new Map(accepted).set(ptr, result.text);
+      if (writeQuestText(Buffer.from(original), text, trial)) {
+        accepted.set(ptr, result.text);
+      } else {
+        note(lang, `${STRING_FIELDS[field]}: no room`);
+      }
+    }
+  }
+  if (accepted.size > 0) writeQuestText(target(), text, accepted);
+  return accepted.size;
+}
+
+/**
+ * Renames swapped monsters in each changed quest's text: the quest file's
+ * own strings and its records on the quest board (`game/board.ts`), which
+ * is what the board and the Quest Details screen show.
+ */
 export function renameQuestText(
   swaps: ReadonlyMap<number, ReadonlyMap<number, number>>,
   quests: readonly LoadedQuest[],
   edits: Edits,
+  boards: readonly BoardFile[] = [],
 ): ShuffleReport {
   const { slots, texts } = learnNames(quests);
   const lines: ShuffleReport["lines"] = [];
@@ -254,64 +316,54 @@ export function renameQuestText(
     const mapping = swaps.get(quest.index);
     const text = texts.get(quest.index);
     if (!mapping || !text) continue;
-    const accepted = new Map<number, string>();
-    const problems = new Map<string, Set<string>>();
-    const note = (lang: string, problem: string) =>
-      (problems.get(problem) ?? problems.set(problem, new Set()).get(problem)!).add(lang);
-    if (text.blocks.length === 0) note("all", "no text");
-
-    // A language that lacks a name can't be checked for the old one, so it keeps its text.
-    const usable = text.blocks.filter((block) => {
-      const missing = missingNames(slots[block.slots[0]!]!, mapping);
-      if (missing.length > 0) {
-        note(blockLabel(block), `no name for ${missing.map(monsterName).join(", ")}`);
-      }
-      return missing.length === 0;
-    });
-    const done = new Set<number>();
-    for (const field of PRIORITY) {
-      for (const block of usable) {
-        const ptr = block.pointers[field]!;
-        if (ptr === 0 || done.has(ptr)) continue;
-        done.add(ptr);
-        const slot = block.slots[0]!;
-        const lang = blockLabel(block);
-        const result = renameIn(
-          block.texts[field]!,
-          slots[slot]!,
-          mapping,
-          slots[slot]!.widths[field]!,
-        );
-        if ("problem" in result) {
-          note(lang, `${STRING_FIELDS[field]}: ${result.problem}`);
-          continue;
-        }
-        if (result.text === block.texts[field]) continue;
-        // Try it against a scratch copy: keep it only if everything still fits.
-        const trial = new Map(accepted).set(ptr, result.text);
-        if (writeQuestText(Buffer.from(quest.file.payload), text, trial)) {
-          accepted.set(ptr, result.text);
-        } else {
-          note(lang, `${STRING_FIELDS[field]}: no room`);
-        }
-      }
-    }
-    if (accepted.size > 0) {
-      writeQuestText(edits.quest(quest), text, accepted);
-      renamed++;
-    }
-    if (problems.size > 0) {
-      kept++;
+    const where = questLabel(quest);
+    const report = (source: string, count: number, problems: Map<string, Set<string>>) => {
       for (const [problem, langs] of problems) {
-        lines.push({
-          where: questLabel(quest),
-          text: `Text kept (${[...langs].join(", ")}): ${problem}`,
-        });
+        lines.push({ where, text: `${source} kept (${[...langs].join(", ")}): ${problem}` });
+      }
+      if (count > 0) lines.push({ where, text: `${source} renamed in ${count} strings` });
+    };
+    const noter =
+      (problems: Map<string, Set<string>>): Note =>
+      (lang, problem) =>
+        (problems.get(problem) ?? problems.set(problem, new Set()).get(problem)!).add(lang);
+
+    const fileProblems = new Map<string, Set<string>>();
+    const fileCount = renameText(
+      quest.file.payload,
+      text,
+      () => edits.quest(quest),
+      mapping,
+      slots,
+      noter(fileProblems),
+    );
+    report("Text", fileCount, fileProblems);
+    let boardCount = 0;
+    let boardKept = false;
+    for (const board of boards) {
+      for (const record of board.records) {
+        if (record.questId !== quest.parsed.header.questId) continue;
+        const problems = new Map<string, Set<string>>();
+        const recordText = readQuestText(
+          board.data,
+          recordHeader(record),
+          record.offset + RECORD_HEADER_SIZE,
+        );
+        const count = renameText(
+          board.data,
+          recordText,
+          () => edits.dataFile(board.index),
+          mapping,
+          slots,
+          noter(problems),
+        );
+        report(`Board text (${board.path.replace(/^mission_jpn\//, "")})`, count, problems);
+        boardCount += count;
+        boardKept ||= problems.size > 0;
       }
     }
-    if (accepted.size > 0) {
-      lines.push({ where: questLabel(quest), text: `Text renamed in ${accepted.size} strings` });
-    }
+    if (fileCount + boardCount > 0) renamed++;
+    if (fileProblems.size > 0 || boardKept) kept++;
   }
 
   // What was learned, to check against the game: each monster's name and article per language.

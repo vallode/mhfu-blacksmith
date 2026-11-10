@@ -7,11 +7,12 @@ import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
 import { readQuestText, slotSize, writeQuestText } from "../src/game/quest-text.js";
 import { readSpawns } from "../src/game/spawns.js";
+import { RECORD_HEADER_SIZE, RECORD_TARGET_ID, recordHeader } from "../src/game/board.js";
 import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
 import { learnNames, learnSlotNames, renameIn, splitNames } from "../src/shuffles/quest-text.js";
 import { formatSpoiler } from "../src/spoiler.js";
-import { buildFixtureDisc, buildQuestPayload, tempDir } from "./fixtures.js";
+import { BOARD_INDICES, buildFixtureDisc, buildQuestPayload, tempDir } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 type Changes = Partial<Record<OptionKey, boolean | number | string>>;
@@ -331,4 +332,49 @@ test("aligned text keeps its alignment and padding, and uses padding and other l
       assert.ok(grown.subarray(p + length, p + slotSize(length, 4)).every((b) => b === 0));
     });
   }
+});
+
+test("the quest board's records are read from level*.mib", async () => {
+  const { game, close } = await load();
+  assert.deepEqual(
+    game.boards.map((b) => [b.index, b.path, b.records.map((r) => r.questId)]),
+    [
+      [BOARD_INDICES[0], "mission_jpn/level1.mib", [1001, 2001, 10101]],
+      [BOARD_INDICES[1], "mission_jpn/level2.mib", [2001]],
+    ],
+  );
+  close();
+});
+
+test("swaps update the board's TargetID and rename its text, on every board the quest is on", async () => {
+  const { game, close } = await load();
+  let checked = 0;
+  for (let seed = 0; seed < 30; seed++) {
+    const settings = only(`b${seed}`, { "questMonsters.species": true });
+    const result = randomize(game, settings);
+    const spoiler = formatSpoiler(game, settings, result);
+    const quest = byId(game, 2001);
+    const after = result.edits.quests.get(quest.index)?.payload ?? quest.file.payload;
+    const species = readSpawns(after, quest.parsed.header).large[0]!.monsterId;
+    for (const board of game.boards) {
+      const data = result.edits.files.get(board.index) ?? board.data;
+      assert.equal(data.length, board.data.length, "boards keep their size");
+      for (const record of board.records.filter((r) => r.questId === 2001)) {
+        assert.equal(data.readUInt16LE(record.offset + RECORD_TARGET_ID), species);
+        const text = readQuestText(data, recordHeader(record), record.offset + RECORD_HEADER_SIZE);
+        const english = text.blocks.find((b) => b.slots.includes(1))!;
+        assert.equal(
+          english.texts[1],
+          species === 1 ? "Hunt the Rathian" : "Hunt the Pink Rathian",
+        );
+        if (species !== 1) checked++;
+      }
+    }
+    if (species !== 1) {
+      assert.match(spoiler, /Board text \(level1\.mib\) renamed in \d+ strings/);
+      assert.match(spoiler, /Board text \(level2\.mib\) renamed in \d+ strings/);
+    }
+  }
+  assert.ok(checked >= 2, "some seeds swap quest 2001");
+  close();
 });

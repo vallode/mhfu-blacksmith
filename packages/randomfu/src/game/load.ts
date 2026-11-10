@@ -15,6 +15,7 @@ import { parseQuest, type ParsedQuest } from "mhfu-extract/src/quests/parser.js"
 import { PinnedResolver, type TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import { DataBin } from "../disc/databin.js";
 import { openQuestFile, type QuestFile } from "../disc/quest-file.js";
+import { BOARD_PATHS, readBoardRecords, type BoardFile } from "./board.js";
 
 export const DATA_BIN_PATH = "/PSP_GAME/USRDIR/DATA.BIN";
 export const EBOOT_PATH = "/PSP_GAME/SYSDIR/EBOOT.BIN";
@@ -57,6 +58,8 @@ export interface GameData {
   gameTask: LoadedOverlay;
   /** Town code and data, including the shops' item lists. */
   lobbyTask: LoadedOverlay;
+  /** The quest board files (`level*.mib`) that are on the disc and read as boards. */
+  boards: BoardFile[];
   /** The decrypted EBOOT, when loaded. */
   eboot: Buffer | null;
   /** How EBOOT tables are found: undefined means JP's static addresses. */
@@ -76,6 +79,19 @@ function checkedDump(dump: Buffer): Buffer {
 function indexOf(region: Region, path: string): number {
   for (const [index, name] of loadFileList(region)) if (name === path) return index;
   throw new Error(`No DATA.BIN entry named ${path} for region ${region}`);
+}
+
+function readBoards(region: Region, dataBin: DataBin): BoardFile[] {
+  const boards: BoardFile[] = [];
+  const names = new Map([...loadFileList(region)].map(([index, name]) => [name, index]));
+  for (const path of BOARD_PATHS) {
+    const index = names.get(path);
+    if (index === undefined || index >= dataBin.fileCount) continue;
+    const data = dataBin.read(index);
+    const records = readBoardRecords(data);
+    if (records) boards.push({ index, path, data, records });
+  }
+  return boards;
 }
 
 export async function loadGame(
@@ -137,6 +153,7 @@ export async function loadGame(
     gameSub: overlay(GAME_SUB_PATH),
     gameTask: overlay(GAME_TASK_PATH),
     lobbyTask: overlay(LOBBY_TASK_PATH),
+    boards: readBoards(region, dataBin),
     eboot,
     resolver,
   };

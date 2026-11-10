@@ -78,7 +78,11 @@ export function slotSize(length: number, align: number): number {
   return align === 4 ? Math.ceil((length + 2) / 4) * 4 : length + 1;
 }
 
-export function readQuestText(payload: Buffer, header: QuestHeader): QuestText {
+/**
+ * `floor`: strings below it share bytes with a header, so they aren't moved
+ * (a quest file's header is 0x80 bytes; a board record's is its own).
+ */
+export function readQuestText(payload: Buffer, header: QuestHeader, floor = 0x80): QuestText {
   const reader = new BinaryReader(payload);
   const layout = readStringLayout(reader, header);
   const blocks: TextBlock[] = layout.strings.map((s) => ({
@@ -124,7 +128,7 @@ export function readQuestText(payload: Buffer, header: QuestHeader): QuestText {
   ];
   if (
     !unmovable &&
-    runs.some((r) => r.start < 0x80 || tables.some(([s, e]) => s! < r.end && r.start < e!))
+    runs.some((r) => r.start < floor || tables.some(([s, e]) => s! < r.end && r.start < e!))
   ) {
     unmovable = "the strings share bytes with the header or a pointer table";
   }
