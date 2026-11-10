@@ -1,4 +1,4 @@
-![Monster hunter freedom unite blacksmith](/public/images/blacksmith-scaled.png)
+![Monster hunter freedom unite blacksmith](/apps/blacksmith/public/images/blacksmith-scaled.png)
 
 # MHFU - Blacksmith
 
@@ -6,7 +6,7 @@
 
 Detailed weapon trees, armor lists, and monster information for Monster Hunter Freedom Unite / P2G in the style of the in-game UI!
 
-![Screenshot of the website](/public/images/screenshot.png)
+![Screenshot of the website](/apps/blacksmith/public/images/screenshot.png)
 
 ## Credits
 
@@ -34,40 +34,64 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 - Yaas
 - Zack
 
-In-game item IDs (`data/items.json`, used by the save loader on `/hunter`) come from the MIT-licensed datamines [Daigo829/mhfu-save-viewer](https://github.com/Daigo829/mhfu-save-viewer), [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) and [Kolyn090/mhfu-db](https://github.com/Kolyn090/mhfu-db) (Kolyn090, Gustavo Augustini). See `scripts/import-items.ts`.
+In-game item IDs (`data/items.json`, used by the save loader on `/hunter`) come from the MIT-licensed datamines [Daigo829/mhfu-save-viewer](https://github.com/Daigo829/mhfu-save-viewer), [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) and [Kolyn090/mhfu-db](https://github.com/Kolyn090/mhfu-db) (Kolyn090, Gustavo Augustini). See `apps/blacksmith/scripts/import-items.ts`.
 
 The skill activation table (`data/skills.json`, used by the set builder on `/set-builder`) comes from the MIT-licensed [Kolyn090/mhfu-db](https://github.com/Kolyn090/mhfu-db) (Kolyn090, Gustavo Augustini), with tree names changed to the game's `SkillID` spelling and the site's other spellings listed as `aliases`. The set builder itself is modelled on Athena's Armor Set Search.
 
-## Development
+## Repository layout
 
-The site is a statically exported [Next.js](https://nextjs.org/) app.
+This is a [pnpm workspace](https://pnpm.io/workspaces):
+
+| Path                    | Package        | What it is                                                                                      |
+| ----------------------- | -------------- | ----------------------------------------------------------------------------------------------- |
+| `apps/blacksmith`       | `blacksmith`   | The MHFU Blacksmith website, a statically exported [Next.js](https://nextjs.org/) app           |
+| `apps/randomfu`         | `randomfu-web` | The randomizer as a static web app that runs in the browser                                     |
+| `packages/mhfu-extract` | `mhfu-extract` | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models              |
+| `packages/randomfu`     | `randomfu`     | Seeded randomizer: library, command line and local settings page                                |
+| `data`                  |                | The game data the site is built from (JSON, validated by `data/schemas/`), shared by everything |
+
+Packages import each other by name (`import … from "mhfu-extract/src/container/image.js"`),
+declared as `workspace:*` dependencies.
+
+## Development
 
 Dependencies:
 
 - [Node.js](https://nodejs.org/) 22+
 - [pnpm](https://pnpm.io/) (version pinned in `package.json`; `corepack enable` will pick it up)
-- [ImageMagick](https://imagemagick.org/) (optional, for `scripts/crop-images.sh`)
+- [ImageMagick](https://imagemagick.org/) (optional, for `apps/blacksmith/scripts/crop-images.sh`)
+
+From the repository root:
 
 ```sh
 pnpm install
 
+pnpm dev            # the site's dev server on http://localhost:3000
+pnpm build          # regenerate the site's data + static export to apps/blacksmith/out/
+pnpm lint           # ESLint
+pnpm typecheck      # tsc in every package
+pnpm test           # every package's tests
+pnpm format         # Prettier, for the whole repository
+```
+
+Run any package's own scripts with `pnpm --filter <package> <script>`, or
+from its directory. The site's (from `apps/blacksmith`):
+
+```sh
 # Generate the client data bundles in public/ (needed once before `pnpm dev`,
 # and again whenever data/ or content/ changes)
 pnpm generate-data && pnpm generate-search
 
-pnpm dev       # local dev server on http://localhost:3000
-pnpm build     # regenerate data + static export to out/
-pnpm lint      # ESLint
-pnpm validate  # sanity-check data/ and content/
+pnpm validate         # sanity-check data/ and content/
 pnpm validate-schema  # check data/ against data/schemas/
 ```
 
-Source data lives in `data/` (items, validated by `data/schemas/`) and `content/` (crafting trees). Generated files under `public/data`, `public/*.json` and `out/` are git-ignored.
+Source data lives in `data/` (items, validated by `data/schemas/`) and `apps/blacksmith/content/` (crafting trees). Generated files under `apps/blacksmith/public/data`, `apps/blacksmith/public/*.json` and `apps/blacksmith/out/` are git-ignored.
 
-The crafting trees in `content/**/map.json` are generated from `data/` with `pnpm generate-maps`. Rerun it after adding or re-parenting weapons, armor, or decorations.
+The crafting trees in `apps/blacksmith/content/**/map.json` are generated from `data/` with `pnpm generate-maps`. Rerun it after adding or re-parenting weapons, armor, or decorations.
 
-`public/models/` holds 3D models extracted from the game, shown on detail pages by `src/components/ModelViewer.tsx`. They are generated, not hand-made: unpack your own disc image and run `pnpm --filter mhfu-extract export-site` (see `tools/mhfu-extract/README.md`, "3D models"), then commit the result.
+`apps/blacksmith/public/models/` holds 3D models extracted from the game, shown on detail pages by `src/components/ModelViewer.tsx`. They are generated, not hand-made: unpack your own disc image and run `pnpm --filter mhfu-extract export-site` (see `packages/mhfu-extract/README.md`, "3D models"), then commit the result.
 
-`data/equipment-ids.json` maps the game's equipment IDs (the ones stored in a save file's equipment box) to the weapons and armor in `data/`. It is generated with `pnpm generate-equipment-ids` from the `equip.enum` name tables in [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) (MIT, vendored under `tools/mhfu-extract/vendor/`), plus the hand-checked aliases in `scripts/equipment-id-aliases.json` for names that differ between MHP2G and MHFU. Rerun it after renaming or adding weapons or armor; `pnpm validate` fails if it's stale.
+`data/equipment-ids.json` maps the game's equipment IDs (the ones stored in a save file's equipment box) to the weapons and armor in `data/`. It is generated with `pnpm generate-equipment-ids` (in `apps/blacksmith`) from the `equip.enum` name tables in [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) (MIT, vendored under `packages/mhfu-extract/vendor/`), plus the hand-checked aliases in `apps/blacksmith/scripts/equipment-id-aliases.json` for names that differ between MHP2G and MHFU. Rerun it after renaming or adding weapons or armor; `pnpm validate` fails if it's stale.
 
-The site is deployed by [Netlify](https://app.netlify.com/sites/mhfu-blacksmith/deploys), which builds `main` for production and every pull request as a deploy preview.
+The site is deployed by [Netlify](https://app.netlify.com/sites/mhfu-blacksmith/deploys) (`netlify.toml`), which builds `main` for production and every pull request as a deploy preview.

@@ -7,6 +7,18 @@ settings:
 importers:
 
   .:
+    devDependencies:
+      prettier:
+        specifier: ^3.9.10
+        version: 3.9.10
+      prettier-plugin-tailwindcss:
+        specifier: ^0.8.1
+        version: 0.8.1(prettier@3.9.10)
+      tailwindcss:
+        specifier: ^4.3.3
+        version: 4.3.3
+
+  apps/blacksmith:
     dependencies:
       '@ducanh2912/next-pwa':
         specifier: ^10.2.9
@@ -69,12 +81,6 @@ importers:
       postcss:
         specifier: ^8.5.25
         version: 8.5.25
-      prettier:
-        specifier: ^3.9.10
-        version: 3.9.10
-      prettier-plugin-tailwindcss:
-        specifier: ^0.8.1
-        version: 0.8.1(prettier@3.9.10)
       sharp:
         specifier: 0.34.5
         version: 0.34.5
@@ -85,7 +91,35 @@ importers:
         specifier: ^5
         version: 5.9.3
 
-  tools/mhfu-extract:
+  apps/randomfu:
+    dependencies:
+      mhfu-extract:
+        specifier: workspace:*
+        version: link:../../packages/mhfu-extract
+      randomfu:
+        specifier: workspace:*
+        version: link:../../packages/randomfu
+    devDependencies:
+      '@types/node':
+        specifier: ^22
+        version: 22.19.19
+      buffer:
+        specifier: 6.0.3
+        version: 6.0.3
+      esbuild:
+        specifier: 0.25.10
+        version: 0.25.10
+      postcss:
+        specifier: ^8.5.25
+        version: 8.5.25
+      tsx:
+        specifier: ^4.22.4
+        version: 4.22.4
+      typescript:
+        specifier: ^5
+        version: 5.9.3
+
+  packages/mhfu-extract:
     dependencies:
       meshoptimizer:
         specifier: 0.21.0
@@ -104,8 +138,11 @@ importers:
         specifier: ^5
         version: 5.9.3
 
-  tools/randomfu:
+  packages/randomfu:
     dependencies:
+      mhfu-extract:
+        specifier: workspace:*
+        version: link:../mhfu-extract
       tsx:
         specifier: ^4.22.4
         version: 4.22.4
@@ -113,15 +150,6 @@ importers:
       '@types/node':
         specifier: ^22
         version: 22.19.19
-      buffer:
-        specifier: 6.0.3
-        version: 6.0.3
-      esbuild:
-        specifier: 0.25.10
-        version: 0.25.10
-      postcss:
-        specifier: ^8.5.25
-        version: 8.5.25
       typescript:
         specifier: ^5
         version: 5.9.3
@@ -5693,7 +5721,7 @@ snapshots:
       '@typescript-eslint/parser': 8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
       eslint: 9.39.4(jiti@2.7.0)
       eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.4(jiti@2.7.0))
       eslint-plugin-import: 2.32.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@2.7.0))
       eslint-plugin-jsx-a11y: 6.10.2(eslint@9.39.4(jiti@2.7.0))
       eslint-plugin-react: 7.37.5(eslint@9.39.4(jiti@2.7.0))
@@ -5713,7 +5741,7 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0)):
+  eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.4(jiti@2.7.0)):
     dependencies:
       '@nolyfill/is-core-module': 1.0.39
       debug: 4.4.3
@@ -5728,14 +5756,14 @@ snapshots:
     transitivePeerDependencies:
       - supports-color
 
-  eslint-module-utils@2.13.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0)):
+  eslint-module-utils@2.13.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@2.7.0)):
     dependencies:
       debug: 3.2.7
     optionalDependencies:
       '@typescript-eslint/parser': 8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3)
       eslint: 9.39.4(jiti@2.7.0)
       eslint-import-resolver-node: 0.3.10
-      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))
+      eslint-import-resolver-typescript: 3.10.1(eslint-plugin-import@2.32.0)(eslint@9.39.4(jiti@2.7.0))
     transitivePeerDependencies:
       - supports-color
 
@@ -5750,7 +5778,7 @@ snapshots:
       doctrine: 2.1.0
       eslint: 9.39.4(jiti@2.7.0)
       eslint-import-resolver-node: 0.3.10
-      eslint-module-utils: 2.13.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1(eslint-plugin-import@2.32.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0)))(eslint@9.39.4(jiti@2.7.0))
+      eslint-module-utils: 2.13.0(@typescript-eslint/parser@8.60.1(eslint@9.39.4(jiti@2.7.0))(typescript@5.9.3))(eslint-import-resolver-node@0.3.10)(eslint-import-resolver-typescript@3.10.1)(eslint@9.39.4(jiti@2.7.0))
       hasown: 2.0.4
       is-core-module: 2.16.2
       is-glob: 4.0.3
