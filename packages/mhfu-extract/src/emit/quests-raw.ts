@@ -13,7 +13,7 @@
  * monster record whole, as its 15 u32 words (`largeMonsterRecords`,
  * `smallMonsterRecords`), so `Attr1`/`Attr2` and the `DynamicData` words
  * can be lined up with the header's `MonSizeModifier` (`headerWords[14]`)
- * and `Unkn4`-`Unkn7` (`header.unknownFlags`).
+ * and `Unkn4`/`Unkn5`/`Unkn7` (`header.unknownFlags`).
  *
  * `objectives` decodes the header's two objective slots (0x28 and 0x30,
  * the hexpat's `UnknPTR3`-`Unkn3`, `headerWords[10..13]`).

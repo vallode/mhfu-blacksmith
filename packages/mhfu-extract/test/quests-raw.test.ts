@@ -99,5 +99,6 @@ test("quest-probe summarises size candidates, script arguments and text layout",
   );
   const tsv = sizeTsv([entry]).trim().split("\n");
   assert.equal(tsv.length, 2);
-  assert.equal(tsv[1]!.split("\t")[7], "7");
+  // The monster column, after the header's `statTable`.
+  assert.equal(tsv[1]!.split("\t")[8], "7");
 });

@@ -16,6 +16,7 @@ import {
   questTypeLabel,
   type QuestHubSlug,
   type QuestMonster,
+  type QuestMonsterStats,
 } from "@/lib/quests";
 import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
@@ -45,6 +46,51 @@ function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
         </span>
       ))}
     </span>
+  );
+}
+
+const times = (n: number) => `×${n}`;
+
+/** Each large monster's HP and multipliers in this quest. */
+function MonsterStats({ stats }: { stats: QuestMonsterStats[] }) {
+  return (
+    <div className="flex flex-col gap-6">
+      {stats.map((s, i) => (
+        <section key={i} className="flex flex-col gap-3">
+          <h3 className="m-0 leading-none font-normal text-warm">
+            {s.monster.href ? (
+              <Link href={s.monster.href} className="underline-offset-4 hover:underline">
+                {s.monster.name}
+              </Link>
+            ) : (
+              s.monster.name
+            )}
+          </h3>
+          <StatList>
+            {s.hp !== null && (
+              <Stat label="HP:">
+                <span className="text-white tabular-nums">{s.hp.toLocaleString("en-US")}</span>
+              </Stat>
+            )}
+            <Stat label="Attack:">
+              <span className="text-white tabular-nums">{times(s.attack)}</span>
+            </Stat>
+            <Stat label="Defense:">
+              <span className="text-white tabular-nums">{times(s.defense)}</span>
+            </Stat>
+            <Stat label="Stagger:">
+              <span className="text-white tabular-nums">{times(s.stagger)}</span>
+            </Stat>
+          </StatList>
+        </section>
+      ))}
+      <p className="text-fine leading-[1.4] whitespace-normal text-white/60">
+        Attack and defense multiply the damage the monster deals and takes, so a lower defense means
+        it takes less. Stagger multiplies how much damage a part takes before it flinches.
+        {stats.some((s) => s.monster.name === "Furious Rajang") &&
+          " Furious Rajang's attack and defense change again during the hunt."}
+      </p>
+    </div>
   );
 }
 
@@ -132,6 +178,13 @@ export default function QuestDetailClient({ hub, id }: Props) {
       ),
     },
   ];
+  if (quest.monsterStats.length > 0) {
+    tabs.push({
+      id: "monsters",
+      label: "Monsters",
+      content: <MonsterStats stats={quest.monsterStats} />,
+    });
+  }
   if (quest.rewardTables.length > 0) {
     tabs.push({
       id: "rewards",

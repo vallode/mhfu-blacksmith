@@ -4,6 +4,7 @@ import { describe, test } from "node:test";
 import { encodeQuestBundle, type QuestRecord } from "../scripts/lib/quest-bundle";
 import {
   decodeQuests,
+  questHp,
   questHref,
   questHubSlug,
   questsOnHub,
@@ -50,6 +51,7 @@ function encode(quests: QuestRecord[]) {
       name === "Giadrome" || name === "Scarred Yian Garuga"
         ? { category: "bird-wyvern", slug: name.toLowerCase().replace(/ /g, "-") }
         : undefined,
+    baseHp: (name) => (name === "Giadrome" ? 1200 : undefined),
   });
 }
 
@@ -175,6 +177,32 @@ describe("encodeQuestBundle / decodeQuests", () => {
     ]);
   });
 
+  test("gives each distinct large monster spawn its HP and multipliers", () => {
+    const row = { hp: 0.6, attack: 1.15, defense: 1, status: 1 };
+    const { bundle } = encode([
+      quest({
+        large_monsters: [
+          { monster: "Giadrome", multipliers: row },
+          // The same row again (another quantity on the disc): shown once.
+          { monster: "Giadrome", multipliers: row },
+          { monster: "Rathian", multipliers: { hp: 1.75, attack: 3.5, defense: 0.7, status: 2.3 } },
+          { monster: "Kirin" },
+        ],
+      }),
+      quest({ id: 2 }),
+    ]);
+    const [a, b] = decodeQuests(bundle);
+    assert.deepEqual(
+      a!.monsterStats.map((s) => [s.monster.name, s.hp, s.attack, s.defense, s.stagger]),
+      [
+        ["Giadrome", 720, 1.15, 1, 1],
+        // No base HP: no HP, but the multipliers still show.
+        ["Rathian", null, 3.5, 0.7, 2.3],
+      ],
+    );
+    assert.deepEqual(b!.monsterStats, []);
+  });
+
   test("keeps the urgent flag", () => {
     const { bundle } = encode([quest({ id: 10203, urgent: true }), quest({ id: 109 })]);
     assert.deepEqual(
@@ -292,5 +320,14 @@ describe("rewardTableHeading", () => {
       rewardTableHeading({ kind: "conditional", draws: null, condition: 281, items: [] }),
       { title: "Conditional reward", note: "condition 281" },
     );
+  });
+});
+
+describe("questHp", () => {
+  test("multiplies in single precision and truncates, as the game does", () => {
+    assert.equal(questHp(1200, 0.6), 720);
+    // Single precision lands either side of doubles (840, 919.999...).
+    assert.equal(questHp(800, 1.05), 839);
+    assert.equal(questHp(800, 1.15), 920);
   });
 });

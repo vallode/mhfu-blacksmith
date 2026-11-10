@@ -188,7 +188,13 @@
         {
           "monster": "Giadrome",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -399,7 +405,13 @@
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 3
+          "power": 3,
+          "multipliers": {
+            "hp": 0.5,
+            "attack": 1.1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -603,7 +615,13 @@
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 3
+          "power": 3,
+          "multipliers": {
+            "hp": 0.5,
+            "attack": 1.1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -776,7 +794,13 @@
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 3
+          "power": 3,
+          "multipliers": {
+            "hp": 0.5,
+            "attack": 1.1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -986,7 +1010,13 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 3
+          "power": 3,
+          "multipliers": {
+            "hp": 0.5,
+            "attack": 1.1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -1186,7 +1216,13 @@
         {
           "monster": "Velocidrome",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -1351,7 +1387,13 @@
         {
           "monster": "Velocidrome",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -1576,7 +1618,13 @@
         {
           "monster": "Cephadrome",
           "quantity": 1,
-          "power": 3
+          "power": 3,
+          "multipliers": {
+            "hp": 0.5,
+            "attack": 1.1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -1801,7 +1849,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 3
+          "power": 3,
+          "multipliers": {
+            "hp": 0.5,
+            "attack": 1.1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -2023,7 +2077,13 @@
         {
           "monster": "Gendrome",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.45,
+            "attack": 1.06,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -2249,7 +2309,13 @@
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -2483,7 +2549,13 @@
         {
           "monster": "Blangonga",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -2663,7 +2735,13 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -2898,7 +2976,13 @@
         {
           "monster": "Plesioth",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -3111,7 +3195,13 @@
         {
           "monster": "Gypceros",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -3348,7 +3438,13 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -3573,7 +3669,13 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -3796,7 +3898,13 @@
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -4019,7 +4127,13 @@
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 1.15,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -4569,7 +4683,13 @@
         {
           "monster": "Giadrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -4786,7 +4906,13 @@
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -4995,7 +5121,13 @@
         {
           "monster": "Giadrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -5168,7 +5300,13 @@
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -5371,7 +5509,13 @@
         {
           "monster": "Velocidrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -5595,7 +5739,13 @@
         {
           "monster": "Blue Yian Kut-Ku",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -5785,7 +5935,13 @@
         {
           "monster": "Velocidrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -6172,7 +6328,13 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -6357,7 +6519,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -6571,7 +6739,13 @@
         {
           "monster": "Gendrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -6799,7 +6973,13 @@
         {
           "monster": "Cephadrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -7013,7 +7193,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -7218,7 +7404,13 @@
         {
           "monster": "Gendrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -7441,7 +7633,13 @@
         {
           "monster": "Gendrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -7634,7 +7832,13 @@
         {
           "monster": "Gendrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -7846,7 +8050,13 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -8051,7 +8261,13 @@
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -8265,7 +8481,13 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 10
+          "power": 10,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 1.4,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -8850,7 +9072,13 @@
         {
           "monster": "Blangonga",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -9066,7 +9294,13 @@
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -9298,7 +9532,13 @@
         {
           "monster": "Red Khezu",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -9517,7 +9757,13 @@
         {
           "monster": "Blangonga",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -9726,7 +9972,13 @@
         {
           "monster": "Giadrome",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -9942,7 +10194,13 @@
         {
           "monster": "Plesioth",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -10161,7 +10419,13 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -10368,7 +10632,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -10588,7 +10858,13 @@
         {
           "monster": "Green Plesioth",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -10813,7 +11089,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -11025,7 +11307,13 @@
         {
           "monster": "Purple Gypceros",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -11247,7 +11535,13 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -11471,7 +11765,13 @@
         {
           "monster": "Gypceros",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -11672,7 +11972,13 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -11866,7 +12172,13 @@
         {
           "monster": "Blue Yian Kut-Ku",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -12093,7 +12405,13 @@
         {
           "monster": "Iodrome",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -12303,7 +12621,13 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -12531,7 +12855,13 @@
         {
           "monster": "Basarios",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -12751,7 +13081,13 @@
         {
           "monster": "Iodrome",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -12959,7 +13295,13 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -13210,7 +13552,13 @@
         {
           "monster": "Lao-Shan Lung",
           "quantity": 1,
-          "power": 1
+          "power": 1,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 1.5,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -13486,7 +13834,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 10,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 0.65,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -13685,7 +14039,13 @@
         {
           "monster": "Plesioth",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -13915,7 +14275,13 @@
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -14145,7 +14511,13 @@
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -14373,7 +14745,13 @@
         {
           "monster": "Diablos",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -14606,7 +14984,13 @@
         {
           "monster": "Black Diablos",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -14814,7 +15198,13 @@
         {
           "monster": "Gravios",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -15054,7 +15444,13 @@
         {
           "monster": "Black Gravios",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -15276,7 +15672,13 @@
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -15502,7 +15904,13 @@
         {
           "monster": "Azure Rathalos",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -15728,7 +16136,13 @@
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -15946,7 +16360,13 @@
         {
           "monster": "Pink Rathian",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -16171,7 +16591,13 @@
         {
           "monster": "Kirin",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -16392,12 +16818,24 @@
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 1.7,
+            "defense": 0.95,
+            "status": 1
+          }
         },
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 1.7,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -16642,7 +17080,13 @@
         {
           "monster": "Rusted Kushala Daora",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [],
@@ -16890,7 +17334,13 @@
         {
           "monster": "Teostra",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -17143,7 +17593,13 @@
         {
           "monster": "Teostra",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [],
@@ -17356,7 +17812,13 @@
         {
           "monster": "Chameleos",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -17578,7 +18040,13 @@
         {
           "monster": "Chameleos",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -17791,7 +18259,13 @@
         {
           "monster": "Shen Gaoren",
           "quantity": 1,
-          "power": 6
+          "power": 6,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 1.5,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -17986,7 +18460,13 @@
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 1.7,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -18262,7 +18742,13 @@
         {
           "monster": "Congalala",
           "quantity": 10,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 1.7,
+            "defense": 0.95,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -18398,7 +18884,13 @@
         {
           "monster": "Giadrome",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -18518,7 +19010,13 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -18666,7 +19164,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -18906,7 +19410,13 @@
         {
           "monster": "Giadrome",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -19120,7 +19630,13 @@
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -19329,7 +19845,13 @@
         {
           "monster": "Velocidrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -19527,7 +20049,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -19784,7 +20312,13 @@
         {
           "monster": "Gendrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -20016,12 +20550,24 @@
         {
           "monster": "Cephadrome",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         },
         {
           "monster": "Gendrome",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -20233,7 +20779,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -20434,12 +20986,24 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Blue Yian Kut-Ku",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -20625,12 +21189,24 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         },
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -20827,7 +21403,13 @@
         {
           "monster": "Vespoid Queen",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -20967,7 +21549,13 @@
         {
           "monster": "Gypceros",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -21115,7 +21703,13 @@
         {
           "monster": "Blue Yian Kut-Ku",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -21243,7 +21837,13 @@
         {
           "monster": "Basarios",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -21484,7 +22084,13 @@
         {
           "monster": "Blangonga",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -21686,12 +22292,24 @@
         {
           "monster": "Blangonga",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -21913,12 +22531,24 @@
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -22136,7 +22766,13 @@
         {
           "monster": "Red Khezu",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -22372,12 +23008,24 @@
         {
           "monster": "Gypceros",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Purple Gypceros",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -22578,12 +23226,24 @@
         {
           "monster": "Plesioth",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Green Plesioth",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -22806,12 +23466,24 @@
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Velocidrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -23028,7 +23700,13 @@
         {
           "monster": "Plesioth",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -23265,12 +23943,24 @@
         {
           "monster": "Green Plesioth",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Gendrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -23466,12 +24156,24 @@
         {
           "monster": "Iodrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -23679,12 +24381,24 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -23887,12 +24601,24 @@
         {
           "monster": "Purple Gypceros",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -24115,7 +24841,13 @@
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -24349,7 +25081,13 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -24575,12 +25313,24 @@
         {
           "monster": "Basarios",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Iodrome",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -24788,7 +25538,13 @@
         {
           "monster": "Basarios",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -25048,7 +25804,13 @@
         {
           "monster": "Ashen Lao-Shan Lung",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 1,
+            "attack": 2.8,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -25335,7 +26097,13 @@
         {
           "monster": "Blangonga",
           "quantity": 10,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -25549,7 +26317,13 @@
         {
           "monster": "Kirin",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -25750,7 +26524,13 @@
         {
           "monster": "King Shakalaka",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -25952,7 +26732,13 @@
         {
           "monster": "Hypnocatrice",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -26227,12 +27013,24 @@
         {
           "monster": "Blue Yian Kut-Ku",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 17
+          "power": 17,
+          "multipliers": {
+            "hp": 0.55,
+            "attack": 2.4,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -26540,12 +27338,24 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Green Plesioth",
           "quantity": 1,
-          "power": 18
+          "power": 18,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 2.5,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -26813,12 +27623,24 @@
         {
           "monster": "Red Khezu",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -27073,7 +27895,13 @@
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -27287,7 +28115,13 @@
         {
           "monster": "Rajang",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -27508,7 +28342,13 @@
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -27739,12 +28579,24 @@
         {
           "monster": "Pink Rathian",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Velocidrome",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -27973,12 +28825,24 @@
         {
           "monster": "Diablos",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Gendrome",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -28205,7 +29069,13 @@
         {
           "monster": "Black Diablos",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -28452,12 +29322,24 @@
         {
           "monster": "Diablos",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Black Diablos",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -28671,7 +29553,13 @@
         {
           "monster": "Rajang",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -28906,12 +29794,24 @@
         {
           "monster": "Gravios",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Iodrome",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -29131,7 +30031,13 @@
         {
           "monster": "Black Gravios",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 2.5,
+            "defense": 0.75,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -29382,12 +30288,24 @@
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -29598,12 +30516,24 @@
         {
           "monster": "Azure Rathalos",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Pink Rathian",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -29814,7 +30744,13 @@
         {
           "monster": "Azure Rathalos",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -30045,7 +30981,13 @@
         {
           "monster": "Silver Rathalos",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -30268,7 +31210,13 @@
         {
           "monster": "Gold Rathian",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -30393,7 +31341,13 @@
         {
           "monster": "Kirin",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [],
@@ -30646,7 +31600,13 @@
         {
           "monster": "Kushala Daora",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -30888,7 +31848,13 @@
         {
           "monster": "Kushala Daora",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [],
@@ -31130,7 +32096,13 @@
         {
           "monster": "Teostra",
           "quantity": 1,
-          "power": 22
+          "power": 22,
+          "multipliers": {
+            "hp": 1.45,
+            "attack": 2.8,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [],
@@ -31388,7 +32360,13 @@
         {
           "monster": "Teostra",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [],
@@ -31621,7 +32599,13 @@
         {
           "monster": "Chameleos",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -31867,7 +32851,13 @@
         {
           "monster": "Chameleos",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -32123,7 +33113,13 @@
         {
           "monster": "Fatalis",
           "quantity": 1,
-          "power": 0
+          "power": 0,
+          "multipliers": {
+            "hp": 1,
+            "attack": 1.8,
+            "defense": 0.75,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [],
@@ -32265,7 +33261,13 @@
         {
           "monster": "Crimson Fatalis",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 1,
+            "attack": 2,
+            "defense": 0.75,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [],
@@ -32461,7 +33463,13 @@
         {
           "monster": "Shen Gaoren",
           "quantity": 1,
-          "power": 7
+          "power": 7,
+          "multipliers": {
+            "hp": 1,
+            "attack": 2.2,
+            "defense": 0.85,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -32561,7 +33569,13 @@
         {
           "monster": "Akantor",
           "quantity": 1,
-          "power": 15
+          "power": 15,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.5
+          }
         }
       ],
       "small_monsters": [],
@@ -32804,7 +33818,13 @@
         {
           "monster": "White Fatalis",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 1,
+            "attack": 2,
+            "defense": 0.75,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -32994,7 +34014,13 @@
         {
           "monster": "Nargacuga",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -33212,7 +34238,13 @@
         {
           "monster": "Nargacuga",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 1.4,
+            "attack": 2.7,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [
@@ -33453,12 +34485,24 @@
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Pink Rathian",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 0.75,
+            "attack": 2.8,
+            "defense": 0.8,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [],
@@ -33657,7 +34701,13 @@
         {
           "monster": "Diablos",
           "quantity": 1,
-          "power": 23
+          "power": 23,
+          "multipliers": {
+            "hp": 2,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -33779,7 +34829,13 @@
         {
           "monster": "Kirin",
           "quantity": 1,
-          "power": 20
+          "power": 20,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 2.6,
+            "defense": 0.75,
+            "status": 1.4
+          }
         }
       ],
       "small_monsters": [],
@@ -34050,17 +35106,35 @@
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          }
         },
         {
           "monster": "Giadrome",
           "quantity": 1,
-          "power": 23
+          "power": 23,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 3.1,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 16
+          "power": 16,
+          "multipliers": {
+            "hp": 0.5,
+            "attack": 2.3,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -34341,17 +35415,35 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Velocidrome",
           "quantity": 1,
-          "power": 23
+          "power": 23,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 3.1,
+            "defense": 0.75,
+            "status": 1.4
+          }
         },
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 18
+          "power": 18,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 2.5,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -34650,17 +35742,35 @@
         {
           "monster": "Basarios",
           "quantity": 1,
-          "power": 19
+          "power": 19,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 2.7,
+            "defense": 0.85,
+            "status": 1.3
+          }
         },
         {
           "monster": "Iodrome",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Gravios",
           "quantity": 1,
-          "power": 17
+          "power": 17,
+          "multipliers": {
+            "hp": 0.55,
+            "attack": 2.4,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -34968,17 +36078,35 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Cephadrome",
           "quantity": 1,
-          "power": 21
+          "power": 21,
+          "multipliers": {
+            "hp": 0.8,
+            "attack": 2.9,
+            "defense": 0.8,
+            "status": 1.4
+          }
         },
         {
           "monster": "Diablos",
           "quantity": 1,
-          "power": 17
+          "power": 17,
+          "multipliers": {
+            "hp": 0.55,
+            "attack": 2.4,
+            "defense": 0.85,
+            "status": 1.3
+          }
         }
       ],
       "small_monsters": [
@@ -35102,7 +36230,13 @@
         {
           "monster": "King Shakalaka",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -35246,12 +36380,24 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Vespoid Queen",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -35379,7 +36525,13 @@
         {
           "monster": "Green Plesioth",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -35499,7 +36651,13 @@
         {
           "monster": "Purple Gypceros",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -35643,7 +36801,13 @@
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -35863,7 +37027,13 @@
         {
           "monster": "King Shakalaka",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -36089,7 +37259,13 @@
         {
           "monster": "Vespoid Queen",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -36304,7 +37480,13 @@
         {
           "monster": "Hypnocatrice",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -36525,7 +37707,13 @@
         {
           "monster": "Hypnocatrice",
           "quantity": 1,
-          "power": 30
+          "power": 30,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -36728,12 +37916,24 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 31
+          "power": 31,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 3.8,
+            "defense": 0.7,
+            "status": 2.4
+          }
         },
         {
           "monster": "Blue Yian Kut-Ku",
           "quantity": 1,
-          "power": 31
+          "power": 31,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 3.8,
+            "defense": 0.7,
+            "status": 2.4
+          }
         }
       ],
       "small_monsters": [
@@ -36944,7 +38144,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -37181,7 +38387,13 @@
         {
           "monster": "Plum Daimyo Hermitaur",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -37428,12 +38640,24 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 31
+          "power": 31,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 3.8,
+            "defense": 0.7,
+            "status": 2.4
+          }
         },
         {
           "monster": "Plum Daimyo Hermitaur",
           "quantity": 1,
-          "power": 31
+          "power": 31,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 3.8,
+            "defense": 0.7,
+            "status": 2.4
+          }
         }
       ],
       "small_monsters": [
@@ -37651,7 +38875,13 @@
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 29
+          "power": 29,
+          "multipliers": {
+            "hp": 2,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.4
+          }
         }
       ],
       "small_monsters": [
@@ -37889,7 +39119,13 @@
         {
           "monster": "Red Khezu",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -38128,7 +39364,13 @@
         {
           "monster": "Red Khezu",
           "quantity": 0,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -38332,7 +39574,13 @@
         {
           "monster": "Plesioth",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -38545,7 +39793,13 @@
         {
           "monster": "Green Plesioth",
           "quantity": 0,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 1.85,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -38767,7 +40021,13 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -38991,7 +40251,13 @@
         {
           "monster": "Emerald Congalala",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -39215,7 +40481,13 @@
         {
           "monster": "Emerald Congalala",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -39453,7 +40725,13 @@
         {
           "monster": "Gypceros",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -39693,7 +40971,13 @@
         {
           "monster": "Purple Gypceros",
           "quantity": 1,
-          "power": 30
+          "power": 30,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -39963,17 +41247,35 @@
         {
           "monster": "Blue Yian Kut-Ku",
           "quantity": 1,
-          "power": 24
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Green Plesioth",
           "quantity": 1,
-          "power": 24
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Plum Daimyo Hermitaur",
           "quantity": 1,
-          "power": 24
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -40268,17 +41570,35 @@
         {
           "monster": "Emerald Congalala",
           "quantity": 1,
-          "power": 24
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Purple Gypceros",
           "quantity": 1,
-          "power": 24
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 24
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -40426,12 +41746,24 @@
         {
           "monster": "Blue Yian Kut-Ku",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "King Shakalaka",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -40563,7 +41895,13 @@
         {
           "monster": "Basarios",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -40804,12 +42142,24 @@
         {
           "monster": "Nargacuga",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "King Shakalaka",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -41043,7 +42393,13 @@
         {
           "monster": "Nargacuga",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -41280,7 +42636,13 @@
         {
           "monster": "Nargacuga",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.2,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -41481,7 +42843,13 @@
         {
           "monster": "Lavasioth",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -41716,7 +43084,13 @@
         {
           "monster": "Lavasioth",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -41909,12 +43283,24 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 29
+          "power": 29,
+          "multipliers": {
+            "hp": 1.25,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 29
+          "power": 29,
+          "multipliers": {
+            "hp": 1.25,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -42114,7 +43500,13 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -42331,7 +43723,13 @@
         {
           "monster": "Terra Shogun Ceanatur",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -42568,12 +43966,24 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.2,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Terra Shogun Ceanatur",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.2,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -42772,7 +44182,13 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 29
+          "power": 29,
+          "multipliers": {
+            "hp": 2,
+            "attack": 4.5,
+            "defense": 0.6,
+            "status": 2.5
+          }
         }
       ],
       "small_monsters": [
@@ -43011,7 +44427,13 @@
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -43242,12 +44664,24 @@
         {
           "monster": "Azure Rathalos",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "King Shakalaka",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 1.8,
+            "attack": 3.55,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -43482,7 +44916,13 @@
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 28
+          "power": 28,
+          "multipliers": {
+            "hp": 1.95,
+            "attack": 3.65,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -43709,7 +45149,13 @@
         {
           "monster": "Pink Rathian",
           "quantity": 0,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -43917,7 +45363,13 @@
         {
           "monster": "One-Ear Yian Garuga",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -44136,7 +45588,13 @@
         {
           "monster": "Yian Garuga",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -44347,7 +45805,13 @@
         {
           "monster": "Blangonga",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -44559,7 +46023,13 @@
         {
           "monster": "Copper Blangonga",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -44783,7 +46253,13 @@
         {
           "monster": "Copper Blangonga",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -45119,7 +46595,13 @@
         {
           "monster": "Basarios",
           "quantity": 5,
-          "power": 31
+          "power": 31,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 3.8,
+            "defense": 0.7,
+            "status": 2.4
+          }
         }
       ],
       "small_monsters": [
@@ -45379,17 +46861,35 @@
         {
           "monster": "Plum Daimyo Hermitaur",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Gypceros",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -45673,17 +47173,35 @@
         {
           "monster": "Hypnocatrice",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Emerald Congalala",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Nargacuga",
           "quantity": 1,
-          "power": 24
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -45998,17 +47516,35 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 30
+          "power": 30,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Yian Garuga",
           "quantity": 1,
-          "power": 24
+          "power": 24,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Azure Rathalos",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -46287,17 +47823,35 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 30
+          "power": 30,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Blangonga",
           "quantity": 1,
-          "power": 30
+          "power": 30,
+          "multipliers": {
+            "hp": 1.3,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -46515,7 +48069,13 @@
         {
           "monster": "Ashen Lao-Shan Lung",
           "quantity": 1,
-          "power": 3
+          "power": 3,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3.5,
+            "defense": 0.75,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -46730,7 +48290,13 @@
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -46965,7 +48531,13 @@
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -47187,7 +48759,13 @@
         {
           "monster": "Diablos",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -47434,7 +49012,13 @@
         {
           "monster": "Black Diablos",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -47685,7 +49269,13 @@
         {
           "monster": "Black Diablos",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -47893,7 +49483,13 @@
         {
           "monster": "Gravios",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -48137,7 +49733,13 @@
         {
           "monster": "Black Gravios",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -48397,7 +49999,13 @@
         {
           "monster": "Black Gravios",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -48497,7 +50105,13 @@
         {
           "monster": "Silver Rathalos",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -48597,7 +50211,13 @@
         {
           "monster": "Gold Rathian",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -48803,12 +50423,24 @@
         {
           "monster": "Gold Rathian",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Silver Rathalos",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 1.05,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -49024,7 +50656,13 @@
         {
           "monster": "Furious Rajang",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -49224,12 +50862,24 @@
         {
           "monster": "Rajang",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 3.7,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Rajang",
           "quantity": 1,
-          "power": 31
+          "power": 31,
+          "multipliers": {
+            "hp": 1.35,
+            "attack": 3.8,
+            "defense": 0.7,
+            "status": 2.4
+          }
         }
       ],
       "small_monsters": [],
@@ -49326,7 +50976,13 @@
         {
           "monster": "Kirin",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -49516,7 +51172,13 @@
         {
           "monster": "Kirin",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -49825,17 +51487,35 @@
         {
           "monster": "Diablos",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Copper Blangonga",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 0.95,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 0.95,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -50139,17 +51819,35 @@
         {
           "monster": "Pink Rathian",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 0.95,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Red Khezu",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Gravios",
           "quantity": 1,
-          "power": 24
+          "power": 24,
+          "multipliers": {
+            "hp": 0.85,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -50464,17 +52162,35 @@
         {
           "monster": "Lavasioth",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Terra Shogun Ceanatur",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          }
         }
       ],
       "small_monsters": [
@@ -50752,12 +52468,24 @@
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          }
         },
         {
           "monster": "Rajang",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          }
         }
       ],
       "small_monsters": [
@@ -51059,22 +52787,46 @@
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 0.95,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          }
         },
         {
           "monster": "Plesioth",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Diablos",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 0.95,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -51335,17 +53087,35 @@
         {
           "monster": "Black Diablos",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Black Gravios",
           "quantity": 1,
-          "power": 25
+          "power": 25,
+          "multipliers": {
+            "hp": 0.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         },
         {
           "monster": "Nargacuga",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1,
+            "attack": 4,
+            "defense": 0.6,
+            "status": 2.5
+          }
         }
       ],
       "small_monsters": [],
@@ -51603,7 +53373,13 @@
         {
           "monster": "Kushala Daora",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -51854,7 +53630,13 @@
         {
           "monster": "Kushala Daora",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -52114,7 +53896,13 @@
         {
           "monster": "Teostra",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 1.85,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -52386,7 +54174,13 @@
         {
           "monster": "Teostra",
           "quantity": 1,
-          "power": 26
+          "power": 26,
+          "multipliers": {
+            "hp": 1.85,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -52624,7 +54418,13 @@
         {
           "monster": "Chameleos",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [],
@@ -52862,7 +54662,13 @@
         {
           "monster": "Chameleos",
           "quantity": 1,
-          "power": 27
+          "power": 27,
+          "multipliers": {
+            "hp": 1.9,
+            "attack": 3.6,
+            "defense": 0.7,
+            "status": 2.3
+          }
         }
       ],
       "small_monsters": [
@@ -53061,7 +54867,13 @@
         {
           "monster": "Yama Tsukami",
           "quantity": 1,
-          "power": 13
+          "power": 13,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 3.1,
+            "defense": 0.8,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [],
@@ -53262,7 +55074,13 @@
         {
           "monster": "Shen Gaoren",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.2
+          }
         }
       ],
       "small_monsters": [
@@ -53515,7 +55333,13 @@
         {
           "monster": "Fatalis",
           "quantity": 1,
-          "power": 1
+          "power": 1,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.5
+          }
         }
       ],
       "small_monsters": [],
@@ -53657,7 +55481,13 @@
         {
           "monster": "Crimson Fatalis",
           "quantity": 1,
-          "power": 5
+          "power": 5,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.5
+          }
         }
       ],
       "small_monsters": [],
@@ -53900,7 +55730,13 @@
         {
           "monster": "White Fatalis",
           "quantity": 1,
-          "power": 9
+          "power": 9,
+          "multipliers": {
+            "hp": 1,
+            "attack": 3,
+            "defense": 0.75,
+            "status": 1.5
+          }
         }
       ],
       "small_monsters": [
@@ -54022,7 +55858,13 @@
         {
           "monster": "Ukanlos",
           "quantity": 1,
-          "power": 16
+          "power": 16,
+          "multipliers": {
+            "hp": 1.5,
+            "attack": 3.5,
+            "defense": 0.75,
+            "status": 2
+          }
         }
       ],
       "small_monsters": [],

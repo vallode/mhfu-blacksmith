@@ -27,8 +27,7 @@ the `game_task.ovl` and `game_sub.ovl` overlays, also in `DATA.BIN` (see
 "Monster overlays" below).
 
 **Not extractable this way:** flavor text and a few cosmetic groupings.
-Which of three quest stat multiplier tables a quest uses isn't settled yet
-(see "Monster overlays"). Equipment-side gaps of this kind
+Equipment-side gaps of this kind
 come from hand-authored files under `src/overlay/` — see "Overlay data".
 
 ## Usage
@@ -336,22 +335,27 @@ the module comments:
 
 - **Base HP and quest multipliers** (`src/monsters/multipliers.ts`): the
   chunk's `+0x100` is the base HP (Felyne 40, Yian Kut-Ku 1600, Rathian
-  4000, Lao-Shan Lung 26666). A quest's large-monster `power` byte (0-31)
-  picks a row of four floats (HP, attack, defense, and a fourth that rises
-  to 2.3-2.5 in G rank, probably status) in a 32-row table. The tables
+  4000, Lao-Shan Lung 26666). Quests scale it, and attack, defense and
+  flinch thresholds, by a row of four floats in a 32-row table. The tables
   follow the hitzone pool in sets of three, reached from a master list of
-  four sets (EU: master list at file offset `0x168c80`). Set 1's first row,
-  HP 0.35 / attack 1.02, matches a published figure for the first Village
-  Elder quest. A quest's header `rank` byte picks the set (0 → set 0, the
-  1/2/5 low/high/G tiers of Village and Guild quests → set 1, 3 treasure →
-  set 2, 4 subjugation training → set 3): sets 2 and 3 hold real values
-  exactly on the rows those quests use, and set 1 is the harder set. Which of the set's three tables
-  applies isn't stored in the quest (the large monsters' `attr1`/`attr2`
-  are almost always 0), so it is probably chosen at run time; set 1's
-  three differ mostly in HP. `extract --raw` writes the tables to
-  `raw/monsters.json` and each quest's selector bytes to
-  `raw/quest-monsters.json`; nothing is written to `data/` until the table
-  choice is known.
+  four sets (EU: master list at file offset `0x168c80`). `game_task` picks
+  the row as `master[set][table][power]` (EU `0x09AC9020` HP,
+  `0x09AC9180` attack, `0x09AC9218` defense):
+  - the set is the monster's own, the s8 at its chunk's `+0x14F`: 0 small
+    monsters, 1 large monsters, 2 the Fatalis trio, 3 Lao-Shan Lung,
+    Ashen Lao-Shan Lung, Shen Gaoren, Yama Tsukami, Akantor and Ukanlos.
+    Sets 2 and 3 repeat one table three times.
+  - the table is the quest header's u8 at `0x49` (`Unkn6` in the hexpat,
+    `statTable` here), which the EBOOT's quest loader (EU `0x08869DEC`)
+    copies into the quest state. 0 is the usual table, 1 one with lower
+    HP, 2 one with hand-set rows (Training School, Treasure Hunting and a
+    few Guild quests).
+  - the row is the large monster's `power` byte (0-31).
+
+  HP is `trunc(base HP * hp)`. Furious Rajang's attack and defense are
+  multiplied again by a value set at run time. `extract` writes each
+  large monster's row to `data/quests` as `multipliers`, and with `--raw`
+  the tables to `raw/monsters.json`.
 
 The per-monster `emXX.ovl` files aren't needed: every chunk's hitzones are
 in `game_task.ovl`.
@@ -923,7 +927,8 @@ range). `small_monsters` is deduplicated to one row per species with the
 max quantity seen across every zone, since `SmallMonIndex` frequently
 repeats an entire zone list verbatim (confirmed on real data); `large_monsters`
 is deduplicated the same way for exact-duplicate `(monster, quantity, power)`
-rows.
+rows. Each large monster's `multipliers` are its stat multiplier row (see
+"Monster overlays").
 
 Not implemented (out of scope for now, same as the underlying parser —
 see "Quests (.mib)" above): `QuestScript` and arena sets.
@@ -1049,12 +1054,11 @@ the unedited quest.
 that percentage, and nothing yet shows what sets the spread. Candidates
 from the EU disc:
 
-- `Unkn6`/`Unkn7` (u8 at `0x49`/`0x4a`) take small values: `Unkn7` 0-4,
-  `Unkn6` 0-2, and 20 combinations in all (`0,0,0,0` in 142 quests,
-  `0,0,0,3` in 122, `0,0,0,4` in 86). `Unkn4`/`Unkn5` are always 0. Small
-  indexes like these fit a size-variation (crown) table, or something else
-  entirely. Frontier's unlabelled u16 after its size is the same kind of
-  lead.
+- `Unkn7` (u8 at `0x4a`) takes small values, 0-4. `Unkn4`/`Unkn5` are
+  always 0, and `Unkn6` is the stat multiplier table (see "Monster
+  overlays"). A small index like `Unkn7` fits a size-variation (crown)
+  table, or something else entirely. Frontier's unlabelled u16 after its
+  size is the same kind of lead.
 - The large monster records barely vary:
   - `Attr2` (`+7`) is always 0, and `Attr1` (`+6`) is 0 in 545 of 554
     records (30, 10, 2 and 1 otherwise).
@@ -1067,7 +1071,7 @@ from the EU disc:
 
 To settle the crown spread: take `quest-probe --tsv`'s rows for a monster
 whose crowns players report as easy in one quest and rare in another,
-and compare `Unkn6`/`Unkn7`. Or change one in a quest and measure many
+and compare `Unkn7`. Or change one in a quest and measure many
 hunts. Before this, randomfu could only scale size per species
 (`emChunk +0x40`); that option stays.
 

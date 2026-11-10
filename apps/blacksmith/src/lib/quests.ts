@@ -86,6 +86,18 @@ export type CompactRewardTable = [
 /** [name, category, slug]; category and slug are null when the site has no page for it. */
 export type CompactQuestMonster = [name: string, category: string | null, slug: string | null];
 
+/**
+ * A large monster's stats in one quest: the monster, its HP (null without a
+ * base HP) and its attack, defense and stagger multipliers.
+ */
+export type CompactMonsterStats = [
+  monster: number,
+  hp: number | null,
+  attack: number,
+  defense: number,
+  stagger: number,
+];
+
 /** One supply list: [item ID, amount, stacks (only when more than 1)] rows, distinct, in disc order. */
 export type CompactSupplies = ([number, number] | [number, number, number])[];
 
@@ -113,6 +125,7 @@ export type CompactQuest = [
   client: number | null,
   requires: number | null, // quest ID cleared before this one appears
   urgent: 0 | 1,
+  monsterStats: CompactMonsterStats[], // distinct rows, in disc order
 ];
 
 export interface QuestsBundle {
@@ -134,6 +147,22 @@ export interface QuestMonster {
   name: string;
   /** Monster page, when the site has one. */
   href: string | null;
+}
+
+/**
+ * A large monster's stats in a quest, from its stat multiplier row
+ * (data/schemas/quest.schema.json `multipliers`).
+ */
+export interface QuestMonsterStats {
+  monster: QuestMonster;
+  /** Base HP times the quest's HP multiplier, as the game rounds it; null without a base HP. */
+  hp: number | null;
+  /** Multiplies the damage it deals. */
+  attack: number;
+  /** Multiplies the damage it takes: lower is tougher. */
+  defense: number;
+  /** Multiplies the damage a part takes before the monster flinches. */
+  stagger: number;
 }
 
 export interface QuestReward {
@@ -160,6 +189,8 @@ export interface Quest {
   timeLimit: number;
   target: { monster: QuestMonster; amount: number } | null;
   largeMonsters: QuestMonster[];
+  /** Each distinct large monster spawn's stats; empty when the data has none. */
+  monsterStats: QuestMonsterStats[];
   smallMonsters: QuestMonster[];
   /** Distinct supply rows; `stacks` is how many times the disc lists the row. */
   supplies: { itemId: number; amount: number; stacks: number }[];
@@ -188,7 +219,28 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
     items: items.map(([chance, itemId, amount]) => ({ chance, itemId, amount: amount ?? 1 })),
   }));
   return b.items.map(
-    ([id, hub, stars, map, fee, reward, timeLimit, tg, lm, sm, su, rw, n, g, x, d, c, rq, ur]) => ({
+    ([
+      id,
+      hub,
+      stars,
+      map,
+      fee,
+      reward,
+      timeLimit,
+      tg,
+      lm,
+      sm,
+      su,
+      rw,
+      n,
+      g,
+      x,
+      d,
+      c,
+      rq,
+      ur,
+      ms,
+    ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
       type: questType(QUEST_HUBS[hub]?.slug ?? "village", str(g)),
@@ -199,6 +251,14 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       timeLimit,
       target: tg ? { monster: monsters[tg[0]]!, amount: tg[1] } : null,
       largeMonsters: lm.map((i) => monsters[i]!),
+      // `?? []`: a bundle cached before stats were added has none.
+      monsterStats: (ms ?? []).map(([m, hp, attack, defense, stagger]) => ({
+        monster: monsters[m]!,
+        hp,
+        attack,
+        defense,
+        stagger,
+      })),
       smallMonsters: sm.map((i) => monsters[i]!),
       supplies: (su === null ? [] : (b.supplies[su] ?? [])).map(([itemId, amount, stacks]) => ({
         itemId,
@@ -215,6 +275,15 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       urgent: ur === 1,
     }),
   );
+}
+
+/**
+ * A monster's HP in a quest, as the game works it out: base HP times the HP
+ * multiplier in single precision, truncated (mhfu-extract
+ * `monsters/multipliers.ts`).
+ */
+export function questHp(baseHp: number, multiplier: number): number {
+  return Math.trunc(Math.fround(Math.fround(baseHp) * Math.fround(multiplier)));
 }
 
 /**

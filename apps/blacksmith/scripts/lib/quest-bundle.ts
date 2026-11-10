@@ -9,7 +9,9 @@ import {
   QUEST_MONSTER_ALIASES,
   QUEST_NON_MONSTERS,
   REWARD_KINDS,
+  questHp,
   questHubSlug,
+  type CompactMonsterStats,
   type CompactQuest,
   type CompactRewardTable,
   type CompactSupplies,
@@ -34,7 +36,10 @@ export interface QuestRecord {
     condition?: number | null;
     items: { chance: number; item: string; amount: number }[];
   }[];
-  large_monsters: { monster: string }[];
+  large_monsters: {
+    monster: string;
+    multipliers?: { hp: number; attack: number; defense: number; status: number };
+  }[];
   small_monsters: { monster: string }[];
   title: string | null;
   goal: string | null;
@@ -51,9 +56,16 @@ export interface QuestBundleInputs {
   itemId: (name: string) => number | undefined;
   /** site monster name -> its page */
   monsterPage: (name: string) => { category: string; slug: string } | undefined;
+  /** site monster name -> its base HP */
+  baseHp?: (name: string) => number | undefined;
 }
 
-export function encodeQuestBundle({ quests, itemId, monsterPage }: QuestBundleInputs): {
+export function encodeQuestBundle({
+  quests,
+  itemId,
+  monsterPage,
+  baseHp = () => undefined,
+}: QuestBundleInputs): {
   bundle: QuestsBundle;
   unresolvedItems: string[];
 } {
@@ -143,6 +155,25 @@ export function encodeQuestBundle({ quests, itemId, monsterPage }: QuestBundleIn
     return i;
   };
 
+  /** Each spawn with multipliers, once per distinct row. */
+  const monsterStats = (list: QuestRecord["large_monsters"]): CompactMonsterStats[] => {
+    const rows = new Map<string, CompactMonsterStats>();
+    for (const { monster: name, multipliers: m } of list) {
+      if (!m) continue;
+      const i = monster(name);
+      const base = baseHp(monsters[i]![0]);
+      const row: CompactMonsterStats = [
+        i,
+        base === undefined ? null : questHp(base, m.hp),
+        m.attack,
+        m.defense,
+        m.status,
+      ];
+      rows.set(JSON.stringify(row), row);
+    }
+    return [...rows.values()];
+  };
+
   const items: CompactQuest[] = [];
   for (const q of quests) {
     const hub = questHubSlug(q.hub, q.rank);
@@ -173,6 +204,7 @@ export function encodeQuestBundle({ quests, itemId, monsterPage }: QuestBundleIn
       str(q.client),
       q.requires ?? null,
       q.urgent ? 1 : 0,
+      monsterStats(q.large_monsters),
     ]);
   }
 

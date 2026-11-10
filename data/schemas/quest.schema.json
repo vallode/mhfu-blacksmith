@@ -61,7 +61,19 @@
       "properties": {
         "monster":  { "type": "string", "minLength": 1 },
         "quantity": { "type": "integer", "minimum": 0 },
-        "power":    { "type": "integer", "minimum": 0 }
+        "power":    { "type": "integer", "minimum": 0 },
+        "multipliers": {
+          "type": "object",
+          "required": ["hp", "attack", "defense", "status"],
+          "additionalProperties": false,
+          "$comment": "The quest's stat multipliers for this monster, picked by the monster's multiplier set, the quest's stat table and 'power'; see mhfu-extract's src/monsters/multipliers.ts. HP is the monster's base_hp times 'hp', rounded down. 'defense' scales damage taken (lower: tougher). 'status' scales the parts' flinch thresholds. Furious Rajang's attack and defense are scaled again at run time.",
+          "properties": {
+            "hp":      { "type": "number", "exclusiveMinimum": 0 },
+            "attack":  { "type": "number", "exclusiveMinimum": 0 },
+            "defense": { "type": "number", "exclusiveMinimum": 0 },
+            "status":  { "type": "number", "exclusiveMinimum": 0 }
+          }
+        }
       }
     },
     "small_monster_spawn": {

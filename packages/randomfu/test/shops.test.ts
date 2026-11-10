@@ -171,7 +171,8 @@ test("shops can sell items from wider pools, consistently across stages", async 
 
 test("item counts scale every stage of a shop alike, and the lists are rewritten and repointed", async () => {
   const { game, close } = await load();
-  for (const seed of ["a", "b", "c", "d", "e"]) {
+  // Enough seeds that a stage shrinks below its pinned essentials.
+  for (const seed of "abcdefghijklmnopqrstuvwxyz".split("")) {
     const s = settingsWith(seed, ["shops"], { "shops.countSpread": 0.9, "shops.pool": "any" });
     const result = randomize(game, s);
     const edited = parseOvl(result.edits.overlay(game.lobbyTask));

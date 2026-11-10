@@ -17,7 +17,7 @@ import {
 import type { MonsterTables } from "../emit/monsters.js";
 
 export interface MonsterTablesWithLocations extends MonsterTables {
-  /** Quest stat multipliers; null if the master list isn't found (selection still open, #35). */
+  /** Quest stat multipliers; null if the master list isn't found. */
   multipliers: MultiplierTables | null;
   locations: {
     /** File offset of `MonChunk[90]` and its shift from JP. */

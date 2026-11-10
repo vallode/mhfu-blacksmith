@@ -16,6 +16,7 @@ import type {
   SmallMonsterTable,
   SupplyItem,
 } from "../quests/parser.js";
+import type { MultiplierRow } from "../monsters/multipliers.js";
 import { getNameResolver } from "../strings/names.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import { QUEST_PREREQUISITES } from "../tables/quest-prerequisites.js";
@@ -59,9 +60,8 @@ export function questHub(questId: number): QuestHub | null {
 }
 
 /**
- * `questHeader.Rank` -> rank tier, which also picks the quest's monster
- * stat multiplier set (src/monsters/multipliers.ts). 1/2/5 agree with the
- * quest ID block on every Guild quest. Village quests use them too: `10xxx`
+ * `questHeader.Rank` -> rank tier. 1/2/5 agree with the quest ID block on
+ * every Guild quest. Village quests use them too: `10xxx`
  * are 1 (one ★6 is 2), `11xxx` 2 (one ★9 is 5). 0 (the Training School's
  * Basic/Mastery quests, the Village's two Tigrex quests and the Guild's ★1
  * and ★2), 3 (Treasure Hunting) and 4 (Subjugation Training) have no tier.
@@ -125,7 +125,19 @@ export interface EmittedMonsterSpawn {
   monster: string;
   quantity: number;
   power: number;
+  /** The stat multiplier row this spawn gets (src/monsters/multipliers.ts); absent without one. */
+  multipliers?: MultiplierRow;
 }
+
+/**
+ * A large monster's stat multiplier row: by its emID, the quest's
+ * `statTable` and the spawn's `power` (`multiplierRow`), or null.
+ */
+export type MultiplierLookup = (
+  emId: number,
+  statTable: number,
+  power: number,
+) => MultiplierRow | null;
 
 export interface EmittedSmallMonsterSpawn {
   monster: string;
@@ -216,7 +228,11 @@ function resolveRewardTables(tables: RewardTable[]): EmittedRewardTable[] {
 }
 
 /** Dedupes exact-duplicate (monster, quantity, power) rows — `LargeMonTable`s are occasionally repeated verbatim, same as small monster tables (see dedupeSmallMonsters). */
-function dedupeLargeMonsters(spawns: (MonsterSpawn & { stage: number })[]): EmittedMonsterSpawn[] {
+function dedupeLargeMonsters(
+  spawns: (MonsterSpawn & { stage: number })[],
+  statTable: number,
+  multipliers?: MultiplierLookup,
+): EmittedMonsterSpawn[] {
   const names = getNameResolver();
   const seen = new Set<string>();
   const out: EmittedMonsterSpawn[] = [];
@@ -226,7 +242,13 @@ function dedupeLargeMonsters(spawns: (MonsterSpawn & { stage: number })[]): Emit
     const key = `${monster}:${spawn.quantity}:${spawn.power}`;
     if (seen.has(key)) continue;
     seen.add(key);
-    out.push({ monster, quantity: spawn.quantity, power: spawn.power });
+    const row = multipliers?.(spawn.monsterId, statTable, spawn.power);
+    out.push({
+      monster,
+      quantity: spawn.quantity,
+      power: spawn.power,
+      ...(row ? { multipliers: row } : {}),
+    });
   }
   return out;
 }
@@ -268,8 +290,12 @@ function resolveTarget(targetId: number, targetNum: number): EmittedQuestTarget 
 /**
  * Maps one parsed `.mib` quest to the `data/quests/*.json` shape, or null for
  * an unused/disabled quest slot or a quest on no board (see `questHub`).
+ * Large monsters get their stat multipliers from `multipliers`, if given.
  */
-export function emitQuest(parsed: ParsedQuest): EmittedQuest | null {
+export function emitQuest(
+  parsed: ParsedQuest,
+  multipliers?: MultiplierLookup,
+): EmittedQuest | null {
   if (isPlaceholderQuest(parsed)) return null;
   const { header } = parsed;
   const hub = questHub(header.questId);
@@ -290,7 +316,7 @@ export function emitQuest(parsed: ParsedQuest): EmittedQuest | null {
     target: resolveTarget(header.targetId, header.targetNum),
     supplies: resolveSupplies(parsed.supplies),
     reward_tables: resolveRewardTables(parsed.rewards),
-    large_monsters: dedupeLargeMonsters(parsed.largeMonsters),
+    large_monsters: dedupeLargeMonsters(parsed.largeMonsters, header.statTable, multipliers),
     small_monsters: dedupeSmallMonsters(parsed.smallMonsters),
     title: parsed.strings?.title ?? null,
     goal: parsed.strings?.goal ?? null,
@@ -312,6 +338,7 @@ export const QUEST_HUB_TO_FILE: Record<QuestHub, string> = {
 /** Maps every parsed quest into the `data/quests/*.json`-shaped output, grouped by hub, dropping unused slots. */
 export function emitQuestsFile(
   parsedQuests: ParsedQuest[],
+  multipliers?: MultiplierLookup,
 ): Record<string, { quests: EmittedQuest[] }> {
   const byHub: Record<QuestHub, EmittedQuest[]> = {
     village: [],
@@ -320,7 +347,7 @@ export function emitQuestsFile(
     "treasure-hunting": [],
   };
   for (const parsed of parsedQuests) {
-    const emitted = emitQuest(parsed);
+    const emitted = emitQuest(parsed, multipliers);
     if (emitted) byHub[emitted.hub].push(emitted);
   }
 

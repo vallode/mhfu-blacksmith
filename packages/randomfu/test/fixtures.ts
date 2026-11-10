@@ -25,6 +25,7 @@ import {
   HITZONE_ROW_SIZE,
   MONSTER_CHUNK_COUNT,
   MONSTER_CHUNK_SIZE,
+  MULTIPLIER_SET_OFFSET,
   TOLERANCE_OFFSET,
 } from "mhfu-extract/src/monsters/hitzones.js";
 import { encryptQuestBlock, questHash, QUEST_MAGIC } from "mhfu-extract/src/quests/mib.js";
@@ -456,6 +457,13 @@ export const FIXTURE_HITZONE_TABLES: Record<number, number> = { 1: 2, 2: 1, 16: 
 export const FIXTURE_SHARED_HITZONES: Record<number, number> = { 37: 1 };
 export const FILLER_HITZONE = 0;
 
+/** Stat multiplier sets as on the disc: 2 the Fatalis trio, 3 the siege monsters, 1 the rest. */
+export function fixtureMultiplierSet(emId: number): number {
+  if ([2, 36, 71].includes(emId)) return 2;
+  if ([7, 50, 55, 58, 72, 76, 88].includes(emId)) return 3;
+  return 1;
+}
+
 /** Base HP: 100 + emID, so every chunk counts as a monster. */
 export const fixtureHp = (emId: number) => 100 + emId;
 
@@ -492,6 +500,7 @@ export function buildGameTask(): Buffer {
     const chunk = chunks + emId * MONSTER_CHUNK_SIZE;
     buf.writeFloatLE(1, chunk + 0x40);
     buf.writeUInt16LE(fixtureHp(emId), chunk + BASE_HP_OFFSET);
+    buf.writeInt8(fixtureMultiplierSet(emId), chunk + MULTIPLIER_SET_OFFSET);
     const owner = FIXTURE_SHARED_HITZONES[emId] ?? emId;
     buf.writeUInt32LE(
       vaddr(listOf.get(owner) ?? listOf.get(FILLER_HITZONE)!),
