@@ -9,6 +9,9 @@ import MonsterDetailClient from "@/app/monsters/[category]/[slug]/MonsterDetailC
 import DecorationsListClient from "@/app/decorations/DecorationsListClient";
 import DecorationDetailClient from "@/app/decorations/[slug]/DecorationDetailClient";
 import HomeContent from "@/app/HomeContent";
+import { ItemShell } from "@/app/items/ItemShell";
+import ItemsListClient from "@/app/items/ItemsListClient";
+import ItemDetailClient from "@/app/items/[slug]/ItemDetailClient";
 import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
 import ArmorRedirect from "@/app/armorsmith/ArmorRedirect";
 import { ArmorShell } from "@/app/armorsmith/ArmorShell";
@@ -47,6 +50,8 @@ export type RouteMatch =
   | { kind: "quest-list" }
   | { kind: "quest-hub"; hub: QuestHubSlug }
   | { kind: "quest-detail"; hub: QuestHubSlug; id: number }
+  | { kind: "item-list" }
+  | { kind: "item-detail"; slug: string }
   | { kind: "unknown" };
 
 /**
@@ -108,6 +113,11 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
     if (parts.length === 2) return { kind: "quest-hub", hub };
     const id = Number(parts[2]);
     if (parts.length === 3 && Number.isInteger(id)) return { kind: "quest-detail", hub, id };
+  }
+
+  if (parts[0] === "items") {
+    if (parts.length === 1) return { kind: "item-list" };
+    if (parts.length === 2) return { kind: "item-detail", slug: parts[1] };
   }
 
   return { kind: "unknown" };
@@ -185,6 +195,18 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
         <QuestHubShell hub={match.hub}>
           <QuestDetailClient hub={match.hub} id={match.id} />
         </QuestHubShell>
+      );
+    case "item-list":
+      return (
+        <ItemShell>
+          <ItemsListClient />
+        </ItemShell>
+      );
+    case "item-detail":
+      return (
+        <ItemShell slug={match.slug}>
+          <ItemDetailClient slug={match.slug} />
+        </ItemShell>
       );
     case "unknown":
       return null;

@@ -52,6 +52,7 @@ export function collectStaticPageUrls(): string[] {
     "/monsters/",
     "/decorations/",
     "/quests/",
+    "/items/",
     "/hunter/",
     "/options/",
   ];

@@ -341,3 +341,7 @@ export function decorationDescription(d: Decoration): string {
     d.skills?.length && `Skills: ${d.skills.map((s) => s.replace(/ -(\d)/, " −$1")).join(", ")}`,
   );
 }
+
+export function itemDescription(name: string): string {
+  return `Where to get ${name} in Monster Hunter Freedom Unite: the monster carves, breaks, captures and quest rewards that give it, best chance first.`;
+}

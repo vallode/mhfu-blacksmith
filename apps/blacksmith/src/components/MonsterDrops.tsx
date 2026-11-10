@@ -1,5 +1,7 @@
+import Link from "next/link";
 import Icon from "@/components/Icon";
 import { cn } from "@/lib/cn";
+import { itemHref } from "@/lib/item-sources";
 import { parseDropSource } from "@/lib/monster-drops";
 import type { MonsterDrop } from "@/lib/types";
 
@@ -15,6 +17,9 @@ interface MonsterDropsProps {
  */
 export const dropName =
   "w-cells-16 min-w-0 truncate mobile:leading-[1.25] mobile:wrap-anywhere mobile:whitespace-normal";
+
+/** An item name that links to the item's page. */
+export const itemLink = "underline-offset-4 hover:underline";
 
 /** The "×N" column: three cells fit the largest amount, ×99. */
 export const dropQuantity = "w-cells-3 flex-none text-muted";
@@ -37,7 +42,11 @@ export default function MonsterDrops({ sources }: MonsterDropsProps) {
   return (
     <DropGrid>
       {Object.entries(sources).map(([source, items]) => (
-        <DropList key={source} {...parseDropSource(source)} items={items} />
+        <DropList
+          key={source}
+          {...parseDropSource(source)}
+          items={items.map((drop) => ({ ...drop, href: itemHref(drop.name) }))}
+        />
       ))}
     </DropGrid>
   );
@@ -50,8 +59,11 @@ interface DropListProps {
   count?: number;
   /** Condition or detail, in small text */
   note?: string;
-  items: MonsterDrop[];
+  /** Each with the item's page, where it has one */
+  items: LinkedDrop[];
 }
+
+export type LinkedDrop = MonsterDrop & { href?: string };
 
 /** A titled list of drops: icon, item, quantity and chance per row. Shared by monster drops and quest rewards. */
 export function DropList({ title, count, note, items }: DropListProps) {
@@ -75,11 +87,17 @@ export function DropList({ title, count, note, items }: DropListProps) {
   );
 }
 
-function DropRow({ drop, showQuantity }: { drop: MonsterDrop; showQuantity: boolean }) {
+function DropRow({ drop, showQuantity }: { drop: LinkedDrop; showQuantity: boolean }) {
   return (
     <li className="flex items-center gap-[0.8rem] leading-none text-white">
       <Icon type={drop.type || "ukwn"} color={drop.color} />
-      <span className={dropName}>{drop.name}</span>
+      {drop.href ? (
+        <Link href={drop.href} className={cn(dropName, itemLink)}>
+          {drop.name}
+        </Link>
+      ) : (
+        <span className={dropName}>{drop.name}</span>
+      )}
       {showQuantity && (
         <span className={dropQuantity}>{drop.quantity !== undefined && `×${drop.quantity}`}</span>
       )}

@@ -10,6 +10,7 @@ const MENU: { href: string; label: string; section?: MenuSection }[] = [
   { href: "/set-builder/", label: "Set Builder" },
   { href: "/monsters/", label: "Monsters", section: "monsters" },
   { href: "/quests/", label: "Quests" },
+  { href: "/items/", label: "Items" },
   { href: "/hunter/", label: "Hunter Profile" },
   { href: "/options/", label: "Options" },
 ];

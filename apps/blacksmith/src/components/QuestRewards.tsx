@@ -1,16 +1,26 @@
 "use client";
 
 import Icon from "@/components/Icon";
-import { DropGrid, DropList, dropName, dropQuantity } from "@/components/MonsterDrops";
+import Link from "next/link";
+import {
+  DropGrid,
+  DropList,
+  dropName,
+  dropQuantity,
+  itemLink,
+  type LinkedDrop,
+} from "@/components/MonsterDrops";
 import { useItems, type ItemLookup } from "@/lib/client-data";
 import { rewardTableHeading, type Quest, type QuestRewardTable } from "@/lib/quests";
-import type { MonsterDrop } from "@/lib/types";
+import { cn } from "@/lib/cn";
+import { itemHref } from "@/lib/item-sources";
 
-function rewardDrops(table: QuestRewardTable, items: ItemLookup | null): MonsterDrop[] {
+function rewardDrops(table: QuestRewardTable, items: ItemLookup | null): LinkedDrop[] {
   return table.items.map((r) => {
     const item = items?.get(r.itemId);
-    const drop: MonsterDrop = { name: item?.name ?? `Item #${r.itemId}`, chance: `${r.chance}%` };
+    const drop: LinkedDrop = { name: item?.name ?? `Item #${r.itemId}`, chance: `${r.chance}%` };
     if (r.amount > 1) drop.quantity = r.amount;
+    if (item?.known) drop.href = itemHref(item.name);
     if (item) {
       drop.type = item.type;
       drop.color = item.color;
@@ -41,7 +51,13 @@ export function QuestSupplies({ supplies }: { supplies: Quest["supplies"] }) {
         return (
           <li key={i} className="flex items-center gap-[0.8rem] leading-none text-white">
             <Icon type={item?.type ?? "ukwn"} color={item?.color} />
-            <span className={dropName}>{item?.name ?? `Item #${s.itemId}`}</span>
+            {item?.known ? (
+              <Link href={itemHref(item.name)} className={cn(dropName, itemLink)}>
+                {item.name}
+              </Link>
+            ) : (
+              <span className={dropName}>{item?.name ?? `Item #${s.itemId}`}</span>
+            )}
             <span className={dropQuantity}>×{s.amount}</span>
             <span className="w-cells-9 flex-none text-right text-fine text-white/60">
               {s.stacks > 1 ? `${s.stacks} stacks` : ""}
