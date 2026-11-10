@@ -462,7 +462,10 @@ export async function buildGlb(
           );
         } else {
           v.position.forEach((c, k) => record.writeFloatLE(c, FLOATS.position + k * 4));
-          const [x, y, z] = v.normal ?? [0, 1, 0];
+          // Skinned, undo the scale the skinning matrix applies (see above).
+          const [x, y, z] = (v.normal ?? [0, 1, 0]).map((c, k) =>
+            skinned ? c / pmo.scale[k]! : c,
+          ) as [number, number, number];
           const length = Math.hypot(x, y, z) || 1;
           [x, y, z].forEach((c, k) => record.writeFloatLE(c / length, FLOATS.normal + k * 4));
           const [u, w] = v.uv ?? [0, 0];

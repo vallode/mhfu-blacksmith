@@ -29,7 +29,9 @@ export interface MotionClip {
   slot: number;
   /** Seconds. */
   duration: number;
+  /** Whether the game loops it, from `loopStart` (seconds) to the end. */
   loop: boolean;
+  loopStart: number;
   tracks: MotionTrack[];
 }
 
@@ -52,7 +54,7 @@ export function parseMotions(bytes: Uint8Array): MotionClip[] {
     const slot = u16();
     const frames = u16();
     const loop = u8() === 1;
-    u16(); // loop start frame; the viewer loops whole clips
+    const loopStart = u16() / MOTION_FPS;
     const tracks: MotionTrack[] = [];
     for (let t = u16(); t > 0; t--) {
       const bone = u8();
@@ -66,7 +68,7 @@ export function parseMotions(bytes: Uint8Array): MotionClip[] {
         values: new Float32Array(count * (path === "rotation" ? 4 : 3)),
       });
     }
-    clips.push({ slot, duration: frames / MOTION_FPS, loop, tracks });
+    clips.push({ slot, duration: frames / MOTION_FPS, loop, loopStart, tracks });
   }
   const all = clips.flatMap((clip) => clip.tracks);
 
@@ -96,8 +98,8 @@ export function parseMotions(bytes: Uint8Array): MotionClip[] {
 }
 
 /** Fetches and decompresses a motions file. */
-export async function fetchMotions(url: string): Promise<MotionClip[]> {
-  const res = await fetch(url);
+export async function fetchMotions(url: string, signal?: AbortSignal): Promise<MotionClip[]> {
+  const res = await fetch(url, { signal });
   if (!res.ok || !res.body) throw new Error(`Motions unavailable (${res.status})`);
   const stream = res.body.pipeThrough(new DecompressionStream("gzip"));
   return parseMotions(new Uint8Array(await new Response(stream).arrayBuffer()));

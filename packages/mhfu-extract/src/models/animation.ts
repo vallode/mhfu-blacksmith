@@ -1,8 +1,8 @@
 /**
  * Monster motions (motion.ts) as glTF-ready animation clips: per bone, a
  * translation, rotation (quaternion) and scale track sampled at every frame
- * and thinned to the keys that linear interpolation can't rebuild within a
- * small tolerance. One clip per motion slot: the body, head and tail
+ * and thinned to the keys that glTF's interpolation (linear, spherical for
+ * rotations) can't rebuild within a small tolerance. One clip per motion slot: the body, head and tail
  * motions in the same slot play together (see motion.ts).
  *
  * Rotations are Euler angles applied X, then Y, then Z (q = qz * qy * qx),
@@ -73,10 +73,21 @@ function quatAngle(a: readonly number[], b: readonly number[]): number {
   return 2 * Math.acos(Math.min(1, dot));
 }
 
-function nlerp(a: readonly number[], b: readonly number[], t: number): number[] {
-  const q = lerp(a, b, t);
-  const length = Math.hypot(...q);
-  return q.map((c) => c / length);
+/** Spherical interpolation, as glTF players turn rotation keys. */
+function slerp(a: readonly number[], b: readonly number[], t: number): number[] {
+  let dot = a.reduce((s, c, k) => s + c * b[k]!, 0);
+  const sign = dot < 0 ? -1 : 1;
+  dot *= sign;
+  if (dot > 0.9995) {
+    // Nearly equal: normalized linear interpolation is as good and stable.
+    const q = a.map((c, k) => c + (sign * b[k]! - c) * t);
+    const length = Math.hypot(...q);
+    return q.map((c) => c / length);
+  }
+  const angle = Math.acos(dot);
+  const wa = Math.sin((1 - t) * angle) / Math.sin(angle);
+  const wb = (sign * Math.sin(t * angle)) / Math.sin(angle);
+  return a.map((c, k) => c * wa + b[k]! * wb);
 }
 
 /**
@@ -89,22 +100,37 @@ export function keepKeys(
   interpolate: (a: readonly number[], b: readonly number[], t: number) => number[],
   tolerance: number,
 ): number[] {
+  const last = values.length - 1;
+  /** Whether the segment start..end rebuilds every frame inside it closely enough. */
+  const fits = (start: number, end: number): boolean => {
+    for (let i = start + 1; i < end; i++) {
+      const t = (i - start) / (end - start);
+      if (error(interpolate(values[start]!, values[end]!, t), values[i]!) > tolerance) return false;
+    }
+    return true;
+  };
   const kept = [0];
   let start = 0;
-  while (start < values.length - 1) {
-    let end = start + 1;
-    // Extend the segment while every frame inside it is rebuilt closely enough.
-    for (let next = end + 1; next < values.length; next++) {
-      let fits = true;
-      for (let i = start + 1; i < next && fits; i++) {
-        const t = (i - start) / (next - start);
-        fits = error(interpolate(values[start]!, values[next]!, t), values[i]!) <= tolerance;
+  while (start < last) {
+    // The segment's end: doubling its length until it no longer fits, then
+    // bisecting, so a long steady stretch costs O(n log n) checks, not O(n^2).
+    let good = start + 1;
+    let bad = -1;
+    for (let length = 2; good < last; length *= 2) {
+      const end = Math.min(last, start + length);
+      if (!fits(start, end)) {
+        bad = end;
+        break;
       }
-      if (!fits) break;
-      end = next;
+      good = end;
     }
-    kept.push(end);
-    start = end;
+    while (bad !== -1 && bad - good > 1) {
+      const mid = (good + bad) >> 1;
+      if (fits(start, mid)) good = mid;
+      else bad = mid;
+    }
+    kept.push(good);
+    start = good;
   }
   return kept;
 }
@@ -180,7 +206,7 @@ export function buildClips(
         const values: readonly (readonly number[])[] = sampled[path];
         const [error, interpolate, tolerance] =
           path === "rotation"
-            ? [quatAngle, nlerp, rotationTolerance]
+            ? [quatAngle, slerp, rotationTolerance]
             : [distance, lerp, path === "scale" ? scaleTolerance : translationTolerance];
         // A track that never leaves the bind pose adds nothing.
         if (values.every((v) => error(v, bind[path]) <= tolerance)) continue;
@@ -287,7 +313,7 @@ export function invertAffine(m: Mat4): Mat4 {
   ];
 }
 
-/** Each bone's bind-pose transform from model space to its own. */
+/** Each bone's bind-pose transform from its own space to model space (invert for glTF's inverse bind matrices). */
 export function bindMatrices(bones: readonly Bone[]): Mat4[] {
   const world: Mat4[] = [];
   const resolve = (id: number): Mat4 => {

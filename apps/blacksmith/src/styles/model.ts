@@ -4,4 +4,8 @@
  * stands as tall as a panel of text beside it.
  */
 export const modelPanel =
-  "bg-black/50 px-[0.8rem] py-[0.4rem] text-[1.6rem] leading-normal mobile:text-[1.4rem]";
+  "bg-black/50 px-[0.8rem] py-[0.4rem] text-small leading-normal mobile:text-fine";
+
+/** A button in (or as) one of those panels; its colour is the caller's. */
+export const modelPanelButton =
+  "cursor-pointer tracking-game hover:text-white focus-visible:text-white";

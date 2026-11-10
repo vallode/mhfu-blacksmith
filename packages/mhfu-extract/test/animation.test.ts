@@ -138,10 +138,9 @@ test("buildClips plays each part's motions in the same slot together, on that pa
   );
   const lift = clip!.tracks.find((t) => t.path === "translation")!;
   assert.deepEqual(lift.values, [0, 5, 10]);
-  // A steady turn needs keys between its ends: linear quaternion
-  // interpolation isn't a steady turn at 90 degrees.
+  // A steady turn is exactly what slerp between its ends plays.
   const turn = clip!.tracks.find((t) => t.path === "rotation")!;
-  assert.ok(turn.times.length > 2 && turn.times.length < 31);
+  assert.deepEqual(turn.times, [0, 0.5]);
   close(turn.values.slice(-4), eulerToQuat([0, Math.PI / 2, 0]), 1e-6);
   // The head's scale holds its last key once its shorter motion ends.
   const grow = clip!.tracks.find((t) => t.path === "scale")!;

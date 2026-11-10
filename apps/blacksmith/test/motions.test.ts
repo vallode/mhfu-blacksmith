@@ -11,7 +11,7 @@ function motionsFile(): Uint8Array {
   u16(2); // slot
   u16(60); // frames
   u8(1); // loop
-  u16(0); // loop start
+  u16(15); // loop start
   u16(2); // tracks
   u8(0);
   u8(1);
@@ -35,6 +35,7 @@ test("parseMotions reads tracks back from their delta-coded keys", () => {
   assert.equal(clip!.slot, 2);
   assert.equal(clip!.duration, 1);
   assert.equal(clip!.loop, true);
+  assert.equal(clip!.loopStart, 0.25);
   const [turn, move] = clip!.tracks;
   assert.equal(turn!.path, "rotation");
   assert.deepEqual([...turn!.times], [0, 0.5]);
@@ -56,7 +57,13 @@ test("inPlace pins the hips' horizontal position to the bind pose, not deeper bo
     times: Float32Array.of(0, 1),
     values: Float32Array.of(0, 5, 0, 100, 6, 200),
   });
-  const clip: MotionClip = { slot: 0, duration: 1, loop: false, tracks: [track(1), track(2)] };
+  const clip: MotionClip = {
+    slot: 0,
+    duration: 1,
+    loop: false,
+    loopStart: 0,
+    tracks: [track(1), track(2)],
+  };
   const parents = [-1, 0, 1];
   const [hips, tail] = inPlace(
     clip,

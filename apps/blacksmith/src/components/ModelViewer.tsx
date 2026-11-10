@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Loading from "@/components/Loading";
 import { cn } from "@/lib/cn";
 import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
-import { modelPanel } from "@/styles/model";
+import { modelPanel, modelPanelButton } from "@/styles/model";
 
 /** A capsule drawn over the model, in the model's space: a sphere of `radius` swept from `start` to `end`. */
 export interface ModelCapsule {
@@ -44,6 +44,9 @@ const PAIR_OFFSET = (32 * Math.PI) / 180;
 
 type Status = "loading" | "ready" | "error";
 
+/** How long a model waits for its motions before showing still (see the effect). */
+const MOTIONS_WAIT_MS = 1500;
+
 /** The model's motions, once loaded (monsters only; see src/lib/motions.ts). */
 interface MotionState {
   count: number;
@@ -59,8 +62,7 @@ interface MotionPlayer {
   hold: (hold: boolean) => void;
 }
 
-const panelButton =
-  "cursor-pointer tracking-game text-parchment hover:text-white focus-visible:text-white";
+const panelButton = cn(modelPanelButton, "text-parchment");
 
 /**
  * Interactive 3D view of a .glb model: drag to rotate, scroll/pinch to zoom.
@@ -146,7 +148,9 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       };
 
       let model: import("three").Object3D | null = null;
+      const abort = new AbortController();
       cleanup = () => {
+        abort.abort();
         sceneRef.current = null;
         playerRef.current = null;
         mixer?.stopAllAction();
@@ -275,19 +279,35 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         controls.target.set(0, 0, 0);
         fit();
 
+        let shown = false;
+        const show = () => {
+          if (shown) return;
+          shown = true;
+          sceneRef.current = { THREE, scene };
+          setStatus("ready");
+          animate();
+        };
+
         // Motions come after the model, from the file its GLB names. The
-        // model shows once they're in, already posed and framed: its first
-        // pose can stand far from the bind pose (Rathian's is ~320 units up).
+        // model waits a moment for them, so it first shows already posed and
+        // framed: its first pose can stand far from the bind pose (Rathian's
+        // is ~320 units up). On a slow connection it shows still meanwhile.
         const motionsFile = (gltf.asset.extras as { motions?: unknown } | undefined)?.motions;
-        let loaded: MotionClip[] = [];
-        if (typeof motionsFile === "string" && !pair) {
-          try {
-            loaded = await fetchMotions(new URL(motionsFile, new URL(src, location.href)).href);
-          } catch {
-            // The model still shows, just still.
-          }
-          if (disposed) return;
-        }
+        const motions: Promise<MotionClip[]> =
+          typeof motionsFile === "string" && !pair
+            ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
+                // The model still shows, just still.
+                .catch(() => [])
+            : Promise.resolve([]);
+        const early = await Promise.race([
+          motions,
+          new Promise<null>((resolve) => setTimeout(() => resolve(null), MOTIONS_WAIT_MS)),
+        ]);
+        if (disposed) return;
+        if (early === null) show();
+        const loaded = early ?? (await motions);
+        if (disposed) return;
+
         if (loaded.length > 0) {
           const root = model;
           const node = (bone: number) => root.getObjectByName(`bone_${bone}`);
@@ -297,31 +317,43 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           };
           const bind = (bone: number) =>
             (node(bone)?.position.toArray() ?? [0, 0, 0]) as [number, number, number];
-          const clips = loaded.map((source) => {
-            const clip = inPlace(source, parentOf, bind);
-            return new THREE.AnimationClip(
-              `Motion ${clip.slot}`,
-              clip.duration,
-              clip.tracks.map((track) => {
-                const name = `bone_${track.bone}`;
-                if (track.path === "rotation")
-                  return new THREE.QuaternionKeyframeTrack(
-                    `${name}.quaternion`,
+          const sources = loaded.map((source) => inPlace(source, parentOf, bind));
+          const clips = sources.map(
+            (clip) =>
+              new THREE.AnimationClip(
+                `Motion ${clip.slot}`,
+                clip.duration,
+                clip.tracks.map((track) => {
+                  const name = `bone_${track.bone}`;
+                  if (track.path === "rotation")
+                    return new THREE.QuaternionKeyframeTrack(
+                      `${name}.quaternion`,
+                      track.times,
+                      track.values,
+                    );
+                  const property = track.path === "translation" ? "position" : "scale";
+                  return new THREE.VectorKeyframeTrack(
+                    `${name}.${property}`,
                     track.times,
                     track.values,
                   );
-                const property = track.path === "translation" ? "position" : "scale";
-                return new THREE.VectorKeyframeTrack(
-                  `${name}.${property}`,
-                  track.times,
-                  track.values,
-                );
-              }),
-            );
-          });
+                }),
+              ),
+          );
           mixer = new THREE.AnimationMixer(root);
-          const actions = clips.map((clip) => mixer!.clipAction(clip));
+          // Each action plays once and stops on its last frame; the
+          // "finished" handler below restarts it where the game would.
+          const actions = clips.map((clip) => mixer!.clipAction(clip).setLoop(THREE.LoopOnce, 1));
+          for (const action of actions) action.clampWhenFinished = true;
           const state = { index: 0, playing: true, hold: holdRef.current };
+          // A looping motion goes on from its loop start, as in the game, so
+          // its lead-in plays once; any other replays from the start.
+          mixer.addEventListener("finished", ({ action }) => {
+            const clip = sources[actions.indexOf(action)];
+            if (!clip) return;
+            action.time = clip.loop ? clip.loopStart : 0;
+            action.paused = !state.playing;
+          });
           const apply = () => {
             const action = actions[state.index]!;
             if (state.hold)
@@ -357,10 +389,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           apply();
           reframe();
         }
-
-        sceneRef.current = { THREE, scene };
-        setStatus("ready");
-        animate();
+        show();
       } catch {
         if (!disposed) setStatus("error");
       }
@@ -467,7 +496,6 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           <button
             type="button"
             className={cn(panelButton, "w-cells-5 text-left")}
-            aria-pressed={!motion.playing}
             onClick={() => playerRef.current?.setPlaying(!motion.playing)}
           >
             {motion.playing ? "Pause" : "Play"}

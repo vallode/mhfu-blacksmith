@@ -171,6 +171,7 @@ class Converter {
       const file = path.join(this.out, relativeOut);
       // Own motions sit next to the model (emNN.glb -> emNN.motions.bin).
       const ownMotions = path.basename(file).replace(/\.glb$/, ".motions.bin");
+      let motionsKey: string | undefined;
       let shared = false;
       const converted = await packageToGlb(
         await readFile(path.join(this.dataBin, source)),
@@ -178,10 +179,9 @@ class Converter {
         this.options,
         this.clipOptions,
         (motions) => {
-          const key = createHash("sha256").update(motions).digest("hex");
-          const existing = this.motionFiles.get(key);
+          motionsKey = createHash("sha256").update(motions).digest("hex");
+          const existing = this.motionFiles.get(motionsKey);
           shared = existing !== undefined;
-          if (!existing) this.motionFiles.set(key, ownMotions);
           return existing ?? ownMotions;
         },
       );
@@ -190,8 +190,11 @@ class Converter {
         await writeFile(file, converted.glb);
         // A model that shares another's motions, or has none, loses a stale file.
         const motionsPath = path.join(path.dirname(file), ownMotions);
-        if (converted.motions && !shared) await writeFile(motionsPath, converted.motions);
-        else await rm(motionsPath, { force: true });
+        if (converted.motions && !shared) {
+          await writeFile(motionsPath, converted.motions);
+          // Only now can others share it: a conversion that failed wrote nothing.
+          if (motionsKey) this.motionFiles.set(motionsKey, ownMotions);
+        } else await rm(motionsPath, { force: true });
         result = relativeOut;
       } else {
         console.log(`skip ${source}: no mesh`);

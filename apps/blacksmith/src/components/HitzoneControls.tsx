@@ -1,7 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/cn";
-import { modelPanel } from "@/styles/model";
+import { modelPanel, modelPanelButton } from "@/styles/model";
 
 export interface HitzonePart {
   name: string;
@@ -50,7 +50,8 @@ export default function HitzoneControls({
         aria-pressed={show}
         className={cn(
           modelPanel,
-          "absolute bottom-2 left-2 z-10 cursor-pointer tracking-game hover:text-white focus-visible:text-white",
+          modelPanelButton,
+          "absolute bottom-2 left-2 z-10",
           show ? "text-stat" : "text-parchment",
         )}
       >

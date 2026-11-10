@@ -600,7 +600,7 @@ motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   even number of frames (played at 30 a second, they look half speed).
 - **Clips.** `animation.ts` turns each slot into one clip over the whole
   skeleton: it samples every frame, converts rotations to quaternions, and
-  keeps only the keys linear interpolation needs within a tolerance (by
+  keeps only the keys glTF interpolation (slerp for rotations) needs within a tolerance (by
   default 0.002 rad, 0.02 units, 0.001 scale); a track that never leaves
   the bind pose is dropped. A part's motion whose bone count isn't the
   part's is left out of its clip. Clips can carry the monster far from the
@@ -644,8 +644,11 @@ glTF animations, 12.3 MB like this). Monsters that share a bank share a
 file: the `.glb` names its own in `asset.extras.motions`. Skinning grew the
 83 monster models from 6.0 to 7.0 MB. The site's viewer
 (`apps/blacksmith/src/lib/motions.ts`, `ModelViewer.tsx`) plays them in
-place (the hips keep their horizontal bind position), and holds the bind
-pose while hitboxes show, since those are placed in bind-pose space.
+place (the hips keep their horizontal bind position), loops a looping
+motion from its loop start as the game does (1,847 of the 3,334 looping
+motions have a lead-in before it), and holds the bind pose while hitboxes
+show, since those are placed in bind-pose space. A model waits up to 1.5 s
+for its motions so it first shows posed, and shows still if they're slower.
 
 Each run replaces the categories it could export and keeps the rest of the
 previous manifest, so a run without `eboot.bin` keeps weapons and armor.
