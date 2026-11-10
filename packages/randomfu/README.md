@@ -19,9 +19,7 @@ expected) but not yet played in game. Star-level tiers, gathering sources,
 `recipe-amounts`, `costs`, `armor` and `gathering` are so far tested only
 against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
 has been written to the EU disc and read back, but not yet played. A PSP
-with custom firmware isn't tested. Run `roundtrip` on a new disc first. In-process EBOOT
-decryption is also tested only on synthetic EBOOTs so far; until it has run
-on a real disc, a PPSSPP dump (`--eboot`) is the proven path.
+with custom firmware isn't tested. Run `roundtrip` on a new disc first.
 
 ## Usage
 
@@ -35,8 +33,7 @@ pnpm gui
 This starts a small server on your computer and opens a page in your
 browser (or prints its address). On it you can:
 
-- enter the paths to your disc and the output (and a decrypted EBOOT, if
-  the disc's can't be decrypted in-process), and check them;
+- enter the paths to your disc and the output, and check them;
 - set every option, with its explanation, or start from a preset
   (Rewards only, Full, Chaos);
 - copy the **settings string** (seed and settings in one line), load one,
@@ -59,7 +56,6 @@ see `apps/randomfu` (its README covers how it works).
 
 ```bash
 pnpm roundtrip --iso /path/to/mhp2g.iso
-pnpm eboot-info --iso /path/to/mhp2g.iso [--eboot dump.bin]   # how the EBOOT decrypts
 pnpm randomize --iso /path/to/mhp2g.iso --out /path/to/random.iso --seed MYSEED
 pnpm settings                       # list every setting with its values and help
 pnpm settings --write my.json       # write every setting to a file to edit
@@ -74,10 +70,8 @@ pnpm settings --write my.json       # write every setting to a file to edit
   back to check it, and writes `random.spoiler.txt` next to the output.
   - `--dry-run` prints the spoiler log without writing an image.
   - `--spoiler <path>` writes the log somewhere else.
-  - `--eboot <path>` / `--pspdecrypt-bin <name>`: only needed if the
-    disc's EBOOT can't be decrypted in-process (see `mhfu-extract unpack`).
-    PPSSPP can dump it: turn on "Dump Decrypted Eboot.bin on game boot" and
-    boot the game once.
+  - `--pspdecrypt-bin <name>`: decrypt with this `pspdecrypt` binary instead
+    of in-process (see `mhfu-extract unpack`).
   - `--force` overwrites an existing output file.
 
 Settings come from these flags, later ones winning:
@@ -121,16 +115,16 @@ added there shows up everywhere.
 | `terms.time`                      | off         | Randomize time limits                                                             |
 | `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                |
 | `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                            |
-| `recipes.materials`               | off         | Shuffle crafting and upgrade materials (EBOOT)                                    |
-| `recipes.amounts`                 | off         | Randomize material amounts (EBOOT)                                                |
+| `recipes.materials`               | off         | Shuffle crafting and upgrade materials                                            |
+| `recipes.amounts`                 | off         | Randomize material amounts                                                        |
 | `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                          |
 | `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                     |
-| `costs.enabled`                   | off         | Randomize crafting costs (EBOOT)                                                  |
+| `costs.enabled`                   | off         | Randomize crafting costs                                                          |
 | `costs.spread`                    | 0.5         | How far costs move                                                                |
-| `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                                |
+| `weapons.enabled`                 | off         | Shuffle weapon progression                                                        |
 | `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)               |
-| `armor.enabled`                   | off         | Shuffle armor progression (EBOOT)                                                 |
-| `armorSkills.enabled`             | off         | Change armor skills (EBOOT)                                                       |
+| `armor.enabled`                   | off         | Shuffle armor progression                                                         |
+| `armorSkills.enabled`             | off         | Change armor skills                                                               |
 | `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points, or `randomize`: new trees and points             |
 | `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                |
 | `shops.enabled`                   | off         | Randomize shops                                                                   |
@@ -139,9 +133,9 @@ added there shows up everywhere.
 | `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                   |
 | `shops.special`                   | off         | Include the Point Exchange (Armor Spheres, jewels, Pokke Tickets)                 |
 | `shops.countSpread`               | 0           | How much more or fewer items each shop sells                                      |
-| `shops.prices`                    | off         | Randomize prices of what shops sell (EBOOT)                                       |
+| `shops.prices`                    | off         | Randomize prices of what shops sell                                               |
 | `shops.priceSpread`               | 0.5         | How far prices move                                                               |
-| `shops.stacks`                    | off         | Randomize carry limits of what shops sell (EBOOT)                                 |
+| `shops.stacks`                    | off         | Randomize carry limits of what shops sell                                         |
 | `shops.stackSpread`               | 0.5         | How far carry limits move                                                         |
 | `questMonsters.species`           | off         | Swap large monsters in quests                                                     |
 | `questMonsters.speciesPool`       | `variants`  | Into one of their `variants`, any monster of the same `rank`, or `any`            |

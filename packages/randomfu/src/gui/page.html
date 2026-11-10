@@ -199,15 +199,6 @@
         font-size: 13px;
         margin: 2px 0 0;
       }
-      .badge {
-        font-size: 11px;
-        font-weight: 600;
-        padding: 1px 6px;
-        border-radius: 99px;
-        background: var(--accent-soft);
-        color: var(--accent);
-        white-space: nowrap;
-      }
       .switch {
         display: flex;
         gap: 10px;
@@ -376,24 +367,6 @@
             />
             <span class="hint">Always an .iso. The spoiler log goes next to it.</span>
           </label>
-          <label class="field" id="eboot-field">
-            <span
-              >Decrypted EBOOT
-              <span class="badge" id="eboot-needed" hidden>needed for these settings</span></span
-            >
-            <input
-              type="text"
-              id="eboot"
-              placeholder="…/PSP/SYSTEM/DUMP/ULES01213_EBOOT.BIN"
-              autocomplete="off"
-              spellcheck="false"
-            />
-            <span class="hint"
-              >Optional: randomfu decrypts the disc's own EBOOT. Only if that fails, in PPSSPP turn
-              on Settings → Tools → Developer tools → “Dump Decrypted Eboot.bin on game boot”, then
-              start the game once.</span
-            >
-          </label>
           <div class="row">
             <button type="button" id="check">Check files</button>
             <label class="switch"
@@ -523,7 +496,6 @@
               settings,
               iso: $("iso").value,
               out: $("out").value,
-              eboot: $("eboot").value,
             }),
           );
         } catch {
@@ -559,7 +531,6 @@
       function renderOption(option) {
         const wrap = el("div", { class: "option", "data-key": option.key });
         const id = `opt-${option.key}`;
-        const badge = option.eboot ? el("span", { class: "badge" }, "EBOOT") : null;
         const help = el("p", { class: "help" }, option.help);
         const type = option.type;
         if (type.kind === "boolean") {
@@ -570,7 +541,7 @@
               "label",
               { class: "switch", for: id },
               input,
-              el("div", {}, el("div", { class: "title" }, option.label, badge), help),
+              el("div", {}, el("div", { class: "title" }, option.label), help),
             ),
           );
         } else if (type.kind === "number") {
@@ -587,7 +558,7 @@
             update(option.key, Number(input.value));
           });
           wrap.append(
-            el("label", { class: "title", for: id }, option.label, badge),
+            el("label", { class: "title", for: id }, option.label),
             help,
             el("div", { class: "range" }, input, out),
           );
@@ -609,7 +580,7 @@
               ),
             );
           }
-          wrap.append(el("div", { class: "title" }, option.label, badge), help, group);
+          wrap.append(el("div", { class: "title" }, option.label), help, group);
         }
         return wrap;
       }
@@ -653,7 +624,6 @@
           try {
             const result = await api("/api/settings/encode", { settings });
             $("share").value = result.string;
-            $("eboot-needed").hidden = !result.needsEboot;
             if ($("share-status").classList.contains("err")) say($("share-status"), "");
           } catch (error) {
             say($("share-status"), error.message, "err");
@@ -687,18 +657,13 @@
         if (!iso) return say($("check-status"), "Enter the path to your disc image first.", "err");
         say($("check-status"), "Checking…");
         try {
-          const r = await api("/api/check", { iso, eboot: $("eboot").value.trim() });
+          const r = await api("/api/check", { iso });
           const parts = [
             r.supported
               ? `${r.discId} (${r.region.toUpperCase()}) is supported.`
               : `${r.discId ?? "Unknown disc"}${r.region ? ` (${r.region.toUpperCase()})` : ""} isn't supported yet (JP and EU are).`,
           ];
-          if (r.eboot) parts.push(`EBOOT: ${r.eboot.detail}.`);
-          say(
-            $("check-status"),
-            parts.join(" "),
-            r.supported && (!r.eboot || r.eboot.ok) ? "ok" : "err",
-          );
+          say($("check-status"), parts.join(" "), r.supported ? "ok" : "err");
         } catch (error) {
           say($("check-status"), error.message, "err");
         }
@@ -725,7 +690,6 @@
             body: JSON.stringify({
               iso,
               out: outPath(),
-              eboot: $("eboot").value.trim(),
               force: $("force").checked,
               dryRun,
               settings,
@@ -839,7 +803,6 @@
         const stored = load();
         $("iso").value = stored.iso || "";
         $("out").value = stored.out || "";
-        $("eboot").value = stored.eboot || "";
         settings = { ...schema.defaults };
         if (stored.settings) {
           try {
@@ -865,7 +828,7 @@
           settings = { ...settings, seed: (await api("/api/seed")).seed };
           render();
         });
-        for (const id of ["iso", "out", "eboot"])
+        for (const id of ["iso", "out"])
           $(id).addEventListener("input", () => (suggestOut(), save()));
         $("check").addEventListener("click", checkFiles);
         $("copy").addEventListener("click", async () => {

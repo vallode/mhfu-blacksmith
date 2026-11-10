@@ -887,7 +887,7 @@ export interface Preset {
 export const PRESETS: readonly Preset[] = [
   {
     name: "Rewards only",
-    help: "Quest rewards and monster drops. No EBOOT needed.",
+    help: "Quest rewards and monster drops.",
     changes: {},
   },
   {
