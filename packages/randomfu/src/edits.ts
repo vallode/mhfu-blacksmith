@@ -57,6 +57,11 @@ export class Edits {
     return buf;
   }
 
+  /** A data file as the shuffles so far left it, without marking it edited. Don't write to it. */
+  dataFileNow(index: number): Buffer {
+    return this.files.get(index) ?? this.game.dataBin.read(index);
+  }
+
   eboot(): Buffer {
     if (!this.game.eboot) throw new Error("The EBOOT wasn't loaded");
     this.ebootCopy ??= Buffer.from(this.game.eboot);

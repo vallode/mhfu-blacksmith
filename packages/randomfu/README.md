@@ -522,7 +522,10 @@ ticks of 1/1800 minute). Reward and penalty share one factor within
 reward), the fee gets its own and never exceeds the reward; all in steps of
 10z. Time limits change in whole minutes within `terms.timeSpread`, kept
 between the shortest and longest on the disc (20 and 50 minutes), since
-longer limits haven't been seen in game.
+longer limits haven't been seen in game. Each of the quest's records on the
+quest board (`level*.mib`, which copy header 0x4c-0x7f) gets the same
+numbers; a quest with a record whose copy doesn't match its own keeps its
+terms, so the two never disagree, and is listed.
 
 `deliveries` changes what Village and Guild delivery quests ask for. A
 delivery quest has 2 in the quest type's first byte (+76); `TargetID`
@@ -537,7 +540,13 @@ item's, or the median share for quests whose item wasn't gathered, and
 never more than the points give; items at least half as plentiful as the
 old one are preferred. The goal line ("Deliver Coal x15") is rewritten in
 place, in English for every language (item names are English only); the
-quest description still names the old item. "Survive until Time Over or
+quest description still names the old item. The quest's board records
+get the same `TargetID`, `TargetNum` and goal line, the goal by the same
+rules as the quest file's; an item whose goal line doesn't fit a record
+isn't used, and a quest whose record can't be changed safely (its copy of
+the target differs, or its strings share bytes with another quest's) keeps
+its item. The spoiler counts the quests the board held back. No write to a
+board file touches another record's header, pointer tables or strings. "Survive until Time Over or
 Deliver the Paw Pass Ticket" quests stay as they are.
 
 The gathering shuffle never moves a delivery quest's own item away from
@@ -582,7 +591,9 @@ quest can still be finished.
 - Quest text in game. Renaming the board files (`level*.mib`) shows on the
   EU Quest Details screen: a quest swapped from Velocidrome to Daimyo
   Hermitaur showed the new monster in game. Where the game shows the quest
-  file's own copy of the text, if anywhere, isn't known.
+  file's own copy of the text, if anywhere, isn't known. Whether the game
+  pays out, times or checks a delivery from the board's copy of the header
+  or the quest file's isn't known either: both get the same values.
 - Large monster counts. What `quantity` means for a large monster (it's 1
   in 536 of 554 records, 10 or 5 in a few), and how it relates to the
   header's `TargetNum`, isn't known.

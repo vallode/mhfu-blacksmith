@@ -26,7 +26,7 @@
  * monster ("she", "sie") aren't changed.
  */
 import type { LoadedQuest } from "../game/load.js";
-import { RECORD_HEADER_SIZE, recordHeader, type BoardFile } from "../game/board.js";
+import { boardName, readRecordText, type BoardFile } from "../game/board.js";
 import {
   readQuestText,
   SLOT_LANGUAGES,
@@ -344,20 +344,19 @@ export function renameQuestText(
       for (const record of board.records) {
         if (record.questId !== quest.parsed.header.questId) continue;
         const problems = new Map<string, Set<string>>();
-        const recordText = readQuestText(
-          board.data,
-          recordHeader(record),
-          record.offset + RECORD_HEADER_SIZE,
-        );
-        const count = renameText(
-          board.data,
-          recordText,
-          () => edits.dataFile(board.index),
-          mapping,
-          slots,
-          noter(problems),
-        );
-        report(`Board text (${board.path.replace(/^mission_jpn\//, "")})`, count, problems);
+        const { text: recordText } = readRecordText(board.data, board, record);
+        if (recordText.locked) problems.set(recordText.locked, new Set(["all"]));
+        const count = recordText.locked
+          ? 0
+          : renameText(
+              board.data,
+              recordText,
+              () => edits.dataFile(board.index),
+              mapping,
+              slots,
+              noter(problems),
+            );
+        report(`Board text (${boardName(board)})`, count, problems);
         boardCount += count;
         boardKept ||= problems.size > 0;
       }
@@ -380,7 +379,7 @@ export function renameQuestText(
   const boardRecords = boards.reduce((n, b) => n + b.records.length, 0);
   const boardNote =
     boards.length > 0
-      ? `Quest board: ${boardRecords} records read from ${boards.length} files (${boards.map((b) => b.path.replace(/^mission_jpn\//, "")).join(", ")}).`
+      ? `Quest board: ${boardRecords} records read from ${boards.length} files (${boards.map(boardName).join(", ")}).`
       : "Quest board: no level*.mib file could be read, so the board and Quest Details screen keep their old text.";
   const learned = slots
     .map((s, i) => ({ lang: SLOT_LANGUAGES[i]!, count: s.names.size }))

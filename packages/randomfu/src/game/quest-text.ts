@@ -55,8 +55,19 @@ export interface TextBlock {
   texts: string[];
 }
 
+/** A byte range, `[start, end)`. */
+export type Span = readonly [start: number, end: number];
+
+export const overlaps = (spans: readonly Span[], start: number, end: number) =>
+  spans.some(([s, e]) => s < end && start < e);
+
 export interface QuestText {
   blocks: TextBlock[];
+  /**
+   * Why none of the strings can be written, even in place, if they can't:
+   * one of them shares bytes with something else's (`reserved`).
+   */
+  locked: string | null;
   /** Why the text can't be moved, if it can't; strings can still be rewritten in place. */
   unmovable: string | null;
   /** Runs of the payload the strings may be repacked into. */
@@ -81,8 +92,16 @@ export function slotSize(length: number, align: number): number {
 /**
  * `floor`: strings below it share bytes with a header, so they aren't moved
  * (a quest file's header is 0x80 bytes; a board record's is its own).
+ * `reserved`: bytes that belong to something else (a board file's other
+ * records), which no write may touch: a string in them is locked, padding
+ * stops short of them and the strings aren't repacked over them.
  */
-export function readQuestText(payload: Buffer, header: QuestHeader, floor = 0x80): QuestText {
+export function readQuestText(
+  payload: Buffer,
+  header: QuestHeader,
+  floor = 0x80,
+  reserved: readonly Span[] = [],
+): QuestText {
   const reader = new BinaryReader(payload);
   const layout = readStringLayout(reader, header);
   const blocks: TextBlock[] = layout.strings.map((s) => ({
@@ -101,17 +120,22 @@ export function readQuestText(payload: Buffer, header: QuestHeader, floor = 0x80
     });
   }
   const align = lengths.size > 0 && [...lengths.keys()].every((p) => p % 4 === 0) ? 4 : 1;
-  // A string's bytes: its slot when the padding there is all zero, else just it and its NUL.
+  const locked = [...lengths].some(([ptr, length]) => overlaps(reserved, ptr, ptr + length + 1))
+    ? "its strings share bytes with another quest's"
+    : null;
+  // A string's bytes: its slot when the padding there is all zero (and no one else's), else just it and its NUL.
   const ranges = new Map<number, number>();
   for (const [ptr, length] of lengths) {
     const slotEnd = ptr + slotSize(length, align);
     const padded =
-      slotEnd <= payload.length && payload.subarray(ptr + length, slotEnd).every((b) => b === 0);
+      slotEnd <= payload.length &&
+      payload.subarray(ptr + length, slotEnd).every((b) => b === 0) &&
+      !overlaps(reserved, ptr + length, slotEnd);
     ranges.set(ptr, padded ? slotEnd : ptr + length + 1);
   }
   const sorted = [...ranges].sort((a, b) => a[0] - b[0]);
   const runs: QuestText["runs"] = [];
-  let unmovable: string | null = sorted.length === 0 ? "no text" : null;
+  let unmovable: string | null = sorted.length === 0 ? "no text" : locked;
   for (const [start, end] of sorted) {
     const last = runs[runs.length - 1];
     if (last && start < last.end) {
@@ -132,20 +156,25 @@ export function readQuestText(payload: Buffer, header: QuestHeader, floor = 0x80
   ) {
     unmovable = "the strings share bytes with the header or a pointer table";
   }
-  return { blocks, unmovable, runs: unmovable ? [] : runs, align };
+  if (!unmovable && runs.some((r) => overlaps(reserved, r.start, r.end))) {
+    unmovable = "another quest's data lies between the strings";
+  }
+  return { blocks, locked, unmovable, runs: unmovable ? [] : runs, align };
 }
 
 const encoded = (text: string) => Buffer.byteLength(text, "utf8") + 1;
 
 /**
  * Writes new texts (by string offset) into `payload`, within the bytes the
- * quest's strings use. Returns false, changing nothing, if they don't fit.
+ * quest's strings use. Returns false, changing nothing, if they don't fit
+ * or the text is `locked`.
  */
 export function writeQuestText(
   payload: Buffer,
   text: QuestText,
   changes: ReadonlyMap<number, string>,
 ): boolean {
+  if (text.locked) return false;
   const current = new Map<number, string>();
   for (const block of text.blocks) {
     block.pointers.forEach((ptr, i) => {

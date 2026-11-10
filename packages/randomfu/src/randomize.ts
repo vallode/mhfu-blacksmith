@@ -302,6 +302,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         },
         { money: rng.fork("quest-money"), time: rng.fork("time-limits") },
         edits,
+        game.boards,
       ),
     );
   }
@@ -309,7 +310,9 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
   // After gathering and supplies: targets come from the points as shuffled,
   // and never from the supply box.
   if (settings["deliveries.enabled"]) {
-    reports.push(shuffleDeliveries(collectDeliveries(game.quests), rng.fork("deliveries"), edits));
+    reports.push(
+      shuffleDeliveries(collectDeliveries(game.quests), rng.fork("deliveries"), edits, game.boards),
+    );
   }
 
   const problems: string[] = [];

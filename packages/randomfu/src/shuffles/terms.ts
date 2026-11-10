@@ -1,7 +1,9 @@
 /**
  * Quest terms: the contract fee, reward and penalty (zenny) and the time
  * limit in each Village and Guild quest's header (`readTerms`). The quest
- * board shows these numbers from the header; no quest text repeats them.
+ * board files keep their own copy of that part of the header, which the
+ * board and the Quest Details screen read (`game/board.ts`), so each of a
+ * quest's board records gets the same terms. No quest text repeats them.
  *
  * On the disc the penalty is a fixed share of the reward (a third, mostly)
  * and the reward a multiple of the fee (12x in the Guild, 6x in the
@@ -12,7 +14,14 @@
  * minutes on the EU disc): longer ones have never been shown by the game.
  */
 import type { LoadedQuest } from "../game/load.js";
-import { readTerms, TICKS_PER_MINUTE, writeTerms, type QuestTerms } from "../game/quest-fields.js";
+import { boardName, questRecords, recordBase, type BoardFile } from "../game/board.js";
+import {
+  readTerms,
+  sameTerms,
+  TICKS_PER_MINUTE,
+  writeTerms,
+  type QuestTerms,
+} from "../game/quest-fields.js";
 import { questTier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import { questLabel } from "../names.js";
@@ -51,11 +60,14 @@ export function randomizeTerms(
   options: TermsOptions,
   rngs: { money: Rng; time: Rng },
   edits: Edits,
+  boards: readonly BoardFile[] = [],
 ): ShuffleReport {
   const factor = (rng: Rng, spread: number) => 1 - spread + rng.float() * 2 * spread;
   const limits = slots.map((s) => minutes(s.terms.timeLimit)).filter((m) => m > 0);
   const shortest = Math.min(...limits);
   const longest = Math.max(...limits);
+  let boardRecords = 0;
+  let boardKept = 0;
 
   const lines = slots.flatMap(({ quest, terms }) => {
     const next = { ...terms };
@@ -80,13 +92,30 @@ export function randomizeTerms(
       parts.push(`${limit} min (was ${minutes(terms.timeLimit)})`);
     }
     if (parts.length === 0) return [];
-    const same =
-      next.fee === terms.fee &&
-      next.reward === terms.reward &&
-      next.penalty === terms.penalty &&
-      next.timeLimit === terms.timeLimit;
-    if (!same) writeTerms(edits.quest(quest), next);
-    return [{ where: questLabel(quest), text: parts.join(", ") }];
+    const where = questLabel(quest);
+    if (sameTerms(next, terms)) return [{ where, text: parts.join(", ") }];
+    // A copy that doesn't match the quest isn't one this knows how to read,
+    // and the board and the quest must agree, so the quest keeps its terms.
+    const records = questRecords(boards, quest.parsed.header.questId);
+    const differs = records.find(
+      ({ board, record }) =>
+        !sameTerms(readTerms(edits.dataFileNow(board.index), recordBase(record)), terms),
+    );
+    if (differs) {
+      boardKept++;
+      return [
+        {
+          where,
+          text: `unchanged: its board record (${boardName(differs.board)}) has different terms from the quest's`,
+        },
+      ];
+    }
+    writeTerms(edits.quest(quest), next);
+    for (const { board, record } of records) {
+      writeTerms(edits.dataFile(board.index), next, recordBase(record));
+      boardRecords++;
+    }
+    return [{ where, text: parts.join(", ") }];
   });
 
   const notes: string[] = [];
@@ -101,6 +130,11 @@ export function randomizeTerms(
       `Time limits vary by up to ${Math.round(options.timeSpread * 100)}%, in whole minutes, from ${shortest} to ${longest} minutes (the shortest and longest on the disc).`,
     );
   }
-  notes.push("Training School, Treasure Hunting and unused quests are unchanged.");
+  notes.push(
+    boards.length > 0
+      ? `The quest board's copies, which the board and Quest Details screen show, change with them: ${boardRecords} records in level*.mib.${boardKept > 0 ? ` ${boardKept} quests keep their terms because a board record's copy doesn't match the quest's (listed).` : ""}`
+      : "No quest board file (level*.mib) could be read, so the board and Quest Details screen show the old terms.",
+    "Training School, Treasure Hunting and unused quests are unchanged.",
+  );
   return { title: "Quest terms", notes, lines };
 }

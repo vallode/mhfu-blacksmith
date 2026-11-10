@@ -5,6 +5,7 @@
  * EU disc shows about each is noted where it's used.
  */
 import type { LoadedQuest } from "./load.js";
+import { overlaps, type Span } from "./quest-text.js";
 
 export const SUPPLIES_PTR = 8;
 export const QUEST_TYPE = 76;
@@ -101,20 +102,30 @@ export interface QuestTerms {
   timeLimit: number;
 }
 
-export function readTerms(payload: Buffer): QuestTerms {
+/** `base`: where the header is, 0 in a quest file (a board record's is `recordBase`). */
+export function readTerms(payload: Buffer, base = 0): QuestTerms {
   return {
-    fee: payload.readUInt32LE(FEE),
-    reward: payload.readUInt32LE(REWARD),
-    penalty: payload.readUInt32LE(PENALTY),
-    timeLimit: payload.readUInt32LE(TIME_LIMIT),
+    fee: payload.readUInt32LE(base + FEE),
+    reward: payload.readUInt32LE(base + REWARD),
+    penalty: payload.readUInt32LE(base + PENALTY),
+    timeLimit: payload.readUInt32LE(base + TIME_LIMIT),
   };
 }
 
-export function writeTerms(payload: Buffer, terms: QuestTerms): void {
-  payload.writeUInt32LE(terms.fee, FEE);
-  payload.writeUInt32LE(terms.reward, REWARD);
-  payload.writeUInt32LE(terms.penalty, PENALTY);
-  payload.writeUInt32LE(terms.timeLimit, TIME_LIMIT);
+export function writeTerms(payload: Buffer, terms: QuestTerms, base = 0): void {
+  payload.writeUInt32LE(terms.fee, base + FEE);
+  payload.writeUInt32LE(terms.reward, base + REWARD);
+  payload.writeUInt32LE(terms.penalty, base + PENALTY);
+  payload.writeUInt32LE(terms.timeLimit, base + TIME_LIMIT);
+}
+
+export function sameTerms(a: QuestTerms, b: QuestTerms): boolean {
+  return (
+    a.fee === b.fee &&
+    a.reward === b.reward &&
+    a.penalty === b.penalty &&
+    a.timeLimit === b.timeLimit
+  );
 }
 
 /** Language slots in `LangPTRs`: three English, German, French, Spanish, Italian. */
@@ -134,10 +145,24 @@ const alignUp = (n: number) => (n + 3) & ~3;
  * aren't read), so every language gets the English line. Returns false,
  * changing nothing, if `text` fits in no goal string or the table doesn't
  * read.
+ *
+ * `at` is for text outside a quest file (a board record, `game/board.ts`):
+ * its `LangPTRs` offset, the offset its strings start at (a quest file's
+ * after its 0x80-byte header), and bytes that belong to something else. A
+ * goal string in those is left alone, its languages pointed at a holder,
+ * and no goal's padding reaches into them.
  */
-export function rewriteGoal(payload: Buffer, text: string): boolean {
-  const fits = (offset: number, size: number) => offset >= 0x80 && offset + size <= payload.length;
-  const table = payload.readUInt32LE(STRING_TABLE_PTR);
+export function rewriteGoal(
+  payload: Buffer,
+  text: string,
+  at: { table: number; floor: number; reserved: readonly Span[] } = {
+    table: payload.readUInt32LE(STRING_TABLE_PTR),
+    floor: 0x80,
+    reserved: [],
+  },
+): boolean {
+  const { table, floor, reserved } = at;
+  const fits = (offset: number, size: number) => offset >= floor && offset + size <= payload.length;
   if (!fits(table, LANGUAGE_SLOTS * 4)) return false;
   const bytes = Buffer.from(text, "utf8");
 
@@ -166,8 +191,13 @@ export function rewriteGoal(payload: Buffer, text: string): boolean {
     if (!fits(goal, 1)) return false;
     const end = payload.indexOf(0, goal);
     if (end === -1) return false;
+    if (overlaps(reserved, goal, end + 1)) {
+      room.set(goal, -1);
+      continue;
+    }
     let limit = Math.min(alignUp(end + 1), payload.length);
     for (const s of strings) if (s > goal && s < limit) limit = s;
+    for (const [s] of reserved) if (s > end && s < limit) limit = s;
     if (payload.subarray(end, limit).some((b) => b !== 0)) limit = end + 1;
     room.set(goal, Math.max(limit, end + 1) - goal - 1);
   }
