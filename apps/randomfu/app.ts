@@ -443,25 +443,36 @@ function renderSteps(): void {
   const at = steps.findIndex((s) => s.id === current);
   const step = steps[at]!;
 
-  $("steps").replaceChildren(
-    ...steps.map((s, i) => {
-      const button = el(
-        "button",
-        { type: "button", class: "step", "data-goto": s.id },
-        el("span", { class: "step-number" }, String(i + 1)),
-        icon(s),
-        el("span", { class: "step-label" }, s.title),
-      );
-      button.disabled = !reached.has(s.id) || (s.id === "run" && !ranOnce);
-      button.classList.toggle("done", i < at && reached.has(s.id));
-      if (s.id === current) button.setAttribute("aria-current", "step");
-      button.addEventListener("click", () => {
-        closeStepMenu();
-        go(s.id);
-      });
-      return el("li", {}, button);
-    }),
-  );
+  // The menu's buttons are made again only when the steps themselves change: new ones would
+  // load their sprites afresh, and some browsers paint those blank for a frame.
+  const list = $("steps");
+  const ids = steps.map((s) => s.id).join(" ");
+  if (list.dataset.steps !== ids) {
+    list.dataset.steps = ids;
+    list.replaceChildren(
+      ...steps.map((s, i) => {
+        const button = el(
+          "button",
+          { type: "button", class: "step", "data-goto": s.id },
+          el("span", { class: "step-number" }, String(i + 1)),
+          icon(s),
+          el("span", { class: "step-label" }, s.title),
+        );
+        button.addEventListener("click", () => {
+          closeStepMenu();
+          go(s.id);
+        });
+        return el("li", {}, button);
+      }),
+    );
+  }
+  steps.forEach((s, i) => {
+    const button = list.querySelector<HTMLButtonElement>(`[data-goto="${s.id}"]`)!;
+    button.disabled = !reached.has(s.id) || (s.id === "run" && !ranOnce);
+    button.classList.toggle("done", i < at && reached.has(s.id));
+    if (s.id === current) button.setAttribute("aria-current", "step");
+    else button.removeAttribute("aria-current");
+  });
   $("progress").replaceChildren(
     ...steps.map((s, i) =>
       el("span", {
@@ -820,7 +831,6 @@ function loaded(message: string, kind: "ok" | "err"): void {
 // ---------------------------------------------------------------- start
 
 function init(): void {
-  $("version").textContent = `· logic v${LOGIC_VERSION}`;
   restore();
   buildOptionPanels();
   buildPresets();

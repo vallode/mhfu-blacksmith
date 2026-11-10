@@ -1192,3 +1192,11 @@ input[type="range"] {
 [hidden] {
   display: none;
 }
+
+/* The closed step menu stays laid out, just unseen, rather than display: none:
+   that way its sprites load with the page and stay decoded, where shown afresh
+   some browsers flash them blank each time it opens. */
+.step-list[hidden] {
+  display: flex;
+  visibility: hidden;
+}
