@@ -10,9 +10,12 @@
  *   found in quests that have it (in their `monsters` string and goal) and
  *   least often in quests that don't. A piece two monsters both pick, or a
  *   tie, names neither.
- * - Its article is the word most often just before the name in those
- *   quests' goals ("den", "la", "l'", "the"). A name is only replaced by one
- *   with the same article, so "den Rathalos" never becomes "den Rathian".
+ * - Its articles are the words seen just before the name in those
+ *   quests' goals ("den", "la", "l'", "the"). Where a name to replace has
+ *   one of the language's articles in front of it, the new name must have
+ *   been seen after that word too, so "den Rathalos" never becomes "den
+ *   Rathian". A bare name, or one after a word that's never an article,
+ *   is replaced as it is.
  * - Each field's longest line in that language is its width: a name that
  *   would make a line longer isn't replaced, since the text is wrapped by
  *   hand.
@@ -45,8 +48,10 @@ const PRIORITY = ["goal", "monsters", "title", "client", "fail", "details"].map(
 export interface SlotNames {
   /** emID -> name. */
   names: Map<number, string>;
-  /** emID -> the word before its name in goals; null if there's none. */
-  articles: Map<number, string | null>;
+  /** emID -> the words seen just before its name in goals ("the", "den", "l'"). */
+  before: Map<number, Set<string>>;
+  /** Every word seen before some monster's name in goals: the language's articles, roughly. */
+  articleWords: Set<string>;
   /** Each field's longest line, in characters. */
   widths: number[];
 }
@@ -89,17 +94,6 @@ function wordBefore(text: string, at: number): string | null {
   return (m[1]! + (/['’]/.test(m[2]!) ? "'" : "")).toLowerCase();
 }
 
-/** The most common value, or undefined on a tie. */
-function mode<T>(values: T[]): T | undefined {
-  const counts = new Map<T, number>();
-  for (const v of values) counts.set(v, (counts.get(v) ?? 0) + 1);
-  const ranked = [...counts].sort((a, b) => b[1] - a[1]);
-  if (ranked.length === 0 || (ranked.length > 1 && ranked[0]![1] === ranked[1]![1])) {
-    return undefined;
-  }
-  return ranked[0]![0];
-}
-
 export function learnSlotNames(samples: readonly TextSample[]): SlotNames {
   const widths = STRING_FIELDS.map((_, f) =>
     Math.max(0, ...samples.flatMap((s) => s.texts[f]!.split("\n").map(chars))),
@@ -134,18 +128,28 @@ export function learnSlotNames(samples: readonly TextSample[]): SlotNames {
   for (const [id, name] of picked) byName.set(name, [...(byName.get(name) ?? []), id]);
   for (const [name, ids] of byName) if (ids.length === 1) names.set(ids[0]!, name);
 
-  const articles = new Map<number, string | null>();
+  // Occurrences inside a longer name ("Rathian" in "Pink Rathian") aren't the name's own.
+  const longer = (name: string) =>
+    [...names.values()].filter(
+      (n) => n.length > name.length && n.toLowerCase().includes(name.toLowerCase()),
+    );
+  const own = (text: string, name: string) =>
+    occurrences(text, name, true).filter(
+      (at) =>
+        !longer(name).some((n) =>
+          occurrences(text, n, true).some((s) => s <= at && at + name.length <= s + n.length),
+        ),
+    );
+  const before = new Map<number, Set<string>>();
   for (const [id, name] of names) {
     const words = samples
       .filter((s) => s.species.has(id))
-      .flatMap((s) =>
-        occurrences(s.texts[GOAL]!, name, true).map((at) => wordBefore(s.texts[GOAL]!, at)),
-      );
-    const article = words.length === 0 ? null : mode(words);
-    // A tie leaves the article unknown: nothing can safely replace the name.
-    if (article !== undefined) articles.set(id, article);
+      .flatMap((s) => own(s.texts[GOAL]!, name).map((at) => wordBefore(s.texts[GOAL]!, at)))
+      .filter((w): w is string => w !== null);
+    before.set(id, new Set(words));
   }
-  return { names, articles, widths };
+  const articleWords = new Set([...before.values()].flatMap((w) => [...w]));
+  return { names, before, articleWords, widths };
 }
 
 /** Learns every slot's names from the quests' unedited text. */
@@ -205,9 +209,12 @@ export function renameIn(
       out += name;
     } else {
       const nextName = slot.names.get(next)!;
-      const a = slot.articles.get(id);
-      const b = slot.articles.get(next);
-      if (a === undefined || b === undefined || a !== b) {
+      // The word in front must suit the new name: "die Rathian" can't become
+      // "die Rosa Rathian" if goals only ever say "den Rosa Rathian". Words
+      // that are never in front of a name in goals ("that", a number) aren't
+      // articles, and a bare name (a list, a line start) has none.
+      const word = wordBefore(text, at);
+      if (word !== null && slot.articleWords.has(word) && !slot.before.get(next)?.has(word)) {
         return { problem: `${monsterName(next)} takes another article` };
       }
       out += nextName;
@@ -310,10 +317,10 @@ export function renameQuestText(
   // What was learned, to check against the game: each monster's name and article per language.
   slots.forEach((slot, i) => {
     for (const [id, name] of [...slot.names].sort((a, b) => a[0] - b[0])) {
-      const article = slot.articles.get(id);
+      const words = [...(slot.before.get(id) ?? [])];
       lines.push({
         where: `Names learned (${SLOT_LANGUAGES[i]})`,
-        text: `${monsterName(id)}: "${name}" (${article === undefined ? "article unclear" : (article ?? "no article")})`,
+        text: `${monsterName(id)}: "${name}" (${words.length > 0 ? words.join(", ") : "no article"})`,
       });
     }
   });

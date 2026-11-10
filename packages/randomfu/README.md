@@ -338,11 +338,17 @@ list (`emLoadTable`).
   - A string that names an old monster in a form the rename doesn't read
     (another case, a declined adjective) keeps its text whole rather than
     being half renamed.
-  - A name's article is the word most often just before it in goals ("the",
-    "den", "l'"). A name is only replaced by one with the same article, so
-    German, French, Spanish and Italian text keeps the old name when the
-    new monster takes another article. Pronouns ("she", "sie") never
+  - Articles are checked where each name is replaced. The words seen just
+    before a monster's name in goals ("the", "den", "l'") are its articles,
+    and all of them together are the language's. If the word in front of
+    the old name is one of the language's articles, the new monster must
+    have been seen after it too. So "den Rathalos" never becomes "den
+    Rathian", while "the Velocidrome" becomes "the Gendrome" and a bare
+    name in a list is always replaced. Pronouns ("she", "sie") never
     change.
+  - An earlier version compared each monster's single most common article.
+    On the EU disc that blocked every Velocidrome swap, because its goals
+    put two words before its name equally often ("article unclear").
   - The text is wrapped by hand, so each field's longest line in that
     language is its width, and a rename that makes a line longer is
     skipped.

@@ -51,11 +51,15 @@ test("monster names and their articles are learned per language from the quests'
       [37, "Pink Rathian"],
     ],
   );
-  assert.deepEqual([...english.articles.values()], ["the", "the", "the"]);
+  assert.deepEqual(
+    [...english.before.values()].map((w) => [...w]),
+    [["the"], ["the"], ["the"]],
+  );
   const german = slots[2]!;
   assert.equal(german.names.get(37), "Rosa Rathian");
-  assert.equal(german.articles.get(1), "die");
-  assert.equal(german.articles.get(37), "den");
+  assert.deepEqual([...german.before.get(1)!], ["die"]);
+  assert.deepEqual([...german.before.get(37)!], ["den"]);
+  assert.deepEqual([...german.articleWords].sort(), ["den", "die"]);
   assert.equal(slots[3]!.names.size, 0, "an empty slot learns nothing");
   assert.equal(english.widths[1], 23, "the goal's longest line");
   close();
@@ -73,7 +77,32 @@ test("a name is learned even when goals write it in another case", () => {
     sample([1], "Chassez la Rathian", "Rathian\nVespoid"),
   ]);
   assert.equal(slot.names.get(80), "Reine Vespoid");
-  assert.equal(slot.articles.get(80), "la");
+  assert.deepEqual([...slot.before.get(80)!], ["la"]);
+});
+
+test("a monster whose goals put different words before it can still be renamed", () => {
+  // Like Velocidrome on the EU disc: "the" in one goal, "down" in another.
+  const sample = (species: number[], goal: string, monsters: string) => ({
+    species: new Set(species),
+    texts: ["", goal, "", "", monsters, ""],
+  });
+  const slot = learnSlotNames([
+    sample([27], "Hunt the Velocidrome", "Velocidrome\nVelociprey"),
+    sample([27], "Track down Velocidrome", "Velocidrome\nVelociprey"),
+    sample([28], "Hunt the Gendrome", "Gendrome\nGenprey"),
+    sample([], "Slay 10 Velociprey", "Velociprey"),
+  ]);
+  assert.equal(slot.names.get(27), "Velocidrome");
+  const swap = new Map([[27, 28]]);
+  assert.deepEqual(renameIn("Hunt the Velocidrome", slot, swap, 30), {
+    text: "Hunt the Gendrome",
+  });
+  assert.deepEqual(renameIn("Velocidrome\nVelociprey", slot, swap, 30), {
+    text: "Gendrome\nVelociprey",
+  });
+  assert.deepEqual(renameIn("Track down Velocidrome", slot, swap, 30), {
+    problem: "Gendrome takes another article",
+  });
 });
 
 test("renaming reads the longest name first and checks articles and line width", () => {
@@ -83,11 +112,12 @@ test("renaming reads the longest name first and checks articles and line width",
       [37, "Pink Rathian"],
       [2, "Fatalis"],
     ]),
-    articles: new Map<number, string | null>([
-      [1, "the"],
-      [37, "the"],
-      [2, "le"],
+    before: new Map([
+      [1, new Set(["the"])],
+      [37, new Set(["the"])],
+      [2, new Set(["le"])],
     ]),
+    articleWords: new Set(["the", "le"]),
     widths: [],
   };
   const swap = new Map([
@@ -100,6 +130,7 @@ test("renaming reads the longest name first and checks articles and line width",
   assert.deepEqual(renameIn("Hunt 2 Rathians", slot, swap, 30), { text: "Hunt 2 Pink Rathians" });
   assert.deepEqual(renameIn("Hunt the Rathian", slot, swap, 16), { problem: "too wide" });
   assert.ok("problem" in renameIn("Hunt the Rathian", slot, new Map([[1, 2]]), 30));
+  assert.deepEqual(renameIn("Rathian", slot, new Map([[1, 2]]), 30), { text: "Fatalis" });
   assert.deepEqual(renameIn("Ratatouille", slot, swap, 30), { text: "Ratatouille" });
   // "pink Rathian" reads as Rathian, but it names Pink Rathian: leave it whole.
   assert.deepEqual(renameIn("Hunt the pink Rathian", slot, new Map([[37, 1]]), 30), {
@@ -189,13 +220,16 @@ test("swaps rename the monster in quest text where it's safe, and list the rest"
         assert.equal(parsed.strings?.monsters, "Pink Rathian\nVelociprey");
         assert.equal(parsed.strings?.details, "The Pink Rathian has\nbeen seen nearby.");
         assert.equal(parsed.strings?.title, "The Queen of the Land");
+        // German's monster list names the monster bare, with no article to agree with.
+        const german = readQuestText(after, parsed.header).blocks.find((b) => b.slots.includes(2))!;
+        assert.equal(german.texts[4], "Rosa Rathian\nVelociprey");
         renamed++;
       } else {
         // 2001's only room is its monster list, shared by English and German
         // while they match: the goal goes first and takes it.
         assert.equal(g[1], "Hunt the Pink Rathian");
         assert.equal(parseQuest(after).strings?.monsters, "Rathian\nVelociprey");
-        assert.match(spoiler, /Text kept \(Japanese\/English\/Korean\): monsters: no room/);
+        assert.match(spoiler, /Text kept \(Japanese\/English\/Korean, German\): monsters: no room/);
       }
       assert.match(spoiler, /Text kept \(German\): goal: Pink Rathian takes another article/);
     }
