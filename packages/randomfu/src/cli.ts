@@ -6,7 +6,6 @@ import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { ebootInfo } from "./eboot-info.js";
 import { loadGame } from "./game/load.js";
 import { randomSeed } from "./rng.js";
 import { runRandomizer } from "./run.js";
@@ -122,13 +121,12 @@ export function settingsFromFlags(flags: Record<string, string>): Settings {
 
 const USAGE = `Usage:
   randomize --iso <in.iso|in.cso> --out <out.iso> [settings] [--spoiler <path>]
-            [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--force]
+            [--pspdecrypt-bin <name>] [--force]
   randomize --iso <in> --dry-run [settings]         print the spoiler log, write nothing
   roundtrip --iso <in>                              check files re-encrypt to the disc's bytes
-  eboot-info --iso <in> [--eboot <dump>]            how the disc's EBOOT decrypts (vs a dump)
   gui [--port <n>] [--no-open]                      open the settings page in a browser
   settings [--write <file.json>]                    list every setting, or write the defaults
-  shop-scan --iso <in> [--eboot <dump>] [--out <report.txt>]
+  shop-scan --iso <in> [--out <report.txt>]
                                                     research: look for the shops' item lists
   shop-lists --iso <in> [--out <report.txt>]        research: map the shop lists in lobby_task.ovl
 
@@ -193,7 +191,6 @@ export async function main(argv: string[]): Promise<void> {
           iso: requireFlag(flags, "iso"),
           out: dryRun ? null : requireFlag(flags, "out"),
           settings: settingsFromFlags(flags),
-          eboot: flags.eboot,
           pspdecryptBin: flags["pspdecrypt-bin"],
           spoiler: flags.spoiler,
           force: flags.force === "true",
@@ -205,9 +202,6 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "roundtrip":
       return runRoundTrip(flags);
-    case "eboot-info":
-      for (const line of ebootInfo(requireFlag(flags, "iso"), flags.eboot)) console.log(line);
-      return;
     case "gui": {
       const { startGui } = await import("./gui/server.js");
       await startGui({
@@ -218,9 +212,7 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "shop-scan": {
       const { formatShopScan, runShopScan } = await import("./research/shop-scan.js");
-      const candidates = await runShopScan(requireFlag(flags, "iso"), flags.eboot, (l) =>
-        console.log(l),
-      );
+      const candidates = await runShopScan(requireFlag(flags, "iso"), (l) => console.log(l));
       const report = formatShopScan(candidates);
       if (flags.out) {
         writeFileSync(flags.out, `${report}\n`, "utf-8");

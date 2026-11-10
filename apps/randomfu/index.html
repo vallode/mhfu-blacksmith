@@ -144,39 +144,6 @@
       <!-- The option steps are built from OPTIONS here. -->
       <div id="option-panels"></div>
 
-      <!-- The decrypted EBOOT, only when the settings need it -->
-      <section class="panel" data-step="eboot" hidden>
-        <p class="intro">
-          These settings change the game's EBOOT, its program, which is encrypted on the disc.
-          RandomFU couldn't decrypt yours itself (<span id="eboot-why"></span>), so it needs a
-          decrypted copy, which PPSSPP can make for you:
-        </p>
-        <ul class="eboot-list" id="eboot-list"></ul>
-        <ol class="howto">
-          <li>In PPSSPP, open Settings → Tools → Developer tools.</li>
-          <li>Turn on “Dump Decrypted Eboot.bin on game boot”.</li>
-          <li>Start the game once. The file is in <code>PSP/SYSTEM/DUMP</code>.</li>
-        </ol>
-        <label class="drop" id="eboot-drop">
-          <span
-            class="drop-icon icon"
-            style="--icon: url(images/deco.png); --tint: var(--color-gem-cyan)"
-          ></span>
-          <span class="drop-text">
-            <span class="drop-title" id="eboot-name">Choose your decrypted EBOOT</span>
-            <span class="drop-hint">or drop it here</span>
-          </span>
-          <span class="drop-mark" id="eboot-mark" aria-hidden="true"></span>
-          <input type="file" id="eboot" class="visually-hidden" />
-        </label>
-        <p class="status" id="eboot-status" role="status"></p>
-        <div class="row">
-          <button type="button" class="button secondary" id="drop-eboot">
-            Turn these settings off instead
-          </button>
-        </div>
-      </section>
-
       <!-- Review, share and run -->
       <section class="panel" data-step="review" hidden>
         <p class="intro">Check your choices, then randomize. Select a step to change it.</p>

@@ -77,29 +77,16 @@ test("randomizing through an overlay gives exactly the image patching the file d
   writeEdits(disk, game1, randomize(game1, settings).edits);
   disk.close();
 
-  // In memory, as the browser does it, with the EBOOT given as a dump.
+  // In memory, as the browser does it, decrypting in-process only.
   const overlay = new OverlaySource(new FileSource(input));
   const image = new PatchableImage(overlay);
   const eboot = image.iso.readFile("/PSP_GAME/SYSDIR/EBOOT.BIN");
   assert.equal(eboot.length, EBOOT_SIZE);
-  const game2 = await loadGame(overlay, image.iso, { eboot: { dump: eboot } });
+  const game2 = await loadGame(overlay, image.iso, { eboot: { external: false } });
   writeEdits(image, game2, randomize(game2, settings).edits);
   const fromOverlay = assemble(overlay, original);
   overlay.close();
 
   assert.ok(fromOverlay.equals(readFileSync(output)), "byte for byte the same");
   assert.ok(!fromOverlay.equals(original));
-});
-
-test("an EBOOT dump that isn't decrypted is refused", async () => {
-  const dir = tempDir();
-  const input = path.join(dir, "disc.iso");
-  writeFileSync(input, buildFixtureDisc());
-  const overlay = new OverlaySource(new FileSource(input));
-  const image = new PatchableImage(overlay);
-  await assert.rejects(
-    loadGame(overlay, image.iso, { eboot: { dump: Buffer.from("~PSP encrypted") } }),
-    /isn't decrypted/,
-  );
-  overlay.close();
 });
