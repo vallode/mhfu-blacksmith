@@ -47,8 +47,8 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
   4px per step (`--spacing: 0.4rem`): `p-4` = 16px, `gap-2` = 8px.
 - **Text comes in four sizes,** the `--text-*` tokens in `@theme`. Use these
   instead of `text-[…rem]`:
-  - `text-main` (22px, 20px on phones): the game's text. Lists, values,
-    titles and selector bars; `Card`'s default.
+  - `text-main` (22px, 20px on phones up to 600px): the game's text.
+    Lists, values, titles and selector bars; `Card`'s default.
   - `text-sub` (18px): labels, notices and set-builder rows.
   - `text-small` (16px): descriptions, tabs, meta lines and settings.
   - `text-fine` (14px): hints, badges and the dense hitzone table.
@@ -65,8 +65,17 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
 - **Size text columns in character cells, not `ch`.** `1ch` is only the
   glyph; a cell is the glyph plus tracking (`--cell`). `w-cells-10` fits ten
   characters.
-- **Phone layout uses the `mobile:` variant** (600px wide and below), which
-  matches the original media queries. Use it rather than `sm:`/`md:`.
+- **Layouts use the site's own width variants,** not `sm:`/`md:`:
+  - `mobile:` (below 900px: phones and portrait tablets): one pane at a time,
+    with the tab bar along the bottom.
+  - `compact:` (900px to 1199px: landscape tablets, small laptops): two
+    panes, with the sidebar an icon rail that opens over the page. The detail
+    pane is about as narrow as a phone here, so dense content (hitzone and
+    melody tables, two-across drop lists) usually takes its phone styling
+    under `compact:` too.
+  - `wide:` (1200px and up): the full sidebar, which the user can collapse.
+
+  `text-main` steps down to 20px only on phones proper (600px and below).
 
 ### Custom utilities
 
@@ -122,8 +131,8 @@ scale's names, so `text-main` and `text-gold` don't replace each other, and
 
 ### Checking styling changes
 
-There are no style tests, so check changes in a browser at desktop (1400px)
-and phone (390px) widths.
+There are no style tests, so check changes in a browser at desktop (1400px),
+compact (900px and 1024px), tablet (768px) and phone (390px) widths.
 
 For refactors that shouldn't change the look, compare against the previous
 version: screenshots, or `getComputedStyle` of the affected elements. Some

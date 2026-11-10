@@ -185,9 +185,18 @@
 
 /* ─── Custom variants ────────────────────────────────────────────────────────── */
 
-/* Phone layout: `mobile:flex-col` applies at 600px wide and below, matching
-   the `@media screen and (max-width: 600px)` queries in the CSS modules. */
-@custom-variant mobile (@media screen and (max-width: 600px));
+/* Breakpoints. The layout has three widths:
+   - mobile (below 900px: phones and portrait tablets): one pane at a time,
+     with the tab bar along the bottom. `mobile:flex-col`. The bare media
+     queries below (body, .split-page) and ModelPopover's STACKED use the
+     same width; change them together.
+   - compact (900px to 1199px: landscape tablets and small laptops): two
+     panes, with the sidebar an icon rail that opens over the page.
+   - wide (1200px and up): the full sidebar, which the user can collapse.
+   Phones proper (600px and below) also set text-main a step smaller. */
+@custom-variant mobile (@media screen and (max-width: 899px));
+@custom-variant compact (@media screen and (min-width: 900px) and (max-width: 1199px));
+@custom-variant wide (@media screen and (min-width: 1200px));
 
 /* ─── Custom utilities ─────────────────────────────────────────────────────────
    Effects that are awkward as utility class strings. They work with variants
@@ -361,7 +370,7 @@ body {
     z-index: -1;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 899px) {
     height: auto;
     min-height: 100%;
   }
@@ -501,7 +510,7 @@ img {
     min-width: 0;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 899px) {
     flex-direction: column;
   }
 }

@@ -408,7 +408,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                             <p
                               key={coating}
                               className={cn(
-                                "w-[calc(50%-13px)] mobile:w-full",
+                                "w-[calc(50%-13px)] mobile:w-full compact:w-full",
                                 !usable && "text-unavailable",
                               )}
                             >
