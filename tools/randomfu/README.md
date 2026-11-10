@@ -52,7 +52,7 @@ websites can't use it. Keep `pnpm gui` running while you use the page.
 `web/` is the same randomizer as a static web app that runs entirely in the
 browser. It's a step-by-step builder: pick your ISO, choose a seed and a
 preset (or load a shared settings string), go through the options a group
-at a time (Logic, Rewards, Gathering, Smithy, Shops), review, and download
+at a time (Logic, Rewards, Gathering, Monsters, Smithy, Shops), review, and download
 the randomized ISO and spoiler log. Nothing is uploaded. Settings that
 change the EBOOT decrypt the disc's own in the browser; only if that fails
 does the app ask for a PPSSPP EBOOT dump.
@@ -171,6 +171,21 @@ added there shows up everywhere.
 | `shops.priceSpread`               | 0.5         | How far prices move                                                              |
 | `shops.stacks`                    | off         | Randomize carry limits of what shops sell (EBOOT)                                |
 | `shops.stackSpread`               | 0.5         | How far carry limits move                                                        |
+| `questMonsters.species`           | off         | Swap large monsters in quests                                                    |
+| `questMonsters.speciesPool`       | `variants`  | Into one of their `variants`, any monster of the same `rank`, or `any`           |
+| `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                        |
+| `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                      |
+| `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                    |
+| `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                   |
+| `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                              |
+| `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                 |
+| `monsterStats.hpSpread`           | 0.25        | How far HP moves                                                                 |
+| `monsterStats.size`               | off         | Randomize each monster's base size                                               |
+| `monsterStats.sizeSpread`         | 0.2         | How far size moves (at most 50%)                                                 |
+| `monsterStats.status`             | off         | Randomize poison, paralysis, sleep and KO resistance                             |
+| `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                         |
+| `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                      |
+| `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                |
 
 ## Shuffles
 
@@ -187,6 +202,9 @@ No shuffle changes a list's length, so every edited file keeps its size.
 | `weapons`         | Weapon create and upgrade entries in the EBOOT      | Which weapon each place makes (see below)            |
 | `armor`           | Armor create entries in the EBOOT                   | Which piece each place makes (see below)             |
 | `shops`           | Shop item lists in `lobby_task.ovl`                 | Which items each shop sells (see below)              |
+| quest monsters    | Spawn records in each quest `.mib`                  | Which large monsters, their level, small counts      |
+| monster stats     | Each monster's `emChunk` in `game_task.ovl`         | Base HP, size, status resistance                     |
+| weaknesses        | Hitzone tables in `game_task.ovl`                   | Elemental weaknesses and weak spots                  |
 
 ### Logic
 
@@ -310,6 +328,58 @@ commands that found them.
   its rarity (100z × (rarity + 1)²), so nothing is free; that needs the
   EBOOT, so without it, wide pools may sell some items for free.
 
+### Monsters
+
+None of the monster options have been tried on a real disc yet, so they're
+in no preset. They're all in-place edits, so every file keeps its size.
+
+**Quest monsters** (`src/shuffles/quest-monsters.ts`) edit the spawn
+records of Village and Guild quests (`src/game/spawns.ts`): each
+`LargeMonData` and `SmallMonData` record, and the large monsters' preload
+list (`emLoadTable`).
+
+- **Species.** A swap rewrites every data and preload entry for the
+  monster, and the header's `TargetID` if it names it. A monster only goes
+  to a map (day and night alike) where a Village or Guild quest already has
+  it as a large monster: Lao-Shan Lung stays at the Fortress, and swimmers
+  stay where there's water, lava or sand. Each species' code is in an
+  `emNN.ovl`, and those share load addresses, so nothing shows which
+  monsters can be loaded together. Variants use their base species'
+  overlay, so `variants` (Rathian, Pink Rathian, Gold Rathian; Velocidrome,
+  Gendrome, Iodrome, Giadrome; ... `MONSTER_FAMILIES`) changes every quest;
+  `rank` and `any` only change quests with one kind of large monster. The
+  quest's text and any monster in its script (not decoded) still name the
+  old monster. Carves follow the monster: the reward shuffles and recipe
+  check use the star levels monsters are met at after the swap.
+- **Difficulty** is the `power` byte, the row of the quest's stat
+  multiplier table (HP, attack, defense, status; mhfu-extract
+  `monsters/multipliers.ts`). New levels stay within the levels Village and
+  Guild quests using the same table set use (header rank 0 picks set 0,
+  the rest set 1), and with `rank`, the same rank too: rows past those may
+  be filler.
+- **Small monster counts** are the records' quantity byte, scaled and kept
+  between 1 and the most any quest has. Counts of 0 and 99 (which looks
+  like "keeps coming") are left alone.
+
+**Monster stats and weaknesses** (`src/shuffles/monster-stats.ts`) edit the
+`emChunk` of every monster some quest spawns, in `game_task.ovl`
+(mhfu-extract `monsters/hitzones.ts`), so they apply everywhere the
+monster appears. Chunks for non-monsters are left alone, and so are
+hitzone tables they share.
+
+- **HP** is the u16 base HP (`+0x100`), **size** the f32 base scale
+  (`+0x40`), **status resistance** the `initial` and `increase` fields of
+  paralysis, KO, sleep and poison (`+0x110`); 0 and 0xFFFF stay.
+- **Elements**: one random order of fire, water, ice, thunder and dragon
+  per monster, applied to every row of every hitzone table.
+- **Weak spots**: one random order of the monster's body-part rows, applied
+  to each of its tables (normal, broken, enraged), moving the nine values
+  and leaving each row's lead byte. Only rows the site names a part for
+  (mhfu-extract `overlay/monsters.json`) take part, since the rest may be
+  filler; small monsters (one row) don't change. Breaks and flinch
+  thresholds belong to the body part, not the row, so they don't move.
+  Variants that share their base species' tables change with it.
+
 ## How it writes the disc
 
 - **DATA.BIN** files are encrypted with a key seeded from their start
@@ -328,9 +398,19 @@ commands that found them.
 
 - Whether files inside DATA.BIN can grow. Needed for quest edits that add
   data, such as new monsters.
-- Monster swaps in quests: each `LargeMonTable` also has a preload list
-  (`emLoadTable`) that would need updating, and which monsters can share a
-  quest is limited by overlay memory.
+- Which monsters can share a quest. Swaps update the preload list
+  (`emLoadTable`), but overlay memory limits which species load together,
+  so wide swaps only touch quests with one kind of large monster.
+- Whether a swapped monster can spawn in its predecessor's starting area
+  (`LargeMonData.Stage`): swaps only check the map.
+- Per-quest monster size. The header's `MonSizeModifier` and the large
+  monsters' `attr1`/`attr2` bytes are undecoded, so size changes are per
+  species (the chunk's base scale), and whether the hitboxes scale with it
+  is untested.
+- Large monster counts. What `quantity` means for a large monster, and how
+  it relates to the header's `TargetNum` and the quest script, isn't known.
+- Attack patterns and animations. Monster AI lives in code (`game_task.ovl`
+  and each `emNN.ovl`) and the motion banks (each `emmodel/emNN.pac`'s entry 3) aren't decoded, so there's nothing to shuffle yet.
 
 ## Tests
 

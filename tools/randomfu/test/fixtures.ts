@@ -1,7 +1,8 @@
 /**
  * A tiny synthetic disc for tests: an ISO 9660 image with PARAM.SFO, a plain
  * ELF-magic EBOOT.BIN with a few recipes, and an encrypted DATA.BIN holding
- * three quests, `game_task.ovl` and a `game_sub.ovl` with reward tables.
+ * five quests, a `game_task.ovl` with monster chunks and hitzones, and a
+ * `game_sub.ovl` with reward tables.
  * No game data: every value is made up.
  */
 import { mkdtempSync } from "node:fs";
@@ -17,6 +18,15 @@ import {
   CARVE_INDEX_SIZE,
   CARVE_POINTER_COUNT,
 } from "../../mhfu-extract/src/monsters/rewards.js";
+import {
+  BASE_HP_OFFSET,
+  GAME_TASK_JP,
+  HITZONE_POINTER_OFFSET,
+  HITZONE_ROW_SIZE,
+  MONSTER_CHUNK_COUNT,
+  MONSTER_CHUNK_SIZE,
+  TOLERANCE_OFFSET,
+} from "../../mhfu-extract/src/monsters/hitzones.js";
 import { encryptQuestBlock, questHash, QUEST_MAGIC } from "../../mhfu-extract/src/quests/mib.js";
 import { BinaryReader } from "../../mhfu-extract/src/binary/reader.js";
 import {
@@ -185,6 +195,10 @@ export interface FixtureQuest {
   rank: number;
   stars: number;
   monsters: number[];
+  /** Each large monster's difficulty level (`power`); 0 if not given. */
+  powers?: number[];
+  /** Small monsters: `[emID, quantity]`, in one table. */
+  small?: [number, number][];
   rewards: FixtureReward[][];
   gathering?: FixtureGathering;
 }
@@ -235,13 +249,37 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   q.monsters.forEach((id, i) => {
     data.writeUInt16LE(id, i * 60);
     data[i * 60 + 4] = 1;
+    data[i * 60 + 5] = q.powers?.[i] ?? 0;
   });
   data.writeInt16LE(-1, q.monsters.length * 60);
   const dataPtr = place(data);
+  const preload = [...new Set(q.monsters)];
+  const loads = Buffer.alloc(preload.length * 4 + 4);
+  preload.forEach((id, i) => loads.writeUInt16LE(id, i * 4));
+  loads.writeInt16LE(-1, preload.length * 4);
+  const loadsPtr = place(loads);
   const table = Buffer.alloc(32);
   table.writeUInt32LE(1, 0);
+  table.writeUInt32LE(loadsPtr, 8);
   table.writeUInt32LE(dataPtr, 12);
   const largeMonPtr = place(table);
+  let smallMonPtr = 0;
+  if (q.small) {
+    const smallData = Buffer.alloc(q.small.length * 60 + 2);
+    q.small.forEach(([id, quantity], i) => {
+      smallData.writeUInt16LE(id, i * 60);
+      smallData[i * 60 + 4] = quantity;
+    });
+    smallData.writeUInt16LE(0xffff, q.small.length * 60);
+    const smallDataPtr = place(smallData);
+    const smallTable = Buffer.alloc(20);
+    smallTable.writeUInt16LE(1, 0); // stage
+    smallTable.writeUInt32LE(smallDataPtr, 12);
+    const smallTablePtr = place(smallTable);
+    const index = Buffer.alloc(8);
+    index.writeUInt32LE(smallTablePtr, 0);
+    smallMonPtr = place(index);
+  }
   let gatheringLocPtr = 0;
   let gatheringItemsPtr = 0;
   if (q.gathering) {
@@ -281,12 +319,14 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   QUEST_MAGIC.copy(header, 0);
   header.writeUInt32LE(rewardsPtr, 12);
   header.writeUInt32LE(largeMonPtr, 20);
+  header.writeUInt32LE(smallMonPtr, 24);
   header.writeUInt32LE(gatheringLocPtr, 28);
   header.writeUInt32LE(gatheringItemsPtr, 36);
   header[68] = q.rank;
   header.writeUInt16LE(q.questId, 100);
   header[102] = q.stars;
   header[104] = GATHERING_MAP;
+  header.writeUInt16LE(q.monsters[0] ?? 0, 112); // TargetID
   return Buffer.concat([header, ...parts]);
 }
 
@@ -310,6 +350,72 @@ function ovlHeader(name: string, loadBase: number, dataSize: number): Buffer {
   buf.writeUInt32LE(loadBase, 8);
   buf.writeUInt32LE(loadBase + buf.length, 0x1c);
   buf.write(name, 0x20, "latin1");
+  return buf;
+}
+
+export const TASK_LOAD = 0x09a5a580;
+
+/** Hitzone row values (cut, bash, shot, fire, water, ice, thunder, dragon, KO), all different. */
+export function fixtureHitzone(emId: number, table: number, row: number): number[] {
+  return Array.from({ length: 9 }, (_, c) => ((emId * 7 + table * 31 + row * 11 + c * 5) % 97) + 1);
+}
+
+/**
+ * Monster chunks with hitzone tables: monster -> number of tables. Pink
+ * Rathian (37) shares Rathian's (1); every other chunk points at one filler
+ * table, as non-monsters do on the disc.
+ */
+export const FIXTURE_HITZONE_TABLES: Record<number, number> = { 1: 2, 2: 1, 16: 1 };
+export const FIXTURE_SHARED_HITZONES: Record<number, number> = { 37: 1 };
+export const FILLER_HITZONE = 0;
+
+/** Base HP: 100 + emID, so every chunk counts as a monster. */
+export const fixtureHp = (emId: number) => 100 + emId;
+
+/** Tolerance fields (+0x110) set on every monster: paralysis initial/increase, poison initial/increase. */
+export const FIXTURE_TOLERANCES = { paralysis: [150, 100], poison: [180, 75] } as const;
+
+/** `game_task.ovl` with `MonChunk[90]` at JP's file offset. */
+export function buildGameTask(): Buffer {
+  const chunks = GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase;
+  let at = chunks + MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
+  const tables: { emId: number; at: number; count: number }[] = [];
+  for (const [emId, count] of [[FILLER_HITZONE, 1], ...Object.entries(FIXTURE_HITZONE_TABLES)]) {
+    tables.push({ emId: Number(emId), at, count: Number(count) });
+    // count pointers + terminator, then count tables of 7 rows + a zero u16.
+    at += (Number(count) + 1) * 4 + Number(count) * (7 * HITZONE_ROW_SIZE + 4);
+  }
+  const buf = ovlHeader("game_task.ovl", TASK_LOAD, at - 0x80);
+  const vaddr = (offset: number) => TASK_LOAD + offset;
+  const listOf = new Map<number, number>();
+  for (const { emId, at: list, count } of tables) {
+    listOf.set(emId, list);
+    let rows = list + (count + 1) * 4;
+    for (let t = 0; t < count; t++) {
+      buf.writeUInt32LE(vaddr(rows), list + t * 4);
+      for (let r = 0; r < 7; r++) {
+        const row = rows + r * HITZONE_ROW_SIZE;
+        buf[row] = 100 - r * 10;
+        fixtureHitzone(emId, t, r).forEach((v, c) => (buf[row + 1 + c] = v));
+      }
+      rows += 7 * HITZONE_ROW_SIZE + 4;
+    }
+  }
+  for (let emId = 0; emId < MONSTER_CHUNK_COUNT; emId++) {
+    const chunk = chunks + emId * MONSTER_CHUNK_SIZE;
+    buf.writeFloatLE(1, chunk + 0x40);
+    buf.writeUInt16LE(fixtureHp(emId), chunk + BASE_HP_OFFSET);
+    const owner = FIXTURE_SHARED_HITZONES[emId] ?? emId;
+    buf.writeUInt32LE(
+      vaddr(listOf.get(owner) ?? listOf.get(FILLER_HITZONE)!),
+      chunk + HITZONE_POINTER_OFFSET,
+    );
+    const tol = chunk + TOLERANCE_OFFSET;
+    buf.writeUInt16LE(FIXTURE_TOLERANCES.paralysis[0], tol);
+    buf.writeUInt16LE(FIXTURE_TOLERANCES.paralysis[1], tol + 8);
+    buf.writeUInt16LE(FIXTURE_TOLERANCES.poison[0], tol + 40);
+    buf.writeUInt16LE(FIXTURE_TOLERANCES.poison[1], tol + 52);
+  }
   return buf;
 }
 
@@ -670,7 +776,8 @@ export const LOBBY_TASK_INDEX = 50;
 
 /**
  * Low Rank 1★: quests 1001 (monster 1, mines item 120) and 10102 (a Village
- * quest with only gathering points); Low Rank 2★: quest 10101 (monster 2);
+ * quest with only gathering points, and monsters 1 and 37); Low Rank 2★:
+ * quest 10101 (monster 2);
  * High Rank 6★: quest 2001 (monster 1). Items 1xx are Low Rank, 2xx High
  * Rank. Every Village and Guild quest has gathering points.
  */
@@ -697,6 +804,11 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       areas: { 0: [0, 0], 3: [2, 3] },
     },
     monsters: [1],
+    powers: [3],
+    small: [
+      [16, 5],
+      [69, 99],
+    ],
     rewards: [
       [
         { chance: 60, itemId: 110, amount: 1 },
@@ -719,6 +831,8 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       areas: { 0: [0] },
     },
     monsters: [2],
+    powers: [6],
+    small: [[16, 2]],
     rewards: [[{ chance: 100, itemId: 113, amount: 3 }]],
   },
   {
@@ -736,6 +850,8 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       areas: { 0: [0], 2: [1] },
     },
     monsters: [1],
+    powers: [12],
+    small: [[16, 8]],
     rewards: [
       [
         { chance: 70, itemId: 210, amount: 1 },
@@ -766,7 +882,9 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       ],
       areas: { 1: [0] },
     },
-    monsters: [1],
+    // Two kinds of large monster: only variant swaps change it.
+    monsters: [1, 37],
+    powers: [4, 4],
     rewards: [],
   },
 ];
@@ -938,7 +1056,7 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   FIXTURE_QUESTS.forEach((q, i) =>
     files.set(QUEST_INDICES[i]!, buildQuestEntry(buildQuestPayload(q))),
   );
-  files.set(GAME_TASK_INDEX, ovlHeader("game_task.ovl", 0x09a5a580, 0x100));
+  files.set(GAME_TASK_INDEX, buildGameTask());
   files.set(GAME_SUB_INDEX, buildGameSub(FIXTURE_CARVES, FIXTURE_CAPTURES));
   files.set(LOBBY_TASK_INDEX, buildLobbyTask().buf);
   files.set(22, Buffer.from("stored raw"));

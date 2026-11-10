@@ -75,6 +75,15 @@ const OPTION_STEPS: Step[] = [
     intro: "What mining, gathering and bug catching points give you.",
   },
   {
+    id: "monsters",
+    title: "Monsters",
+    icon: "part",
+    tint: "var(--color-gem-orange)",
+    sections: ["Quest monsters", "Monster stats", "Weaknesses"],
+    intro:
+      "Which monsters quests have and how tough they are. These are new and untested on a real disc: try a quest before a long run.",
+  },
+  {
     id: "smithy",
     title: "Smithy",
     icon: "hammer",

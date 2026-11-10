@@ -37,6 +37,21 @@ export interface Settings {
   "shops.priceSpread": number;
   "shops.stacks": boolean;
   "shops.stackSpread": number;
+  "questMonsters.species": boolean;
+  "questMonsters.speciesPool": "variants" | "rank" | "any";
+  "questMonsters.difficulty": boolean;
+  "questMonsters.difficultySpread": number;
+  "questMonsters.difficultyRange": "rank" | "any";
+  "questMonsters.smallCounts": boolean;
+  "questMonsters.smallCountSpread": number;
+  "monsterStats.hp": boolean;
+  "monsterStats.hpSpread": number;
+  "monsterStats.size": boolean;
+  "monsterStats.sizeSpread": number;
+  "monsterStats.status": boolean;
+  "monsterStats.statusSpread": number;
+  "weaknesses.elements": boolean;
+  "weaknesses.parts": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -382,6 +397,166 @@ export const OPTIONS: readonly OptionDef[] = [
     type: SPREAD,
     default: 0.5,
     enabledBy: "shops.stacks",
+  },
+  {
+    key: "questMonsters.species",
+    section: "Quest monsters",
+    label: "Swap large monsters",
+    help: "Village and Guild quests get other large monsters. A monster only goes to a map it's found on somewhere in the game, and the quest's target follows it. Quest text still names the old monster. Untested on a real disc.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "questMonsters.speciesPool",
+    section: "Quest monsters",
+    label: "Which monsters can appear",
+    help: "What a quest's large monsters can turn into.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "variants",
+          label: "Variants only",
+          help: "A monster becomes one of its own variants: Rathian, Pink Rathian or Gold Rathian. Quests with several monsters change too.",
+        },
+        {
+          value: "rank",
+          label: "Any monster from the same rank",
+          help: "Any large monster met in a quest of the same rank (Low, High or G). Only quests with one kind of large monster change.",
+        },
+        {
+          value: "any",
+          label: "Any monster (chaos)",
+          help: "Any large monster found on the quest's map, at any rank. Only quests with one kind of large monster change.",
+        },
+      ],
+    },
+    default: "variants",
+    enabledBy: "questMonsters.species",
+  },
+  {
+    key: "questMonsters.difficulty",
+    section: "Quest monsters",
+    label: "Randomize monster difficulty",
+    help: "Each large monster in a Village or Guild quest gets another difficulty level: the row of HP, attack and defense multipliers the quest picks for it.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "questMonsters.difficultySpread",
+    section: "Quest monsters",
+    label: "Difficulty variation",
+    help: "How many difficulty levels a monster can move, up or down (there are 32).",
+    type: { kind: "number", min: 1, max: 31, step: 1 },
+    default: 4,
+    enabledBy: "questMonsters.difficulty",
+  },
+  {
+    key: "questMonsters.difficultyRange",
+    section: "Quest monsters",
+    label: "Difficulty limits",
+    help: "How hard or easy a monster can get.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rank",
+          label: "Within its rank",
+          help: "Only levels quests of the same rank use: a Low Rank monster never gets G Rank multipliers.",
+        },
+        {
+          value: "any",
+          label: "Any level (chaos)",
+          help: "Any level a Village or Guild quest uses. Low Rank monsters can hit like G Rank ones.",
+        },
+      ],
+    },
+    default: "rank",
+    enabledBy: "questMonsters.difficulty",
+  },
+  {
+    key: "questMonsters.smallCounts",
+    section: "Quest monsters",
+    label: "Randomize small monster counts",
+    help: "How many of each small monster a Village or Guild quest has. Never more than any quest has on the disc.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "questMonsters.smallCountSpread",
+    section: "Quest monsters",
+    label: "Count variation",
+    help: "How far a count can move, up or down.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "questMonsters.smallCounts",
+  },
+  {
+    key: "monsterStats.hp",
+    section: "Monster stats",
+    label: "Randomize monster HP",
+    help: "Each monster's base HP changes, everywhere it appears. Quests still multiply it by their own difficulty.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "monsterStats.hpSpread",
+    section: "Monster stats",
+    label: "HP variation",
+    help: "How far HP can move, up or down.",
+    type: SPREAD,
+    default: 0.25,
+    enabledBy: "monsterStats.hp",
+  },
+  {
+    key: "monsterStats.size",
+    section: "Monster stats",
+    label: "Randomize monster size",
+    help: "Each monster's base size changes, everywhere it appears. Untested on a real disc: big changes may look or play oddly.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "monsterStats.sizeSpread",
+    section: "Monster stats",
+    label: "Size variation",
+    help: "How far size can move, up or down.",
+    type: { kind: "number", min: 0, max: 0.5, step: 0.05, percent: true },
+    default: 0.2,
+    enabledBy: "monsterStats.size",
+  },
+  {
+    key: "monsterStats.status",
+    section: "Monster stats",
+    label: "Randomize status resistance",
+    help: "How much poison, paralysis, sleep and KO damage each monster takes before it's affected, and how much more each time after.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "monsterStats.statusSpread",
+    section: "Monster stats",
+    label: "Resistance variation",
+    help: "How far a resistance can move, up or down.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "monsterStats.status",
+  },
+  {
+    key: "weaknesses.elements",
+    section: "Weaknesses",
+    label: "Shuffle elemental weaknesses",
+    help: "Each monster's fire, water, ice, thunder and dragon weaknesses trade places: a monster weak to fire may now be weak to ice instead. Every part keeps its overall profile.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "weaknesses.parts",
+    section: "Weaknesses",
+    label: "Shuffle weak spots",
+    help: "Each large monster's body parts trade hitzones: the head may now be as tough as the tail was. Breaks and flinches stay with the part.",
+    type: { kind: "boolean" },
+    default: false,
   },
 ];
 
