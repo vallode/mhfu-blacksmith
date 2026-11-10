@@ -175,20 +175,22 @@ test("difficulty levels move within the levels quests of the same rank use", asy
 
 test("small monster counts stay between 1 and the most any quest has; 99 stays", async () => {
   const { game, close } = await load();
-  const result = randomize(
-    game,
-    only("s", { "questMonsters.smallCounts": true, "questMonsters.smallCountSpread": 0.95 }),
-  );
   let changed = 0;
-  for (const id of [1001, 10101, 2001]) {
-    const quest = byId(game, id);
-    const before = readSpawns(quest.file.payload, quest.parsed.header).small;
-    const after = readSpawns(payloadAfter(result, quest), quest.parsed.header).small;
-    after.forEach((s, i) => {
-      if (before[i]!.quantity === 99) assert.equal(s.quantity, 99);
-      else assert.ok(s.quantity >= 1 && s.quantity <= 8, `${id}: ${s.quantity}`);
-      if (s.quantity !== before[i]!.quantity) changed++;
-    });
+  for (const seed of ["s0", "s1", "s2", "s3"]) {
+    const result = randomize(
+      game,
+      only(seed, { "questMonsters.smallCounts": true, "questMonsters.smallCountSpread": 0.95 }),
+    );
+    for (const id of [1001, 10101, 2001]) {
+      const quest = byId(game, id);
+      const before = readSpawns(quest.file.payload, quest.parsed.header).small;
+      const after = readSpawns(payloadAfter(result, quest), quest.parsed.header).small;
+      after.forEach((s, i) => {
+        if (before[i]!.quantity === 99) assert.equal(s.quantity, 99);
+        else assert.ok(s.quantity >= 1 && s.quantity <= 8, `${id}: ${s.quantity}`);
+        if (s.quantity !== before[i]!.quantity) changed++;
+      });
+    }
   }
   assert.ok(changed > 0);
   close();

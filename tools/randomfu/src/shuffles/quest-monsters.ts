@@ -18,8 +18,9 @@
  *   monster in a quest; the wider pools only touch quests with one kind of
  *   large monster, which then still have one.
  *
- * Not changed, so possibly wrong after a swap: the quest's text, and any
- * monster IDs in its script (`QuestScript`, not decoded).
+ * The quest's text is renamed separately (`quest-text.ts`). Not changed,
+ * so possibly wrong after a swap: any monster IDs in its script
+ * (`QuestScript`, not decoded).
  *
  * Difficulty is the `power` byte, the row of the quest's stat multiplier
  * table (HP, attack, defense, status: mhfu-extract `monsters/multipliers.ts`).
@@ -107,7 +108,12 @@ export function swapSpecies(
   rng: Rng,
   edits: Edits,
   allQuests: readonly LoadedQuest[],
-): { report: ShuffleReport; questsAfter: ParsedQuest[] } {
+): {
+  report: ShuffleReport;
+  questsAfter: ParsedQuest[];
+  /** Each changed quest's swaps (old emID -> new), by DATA.BIN index. */
+  swaps: Map<number, Map<number, number>>;
+} {
   const onMap = new Map<number, Set<number>>();
   const bands = new Map<number, Set<Band>>();
   for (const { quest, tier, spawns } of list) {
@@ -165,12 +171,13 @@ export function swapSpecies(
     pool === "variants"
       ? "Each large monster became one of its variants, on maps where that variant is found."
       : `Each large monster became any large monster found on the quest's map${pool === "rank" ? " at the quest's rank" : ""}.`,
-    "Quest text, and any monster in the quest's script, still names the old monster.",
+    "Any monster in the quest's script (not decoded) is still the old one.",
   ];
   if (mixed > 0)
     notes.push(`${mixed} quests with more than one kind of large monster were left alone.`);
   return {
     report: { title: "Quest monsters", notes, lines },
+    swaps: changed,
     questsAfter: allQuests.map((q) => {
       const mapping = changed.get(q.index);
       if (!mapping) return q.parsed;

@@ -201,7 +201,15 @@ export interface FixtureQuest {
   small?: [number, number][];
   rewards: FixtureReward[][];
   gathering?: FixtureGathering;
+  /**
+   * Quest text by `LangPTRs` slot: six strings (title, goal, fail, details,
+   * monsters, client) for a block of its own, the number of an earlier slot
+   * to share its block, or null for none. Strings are packed back to back.
+   */
+  text?: (FixtureText | number | null)[];
 }
+
+export type FixtureText = [string, string, string, string, string, string];
 
 /**
  * Gathering points: item tables as `[value, item]` pairs (or the index of
@@ -313,6 +321,24 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
     }
     gatheringLocPtr = place(areas);
   }
+  let stringPtrTbl = 0;
+  if (q.text) {
+    const own = q.text.map((t) =>
+      Array.isArray(t) ? t.map((str) => place(Buffer.from(`${str}\0`, "utf8"))) : null,
+    );
+    const blocks = own.map((ptrs) => {
+      if (!ptrs) return 0;
+      const block = Buffer.alloc(24);
+      ptrs.forEach((ptr, i) => block.writeUInt32LE(ptr, i * 4));
+      return place(block);
+    });
+    const table = Buffer.alloc(28);
+    q.text.forEach((t, i) => {
+      const block = typeof t === "number" ? blocks[t]! : t ? blocks[i]! : 0;
+      table.writeUInt32LE(block, i * 4);
+    });
+    stringPtrTbl = place(table);
+  }
   place(Buffer.from([0x55])); // odd length
 
   const header = Buffer.alloc(0x80);
@@ -322,6 +348,7 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   header.writeUInt32LE(smallMonPtr, 24);
   header.writeUInt32LE(gatheringLocPtr, 28);
   header.writeUInt32LE(gatheringItemsPtr, 36);
+  header.writeUInt32LE(stringPtrTbl, 96);
   header[68] = q.rank;
   header.writeUInt16LE(q.questId, 100);
   header[102] = q.stars;
@@ -781,6 +808,102 @@ export const LOBBY_TASK_INDEX = 50;
  * High Rank 6★: quest 2001 (monster 1). Items 1xx are Low Rank, 2xx High
  * Rank. Every Village and Guild quest has gathering points.
  */
+const FAIL_EN = "Reward Zero\nTime Over";
+const FAIL_DE = "Keine Belohnung\nZeit um";
+const en = (title: string, goal: string, details: string, monsters: string): FixtureText => [
+  title,
+  goal,
+  FAIL_EN,
+  details,
+  monsters,
+  "A Hunter",
+];
+const de = (title: string, goal: string, details: string, monsters: string): FixtureText => [
+  title,
+  goal,
+  FAIL_DE,
+  details,
+  monsters,
+  "Ein Jäger",
+];
+
+/**
+ * Invented quest text (not the game's) in an English slot (1, shared by 0
+ * and 6) and a German-style slot (2). German puts "die" before Rathian and
+ * "den" before the other two, so Rathian swaps keep their German text.
+ * Quest 1001 has its own copy of the English text in slot 0, as room to
+ * repack into; 2001's only room is its monster list, the same in both.
+ */
+export const FIXTURE_TEXT: Record<number, (FixtureText | number | null)[]> = {
+  1001: [
+    en(
+      "The Queen of the Land",
+      "Hunt the Rathian",
+      "The Rathian has\nbeen seen nearby.",
+      "Rathian\nVelociprey",
+    ),
+    en(
+      "The Queen of the Land",
+      "Hunt the Rathian",
+      "The Rathian has\nbeen seen nearby.",
+      "Rathian\nVelociprey",
+    ),
+    de("Die Königin", "Jage die Rathian", "Die Rathian wurde\ngesehen.", "Rathian\nVelociprey"),
+    null,
+    null,
+    null,
+    1,
+  ],
+  10101: [
+    1,
+    en(
+      "Black Dragon",
+      "Slay the Fatalis before\nit flies away",
+      "A black dragon was seen\nover the mountains.",
+      "Fatalis",
+    ),
+    de(
+      "Schwarzer Drache",
+      "Erlege den Fatalis bevor\ner wegfliegt",
+      "Ein schwarzer Drache wurde\nüber den Bergen gesehen.",
+      "Fatalis",
+    ),
+    null,
+    null,
+    null,
+    1,
+  ],
+  2001: [
+    1,
+    en("Rathian Returns", "Hunt the Rathian", "She's back.", "Rathian\nVelociprey"),
+    de("Rathian kehrt zurück", "Jage die Rathian", "Sie ist zurück.", "Rathian\nVelociprey"),
+    null,
+    null,
+    null,
+    1,
+  ],
+  20001: [1, en("Training", "Hunt the Rathian", "Practice.", "Rathian"), null, null, null, null, 1],
+  10102: [
+    1,
+    en(
+      "Two Queens",
+      "Hunt the Rathian and\nthe Pink Rathian",
+      "Both of them.",
+      "Rathian\nPink Rathian",
+    ),
+    de(
+      "Zwei Königinnen",
+      "Jage die Rathian und\nden Rosa Rathian",
+      "Beide.",
+      "Rathian\nRosa Rathian",
+    ),
+    null,
+    null,
+    null,
+    1,
+  ],
+};
+
 export const FIXTURE_QUESTS: FixtureQuest[] = [
   {
     questId: 1001,
@@ -1054,7 +1177,10 @@ export interface FixtureDiscOptions {
 export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   const files = new Map<number, Buffer>();
   FIXTURE_QUESTS.forEach((q, i) =>
-    files.set(QUEST_INDICES[i]!, buildQuestEntry(buildQuestPayload(q))),
+    files.set(
+      QUEST_INDICES[i]!,
+      buildQuestEntry(buildQuestPayload({ ...q, text: q.text ?? FIXTURE_TEXT[q.questId] })),
+    ),
   );
   files.set(GAME_TASK_INDEX, buildGameTask());
   files.set(GAME_SUB_INDEX, buildGameSub(FIXTURE_CARVES, FIXTURE_CAPTURES));

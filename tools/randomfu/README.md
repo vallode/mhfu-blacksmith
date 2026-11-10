@@ -173,6 +173,7 @@ added there shows up everywhere.
 | `shops.stackSpread`               | 0.5         | How far carry limits move                                                        |
 | `questMonsters.species`           | off         | Swap large monsters in quests                                                    |
 | `questMonsters.speciesPool`       | `variants`  | Into one of their `variants`, any monster of the same `rank`, or `any`           |
+| `questMonsters.text`              | on          | Rename swapped monsters in the quest's text                                      |
 | `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                        |
 | `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                      |
 | `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                    |
@@ -347,10 +348,42 @@ list (`emLoadTable`).
   monsters can be loaded together. Variants use their base species'
   overlay, so `variants` (Rathian, Pink Rathian, Gold Rathian; Velocidrome,
   Gendrome, Iodrome, Giadrome; ... `MONSTER_FAMILIES`) changes every quest;
-  `rank` and `any` only change quests with one kind of large monster. The
-  quest's text and any monster in its script (not decoded) still name the
-  old monster. Carves follow the monster: the reward shuffles and recipe
-  check use the star levels monsters are met at after the swap.
+  `rank` and `any` only change quests with one kind of large monster. Any
+  monster in the quest's script (not decoded, see below) is still the old
+  one. Carves follow the monster: the reward shuffles and recipe check use
+  the star levels monsters are met at after the swap.
+- **Text** (`questMonsters.text`, `src/shuffles/quest-text.ts`,
+  `src/game/quest-text.ts`). Swapped monsters are renamed in the quest's
+  six strings (title, goal, fail, details, monster list, client) in every
+  language slot. The slots follow the game's language IDs (Japanese,
+  English, German, French, Spanish, Italian, Korean; the EU disc puts
+  English in the Japanese and Korean slots).
+  - Names aren't shipped: they're learned from the disc's own quests, per
+    slot. The monster list is split into names; a monster's name is the
+    piece most often in the list and goal of quests that have it, and least
+    often in quests that don't. A piece two monsters share, or a tie, names
+    neither. The tests check this only on invented text: how the real
+    monster list is laid out (one name per line, or commas) hasn't been
+    seen, and if it isn't split as expected, no names are learned and no
+    text changes.
+  - A name's article is the word most often just before it in goals ("the",
+    "den", "l'"). A name is only replaced by one with the same article, so
+    German, French, Spanish and Italian text keeps the old name when the
+    new monster takes another article. Pronouns ("she", "sie") never
+    change.
+  - The text is wrapped by hand, so each field's longest line in that
+    language is its width, and a rename that makes a line longer is
+    skipped.
+  - The quest keeps its size. A rename that isn't longer is written in
+    place. Otherwise the quest's strings are repacked into the bytes they
+    already take (runs of strings with at most 3 zero bytes between them),
+    identical strings stored once (the JP disc shows the game reads shared
+    strings) and the pointers updated. If strings overlap or a pointer
+    table sits among them, nothing is moved. Room goes to the goal first,
+    then the monster list, title, client, fail text and details.
+  - A string that can't be renamed keeps its old text and is listed in the
+    spoiler log with why: no learned name, another article, too wide, or no
+    room.
 - **Difficulty** is the `power` byte, the row of the quest's stat
   multiplier table (HP, attack, defense, status; mhfu-extract
   `monsters/multipliers.ts`). New levels stay within the levels Village and
@@ -397,16 +430,32 @@ hitzone tables they share.
 ## Open questions
 
 - Whether files inside DATA.BIN can grow. Needed for quest edits that add
-  data, such as new monsters.
+  data, such as new monsters. Other tools rebuild DATA.BIN with bigger
+  files (IncognitoMan's `mhff`, which FUComplete uses, shifts every later
+  file), but the game also loads files into fixed buffers (FUComplete's
+  docs give per-file limits for player models), and nothing shows how big
+  a quest buffer is. A quest's payload also states its own size, so growing
+  it into its entry's sector padding is a change of size too. randomfu does
+  neither: quest text is repacked within the quest's own bytes.
 - Which monsters can share a quest. Swaps update the preload list
   (`emLoadTable`), but overlay memory limits which species load together,
   so wide swaps only touch quests with one kind of large monster.
 - Whether a swapped monster can spawn in its predecessor's starting area
   (`LargeMonData.Stage`): swaps only check the map.
 - Per-quest monster size. The header's `MonSizeModifier` and the large
-  monsters' `attr1`/`attr2` bytes are undecoded, so size changes are per
-  species (the chunk's base scale), and whether the hitboxes scale with it
-  is untested.
+  monsters' `attr1`/`attr2` bytes are undecoded, and no public source
+  decodes them, so size changes are per species (the chunk's base scale),
+  and whether the hitboxes scale with it is untested. mhfu-extract's
+  README ("Monster size") has what's known and how to settle it with a
+  disc; `extract --raw` dumps every candidate byte.
+- The quest script. Packets are an opcode and three arguments. In MH1,
+  opcode `02` sets a monster goal by monster ID; MHP2G's scripts look
+  generic across quests and its header has `TargetID`/`TargetNum`
+  (updated on a swap), so its goals probably come from the header, but
+  that isn't confirmed (mhfu-extract README, "Quest script"). If a script
+  does name the monster, a swapped quest would count the old one.
+- Quest text on a real disc: the monster list's layout, whether the EU
+  English slots share strings, and so how much room there is to rename.
 - Large monster counts. What `quantity` means for a large monster, and how
   it relates to the header's `TargetNum` and the quest script, isn't known.
 - Attack patterns and animations. Monster AI lives in code (`game_task.ovl`

@@ -28,6 +28,7 @@ import {
   randomizeSmallCounts,
   swapSpecies,
 } from "./shuffles/quest-monsters.js";
+import { renameQuestText } from "./shuffles/quest-text.js";
 import {
   collectMonsterChunks,
   randomizeMonsterStats,
@@ -98,6 +99,9 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     );
     reports.push(result.report);
     questsAfter = result.questsAfter;
+    if (settings["questMonsters.text"]) {
+      reports.push(renameQuestText(result.swaps, game.quests, edits));
+    }
   }
   if (settings["questMonsters.difficulty"]) {
     reports.push(

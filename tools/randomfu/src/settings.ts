@@ -39,6 +39,7 @@ export interface Settings {
   "shops.stackSpread": number;
   "questMonsters.species": boolean;
   "questMonsters.speciesPool": "variants" | "rank" | "any";
+  "questMonsters.text": boolean;
   "questMonsters.difficulty": boolean;
   "questMonsters.difficultySpread": number;
   "questMonsters.difficultyRange": "rank" | "any";
@@ -402,7 +403,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "questMonsters.species",
     section: "Quest monsters",
     label: "Swap large monsters",
-    help: "Village and Guild quests get other large monsters. A monster only goes to a map it's found on somewhere in the game, and the quest's target follows it. Quest text still names the old monster. Untested on a real disc.",
+    help: "Village and Guild quests get other large monsters. A monster only goes to a map it's found on somewhere in the game, and the quest's target follows it. Untested on a real disc.",
     type: { kind: "boolean" },
     default: false,
   },
@@ -432,6 +433,15 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "variants",
+    enabledBy: "questMonsters.species",
+  },
+  {
+    key: "questMonsters.text",
+    section: "Quest monsters",
+    label: "Rename monsters in quest text",
+    help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Untested on a real disc.",
+    type: { kind: "boolean" },
+    default: true,
     enabledBy: "questMonsters.species",
   },
   {
