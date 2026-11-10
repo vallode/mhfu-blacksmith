@@ -930,6 +930,22 @@ Other sources checked:
   4756; EU 4776-4790 fit quest, lobby and arcade strings for five
   languages). `quest-text-scan --quest <id>` finds where a quest's strings
   are stored on the disc and which table points at them.
+- **EU message files** (`quest-text-scan`, quest 10109).
+  - None of the quest's whole strings is stored anywhere else as UTF-8.
+  - The likely message files come in groups of five, one per language, with
+    the same layout:
+    - 19-23: 23 tables, about 445 KB each (`str_tbl`);
+    - 4776-4780: 2 tables, about 85 KB each;
+    - 4781-4785: 4 tables, about 300 KB each;
+    - 4786-4790: 1 table, about 38 KB each.
+  - The file list's names for 4788-4790 (`quest_str`, `lobby_str`,
+    `arcade_str`) come from matching JP indexes, so by content they're
+    three languages of one kind.
+  - Each file starts with a table count, then increasing offsets, and none
+    is a `.pac`.
+  - Whether the details screen's text is in one of them in another
+    encoding, or built from parts, is what the scan's word counts and
+    string bytes are for.
 - **Where else names live.** FUComplete's English text for the P2G disc
   (`FUComplete/Patch`, `data/str_tbl/`) has the monster names in
   `str_tbl.pac`'s first string table, and the JP file list has
