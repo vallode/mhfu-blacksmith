@@ -41,6 +41,7 @@ pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../.
 pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
 pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
+pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests.json --tsv .cache/mhfu/quest-size.tsv
 ```
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
@@ -63,6 +64,13 @@ pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
   from the disc".
 - `build-data` rewrites committed `data/` from the extracted output. See
   "Building `data/` from the disc".
+- `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
+  open quest questions (`src/emit/quest-probe.ts`): the values the monster
+  size candidates take, each script opcode and how often its arguments
+  equal the quest's `TargetID` or a large monster, and how quest text is
+  laid out. `--tsv` also writes every large monster record's candidate
+  bytes, one row per record. Numbers only. See "Monster size", "Quest
+  text" and "Quest script".
 - `quest-flags` searches the unpacked EBOOT and overlays for the table
   that maps quest IDs to their "cleared" bit in a save, and writes
   `quest-flags.json` (or `--out`). See "Save quest flags".
@@ -847,8 +855,8 @@ disc: all 32 header words (`headerWords[14]` is `MonSizeModifier`,
 monster record whole (`largeMonsterRecords`, `smallMonsterRecords`: 15
 u32 words each). To decode:
 
-1. Dump an EU disc and tabulate `MonSizeModifier`'s bytes and the record
-   words across quests.
+1. Dump an EU disc and run `quest-probe` (with `--tsv`), which tabulates
+   `MonSizeModifier`'s bytes and the record words across quests.
 2. Compare quests that players' crown lists single out (quests where a
    monster's gold crown is reported to be common, or never seen) with
    ordinary quests for the same monster, and Arena quests with field

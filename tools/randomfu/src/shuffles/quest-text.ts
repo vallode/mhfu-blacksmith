@@ -288,6 +288,17 @@ export function renameQuestText(
     }
   }
 
+  // What was learned, to check against the game: each monster's name and article per language.
+  slots.forEach((slot, i) => {
+    for (const [id, name] of [...slot.names].sort((a, b) => a[0] - b[0])) {
+      const article = slot.articles.get(id);
+      lines.push({
+        where: `Names learned (${SLOT_LANGUAGES[i]})`,
+        text: `${monsterName(id)}: "${name}" (${article === undefined ? "article unclear" : (article ?? "no article")})`,
+      });
+    }
+  });
+
   const learned = slots
     .map((s, i) => ({ lang: SLOT_LANGUAGES[i]!, count: s.names.size }))
     .filter((s) => s.count > 0)

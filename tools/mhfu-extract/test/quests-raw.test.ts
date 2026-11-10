@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { BinaryReader } from "../src/binary/reader.js";
+import { probeQuests, sizeTsv } from "../src/emit/quest-probe.js";
 import { dumpQuestRaw } from "../src/emit/quests-raw.js";
 import { parseQuest, readQuestHeader, readStringLayout } from "../src/quests/parser.js";
 
@@ -63,4 +64,28 @@ test("the raw quest dump has whole monster records and the text layout, but no t
   );
   assert.equal(entry.strings.strings[0]!.lengths[0], 5);
   assert.ok(!JSON.stringify(entry).includes("Title"));
+});
+
+test("quest-probe summarises size candidates, script arguments and text layout", () => {
+  const buf = questPayload();
+  buf.writeUInt16LE(7, 112); // TargetID
+  buf.writeUInt32LE(0x2e0, 16); // questScriptPtr
+  buf.writeUInt32LE(0x2f0, 8); // suppliesPtr: two packets
+  buf.writeInt16LE(2, 0x2e0); // opcode 2, arg1 = 7
+  buf.writeInt16LE(7, 0x2e2);
+  buf.writeInt16LE(1, 0x2e4);
+  buf.writeInt16LE(30, 0x2e8);
+  const entry = dumpQuestRaw("mission_jpn/m00001.mib", buf, parseQuest(buf), 2048);
+  const report = probeQuests([entry]);
+  assert.match(report, /MonSizeModifier \(u32 @0x38\): 0x01020304 ×1/);
+  assert.match(report, /attr1 \+6: 170 ×1/);
+  assert.match(report, /opcode 2: 1 packets in 1 quests; arg1=target 1, =large monster 1/);
+  assert.match(report, /Slot sharing .*: 0=1 -23456 ×1/);
+  assert.match(
+    report,
+    new RegExp(`Sector padding after the payload \\(bytes\\): min ${2048 - 32 - buf.length}`),
+  );
+  const tsv = sizeTsv([entry]).trim().split("\n");
+  assert.equal(tsv.length, 2);
+  assert.equal(tsv[1]!.split("\t")[7], "7");
 });
