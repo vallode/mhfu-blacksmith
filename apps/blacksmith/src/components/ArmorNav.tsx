@@ -1,54 +1,52 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
-import Icon from "./Icon";
 import { writeLastArmor } from "@/lib/armor-last-store";
+import PageBar, { PageTab, PageTabs } from "./PageBar";
 
 interface ArmorNavProps {
   activeSlot?: ArmorSlot;
   /** Rank the slot links open at; defaults to low rank. */
   rank?: ArmorRank;
+  /** On a piece's page: phones show only the detail, so lead back to the list. */
+  detail?: boolean;
 }
 
 function formatSlotName(slot: string): string {
   return slot.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
-export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProps) {
+/** The armor pages' PageBar: one tab per armor slot. */
+export default function ArmorNav({ activeSlot, rank = "low-rank", detail }: ArmorNavProps) {
   // Remember this page for the main menu's Armor entry.
   useEffect(() => {
     if (activeSlot) writeLastArmor({ slot: activeSlot, rank });
   }, [activeSlot, rank]);
 
+  const slotName = activeSlot && formatSlotName(activeSlot);
+
   return (
-    <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-      <div>
-        <Link href="/" aria-label="Back">
-          <Icon type="arrow" nav alt="Back" />
-        </Link>
-      </div>
-
-      {ARMOR_SLOTS.map((slot) => {
-        const name = formatSlotName(slot);
-        return (
-          <div key={slot}>
-            <Link href={`/armorsmith/${slot}/${rank}/`} title={name}>
-              <Icon type={slot} size="large" nav active={activeSlot === slot} alt={name} />
-            </Link>
-          </div>
-        );
-      })}
-
-      <div className="ml-auto">
-        <button
-          className="search-trigger flex h-[52px] w-[52px] cursor-pointer items-center border-none bg-transparent p-0 text-white/60 hover:text-white [&>img]:h-full"
-          aria-label="Search"
-        >
-          <img src="/images/binoculars.png" alt="Search" decoding="sync" />
-        </button>
-      </div>
-    </nav>
+    <PageBar
+      title={slotName ? `${slotName} armor` : "Armor"}
+      back={
+        detail && activeSlot
+          ? { href: `/armorsmith/${activeSlot}/${rank}/`, label: `${slotName} list` }
+          : undefined
+      }
+      tabs={
+        <PageTabs label="Armor slots">
+          {ARMOR_SLOTS.map((slot) => (
+            <PageTab
+              key={slot}
+              href={`/armorsmith/${slot}/${rank}/`}
+              label={formatSlotName(slot)}
+              icon={slot}
+              active={activeSlot === slot}
+            />
+          ))}
+        </PageTabs>
+      }
+    />
   );
 }

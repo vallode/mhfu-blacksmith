@@ -4,7 +4,6 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import ArmorNav from "@/components/ArmorNav";
 import ArmorTreePanel from "@/components/ArmorTreePanel";
-import BorderRule from "@/components/BorderRule";
 import TreeScroll from "@/components/TreeScroll";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import { useVisibleTree } from "@/hooks/useVisibleTree";
@@ -31,7 +30,8 @@ function ArmorSidebar({ slot, rank, slug }: { slot: ArmorSlot; rank: ArmorRank; 
   // Warm the model list so a piece's 3D button shows with the rest of its page.
   useEffect(() => prefetchManifest(`armor/${slot}`), [slot]);
   return (
-    <ArmorTreePanel slot={slot} rank={rank}>
+    // Phones show one pane at a time: on a piece's page, its detail.
+    <ArmorTreePanel slot={slot} rank={rank} className={slug ? "mobile:hidden" : undefined}>
       <TreeScroll treeKey={treeKey} activeSlug={slug}>
         {visibleTree?.map((node) => (
           <ul key={node.slug}>
@@ -51,8 +51,8 @@ function ArmorSidebar({ slot, rank, slug }: { slot: ArmorSlot; rank: ArmorRank; 
 }
 
 /**
- * The armorsmith frame: slot nav, divider and the slot's tree at the current
- * rank down the left, with the page (a piece's details, or NO DATA on the
+ * The armorsmith frame: page bar with the slot tabs, and the slot's tree at
+ * the current rank down the left, with the page (a piece's details, or NO DATA on the
  * slot's own page) on the right. It lives in the armorsmith layout so it stays
  * mounted while you move between pieces, slots and ranks; only the right-hand
  * card re-renders.
@@ -70,10 +70,11 @@ export function ArmorShell({
 }) {
   return (
     <>
-      <ArmorNav activeSlot={slot} rank={rank} />
-      <BorderRule />
+      <ArmorNav activeSlot={slot} rank={rank} detail={!!slug} />
+      {/* On phones the slot's own page is just the list, which fills the
+          screen and scrolls inside its card (see AppShell). */}
       {slot && rank ? (
-        <div className="split-page">
+        <div className="split-page" data-fill-screen={slug ? undefined : true}>
           <ArmorSidebar slot={slot} rank={rank} slug={slug} />
           {children}
         </div>
