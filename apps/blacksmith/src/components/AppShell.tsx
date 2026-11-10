@@ -203,32 +203,20 @@ function TabBar({
   // "Monsters" fits a fifth of a phone's width.
   const label = "text-fine leading-none tracking-normal";
   const tabs = NAV.filter((item) => item.tab);
-  // TEMP: style preview, ?tabbar=a|b|c|d
-  const [v, setV] = useState("");
-  useEffect(() => setV(new URLSearchParams(location.search).get("tabbar") ?? ""), []);
-  const frame = v === "a" ? "teal" : v === "b" ? "green" : v === "c" ? "blue" : undefined;
-  const dip = v !== "";
   const inTab = tabs.some((item) => pathname.startsWith(item.match));
 
   return (
-    <nav
-      aria-label="Main"
-      className={cn(
-        "fixed inset-x-0 z-800 hidden mobile:flex",
-        dip ? "-bottom-[1.5rem]" : "bottom-0 pb-[env(safe-area-inset-bottom)]",
-      )}
-    >
+    // Dips 1.5rem under the bottom of the screen, like the sidebar under the
+    // left edge, so only the frame's top band and a sliver of its bottom one
+    // show. The card is that much taller, and taller still by the bottom safe
+    // area, which the tabs stay clear of.
+    <nav aria-label="Main" className="fixed inset-x-0 -bottom-[1.5rem] z-800 hidden mobile:flex">
       <Card
-        frame={frame}
-        className={cn(
-          "backdrop-blur-sm",
-          dip ? "h-[calc(var(--spacing-tabbar)+1.5rem)]" : "h-tabbar",
-          v === "d" ? "bg-black/80" : "bg-black/60",
-        )}
-        bodyClassName={cn(
-          "flex-row items-stretch card-px-[1.6rem] card-py-[1.3rem]",
-          dip && "[&>*]:mb-[1.5rem]",
-        )}
+        frame="teal"
+        className="h-[calc(var(--spacing-tabbar)+1.5rem+env(safe-area-inset-bottom))] bg-black/60 backdrop-blur-sm"
+        // 2.4rem from the card's edge is 0.6rem inside the frame's 1.8rem
+        // bands on every side.
+        bodyClassName="flex-row items-stretch card-p-[2.4rem] [&>*]:mb-[env(safe-area-inset-bottom)]"
       >
         {tabs.map((item) => {
           const active = !menuOpen && pathname.startsWith(item.match);
@@ -368,7 +356,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       <div className="@container flex min-h-0 min-w-0 flex-1 flex-col">{children}</div>
 
       {/* Room for the fixed tab bar at the end of the page. */}
-      <div className="hidden h-tabbar flex-none mobile:block" />
+      <div className="hidden h-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom))] flex-none mobile:block" />
 
       <TabBar
         pathname={pathname}
