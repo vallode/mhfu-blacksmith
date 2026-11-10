@@ -1,6 +1,7 @@
 "use client";
 
 import { cn } from "@/lib/cn";
+import { modelPanel } from "@/styles/model";
 
 export interface HitzonePart {
   name: string;
@@ -27,8 +28,6 @@ interface Props {
   onHover: (part: string | null) => void;
 }
 
-const panel = "bg-black/50 px-[0.8rem] py-[0.4rem] text-[1.6rem] mobile:text-[1.4rem]";
-
 /**
  * Over a monster's 3D model: a switch for its hitboxes and, while they show,
  * a legend of the hitzone parts in their colours, then its breakable parts.
@@ -50,7 +49,7 @@ export default function HitzoneControls({
         onClick={() => onShowChange(!show)}
         aria-pressed={show}
         className={cn(
-          panel,
+          modelPanel,
           "absolute bottom-2 left-2 z-10 cursor-pointer tracking-game hover:text-white focus-visible:text-white",
           show ? "text-stat" : "text-parchment",
         )}
@@ -60,7 +59,7 @@ export default function HitzoneControls({
       {show && (
         <ul
           aria-label="Hitzone parts"
-          className={cn(panel, "absolute top-2 left-2 z-10 flex flex-col")}
+          className={cn(modelPanel, "absolute top-2 left-2 z-10 flex flex-col")}
           onPointerLeave={() => onHover(null)}
         >
           {parts.map((part) => (

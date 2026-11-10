@@ -2,7 +2,8 @@
  * `export-site` subcommand — converts the model packages the website shows
  * and writes them under `public/models/` with a manifest the site reads.
  *
- *   public/models/monsters/emNN.glb
+ *   public/models/monsters/emNN.glb            (skinned to its skeleton)
+ *   public/models/monsters/emNN.motions.bin    (its motions; see packageToGlb)
  *   public/models/weapons/weNNN.glb
  *   public/models/armor/<m|f>_<folder>NNN.glb
  *
@@ -30,15 +31,19 @@
  * fetches it by the model's path; a monster whose hitboxes can't be read has
  * none, and the reason is logged.
  */
+import { createHash } from "node:crypto";
 import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { MHP2G_PROFILE } from "../games/mhp2g.js";
-import { attachDetachedParts, skeletonFor } from "../models/attach.js";
+import type { ClipOptions } from "../models/animation.js";
+import { skeletonFor } from "../models/attach.js";
 import { buildGlb, type GlbOptions } from "../models/gltf.js";
+import { packMotions } from "../models/motion-pack.js";
+import { packageModel } from "../models/rig.js";
 import { isPac, readPac } from "../models/pac.js";
-import { isPmo, readPmo } from "../models/pmo.js";
+import { isPmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
 import { parseOvl, type OvlFile } from "../container/ovl.js";
 import { readMonsterCollision } from "../monsters/collision.js";
@@ -71,6 +76,16 @@ export interface ExportSiteOptions {
  */
 export const SITE_GLB_OPTIONS: GlbOptions = { textureQuality: 80, positionBits: 12, uvBits: 11 };
 
+/**
+ * Lossy key reduction for the site's monster motions: keys go where linear
+ * interpolation would be off by more than half a degree or 0.1 model units
+ * (a Kelbi is ~180 units long). About half the keys of the lossless default.
+ */
+export const SITE_CLIP_OPTIONS: ClipOptions = {
+  rotationTolerance: 0.0087,
+  translationTolerance: 0.1,
+};
+
 /** Model IDs keyed by the site's names; see the module comment for the files they become. */
 export interface SiteModelManifest {
   monsters: Record<string, number>;
@@ -90,20 +105,34 @@ type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string 
 
 /**
  * Convert the first PMO + TMH in a package to GLB bytes, or null when it has
- * no mesh. A severable tail tip is put back on (attach.ts).
+ * no mesh. A severable tail tip is put back on (attach.ts). A monster's mesh
+ * is skinned, and its motions come back apart, packed (motion-pack.ts), so a
+ * page can show the model before fetching them; `motionsFile` names the file
+ * the GLB should point at for them (monsters with the same motions share one).
  */
 async function packageToGlb(
   buf: Buffer,
   name: string,
   options: GlbOptions,
-): Promise<Buffer | null> {
+  clipOptions: ClipOptions,
+  motionsFile: (motions: Buffer) => string,
+): Promise<{ glb: Buffer; motions?: Buffer } | null> {
   if (!isPac(buf)) return null;
   const entries = readPac(buf);
   const pmoEntry = entries.find((entry) => isPmo(entry.data));
   if (!pmoEntry) return null;
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
-  const pmo = attachDetachedParts(readPmo(pmoEntry.data), skeletonFor(entries, pmoEntry.index));
-  return (await buildGlb(pmo, tmhEntry ? readTmh(tmhEntry.data) : [], name, options)).glb;
+  const { pmo, rig } = packageModel(entries, pmoEntry.index, clipOptions);
+  const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
+  const motions = rig?.clips?.length ? packMotions(rig.clips) : undefined;
+  const { glb } = await buildGlb(
+    pmo,
+    textures,
+    name,
+    options,
+    rig && { bones: rig.bones, motionsFile: motions && motionsFile(motions) },
+  );
+  return { glb, motions };
 }
 
 async function exists(file: string): Promise<boolean> {
@@ -118,12 +147,15 @@ async function exists(file: string): Promise<boolean> {
 /** Converts each DATA.BIN package at most once, caching the result path (or null). */
 class Converter {
   private readonly done = new Map<string, string | null>();
+  /** Motion files written, by content: monsters with the same motions share the first's. */
+  private readonly motionFiles = new Map<string, string>();
   /** Packages referenced by the game data but absent from the unpacked directory (e.g. a partial dump). */
   missing = 0;
   constructor(
     private readonly dataBin: string,
     private readonly out: string,
     private readonly options: GlbOptions,
+    private readonly clipOptions: ClipOptions,
   ) {}
 
   async convert(source: string, relativeOut: string): Promise<string | null> {
@@ -136,14 +168,30 @@ class Converter {
       return null;
     }
     try {
-      const glb = await packageToGlb(
+      const file = path.join(this.out, relativeOut);
+      // Own motions sit next to the model (emNN.glb -> emNN.motions.bin).
+      const ownMotions = path.basename(file).replace(/\.glb$/, ".motions.bin");
+      let shared = false;
+      const converted = await packageToGlb(
         await readFile(path.join(this.dataBin, source)),
         source,
         this.options,
+        this.clipOptions,
+        (motions) => {
+          const key = createHash("sha256").update(motions).digest("hex");
+          const existing = this.motionFiles.get(key);
+          shared = existing !== undefined;
+          if (!existing) this.motionFiles.set(key, ownMotions);
+          return existing ?? ownMotions;
+        },
       );
-      if (glb) {
-        await mkdir(path.dirname(path.join(this.out, relativeOut)), { recursive: true });
-        await writeFile(path.join(this.out, relativeOut), glb);
+      if (converted) {
+        await mkdir(path.dirname(file), { recursive: true });
+        await writeFile(file, converted.glb);
+        // A model that shares another's motions, or has none, loses a stale file.
+        const motionsPath = path.join(path.dirname(file), ownMotions);
+        if (converted.motions && !shared) await writeFile(motionsPath, converted.motions);
+        else await rm(motionsPath, { force: true });
         result = relativeOut;
       } else {
         console.log(`skip ${source}: no mesh`);
@@ -408,6 +456,7 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
     path.join(options.unpacked, "data-bin"),
     options.out,
     options.lossless ? {} : SITE_GLB_OPTIONS,
+    options.lossless ? {} : SITE_CLIP_OPTIONS,
   );
   const manifest: SiteModelManifest = {
     monsters: previous.monsters ?? {},
