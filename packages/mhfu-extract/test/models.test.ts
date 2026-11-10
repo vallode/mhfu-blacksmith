@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { BinaryReader } from "../src/binary/reader.js";
 import { decodeVertexType, runDisplayList } from "../src/models/ge.js";
+import type { Bone } from "../src/models/ahi.js";
+import type { Clip } from "../src/models/animation.js";
 import { buildGlb } from "../src/models/gltf.js";
 import { isPac, readPac } from "../src/models/pac.js";
 import { encodePng } from "../src/models/png.js";
@@ -185,7 +187,7 @@ test("buildGlb stores the source integers exactly (KHR_mesh_quantization) with t
   assert.equal(glb.subarray(0, 4).toString("latin1"), "glTF");
   assert.equal(glb.readUInt32LE(8), glb.length);
   // Both vertex groups draw the same strip; identical vertices are shared.
-  assert.deepEqual(stats, { primitives: 2, vertices: 4, triangles: 4 });
+  assert.deepEqual(stats, { primitives: 2, vertices: 4, triangles: 4, clips: 0 });
   const json = glbJson(glb);
   assert.ok(json.extensionsRequired.includes("KHR_mesh_quantization"));
   assert.deepEqual(json.nodes[0].scale, [2, 4, 8]);
@@ -224,12 +226,93 @@ test("buildGlb lossy positionBits rounds positions to the requested precision", 
 
 test("buildGlb falls back to float attributes for other vertex layouts", async () => {
   const { glb, stats } = await buildGlb(readPmo(pmo()), [], "test", { compress: false });
-  assert.deepEqual(stats, { primitives: 2, vertices: 4, triangles: 4 });
+  assert.deepEqual(stats, { primitives: 2, vertices: 4, triangles: 4, clips: 0 });
   const json = glbJson(glb);
   const position = json.accessors[json.meshes[0].primitives[0].attributes.POSITION];
   assert.equal(position.componentType, 5126);
   assert.deepEqual(position.max, [1, 1, 0]);
   assert.deepEqual(json.nodes[0].scale, [2, 4, 8]);
+});
+
+test("buildGlb with a rig skins the mesh to the skeleton and writes its clips", async () => {
+  const source = readPmo(exactPmo());
+  // Every vertex a quarter on bone 0 and three quarters on bone 1.
+  const pmo = {
+    ...source,
+    meshes: source.meshes.map((mesh) => ({
+      ...mesh,
+      primitives: mesh.primitives.map((primitive) => ({
+        ...primitive,
+        bones: [0, 1],
+        geometry: {
+          ...primitive.geometry,
+          vertices: primitive.geometry.vertices.map((v) => ({ ...v, weights: [0.25, 0.75] })),
+        },
+      })),
+    })),
+  };
+  const bones: Bone[] = [
+    { id: 0, parent: -1, scale: [1, 1, 1], rotation: [0, 0, 0], translation: [0, 0, 0], part: 0 },
+    { id: 1, parent: 0, scale: [1, 1, 1], rotation: [0, 0, 0], translation: [0, 5, 0], part: 0 },
+  ];
+  const clip: Clip = {
+    slot: 7,
+    duration: 1,
+    loop: true,
+    loopStart: 0.5,
+    tracks: [{ bone: 1, path: "rotation", times: [0, 1], values: [0, 0, 0, 1, 0, 1, 0, 0] }],
+  };
+  const { glb, stats } = await buildGlb(
+    pmo,
+    [],
+    "test",
+    { compress: false },
+    {
+      bones,
+      clips: [clip],
+      motionsFile: "em99.motions.bin",
+    },
+  );
+  assert.equal(stats.clips, 1);
+  const json = glbJson(glb);
+  assert.equal(json.asset.extras.motions, "em99.motions.bin");
+  // The mesh node carries no transform; the scale moves into the inverse binds.
+  assert.deepEqual(json.nodes[0], { mesh: 0, skin: 0 });
+  assert.deepEqual(
+    json.nodes.slice(1).map((n: { name: string }) => n.name),
+    ["bone_0", "bone_1"],
+  );
+  assert.deepEqual(json.nodes[1].children, [2]);
+  assert.deepEqual(json.skins[0].joints, [1, 2]);
+  const ibm = json.accessors[json.skins[0].inverseBindMatrices];
+  assert.equal(ibm.count, 2);
+  const matrices = new Float32Array(Uint8Array.from(readView(glb, json, ibm.bufferView)).buffer);
+  // Bone 1's: scale (2, 4, 8), then back down by its bind position (y 5).
+  assert.deepEqual([...matrices.slice(16)], [2, 0, 0, 0, 0, 4, 0, 0, 0, 0, 8, 0, 0, -5, 0, 1]);
+
+  const attributes = json.meshes[0].primitives[0].attributes;
+  const joints = json.accessors[attributes.JOINTS_0];
+  const weights = json.accessors[attributes.WEIGHTS_0];
+  assert.equal(json.bufferViews[joints.bufferView].byteStride, 24);
+  const vertices = Buffer.from(readView(glb, json, joints.bufferView));
+  for (let v = 0; v < vertices.length; v += 24) {
+    assert.deepEqual(
+      [...vertices.subarray(v + joints.byteOffset, v + joints.byteOffset + 4)],
+      [1, 0, 0, 0],
+    );
+    assert.deepEqual(
+      [...vertices.subarray(v + weights.byteOffset, v + weights.byteOffset + 4)],
+      [191, 64, 0, 0],
+    );
+  }
+
+  const [animation] = json.animations;
+  assert.equal(animation.name, "motion 7");
+  assert.deepEqual(animation.extras, { slot: 7, loop: true, loopStart: 0.5 });
+  assert.deepEqual(animation.channels[0].target, { node: 2, path: "rotation" });
+  const output = json.accessors[animation.samplers[0].output];
+  assert.equal(output.componentType, 5122);
+  assert.equal(output.normalized, true);
 });
 
 test("unswizzle reorders 16-byte x 8-row blocks into rows", () => {

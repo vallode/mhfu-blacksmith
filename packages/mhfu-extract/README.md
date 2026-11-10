@@ -464,7 +464,7 @@ Open questions:
   0x40 bytes) and its PMO header, mesh records and vertex-group records,
   with each group's vertex count, weights per vertex and position bounds.
 - `raw/emmodel/emNN.<index>.bin`: package entries that are neither PMO nor
-  TMH, whole: index 0 is the skeleton, index 3 (`d`) probably the motions.
+  TMH, whole: index 0 is the skeleton, index 3 the motion bank (`motion.ts`).
 
 These dumps come from the disc, so they stay in `.cache/` like the rest of
 the extracted output.
@@ -556,7 +556,7 @@ pnpm --filter mhfu-extract export-site --unpacked .cache/mhfu
 texture set) into `.glb` files. The source lives in `src/models/`: `pac.ts`
 is the container, `pmo.ts` the mesh tables, `ge.ts` the PSP GE display lists
 that hold the geometry, `tmh.ts` the textures, `ahi.ts` the skeleton,
-`attach.ts` puts severable tails together, `gltf.ts`/`texture.ts`/`png.ts`
+`attach.ts` puts severable tails together, `motion.ts` reads monster motions and `animation.ts` makes clips of them, `rig.ts` puts a monster together, `gltf.ts`/`texture.ts`/`png.ts`
 the output. Two corrections to mhff's description of PMO 1.0, both
 confirmed on real files: mesh records are 0x18 bytes, and materials go
 through a per-slot byte map at header offset 0x28.
@@ -597,11 +597,12 @@ Status:
   far (em01-em05: Rathian, Fatalis, Kelbi, Mosswine, Bullfango) convert, and
   renders of a spread of them are correct: textured, assembled, right UVs.
   Armor pieces (`player/**`) convert the same way.
-- Output is the static bind pose: mesh pieces are already in model space, so
-  no skeleton is needed to assemble them, but skinning weights are dropped
-  and there's no animation (`motion/*.bin` and a monster package's entry 3,
-  its motion bank, aren't decoded). The one exception is a severable tail,
-  below.
+- Weapons and armor are the static bind pose: mesh pieces are already in
+  model space, so no skeleton is needed to assemble them. Monsters are
+  skinned (`src/models/rig.ts` gathers the skeleton, mesh and motions of a
+  package): bone nodes `bone_<id>`, four weights a vertex (u8, summing to
+  255), the model's scale in the inverse bind matrices instead of on the
+  mesh node. `models` writes their clips into the `.glb` (below).
 - **Severable tails.** A monster package is `[.ahi skeleton, PMO, .TMH,
 motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   byte (0x50 in its record): 1 the head chain, 2 the tail chain, 3 a
@@ -616,7 +617,38 @@ motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   0.01 rad / 1%): Yian Garuga's crest and Basarios's neck don't count, and
   Gravios's ~0.001 rad of authoring noise is ignored. Renders checked for
   all 32 monsters it changes; Lavasioth's copy is already in place, and
-  small monsters have none.
+  small monsters have none. Skinned, the tip's vertices move from the copy
+  to the main bones it lands on (`detachedBoneCounterparts`: 45 and 46 ->
+  43, 47 -> 44 on every severable tail), so the tip follows the tail when
+  the monster moves, as in the game while the tail is on.
+- **Motions.** Entry 3 of a monster package is its motion bank
+  (`src/models/motion.ts` has the byte layout). It holds two tables of
+  motions per skeleton part: tables 2p and 2p + 1 animate the bones of part
+  p, numbered 0-99 and 100 on, and each motion has one record per bone of
+  that part, in skeleton order. So a body motion (part 0) plays together
+  with the head (1) and tail (2) motions in the same slot, which last as
+  long; the tail-tip copy (part 3) has no motions. A bone record holds up to
+  nine channels (scale, rotation, translation x/y/z; a missing one keeps the
+  bind value) of cubic Hermite keys: s16 value, u16 frame, s16 tangents in
+  and out. Scale and translation are 1/16 fixed point, rotation 0x8000 = pi.
+  On an EU disc all 89 banks (em01-em89) parse, 9,995 motions, and in all
+  but 3 (em82's, which split its body and head 32/8 bones, not 29/11) every
+  motion's bone count is its part's. Driving skinned meshes with them in a
+  three.js probe, Kelbi stands with its hooves on the ground at frame 0
+  (hip 1411/16 = 88 units up), and Rathian and Cephalos hold natural poses
+  mid-motion (Rathian rearing, Cephalos lunging). Open: the Euler order (no order distorts the meshes less
+  than another: most vertices follow a single bone), which tangent is which
+  (they're equal on most keys), and what `motion/*.bin` (the player's and
+  shared motions) holds. Frames are 1/60 s: the game runs at 30 fps and
+  steps motions two frames at a time, so 9,972 of the 9,995 motions last an
+  even number of frames (played at 30 a second, they look half speed).
+- **Clips.** `animation.ts` turns each slot into one clip over the whole
+  skeleton: it samples every frame, converts rotations to quaternions, and
+  keeps only the keys glTF interpolation (slerp for rotations) needs within a tolerance (by
+  default 0.002 rad, 0.02 units, 0.001 scale); a track that never leaves
+  the bind pose is dropped. A part's motion whose bone count isn't the
+  part's is left out of its clip. Clips can carry the monster far from the
+  origin (Rathian's charge goes ~1,800 units forward).
 - A package's second PMO isn't converted: it's effect geometry (a shadow
   quad on the Raths, Cephalos's sand spray, Tigrex's roar ring, Lavasioth's
   lava).
@@ -647,6 +679,20 @@ file paths:
   model ID into `player/{m,f}/<folder>/`, read from the same per-slot
   arrays as `src/tables/armor.ts` (see `src/tables/armor-models.ts`). Each
   slot's highest model IDs are exactly the last files in its folder.
+
+Monster motions go next to the models as `monsters/emNN.motions.bin`
+(`src/models/motion-pack.ts` has the layout): gzip of the clips as
+delta-coded s16 keys, at a looser tolerance (0.5 degrees, 0.1 units), since
+glTF's per-track JSON outweighed the key data (68 MB for all monsters as
+glTF animations, 12.3 MB like this). Monsters that share a bank share a
+file: the `.glb` names its own in `asset.extras.motions`. Skinning grew the
+83 monster models from 6.0 to 7.0 MB. The site's viewer
+(`apps/blacksmith/src/lib/motions.ts`, `ModelViewer.tsx`) plays them in
+place (the hips keep their horizontal bind position), loops a looping
+motion from its loop start as the game does (1,847 of the 3,334 looping
+motions have a lead-in before it), and holds the bind pose while hitboxes
+show, since those are placed in bind-pose space. A model waits up to 1.5 s
+for its motions so it first shows posed, and shows still if they're slower.
 
 Each run replaces the categories it could export and keeps the rest of the
 previous manifest, so a run without `eboot.bin` keeps weapons and armor.

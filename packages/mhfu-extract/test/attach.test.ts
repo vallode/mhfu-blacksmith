@@ -1,7 +1,13 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { readAhi, type Bone } from "../src/models/ahi.js";
-import { attachDetachedParts, detachedBoneOffsets, skeletonFor } from "../src/models/attach.js";
+import {
+  attachDetachedParts,
+  detachedBoneCounterparts,
+  detachedBoneOffsets,
+  skeletonFor,
+  skinDetachedParts,
+} from "../src/models/attach.js";
 import type { DecodedVertex } from "../src/models/ge.js";
 import { readPac } from "../src/models/pac.js";
 import { readPmo, type Pmo } from "../src/models/pmo.js";
@@ -202,4 +208,45 @@ test("readPmo maps each vertex group's weights to bones through the bone palette
       [7, 12],
     ],
   );
+});
+
+test("detachedBoneCounterparts maps the copy onto the tail bones it lands on", () => {
+  // 5 lands on the tail's leaf 2; 4 and its parent 3 both on tail bone 1.
+  const expected = [
+    [3, 1],
+    [4, 1],
+    [5, 2],
+  ];
+  assert.deepEqual([...detachedBoneCounterparts(readAhi(ahi(TAIL)))], expected);
+  // A copy already in place (Lavasioth's) still follows the tail once animated.
+  const placed = TAIL.map((b, i) => (i === 4 ? { ...b, translation: [0, 10, -100] as Vec3 } : b));
+  // Its root stays at the origin, on the skeleton's root.
+  assert.deepEqual(
+    [...detachedBoneCounterparts(readAhi(ahi(placed)))],
+    [
+      [3, 0],
+      [4, 1],
+      [5, 2],
+    ],
+  );
+  assert.equal(detachedBoneCounterparts(readAhi(ahi(TAIL.slice(0, 3)))).size, 0);
+});
+
+test("skinDetachedParts swaps the copy's bones for their counterparts in each palette", () => {
+  const model: Pmo = {
+    radius: 1,
+    scale: [1, 1, 1],
+    materials: [{ diffuse: 0, ambient: 0, textureIndex: 0 }],
+    meshes: [
+      {
+        uvScale: [1, 1],
+        primitives: [
+          { materialIndex: 0, bones: [0, 4, 5, -1], geometry: { vertices: [], triangles: [] } },
+        ],
+      },
+    ],
+  };
+  const skinned = skinDetachedParts(model, readAhi(ahi(TAIL)));
+  assert.deepEqual(skinned.meshes[0]!.primitives[0]!.bones, [0, 1, 2, -1]);
+  assert.deepEqual(model.meshes[0]!.primitives[0]!.bones, [0, 4, 5, -1]);
 });
