@@ -600,6 +600,33 @@ textarea.text-input {
   color: rgb(255 255 255 / 0.6);
 }
 
+/* How the chosen file's check went: the site's loading animation while it
+   runs, then a green tick or a red cross. */
+.drop-mark {
+  flex: none;
+  margin-left: auto;
+  position: relative;
+  z-index: 1;
+  font-size: 3.6rem;
+  line-height: 1;
+  text-shadow: 0.2rem 0.2rem 0 black;
+
+  &.ok {
+    color: var(--color-positive);
+  }
+
+  &.err {
+    color: var(--color-negative);
+  }
+
+  &.busy {
+    width: 2.1rem;
+    height: 2.7rem;
+    background: url("images/loading.gif") center / contain no-repeat;
+    image-rendering: pixelated;
+  }
+}
+
 /* ─── Choices (presets and choice options) ─────────────────────────────────── */
 
 .choices {

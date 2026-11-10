@@ -645,6 +645,22 @@ function setFile(kind: "iso" | "eboot", file: File | null): void {
   void checkFiles();
 }
 
+/**
+ * Shows how a file's check went on its picker: a spinner while it runs, a
+ * green tick once it passes, a red cross if it fails. A failure's reason is
+ * spelled out under the picker; a pass's sentence is only read out to screen
+ * readers, as the tick says it all.
+ */
+function checked(kind: "iso" | "eboot", text: string, state?: "ok" | "err" | "busy"): void {
+  const mark = $(`${kind}-mark`);
+  mark.className = `drop-mark${state ? ` ${state}` : ""}`;
+  mark.textContent = state === "ok" ? "✓" : state === "err" ? "✗" : "";
+  mark.title = state === "busy" ? "" : text;
+  const status = $(`${kind === "iso" ? "check" : "eboot"}-status`);
+  say(status, text, state === "busy" ? undefined : state);
+  status.classList.toggle("visually-hidden", state === "ok" || state === "busy");
+}
+
 let checkToken = 0;
 async function checkFiles(): Promise<void> {
   const token = ++checkToken;
@@ -652,13 +668,13 @@ async function checkFiles(): Promise<void> {
     disc = null;
     checking = false;
     checkError = null;
-    say($("check-status"), "");
+    checked("iso", "");
     return;
   }
   checking = true;
   checkError = null;
-  say($("check-status"), "Checking your disc…", "busy");
-  if (eboot) say($("eboot-status"), "Checking your EBOOT…", "busy");
+  checked("iso", "Checking your disc…", "busy");
+  if (eboot) checked("eboot", "Checking your EBOOT…", "busy");
   const r = await ask({ type: "check", iso, eboot });
   if (token !== checkToken) return;
   checking = false;
@@ -666,22 +682,22 @@ async function checkFiles(): Promise<void> {
   if (r.type === "error") {
     disc = null;
     checkError = r.message;
-    say($("check-status"), r.message, "err");
+    checked("iso", r.message, "err");
     return render();
   }
   if (r.type !== "checked") return;
   disc = r;
   const region = r.region ? ` (${r.region.toUpperCase()})` : "";
-  say(
-    $("check-status"),
+  checked(
+    "iso",
     r.supported
       ? `${r.discId}${region} is supported. Ready when you are!`
       : `${r.discId ?? "This disc"}${region} isn't supported yet (the EU and JP discs are).`,
     r.supported ? "ok" : "err",
   );
   if (r.eboot) {
-    say($("eboot-status"), `The EBOOT is ${r.eboot.detail}.`, r.eboot.ok ? "ok" : "err");
-  } else say($("eboot-status"), "");
+    checked("eboot", `The EBOOT is ${r.eboot.detail}.`, r.eboot.ok ? "ok" : "err");
+  } else checked("eboot", "");
   render();
 }
 

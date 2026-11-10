@@ -101,6 +101,12 @@ try {
     /supported/.test(document.getElementById("check-status")!.textContent ?? ""),
   );
   assert.match((await page.textContent("#check-status"))!, /ULJM05500 \(JP\) is supported/);
+  assert.equal(await page.textContent("#iso-mark"), "✓");
+  assert.match(
+    (await page.getAttribute("#check-status", "class"))!,
+    /visually-hidden/,
+    "a supported disc's sentence is only for screen readers",
+  );
   await page.click("#next");
 
   // Step 2: seed and presets; load the shared settings.
@@ -179,6 +185,7 @@ try {
   await page.waitForFunction(() =>
     /decrypted \(ELF\)/.test(document.getElementById("eboot-status")!.textContent ?? ""),
   );
+  assert.equal(await page.textContent("#eboot-mark"), "✓");
   await page.click("#next");
   assert.equal(await title(), "Review");
   await page.click("#dry-run");
