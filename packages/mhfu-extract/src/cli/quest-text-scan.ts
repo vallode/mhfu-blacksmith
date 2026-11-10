@@ -5,8 +5,8 @@
  * them, and writes a report with the hits, their pointer tables, and the
  * headers of the files that are likely message files.
  *
- * The report quotes the quest's own text (to say which string was found):
- * it's for the person running it, like a spoiler log. Don't commit it.
+ * The report names each string by language and field ("English goal") with
+ * its byte length, offsets and hex words: never the text itself.
  */
 import { readdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";

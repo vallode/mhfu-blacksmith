@@ -76,8 +76,9 @@ pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
 - `quest-text-scan` searches every unpacked file but the quests for one
   quest's own strings, and reports where they're found, the `.pac` entry,
   and the pointers to them, plus the headers of the likely message files
-  (`src/quests/text-scan.ts`). It quotes the quest's text, so keep the
-  report out of the repository. See "Quest text".
+  (`src/quests/text-scan.ts`). The report names each string by language
+  and field, with offsets and hex words, never the text itself. See
+  "Quest text".
 - `quest-flags` searches the unpacked EBOOT and overlays for the table
   that maps quest IDs to their "cleared" bit in a save, and writes
   `quest-flags.json` (or `--out`). See "Save quest flags".
