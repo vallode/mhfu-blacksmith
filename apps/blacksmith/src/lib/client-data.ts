@@ -27,6 +27,7 @@ import {
   decodeTree,
 } from "./schema";
 import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
+import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
 import { normalizeItemName } from "./items";
 import { slugify } from "./slug";
@@ -470,6 +471,47 @@ export function useItemSources(): { sources: Map<number, ItemSources> | null; er
     };
   }, []);
   return { sources, error };
+}
+
+// ---------------------------------------------------------------------------
+// Item places: where each item is gathered or sold, by item ID
+// ---------------------------------------------------------------------------
+let itemPlacesPromise: Promise<Map<number, ItemPlaces>> | null = null;
+let itemPlacesCache: Map<number, ItemPlaces> | null = null;
+
+/** Every item's gathering points and shops, from item-places.json. */
+export function getItemPlaces(): Promise<Map<number, ItemPlaces>> {
+  if (itemPlacesCache) return Promise.resolve(itemPlacesCache);
+  if (!itemPlacesPromise) {
+    itemPlacesPromise = fetchJson<ItemPlacesBundle>("/data/item-places.json")
+      .then((bundle) => {
+        itemPlacesCache = decodeItemPlaces(bundle);
+        return itemPlacesCache;
+      })
+      .catch((e) => {
+        itemPlacesPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return itemPlacesPromise;
+}
+
+/** `getItemPlaces` as a hook: null while loading or on error (`error` set). */
+export function useItemPlaces(): { places: Map<number, ItemPlaces> | null; error: boolean } {
+  const [places, setPlaces] = useState(itemPlacesCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (itemPlacesCache) return;
+    let cancelled = false;
+    getItemPlaces().then(
+      (p) => !cancelled && setPlaces(p),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { places, error };
 }
 
 // ---------------------------------------------------------------------------

@@ -5,7 +5,7 @@ import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { Edits } from "../src/edits.js";
-import { gatheringYields } from "../src/game/gathering.js";
+import { gatheringYields } from "mhfu-extract/src/quests/gathering.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import {
   deliveryTarget,

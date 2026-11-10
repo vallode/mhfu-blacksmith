@@ -1,0 +1,46 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Shops file",
+  "description": "What each shop sells, read from the disc. A shop has one list per stage of the game; what unlocks each stage isn't known.",
+  "type": "object",
+  "required": ["shops"],
+  "additionalProperties": false,
+  "properties": {
+    "shops": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/shop" }
+    }
+  },
+  "definitions": {
+    "item": {
+      "type": "object",
+      "required": ["item", "price", "stages"],
+      "additionalProperties": false,
+      "properties": {
+        "item":   { "type": "string", "minLength": 1, "description": "Game name, as in data/items.json" },
+        "price":  { "type": ["integer", "null"], "minimum": 0, "description": "In the shop's currency; null where it isn't known" },
+        "stages": {
+          "type": "array",
+          "minItems": 1,
+          "description": "The stages (1-based) whose list has the item",
+          "items": { "type": "integer", "minimum": 1 },
+          "uniqueItems": true
+        }
+      }
+    },
+    "shop": {
+      "type": "object",
+      "required": ["name", "currency", "stage_count", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "name":        { "type": "string", "minLength": 1, "description": "Named from what it sells; the disc has no shop names" },
+        "currency":    { "enum": ["zenny", "pokke-points"] },
+        "stage_count": { "type": "integer", "minimum": 1, "description": "How many stage lists the shop has, empty ones included" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/item" }
+        }
+      }
+    }
+  }
+}

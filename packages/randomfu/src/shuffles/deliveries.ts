@@ -41,7 +41,7 @@ import {
   type BoardRecord,
   type RecordText,
 } from "../game/board.js";
-import { gatheringYields } from "../game/gathering.js";
+import { gatheringYields } from "mhfu-extract/src/quests/gathering.js";
 import {
   deliveryGoal,
   deliveryTarget,
