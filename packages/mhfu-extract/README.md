@@ -955,13 +955,13 @@ Other sources checked:
   - **Languages:** each group is English, French, German, Italian,
     Spanish, from the training text that starts 4786-4790. The file list's
     JP names for 4788-4790 therefore don't match their content on EU.
-  - **Quest text:** single words of quest 10109 cluster in 4781 (English),
-    4782 (French) and 4783 (German), so 4781-4785 look like the quest text.
-    "Velocidrome" is in 4781 only twice, though 13 quests name it, and no
-    whole goal was found. So monster names there are probably a code
-    filled in from the main tables (19-23, where "Velocidrome" and
-    "Velociprey" appear many times). `messages --grep` shows the codes as
-    `\xNN`.
+  - **Not the quest board:** 4781's tables are in-game messages (table 0,
+    "%d Velocidrome hunted down."), two small tables, and tips (table 3).
+    No quest goal is in it. Quest 10109's own strings weren't found in any
+    unencrypted file, so the details screen's text is either in the quest
+    file after all or in an encrypted file. The 13 `mission_jpn/level*.mib`
+    files are the remaining lead: they fail the quest cipher's checks, and
+    `quest-text-scan` searches them as stored and through the cipher.
 - **Where else names live.** FUComplete's English text for the P2G disc
   (`FUComplete/Patch`, `data/str_tbl/`) has the monster names in
   `str_tbl.pac`'s first string table, and the JP file list has

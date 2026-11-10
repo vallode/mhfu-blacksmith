@@ -15,7 +15,7 @@ import { readdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { loadFileList } from "../container/filelist.js";
 import { listQuestFiles } from "../quests/discovery.js";
-import { decryptQuest } from "../quests/mib.js";
+import { decryptQuest, decryptQuestBlock } from "../quests/mib.js";
 import { parseQuest, readQuestStrings, LANG_SLOTS, STRING_FIELDS } from "../quests/parser.js";
 import { BinaryReader } from "../binary/reader.js";
 import {
@@ -96,9 +96,21 @@ export async function runQuestTextScan(options: QuestTextScanOptions): Promise<s
   const files: TextScanFile[] = [];
   const ebootPath = path.join(options.unpacked, "eboot.bin");
   if (manifest.eboot !== false) files.push({ name: "eboot.bin", buf: await readFile(ebootPath) });
+  const levelFiles: TextScanFile[] = [];
   for (const rel of await walk(dataBin)) {
-    if (/^mission_jpn\/.*\.mib$/.test(rel)) continue;
-    files.push({ name: rel, buf: await readFile(path.join(dataBin, rel)) });
+    // The quests themselves are encrypted; the quest being looked for is one.
+    if (/^mission_jpn\/m\d+\.mib$/.test(rel)) continue;
+    const buf = await readFile(path.join(dataBin, rel));
+    files.push({ name: rel, buf });
+    // `level*.mib` fail the quest cipher's checks, but may still use it.
+    if (rel.startsWith("mission_jpn/")) {
+      levelFiles.push({ name: rel, buf });
+      if (buf.length >= 8 && buf.length % 2 === 0) {
+        const decrypted = { name: `${rel} (quest cipher)`, buf: decryptQuestBlock(buf) };
+        files.push(decrypted);
+        levelFiles.push(decrypted);
+      }
+    }
   }
   console.log(
     `Searching ${files.length} files for ${needles.length} strings of quest ${options.questId}...`,
@@ -120,6 +132,8 @@ export async function runQuestTextScan(options: QuestTextScanOptions): Promise<s
     scanWords(files, needles),
     "Likely message files (first 16 u32 words):",
     describeFiles(candidates),
+    "mission_jpn files other than quests, as stored and through the quest cipher:",
+    describeFiles(levelFiles),
   ].join("\n");
   const out = options.out ?? path.join(options.unpacked, "quest-text-scan.txt");
   await writeFile(out, report, "utf-8");
