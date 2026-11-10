@@ -24,7 +24,6 @@ import {
   decodeSettings,
   defaultSettings,
   encodeSettings,
-  needsEboot,
   settingsFromJson,
   settingsToJson,
   type Settings,
@@ -165,7 +164,6 @@ export async function startGui(options: GuiOptions): Promise<Gui> {
           settings,
           string: encodeSettings(settings),
           json: settingsToJson(settings),
-          needsEboot: needsEboot(settings),
         });
       }
       case "/api/settings/decode": {
@@ -185,7 +183,7 @@ export async function startGui(options: GuiOptions): Promise<Gui> {
       case "/api/check": {
         const iso = str(body, "iso");
         try {
-          const result = checkDisc(iso, str(body, "eboot", false) || undefined);
+          const result = checkDisc(iso);
           return sendJson(res, 200, result);
         } catch (error) {
           throw new HttpError(400, `Couldn't read ${iso}: ${(error as Error).message}`);
@@ -211,7 +209,6 @@ export async function startGui(options: GuiOptions): Promise<Gui> {
               iso,
               out,
               settings,
-              eboot: str(body, "eboot", false) || undefined,
               force: body.force === true,
               spoiler: out ? defaultSpoilerPath(out) : undefined,
             },

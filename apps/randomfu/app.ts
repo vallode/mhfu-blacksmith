@@ -1,9 +1,7 @@
 /**
  * The randomfu web app's page: a step-by-step builder over the same
  * `OPTIONS` and `PRESETS` the CLI uses. The steps are the disc, the seed and
- * a preset, one step per group of option sections, a decrypted EBOOT dump
- * (only when the settings change the EBOOT and the disc's own can't be
- * decrypted in the browser), a review, and the run.
+ * a preset, one step per group of option sections, a review, and the run.
  *
  * Runs happen in a worker. The finished ISO is assembled as a Blob from
  * slices of the user's own file plus the changed bytes, so a whole disc
@@ -20,7 +18,6 @@ import {
   encodeSettings,
   formatOption,
   isActive,
-  needsEboot,
   settingsFromJson,
   settingsToJson,
   type OptionDef,
@@ -97,8 +94,7 @@ const OPTION_STEPS: Step[] = [
     title: "Smithy",
     icon: "hammer",
     sections: ["Crafting", "Costs", "Weapons", "Armor"],
-    intro:
-      "What the smithy makes and what it asks for. Settings marked EBOOT change the game's program, which RandomFU decrypts from your disc.",
+    intro: "What the smithy makes and what it asks for.",
   },
   {
     id: "shops",
@@ -121,13 +117,6 @@ const STEPS: Step[] = [
   { id: "game", title: "Your game", icon: "binoculars" },
   { id: "start", title: "Seed", icon: "seed", tint: "var(--color-gem-green)" },
   ...OPTION_STEPS,
-  {
-    id: "eboot",
-    title: "EBOOT",
-    icon: "deco",
-    tint: "var(--color-gem-cyan)",
-    when: () => ebootStepNeeded(),
-  },
   { id: "review", title: "Review", icon: "ticket", tint: "var(--color-parchment)" },
   { id: "run", title: "Randomize", icon: "max" },
 ];
@@ -145,7 +134,6 @@ let busy = false;
 let ranWith: { settings: string; iso: File } | null = null;
 
 let iso: File | null = null;
-let eboot: File | null = null;
 /** The last check of the files: null while one is pending or before the first. */
 let disc: Extract<Response, { type: "checked" }> | null = null;
 let checking = false;
@@ -156,11 +144,6 @@ const urls: string[] = [];
 
 const visibleSteps = () => STEPS.filter((s) => !s.when || s.when());
 const discOk = () => disc?.supported === true;
-const ebootOk = () => disc?.eboot?.ok === true;
-/** The disc's own EBOOT decrypts here, so no dump is needed. */
-const ebootFromDisc = () => disc?.discEboot?.ok === true;
-/** The settings change the EBOOT and the disc's can't be decrypted here: ask for a dump. */
-const ebootStepNeeded = () => needsEboot(settings) && !ebootFromDisc();
 
 // ---------------------------------------------------------------- the worker
 
@@ -262,10 +245,9 @@ function update(key: OptionKey, value: boolean | number | string): void {
 }
 
 function optionText(option: OptionDef, labelFor: string | null): HTMLElement {
-  const badge = option.eboot ? el("span", { class: "badge" }, "EBOOT") : null;
   const title = labelFor
-    ? el("label", { class: "option-title", for: labelFor }, option.label, badge)
-    : el("span", { class: "option-title" }, option.label, badge);
+    ? el("label", { class: "option-title", for: labelFor }, option.label)
+    : el("span", { class: "option-title" }, option.label);
   return el("div", { class: "option-text" }, title, el("p", { class: "note" }, option.help));
 }
 
@@ -421,17 +403,6 @@ function render(): void {
   }
 
   $<HTMLTextAreaElement>("share").value = encodeSettings(settings);
-  $("eboot-why").textContent = disc?.discEboot?.detail ?? "it hasn't been checked yet";
-  $("eboot-list").replaceChildren(
-    ...OPTIONS.filter((o) => o.eboot && settings[o.key] === true && isActive(settings, o)).map(
-      (o) => el("li", {}, o.label),
-    ),
-  );
-  // Settings that drop the EBOOT step while it's showing move on to the review.
-  if (!visibleSteps().some((s) => s.id === current)) {
-    current = "review";
-    reached.add(current);
-  }
   renderSteps();
   if (current === "review") renderSummary(preset);
   if (current === "run") renderStale();
@@ -542,13 +513,6 @@ function renderSummary(preset: Preset | undefined): void {
     }
     group(step, lines);
   }
-  if (needsEboot(settings)) {
-    group(byId("eboot"), [
-      ebootFromDisc()
-        ? { text: "Decrypted from your disc" }
-        : { text: eboot ? eboot.name : "No EBOOT yet", off: !eboot || !ebootOk() },
-    ]);
-  }
   $("summary").replaceChildren(...groups);
 }
 
@@ -563,11 +527,6 @@ function blocker(step: string): string | null {
     if (!discOk()) return "That disc isn't supported: use the EU or JP disc.";
   }
   if (step === "start" && !$<HTMLInputElement>("seed").value.trim()) return "Enter a seed.";
-  if (step === "eboot" && ebootStepNeeded()) {
-    if (!eboot) return "Add your decrypted EBOOT, or turn these settings off.";
-    if (checking) return "Still checking your EBOOT…";
-    if (!ebootOk()) return "That EBOOT isn't decrypted: dump it with PPSSPP.";
-  }
   return null;
 }
 
@@ -632,31 +591,27 @@ function skipToReview(): void {
 
 // ---------------------------------------------------------------- files
 
-function setFile(kind: "iso" | "eboot", file: File | null): void {
-  if (kind === "iso") iso = file;
-  else eboot = file;
-  const drop = $(`${kind}-drop`);
-  drop.classList.toggle("chosen", file !== null);
-  $(`${kind}-name`).textContent = file
+function setFile(file: File | null): void {
+  iso = file;
+  $("iso-drop").classList.toggle("chosen", file !== null);
+  $("iso-name").textContent = file
     ? `${file.name} (${megabytes(file)})`
-    : kind === "iso"
-      ? "Choose your disc image (.iso)"
-      : "Choose your decrypted EBOOT";
+    : "Choose your disc image (.iso)";
   void checkFiles();
 }
 
 /**
- * Shows how a file's check went on its picker: a spinner while it runs, a
+ * Shows how the disc's check went on its picker: a spinner while it runs, a
  * green tick once it passes, a red cross if it fails. A failure's reason is
  * spelled out under the picker; a pass's sentence is only read out to screen
  * readers, as the tick says it all.
  */
-function checked(kind: "iso" | "eboot", text: string, state?: "ok" | "err" | "busy"): void {
-  const mark = $(`${kind}-mark`);
+function checked(text: string, state?: "ok" | "err" | "busy"): void {
+  const mark = $("iso-mark");
   mark.className = `drop-mark${state ? ` ${state}` : ""}`;
   mark.textContent = state === "ok" ? "✓" : state === "err" ? "✗" : "";
   mark.title = state === "busy" ? "" : text;
-  const status = $(`${kind === "iso" ? "check" : "eboot"}-status`);
+  const status = $("check-status");
   say(status, text, state === "busy" ? undefined : state);
   status.classList.toggle("visually-hidden", state === "ok" || state === "busy");
 }
@@ -668,44 +623,39 @@ async function checkFiles(): Promise<void> {
     disc = null;
     checking = false;
     checkError = null;
-    checked("iso", "");
+    checked("");
     return;
   }
   checking = true;
   checkError = null;
-  checked("iso", "Checking your disc…", "busy");
-  if (eboot) checked("eboot", "Checking your EBOOT…", "busy");
-  const r = await ask({ type: "check", iso, eboot });
+  checked("Checking your disc…", "busy");
+  const r = await ask({ type: "check", iso });
   if (token !== checkToken) return;
   checking = false;
   say($("nav-status"), "");
   if (r.type === "error") {
     disc = null;
     checkError = r.message;
-    checked("iso", r.message, "err");
+    checked(r.message, "err");
     return render();
   }
   if (r.type !== "checked") return;
   disc = r;
   const region = r.region ? ` (${r.region.toUpperCase()})` : "";
   checked(
-    "iso",
     r.supported
       ? `${r.discId}${region} is supported. Ready when you are!`
       : `${r.discId ?? "This disc"}${region} isn't supported yet (the EU and JP discs are).`,
     r.supported ? "ok" : "err",
   );
-  if (r.eboot) {
-    checked("eboot", `The EBOOT is ${r.eboot.detail}.`, r.eboot.ok ? "ok" : "err");
-  } else checked("eboot", "");
   render();
 }
 
-/** Drag and drop onto a file picker, as well as clicking it. */
-function droppable(kind: "iso" | "eboot"): void {
-  const drop = $(`${kind}-drop`);
-  const input = $<HTMLInputElement>(kind);
-  input.addEventListener("change", () => setFile(kind, input.files?.[0] ?? null));
+/** Drag and drop onto the disc picker, as well as clicking it. */
+function droppable(): void {
+  const drop = $("iso-drop");
+  const input = $<HTMLInputElement>("iso");
+  input.addEventListener("change", () => setFile(input.files?.[0] ?? null));
   drop.addEventListener("dragover", (event) => {
     event.preventDefault();
     drop.classList.add("dragging");
@@ -717,7 +667,7 @@ function droppable(kind: "iso" | "eboot"): void {
     event.preventDefault();
     drop.classList.remove("dragging");
     const file = event.dataTransfer?.files[0];
-    if (file) setFile(kind, file);
+    if (file) setFile(file);
   });
 }
 
@@ -729,7 +679,7 @@ function outputName(file: File, seed: string): string {
 
 async function run(dryRun: boolean): Promise<void> {
   if (busy) return;
-  const reason = blocker("game") ?? blocker("eboot");
+  const reason = blocker("game");
   if (reason || !iso) return say($("nav-status"), reason ?? "Pick your disc image first.", "err");
   const file = iso;
   const seed = settings.seed;
@@ -750,7 +700,7 @@ async function run(dryRun: boolean): Promise<void> {
     log.scrollTop = log.scrollHeight;
   };
   try {
-    const r = await ask({ type: "run", iso: file, eboot, settings, dryRun });
+    const r = await ask({ type: "run", iso: file, settings, dryRun });
     if (r.type === "error") throw new Error(r.message);
     if (r.type !== "done") throw new Error("The run stopped without finishing.");
     showSpoiler(r.spoiler);
@@ -850,8 +800,7 @@ function init(): void {
   restore();
   buildOptionPanels();
   buildPresets();
-  droppable("iso");
-  droppable("eboot");
+  droppable();
   stepMenu();
   render();
 
@@ -899,14 +848,6 @@ function init(): void {
     }
   });
   $("skip").addEventListener("click", skipToReview);
-
-  $("drop-eboot").addEventListener("click", () => {
-    const off = Object.fromEntries(
-      OPTIONS.filter((o) => o.eboot && o.type.kind === "boolean").map((o) => [o.key, false]),
-    );
-    settings = applySettings(settings, off);
-    go("review");
-  });
 
   $("copy").addEventListener("click", () => {
     navigator.clipboard.writeText($<HTMLTextAreaElement>("share").value).then(
