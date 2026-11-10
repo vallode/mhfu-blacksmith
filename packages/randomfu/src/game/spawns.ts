@@ -25,7 +25,8 @@ export const TARGET_ID_OFFSET = 112;
  * `questHeader.MonSizeModifier` (u32 @ 0x38): the quest's large monster
  * size, in percent. Read from the EU disc's values (mhfu-extract
  * `quest-probe`): only the low byte is ever set, 100 in half the quests and
- * 98-120 in the rest, higher at High and G Rank. Not confirmed in game.
+ * 98-120 in the rest, higher at High and G Rank. Editing it changes the
+ * monsters' size in game (a Giadrome quest at a low value had a tiny one).
  */
 export const SIZE_PERCENT_OFFSET = 0x38;
 

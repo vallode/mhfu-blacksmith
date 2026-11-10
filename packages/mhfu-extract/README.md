@@ -827,8 +827,11 @@ and arena sets.
 ### Monster size
 
 **`MonSizeModifier` (u32 at `0x38`) is the quest's monster size in
-percent.** This is read from the EU disc's values (`quest-probe` over all
-551 quests), not confirmed in game:
+percent.** Its values suggested it (`quest-probe` over all 551 EU
+quests), and an in-game test confirmed that it sets the size: a randomfu
+image with `questMonsters.size` (spread 50%) gave a Giadrome quest a visibly
+tiny Giadrome in PPSSPP. That the value is exactly a percentage still
+comes from the values, not from a measurement. The evidence:
 
 - Only its low byte is ever set. It's 100 in 273 quests and 98-120 in the
   rest (31 values; 105, 110, 102 and 104 most often after 100).
@@ -843,8 +846,9 @@ percent.** This is read from the EU disc's values (`quest-probe` over all
   rather than proving it.
 
 It applies to the whole quest. randomfu's `questMonsters.size` edits it.
-To confirm, set one quest to 150 and 60 and look at the monster in game
-(or at ModKit's live `MHFU_ENT_SIZE_SCALE`, an f32 at entity `+0x24`).
+To pin down the scale, set one quest to 150 and another to 60 and compare
+the live `MHFU_ENT_SIZE_SCALE` (MHFU-ModKit, an f32 at entity `+0x24`) with
+the unedited quest.
 
 **Still unknown: how crowns vary.** A quest's monsters vary in size around
 that percentage, and nothing yet shows what sets the spread. Candidates

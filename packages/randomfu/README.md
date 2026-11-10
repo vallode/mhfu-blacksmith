@@ -365,8 +365,9 @@ list (`emLoadTable`).
 - **Quest size** (`questMonsters.size`) is the header's `MonSizeModifier`
   (u32 at `0x38`), the size in percent of every large monster in the
   quest. On the EU disc it's 100 in half the quests and 98-120 in the rest
-  (mhfu-extract README, "Monster size"). That reading is from its values
-  and not confirmed in game. It's scaled by a random factor within
+  (mhfu-extract README, "Monster size"). It's confirmed to set the size in
+  game: a Giadrome quest from a 50% spread came out with a tiny Giadrome
+  in PPSSPP. It's scaled by a random factor within
   `questMonsters.sizeSpread` and kept between 50% and 200%. It's a
   separate setting from `monsterStats.size` (each species' base scale);
   both apply. What sets the crown spread around it isn't known.
@@ -419,11 +420,10 @@ hitzone tables they share.
   so wide swaps only touch quests with one kind of large monster.
 - Whether a swapped monster can spawn in its predecessor's starting area
   (`LargeMonData.Stage`): swaps only check the map.
-- Quest size in game. `MonSizeModifier` reads as a percentage from its
-  values, and `questMonsters.size` edits it, but no edited quest has been
-  measured. What sets the crown spread around it (`Unkn6`/`Unkn7` are the
-  lead) isn't known. Whether hitboxes scale with either size option is
-  untested.
+- Quest size. `questMonsters.size` visibly changes a quest's monsters in
+  game, but whether the value is exactly a percentage hasn't been measured.
+  What sets the crown spread around it (`Unkn6`/`Unkn7` are the lead)
+  isn't known. Whether hitboxes scale with either size option is untested.
 - Quest text in game: the EU dry run shows names are learned and renames
   fit, but no renamed quest has been looked at in game yet.
 - Large monster counts. What `quantity` means for a large monster (it's 1
