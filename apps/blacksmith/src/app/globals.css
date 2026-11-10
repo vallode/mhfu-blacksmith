@@ -54,7 +54,7 @@
 
   /* Height of the phone tab bar (AppShell), so fixed things above the page
      bottom (toasts) clear it: bottom-[calc(var(--spacing-tabbar)+1.4rem)]. */
-  --spacing-tabbar: 8.4rem;
+  --spacing-tabbar: 8.1rem;
 
   /* UI palette */
   --color-accent: #037703;

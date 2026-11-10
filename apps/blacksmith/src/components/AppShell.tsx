@@ -206,14 +206,14 @@ function TabBar({
   const inTab = tabs.some((item) => pathname.startsWith(item.match));
 
   return (
-    // Dips 1.5rem under the bottom of the screen, like the sidebar under the
-    // left edge, so only the frame's top band and a sliver of its bottom one
-    // show. The card is that much taller, and taller still by the bottom safe
+    // Dips 1.8rem (the frame's band) under the bottom of the screen, like the
+    // sidebar under the left edge, so only the frame's top band shows. The
+    // card is that much taller, and taller still by the bottom safe
     // area, which the tabs stay clear of.
-    <nav aria-label="Main" className="fixed inset-x-0 -bottom-[1.5rem] z-800 hidden mobile:flex">
+    <nav aria-label="Main" className="fixed inset-x-0 -bottom-[1.8rem] z-800 hidden mobile:flex">
       <Card
         frame="teal"
-        className="h-[calc(var(--spacing-tabbar)+1.5rem+env(safe-area-inset-bottom))] bg-black/60 backdrop-blur-sm"
+        className="h-[calc(var(--spacing-tabbar)+1.8rem+env(safe-area-inset-bottom))] bg-black/60 backdrop-blur-sm"
         // 2.4rem from the card's edge is 0.6rem inside the frame's 1.8rem
         // bands on every side.
         bodyClassName="flex-row items-stretch card-p-[2.4rem] [&>*]:mb-[env(safe-area-inset-bottom)]"
