@@ -48,7 +48,10 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
   and writes plain files to `--out` (an EBOOT dump, `data-bin/<index>` files
-  named via `vendor/fuctool/filelist.csv`, and detected region info).
+  named via `vendor/fuctool/filelist.csv`, and detected game and region
+  info). It also takes MHF1 and MHF2 discs; see "Other games". `--game`
+  and `--region` (both or neither) override what the disc ID says, for a
+  reissue or patched disc with an ID it doesn't know.
 - `extract` reads the unpacked directory and produces `data/*.json`-shaped
   output plus `EXTRACTION.json` provenance manifest. `--raw` also writes
   numbers-only dumps to `raw/` (sharpness, weapons, gunner, armor, and
@@ -209,6 +212,53 @@ Open:
   `mhp2g-patterns` enums for every region. Committed skill names are
   rewritten to the extractor's spelling before comparing (see "Overlay
   data").
+
+### Other games: MHF1 and MHF2
+
+`unpack` recognises every retail disc of the three PSP games by its
+`DISC_ID` (`KNOWN_DISCS`, `src/container/sfo.ts`, from mhef's `psp.py`):
+
+| Game                         | `game`  | JP          | US          | EU          |
+| ---------------------------- | ------- | ----------- | ----------- | ----------- |
+| Monster Hunter Freedom       | `mhp`   | `ULJM05066` | `ULUS10084` | `ULES00318` |
+| Monster Hunter Freedom 2     | `mhp2`  | `ULJM05156` | `ULUS10266` | `ULES00851` |
+| Monster Hunter Freedom Unite | `mhp2g` | `ULJM05500` | `ULUS10391` | `ULES01213` |
+
+and records it as `game` in `manifest.json` (a manifest without one is
+MHFU). For MHF1 and MHF2 it writes:
+
+- `eboot.bin`, decrypted the same way as MHFU's (see "EBOOT decryption").
+- `data-bin/_unindexed/<index>.bin`, one per `DATA.BIN` entry, read through
+  a **plain** table of contents. The cipher in `src/container/databin.ts`
+  is MHP2G's: mhef's `DataCipher` names only 2nd G and 3rd, and mhff's
+  `psp/data.py` reads the TOC as plain u32s. Nothing names the entries yet,
+  as `filelist.csv` does for MHFU.
+- `usrdir/`, every other file under `PSP_GAME/USRDIR` as it is, and
+  `DATA.BIN` itself when it has no plain TOC (`dataBinUnpacked: false`).
+
+**That is as far as it goes.** No MHF1 or MHF2 disc has been run through
+it, and none of what reads MHFU after `unpack` holds for them: the EBOOT
+table addresses and struct layouts (`src/tables/`), the quest format and
+`QuestCipher` (mhef has it for 2nd G and 3rd only), the overlays, and the
+file names. `extract`, `export-site`, `quest-flags` and `quest-text-scan`
+refuse an MHF1 or MHF2 unpack (`assertMhfuUnpack`) rather than misread it;
+`messages` reads one, by index. `randomfu` still takes MHFU discs only
+(`detectRegion` returns no region for the others).
+
+Getting data out of them takes a disc of each, then, per game:
+
+1. `unpack` it, and check `DATA.BIN` came apart (`dataBinUnpacked`,
+   `fileCount`) and `eboot.bin` is an ELF.
+2. Find the equipment tables in `eboot.bin`. MHF2 is MHFU's base game, so
+   most of MHFU's structs should carry over with fewer entries: search for
+   runs of a known weapon's stats as MHFU's EU signatures were found
+   (`extractSignature()`, `src/tables/eu-signatures.ts`). MHF1 is further
+   from MHFU; expect to write its readers from scratch.
+3. Add `src/games/mhp2.ts` (and `mhp.ts`): a `GameProfile` with that
+   game's tables and resolvers, as `src/games/mhp2g.ts` is for MHFU, and
+   let `extract` take the game through it.
+4. Decide where its output goes. `data/` and the site are MHFU's; a second
+   game needs its own data directory and a way to pick it on the site.
 
 ### EBOOT decryption
 

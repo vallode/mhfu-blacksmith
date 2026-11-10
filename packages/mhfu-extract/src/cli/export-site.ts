@@ -49,7 +49,7 @@ import { MONSTER_OVERLAY } from "../overlay/monsters.js";
 import { loadEnums, lookupName } from "../strings/enums.js";
 import { armorModelPath, readArmorModelIds, type SiteArmorSlot } from "../tables/armor-models.js";
 import { readBlademasterWeapons, readGunnerWeapons } from "../tables/weapons.js";
-import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
+import { assertMhfuUnpack, type UnpackManifest } from "./unpack.js";
 
 export interface ExportSiteOptions {
   /** An `unpack` output directory (containing `data-bin/`, and `eboot.bin` for weapons/armor). */
@@ -399,7 +399,7 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
   const unpackManifest = JSON.parse(
     await readFile(path.join(options.unpacked, "manifest.json"), "utf-8"),
   ) as UnpackManifest;
-  assertCurrentFileNames(unpackManifest, options.unpacked);
+  assertMhfuUnpack(unpackManifest, options.unpacked);
   const manifestDir = path.join(options.out, "manifest");
   const previous = await readManifest(manifestDir);
   await rm(path.join(options.out, "manifest.json"), { force: true }); // the old single-file manifest

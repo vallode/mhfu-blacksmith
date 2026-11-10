@@ -39,7 +39,7 @@ import {
   type ResolverCoverageResult,
   type TableAddressResolver,
 } from "../tables/resolver.js";
-import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
+import { assertMhfuUnpack, type UnpackManifest } from "./unpack.js";
 
 export interface ExtractOptions {
   unpacked: string;
@@ -74,7 +74,7 @@ export interface ExtractionManifest {
  *
  * The paths come from the region's own file list, the same names `unpack`
  * wrote (an EU unpack made before region-aware naming is rejected by
- * `assertCurrentFileNames` first: its `mission_jpn/` names were off by 32).
+ * `assertMhfuUnpack` first: its `mission_jpn/` names were off by 32).
  */
 export async function readQuestsFromUnpackedDir(
   unpackedDir: string,
@@ -128,7 +128,7 @@ async function writeRawDumps(
 export async function runExtract(options: ExtractOptions): Promise<ExtractionManifest> {
   const manifestPath = path.join(options.unpacked, "manifest.json");
   const manifest: UnpackManifest = JSON.parse(await readFile(manifestPath, "utf-8"));
-  assertCurrentFileNames(manifest, options.unpacked);
+  assertMhfuUnpack(manifest, options.unpacked);
   if (manifest.eboot === false) {
     throw new Error(
       `${options.unpacked} was unpacked with --skip-eboot, so it has no eboot.bin; rerun unpack with pspdecrypt on PATH or --eboot <path>.`,
