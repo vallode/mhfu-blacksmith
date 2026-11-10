@@ -1125,7 +1125,16 @@
                 "name": "Ultimus Heaven&Earth",
                 "rarity": 8,
                 "element": "dragon",
-                "children": []
+                "children": [
+                  {
+                    "slug": "azure-ogre-sword",
+                    "type": "sword-and-shield",
+                    "name": "Azure Ogre Sword",
+                    "rarity": 8,
+                    "element": "dragon",
+                    "alias": true
+                  }
+                ]
               },
               {
                 "slug": "indigo-ogre-sword",
@@ -1137,23 +1146,6 @@
             ]
           }
         ]
-      }
-    ]
-  },
-  {
-    "slug": "ultimus-heaven-earth",
-    "type": "dual-blades",
-    "name": "Ultimus Heaven&Earth",
-    "rarity": 8,
-    "element": "dragon",
-    "children": [
-      {
-        "slug": "azure-ogre-sword",
-        "type": "sword-and-shield",
-        "name": "Azure Ogre Sword",
-        "rarity": 8,
-        "element": "dragon",
-        "alias": true
       }
     ]
   },

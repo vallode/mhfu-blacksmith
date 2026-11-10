@@ -40,18 +40,17 @@ describe("weapon trees", () => {
     );
   });
 
-  it("gives every weapon at most one branch, and aliases no children", () => {
+  it("lists every weapon once, apart from alias rows, which have no children", () => {
     for (const type of WEAPON_TYPES) {
-      const expanded = new Set<string>();
+      const listed = new Set<string>();
       for (const { node } of rows(readTree(type))) {
         if (node.alias) {
           assert.equal(node.children, undefined, `${type}: ${node.name}`);
           continue;
         }
-        if (!node.children?.length) continue;
         const key = `${node.type}/${node.slug}`;
-        assert.ok(!expanded.has(key), `${type}: ${node.name} has its branch twice`);
-        expanded.add(key);
+        assert.ok(!listed.has(key), `${type}: ${node.name} is listed twice`);
+        listed.add(key);
       }
     }
   });

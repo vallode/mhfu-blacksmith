@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { flushSync } from "react-dom";
 import Link from "next/link";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
 import { prefetchBundle } from "@/lib/client-data";
-import { isNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
+import { isNodeCollapsed, onNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
 import { useHunterProgress } from "@/context/HunterProgressContext";
-import { useTreeFilterResult } from "@/context/TreeFilterContext";
+import { useTreeFilterResult, useWeaponTree } from "@/context/TreeFilterContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import type { MaterialCheck } from "@/lib/hunter-progress";
 import { rowStatus, treeRowKey } from "@/lib/tree-filter";
+import { rowsAbove } from "@/lib/tree-visibility";
 import type { WeaponTreeNode } from "@/lib/types";
 
 interface WeaponTreeRowProps {
@@ -106,6 +108,43 @@ function MaterialPips({
   );
 }
 
+/**
+ * A dim bracketed control after a row's name ([-], [+], [↑]). Rows are links,
+ * so activating it (click, Enter or Space) never also follows the link.
+ */
+function RowButton({
+  label,
+  title,
+  onActivate,
+  children,
+}: {
+  label: string;
+  title?: string;
+  onActivate: () => void;
+  children: React.ReactNode;
+}) {
+  const activate = (event: { preventDefault(): void; stopPropagation(): void }) => {
+    event.preventDefault();
+    event.stopPropagation();
+    onActivate();
+  };
+  return (
+    <p
+      className="cursor-pointer px-[3px] opacity-20"
+      role="button"
+      tabIndex={0}
+      aria-label={label}
+      title={title}
+      onClick={activate}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") activate(event);
+      }}
+    >
+      {children}
+    </p>
+  );
+}
+
 export default function WeaponTreeRow({
   node,
   sectionType,
@@ -118,6 +157,9 @@ export default function WeaponTreeRow({
   scroll = true,
 }: WeaponTreeRowProps) {
   const [collapsed, setCollapsed] = useState(() => isNodeCollapsed(treeKey, node.slug));
+  // Another row (an alias revealing its weapon) can open this branch.
+  useEffect(() => onNodeCollapsed(treeKey, node.slug, setCollapsed), [treeKey, node.slug]);
+  const tree = useWeaponTree();
 
   const isActive = activeSlug === node.slug;
 
@@ -136,28 +178,21 @@ export default function WeaponTreeRow({
   const dimmed = filtered ? !filtered.match : false;
   const ready = craft?.status === "ready" ? craft : null;
 
-  const onToggleClick = (event: { preventDefault(): void; stopPropagation(): void }) => {
-    // Rows can be links (a parent weapon still has its own page), so stop
-    // the click from also triggering navigation.
-    event.preventDefault();
-    event.stopPropagation();
-    setCollapsed((value) => {
-      const next = !value;
-      setNodeCollapsed(treeKey, node.slug, next);
-      return next;
-    });
-  };
+  // Subscribed above, so this also updates `collapsed`.
+  const onToggle = () => setNodeCollapsed(treeKey, node.slug, !collapsed);
 
   // An alias row's upgrades are listed at the weapon's first row, further up:
-  // bring that row into view and focus it (which highlights it). If it's in a
-  // collapsed branch, the click falls through to the row's link instead.
-  const onAliasClick = (event: { preventDefault(): void; stopPropagation(): void }) => {
+  // open any collapsed branches above that row (rendered before we look for
+  // it), bring it into view and focus it, which highlights it.
+  const onAliasActivate = () => {
+    flushSync(() => {
+      for (const row of rowsAbove(tree ?? [], node.slug) ?? []) {
+        if (isNodeCollapsed(treeKey, row.slug)) setNodeCollapsed(treeKey, row.slug, false);
+      }
+    });
     const first = document.getElementById(node.slug);
-    if (!first) return;
-    event.preventDefault();
-    event.stopPropagation();
-    first.scrollIntoView({ block: "center" });
-    first.focus({ preventScroll: true });
+    first?.scrollIntoView({ block: "center" });
+    first?.focus({ preventScroll: true });
   };
 
   const onPointerEnter = href
@@ -199,33 +234,18 @@ export default function WeaponTreeRow({
         </span>
       )}
       {node.children && (
-        <p
-          className="cursor-pointer px-[3px] opacity-20"
-          role="button"
-          tabIndex={0}
-          aria-label={collapsed ? "Expand" : "Collapse"}
-          onClick={onToggleClick}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") onToggleClick(event);
-          }}
-        >
+        <RowButton label={collapsed ? "Expand" : "Collapse"} onActivate={onToggle}>
           {collapsed ? "[+]" : "[-]"}
-        </p>
+        </RowButton>
       )}
       {node.alias && (
-        <p
-          className="cursor-pointer px-[3px] opacity-20"
-          role="button"
-          tabIndex={0}
-          aria-label="Upgrades listed above: go to them"
+        <RowButton
+          label="Upgrades listed above: go to them"
           title="Upgrades listed above"
-          onClick={onAliasClick}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") onAliasClick(event);
-          }}
+          onActivate={onAliasActivate}
         >
           [↑]
-        </p>
+        </RowButton>
       )}
       {/* Armor: max defence, right-aligned (the pips, if any, follow it). */}
       {node.max_defence !== undefined && (

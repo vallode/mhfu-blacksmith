@@ -859,7 +859,16 @@
                     "name": "Azure Ogre Sword",
                     "rarity": 8,
                     "element": "dragon",
-                    "children": []
+                    "children": [
+                      {
+                        "slug": "ultimus-heaven-earth",
+                        "type": "dual-blades",
+                        "name": "Ultimus Heaven&Earth",
+                        "rarity": 8,
+                        "element": "dragon",
+                        "alias": true
+                      }
+                    ]
                   },
                   {
                     "slug": "dual-dragon-ultimus-plus",
@@ -1090,23 +1099,6 @@
         "type": "dual-blades",
         "name": "Akantor Shadow Claws",
         "rarity": 10
-      }
-    ]
-  },
-  {
-    "slug": "azure-ogre-sword",
-    "type": "sword-and-shield",
-    "name": "Azure Ogre Sword",
-    "rarity": 8,
-    "element": "dragon",
-    "children": [
-      {
-        "slug": "ultimus-heaven-earth",
-        "type": "dual-blades",
-        "name": "Ultimus Heaven&Earth",
-        "rarity": 8,
-        "element": "dragon",
-        "alias": true
       }
     ]
   },
