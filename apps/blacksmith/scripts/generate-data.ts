@@ -506,14 +506,17 @@ for (const category of MONSTER_CATEGORIES) {
 }
 
 // Quests: one bundle for every hub. Items are in-game IDs (names and icons
-// come from items.json), monsters link to their pages.
+// come from items.json), monsters link to their pages and get their HP in
+// each quest from their base HP.
 {
   const monsterPages = new Map<string, { category: string; slug: string }>();
+  const baseHp = new Map<string, number>();
   for (const category of MONSTER_CATEGORIES) {
     const p = path.join(dataDir, "monsters", `${category}.json`);
     if (!fs.existsSync(p)) continue;
     for (const m of readJson<{ monsters: Monster[] }>(p).monsters) {
       monsterPages.set(m.name, { category, slug: slugify(m.name) });
+      if (typeof m.base_hp === "number") baseHp.set(m.name, m.base_hp);
     }
   }
   const { index } = buildItemNameIndex(
@@ -529,6 +532,7 @@ for (const category of MONSTER_CATEGORIES) {
     quests,
     itemId: (name) => index.get(normalizeItemName(name)),
     monsterPage: (name) => monsterPages.get(name),
+    baseHp: (name) => baseHp.get(name),
   });
   if (unresolvedItems.length > 0) {
     console.warn(`generate-data: quest items not in items.json: ${unresolvedItems.join(", ")}`);
