@@ -1,0 +1,26 @@
+{
+  "name": "randomfu-web",
+  "version": "0.1.0",
+  "private": true,
+  "description": "randomfu as a static web app: the randomizer runs in the browser on the user's own disc image.",
+  "license": "GPL-3.0-or-later",
+  "type": "module",
+  "scripts": {
+    "build": "node build.mjs",
+    "typecheck": "tsc --noEmit -p .",
+    "test": "tsx --test test/**/*.test.ts",
+    "test:e2e": "tsx e2e.mts"
+  },
+  "dependencies": {
+    "mhfu-extract": "workspace:*",
+    "randomfu": "workspace:*"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "buffer": "6.0.3",
+    "esbuild": "0.25.10",
+    "postcss": "^8.5.25",
+    "tsx": "^4.22.4",
+    "typescript": "^5"
+  }
+}

@@ -1,0 +1,1480 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>randomfu</title>
+    <meta
+      name="description"
+      content="A seeded randomizer for Monster Hunter Freedom Unite that runs in your browser on your own disc image."
+    />
+    <meta name="theme-color" content="#6e905f" />
+    <link rel="icon" href="images/favicons/felyne-favicon.png" />
+    <style>
+      :root {
+  --spacing: 0.4rem;
+  --tracking-game: 14%;
+  --cell: calc(1ch + 0.14em);
+  --text-main: 2.2rem;
+  --text-sub: 1.8rem;
+  --text-small: 1.6rem;
+  --text-fine: 1.4rem;
+  --color-accent: #037703;
+  --color-hr: #6e905f;
+  --color-line: #2a3423;
+  --color-muted: #c0c0c0;
+  --color-gold: #f2d250;
+  --color-stat: #ffff50;
+  --color-positive: #52f152;
+  --color-negative: #f9455c;
+  --color-element: #56fbfa;
+  --color-warm: #ff9661;
+  --color-unavailable: #808080;
+  --color-parchment: #c3be9f;
+  --color-selector: rgb(96 102 94 / 0.78);
+  --color-rarity-4: #52f152;
+  --color-rarity-5: #fd9dc8;
+  --color-rarity-6: #83c3fc;
+  --color-rarity-7: #ff9661;
+  --color-rarity-8: #fd6960;
+  --color-rarity-9: #ffc762;
+  --color-rarity-10: #bb84fb;
+  --color-gem-blue: #80c2fc;
+  --color-gem-cyan: #97e0ef;
+  --color-gem-gray: #a0a0a0;
+  --color-gem-green: #86bf8d;
+  --color-gem-orange: #ff9661;
+  --color-gem-pink: #ea9aa4;
+  --color-gem-red: #fd6960;
+  --color-gem-slate: #afa0c5;
+  --color-gem-white: #ffffff;
+  --color-gem-yellow: #ffc762;
+  --color-note-a: #6cc8fe;
+  --color-note-b: #7175fd;
+  --color-note-g: #7be61f;
+  --color-note-p: #e176ee;
+  --color-note-r: #fd3b1f;
+  --color-note-w: #ffffff;
+  --color-note-y: #ffeb2b;
+  --color-sharpness-1: #c3333c;
+  --color-sharpness-2: #ef5a26;
+  --color-sharpness-3: #ffc03c;
+  --color-sharpness-4: #84c11c;
+  --color-sharpness-5: #5a8aed;
+  --color-sharpness-6: #f7f7f7;
+  --color-sharpness-7: #df78f6;
+  --color-hitbox-1: #ff5a4f;
+  --color-hitbox-2: #ffa63d;
+  --color-hitbox-3: #ffe14d;
+  --color-hitbox-4: #6ee05a;
+  --color-hitbox-5: #4fc3ff;
+  --color-hitbox-6: #7d86ff;
+  --color-hitbox-7: #d36cff;
+  --color-hitbox-8: #ff7ac8;
+  --animate-hover-glow: opacity-alternate 1s ease-in-out infinite alternate;
+  --gradient-hover-glow: linear-gradient(0.25turn, transparent, rgb(3 119 3 / 0.84), transparent);
+  --animate-toast-in: toast-in 180ms ease-out;
+  --animate-loading-in: loading-in 150ms ease-out 250ms both;
+  --image-card-frame: url("data:image/png;base64,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");
+  --image-card-frame-teal: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACXUlEQVR42u3bv0ojURQH4MkS2GKELP4Ji9uk2doXECws0iyID7Bsva2FlWWqFGm3Fh9ABJsUFoIv4BvYrIWrhWBqt54x5HInd9DJfF836kS43B/3nMmcTpZlr1mNNofDDKp6nE5r/fxPlpg2EwAEANqqW/7BxfH+Uh94ML4qXH/uf7XKJJN6fzoBUAKBAIAeIFwzLVuTnbw8Lfz9aG3D/e6vXNPH7k8nAEogEAAQABAAEAAQAFhxnaw0D5D6XYs/hz+sMpX9Pr/M6tyfTgCUQCAAoAcIy/N84e9ns1nh+mhv1ypT2eT6Zqn95wQAAQABgLk9QNnCnqC/Pbi1bHxUD/d3OzF73gmAEggEAPQAcxV6gvJz2Ly3pSfg3cye/xVq/jnfA3ScACAAIABQ0I29oVxj5b0tq8j79QCR7/44AUAAQAAg/C6Q5/40qieI/F7ACYASCAQAWij4PYDn/jSqBzATDAIAAgAh5gFods1vHgCUQCAAEMs8AM3uAcwDgACAAEAs8wCsVk9gHgCUQCAAEGIegNXqAcwDgACAAECIeQCaXfObBwAlEAgAxDIPQLN7APMAIAAgABArOA9Q1t8eeO7Ph/Vwf7cTs+edACiBQACgpT3Aa53/4Ghv1ypT2eT6xgkAAgACAGm9eRfo4nh/qQ88GF8Vrr+vf7HKJJN6fzoBUAKBAIAeIFwzxdZko7WNwvXJy1PU35e5v933p96fTgCUQCAAIAAgACAAIACw4t7MA6R+1+Lbz19Wmcr+np1mde5PJwBKIBAA0AOktzkcWmUqe5xOnQAgACAAkNZ/oQPJgDMx8lUAAAAASUVORK5CYII=");
+  --image-divider: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAEAAAAAgCAYAAACinX6EAAAAeklEQVR42u3ZPQ5AMACAURUHsFttnMjgGEaD0TEMTsRmtbsBZ2hESLxv7k/y0qVtmPrqTD5cO6zhyfXT5OcBAAAAAIA/l8VOGOf91oZdU0SNr8v8dAIAAAAAAAAAAAAAAAAAAACAd98DYu/zd1u2w78AAAAAAAAA8EwXHPcMLz4FygMAAAAASUVORK5CYII=");
+}
+/*
+ * randomfu's web app, in the style of the MHFU Blacksmith site. The build
+ * puts the site's design tokens (--color-*, --text-*, --tracking-game, …)
+ * and its frame images (--image-*) in a :root rule above this, read from
+ * src/app/globals.css, and copies the font and sprites from public/.
+ *
+ * As on the site: the root font size is 62.5% (1rem = 10px), text comes in
+ * four sizes (--text-main/sub/small/fine), and BIZ UDGothic sits on the
+ * game's character pitch (--tracking-game).
+ */
+
+@font-face {
+  font-family: "BIZ UDGothic";
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url("fonts/biz-udgothic-latin-400-normal.woff2") format("woff2");
+}
+
+@keyframes opacity-alternate {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0.6;
+  }
+}
+
+@keyframes panel-in {
+  from {
+    opacity: 0;
+    transform: translateY(0.8rem);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/* ─── Page ─────────────────────────────────────────────────────────────────── */
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  color: white;
+  font-size: 62.5%;
+  line-height: 1.5;
+  overflow-x: clip;
+  background: #1b2016;
+}
+
+body {
+  margin: 0;
+  padding: 1.4rem 1.4rem 2.5rem;
+  min-height: 100vh;
+  font-family: "BIZ UDGothic", ui-monospace, monospace;
+  font-size: var(--text-small);
+  letter-spacing: 0.14em;
+  @supports (letter-spacing: 1%) {
+    letter-spacing: var(--tracking-game);
+  }
+
+  &::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    background: center / cover no-repeat url("images/bg.png");
+    image-rendering: pixelated;
+  }
+}
+
+button,
+input,
+select,
+textarea {
+  font: inherit;
+  letter-spacing: inherit;
+  color: inherit;
+}
+
+a {
+  color: inherit;
+}
+
+img {
+  image-rendering: pixelated;
+}
+
+code {
+  font-family: inherit;
+  color: var(--color-gold);
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.grow {
+  flex: 1 1 auto;
+  min-width: 0;
+}
+
+/* ─── Masthead ─────────────────────────────────────────────────────────────── */
+
+.masthead {
+  text-align: center;
+  padding: 0.6rem 0 0.4rem;
+}
+
+.masthead-title {
+  margin: 0;
+  font-size: 5.2rem;
+  font-weight: normal;
+  line-height: 1.1;
+  letter-spacing: 0.35em;
+  margin-right: -0.35em; /* the trailing tracking would push the title off centre */
+  text-transform: uppercase;
+  color: var(--color-gold);
+  text-shadow:
+    0.3rem 0.3rem 0 black,
+    0 0 1.2rem rgb(0 0 0 / 0.6);
+}
+
+.masthead-sub {
+  margin: 0.4rem 0 0;
+  font-size: var(--text-small);
+  color: var(--color-parchment);
+  text-shadow: 0.15rem 0.15rem 0 black;
+}
+
+/* The site's tiled page-header divider, bled out to the window's edges. */
+.divider {
+  width: 100vw;
+  height: 1.6rem;
+  margin: 1rem calc(50% - 50vw) 1.6rem;
+  border: 0;
+  background: var(--image-divider) left center / 3.2rem 1.6rem repeat-x;
+  image-rendering: pixelated;
+}
+
+/* ─── The card ─────────────────────────────────────────────────────────────── */
+
+/* The site's teal in-game frame (card-frame-teal), as on its Options menu. */
+.frame {
+  display: block;
+  max-width: 96rem;
+  margin: 0 auto;
+  padding: 2.2rem 2.4rem 2rem;
+  border-style: solid;
+  border-image: var(--image-card-frame-teal) 24 fill / 18px round;
+  image-rendering: pixelated;
+}
+
+.frame > * {
+  image-rendering: auto;
+}
+
+/* Yellow title on the flat grey selector bar, pulled out to sit just inside
+   the frame's bands. The title is also the button that opens the step menu. */
+.menu-header {
+  position: relative;
+  margin: -0.4rem -1.2rem 0;
+  border-bottom: 3px solid rgb(255 255 255 / 0.45);
+  background: var(--color-selector);
+}
+
+.menu-title {
+  margin: 0;
+  font-size: var(--text-main);
+  font-weight: normal;
+}
+
+.step-menu {
+  display: flex;
+  align-items: baseline;
+  gap: 1.6rem;
+  width: 100%;
+  padding: 0.8rem 1.6rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-stat);
+  text-shadow: 0.15rem 0.15rem 0 black;
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: -2px;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      background: var(--gradient-hover-glow);
+      animation: var(--animate-hover-glow);
+    }
+  }
+}
+
+.step-count {
+  flex: none;
+  font-size: var(--text-small);
+  letter-spacing: var(--tracking-game);
+  text-transform: none;
+  color: var(--color-parchment);
+}
+
+/* The game's green arrow, turned to point down (up while the menu is open). */
+.caret {
+  flex: none;
+  align-self: center;
+  width: 1.6rem;
+  height: 1.7rem;
+  margin-left: auto;
+  background: url("images/arrow.png") center / contain no-repeat;
+  transform: rotate(-90deg);
+  image-rendering: pixelated;
+  transition: transform 120ms;
+
+  [aria-expanded="true"] > & {
+    transform: rotate(90deg);
+  }
+}
+
+/* The step menu: every step, the ones you've been to selectable. */
+.step-list {
+  position: absolute;
+  top: 100%;
+  right: 0;
+  left: 0;
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  margin: 3px 0 0;
+  padding: 0.6rem;
+  list-style: none;
+  border: 3px solid var(--color-hr);
+  background: rgb(16 20 13 / 0.97);
+  box-shadow: 0.4rem 0.4rem 0 black;
+}
+
+.step {
+  display: flex;
+  align-items: center;
+  gap: 1.2rem;
+  width: 100%;
+  padding: 0.8rem 1.2rem;
+  border: 0;
+  border-left: 3px solid transparent;
+  background: transparent;
+  cursor: pointer;
+  text-align: left;
+  font-size: var(--text-sub);
+  color: white;
+  text-shadow: 0.15rem 0.15rem 0 black;
+
+  & .icon {
+    width: 2.4rem;
+    height: 2.4rem;
+  }
+
+  &:disabled {
+    cursor: default;
+    color: var(--color-unavailable);
+
+    & .icon {
+      opacity: 0.4;
+    }
+  }
+
+  &[aria-current="step"] {
+    border-left-color: var(--color-stat);
+    background: var(--color-selector);
+    color: var(--color-stat);
+  }
+
+  &.done .step-label::after {
+    content: " ✓";
+    color: var(--color-positive);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: -2px;
+  }
+
+  @media (hover: hover) {
+    &:enabled:not([aria-current]):hover {
+      background: var(--gradient-hover-glow);
+      animation: var(--animate-hover-glow);
+    }
+  }
+}
+
+.step-number {
+  width: 2ch;
+  text-align: right;
+  font-size: var(--text-small);
+  color: var(--color-parchment);
+}
+
+/* One segment per step under the header: done, current, still to come. */
+.progress {
+  display: flex;
+  gap: 0.4rem;
+  margin: 0.8rem 0 1.8rem;
+
+  & span {
+    flex: 1 1 0;
+    height: 0.6rem;
+    background: rgb(255 255 255 / 0.15);
+    box-shadow: 0.15rem 0.15rem 0 black;
+  }
+
+  & .done {
+    background: var(--color-hr);
+  }
+
+  & .current {
+    background: var(--color-stat);
+  }
+}
+
+.panel {
+  display: flex;
+  flex-direction: column;
+  gap: 1.4rem;
+  animation: panel-in 180ms ease-out;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+.intro {
+  margin: 0;
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.85);
+
+  & b {
+    font-weight: normal;
+    color: var(--color-gold);
+  }
+}
+
+.note {
+  margin: 0;
+  font-size: var(--text-fine);
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.6);
+}
+
+.subheading {
+  margin: 0.6rem 0 0;
+  font-size: var(--text-small);
+  font-weight: normal;
+  letter-spacing: 0.1ch;
+  text-transform: uppercase;
+  color: var(--color-stat);
+}
+
+.label {
+  font-size: var(--text-small);
+}
+
+.row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.8rem;
+}
+
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.status {
+  margin: 0;
+  min-height: 1.5em;
+  font-size: var(--text-small);
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.85);
+
+  &:empty {
+    min-height: 0;
+  }
+
+  &.ok {
+    color: var(--color-positive);
+  }
+
+  &.err {
+    color: var(--color-negative);
+  }
+
+  &.big {
+    font-size: var(--text-sub);
+  }
+
+  /* The site's loading animation beside a working status. */
+  &.busy::before {
+    content: "";
+    display: inline-block;
+    width: 2.1rem;
+    height: 2.7rem;
+    margin-right: 1rem;
+    vertical-align: middle;
+    background: url("images/loading.gif") center / contain no-repeat;
+    image-rendering: pixelated;
+  }
+}
+
+/* ─── Sprites ──────────────────────────────────────────────────────────────── */
+
+/* A game sprite (--icon), tinted like the site's icons: a mask in the
+   sprite's shape, multiplied over it in --tint. */
+.icon {
+  position: relative;
+  display: inline-block;
+  flex: none;
+  background: var(--icon) center / contain no-repeat;
+  image-rendering: pixelated;
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--tint, transparent);
+    mask: var(--icon) center / contain no-repeat;
+    mix-blend-mode: multiply;
+  }
+}
+
+/* ─── Controls ─────────────────────────────────────────────────────────────── */
+
+.button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0.6rem 1.4rem;
+  border: 1px solid var(--color-hr);
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--text-small);
+  color: rgb(255 255 255 / 0.85);
+  text-decoration: none;
+
+  @media (hover: hover) {
+    &:enabled:hover {
+      color: white;
+      background: var(--gradient-hover-glow);
+      animation: var(--animate-hover-glow);
+    }
+  }
+
+  &:focus-visible {
+    color: white;
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.6;
+  }
+
+  &.primary {
+    padding: 1rem 2.4rem;
+    border: 3px solid var(--color-positive);
+    background: var(--color-accent);
+    font-size: var(--text-sub);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    color: white;
+    text-shadow: 0.15rem 0.15rem 0 black;
+    box-shadow: 0.3rem 0.3rem 0 black;
+
+    @media (hover: hover) {
+      &:enabled:hover {
+        background: #0a920a;
+        animation: none;
+      }
+    }
+  }
+
+  &.secondary {
+    border-color: rgb(255 255 255 / 0.3);
+    color: rgb(255 255 255 / 0.55);
+
+    @media (hover: hover) {
+      &:enabled:hover {
+        border-color: var(--color-negative);
+        color: var(--color-negative);
+        background: transparent;
+        animation: none;
+      }
+    }
+  }
+}
+
+.text-input {
+  padding: 0.6rem 1rem;
+  border: 1px solid var(--color-hr);
+  background: rgb(0 0 0 / 0.45);
+  font-size: var(--text-small);
+  color: white;
+  outline: none;
+  resize: none;
+
+  &::placeholder {
+    color: rgb(255 255 255 / 0.35);
+  }
+
+  &:focus-visible {
+    border-color: white;
+  }
+}
+
+textarea.text-input {
+  field-sizing: content; /* grows to fit the string where supported; rows="3" elsewhere */
+  word-break: break-all;
+  font-size: var(--text-fine);
+  letter-spacing: 0.04em;
+}
+
+/* A file picker drawn as the site's standard card frame, glowing on hover
+   and while a file is dragged over it. */
+.drop {
+  display: flex;
+  align-items: center;
+  gap: 2rem;
+  padding: 2.4rem 2.6rem;
+  border-style: solid;
+  border-image: var(--image-card-frame) 84 88 80 88 fill / 21px 22px 20px 22px round;
+  cursor: pointer;
+  position: relative;
+
+  &::after {
+    content: "";
+    position: absolute;
+    inset: 0.8rem 1rem;
+    background: var(--gradient-hover-glow);
+    animation: var(--animate-hover-glow);
+    visibility: hidden;
+    pointer-events: none;
+  }
+
+  &.dragging::after,
+  &:focus-within::after {
+    visibility: visible;
+  }
+
+  @media (hover: hover) {
+    &:hover::after {
+      visibility: visible;
+    }
+  }
+
+  & .icon {
+    width: 4.8rem;
+    height: 4.8rem;
+  }
+
+  &.chosen .drop-title {
+    color: var(--color-gold);
+  }
+}
+
+.drop-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.drop-title {
+  font-size: var(--text-main);
+  overflow-wrap: anywhere;
+}
+
+.drop-hint {
+  font-size: var(--text-fine);
+  color: rgb(255 255 255 / 0.6);
+}
+
+/* ─── Choices (presets and choice options) ─────────────────────────────────── */
+
+.choices {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.choice {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  align-items: start;
+  gap: 1rem;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+
+  & input {
+    position: absolute;
+    opacity: 0;
+    pointer-events: none;
+  }
+
+  /* The game's green arrow, pointing at the chosen row. */
+  &::before {
+    content: "";
+    width: 2rem;
+    height: 2.1rem;
+    margin-top: 0.1rem;
+    background: url("images/arrow.png") center / contain no-repeat;
+    transform: scaleX(-1);
+    image-rendering: pixelated;
+    visibility: hidden;
+  }
+
+  &:has(input:checked) {
+    border-bottom-color: var(--color-stat);
+    background: var(--color-selector);
+
+    &::before {
+      visibility: visible;
+    }
+
+    & .choice-label {
+      color: var(--color-stat);
+    }
+  }
+
+  &:has(input:focus-visible) {
+    outline: 2px solid white;
+    outline-offset: -2px;
+  }
+
+  &:has(input:disabled) {
+    cursor: default;
+  }
+
+  @media (hover: hover) {
+    &:not(:has(input:checked, input:disabled)):hover {
+      background: var(--gradient-hover-glow);
+      animation: var(--animate-hover-glow);
+    }
+  }
+}
+
+.choice-text {
+  display: flex;
+  flex-direction: column;
+  gap: 0.2rem;
+}
+
+.choice-label {
+  font-size: var(--text-sub);
+  text-shadow: 0.15rem 0.15rem 0 black;
+}
+
+/* ─── Options ──────────────────────────────────────────────────────────────── */
+
+.option-section {
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+
+  & + & {
+    padding-top: 1.6rem;
+    border-top: 3px solid var(--color-hr);
+  }
+}
+
+.option {
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  transition: opacity 120ms;
+
+  &.off {
+    opacity: 0.4;
+  }
+}
+
+/* Label and help on the left, the control on the right (below when it doesn't fit). */
+.option-row {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.8rem 2.4rem;
+
+  & .option-text {
+    flex: 1 1 32rem;
+  }
+
+  /* A toggle stays beside its text, even on phones. */
+  &:has(> .toggle) {
+    flex-wrap: nowrap;
+
+    & .option-text {
+      flex-basis: 0;
+    }
+  }
+}
+
+.option-text {
+  display: flex;
+  flex: none;
+  flex-direction: column;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.option-title {
+  font-size: var(--text-sub);
+  cursor: pointer;
+}
+
+.badge {
+  display: inline-block;
+  margin-left: 0.8rem;
+  padding: 0 0.6rem;
+  border: 1px solid var(--color-warm);
+  font-size: var(--text-fine);
+  letter-spacing: 0.1em;
+  color: var(--color-warm);
+  vertical-align: 0.2rem;
+}
+
+/* An On/Off option: the site's yellow box, outlined when off and filled when on. */
+.toggle {
+  appearance: none;
+  flex: none;
+  width: 2.6rem;
+  height: 2.6rem;
+  margin: 0;
+  border: 3px solid var(--color-stat);
+  background: transparent;
+  box-shadow: 0.2rem 0.2rem 0 black;
+  cursor: pointer;
+
+  &:checked {
+    background: var(--color-stat);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 3px;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+
+  @media (hover: hover) {
+    &:enabled:not(:checked):hover {
+      background: rgb(255 255 80 / 0.25);
+    }
+  }
+}
+
+/* "◀ ━━━●━━ ▶ ±50%": a number option with the game's arrows. */
+.amount {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 0.8rem;
+
+  & output {
+    width: 6.4rem;
+    text-align: right;
+    font-size: var(--text-sub);
+    color: var(--color-stat);
+    text-shadow: 0.15rem 0.15rem 0 black;
+  }
+}
+
+.arrow {
+  display: flex;
+  flex: none;
+  width: 3.4rem;
+  height: 3.4rem;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+
+  & img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: filter 100ms;
+  }
+
+  &.next img {
+    transform: scaleX(-1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+
+  @media (hover: hover) {
+    &:enabled:hover img {
+      filter: brightness(1.25);
+    }
+  }
+}
+
+input[type="range"] {
+  appearance: none;
+  width: 16rem;
+  height: 2.4rem;
+  margin: 0;
+  background: transparent;
+  cursor: pointer;
+
+  &::-webkit-slider-runnable-track {
+    height: 0.6rem;
+    background: var(--color-hr);
+    box-shadow: 0.2rem 0.2rem 0 black;
+  }
+
+  &::-moz-range-track {
+    height: 0.6rem;
+    background: var(--color-hr);
+    box-shadow: 0.2rem 0.2rem 0 black;
+  }
+
+  &::-webkit-slider-thumb {
+    appearance: none;
+    width: 1.4rem;
+    height: 2.2rem;
+    margin-top: -0.8rem;
+    border: 0;
+    background: var(--color-stat);
+    box-shadow: 0.2rem 0.2rem 0 black;
+  }
+
+  &::-moz-range-thumb {
+    width: 1.4rem;
+    height: 2.2rem;
+    border: 0;
+    border-radius: 0;
+    background: var(--color-stat);
+    box-shadow: 0.2rem 0.2rem 0 black;
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+    outline-offset: 2px;
+  }
+
+  &:disabled {
+    cursor: default;
+  }
+}
+
+/* ─── Start ────────────────────────────────────────────────────────────────── */
+
+.load {
+  & summary {
+    cursor: pointer;
+    margin-bottom: 1rem;
+  }
+
+  & .row {
+    margin-top: 1rem;
+  }
+}
+
+/* ─── EBOOT ────────────────────────────────────────────────────────────────── */
+
+.eboot-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.6rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  & li {
+    padding: 0.2rem 1rem;
+    border: 1px solid var(--color-warm);
+    font-size: var(--text-fine);
+    color: var(--color-warm);
+  }
+}
+
+.howto {
+  margin: 0;
+  padding-left: 2.4rem;
+  font-size: var(--text-small);
+  line-height: 1.6;
+  color: rgb(255 255 255 / 0.85);
+
+  & li::marker {
+    color: var(--color-stat);
+  }
+}
+
+/* ─── Review ───────────────────────────────────────────────────────────────── */
+
+.summary {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  gap: 0.8rem;
+  margin: 0;
+}
+
+.summary-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--color-line);
+  background: rgb(0 0 0 / 0.35);
+
+  & dt {
+    display: flex;
+    align-items: center;
+    gap: 0.8rem;
+  }
+
+  & dd {
+    margin: 0;
+    font-size: var(--text-fine);
+    line-height: 1.4;
+    color: rgb(255 255 255 / 0.85);
+  }
+
+  & dd.off {
+    color: var(--color-unavailable);
+  }
+
+  & .icon {
+    width: 2rem;
+    height: 2rem;
+  }
+}
+
+.summary-edit {
+  padding: 0;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--text-sub);
+  color: var(--color-parchment);
+  text-align: left;
+
+  &::after {
+    content: "  ✎";
+    color: rgb(255 255 255 / 0.4);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+  }
+
+  @media (hover: hover) {
+    &:hover {
+      color: white;
+    }
+  }
+}
+
+.go {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-end;
+  gap: 1.6rem;
+  margin-top: 1rem;
+  padding-top: 1.6rem;
+  border-top: 3px solid var(--color-hr);
+}
+
+/* ─── Run ──────────────────────────────────────────────────────────────────── */
+
+.downloads {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.2rem;
+
+  &:empty {
+    display: none;
+  }
+}
+
+.log-wrap summary,
+.spoiler-head {
+  margin-bottom: 0.8rem;
+}
+
+.log-wrap summary {
+  cursor: pointer;
+}
+
+.log {
+  margin: 0;
+  max-height: 24rem;
+  overflow: auto;
+  padding: 1rem 1.2rem;
+  border: 1px solid var(--color-line);
+  background: rgb(0 0 0 / 0.5);
+  font-family: inherit;
+  font-size: var(--text-fine);
+  line-height: 1.45;
+  letter-spacing: 0.02em;
+  white-space: pre-wrap;
+  overflow-wrap: anywhere;
+  color: rgb(255 255 255 / 0.85);
+
+  &:empty {
+    display: none;
+  }
+
+  &.spoiler {
+    max-height: 60vh;
+  }
+}
+
+.spoiler-head .text-input {
+  flex: 0 1 30rem;
+}
+
+/* ─── Back / Next ──────────────────────────────────────────────────────────── */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: 1.6rem;
+  margin-top: 2.4rem;
+  padding-top: 1.4rem;
+  border-top: 3px solid rgb(255 255 255 / 0.2);
+}
+
+.nav-status {
+  flex: 1 1 auto;
+  text-align: center;
+}
+
+.nav-button {
+  display: flex;
+  flex: none;
+  align-items: center;
+  gap: 1rem;
+  padding: 0.4rem 0.8rem;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: var(--text-main);
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+  color: var(--color-parchment);
+  text-shadow: 0.15rem 0.15rem 0 black;
+
+  & img {
+    width: 3.8rem;
+    height: 4rem;
+    transition: filter 100ms;
+  }
+
+  &.next img {
+    transform: scaleX(-1);
+  }
+
+  &:focus-visible {
+    outline: 2px solid white;
+  }
+
+  &.invisible {
+    visibility: hidden;
+  }
+
+  &:disabled {
+    cursor: default;
+    opacity: 0.4;
+  }
+
+  @media (hover: hover) {
+    &:enabled:hover {
+      color: white;
+
+      & img {
+        filter: brightness(1.25);
+      }
+    }
+  }
+}
+
+/* ─── Footer ───────────────────────────────────────────────────────────────── */
+
+.footer {
+  max-width: 96rem;
+  margin: 2.4rem auto 0;
+  padding: 1.2rem 1.6rem;
+  background: rgb(0 0 0 / 0.55);
+  font-size: var(--text-fine);
+  line-height: 1.5;
+  text-align: center;
+  color: rgb(255 255 255 / 0.7);
+}
+
+/* ─── Phones ───────────────────────────────────────────────────────────────── */
+
+@media screen and (max-width: 600px) {
+  :root {
+    --text-main: 2rem;
+  }
+
+  body {
+    padding: 1rem 1rem 2rem;
+  }
+
+  .masthead-title {
+    font-size: 3.6rem;
+    letter-spacing: 0.25em;
+    margin-right: -0.25em;
+  }
+
+  .frame {
+    padding: 1.8rem 1.6rem 1.6rem;
+  }
+
+  .menu-header {
+    margin-inline: -0.8rem;
+  }
+
+  .step-menu {
+    flex-wrap: wrap;
+    gap: 0.2rem 1.2rem;
+  }
+
+  .summary {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .drop {
+    gap: 1.4rem;
+    padding: 2rem;
+  }
+
+  .amount input[type="range"] {
+    width: 11rem;
+  }
+
+  .nav-button {
+    font-size: var(--text-sub);
+
+    & img {
+      width: 3rem;
+      height: 3.2rem;
+    }
+  }
+
+  .go {
+    justify-content: stretch;
+
+    & .button {
+      flex: 1 1 auto;
+    }
+  }
+}
+
+/* Last, so it beats the single-class rules above that set display (.panel,
+   .row, …) at the same specificity, without !important. */
+[hidden] {
+  display: none;
+}
+    </style>
+  </head>
+  <body>
+    <header class="masthead">
+      <h1 class="masthead-title">Randomfu</h1>
+      <p class="masthead-sub">Monster Hunter Freedom Unite randomizer <span id="version"></span></p>
+    </header>
+    <hr class="divider" />
+
+    <main class="frame" aria-labelledby="step-title">
+      <nav class="menu-header" aria-label="Steps">
+        <h2 class="menu-title">
+          <button
+            type="button"
+            class="step-menu"
+            id="step-menu"
+            aria-expanded="false"
+            aria-controls="steps"
+          >
+            <span class="step-count" id="step-count"></span>
+            <span id="step-title"></span>
+            <span class="caret" aria-hidden="true"></span>
+          </button>
+        </h2>
+        <ol class="step-list" id="steps" hidden></ol>
+      </nav>
+      <div class="progress" id="progress" aria-hidden="true"></div>
+
+      <!-- 1. The disc -->
+      <section class="panel" data-step="game" hidden>
+        <p class="intro">
+          Pick a disc image of <b>Monster Hunter Freedom Unite</b> (EU) or
+          <b>Monster Hunter Portable 2nd G</b> (JP), dumped from your own disc. It stays on your
+          computer: randomfu runs in this page and nothing is uploaded.
+        </p>
+        <label class="drop" id="iso-drop">
+          <span class="drop-icon icon" style="--icon: url(images/binoculars.png)"></span>
+          <span class="drop-text">
+            <span class="drop-title" id="iso-name">Choose your disc image (.iso)</span>
+            <span class="drop-hint">or drop it here</span>
+          </span>
+          <input type="file" id="iso" accept=".iso" class="visually-hidden" />
+        </label>
+        <p class="status" id="check-status" role="status"></p>
+        <p class="note">
+          Have a CSO? Decompress it to an ISO first, for example with maxcso or PPSSPP.
+        </p>
+      </section>
+
+      <!-- 2. Seed, presets and shared settings -->
+      <section class="panel" data-step="start" hidden>
+        <p class="intro">
+          The seed decides every shuffle: the same disc, seed and settings always make the same
+          game. Then start from a preset, or load settings someone shared with you.
+        </p>
+        <h3 class="subheading">Seed</h3>
+        <div class="row">
+          <input
+            type="text"
+            id="seed"
+            class="text-input grow"
+            aria-label="Seed"
+            autocomplete="off"
+            spellcheck="false"
+          />
+          <button type="button" class="button" id="new-seed">New seed</button>
+        </div>
+
+        <h3 class="subheading">Preset</h3>
+        <div class="choices" id="presets" role="radiogroup" aria-label="Preset"></div>
+        <p class="note">A preset keeps your seed. You can change anything in the next steps.</p>
+
+        <details class="load" id="load">
+          <summary class="subheading">Load shared settings</summary>
+          <label class="field">
+            <span class="label">Settings string</span>
+            <span class="row">
+              <input
+                type="text"
+                id="paste"
+                class="text-input grow"
+                placeholder="RF…"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="button" class="button" id="apply-paste">Load</button>
+            </span>
+          </label>
+          <div class="row">
+            <button type="button" class="button" id="import">Load settings file</button>
+            <input type="file" id="import-file" accept=".json,application/json" hidden />
+          </div>
+        </details>
+        <p class="status" id="share-status" role="status"></p>
+        <div class="row" id="skip-row" hidden>
+          <button type="button" class="button" id="skip">Skip to review ▶</button>
+        </div>
+      </section>
+
+      <!-- The option steps are built from OPTIONS here. -->
+      <div id="option-panels"></div>
+
+      <!-- The decrypted EBOOT, only when the settings need it -->
+      <section class="panel" data-step="eboot" hidden>
+        <p class="intro">
+          These settings change the game's EBOOT, its program, which is encrypted on the disc.
+          randomfu couldn't decrypt yours itself (<span id="eboot-why"></span>), so it needs a
+          decrypted copy, which PPSSPP can make for you:
+        </p>
+        <ul class="eboot-list" id="eboot-list"></ul>
+        <ol class="howto">
+          <li>In PPSSPP, open Settings → Tools → Developer tools.</li>
+          <li>Turn on “Dump Decrypted Eboot.bin on game boot”.</li>
+          <li>Start the game once. The file is in <code>PSP/SYSTEM/DUMP</code>.</li>
+        </ol>
+        <label class="drop" id="eboot-drop">
+          <span
+            class="drop-icon icon"
+            style="--icon: url(images/deco.png); --tint: var(--color-gem-cyan)"
+          ></span>
+          <span class="drop-text">
+            <span class="drop-title" id="eboot-name">Choose your decrypted EBOOT</span>
+            <span class="drop-hint">or drop it here</span>
+          </span>
+          <input type="file" id="eboot" class="visually-hidden" />
+        </label>
+        <p class="status" id="eboot-status" role="status"></p>
+        <div class="row">
+          <button type="button" class="button secondary" id="drop-eboot">
+            Turn these settings off instead
+          </button>
+        </div>
+      </section>
+
+      <!-- Review, share and run -->
+      <section class="panel" data-step="review" hidden>
+        <p class="intro">Check your choices, then randomize. Select a step to change it.</p>
+        <dl class="summary" id="summary"></dl>
+
+        <h3 class="subheading">Share</h3>
+        <label class="field">
+          <span class="label">Settings string</span>
+          <textarea id="share" class="text-input" rows="3" readonly></textarea>
+          <span class="note"
+            >Seed and settings in one line. Anyone with the same disc gets the same game.</span
+          >
+        </label>
+        <div class="row">
+          <button type="button" class="button" id="copy">Copy</button>
+          <button type="button" class="button" id="export">Save settings file</button>
+        </div>
+        <p class="status" id="copy-status" role="status"></p>
+
+        <div class="go">
+          <button type="button" class="button" id="dry-run">Preview spoiler</button>
+          <button type="button" class="button primary" id="run">Randomize!</button>
+        </div>
+      </section>
+
+      <!-- The run -->
+      <section class="panel" data-step="run" hidden>
+        <p class="status big" id="run-status" role="status"></p>
+        <p class="status err" id="stale" hidden>
+          Your settings or disc changed since this run. Go back to the review and randomize again to
+          use them.
+        </p>
+        <div class="downloads" id="downloads"></div>
+        <details class="log-wrap" id="log-wrap" open>
+          <summary class="subheading">Log</summary>
+          <pre class="log" id="log" aria-live="polite"></pre>
+        </details>
+        <div id="spoiler-wrap" hidden>
+          <div class="row spoiler-head">
+            <h3 class="subheading grow">Spoiler log</h3>
+            <input
+              type="text"
+              id="filter"
+              class="text-input"
+              placeholder="Filter, e.g. Buster Sword"
+              aria-label="Filter the spoiler log"
+            />
+          </div>
+          <pre class="log spoiler" id="spoiler"></pre>
+        </div>
+      </section>
+
+      <div class="nav">
+        <button type="button" class="nav-button" id="back">
+          <img src="images/arrow.png" alt="" aria-hidden="true" />
+          <span>Back</span>
+        </button>
+        <p class="status nav-status" id="nav-status" role="status"></p>
+        <button type="button" class="nav-button next" id="next">
+          <span>Next</span>
+          <img src="images/arrow.png" alt="" aria-hidden="true" />
+        </button>
+      </div>
+    </main>
+
+    <footer class="footer">
+      randomfu runs entirely in your browser. Not affiliated with Capcom.
+    </footer>
+
+    <script src="app.js"></script>
+  </body>
+</html>
