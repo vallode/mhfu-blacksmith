@@ -51,7 +51,11 @@ export interface BoardFile {
   records: BoardRecord[];
 }
 
-/** The file's records, or null if it isn't laid out like a board file. */
+/**
+ * The file's records, or null if none of its table's entries is one. An
+ * entry that isn't a record (0, the end of the data, or anything pointing
+ * past the file) is skipped: the EU files' tables may end with such a value.
+ */
 export function readBoardRecords(buf: Buffer): BoardRecord[] | null {
   if (buf.length < 4) return null;
   const first = buf.readUInt32LE(0);
@@ -59,13 +63,13 @@ export function readBoardRecords(buf: Buffer): BoardRecord[] | null {
   const records: BoardRecord[] = [];
   for (let i = 0; i < first / 4; i++) {
     const offset = buf.readUInt32LE(i * 4);
-    if (offset < first || offset + RECORD_HEADER_SIZE > buf.length) return null;
+    if (offset < first || offset + RECORD_HEADER_SIZE > buf.length) continue;
     const stringPtrTbl = buf.readUInt32LE(offset + RECORD_STRINGS);
-    if (stringPtrTbl !== 0 && (stringPtrTbl < offset || stringPtrTbl + 28 > buf.length))
-      return null;
-    records.push({ offset, questId: buf.readUInt16LE(offset + RECORD_QUEST_ID), stringPtrTbl });
+    const questId = buf.readUInt16LE(offset + RECORD_QUEST_ID);
+    if (questId === 0 || stringPtrTbl < offset || stringPtrTbl + 28 > buf.length) continue;
+    records.push({ offset, questId, stringPtrTbl });
   }
-  return records;
+  return records.length > 0 ? records : null;
 }
 
 /** A record as the header `readQuestText` reads strings through. */

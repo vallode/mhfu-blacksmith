@@ -377,6 +377,11 @@ export function renameQuestText(
     }
   });
 
+  const boardRecords = boards.reduce((n, b) => n + b.records.length, 0);
+  const boardNote =
+    boards.length > 0
+      ? `Quest board: ${boardRecords} records read from ${boards.length} files (${boards.map((b) => b.path.replace(/^mission_jpn\//, "")).join(", ")}).`
+      : "Quest board: no level*.mib file could be read, so the board and Quest Details screen keep their old text.";
   const learned = slots
     .map((s, i) => ({ lang: SLOT_LANGUAGES[i]!, count: s.names.size }))
     .filter((s) => s.count > 0)
@@ -387,6 +392,7 @@ export function renameQuestText(
       learned.length > 0
         ? `Monster names learned from the disc's quest text: ${learned.join(", ")}.`
         : "No monster names could be learned from the disc's quest text, so no text changed.",
+      boardNote,
       `Renamed monsters in ${renamed} quests; ${kept} quests keep some old text (listed). Pronouns aren't changed. Untested on a real disc.`,
     ],
     lines,

@@ -7,12 +7,24 @@ import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
 import { readQuestText, slotSize, writeQuestText } from "../src/game/quest-text.js";
 import { readSpawns } from "../src/game/spawns.js";
-import { RECORD_HEADER_SIZE, RECORD_TARGET_ID, recordHeader } from "../src/game/board.js";
+import {
+  readBoardRecords,
+  RECORD_HEADER_SIZE,
+  RECORD_TARGET_ID,
+  recordHeader,
+} from "../src/game/board.js";
 import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
 import { learnNames, learnSlotNames, renameIn, splitNames } from "../src/shuffles/quest-text.js";
 import { formatSpoiler } from "../src/spoiler.js";
-import { BOARD_INDICES, buildFixtureDisc, buildQuestPayload, tempDir } from "./fixtures.js";
+import {
+  BOARD_INDICES,
+  buildBoardFile,
+  buildFixtureDisc,
+  buildQuestPayload,
+  FIXTURE_QUESTS,
+  tempDir,
+} from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 type Changes = Partial<Record<OptionKey, boolean | number | string>>;
@@ -377,4 +389,30 @@ test("swaps update the board's TargetID and rename its text, on every board the 
   }
   assert.ok(checked >= 2, "some seeds swap quest 2001");
   close();
+});
+
+test("board table entries that aren't records are skipped, not the whole file", () => {
+  const board = buildBoardFile(FIXTURE_QUESTS.slice(0, 2));
+  const records = readBoardRecords(board)!;
+  // Make room for two more table entries: the end of the data, and 0.
+  const shifted = Buffer.concat([Buffer.alloc(8), board]);
+  const table = records.length;
+  for (let i = 0; i < table; i++) {
+    shifted.writeUInt32LE(board.readUInt32LE(i * 4) + 8, i * 4);
+  }
+  // Records' own offsets (LangPTRs and string pointers) move by 8 too; only check the table here.
+  shifted.writeUInt32LE(shifted.length, table * 4);
+  shifted.writeUInt32LE(0, table * 4 + 4);
+  for (const r of records) {
+    const at = r.offset + 8 + 0x14;
+    shifted.writeUInt32LE(shifted.readUInt32LE(at) + 8, at);
+  }
+  // The first entry no longer gives the table's length, so rebuild it as one table of table + 2.
+  shifted.writeUInt32LE(board.readUInt32LE(0) + 8, 0);
+  const read = readBoardRecords(shifted)!;
+  assert.deepEqual(
+    read.map((r) => r.questId),
+    records.map((r) => r.questId),
+  );
+  assert.equal(readBoardRecords(Buffer.alloc(16)), null);
 });
