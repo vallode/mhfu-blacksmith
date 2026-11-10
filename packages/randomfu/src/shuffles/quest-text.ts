@@ -393,7 +393,7 @@ export function renameQuestText(
         ? `Monster names learned from the disc's quest text: ${learned.join(", ")}.`
         : "No monster names could be learned from the disc's quest text, so no text changed.",
       boardNote,
-      `Renamed monsters in ${renamed} quests; ${kept} quests keep some old text (listed). Pronouns aren't changed. Untested on a real disc.`,
+      `Renamed monsters in ${renamed} quests; ${kept} quests keep some old text (listed). Pronouns aren't changed.`,
     ],
     lines,
   };

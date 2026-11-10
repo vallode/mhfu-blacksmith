@@ -441,7 +441,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "questMonsters.text",
     section: "Quest monsters",
     label: "Rename monsters in quest text",
-    help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Untested on a real disc.",
+    help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Seen working on the EU disc's Quest Details screen.",
     type: { kind: "boolean" },
     default: true,
     enabledBy: "questMonsters.species",

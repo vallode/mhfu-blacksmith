@@ -331,7 +331,8 @@ list (`emLoadTable`).
   - **The board has its own copy.** The board and the Quest Details screen
     read each quest's text from `mission_jpn/level*.mib`, not the quest
     file (`src/game/board.ts`; found with mhfu-extract `quest-text-scan`):
-    renaming only the quest file left the screen unchanged on the EU disc.
+    renaming only the quest file left the screen unchanged on the EU disc,
+    and renaming the board changed it (seen in PPSSPP).
     Each quest's board records get the same renaming, and their
     `TargetID` follows a swap. The spoiler lists "Board text (levelN.mib)"
     lines next to the quest file's "Text" lines.
@@ -456,9 +457,10 @@ hitzone tables they share.
   game, but whether the value is exactly a percentage hasn't been measured.
   What sets the crown spread around it (`Unkn6`/`Unkn7` are the lead)
   isn't known. Whether hitboxes scale with either size option is untested.
-- Quest text in game. The board files (`level*.mib`) are renamed now, but
-  no renamed board text has been seen in game yet. Where the game shows
-  the quest file's own copy of the text, if anywhere, isn't known.
+- Quest text in game. Renaming the board files (`level*.mib`) shows on the
+  EU Quest Details screen: a quest swapped from Velocidrome to Daimyo
+  Hermitaur showed the new monster in game. Where the game shows the quest
+  file's own copy of the text, if anywhere, isn't known.
 - Large monster counts. What `quantity` means for a large monster (it's 1
   in 536 of 554 records, 10 or 5 in a few), and how it relates to the
   header's `TargetNum`, isn't known.
