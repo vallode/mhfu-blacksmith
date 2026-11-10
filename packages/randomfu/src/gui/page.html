@@ -1,0 +1,921 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>randomfu</title>
+    <style>
+      :root {
+        color-scheme: light dark;
+        --bg: #f4f1ea;
+        --card: #fffdf8;
+        --ink: #23201a;
+        --muted: #6b6457;
+        --line: #e2dccf;
+        --accent: #b7651b;
+        --accent-ink: #fff;
+        --accent-soft: #f6e6d3;
+        --good: #2f7d4a;
+        --bad: #b3362b;
+        --code: #f0ebe0;
+        --radius: 10px;
+      }
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --bg: #17150f;
+          --card: #211e17;
+          --ink: #ece6d8;
+          --muted: #a59d8c;
+          --line: #3a352a;
+          --accent: #e08a3c;
+          --accent-ink: #1b1209;
+          --accent-soft: #3a2a1a;
+          --good: #6cc48a;
+          --bad: #ef7d70;
+          --code: #1a1812;
+        }
+      }
+      * {
+        box-sizing: border-box;
+      }
+      body {
+        margin: 0;
+        background: var(--bg);
+        color: var(--ink);
+        font:
+          15px/1.45 system-ui,
+          -apple-system,
+          "Segoe UI",
+          sans-serif;
+      }
+      header {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 28px 16px 8px;
+        display: flex;
+        align-items: baseline;
+        gap: 12px;
+        flex-wrap: wrap;
+      }
+      h1 {
+        margin: 0;
+        font-size: 26px;
+        letter-spacing: -0.01em;
+      }
+      header .sub {
+        color: var(--muted);
+      }
+      main {
+        max-width: 980px;
+        margin: 0 auto;
+        padding: 8px 16px 120px;
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.25fr);
+        gap: 16px;
+        align-items: start;
+      }
+      @media (max-width: 760px) {
+        main {
+          grid-template-columns: minmax(0, 1fr);
+        }
+      }
+      .col {
+        display: grid;
+        gap: 16px;
+        min-width: 0;
+      }
+      section.card {
+        background: var(--card);
+        border: 1px solid var(--line);
+        border-radius: var(--radius);
+        padding: 16px;
+        min-width: 0;
+      }
+      h2 {
+        margin: 0 0 12px;
+        font-size: 15px;
+        text-transform: uppercase;
+        letter-spacing: 0.06em;
+        color: var(--muted);
+      }
+      .field {
+        display: grid;
+        gap: 4px;
+        margin-bottom: 12px;
+      }
+      .field:last-child {
+        margin-bottom: 0;
+      }
+      .field > span {
+        font-weight: 600;
+      }
+      input[type="text"],
+      input[type="number"],
+      textarea {
+        width: 100%;
+        font: inherit;
+        color: inherit;
+        background: var(--bg);
+        border: 1px solid var(--line);
+        border-radius: 7px;
+        padding: 7px 9px;
+      }
+      textarea {
+        font-family: ui-monospace, Menlo, Consolas, monospace;
+        font-size: 13px;
+        resize: vertical;
+      }
+      input:focus-visible,
+      textarea:focus-visible,
+      button:focus-visible {
+        outline: 2px solid var(--accent);
+        outline-offset: 1px;
+      }
+      .hint {
+        color: var(--muted);
+        font-size: 13px;
+      }
+      .row {
+        display: flex;
+        gap: 8px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .row > input[type="text"] {
+        flex: 1 1 160px;
+      }
+      button {
+        font: inherit;
+        border-radius: 7px;
+        border: 1px solid var(--line);
+        background: var(--card);
+        color: inherit;
+        padding: 7px 12px;
+        cursor: pointer;
+      }
+      button:hover {
+        border-color: var(--accent);
+      }
+      button.primary {
+        background: var(--accent);
+        border-color: var(--accent);
+        color: var(--accent-ink);
+        font-weight: 600;
+      }
+      button:disabled {
+        opacity: 0.55;
+        cursor: default;
+      }
+      .status {
+        font-size: 13px;
+        margin-top: 6px;
+        min-height: 1.2em;
+      }
+      .ok {
+        color: var(--good);
+      }
+      .err {
+        color: var(--bad);
+      }
+      .option {
+        padding: 10px 0;
+        border-top: 1px solid var(--line);
+      }
+      .option:first-of-type {
+        border-top: 0;
+        padding-top: 0;
+      }
+      .option.off {
+        opacity: 0.45;
+      }
+      .option .title {
+        display: flex;
+        align-items: center;
+        gap: 8px;
+        font-weight: 600;
+      }
+      .option .help {
+        color: var(--muted);
+        font-size: 13px;
+        margin: 2px 0 0;
+      }
+      .badge {
+        font-size: 11px;
+        font-weight: 600;
+        padding: 1px 6px;
+        border-radius: 99px;
+        background: var(--accent-soft);
+        color: var(--accent);
+        white-space: nowrap;
+      }
+      .switch {
+        display: flex;
+        gap: 10px;
+        align-items: flex-start;
+        cursor: pointer;
+      }
+      .switch input {
+        margin-top: 3px;
+        width: 16px;
+        height: 16px;
+        accent-color: var(--accent);
+        flex: none;
+      }
+      .range {
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        margin-top: 6px;
+      }
+      .range input {
+        flex: 1;
+        accent-color: var(--accent);
+      }
+      .range output {
+        min-width: 4.5em;
+        text-align: right;
+        font-variant-numeric: tabular-nums;
+      }
+      .choices {
+        display: grid;
+        gap: 6px;
+        margin-top: 8px;
+      }
+      .choice {
+        display: flex;
+        gap: 10px;
+        padding: 8px 10px;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        cursor: pointer;
+      }
+      .choice:has(input:checked) {
+        border-color: var(--accent);
+        background: var(--accent-soft);
+      }
+      .choice input {
+        accent-color: var(--accent);
+        margin-top: 3px;
+        flex: none;
+      }
+      .choice b {
+        display: block;
+      }
+      .choice small {
+        color: var(--muted);
+      }
+      .presets {
+        display: grid;
+        gap: 8px;
+      }
+      .presets button {
+        text-align: left;
+        display: grid;
+        gap: 2px;
+      }
+      .presets small {
+        color: var(--muted);
+      }
+      .actions {
+        position: fixed;
+        inset: auto 0 0 0;
+        background: color-mix(in srgb, var(--card) 92%, transparent);
+        backdrop-filter: blur(6px);
+        border-top: 1px solid var(--line);
+        padding: 10px 16px;
+      }
+      .actions .inner {
+        max-width: 980px;
+        margin: 0 auto;
+        display: flex;
+        gap: 10px;
+        align-items: center;
+        flex-wrap: wrap;
+      }
+      .actions .grow {
+        flex: 1 1 0;
+        min-width: 0;
+        font-size: 13px;
+        color: var(--muted);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      .actions .grow.ok {
+        color: var(--good);
+      }
+      .actions .grow.err {
+        color: var(--bad);
+      }
+      .actions .inner {
+        flex-wrap: nowrap;
+      }
+      .actions button {
+        flex: none;
+      }
+      pre {
+        margin: 0;
+        background: var(--code);
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        padding: 10px;
+        font:
+          12.5px/1.45 ui-monospace,
+          Menlo,
+          Consolas,
+          monospace;
+        white-space: pre-wrap;
+        word-break: break-word;
+        max-height: 420px;
+        overflow: auto;
+      }
+      #results {
+        grid-column: 1 / -1;
+      }
+      #results[hidden] {
+        display: none;
+      }
+      .results-grid {
+        display: grid;
+        gap: 12px;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <h1>randomfu</h1>
+      <span class="sub">Monster Hunter Freedom Unite randomizer</span>
+      <span class="sub" id="version"></span>
+    </header>
+
+    <main>
+      <div class="col">
+        <section class="card" aria-labelledby="disc-h">
+          <h2 id="disc-h">Disc</h2>
+          <label class="field">
+            <span>Your disc image</span>
+            <input
+              type="text"
+              id="iso"
+              placeholder="/path/to/Monster Hunter Freedom Unite.iso"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <span class="hint"
+              >An .iso or .cso you dumped yourself. It's only read, never changed.</span
+            >
+          </label>
+          <label class="field">
+            <span>Save the randomized disc as</span>
+            <input
+              type="text"
+              id="out"
+              placeholder="Next to your disc"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <span class="hint">Always an .iso. The spoiler log goes next to it.</span>
+          </label>
+          <label class="field" id="eboot-field">
+            <span
+              >Decrypted EBOOT
+              <span class="badge" id="eboot-needed" hidden>needed for these settings</span></span
+            >
+            <input
+              type="text"
+              id="eboot"
+              placeholder="…/PSP/SYSTEM/DUMP/ULES01213_EBOOT.BIN"
+              autocomplete="off"
+              spellcheck="false"
+            />
+            <span class="hint"
+              >Optional: randomfu decrypts the disc's own EBOOT. Only if that fails, in PPSSPP turn
+              on Settings → Tools → Developer tools → “Dump Decrypted Eboot.bin on game boot”, then
+              start the game once.</span
+            >
+          </label>
+          <div class="row">
+            <button type="button" id="check">Check files</button>
+            <label class="switch"
+              ><input type="checkbox" id="force" /> <span>Overwrite an existing output</span></label
+            >
+          </div>
+          <div class="status" id="check-status" role="status"></div>
+        </section>
+
+        <section class="card" aria-labelledby="seed-h">
+          <h2 id="seed-h">Seed</h2>
+          <div class="row">
+            <input type="text" id="seed" aria-label="Seed" autocomplete="off" spellcheck="false" />
+            <button type="button" id="new-seed">New seed</button>
+          </div>
+          <p class="hint">The same disc, seed and settings always make the same game.</p>
+        </section>
+
+        <section class="card" aria-labelledby="presets-h">
+          <h2 id="presets-h">Presets</h2>
+          <div class="presets" id="presets"></div>
+          <p class="hint">A preset keeps your seed. Change anything after.</p>
+        </section>
+
+        <section class="card" aria-labelledby="share-h">
+          <h2 id="share-h">Share</h2>
+          <label class="field">
+            <span>Settings string</span>
+            <textarea id="share" rows="3" readonly></textarea>
+            <span class="hint"
+              >Seed and settings in one line. Anyone with the same disc gets the same game.</span
+            >
+          </label>
+          <div class="row">
+            <button type="button" id="copy">Copy</button>
+            <button type="button" id="export">Save settings file</button>
+            <button type="button" id="import">Load settings file</button>
+            <input type="file" id="import-file" accept=".json,application/json" hidden />
+          </div>
+          <label class="field" style="margin-top: 12px">
+            <span>Load a settings string</span>
+            <div class="row">
+              <input
+                type="text"
+                id="paste"
+                placeholder="RF…"
+                autocomplete="off"
+                spellcheck="false"
+              />
+              <button type="button" id="apply-paste">Load</button>
+            </div>
+          </label>
+          <div class="status" id="share-status" role="status"></div>
+        </section>
+      </div>
+
+      <div class="col" id="options"></div>
+
+      <section class="card" id="results" hidden aria-labelledby="results-h">
+        <h2 id="results-h">Run</h2>
+        <div class="results-grid">
+          <pre id="log" aria-live="polite"></pre>
+          <div id="spoiler-wrap" hidden>
+            <div class="row" style="margin-bottom: 8px">
+              <strong style="flex: 1">Spoiler log</strong>
+              <input
+                type="text"
+                id="filter"
+                placeholder="Filter lines, e.g. Buster Sword"
+                aria-label="Filter the spoiler log"
+                style="flex: 0 1 280px"
+              />
+            </div>
+            <pre id="spoiler"></pre>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <div class="actions">
+      <div class="inner">
+        <span class="status grow" id="run-status">Pick your disc, then randomize.</span>
+        <button type="button" id="dry-run">Preview spoiler</button>
+        <button type="button" class="primary" id="run">Randomize</button>
+      </div>
+    </div>
+
+    <script>
+      "use strict";
+      const TOKEN = "__RANDOMFU_TOKEN__";
+      const STORE = "randomfu.v1";
+      const $ = (id) => document.getElementById(id);
+      let schema = null;
+      let settings = null;
+      let spoilerLines = [];
+
+      async function api(path, body) {
+        const res = await fetch(path, {
+          method: body === undefined ? "GET" : "POST",
+          headers: { "x-randomfu-token": TOKEN, "content-type": "application/json" },
+          body: body === undefined ? undefined : JSON.stringify(body),
+        });
+        const data = await res.json().catch(() => ({}));
+        if (!res.ok) throw new Error(data.error || `Request failed (${res.status})`);
+        return data;
+      }
+
+      function say(el, text, kind) {
+        el.textContent = text;
+        el.title = text;
+        el.classList.remove("ok", "err");
+        if (kind) el.classList.add(kind);
+      }
+
+      function load() {
+        try {
+          return JSON.parse(localStorage.getItem(STORE) || "{}");
+        } catch {
+          return {};
+        }
+      }
+      function save() {
+        try {
+          localStorage.setItem(
+            STORE,
+            JSON.stringify({
+              settings,
+              iso: $("iso").value,
+              out: $("out").value,
+              eboot: $("eboot").value,
+            }),
+          );
+        } catch {
+          // Storage unavailable: settings just aren't remembered.
+        }
+      }
+
+      function el(tag, attrs, ...children) {
+        const node = document.createElement(tag);
+        for (const [k, v] of Object.entries(attrs || {})) {
+          if (k === "class") node.className = v;
+          else if (k in node && typeof v !== "string") node[k] = v;
+          else node.setAttribute(k, v);
+        }
+        for (const child of children) if (child != null) node.append(child);
+        return node;
+      }
+
+      function buildOptions() {
+        const col = $("options");
+        col.replaceChildren();
+        const sections = new Map();
+        for (const option of schema.options) {
+          if (!sections.has(option.section)) {
+            const card = el("section", { class: "card" }, el("h2", {}, option.section));
+            sections.set(option.section, card);
+            col.append(card);
+          }
+          sections.get(option.section).append(renderOption(option));
+        }
+      }
+
+      function renderOption(option) {
+        const wrap = el("div", { class: "option", "data-key": option.key });
+        const id = `opt-${option.key}`;
+        const badge = option.eboot ? el("span", { class: "badge" }, "EBOOT") : null;
+        const help = el("p", { class: "help" }, option.help);
+        const type = option.type;
+        if (type.kind === "boolean") {
+          const input = el("input", { type: "checkbox", id });
+          input.addEventListener("change", () => update(option.key, input.checked));
+          wrap.append(
+            el(
+              "label",
+              { class: "switch", for: id },
+              input,
+              el("div", {}, el("div", { class: "title" }, option.label, badge), help),
+            ),
+          );
+        } else if (type.kind === "number") {
+          const input = el("input", {
+            type: "range",
+            id,
+            min: String(type.min),
+            max: String(type.max),
+            step: String(type.step),
+          });
+          const out = el("output", { for: id });
+          input.addEventListener("input", () => {
+            out.textContent = format(option, Number(input.value));
+            update(option.key, Number(input.value));
+          });
+          wrap.append(
+            el("label", { class: "title", for: id }, option.label, badge),
+            help,
+            el("div", { class: "range" }, input, out),
+          );
+        } else {
+          const group = el("div", {
+            class: "choices",
+            role: "radiogroup",
+            "aria-label": option.label,
+          });
+          for (const choice of type.choices) {
+            const input = el("input", { type: "radio", name: id, value: choice.value });
+            input.addEventListener("change", () => update(option.key, choice.value));
+            group.append(
+              el(
+                "label",
+                { class: "choice" },
+                input,
+                el("span", {}, el("b", {}, choice.label), el("small", {}, choice.help)),
+              ),
+            );
+          }
+          wrap.append(el("div", { class: "title" }, option.label, badge), help, group);
+        }
+        return wrap;
+      }
+
+      // On when its switch is on, and that switch's switch, all the way up.
+      function isActive(option) {
+        if (!option.enabledBy) return true;
+        const parent = schema.options.find((o) => o.key === option.enabledBy);
+        return settings[option.enabledBy] === true && isActive(parent);
+      }
+
+      function format(option, value) {
+        return option.type.percent ? `±${Math.round(value * 100)}%` : String(value);
+      }
+
+      function render() {
+        $("seed").value = settings.seed;
+        for (const option of schema.options) {
+          const wrap = document.querySelector(`[data-key="${option.key}"]`);
+          const value = settings[option.key];
+          const id = `opt-${option.key}`;
+          if (option.type.kind === "boolean") $(id).checked = value;
+          else if (option.type.kind === "number") {
+            $(id).value = String(value);
+            wrap.querySelector("output").textContent = format(option, value);
+          } else {
+            for (const radio of wrap.querySelectorAll("input[type=radio]"))
+              radio.checked = radio.value === value;
+          }
+          const active = isActive(option);
+          wrap.classList.toggle("off", !active);
+          for (const input of wrap.querySelectorAll("input")) input.disabled = !active;
+        }
+        refreshShare();
+      }
+
+      let shareTimer = 0;
+      function refreshShare() {
+        clearTimeout(shareTimer);
+        shareTimer = setTimeout(async () => {
+          try {
+            const result = await api("/api/settings/encode", { settings });
+            $("share").value = result.string;
+            $("eboot-needed").hidden = !result.needsEboot;
+            if ($("share-status").classList.contains("err")) say($("share-status"), "");
+          } catch (error) {
+            say($("share-status"), error.message, "err");
+          }
+        }, 120);
+        save();
+      }
+
+      function update(key, value) {
+        settings = { ...settings, [key]: value };
+        render();
+      }
+
+      function suggestOut() {
+        const iso = $("iso").value.trim();
+        if (!iso || $("out").value.trim()) return;
+        $("out").placeholder = outPath();
+      }
+
+      function outPath() {
+        return (
+          $("out").value.trim() ||
+          $("iso")
+            .value.trim()
+            .replace(/\.(iso|cso)$/i, "") + " (randomfu).iso"
+        );
+      }
+
+      async function checkFiles() {
+        const iso = $("iso").value.trim();
+        if (!iso) return say($("check-status"), "Enter the path to your disc image first.", "err");
+        say($("check-status"), "Checking…");
+        try {
+          const r = await api("/api/check", { iso, eboot: $("eboot").value.trim() });
+          const parts = [
+            r.supported
+              ? `${r.discId} (${r.region.toUpperCase()}) is supported.`
+              : `${r.discId ?? "Unknown disc"}${r.region ? ` (${r.region.toUpperCase()})` : ""} isn't supported yet (JP and EU are).`,
+          ];
+          if (r.eboot) parts.push(`EBOOT: ${r.eboot.detail}.`);
+          say(
+            $("check-status"),
+            parts.join(" "),
+            r.supported && (!r.eboot || r.eboot.ok) ? "ok" : "err",
+          );
+        } catch (error) {
+          say($("check-status"), error.message, "err");
+        }
+      }
+
+      async function run(dryRun) {
+        const iso = $("iso").value.trim();
+        if (!iso) return say($("run-status"), "Enter the path to your disc image first.", "err");
+        settings = { ...settings, seed: $("seed").value.trim() || settings.seed };
+        save();
+        for (const b of [$("run"), $("dry-run")]) b.disabled = true;
+        $("results").hidden = false;
+        $("log").textContent = "";
+        $("spoiler-wrap").hidden = true;
+        say(
+          $("run-status"),
+          dryRun ? "Reading the disc…" : "Randomizing… copying a whole disc takes a moment.",
+        );
+        $("results").scrollIntoView({ behavior: "smooth", block: "start" });
+        try {
+          const res = await fetch("/api/randomize", {
+            method: "POST",
+            headers: { "x-randomfu-token": TOKEN, "content-type": "application/json" },
+            body: JSON.stringify({
+              iso,
+              out: outPath(),
+              eboot: $("eboot").value.trim(),
+              force: $("force").checked,
+              dryRun,
+              settings,
+            }),
+          });
+          if (!res.ok) {
+            const data = await res.json().catch(() => ({}));
+            throw new Error(data.error || `Request failed (${res.status})`);
+          }
+          const reader = res.body.getReader();
+          const decoder = new TextDecoder();
+          let buffer = "";
+          let outcome = null;
+          for (;;) {
+            const { done, value } = await reader.read();
+            if (done) break;
+            buffer += decoder.decode(value, { stream: true });
+            let nl;
+            while ((nl = buffer.indexOf("\n")) !== -1) {
+              const line = buffer.slice(0, nl);
+              buffer = buffer.slice(nl + 1);
+              if (line.startsWith("@@DONE "))
+                outcome = { ok: true, result: JSON.parse(line.slice(7)) };
+              else if (line.startsWith("@@ERROR ")) outcome = { ok: false, error: line.slice(8) };
+              else $("log").textContent += line + "\n";
+            }
+          }
+          if (!outcome) throw new Error("The run stopped without finishing.");
+          if (!outcome.ok) throw new Error(outcome.error);
+          showSpoiler(outcome.result.spoiler);
+          const warn = outcome.result.problems.length
+            ? ` ${outcome.result.problems.length} recipe warnings; see the top of the spoiler log.`
+            : "";
+          say(
+            $("run-status"),
+            (dryRun ? "Preview ready." : `Done: ${outPath()}.`) + warn,
+            warn ? "err" : "ok",
+          );
+        } catch (error) {
+          $("log").textContent += `\nError: ${error.message}\n`;
+          say($("run-status"), error.message, "err");
+        } finally {
+          for (const b of [$("run"), $("dry-run")]) b.disabled = false;
+        }
+      }
+
+      function showSpoiler(text) {
+        spoilerLines = text.split("\n");
+        $("spoiler-wrap").hidden = false;
+        filterSpoiler();
+      }
+
+      function filterSpoiler() {
+        const q = $("filter").value.trim().toLowerCase();
+        if (!q) {
+          $("spoiler").textContent = spoilerLines.join("\n");
+          return;
+        }
+        // Blocks are a heading and its indented lines. A matching heading keeps
+        // its whole block; otherwise only matching lines, under their heading.
+        const out = [];
+        let heading = null;
+        let block = [];
+        const flush = () => {
+          if (heading === null) return;
+          const kept = heading.toLowerCase().includes(q)
+            ? block
+            : block.filter((l) => l.toLowerCase().includes(q));
+          if (kept.length || heading.toLowerCase().includes(q)) out.push(heading, ...kept);
+        };
+        for (const line of spoilerLines) {
+          if (line.startsWith(" ")) block.push(line);
+          else if (line) {
+            flush();
+            heading = line;
+            block = [];
+          }
+        }
+        flush();
+        $("spoiler").textContent = out.length ? out.join("\n") : "No lines match.";
+      }
+
+      function download(name, text) {
+        const url = URL.createObjectURL(new Blob([text], { type: "application/json" }));
+        const a = el("a", { href: url, download: name });
+        document.body.append(a);
+        a.click();
+        a.remove();
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+      }
+
+      async function init() {
+        schema = await api("/api/schema");
+        $("version").textContent = `· logic v${schema.logicVersion}`;
+        buildOptions();
+        for (const preset of schema.presets) {
+          const button = el(
+            "button",
+            { type: "button" },
+            el("b", {}, preset.name),
+            el("small", {}, preset.help),
+          );
+          button.addEventListener("click", () => {
+            settings = { ...schema.defaults, ...preset.changes, seed: settings.seed };
+            render();
+            say($("share-status"), `Loaded the ${preset.name} preset.`, "ok");
+          });
+          $("presets").append(button);
+        }
+
+        const stored = load();
+        $("iso").value = stored.iso || "";
+        $("out").value = stored.out || "";
+        $("eboot").value = stored.eboot || "";
+        settings = { ...schema.defaults };
+        if (stored.settings) {
+          try {
+            settings = (
+              await api("/api/settings/encode", {
+                settings: { ...schema.defaults, ...stored.settings },
+              })
+            ).settings;
+          } catch {
+            // Stored settings from an older version: start from the defaults.
+          }
+        }
+        suggestOut();
+        render();
+
+        $("seed").addEventListener("input", () => {
+          if ($("seed").value.trim()) {
+            settings = { ...settings, seed: $("seed").value.trim() };
+            refreshShare();
+          }
+        });
+        $("new-seed").addEventListener("click", async () => {
+          settings = { ...settings, seed: (await api("/api/seed")).seed };
+          render();
+        });
+        for (const id of ["iso", "out", "eboot"])
+          $(id).addEventListener("input", () => (suggestOut(), save()));
+        $("check").addEventListener("click", checkFiles);
+        $("copy").addEventListener("click", async () => {
+          try {
+            await navigator.clipboard.writeText($("share").value);
+            say($("share-status"), "Copied.", "ok");
+          } catch {
+            $("share").select();
+            say($("share-status"), "Select and copy the string above.", "");
+          }
+        });
+        $("apply-paste").addEventListener("click", async () => {
+          try {
+            const r = await api("/api/settings/decode", { string: $("paste").value });
+            settings = r.settings;
+            render();
+            say(
+              $("share-status"),
+              r.warning || "Loaded the settings string.",
+              r.warning ? "err" : "ok",
+            );
+          } catch (error) {
+            say($("share-status"), error.message, "err");
+          }
+        });
+        $("export").addEventListener("click", async () => {
+          const r = await api("/api/settings/encode", { settings });
+          download(`randomfu-${settings.seed}.json`, r.json);
+        });
+        $("import").addEventListener("click", () => $("import-file").click());
+        $("import-file").addEventListener("change", async () => {
+          const file = $("import-file").files[0];
+          if (!file) return;
+          try {
+            const r = await api("/api/settings/import", { json: await file.text() });
+            settings = r.settings;
+            render();
+            say($("share-status"), `Loaded ${file.name}.`, "ok");
+          } catch (error) {
+            say($("share-status"), error.message, "err");
+          } finally {
+            $("import-file").value = "";
+          }
+        });
+        $("filter").addEventListener("input", filterSpoiler);
+        $("run").addEventListener("click", () => run(false));
+        $("dry-run").addEventListener("click", () => run(true));
+      }
+
+      init().catch((error) => say($("run-status"), `Couldn't start: ${error.message}`, "err"));
+    </script>
+  </body>
+</html>
