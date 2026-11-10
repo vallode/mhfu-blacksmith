@@ -23,7 +23,19 @@ pnpm test:e2e       # builds, then checks the app in Chromium against the CLI
 ```
 
 `dist/` is a plain static site: host it anywhere (GitHub Pages, Netlify,
-any web server). How it works:
+any web server). It's deployed to [randomfu.vallode.com](https://randomfu.vallode.com)
+by a Netlify site of its own, configured by `netlify.toml` here: that site's
+base directory is left unset (the repository root, so the whole workspace is
+installed) and its package directory is `apps/randomfu`. It builds `main` and
+deploy previews of pull requests, and skips commits that don't touch what
+the app is built from.
+
+`index.html` sets a Content-Security-Policy: the page can only load its own
+scripts, styles and images and can't make any requests, so nothing it reads
+can leave the browser. A change that needs more (a font from elsewhere, a
+fetch) has to loosen it; `pnpm test:e2e` fails on any violation.
+
+How it works:
 
 - The randomizer runs in a worker (`worker.ts`) and reads the ISO with
   `FileReaderSync`, so the shared code's synchronous reads work unchanged.

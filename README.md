@@ -45,7 +45,7 @@ This is a [pnpm workspace](https://pnpm.io/workspaces):
 | Path                    | Package        | What it is                                                                                      |
 | ----------------------- | -------------- | ----------------------------------------------------------------------------------------------- |
 | `apps/blacksmith`       | `blacksmith`   | The MHFU Blacksmith website, a statically exported [Next.js](https://nextjs.org/) app           |
-| `apps/randomfu`         | `randomfu-web` | The randomizer as a static web app that runs in the browser                                     |
+| `apps/randomfu`         | `randomfu-web` | The randomizer as a static web app that runs in the browser, at randomfu.vallode.com            |
 | `packages/mhfu-extract` | `mhfu-extract` | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models              |
 | `packages/randomfu`     | `randomfu`     | Seeded randomizer: library, command line and local settings page                                |
 | `data`                  |                | The game data the site is built from (JSON, validated by `data/schemas/`), shared by everything |
@@ -95,3 +95,5 @@ The crafting trees in `apps/blacksmith/content/**/map.json` are generated from `
 `data/equipment-ids.json` maps the game's equipment IDs (the ones stored in a save file's equipment box) to the weapons and armor in `data/`. It is generated with `pnpm generate-equipment-ids` (in `apps/blacksmith`) from the `equip.enum` name tables in [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) (MIT, vendored under `packages/mhfu-extract/vendor/`), plus the hand-checked aliases in `apps/blacksmith/scripts/equipment-id-aliases.json` for names that differ between MHP2G and MHFU. Rerun it after renaming or adding weapons or armor; `pnpm validate` fails if it's stale.
 
 The site is deployed by [Netlify](https://app.netlify.com/sites/mhfu-blacksmith/deploys) (`netlify.toml`), which builds `main` for production and every pull request as a deploy preview.
+
+randomfu's web app is a second Netlify site on this repository, served at [randomfu.vallode.com](https://randomfu.vallode.com). Its config is `apps/randomfu/netlify.toml`, which Netlify finds because that site's package directory is `apps/randomfu`; it only rebuilds when something the app is built from changes.

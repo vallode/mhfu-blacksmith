@@ -9,6 +9,11 @@
       content="A seeded randomizer for Monster Hunter Freedom Unite that runs in your browser on your own disc image."
     />
     <meta name="theme-color" content="#6e905f" />
+    <!-- Everything runs here: the page can't send the disc, or anything else, anywhere. -->
+    <meta
+      http-equiv="Content-Security-Policy"
+      content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'"
+    />
     <link rel="icon" href="images/favicons/felyne-favicon.png" />
     <style>
       /*STYLE*/
