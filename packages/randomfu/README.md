@@ -360,11 +360,21 @@ list (`emLoadTable`).
     skipped.
   - The quest keeps its size. A rename that isn't longer is written in
     place. Otherwise the quest's strings are repacked into the bytes they
-    already take (runs of strings with at most 3 zero bytes between them),
-    identical strings stored once (the JP disc shows the game reads shared
-    strings) and the pointers updated. If strings overlap or a pointer
-    table sits among them, nothing is moved. Room goes to the goal first,
-    then the monster list, title, client, fail text and details.
+    already take: runs of strings with at most 4 zero bytes between them,
+    one per language on the EU disc. The disc's layout is kept: each string
+    starts on a 4-byte boundary and takes its length plus two, rounded up
+    to 4. Identical strings are stored once (the JP disc shows the game
+    reads shared strings), and the pointers are updated.
+    - First each language's strings stay in its own run.
+    - If that run is too small, every distinct string is placed, largest
+      first, in the first run with room. English can then use bytes freed
+      in German's run when German's monster list matches English's.
+    - If strings overlap or a pointer table sits among them, nothing is
+      moved.
+    - Room goes to the goal first, then the monster list, title, client,
+      fail text and details.
+  - On the EU disc (a `rank` run, seed `TEST`, before strings could move
+    between runs), 57 goals and 80 monster lists had no room.
   - A string that can't be renamed keeps its old text and is listed in the
     spoiler log with why: no learned name, another article, too wide, or no
     room.

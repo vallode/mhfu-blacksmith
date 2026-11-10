@@ -14,8 +14,10 @@
  * Writing never changes the payload's size. A string that is no longer
  * than before is written where it was. Otherwise the quest's strings are
  * repacked: the "text area" is the strings' own bytes, merged into runs
- * where only a few zero bytes (alignment) separate them, and every string
- * is written back to back within its run, keeping the disc's alignment
+ * where only a few zero bytes (alignment) separate them (one run per
+ * language on the EU disc), and every string is written back to back
+ * within its run, or, when its run is too small, wherever there's room in
+ * any run, keeping the disc's alignment
  * and padding (`slotSize`), identical strings once (the JP
  * disc shows the game reads shared strings), and the block pointers are
  * updated. If anything else could be in that area (overlapping strings,
@@ -163,10 +165,35 @@ export function writeQuestText(
   }
   if (text.unmovable) return false;
 
-  // Repack each run in address order; a string already written is shared.
+  const layout = packInRuns(text, current) ?? packAcrossRuns(text, current);
+  if (!layout) return false;
+  const { writes, moved } = layout;
+  for (const run of text.runs) payload.fill(0, run.start, run.end);
+  for (const { at, text: t } of writes) payload.write(t, at, "utf8");
+  for (const block of text.blocks) {
+    block.pointers.forEach((ptr, i) => {
+      if (ptr !== 0) payload.writeUInt32LE(moved.get(ptr)!, block.offset + i * 4);
+    });
+  }
+  return true;
+}
+
+interface Packing {
+  writes: { at: number; text: string }[];
+  /** Old string offset -> new. */
+  moved: Map<number, number>;
+}
+
+const size = (t: string, align: number) => slotSize(encoded(t) - 1, align);
+
+/**
+ * Each run keeps its own strings, in address order: a language's text stays
+ * in its own area. A string already written (in any run) is shared.
+ */
+function packInRuns(text: QuestText, current: ReadonlyMap<number, string>): Packing | null {
   const placed = new Map<string, number>();
   const moved = new Map<number, number>();
-  const writes: { at: number; text: string }[] = [];
+  const writes: Packing["writes"] = [];
   for (const run of text.runs) {
     let cursor = run.start;
     for (const [ptr, t] of [...current].sort((a, b) => a[0] - b[0])) {
@@ -176,20 +203,41 @@ export function writeQuestText(
         moved.set(ptr, at);
         continue;
       }
-      const size = slotSize(encoded(t) - 1, text.align);
-      if (cursor + size > run.end) return false;
+      if (cursor + size(t, text.align) > run.end) return null;
       writes.push({ at: cursor, text: t });
       placed.set(t, cursor);
       moved.set(ptr, cursor);
-      cursor += size;
+      cursor += size(t, text.align);
     }
   }
-  for (const run of text.runs) payload.fill(0, run.start, run.end);
-  for (const { at, text: t } of writes) payload.write(t, at, "utf8");
-  for (const block of text.blocks) {
-    block.pointers.forEach((ptr, i) => {
-      if (ptr !== 0) payload.writeUInt32LE(moved.get(ptr)!, block.offset + i * 4);
-    });
+  return { writes, moved };
+}
+
+/**
+ * When a language's area is too small: every distinct string once, largest
+ * first, into the first run with room, so text can use the bytes another
+ * language freed by sharing. The game reads each string through its pointer
+ * (the JP disc points every language at one block), so where it lives
+ * doesn't matter.
+ */
+function packAcrossRuns(text: QuestText, current: ReadonlyMap<number, string>): Packing | null {
+  const byText = new Map<string, number[]>();
+  for (const [ptr, t] of [...current].sort((a, b) => a[0] - b[0])) {
+    byText.set(t, [...(byText.get(t) ?? []), ptr]);
   }
-  return true;
+  const items = [...byText].sort(
+    (a, b) => size(b[0], text.align) - size(a[0], text.align) || a[1][0]! - b[1][0]!,
+  );
+  const cursors = text.runs.map((r) => r.start);
+  const moved = new Map<number, number>();
+  const writes: Packing["writes"] = [];
+  for (const [t, ptrs] of items) {
+    const run = text.runs.findIndex((r, i) => cursors[i]! + size(t, text.align) <= r.end);
+    if (run === -1) return null;
+    const at = cursors[run]!;
+    cursors[run] = at + size(t, text.align);
+    writes.push({ at, text: t });
+    for (const ptr of ptrs) moved.set(ptr, at);
+  }
+  return { writes, moved };
 }

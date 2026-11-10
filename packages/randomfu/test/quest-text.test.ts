@@ -284,7 +284,7 @@ function alignedPayload(languages: string[][]): Buffer {
   return payload;
 }
 
-test("aligned text keeps its alignment and padding, and uses the padding as room", () => {
+test("aligned text keeps its alignment and padding, and uses padding and other languages' room", () => {
   const en = ["Title", "Hunt the Rathian", "Fail", "Details", "Rathian", "Client"];
   const de = ["Titel", "Jage die Rathian", "Fehl", "Details", "Rathian", "Kunde"];
   const payload = alignedPayload([en, de]);
@@ -299,10 +299,23 @@ test("aligned text keeps its alignment and padding, and uses the padding as room
   const goal = text.blocks[0]!.pointers[1]!;
   const grown = Buffer.from(payload);
   assert.ok(writeQuestText(grown, text, new Map([[goal, "Hunt the Rathians!"]])));
+  // "Hunt the Gold Rathian" needs a 24-byte slot: English has no room for it,
+  // but German's "Details" and "Rathian" match English's, and sharing them
+  // frees room in German's area that the English goal can use.
+  const across = Buffer.from(payload);
+  assert.ok(writeQuestText(across, text, new Map([[goal, "Hunt the Gold Rathian"]])));
+  const moved = readQuestText(across, header);
+  assert.equal(moved.blocks[0]!.texts[1], "Hunt the Gold Rathian");
+  assert.deepEqual(
+    moved.blocks.map((b) => b.texts),
+    [["Title", "Hunt the Gold Rathian", "Fail", "Details", "Rathian", "Client"], de],
+  );
+  assert.equal(moved.blocks[0]!.pointers[3], moved.blocks[1]!.pointers[3], "Details shared");
+  assert.ok(moved.blocks.flatMap((b) => b.pointers).every((p) => p % 4 === 0));
   assert.equal(
-    writeQuestText(Buffer.from(payload), text, new Map([[goal, "Hunt the Gold Rathian"]])),
+    writeQuestText(Buffer.from(payload), text, new Map([[goal, "x".repeat(200)]])),
     false,
-    "a 24-byte slot doesn't fit",
+    "more than both areas hold",
   );
   const after = readQuestText(grown, header);
   assert.equal(after.blocks[0]!.texts[1], "Hunt the Rathians!");
