@@ -24,7 +24,8 @@
  * or the goal line change every record's copy too.
  */
 import type { QuestHeader } from "mhfu-extract/src/quests/parser.js";
-import { readQuestText, type QuestText } from "./quest-text.js";
+import { rewriteGoal } from "./quest-fields.js";
+import { readQuestText, type QuestText, type Span } from "./quest-text.js";
 
 export const BOARD_PATHS = [
   ...Array.from({ length: 11 }, (_, i) => `mission_jpn/level${i + 1}.mib`),
@@ -37,6 +38,8 @@ export const RECORD_HEADER_SIZE = 0x34;
 export const RECORD_STRINGS = 0x14;
 export const RECORD_QUEST_ID = 0x18;
 export const RECORD_TARGET_ID = 0x24;
+const LANG_PTRS_SIZE = 28;
+const STRING_PTRS_SIZE = 24;
 
 export interface BoardRecord {
   /** File offset of the record. */
@@ -103,46 +106,82 @@ export function questRecords(
   );
 }
 
-/** A record's text, read from `data` (the board file as edited so far). */
-export function readRecordText(data: Buffer, record: BoardRecord): QuestText {
-  return readQuestText(data, recordHeader(record), record.offset + RECORD_HEADER_SIZE);
+/**
+ * Everything in the board file that isn't `record`'s: the record table and
+ * every other record's header copy, `LangPTRs`, `StringPTRs` blocks and
+ * strings. A board file holds many quests' text, and the quest file rules
+ * for writing it (`writeQuestText`, `rewriteGoal`) only know about one
+ * quest's, so these are what they must not touch. Null if another record's
+ * text can't be read.
+ */
+function reservedFor(data: Buffer, board: BoardFile, record: BoardRecord): Span[] | null {
+  const spans: Span[] = [[0, data.readUInt32LE(0)]];
+  for (const other of board.records) {
+    if (other === record) continue;
+    spans.push(
+      [other.offset, other.offset + RECORD_HEADER_SIZE],
+      [other.stringPtrTbl, other.stringPtrTbl + LANG_PTRS_SIZE],
+    );
+    let text: QuestText;
+    try {
+      text = readQuestText(data, recordHeader(other), other.offset + RECORD_HEADER_SIZE);
+    } catch {
+      return null;
+    }
+    for (const block of text.blocks) {
+      spans.push([block.offset, block.offset + STRING_PTRS_SIZE]);
+      block.pointers.forEach((ptr, i) => {
+        if (ptr !== 0) spans.push([ptr, ptr + Buffer.byteLength(block.texts[i]!) + 1]);
+      });
+    }
+  }
+  return spans;
+}
+
+export interface RecordText {
+  text: QuestText;
+  /** The bytes that aren't the record's (`reservedFor`), for `rewriteRecordGoal`. */
+  reserved: readonly Span[];
 }
 
 /**
- * Whether rewriting `record`'s strings could change another record's: a
- * board file holds many quests' strings, and a quest file's rules for its
- * own text (`writeQuestText`) only know about one. True if another
- * record's string lies in the bytes this record's strings use, or can't be
- * read.
+ * A record's text, read from `data` (the board file as edited so far),
+ * knowing which bytes are other records': `writeQuestText` won't write it
+ * where it shares bytes with them, and won't repack it over them. Locked
+ * if it, or another record's text, can't be read.
  */
-export function sharesStrings(data: Buffer, board: BoardFile, record: BoardRecord): boolean {
-  let own: QuestText;
+export function readRecordText(data: Buffer, board: BoardFile, record: BoardRecord): RecordText {
+  const reserved = reservedFor(data, board, record);
+  const floor = record.offset + RECORD_HEADER_SIZE;
   try {
-    own = readRecordText(data, record);
+    const text = readQuestText(data, recordHeader(record), floor, reserved ?? []);
+    if (reserved) return { text, reserved };
+    const why = "another quest's text on its board can't be read";
+    return { text: { ...text, locked: why, unmovable: why, runs: [] }, reserved: [] };
   } catch {
-    return true;
+    const why = "its text can't be read";
+    return {
+      text: { blocks: [], locked: why, unmovable: why, runs: [], align: 1 },
+      reserved: reserved ?? [],
+    };
   }
-  const spans = [
-    ...own.runs.map((r) => [r.start, r.end] as const),
-    ...own.blocks.flatMap((b) =>
-      b.pointers.flatMap((ptr, i) =>
-        ptr === 0 ? [] : [[ptr, ptr + Buffer.byteLength(b.texts[i]!) + 1] as const],
-      ),
-    ),
-  ];
-  for (const other of board.records) {
-    if (other === record) continue;
-    let text: QuestText;
-    try {
-      text = readRecordText(data, other);
-    } catch {
-      return true;
-    }
-    for (const block of text.blocks) {
-      for (const ptr of block.pointers) {
-        if (ptr !== 0 && spans.some(([s, e]) => ptr >= s && ptr < e)) return true;
-      }
-    }
-  }
-  return false;
+}
+
+/**
+ * Points the record's goal line at `goal` by `rewriteGoal`'s rules (a quest
+ * file's), leaving other records' bytes alone. False, changing nothing, if
+ * it fits in none of its goal strings.
+ */
+export function rewriteRecordGoal(
+  data: Buffer,
+  record: BoardRecord,
+  { text, reserved }: RecordText,
+  goal: string,
+): boolean {
+  if (text.locked) return false;
+  return rewriteGoal(data, goal, {
+    table: record.stringPtrTbl,
+    floor: record.offset + RECORD_HEADER_SIZE,
+    reserved,
+  });
 }

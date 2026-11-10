@@ -524,8 +524,8 @@ reward), the fee gets its own and never exceeds the reward; all in steps of
 between the shortest and longest on the disc (20 and 50 minutes), since
 longer limits haven't been seen in game. Each of the quest's records on the
 quest board (`level*.mib`, which copy header 0x4c-0x7f) gets the same
-numbers; a record whose copy doesn't match the quest's is left alone and
-listed.
+numbers; a quest with a record whose copy doesn't match its own keeps its
+terms, so the two never disagree, and is listed.
 
 `deliveries` changes what Village and Guild delivery quests ask for. A
 delivery quest has 2 in the quest type's first byte (+76); `TargetID`
@@ -541,10 +541,12 @@ never more than the points give; items at least half as plentiful as the
 old one are preferred. The goal line ("Deliver Coal x15") is rewritten in
 place, in English for every language (item names are English only); the
 quest description still names the old item. The quest's board records
-get the same `TargetID`, `TargetNum` and goal line; an item whose goal
-line doesn't fit a record isn't used, and a quest whose record can't be
-changed safely (its copy of the target differs, or its strings share bytes
-with another quest's) keeps its item. "Survive until Time Over or
+get the same `TargetID`, `TargetNum` and goal line, the goal by the same
+rules as the quest file's; an item whose goal line doesn't fit a record
+isn't used, and a quest whose record can't be changed safely (its copy of
+the target differs, or its strings share bytes with another quest's) keeps
+its item. The spoiler counts the quests the board held back. No write to a
+board file touches another record's header, pointer tables or strings. "Survive until Time Over or
 Deliver the Paw Pass Ticket" quests stay as they are.
 
 The gathering shuffle never moves a delivery quest's own item away from

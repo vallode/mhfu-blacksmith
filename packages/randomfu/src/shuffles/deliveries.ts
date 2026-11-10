@@ -36,11 +36,11 @@ import {
   questRecords,
   readRecordText,
   recordBase,
-  sharesStrings,
+  rewriteRecordGoal,
   type BoardFile,
   type BoardRecord,
+  type RecordText,
 } from "../game/board.js";
-import { STRING_FIELDS, writeQuestText } from "../game/quest-text.js";
 import { gatheringYields } from "../game/gathering.js";
 import {
   deliveryGoal,
@@ -76,50 +76,61 @@ export function collectDeliveries(quests: readonly LoadedQuest[]): DeliveryQuest
   return out;
 }
 
-const GOAL = STRING_FIELDS.indexOf("goal");
+interface BoardTarget {
+  board: BoardFile;
+  record: BoardRecord;
+  text: RecordText;
+}
+
+const recordName = (board: BoardFile) => `its board record (${boardName(board)})`;
 
 /**
- * The quest's board files with its records' target and goal line changed,
- * as copies (nothing is written), or why a record can't take them.
+ * The quest's board records, read once for all its candidates, or why one
+ * can't follow the quest: its copy of the target isn't the quest's, or its
+ * text can't be written (`readRecordText`).
  */
-function changeBoard(
+function readBoardTargets(
   edits: Edits,
   records: readonly { board: BoardFile; record: BoardRecord }[],
   was: DeliveryTarget,
-  next: DeliveryTarget,
-  goal: string,
-): { files: Map<BoardFile, Buffer> } | { problem: string } {
-  const files = new Map<BoardFile, Buffer>();
+): BoardTarget[] | { problem: string } {
+  const targets: BoardTarget[] = [];
   for (const { board, record } of records) {
-    const data = files.get(board) ?? Buffer.from(edits.dataFileNow(board.index));
-    files.set(board, data);
-    const where = `its board record (${boardName(board)})`;
+    const data = edits.dataFileNow(board.index);
     const base = recordBase(record);
     if (
       data.readUInt16LE(base + TARGET_ID) !== was.itemId ||
       data.readUInt16LE(base + TARGET_NUM) !== was.amount
     ) {
-      return { problem: `${where} has a different target from the quest's` };
+      return { problem: `${recordName(board)} has a different target from the quest's` };
     }
-    if (sharesStrings(data, board, record)) {
-      return { problem: `${where} shares its text's bytes with another quest's` };
-    }
-    const text = readRecordText(data, record);
-    const goals = new Map<number, string>();
-    for (const block of text.blocks) {
-      if (block.pointers[GOAL]) goals.set(block.pointers[GOAL], goal);
-    }
-    const shown = text.blocks.flatMap((b) => b.pointers.filter((_, i) => i !== GOAL));
-    if (goals.size === 0 || shown.some((ptr) => goals.has(ptr))) {
-      return { problem: `${where} has no goal line of its own` };
-    }
-    if (!writeQuestText(data, text, goals)) {
-      return { problem: `${where} has no room for the goal line` };
-    }
-    data.writeUInt16LE(next.itemId, base + TARGET_ID);
-    data.writeUInt16LE(next.amount, base + TARGET_NUM);
+    const text = readRecordText(data, board, record);
+    if (text.text.locked) return { problem: `${recordName(board)}: ${text.text.locked}` };
+    targets.push({ board, record, text });
   }
-  return { files };
+  return targets;
+}
+
+/**
+ * Copies of the quest's board files with its records' target and goal line
+ * changed (nothing is written yet), or the record the goal line doesn't fit.
+ */
+function changeBoard(
+  edits: Edits,
+  targets: readonly BoardTarget[],
+  next: DeliveryTarget,
+  goal: string,
+): Map<BoardFile, Buffer> | BoardTarget {
+  const files = new Map<BoardFile, Buffer>();
+  for (const target of targets) {
+    const { board, record } = target;
+    const data = files.get(board) ?? Buffer.from(edits.dataFileNow(board.index));
+    files.set(board, data);
+    if (!rewriteRecordGoal(data, record, target.text, goal)) return target;
+    data.writeUInt16LE(next.itemId, recordBase(record) + TARGET_ID);
+    data.writeUInt16LE(next.amount, recordBase(record) + TARGET_NUM);
+  }
+  return files;
 }
 
 /** Without a single gathering delivery on the disc to learn from. */
@@ -147,6 +158,7 @@ export function shuffleDeliveries(
 
   const lines: { where: string; text: string }[] = [];
   let changed = 0;
+  let boardKept = 0;
   for (const { quest, target } of deliveries) {
     const now = edits.questNow(quest);
     const supplied = new Set(readSupplySlots(now).map((s) => s.itemId));
@@ -175,22 +187,38 @@ export function shuffleDeliveries(
       ...usable.filter(([item]) => item === target.itemId),
     ];
     const was = `${itemName(target.itemId)} x${target.amount}`;
-    const records = questRecords(boards, quest.parsed.header.questId);
+    const unchanged = (why: string) =>
+      lines.push({ where: questLabel(quest), text: `${was}, unchanged: ${why}` });
+    // After the shuffle above, so the random stream doesn't depend on the board.
+    const board = readBoardTargets(
+      edits,
+      questRecords(boards, quest.parsed.header.questId),
+      target,
+    );
+    if (!Array.isArray(board)) {
+      unchanged(board.problem);
+      boardKept++;
+      continue;
+    }
     let done = false;
-    let problem =
-      "none of the items its gathering points give can stand in (or its goal line has no room)";
+    // Why candidates were turned down, for the spoiler.
+    let fileFull = false;
+    let boardFull: BoardTarget | null = null;
     for (const [item, found] of candidates) {
       const wanted = Math.round(questShare * found);
       const amount = Math.max(1, Math.min(wanted, Math.floor(found), MAX_AMOUNT));
       const goal = deliveryGoal(itemName(item), amount);
-      const board = changeBoard(edits, records, target, { itemId: item, amount }, goal);
-      if ("problem" in board) {
-        problem = board.problem;
+      const files = changeBoard(edits, board, { itemId: item, amount }, goal);
+      if (!(files instanceof Map)) {
+        boardFull = files;
         continue;
       }
       // rewriteGoal changes nothing when the line fits nowhere.
-      if (!rewriteGoal(edits.quest(quest), goal)) continue;
-      for (const [file, data] of board.files) data.copy(edits.dataFile(file.index));
+      if (!rewriteGoal(edits.quest(quest), goal)) {
+        fileFull = true;
+        continue;
+      }
+      for (const [file, data] of files) data.copy(edits.dataFile(file.index));
       const payload = edits.quest(quest);
       payload.writeUInt16LE(item, TARGET_ID);
       payload.writeUInt16LE(amount, TARGET_NUM);
@@ -203,10 +231,15 @@ export function shuffleDeliveries(
       break;
     }
     if (!done) {
-      lines.push({
-        where: questLabel(quest),
-        text: `${was}, unchanged: ${problem}`,
-      });
+      const why = [
+        ...(candidates.length === 0
+          ? ["none of the items its gathering points give can stand in"]
+          : []),
+        ...(fileFull ? ["its goal line has no room for the new one"] : []),
+        ...(boardFull ? [`${recordName(boardFull.board)} has no room for the goal line`] : []),
+      ];
+      unchanged(why.join("; "));
+      if (boardFull) boardKept++;
     }
   }
   return {
@@ -216,7 +249,7 @@ export function shuffleDeliveries(
       `The amount asks for the same share of what the quest's gathering points give as before (${Math.round(usualShare * 100)}% for quests whose item was fished or carved), at most that many.`,
       "The goal line is rewritten in English for every language; the quest description still names the old item.",
       boards.length > 0
-        ? "The quest board's copies (level*.mib) of the item, amount and goal line, which the board and Quest Details screen show, change with them."
+        ? `The quest board's copies (level*.mib) of the item, amount and goal line, which the board and Quest Details screen show, change with them; ${boardKept} quests keep their item because a board record couldn't follow (listed).`
         : "No quest board file (level*.mib) could be read, so the board and Quest Details screen show the old item and goal.",
       "Paw Pass Ticket quests, Training School and Treasure Hunting are unchanged.",
       `${changed} of ${deliveries.length} delivery quests changed.`,

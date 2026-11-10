@@ -1472,10 +1472,13 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   let count = QUEST_INDICES.at(-1)! + 2;
   if (options.text) {
     files.set(TEXT_QUEST_INDEX, buildQuestEntry(buildQuestPayload(withText(FIXTURE_TEXT_QUEST))));
-    // Quest 2001 is on two boards, as some quests are on the disc. 10102 is
-    // the delivery quest, with its text.
+    // Quests 2001 and 10102 (the delivery quest, with its text) are on two
+    // boards, as some quests are on the disc.
     const byId = (id: number) => withText(FIXTURE_QUESTS.find((q) => q.questId === id)!);
-    files.set(BOARD_INDICES[0]!, buildBoardFile([byId(1001), byId(2001), byId(10101)]));
+    files.set(
+      BOARD_INDICES[0]!,
+      buildBoardFile([byId(1001), byId(2001), byId(10101), byId(10102)]),
+    );
     files.set(BOARD_INDICES[1]!, buildBoardFile([byId(2001), byId(10102)]));
     count = BOARD_INDICES.at(-1)! + 1;
   }

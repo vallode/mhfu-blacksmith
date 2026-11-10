@@ -26,13 +26,7 @@
  * monster ("she", "sie") aren't changed.
  */
 import type { LoadedQuest } from "../game/load.js";
-import {
-  boardName,
-  RECORD_HEADER_SIZE,
-  recordHeader,
-  sharesStrings,
-  type BoardFile,
-} from "../game/board.js";
+import { boardName, readRecordText, type BoardFile } from "../game/board.js";
 import {
   readQuestText,
   SLOT_LANGUAGES,
@@ -350,28 +344,18 @@ export function renameQuestText(
       for (const record of board.records) {
         if (record.questId !== quest.parsed.header.questId) continue;
         const problems = new Map<string, Set<string>>();
-        if (sharesStrings(board.data, board, record)) {
-          report(
-            `Board text (${boardName(board)})`,
-            0,
-            new Map([["its strings share bytes with another quest's", new Set(["all"])]]),
-          );
-          boardKept = true;
-          continue;
-        }
-        const recordText = readQuestText(
-          board.data,
-          recordHeader(record),
-          record.offset + RECORD_HEADER_SIZE,
-        );
-        const count = renameText(
-          board.data,
-          recordText,
-          () => edits.dataFile(board.index),
-          mapping,
-          slots,
-          noter(problems),
-        );
+        const { text: recordText } = readRecordText(board.data, board, record);
+        if (recordText.locked) problems.set(recordText.locked, new Set(["all"]));
+        const count = recordText.locked
+          ? 0
+          : renameText(
+              board.data,
+              recordText,
+              () => edits.dataFile(board.index),
+              mapping,
+              slots,
+              noter(problems),
+            );
         report(`Board text (${boardName(board)})`, count, problems);
         boardCount += count;
         boardKept ||= problems.size > 0;
