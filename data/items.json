@@ -1,5 +1,5 @@
 {
-  "$comment": "In-game item IDs for MHFU / MHP2G (u16 values in the save's item box and pouch). Names from apps/blacksmith/scripts/import-items.ts (Daigo829/mhfu-save-viewer and IncognitoMan/mhp2g-patterns, both MIT); rarity, carry and price from the disc's item table (mhfu-extract build-data).",
+  "$comment": "In-game item IDs for MHFU / MHP2G (u16 values in the save's item box and pouch). Names, aliases and regions imported once from Daigo829/mhfu-save-viewer and IncognitoMan/mhp2g-patterns (both MIT), edited by hand since; rarity, carry and price from the disc's item table (mhfu-extract build-data).",
   "items": [
     {
       "id": 1,
