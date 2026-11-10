@@ -13,11 +13,13 @@ import { ARMOR_SLOT_COUNTS, ARMOR_SLOTS, armorValuesOffsets } from "../tables/ar
 import { ARMOR_ENTRY_SIZE } from "../tables/offsets.js";
 import {
   byteAgreement,
+  fieldShifts,
   probeTable,
   probeWindows,
   WindowIndex,
   type ProbeResult,
   type ProbeTable,
+  type FieldShift,
   type WindowProbe,
 } from "../tables/probe.js";
 import { assertMhfuUnpack, manifestGame, type UnpackManifest } from "./unpack.js";
@@ -45,6 +47,12 @@ export interface TableProbeEntry extends ProbeResult {
   agreement?: number[];
   /** Runs of each entry, for tables whose layout changed (tables/probe.ts). */
   windows: WindowProbe | null;
+  /**
+   * When the runs found a different entry size: per MHFU byte, where it
+   * best lines up in a target entry, anchored on the field most entries
+   * agreed on.
+   */
+  shifts?: { anchor: number; stride: number; from: number; to: number; bytes: FieldShift[] };
 }
 
 /** Fewest entries agreeing on a base before per-byte agreement means anything. */
@@ -111,10 +119,33 @@ export async function runTableProbe(options: TableProbeOptions): Promise<TablePr
             (share) => Math.round(share * 100),
           )
         : undefined;
+    const windows = probeWindows(refEboot, t, index);
+    let shifts: TableProbeEntry["shifts"];
+    const anchorField = windows?.fields.reduce<(typeof windows.fields)[number] | undefined>(
+      (best, f) => (!best || f.agreeing > best.agreeing ? f : best),
+      undefined,
+    );
+    if (
+      windows?.stride &&
+      windows.stride !== t.entrySize &&
+      anchorField &&
+      anchorField.agreeing >= MIN_AGREEMENT_ENTRIES
+    ) {
+      const anchor = anchorField.targetBase! - anchorField.refOffset;
+      const { firstIndex: from, lastIndex: to } = anchorField;
+      shifts = {
+        anchor,
+        stride: windows.stride,
+        from,
+        to,
+        bytes: fieldShifts(refEboot, t, targetEboot, anchor, windows.stride, from, to),
+      };
+    }
     return {
       ...result,
       ...(agreement ? { agreement } : {}),
-      windows: probeWindows(refEboot, t, index),
+      windows,
+      ...(shifts ? { shifts } : {}),
     };
   });
   const report: TableProbeReport = {
@@ -156,6 +187,17 @@ export async function runTableProbe(options: TableProbeOptions): Promise<TablePr
       );
     }
     console.log(`  ${"".padEnd(22)} ${describeWindows(t.windows)}`);
+    if (t.shifts) {
+      const bytes = t.shifts.bytes
+        .map(
+          (b) =>
+            `${b.refOffset}:${b.shift >= 0 ? "+" : ""}${b.shift}(${b.pct}%${b.distinct === 1 ? ",const" : ""})`,
+        )
+        .join(" ");
+      console.log(
+        `  ${"".padEnd(22)} byte shifts (MHFU byte:shift(agreement)), entries #${t.shifts.from}-#${t.shifts.to}: ${bytes}`,
+      );
+    }
   }
   console.log(`\nWrote ${out}`);
   return report;

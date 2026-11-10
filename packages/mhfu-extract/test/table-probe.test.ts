@@ -1,6 +1,12 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { byteAgreement, probeTable, probeWindows, WindowIndex } from "../src/tables/probe.js";
+import {
+  byteAgreement,
+  fieldShifts,
+  probeTable,
+  probeWindows,
+  WindowIndex,
+} from "../src/tables/probe.js";
 
 /** Entry `i` of a made-up 20-byte-entry table: distinct, non-repeating bytes. */
 function entry(i: number): Buffer {
@@ -96,4 +102,40 @@ test("byteAgreement shows which bytes of a found table changed", () => {
   );
   assert.equal(share[5]!.toFixed(2), "0.33");
   assert.equal(share.filter((s) => s === 1).length, 19);
+});
+
+test("fieldShifts shows where each byte of a resized entry went", () => {
+  // Reference: 12-byte entries; the target drops bytes 4-7 (8-byte entries).
+  const count = 20;
+  const ref = (i: number) =>
+    Buffer.from(Array.from({ length: 12 }, (_, b) => (i * 13 + b * 29 + 3) & 0xff));
+  const reference = Buffer.concat(Array.from({ length: count }, (_, i) => ref(i)));
+  const target = Buffer.concat([
+    Buffer.alloc(16),
+    ...Array.from({ length: count }, (_, i) =>
+      Buffer.concat([ref(i).subarray(0, 4), ref(i).subarray(8, 12)]),
+    ),
+  ]);
+  const shifts = fieldShifts(
+    reference,
+    { name: "t", offset: 0, entrySize: 12, count },
+    target,
+    16,
+    8,
+    0,
+    count - 1,
+  );
+  assert.deepEqual(
+    shifts.filter((s) => s.pct === 100).map((s) => [s.refOffset, s.shift]),
+    [
+      [0, 0],
+      [1, 0],
+      [2, 0],
+      [3, 0],
+      [8, -4],
+      [9, -4],
+      [10, -4],
+      [11, -4],
+    ],
+  );
 });

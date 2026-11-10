@@ -266,3 +266,57 @@ export function probeWindows(
   }
   return { window, stride, strides, fields };
 }
+
+export interface FieldShift {
+  refOffset: number;
+  /**
+   * Where this byte sits in a target entry, relative to its MHFU offset
+   * (0: same offset; -4: four bytes earlier), with the most agreement.
+   */
+  shift: number;
+  /** Share of entries (0-100) agreeing at that shift. */
+  pct: number;
+  /** Distinct values the byte takes in MHFU's entries: 1 means it agrees anywhere it's constant. */
+  distinct: number;
+}
+
+/**
+ * For a table whose entries changed size: per byte of a reference entry,
+ * the shift that best lines it up with a target entry. `anchor` is the
+ * target address of reference entry 0's byte 0, if the anchoring field
+ * didn't move; `stride` is the target entry size. Entries `from`..`to` are
+ * compared. Ties go to the smallest shift.
+ */
+export function fieldShifts(
+  reference: Buffer,
+  table: ProbeTable,
+  target: Buffer,
+  anchor: number,
+  stride: number,
+  from: number,
+  to: number,
+): FieldShift[] {
+  const maxShift = Math.abs(table.entrySize - stride) + 4;
+  const shifts: FieldShift[] = [];
+  for (let r = 0; r < table.entrySize; r++) {
+    const values = new Set<number>();
+    for (let i = from; i <= to; i++) values.add(reference[table.offset + i * table.entrySize + r]!);
+    let best = { shift: 0, pct: -1 };
+    for (const shift of Array.from({ length: maxShift * 2 + 1 }, (_, k) => k - maxShift).sort(
+      (a, b) => Math.abs(a) - Math.abs(b),
+    )) {
+      let same = 0;
+      let n = 0;
+      for (let i = from; i <= to; i++) {
+        const at = anchor + i * stride + r + shift;
+        if (at < 0 || at >= target.length) continue;
+        n++;
+        if (target[at] === reference[table.offset + i * table.entrySize + r]) same++;
+      }
+      const pct = n === 0 ? 0 : Math.round((same / n) * 100);
+      if (pct > best.pct) best = { shift, pct };
+    }
+    shifts.push({ refOffset: r, shift: best.shift, pct: best.pct, distinct: values.size });
+  }
+  return shifts;
+}

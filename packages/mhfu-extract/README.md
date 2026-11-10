@@ -258,8 +258,10 @@ Getting data out of them takes a disc of each, then, per game:
    the target game changed. For one whose entries changed size, it looks up
    every 8-byte run of every entry instead: runs found once vote for the
    spacing between entries (the target's entry size) and for where each
-   MHFU field sits in a target entry (`src/tables/probe.ts`; offsets and
-   counts only):
+   MHFU field sits in a target entry. When that size differs from MHFU's,
+   it also lines up each MHFU byte with the target entry and prints its
+   shift, which shows the fields dropped or added (`src/tables/probe.ts`;
+   offsets and counts only):
 
    ```bash
    pnpm --filter mhfu-extract table-probe --reference .cache/mhfu --target .cache/mhf2
