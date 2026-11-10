@@ -29,6 +29,15 @@ export const TARGET_ID_OFFSET = 112;
  * monsters' size in game (a Giadrome quest at a low value had a tiny one).
  */
 export const SIZE_PERCENT_OFFSET = 0x38;
+/**
+ * The header's two objective slots, `{ u32 kind, u16 id, u8 count, u8 slot }`.
+ * The hexpat leaves these unnamed (`UnknPTR3` to `Unkn3`); the layout comes
+ * from comparing quests on the EU disc.
+ */
+export const OBJECTIVE_OFFSETS = [0x28, 0x30] as const;
+export const OBJECTIVE_ID_OFFSET = 4;
+/** An objective's `kind` when its `id` is an emID (2 is an item). */
+export const OBJECTIVE_KIND_MONSTER = 1;
 
 const END = 0xffff;
 /** No real list comes close; stops runaway reads of a damaged file. */

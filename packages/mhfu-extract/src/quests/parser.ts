@@ -306,6 +306,30 @@ export function readQuestStrings(
   return out;
 }
 
+/**
+ * One of the header's two objective slots (8 bytes at 0x28 and 0x30, the
+ * hexpat's unnamed `UnknPTR3`, `Unkn1`, `Unkn2` and `Unkn3`), worked out by
+ * comparing quests on the EU disc: `kind` 1 means `id` is a monster (emID),
+ * 2 an item; 0 means the slot is unused.
+ */
+export interface QuestObjective {
+  kind: number;
+  id: number;
+  count: number;
+  slot: number;
+}
+
+export const OBJECTIVE_OFFSETS = [0x28, 0x30] as const;
+
+export function readObjectives(reader: BinaryReader): QuestObjective[] {
+  return OBJECTIVE_OFFSETS.map((at) => ({
+    kind: reader.u32(at),
+    id: reader.u16(at + 4),
+    count: reader.u8(at + 6),
+    slot: reader.u8(at + 7),
+  }));
+}
+
 /** The six strings of a `StringPTRs` block, in order. */
 export const STRING_FIELDS = ["title", "goal", "fail", "details", "monsters", "client"] as const;
 export type StringField = (typeof STRING_FIELDS)[number];

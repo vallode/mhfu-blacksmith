@@ -5,6 +5,9 @@
  *
  * - size: the values `MonSizeModifier`, `Unkn4`-`Unkn7` and each byte or
  *   word of the large monster records take, and a per-quest TSV of them;
+ * - objectives: the header's two objective slots (0x28, 0x30): their kinds,
+ *   and whether a monster objective's id is the quest's `TargetID` or one
+ *   of its large monsters;
  * - script: each opcode's use, and how often an argument equals the
  *   quest's `TargetID` or one of its large monsters;
  * - text: how the language slots share blocks, whether strings are packed
@@ -114,6 +117,41 @@ export function probeQuests(entries: readonly QuestRawEntry[]): string {
         )
         .join(" | "),
   );
+  out.push("");
+
+  out.push("== Objectives (header 0x28, 0x30) ==");
+  // From the header words, so dumps made before `objectives` existed work too.
+  const objective = (e: QuestRawEntry, slot: number) => {
+    const word = (i: number) => e.headerWords[10 + slot * 2 + i] ?? 0;
+    return {
+      kind: word(0),
+      id: word(1) & 0xffff,
+      count: (word(1) >>> 16) & 0xff,
+      slot: word(1) >>> 24,
+    };
+  };
+  for (const slot of [0, 1]) {
+    const all = entries.map((e) => ({ e, o: objective(e, slot) }));
+    out.push(
+      `Slot ${slot} (@${hex(0x28 + slot * 8, 2)}): kind ${top(all, (a) => String(a.o.kind), 6)}`,
+    );
+    const monsters = all.filter((a) => a.o.kind === 1);
+    if (monsters.length > 0) {
+      const target = monsters.filter((a) => a.o.id === a.e.header.targetId).length;
+      const large = monsters.filter((a) =>
+        a.e.largeMonsterRecords.some((r) => (r[0]! & 0xffff) === a.o.id),
+      ).length;
+      out.push(
+        `  monster objectives: ${monsters.length}; id = TargetID ${target}, id = a large monster ${large}; count ${top(monsters, (a) => String(a.o.count), 6)}; last byte ${top(monsters, (a) => String(a.o.slot), 6)}`,
+      );
+    }
+    const items = all.filter((a) => a.o.kind === 2);
+    if (items.length > 0) {
+      out.push(
+        `  item objectives: ${items.length}; count ${top(items, (a) => String(a.o.count), 6)}`,
+      );
+    }
+  }
   out.push("");
 
   out.push("== Quest script ==");

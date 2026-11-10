@@ -350,6 +350,11 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   header[102] = q.stars;
   header[104] = GATHERING_MAP;
   header.writeUInt16LE(q.monsters[0] ?? 0, 112); // TargetID
+  // Objective slots: one names the monster, the other an item with the same number.
+  header.writeUInt32LE(1, 0x28);
+  header.writeUInt16LE(q.monsters[0] ?? 0, 0x2c);
+  header.writeUInt32LE(2, 0x30);
+  header.writeUInt16LE(q.monsters[0] ?? 0, 0x34);
   return Buffer.concat([header, ...parts]);
 }
 

@@ -300,7 +300,8 @@ records of Village and Guild quests (`src/game/spawns.ts`): each
 list (`emLoadTable`).
 
 - **Species.** A swap rewrites every data and preload entry for the
-  monster, and the header's `TargetID` if it names it. A monster only goes
+  monster, and the header's `TargetID` and two objective slots (`+0x28`
+  and `+0x30`) if they name it. A monster only goes
   to a map (day and night alike) where a Village or Guild quest already has
   it as a large monster: Lao-Shan Lung stays at the Fortress, and swimmers
   stay where there's water, lava or sand. Each species' code is in an
@@ -310,7 +311,9 @@ list (`emLoadTable`).
   Gendrome, Iodrome, Giadrome; ... `MONSTER_FAMILIES`) changes every quest;
   `rank` and `any` only change quests with one kind of large monster.
   Quest scripts name no monsters on the EU disc (mhfu-extract README,
-  "Quest script"), so the header's target is all a quest's goal needs.
+  "Quest script"), so `TargetID` and the objective slots are all a quest's
+  goal needs. The quest's text is renamed for every swapped monster,
+  whichever of them names it (`questMonsters.text`, below).
   Carves follow the monster: the reward shuffles and recipe check use
   the star levels monsters are met at after the swap.
 - **Text** (`questMonsters.text`, `src/shuffles/quest-text.ts`,

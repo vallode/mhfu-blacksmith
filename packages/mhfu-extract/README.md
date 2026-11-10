@@ -66,8 +66,9 @@ pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests
   "Building `data/` from the disc".
 - `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
   open quest questions (`src/emit/quest-probe.ts`): the values the monster
-  size candidates take, each script opcode and how often its arguments
-  equal the quest's `TargetID` or a large monster, and how quest text is
+  size candidates take, the header's two objective slots, each script
+  opcode and how often its arguments equal the quest's `TargetID` or a
+  large monster, and how quest text is
   laid out. `--tsv` also writes every large monster record's candidate
   bytes, one row per record. Numbers only. See "Monster size", "Quest
   text" and "Quest script".
@@ -943,9 +944,24 @@ seen:
 - `53` has 2000 and `54`, in 7 quests (probably Treasure Hunting's
   points).
 
-The goals live in the header (`TargetID`/`TargetNum`), like the decomp's
-two `QuestTarget`s (an `emId` and a count each, `include/quest.hpp`). So
-randomfu's swaps update `TargetID` and need nothing in the script.
+The goals live in the header instead:
+
+- `TargetID`/`TargetNum` (u16 at `0x70`/`0x72`).
+- **Two objective slots** at `0x28` and `0x30`, each
+  `{ u32 kind, u16 id, u8 count, u8 slot }`. These are the hexpat's
+  unnamed `UnknPTR3`, `Unkn1`, `Unkn2` and `Unkn3`, worked out on the EU
+  disc by comparing quests (randomfu `OBJECTIVE_OFFSETS`):
+  - `kind` 1 means `id` is a monster (emID);
+  - `kind` 2 means `id` is an item, as in a delivery quest;
+  - `kind` 0 means the slot is unused.
+
+  `raw/quests.json` decodes them as `objectives`, and `quest-probe` tabulates
+  their kinds and whether a monster objective is the quest's `TargetID` or
+  one of its large monsters.
+
+These fit the decomp's two `QuestTarget`s (an `emId` and a count each,
+`include/quest.hpp`). randomfu's swaps update `TargetID` and every
+monster-kind objective, and need nothing in the script.
 
 ### Save quest flags
 

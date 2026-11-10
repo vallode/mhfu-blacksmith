@@ -69,6 +69,12 @@ test("the raw quest dump has whole monster records and the text layout, but no t
 test("quest-probe summarises size candidates, script arguments and text layout", () => {
   const buf = questPayload();
   buf.writeUInt16LE(7, 112); // TargetID
+  buf.writeUInt32LE(1, 0x28); // objective 0: monster 7, x1
+  buf.writeUInt16LE(7, 0x2c);
+  buf[0x2e] = 1;
+  buf.writeUInt32LE(2, 0x30); // objective 1: item 500, x3
+  buf.writeUInt16LE(500, 0x34);
+  buf[0x36] = 3;
   buf.writeUInt32LE(0x2e0, 16); // questScriptPtr
   buf.writeUInt32LE(0x2f0, 8); // suppliesPtr: two packets
   buf.writeInt16LE(2, 0x2e0); // opcode 2, arg1 = 7
@@ -76,7 +82,13 @@ test("quest-probe summarises size candidates, script arguments and text layout",
   buf.writeInt16LE(1, 0x2e4);
   buf.writeInt16LE(30, 0x2e8);
   const entry = dumpQuestRaw("mission_jpn/m00001.mib", buf, parseQuest(buf), 2048);
+  assert.deepEqual(entry.objectives, [
+    { kind: 1, id: 7, count: 1, slot: 0 },
+    { kind: 2, id: 500, count: 3, slot: 0 },
+  ]);
   const report = probeQuests([entry]);
+  assert.match(report, /monster objectives: 1; id = TargetID 1, id = a large monster 1/);
+  assert.match(report, /item objectives: 1; count 3 ×1/);
   assert.match(report, /MonSizeModifier \(u32 @0x38\): 0x01020304 ×1/);
   assert.match(report, /attr1 \+6: 170 ×1/);
   assert.match(report, /opcode 2: 1 packets in 1 quests; arg1=target 1, =large monster 1/);

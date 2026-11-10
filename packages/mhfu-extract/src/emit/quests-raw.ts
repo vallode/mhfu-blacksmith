@@ -15,14 +15,19 @@
  * can be lined up with the header's `MonSizeModifier` (`headerWords[14]`)
  * and `Unkn4`-`Unkn7` (`header.unknownFlags`).
  *
+ * `objectives` decodes the header's two objective slots (0x28 and 0x30,
+ * the hexpat's `UnknPTR3`-`Unkn3`, `headerWords[10..13]`).
+ *
  * For quest text space: `entrySize` (the DATA.BIN entry, sector padding
  * included, when known) and `strings`, the text's layout as offsets and
  * byte lengths (`readStringLayout`), still without the text itself.
  */
 import { BinaryReader } from "../binary/reader.js";
 import {
+  readObjectives,
   readStringLayout,
   type ParsedQuest,
+  type QuestObjective,
   type QuestHeader,
   type QuestStringLayout,
 } from "../quests/parser.js";
@@ -42,6 +47,8 @@ export interface QuestRawEntry {
   /** Each `SmallMonData` record (60 bytes) as 15 u32 words, in file order. */
   smallMonsterRecords: number[][];
   strings: QuestStringLayout;
+  /** The header's two objective slots (0x28, 0x30; `headerWords[10..13]`), decoded. */
+  objectives: QuestObjective[];
 }
 
 const HEADER_SIZE = 128;
@@ -127,5 +134,6 @@ export function dumpQuestRaw(
     largeMonsterRecords: records.large,
     smallMonsterRecords: records.small,
     strings: readStringLayout(reader, parsed.header),
+    objectives: readObjectives(reader),
   };
 }
