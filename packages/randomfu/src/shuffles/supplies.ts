@@ -52,6 +52,11 @@ export interface SupplyContext {
   allItems: readonly number[];
   /** How many of an item a slot gets when it comes from a wider pool, or is added. */
   usualAmount: (itemId: number) => number;
+  /**
+   * The item a delivery quest asks for, which its box must never hold (or
+   * the quest is done on opening it). Undefined for other quests.
+   */
+  deliveryItem: (quest: LoadedQuest) => number | undefined;
 }
 
 /**
@@ -105,7 +110,9 @@ function drawFromRank(
   };
   const inQuest = new Map<number, Set<number>>();
   return runs.map((run) => {
-    const items = poolFor(run);
+    const target = context.deliveryItem(run.quest);
+    const pool = poolFor(run);
+    const items = target === undefined ? pool : pool.filter((i) => i !== target);
     const seen = inQuest.get(run.quest.index) ?? new Set<number>();
     let pick = items[rng.int(items.length)]!;
     for (let tries = 0; tries < 8 && seen.has(pick); tries++) pick = items[rng.int(items.length)]!;
@@ -130,6 +137,7 @@ export function shuffleSupplies(
           rng,
         )
       : drawFromRank(runs, context, rng);
+  if (options.pool === "supplies") keepDeliveriesOut(runs, next, context);
   let changed = 0;
   const lines = runs.map((run, i) => {
     const { itemId, amount } = next[i]!;
@@ -158,11 +166,33 @@ export function shuffleSupplies(
       options.keepEssentials
         ? "Maps, Paw Pass Tickets, ballista and cannon ammo and the other quest-only items stay where they are."
         : "Maps and the other quest-only supplies move too (wider pools never add them).",
-      "A delivery quest's own item (the Paw Pass Ticket) always stays. Training School, Treasure Hunting and unused quests are unchanged.",
+      "A delivery quest's own item (the Paw Pass Ticket) always stays, and no delivery quest's box gets the item it asks for. Training School, Treasure Hunting and unused quests are unchanged.",
       `${changed} of ${runs.length} stacks changed.`,
     ],
     lines,
   };
+}
+
+/**
+ * Moves a delivery quest's own item out of its box, after a permutation put
+ * it there, by swapping with another run of the same tier that can take it.
+ * The tier's multiset of stacks stays the same.
+ */
+function keepDeliveriesOut(
+  runs: readonly SupplyRun[],
+  next: { itemId: number; amount: number }[],
+  context: SupplyContext,
+): void {
+  const allowed = (i: number, itemId: number) => context.deliveryItem(runs[i]!.quest) !== itemId;
+  runs.forEach((run, i) => {
+    if (allowed(i, next[i]!.itemId)) return;
+    const key = tierKey(run.tier);
+    const j = runs.findIndex(
+      (other, k) =>
+        tierKey(other.tier) === key && allowed(i, next[k]!.itemId) && allowed(k, next[i]!.itemId),
+    );
+    if (j !== -1) [next[i], next[j]] = [next[j]!, next[i]!];
+  });
 }
 
 /** Stacks added to each box, room allowing. */
@@ -201,6 +231,8 @@ export function addSupplies(
       continue;
     }
     const have = new Set(box.map((s) => s.itemId));
+    const target = context.deliveryItem(quest);
+    if (target !== undefined) have.add(target);
     const picks: number[] = [];
     while (picks.length < count) {
       const pick = items[rng.int(items.length)]!;
@@ -230,7 +262,7 @@ export function addSupplies(
     notes: [
       `Every Village and Guild quest's supply box keeps what it had and gets up to ${ADDED_STACKS} more stacks of random items (any item but quest-only ones), in their usual amount.`,
       `The box moves to the end of the quest, into its sector padding. No quest grows past ${largestQuest} bytes and no box past ${largestBox} stacks (the largest on the disc), so some boxes get fewer.`,
-      "Training School, Treasure Hunting and unused quests are unchanged.",
+      "No delivery quest's box gets the item it asks for. Training School, Treasure Hunting and unused quests are unchanged.",
       `${added} stacks added; ${full} boxes had no room.`,
     ],
     lines,

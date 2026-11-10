@@ -57,7 +57,7 @@ export function randomizeTerms(
   const shortest = Math.min(...limits);
   const longest = Math.max(...limits);
 
-  const lines = slots.map(({ quest, terms }) => {
+  const lines = slots.flatMap(({ quest, terms }) => {
     const next = { ...terms };
     const parts: string[] = [];
     if (options.moneySpread !== null) {
@@ -79,8 +79,14 @@ export function randomizeTerms(
       next.timeLimit = limit * TICKS_PER_MINUTE;
       parts.push(`${limit} min (was ${minutes(terms.timeLimit)})`);
     }
-    writeTerms(edits.quest(quest), next);
-    return { where: questLabel(quest), text: parts.join(", ") };
+    if (parts.length === 0) return [];
+    const same =
+      next.fee === terms.fee &&
+      next.reward === terms.reward &&
+      next.penalty === terms.penalty &&
+      next.timeLimit === terms.timeLimit;
+    if (!same) writeTerms(edits.quest(quest), next);
+    return [{ where: questLabel(quest), text: parts.join(", ") }];
   });
 
   const notes: string[] = [];

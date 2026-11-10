@@ -308,7 +308,11 @@ DATA.BIN keeps its layout. No quest grows past the largest quest on the
 disc (10,680 bytes on EU) and no box past the largest box (32 stacks),
 sizes the game already handles; boxes without room get fewer stacks or
 none. A quest's own delivery item (the
-Paw Pass Ticket) always stays. Supply items aren't item sources for the
+Paw Pass Ticket) always stays, and in every mode no delivery quest's box
+gets the item it asks for (a permutation that would put it there swaps it
+with another stack of the same tier). Quest-only items include the
+monster Info items and the Steel, Silver and Golden Eggs (which may be
+carried objects in Treasure Hunting). Supply items aren't item sources for the
 tier logic: whether the game takes back what isn't used isn't known.
 
 `terms` changes the quest board numbers in each Village and Guild quest's

@@ -3,7 +3,7 @@
  * the same game, seed and settings always give the same edits and spoiler.
  */
 import { Edits } from "./edits.js";
-import type { GameData } from "./game/load.js";
+import type { GameData, LoadedQuest } from "./game/load.js";
 import { coarsen, itemTiers, monsterStars, type Tier } from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import { needsEboot, type Settings } from "./settings.js";
@@ -19,7 +19,7 @@ import {
 } from "./shuffles/monster-rewards.js";
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
-import type { ShuffleReport } from "./shuffles/shuffle.js";
+import { median, type ShuffleReport } from "./shuffles/shuffle.js";
 import { findShops, locateItemTable, randomizeShops } from "./shuffles/shops.js";
 import { tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
@@ -69,11 +69,6 @@ function sellableItems(): number[] {
   return out;
 }
 
-function median(values: number[]): number {
-  const sorted = [...values].sort((a, b) => a - b);
-  return sorted[(sorted.length - 1) >> 1]!;
-}
-
 /**
  * How many of an item a supply stack gets when a wider pool puts it there:
  * the usual amount supply boxes give of it, else quest rewards, else 1.
@@ -82,17 +77,21 @@ function usualAmounts(
   game: GameData,
   rewards: readonly { itemId: number; amount: number }[],
 ): (itemId: number) => number {
-  const supplied = new Map<number, number[]>();
-  for (const quest of game.quests) {
-    for (const s of readSupplySlots(quest.file.payload)) {
-      supplied.set(s.itemId, [...(supplied.get(s.itemId) ?? []), s.amount]);
+  const collect = (entries: Iterable<{ itemId: number; amount: number }>) => {
+    const out = new Map<number, number[]>();
+    for (const { itemId, amount } of entries) {
+      const list = out.get(itemId);
+      if (list) list.push(amount);
+      else out.set(itemId, [amount]);
     }
-  }
-  const rewarded = new Map<number, number[]>();
-  for (const r of rewards) rewarded.set(r.itemId, [...(rewarded.get(r.itemId) ?? []), r.amount]);
+    return out;
+  };
+  const supplied = collect(game.quests.flatMap((q) => readSupplySlots(q.file.payload)));
+  const rewarded = collect(rewards);
   return (itemId) => {
     const amounts = supplied.get(itemId) ?? rewarded.get(itemId);
-    return amounts ? Math.max(1, median(amounts)) : 1;
+    // The lower middle, so an even split rounds down to an amount the game uses.
+    return amounts ? Math.max(1, median(amounts, "lower")) : 1;
   };
 }
 
@@ -165,6 +164,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
       allItems: sellableItems(),
       usualAmount: usualAmounts(game, questSlots),
+      deliveryItem: (quest: LoadedQuest) => deliveries.get(quest.index)?.itemId,
     };
     reports.push(
       pool === "add"

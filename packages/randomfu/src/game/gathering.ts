@@ -11,14 +11,17 @@
  * - `GatheringLocTblPTR` (header +28) points at one u32 pointer per area of
  *   the quest's map (the count depends on the map). Each leads to the
  *   area's nodes, 24 bytes each (`f32 x, y, z, maxValue; u16 itemIndex;
- *   u16; u16 nodeType; u16 maxTimes`), ending at an x of -1.0f.
+ *   u16; u16 nodeType; u16`), ending at an x of -1.0f. The pattern names
+ *   the last u16 `maxTimes`; see below for why it's read as the fewest
+ *   gathers instead.
  *
  * On the EU disc every used table's values add up to 100: each is an item's
  * chance in percent. The two u16s around `nodeType` look like gather
  * counts: on all 19,130 nodes the one at +18 is at least the one at +22 (6
  * and 2, 10 and 6, ...), and both are 255 on the 536 spots that never run
- * out (ammo piles, the Khezu Whelps, the Training School's honey). `gathers` is the smaller one, so yields worked
- * out from it are cautious.
+ * out (ammo piles, the Khezu Whelps, the Training School's honey). So +18
+ * reads as the most gathers and +22 as the fewest. `gathers` is the one at
+ * +22, so yields worked out from it are cautious.
  *
  * Only item tables a node points at count, so a table no node uses doesn't
  * make an item look available earlier than it is. A table is read once

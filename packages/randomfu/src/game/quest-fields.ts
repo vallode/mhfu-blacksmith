@@ -31,8 +31,10 @@ export const TICKS_PER_MINUTE = 1800;
 const DELIVERY_TYPE = 2;
 
 /**
- * The monster "Info" items (Tigrex Info, ...), which unlock guide pages,
- * then items that only exist inside a quest: supply box items (Map, First-Aid
+ * The monster "Info" items (Lynian Info to Fatalis Info), which unlock
+ * guide pages, the Steel, Silver and Golden Eggs (quest rewards elsewhere,
+ * but maybe carried objects in Treasure Hunting, so never in a box), then
+ * items that only exist inside a quest: supply box items (Map, First-Aid
  * Med, Ration, Portable Spit, Mini Whetstone, Prtbl Shock Trap and the
  * other supply-only tools, Ballista S and Cannon S), carried objects
  * (Wyvern, Herbivore and Carnivore Egg, Sootstone and Quartz Ore,
@@ -41,8 +43,7 @@ const DELIVERY_TYPE = 2;
  * asked not to and never add them; deliveries never ask for them.
  */
 const QUEST_ITEM_RANGES: readonly [number, number][] = [
-  [831, 859],
-  [863, 883],
+  [831, 883],
   [927, 928],
 ];
 
@@ -127,7 +128,9 @@ const alignUp = (n: number) => (n + 3) & ~3;
  * boundaries with zero padding up to the next one, so a string's room is
  * its length plus that padding. `text` goes into every goal string it fits
  * in; a language whose own goal is too short is pointed at one that held
- * it. Item names are English only (the disc's other languages' names
+ * it. A goal string another field also points at is left alone (that
+ * field keeps its text) and its languages are pointed at a holder too.
+ * Item names are English only (the disc's other languages' names
  * aren't read), so every language gets the English line. Returns false,
  * changing nothing, if `text` fits in no goal string or the table doesn't
  * read.
@@ -146,13 +149,20 @@ export function rewriteGoal(payload: Buffer, text: string): boolean {
     if (!blocks.includes(block)) blocks.push(block);
   }
   // Every string any language points at, so no goal grows into another.
-  const strings = blocks.flatMap((block) =>
-    Array.from({ length: 6 }, (_, k) => payload.readUInt32LE(block + k * 4)),
+  const fields = blocks.flatMap((block) =>
+    Array.from({ length: 6 }, (_, k) => ({ k, at: payload.readUInt32LE(block + k * 4) })),
   );
+  const strings = fields.map((f) => f.at);
+  // Strings a title, condition or other non-goal field shows.
+  const shown = new Set(fields.filter((f) => f.k * 4 !== GOAL_FIELD).map((f) => f.at));
   const room = new Map<number, number>();
   for (const block of blocks) {
     const goal = payload.readUInt32LE(block + GOAL_FIELD);
     if (room.has(goal)) continue;
+    if (shown.has(goal)) {
+      room.set(goal, -1);
+      continue;
+    }
     if (!fits(goal, 1)) return false;
     const end = payload.indexOf(0, goal);
     if (end === -1) return false;

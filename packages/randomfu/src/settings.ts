@@ -171,7 +171,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "supplies.enabled",
     section: "Supplies",
     label: "Randomize supply boxes",
-    help: "What each Village and Guild quest's supply box holds. Every box keeps its number of stacks; stacks laid out once per hunter change together.",
+    help: "What each Village and Guild quest's supply box holds. Stacks laid out once per hunter change together, and a delivery quest's box never gets the item it asks for.",
     type: { kind: "boolean" },
     default: false,
   },

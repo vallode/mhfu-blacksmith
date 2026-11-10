@@ -9,6 +9,7 @@ import { gatheringYields } from "../src/game/gathering.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import {
   deliveryTarget,
+  isQuestItem,
   readSupplySlots,
   readTerms,
   rewriteGoal,
@@ -17,6 +18,12 @@ import {
 import { randomize } from "../src/randomize.js";
 import { Rng } from "../src/rng.js";
 import { collectDeliveries, shuffleDeliveries } from "../src/shuffles/deliveries.js";
+import {
+  addSupplies,
+  collectSupplyRuns,
+  shuffleSupplies,
+  type SupplyContext,
+} from "../src/shuffles/supplies.js";
 import { buildFixtureDisc, buildQuestPayload, FIXTURE_QUESTS, tempDir } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
@@ -154,6 +161,87 @@ test("adding to supply boxes keeps them and appends random stacks where there's 
   assert.equal(room.get(10101), 3, "up to the largest box's 5 stacks");
   assert.equal(room.get(2001), 4);
   close();
+});
+
+test("no supply mode gives a delivery quest the item it asks for", async () => {
+  const { game, close } = await load();
+  const context = (deliveries: Map<number, number>, extra: Partial<SupplyContext> = {}) => ({
+    bands: new Map(),
+    allItems: [],
+    usualAmount: () => 1,
+    deliveryItem: (q: { parsed: { header: { questId: number } } }) =>
+      deliveries.get(q.parsed.header.questId),
+    ...extra,
+  });
+  const boxOf = (edits: Edits, id: number) =>
+    readSupplySlots(edits.questNow(byId(game, id))).map((s) => s.itemId);
+  let swapped = false;
+  for (const seed of SEEDS) {
+    // Adding: 2001 has room for 4 and only 241 to 245 to draw from, 241 being its target.
+    const added = new Edits(game);
+    addSupplies(
+      game.quests,
+      context(new Map([[2001, 241]]), { allItems: [240, 241, 242, 243, 244, 245] }),
+      new Rng(seed),
+      added,
+    );
+    assert.deepEqual(boxOf(added, 2001).sort(), [240, 242, 243, 244, 245]);
+
+    // The rank pool: 2001's only High Rank choices are its target and 242.
+    const ranked = new Edits(game);
+    const highRuns = collectSupplyRuns(game.quests, () => false).filter(
+      (r) => r.quest.parsed.header.questId === 2001,
+    );
+    shuffleSupplies(
+      highRuns,
+      { pool: "rank", keepEssentials: true },
+      context(new Map([[2001, 241]]), {
+        bands: new Map([
+          [241, "high"],
+          [242, "high"],
+        ]),
+      }),
+      new Rng(seed),
+      ranked,
+    );
+    assert.ok(!boxOf(ranked, 2001).includes(241), `${seed}: rank pool`);
+
+    // Permuting: 10102 must not get 1001's 140 stacks; the tier keeps its stacks.
+    const permuted = new Edits(game);
+    const lowRuns = collectSupplyRuns(game.quests, (_, item) => isQuestItem(item)).filter((r) =>
+      [1001, 10102].includes(r.quest.parsed.header.questId),
+    );
+    shuffleSupplies(
+      lowRuns,
+      { pool: "supplies", keepEssentials: true },
+      context(new Map([[10102, 140]])),
+      new Rng(seed),
+      permuted,
+    );
+    const box10102 = boxOf(permuted, 10102);
+    assert.ok(!box10102.includes(140), `${seed}: permutation`);
+    const runsNow = [1001, 10102].flatMap((id) =>
+      runsOf(supplies(permuted.questNow(byId(game, id)))),
+    );
+    assert.deepEqual(runsNow.sort(), ["140x3", "141x2", "143x2", "144x1", "863x1"].sort());
+    if (boxOf(permuted, 1001).includes(143) || boxOf(permuted, 1001).includes(144)) swapped = true;
+  }
+  assert.ok(swapped, "some seed still moves stacks between the two boxes");
+  close();
+});
+
+test("rewriteGoal leaves a string another field shows", () => {
+  const payload = buildQuestPayload(FIXTURE_QUESTS.find((q) => q.questId === 10102)!);
+  const table = payload.readUInt32LE(96);
+  const block = payload.readUInt32LE(table);
+  const goal = payload.readUInt32LE(block + 4);
+  // The fail condition (field 2) shows the English goal string too.
+  payload.writeUInt32LE(goal, block + 8);
+  const text = payload.toString("utf8", goal, payload.indexOf(0, goal));
+  const ok = rewriteGoal(payload, "Deliver X x1");
+  const fail = payload.readUInt32LE(block + 8);
+  assert.equal(payload.toString("utf8", fail, payload.indexOf(0, fail)), text);
+  if (ok) assert.notEqual(payload.readUInt32LE(block + 4), goal, "the goal points elsewhere");
 });
 
 test("quest terms: money and time limits move within their spreads", async () => {

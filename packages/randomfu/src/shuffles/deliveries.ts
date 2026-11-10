@@ -41,7 +41,7 @@ import { questTier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import { itemName, questLabel, tableName } from "../names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport } from "./shuffle.js";
+import { median, type ShuffleReport } from "./shuffle.js";
 
 export interface DeliveryQuest {
   quest: LoadedQuest;
@@ -69,12 +69,6 @@ const MAX_AMOUNT = 99;
 /** How much less plentiful than the old item a new one may be. */
 const PLENTY = 2;
 const FALLBACK_CANDIDATES = 3;
-
-function median(values: number[]): number {
-  const sorted = [...values].sort((a, b) => a - b);
-  const mid = sorted.length >> 1;
-  return sorted.length % 2 ? sorted[mid]! : (sorted[mid - 1]! + sorted[mid]!) / 2;
-}
 
 export function shuffleDeliveries(
   deliveries: readonly DeliveryQuest[],
@@ -123,10 +117,9 @@ export function shuffleDeliveries(
     for (const [item, found] of candidates) {
       const wanted = Math.round(questShare * found);
       const amount = Math.max(1, Math.min(wanted, Math.floor(found), MAX_AMOUNT));
-      const goal = deliveryGoal(itemName(item), amount);
-      if (!rewriteGoal(Buffer.from(now), goal)) continue;
+      // rewriteGoal changes nothing when the line fits nowhere.
+      if (!rewriteGoal(edits.quest(quest), deliveryGoal(itemName(item), amount))) continue;
       const payload = edits.quest(quest);
-      rewriteGoal(payload, goal);
       payload.writeUInt16LE(item, TARGET_ID);
       payload.writeUInt16LE(amount, TARGET_NUM);
       lines.push({
