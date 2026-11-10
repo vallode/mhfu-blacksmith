@@ -31,7 +31,7 @@ type Changes = Partial<Record<OptionKey, boolean | number | string>>;
 const only = (seed: string, changes: Changes): Settings => settingsWith(seed, [], changes);
 
 const FILE = path.join(tempDir(), "disc.iso");
-writeFileSync(FILE, buildFixtureDisc());
+writeFileSync(FILE, buildFixtureDisc({ text: true }));
 
 async function load(): Promise<{ game: GameData; close: () => void }> {
   const { source, iso } = openDiscImage(FILE);
@@ -74,7 +74,7 @@ test("monster names and their articles are learned per language from the quests'
   assert.deepEqual([...german.before.get(37)!], ["den"]);
   assert.deepEqual([...german.articleWords].sort(), ["den", "die"]);
   assert.equal(slots[3]!.names.size, 0, "an empty slot learns nothing");
-  assert.equal(english.widths[1], 23, "the goal's longest line");
+  assert.equal(english.widths[1], 37, "the goal's longest line (10102's delivery goal)");
   close();
 });
 
@@ -164,7 +164,7 @@ test("text is written in place when it fits, and repacked into shared strings wh
     stars: 1,
     monsters: [1],
     rewards: [],
-    text: [
+    slots: [
       ["T", "Hunt the Rathian", "F", "D", "Rathian", "C"],
       ["T", "Hunt the Rathian", "F", "D", "Rathian", "C"],
       null,

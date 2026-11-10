@@ -407,7 +407,8 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
   header.writeUInt16LE(q.questId, 100);
   header[102] = q.stars;
   header[104] = GATHERING_MAP;
-  header.writeUInt16LE(q.monsters[0] ?? 0, 112); // TargetID
+  // TargetID: the first monster, unless it's a delivery quest's item (written above).
+  if (!q.delivery) header.writeUInt16LE(q.monsters[0] ?? 0, 112);
   // Objective slots: one names the monster, the other an item with the same number.
   header.writeUInt32LE(1, 0x28);
   header.writeUInt16LE(q.monsters[0] ?? 0, 0x2c);
@@ -915,7 +916,9 @@ export function buildDataBin(
 
 // ---------------------------------------------------------------- the disc
 
-export const QUEST_INDICES = [4759, 4760, 4761, 4762, 4763, 4764];
+export const QUEST_INDICES = [4759, 4760, 4761, 4762, 4763];
+/** Where the text disc puts `FIXTURE_TEXT_QUEST`. */
+export const TEXT_QUEST_INDEX = 4764;
 export const GAME_TASK_INDEX = 51;
 export const GAME_SUB_INDEX = 56;
 export const LOBBY_TASK_INDEX = 50;
@@ -1007,7 +1010,7 @@ export const FIXTURE_TEXT: Record<number, (FixtureText | number | null)[]> = {
     1,
   ],
   20001: [1, en("Training", "Hunt the Rathian", "Practice.", "Rathian"), null, null, null, null, 1],
-  10103: [
+  20002: [
     1,
     en("Pink Queen", "Hunt the Pink Rathian", "A rare one.", "Pink Rathian\nVelociprey"),
     de("Rosa Königin", "Jage den Rosa Rathian", "Selten.", "Rosa Rathian\nVelociprey"),
@@ -1154,17 +1157,23 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     powers: [4, 4],
     rewards: [],
   },
-  // Pink Rathian on its own, so the text tests can learn its name (10102's
-  // text is the delivery tests').
-  {
-    questId: 10103,
-    rank: 1,
-    stars: 1,
-    monsters: [37],
-    powers: [4],
-    rewards: [],
-  },
 ];
+
+/**
+ * Pink Rathian on its own, so the text tests can learn its name (10102's
+ * text is the delivery tests'). A Training School quest, so no shuffle
+ * changes it. Only on the text disc (`buildFixtureDisc({ text: true })`).
+ */
+export const FIXTURE_TEXT_QUEST: FixtureQuest = {
+  questId: 20002,
+  rank: 0,
+  stars: 1,
+  supplies: [[997, 1]],
+  terms: { fee: 10, reward: 100, penalty: 30, minutes: 20 },
+  monsters: [37],
+  powers: [4],
+  rewards: [],
+};
 
 export const FIXTURE_CARVES: CarveListSpec[] = [
   {
@@ -1432,27 +1441,35 @@ function fixtureEboot(options: FixtureDiscOptions): Buffer {
 export interface FixtureDiscOptions {
   /** Encrypt the EBOOT as a game EBOOT ("~PSP") with this tag, as on a real disc. */
   ebootTag?: number;
+  /**
+   * Quest text for the renaming tests: `FIXTURE_TEXT` in the quests that
+   * have no text of their own, `FIXTURE_TEXT_QUEST`, and two quest board
+   * files. Off by default, so the other tests' disc stays as it is.
+   */
+  text?: boolean;
 }
 
 export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   const files = new Map<number, Buffer>();
+  const withText = (q: FixtureQuest): FixtureQuest =>
+    options.text && !q.text ? { ...q, slots: q.slots ?? FIXTURE_TEXT[q.questId] } : q;
   FIXTURE_QUESTS.forEach((q, i) =>
-    files.set(
-      QUEST_INDICES[i]!,
-      buildQuestEntry(
-        buildQuestPayload(q.text ? q : { ...q, slots: q.slots ?? FIXTURE_TEXT[q.questId] }),
-      ),
-    ),
+    files.set(QUEST_INDICES[i]!, buildQuestEntry(buildQuestPayload(withText(q)))),
   );
   files.set(GAME_TASK_INDEX, buildGameTask());
   files.set(GAME_SUB_INDEX, buildGameSub(FIXTURE_CARVES, FIXTURE_CAPTURES));
   files.set(LOBBY_TASK_INDEX, buildLobbyTask().buf);
   files.set(22, Buffer.from("stored raw"));
-  // Quest 2001 is on two boards, as some quests are on the disc.
-  const byId = (id: number) => FIXTURE_QUESTS.find((q) => q.questId === id)!;
-  files.set(BOARD_INDICES[0]!, buildBoardFile([byId(1001), byId(2001), byId(10101)]));
-  files.set(BOARD_INDICES[1]!, buildBoardFile([byId(2001)]));
-  const dataBin = buildDataBin(BOARD_INDICES.at(-1)! + 1, files, JP_RAW);
+  let count = QUEST_INDICES.at(-1)! + 2;
+  if (options.text) {
+    files.set(TEXT_QUEST_INDEX, buildQuestEntry(buildQuestPayload(withText(FIXTURE_TEXT_QUEST))));
+    // Quest 2001 is on two boards, as some quests are on the disc.
+    const byId = (id: number) => withText(FIXTURE_QUESTS.find((q) => q.questId === id)!);
+    files.set(BOARD_INDICES[0]!, buildBoardFile([byId(1001), byId(2001), byId(10101)]));
+    files.set(BOARD_INDICES[1]!, buildBoardFile([byId(2001)]));
+    count = BOARD_INDICES.at(-1)! + 1;
+  }
+  const dataBin = buildDataBin(count, files, JP_RAW);
   return buildIso([
     { path: "PSP_GAME/PARAM.SFO", data: buildSfo("ULJM05500") },
     { path: "PSP_GAME/SYSDIR/EBOOT.BIN", data: fixtureEboot(options) },

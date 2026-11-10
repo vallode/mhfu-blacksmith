@@ -31,6 +31,7 @@
  */
 import type { LoadedQuest } from "../game/load.js";
 import { RECORD_TARGET_ID, type BoardFile } from "../game/board.js";
+import { DELIVERY_TYPE, QUEST_TYPE } from "../game/quest-fields.js";
 import {
   readSpawns,
   OBJECTIVE_ID_OFFSET,
@@ -175,8 +176,10 @@ export function swapSpecies(
       const next = mapping.get(monsterId);
       if (next !== undefined) payload.writeUInt16LE(next, offset);
     }
+    // A delivery quest's TargetID is an item, not a monster.
+    const delivery = payload[QUEST_TYPE] === DELIVERY_TYPE;
     const target = mapping.get(payload.readUInt16LE(TARGET_ID_OFFSET));
-    if (target !== undefined) payload.writeUInt16LE(target, TARGET_ID_OFFSET);
+    if (target !== undefined && !delivery) payload.writeUInt16LE(target, TARGET_ID_OFFSET);
     for (const objective of OBJECTIVE_OFFSETS) {
       if (payload.readUInt32LE(objective) !== OBJECTIVE_KIND_MONSTER) continue;
       const idAt = objective + OBJECTIVE_ID_OFFSET;
@@ -186,7 +189,7 @@ export function swapSpecies(
     // The board keeps its own copy of the header, TargetID included.
     for (const board of boards) {
       for (const record of board.records) {
-        if (record.questId !== quest.parsed.header.questId) continue;
+        if (record.questId !== quest.parsed.header.questId || delivery) continue;
         const at = record.offset + RECORD_TARGET_ID;
         const next = mapping.get(board.data.readUInt16LE(at));
         if (next !== undefined) edits.dataFile(board.index).writeUInt16LE(next, at);

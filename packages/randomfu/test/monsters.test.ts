@@ -108,7 +108,12 @@ test("variant swaps keep each monster in its family and on its map, and move the
         [...new Set(ids)],
         "the preload list follows",
       );
-      assert.equal(after.readUInt16LE(TARGET_ID_OFFSET), ids[0], "the target follows");
+      if (quest.parsed.header.questType % 256 === 2) {
+        // A delivery quest's target is its item.
+        assert.equal(after.readUInt16LE(TARGET_ID_OFFSET), quest.parsed.header.targetId);
+      } else {
+        assert.equal(after.readUInt16LE(TARGET_ID_OFFSET), ids[0], "the target follows");
+      }
       assert.equal(after.readUInt16LE(0x2c), ids[0], "a monster objective follows");
       assert.equal(
         after.readUInt16LE(0x34),

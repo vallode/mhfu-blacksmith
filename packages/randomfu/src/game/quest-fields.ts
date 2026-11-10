@@ -28,7 +28,7 @@ export const TICKS_PER_MINUTE = 1800;
  * on the others `TargetID` is a monster. The quest script doesn't name the
  * item, so the header is all there is.
  */
-const DELIVERY_TYPE = 2;
+export const DELIVERY_TYPE = 2;
 
 /**
  * The monster "Info" items (Lynian Info to Fatalis Info), which unlock
