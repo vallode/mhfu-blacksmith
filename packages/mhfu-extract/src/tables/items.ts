@@ -52,23 +52,30 @@ export function readItemTable(reader: BinaryReader, resolver?: TableAddressResol
   const base = resolveTableOffset("itemTable", reader, resolver);
   const out: ItemEntry[] = [];
   for (let i = 0; i < TABLE_COUNTS.regularItems; i++) {
-    const off = base + i * ITEM_ENTRY_SIZE;
-    out.push({
-      index: i,
-      unkn1: reader.u16(off + 0),
-      rarity: reader.u8(off + 2),
-      stackLimit: reader.u8(off + 3),
-      iconDeco: reader.u8(off + 4),
-      iconId: reader.u8(off + 5),
-      color: reader.u8(off + 6),
-      unkn2: reader.u8(off + 7),
-      unkn3: reader.u32(off + 8),
-      price: reader.u32(off + 12),
-      unkn4: reader.u16(off + 16),
-      unkn5: reader.u16(off + 18),
-      unkn6: reader.u16(off + 20),
-      skillTblId: reader.u16(off + 22),
-    });
+    out.push(readItemEntryAt(reader, base + i * ITEM_ENTRY_SIZE, i));
   }
   return out;
+}
+
+/**
+ * One 24-byte item entry at a file offset. Decoration values share the
+ * layout, and MHF2 keeps it (games/mhp2.ts).
+ */
+export function readItemEntryAt(reader: BinaryReader, off: number, index: number): ItemEntry {
+  return {
+    index,
+    unkn1: reader.u16(off + 0),
+    rarity: reader.u8(off + 2),
+    stackLimit: reader.u8(off + 3),
+    iconDeco: reader.u8(off + 4),
+    iconId: reader.u8(off + 5),
+    color: reader.u8(off + 6),
+    unkn2: reader.u8(off + 7),
+    unkn3: reader.u32(off + 8),
+    price: reader.u32(off + 12),
+    unkn4: reader.u16(off + 16),
+    unkn5: reader.u16(off + 18),
+    unkn6: reader.u16(off + 20),
+    skillTblId: reader.u16(off + 22),
+  };
 }

@@ -24,7 +24,9 @@ import { runQuestTextScan } from "./cli/quest-text-scan.js";
 import { runTableProbe } from "./cli/table-probe.js";
 import { runMessages } from "./cli/messages.js";
 import { readFile, writeFile } from "node:fs/promises";
-import { runUnpack } from "./cli/unpack.js";
+import { manifestGame, runUnpack, type UnpackManifest } from "./cli/unpack.js";
+import { runExtractMhp2 } from "./cli/extract-mhp2.js";
+import path from "node:path";
 import { isGame, isRegion, type Game, type Region } from "./container/sfo.js";
 import { probeQuests, sizeTsv } from "./emit/quest-probe.js";
 import type { QuestRawEntry } from "./emit/quests-raw.js";
@@ -155,6 +157,16 @@ export async function main(argv: string[]): Promise<void> {
       return;
     }
     case "extract": {
+      const unpacked = requireFlag(flags, "unpacked");
+      const unpackManifest = JSON.parse(
+        await readFile(path.join(unpacked, "manifest.json"), "utf-8"),
+      ) as UnpackManifest;
+      if (manifestGame(unpackManifest) === "mhp2") {
+        const result = await runExtractMhp2({ unpacked, out: requireFlag(flags, "out") });
+        const failed = result.checks.filter((c) => !c.ok).length;
+        console.log(`\nDone. MHF2 tables extracted; ${failed} check(s) failed.`);
+        return;
+      }
       const manifest = await runExtract({
         unpacked: requireFlag(flags, "unpacked"),
         out: requireFlag(flags, "out"),

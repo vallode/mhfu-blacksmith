@@ -55,8 +55,8 @@ export function assertMhfuUnpack(manifest: UnpackManifest, dir: string): void {
   const game = manifestGame(manifest);
   if (game !== "mhp2g") {
     throw new Error(
-      `${dir} is ${GAME_NAMES[game]} (${manifest.discId}). Only unpack supports it so far; ` +
-        `this command reads MHFU's tables and file names. See README's "Other games".`,
+      `${dir} is ${GAME_NAMES[game]} (${manifest.discId}). This command reads MHFU's tables and ` +
+        `file names; for MHF2, \`extract\` reads its equipment tables. See README's "Other games".`,
     );
   }
   assertCurrentFileNames(manifest, dir);

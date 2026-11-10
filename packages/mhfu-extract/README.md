@@ -236,14 +236,32 @@ MHFU). For MHF1 and MHF2 it writes:
 - `usrdir/`, every other file under `PSP_GAME/USRDIR` as it is, and
   `DATA.BIN` itself when it has no plain TOC (`dataBinUnpacked: false`).
 
-**That is as far as it goes.** No MHF1 or MHF2 disc has been run through
-it, and none of what reads MHFU after `unpack` holds for them: the EBOOT
-table addresses and struct layouts (`src/tables/`), the quest format and
+Both EU discs have been through it: MHF1 (ULES00318) gave 5,874 entries
+and MHF2 (ULES00851) unpacked too, each with an in-process-decrypted EBOOT.
+None of what reads MHFU after `unpack` holds for them as is: the EBOOT
+table addresses and some struct layouts, the quest format and
 `QuestCipher` (mhef has it for 2nd G and 3rd only), the overlays, and the
-file names. `extract`, `export-site`, `quest-flags` and `quest-text-scan`
-refuse an MHF1 or MHF2 unpack (`assertMhfuUnpack`) rather than misread it;
-`messages` reads one, by index. `randomfu` still takes MHFU discs only
-(`detectRegion` returns no region for the others).
+file names. `export-site`, `quest-flags` and `quest-text-scan` refuse an
+MHF1 or MHF2 unpack (`assertMhfuUnpack`) rather than misread it, as
+`extract` does an MHF1 one; `messages` reads either, by index. `randomfu`
+still takes MHFU discs only (`detectRegion` returns no region for the
+others).
+
+**MHF2 equipment (EU only).** `extract` on an EU MHF2 unpack reads its
+equipment tables (`src/games/mhp2.ts`) and writes them as numbers-only JSON,
+one file per table: blademaster and gunner weapons (with weapon types),
+armor per slot, sharpness, items, and decoration values and skills, plus
+`EXTRACTION.json` with each table's offset and count and the checks. The
+offsets and the three changed layouts (gunner weapons, armor, sharpness)
+were found with `table-probe`; the module comment has the field-by-field
+evidence. The checks: the EBOOT is the EU MHF2 one (by size); MHF2's own
+armor pointers are spaced exactly as the armor tables, which were found by
+content; every blademaster sharpness ID is in the sharpness table; every
+weapon's model has a weapon type; sharpness thresholds never decrease; and
+armor rarity stays at 10 or under. There are no names yet: they're in MHF2's
+own message files, and MHFU's name lists don't line up with MHF2's IDs
+(armor skill IDs, for one, are numbered differently). Not read yet: bow
+charge levels, bowgun ammo, and dual-element weapons.
 
 Getting data out of them takes a disc of each, then, per game:
 
@@ -270,11 +288,13 @@ Getting data out of them takes a disc of each, then, per game:
    MHF1 is further from MHFU; expect few matches and readers written from
    scratch.
 
-3. Add `src/games/mhp2.ts` (and `mhp.ts`): a `GameProfile` with that
-   game's tables and resolvers, as `src/games/mhp2g.ts` is for MHFU, and
-   let `extract` take the game through it.
-4. Decide where its output goes. `data/` and the site are MHFU's; a second
-   game needs its own data directory and a way to pick it on the site.
+3. Write down the offsets and changed layouts in `src/games/<game>.ts`, with
+   the checks that tie them together, and have `extract` read them, as
+   `src/games/mhp2.ts` and `src/cli/extract-mhp2.ts` do for EU MHF2. MHF1
+   (`mhp.ts`) is still to do.
+4. Name things from the game's own message files (`messages`), and decide
+   where its output goes. `data/` and the site are MHFU's; a second game
+   needs its own data directory and a way to pick it on the site.
 
 ### EBOOT decryption
 

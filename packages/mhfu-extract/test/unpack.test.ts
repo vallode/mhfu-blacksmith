@@ -71,7 +71,7 @@ test("unpack reads an MHF2 disc's plain DATA.BIN and copies the rest of USRDIR",
     // Nothing past unpack reads MHF2 yet, and says so rather than misreading it.
     await assert.rejects(
       runExtract({ unpacked: out, out: path.join(dir, "extracted") }),
-      /Monster Hunter Freedom 2 \(MHP2nd\) \(ULJM05156\)\. Only unpack supports it/,
+      /Monster Hunter Freedom 2 \(MHP2nd\) \(ULJM05156\)\. This command reads MHFU/,
     );
   } finally {
     rmSync(dir, { recursive: true, force: true });
