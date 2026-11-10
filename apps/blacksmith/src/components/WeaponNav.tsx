@@ -1,52 +1,49 @@
 "use client";
 
 import { useEffect } from "react";
-import Link from "next/link";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import { writeLastWeapon } from "@/lib/last-weapon";
-import Icon from "./Icon";
+import PageBar, { PageTab, PageTabs } from "./PageBar";
 
 interface WeaponNavProps {
-  activeType?: WeaponType;
+  activeType: WeaponType;
+  /** On a weapon's page: phones show only the detail, so lead back to the tree. */
+  detail?: boolean;
 }
 
 function formatWeaponName(type: string): string {
-  return type.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+  return type
+    .replace(/-/g, " ")
+    .replace(/\b\w/g, (c) => c.toUpperCase())
+    .replace(" And ", " and ");
 }
 
-export default function WeaponNav({ activeType }: WeaponNavProps) {
-  // Remember the weapon type so the main menu's "Weapons" entry reopens it.
+/** The weapon pages' PageBar: the type as title and one tab per weapon type. */
+export default function WeaponNav({ activeType, detail }: WeaponNavProps) {
+  // Remember the weapon type so the sidebar's "Weapons" entry reopens it.
   useEffect(() => {
-    if (activeType) writeLastWeapon(activeType);
+    writeLastWeapon(activeType);
   }, [activeType]);
 
+  const typeName = formatWeaponName(activeType);
+
   return (
-    <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-      <div>
-        <Link href="/" aria-label="Back">
-          <Icon type="arrow" nav alt="Back" />
-        </Link>
-      </div>
-
-      {WEAPON_TYPES.map((type) => {
-        const name = formatWeaponName(type);
-        return (
-          <div key={type}>
-            <Link href={`/blacksmith/${type}/`} title={name}>
-              <Icon type={type} size="large" nav active={activeType === type} alt={name} />
-            </Link>
-          </div>
-        );
-      })}
-
-      <div className="ml-auto">
-        <button
-          className="search-trigger flex h-[52px] w-[52px] cursor-pointer items-center border-none bg-transparent p-0 text-white/60 hover:text-white [&>img]:h-full"
-          aria-label="Search"
-        >
-          <img src="/images/binoculars.png" alt="Search" decoding="sync" />
-        </button>
-      </div>
-    </nav>
+    <PageBar
+      title={`${typeName} weapons`}
+      back={detail ? { href: `/blacksmith/${activeType}/`, label: `${typeName} tree` } : undefined}
+      tabs={
+        <PageTabs label="Weapon types">
+          {WEAPON_TYPES.map((type) => (
+            <PageTab
+              key={type}
+              href={`/blacksmith/${type}/`}
+              label={formatWeaponName(type)}
+              icon={type}
+              active={activeType === type}
+            />
+          ))}
+        </PageTabs>
+      }
+    />
   );
 }

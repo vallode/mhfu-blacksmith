@@ -11,7 +11,9 @@ import type { Region } from "../container/sfo.js";
 import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
 import { emitCombinations } from "../emit/combinations.js";
 import { emitMonsters } from "../emit/monsters.js";
+import { emitGathering, type GatheringQuestInput } from "../emit/gathering.js";
 import { emitQuestsFile } from "../emit/quests.js";
+import { emitShops } from "../emit/shops.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
@@ -25,11 +27,13 @@ import {
   hornNotesFromCommitted,
 } from "../emit/melody-raw.js";
 import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
-import { loadMonsterOverlays } from "../monsters/overlays.js";
+import { parseOvl } from "../container/ovl.js";
+import { loadMonsterOverlays, OVERLAY_DIR } from "../monsters/overlays.js";
 import { readMonsterTables } from "../monsters/read.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
+import { findShops } from "../shops/shops.js";
 import {
   JP_BASE_ADDRESS,
   verifyOffsets,
@@ -81,8 +85,14 @@ export interface ExtractionManifest {
 export async function readQuestsFromUnpackedDir(
   unpackedDir: string,
   region: Region,
-): Promise<{ quests: ParsedQuest[]; skipped: SkippedQuest[]; raw: QuestRawEntry[] }> {
+): Promise<{
+  quests: ParsedQuest[];
+  skipped: SkippedQuest[];
+  raw: QuestRawEntry[];
+  payloads: GatheringQuestInput[];
+}> {
   const quests: ParsedQuest[] = [];
+  const payloads: GatheringQuestInput[] = [];
   const skipped: SkippedQuest[] = [];
   const raw: QuestRawEntry[] = [];
 
@@ -97,13 +107,14 @@ export async function readQuestsFromUnpackedDir(
       }
       const parsed = parseQuest(payload);
       quests.push(parsed);
+      payloads.push({ parsed, payload });
       raw.push(dumpQuestRaw(ref.path, payload, parsed, file.length));
     } catch (error) {
       const reason = error instanceof QuestCipherError ? error.message : String(error);
       skipped.push({ path: ref.path, reason });
     }
   }
-  return { quests, skipped, raw };
+  return { quests, skipped, raw, payloads };
 }
 
 /** Written before emitting, so the dump survives an emit error. */
@@ -153,6 +164,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
 
   let offsetResult: OffsetVerificationResult | ResolverCoverageResult;
   let output: EmitOutput;
+  let resolver: TableAddressResolver | undefined;
   if (manifest.region === "jp") {
     offsetResult = verifyOffsets(reader);
     if (!offsetResult.ok) {
@@ -167,7 +179,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     if (options.raw) await writeRawDumps(options.out, reader);
     output = emitAll(reader, undefined, overlays.gameTask.reader);
   } else {
-    const resolver = MHP2G_PROFILE.resolverForRegion(manifest.region);
+    resolver = MHP2G_PROFILE.resolverForRegion(manifest.region) ?? undefined;
     if (!resolver) {
       throw new Error(
         `extract has no table address resolver for region "${manifest.region}" yet — see README's "Region support" section.`,
@@ -197,7 +209,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   output["combinations.json"] = emitCombinations(combinations);
 
   console.log("Reading and parsing quest files...");
-  const { quests, skipped, raw } = await readQuestsFromUnpackedDir(
+  const { quests, skipped, raw, payloads } = await readQuestsFromUnpackedDir(
     options.unpacked,
     manifest.region,
   );
@@ -209,6 +221,21 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.log(`Wrote ${rawPath}`);
   }
   Object.assign(output, emitQuestsFile(quests));
+
+  const gathering = emitGathering(payloads);
+  for (const { questId, problem } of gathering.problems) {
+    console.log(`Quest ${questId}: gathering points skipped (${problem}).`);
+  }
+  console.log(`Gathering: ${gathering.layouts.length} distinct sets of points.`);
+  output["gathering.json"] = { layouts: gathering.layouts };
+
+  console.log("Reading shop stock from lobby_task.ovl...");
+  const lobbyTask = parseOvl(
+    await readFile(path.join(options.unpacked, OVERLAY_DIR, "lobby_task.ovl")),
+  );
+  const shops = emitShops(findShops(lobbyTask), reader, resolver);
+  console.log(`Shops: ${shops.map((s) => `${s.name} (${s.items.length} items)`).join(", ")}.`);
+  output["shops.json"] = { shops };
 
   console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");
   // The EBOOT's species table maps subspecies to their base species' breaks;
@@ -255,12 +282,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
         { name: "game_task.ovl", reader: overlays.gameTask.reader },
         { name: "game_sub.ovl", reader: overlays.gameSub.reader },
       ],
-      hornNotesFromCommitted(
-        reader,
-        manifest.region === "jp"
-          ? undefined
-          : (MHP2G_PROFILE.resolverForRegion(manifest.region) ?? undefined),
-      ),
+      hornNotesFromCommitted(reader, resolver),
       committedMelodyCombos(),
     );
     const melodyPath = path.join(options.out, "raw", "melodies.json");

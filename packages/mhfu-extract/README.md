@@ -292,9 +292,10 @@ text). Two things worth flagging for anyone extending it:
   cross-validates against the same quest's monster/reward/supply data (all
   about hunting a Giadrome and its Giaprey pack).
 
-Not implemented (out of scope for now): `QuestScript` (opcodes are marked
-"TBD" even in the upstream pattern; see "Quest script" below), gathering
-node locations/items, and arena sets. The quest-wide monster size is decoded; its spread isn't
+Gathering points are read too (see "Gathering points" below). Not
+implemented (out of scope for now): `QuestScript` (opcodes are marked
+"TBD" even in the upstream pattern; see "Quest script" below) and arena
+sets. The quest-wide monster size is decoded; its spread isn't
 (see "Monster size" below).
 
 ### Monster overlays: hitzones, tolerances and rewards
@@ -873,8 +874,74 @@ is deduplicated the same way for exact-duplicate `(monster, quantity, power)`
 rows.
 
 Not implemented (out of scope for now, same as the underlying parser —
-see "Quests (.mib)" above): `QuestScript`, gathering node locations/items,
-and arena sets.
+see "Quests (.mib)" above): `QuestScript` and arena sets.
+
+### Gathering points
+
+`src/quests/gathering.ts` reads a quest's mining, gathering and bug
+catching points, and `src/emit/gathering.ts` writes them to
+`data/gathering.json` (schema: `data/schemas/gathering.schema.json`).
+randomfu's `gathering` shuffle edits the same tables.
+
+- **Layout** (`quest.hexpat`): the header's `GatheringLocTblPTR` (`+28`)
+  points at one u32 per area of the map (the count depends on the map,
+  `MAP_AREAS`), each to that area's 24-byte nodes (`f32 x, y, z, f32;
+u16 table, u16 most gathers, u16 type, u16 fewest gathers`), ending at
+  an x of -1.0f. `GatheringItemsPTR` (`+36`) points at the item tables:
+  `{ u16 chance, u16 item }` pairs ending at `0xFFFF`. Every used table's
+  chances add up to 100; item 0 is a draw that gives nothing, and isn't
+  written.
+- **Node type** (`+20`), from the items each type gives on the EU disc: 3
+  holds the ores (mining), 4 the bugs, and 0 everything else (plants,
+  mushrooms, bones, honey, eggs, ammo and barrel piles). No other value
+  occurs.
+- **Gather counts**: on all 19,130 EU nodes the u16 at `+18` is at least
+  the one at `+22`, and both are 255 on the points that never run out, so
+  they're read as the most and fewest gathers. Written as `most_gathers`
+  and `gathers`, null for 255.
+- **Areas**: index 0 is the Base Camp, then the map's numbered areas. Index
+  0 has no points on most maps, and the numbered areas match the maps'
+  (Forest and Hills has 12, its list 13). Some lists have a spare slot
+  after the last area (Snowy Mountains, Desert).
+- **Shared sets**: quests on one map and rank almost always have the same
+  points, so `data/gathering.json` holds each distinct set once with the
+  quests that use it: 87 sets for the 540 emitted EU quests. Most maps
+  have one per rank, plus one for each Treasure Hunting or Training School
+  quest there and a few gathering quests' own (Great Ore Discovery, A
+  Mushroom Goldrush!, Mountain Herb Picking). Within an area, identical
+  points are one entry with a `count`.
+
+### Shops
+
+`src/shops/shops.ts` finds the shops' stock in `overlay/lobby_task.ovl`,
+and `src/emit/shops.ts` writes it to `data/shops.json` (schema:
+`data/schemas/shop.schema.json`). randomfu's `shop-scan` and
+`shop-lists` research commands found the layout, and its `shops` shuffle
+edits it.
+
+- **Layout**: each shop has a table of u32 pointers (ending in a 0 word),
+  one per stage of the game, each to a list of u16 item IDs ending in
+  `0xFFFF` or 0. Tables can share lists. `findShops` finds the table
+  whose first list starts with the general store's opening items (Herb,
+  Potion, Antidote, Whetstone), then the tables right before and after it.
+- **Names**: the disc doesn't name the shops, so each table is named from
+  what it sells: the village general store (opens with Herb), the Guild
+  Hall store (opens with Potion), the Point Exchange (Armor Spheres,
+  jewels and Pokke Tickets, bought with Pokke Points) and the peddler,
+  whose lists are smaller pools of plants, bugs, fish and monster parts.
+  On the EU disc each has 9 lists. The general store's and the Point
+  Exchange's last lists are empty;
+  the peddler's 6th and 7th are empty and its 8th and 9th are the Guild
+  Hall store's last two.
+- **Stages**: written as each item's list numbers (1-based, in disc
+  order). The general store, Guild Hall store and Point Exchange only add
+  items from one list to the next. What moves a shop to its next list
+  isn't on the disc that we know of; it's presumably story progress.
+- **Prices**: the item table's u32 at `+12` (`tables/items.ts`), which
+  holds the general store's prices as the game's shop screen shows them
+  (Herb 20z, Potion 66z, Whetstone 80z; randomfu's `KNOWN_PRICES`). Only
+  those were checked on screen. The Point Exchange's Pokke Point prices
+  haven't been found, so its prices are null.
 
 ### Monster size
 
@@ -1118,8 +1185,9 @@ Neither search reads MIPS code, so a mapping computed only in code
 ## Building `data/` from the disc
 
 `data/armor/*.json`, `data/weapons/*.json`, `data/decorations.json`,
-`data/quests/*.json`, `data/combinations.json` and the hitzones and drops
-in `data/monsters/*.json` are generated from an EU (ULES01213) disc with `build-data`. The disc is the source of truth for every field it holds.
+`data/quests/*.json`, `data/gathering.json`, `data/shops.json`,
+`data/combinations.json` and the hitzones and drops in `data/monsters/*.json`
+are generated from an EU (ULES01213) disc with `build-data`. The disc is the source of truth for every field it holds.
 Every field it doesn't hold is kept from the committed files.
 
 **Matching (`src/build/ids.ts`).** Items are paired by game ID, not by
@@ -1146,7 +1214,8 @@ order, key order and file layout don't change, and a second run is a no-op. Disc
 Piercings, Pink Metal Boots, Rookie Knife, Swordfish Bow G) aren't added.
 `overlay/keep-site-values.json` lists reviewed disagreements where the site
 is right, currently the 10 Ruststone weapons, which have no `EquipCreate`
-recipe on the disc. Quests are copied through (see "Material names").
+recipe on the disc. Quests, gathering points and shops are copied
+through (see "Material names").
 
 **Material names.** Materials, drops and quest supply and reward items are
 always written with the game's own item name (`data/items.json` `name`, the same string as the
@@ -1155,8 +1224,8 @@ is written "Firestone", "Elder Drgn Bone" "Eldr Dragon Bone". The game
 caps item names at 16 characters, so many are abbreviated, and the site
 pads them to that width when it renders them. `build-data` renames every
 material in the files it writes, including fields it doesn't take (weapon
-`alternative_create_mats`) and items with no disc match. Quests are
-copied through with each item under its game name (the `ItemID` enum
+`alternative_create_mats`) and items with no disc match. Quests, gathering
+points and shops are copied through with each item under its game name (the `ItemID` enum
 differs from `items.json` only on a few Japanese promo tickets). `pnpm
 validate` fails on a recipe material, drop or quest item that isn't spelled
 like its item. Old site spellings stay in `data/items.json` as `aliases`, so they

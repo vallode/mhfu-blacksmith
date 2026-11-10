@@ -21,7 +21,8 @@ import {
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import { median, type ShuffleReport } from "./shuffles/shuffle.js";
-import { findShops, locateItemTable, randomizeShops } from "./shuffles/shops.js";
+import { findShops } from "mhfu-extract/src/shops/shops.js";
+import { locateItemTable, randomizeShops } from "./shuffles/shops.js";
 import { tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";

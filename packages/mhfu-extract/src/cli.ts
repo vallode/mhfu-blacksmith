@@ -63,7 +63,7 @@ const USAGE = `Usage:
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
-  tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,quests,combinations] [--report <path>] [--markdown <path>] [--dry-run]
+  tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,quests,gathering,shops,combinations] [--report <path>] [--markdown <path>] [--dry-run]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
   tsx src/cli.ts quest-probe --quests <raw/quests.json> [--tsv <path>]
   tsx src/cli.ts quest-text-scan --unpacked <dir> --quest <id> [--out <path>]

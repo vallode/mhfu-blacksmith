@@ -13,8 +13,14 @@ import type { Material } from "@/lib/types";
  * (a quest's rewards, a monster's drops) scrolls inside it on desktop, where
  * the card is the height of the page; on a phone the card grows instead.
  */
-export function DetailCard({ children }: { children: React.ReactNode }) {
-  return <Card className="min-w-0 overflow-auto">{children}</Card>;
+export function DetailCard({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return <Card className={cn("min-w-0 overflow-auto", className)}>{children}</Card>;
 }
 
 /** Icon + name (+ sharpness) row at the top of the panel. */
@@ -39,9 +45,15 @@ export function DetailName({ children, id }: { children: React.ReactNode; id?: s
  * The detail card with nothing selected (a section's own page, beside its
  * tree): NO DATA where the item's name would be, plus an optional note.
  */
-export function NoDataCard({ children }: { children?: React.ReactNode }) {
+export function NoDataCard({
+  children,
+  className,
+}: {
+  children?: React.ReactNode;
+  className?: string;
+}) {
   return (
-    <DetailCard>
+    <DetailCard className={className}>
       <DetailHeader>
         <p className="uppercase">No data</p>
       </DetailHeader>

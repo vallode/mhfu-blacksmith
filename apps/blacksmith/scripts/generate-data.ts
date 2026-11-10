@@ -11,13 +11,15 @@
  *   - equipment-ids.json         (save-file equipment IDs -> item pages)
  *   - items.json                 (in-game item ID -> name, linked to materials, and the
  *                                 Combination List)
+ *   - item-places.json           (where each item is gathered or sold, see src/lib/item-places.ts)
  *   - data-manifest.json         ({ files, version })
  *
  * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
  *
- * Budget: asserts total public/data raw size < 1.6 MB and logs a gzip estimate
- * (raised from 1.5 MB for quests.json, ~190 KB).
+ * Budget: asserts total public/data raw size < 1.7 MB and logs a gzip estimate
+ * (raised from 1.5 MB for quests.json, ~190 KB, and from 1.6 MB for
+ * item-places.json, ~80 KB).
  */
 import fs from "fs";
 import path from "path";
@@ -64,6 +66,12 @@ import {
 } from "../src/lib/items";
 import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
 import { encodeCombination, type CombinationsFile } from "../src/lib/combinations";
+import {
+  buildItemPlaces,
+  encodeItemPlaces,
+  type GatheringFile,
+  type ShopsFile,
+} from "../src/lib/item-places";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import type { HitboxCapsule } from "../src/lib/models";
 
@@ -75,7 +83,7 @@ const outDir = path.join(root, "public", "data");
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
 
-const BUDGET_BYTES = 1.6 * 1024 * 1024;
+const BUDGET_BYTES = 1.7 * 1024 * 1024;
 
 function readJson<T>(p: string): T {
   return JSON.parse(fs.readFileSync(p, "utf-8")) as T;
@@ -526,6 +534,15 @@ for (const category of MONSTER_CATEGORIES) {
   }
   totalItems += bundle.items.length;
   push("quests.json", bundle);
+
+  // Where each item is gathered (data/gathering.json) or sold (data/shops.json).
+  const places = buildItemPlaces(
+    readJson<GatheringFile>(path.join(dataDir, "gathering.json")),
+    readJson<ShopsFile>(path.join(dataDir, "shops.json")),
+    quests,
+    (name) => index.get(normalizeItemName(name)),
+  );
+  push("item-places.json", encodeItemPlaces(places));
 }
 
 // Decorations

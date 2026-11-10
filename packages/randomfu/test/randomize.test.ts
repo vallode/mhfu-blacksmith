@@ -19,7 +19,7 @@ import { settingsWith, type ShuffleName } from "./settings-helper.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
 import { collectRecipeSlots } from "../src/shuffles/recipes.js";
-import { readGatheringItems } from "../src/game/gathering.js";
+import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
 import { roundTrip, writeEdits } from "../src/write.js";
 import { main } from "../src/cli.js";
 import {

@@ -1,36 +1,30 @@
 "use client";
 
-import WeaponNav from "@/components/WeaponNav";
-import WeaponTreePanel from "@/components/WeaponTreePanel";
-import Card from "@/components/Card";
+import { NoDataCard } from "@/components/DetailPanel";
+import { useVisibleTree } from "@/hooks/useVisibleTree";
 import type { WeaponType } from "@/lib/constants";
 import { useWeaponTree } from "@/lib/client-data";
-import BorderRule from "@/components/BorderRule";
-import Loading from "@/components/Loading";
 
 interface Props {
   type: WeaponType;
 }
 
+/**
+ * /blacksmith/<type>/: the tree is down the left in the blacksmith layout
+ * (WeaponShell); with no weapon selected, the detail card is empty. Phones
+ * show only the tree here.
+ */
 export default function WeaponTreeListClient({ type }: Props) {
-  const { tree, loading } = useWeaponTree(type);
+  const { tree } = useWeaponTree(type);
+  const visibleTree = useVisibleTree(tree, type, `/blacksmith/${type}/`);
+  // Everything on this page is out of reach at the chosen quest progress.
+  const allHidden = !!tree?.length && visibleTree?.length === 0;
 
   return (
-    <>
-      <WeaponNav activeType={type} />
-      <BorderRule />
-
-      <div className="split-page">
-        <WeaponTreePanel type={type} tree={loading ? null : tree} />
-
-        <Card>
-          {loading ? (
-            <Loading>Loading…</Loading>
-          ) : (
-            <p className="leading-[1.2] whitespace-normal">Select a weapon from the tree.</p>
-          )}
-        </Card>
-      </div>
-    </>
+    <NoDataCard className="mobile:hidden">
+      {allHidden && (
+        <p className="whitespace-normal">Nothing here is within your quest progress yet.</p>
+      )}
+    </NoDataCard>
   );
 }

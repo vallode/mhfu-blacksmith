@@ -20,7 +20,13 @@ import Tabs, { type Tab } from "@/components/Tabs";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
-import { useItems, useItemSources, type ItemLookup } from "@/lib/client-data";
+import {
+  useItemPlaces,
+  useItems,
+  useItemSources,
+  useQuests,
+  type ItemLookup,
+} from "@/lib/client-data";
 import {
   combinationNotes,
   quantityLabel,
@@ -29,10 +35,17 @@ import {
 } from "@/lib/combinations";
 import { ownedItemCounts } from "@/lib/hunter-progress";
 import { itemCategory, itemCategoryLabel } from "@/lib/item-categories";
+import {
+  gatherPointsLabel,
+  shopStagesLabel,
+  type GatherPlace,
+  type ShopPlace,
+} from "@/lib/item-places";
 import { groupBy, itemHref, type MonsterSource, type QuestSource } from "@/lib/item-sources";
 import type { DropSource } from "@/lib/monster-drops";
 import {
   clearedQuestIds,
+  type Quest,
   questHref,
   questHubLabel,
   questStarLevel,
@@ -46,6 +59,8 @@ interface Props {
 export default function ItemDetailClient({ slug }: Props) {
   const { items, error } = useItems();
   const { sources, error: sourcesError } = useItemSources();
+  const { places, error: placesError } = useItemPlaces();
+  const { quests } = useQuests();
   const { save } = useSave();
   const { showMaterialCounts, markCleared } = usePreferences().prefs;
   const owned = useMemo(
@@ -73,6 +88,7 @@ export default function ItemDetailClient({ slug }: Props) {
 
   const own = owned?.get(item.id) ?? (owned ? 0 : null);
   const found = sources?.get(item.id);
+  const placed = places?.get(item.id);
   const tabs: Tab[] = [];
   if (found?.monsters.length) {
     tabs.push({
@@ -87,6 +103,16 @@ export default function ItemDetailClient({ slug }: Props) {
       label: "Quests",
       content: <QuestSources sources={found.quests} cleared={cleared} />,
     });
+  }
+  if (placed?.gathering.length) {
+    tabs.push({
+      id: "gathering",
+      label: "Gathering",
+      content: <GatherPlaces places={placed.gathering} quests={quests} cleared={cleared} />,
+    });
+  }
+  if (placed?.shops.length) {
+    tabs.push({ id: "shops", label: "Shops", content: <ShopPlaces places={placed.shops} /> });
   }
   const combos = items.combinations.get(item.id);
   if (combos) {
@@ -130,16 +156,16 @@ export default function ItemDetailClient({ slug }: Props) {
 
         <DetailRule />
 
-        {sources ? (
+        {sources && places ? (
           tabs.length > 0 ? (
             <Tabs key={slug} tabs={tabs} label="Where to get it and what it makes" />
           ) : (
             <p className="whitespace-normal text-white">
-              No monster drops, quest rewards or combinations give this item.
+              No monster drop, quest reward, gathering point, shop or combination gives this item.
             </p>
           )
-        ) : sourcesError ? (
-          <p className="text-negative">Couldn&apos;t load monster drops and quest rewards.</p>
+        ) : sourcesError || placesError ? (
+          <p className="text-negative">Couldn&apos;t load where to get this item.</p>
         ) : (
           <Loading>Loading…</Loading>
         )}
@@ -166,7 +192,8 @@ function MonsterSources({ sources }: { sources: MonsterSource[] }) {
             href: s.monster.href,
             detail: dropSourceLabel(s.source),
             quantity: s.quantity,
-            chance: s.chance,
+            value: `${s.chance}%`,
+            strong: s.chance >= 100,
           }))}
         />
       ))}
@@ -203,7 +230,8 @@ function QuestSources({
                 .join(" · "),
               cleared: cleared?.has(quest.id),
               quantity: amount,
-              chance,
+              value: `${chance}%`,
+              strong: chance >= 100,
             };
           })}
         />
@@ -211,6 +239,69 @@ function QuestSources({
     </DropGrid>
   );
 }
+
+/**
+ * The item's gathering points, one list per rank or quest board: a row per
+ * map, or per quest where only that quest's points give it.
+ */
+function GatherPlaces({
+  places,
+  quests,
+  cleared,
+}: {
+  places: GatherPlace[];
+  quests: Quest[] | null;
+  cleared: ReadonlySet<number> | null;
+}) {
+  const byId = new Map(quests?.map((q) => [q.id, q]));
+  return (
+    <DropGrid>
+      {groupBy(places, (p) => p.group).map(([group, rows]) => (
+        <SourceList
+          key={group}
+          title={group}
+          rows={rows.flatMap((p): SourceRow[] => {
+            const value = `${p.chance}%`;
+            const points = gatherPointsLabel(p.points);
+            if (!p.quests) return [{ name: p.map, detail: points, quantity: 1, value }];
+            return p.quests.map((id) => {
+              const quest = byId.get(id);
+              return {
+                name: quest?.title ?? `Quest ${id}`,
+                href: quest && questHref(quest),
+                detail: `${p.map} · ${points}`,
+                cleared: cleared?.has(id),
+                quantity: 1,
+                value,
+              };
+            });
+          })}
+        />
+      ))}
+    </DropGrid>
+  );
+}
+
+/** The shops that sell the item, with its price and the stages of their stock that have it. */
+function ShopPlaces({ places }: { places: ShopPlace[] }) {
+  return (
+    <DropGrid>
+      <SourceList
+        title="Shops"
+        rows={places.map((p) => ({
+          name: p.shop,
+          detail: [shopStagesLabel(p), p.currency === "pokke-points" && "Pokke Points"]
+            .filter(Boolean)
+            .join(" · "),
+          quantity: 1,
+          value: p.price === null ? "—" : `${p.price}z`,
+        }))}
+      />
+    </DropGrid>
+  );
+}
+
+const sourceName = "min-w-0 flex-1 truncate text-white underline-offset-4 mobile:whitespace-normal";
 
 /**
  * The combinations that make the item and the ones it goes into, in
@@ -345,7 +436,8 @@ function CombinationList({ title, rows }: { title: string; rows: CombinationRow[
 
 interface SourceRow {
   name: string;
-  href: string;
+  /** The row's page, when it has one */
+  href?: string;
   /** Before the name: a quest's star level */
   prefix?: string;
   /** How it's obtained, on the line below */
@@ -353,16 +445,22 @@ interface SourceRow {
   /** The loaded hunter has cleared this quest */
   cleared?: boolean;
   quantity: number;
-  chance: number;
+  /** Right-hand column: a chance or a price */
+  value: string;
+  /** Highlight the value (a sure drop) */
+  strong?: boolean;
 }
 
 /**
- * A titled list of sources: the monster or quest (linked), how many each
- * success gives, and the chance, with how it's obtained on a line below.
+ * A titled list of sources: the monster, quest, map or shop (linked where it
+ * has a page), how many each success gives, and the chance or price, with
+ * how it's obtained on a line below.
  */
 function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
   // Only lists with amounts get the quantity column, so chances stay next to the names.
   const showQuantity = rows.some((r) => r.quantity > 1);
+  // Chances fit four cells ("100%"); prices can take more ("12000z").
+  const wide = rows.some((r) => r.value.length > 4);
   return (
     <section className="flex min-w-0 flex-col gap-[0.6rem]">
       <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">{title}</h3>
@@ -372,23 +470,26 @@ function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
             {r.prefix && <span className="w-cells-4 flex-none text-stat">{r.prefix}</span>}
             <div className="flex min-w-0 flex-1 flex-col gap-[0.2rem]">
               <div className="flex min-w-0 items-baseline gap-[0.8rem]">
-                <Link
-                  href={r.href}
-                  title={r.name}
-                  className="min-w-0 flex-1 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
-                >
-                  {r.name}
-                </Link>
+                {r.href ? (
+                  <Link href={r.href} title={r.name} className={cn(sourceName, "hover:underline")}>
+                    {r.name}
+                  </Link>
+                ) : (
+                  <span title={r.name} className={sourceName}>
+                    {r.name}
+                  </span>
+                )}
                 {showQuantity && (
                   <span className={dropQuantity}>{r.quantity > 1 && `×${r.quantity}`}</span>
                 )}
                 <span
                   className={cn(
-                    "w-cells-4 flex-none text-right text-white tabular-nums",
-                    r.chance >= 100 && "text-positive",
+                    "flex-none text-right text-white tabular-nums",
+                    wide ? "w-cells-7" : "w-cells-4",
+                    r.strong && "text-positive",
                   )}
                 >
-                  {r.chance}%
+                  {r.value}
                 </span>
               </div>
               <p className="flex min-w-0 gap-[0.8rem] text-fine whitespace-normal text-white/60">

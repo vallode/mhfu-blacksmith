@@ -8,11 +8,11 @@ import MonsterListClient from "@/app/monsters/[category]/MonsterListClient";
 import MonsterDetailClient from "@/app/monsters/[category]/[slug]/MonsterDetailClient";
 import DecorationsListClient from "@/app/decorations/DecorationsListClient";
 import DecorationDetailClient from "@/app/decorations/[slug]/DecorationDetailClient";
-import HomeContent from "@/app/HomeContent";
 import { ItemShell } from "@/app/items/ItemShell";
 import ItemsListClient from "@/app/items/ItemsListClient";
 import ItemDetailClient from "@/app/items/[slug]/ItemDetailClient";
 import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
+import { WeaponShell } from "@/app/blacksmith/WeaponShell";
 import ArmorRedirect from "@/app/armorsmith/ArmorRedirect";
 import { ArmorShell } from "@/app/armorsmith/ArmorShell";
 import { DecorationShell } from "@/app/decorations/DecorationShell";
@@ -127,13 +127,21 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
 export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
   switch (match.kind) {
     case "home":
-      return <HomeContent />;
+      return <LastWeaponRedirect />;
     case "weapon-list":
       return <LastWeaponRedirect />;
     case "weapon-tree":
-      return <WeaponTreeListClient type={match.type} />;
+      return (
+        <WeaponShell type={match.type}>
+          <WeaponTreeListClient type={match.type} />
+        </WeaponShell>
+      );
     case "weapon-detail":
-      return <WeaponDetailClient type={match.type} slug={match.slug} />;
+      return (
+        <WeaponShell type={match.type} slug={match.slug}>
+          <WeaponDetailClient type={match.type} slug={match.slug} />
+        </WeaponShell>
+      );
     case "armor-list":
       return (
         <ArmorShell>

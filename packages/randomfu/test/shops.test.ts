@@ -7,7 +7,8 @@ import { parseOvl } from "mhfu-extract/src/container/ovl.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { needsEboot } from "../src/settings.js";
-import { ESSENTIALS, findShops, locateItemTable } from "../src/shuffles/shops.js";
+import { findShops } from "mhfu-extract/src/shops/shops.js";
+import { ESSENTIALS, locateItemTable } from "../src/shuffles/shops.js";
 import {
   buildFixtureDisc,
   buildLobbyTask,

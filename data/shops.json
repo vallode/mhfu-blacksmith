@@ -1,0 +1,3491 @@
+{
+  "shops": [
+    {
+      "name": "Village general store",
+      "currency": "zenny",
+      "stage_count": 9,
+      "items": [
+        {
+          "item": "Herb",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Potion",
+          "price": 66,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Antidote",
+          "price": 60,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Whetstone",
+          "price": 80,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Cool Drink",
+          "price": 300,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Hot Drink",
+          "price": 250,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Old Pickaxe",
+          "price": 60,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Iron Pickaxe",
+          "price": 160,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Old Bugnet",
+          "price": 30,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Bugnet",
+          "price": 80,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Worm",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Small Barrel",
+          "price": 80,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Large Barrel",
+          "price": 210,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Sm Barrel-Bomb",
+          "price": 156,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Lg Barrel-Bomb",
+          "price": 518,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Trap Tool",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Tranquilizer",
+          "price": 150,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Boomerang",
+          "price": 150,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Binoculars",
+          "price": 50,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "BBQ Spit",
+          "price": 560,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Huskberry",
+          "price": 2,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Normal S Lv1",
+          "price": 1,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Normal S Lv2",
+          "price": 3,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Pierce S Lv1",
+          "price": 14,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Pellet S Lv1",
+          "price": 12,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Crag S Lv1",
+          "price": 41,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Clust S Lv1",
+          "price": 38,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Flaming S",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Water S",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Thunder S",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Freeze S",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Poison S Lv1",
+          "price": 17,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Para S Lv1",
+          "price": 26,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Sleep S Lv1",
+          "price": 17,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Recov S Lv1",
+          "price": 8,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Empty Bottle",
+          "price": 5,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Power Coating",
+          "price": 32,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "CloseRngCoating",
+          "price": 27,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Poison Coating",
+          "price": 17,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "ParalysisCoating",
+          "price": 26,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Sleep Coating",
+          "price": 17,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Book of Combos 1",
+          "price": 1000,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Book of Combos 2",
+          "price": 2000,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Lynian Info",
+          "price": 100,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Neopteron Info",
+          "price": 100,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Herbivore Info",
+          "price": 100,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Bird Wyvern Info",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "FlyingWyvernInfo",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Tigrex Info",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Piscine Info",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Carapaceon Info1",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Pelagus Info",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Lao-Shan Info",
+          "price": 500,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Pierce S Lv2",
+          "price": 20,
+          "stages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Pellet S Lv2",
+          "price": 18,
+          "stages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Book of Combos 3",
+          "price": 5000,
+          "stages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Organizer Guide",
+          "price": 3000,
+          "stages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Normal S Lv3",
+          "price": 5,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Book of Combos 4",
+          "price": 10000,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Yian Garuga Info",
+          "price": 100,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Carapaceon Info2",
+          "price": 200,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "KushalaDaoraInfo",
+          "price": 500,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Mega Pickaxe",
+          "price": 240,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Mega Bugnet",
+          "price": 120,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Recov S Lv2",
+          "price": 15,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Book of Combos 5",
+          "price": 15000,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Shakalaka Info",
+          "price": 100,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "GrtThundrbugInfo",
+          "price": 100,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Remobra Info",
+          "price": 200,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Kirin Info",
+          "price": 500,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Chameleos Info",
+          "price": 500,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Lunastra Info",
+          "price": 500,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Pierce S Lv3",
+          "price": 28,
+          "stages": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Pellet S Lv3",
+          "price": 24,
+          "stages": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Backpacker Guide",
+          "price": 5000,
+          "stages": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Shen Gaoren Info",
+          "price": 500,
+          "stages": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Rajang Info",
+          "price": 500,
+          "stages": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Teostra Info",
+          "price": 500,
+          "stages": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Yellow Seed",
+          "price": 250,
+          "stages": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "HypnocatriceInfo",
+          "price": 200,
+          "stages": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Nargacuga Info",
+          "price": 200,
+          "stages": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Akantor Info",
+          "price": 500,
+          "stages": [
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Armor Stone",
+          "price": 1500,
+          "stages": [
+            8
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Peddler",
+      "currency": "zenny",
+      "stage_count": 9,
+      "items": [
+        {
+          "item": "Raw Meat",
+          "price": 50,
+          "stages": [
+            1
+          ]
+        },
+        {
+          "item": "Monster Fluid",
+          "price": 5000,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Sunset Herb",
+          "price": 15,
+          "stages": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "item": "Antidote Herb",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Sleep Herb",
+          "price": 50,
+          "stages": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "item": "Fire Herb",
+          "price": 44,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Sap Plant",
+          "price": 24,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Felvine",
+          "price": 14,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Ivy",
+          "price": 75,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Cactus Flower",
+          "price": 100,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Scatternut",
+          "price": 82,
+          "stages": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "item": "Needleberry",
+          "price": 22,
+          "stages": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "item": "Paintberry",
+          "price": 60,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Bomberry",
+          "price": 120,
+          "stages": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "item": "Power Seed",
+          "price": 280,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Armor Seed",
+          "price": 220,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Red Seed",
+          "price": 10,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Green Seed",
+          "price": 10,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Godbug",
+          "price": 420,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Flashbug",
+          "price": 96,
+          "stages": [
+            1
+          ]
+        },
+        {
+          "item": "Blue Mushroom",
+          "price": 24,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Nitroshroom",
+          "price": 60,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Toadstool",
+          "price": 75,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Parashroom",
+          "price": 150,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Dragon Toadstool",
+          "price": 400,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Firefly",
+          "price": 40,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Mega Fishing Fly",
+          "price": 30,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Knife Mackerel",
+          "price": 135,
+          "stages": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "item": "Pin Tuna",
+          "price": 190,
+          "stages": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "item": "Rumblefish",
+          "price": 38,
+          "stages": [
+            1,
+            2,
+            4
+          ]
+        },
+        {
+          "item": "Sleepyfish",
+          "price": 90,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Scatterfish",
+          "price": 300,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Burst Arrowana",
+          "price": 90,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Bomb Arrowana",
+          "price": 270,
+          "stages": [
+            1,
+            2
+          ]
+        },
+        {
+          "item": "Nutrients",
+          "price": 760,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Herbal Medicine",
+          "price": 250,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Catalyst",
+          "price": 480,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Gunpowder",
+          "price": 222,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Psychoserum",
+          "price": 300,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Farcaster",
+          "price": 300,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Lightning Rod",
+          "price": 280,
+          "stages": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "item": "Shock Trap",
+          "price": 320,
+          "stages": [
+            1
+          ]
+        },
+        {
+          "item": "Poisoned Meat",
+          "price": 188,
+          "stages": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "item": "Tainted Meat",
+          "price": 300,
+          "stages": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "item": "Drugged Meat",
+          "price": 315,
+          "stages": [
+            1,
+            3,
+            5
+          ]
+        },
+        {
+          "item": "Sm Bone Husk",
+          "price": 30,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Sm Monster Bone",
+          "price": 100,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Wyvern Fang",
+          "price": 58,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Wyvern Claw",
+          "price": 180,
+          "stages": [
+            1,
+            3
+          ]
+        },
+        {
+          "item": "Velociprey Fang",
+          "price": 82,
+          "stages": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "item": "Genprey Fang",
+          "price": 80,
+          "stages": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "item": "Ioprey Fang",
+          "price": 50,
+          "stages": [
+            1,
+            3,
+            4
+          ]
+        },
+        {
+          "item": "Kelbi Horn",
+          "price": 520,
+          "stages": [
+            1
+          ]
+        },
+        {
+          "item": "Cricket",
+          "price": 10,
+          "stages": [
+            2,
+            3,
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Bounce Bomb",
+          "price": 180,
+          "stages": [
+            2,
+            5
+          ]
+        },
+        {
+          "item": "Bomb Material",
+          "price": 150,
+          "stages": [
+            3
+          ]
+        },
+        {
+          "item": "Dragon S",
+          "price": 100,
+          "stages": [
+            3
+          ]
+        },
+        {
+          "item": "Herb",
+          "price": 20,
+          "stages": [
+            4,
+            5
+          ]
+        },
+        {
+          "item": "Hot Pepper",
+          "price": 44,
+          "stages": [
+            4
+          ]
+        },
+        {
+          "item": "Worm",
+          "price": 20,
+          "stages": [
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Yambug",
+          "price": 30,
+          "stages": [
+            4
+          ]
+        },
+        {
+          "item": "Bughopper",
+          "price": 60,
+          "stages": [
+            4
+          ]
+        },
+        {
+          "item": "Snakebee Larva",
+          "price": 300,
+          "stages": [
+            4
+          ]
+        },
+        {
+          "item": "Small Barrel",
+          "price": 80,
+          "stages": [
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Large Barrel",
+          "price": 210,
+          "stages": [
+            4,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Trap Tool",
+          "price": 200,
+          "stages": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Sm Barrel-Bomb",
+          "price": 156,
+          "stages": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Lg Barrel-Bomb",
+          "price": 518,
+          "stages": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Old Pickaxe",
+          "price": 60,
+          "stages": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Iron Pickaxe",
+          "price": 160,
+          "stages": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Old Bugnet",
+          "price": 30,
+          "stages": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Bugnet",
+          "price": 80,
+          "stages": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Whetstone",
+          "price": 80,
+          "stages": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Flute",
+          "price": 480,
+          "stages": [
+            5,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Binoculars",
+          "price": 50,
+          "stages": [
+            5
+          ]
+        },
+        {
+          "item": "BBQ Spit",
+          "price": 560,
+          "stages": [
+            5
+          ]
+        },
+        {
+          "item": "Potion",
+          "price": 66,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Antidote",
+          "price": 60,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Cool Drink",
+          "price": 300,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Hot Drink",
+          "price": 250,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Mega Pickaxe",
+          "price": 240,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Mega Bugnet",
+          "price": 120,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Boomerang",
+          "price": 150,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Tranquilizer",
+          "price": 150,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Huskberry",
+          "price": 2,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Normal S Lv1",
+          "price": 1,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Normal S Lv2",
+          "price": 3,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Normal S Lv3",
+          "price": 5,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pierce S Lv1",
+          "price": 14,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pierce S Lv2",
+          "price": 20,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pierce S Lv3",
+          "price": 28,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pellet S Lv1",
+          "price": 12,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pellet S Lv2",
+          "price": 18,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pellet S Lv3",
+          "price": 24,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Crag S Lv1",
+          "price": 41,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Clust S Lv1",
+          "price": 38,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Flaming S",
+          "price": 20,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Water S",
+          "price": 20,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Thunder S",
+          "price": 20,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Freeze S",
+          "price": 20,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Poison S Lv1",
+          "price": 17,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Para S Lv1",
+          "price": 26,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Sleep S Lv1",
+          "price": 17,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Recov S Lv1",
+          "price": 8,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Recov S Lv2",
+          "price": 15,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Empty Bottle",
+          "price": 5,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Power Coating",
+          "price": 32,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "CloseRngCoating",
+          "price": 27,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Poison Coating",
+          "price": 17,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "ParalysisCoating",
+          "price": 26,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Sleep Coating",
+          "price": 17,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Powercharm",
+          "price": 36000,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Armorcharm",
+          "price": 24000,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Organizer Guide",
+          "price": 3000,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Backpacker Guide",
+          "price": 5000,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Lynian Info",
+          "price": 100,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Neopteron Info",
+          "price": 100,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Herbivore Info",
+          "price": 100,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Bird Wyvern Info",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "FlyingWyvernInfo",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Tigrex Info",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Piscine Info",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Carapaceon Info1",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pelagus Info",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Lao-Shan Info",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Yian Garuga Info",
+          "price": 100,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Carapaceon Info2",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "KushalaDaoraInfo",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Shakalaka Info",
+          "price": 100,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "GrtThundrbugInfo",
+          "price": 100,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Remobra Info",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Kirin Info",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Chameleos Info",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Shen Gaoren Info",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Rajang Info",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Teostra Info",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "HypnocatriceInfo",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Nargacuga Info",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Fatalis Info",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Akantor Info",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Lavasioth Info",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "YamaTsukamiInfo",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Ukanlos Info",
+          "price": 500,
+          "stages": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Guild Hall store",
+      "currency": "zenny",
+      "stage_count": 9,
+      "items": [
+        {
+          "item": "Potion",
+          "price": 66,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Antidote",
+          "price": 60,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Whetstone",
+          "price": 80,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Cool Drink",
+          "price": 300,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Hot Drink",
+          "price": 250,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Old Pickaxe",
+          "price": 60,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Iron Pickaxe",
+          "price": 160,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Old Bugnet",
+          "price": 30,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Bugnet",
+          "price": 80,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Worm",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Small Barrel",
+          "price": 80,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Large Barrel",
+          "price": 210,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Sm Barrel-Bomb",
+          "price": 156,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Lg Barrel-Bomb",
+          "price": 518,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Trap Tool",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Boomerang",
+          "price": 150,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Tranquilizer",
+          "price": 150,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Flute",
+          "price": 480,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Huskberry",
+          "price": 2,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Normal S Lv1",
+          "price": 1,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Normal S Lv2",
+          "price": 3,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pierce S Lv1",
+          "price": 14,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pellet S Lv1",
+          "price": 12,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Crag S Lv1",
+          "price": 41,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Clust S Lv1",
+          "price": 38,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Flaming S",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Water S",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Thunder S",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Freeze S",
+          "price": 20,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Poison S Lv1",
+          "price": 17,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Para S Lv1",
+          "price": 26,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Sleep S Lv1",
+          "price": 17,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Recov S Lv1",
+          "price": 8,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Empty Bottle",
+          "price": 5,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Power Coating",
+          "price": 32,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "CloseRngCoating",
+          "price": 27,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Poison Coating",
+          "price": 17,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "ParalysisCoating",
+          "price": 26,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Sleep Coating",
+          "price": 17,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Lynian Info",
+          "price": 100,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Neopteron Info",
+          "price": 100,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Herbivore Info",
+          "price": 100,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Bird Wyvern Info",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "FlyingWyvernInfo",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Tigrex Info",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Piscine Info",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Carapaceon Info1",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pelagus Info",
+          "price": 200,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Lao-Shan Info",
+          "price": 500,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pierce S Lv2",
+          "price": 20,
+          "stages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pellet S Lv2",
+          "price": 18,
+          "stages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Organizer Guide",
+          "price": 3000,
+          "stages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Normal S Lv3",
+          "price": 5,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Powercharm",
+          "price": 36000,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Armorcharm",
+          "price": 24000,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Yian Garuga Info",
+          "price": 100,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Carapaceon Info2",
+          "price": 200,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "KushalaDaoraInfo",
+          "price": 500,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Mega Pickaxe",
+          "price": 240,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Mega Bugnet",
+          "price": 120,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Recov S Lv2",
+          "price": 15,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Shakalaka Info",
+          "price": 100,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "GrtThundrbugInfo",
+          "price": 100,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Remobra Info",
+          "price": 200,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Kirin Info",
+          "price": 500,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Chameleos Info",
+          "price": 500,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pierce S Lv3",
+          "price": 28,
+          "stages": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Pellet S Lv3",
+          "price": 24,
+          "stages": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Backpacker Guide",
+          "price": 5000,
+          "stages": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Shen Gaoren Info",
+          "price": 500,
+          "stages": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Rajang Info",
+          "price": 500,
+          "stages": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Teostra Info",
+          "price": 500,
+          "stages": [
+            5,
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "HypnocatriceInfo",
+          "price": 200,
+          "stages": [
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Nargacuga Info",
+          "price": 200,
+          "stages": [
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Fatalis Info",
+          "price": 500,
+          "stages": [
+            6,
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Akantor Info",
+          "price": 500,
+          "stages": [
+            7,
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Lavasioth Info",
+          "price": 200,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "YamaTsukamiInfo",
+          "price": 500,
+          "stages": [
+            8,
+            9
+          ]
+        },
+        {
+          "item": "Ukanlos Info",
+          "price": 500,
+          "stages": [
+            9
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Point Exchange",
+      "currency": "pokke-points",
+      "stage_count": 9,
+      "items": [
+        {
+          "item": "Suiko Jewel",
+          "price": null,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Gourmet BBQ Spit",
+          "price": null,
+          "stages": [
+            1,
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Armor Sphere",
+          "price": null,
+          "stages": [
+            2,
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Armor Sphere+",
+          "price": null,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Akito Jewel",
+          "price": null,
+          "stages": [
+            3,
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "BattlefieldJewel",
+          "price": null,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Pokke Ticket",
+          "price": null,
+          "stages": [
+            4,
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Hrd Armor Sphere",
+          "price": null,
+          "stages": [
+            5,
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Hvy Armor Sphere",
+          "price": null,
+          "stages": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "LapisLazuliJewel",
+          "price": null,
+          "stages": [
+            6,
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Ryl Armor Sphere",
+          "price": null,
+          "stages": [
+            7,
+            8
+          ]
+        },
+        {
+          "item": "Tru Armor Sphere",
+          "price": null,
+          "stages": [
+            8
+          ]
+        }
+      ]
+    }
+  ]
+}

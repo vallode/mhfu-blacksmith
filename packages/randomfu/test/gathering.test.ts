@@ -4,7 +4,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
-import { readGatheringItems } from "../src/game/gathering.js";
+import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { formatSpoiler } from "../src/spoiler.js";

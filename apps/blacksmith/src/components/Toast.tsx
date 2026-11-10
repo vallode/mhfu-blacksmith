@@ -32,7 +32,7 @@ export default function ToastViewport({ toasts, onDismiss }: ToastViewportProps)
     // Bottom-centre stack, newest at the bottom. Only the toasts themselves
     // take pointer events, so the page stays clickable around them.
     <div
-      className="pointer-events-none fixed bottom-[1.4rem] left-1/2 z-900 flex w-full max-w-[min(42rem,calc(100vw-2.8rem))] -translate-x-1/2 flex-col-reverse gap-[0.8rem]"
+      className="pointer-events-none fixed bottom-[1.4rem] left-1/2 z-900 flex w-full max-w-[min(42rem,calc(100vw-2.8rem))] -translate-x-1/2 flex-col-reverse gap-[0.8rem] mobile:bottom-[calc(var(--spacing-tabbar)+1.4rem)]"
       aria-live="polite"
       aria-relevant="additions"
     >

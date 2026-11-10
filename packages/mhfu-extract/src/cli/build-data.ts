@@ -1,8 +1,8 @@
 /**
  * `build-data` subcommand: rewrites committed `data/` files from `extract`
  * output. Equipment categories are merged field by field
- * (`build/merge.ts`); quests have no committed counterpart and are copied
- * through, with each supply and reward item under its game name. Prints, and optionally writes, a report of every value the disc
+ * (`build/merge.ts`); quests, gathering points and shops have no committed
+ * counterpart and are copied through, with each item under its game name. Prints, and optionally writes, a report of every value the disc
  * changed, every reviewed disagreement kept as committed, and every item
  * only one side has.
  */
@@ -25,8 +25,11 @@ import {
   type MaterialLook,
 } from "../build/material-styles.js";
 
-export type BuildTarget = CategoryName | "quests" | "combinations";
-export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "quests", "combinations"];
+/** Targets copied from the disc whole, rather than merged with committed files. */
+export type CopiedTarget = "quests" | "gathering" | "shops" | "combinations";
+const COPIED_TARGETS: CopiedTarget[] = ["quests", "gathering", "shops", "combinations"];
+export type BuildTarget = CategoryName | CopiedTarget;
+export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, ...COPIED_TARGETS];
 
 export interface BuildDataOptions {
   extracted: string;
@@ -60,9 +63,8 @@ export interface CategoryBuildReport {
 
 export interface BuildDataReport {
   categories: CategoryBuildReport[];
-  questFiles: string[];
-  /** `combinations.json`, when written */
-  combinationFiles: string[];
+  /** Files copied from the disc (quests, gathering points, shops, combinations), relative to `data/`. */
+  copiedFiles: string[];
 }
 
 export function parseTargets(value: string | undefined): BuildTarget[] {
@@ -89,16 +91,21 @@ interface QuestItem {
 }
 
 /**
- * Writes each quest supply and reward item under its game name
- * (`data/items.json`). `extract` names them from the `ItemID` enum, which
- * only differs from `items.json` on a few Japanese promo tickets.
+ * An item entry under its game name (`data/items.json`). `extract` names
+ * items from the `ItemID` enum, which only differs from `items.json` on a
+ * few Japanese promo tickets.
  */
-export function nameQuestItems(content: unknown, site: SiteIndex): unknown {
-  const rename = (entry: QuestItem) => {
+function itemRenamer(site: SiteIndex) {
+  return <T extends QuestItem>(entry: T): T => {
     const id = discMaterialId(entry.item);
     const name = id === null ? undefined : site.items.get(id)?.name;
     return name && name !== entry.item ? { ...entry, item: name } : entry;
   };
+}
+
+/** Writes each quest supply and reward item under its game name. */
+export function nameQuestItems(content: unknown, site: SiteIndex): unknown {
+  const rename = itemRenamer(site);
   const doc = content as { quests?: Record<string, unknown>[] };
   if (!Array.isArray(doc?.quests)) return content;
   return {
@@ -115,26 +122,36 @@ export function nameQuestItems(content: unknown, site: SiteIndex): unknown {
   };
 }
 
-async function copyQuests(options: BuildDataOptions): Promise<string[]> {
-  const from = path.join(options.extracted, "quests");
-  const files = (await readdir(from)).filter((f) => f.endsWith(".json")).sort();
-  if (files.length === 0)
-    throw new Error(`${from} has no quest files; rerun extract with DATA.BIN unpacked`);
-  const site = loadSiteIndex(options.data);
-  const written: string[] = [];
-  for (const file of files) {
-    const content = nameQuestItems(
-      JSON.parse(await readFile(path.join(from, file), "utf-8")),
-      site,
-    );
-    const rel = path.join("quests", file);
-    if (!options.dryRun) {
-      await mkdir(path.join(options.data, "quests"), { recursive: true });
-      await writeFile(path.join(options.data, rel), JSON.stringify(content, null, 2), "utf-8");
-    }
-    written.push(rel);
-  }
-  return written;
+interface GatheringDoc {
+  layouts?: { areas: { nodes: { items: QuestItem[] }[] }[] }[];
+}
+
+/** Writes each gathering point's items under their game names. */
+export function nameGatheringItems(content: unknown, site: SiteIndex): unknown {
+  const rename = itemRenamer(site);
+  const doc = content as GatheringDoc;
+  if (!Array.isArray(doc?.layouts)) return content;
+  return {
+    ...doc,
+    layouts: doc.layouts.map((layout) => ({
+      ...layout,
+      areas: layout.areas.map((area) => ({
+        ...area,
+        nodes: area.nodes.map((node) => ({ ...node, items: node.items.map(rename) })),
+      })),
+    })),
+  };
+}
+
+/** Writes each shop item under its game name. */
+export function nameShopItems(content: unknown, site: SiteIndex): unknown {
+  const rename = itemRenamer(site);
+  const doc = content as { shops?: { items: QuestItem[] }[] };
+  if (!Array.isArray(doc?.shops)) return content;
+  return {
+    ...doc,
+    shops: doc.shops.map((shop) => ({ ...shop, items: shop.items.map(rename) })),
+  };
 }
 
 interface ItemRef {
@@ -164,30 +181,43 @@ export function nameCombinationItems(content: unknown, site: SiteIndex): unknown
   };
 }
 
-const COMBINATIONS_FILE = "combinations.json";
+/** Each copied target's files (relative to the extracted and `data/` directories) and renamer. */
+async function copiedFiles(
+  target: CopiedTarget,
+  extractedDir: string,
+): Promise<{ files: string[]; name: (content: unknown, site: SiteIndex) => unknown }> {
+  if (target === "gathering") return { files: ["gathering.json"], name: nameGatheringItems };
+  if (target === "shops") return { files: ["shops.json"], name: nameShopItems };
+  if (target === "combinations")
+    return { files: ["combinations.json"], name: nameCombinationItems };
+  const from = path.join(extractedDir, "quests");
+  const files = (await readdir(from)).filter((f) => f.endsWith(".json")).sort();
+  if (files.length === 0)
+    throw new Error(`${from} has no quest files; rerun extract with DATA.BIN unpacked`);
+  return { files: files.map((f) => path.join("quests", f)), name: nameQuestItems };
+}
 
-async function copyCombinations(options: BuildDataOptions): Promise<string[]> {
-  const content = await readJsonOrNull(path.join(options.extracted, COMBINATIONS_FILE));
-  if (!content) throw new Error(`${options.extracted} has no ${COMBINATIONS_FILE}; rerun extract`);
-  const named = nameCombinationItems(content, loadSiteIndex(options.data));
-  const doc = {
-    $comment:
-      "Item combinations from the game's EBOOT.BIN, in Combination List order. Generated by mhfu-extract build-data; see packages/mhfu-extract/README.md (Combinations).",
-    ...(named as object),
-  };
-  if (!options.dryRun)
-    await writeFile(
-      path.join(options.data, COMBINATIONS_FILE),
-      `${JSON.stringify(doc, null, 2)}\n`,
-      "utf-8",
-    );
-  return [COMBINATIONS_FILE];
+async function copyTarget(target: CopiedTarget, options: BuildDataOptions): Promise<string[]> {
+  const { files, name } = await copiedFiles(target, options.extracted);
+  const site = loadSiteIndex(options.data);
+  const written: string[] = [];
+  for (const rel of files) {
+    const source = await readJsonOrNull(path.join(options.extracted, rel));
+    if (!source) throw new Error(`${rel} is missing from ${options.extracted}; rerun extract`);
+    const content = name(source, site);
+    if (!options.dryRun) {
+      await mkdir(path.dirname(path.join(options.data, rel)), { recursive: true });
+      await writeFile(path.join(options.data, rel), JSON.stringify(content, null, 2), "utf-8");
+    }
+    written.push(rel);
+  }
+  return written;
 }
 
 export async function runBuildData(options: BuildDataOptions): Promise<BuildDataReport> {
   const targets = options.only ?? BUILD_TARGETS;
   const categoryNames = targets.filter(
-    (t): t is CategoryName => t !== "quests" && t !== "combinations",
+    (t): t is CategoryName => !COPIED_TARGETS.includes(t as CopiedTarget),
   );
   const { site, committed, extracted, spellings, byContext } = await loadInputs(
     options.extracted,
@@ -251,9 +281,11 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
     });
   }
 
-  const questFiles = targets.includes("quests") ? await copyQuests(options) : [];
-  const combinationFiles = targets.includes("combinations") ? await copyCombinations(options) : [];
-  const report: BuildDataReport = { categories, questFiles, combinationFiles };
+  const copied: string[] = [];
+  for (const target of COPIED_TARGETS) {
+    if (targets.includes(target)) copied.push(...(await copyTarget(target, options)));
+  }
+  const report: BuildDataReport = { categories, copiedFiles: copied };
   if (options.report)
     await writeFile(options.report, `${JSON.stringify(report, null, 2)}\n`, "utf-8");
   if (options.markdown) await writeFile(options.markdown, formatBuildReport(report), "utf-8");
@@ -285,9 +317,8 @@ export function printBuildSummary(report: BuildDataReport, dryRun = false): void
           .join(", ")}${c.discOnly.length > 8 ? ", ..." : ""}`,
       );
   }
-  if (report.questFiles.length > 0) console.log(`quests: ${verb} ${report.questFiles.join(", ")}`);
-  if (report.combinationFiles.length > 0)
-    console.log(`combinations: ${verb} ${report.combinationFiles.join(", ")}`);
+  if (report.copiedFiles.length > 0)
+    console.log(`copied from the disc: ${verb} ${report.copiedFiles.join(", ")}`);
 }
 
 /** Short display form of a field value for the Markdown report. */
@@ -409,16 +440,14 @@ export function formatBuildReport(report: BuildDataReport): string {
       out.push("");
     }
   }
-  if (report.questFiles.length > 0)
+  if (report.copiedFiles.length > 0)
     out.push(
-      "## quests",
+      "## Copied from the disc",
       "",
-      `${report.questFiles.length} file(s) copied from the disc.`,
+      `${report.copiedFiles.length} file(s): quests, gathering points, shops and combinations.`,
       "",
-      ...report.questFiles.map((f) => `- ${f}`),
+      ...report.copiedFiles.map((f) => `- ${f}`),
       "",
     );
-  if (report.combinationFiles.length > 0)
-    out.push("## combinations", "", ...report.combinationFiles.map((f) => `- ${f}`), "");
   return out.join("\n");
 }
