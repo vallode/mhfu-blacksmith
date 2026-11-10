@@ -884,11 +884,15 @@ export function buildBoardFile(quests: FixtureQuest[]): Buffer {
 
 // ---------------------------------------------------------------- DATA.BIN
 
-/** Encrypted DATA.BIN with `count` files of one sector each, except those given. */
+/**
+ * DATA.BIN with `count` files of one sector each, except those given:
+ * encrypted like the retail discs, or plain like FUComplete's.
+ */
 export function buildDataBin(
   count: number,
   files: Map<number, Buffer>,
   raw: ReadonlySet<number>,
+  encrypted = true,
 ): Buffer {
   const lengths = Array.from({ length: count }, (_, i) =>
     Math.max(1, Math.ceil((files.get(i)?.length ?? SECTOR) / SECTOR)),
@@ -904,11 +908,11 @@ export function buildDataBin(
   }
   toc.writeUInt32LE(lba, count * 4);
   const out = Buffer.alloc(lba * SECTOR);
-  encryptDataBinBlock(toc, 0).copy(out, 0);
+  (encrypted ? encryptDataBinBlock(toc, 0) : toc).copy(out, 0);
   for (let i = 0; i < count; i++) {
     const plain = Buffer.alloc(lengths[i]! * SECTOR);
     files.get(i)?.copy(plain);
-    const enc = raw.has(i) ? plain : encryptDataBinBlock(plain, starts[i]!);
+    const enc = !encrypted || raw.has(i) ? plain : encryptDataBinBlock(plain, starts[i]!);
     enc.copy(out, starts[i]! * SECTOR);
   }
   return out;

@@ -81,6 +81,7 @@ test("DataBin reads files lazily and re-encrypts them to the same bytes", () => 
   ]);
   const raw = buildDataBin(25, files, JP_RAW);
   const bin = new DataBin((o, l) => raw.subarray(o, o + l), raw.length, "jp");
+  assert.equal(bin.encrypted, true);
   assert.equal(bin.fileCount, 25);
   assert.equal(bin.lengthOf(3), 3 * SECTOR);
   assert.equal(bin.read(0).toString("latin1", 0, 5), "first");
@@ -91,6 +92,30 @@ test("DataBin reads files lazily and re-encrypts them to the same bytes", () => 
   }
   assert.throws(() => bin.encode(0, Buffer.alloc(SECTOR * 2)), /change size/);
   assert.throws(() => bin.read(25), RangeError);
+});
+
+test("DataBin reads and writes a plain DATA.BIN (FUComplete) as it is", () => {
+  const files = new Map<number, Buffer>([
+    [0, Buffer.from("first")],
+    [3, Buffer.alloc(5000, 3)],
+  ]);
+  const raw = buildDataBin(25, files, JP_RAW, false);
+  const bin = new DataBin((o, l) => raw.subarray(o, o + l), raw.length, "jp");
+  assert.equal(bin.encrypted, false);
+  assert.equal(bin.fileCount, 25);
+  assert.equal(bin.lengthOf(3), 3 * SECTOR);
+  assert.equal(bin.read(0).toString("latin1", 0, 5), "first");
+  const edited = Buffer.from(bin.read(0));
+  edited.write("edits", 0, "latin1");
+  assert.ok(bin.encode(0, edited).equals(edited));
+});
+
+test("DataBin rejects a DATA.BIN with no table of contents either way", () => {
+  const junk = Buffer.alloc(4 * SECTOR, 0xff);
+  assert.throws(
+    () => new DataBin((o, l) => junk.subarray(o, o + l), junk.length, "jp"),
+    /no valid table of contents/,
+  );
 });
 
 test("a quest re-seals to its exact bytes, padding included, and carries edits", () => {
