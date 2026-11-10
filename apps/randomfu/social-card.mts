@@ -39,6 +39,7 @@ const SPRITES: [string, string?][] = [
 const CARD = `
 <div class="card">
   <h1 class="masthead-title card-title">Randomfu</h1>
+  <p class="card-sub">Monster Hunter Freedom Unite randomizer</p>
   <hr class="divider card-divider" />
   <div class="frame card-frame">
     <div class="card-sprites">
@@ -50,7 +51,6 @@ const CARD = `
       ).join("")}
     </div>
     <p class="card-text">Shuffle rewards, monsters, quests and shops</p>
-    <p class="card-note">Runs in your browser, on your own disc.</p>
   </div>
 </div>`;
 
@@ -61,17 +61,22 @@ body::before { background-color: #1b2016; }
   position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
   background: rgb(0 0 0 / 0.3);
 }
-.card-title { margin-top: 86px; font-size: 96px; letter-spacing: 0.35em; }
-.card-divider { margin: 36px calc(50% - 50vw) 0; }
+.card-title { margin-top: 84px; font-size: 96px; letter-spacing: 0.35em; }
+.card-sub {
+  margin: 10px 0 0; font-size: 30px; color: var(--color-parchment);
+  text-shadow: 0.25rem 0.25rem 0 black;
+}
+.card-divider { margin: 30px calc(50% - 50vw) 0; }
 .card-frame {
   width: 1040px; max-width: none; margin-top: 36px; padding: 30px 40px 28px;
   display: flex; flex-direction: column; align-items: center; gap: 18px;
 }
 .card-sprites { display: flex; gap: 20px; }
 .card-sprites .icon { width: 60px; height: 60px; }
-.card-text, .card-note { margin: 0; text-align: center; text-shadow: 0.2rem 0.2rem 0 black; }
-.card-text { font-size: 30px; color: white; }
-.card-note { font-size: 24px; color: var(--color-parchment); }
+.card-text {
+  margin: 0; text-align: center; font-size: 30px; color: white;
+  text-shadow: 0.2rem 0.2rem 0 black;
+}
 `;
 
 const types: Record<string, string> = {
