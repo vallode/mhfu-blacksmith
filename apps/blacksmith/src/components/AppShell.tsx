@@ -372,7 +372,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         {/* Dips under the screen's left edge, like the desktop sidebar. */}
         <Card
           frame="teal"
-          className="relative -ml-[1.5rem] h-[calc(100%-var(--spacing-tabbar))] w-[29.5rem] max-w-[85vw] flex-none animate-drawer-in bg-black/70 text-sub"
+          className="relative -ml-[1.5rem] h-full w-[29.5rem] max-w-[85vw] flex-none animate-drawer-in bg-black/70 text-sub"
           scroll
           bodyClassName="card-py-[2.2rem] card-pr-0 card-pl-[1.5rem]"
         >
