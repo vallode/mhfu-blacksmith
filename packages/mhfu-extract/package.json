@@ -15,6 +15,7 @@
     "build-data": "tsx src/cli.ts build-data",
     "quest-flags": "tsx src/cli.ts quest-flags",
     "quest-probe": "tsx src/cli.ts quest-probe",
+    "quest-text-scan": "tsx src/cli.ts quest-text-scan",
     "test": "tsx --test test/**/*.test.ts",
     "typecheck": "tsc --noEmit -p ."
   },

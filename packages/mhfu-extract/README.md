@@ -42,6 +42,7 @@ pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../.
 pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
 pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests.json --tsv .cache/mhfu/quest-size.tsv
+pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
 ```
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
@@ -72,6 +73,11 @@ pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests
   laid out. `--tsv` also writes every large monster record's candidate
   bytes, one row per record. Numbers only. See "Monster size", "Quest
   text" and "Quest script".
+- `quest-text-scan` searches every unpacked file but the quests for one
+  quest's own strings, and reports where they're found, the `.pac` entry,
+  and the pointers to them, plus the headers of the likely message files
+  (`src/quests/text-scan.ts`). It quotes the quest's text, so keep the
+  report out of the repository. See "Quest text".
 - `quest-flags` searches the unpacked EBOOT and overlays for the table
   that maps quest IDs to their "cleared" bit in a save, and writes
   `quest-flags.json` (or `--out`). See "Save quest flags".
@@ -910,6 +916,17 @@ Other sources checked:
   - Each language's monster list splits into names with randomfu's
     `splitNames`.
   - Sector padding after the payload is 0-2044 bytes.
+- **The game shows other text.** On the EU disc, rewriting a quest's own
+  strings doesn't change its Quest Details screen. randomfu renamed 13 of
+  quest 10109's strings, among them the English monster list and goal, and
+  the screen still showed "Main Monsters: Velocidrome" (its title was
+  left alone as too wide).
+  The quest file's own text was rewritten and read back, and the swapped
+  monster was in the quest, so the screen reads its text from somewhere
+  else. The likely source is the per-language `quest_str.pac` (JP file
+  4756; EU 4776-4790 fit quest, lobby and arcade strings for five
+  languages). `quest-text-scan --quest <id>` finds where a quest's strings
+  are stored on the disc and which table points at them.
 - **Where else names live.** FUComplete's English text for the P2G disc
   (`FUComplete/Patch`, `data/str_tbl/`) has the monster names in
   `str_tbl.pac`'s first string table, and the JP file list has
