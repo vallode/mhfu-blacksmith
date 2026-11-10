@@ -39,7 +39,6 @@ const SPRITES: [string, string?][] = [
 const CARD = `
 <div class="card">
   <h1 class="masthead-title card-title">Randomfu</h1>
-  <p class="card-sub">Monster Hunter Freedom Unite randomizer</p>
   <hr class="divider card-divider" />
   <div class="frame card-frame">
     <div class="card-sprites">
@@ -62,12 +61,8 @@ body::before { background-color: #1b2016; }
   position: fixed; inset: 0; display: flex; flex-direction: column; align-items: center;
   background: rgb(0 0 0 / 0.3);
 }
-.card-title { margin-top: 64px; font-size: 96px; letter-spacing: 0.35em; }
-.card-sub {
-  margin: 10px 0 0; font-size: 30px; color: var(--color-parchment);
-  text-shadow: 0.25rem 0.25rem 0 black;
-}
-.card-divider { margin: 30px calc(50% - 50vw) 0; }
+.card-title { margin-top: 86px; font-size: 96px; letter-spacing: 0.35em; }
+.card-divider { margin: 36px calc(50% - 50vw) 0; }
 .card-frame {
   width: 1040px; max-width: none; margin-top: 36px; padding: 30px 40px 28px;
   display: flex; flex-direction: column; align-items: center; gap: 18px;
