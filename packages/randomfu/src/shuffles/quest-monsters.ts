@@ -131,6 +131,10 @@ export function swapSpecies(
   const lines: ShuffleReport["lines"] = [];
   const changed = new Map<number, Map<number, number>>();
   let mixed = 0;
+  let stuck = 0;
+  let drawnSame = 0;
+  /** Per monster: whether any quest it's in offered it another species. */
+  const movable = new Map<number, boolean>();
   for (const { quest, tier, spawns } of list) {
     const species = unique(spawns.large.map((s) => s.monsterId));
     if (species.length === 0) continue;
@@ -141,6 +145,7 @@ export function swapSpecies(
     const here = onMap.get(habitat(quest.parsed.header.map)) ?? new Set<number>();
     const taken = new Set<number>();
     const mapping = new Map<number, number>();
+    let choice = false;
     for (const old of species) {
       const options =
         pool === "variants"
@@ -149,11 +154,18 @@ export function swapSpecies(
       // Never empty: every monster of the quest is on its map, so its family
       // has as many options as the quest has members of it.
       const free = options.filter((id) => !taken.has(id)).sort((a, b) => a - b);
+      const others = options.some((id) => id !== old);
+      movable.set(old, (movable.get(old) ?? false) || others);
+      choice ||= others;
       const next = free.length > 1 ? free[rng.int(free.length)]! : (free[0] ?? old);
       taken.add(next);
       if (next !== old) mapping.set(old, next);
     }
-    if (mapping.size === 0) continue;
+    if (mapping.size === 0) {
+      if (choice) drawnSame++;
+      else stuck++;
+      continue;
+    }
 
     const payload = edits.quest(quest);
     for (const { offset, monsterId } of [...spawns.large, ...spawns.loads]) {
@@ -184,6 +196,18 @@ export function swapSpecies(
   ];
   if (mixed > 0)
     notes.push(`${mixed} quests with more than one kind of large monster were left alone.`);
+  if (stuck > 0) {
+    notes.push(
+      `${stuck} quests kept their monsters because no other ${pool === "variants" ? "variant" : "monster"} is found on their map.`,
+    );
+  }
+  if (drawnSame > 0) notes.push(`${drawnSame} quests drew their own monsters again.`);
+  const neverMoves = [...movable].filter(([, m]) => !m).map(([id]) => monsterName(id));
+  if (neverMoves.length > 0) {
+    notes.push(
+      `Never changed by this pool (no other choice on any of their maps): ${neverMoves.sort().join(", ")}.`,
+    );
+  }
   return {
     report: { title: "Quest monsters", notes, lines },
     swaps: changed,

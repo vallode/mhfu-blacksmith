@@ -366,3 +366,16 @@ test("quest size is off by default and leaves every quest's size alone", async (
   }
   close();
 });
+
+test("the species report says which quests kept their monsters, and which monsters never move", async () => {
+  const { game, close } = await load();
+  const result = randomize(game, only("n", { "questMonsters.species": true }));
+  const notes = result.reports.find((r) => r.title === "Quest monsters")!.notes.join("\n");
+  // Fatalis (2) has no variant in any fixture quest's map.
+  assert.match(
+    notes,
+    /Never changed by this pool \(no other choice on any of their maps\): Fatalis\./,
+  );
+  assert.match(notes, /quests kept their monsters because no other variant is found on their map/);
+  close();
+});

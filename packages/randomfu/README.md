@@ -308,7 +308,13 @@ list (`emLoadTable`).
   `emNN.ovl`, and those share load addresses, so nothing shows which
   monsters can be loaded together. Variants use their base species'
   overlay, so `variants` (Rathian, Pink Rathian, Gold Rathian; Velocidrome,
-  Gendrome, Iodrome, Giadrome; ... `MONSTER_FAMILIES`) changes every quest;
+  Gendrome, Iodrome, Giadrome; ... `MONSTER_FAMILIES`) can change quests
+  with several kinds of large monster, but only where another member of the
+  family is on the map: about a third of Village and Guild quests (164 of 486 in `data/quests`)
+  have one, and Velocidrome, alone among the dromes in the Jungle and
+  Forest and Hills, never changes. A quest that has a choice keeps its own
+  monster when the draw picks it. The spoiler's notes count both and list
+  the monsters a pool never changes;
   `rank` and `any` only change quests with one kind of large monster.
   Quest scripts name no monsters on the EU disc (mhfu-extract README,
   "Quest script"), so `TargetID` and the objective slots are all a quest's
