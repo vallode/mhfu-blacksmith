@@ -75,13 +75,22 @@ const OPTION_STEPS: Step[] = [
     intro: "What mining, gathering and bug catching points give you.",
   },
   {
+    id: "quests",
+    title: "Quests",
+    icon: "herb",
+    tint: "var(--color-gem-green)",
+    sections: ["Supplies", "Quest terms", "Deliveries"],
+    intro:
+      "What quests hand you, what they pay and how long they last, and what delivery quests ask for.",
+  },
+  {
     id: "monsters",
     title: "Monsters",
     icon: "part",
     tint: "var(--color-gem-orange)",
     sections: ["Quest monsters", "Monster stats", "Weaknesses"],
     intro:
-      "Which monsters quests have and how tough they are. These are new and untested on a real disc: try a quest before a long run.",
+      "Which monsters quests have and how tough they are. Swaps, quest sizes and quest text have been tried in game; the rest is untested, so try a quest before a long run.",
   },
   {
     id: "smithy",

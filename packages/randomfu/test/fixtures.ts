@@ -33,6 +33,7 @@ import { equipmentCreateLayout, equipmentUpgradeLayout } from "mhfu-extract/src/
 import { WEAPON_TYPE_NAMES } from "mhfu-extract/src/tables/weapons.js";
 import {
   ARMOR_ENTRY_SIZE,
+  DECO_SKILL_ENTRY_SIZE,
   EQUIP_CREATE_ENTRY_SIZE,
   EQUIP_UPGRADE_ENTRY_SIZE,
   ITEM_ENTRY_SIZE,
@@ -197,11 +198,18 @@ export interface FixtureQuest {
   rewards: FixtureReward[][];
   gathering?: FixtureGathering;
   /**
-   * Quest text by `LangPTRs` slot: six strings (title, goal, fail, details,
+   * Quest text by `LangPTRs` slot (for renaming tests): six strings (title, goal, fail, details,
    * monsters, client) for a block of its own, the number of an earlier slot
    * to share its block, or null for none. Strings are packed back to back.
    */
-  text?: (FixtureText | number | null)[];
+  slots?: (FixtureText | number | null)[];
+  /** Supply box entries, `[item, amount]`. */
+  supplies?: [item: number, amount: number][];
+  terms?: { fee: number; reward: number; penalty: number; minutes: number };
+  /** Makes it a delivery quest for this item. */
+  delivery?: { itemId: number; amount: number };
+  /** Quest text: English (three slots) and one other language (the other four). */
+  text?: { title: string; goal: string; otherGoal: string };
 }
 
 export type FixtureText = [string, string, string, string, string, string];
@@ -216,6 +224,9 @@ export interface FixtureGathering {
   areas: Record<number, number[]>;
 }
 
+/** Every fixture node can be gathered this many times at least (header +22), twice that at most. */
+export const FIXTURE_GATHERS = 3;
+
 /** Snowy Mountains (Day): 10 areas. */
 const GATHERING_MAP = 11;
 
@@ -229,6 +240,39 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
     at += buf.length;
     return offset;
   };
+  /** A NUL-terminated string on a 4-byte boundary, zero-padded to the next one. */
+  const placeString = (text: string): number => {
+    if (at % 4) place(Buffer.alloc(4 - (at % 4)));
+    const bytes = Buffer.from(text, "utf8");
+    return place(Buffer.concat([bytes, Buffer.alloc(4 - (bytes.length % 4))]));
+  };
+
+  let stringTablePtr = 0;
+  if (q.text) {
+    const block = (goal: string) => {
+      const ptrs = [q.text!.title, goal, "Fail", "Details", "Monsters", "Client"].map(placeString);
+      const buf = Buffer.alloc(24);
+      ptrs.forEach((ptr, i) => buf.writeUInt32LE(ptr, i * 4));
+      return place(buf);
+    };
+    const english = block(q.text.goal);
+    const other = block(q.text.otherGoal);
+    const langs = Buffer.alloc(28);
+    [english, english, other, other, other, other, english].forEach((ptr, i) =>
+      langs.writeUInt32LE(ptr, i * 4),
+    );
+    stringTablePtr = place(langs);
+  }
+  let suppliesPtr = 0;
+  if (q.supplies) {
+    const list = Buffer.alloc(q.supplies.length * 4 + 4);
+    q.supplies.forEach(([item, amount], i) => {
+      list.writeUInt16LE(item, i * 4);
+      list.writeUInt16LE(amount, i * 4 + 2);
+    });
+    list.writeUInt16LE(q.questId, q.supplies.length * 4 + 2);
+    suppliesPtr = place(list);
+  }
 
   const itemPtrs = q.rewards.map((items) => {
     const list = Buffer.alloc(items.length * 6 + 6);
@@ -309,7 +353,9 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
       used.forEach((table, i) => {
         nodes.writeFloatLE(100 + i, i * 24);
         nodes.writeUInt16LE(table, i * 24 + 16);
+        nodes.writeUInt16LE(FIXTURE_GATHERS * 2, i * 24 + 18);
         nodes.writeUInt16LE(3, i * 24 + 20); // mining
+        nodes.writeUInt16LE(FIXTURE_GATHERS, i * 24 + 22);
       });
       nodes.writeUInt32LE(0xbf800000, used.length * 24);
       areas.writeUInt32LE(place(nodes), Number(area) * 4);
@@ -317,8 +363,8 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
     gatheringLocPtr = place(areas);
   }
   let stringPtrTbl = 0;
-  if (q.text) {
-    const own = q.text.map((t) =>
+  if (q.slots) {
+    const own = q.slots.map((t) =>
       Array.isArray(t) ? t.map((str) => place(Buffer.from(`${str}\0`, "utf8"))) : null,
     );
     const blocks = own.map((ptrs) => {
@@ -328,7 +374,7 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
       return place(block);
     });
     const table = Buffer.alloc(28);
-    q.text.forEach((t, i) => {
+    q.slots.forEach((t, i) => {
       const block = typeof t === "number" ? blocks[t]! : t ? blocks[i]! : 0;
       table.writeUInt32LE(block, i * 4);
     });
@@ -338,14 +384,26 @@ export function buildQuestPayload(q: FixtureQuest): Buffer {
 
   const header = Buffer.alloc(0x80);
   QUEST_MAGIC.copy(header, 0);
+  header.writeUInt32LE(suppliesPtr, 8);
   header.writeUInt32LE(rewardsPtr, 12);
   header.writeUInt32LE(largeMonPtr, 20);
   header.writeUInt32LE(smallMonPtr, 24);
   header.writeUInt32LE(gatheringLocPtr, 28);
   header.writeUInt32LE(gatheringItemsPtr, 36);
-  header.writeUInt32LE(stringPtrTbl, 96);
   header.writeUInt32LE(q.sizePercent ?? 100, 0x38);
   header[68] = q.rank;
+  if (q.delivery) {
+    header[76] = 2;
+    header.writeUInt16LE(q.delivery.itemId, 112);
+    header.writeUInt16LE(q.delivery.amount, 114);
+  }
+  if (q.terms) {
+    header.writeUInt32LE(q.terms.fee, 80);
+    header.writeUInt32LE(q.terms.reward, 84);
+    header.writeUInt32LE(q.terms.penalty, 88);
+    header.writeUInt32LE(q.terms.minutes * 1800, 92);
+  }
+  header.writeUInt32LE(stringPtrTbl || stringTablePtr, 96);
   header.writeUInt16LE(q.questId, 100);
   header[102] = q.stars;
   header[104] = GATHERING_MAP;
@@ -687,7 +745,19 @@ export function buildEboot(
     buf.writeUInt16LE(a.hunterType & 2 ? a.index : 0, at + 2); // female model
     buf[at + 4] = a.hunterType;
     buf[at + 5] = a.rarity;
+    (FIXTURE_ARMOR_SKILLS[`${a.slot}:${a.index}`] ?? []).forEach(([tree, points], k) => {
+      buf[at + 30 + k * 2] = tree;
+      buf.writeInt8(points, at + 31 + k * 2);
+    });
   }
+  // One decoration per tree, +1 each, after the table's dummy entry.
+  const decoSkills = tableOffset("decorationSkills") + DECO_SKILL_ENTRY_SIZE;
+  FIXTURE_DECORATION_TREES.forEach((tree, i) => {
+    const at = decoSkills + i * DECO_SKILL_ENTRY_SIZE;
+    buf[at] = 1;
+    buf[at + 8] = tree;
+    buf[at + 9] = 1;
+  });
   for (const [slot, entries] of Object.entries(FIXTURE_ARMOR_CREATE)) {
     for (const [entry, piece, materials] of entries) {
       const at = create[slot as ArmorSlot].offset + entry * EQUIP_CREATE_ENTRY_SIZE;
@@ -792,7 +862,7 @@ export function buildBoardFile(quests: FixtureQuest[]): Buffer {
     header[0x1c] = GATHERING_MAP;
     header.writeUInt16LE(q.monsters[0] ?? 0, 0x24); // TargetID
     header.writeUInt16LE(1, 0x26);
-    const text = q.text ?? FIXTURE_TEXT[q.questId] ?? [];
+    const text = q.slots ?? FIXTURE_TEXT[q.questId] ?? [];
     const own = text.map((t) =>
       Array.isArray(t) ? t.map((str) => place(Buffer.from(`${str}\0`, "utf8"))) : null,
     );
@@ -845,7 +915,7 @@ export function buildDataBin(
 
 // ---------------------------------------------------------------- the disc
 
-export const QUEST_INDICES = [4759, 4760, 4761, 4762, 4763];
+export const QUEST_INDICES = [4759, 4760, 4761, 4762, 4763, 4764];
 export const GAME_TASK_INDEX = 51;
 export const GAME_SUB_INDEX = 56;
 export const LOBBY_TASK_INDEX = 50;
@@ -856,6 +926,11 @@ export const LOBBY_TASK_INDEX = 50;
  * quest 10101 (monster 2);
  * High Rank 6★: quest 2001 (monster 1). Items 1xx are Low Rank, 2xx High
  * Rank. Every Village and Guild quest has gathering points.
+ *
+ * Supply boxes hold items 14x (and a Map, 863, and Paw Pass Ticket, 927,
+ * which are quest-only items). 10102 is a delivery quest for item 126,
+ * which its gathering points give; 10101 is a Paw Pass Ticket delivery,
+ * with the ticket in its supply box.
  */
 const FAIL_EN = "Reward Zero\nTime Over";
 const FAIL_DE = "Keine Belohnung\nZeit um";
@@ -932,20 +1007,10 @@ export const FIXTURE_TEXT: Record<number, (FixtureText | number | null)[]> = {
     1,
   ],
   20001: [1, en("Training", "Hunt the Rathian", "Practice.", "Rathian"), null, null, null, null, 1],
-  10102: [
+  10103: [
     1,
-    en(
-      "Two Queens",
-      "Hunt the Rathian and\nthe Pink Rathian",
-      "Both of them.",
-      "Rathian\nPink Rathian",
-    ),
-    de(
-      "Zwei Königinnen",
-      "Jage die Rathian und\nden Rosa Rathian",
-      "Beide.",
-      "Rathian\nRosa Rathian",
-    ),
+    en("Pink Queen", "Hunt the Pink Rathian", "A rare one.", "Pink Rathian\nVelociprey"),
+    de("Rosa Königin", "Jage den Rosa Rathian", "Selten.", "Rosa Rathian\nVelociprey"),
     null,
     null,
     null,
@@ -975,6 +1040,14 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       ],
       areas: { 0: [0, 0], 3: [2, 3] },
     },
+    supplies: [
+      [863, 1],
+      [863, 1],
+      [140, 3],
+      [140, 3],
+      [141, 2],
+    ],
+    terms: { fee: 100, reward: 1200, penalty: 400, minutes: 50 },
     monsters: [1],
     powers: [3],
     small: [
@@ -1002,6 +1075,12 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       ],
       areas: { 0: [0] },
     },
+    supplies: [
+      [927, 1],
+      [142, 4],
+    ],
+    terms: { fee: 200, reward: 2400, penalty: 800, minutes: 50 },
+    delivery: { itemId: 927, amount: 1 },
     monsters: [2],
     powers: [6],
     small: [[16, 2]],
@@ -1022,6 +1101,8 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
       ],
       areas: { 0: [0], 2: [1] },
     },
+    supplies: [[240, 5]],
+    terms: { fee: 0, reward: 6000, penalty: 2000, minutes: 35 },
     monsters: [1],
     powers: [12],
     small: [[16, 8]],
@@ -1038,6 +1119,8 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
     rank: 0,
     stars: 1,
     gathering: { tables: [[[10, 998]]], areas: { 0: [0] } },
+    supplies: [[997, 1]],
+    terms: { fee: 10, reward: 100, penalty: 30, minutes: 20 },
     monsters: [1],
     rewards: [[{ chance: 100, itemId: 999, amount: 1 }]],
   },
@@ -1053,11 +1136,32 @@ export const FIXTURE_QUESTS: FixtureQuest[] = [
           [50, 126],
         ],
       ],
-      areas: { 1: [0] },
+      areas: { 1: [0, 0, 0, 0] },
+    },
+    supplies: [
+      [143, 2],
+      [144, 1],
+    ],
+    terms: { fee: 50, reward: 300, penalty: 100, minutes: 20 },
+    delivery: { itemId: 126, amount: 4 },
+    text: {
+      title: "Fixture Delivery",
+      goal: "Deliver 4 of the fixture's own things",
+      otherGoal: "Kurz",
     },
     // Two kinds of large monster: only variant swaps change it.
     monsters: [1, 37],
     powers: [4, 4],
+    rewards: [],
+  },
+  // Pink Rathian on its own, so the text tests can learn its name (10102's
+  // text is the delivery tests').
+  {
+    questId: 10103,
+    rank: 1,
+    stars: 1,
+    monsters: [37],
+    powers: [4],
     rewards: [],
   },
 ];
@@ -1201,6 +1305,112 @@ export const FIXTURE_ARMOR_CREATE: Partial<Record<ArmorSlot, [number, number, Ma
   ],
 };
 
+/** Skill trees the fixture uses (`SkillID`). */
+export const TREE = {
+  torsoUp: 1,
+  health: 9,
+  sharpness: 11,
+  guard: 16,
+  reload: 20,
+  recoil: 21,
+  hunger: 33,
+  attack: 35,
+  defense: 36,
+  protection: 37,
+  gathering: 52,
+  fate: 55,
+  stamina: 65,
+  edgemaster: 92,
+} as const;
+
+/**
+ * Armor skills (`ArmorValue` +30): [tree, points] per entry, [0, 0] for an
+ * empty one. Sharpness and Guard are only on Blademaster pieces, Reload and
+ * Recoil only on Gunner ones; the rest are on both or on pieces anyone can
+ * wear; Health, Stamina, Fate and Protection only on pieces anyone can
+ * wear. Edgemaster has no decoration; Gathering is only on one. Head 7
+ * (female only) has Torso Up; head 8 has a 0-point Protection entry; leg 1
+ * lists Defense twice, alone in its rarity's negative entries, so no
+ * shuffle can avoid the repeat. Head 9 (in no create entry) and 10 (no
+ * `HunterType` bits) have skills that must stay.
+ */
+export const FIXTURE_ARMOR_SKILLS: Record<string, [tree: number, points: number][]> = {
+  "head:1": [
+    [TREE.attack, 2],
+    [TREE.defense, 1],
+    [0, 0],
+    [TREE.health, -1],
+  ],
+  "head:2": [
+    [TREE.health, 3],
+    [TREE.stamina, 2],
+    [TREE.hunger, -2],
+  ],
+  "head:5": [
+    [TREE.defense, 2],
+    [TREE.fate, 1],
+  ],
+  "head:9": [[TREE.attack, 10]],
+  "head:3": [
+    [TREE.protection, 3],
+    [TREE.attack, -2],
+  ],
+  "head:4": [
+    [TREE.stamina, 4],
+    [TREE.edgemaster, 2],
+    [TREE.fate, -1],
+  ],
+  "head:6": [[TREE.health, 2]],
+  "head:7": [[TREE.torsoUp, 1]],
+  "head:8": [
+    [TREE.defense, 3],
+    [TREE.hunger, -1],
+    [TREE.protection, 0],
+  ],
+  "head:10": [[TREE.attack, 5]],
+  "chest:1": [
+    [TREE.sharpness, 2],
+    [TREE.attack, 1],
+    [TREE.hunger, -1],
+  ],
+  "chest:3": [
+    [TREE.guard, 3],
+    [TREE.defense, 1],
+  ],
+  "chest:2": [
+    [TREE.reload, 2],
+    [TREE.recoil, 1],
+    [TREE.hunger, -1],
+  ],
+  "chest:4": [
+    [TREE.reload, 1],
+    [TREE.attack, 2],
+    [TREE.defense, -1],
+  ],
+  "chest:5": [
+    [TREE.edgemaster, 3],
+    [TREE.defense, 1],
+  ],
+  "leg:1": [
+    [TREE.attack, 3],
+    [TREE.defense, -2],
+    [TREE.defense, -1],
+  ],
+  "leg:2": [
+    [TREE.health, 3],
+    [TREE.fate, 2],
+  ],
+  "leg:3": [
+    [TREE.protection, 2],
+    [TREE.edgemaster, 2],
+  ],
+};
+
+/** Trees with a decoration: every tree above but Torso Up and Edgemaster, and Gathering. */
+export const FIXTURE_DECORATION_TREES: number[] = Object.values(TREE).filter(
+  (t) => t !== TREE.torsoUp && t !== TREE.edgemaster,
+);
+
 /** JP's unencrypted DATA.BIN entries (`JP_EXCEPTIONS` in mhfu-extract's databin.ts). */
 export const JP_RAW = new Set([
   22, 23, 26, 27, 28, 29, 30, 31, 32, 33, 34, 35, 36, 37, 38, 39, 40, 41, 42,
@@ -1229,7 +1439,9 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   FIXTURE_QUESTS.forEach((q, i) =>
     files.set(
       QUEST_INDICES[i]!,
-      buildQuestEntry(buildQuestPayload({ ...q, text: q.text ?? FIXTURE_TEXT[q.questId] })),
+      buildQuestEntry(
+        buildQuestPayload(q.text ? q : { ...q, slots: q.slots ?? FIXTURE_TEXT[q.questId] }),
+      ),
     ),
   );
   files.set(GAME_TASK_INDEX, buildGameTask());
