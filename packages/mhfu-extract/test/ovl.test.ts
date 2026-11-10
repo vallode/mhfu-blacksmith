@@ -4,6 +4,7 @@ import { OVL_HEADER_SIZE, OvlFormatError, parseOvl, type OvlFile } from "../src/
 import { emitMonsters, siteTolerances } from "../src/emit/monsters.js";
 import {
   BASE_HP_OFFSET,
+  MULTIPLIER_SET_OFFSET,
   HITZONE_POINTER_OFFSET,
   locateMonsterChunks,
   MONSTER_CHUNK_COUNT,
@@ -12,7 +13,7 @@ import {
   readMonsterChunks,
   TOLERANCE_OFFSET,
 } from "../src/monsters/hitzones.js";
-import { locateMultiplierTables } from "../src/monsters/multipliers.js";
+import { locateMultiplierTables, multiplierRow } from "../src/monsters/multipliers.js";
 import {
   CAP_BREAK_POINTER_COUNT,
   CAPTURE_TYPE,
@@ -141,6 +142,7 @@ function buildGameTask(): OvlFile {
   }
   put(buf, EU_CHUNKS + MONSTER_CHUNK_SIZE + TOLERANCE_OFFSET, RATHIAN.tolerances);
   buf.writeUInt16LE(4000, EU_CHUNKS + MONSTER_CHUNK_SIZE + BASE_HP_OFFSET); // Rathian's real base HP
+  buf.writeInt8(1, EU_CHUNKS + MONSTER_CHUNK_SIZE + MULTIPLIER_SET_OFFSET); // large-monster set
   return parseOvl(buf);
 }
 
@@ -187,6 +189,7 @@ test("monster chunks are found on EU and lead to HitzoneTbl lists and rows", () 
     increase: 75,
   });
   assert.equal(rathian.baseHp, 4000);
+  assert.equal(rathian.multiplierSet, 1);
   assert.equal(rathian.tolerances.ko.initial, 120);
   assert.equal(rathian.tolerances.sleep.initial, 150);
   assert.deepEqual(rathian.tolerances.poison, {
@@ -366,6 +369,9 @@ test("quest stat multipliers: master list -> sets of 3 tables of 32 rows", () =>
     status: 1,
   });
   assert.equal(found.sets[0]!.tables[2]!.rows.length, 32);
+  assert.equal(multiplierRow(found, 1, 0, 0)!.hp, 0.35);
+  assert.equal(multiplierRow(found, 1, 0, 32), null);
+  assert.equal(multiplierRow(found, 2, 0, 0), null);
 });
 
 test("siteTolerances writes data/'s keys and null for an immune status", () => {

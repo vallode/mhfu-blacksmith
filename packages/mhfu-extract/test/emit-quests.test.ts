@@ -22,7 +22,8 @@ const GIADROME_HUNT: ParsedQuest = {
     monSizeModifier: 0,
     rank: 0,
     spawn: 0,
-    unknownFlags: [0, 0, 0, 0],
+    unknownFlags: [0, 0, 0],
+    statTable: 0,
     supplyCond: 0,
     attackRoll: 4,
     questType: 4,
@@ -349,4 +350,24 @@ test("emitQuestsFile groups quests by hub and drops unused slots and boardless q
   assert.equal(output[QUEST_HUB_TO_FILE["training-school"]]!.quests.length, 1);
   assert.equal(output[QUEST_HUB_TO_FILE.guild]!.quests.length, 1);
   assert.equal(output[QUEST_HUB_TO_FILE["treasure-hunting"]]!.quests.length, 0);
+});
+
+test("emitQuest gives each large monster its stat multiplier row", () => {
+  const calls: [number, number, number][] = [];
+  const row = { hp: 0.35, attack: 1.02, defense: 1, status: 1 };
+  const emitted = emitQuest(
+    { ...GIADROME_HUNT, header: { ...GIADROME_HUNT.header, statTable: 1 } },
+    (emId, statTable, power) => {
+      calls.push([emId, statTable, power]);
+      return row;
+    },
+  )!;
+  assert.deepEqual(calls, [[77, 1, 4]]);
+  assert.deepEqual(emitted.large_monsters, [
+    { monster: "Giadrome", quantity: 1, power: 4, multipliers: row },
+  ]);
+  // No row: the field is left out rather than null.
+  assert.deepEqual(emitQuest(GIADROME_HUNT, () => null)!.large_monsters, [
+    { monster: "Giadrome", quantity: 1, power: 4 },
+  ]);
 });

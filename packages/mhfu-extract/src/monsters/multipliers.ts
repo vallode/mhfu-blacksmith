@@ -17,22 +17,30 @@
  *
  * The tables follow the hitzone pool, each set's pointer list right after
  * its tables. On the EU disc the master list is at 0x168c80 and the first
- * set's first table at 0x167c40. Set 1's first row is HP 0.35 / attack
- * 1.02, which matches a published figure for the first Village Elder quest.
- * Which set a quest uses follows its header `rank` byte: 0 -> set 0
- * (Training School Basic/Mastery quests, the two Village Tigrex quests and
- * the Guild's ★1/★2 quests `1`-`10` and `101`-`109`), 1/2/5 (the low/high/G rank tier, on both the Village and Guild boards)
- * -> set 1, 3 (Treasure Hunting) -> set 2, 4 (Subjugation Training) ->
- * set 3. The board itself comes from the quest ID (`questHub` in
- * src/emit/quests.ts). Sets 2 and 3 hold real values exactly on the rows
- * those quests use (0-11 and 0-18; filler 1.0 after), and set 1
- * is the harder one (G rows: HP 1.75-2.1, attack 3.5-3.8, status 2.3-2.4,
- * against set 0's 1.5-1.6, 2.0-2.7, 1.0). Which of a set's three tables
- * applies isn't stored in the quest: `attr1`/`attr2` are almost always 0
- * and no header field varies with them. Set 0's first two tables are
- * identical; set 1's differ mostly in HP, which looks like a mode chosen at
- * run time. So the tables are dumped (`extract --raw`) but not attached to
- * quests or written to `data/`.
+ * set's first table at 0x167c40.
+ *
+ * How `game_task` picks a row (EU `0x09AC9020` HP, `0x09AC9180` attack,
+ * `0x09AC9218` defense, `0x09AD3B88` the fourth):
+ *
+ *   row = master[chunk.multiplierSet][quest.statTable][spawn.power]
+ *
+ *  - The set is the monster's, not the quest's: the s8 at its `emChunk`
+ *    `+0x14F` (`hitzones.ts`). 0 is the small monsters, 1 the large ones,
+ *    2 Fatalis, Crimson and White Fatalis, 3 Lao-Shan Lung, Ashen Lao-Shan
+ *    Lung, Shen Gaoren, Yama Tsukami, Akantor and Ukanlos. Sets 2 and 3
+ *    repeat one table three times and hold real values only on the rows
+ *    those monsters' quests use (0-11 and 0-18).
+ *  - The table is the quest header's u8 at `0x49` (`statTable`), which the
+ *    EBOOT's quest loader (EU `0x08869DEC`) copies to the quest state's
+ *    `+0x116`. 0 is the usual table (most Village and Guild quests), 1 a
+ *    gentler one with lower HP (about a quarter of the Village and Guild
+ *    quests), 2 one with hand-set rows (the Training School and Treasure
+ *    Hunting quests and a few High and G rank Guild quests).
+ *  - The row is the spawn's `power` byte.
+ *
+ * HP is `trunc(base HP * hp)`. Furious Rajang (emID 89) alone has its
+ * attack and defense multiplied again by a run-time value (`+0x44`/`+0x48`
+ * of the object at EU `0x09BC2CAC`), which the disc doesn't hold.
  */
 import type { OvlFile } from "../container/ovl.js";
 
@@ -106,6 +114,19 @@ function readSet(ovl: OvlFile, pointer: number): MultiplierSet | null {
   const read = tables.map((t) => readMultiplierTable(ovl, t));
   if (read.some((t) => t === null)) return null;
   return { pointer, tables: read as MultiplierTable[] };
+}
+
+/**
+ * The row for a monster of multiplier set `set` in a quest with stat table
+ * `table` at `power`, or null if the disc has no such row.
+ */
+export function multiplierRow(
+  tables: MultiplierTables,
+  set: number,
+  table: number,
+  power: number,
+): MultiplierRow | null {
+  return tables.sets[set]?.tables[table]?.rows[power] ?? null;
 }
 
 /** Finds the master list: the pointer list whose every entry is a set; the one with the most sets wins. */

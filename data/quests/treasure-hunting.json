@@ -345,7 +345,13 @@
         {
           "monster": "Giadrome",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -723,7 +729,13 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -1117,7 +1129,13 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -1507,12 +1525,24 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          }
         },
         {
           "monster": "Bulldrome",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -1898,12 +1928,24 @@
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          }
         },
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -2288,12 +2330,24 @@
         {
           "monster": "Gravios",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          }
         },
         {
           "monster": "Iodrome",
           "quantity": 1,
-          "power": 8
+          "power": 8,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [
@@ -2680,7 +2734,13 @@
         {
           "monster": "Yian Garuga",
           "quantity": 1,
-          "power": 9
+          "power": 9,
+          "multipliers": {
+            "hp": 0.45,
+            "attack": 2,
+            "defense": 0.8,
+            "status": 1
+          }
         }
       ],
       "small_monsters": [

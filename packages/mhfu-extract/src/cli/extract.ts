@@ -12,7 +12,7 @@ import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
 import { emitCombinations } from "../emit/combinations.js";
 import { emitMonsters } from "../emit/monsters.js";
 import { emitGathering, type GatheringQuestInput } from "../emit/gathering.js";
-import { emitQuestsFile } from "../emit/quests.js";
+import { emitQuestsFile, type MultiplierLookup } from "../emit/quests.js";
 import { emitShops } from "../emit/shops.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
@@ -29,6 +29,7 @@ import {
 import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
 import { parseOvl } from "../container/ovl.js";
 import { loadMonsterOverlays, OVERLAY_DIR } from "../monsters/overlays.js";
+import { multiplierRow } from "../monsters/multipliers.js";
 import { readMonsterTables } from "../monsters/read.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
@@ -227,7 +228,29 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     await writeFile(rawPath, `${JSON.stringify(raw)}\n`, "utf-8");
     console.log(`Wrote ${rawPath}`);
   }
-  Object.assign(output, emitQuestsFile(quests));
+  // Read before the quests: their large monsters take stat multipliers from them.
+  console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");
+  // The EBOOT's species table maps subspecies to their base species' breaks;
+  // EU and JP load it at the same address.
+  const monsters = readMonsterTables(overlays, { reader, baseAddress: JP_BASE_ADDRESS });
+  console.log(
+    monsters.locations.breaks === null
+      ? "Break table not found; monsters get no breaks."
+      : `Break table at 0x${monsters.locations.breaks.toString(16)} (${monsters.breaks!.length} records), species table ${monsters.species ? "found" : "not found"}.`,
+  );
+  console.log(
+    `Monster chunks at 0x${monsters.locations.chunks.offset.toString(16)}, reward tables at 0x${monsters.locations.rewards.carves.pointers.toString(16)} / 0x${monsters.locations.rewards.capBreak.pointers.toString(16)}.`,
+  );
+  const multipliers = monsters.multipliers;
+  if (!multipliers)
+    console.warn("Warning: quest stat multiplier tables not found; quests get none.");
+  const multiplierLookup: MultiplierLookup | undefined = multipliers
+    ? (emId, statTable, power) => {
+        const chunk = monsters.chunks[emId];
+        return chunk ? multiplierRow(multipliers, chunk.multiplierSet, statTable, power) : null;
+      }
+    : undefined;
+  Object.assign(output, emitQuestsFile(quests, multiplierLookup));
 
   const gathering = emitGathering(payloads);
   for (const { questId, problem } of gathering.problems) {
@@ -244,41 +267,11 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   console.log(`Shops: ${shops.map((s) => `${s.name} (${s.items.length} items)`).join(", ")}.`);
   output["shops.json"] = { shops };
 
-  console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");
-  // The EBOOT's species table maps subspecies to their base species' breaks;
-  // EU and JP load it at the same address.
-  const monsters = readMonsterTables(overlays, { reader, baseAddress: JP_BASE_ADDRESS });
-  console.log(
-    monsters.locations.breaks === null
-      ? "Break table not found; monsters get no breaks."
-      : `Break table at 0x${monsters.locations.breaks.toString(16)} (${monsters.breaks!.length} records), species table ${monsters.species ? "found" : "not found"}.`,
-  );
-  console.log(
-    `Monster chunks at 0x${monsters.locations.chunks.offset.toString(16)}, reward tables at 0x${monsters.locations.rewards.carves.pointers.toString(16)} / 0x${monsters.locations.rewards.capBreak.pointers.toString(16)}.`,
-  );
   if (options.raw) {
     const rawPath = path.join(options.out, "raw", "monsters.json");
     await mkdir(path.dirname(rawPath), { recursive: true });
     await writeFile(rawPath, `${JSON.stringify(monsters)}\n`, "utf-8");
     console.log(`Wrote ${rawPath}`);
-    // How a quest picks its multiplier set and table is still open (#35):
-    // each quest's candidate selector bytes, by quest ID.
-    const questMonsters = quests.map((q) => ({
-      questId: q.header.questId,
-      stars: q.header.questStars,
-      questType: q.header.questType,
-      rank: q.header.rank,
-      spawn: q.header.spawn,
-      supplyCond: q.header.supplyCond,
-      unknownFlags: q.header.unknownFlags,
-      attackRoll: q.header.attackRoll,
-      specialCond: q.header.specialCond,
-      monSizeModifier: q.header.monSizeModifier,
-      large: q.largeMonsters,
-    }));
-    const questPath = path.join(options.out, "raw", "quest-monsters.json");
-    await writeFile(questPath, `${JSON.stringify(questMonsters)}\n`, "utf-8");
-    console.log(`Wrote ${questPath}`);
 
     // Hunting horn note-set/melody table candidates (#14): searched in the
     // EBOOT and both overlays against the committed horn notes.
