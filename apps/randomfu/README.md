@@ -36,8 +36,8 @@ commit it. The tags need absolute URLs, so `build.mjs` fills in
 any web server). It's deployed to [randomfu.vallode.com](https://randomfu.vallode.com)
 by a Netlify site of its own, configured by `netlify.toml` here: that site's
 base directory is `apps/randomfu`, so paths in it are relative to this
-folder. It builds `main` and deploy previews of pull requests, and skips
-commits that don't touch what the app is built from.
+folder. It only builds on demand, from the "Deploy to Netlify" workflow
+(see the root README).
 
 `index.html` sets a Content-Security-Policy: the page can only load its own
 scripts, styles and images and can't make any requests, so nothing it reads
