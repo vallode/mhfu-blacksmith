@@ -487,8 +487,8 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "shops.special",
     section: "Shops",
-    label: "Include the sphere and jewel shop",
-    help: "Armor Spheres, jewels, Pokke Tickets and Gourmet BBQ Spit. Off keeps armor upgrades as usual.",
+    label: "Include the Point Exchange",
+    help: "The Pokke Village shop that takes Pokke Points: Armor Spheres, jewels, Pokke Tickets and Gourmet BBQ Spit. Off keeps armor upgrades as usual.",
     type: { kind: "boolean" },
     default: false,
     enabledBy: "shops.enabled",
