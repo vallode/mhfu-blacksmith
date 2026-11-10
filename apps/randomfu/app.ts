@@ -841,7 +841,6 @@ function filterSpoiler(): void {
 function loaded(message: string, kind: "ok" | "err"): void {
   render();
   say($("share-status"), message, kind);
-  $("skip-row").hidden = false;
 }
 
 // ---------------------------------------------------------------- start

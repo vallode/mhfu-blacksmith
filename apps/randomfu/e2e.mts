@@ -111,6 +111,7 @@ try {
 
   // Step 2: seed and presets; load the shared settings.
   assert.equal(await title(), "Seed");
+  assert.ok(await page.isVisible("#skip"), "the options can be skipped without shared settings");
   await page.click("#load summary");
   await page.fill("#paste", settingsString);
   await page.click("#apply-paste");
