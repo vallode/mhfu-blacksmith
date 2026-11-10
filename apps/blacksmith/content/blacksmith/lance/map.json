@@ -400,15 +400,7 @@
                                         "name": "Gravios Lance",
                                         "rarity": 9,
                                         "element": "fire",
-                                        "children": [
-                                          {
-                                            "slug": "gravios-fire-lance",
-                                            "type": "lance",
-                                            "name": "Gravios Fire Lance",
-                                            "rarity": 10,
-                                            "element": "fire"
-                                          }
-                                        ]
+                                        "alias": true
                                       }
                                     ]
                                   }
@@ -776,36 +768,7 @@
                         "type": "lance",
                         "name": "Ceanataur Piercer",
                         "rarity": 6,
-                        "children": [
-                          {
-                            "slug": "carmine-stinger",
-                            "type": "lance",
-                            "name": "Carmine Stinger",
-                            "rarity": 9,
-                            "children": [
-                              {
-                                "slug": "shish-kabob-stick",
-                                "type": "lance",
-                                "name": "Shish Kabob Stick",
-                                "rarity": 10
-                              }
-                            ]
-                          },
-                          {
-                            "slug": "shell-claw-lance",
-                            "type": "lance",
-                            "name": "Shell Claw Lance",
-                            "rarity": 9,
-                            "children": [
-                              {
-                                "slug": "gianthermitaurlance",
-                                "type": "lance",
-                                "name": "GiantHermitaurLance",
-                                "rarity": 9
-                              }
-                            ]
-                          }
-                        ]
+                        "alias": true
                       }
                     ]
                   }
@@ -1241,14 +1204,7 @@
         "type": "lance",
         "name": "Shell Claw Lance",
         "rarity": 9,
-        "children": [
-          {
-            "slug": "gianthermitaurlance",
-            "type": "lance",
-            "name": "GiantHermitaurLance",
-            "rarity": 9
-          }
-        ]
+        "alias": true
       }
     ]
   },

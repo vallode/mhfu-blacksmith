@@ -1,16 +1,18 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { flushSync } from "react-dom";
 import Link from "next/link";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
 import { prefetchBundle } from "@/lib/client-data";
-import { isNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
+import { isNodeCollapsed, onNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
 import { useHunterProgress } from "@/context/HunterProgressContext";
-import { useTreeFilterResult } from "@/context/TreeFilterContext";
+import { useTreeFilterResult, useWeaponTree } from "@/context/TreeFilterContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import type { MaterialCheck } from "@/lib/hunter-progress";
-import { rowStatus } from "@/lib/tree-filter";
+import { rowStatus, treeRowKey } from "@/lib/tree-filter";
+import { rowsAbove } from "@/lib/tree-visibility";
 import type { WeaponTreeNode } from "@/lib/types";
 
 interface WeaponTreeRowProps {
@@ -106,6 +108,43 @@ function MaterialPips({
   );
 }
 
+/**
+ * A dim bracketed control after a row's name ([-], [+], [↑]). Rows are links,
+ * so activating it (click, Enter or Space) never also follows the link.
+ */
+function RowButton({
+  label,
+  title,
+  onActivate,
+  children,
+}: {
+  label: string;
+  title?: string;
+  onActivate: () => void;
+  children: React.ReactNode;
+}) {
+  const activate = (event: { preventDefault(): void; stopPropagation(): void }) => {
+    event.preventDefault();
+    event.stopPropagation();
+    onActivate();
+  };
+  return (
+    <p
+      className="cursor-pointer px-[3px] opacity-20"
+      role="button"
+      tabIndex={0}
+      aria-label={label}
+      title={title}
+      onClick={activate}
+      onKeyDown={(event) => {
+        if (event.key === "Enter" || event.key === " ") activate(event);
+      }}
+    >
+      {children}
+    </p>
+  );
+}
+
 export default function WeaponTreeRow({
   node,
   sectionType,
@@ -118,6 +157,9 @@ export default function WeaponTreeRow({
   scroll = true,
 }: WeaponTreeRowProps) {
   const [collapsed, setCollapsed] = useState(() => isNodeCollapsed(treeKey, node.slug));
+  // Another row (an alias revealing its weapon) can open this branch.
+  useEffect(() => onNodeCollapsed(treeKey, node.slug, setCollapsed), [treeKey, node.slug]);
+  const tree = useWeaponTree();
 
   const isActive = activeSlug === node.slug;
 
@@ -127,25 +169,30 @@ export default function WeaponTreeRow({
   // The Options page can turn either marker off; the tree filter still works.
   const progress = useHunterProgress();
   const { markOwned, showCraftProgress } = usePreferences().prefs;
-  const filtered = useTreeFilterResult()?.rows.get(node.slug);
-  const status =
-    filtered ?? rowStatus(node, sectionType, basePath, node.parentHref ?? parentHref, progress);
+  const from = node.parentHref ?? parentHref;
+  const filtered = useTreeFilterResult()?.rows.get(treeRowKey(node, from));
+  const status = filtered ?? rowStatus(node, sectionType, basePath, from, progress);
   const { href, external: isExternal } = status;
   const owned = markOwned && status.owned;
   const craft = showCraftProgress ? status.craft : null;
   const dimmed = filtered ? !filtered.match : false;
   const ready = craft?.status === "ready" ? craft : null;
 
-  const onToggleClick = (event: { preventDefault(): void; stopPropagation(): void }) => {
-    // Rows can be links (a parent weapon still has its own page), so stop
-    // the click from also triggering navigation.
-    event.preventDefault();
-    event.stopPropagation();
-    setCollapsed((value) => {
-      const next = !value;
-      setNodeCollapsed(treeKey, node.slug, next);
-      return next;
+  // Subscribed above, so this also updates `collapsed`.
+  const onToggle = () => setNodeCollapsed(treeKey, node.slug, !collapsed);
+
+  // An alias row's upgrades are listed at the weapon's first row, further up:
+  // open any collapsed branches above that row (rendered before we look for
+  // it), bring it into view and focus it, which highlights it.
+  const onAliasActivate = () => {
+    flushSync(() => {
+      for (const row of rowsAbove(tree ?? [], node.slug) ?? []) {
+        if (isNodeCollapsed(treeKey, row.slug)) setNodeCollapsed(treeKey, row.slug, false);
+      }
     });
+    const first = document.getElementById(node.slug);
+    first?.scrollIntoView({ block: "center" });
+    first?.focus({ preventScroll: true });
   };
 
   const onPointerEnter = href
@@ -187,18 +234,18 @@ export default function WeaponTreeRow({
         </span>
       )}
       {node.children && (
-        <p
-          className="cursor-pointer px-[3px] opacity-20"
-          role="button"
-          tabIndex={0}
-          aria-label={collapsed ? "Expand" : "Collapse"}
-          onClick={onToggleClick}
-          onKeyDown={(event) => {
-            if (event.key === "Enter" || event.key === " ") onToggleClick(event);
-          }}
-        >
+        <RowButton label={collapsed ? "Expand" : "Collapse"} onActivate={onToggle}>
           {collapsed ? "[+]" : "[-]"}
-        </p>
+        </RowButton>
+      )}
+      {node.alias && (
+        <RowButton
+          label="Upgrades listed above: go to them"
+          title="Upgrades listed above"
+          onActivate={onAliasActivate}
+        >
+          [↑]
+        </RowButton>
       )}
       {/* Armor: max defence, right-aligned (the pips, if any, follow it). */}
       {node.max_defence !== undefined && (
@@ -223,7 +270,9 @@ export default function WeaponTreeRow({
     <li className={nested ? cn(connector, hasNextSibling && "before:h-full") : undefined}>
       {href ? (
         <Link
-          id={node.slug}
+          // An alias row repeats a weapon listed above: only the first gets the
+          // id that TreeScroll and the alias marker look up.
+          id={node.alias ? undefined : node.slug}
           className={rowClass}
           href={href}
           scroll={scroll}
@@ -240,7 +289,7 @@ export default function WeaponTreeRow({
           {inner}
         </Link>
       ) : (
-        <span id={node.slug} className={rowClass}>
+        <span id={node.alias ? undefined : node.slug} className={rowClass}>
           {inner}
         </span>
       )}

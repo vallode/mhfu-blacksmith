@@ -11,6 +11,7 @@
  *   - equipment-ids.json         (save-file equipment IDs -> item pages)
  *   - items.json                 (in-game item ID -> name, linked to materials)
  *   - item-places.json           (where each item is gathered or sold, see src/lib/item-places.ts)
+ *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - data-manifest.json         ({ files, version })
  *
  * Reuses the transform logic from src/lib (slugify, raw_attack
@@ -64,6 +65,7 @@ import {
   type ItemRecord,
 } from "../src/lib/items";
 import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
+import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
 import {
   buildItemPlaces,
   encodeItemPlaces,
@@ -166,6 +168,7 @@ function compactTreeNode(
   if (mr) out.m = mr;
   const md = maxDefenceOf?.(node.slug);
   if (md !== undefined) out.d = md;
+  if (node.alias) out.a = 1;
   if (node.children && node.children.length > 0) {
     out.k = node.children.map((c) => compactTreeNode(c, bundleType, minRankOf, maxDefenceOf));
   }
@@ -541,6 +544,10 @@ for (const category of MONSTER_CATEGORIES) {
     (name) => index.get(normalizeItemName(name)),
   );
   push("item-places.json", encodeItemPlaces(places));
+  push(
+    "combinations.json",
+    encodeCombinations(readJson<CombinationsFile>(path.join(dataDir, "combinations.json"))),
+  );
 }
 
 // Decorations

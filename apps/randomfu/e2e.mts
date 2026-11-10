@@ -153,7 +153,7 @@ try {
     page.waitForEvent("download"),
     page.click("#downloads a:first-child"),
   ]);
-  assert.equal(download.suggestedFilename(), "MHFU test disc (randomfu WEB-E2E).iso");
+  assert.equal(download.suggestedFilename(), "MHFU test disc (RandomFU WEB-E2E).iso");
   const webOut = path.join(dir, "web.iso");
   await download.saveAs(webOut);
 

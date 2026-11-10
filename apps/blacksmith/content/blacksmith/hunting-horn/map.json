@@ -251,63 +251,7 @@
         "type": "hunting-horn",
         "name": "Bone Horn",
         "rarity": 2,
-        "children": [
-          {
-            "slug": "bone-horn-plus",
-            "type": "hunting-horn",
-            "name": "Bone Horn+",
-            "rarity": 4,
-            "children": [
-              {
-                "slug": "hunter-s-horn",
-                "type": "hunting-horn",
-                "name": "Hunter's Horn",
-                "rarity": 6,
-                "children": [
-                  {
-                    "slug": "hunter-s-horn-plus",
-                    "type": "hunting-horn",
-                    "name": "Hunter's Horn+",
-                    "rarity": 9,
-                    "children": [
-                      {
-                        "slug": "native-s-horn",
-                        "type": "hunting-horn",
-                        "name": "Native's Horn",
-                        "rarity": 9
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          },
-          {
-            "slug": "blessed-ocarina",
-            "type": "hunting-horn",
-            "name": "Blessed Ocarina",
-            "rarity": 5,
-            "element": "poison",
-            "children": [
-              {
-                "slug": "cursed-ocarina",
-                "type": "hunting-horn",
-                "name": "Cursed Ocarina",
-                "rarity": 8,
-                "element": "poison",
-                "children": [
-                  {
-                    "slug": "genie-s-ocarina",
-                    "type": "hunting-horn",
-                    "name": "Genie's Ocarina",
-                    "rarity": 10,
-                    "element": "poison"
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "alias": true
       }
     ]
   },

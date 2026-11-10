@@ -10,7 +10,8 @@
  * so the two stay in step.
  *
  * index.html's link-preview tags get the site's absolute address, and the
- * picture they show (social-card.png, drawn by social-card.mts) is copied in.
+ * picture they show (social-card.png, drawn by social-card.mts) is copied in,
+ * as is the masthead's wordmark (randomfu.png).
  *
  *   pnpm build
  */
@@ -146,6 +147,8 @@ for (const asset of assets) {
   mkdirSync(path.join(dist, path.dirname(asset)), { recursive: true });
   copyFileSync(path.join(site, "public", asset), path.join(dist, asset));
 }
+// The wordmark, spelled in the game's lettering like the site's blacksmith.png.
+copyFileSync(path.join(web, "randomfu.png"), path.join(dist, "images", "randomfu.png"));
 // The link-preview picture (og:image), drawn by social-card.mts.
 copyFileSync(path.join(web, "social-card.png"), path.join(dist, "images", "social-card.png"));
 copyFileSync(path.join(web, "LICENSE"), path.join(dist, "LICENSE.txt"));

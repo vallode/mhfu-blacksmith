@@ -66,6 +66,15 @@ export function treeRowHref(
     : `${basePath}${node.slug}/`;
 }
 
+/**
+ * A row's key in `FilteredTree.rows`. A weapon is usually one row, keyed by its
+ * slug; an alias row (the same weapon under another parent) is keyed by that
+ * parent's page too, as its upgrade is from that parent.
+ */
+export function treeRowKey(node: WeaponTreeNode, parentHref: string | undefined): string {
+  return node.alias ? `${parentHref ?? ""}>${node.slug}` : node.slug;
+}
+
 /** A row's status for the loaded hunter; `parentHref` is the enclosing row's page. */
 export function rowStatus(
   node: WeaponTreeNode,
@@ -110,15 +119,16 @@ export interface FilteredRow extends RowStatus {
 }
 
 export interface FilteredTree {
-  /** Keyed by node slug. */
+  /** Keyed by `treeRowKey`. */
   rows: Map<string, FilteredRow>;
   matched: number;
   total: number;
 }
 
 /**
- * Every node's status and match. Counts every weapon in the tree data,
- * including rows inside collapsed branches and cross-type rows.
+ * Every node's status and match. Counts every weapon in the tree data once,
+ * including rows inside collapsed branches and cross-type rows; a weapon
+ * listed under several parents matches when any of its rows does.
  */
 export function filterTree(
   tree: WeaponTreeNode[],
@@ -128,24 +138,20 @@ export function filterTree(
   filter: TreeFilterId,
 ): FilteredTree {
   const rows = new Map<string, FilteredRow>();
-  let matched = 0;
-  let total = 0;
+  const weapons = new Set<string>();
+  const matches = new Set<string>();
   const walk = (nodes: WeaponTreeNode[], parentHref: string | undefined) => {
     for (const node of nodes) {
-      const status = rowStatus(
-        node,
-        sectionType,
-        basePath,
-        node.parentHref ?? parentHref,
-        progress,
-      );
+      const from = node.parentHref ?? parentHref;
+      const status = rowStatus(node, sectionType, basePath, from, progress);
       const match = matchesTreeFilter(filter, status);
-      total++;
-      if (match) matched++;
-      rows.set(node.slug, { ...status, match });
+      const weapon = `${node.type}/${node.slug}`;
+      weapons.add(weapon);
+      if (match) matches.add(weapon);
+      rows.set(treeRowKey(node, from), { ...status, match });
       if (node.children) walk(node.children, status.href);
     }
   };
   walk(tree, undefined);
-  return { rows, matched, total };
+  return { rows, matched: matches.size, total: weapons.size };
 }
