@@ -20,8 +20,11 @@ const SLOTS = [0, 1, 2];
 
 // One hunter slot. The card is the frame; this fills it so the whole slot is
 // the target, top-aligned so an empty slot's NO DATA sits where a name does.
+// Fills the card's body, which starts 6px in, at the frame's outline: the
+// padding and height leave out those 6px, so the text sits 2.6rem by 2.4rem
+// from the card's edge and the card is 16rem tall.
 const slotBase =
-  "box-border flex min-h-[16rem] w-full flex-col justify-start gap-[0.8rem] border-0 bg-transparent px-[2.6rem] py-[2.4rem] text-left font-[inherit] leading-none tracking-[0.06em] text-white";
+  "box-border flex min-h-[14.8rem] w-full flex-col justify-start gap-[0.8rem] border-0 bg-transparent px-[2rem] py-[1.8rem] text-left font-[inherit] leading-none tracking-[0.06em] text-white";
 
 // The chosen hunter, lit like the game's selected slot. Hover keeps the fill
 // so clicking again (to deselect) reads as acting on this card.
@@ -76,7 +79,7 @@ interface SlotCardProps {
 function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
   if (!hunter) {
     return (
-      <Card className="flex-none" bodyClassName="p-0">
+      <Card className="flex-none" bodyClassName="card-p-0">
         <div className={slotBase}>
           <span className={slotName}>
             <span>{slot + 1}</span>
@@ -87,12 +90,14 @@ function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
     );
   }
   return (
-    <Card className="flex-none" bodyClassName="p-0">
+    <Card className="flex-none" bodyClassName="card-p-0">
       <button
         type="button"
         className={cn(
           slotBase,
-          "cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-6 focus-visible:outline-white",
+          // 7px in from the body (at the frame's outline), so the ring sits
+          // just inside the frame's bands, which cover the body's edge.
+          "cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-7 focus-visible:outline-white",
           active ? slotActive : "hover:hover-glow",
         )}
         onClick={onToggle}

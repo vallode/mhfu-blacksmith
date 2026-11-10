@@ -435,7 +435,7 @@ export default function SetBuilderClient() {
         <Card
           className="max-w-[56rem] text-small mobile:max-w-none mobile:flex-none"
           scroll
-          bodyClassName="gap-[1.3rem] py-[1.7rem]"
+          bodyClassName="gap-[1.3rem] card-py-7"
         >
           <PanelTitle>Skills</PanelTitle>
           <form
@@ -522,7 +522,7 @@ export default function SetBuilderClient() {
           </form>
         </Card>
 
-        <Card className="text-small" scroll bodyClassName="gap-[1.3rem] py-[1.7rem]">
+        <Card className="text-small" scroll bodyClassName="gap-[1.3rem] card-py-7">
           <Tabs
             label="Set builder"
             active={view}

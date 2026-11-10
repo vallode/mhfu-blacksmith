@@ -9,7 +9,7 @@ import type { Material } from "@/lib/types";
 // default; values are white.
 
 /**
- * The detail card; shares the row equally with the tree card. Long content
+ * The detail card; shares the row with the tree card. Long content
  * (a quest's rewards, a monster's drops) scrolls inside it on desktop, where
  * the card is the height of the page; on a phone the card grows instead.
  */
@@ -21,7 +21,9 @@ export function DetailCard({
   className?: string;
 }) {
   return (
-    <Card className={className} scroll>
+    // The 4rem basis keeps the row split it had when Card's 4rem of side
+    // padding sat on this flex item (tree card 530px, this 570px at 1400px).
+    <Card className={cn("basis-[4rem] mobile:basis-[0%]", className)} scroll>
       {children}
     </Card>
   );

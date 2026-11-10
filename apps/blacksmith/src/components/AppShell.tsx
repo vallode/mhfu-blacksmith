@@ -82,13 +82,10 @@ function SidebarContents({
 }) {
   return (
     <>
-      {/* The card's scrolling body stops 1.2rem short of the frame on the
-          right (room for its scrollbar), so the logo and divider keep 1.2rem
-          less margin there. */}
       <Link
         href="/"
         aria-label="Home"
-        className={cn("mt-2 mr-[1.2rem] mb-4 ml-6 block flex-none", collapsed && "hidden")}
+        className={cn("mx-6 mt-2 mb-4 block flex-none", collapsed && "hidden")}
       >
         <img className="h-auto w-full" src="/images/blacksmith.png" alt="Blacksmith" />
       </Link>
@@ -96,7 +93,7 @@ function SidebarContents({
       <nav className="flex flex-col" aria-label="Main">
         {NAV_GROUPS.map((group, i) => (
           <Fragment key={i}>
-            {i > 0 && <hr className="my-[1rem] mr-[1.2rem] ml-6 h-[3px] w-auto" />}
+            {i > 0 && <hr className="mx-6 my-[1rem] h-[3px] w-auto" />}
             {group.map((item) => {
               const active = pathname.startsWith(item.match);
               return (
@@ -185,7 +182,7 @@ function TabBar({
     >
       <Card
         className="h-tabbar bg-black/60 backdrop-blur-sm"
-        bodyClassName="flex-row items-stretch px-[1.6rem] py-[1.3rem]"
+        bodyClassName="flex-row items-stretch card-px-[1.6rem] card-py-[1.3rem]"
       >
         {tabs.map((item) => {
           const active = !menuOpen && pathname.startsWith(item.match);
@@ -281,7 +278,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
             collapsed && "w-[10.1rem]",
           )}
           scroll
-          bodyClassName="overflow-x-hidden py-[0.4rem] pr-0 pl-[0.9rem]"
+          bodyClassName="overflow-x-hidden card-py-[2.2rem] card-pr-0 card-pl-[1.5rem]"
         >
           <SidebarContents
             pathname={pathname}
@@ -319,7 +316,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           frame="teal"
           className="relative -ml-[1.5rem] h-[calc(100%-var(--spacing-tabbar))] w-[29.5rem] max-w-[85vw] flex-none animate-drawer-in bg-black/70 text-sub"
           scroll
-          bodyClassName="py-[0.4rem] pr-0 pl-[0.9rem]"
+          bodyClassName="card-py-[2.2rem] card-pr-0 card-pl-[1.5rem]"
         >
           <SidebarContents pathname={pathname} hrefFor={hrefFor} onSearch={closeMenu} />
         </Card>

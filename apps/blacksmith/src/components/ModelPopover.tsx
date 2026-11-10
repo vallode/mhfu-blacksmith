@@ -171,10 +171,9 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
       role="dialog"
       aria-label={`3D model of ${title}`}
     >
-      {/* No padding, and a margin exactly as thick as the blue frame's
-          visible band (4 source px at 3x), so the render ends at the frame
-          and needs no clip. */}
-      <Card frame="blue" bodyClassName="m-[12px] p-0 [clip-path:none]">
+      {/* Padding exactly as thick as the blue frame's visible band (4 source
+          px at 3x), so the render ends at the frame. */}
+      <Card frame="blue" bodyClassName="card-p-[1.2rem]">
         <div className="flex min-h-0 flex-1">{children}</div>
       </Card>
       {/* Outside the card, so it sits over the frame rather than under it. */}
