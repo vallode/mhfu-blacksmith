@@ -11,7 +11,15 @@ import { GAME_NAMES } from "../container/sfo.js";
 import { MHP2G_PROFILE } from "../games/mhp2g.js";
 import { ARMOR_SLOT_COUNTS, ARMOR_SLOTS, armorValuesOffsets } from "../tables/armor.js";
 import { ARMOR_ENTRY_SIZE } from "../tables/offsets.js";
-import { probeTable, type ProbeResult, type ProbeTable } from "../tables/probe.js";
+import {
+  byteAgreement,
+  probeTable,
+  probeWindows,
+  WindowIndex,
+  type ProbeResult,
+  type ProbeTable,
+  type WindowProbe,
+} from "../tables/probe.js";
 import { assertMhfuUnpack, manifestGame, type UnpackManifest } from "./unpack.js";
 
 export interface TableProbeOptions {
@@ -25,8 +33,24 @@ export interface TableProbeOptions {
 export interface TableProbeReport {
   reference: { game: string; region: string; discId: string };
   target: { game: string; region: string; discId: string; ebootBytes: number };
-  tables: ProbeResult[];
+  tables: TableProbeEntry[];
 }
+
+export interface TableProbeEntry extends ProbeResult {
+  /**
+   * Per byte of an entry, the percentage of entries at the best base whose
+   * byte matches MHFU's (when at least `MIN_AGREEMENT_ENTRIES` entries
+   * agreed on it). Low bytes are fields the target changed.
+   */
+  agreement?: number[];
+  /** Runs of each entry, for tables whose layout changed (tables/probe.ts). */
+  windows: WindowProbe | null;
+}
+
+/** Fewest entries agreeing on a base before per-byte agreement means anything. */
+const MIN_AGREEMENT_ENTRIES = 10;
+/** Bytes per run in the window search. */
+const WINDOW = 8;
 
 async function readManifest(dir: string): Promise<UnpackManifest> {
   return JSON.parse(await readFile(path.join(dir, "manifest.json"), "utf-8")) as UnpackManifest;
@@ -77,9 +101,22 @@ export async function runTableProbe(options: TableProbeOptions): Promise<TablePr
   const refEboot = await readEboot(options.reference, refManifest);
   const targetEboot = await readEboot(options.target, targetManifest);
 
-  const tables = referenceTables(refEboot, refManifest.region).map((t) =>
-    probeTable(refEboot, t, targetEboot),
-  );
+  const index = new WindowIndex(targetEboot, WINDOW);
+  const tables: TableProbeEntry[] = referenceTables(refEboot, refManifest.region).map((t) => {
+    const result = probeTable(refEboot, t, targetEboot);
+    const best = result.bases[0];
+    const agreement =
+      best && best.entries >= MIN_AGREEMENT_ENTRIES
+        ? byteAgreement(refEboot, t, targetEboot, best.offset, best.firstIndex, best.lastIndex).map(
+            (share) => Math.round(share * 100),
+          )
+        : undefined;
+    return {
+      ...result,
+      ...(agreement ? { agreement } : {}),
+      windows: probeWindows(refEboot, t, index),
+    };
+  });
   const report: TableProbeReport = {
     reference: {
       game: manifestGame(refManifest),
@@ -109,7 +146,31 @@ export async function runTableProbe(options: TableProbeOptions): Promise<TablePr
     console.log(
       `  ${t.table.padEnd(22)} ${String(t.unique).padStart(5)}/${String(t.searched).padEnd(5)} unique, ${String(t.ambiguous).padStart(4)} ambiguous; ${where}`,
     );
+    if (t.agreement) {
+      const changed = t.agreement
+        .map((pct, at) => ({ pct, at }))
+        .filter(({ pct }) => pct < 90)
+        .map(({ pct, at }) => `+${at}:${pct}%`);
+      console.log(
+        `  ${"".padEnd(22)} bytes under 90% agreement: ${changed.length ? changed.join(" ") : "none"}`,
+      );
+    }
+    console.log(`  ${"".padEnd(22)} ${describeWindows(t.windows)}`);
   }
   console.log(`\nWrote ${out}`);
   return report;
+}
+
+/** One line on the window search: the target entry size and where MHFU's fields land in it. */
+function describeWindows(w: WindowProbe | null): string {
+  if (!w) return "runs: entries shorter than a run";
+  if (w.stride === null || w.fields.length === 0) return "runs: no consistent spacing";
+  const support = w.strides[0]!.pairs;
+  const runnerUp = w.strides[1] ? `, next ${w.strides[1].stride} (${w.strides[1].pairs})` : "";
+  const origin = Math.min(...w.fields.map((f) => f.targetBase!));
+  const fields = [...w.fields]
+    .sort((a, b) => a.refOffset - b.refOffset)
+    .map((f) => `${f.refOffset}->${f.targetBase! - origin}(${f.agreeing})`)
+    .join(" ");
+  return `runs: entry size ${w.stride} (${support} pairs${runnerUp}), first field at 0x${origin.toString(16)}; MHFU offset->target offset(entries): ${fields}`;
 }

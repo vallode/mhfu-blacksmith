@@ -254,7 +254,12 @@ Getting data out of them takes a disc of each, then, per game:
    searches the target EBOOT for every entry of every fixed-size MHFU table
    (weapons, armor, items, decorations, sharpness, …) and reports where each
    table would start, how many entries agree, and where inserted or removed
-   entries split it (`src/tables/probe.ts`; offsets and counts only):
+   entries split it. For a table it finds, it shows which bytes of an entry
+   the target game changed. For one whose entries changed size, it looks up
+   every 8-byte run of every entry instead: runs found once vote for the
+   spacing between entries (the target's entry size) and for where each
+   MHFU field sits in a target entry (`src/tables/probe.ts`; offsets and
+   counts only):
 
    ```bash
    pnpm --filter mhfu-extract table-probe --reference .cache/mhfu --target .cache/mhf2
