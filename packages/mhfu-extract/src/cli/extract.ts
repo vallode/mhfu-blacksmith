@@ -95,7 +95,7 @@ export async function readQuestsFromUnpackedDir(
       }
       const parsed = parseQuest(payload);
       quests.push(parsed);
-      raw.push(dumpQuestRaw(ref.path, payload, parsed));
+      raw.push(dumpQuestRaw(ref.path, payload, parsed, file.length));
     } catch (error) {
       const reason = error instanceof QuestCipherError ? error.message : String(error);
       skipped.push({ path: ref.path, reason });

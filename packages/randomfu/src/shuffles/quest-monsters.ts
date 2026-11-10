@@ -6,7 +6,8 @@
  *
  * Species. A swap changes every `LargeMonData` and preload (`emLoadTable`)
  * entry for the monster, and the header's `TargetID` and objective slots
- * if they name it. Two things limit which monsters can trade:
+ * if they name it, and the `TargetID` of the quest's board records
+ * (`game/board.ts`). Two things limit which monsters can trade:
  *
  * - Maps. A monster only goes to a map (day and night alike) where some
  *   Village or Guild quest already has it as a large monster, so Lao-Shan
@@ -18,8 +19,9 @@
  *   monster in a quest; the wider pools only touch quests with one kind of
  *   large monster, which then still have one.
  *
- * Not changed, so possibly wrong after a swap: the quest's text, and any
- * monster IDs in its script (`QuestScript`, not decoded).
+ * The quest's text is renamed separately (`quest-text.ts`). Scripts
+ * (`QuestScript`) need nothing: on the EU disc no packet argument is ever
+ * a quest's target or one of its monsters (mhfu-extract `quest-probe`).
  *
  * Difficulty is the `power` byte, the row of the quest's stat multiplier
  * table (HP, attack, defense, status: mhfu-extract `monsters/multipliers.ts`).
@@ -28,6 +30,8 @@
  * rank: rows past them may be filler.
  */
 import type { LoadedQuest } from "../game/load.js";
+import { RECORD_TARGET_ID, type BoardFile } from "../game/board.js";
+import { DELIVERY_TYPE, QUEST_TYPE } from "../game/quest-fields.js";
 import {
   readSpawns,
   OBJECTIVE_ID_OFFSET,
@@ -35,6 +39,7 @@ import {
   OBJECTIVE_OFFSETS,
   POWER_OFFSET,
   QUANTITY_OFFSET,
+  SIZE_PERCENT_OFFSET,
   TARGET_ID_OFFSET,
   type QuestSpawns,
 } from "../game/spawns.js";
@@ -110,7 +115,13 @@ export function swapSpecies(
   rng: Rng,
   edits: Edits,
   allQuests: readonly LoadedQuest[],
-): { report: ShuffleReport; questsAfter: ParsedQuest[] } {
+  boards: readonly BoardFile[] = [],
+): {
+  report: ShuffleReport;
+  questsAfter: ParsedQuest[];
+  /** Each changed quest's swaps (old emID -> new), by DATA.BIN index. */
+  swaps: Map<number, Map<number, number>>;
+} {
   const onMap = new Map<number, Set<number>>();
   const bands = new Map<number, Set<Band>>();
   for (const { quest, tier, spawns } of list) {
@@ -124,6 +135,10 @@ export function swapSpecies(
   const lines: ShuffleReport["lines"] = [];
   const changed = new Map<number, Map<number, number>>();
   let mixed = 0;
+  let stuck = 0;
+  let drawnSame = 0;
+  /** Per monster: whether any quest it's in offered it another species. */
+  const movable = new Map<number, boolean>();
   for (const { quest, tier, spawns } of list) {
     const species = unique(spawns.large.map((s) => s.monsterId));
     if (species.length === 0) continue;
@@ -134,6 +149,7 @@ export function swapSpecies(
     const here = onMap.get(habitat(quest.parsed.header.map)) ?? new Set<number>();
     const taken = new Set<number>();
     const mapping = new Map<number, number>();
+    let choice = false;
     for (const old of species) {
       const options =
         pool === "variants"
@@ -142,24 +158,42 @@ export function swapSpecies(
       // Never empty: every monster of the quest is on its map, so its family
       // has as many options as the quest has members of it.
       const free = options.filter((id) => !taken.has(id)).sort((a, b) => a - b);
+      const others = options.some((id) => id !== old);
+      movable.set(old, (movable.get(old) ?? false) || others);
+      choice ||= others;
       const next = free.length > 1 ? free[rng.int(free.length)]! : (free[0] ?? old);
       taken.add(next);
       if (next !== old) mapping.set(old, next);
     }
-    if (mapping.size === 0) continue;
+    if (mapping.size === 0) {
+      if (choice) drawnSame++;
+      else stuck++;
+      continue;
+    }
 
     const payload = edits.quest(quest);
     for (const { offset, monsterId } of [...spawns.large, ...spawns.loads]) {
       const next = mapping.get(monsterId);
       if (next !== undefined) payload.writeUInt16LE(next, offset);
     }
+    // A delivery quest's TargetID is an item, not a monster.
+    const delivery = payload[QUEST_TYPE] === DELIVERY_TYPE;
     const target = mapping.get(payload.readUInt16LE(TARGET_ID_OFFSET));
-    if (target !== undefined) payload.writeUInt16LE(target, TARGET_ID_OFFSET);
+    if (target !== undefined && !delivery) payload.writeUInt16LE(target, TARGET_ID_OFFSET);
     for (const objective of OBJECTIVE_OFFSETS) {
       if (payload.readUInt32LE(objective) !== OBJECTIVE_KIND_MONSTER) continue;
       const idAt = objective + OBJECTIVE_ID_OFFSET;
       const next = mapping.get(payload.readUInt16LE(idAt));
       if (next !== undefined) payload.writeUInt16LE(next, idAt);
+    }
+    // The board keeps its own copy of the header, TargetID included.
+    for (const board of boards) {
+      for (const record of board.records) {
+        if (record.questId !== quest.parsed.header.questId || delivery) continue;
+        const at = record.offset + RECORD_TARGET_ID;
+        const next = mapping.get(board.data.readUInt16LE(at));
+        if (next !== undefined) edits.dataFile(board.index).writeUInt16LE(next, at);
+      }
     }
     changed.set(quest.index, mapping);
     for (const [old, next] of mapping) {
@@ -174,12 +208,24 @@ export function swapSpecies(
     pool === "variants"
       ? "Each large monster became one of its variants, on maps where that variant is found."
       : `Each large monster became any large monster found on the quest's map${pool === "rank" ? " at the quest's rank" : ""}.`,
-    "Quest text, and any monster in the quest's script, still names the old monster.",
   ];
   if (mixed > 0)
     notes.push(`${mixed} quests with more than one kind of large monster were left alone.`);
+  if (stuck > 0) {
+    notes.push(
+      `${stuck} quests kept their monsters because no other ${pool === "variants" ? "variant" : "monster"} is found on their map.`,
+    );
+  }
+  if (drawnSame > 0) notes.push(`${drawnSame} quests drew their own monsters again.`);
+  const neverMoves = [...movable].filter(([, m]) => !m).map(([id]) => monsterName(id));
+  if (neverMoves.length > 0) {
+    notes.push(
+      `Never changed by this pool (no other choice on any of their maps): ${neverMoves.sort().join(", ")}.`,
+    );
+  }
   return {
     report: { title: "Quest monsters", notes, lines },
+    swaps: changed,
     questsAfter: allQuests.map((q) => {
       const mapping = changed.get(q.index);
       if (!mapping) return q.parsed;
@@ -279,6 +325,42 @@ export function randomizeSmallCounts(
     title: "Small monster counts",
     notes: [
       `Counts moved by up to ${Math.round(spread * 100)}%, between 1 and ${cap} (the most any quest has). Counts of 0 and ${SPECIAL_COUNT} or more are unchanged.`,
+    ],
+    lines,
+  };
+}
+
+/** Size percentages are kept within this (the byte the disc uses holds up to 255). */
+const SIZE_LIMITS = [50, 200] as const;
+
+/**
+ * Each Village and Guild quest's monster size (`MonSizeModifier`, a
+ * percentage), scaled by a random factor within `spread`. Quest-wide: every
+ * large monster in the quest gets it. Values the disc doesn't use (0) are
+ * left alone.
+ */
+export function randomizeQuestSize(
+  list: readonly QuestMonsters[],
+  spread: number,
+  rng: Rng,
+  edits: Edits,
+): ShuffleReport {
+  const lines: ShuffleReport["lines"] = [];
+  for (const q of list) {
+    if (q.spawns.large.length === 0) continue;
+    const size = q.quest.file.payload.readUInt32LE(SIZE_PERCENT_OFFSET);
+    if (size === 0 || size > 255) continue;
+    const factor = 1 - spread + 2 * spread * rng.float();
+    const next = Math.min(SIZE_LIMITS[1], Math.max(SIZE_LIMITS[0], Math.round(size * factor)));
+    if (next === size) continue;
+    edits.quest(q.quest).writeUInt32LE(next, SIZE_PERCENT_OFFSET);
+    lines.push({ where: questLabel(q.quest), text: `size ${next}% (was ${size}%)` });
+  }
+  return {
+    title: "Quest monster size",
+    notes: [
+      `Each quest's monster size (its header's size percentage) moved by up to ${Math.round(spread * 100)}%, kept between ${SIZE_LIMITS[0]}% and ${SIZE_LIMITS[1]}%.`,
+      "Changing it was seen to resize a quest's monsters in game; whether hitboxes follow is untested.",
     ],
     lines,
   };

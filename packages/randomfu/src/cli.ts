@@ -61,8 +61,13 @@ const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   costs: "costs.enabled",
   weapons: "weapons.enabled",
   armor: "armor.enabled",
+  "armor-skills": "armorSkills.enabled",
   shops: "shops.enabled",
   gathering: "gathering.enabled",
+  supplies: "supplies.enabled",
+  "quest-money": "terms.money",
+  "time-limits": "terms.time",
+  deliveries: "deliveries.enabled",
 };
 
 /** Shorthand flags for single settings. */

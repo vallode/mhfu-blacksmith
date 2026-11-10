@@ -6,9 +6,10 @@
  * 13 of them (`level1.mib`..`level11.mib`, `levelx.mib`, `levela.mib`) are a
  * different, non-quest format — confirmed empirically: every one of them
  * fails `QuestCipher`'s SHA1/size check under the `decryptQuest()` region
- * salt that cleanly decrypts all other 551 `m#####.mib` files (these are
- * almost certainly arena level/stage configs, not `questHeader`-shaped
- * data). Filtering them out by filename upfront documents the distinction
+ * salt that cleanly decrypts all other 551 `m#####.mib` files. They aren't
+ * quest-encrypted at all: they're the quest board, a copy of each quest's
+ * display header section and text (README "Quest text"; randomfu
+ * `src/game/board.ts`). Filtering them out by filename upfront documents the distinction
  * explicitly instead of relying on that decrypt failure.
  */
 import type { DataBinFile } from "../container/databin.js";

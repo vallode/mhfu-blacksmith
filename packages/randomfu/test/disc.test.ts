@@ -107,5 +107,14 @@ test("a quest re-seals to its exact bytes, padding included, and carries edits",
   assert.equal(sealed.length, entry.length);
   assert.ok(decryptQuest(sealed, "jp").equals(edited));
   assert.ok(sealed.subarray(0, 8).equals(entry.subarray(0, 8)), "keeps the seeds");
-  assert.throws(() => quest.seal(Buffer.concat([edited, Buffer.alloc(2)])), /change size/);
+
+  // It can grow into its sector padding, and no further; it can't shrink.
+  assert.equal(quest.capacity, 2 * SECTOR - 8 - 24);
+  const grown = Buffer.concat([edited, Buffer.from("more")]);
+  const resealed = quest.seal(grown);
+  assert.equal(resealed.length, entry.length);
+  assert.ok(decryptQuest(resealed, "jp").equals(grown));
+  assert.ok(quest.seal(Buffer.alloc(quest.capacity, 1)).length === entry.length);
+  assert.throws(() => quest.seal(Buffer.alloc(quest.capacity + 2)), /at most/);
+  assert.throws(() => quest.seal(edited.subarray(0, 10)), /at most/);
 });

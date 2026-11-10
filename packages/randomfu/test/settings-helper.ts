@@ -9,8 +9,13 @@ export const SHUFFLE_KEYS = {
   costs: "costs.enabled",
   weapons: "weapons.enabled",
   armor: "armor.enabled",
+  "armor-skills": "armorSkills.enabled",
   shops: "shops.enabled",
   gathering: "gathering.enabled",
+  supplies: "supplies.enabled",
+  "quest-money": "terms.money",
+  "time-limits": "terms.time",
+  deliveries: "deliveries.enabled",
 } as const satisfies Record<string, OptionKey>;
 export type ShuffleName = keyof typeof SHUFFLE_KEYS;
 

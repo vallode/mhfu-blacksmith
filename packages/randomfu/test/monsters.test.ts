@@ -12,7 +12,7 @@ import {
 } from "mhfu-extract/src/monsters/hitzones.js";
 import { openPatchableImage } from "../src/disc/node-file.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
-import { readSpawns, TARGET_ID_OFFSET } from "../src/game/spawns.js";
+import { readSpawns, SIZE_PERCENT_OFFSET, TARGET_ID_OFFSET } from "../src/game/spawns.js";
 import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
 import { MONSTER_FAMILIES } from "../src/shuffles/quest-monsters.js";
@@ -108,7 +108,12 @@ test("variant swaps keep each monster in its family and on its map, and move the
         [...new Set(ids)],
         "the preload list follows",
       );
-      assert.equal(after.readUInt16LE(TARGET_ID_OFFSET), ids[0], "the target follows");
+      if (quest.parsed.header.questType % 256 === 2) {
+        // A delivery quest's target is its item.
+        assert.equal(after.readUInt16LE(TARGET_ID_OFFSET), quest.parsed.header.targetId);
+      } else {
+        assert.equal(after.readUInt16LE(TARGET_ID_OFFSET), ids[0], "the target follows");
+      }
       assert.equal(after.readUInt16LE(0x2c), ids[0], "a monster objective follows");
       assert.equal(
         after.readUInt16LE(0x34),
@@ -181,20 +186,22 @@ test("difficulty levels move within the levels quests of the same rank use", asy
 
 test("small monster counts stay between 1 and the most any quest has; 99 stays", async () => {
   const { game, close } = await load();
-  const result = randomize(
-    game,
-    only("s", { "questMonsters.smallCounts": true, "questMonsters.smallCountSpread": 0.95 }),
-  );
   let changed = 0;
-  for (const id of [1001, 10101, 2001]) {
-    const quest = byId(game, id);
-    const before = readSpawns(quest.file.payload, quest.parsed.header).small;
-    const after = readSpawns(payloadAfter(result, quest), quest.parsed.header).small;
-    after.forEach((s, i) => {
-      if (before[i]!.quantity === 99) assert.equal(s.quantity, 99);
-      else assert.ok(s.quantity >= 1 && s.quantity <= 8, `${id}: ${s.quantity}`);
-      if (s.quantity !== before[i]!.quantity) changed++;
-    });
+  for (const seed of ["s0", "s1", "s2", "s3"]) {
+    const result = randomize(
+      game,
+      only(seed, { "questMonsters.smallCounts": true, "questMonsters.smallCountSpread": 0.95 }),
+    );
+    for (const id of [1001, 10101, 2001]) {
+      const quest = byId(game, id);
+      const before = readSpawns(quest.file.payload, quest.parsed.header).small;
+      const after = readSpawns(payloadAfter(result, quest), quest.parsed.header).small;
+      after.forEach((s, i) => {
+        if (before[i]!.quantity === 99) assert.equal(s.quantity, 99);
+        else assert.ok(s.quantity >= 1 && s.quantity <= 8, `${id}: ${s.quantity}`);
+        if (s.quantity !== before[i]!.quantity) changed++;
+      });
+    }
   }
   assert.ok(changed > 0);
   close();
@@ -327,4 +334,53 @@ test("monster edits are written and read back; other options don't change", asyn
     withMonsters.reports.find((r) => r.title === "Quest rewards"),
     rewardsOnly.reports.find((r) => r.title === "Quest rewards"),
   );
+});
+
+test("quest size moves each Village and Guild quest's size percentage within the spread", async () => {
+  const { game, close } = await load();
+  let changed = 0;
+  for (const seed of ["q0", "q1", "q2", "q3"]) {
+    const result = randomize(
+      game,
+      only(seed, { "questMonsters.size": true, "questMonsters.sizeSpread": 0.3 }),
+    );
+    for (const quest of game.quests) {
+      const before = quest.file.payload.readUInt32LE(SIZE_PERCENT_OFFSET);
+      const after = payloadAfter(result, quest).readUInt32LE(SIZE_PERCENT_OFFSET);
+      if (quest.parsed.header.questId === 20001) {
+        assert.equal(after, before, "training quests stay");
+        continue;
+      }
+      if (quest.parsed.header.questId === 2001) assert.equal(before, 110);
+      assert.ok(after >= Math.round(before * 0.7) && after <= Math.round(before * 1.3), `${after}`);
+      if (after !== before) changed++;
+    }
+  }
+  assert.ok(changed > 0);
+  close();
+});
+
+test("quest size is off by default and leaves every quest's size alone", async () => {
+  const { game, close } = await load();
+  const result = randomize(game, only("q", { "questMonsters.species": true }));
+  for (const quest of game.quests) {
+    assert.equal(
+      payloadAfter(result, quest).readUInt32LE(SIZE_PERCENT_OFFSET),
+      quest.file.payload.readUInt32LE(SIZE_PERCENT_OFFSET),
+    );
+  }
+  close();
+});
+
+test("the species report says which quests kept their monsters, and which monsters never move", async () => {
+  const { game, close } = await load();
+  const result = randomize(game, only("n", { "questMonsters.species": true }));
+  const notes = result.reports.find((r) => r.title === "Quest monsters")!.notes.join("\n");
+  // Fatalis (2) has no variant in any fixture quest's map.
+  assert.match(
+    notes,
+    /Never changed by this pool \(no other choice on any of their maps\): Fatalis\./,
+  );
+  assert.match(notes, /quests kept their monsters because no other variant is found on their map/);
+  close();
 });

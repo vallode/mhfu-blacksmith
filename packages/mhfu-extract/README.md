@@ -41,6 +41,9 @@ pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../.
 pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
 pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
+pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests.json --tsv .cache/mhfu/quest-size.tsv
+pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
+pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Velocidrome
 ```
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
@@ -49,8 +52,9 @@ pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 - `extract` reads the unpacked directory and produces `data/*.json`-shaped
   output plus `EXTRACTION.json` provenance manifest. `--raw` also writes
   numbers-only dumps to `raw/` (sharpness, weapons, gunner, armor, and
-  `quests.json`: each quest's header words, raw `RewardTBL` entries and
-  script packets). It also writes `melodies.json`: candidate hunting horn
+  `quests.json`: each quest's header words, raw `RewardTBL` entries,
+  script packets, whole monster records, and its text layout as offsets
+  and lengths). It also writes `melodies.json`: candidate hunting horn
   note-set tables, found by searching the EBOOT and both overlays for a
   table whose entry `NoteGLType` holds each horn's committed notes, plus
   the blocks densest in the committed melody note sequences and the bytes
@@ -62,6 +66,26 @@ pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
   from the disc".
 - `build-data` rewrites committed `data/` from the extracted output. See
   "Building `data/` from the disc".
+- `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
+  open quest questions (`src/emit/quest-probe.ts`): the values the monster
+  size candidates take, the header's two objective slots, each script
+  opcode and how often its arguments equal the quest's `TargetID` or a
+  large monster, and how quest text is
+  laid out. `--tsv` also writes every large monster record's candidate
+  bytes, one row per record. Numbers only. See "Monster size", "Quest
+  text" and "Quest script".
+- `quest-text-scan` searches every unpacked file but the quests for one
+  quest's own strings, and reports where they're found, the `.pac` entry,
+  and the pointers to them, plus the headers of the likely message files
+  (`src/quests/text-scan.ts`). It also counts single words of the quest's
+  text (monster names and the like) in every file as UTF-8 and UTF-16LE,
+  and shows 64 bytes of each likely message file's string data. The
+  report names whole strings only by language and field. See "Quest
+  text".
+- `messages` reads one message file (`src/strings/messages.ts`) and prints
+  its tables, the strings containing `--grep`, or a run of strings
+  (`--table`, `--from`, `--count`), with control bytes as `\xNN`. It prints
+  game text, so keep the output out of the repository.
 - `quest-flags` searches the unpacked EBOOT and overlays for the table
   that maps quest IDs to their "cleared" bit in a save, and writes
   `quest-flags.json` (or `--out`). See "Save quest flags".
@@ -269,8 +293,9 @@ text). Two things worth flagging for anyone extending it:
   about hunting a Giadrome and its Giaprey pack).
 
 Not implemented (out of scope for now): `QuestScript` (opcodes are marked
-"TBD" even in the upstream pattern), gathering node locations/items, and
-arena sets.
+"TBD" even in the upstream pattern; see "Quest script" below), gathering
+node locations/items, and arena sets. The quest-wide monster size is decoded; its spread isn't
+(see "Monster size" below).
 
 ### Monster overlays: hitzones, tolerances and rewards
 
@@ -708,8 +733,8 @@ Known gaps and approximations, tracked in
 `src/quests/discovery.ts`'s `readAllQuests(dataBinFiles, region)` decrypts
 and parses every real quest file (`listQuestFiles()` filters `DATA.BIN`'s
 564 `mission_jpn/*.mib` entries down to the 551 real `m#####.mib` quests,
-excluding 13 `level*.mib` files confirmed to be a different, non-quest
-format). `src/emit/quests.ts`'s `emitQuestsFile(parsedQuests)` then maps
+excluding the 13 `level*.mib` files, which are the quest board, not
+quests: see "Quest text"). `src/emit/quests.ts`'s `emitQuestsFile(parsedQuests)` then maps
 them onto `data/quests/{village,guild,training-school,treasure-hunting}.json`
 (schema: `data/schemas/quest.schema.json`) — the first `data/` category this
 pipeline designed from scratch, since (unlike weapons/armor/monsters/
@@ -813,6 +838,190 @@ rows.
 Not implemented (out of scope for now, same as the underlying parser —
 see "Quests (.mib)" above): `QuestScript`, gathering node locations/items,
 and arena sets.
+
+### Monster size
+
+**`MonSizeModifier` (u32 at `0x38`) is the quest's monster size in
+percent.** Its values suggested it (`quest-probe` over all 551 EU
+quests), and an in-game test confirmed that it sets the size: a randomfu
+image with `questMonsters.size` (spread 50%) gave a Giadrome quest a visibly
+tiny Giadrome in PPSSPP. That the value is exactly a percentage still
+comes from the values, not from a measurement. The evidence:
+
+- Only its low byte is ever set. It's 100 in 273 quests and 98-120 in the
+  rest (31 values; 105, 110, 102 and 104 most often after 100).
+- Training and other rank 0, 3 and 4 quests are almost all 100. High Rank
+  (2) and G Rank (5) quests use the wider spread, and fewer than half of
+  them are 100.
+- Monster Hunter Frontier's quest editor (`Paxlord/PaxMHFZQuestEditor`,
+  `src/Utils/QuestParams/monsters_utils.js`) reads the same kind of field
+  from its own header: a u16 labelled "Size (in %)" at `0x44`, then an
+  unlabelled u16 and a difficulty. Its 60-byte large monster record has no
+  size field. Frontier's layout isn't MHP2G's, so this supports the reading
+  rather than proving it.
+
+It applies to the whole quest. randomfu's `questMonsters.size` edits it.
+To pin down the scale, set one quest to 150 and another to 60 and compare
+the live `MHFU_ENT_SIZE_SCALE` (MHFU-ModKit, an f32 at entity `+0x24`) with
+the unedited quest.
+
+**Still unknown: how crowns vary.** A quest's monsters vary in size around
+that percentage, and nothing yet shows what sets the spread. Candidates
+from the EU disc:
+
+- `Unkn6`/`Unkn7` (u8 at `0x49`/`0x4a`) take small values: `Unkn7` 0-4,
+  `Unkn6` 0-2, and 20 combinations in all (`0,0,0,0` in 142 quests,
+  `0,0,0,3` in 122, `0,0,0,4` in 86). `Unkn4`/`Unkn5` are always 0. Small
+  indexes like these fit a size-variation (crown) table, or something else
+  entirely. Frontier's unlabelled u16 after its size is the same kind of
+  lead.
+- The large monster records barely vary:
+  - `Attr2` (`+7`) is always 0, and `Attr1` (`+6`) is 0 in 545 of 554
+    records (30, 10, 2 and 1 otherwise).
+  - `DynamicData1[0]` (`+0x0c`) is 96000 in 17 records and 36000 in 5, and
+    `DynamicData1[1]` (`+0x10`) is 60000 in 7. These read like timers in
+    ticks (a quest's time limit is minutes × 1800).
+  - `DynamicData1[3]` (`+0x18`) is 1-4 in 27 records, perhaps a spawn wave
+    or order.
+  - Neither looks like a size.
+
+To settle the crown spread: take `quest-probe --tsv`'s rows for a monster
+whose crowns players report as easy in one quest and rare in another,
+and compare `Unkn6`/`Unkn7`. Or change one in a quest and measure many
+hunts. Before this, randomfu could only scale size per species
+(`emChunk +0x40`); that option stays.
+
+Other sources checked:
+
+- MHFU-ModKit's `MHFU_ENT_SIZE_SCALE` is the live entity's scale, not a
+  quest field.
+- The MHP2G decomp (`tclamb/mhp2g-decomp`) has no quest loader yet. Its
+  `Quest` singleton keeps a pointer at `+0x4c` to what looks like the
+  quest header: `Evdemo::map_demo_chk` reads the s8 at `+0x45` (the
+  hexpat's `Spawn`) and skips the map intro when it's non-zero.
+
+### Quest text
+
+- **Language slots.** `LangPTRs`' seven slots follow the game's
+  `LanguageId` (decomp `include/data_manager.hpp`: Japanese, English,
+  German, French, Spanish, Italian, Korean), so the hexpat's "Eng1", "Eng2"
+  and "Eng3" are the Japanese, English and Korean slots. The EU disc fills
+  Japanese and Korean with English text; the JP disc points all seven at
+  one Japanese block.
+- **Layout.** `readStringLayout` (`src/quests/parser.ts`) gives each
+  block's six string offsets and lengths, and `raw/quests.json` has it
+  per quest (`strings`), with `entrySize`, the DATA.BIN entry including its
+  sector padding.
+- **On the EU disc** (`quest-probe`, 551 quests):
+  - In every quest, the Japanese, English and Korean slots point at one
+    block, and the other four languages each have their own.
+  - No two pointers share a string, and no strings overlap.
+  - Each language's strings are packed back to back, each starting on a
+    4-byte boundary and followed by 1-4 zero bytes after its NUL (never
+    0, about evenly), so each takes its length plus two, rounded up to 4.
+  - Each language's pointer block follows its strings (the 25-28 byte
+    gaps).
+  - Each language's monster list splits into names with randomfu's
+    `splitNames`.
+  - Sector padding after the payload is 0-2044 bytes.
+- **The game shows other text.** On the EU disc, rewriting a quest's own
+  strings doesn't change its Quest Details screen. randomfu renamed 13 of
+  quest 10109's strings, among them the English monster list and goal, and
+  the screen still showed "Main Monsters: Velocidrome" (its title was
+  left alone as too wide).
+  The quest file's own text was rewritten and read back, and the swapped
+  monster was in the quest, so the screen reads its text from somewhere
+  else. `quest-text-scan --quest <id>` finds where a quest's strings are
+  stored on the disc and which table points at them.
+- **The quest board: `mission_jpn/level*.mib`.**
+  - These 13 files aren't quest-encrypted (which is why they fail the quest
+    cipher's checks) and hold the board. Quest 10109's title and goal are
+    in `level2.mib` and `level3.mib`, with pointers to them.
+  - Layout: u32 record offsets (as many as the first offset / 4). Each
+    record starts with a 0x34-byte copy of the quest header's display
+    section (quest file `0x4c`-`0x7f`), for example in `level1.mib`'s first
+    record quest type 4, fee 100, reward 1200, quest 1, map 11 and
+    `TargetID` 77 (Giadrome). Its `+0x14` is a file offset to its own
+    `LangPTRs`. Then come the record's strings, `StringPTRs` blocks and
+    `LangPTRs`, laid out as in a quest file, with offsets from the start of
+    the board file.
+  - randomfu reads them in `src/game/board.ts`.
+- **EU message files** (`quest-text-scan`, quest 10109).
+  - None of the quest's whole strings is stored anywhere else as UTF-8.
+  - The likely message files come in groups of five, one per language, with
+    the same layout:
+    - 19-23: 23 tables, about 445 KB each (`str_tbl`);
+    - 4776-4780: 2 tables, about 85 KB each;
+    - 4781-4785: 4 tables, about 300 KB each;
+    - 4786-4790: 1 table, about 38 KB each.
+  - The file list's names for 4788-4790 (`quest_str`, `lobby_str`,
+    `arcade_str`) come from matching JP indexes, so by content they're
+    three languages of one kind.
+  - Each file starts with a table count, then increasing offsets, and none
+    is a `.pac`.
+  - **Layout** (`src/strings/messages.ts`): u32 table count, u32 8, a u32
+    file offset per table, then each table's u32 string offsets (from the
+    table's start) ending in `0xFFFFFFFF`, then NUL-terminated UTF-8
+    strings.
+  - **Languages:** each group is English, French, German, Italian,
+    Spanish, from the training text that starts 4786-4790. The file list's
+    JP names for 4788-4790 therefore don't match their content on EU.
+  - **Not the quest board:** 4781's tables are in-game messages (table 0,
+    "%d Velocidrome hunted down."), two small tables, and tips (table 3).
+    No quest goal is in it. The board is in `mission_jpn/level*.mib`
+    (above).
+- **Where else names live.** FUComplete's English text for the P2G disc
+  (`FUComplete/Patch`, `data/str_tbl/`) has the monster names in
+  `str_tbl.pac`'s first string table, and the JP file list has
+  `message_jpn/str_tbl.pac` (file 15) plus `quest_str.pac`, `lobby_str.pac`
+  and `arcade_str.pac` (4756-4758). The EU disc has 20 more files than the
+  JP one, several of them just before those (`filelist-eu.json`'s
+  unmatched entries), which fits one set of message files per language,
+  but which EU file is which language isn't known. randomfu doesn't read
+  them: it learns names from the quests' own text instead.
+
+### Quest script
+
+`QuestScript` packets are an s16 opcode and three s16 arguments, from
+`header.questScriptPtr` up to the supplies. Nothing public decodes them for
+MHP2G. For MH1/MHG, a community write-up (gist
+`2Tie/15606613e5a5e6036a93858c297b6523`, `g1scripting.txt`) has the same
+8-byte packet shape and lists `02` "Sets the goal for Monster arg1 to
+arg2" (a monster ID and a count; up to two), `01` waits for those goals,
+`24` waits for a monster goal to drop below arg2, and captures as a
+delivery goal (`04`) for a "wyvern" item.
+
+**MHP2G's scripts don't name monsters.** On the EU disc (`quest-probe`)
+the 551 quests have only 6 distinct scripts. No argument of any packet
+equals the quest's `TargetID` or one of its large monsters. Packets
+seen:
+
+- `-2`, `-1`, `3`, `10`, `27`, `30`, `31`, `37` and `45` always have zero
+  arguments.
+- `9` always has 150.
+- `26` has 0, or 1 in 10 quests.
+- `11` has 13-15, in 10 quests, together with `42`-`44` and `55`-`57`.
+- `53` has 2000 and `54`, in 7 quests (probably Treasure Hunting's
+  points).
+
+The goals live in the header instead:
+
+- `TargetID`/`TargetNum` (u16 at `0x70`/`0x72`).
+- **Two objective slots** at `0x28` and `0x30`, each
+  `{ u32 kind, u16 id, u8 count, u8 slot }`. These are the hexpat's
+  unnamed `UnknPTR3`, `Unkn1`, `Unkn2` and `Unkn3`, worked out on the EU
+  disc by comparing quests (randomfu `OBJECTIVE_OFFSETS`):
+  - `kind` 1 means `id` is a monster (emID);
+  - `kind` 2 means `id` is an item, as in a delivery quest;
+  - `kind` 0 means the slot is unused.
+
+  `raw/quests.json` decodes them as `objectives`, and `quest-probe` tabulates
+  their kinds and whether a monster objective is the quest's `TargetID` or
+  one of its large monsters.
+
+These fit the decomp's two `QuestTarget`s (an `emId` and a count each,
+`include/quest.hpp`). randomfu's swaps update `TargetID` and every
+monster-kind objective, and need nothing in the script.
 
 ### Save quest flags
 

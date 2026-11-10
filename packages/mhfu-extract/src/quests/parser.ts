@@ -306,6 +306,69 @@ export function readQuestStrings(
   return out;
 }
 
+/**
+ * One of the header's two objective slots (8 bytes at 0x28 and 0x30, the
+ * hexpat's unnamed `UnknPTR3`, `Unkn1`, `Unkn2` and `Unkn3`), worked out by
+ * comparing quests on the EU disc: `kind` 1 means `id` is a monster (emID),
+ * 2 an item; 0 means the slot is unused.
+ */
+export interface QuestObjective {
+  kind: number;
+  id: number;
+  count: number;
+  slot: number;
+}
+
+export const OBJECTIVE_OFFSETS = [0x28, 0x30] as const;
+
+export function readObjectives(reader: BinaryReader): QuestObjective[] {
+  return OBJECTIVE_OFFSETS.map((at) => ({
+    kind: reader.u32(at),
+    id: reader.u16(at + 4),
+    count: reader.u8(at + 6),
+    slot: reader.u8(at + 7),
+  }));
+}
+
+/** The six strings of a `StringPTRs` block, in order. */
+export const STRING_FIELDS = ["title", "goal", "fail", "details", "monsters", "client"] as const;
+export type StringField = (typeof STRING_FIELDS)[number];
+
+export interface QuestStringLayout {
+  /** File offset of `LangPTRs` (`header.stringPtrTbl`). */
+  table: number;
+  /** Each language slot's `StringPTRs` block offset (0 if unset), in `LANG_SLOTS` order. */
+  blocks: number[];
+  /** Per distinct block: its six string offsets and byte lengths (without the NUL). */
+  strings: { block: number; pointers: number[]; lengths: number[] }[];
+}
+
+/**
+ * Where a quest's text lives, as numbers: the language table, its blocks
+ * and every string's offset and length. Blocks shared by several slots
+ * (the JP disc points them all at one) are listed once.
+ */
+export function readStringLayout(reader: BinaryReader, header: QuestHeader): QuestStringLayout {
+  const table = header.stringPtrTbl;
+  const size = reader.buf.length;
+  const blocks: number[] = [];
+  const strings: QuestStringLayout["strings"] = [];
+  if (table === 0 || table + LANG_SLOTS.length * 4 > size) return { table, blocks, strings };
+  for (let i = 0; i < LANG_SLOTS.length; i++) blocks.push(reader.u32(table + i * 4));
+  for (const block of new Set(blocks)) {
+    if (block === 0 || block + STRING_FIELDS.length * 4 > size) continue;
+    const pointers = STRING_FIELDS.map((_, i) => reader.u32(block + i * 4));
+    const lengths = pointers.map((ptr) => {
+      if (ptr === 0 || ptr >= size) return 0;
+      let end = ptr;
+      while (end < size && reader.buf[end] !== 0) end++;
+      return end - ptr;
+    });
+    strings.push({ block, pointers, lengths });
+  }
+  return { table, blocks, strings };
+}
+
 /** The first populated language slot's strings, or null if none are set. */
 export function readPrimaryQuestStrings(
   reader: BinaryReader,
