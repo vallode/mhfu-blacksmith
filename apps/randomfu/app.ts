@@ -75,6 +75,15 @@ const OPTION_STEPS: Step[] = [
     intro: "What mining, gathering and bug catching points give you.",
   },
   {
+    id: "quests",
+    title: "Quests",
+    icon: "herb",
+    tint: "var(--color-gem-green)",
+    sections: ["Supplies", "Quest terms", "Deliveries"],
+    intro:
+      "What quests hand you, what they pay and how long they last, and what delivery quests ask for.",
+  },
+  {
     id: "smithy",
     title: "Smithy",
     icon: "hammer",

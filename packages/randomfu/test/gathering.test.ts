@@ -64,6 +64,8 @@ test("the reader gives each used pair once, with its offset and value", () => {
   assert.deepEqual(readGatheringItems(bad, parseQuest(bad)), {
     items: [],
     slots: [],
+    nodes: [],
+    tables: new Map(),
     problem: "item table 0 has item 5000",
   });
   const past = buildQuestPayload({
@@ -146,9 +148,31 @@ test("gathering: deterministic, own random stream, and in the spoiler", async ()
     lines(randomize(game, settingsWith("g", ["gathering"])), "Gathering points"),
   );
   const gatheringLines = lines(a, "Gathering points");
-  assert.equal(gatheringLines.length, 11, "every used pair in Village and Guild quests, once");
+  assert.equal(
+    gatheringLines.length,
+    10,
+    "every used pair in Village and Guild quests, once, but 10102's delivery item",
+  );
   assert.ok(!gatheringLines.some((l) => l.where.startsWith("20001")), "Training School");
   assert.match(formatSpoiler(game, s, a), /== Gathering points ==/);
+  close();
+});
+
+test("gathering never moves a delivery quest's own item away from its points", async () => {
+  const { game, close } = await load();
+  const quest = game.quests.find((q) => q.parsed.header.questId === 10102)!;
+  const before = readGatheringItems(quest.file.payload, quest.parsed).slots;
+  const target = before.find((s) => s.itemId === 126)!;
+  for (const seed of ["a", "b", "c", "d", "e", "f"]) {
+    for (const pool of ["gathered", "rank", "any"]) {
+      const s = settingsWith(seed, ["gathering"], {
+        "gathering.pool": pool,
+        "gathering.keepItems": false,
+      });
+      const payload = randomize(game, s).edits.questNow(quest);
+      assert.equal(payload.readUInt16LE(target.offset + 2), 126, `${seed} ${pool}`);
+    }
+  }
   close();
 });
 

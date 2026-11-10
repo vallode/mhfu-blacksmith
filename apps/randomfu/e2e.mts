@@ -103,7 +103,7 @@ try {
 
   // Through every option step to the review: these settings change the EBOOT, but the
   // app decrypts the disc's own, so there's no EBOOT step.
-  for (const name of ["Logic", "Rewards", "Gathering", "Smithy", "Shops", "Review"]) {
+  for (const name of ["Logic", "Rewards", "Gathering", "Quests", "Smithy", "Shops", "Review"]) {
     await page.click("#next");
     assert.equal(await title(), name);
   }
