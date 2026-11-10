@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
+import MapIcon from "@/components/MapIcon";
 import BorderRule from "@/components/BorderRule";
 import QuestNav from "@/components/QuestNav";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
@@ -106,6 +107,7 @@ export default function QuestHubShell({
                   aria-current={q.id === id ? "page" : undefined}
                   className={cn("list-row", q.id === id && "bg-white/10")}
                 >
+                  {q.map && <MapIcon map={q.map} />}
                   <p className="truncate">{q.title}</p>
                   {(cleared?.has(q.id) || q.urgent) && (
                     <span className="ml-auto flex flex-none gap-[1rem]">

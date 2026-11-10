@@ -17,6 +17,7 @@ import {
   type QuestMonster,
 } from "@/lib/quests";
 import Loading from "@/components/Loading";
+import MapIcon from "@/components/MapIcon";
 import { cn } from "@/lib/cn";
 import StarMarks from "@/components/StarMarks";
 
@@ -88,7 +89,10 @@ export default function QuestDetailClient({ hub, id }: Props) {
           )}
           {quest.map && (
             <Stat label="Location:">
-              <span className="whitespace-normal text-white">{quest.map}</span>
+              <span className="inline-flex items-center gap-[0.8rem] whitespace-normal text-white">
+                <MapIcon map={quest.map} className="-my-[0.6rem]" />
+                {quest.map}
+              </span>
             </Stat>
           )}
           <Stat label="Time limit:">

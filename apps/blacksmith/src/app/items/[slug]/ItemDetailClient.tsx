@@ -15,6 +15,7 @@ import {
 } from "@/components/DetailPanel";
 import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
+import MapIcon from "@/components/MapIcon";
 import { DropGrid, dropQuantity } from "@/components/MonsterDrops";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -236,12 +237,13 @@ function GatherPlaces({
           rows={rows.flatMap((p): SourceRow[] => {
             const value = `${p.chance}%`;
             const points = gatherPointsLabel(p.points);
-            if (!p.quests) return [{ name: p.map, detail: points, quantity: 1, value }];
+            if (!p.quests) return [{ name: p.map, map: p.map, detail: points, quantity: 1, value }];
             return p.quests.map((id) => {
               const quest = byId.get(id);
               return {
                 name: quest?.title ?? `Quest ${id}`,
                 href: quest && questHref(quest),
+                map: p.map,
                 detail: `${p.map} · ${points}`,
                 cleared: cleared?.has(id),
                 quantity: 1,
@@ -282,6 +284,8 @@ interface SourceRow {
   href?: string;
   /** Before the name: a quest's star level */
   prefix?: string;
+  /** Before the name: the map's icon (gathering points) */
+  map?: string;
   /** How it's obtained, on the line below */
   detail: string;
   /** The loaded hunter has cleared this quest */
@@ -310,6 +314,7 @@ function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
         {rows.map((r, i) => (
           <li key={i} className="flex min-w-0 gap-[0.8rem] leading-[1.25]">
             {r.prefix && <span className="w-cells-4 flex-none text-stat">{r.prefix}</span>}
+            {r.map && <MapIcon map={r.map} />}
             <div className="flex min-w-0 flex-1 flex-col gap-[0.2rem]">
               <div className="flex min-w-0 items-baseline gap-[0.8rem]">
                 {r.href ? (
