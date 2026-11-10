@@ -387,6 +387,8 @@ if (!fs.existsSync(itemsFile)) {
     "name_jp",
     "aliases",
     "rarity",
+    "carry",
+    "price",
     "regions",
     "placeholder",
   ]);
@@ -427,6 +429,10 @@ if (!fs.existsSync(itemsFile)) {
     ) {
       error(`${label}: rarity must be an integer 1–10`);
     }
+    if (it.carry !== undefined && (!Number.isInteger(it.carry) || it.carry < 1 || it.carry > 255))
+      error(`${label}: carry must be an integer 1–255`);
+    if (it.price !== undefined && (!Number.isInteger(it.price) || it.price < 0))
+      error(`${label}: price must be a non-negative integer`);
     if (
       it.regions !== undefined &&
       (!Array.isArray(it.regions) || it.regions.some((r) => !REGIONS.has(r)))

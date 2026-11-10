@@ -63,9 +63,8 @@ const WEAPON_CLASS_MODIFIERS_EU: TableSignature = {
 const ITEM_TABLE_EU: TableSignature = {
   // itemTable (tables/items.ts) — entry index 0 (the dummy "None" item),
   // already unique across the whole ~1.9MB EBOOT. Real EU offset 0x19b74c,
-  // JP static offset 0x1987ec (+0x2f60). Not consumed by any emit/*.ts
-  // module today (no items.json output exists), kept as a validated
-  // reference example regardless.
+  // JP static offset 0x1987ec (+0x2f60). Read by emit/items.ts and
+  // emit/shops.ts.
   signature: Buffer.from("0000000104ff000000000000000000000000000000000100", "hex"),
   signatureOffset: 0,
 };

@@ -34,7 +34,7 @@ Thank you to all the people below, and anyone I missed, for the invaluable help 
 - Yaas
 - Zack
 
-In-game item IDs (`data/items.json`, used by the save loader on `/hunter`) come from the MIT-licensed datamines [Daigo829/mhfu-save-viewer](https://github.com/Daigo829/mhfu-save-viewer), [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns) and [Kolyn090/mhfu-db](https://github.com/Kolyn090/mhfu-db) (Kolyn090, Gustavo Augustini). See `apps/blacksmith/scripts/import-items.ts`.
+In-game item IDs and names (`data/items.json`, used by the save loader on `/hunter`) were imported once from the MIT-licensed datamines [Daigo829/mhfu-save-viewer](https://github.com/Daigo829/mhfu-save-viewer) and [IncognitoMan/mhp2g-patterns](https://github.com/IncognitoMan/mhp2g-patterns), and are edited by hand since. Each item's rarity, carry limit and price come from the disc (`packages/mhfu-extract`).
 
 The skill activation table (`data/skills.json`, used by the set builder on `/set-builder`) comes from the MIT-licensed [Kolyn090/mhfu-db](https://github.com/Kolyn090/mhfu-db) (Kolyn090, Gustavo Augustini), with tree names changed to the game's `SkillID` spelling and the site's other spellings listed as `aliases`. The set builder itself is modelled on Athena's Armor Set Search.
 

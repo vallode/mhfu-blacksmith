@@ -639,6 +639,8 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
   for (const r of records) {
     const out: CompactItem = { n: r.name };
     if (r.rarity !== undefined) out.r = r.rarity;
+    if (r.carry !== undefined) out.l = r.carry;
+    if (r.price !== undefined) out.z = r.price;
     const icon = iconFor.get(r.id);
     if (icon) {
       out.t = intern(typeIndex, icon[0]);
