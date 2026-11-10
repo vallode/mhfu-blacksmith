@@ -9,6 +9,9 @@
  * src/app/globals.css, and its sprites and font are copied from its public/,
  * so the two stay in step.
  *
+ * index.html's link-preview tags get the site's absolute address, and the
+ * picture they show (social-card.png, drawn by social-card.mts) is copied in.
+ *
  *   pnpm build
  */
 import { build } from "esbuild";
@@ -99,11 +102,22 @@ const rootRule = [
   "}",
 ].join("\n");
 
+// ---------------------------------------------------------------- the page
+
+/**
+ * Where the page is served, for the link-preview tags in index.html, which
+ * need absolute URLs. Netlify deploy previews and branch deploys use their
+ * own address, so their previews show that build's card.
+ */
+const siteUrl = (
+  (process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL) ||
+  "https://randomfu.vallode.com"
+).replace(/\/$/, "");
+
 const style = readFileSync(path.join(web, "style.css"), "utf8");
-const html = readFileSync(path.join(web, "index.html"), "utf8").replace(
-  "/*STYLE*/",
-  `${rootRule}\n${style.trim()}`,
-);
+const html = readFileSync(path.join(web, "index.html"), "utf8")
+  .replace("/*STYLE*/", `${rootRule}\n${style.trim()}`)
+  .replaceAll("%SITE_URL%", siteUrl);
 writeFileSync(path.join(dist, "index.html"), html);
 
 // Sprites, background and font from the site's public/ folder.
@@ -126,10 +140,13 @@ const assets = [
   "images/ticket.png",
   "images/max.png",
   "images/favicons/felyne-favicon.png",
+  "images/favicons/felyne-apple-touch-icon.png",
 ];
 for (const asset of assets) {
   mkdirSync(path.join(dist, path.dirname(asset)), { recursive: true });
   copyFileSync(path.join(site, "public", asset), path.join(dist, asset));
 }
+// The link-preview picture (og:image), drawn by social-card.mts.
+copyFileSync(path.join(web, "social-card.png"), path.join(dist, "images", "social-card.png"));
 copyFileSync(path.join(web, "LICENSE"), path.join(dist, "LICENSE.txt"));
 console.log(`Built ${path.relative(process.cwd(), dist)}`);

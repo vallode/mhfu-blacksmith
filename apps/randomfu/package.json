@@ -9,7 +9,8 @@
     "build": "node build.mjs",
     "typecheck": "tsc --noEmit -p .",
     "test": "tsx --test test/**/*.test.ts",
-    "test:e2e": "tsx e2e.mts"
+    "test:e2e": "tsx e2e.mts",
+    "social-card": "tsx social-card.mts"
   },
   "dependencies": {
     "mhfu-extract": "workspace:*",
