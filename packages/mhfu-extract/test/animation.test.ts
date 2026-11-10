@@ -130,8 +130,8 @@ test("buildClips plays each part's motions in the same slot together, on that pa
   assert.equal(clips.length, 1);
   const [clip] = clips;
   assert.equal(clip!.slot, 1);
-  assert.equal(clip!.duration, 1);
-  assert.equal(clip!.loopStart, 0.2);
+  assert.equal(clip!.duration, 0.5);
+  assert.equal(clip!.loopStart, 0.1);
   assert.deepEqual(
     clip!.tracks.map((t) => `${t.bone} ${t.path}`),
     ["1 translation", "1 rotation", "2 scale"],
@@ -145,7 +145,7 @@ test("buildClips plays each part's motions in the same slot together, on that pa
   close(turn.values.slice(-4), eulerToQuat([0, Math.PI / 2, 0]), 1e-6);
   // The head's scale holds its last key once its shorter motion ends.
   const grow = clip!.tracks.find((t) => t.path === "scale")!;
-  assert.deepEqual(grow.times, [0, 0.5, 1]);
+  assert.deepEqual(grow.times, [0, 0.25, 0.5]);
   assert.deepEqual(grow.values.slice(3), [2, 1, 1, 2, 1, 1]);
 });
 

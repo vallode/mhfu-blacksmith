@@ -28,8 +28,10 @@
  *   rotation 0x8000 = pi (keys reach exactly +-0x8000, never beyond).
  *
  * Not yet known: the Euler order (XYZ and ZYX distort meshes alike; most
- * vertices follow one bone), the frame rate (30 assumed), and which of the
- * two tangents is which (they're equal on most keys).
+ * vertices follow one bone) and which of the two tangents is which (they're
+ * equal on most keys). Frames are 1/60 s: the game, at 30 fps, advances
+ * motions two at a time, and 9,972 of the 9,995 motions on the disc last
+ * an even number of frames.
  */
 import { BinaryReader } from "../binary/reader.js";
 

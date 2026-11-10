@@ -15,8 +15,12 @@ import { partMotions, sampleChannel, type Motion } from "./motion.js";
 export type Vec3 = [number, number, number];
 export type Quat = [number, number, number, number];
 
-/** The game runs motions at 30 frames per second (assumed; see motion.ts). */
-export const FRAMES_PER_SECOND = 30;
+/**
+ * Motion frames per second. Motions count frames at 60 a second, which the
+ * game, running at 30, steps two at a time: 9,972 of the disc's 9,995
+ * motions last an even number of frames (see motion.ts).
+ */
+export const FRAMES_PER_SECOND = 60;
 
 export interface Track {
   bone: number;

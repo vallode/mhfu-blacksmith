@@ -7,12 +7,12 @@ import { MOTION_PACK_MAGIC, packMotions } from "../src/models/motion-pack.js";
 test("packMotions writes the header, then frame deltas, rotations and vectors as deltas", () => {
   const clip: Clip = {
     slot: 3,
-    duration: 10,
+    duration: 5,
     loop: true,
-    loopStart: 0.5,
+    loopStart: 0.25,
     tracks: [
-      { bone: 4, path: "rotation", times: [0, 1], values: [0, 0, 0, 1, 0, 1, 0, 0] },
-      { bone: 4, path: "translation", times: [0, 10], values: [1, 2, 3, 1, 2, 2] },
+      { bone: 4, path: "rotation", times: [0, 0.5], values: [0, 0, 0, 1, 0, 1, 0, 0] },
+      { bone: 4, path: "translation", times: [0, 5], values: [1, 2, 3, 1, 2, 2] },
     ],
   };
   const bytes = gunzipSync(packMotions([clip]));

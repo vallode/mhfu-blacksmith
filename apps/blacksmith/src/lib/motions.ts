@@ -6,8 +6,8 @@
  */
 
 export const MOTIONS_MAGIC = "MHM1";
-/** The game's motions run at 30 frames per second (assumed). */
-export const MOTION_FPS = 30;
+/** Motion frames per second (mhfu-extract's FRAMES_PER_SECOND). */
+export const MOTION_FPS = 60;
 
 export type MotionPath = "translation" | "rotation" | "scale";
 const PATHS: MotionPath[] = ["translation", "rotation", "scale"];

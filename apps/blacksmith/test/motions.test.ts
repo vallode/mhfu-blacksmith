@@ -33,14 +33,14 @@ test("parseMotions reads tracks back from their delta-coded keys", () => {
   const [clip, ...rest] = parseMotions(motionsFile());
   assert.equal(rest.length, 0);
   assert.equal(clip!.slot, 2);
-  assert.equal(clip!.duration, 2);
+  assert.equal(clip!.duration, 1);
   assert.equal(clip!.loop, true);
   const [turn, move] = clip!.tracks;
   assert.equal(turn!.path, "rotation");
-  assert.deepEqual([...turn!.times], [0, 1]);
+  assert.deepEqual([...turn!.times], [0, 0.5]);
   assert.deepEqual([...turn!.values], [0, 0, 0, 1, 0, 1, 0, 0]);
   assert.equal(move!.bone, 1);
-  assert.deepEqual([...move!.times], [0, 10]);
+  assert.deepEqual([...move!.times], [0, 5]);
   assert.deepEqual([...move!.values], [1, 2, -3, 1, 2, -2]);
 });
 

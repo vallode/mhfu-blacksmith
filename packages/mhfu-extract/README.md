@@ -593,9 +593,11 @@ motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   three.js probe, Kelbi stands with its hooves on the ground at frame 0
   (hip 1411/16 = 88 units up), and Rathian and Cephalos hold natural poses
   mid-motion (Rathian rearing, Cephalos lunging). Open: the Euler order (no order distorts the meshes less
-  than another: most vertices follow a single bone), the frame rate (30
-  assumed), which tangent is which (they're equal on most keys), and what
-  `motion/*.bin` (the player's and shared motions) holds.
+  than another: most vertices follow a single bone), which tangent is which
+  (they're equal on most keys), and what `motion/*.bin` (the player's and
+  shared motions) holds. Frames are 1/60 s: the game runs at 30 fps and
+  steps motions two frames at a time, so 9,972 of the 9,995 motions last an
+  even number of frames (played at 30 a second, they look half speed).
 - **Clips.** `animation.ts` turns each slot into one clip over the whole
   skeleton: it samples every frame, converts rotations to quaternions, and
   keeps only the keys linear interpolation needs within a tolerance (by
