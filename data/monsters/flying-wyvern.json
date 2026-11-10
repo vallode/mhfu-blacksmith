@@ -107,7 +107,27 @@
         1,
         1,
         1
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": null,
+        "ko": null,
+        "poison": {
+          "initial": 60,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 30,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Rathian",
@@ -662,7 +682,39 @@
         200,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 110,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Pink Rathian",
@@ -1135,7 +1187,39 @@
         200,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 125,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 125,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 15,
+          "recovery_time": 150,
+          "damage": 30,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Gold Rathian",
@@ -1494,7 +1578,39 @@
         200,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 120,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 350,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 30,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Rathalos",
@@ -2045,7 +2161,39 @@
         180,
         150,
         150
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 160,
+          "increase": 60,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 110,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Azure Rathalos",
@@ -2515,7 +2663,39 @@
         180,
         150,
         150
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 125,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 175,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 215,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 30,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Silver Rathalos",
@@ -2871,7 +3051,39 @@
         180,
         150,
         150
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 160,
+          "increase": 60,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 400,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 35,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Khezu",
@@ -3257,7 +3469,39 @@
         140,
         200,
         90
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "poison": {
+          "initial": 110,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Red Khezu",
@@ -3590,7 +3834,39 @@
         140,
         200,
         90
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 350,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 350,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "poison": {
+          "initial": 110,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Basarios",
@@ -3972,7 +4248,39 @@
         300,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1800
+        },
+        "ko": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Gravios",
@@ -4358,7 +4666,39 @@
         700,
         200,
         200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1800
+        },
+        "ko": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Black Gravios",
@@ -4745,7 +5085,39 @@
         700,
         200,
         200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1800
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 40,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Monoblos",
@@ -4992,7 +5364,39 @@
         200,
         180,
         180
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 3600
+        }
+      }
     },
     {
       "name": "White Monoblos",
@@ -5240,7 +5644,39 @@
         200,
         180,
         180
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Diablos",
@@ -5586,7 +6022,39 @@
         250,
         180,
         180
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 3600
+        }
+      }
     },
     {
       "name": "Black Diablos",
@@ -5948,7 +6416,39 @@
         250,
         180,
         180
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 250,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1500
+        },
+        "ko": {
+          "initial": 250,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 250,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Tigrex",
@@ -6431,7 +6931,39 @@
         180,
         140,
         340
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 5400
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Nargacuga",
@@ -6828,7 +7360,39 @@
         100,
         180,
         600
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 5400
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Akantor",
@@ -7052,7 +7616,39 @@
         300,
         250,
         400
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 350,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 350,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 400,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Ukanlos",
@@ -7270,7 +7866,39 @@
         300,
         300,
         400
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 350,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 350,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 400,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     }
   ]
 }
