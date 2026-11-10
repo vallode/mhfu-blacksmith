@@ -3,18 +3,39 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>randomfu</title>
+    <title>randomfu — Monster Hunter Freedom Unite randomizer</title>
     <meta
       name="description"
       content="A seeded randomizer for Monster Hunter Freedom Unite that runs in your browser on your own disc image."
     />
+    <!-- Discord colours the edge of a link's embed with this. -->
     <meta name="theme-color" content="#6e905f" />
+    <!-- Link previews. Their URLs must be absolute: build.mjs fills in %SITE_URL%. -->
+    <link rel="canonical" href="%SITE_URL%/" />
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="randomfu" />
+    <meta property="og:url" content="%SITE_URL%/" />
+    <meta property="og:title" content="randomfu — Monster Hunter Freedom Unite randomizer" />
+    <meta
+      property="og:description"
+      content="Shuffle rewards, monsters, quests and shops in Monster Hunter Freedom Unite. Seeded, with optional logic that keeps every recipe craftable, and it runs in your browser on your own disc image."
+    />
+    <meta property="og:image" content="%SITE_URL%/images/social-card.png" />
+    <meta property="og:image:type" content="image/png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta
+      property="og:image:alt"
+      content="randomfu, Monster Hunter Freedom Unite randomizer: shuffle rewards, monsters, quests and shops."
+    />
+    <meta name="twitter:card" content="summary_large_image" />
     <!-- Everything runs here: the page can't send the disc, or anything else, anywhere. -->
     <meta
       http-equiv="Content-Security-Policy"
       content="default-src 'none'; script-src 'self'; worker-src 'self'; style-src 'unsafe-inline'; img-src 'self' data:; font-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'"
     />
     <link rel="icon" href="images/favicons/felyne-favicon.png" />
+    <link rel="apple-touch-icon" href="images/favicons/felyne-apple-touch-icon.png" />
     <style>
       /*STYLE*/
     </style>

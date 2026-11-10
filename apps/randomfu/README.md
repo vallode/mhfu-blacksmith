@@ -20,7 +20,17 @@ options always show up. The page is styled after the MHFU Blacksmith site:
 pnpm build          # builds dist/: index.html, app.js, worker.js
 pnpm test           # unit tests (the browser shims)
 pnpm test:e2e       # builds, then checks the app in Chromium against the CLI
+pnpm social-card    # builds, then redraws social-card.png (needs Chromium)
 ```
+
+Links to the app unfurl into a card (Discord, Bluesky, Slack, …) from the
+Open Graph tags in `index.html`: its title and description, the site
+green along Discord's edge, and `social-card.png`, a 1200×630 picture
+drawn by the built page itself in the site's style. Redraw it with
+`pnpm social-card` after changing the look or the card's wording, and
+commit it. The tags need absolute URLs, so `build.mjs` fills in
+`%SITE_URL%`: the deploy preview's own address on Netlify previews,
+`https://randomfu.vallode.com` otherwise.
 
 `dist/` is a plain static site: host it anywhere (GitHub Pages, Netlify,
 any web server). It's deployed to [randomfu.vallode.com](https://randomfu.vallode.com)
