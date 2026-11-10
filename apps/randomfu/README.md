@@ -3,7 +3,7 @@
 randomfu (`packages/randomfu`) as a static web app that runs entirely in
 the browser. It's a step-by-step builder: pick your ISO, choose a seed and a
 preset (or load a shared settings string), go through the options a group
-at a time (Logic, Rewards, Gathering, Smithy, Shops), review, and download
+at a time (Logic, Rewards, Gathering, Quests, Smithy, Shops), review, and download
 the randomized ISO and spoiler log. Nothing is uploaded. Settings that
 change the EBOOT decrypt the disc's own in the browser; only if that fails
 does the app ask for a PPSSPP EBOOT dump.

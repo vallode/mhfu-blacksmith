@@ -13,7 +13,9 @@ Licensed **GPL-3.0-or-later** (see `LICENSE`), because it builds on
 ## Status
 
 Early. On the EU disc, PPSSPP boots a randomized image and the smithy shows
-the shuffled recipe materials. Star-level tiers, gathering sources,
+the shuffled recipe materials. `supplies`, `terms` and `deliveries` are
+checked against the EU disc's quest files (every changed quest re-reads as
+expected) but not yet played in game. Star-level tiers, gathering sources,
 `recipe-amounts`, `costs`, `armor` and `gathering` are so far tested only
 against the synthetic disc the tests build (`test/fixtures.ts`). A PSP
 with custom firmware isn't tested. Run `roundtrip` on a new disc first. In-process EBOOT
@@ -79,14 +81,14 @@ pnpm settings --write my.json       # write every setting to a file to edit
 
 Settings come from these flags, later ones winning:
 
-| Flag                                                          | What it sets                                                                                                       |
-| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                       |
-| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                            |
-| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, shops |
-| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                      |
-| `--set key=value,key=value`                                   | Any setting by name                                                                                                |
-| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                     |
+| Flag                                                          | What it sets                                                                                                                                                       |
+| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                       |
+| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                            |
+| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, shops, supplies, quest-money, time-limits, deliveries |
+| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                      |
+| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                |
+| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                     |
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
@@ -101,38 +103,48 @@ All of them are defined once, in `src/settings.ts` (`OPTIONS`), which the
 CLI, settings files, settings strings and the page all read: a new option
 added there shows up everywhere.
 
-| Setting                           | Default     | What it does                                                                     |
-| --------------------------------- | ----------- | -------------------------------------------------------------------------------- |
-| `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`)             |
-| `questRewards.enabled`            | on          | Shuffle quest rewards                                                            |
-| `monsterRewards.enabled`          | on          | Shuffle carves                                                                   |
-| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                |
-| `gathering.enabled`               | off         | Shuffle gathering points                                                         |
-| `gathering.pool`                  | `gathered`  | What spots give: items you could gather, any item of the same `rank`, or `any`   |
-| `gathering.keepItems`             | on          | With a wider pool, every gatherable item stays findable at its point in the game |
-| `recipes.materials`               | off         | Shuffle crafting and upgrade materials (EBOOT)                                   |
-| `recipes.amounts`                 | off         | Randomize material amounts (EBOOT)                                               |
-| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                         |
-| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                    |
-| `costs.enabled`                   | off         | Randomize crafting costs (EBOOT)                                                 |
-| `costs.spread`                    | 0.5         | How far costs move                                                               |
-| `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                               |
-| `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)              |
-| `armor.enabled`                   | off         | Shuffle armor progression (EBOOT)                                                |
-| `shops.enabled`                   | off         | Randomize shops                                                                  |
-| `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`              |
-| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                          |
-| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                  |
-| `shops.special`                   | off         | Include the Armor Sphere, jewel and Pokke Ticket shop                            |
-| `shops.countSpread`               | 0           | How much more or fewer items each shop sells                                     |
-| `shops.prices`                    | off         | Randomize prices of what shops sell (EBOOT)                                      |
-| `shops.priceSpread`               | 0.5         | How far prices move                                                              |
-| `shops.stacks`                    | off         | Randomize carry limits of what shops sell (EBOOT)                                |
-| `shops.stackSpread`               | 0.5         | How far carry limits move                                                        |
+| Setting                           | Default     | What it does                                                                      |
+| --------------------------------- | ----------- | --------------------------------------------------------------------------------- |
+| `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`)              |
+| `questRewards.enabled`            | on          | Shuffle quest rewards                                                             |
+| `monsterRewards.enabled`          | on          | Shuffle carves                                                                    |
+| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                 |
+| `gathering.enabled`               | off         | Shuffle gathering points                                                          |
+| `gathering.pool`                  | `gathered`  | What spots give: items you could gather, any item of the same `rank`, or `any`    |
+| `gathering.keepItems`             | on          | With a wider pool, every gatherable item stays findable at its point in the game  |
+| `supplies.enabled`                | off         | Randomize supply boxes                                                            |
+| `supplies.pool`                   | `supplies`  | Supply box items, any item of the same `rank`, or `add` random stacks to each box |
+| `supplies.keepEssentials`         | on          | Keep Maps, ballista and cannon ammo and the other quest-only supplies             |
+| `terms.money`                     | off         | Randomize quest fees, rewards and penalties                                       |
+| `terms.moneySpread`               | 0.5         | How far they move                                                                 |
+| `terms.time`                      | off         | Randomize time limits                                                             |
+| `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                |
+| `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                            |
+| `recipes.materials`               | off         | Shuffle crafting and upgrade materials (EBOOT)                                    |
+| `recipes.amounts`                 | off         | Randomize material amounts (EBOOT)                                                |
+| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                          |
+| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                     |
+| `costs.enabled`                   | off         | Randomize crafting costs (EBOOT)                                                  |
+| `costs.spread`                    | 0.5         | How far costs move                                                                |
+| `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                                |
+| `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)               |
+| `armor.enabled`                   | off         | Shuffle armor progression (EBOOT)                                                 |
+| `shops.enabled`                   | off         | Randomize shops                                                                   |
+| `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`               |
+| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                           |
+| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                   |
+| `shops.special`                   | off         | Include the Armor Sphere, jewel and Pokke Ticket shop                             |
+| `shops.countSpread`               | 0           | How much more or fewer items each shop sells                                      |
+| `shops.prices`                    | off         | Randomize prices of what shops sell (EBOOT)                                       |
+| `shops.priceSpread`               | 0.5         | How far prices move                                                               |
+| `shops.stacks`                    | off         | Randomize carry limits of what shops sell (EBOOT)                                 |
+| `shops.stackSpread`               | 0.5         | How far carry limits move                                                         |
 
 ## Shuffles
 
-No shuffle changes a list's length, so every edited file keeps its size.
+No shuffle changes a list's length, so every edited file keeps its size,
+except `supplies.pool add`, which grows quests into their sector padding
+(see below).
 
 | Shuffle           | Data                                                | What changes                                         |
 | ----------------- | --------------------------------------------------- | ---------------------------------------------------- |
@@ -145,6 +157,9 @@ No shuffle changes a list's length, so every edited file keeps its size.
 | `weapons`         | Weapon create and upgrade entries in the EBOOT      | Which weapon each place makes (see below)            |
 | `armor`           | Armor create entries in the EBOOT                   | Which piece each place makes (see below)             |
 | `shops`           | Shop item lists in `lobby_task.ovl`                 | Which items each shop sells (see below)              |
+| `supplies`        | Supply box lists in each quest `.mib`               | Item and amount of each stack (see below)            |
+| `terms`           | Quest header fee, reward, penalty, time limit       | The numbers, varied (see below)                      |
+| `deliveries`      | Delivery quest header target and goal line          | Which item and how many (see below)                  |
 
 ### Logic
 
@@ -268,6 +283,63 @@ commands that found them.
   its rarity (100z × (rarity + 1)²), so nothing is free; that needs the
   EBOOT, so without it, wide pools may sell some items for free.
 
+`supplies` changes what each quest's supply box holds. The box is a list
+of `{ u16 item, u16 amount }` at the header's `SuppliesPTR`, ending at item
+0 (whose amount field holds the quest ID). On the EU disc every quest has
+exactly one such list; nothing else points into it, and the header's
+`SupplyCond` (+70) is a flag, not a second list, so it's left alone and
+each entry is rewritten in place. Guild quests list a stack once per
+hunter (four Maps), so runs of identical entries change together. With
+`supplies.pool supplies` (the default) item and amount move between
+quests of the same tier; `rank` gives random items first found at the
+quest's rank, in their usual amount (the median a supply box, else a quest
+reward, gives of them). With `supplies.keepEssentials`, quest-only items
+(Map, First-Aid Med, Ration, the supply-only tools, ballista and cannon
+ammo) stay; `rank` never hands them out, nor carried objects.
+
+`supplies.pool add` (the Chaos preset) keeps every box as it is and adds
+up to 4 stacks of random items (any item but quest-only ones, none the box
+already has), in their usual amount. The list can't grow where it is (the
+gathering tables follow it), so the box, the new stacks and the same end
+marker are copied to the end of the quest and `SuppliesPTR` points there;
+the old list stays, unread. The quest grows into its DATA.BIN entry's
+sector padding (the entry's size field says where the quest ends), so
+DATA.BIN keeps its layout. No quest grows past the largest quest on the
+disc (10,680 bytes on EU) and no box past the largest box (32 stacks),
+sizes the game already handles; boxes without room get fewer stacks or
+none. A quest's own delivery item (the
+Paw Pass Ticket) always stays. Supply items aren't item sources for the
+tier logic: whether the game takes back what isn't used isn't known.
+
+`terms` changes the quest board numbers in each Village and Guild quest's
+header: fee (+80), reward (+84), penalty (+88) and time limit (+92, in
+ticks of 1/1800 minute). Reward and penalty share one factor within
+`terms.moneySpread` (on the disc the penalty is a fixed share of the
+reward), the fee gets its own and never exceeds the reward; all in steps of
+10z. Time limits change in whole minutes within `terms.timeSpread`, kept
+between the shortest and longest on the disc (20 and 50 minutes), since
+longer limits haven't been seen in game.
+
+`deliveries` changes what Village and Guild delivery quests ask for. A
+delivery quest has 2 in the quest type's first byte (+76); `TargetID`
+(+112) is then the item and `TargetNum` (+114) the amount, and the quest
+script doesn't name the item. The new item is one the quest's own
+gathering points give (after the gathering shuffle), never a quest-only
+item or carried object, and never in its supply box; fishing and carves
+aren't read, so fishing and carving deliveries become gathering ones. Its
+amount is the same share of what the quest's points give (each node's
+fewest gathers × the item's chance) as the old amount was of the old
+item's, or the median share for quests whose item wasn't gathered, and
+never more than the points give; items at least half as plentiful as the
+old one are preferred. The goal line ("Deliver Coal x15") is rewritten in
+place, in English for every language (item names are English only); the
+quest description still names the old item. "Survive until Time Over or
+Deliver the Paw Pass Ticket" quests stay as they are.
+
+The gathering shuffle never moves a delivery quest's own item away from
+its gathering points, whether or not `deliveries` is on, so every delivery
+quest can still be finished.
+
 ## How it writes the disc
 
 - **DATA.BIN** files are encrypted with a key seeded from their start
@@ -275,7 +347,9 @@ commands that found them.
   where it was; nothing else in DATA.BIN changes (`src/disc/databin.ts`).
 - **Quests** are re-sealed with their original seeds and a new salted SHA1,
   sector padding included, so an unchanged quest re-seals byte for byte
-  (`src/disc/quest-file.ts`).
+  (`src/disc/quest-file.ts`). A quest can grow into its own sector
+  padding: its size field and hash cover the longer payload, and the
+  entry keeps its sectors.
 - **EBOOT.BIN** is written back as the decrypted, unsigned ELF. It's
   replaced in place if it fits its old sectors; otherwise it's moved to the
   end of the image, and its directory record and the volume size are
@@ -284,8 +358,10 @@ commands that found them.
 
 ## Open questions
 
-- Whether files inside DATA.BIN can grow. Needed for quest edits that add
-  data, such as new monsters.
+- Whether files inside DATA.BIN can grow past their sectors. Needed for
+  quest edits that add more data than the padding holds, such as new
+  monsters. Growing within the padding (`supplies.pool add`) isn't
+  confirmed in game yet either.
 - Monster swaps in quests: each `LargeMonTable` also has a preload list
   (`emLoadTable`) that would need updating, and which monsters can share a
   quest is limited by overlay memory.

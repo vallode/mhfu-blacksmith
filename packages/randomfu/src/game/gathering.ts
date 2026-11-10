@@ -13,6 +13,13 @@
  *   area's nodes, 24 bytes each (`f32 x, y, z, maxValue; u16 itemIndex;
  *   u16; u16 nodeType; u16 maxTimes`), ending at an x of -1.0f.
  *
+ * On the EU disc every used table's values add up to 100: each is an item's
+ * chance in percent. The two u16s around `nodeType` look like gather
+ * counts: on all 19,130 nodes the one at +18 is at least the one at +22 (6
+ * and 2, 10 and 6, ...), and both are 255 on the 536 spots that never run
+ * out (ammo piles, the Khezu Whelps, the Training School's honey). `gathers` is the smaller one, so yields worked
+ * out from it are cautious.
+ *
  * Only item tables a node points at count, so a table no node uses doesn't
  * make an item look available earlier than it is. A table is read once
  * however many nodes (or table indices) lead to it. Pointers are relative
@@ -75,27 +82,69 @@ export interface GatheringSlot {
   itemId: number;
 }
 
+/** One mining, gathering or bug catching node. */
+export interface GatheringNode {
+  /** The item table it uses. */
+  table: number;
+  /** How many times it can be gathered, at least (header +22); 255 means it doesn't run out. */
+  gathers: number;
+}
+
 export interface GatheringResult {
   /** Item IDs any node in the quest can give. */
   items: number[];
   /** Every pair with an item (not 0) in a used table, once each, in table order. */
   slots: GatheringSlot[];
+  /** Every node, in area order. */
+  nodes: GatheringNode[];
+  /** Each used table's pair offsets, item 0 included, by table index. */
+  tables: Map<number, number[]>;
   /** Why nothing was read, when the layout didn't fit. */
   problem?: string;
 }
 
-const none = (problem: string): GatheringResult => ({ items: [], slots: [], problem });
+const none = (problem: string): GatheringResult => ({
+  items: [],
+  slots: [],
+  nodes: [],
+  tables: new Map(),
+  problem,
+});
+
+/** A node's gathers when it never runs out: about what the most generous ordinary node gives. */
+const ENDLESS_GATHERS = 10;
+
+/**
+ * How many of each item a quest's nodes give if each is gathered its
+ * fewest times: the sum over nodes of gathers × the item's chance. Read
+ * from `payload` as it is, so it reflects a gathering shuffle already done.
+ */
+export function gatheringYields(payload: Buffer, quest: ParsedQuest): Map<number, number> {
+  const result = readGatheringItems(payload, quest);
+  const out = new Map<number, number>();
+  if (result.problem) return out;
+  for (const node of result.nodes) {
+    const gathers = node.gathers === 0xff ? ENDLESS_GATHERS : node.gathers;
+    for (const at of result.tables.get(node.table) ?? []) {
+      const item = payload.readUInt16LE(at + 2);
+      if (item === 0) continue;
+      out.set(item, (out.get(item) ?? 0) + (gathers * payload.readUInt16LE(at)) / 100);
+    }
+  }
+  return out;
+}
 
 export function readGatheringItems(payload: Buffer, quest: ParsedQuest): GatheringResult {
   const fits = (offset: number, size: number) => offset >= 0x80 && offset + size <= payload.length;
   const locPtr = payload.readUInt32LE(GATHERING_LOC_PTR);
   const itemsPtr = payload.readUInt32LE(GATHERING_ITEMS_PTR);
-  if (locPtr === 0 || itemsPtr === 0) return { items: [], slots: [] };
+  if (locPtr === 0 || itemsPtr === 0) return { items: [], slots: [], nodes: [], tables: new Map() };
   const areas = MAP_AREAS[quest.header.map];
   if (areas === undefined) return none(`unknown map ${quest.header.map}`);
   if (!fits(locPtr, areas * 4)) return none("area table out of bounds");
 
   const used = new Set<number>();
+  const nodeList: GatheringNode[] = [];
   for (let area = 0; area < areas; area++) {
     const nodes = payload.readUInt32LE(locPtr + area * 4);
     if (nodes === 0) continue;
@@ -106,14 +155,19 @@ export function readGatheringItems(payload: Buffer, quest: ParsedQuest): Gatheri
       }
       if (payload.readUInt32LE(at) === NODE_END) break;
       if (!fits(at, NODE_SIZE)) return none("node out of bounds");
-      used.add(payload.readUInt16LE(at + 16));
+      const table = payload.readUInt16LE(at + 16);
+      used.add(table);
+      nodeList.push({ table, gathers: payload.readUInt16LE(at + 22) });
     }
   }
 
   const items = new Set<number>();
   const slots: GatheringSlot[] = [];
   const seen = new Set<number>(); // tables can be shared, or overlap
+  const tables = new Map<number, number[]>();
   for (const index of [...used].sort((a, b) => a - b)) {
+    const pairs: number[] = [];
+    tables.set(index, pairs);
     if (index >= MAX_ITEM_TABLES || !fits(itemsPtr + index * 4, 4)) {
       return none(`node uses item table ${index}, past the table list`);
     }
@@ -126,11 +180,12 @@ export function readGatheringItems(payload: Buffer, quest: ParsedQuest): Gatheri
       if (!fits(at, 4)) return none(`item table ${index} out of bounds`);
       const item = payload.readUInt16LE(at + 2);
       if (item > MAX_ITEM_ID) return none(`item table ${index} has item ${item}`);
+      pairs.push(at);
       if (item === 0 || seen.has(at)) continue;
       seen.add(at);
       items.add(item);
       slots.push({ table: index, offset: at, value: payload.readUInt16LE(at), itemId: item });
     }
   }
-  return { items: [...items].sort((a, b) => a - b), slots };
+  return { items: [...items].sort((a, b) => a - b), slots, nodes: nodeList, tables };
 }
