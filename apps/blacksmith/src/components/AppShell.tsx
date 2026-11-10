@@ -203,16 +203,32 @@ function TabBar({
   // "Monsters" fits a fifth of a phone's width.
   const label = "text-fine leading-none tracking-normal";
   const tabs = NAV.filter((item) => item.tab);
+  // TEMP: style preview, ?tabbar=a|b|c|d
+  const [v, setV] = useState("");
+  useEffect(() => setV(new URLSearchParams(location.search).get("tabbar") ?? ""), []);
+  const frame = v === "a" ? "teal" : v === "b" ? "green" : v === "c" ? "blue" : undefined;
+  const dip = v !== "";
   const inTab = tabs.some((item) => pathname.startsWith(item.match));
 
   return (
     <nav
       aria-label="Main"
-      className="fixed inset-x-0 bottom-0 z-800 hidden pb-[env(safe-area-inset-bottom)] mobile:flex"
+      className={cn(
+        "fixed inset-x-0 z-800 hidden mobile:flex",
+        dip ? "-bottom-[1.5rem]" : "bottom-0 pb-[env(safe-area-inset-bottom)]",
+      )}
     >
       <Card
-        className="h-tabbar bg-black/60 backdrop-blur-sm"
-        bodyClassName="flex-row items-stretch card-px-[1.6rem] card-py-[1.3rem]"
+        frame={frame}
+        className={cn(
+          "backdrop-blur-sm",
+          dip ? "h-[calc(var(--spacing-tabbar)+1.5rem)]" : "h-tabbar",
+          v === "d" ? "bg-black/80" : "bg-black/60",
+        )}
+        bodyClassName={cn(
+          "flex-row items-stretch card-px-[1.6rem] card-py-[1.3rem]",
+          dip && "[&>*]:mb-[1.5rem]",
+        )}
       >
         {tabs.map((item) => {
           const active = !menuOpen && pathname.startsWith(item.match);
