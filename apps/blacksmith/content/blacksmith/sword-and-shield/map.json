@@ -1153,15 +1153,7 @@
         "name": "Azure Ogre Sword",
         "rarity": 8,
         "element": "dragon",
-        "children": [
-          {
-            "slug": "indigo-ogre-sword",
-            "type": "sword-and-shield",
-            "name": "Indigo Ogre Sword",
-            "rarity": 10,
-            "element": "dragon"
-          }
-        ]
+        "alias": true
       }
     ]
   },

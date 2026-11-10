@@ -408,163 +408,7 @@
         "type": "dual-blades",
         "name": "Bone Scythe+",
         "rarity": 2,
-        "children": [
-          {
-            "slug": "chief-scythe",
-            "type": "dual-blades",
-            "name": "Chief Scythe",
-            "rarity": 2,
-            "children": [
-              {
-                "slug": "bladed-edge",
-                "type": "dual-blades",
-                "name": "Bladed Edge",
-                "rarity": 4,
-                "children": [
-                  {
-                    "slug": "bladed-edge-plus",
-                    "type": "dual-blades",
-                    "name": "Bladed Edge+",
-                    "rarity": 5,
-                    "children": [
-                      {
-                        "slug": "limb-cutter",
-                        "type": "dual-blades",
-                        "name": "Limb Cutter",
-                        "rarity": 7,
-                        "children": [
-                          {
-                            "slug": "carmine-edge",
-                            "type": "dual-blades",
-                            "name": "Carmine Edge",
-                            "rarity": 9,
-                            "children": [
-                              {
-                                "slug": "red-rippers",
-                                "type": "dual-blades",
-                                "name": "Red Rippers",
-                                "rarity": 10
-                              }
-                            ]
-                          }
-                        ]
-                      },
-                      {
-                        "slug": "dual-carapace",
-                        "type": "sword-and-shield",
-                        "name": "Dual Carapace",
-                        "rarity": 7,
-                        "element": "water",
-                        "children": []
-                      }
-                    ]
-                  }
-                ]
-              },
-              {
-                "slug": "cutlass",
-                "type": "dual-blades",
-                "name": "Cutlass",
-                "rarity": 3,
-                "element": "water",
-                "children": [
-                  {
-                    "slug": "cutlass-plus",
-                    "type": "dual-blades",
-                    "name": "Cutlass+",
-                    "rarity": 5,
-                    "element": "water"
-                  }
-                ]
-              },
-              {
-                "slug": "twin-kut-ku",
-                "type": "dual-blades",
-                "name": "Twin Kut-Ku",
-                "rarity": 2,
-                "element": "fire",
-                "children": [
-                  {
-                    "slug": "twin-kut-ku-plus",
-                    "type": "dual-blades",
-                    "name": "Twin Kut-Ku+",
-                    "rarity": 4,
-                    "element": "fire",
-                    "children": [
-                      {
-                        "slug": "dual-kut-ku",
-                        "type": "dual-blades",
-                        "name": "Dual Kut-Ku",
-                        "rarity": 6,
-                        "element": "fire"
-                      }
-                    ]
-                  },
-                  {
-                    "slug": "raven-tessen",
-                    "type": "dual-blades",
-                    "name": "Raven Tessen",
-                    "rarity": 5,
-                    "children": [
-                      {
-                        "slug": "wolf-tessen",
-                        "type": "dual-blades",
-                        "name": "Wolf Tessen",
-                        "rarity": 7,
-                        "children": [
-                          {
-                            "slug": "crow-tessen",
-                            "type": "dual-blades",
-                            "name": "Crow Tessen",
-                            "rarity": 9
-                          }
-                        ]
-                      }
-                    ]
-                  },
-                  {
-                    "slug": "pink-maracas",
-                    "type": "dual-blades",
-                    "name": "Pink Maracas",
-                    "rarity": 3,
-                    "children": [
-                      {
-                        "slug": "pink-maracas-plus",
-                        "type": "dual-blades",
-                        "name": "Pink Maracas+",
-                        "rarity": 4,
-                        "children": [
-                          {
-                            "slug": "funky-maracas",
-                            "type": "dual-blades",
-                            "name": "Funky Maracas",
-                            "rarity": 6,
-                            "children": [
-                              {
-                                "slug": "jungle-maracas",
-                                "type": "dual-blades",
-                                "name": "Jungle Maracas",
-                                "rarity": 9,
-                                "children": [
-                                  {
-                                    "slug": "evergreen",
-                                    "type": "dual-blades",
-                                    "name": "Evergreen",
-                                    "rarity": 9
-                                  }
-                                ]
-                              }
-                            ]
-                          }
-                        ]
-                      }
-                    ]
-                  }
-                ]
-              }
-            ]
-          }
-        ]
+        "alias": true
       }
     ]
   },
@@ -579,22 +423,7 @@
         "type": "dual-blades",
         "name": "Velociprey Claws",
         "rarity": 3,
-        "children": [
-          {
-            "slug": "velociprey-claws-plus",
-            "type": "dual-blades",
-            "name": "Velociprey Claws+",
-            "rarity": 4,
-            "children": [
-              {
-                "slug": "hi-velociprey-claws",
-                "type": "dual-blades",
-                "name": "Hi Velociprey Claws",
-                "rarity": 6
-              }
-            ]
-          }
-        ]
+        "alias": true
       }
     ]
   },
@@ -1277,15 +1106,7 @@
         "name": "Ultimus Heaven&Earth",
         "rarity": 8,
         "element": "dragon",
-        "children": [
-          {
-            "slug": "dual-dragon-ultimus-plus",
-            "type": "dual-blades",
-            "name": "Dual Dragon Ultimus+",
-            "rarity": 10,
-            "element": "dragon"
-          }
-        ]
+        "alias": true
       }
     ]
   },

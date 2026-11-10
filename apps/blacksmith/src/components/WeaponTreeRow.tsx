@@ -10,7 +10,7 @@ import { useHunterProgress } from "@/context/HunterProgressContext";
 import { useTreeFilterResult } from "@/context/TreeFilterContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import type { MaterialCheck } from "@/lib/hunter-progress";
-import { rowStatus } from "@/lib/tree-filter";
+import { rowStatus, treeRowKey } from "@/lib/tree-filter";
 import type { WeaponTreeNode } from "@/lib/types";
 
 interface WeaponTreeRowProps {
@@ -127,9 +127,9 @@ export default function WeaponTreeRow({
   // The Options page can turn either marker off; the tree filter still works.
   const progress = useHunterProgress();
   const { markOwned, showCraftProgress } = usePreferences().prefs;
-  const filtered = useTreeFilterResult()?.rows.get(node.slug);
-  const status =
-    filtered ?? rowStatus(node, sectionType, basePath, node.parentHref ?? parentHref, progress);
+  const from = node.parentHref ?? parentHref;
+  const filtered = useTreeFilterResult()?.rows.get(treeRowKey(node, from));
+  const status = filtered ?? rowStatus(node, sectionType, basePath, from, progress);
   const { href, external: isExternal } = status;
   const owned = markOwned && status.owned;
   const craft = showCraftProgress ? status.craft : null;
@@ -146,6 +146,18 @@ export default function WeaponTreeRow({
       setNodeCollapsed(treeKey, node.slug, next);
       return next;
     });
+  };
+
+  // An alias row's upgrades are listed at the weapon's first row, further up:
+  // bring that row into view and focus it (which highlights it). If it's in a
+  // collapsed branch, the click falls through to the row's link instead.
+  const onAliasClick = (event: { preventDefault(): void; stopPropagation(): void }) => {
+    const first = document.getElementById(node.slug);
+    if (!first) return;
+    event.preventDefault();
+    event.stopPropagation();
+    first.scrollIntoView({ block: "center" });
+    first.focus({ preventScroll: true });
   };
 
   const onPointerEnter = href
@@ -200,6 +212,21 @@ export default function WeaponTreeRow({
           {collapsed ? "[+]" : "[-]"}
         </p>
       )}
+      {node.alias && (
+        <p
+          className="cursor-pointer px-[3px] opacity-20"
+          role="button"
+          tabIndex={0}
+          aria-label="Upgrades listed above: go to them"
+          title="Upgrades listed above"
+          onClick={onAliasClick}
+          onKeyDown={(event) => {
+            if (event.key === "Enter" || event.key === " ") onAliasClick(event);
+          }}
+        >
+          [↑]
+        </p>
+      )}
       {/* Armor: max defence, right-aligned (the pips, if any, follow it). */}
       {node.max_defence !== undefined && (
         <span
@@ -223,7 +250,9 @@ export default function WeaponTreeRow({
     <li className={nested ? cn(connector, hasNextSibling && "before:h-full") : undefined}>
       {href ? (
         <Link
-          id={node.slug}
+          // An alias row repeats a weapon listed above: only the first gets the
+          // id that TreeScroll and the alias marker look up.
+          id={node.alias ? undefined : node.slug}
           className={rowClass}
           href={href}
           scroll={scroll}
@@ -240,7 +269,7 @@ export default function WeaponTreeRow({
           {inner}
         </Link>
       ) : (
-        <span id={node.slug} className={rowClass}>
+        <span id={node.alias ? undefined : node.slug} className={rowClass}>
           {inner}
         </span>
       )}

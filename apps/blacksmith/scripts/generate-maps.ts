@@ -1,7 +1,8 @@
 /**
  * Writes the crafting trees (content/**\/map.json) from data/.
  *
- * Weapons: one tree per type, following improve_to. Armor: a flat list per
+ * Weapons: one tree per type, following improve_to; a weapon with several
+ * parents has its branch under the first and an alias row under the rest. Armor: a flat list per
  * slot and rank. Decorations: grouped by category.
  */
 import fs from "fs";
@@ -30,6 +31,12 @@ interface MapNode {
   rarity: number | string | null;
   color?: string;
   element?: string;
+  /**
+   * A weapon that can be upgraded from more than one weapon is listed under
+   * each of them, but its own upgrades only under the first: here it is a leaf
+   * that points back up to that row.
+   */
+  alias?: true;
   children?: MapNode[];
 }
 
@@ -67,11 +74,20 @@ const rarityOf = (item: { rarity: number | string }) => parseInt(String(item.rar
  * `path` holds the names above this weapon: some upgrades run both ways (Azure
  * Ogre Sword <-> Ultimus Heaven&Earth), so a child already on the path is
  * skipped rather than followed forever.
+ *
+ * `placed` holds every weapon already in this tree (by type and name), in the
+ * order the tree is read. A weapon with several parents gets its branch under
+ * the first one; under the others it is an alias row with no children, so the
+ * same branch isn't listed twice. A root is always expanded, even when it was
+ * placed already (a weapon of the paired type that also upgrades into this
+ * one): its place at the top says which of this type's weapons it upgrades
+ * into.
  */
 function weaponNode(
   weapon: Weapon,
   own: Weapon[],
   sibling: Weapon[],
+  placed: Set<string>,
   path: readonly string[] = [],
 ): MapNode {
   const node: MapNode = {
@@ -84,6 +100,13 @@ function weaponNode(
   // TODO: Adjust to use both elements in dual element weapons.
   if (weapon.elements) node.element = weapon.elements[0].name.toLowerCase();
 
+  const key = `${weapon.type}|${weapon.name}`;
+  if (path.length > 0 && placed.has(key)) {
+    node.alias = true;
+    return node;
+  }
+  placed.add(key);
+
   if (weapon.improve_to) {
     node.children = [];
     const here = [...path, weapon.name];
@@ -92,7 +115,7 @@ function weaponNode(
       const child =
         own.find((w) => w.name === childName) ??
         sibling.find((w) => w.name === childName && w.type !== weapon.type);
-      if (child) node.children.push(weaponNode(child, own, sibling, here));
+      if (child) node.children.push(weaponNode(child, own, sibling, placed, here));
     }
   }
   return node;
@@ -114,9 +137,10 @@ for (const [type, siblingType] of WEAPON_PAIRS) {
   const sorted = roots.toSorted((a, b) => rarityOf(a) - rarityOf(b));
   roots = [...sorted.filter((w) => !isDeadEnd(w)), ...sorted.filter(isDeadEnd)];
 
+  const placed = new Set<string>();
   writeMap(
     path.join(contentDir, "blacksmith", type, "map.json"),
-    roots.map((w) => weaponNode(w, weapons, sibling)),
+    roots.map((w) => weaponNode(w, weapons, sibling, placed)),
   );
 }
 

@@ -472,15 +472,7 @@
                                 "name": "VenomousCraterMaker",
                                 "rarity": 9,
                                 "element": "poison",
-                                "children": [
-                                  {
-                                    "slug": "glasya-labolas",
-                                    "type": "hammer",
-                                    "name": "Glasya-Labolas",
-                                    "rarity": 10,
-                                    "element": "poison"
-                                  }
-                                ]
+                                "alias": true
                               }
                             ]
                           }
