@@ -894,8 +894,12 @@ What's confirmed and what isn't:
 - Confirmed: the first slot is English on the EU disc (it is the committed
   `data/quests/` text), all slots alias one Japanese text on the JP disc,
   and quest text is UTF-8 on both.
-- **Assumed:** which EU slot is which language. Only quest.hexpat's field
-  names say so. `locales` therefore guesses each slot's language from all
+- Confirmed by the first EU run (2026-11-10): the slots hold English,
+  English, German, French, Spanish, Italian and English, as quest.hexpat
+  names them. Each of the four translated slots read as its language
+  (confidence 0.34 for Italian to 0.80 for French), with all 540 emitted
+  quests translated.
+- `locales` still guesses each slot's language from all
   its text (`src/strings/language.ts`: letters such as `ñ`/`¿` for Spanish,
   `ä`/`ö`/`ü`/`ß` for German, `ç`/`œ` for French, `ì`/`ò` for Italian, common
   short words, and typical letter sequences) and prints it per slot. A slot
@@ -905,7 +909,31 @@ What's confirmed and what isn't:
   that reads as another language with low confidence is written with a
   warning.
 
-### Names (exploratory)
+### Names
+
+#### Message files (EU)
+
+The first EU run showed where the names are: five message files with one
+layout, one per language. `_unindexed/19.bin` is English, `20.bin` French,
+`21.bin` German, `22.bin` Italian and `message_jpn/str_tbl.pac` Spanish.
+Each starts with a table of block offsets (`u32`, 25 of them: the first
+block starts at 0x64, right after the table). Each block is an array of
+`u32` string offsets relative to the block's start, followed by its
+NUL-terminated UTF-8 strings. Blocks are packed with no padding, so most
+start at an odd offset. The same block and entry holds the same string in
+every language, but the blocks sit at different offsets in each file,
+since the strings' lengths differ.
+
+`src/strings/string-pack.ts` reads that table of contents, so every block
+is found in every language, whatever its alignment. The search below tries
+it first: for an enum, the block and starting entry that most names vote
+for becomes an English candidate, and each other message file's same
+block and entry becomes a language candidate (`via` says "message file
+block N, entry M"). The pointer-table search, which reads only aligned
+words, had found just the head, chest and leg armor blocks (the aligned
+ones) and the start of block 0 (skill trees and monsters).
+
+#### Pointer-table search
 
 Names are the harder half: the equipment structs carry no name pointer,
 and nothing vendored says where the name tables are (see

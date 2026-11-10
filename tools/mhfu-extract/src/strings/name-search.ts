@@ -54,6 +54,7 @@ import {
 import { isPlaceholderName, loadEnums } from "./enums.js";
 import { detectLanguage, type Language, type LanguageGuess } from "./language.js";
 import type { NameTable } from "./names.js";
+import { parseStringPack, placeInPack, type StringPack } from "./string-pack.js";
 
 /** The name tables searched, in report order. */
 export const SEARCHED_TABLES: readonly NameTable[] = [
@@ -109,6 +110,7 @@ export class FileIndex {
   private startsCache?: Set<number>;
   private valuesCache?: Set<number>;
   private segmentsCache?: Segment[];
+  private packCache?: StringPack | null;
 
   constructor(readonly file: ScanFile) {}
 
@@ -185,6 +187,12 @@ export class FileIndex {
       this.startsCache = out;
     }
     return this.startsCache;
+  }
+
+  /** The file's message-file table of contents (strings/string-pack.ts), or null. */
+  get pack(): StringPack | null {
+    if (this.packCache === undefined) this.packCache = parseStringPack(this.buf);
+    return this.packCache;
   }
 
   /** The file, plus each entry if it is a `.pac` package. */
@@ -269,6 +277,8 @@ export interface EnglishTable extends TableWindow {
   mismatches: { index: number; expected: string; found: string | null }[];
   /** Each entry's string as read (latin1), null where the pointer leads nowhere. */
   texts: (string | null)[];
+  /** Where it sits in a message file (strings/string-pack.ts), when found through one. */
+  pack?: { block: number; entry: number };
 }
 
 export interface NameCluster {
@@ -648,6 +658,23 @@ export function findLanguageTables(
     windows.push({ idx, window: { file: idx.name, offset: at, stride, base: b, count }, via });
   };
 
+  // Message files: the same block and entry in each language's file.
+  if (english.pack && home.pack) {
+    const { block, entry } = english.pack;
+    for (const idx of indexes) {
+      const pack = idx.pack;
+      if (idx === home || !pack || pack.blocks.length !== home.pack.blocks.length) continue;
+      const b = pack.blocks[block]!;
+      const note = b.count === home.pack.blocks[block]!.count ? "" : ", entry count differs";
+      consider(
+        idx,
+        b.offset + entry * 4,
+        -b.offset,
+        `message file block ${block}, entry ${entry}, in ${idx.name}${note}`,
+      );
+    }
+  }
+
   // [table][lang]: arrays back to back, maybe with a count or terminator between.
   for (let k = -8; k <= 8; k++) {
     if (k === 0) continue;
@@ -808,6 +835,24 @@ export function failedResult(table: NameTable, message: string): NameTableResult
   };
 }
 
+/** English candidates read through a message file's table of contents (any alignment). */
+function packTables(idx: FileIndex, names: (string | null)[]): EnglishTable[] {
+  const pack = idx.pack;
+  if (!pack) return [];
+  return placeInPack(idx.buf, pack, names, 2).map(({ block, entry }) => {
+    const b = pack.blocks[block]!;
+    const count = Math.min(names.length, b.count - entry);
+    const window = {
+      file: idx.name,
+      offset: b.offset + entry * 4,
+      stride: 4,
+      base: -b.offset,
+      count,
+    };
+    return { ...scoreEnglish(idx, window, names), pack: { block, entry } };
+  });
+}
+
 /** Runs the whole search for one name table over `indexes`. */
 export function searchNameTable(table: NameTable, indexes: FileIndex[]): NameTableResult {
   const names = enumNames(table);
@@ -819,9 +864,18 @@ export function searchNameTable(table: NameTable, indexes: FileIndex[]): NameTab
     if (found.cluster) clusters.push(found.cluster);
     for (const b of found.bases) bases.push({ file: idx.name, ...b });
     english.push(...found.tables);
+    english.push(...packTables(idx, names));
   }
   clusters.sort((a, b) => b.names - a.names);
-  english.sort((a, b) => b.matchRatio - a.matchRatio || b.exact - a.exact);
+  // On a tie, prefer the window read through a message file: it knows where
+  // the other languages are. Then drop the same window found both ways.
+  english.sort(
+    (a, b) =>
+      b.matchRatio - a.matchRatio || b.exact - a.exact || Number(!!b.pack) - Number(!!a.pack),
+  );
+  for (let k = english.length - 1; k > 0; k--) {
+    if (english.findIndex((t) => sameWindow(t, english[k]!)) < k) english.splice(k, 1);
+  }
   const notes: string[] = [];
   const best = english[0];
   if (!best) {
