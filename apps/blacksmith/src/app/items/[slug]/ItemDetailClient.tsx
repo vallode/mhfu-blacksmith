@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo } from "react";
+import { Fragment, useMemo } from "react";
 import Link from "next/link";
 import Card from "@/components/Card";
 import {
@@ -20,10 +20,16 @@ import Tabs, { type Tab } from "@/components/Tabs";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
-import { useItems, useItemSources } from "@/lib/client-data";
+import { useItems, useItemSources, type ItemLookup } from "@/lib/client-data";
+import {
+  combinationNotes,
+  quantityLabel,
+  type Combination,
+  type ItemCombinations,
+} from "@/lib/combinations";
 import { ownedItemCounts } from "@/lib/hunter-progress";
 import { itemCategory, itemCategoryLabel } from "@/lib/item-categories";
-import { groupBy, type MonsterSource, type QuestSource } from "@/lib/item-sources";
+import { groupBy, itemHref, type MonsterSource, type QuestSource } from "@/lib/item-sources";
 import type { DropSource } from "@/lib/monster-drops";
 import {
   clearedQuestIds,
@@ -51,7 +57,7 @@ export default function ItemDetailClient({ slug }: Props) {
   // The nav and the item list on the left come from the items layout
   // (ItemShell), which stays mounted; this is only the detail panel.
   const item = items?.bySlug(slug);
-  if (!item) {
+  if (!items || !item) {
     return (
       <Card>
         {items ? (
@@ -80,6 +86,21 @@ export default function ItemDetailClient({ slug }: Props) {
       id: "quests",
       label: "Quests",
       content: <QuestSources sources={found.quests} cleared={cleared} />,
+    });
+  }
+  const combos = items.combinations.get(item.id);
+  if (combos) {
+    tabs.push({
+      id: "combining",
+      label: "Combining",
+      content: (
+        <CombinationSources
+          itemId={item.id}
+          combos={combos}
+          items={items}
+          bookBonus={items.bookBonus}
+        />
+      ),
     });
   }
 
@@ -111,10 +132,10 @@ export default function ItemDetailClient({ slug }: Props) {
 
         {sources ? (
           tabs.length > 0 ? (
-            <Tabs key={slug} tabs={tabs} label="Where to get it" />
+            <Tabs key={slug} tabs={tabs} label="Where to get it and what it makes" />
           ) : (
             <p className="whitespace-normal text-white">
-              No monster drops or quest rewards give this item.
+              No monster drops, quest rewards or combinations give this item.
             </p>
           )
         ) : sourcesError ? (
@@ -188,6 +209,137 @@ function QuestSources({
         />
       ))}
     </DropGrid>
+  );
+}
+
+/**
+ * The combinations that make the item and the ones it goes into, in
+ * Combination List order, with the book bonus the rates leave out.
+ */
+function CombinationSources({
+  itemId,
+  combos,
+  items,
+  bookBonus,
+}: {
+  itemId: number;
+  combos: ItemCombinations;
+  items: ItemLookup;
+  bookBonus: number[];
+}) {
+  const link = (id: number) => {
+    const it = items.get(id);
+    return it.known ? { name: it.name, href: itemHref(it.name) } : { name: it.name };
+  };
+  const books = bookBonus
+    .slice(1)
+    .map((b) => `+${b}%`)
+    .join(", ");
+  return (
+    <div className="flex flex-col gap-[1.6rem]">
+      <DropGrid>
+        {combos.madeFrom.length > 0 && (
+          <CombinationList
+            title="Made by combining"
+            rows={combos.madeFrom.map((c) => ({
+              combo: c,
+              main: c.ingredients.map(link),
+              detail: combinationNotes(c),
+            }))}
+          />
+        )}
+        {combos.usedIn.length > 0 && (
+          <CombinationList
+            title="Used to make"
+            rows={combos.usedIn.map((c) => {
+              const other = c.ingredients.find((id) => id !== itemId) ?? itemId;
+              return {
+                combo: c,
+                main: [link(c.result)],
+                with: link(other),
+                detail: combinationNotes(c),
+              };
+            })}
+          />
+        )}
+      </DropGrid>
+      {books && (
+        <p className="m-0 text-fine whitespace-normal text-white/60">
+          Rates are before Books of Combos 1–5 ({books} for owning them in order from 1) and the
+          Combination skill.
+        </p>
+      )}
+    </div>
+  );
+}
+
+interface LinkedName {
+  name: string;
+  href?: string;
+}
+
+interface CombinationRow {
+  combo: Combination;
+  /** The ingredients, or the item made */
+  main: LinkedName[];
+  /** The other ingredient, when the row is what this item makes */
+  with?: LinkedName;
+  detail: string[];
+}
+
+function NameLink({ name, href }: LinkedName) {
+  return href ? (
+    <Link href={href} title={name} className="text-white underline-offset-4 hover:underline">
+      {name}
+    </Link>
+  ) : (
+    <span className="text-white">{name}</span>
+  );
+}
+
+/** A titled list of combinations: the items (linked), how many it makes and the success rate. */
+function CombinationList({ title, rows }: { title: string; rows: CombinationRow[] }) {
+  return (
+    <section className="flex min-w-0 flex-col gap-[0.6rem]">
+      <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">{title}</h3>
+      <ul className="m-0 flex list-none flex-col gap-[0.8rem] p-0">
+        {rows.map((r) => (
+          <li key={r.combo.number} className="flex min-w-0 flex-col gap-[0.2rem] leading-[1.25]">
+            <div className="flex min-w-0 items-baseline gap-[0.8rem]">
+              <span className="min-w-0 flex-1 whitespace-normal">
+                {r.main.map((m, i) => (
+                  <Fragment key={i}>
+                    {i > 0 && <span className="text-muted"> + </span>}
+                    <NameLink {...m} />
+                  </Fragment>
+                ))}
+              </span>
+              <span className="w-cells-5 flex-none text-muted">
+                {quantityLabel(r.combo.quantity)}
+              </span>
+              <span
+                className={cn(
+                  "w-cells-4 flex-none text-right text-white tabular-nums",
+                  r.combo.successRate >= 100 && "text-positive",
+                )}
+              >
+                {r.combo.successRate}%
+              </span>
+            </div>
+            <p className="m-0 text-fine whitespace-normal text-white/60">
+              {r.with && (
+                <>
+                  {"with "}
+                  <NameLink {...r.with} />
+                  {" · "}
+                </>
+              )}
+              {[...r.detail, `List No. ${r.combo.number}`].join(" · ")}
+            </p>
+          </li>
+        ))}
+      </ul>
+    </section>
   );
 }
 

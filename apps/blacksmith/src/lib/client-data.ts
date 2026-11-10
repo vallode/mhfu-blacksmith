@@ -28,6 +28,7 @@ import {
 } from "./schema";
 import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
 import { buildItemSources, type ItemSources } from "./item-sources";
+import { decodeCombination, indexCombinations, type ItemCombinations } from "./combinations";
 import { normalizeItemName } from "./items";
 import { slugify } from "./slug";
 import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
@@ -296,6 +297,10 @@ export interface ItemLookup {
   bySlug(slug: string): ResolvedItem | undefined;
   /** The item a recipe or drop name ("Plesioth Scale", "Akantor Claw x1") is */
   idOf(name: string): number | undefined;
+  /** What each item is combined from and into, by item ID */
+  combinations: Map<number, ItemCombinations>;
+  /** Combination success bonus (percent) for owning the first 0, 1, … Books of Combos */
+  bookBonus: number[];
 }
 
 let itemsPromise: Promise<ItemLookup> | null = null;
@@ -327,6 +332,8 @@ function buildItemLookup(bundle: ItemsBundle, d: Dictionaries): ItemLookup {
     list,
     bySlug: (slug) => slugs.get(slug),
     idOf: (name) => names.get(normalizeItemName(name)),
+    combinations: indexCombinations((bundle.combinations ?? []).map(decodeCombination)),
+    bookBonus: bundle.book_bonus ?? [],
     get(id: number): ResolvedItem {
       return (
         resolve(id) ?? {

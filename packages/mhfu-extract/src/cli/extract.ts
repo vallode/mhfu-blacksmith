@@ -9,6 +9,7 @@ import { fileURLToPath } from "node:url";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
+import { emitCombinations } from "../emit/combinations.js";
 import { emitMonsters } from "../emit/monsters.js";
 import { emitQuestsFile } from "../emit/quests.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
@@ -34,6 +35,7 @@ import {
   verifyOffsets,
   type OffsetVerificationResult,
 } from "../tables/offsets.js";
+import { readCombinations } from "../tables/combinations.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -186,6 +188,13 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     if (options.raw) await writeRawDumps(options.out, reader, resolver);
     output = emitAll(reader, resolver, overlays.gameTask.reader);
   }
+
+  // Found by shape, not address, so this is the same for every region.
+  const combinations = readCombinations(ebootBuf, JP_BASE_ADDRESS);
+  console.log(
+    `Combination List at 0x${combinations.offsets.list.toString(16)} (${combinations.recipes.length} combinations), recipes at 0x${combinations.offsets.records.toString(16)}.`,
+  );
+  output["combinations.json"] = emitCombinations(combinations);
 
   console.log("Reading and parsing quest files...");
   const { quests, skipped, raw } = await readQuestsFromUnpackedDir(

@@ -9,7 +9,8 @@
  *   - decorations.json
  *   - skills.json                (skill trees and activations, for the set builder)
  *   - equipment-ids.json         (save-file equipment IDs -> item pages)
- *   - items.json                 (in-game item ID -> name, linked to materials)
+ *   - items.json                 (in-game item ID -> name, linked to materials, and the
+ *                                 Combination List)
  *   - data-manifest.json         ({ files, version })
  *
  * Reuses the transform logic from src/lib (slugify, raw_attack
@@ -62,6 +63,7 @@ import {
   type ItemRecord,
 } from "../src/lib/items";
 import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
+import { encodeCombination, type CombinationsFile } from "../src/lib/combinations";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import type { HitboxCapsule } from "../src/lib/models";
 
@@ -624,7 +626,14 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
     items[r.id] = out;
   }
   totalItems += records.length;
-  const bundle: ItemsBundle = { kind: "items", items, materials };
+  const combos = readJson<CombinationsFile>(path.join(dataDir, "combinations.json"));
+  const bundle: ItemsBundle = {
+    kind: "items",
+    items,
+    materials,
+    combinations: combos.combinations.map(encodeCombination),
+    book_bonus: combos.book_bonus,
+  };
   push("items.json", bundle);
 }
 
