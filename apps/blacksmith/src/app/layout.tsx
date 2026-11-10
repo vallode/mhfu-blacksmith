@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import "./globals.css";
 import { faviconMetadata } from "@/lib/favicon";
 import { DEFAULT_IMAGE, SITE_DESCRIPTION, SITE_NAME, SITE_URL, THEME_COLOR } from "@/lib/seo";
+import AppShell from "@/components/AppShell";
 import GlobalSearch from "@/components/GlobalSearch";
 import PreloadIcons from "@/components/PreloadIcons";
 // import OfflineDownload from "@/components/OfflineDownload"; // banner hidden for now
@@ -54,7 +55,9 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
               <ToastProvider>
                 <OfflineProvider>
                   <FileSyncProvider>
-                    <OfflineNavGuard>{children}</OfflineNavGuard>
+                    <AppShell>
+                      <OfflineNavGuard>{children}</OfflineNavGuard>
+                    </AppShell>
                     <GlobalSearch />
                     {/* Offline download banner hidden for now.
                     <OfflineDownload /> */}

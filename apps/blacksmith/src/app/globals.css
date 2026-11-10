@@ -52,6 +52,10 @@
   --text-small: 1.6rem;
   --text-fine: 1.4rem;
 
+  /* Height of the phone tab bar (AppShell), so fixed things above the page
+     bottom (toasts) clear it: bottom-[calc(var(--spacing-tabbar)+1.4rem)]. */
+  --spacing-tabbar: 8rem;
+
   /* UI palette */
   --color-accent: #037703;
   --color-hr: #6e905f;
@@ -143,6 +147,18 @@
     to {
       opacity: 1;
       transform: translateY(0);
+    }
+  }
+
+  /* The phone menu drawer (AppShell) slides in from the left */
+  --animate-drawer-in: drawer-in 160ms ease-out;
+
+  @keyframes drawer-in {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
     }
   }
 
