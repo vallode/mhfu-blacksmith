@@ -23,6 +23,7 @@ import { equipmentCreateLayout, equipmentUpgradeLayout } from "mhfu-extract/src/
 import { WEAPON_TYPE_NAMES } from "mhfu-extract/src/tables/weapons.js";
 import {
   ARMOR_ENTRY_SIZE,
+  DECO_SKILL_ENTRY_SIZE,
   EQUIP_CREATE_ENTRY_SIZE,
   EQUIP_UPGRADE_ENTRY_SIZE,
   ITEM_ENTRY_SIZE,
@@ -546,7 +547,19 @@ export function buildEboot(
     buf.writeUInt16LE(a.hunterType & 2 ? a.index : 0, at + 2); // female model
     buf[at + 4] = a.hunterType;
     buf[at + 5] = a.rarity;
+    (FIXTURE_ARMOR_SKILLS[`${a.slot}:${a.index}`] ?? []).forEach(([tree, points], k) => {
+      buf[at + 30 + k * 2] = tree;
+      buf.writeInt8(points, at + 31 + k * 2);
+    });
   }
+  // One decoration per tree, +1 each, after the table's dummy entry.
+  const decoSkills = tableOffset("decorationSkills") + DECO_SKILL_ENTRY_SIZE;
+  FIXTURE_DECORATION_TREES.forEach((tree, i) => {
+    const at = decoSkills + i * DECO_SKILL_ENTRY_SIZE;
+    buf[at] = 1;
+    buf[at + 8] = tree;
+    buf[at + 9] = 1;
+  });
   for (const [slot, entries] of Object.entries(FIXTURE_ARMOR_CREATE)) {
     for (const [entry, piece, materials] of entries) {
       const at = create[slot as ArmorSlot].offset + entry * EQUIP_CREATE_ENTRY_SIZE;
@@ -902,6 +915,107 @@ export const FIXTURE_ARMOR_CREATE: Partial<Record<ArmorSlot, [number, number, Ma
     [2, 3, [{ itemId: 113, quantity: 1 }]],
   ],
 };
+
+/** Skill trees the fixture uses (`SkillID`). */
+export const TREE = {
+  torsoUp: 1,
+  health: 9,
+  sharpness: 11,
+  guard: 16,
+  reload: 20,
+  recoil: 21,
+  hunger: 33,
+  attack: 35,
+  defense: 36,
+  protection: 37,
+  gathering: 52,
+  fate: 55,
+  stamina: 65,
+  edgemaster: 92,
+} as const;
+
+/**
+ * Armor skills (`ArmorValue` +30): [tree, points] per entry, [0, 0] for an
+ * empty one. Sharpness and Guard are only on Blademaster pieces, Reload and
+ * Recoil only on Gunner ones; the rest are on both or on pieces anyone can
+ * wear. Edgemaster has no decoration; Gathering is only on one. Head 7 has
+ * Torso Up; head 9 (in no create entry) and 10 (no `HunterType` bits) have
+ * skills that must stay.
+ */
+export const FIXTURE_ARMOR_SKILLS: Record<string, [tree: number, points: number][]> = {
+  "head:1": [
+    [TREE.attack, 2],
+    [TREE.defense, 1],
+    [0, 0],
+    [TREE.health, -1],
+  ],
+  "head:2": [
+    [TREE.health, 3],
+    [TREE.stamina, 2],
+    [TREE.hunger, -2],
+  ],
+  "head:5": [
+    [TREE.defense, 2],
+    [TREE.fate, 1],
+  ],
+  "head:9": [[TREE.attack, 10]],
+  "head:3": [
+    [TREE.protection, 3],
+    [TREE.attack, -2],
+  ],
+  "head:4": [
+    [TREE.stamina, 4],
+    [TREE.edgemaster, 2],
+    [TREE.fate, -1],
+  ],
+  "head:6": [[TREE.health, 2]],
+  "head:7": [[TREE.torsoUp, 1]],
+  "head:8": [
+    [TREE.defense, 3],
+    [TREE.hunger, -1],
+  ],
+  "head:10": [[TREE.attack, 5]],
+  "chest:1": [
+    [TREE.sharpness, 2],
+    [TREE.attack, 1],
+    [TREE.hunger, -1],
+  ],
+  "chest:3": [
+    [TREE.guard, 3],
+    [TREE.defense, 1],
+  ],
+  "chest:2": [
+    [TREE.reload, 2],
+    [TREE.recoil, 1],
+    [TREE.hunger, -1],
+  ],
+  "chest:4": [
+    [TREE.reload, 1],
+    [TREE.attack, 2],
+    [TREE.defense, -1],
+  ],
+  "chest:5": [
+    [TREE.edgemaster, 3],
+    [TREE.defense, 1],
+  ],
+  "leg:1": [
+    [TREE.attack, 3],
+    [TREE.defense, -2],
+  ],
+  "leg:2": [
+    [TREE.health, 3],
+    [TREE.fate, 2],
+  ],
+  "leg:3": [
+    [TREE.protection, 2],
+    [TREE.edgemaster, 2],
+  ],
+};
+
+/** Trees with a decoration: every tree above but Torso Up and Edgemaster, and Gathering. */
+export const FIXTURE_DECORATION_TREES: number[] = Object.values(TREE).filter(
+  (t) => t !== TREE.torsoUp && t !== TREE.edgemaster,
+);
 
 /** JP's unencrypted DATA.BIN entries (`JP_EXCEPTIONS` in mhfu-extract's databin.ts). */
 export const JP_RAW = new Set([

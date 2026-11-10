@@ -27,6 +27,9 @@ export interface Settings {
   "weapons.enabled": boolean;
   "weapons.mix": "same-type" | "any-type";
   "armor.enabled": boolean;
+  "armorSkills.enabled": boolean;
+  "armorSkills.mode": "shuffle" | "randomize";
+  "armorSkills.keepArmorOnly": boolean;
   "shops.enabled": boolean;
   "shops.pool": "shop" | "low" | "high" | "any";
   "shops.mix": "each" | "all";
@@ -253,6 +256,47 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     eboot: true,
+  },
+  {
+    key: "armorSkills.enabled",
+    section: "Armor",
+    label: "Change armor skills",
+    help: "Change the skill points on armor pieces. Each piece keeps how many skills it has and which are negative; Torso Up and decorations stay as they are.",
+    type: { kind: "boolean" },
+    default: false,
+    eboot: true,
+  },
+  {
+    key: "armorSkills.mode",
+    section: "Armor",
+    label: "How armor skills change",
+    help: "Whether pieces trade the skill points they have, or get new ones.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Pieces trade their skill points with other pieces of the same rarity and hunter type. The game has the same skills, on other pieces.",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Every skill on a piece is a new skill tree for its hunter type, with new points sized like that rarity's skills. Some skills may be hard to activate, or easier than ever.",
+        },
+      ],
+    },
+    default: "shuffle",
+    enabledBy: "armorSkills.enabled",
+  },
+  {
+    key: "armorSkills.keepArmorOnly",
+    section: "Armor",
+    label: "Keep skills no decoration gives",
+    help: "Skill trees only armor has (no decoration adds points to them) stay on their pieces, so they activate as before. Off, they move or are drawn like the rest, and may become impossible to activate.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "armorSkills.enabled",
   },
   {
     key: "shops.enabled",
@@ -549,13 +593,14 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Full",
-    help: "Everything, keeping items at their star level, weapons in their type and armor with its hunter type.",
+    help: "Everything, keeping items at their star level, weapons in their type and armor with its hunter type. Armor skills are shuffled.",
     changes: {
       "recipes.materials": true,
       "recipes.amounts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
       "armor.enabled": true,
+      "armorSkills.enabled": true,
       "shops.enabled": true,
       "shops.pool": "low",
       "shops.prices": true,
@@ -566,7 +611,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Chaos",
-    help: "Everything, anywhere: no progression logic, any weapon type, wide amounts and costs. Armor still keeps its rarity, hunter type and sex.",
+    help: "Everything, anywhere: no progression logic, any weapon type, wide amounts and costs, new armor skills. Armor still keeps its rarity, hunter type and sex.",
     changes: {
       "logic.tiers": "none",
       "recipes.materials": true,
@@ -577,6 +622,8 @@ export const PRESETS: readonly Preset[] = [
       "weapons.enabled": true,
       "weapons.mix": "any-type",
       "armor.enabled": true,
+      "armorSkills.enabled": true,
+      "armorSkills.mode": "randomize",
       "shops.enabled": true,
       "shops.pool": "any",
       "shops.mix": "all",

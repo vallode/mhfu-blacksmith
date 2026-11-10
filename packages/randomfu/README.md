@@ -15,7 +15,8 @@ Licensed **GPL-3.0-or-later** (see `LICENSE`), because it builds on
 Early. On the EU disc, PPSSPP boots a randomized image and the smithy shows
 the shuffled recipe materials. Star-level tiers, gathering sources,
 `recipe-amounts`, `costs`, `armor` and `gathering` are so far tested only
-against the synthetic disc the tests build (`test/fixtures.ts`). A PSP
+against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
+has been written to the EU disc and read back, but not yet played. A PSP
 with custom firmware isn't tested. Run `roundtrip` on a new disc first. In-process EBOOT
 decryption is also tested only on synthetic EBOOTs so far; until it has run
 on a real disc, a PPSSPP dump (`--eboot`) is the proven path.
@@ -79,14 +80,14 @@ pnpm settings --write my.json       # write every setting to a file to edit
 
 Settings come from these flags, later ones winning:
 
-| Flag                                                          | What it sets                                                                                                       |
-| ------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------ |
-| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                       |
-| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                            |
-| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, shops |
-| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                      |
-| `--set key=value,key=value`                                   | Any setting by name                                                                                                |
-| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                     |
+| Flag                                                          | What it sets                                                                                                                     |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------- |
+| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                     |
+| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                          |
+| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops |
+| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                    |
+| `--set key=value,key=value`                                   | Any setting by name                                                                                                              |
+| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                   |
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
@@ -119,6 +120,9 @@ added there shows up everywhere.
 | `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                               |
 | `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)              |
 | `armor.enabled`                   | off         | Shuffle armor progression (EBOOT)                                                |
+| `armorSkills.enabled`             | off         | Change armor skills (EBOOT)                                                      |
+| `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points, or `randomize`: new trees and points            |
+| `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                               |
 | `shops.enabled`                   | off         | Randomize shops                                                                  |
 | `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`              |
 | `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                          |
@@ -144,6 +148,7 @@ No shuffle changes a list's length, so every edited file keeps its size.
 | `costs`           | Weapon, armor and decoration prices in the EBOOT    | Crafting and upgrade costs, varied in steps of 10z   |
 | `weapons`         | Weapon create and upgrade entries in the EBOOT      | Which weapon each place makes (see below)            |
 | `armor`           | Armor create entries in the EBOOT                   | Which piece each place makes (see below)             |
+| `armor-skills`    | `ArmorValues` skill entries in the EBOOT            | Each piece's skill trees and points (see below)      |
 | `shops`           | Shop item lists in `lobby_task.ovl`                 | Which items each shop sells (see below)              |
 
 ### Logic
@@ -233,6 +238,37 @@ never mix: the permutation keeps every piece in the smithy either way,
 but nothing has shown how the smithy treats a place whose piece is for
 the other type, so there's no option for it. Like `weapons`, it runs
 before the recipe shuffles, whose spoiler lines then name the new pieces.
+
+`armor-skills` changes the skill points on each piece the smithy makes.
+A piece's `ArmorValue` has five entries of a skill tree (u8) and points
+(s8); tree 0 is empty. The game reads all five (108 EU pieces have an empty
+entry between filled ones), so entries keep their positions and empty ones
+stay empty. Every piece keeps how many skills it has and which are
+negative, and no piece ends up with a tree twice.
+
+- **shuffle** (`armorSkills.mode shuffle`): filled entries, tree and points
+  together, trade places between pieces of the same rarity and hunter
+  type (Blademaster only, Gunner only, or both), positive with positive
+  and negative with negative. Each rarity keeps the same skill points, so
+  Gunner skills stay on Gunner pieces as they were.
+- **randomize**: each filled entry gets a new tree, never one the piece
+  already has, and new points of the same sign. The trees are the ones
+  the disc's armor and decorations use. A tree only on Blademaster-only
+  pieces (Sharpness, Guard) goes only to Blademaster-only pieces, likewise
+  for Gunner trees (Reload, Recoil); pieces both can wear get only trees
+  that suit anyone. The size of the points is drawn from the sizes of that
+  sign at that rarity on the disc.
+
+Torso Up entries (tree 1) never move and are never drawn. With
+`armorSkills.keepArmorOnly` (on by default), neither are trees no
+decoration adds points to: armor is their only source, usually a set's
+pieces together (seven trees on the EU disc, Edgemaster and Fury among
+them). Shuffled, six of the seven fell below +10 from armor alone. The
+spoiler lists, for each of these trees, the most points armor alone gives
+(the best piece per slot). Skill activation thresholds aren't read:
+mhfu-extract has no table for them, none was found in the EBOOT, and
+neither mode needs them. Skills are a piece's own, so with `armor` they go
+with the piece to its new place.
 
 `shops` changes the shops. They live in `overlay/lobby_task.ovl`: each
 shop's stock is a list of u16 item IDs ending in 0xFFFF, one list per stage

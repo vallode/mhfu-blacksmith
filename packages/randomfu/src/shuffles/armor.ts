@@ -44,7 +44,7 @@ import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
 const HUNTER_TYPE_AT = 4;
 const RARITY_AT = 5;
 
-const SLOT_NAMES: Record<ArmorSlot, { table: NameTable; label: string }> = {
+export const SLOT_NAMES: Record<ArmorSlot, { table: NameTable; label: string }> = {
   head: { table: "HeadArmorID", label: "Head" },
   chest: { table: "ChestArmorID", label: "Chest" },
   arm: { table: "ArmArmorID", label: "Arms" },

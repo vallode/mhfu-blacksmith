@@ -181,10 +181,10 @@ function signatureLike(original: Buffer): TableAddressResolver {
   };
 }
 
-test("tables found by signature stay found once weapons and armor edit them", async () => {
+test("tables found by signature stay found once weapons, armor and armor skills edit them", async () => {
   const { game, close } = await load();
   const original = Buffer.from(game.eboot!);
-  const all = settingsWith("z", ["weapons", "armor", "recipes", "costs"]);
+  const all = settingsWith("z", ["weapons", "armor", "armor-skills", "recipes", "costs"]);
 
   // The bug this guards against: searching the edited EBOOT loses the tables.
   game.resolver = signatureLike(original);
