@@ -388,6 +388,9 @@ function push(name: string, obj: unknown) {
   files.push({ name, json: JSON.stringify(obj) });
 }
 
+// Decorations' item IDs -> gem colour, so items.json gives jewels their icon.
+const decorationIcons = new Map<number, string>();
+
 // Page refs by name, for equipment-ids.json below.
 const weaponRefs = new Map<string, EquipRef>(); // "<type>|<name>"
 const armorRefs = new Map<string, EquipRef>(); // "<slot>|<name>|<sex>" and "<slot>|<name>"
@@ -542,6 +545,9 @@ for (const category of MONSTER_CATEGORIES) {
     );
     process.exit(1);
   }
+  for (const d of crafting.decorations) {
+    decorationIcons.set(decorationItemId(d.name, itemIndex)!, d.color ?? "");
+  }
   const items = crafting.decorations.map((d) =>
     encodeDecoration(
       { ...d, slug: slugify(d.name) },
@@ -599,6 +605,9 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
     const [type, color] = materialTC.get(name) ?? ["", ""];
     if (!type) continue;
     if (!iconFor.has(id) || name === byName.get(id)) iconFor.set(id, [type, color]);
+  }
+  for (const [id, color] of decorationIcons) {
+    if (!iconFor.has(id)) iconFor.set(id, ["decoration", color]);
   }
 
   const maxId = Math.max(...records.map((r) => r.id));

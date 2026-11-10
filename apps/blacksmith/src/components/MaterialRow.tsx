@@ -1,6 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import Icon from "./Icon";
+import { itemLink } from "./MonsterDrops";
+import { cn } from "@/lib/cn";
+import { itemHref } from "@/lib/item-sources";
 import { useOwnedMaterials } from "@/hooks/useOwnedMaterials";
 import type { Material } from "@/lib/types";
 
@@ -32,7 +36,9 @@ export default function MaterialRow({ material }: MaterialRowProps) {
     return (
       <div className="flex items-center">
         <Icon type={material.type} color={material.color} />
-        <p className={nameClass}>{material.name}</p>
+        <Link href={itemHref(material.name)} className={cn(nameClass, itemLink)}>
+          {material.name}
+        </Link>
         <p className={amountClass}>:{pad(material.amount)}</p>
       </div>
     );
@@ -44,7 +50,9 @@ export default function MaterialRow({ material }: MaterialRowProps) {
   return (
     <div className="flex items-center" title={`You have ${shown} in your item box and pouch`}>
       <Icon type={material.type} color={material.color} />
-      <p className={nameClass}>{material.name}</p>
+      <Link href={itemHref(material.name)} className={cn(nameClass, itemLink)}>
+        {material.name}
+      </Link>
       <p className={amountClass}>
         :{short ? <span className="text-negative">{pad(shown)}</span> : pad(shown)}/{pad(required)}
       </p>

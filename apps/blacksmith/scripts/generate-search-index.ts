@@ -3,6 +3,9 @@ import path from "path";
 import { armorSlugs } from "../src/lib/slug";
 import { questHubSlug, type QuestHubSlug } from "../src/lib/quests";
 import { DATA_DIR } from "../src/lib/paths";
+import { slugify as itemSlug } from "../src/lib/slug";
+import { buildItemNameIndex, decorationItemId, type ItemRecord } from "../src/lib/items";
+import type { Dictionaries, ItemsBundle } from "../src/lib/schema";
 
 const root = process.cwd();
 const dataDir = DATA_DIR;
@@ -19,8 +22,10 @@ interface SearchEntry {
   name: string;
   slug: string;
   url: string;
-  category: "weapon" | "armor" | "decoration" | "monster" | "quest";
+  category: "weapon" | "armor" | "decoration" | "monster" | "quest" | "item";
   type: string;
+  /** An item's icon colour */
+  color?: string;
   rank: string | null;
   rarity: number;
   elements: string;
@@ -199,6 +204,49 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
       elements: "",
       skills: "",
     });
+  }
+}
+
+// Items, with the icons generate-data.ts picked for them (public/data, which
+// the build writes first). Decorations are items too; they're searched as
+// decorations above.
+{
+  const { items } = JSON.parse(fs.readFileSync(path.join(dataDir, "items.json"), "utf-8")) as {
+    items: ItemRecord[];
+  };
+  const bundlePath = path.join(root, "public", "data", "items.json");
+  const dictPath = path.join(root, "public", "data", "dictionaries.json");
+  const bundle = fs.existsSync(bundlePath)
+    ? (JSON.parse(fs.readFileSync(bundlePath, "utf-8")) as ItemsBundle)
+    : null;
+  const dict = fs.existsSync(dictPath)
+    ? (JSON.parse(fs.readFileSync(dictPath, "utf-8")) as Dictionaries)
+    : null;
+  if (!bundle || !dict) console.warn("generate-search: no public/data yet; items get no icons");
+  const { index } = buildItemNameIndex(items);
+  const decorations = new Set(
+    (
+      JSON.parse(fs.readFileSync(decoFile, "utf-8")) as { decorations: { name: string }[] }
+    ).decorations.map((d) => decorationItemId(d.name, index)),
+  );
+  for (const item of items) {
+    if (item.placeholder || decorations.has(item.id)) continue;
+    const compact = bundle?.items[item.id];
+    const slug = itemSlug(item.name);
+    const entry: SearchEntry = {
+      name: item.name,
+      slug,
+      url: `/items/${slug}`,
+      category: "item",
+      type: (compact?.t !== undefined && dict?.types[compact.t]) || "ukwn",
+      rank: null,
+      rarity: item.rarity ?? 0,
+      elements: "",
+      skills: "",
+    };
+    const color = compact?.c !== undefined ? dict?.colors[compact.c] : undefined;
+    if (color) entry.color = color;
+    entries.push(entry);
   }
 }
 
