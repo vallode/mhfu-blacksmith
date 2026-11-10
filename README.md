@@ -96,4 +96,4 @@ The crafting trees in `apps/blacksmith/content/**/map.json` are generated from `
 
 The site is deployed by [Netlify](https://app.netlify.com/sites/mhfu-blacksmith/deploys) (`netlify.toml`), which builds `main` for production and every pull request as a deploy preview.
 
-randomfu's web app is a second Netlify site on this repository, served at [randomfu.vallode.com](https://randomfu.vallode.com). Its config is `apps/randomfu/netlify.toml`, which Netlify finds because that site's package directory is `apps/randomfu`; it only rebuilds when something the app is built from changes.
+randomfu's web app is a second Netlify site on this repository, served at [randomfu.vallode.com](https://randomfu.vallode.com). Its config is `apps/randomfu/netlify.toml`, which Netlify finds because that site's base directory is `apps/randomfu`; it only rebuilds when something the app is built from changes.
