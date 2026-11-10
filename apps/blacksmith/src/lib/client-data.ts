@@ -284,6 +284,10 @@ export interface ResolvedItem {
   type: string;
   color: string;
   rarity?: number;
+  /** Carry limit; 255 means unlimited */
+  carry?: number;
+  /** Price in zenny; 0 for items with none */
+  price?: number;
   known: boolean;
 }
 
@@ -313,6 +317,8 @@ function buildItemLookup(bundle: ItemsBundle, d: Dictionaries): ItemLookup {
       type: it.t !== undefined ? d.types[it.t] || "ukwn" : "ukwn",
       color: it.c !== undefined ? d.colors[it.c] || "gray" : "gray",
       rarity: it.r,
+      carry: it.l,
+      price: it.z,
       known: true,
     };
   };

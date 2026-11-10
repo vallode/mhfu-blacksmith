@@ -1,7 +1,8 @@
 /**
  * `build-data` subcommand: rewrites committed `data/` files from `extract`
  * output. Equipment categories are merged field by field
- * (`build/merge.ts`); quests, gathering points and shops have no committed
+ * (`build/merge.ts`); item stats are written into `data/items.json` by ID
+ * (`build/items.ts`); quests, gathering points and shops have no committed
  * counterpart and are copied through, with each item under its game name. Prints, and optionally writes, a report of every value the disc
  * changed, every reviewed disagreement kept as committed, and every item
  * only one side has.
@@ -24,12 +25,14 @@ import {
   normalizeMaterials,
   type MaterialLook,
 } from "../build/material-styles.js";
+import { mergeItemStats, type ItemStatChange } from "../build/items.js";
+import type { EmittedItem } from "../emit/items.js";
 
 /** Targets copied from the disc whole, rather than merged with committed files. */
 export type CopiedTarget = "quests" | "gathering" | "shops";
 const COPIED_TARGETS: CopiedTarget[] = ["quests", "gathering", "shops"];
-export type BuildTarget = CategoryName | CopiedTarget;
-export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, ...COPIED_TARGETS];
+export type BuildTarget = CategoryName | "items" | CopiedTarget;
+export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "items", ...COPIED_TARGETS];
 
 export interface BuildDataOptions {
   extracted: string;
@@ -61,8 +64,17 @@ export interface CategoryBuildReport {
   filesWritten: string[];
 }
 
+/** Item stats (rarity, carry limit, price) written into `data/items.json`. */
+export interface ItemsBuildReport {
+  changes: ItemStatChange[];
+  /** Committed items the disc has no entry for, left as they were. */
+  missing: { id: number; name: string }[];
+  filesWritten: string[];
+}
+
 export interface BuildDataReport {
   categories: CategoryBuildReport[];
+  items: ItemsBuildReport | null;
   /** Files copied from the disc (quests, gathering points, shops), relative to `data/`. */
   copiedFiles: string[];
 }
@@ -168,6 +180,22 @@ async function copiedFiles(
   return { files: files.map((f) => path.join("quests", f)), name: nameQuestItems };
 }
 
+/** Writes the disc's item stats into `data/items.json`. */
+async function buildItems(options: BuildDataOptions): Promise<ItemsBuildReport> {
+  const source = await readJsonOrNull(path.join(options.extracted, "items.json"));
+  if (!source) throw new Error(`items.json is missing from ${options.extracted}; rerun extract`);
+  const file = path.join(options.data, "items.json");
+  const previous = await readFile(file, "utf-8");
+  const merged = mergeItemStats(JSON.parse(previous), (source as { items: EmittedItem[] }).items);
+  const next = `${JSON.stringify(merged.content, null, 2)}\n`;
+  const filesWritten: string[] = [];
+  if (next !== previous) {
+    if (!options.dryRun) await writeFile(file, next, "utf-8");
+    filesWritten.push("items.json");
+  }
+  return { changes: merged.changes, missing: merged.missing, filesWritten };
+}
+
 async function copyTarget(target: CopiedTarget, options: BuildDataOptions): Promise<string[]> {
   const { files, name } = await copiedFiles(target, options.extracted);
   const site = loadSiteIndex(options.data);
@@ -185,11 +213,12 @@ async function copyTarget(target: CopiedTarget, options: BuildDataOptions): Prom
   return written;
 }
 
-export async function runBuildData(options: BuildDataOptions): Promise<BuildDataReport> {
-  const targets = options.only ?? BUILD_TARGETS;
-  const categoryNames = targets.filter(
-    (t): t is CategoryName => !COPIED_TARGETS.includes(t as CopiedTarget),
-  );
+/** Merges each equipment category into its committed files. */
+async function buildCategories(
+  categoryNames: CategoryName[],
+  options: BuildDataOptions,
+): Promise<CategoryBuildReport[]> {
+  if (categoryNames.length === 0) return [];
   const { site, committed, extracted, spellings, byContext } = await loadInputs(
     options.extracted,
     options.data,
@@ -252,11 +281,21 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
     });
   }
 
+  return categories;
+}
+
+export async function runBuildData(options: BuildDataOptions): Promise<BuildDataReport> {
+  const targets = options.only ?? BUILD_TARGETS;
+  const categoryNames = targets.filter(
+    (t): t is CategoryName => t !== "items" && !COPIED_TARGETS.includes(t as CopiedTarget),
+  );
+  const categories = await buildCategories(categoryNames, options);
+  const items = targets.includes("items") ? await buildItems(options) : null;
   const copied: string[] = [];
   for (const target of COPIED_TARGETS) {
     if (targets.includes(target)) copied.push(...(await copyTarget(target, options)));
   }
-  const report: BuildDataReport = { categories, copiedFiles: copied };
+  const report: BuildDataReport = { categories, items, copiedFiles: copied };
   if (options.report)
     await writeFile(options.report, `${JSON.stringify(report, null, 2)}\n`, "utf-8");
   if (options.markdown) await writeFile(options.markdown, formatBuildReport(report), "utf-8");
@@ -286,6 +325,20 @@ export function printBuildSummary(report: BuildDataReport, dryRun = false): void
           .slice(0, 8)
           .map((u) => u.name)
           .join(", ")}${c.discOnly.length > 8 ? ", ..." : ""}`,
+      );
+  }
+  if (report.items) {
+    const { changes, missing, filesWritten } = report.items;
+    const added = changes.filter((c) => c.before === undefined).length;
+    console.log(
+      `items: ${added} stat(s) added, ${changes.length - added} changed; ${verb} ${filesWritten.length} file(s).`,
+    );
+    if (missing.length > 0)
+      console.log(
+        `  ${missing.length} committed item(s) with no disc entry, left as-is: ${missing
+          .slice(0, 8)
+          .map((m) => m.name)
+          .join(", ")}${missing.length > 8 ? ", ..." : ""}`,
       );
   }
   if (report.copiedFiles.length > 0)
@@ -408,6 +461,29 @@ export function formatBuildReport(report: BuildDataReport): string {
       out.push(`### Disc items the site doesn't list (${c.discOnly.length}, not added)`, "");
       for (const u of c.discOnly)
         out.push(`- ${u.file}: ${u.name}${u.id === null ? "" : ` (ID ${u.id})`}`);
+      out.push("");
+    }
+  }
+  if (report.items) {
+    const { changes, missing } = report.items;
+    const added = changes.filter((c) => c.before === undefined);
+    const changed = changes.filter((c) => c.before !== undefined);
+    out.push("## items", "");
+    const byField = (list: ItemStatChange[]) =>
+      ["rarity", "carry", "price"].map((f) => `${f} ${list.filter((c) => c.field === f).length}`);
+    out.push(
+      `${added.length} stat(s) added (${byField(added).join(", ")}), ${changed.length} changed by the disc.`,
+      "",
+    );
+    if (changed.length > 0) {
+      out.push("| ID | item | field | site (before) | disc (after) |", "|---|---|---|---|---|");
+      for (const c of changed)
+        out.push(`| ${c.id} | ${cell(c.name)} | ${c.field} | ${c.before} | ${c.after} |`);
+      out.push("");
+    }
+    if (missing.length > 0) {
+      out.push(`### Items with no disc entry (${missing.length}, unchanged)`, "");
+      for (const m of missing) out.push(`- ${m.name} (ID ${m.id})`);
       out.push("");
     }
   }

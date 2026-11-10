@@ -227,8 +227,12 @@ export const EQUIP_TYPE_SLOTS = [
 export interface CompactItem {
   /** NA name */
   n: string;
-  /** rarity (only when sources agree) */
+  /** rarity */
   r?: number;
+  /** carry limit (255 = unlimited) */
+  l?: number;
+  /** price in zenny (0 = none) */
+  z?: number;
   /** icon type index into Dictionaries.types */
   t?: number;
   /** icon colour index into Dictionaries.colors */

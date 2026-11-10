@@ -13,6 +13,7 @@ import type { TableAddressResolver } from "../tables/resolver.js";
 import { WEAPON_TYPE_NAMES, type WeaponTypeName } from "../tables/weapons.js";
 import { emitArmor } from "./armor.js";
 import { emitDecorations } from "./decorations.js";
+import { emitItems } from "./items.js";
 import {
   attachHornMelodies,
   emitBlademasterWeapons,
@@ -60,8 +61,8 @@ function groupWeaponsByType(weapons: EmittedWeapon[]): Map<WeaponTypeName, Emitt
 
 /**
  * Runs every emit/* module against one decrypted EBOOT and returns the full
- * data/*.json-shaped output (equipment only — quest emit is separate, see
- * cli/extract.ts). `resolver` is optional and defaults to JP's static
+ * data/*.json-shaped output (equipment and item stats — quests, gathering
+ * points and shops are separate, see cli/extract.ts). `resolver` is optional and defaults to JP's static
  * addresses (`tableOffset()`, unchanged pre-existing behavior); pass e.g.
  * `MHP2G_PROFILE.resolverForRegion("eu")` (games/mhp2g.ts) to read the same
  * struct layouts from a different region's EBOOT instead.
@@ -77,6 +78,7 @@ export function emitAll(
 ): EmitOutput {
   const output: EmitOutput = {};
 
+  output["items.json"] = { items: emitItems(reader, resolver) };
   output["decorations.json"] = { decorations: emitDecorations(reader, resolver) };
 
   const armor = emitArmor(reader, resolver);

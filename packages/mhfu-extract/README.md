@@ -874,6 +874,30 @@ u16 table, u16 most gathers, u16 type, u16 fewest gathers`), ending at
   Mushroom Goldrush!, Mountain Herb Picking). Within an area, identical
   points are one entry with a `count`.
 
+### Items
+
+`src/emit/items.ts` writes each item's rarity, carry limit and price from
+the EBOOT's item table (`src/tables/items.ts`) to `items.json`, and
+`build-data` writes them into `data/items.json` by ID (`src/build/items.ts`),
+keeping the names, aliases and regions as committed.
+
+- **Layout**: 24 bytes per ItemID, the same layout as the decorations'
+  table, which is entries 948–1116 of this one. The table runs on through
+  the last ItemID, 1260 (treasure, Felyne and arena items); entry 1261 is
+  unrelated data.
+- **Rarity** (`+2`, u8) is 0-based like the equipment tables'. Before the
+  disc, `data/items.json` had rarity from community lists on 1017 items: the
+  disc agrees on 1016. The other is DragonslyrJewel (lists 5, disc 4, as in
+  `data/decorations.json`).
+- **Carry limit** (`+3`, u8): Potion 10, Whetstone 20, Pierce S Lv1 60, most
+  materials 99. Normal S Lv1, which is unlimited, has 255.
+- **Price** (`+12`, u32): the shops' buy price (see "Shops"). The u32 at
+  `+16` is a tenth of it on items that can be sold (Herb 2z, Rathalos Ruby
+  9700z) and 0 on the rest, likely the sell price; not checked on screen, so
+  not written.
+- The three placeholder IDs (`placeholder` in `data/items.json`) get no
+  stats.
+
 ### Shops
 
 `src/shops/shops.ts` finds the shops' stock in `overlay/lobby_task.ovl`,
@@ -1148,7 +1172,7 @@ Neither search reads MIPS code, so a mapping computed only in code
 ## Building `data/` from the disc
 
 `data/armor/*.json`, `data/weapons/*.json`, `data/decorations.json`,
-`data/quests/*.json`, `data/gathering.json`, `data/shops.json` and the
+the rarity, carry limit and price in `data/items.json`, `data/quests/*.json`, `data/gathering.json`, `data/shops.json` and the
 hitzones and drops in `data/monsters/*.json` are generated from an EU (ULES01213) disc with `build-data`. The disc is the source of truth for every field it holds.
 Every field it doesn't hold is kept from the committed files.
 

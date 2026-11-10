@@ -120,6 +120,16 @@ export default function ItemDetailClient({ slug }: Props) {
               <StatValue>{item.rarity}</StatValue>
             </Stat>
           )}
+          {item.carry !== undefined && (
+            <Stat label="Carry:">
+              <StatValue>{item.carry === 255 ? "∞" : item.carry}</StatValue>
+            </Stat>
+          )}
+          {!!item.price && (
+            <Stat label="Price:">
+              <StatValue>{item.price}z</StatValue>
+            </Stat>
+          )}
           {own !== null && (
             <Stat label="Owned:">
               <StatValue>{own === Infinity ? "∞" : own}</StatValue>

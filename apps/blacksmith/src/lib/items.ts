@@ -19,6 +19,10 @@ export interface ItemRecord {
   name_jp: string;
   aliases?: string[];
   rarity?: number;
+  /** Carry limit (255 = unlimited). */
+  carry?: number;
+  /** Price in zenny. */
+  price?: number;
   regions?: ("jp" | "us" | "eu")[];
   placeholder?: true;
 }
