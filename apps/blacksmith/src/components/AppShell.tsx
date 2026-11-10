@@ -180,7 +180,10 @@ function TabBar({
       aria-label="Main"
       className="fixed inset-x-0 bottom-0 z-800 hidden pb-[env(safe-area-inset-bottom)] mobile:flex"
     >
-      <Card className="h-tabbar flex-row items-stretch bg-black/60 px-[1.6rem] py-[1.3rem] backdrop-blur-sm">
+      <Card
+        className="h-tabbar bg-black/60 backdrop-blur-sm"
+        bodyClassName="flex-row items-stretch card-px-[1.6rem] card-py-[1.3rem]"
+      >
         {tabs.map((item) => {
           const active = !menuOpen && pathname.startsWith(item.match);
           return (
@@ -271,9 +274,11 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         <Card
           frame="teal"
           className={cn(
-            "w-[27.5rem] flex-none overflow-x-hidden overflow-y-auto py-[2.2rem] pr-0 pl-[1.5rem] text-sub transition-[width] duration-150",
+            "w-[27.5rem] flex-none text-sub transition-[width] duration-150",
             collapsed && "w-[10.1rem]",
           )}
+          scroll
+          bodyClassName="overflow-x-hidden card-py-[2.2rem] card-pr-0 card-pl-[1.5rem]"
         >
           <SidebarContents
             pathname={pathname}
@@ -309,7 +314,9 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         {/* Dips under the screen's left edge, like the desktop sidebar. */}
         <Card
           frame="teal"
-          className="relative -ml-[1.5rem] h-[calc(100%-var(--spacing-tabbar))] w-[29.5rem] max-w-[85vw] flex-none animate-drawer-in overflow-y-auto bg-black/70 py-[2.2rem] pr-0 pl-[1.5rem] text-sub"
+          className="relative -ml-[1.5rem] h-[calc(100%-var(--spacing-tabbar))] w-[29.5rem] max-w-[85vw] flex-none animate-drawer-in bg-black/70 text-sub"
+          scroll
+          bodyClassName="card-py-[2.2rem] card-pr-0 card-pl-[1.5rem]"
         >
           <SidebarContents pathname={pathname} hrefFor={hrefFor} onSearch={closeMenu} />
         </Card>

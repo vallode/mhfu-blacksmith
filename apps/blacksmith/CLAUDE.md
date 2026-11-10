@@ -78,7 +78,7 @@ Effects that are awkward as class strings are `@utility` rules in
 | `w-cells-N`               | Width of N character cells (`--cell`), e.g. `w-cells-12` for a 12-character label                      |
 | `pixelated`               | Crisp pixel-art image rendering                                                                        |
 | `hover-glow`              | Pulsing green highlight (with `animate-hover-glow` / `--gradient-hover-glow`)                          |
-| `card-frame`              | The in-game 9-slice frame (`Card`, toasts)                                                             |
+| `card-frame`              | The in-game 9-slice frame (`Card`, toasts); with `frame-cover`, drawn again over the content           |
 | `divider-tile`            | Tiled page-header divider (`BorderRule`)                                                               |
 | `icon-mask`, `icon-badge` | Icon tint mask and corner badge, driven by CSS variables from `iconStyle()` in `src/lib/icon-style.ts` |
 
@@ -103,7 +103,16 @@ delayed fade-in on `Loading`, the loading GIF next to a status message).
 
 `cn()` (`src/lib/cn.ts`) is `clsx` plus `tailwind-merge`. Components put their
 defaults first and the caller's `className` last, so a later class replaces a
-conflicting earlier one: `<Card className="overflow-auto py-7">`.
+conflicting earlier one: `<Card className="flex-none text-small">`.
+
+`Card` is two boxes: `className` styles the frame (its size and place in the
+layout, its text size) and `bodyClassName` the content inside it (gaps,
+direction). The body sits at the frame's outline and the frame draws over it,
+so rows that run out to the edge pass under its notches. Give the body its
+padding with the `card-p-*`, `card-px-*`, `card-py-*`, `card-pl-*` and
+`card-pr-*` utilities (`card-py-7`, `card-px-[1.6rem]`), not `p-*`: they count
+from the card's outer edge, whatever the frame. A card whose content scrolls
+takes `scroll`.
 
 `tailwind-merge` only replaces a class with one of the same variant: a
 `mobile:` class only replaces another `mobile:` class. `cn()` is told the type
