@@ -6,23 +6,30 @@
  * Pure and synchronous, so it runs the same in the worker
  * (src/workers/set-search.worker.ts) and in the tests.
  *
- * How it searches:
+ * The search is exact: unless it runs out of time, it returns the `limit`
+ * highest-defence sets, and a set it leaves out is never better than the
+ * ones it returns. Sets that differ only in pieces with the same points and
+ * slots are one set, the other pieces being its alternatives. How:
  * 1. Each wanted skill becomes a skill tree and a points threshold
- *    ("Attack Up (Large)" -> Attack >= 20).
- * 2. Per armor slot, pieces are grouped by what matters for the search: their
- *    points in the wanted trees, their slot count and whether they are Torso
- *    Up. A group that another group beats or equals everywhere is dropped
- *    (Pareto pruning). Each surviving group is shown as its highest-defence
- *    piece, with the rest as alternatives.
+ *    ("Attack Up (Large)" -> Attack >= 20). Without bad skills, every other
+ *    tree must also stay above its negative skill (Defense > -10).
+ * 2. Per armor slot, a piece is dropped when another is at least as good in
+ *    everything that matters: points in the wanted trees, slots, defence and,
+ *    without bad skills, points in every tree that could reach a negative
+ *    skill. The rest are grouped by their points in the wanted trees and
+ *    slots.
  * 3. A depth-first search picks one group per slot (torso first, so Torso Up
- *    pieces know what they copy) and prunes a branch as soon as the best
+ *    pieces know what they copy). A branch is cut as soon as the best
  *    remaining pieces plus the most efficient decorations can't reach a
- *    threshold.
- * 4. For each full set, an exact search places decorations into the weapon's
- *    and pieces' slots. A decoration has to fit in one piece's slots; the
+ *    threshold, or the highest defence it could still reach can't beat the
+ *    `limit`th best set found so far.
+ * 4. For each full set of groups, the best pieces in them (by defence) that
+ *    work are found, with their decorations placed by an exact search
+ *    (deco-solver.ts). A decoration has to fit in one piece's slots; the
  *    torso's decorations count once more per Torso Up piece.
  */
 import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "./constants";
+import { DecoSolver, type SolverBin } from "./deco-solver";
 import { isAvailable, type Tier } from "./min-rank";
 
 // ---------------------------------------------------------------------------
@@ -250,7 +257,7 @@ export interface SearchQuery {
   progress?: Tier | null;
   /** Never use these pieces. */
   excludePieces?: number[];
-  /** Return at most this many sets (the highest defence ones). */
+  /** Return the best this many sets (by defence). */
   limit?: number;
   /** Give up after this long, returning what was found. */
   timeLimitMs?: number;
@@ -275,7 +282,11 @@ export interface ActiveSkill {
 export interface ArmorSet {
   /** One piece per slot, in ARMOR_SLOTS order. */
   pieces: Piece[];
-  /** Other pieces that would do the same job, per slot (ARMOR_SLOTS order). */
+  /**
+   * Other pieces that would do the same job, per slot (ARMOR_SLOTS order):
+   * swapped in, the set still activates the wanted skills with the same
+   * decorations (and, unless allowed, no bad skill).
+   */
   alternatives: Piece[][];
   decorations: PlacedDeco[];
   defence: number;
@@ -289,13 +300,12 @@ export interface ArmorSet {
 }
 
 export interface SearchResult {
-  /** Highest defence first. */
+  /** The `limit` best sets, highest defence first. */
   sets: ArmorSet[];
-  /** Sets found, before `limit`. */
-  total: number;
-  /** Stopped at MAX_FOUND sets: the best sets may be missing. */
-  truncated: boolean;
-  /** Hit `timeLimitMs` before searching everything. */
+  /**
+   * Hit `timeLimitMs` before searching everything: better sets than these may
+   * exist.
+   */
   timedOut: boolean;
   /** Wanted skills that no armor or decoration in range can provide. */
   unknownSkills: string[];
@@ -304,153 +314,6 @@ export interface SearchResult {
 
 export const DEFAULT_LIMIT = 200;
 export const DEFAULT_TIME_LIMIT_MS = 20_000;
-/** Stop searching after this many sets. */
-export const MAX_FOUND = 20_000;
-
-// Search order: torso first, so Torso Up pieces know what they copy.
-const SEARCH_ORDER: ArmorSlot[] = ["plate", "helmet", "gauntlets", "waist", "leggings"];
-
-interface PieceClass {
-  /** Points in each wanted tree. */
-  vec: number[];
-  slots: number;
-  torsoUp: boolean;
-  /** Highest defence first. */
-  pieces: Piece[];
-}
-
-interface DecoOption {
-  deco: Deco;
-  vec: number[];
-  size: number;
-}
-
-/** `a` is at least as good as `b` in every wanted tree and slot count. */
-function covers(aVec: number[], aSlots: number, bVec: number[], bSlots: number): boolean {
-  if (aSlots < bSlots) return false;
-  for (let i = 0; i < aVec.length; i++) if (aVec[i] < bVec[i]) return false;
-  return true;
-}
-
-function groupPieces(pieces: Piece[], trees: string[]): PieceClass[] {
-  const groups = new Map<string, PieceClass>();
-  for (const p of pieces) {
-    const vec = p.torsoUp ? trees.map(() => 0) : trees.map((t) => p.points[t] ?? 0);
-    const key = `${p.torsoUp ? "T" : ""}|${p.slots}|${vec.join(",")}`;
-    let g = groups.get(key);
-    if (!g) {
-      g = { vec, slots: p.slots, torsoUp: p.torsoUp, pieces: [] };
-      groups.set(key, g);
-    }
-    g.pieces.push(p);
-  }
-  const all = [...groups.values()];
-  for (const g of all) g.pieces.sort((a, b) => b.defence - a.defence);
-
-  const kept = all.filter(
-    (g) =>
-      g.torsoUp ||
-      !all.some((h) => h !== g && !h.torsoUp && covers(h.vec, h.slots, g.vec, g.slots)),
-  );
-  // Most useful first, so good sets turn up early (and before the limit).
-  const score = (g: PieceClass) => g.vec.reduce((s, v) => s + v, 0) + g.slots * 1.5;
-  return kept.sort((a, b) => score(b) - score(a) || b.pieces[0].defence - a.pieces[0].defence);
-}
-
-function decoOptions(decos: Deco[], trees: string[]): DecoOption[][] {
-  return trees.map((t) => {
-    const opts = decos
-      .filter((d) => (d.points[t] ?? 0) > 0)
-      .map((d) => ({ deco: d, vec: trees.map((u) => d.points[u] ?? 0), size: d.slots }));
-    // Drop a decoration when another as small is as good in every wanted tree.
-    const kept = opts.filter(
-      (o) =>
-        !opts.some(
-          (p) =>
-            p !== o &&
-            p.size <= o.size &&
-            p.vec.every((v, i) => v >= o.vec[i]) &&
-            (p.size < o.size || p.vec.some((v, i) => v > o.vec[i]) || p.deco.id < o.deco.id),
-        ),
-    );
-    return kept.sort(
-      (a, b) => b.size - a.size || b.vec[trees.indexOf(t)] - a.vec[trees.indexOf(t)],
-    );
-  });
-}
-
-interface Bin {
-  slot: DecoBin;
-  free: number;
-  mult: number;
-}
-
-interface DecoSolver {
-  /** Up to `max` ways to cover `deficit` (need minus armor points, per wanted tree). */
-  solve(bins: Bin[], deficit: number[], max: number): { option: DecoOption; bin: number }[][];
-}
-
-function decoSolver(options: DecoOption[][], perSlot: number[]): DecoSolver {
-  const k = perSlot.length;
-
-  return {
-    solve(bins, deficit, max) {
-      const results: { option: DecoOption; bin: number }[][] = [];
-      const placed: { option: DecoOption; bin: number }[] = [];
-      const failed = new Set<string>();
-      let budget = 20_000; // nodes, so a pathological set can't stall the search
-
-      const go = (): boolean => {
-        if (--budget < 0) return false;
-        let t = -1;
-        for (let i = 0; i < k; i++) if (deficit[i] > 0 && (t < 0 || deficit[i] > deficit[t])) t = i;
-        if (t < 0) {
-          results.push([...placed]);
-          return true;
-        }
-        // Can the free slots cover what's left, even with the best decorations?
-        let capacity = 0;
-        for (const b of bins) capacity += b.free * b.mult;
-        let required = 0;
-        for (let i = 0; i < k; i++) {
-          if (deficit[i] <= 0) continue;
-          if (perSlot[i] <= 0) return false;
-          required += Math.ceil(deficit[i] / perSlot[i]);
-        }
-        if (required > capacity) return false;
-
-        const key = bins.map((b) => `${b.free}x${b.mult}`).join() + "|" + deficit.join();
-        if (failed.has(key)) return false;
-
-        let found = false;
-        for (const option of options[t]) {
-          const seen = new Set<string>();
-          for (let b = 0; b < bins.length; b++) {
-            const bin = bins[b];
-            if (bin.free < option.size) continue;
-            const binKey = `${bin.free}x${bin.mult}`;
-            if (seen.has(binKey)) continue;
-            seen.add(binKey);
-
-            bin.free -= option.size;
-            for (let i = 0; i < k; i++) deficit[i] -= option.vec[i] * bin.mult;
-            placed.push({ option, bin: b });
-            if (go()) found = true;
-            placed.pop();
-            for (let i = 0; i < k; i++) deficit[i] += option.vec[i] * bin.mult;
-            bin.free += option.size;
-            if (results.length >= max) return true;
-          }
-        }
-        if (!found) failed.add(key);
-        return found;
-      };
-
-      go();
-      return results;
-    },
-  };
-}
 
 /** Totals, skills and stats for a full set. */
 export function evaluateSet(
@@ -537,22 +400,156 @@ export function eligiblePieces(data: SearchData, query: SearchQuery): Piece[] {
   );
 }
 
+// Search order: torso first, so Torso Up pieces know what they copy.
+const SEARCH_ORDER: ArmorSlot[] = ["plate", "helmet", "gauntlets", "waist", "leggings"];
+
+/** Pieces with the same points in the wanted trees, slots and Torso Up. */
+interface PieceClass {
+  /** Points in each wanted tree (zero for Torso Up pieces). */
+  vec: number[];
+  slots: number;
+  torsoUp: boolean;
+  /** The pieces worth trying, best first. */
+  members: Piece[];
+  /** Every eligible piece of the class, best first (for alternatives). */
+  all: Piece[];
+}
+
+/** Tree -> its weakest negative skill's threshold (Defense -20's -10). */
+export function badSkillLimits(trees: SkillTreeData[]): Map<string, number> {
+  const limits = new Map<string, number>();
+  for (const t of trees) {
+    if (t.tree === TORSO_UP_TREE) continue;
+    const negative = t.skills.filter((s) => s.points < 0).map((s) => s.points);
+    if (negative.length > 0) limits.set(t.tree, Math.max(...negative));
+  }
+  return limits;
+}
+
+/**
+ * The trees that could reach a negative skill in some set, with the points
+ * beyond which a piece's points in it no longer matter: at that many, no set
+ * can take the tree down to its negative skill.
+ */
+function riskyTrees(
+  bySlot: Piece[][],
+  decorations: Deco[],
+  limits: Map<string, number>,
+  weaponSlots: number,
+): { tree: string; cap: number }[] {
+  // SEARCH_ORDER: the torso is bySlot[0].
+  const torsoUps = bySlot.slice(1).filter((ps) => ps.some((p) => p.torsoUp)).length;
+  const maxSlots = bySlot.map((ps) => Math.max(0, ...ps.map((p) => p.slots)));
+  const capacity = weaponSlots + maxSlots.reduce((a, b) => a + b, 0) + maxSlots[0] * torsoUps;
+  const risky: { tree: string; cap: number }[] = [];
+  for (const [tree, limit] of limits) {
+    let lowest = 0;
+    bySlot.forEach((ps, d) => {
+      const min = Math.min(0, ...ps.filter((p) => !p.torsoUp).map((p) => p.points[tree] ?? 0));
+      lowest += d === 0 ? min * (1 + torsoUps) : min;
+    });
+    let perSlot = 0;
+    for (const deco of decorations) {
+      const v = deco.points[tree];
+      if (v !== undefined && v / deco.slots < perSlot) perSlot = v / deco.slots;
+    }
+    lowest += capacity * perSlot;
+    if (lowest <= limit) risky.push({ tree, cap: limit + 1 - lowest });
+  }
+  return risky;
+}
+
+/**
+ * Drop every piece another piece of the slot is at least as good as, in
+ * everything the search cares about, and group the rest.
+ */
+function pieceClasses(
+  pieces: Piece[],
+  wanted: string[],
+  risky: { tree: string; cap: number }[],
+): PieceClass[] {
+  const vecOf = (p: Piece) =>
+    p.torsoUp ? wanted.map(() => 0) : wanted.map((t) => p.points[t] ?? 0);
+  const byDefence = [...pieces].sort((a, b) => b.defence - a.defence || a.id - b.id);
+
+  // Compare each distinct profile once.
+  interface Profile {
+    piece: Piece;
+    torsoUp: boolean;
+    slots: number;
+    defence: number;
+    vec: number[];
+  }
+  const profiles = new Map<string, Profile>();
+  for (const p of byDefence) {
+    const vec = vecOf(p);
+    if (!p.torsoUp) {
+      for (const { tree, cap } of risky) vec.push(Math.min(p.points[tree] ?? 0, cap));
+    }
+    const key = `${p.torsoUp ? "T" : ""}|${p.slots}|${p.defence}|${vec.join()}`;
+    if (!profiles.has(key))
+      profiles.set(key, { piece: p, torsoUp: p.torsoUp, slots: p.slots, defence: p.defence, vec });
+  }
+  const list = [...profiles.values()];
+  const kept = new Set<Piece>();
+  for (const a of list) {
+    const beaten = list.some(
+      (b) =>
+        b !== a &&
+        b.torsoUp === a.torsoUp &&
+        b.slots >= a.slots &&
+        b.defence >= a.defence &&
+        b.vec.every((v, i) => v >= a.vec[i]),
+    );
+    if (!beaten) kept.add(a.piece);
+  }
+
+  const classes = new Map<string, PieceClass>();
+  for (const p of byDefence) {
+    const vec = vecOf(p);
+    const key = `${p.torsoUp ? "T" : ""}|${p.slots}|${vec.join()}`;
+    let c = classes.get(key);
+    if (!c) {
+      c = { vec, slots: p.slots, torsoUp: p.torsoUp, members: [], all: [] };
+      classes.set(key, c);
+    }
+    c.all.push(p);
+    if (kept.has(p)) c.members.push(p);
+  }
+  // Best first, so good sets turn up early and raise the bar for the rest.
+  return [...classes.values()]
+    .filter((c) => c.members.length > 0)
+    .sort((a, b) => b.members[0].defence - a.members[0].defence);
+}
+
+/** A set found by the search, before it's built into an ArmorSet. */
+interface Found {
+  defence: number;
+  freeSlots: number;
+  /** One per slot, SEARCH_ORDER. */
+  pieces: Piece[];
+  classes: PieceClass[];
+  decorations: PlacedDeco[];
+}
+
+/** `a` ranks above `b`. */
+const ranksAbove = (a: Found, b: Found) => a.defence - b.defence || a.freeSlots - b.freeSlots;
+
 export function searchSets(
   data: SearchData,
   query: SearchQuery,
   onProgress?: (found: number) => void,
 ): SearchResult {
   const started = Date.now();
-  const limit = query.limit ?? DEFAULT_LIMIT;
+  const limit = Math.max(1, query.limit ?? DEFAULT_LIMIT);
   const deadline = started + (query.timeLimitMs ?? DEFAULT_TIME_LIMIT_MS);
   const { wanted, unknown } = resolveWanted(data.trees, query.skills);
   const trees = [...wanted.keys()];
   const need = trees.map((t) => wanted.get(t)!);
   const k = trees.length;
-  const done = (sets: ArmorSet[], truncated = false, timedOut = false): SearchResult => ({
-    sets: sets.slice(0, limit),
-    total: sets.length,
-    truncated,
+  let found = 0;
+  const done = (sets: ArmorSet[], timedOut = false): SearchResult => ({
+    sets,
     timedOut,
     unknownSkills: unknown,
     elapsedMs: Date.now() - started,
@@ -560,24 +557,30 @@ export function searchSets(
   if (k === 0) return done([]);
 
   const eligible = eligiblePieces(data, query);
-  const classes = SEARCH_ORDER.map((slot) =>
-    groupPieces(
-      eligible.filter((p) => p.slot === slot),
-      trees,
-    ),
+  const bySlot = SEARCH_ORDER.map((slot) => eligible.filter((p) => p.slot === slot));
+  const decorations = data.decorations.filter((d) =>
+    isAvailable(d.minRank, query.progress ?? null),
   );
+  const limits = badSkillLimits(data.trees);
+  for (const t of trees) limits.delete(t);
+  const risky = query.allowBadSkills
+    ? []
+    : riskyTrees(bySlot, decorations, limits, query.weaponSlots);
+  const classes = bySlot.map((ps) => pieceClasses(ps, trees, risky));
   if (classes.some((c) => c.length === 0)) return done([]);
 
-  const options = decoOptions(
-    data.decorations.filter((d) => isAvailable(d.minRank, query.progress ?? null)),
-    trees,
-  );
-  // Best points per decoration slot, per wanted tree (for the bounds).
-  const perSlot = trees.map((_, i) =>
-    options[i].reduce((best, o) => Math.max(best, o.vec[i] / o.size), 0),
-  );
-  const solver = decoSolver(options, perSlot);
+  const solver = new DecoSolver({
+    decorations,
+    wanted,
+    bad: query.allowBadSkills ? null : limits,
+  });
+  // For a whole group of pieces, only the wanted trees are known.
+  const wantedSolver = new DecoSolver({ decorations, wanted, bad: null });
 
+  // Best points per decoration slot, per wanted tree (for the bounds).
+  const perSlot = trees.map((t) =>
+    decorations.reduce((best, d) => Math.max(best, (d.points[t] ?? 0) / d.slots), 0),
+  );
   // Per slot (search order): best points per tree, most slots, has Torso Up.
   const slotMax = classes.map((cs) => ({
     vec: trees.map((_, i) =>
@@ -586,14 +589,37 @@ export function searchSets(
     slots: Math.max(...cs.map((c) => c.slots)),
     torsoUp: cs.some((c) => c.torsoUp),
   }));
+  // Each piece's points, without Torso Up.
+  const pointList = data.pieces.map((p) =>
+    Object.entries(p.points).filter(([t]) => t !== TORSO_UP_TREE),
+  );
+  // Highest defence the slots from `depth` on can add.
+  const defenceLeft = new Array<number>(SEARCH_ORDER.length + 1).fill(0);
+  for (let d = SEARCH_ORDER.length - 1; d >= 0; d--) {
+    defenceLeft[d] = defenceLeft[d + 1] + Math.max(...classes[d].map((c) => c.members[0].defence));
+  }
 
-  const sets: ArmorSet[] = [];
-  const seen = new Set<string>();
+  /** The best sets so far, best first. */
+  const best: Found[] = [];
+  /** Defence a new set needs to make the list. */
+  const bar = () => (best.length < limit ? -Infinity : best[limit - 1].defence);
+  const keep = (f: Found) => {
+    let i = best.length;
+    while (i > 0 && ranksAbove(f, best[i - 1]) > 0) i--;
+    best.splice(i, 0, f);
+    if (best.length > limit) best.pop();
+    found++;
+    if (found % 100 === 0) onProgress?.(found);
+  };
+
   const chosen: PieceClass[] = [];
   const cur = new Array<number>(k).fill(0);
   let nodes = 0;
   let timedOut = false;
-  let truncated = false;
+  const outOfTime = () => {
+    if (++nodes % 1024 === 0 && Date.now() > deadline) timedOut = true;
+    return timedOut;
+  };
 
   // Could the remaining slots (from `depth`) still make every threshold?
   const reachable = (depth: number): boolean => {
@@ -613,12 +639,12 @@ export function searchSets(
 
     let required = 0;
     for (let i = 0; i < k; i++) {
-      let best = cur[i];
+      let most = cur[i];
       for (let d = depth; d < SEARCH_ORDER.length; d++) {
         const m = slotMax[d];
-        best += Math.max(m.vec[i], m.torsoUp ? plateVec[i] : -Infinity);
+        most += Math.max(m.vec[i], m.torsoUp ? plateVec[i] : -Infinity);
       }
-      const deficit = need[i] - best;
+      const deficit = need[i] - most;
       if (deficit <= 0) continue;
       if (perSlot[i] <= 0) return false;
       required += Math.ceil(deficit / perSlot[i]);
@@ -626,95 +652,127 @@ export function searchSets(
     return required <= capacity;
   };
 
-  const finish = () => {
-    const torsoUps = chosen.filter((c, d) => d > 0 && c.torsoUp).length;
-    const bins: Bin[] = [];
-    if (query.weaponSlots > 0) bins.push({ slot: "weapon", free: query.weaponSlots, mult: 1 });
-    chosen.forEach((c, d) => {
-      if (c.slots > 0)
-        bins.push({ slot: SEARCH_ORDER[d], free: c.slots, mult: d === 0 ? 1 + torsoUps : 1 });
-    });
-    const deficit = need.map((n, i) => n - cur[i]);
-    const solutions = solver.solve(bins, deficit, query.allowBadSkills ? 1 : 4);
-    if (solutions.length === 0) return;
-
-    const bySlot = (d: number) => ARMOR_SLOTS.indexOf(SEARCH_ORDER[d]);
-    const ordered = chosen
-      .map((c, d) => ({ c, i: bySlot(d) }))
-      .sort((a, b) => a.i - b.i)
-      .map(({ c }) => c);
-
-    for (const solution of solutions) {
-      const placed: PlacedDeco[] = solution.map(({ option, bin }) => ({
-        deco: option.deco,
-        bin: bins[bin].slot,
-      }));
-      const set = pickPieces(ordered, (pieces) => {
-        const s = evaluateSet(data, pieces, placed, query.weaponSlots, trees);
-        return query.allowBadSkills || s.skills.every((x) => x.threshold > 0) ? s : null;
-      });
-      if (!set) continue;
-      const key = set.pieces.map((p) => p.id).join();
-      if (seen.has(key)) return;
-      seen.add(key);
-      sets.push({
-        ...set,
-        alternatives: ordered.map((c, i) => c.pieces.filter((p) => p !== set.pieces[i])),
-      });
-      if (sets.length % 100 === 0) onProgress?.(sets.length);
-      return;
-    }
+  /** The weapon's and pieces' slots, as decoration bins. */
+  const binsFor = (torsoUps: number): SolverBin[] => {
+    const bins: SolverBin[] = [{ slot: "weapon", size: query.weaponSlots, mult: 1 }];
+    chosen.forEach((c, d) =>
+      bins.push({ slot: SEARCH_ORDER[d], size: c.slots, mult: d === 0 ? 1 + torsoUps : 1 }),
+    );
+    return bins;
   };
 
-  const dfs = (depth: number): boolean => {
-    if (++nodes % 2048 === 0 && Date.now() > deadline) {
-      timedOut = true;
-      return false;
+  // A full set of groups: find its best pieces that work.
+  const finish = () => {
+    const torsoUps = chosen.filter((c, d) => d > 0 && c.torsoUp).length;
+    const bins = binsFor(torsoUps);
+    const wantedPoints: Record<string, number> = {};
+    trees.forEach((t, i) => (wantedPoints[t] = cur[i]));
+    // The best decorations for the wanted skills alone. When they cause no
+    // bad skill with some pieces, they're the best decorations for those
+    // pieces too.
+    const plain = wantedSolver.solve(bins, wantedPoints);
+    if (!plain) return;
+    const plainPoints: Record<string, number> = {};
+    for (const x of plain) {
+      for (const [t, v] of Object.entries(x.deco.points)) {
+        plainPoints[t] = (plainPoints[t] ?? 0) + v * bins[x.bin].mult;
+      }
     }
-    if (depth === SEARCH_ORDER.length) {
-      finish();
-      if (sets.length >= MAX_FOUND) {
-        truncated = true;
-        return false;
+    const plainWorks = (armor: Record<string, number>) => {
+      if (query.allowBadSkills) return true;
+      for (const [t, limit] of limits) {
+        if ((armor[t] ?? 0) + (plainPoints[t] ?? 0) <= limit) return false;
       }
       return true;
+    };
+
+    // Highest defence the slots from `d` on can add.
+    const left = new Array<number>(chosen.length + 1).fill(0);
+    for (let d = chosen.length - 1; d >= 0; d--)
+      left[d] = left[d + 1] + chosen[d].members[0].defence;
+
+    const result: { pick: Found | null } = { pick: null };
+    const pieces: Piece[] = [];
+    const go = (d: number, defence: number) => {
+      if (timedOut) return;
+      if (d === chosen.length) {
+        if (outOfTime()) return;
+        const armor: Record<string, number> = {};
+        pieces.forEach((p, i) => {
+          if (p.torsoUp) return;
+          const mult = i === 0 ? 1 + torsoUps : 1;
+          for (const [t, v] of pointList[p.id]) armor[t] = (armor[t] ?? 0) + v * mult;
+        });
+        const placed = plainWorks(armor) ? plain : solver.solve(bins, armor);
+        if (!placed) return;
+        const used = placed.reduce((n, x) => n + x.deco.slots, 0);
+        const capacity = bins.reduce((n, b) => n + b.size, 0);
+        const f: Found = {
+          defence,
+          freeSlots: capacity - used,
+          pieces: [...pieces],
+          classes: [...chosen],
+          decorations: placed.map((x) => ({ deco: x.deco, bin: bins[x.bin].slot })),
+        };
+        if (!result.pick || ranksAbove(f, result.pick) > 0) result.pick = f;
+        return;
+      }
+      for (const p of chosen[d].members) {
+        const most = defence + p.defence + left[d + 1];
+        // Members are best first: once one can't win, none after it can.
+        if (most < bar() || (result.pick && most <= result.pick.defence)) break;
+        pieces.push(p);
+        go(d + 1, defence + p.defence);
+        pieces.pop();
+      }
+    };
+    go(0, 0);
+    if (result.pick) keep(result.pick);
+  };
+
+  const dfs = (depth: number, defence: number) => {
+    if (outOfTime()) return;
+    if (depth === SEARCH_ORDER.length) {
+      finish();
+      return;
     }
     for (const c of classes[depth]) {
+      // Classes are best first: once one can't make the list, none after it can.
+      if (defence + c.members[0].defence + defenceLeft[depth + 1] < bar()) break;
       const vec = c.torsoUp && depth > 0 ? chosen[0].vec : c.vec;
       for (let i = 0; i < k; i++) cur[i] += vec[i];
       chosen.push(c);
-      const ok = !reachable(depth + 1) || dfs(depth + 1);
+      if (reachable(depth + 1)) dfs(depth + 1, defence + c.members[0].defence);
       chosen.pop();
       for (let i = 0; i < k; i++) cur[i] -= vec[i];
-      if (!ok) return false;
+      if (timedOut) return;
     }
-    return true;
   };
+  dfs(0, 0);
 
-  dfs(0);
-  sets.sort((a, b) => b.defence - a.defence || b.freeSlots - a.freeSlots);
-  return done(sets, truncated, timedOut);
-}
-
-/**
- * The highest-defence pieces (one per class) that `accept` takes. Tries the
- * classes' alternatives when the first pick is rejected (e.g. for a bad skill).
- */
-function pickPieces(
-  classes: PieceClass[],
-  accept: (pieces: Piece[]) => Omit<ArmorSet, "alternatives"> | null,
-): Omit<ArmorSet, "alternatives"> | null {
-  let tries = 64;
-  const picked: Piece[] = [];
-  const go = (i: number): Omit<ArmorSet, "alternatives"> | null => {
-    if (i === classes.length) return tries-- > 0 ? accept([...picked]) : null;
-    for (const p of classes[i].pieces) {
-      picked.push(p);
-      const r = go(i + 1);
-      picked.pop();
-      if (r || tries <= 0) return r;
-    }
-    return null;
-  };
-  return go(0);
+  const sets = best.map((f): ArmorSet => {
+    const ordered = ARMOR_SLOTS.map((slot) => SEARCH_ORDER.indexOf(slot));
+    const pieces = ordered.map((d) => f.pieces[d]);
+    const set = evaluateSet(data, pieces, f.decorations, query.weaponSlots, trees);
+    const torsoMult = 1 + pieces.filter((p) => p.torsoUp && p.slot !== "plate").length;
+    // Swapping `p` in for `old` keeps every wanted skill and adds no bad one.
+    const swaps = (old: Piece, p: Piece) => {
+      if (old.torsoUp) return true; // Torso Up pieces only copy the torso
+      const mult = old.slot === "plate" ? torsoMult : 1;
+      for (const t of new Set([...Object.keys(old.points), ...Object.keys(p.points)])) {
+        if (t === TORSO_UP_TREE) continue;
+        const v = (set.totals[t] ?? 0) + ((p.points[t] ?? 0) - (old.points[t] ?? 0)) * mult;
+        const need = wanted.get(t);
+        if (need !== undefined && v < need) return false;
+        const limit = limits.get(t);
+        if (!query.allowBadSkills && limit !== undefined && v <= limit) return false;
+      }
+      return true;
+    };
+    const alternatives = ordered.map((d, i) =>
+      f.classes[d].all.filter((p) => p !== pieces[i] && swaps(pieces[i], p)),
+    );
+    return { ...set, alternatives };
+  });
+  return done(sets, timedOut);
 }

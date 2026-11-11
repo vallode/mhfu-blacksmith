@@ -11,6 +11,7 @@
     "generate-data": "tsx scripts/generate-data.ts",
     "generate-search": "tsx scripts/generate-search-index.ts",
     "validate": "tsx scripts/validate.ts",
+    "bench-set-search": "tsx scripts/bench-set-search.ts",
     "test": "tsx --test test/**/*.test.ts",
     "validate-schema": "tsx scripts/validate-schema.ts",
     "generate-maps": "tsx scripts/generate-maps.ts",

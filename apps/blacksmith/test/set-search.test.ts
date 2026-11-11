@@ -68,13 +68,30 @@ function realData(): SearchData {
   return prepareSearchData(trees, armor, decorations);
 }
 
-/** Every wanted skill is active and the decorations fit their slots. */
+/**
+ * Every wanted skill is active, the decorations fit their slots, and so do
+ * the set's alternatives (each swapped in on its own).
+ */
 function assertValid(data: SearchData, set: ArmorSet, query: SearchQuery) {
+  assertSetValid(data, set, query);
+  set.alternatives.forEach((alts, i) => {
+    for (const alt of alts) {
+      const pieces = set.pieces.map((p, j) => (j === i ? alt : p));
+      assertSetValid(data, { ...set, pieces }, query);
+    }
+  });
+}
+
+function assertSetValid(
+  data: SearchData,
+  set: Pick<ArmorSet, "pieces" | "decorations">,
+  query: SearchQuery,
+) {
   const again = evaluateSet(data, set.pieces, set.decorations, query.weaponSlots);
   for (const name of query.skills) {
     assert.ok(
       again.skills.some((s) => {
-        const tree = trees.find((t) => t.tree === s.tree)!;
+        const tree = data.trees.find((t) => t.tree === s.tree)!;
         const want = tree.skills.find((x) => x.name === name);
         return want !== undefined && s.points >= want.points;
       }),
@@ -276,6 +293,48 @@ describe("searchSets (hand-made)", () => {
     assert.equal(found({ rank: "high-rank", stars: 9 }), 0);
   });
 
+  test("keeps a higher-defence piece with fewer points that still does the job", () => {
+    const armor = [
+      ...filler(0).filter((p) => p.slot !== "helmet"),
+      piece("helmet", "Sharp Helm", { defence: 1, skills: [{ name: "Attack", amount: 12 }] }),
+      piece("helmet", "Sturdy Helm", { defence: 50, skills: [{ name: "Attack", amount: 10 }] }),
+    ];
+    const data = prepareSearchData(tiny, armor, []);
+    const result = searchSets(data, query(["Attack Up (Small)"]));
+    assert.deepEqual(
+      result.sets.map((s) => s.pieces[0].name),
+      ["Sturdy Helm", "Sharp Helm"],
+    );
+  });
+
+  test("uses a piece's points to cancel a decoration's bad skill", () => {
+    const tree: SkillTreeData[] = [
+      ...tiny,
+      { tree: "Defense", skills: [{ name: "Defense -20", points: -10 }] },
+    ];
+    const armor = [
+      ...filler(1).filter((p) => p.slot !== "helmet"),
+      piece("helmet", "Plain Helm", { defence: 10, slots: 1 }),
+      piece("helmet", "Guarded Helm", {
+        defence: 5,
+        slots: 1,
+        skills: [{ name: "Defense", amount: 2 }],
+      }),
+    ];
+    const decos: DecorationInput[] = [
+      { name: "Rash Jewel", slug: "rash-jewel", slots: 1, skills: ["Attack +2", "Defense -2"] },
+    ];
+    const data = prepareSearchData(tree, armor, decos);
+    // Five Rash Jewels: Defense -10 unless the Guarded Helm brings it to -8.
+    const result = searchSets(data, query(["Attack Up (Small)"], { allowBadSkills: false }));
+    assert.equal(result.sets.length, 1);
+    assert.equal(result.sets[0].pieces[0].name, "Guarded Helm");
+    assert.equal(result.sets[0].totals.Defense, -8);
+    // With bad skills allowed, the Plain Helm's defence wins.
+    const anyway = searchSets(data, query(["Attack Up (Small)"]));
+    assert.equal(anyway.sets[0].pieces[0].name, "Plain Helm");
+  });
+
   test("decoration negatives count against other wanted skills", () => {
     const armor = [
       ...filler(0).filter((p) => p.slot !== "plate"),
@@ -301,14 +360,24 @@ function rng(seed: number) {
   };
 }
 
-const randomTrees: SkillTreeData[] = ["A", "B", "C"].map((t) => ({
+// A, B and C can be wanted; D only ever hurts. Each has a bad skill at -10.
+const randomTrees: SkillTreeData[] = ["A", "B", "C", "D"].map((t) => ({
   tree: t,
-  skills: [10, 15].map((points) => ({ name: `${t}${points}`, points })),
+  skills: [10, 15, -10].map((points) => ({ name: `${t}${points}`, points })),
 }));
 randomTrees.push({ tree: "Torso Inc", skills: [{ name: "Torso Inc", points: 10 }] });
+const RANDOM_TREES = ["A", "B", "C", "D"];
 
-/** Every points vector the decorations can add to these bins. */
-function decoVectors(data: SearchData, bins: { size: number; mult: number }[], trees: string[]) {
+/**
+ * Every points vector the decorations can add to these bins. `cache` keeps
+ * the vectors for each run of bins seen, for the next call.
+ */
+function decoVectors(
+  data: SearchData,
+  bins: { size: number; mult: number }[],
+  trees: string[],
+  cache = new Map<string, number[][]>(),
+) {
   const fills = (size: number): number[][] => {
     // Multisets of decorations that fit in `size` slots.
     const out: number[][] = [trees.map(() => 0)];
@@ -328,56 +397,69 @@ function decoVectors(data: SearchData, bins: { size: number; mult: number }[], t
     );
     return out;
   };
-  let reach = new Map<string, number[]>([[trees.map(() => 0).join(), trees.map(() => 0)]]);
+  let reach = [trees.map(() => 0)];
+  let key = "";
   for (const bin of bins) {
+    key += `${bin.size}x${bin.mult},`;
+    const cached = cache.get(key);
+    if (cached) {
+      reach = cached;
+      continue;
+    }
     const next = new Map<string, number[]>();
-    for (const v of reach.values()) {
+    for (const v of reach) {
       for (const f of fills(bin.size)) {
         const w = v.map((x, i) => x + f[i] * bin.mult);
         next.set(w.join(), w);
       }
     }
-    reach = next;
+    reach = [...next.values()];
+    cache.set(key, reach);
   }
-  return [...reach.values()];
+  return reach;
 }
 
-function bruteForce(data: SearchData, q: SearchQuery): boolean {
-  const need = q.skills.map((s) => {
-    const tree = randomTrees.find((t) => t.skills.some((x) => x.name === s))!;
-    return [tree.tree, tree.skills.find((x) => x.name === s)!.points] as const;
-  });
-  const trees = need.map(([t]) => t);
+/**
+ * The highest defence of any set that answers the query, trying every piece
+ * combination and decoration placement; -Infinity when there is none.
+ */
+function bruteForce(data: SearchData, q: SearchQuery): number {
+  const need = new Map(
+    q.skills.map((s) => {
+      const tree = randomTrees.find((t) => t.skills.some((x) => x.name === s))!;
+      return [tree.tree, tree.skills.find((x) => x.name === s)!.points] as const;
+    }),
+  );
+  // With bad skills allowed, only the wanted trees matter.
+  const trees = q.allowBadSkills ? [...need.keys()] : RANDOM_TREES;
+  const ok = (tree: string, points: number) =>
+    need.has(tree) ? points >= need.get(tree)! : points > -10;
+
   const bySlot = ARMOR_SLOTS.map((slot) => data.pieces.filter((p) => p.slot === slot));
-  const combo: (typeof data.pieces)[number][] = [];
-  const go = (i: number): boolean => {
-    if (i === bySlot.length) {
-      const plate = combo[1];
-      const torsoUps = combo.filter((p) => p.torsoUp && p.slot !== "plate").length;
-      const armor = trees.map((t) =>
-        combo.reduce(
-          (sum, p) =>
-            sum + (p.torsoUp ? 0 : (p.points[t] ?? 0) * (p.slot === "plate" ? 1 + torsoUps : 1)),
-          0,
-        ),
-      );
-      const bins = [
-        { size: q.weaponSlots, mult: 1 },
-        ...combo.map((p) => ({ size: p.slots, mult: p === plate ? 1 + torsoUps : 1 })),
-      ];
-      return decoVectors(data, bins, trees).some((v) =>
-        need.every(([, n], k) => armor[k] + v[k] >= n),
-      );
-    }
-    for (const p of bySlot[i]) {
-      combo.push(p);
-      const ok = go(i + 1);
-      combo.pop();
-      if (ok) return true;
-    }
-    return false;
-  };
-  return go(0);
+  let combos: (typeof data.pieces)[number][][] = [[]];
+  for (const pieces of bySlot) combos = combos.flatMap((c) => pieces.map((p) => [...c, p]));
+  const defence = (c: (typeof data.pieces)[number][]) => c.reduce((n, p) => n + p.defence, 0);
+  combos.sort((a, b) => defence(b) - defence(a));
+
+  const fills = new Map<string, number[][]>();
+  for (const combo of combos) {
+    const plate = combo[1];
+    const torsoUps = combo.filter((p) => p.torsoUp && p.slot !== "plate").length;
+    const armor = trees.map((t) =>
+      combo.reduce(
+        (sum, p) =>
+          sum + (p.torsoUp ? 0 : (p.points[t] ?? 0) * (p.slot === "plate" ? 1 + torsoUps : 1)),
+        0,
+      ),
+    );
+    const bins = [
+      { size: q.weaponSlots, mult: 1 },
+      ...combo.map((p) => ({ size: p.slots, mult: p === plate ? 1 + torsoUps : 1 })),
+    ];
+    const vectors = decoVectors(data, bins, trees, fills);
+    if (vectors.some((v) => trees.every((t, k) => ok(t, armor[k] + v[k])))) return defence(combo);
+  }
+  return -Infinity;
 }
 
 describe("searchSets (brute force)", () => {
@@ -391,41 +473,56 @@ describe("searchSets (brute force)", () => {
         const torsoUp = slot !== "plate" && random() < 0.15;
         armor.push(
           piece(slot, `${slot} ${i}`, {
+            defence: int(1, 30),
             slots: torsoUp ? 0 : int(0, 3),
             skills: torsoUp
               ? [{ name: "Torso Inc", amount: 1 }]
-              : ["A", "B", "C"].map((t) => ({ name: t, amount: int(-2, 5) })),
+              : [
+                  ...["A", "B", "C"].map((t) => ({ name: t, amount: int(-2, 5) })),
+                  { name: "D", amount: int(-4, 3) },
+                ],
           }),
         );
       }
     }
-    const decorations: DecorationInput[] = [1, 2, 3].flatMap((size) =>
-      ["A", "B"].map((t) => ({
-        name: `${t}${size}`,
-        slug: `${t}${size}`,
-        slots: size,
-        skills: [`${t} +${size + int(0, 2)}`, `${t === "A" ? "B" : "C"} -${int(0, 1)}`],
-      })),
-    );
+    const decorations: DecorationInput[] = [
+      ...[1, 2, 3].flatMap((size) =>
+        ["A", "B"].map((t) => ({
+          name: `${t}${size}`,
+          slug: `${t}${size}`,
+          slots: size,
+          skills: [
+            `${t} +${size + int(0, 2)}`,
+            `${random() < 0.5 ? "D" : t === "A" ? "B" : "C"} -${int(0, 2)}`,
+          ],
+        })),
+      ),
+      { name: "D1", slug: "d1", slots: 1, skills: ["D +2", "C -1"] },
+    ];
     const data = prepareSearchData(randomTrees, armor, decorations);
     const skills = ["A", "B", "C"]
       .filter(() => random() < 0.7)
       .map((t) => `${t}${random() < 0.5 ? 10 : 15}`);
     if (skills.length === 0) continue;
-    const q = query(skills, { weaponSlots: int(0, 3) });
+    const weaponSlots = int(0, 3);
 
-    test(`trial ${trial}: ${skills.join(" + ")}`, () => {
-      const result = searchSets(data, q);
-      const expected = bruteForce(data, q);
-      outcomes.add(expected);
-      assert.equal(result.sets.length > 0, expected);
-      for (const set of result.sets) {
-        for (const s of skills) {
-          const tree = s[0];
-          assert.ok(set.totals[tree] >= Number(s.slice(1)), `${s}: ${set.totals[tree]}`);
+    for (const allowBadSkills of [true, false]) {
+      const q = query(skills, { weaponSlots, allowBadSkills });
+      test(`trial ${trial}: ${skills.join(" + ")}${allowBadSkills ? "" : ", no bad skills"}`, () => {
+        const expected = bruteForce(data, q);
+        outcomes.add(expected > -Infinity);
+        const result = searchSets(data, q);
+        assert.equal(result.sets[0]?.defence ?? -Infinity, expected, "best defence");
+        for (const set of result.sets) assertValid(data, set, q);
+        // Defence first.
+        for (let i = 1; i < result.sets.length; i++) {
+          assert.ok(result.sets[i - 1].defence >= result.sets[i].defence);
         }
-      }
-    });
+        // Keeping only the best set still finds it.
+        const top = searchSets(data, { ...q, limit: 1 });
+        assert.equal(top.sets[0]?.defence ?? -Infinity, expected, "best defence, limit 1");
+      });
+    }
   }
 
   test("the trials include sets that exist and sets that don't", () => {
