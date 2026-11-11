@@ -54,7 +54,12 @@ import { packageModel } from "../models/rig.js";
 import { isPac, readPac, type PacEntry } from "../models/pac.js";
 import { isPmo, type Pmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
-import { DRAWN_BONE_SCALES, poseWeapon } from "../models/weapon-pose.js";
+import {
+  poseWeapon,
+  SHEATHED_TARGET,
+  WEAPON_POSES,
+  type WeaponPoses,
+} from "../models/weapon-pose.js";
 import { parseOvl, type OvlFile } from "../container/ovl.js";
 import { readMonsterCollision } from "../monsters/collision.js";
 import { buildSiteHitboxes, jointPositions } from "../monsters/hitboxes.js";
@@ -119,7 +124,8 @@ type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string 
  * is skinned, and its motions come back apart, packed (motion-pack.ts), so a
  * page can show the model before fetching them; `motionsFile` names the file
  * the GLB should point at for them (monsters with the same motions share one).
- * A weapon's bones are posed as the game has them drawn (`pose`, weapon-pose.ts).
+ * A weapon's bones are posed as the game has them drawn, with the sheathed
+ * pose as a morph target (`pose`, weapon-pose.ts).
  */
 async function packageToGlb(
   buf: Buffer,
@@ -127,7 +133,7 @@ async function packageToGlb(
   options: GlbOptions,
   clipOptions: ClipOptions,
   motionsFile: (motions: Buffer) => string,
-  pose?: Pose,
+  pose?: WeaponPoses,
 ): Promise<{ glb: Buffer; motions?: Buffer } | null> {
   if (!isPac(buf)) return null;
   const entries = readPac(buf);
@@ -137,21 +143,24 @@ async function packageToGlb(
   const model = packageModel(entries, pmoEntry.index, clipOptions);
   const { rig } = model;
   const bones = pose && weaponSkeleton(entries, pmoEntry.index);
-  const pmo = pose && bones ? poseWeapon(model.pmo, bones, pose) : model.pmo;
+  const { pmo, sheathed } = pose && bones ? poseWeapon(model.pmo, bones, pose) : { pmo: model.pmo };
   const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
   const motions = rig?.clips?.length ? packMotions(rig.clips) : undefined;
   const { glb } = await buildGlb(
     pmo,
     textures,
     name,
-    rig ? options : { ...options, partOf: partsByRoot(entries, pmoEntry.index, pmo) },
+    rig
+      ? options
+      : {
+          ...options,
+          partOf: partsByRoot(entries, pmoEntry.index, pmo),
+          ...(sheathed ? { targets: [{ name: SHEATHED_TARGET, pmo: sheathed }] } : {}),
+        },
     rig && { bones: rig.bones, motionsFile: motions && motionsFile(motions) },
   );
   return { glb, motions };
 }
-
-/** A drawn pose's bone scales (weapon-pose.ts). */
-type Pose = (typeof DRAWN_BONE_SCALES)[keyof typeof DRAWN_BONE_SCALES];
 
 /** A weapon's skeleton: the first `.ahi` after its mesh, if it parses. */
 function weaponSkeleton(entries: PacEntry[], pmoIndex: number): Bone[] | undefined {
@@ -273,7 +282,7 @@ class Converter {
     private readonly clipOptions: ClipOptions,
   ) {}
 
-  async convert(source: string, relativeOut: string, pose?: Pose): Promise<string | null> {
+  async convert(source: string, relativeOut: string, pose?: WeaponPoses): Promise<string | null> {
     const cached = this.done.get(source);
     if (cached !== undefined) return cached;
     let result: string | null = null;
@@ -477,7 +486,7 @@ async function exportWeapons(
       const relative = await converter.convert(
         `weapon/we${id}.pac`,
         `weapons/we${id}.glb`,
-        DRAWN_BONE_SCALES[page.type as keyof typeof DRAWN_BONE_SCALES],
+        WEAPON_POSES[page.type as keyof typeof WEAPON_POSES],
       );
       if (relative) {
         (weapons[page.type] ??= {})[page.name] = entry.modelId;

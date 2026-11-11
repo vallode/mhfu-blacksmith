@@ -164,6 +164,13 @@ const back = (
   rotation: [number, number, number],
 ): WeaponMount => ({ joint: JOINT.CHEST, position, rotation });
 
+/**
+ * The morph target a great sword's or long sword's model carries for its
+ * bones' sheathed pose; the mesh itself is drawn (mhfu-extract's
+ * weapon-pose.ts).
+ */
+export const SHEATHED_TARGET = "sheathed";
+
 /** Weapon pieces in order: part_0 is the main weapon, part_1 (a shield, second blade, quiver) if any. */
 export interface WeaponMounts {
   drawn: WeaponMount[];

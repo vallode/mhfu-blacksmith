@@ -71,6 +71,19 @@ export interface GlbOptions {
    * the model's space, so a viewer can move them apart. Unskinned models only.
    */
   partOf?: GlbPartOf;
+  /**
+   * Morph targets: the same model in other shapes, vertex for vertex and at
+   * the same `scale` (weapon-pose.ts's sheathed pose). Each is written as
+   * float position and normal offsets and named in every mesh's
+   * `extras.targetNames`, at weight 0. Unskinned models only.
+   */
+  targets?: GlbTarget[];
+}
+
+/** A morph target: the model's `pmo` in another shape. */
+export interface GlbTarget {
+  name: string;
+  pmo: Pmo;
 }
 
 /** The piece (0, 1, ...) a primitive of the model belongs to, by mesh and primitive index. */
@@ -425,10 +438,42 @@ export async function buildGlb(
   );
   const skinned = !!rig?.bones.length;
   const layout = skinned ? skinnedLayout(exact ? EXACT : FLOATS) : exact ? EXACT : FLOATS;
+  const targets = options.targets ?? [];
+  if (targets.length && skinned) throw new Error("morph targets on a skinned model");
+  for (const target of targets)
+    if (target.pmo.scale.some((s, k) => s !== pmo.scale[k]))
+      throw new Error(`morph target ${target.name} has another scale`);
+
+  /** A vertex's position as the GLB stores it, in node units. */
+  const storedPosition = (v: DecodedVertex): number[] =>
+    exact
+      ? v.position.map(
+          (c) => roundTo(Math.round(c * 0x7fff), positionStep, -0x7fff, 0x7fff) / 0x7fff,
+        )
+      : v.position;
+  /**
+   * A vertex's normal as the GLB stores it, unit length. Unskinned, the
+   * model's scale sits on the node, and renderers transform normals by its
+   * inverse-transpose (1/scale per axis). The source normals are in scaled
+   * model space, so pre-multiply by the scale to cancel that out. Skinned,
+   * the scale is in the inverse bind matrices, and three.js transforms
+   * normals by the skinning matrix itself (scale per axis): divide instead.
+   * Exact, it's re-rounded to s8, which costs well under a degree.
+   */
+  const storedNormal = (v: DecodedVertex): number[] => {
+    const source = exact ? v.normal! : (v.normal ?? [0, 1, 0]);
+    const n = source.map((c, k) => (skinned ? c / pmo.scale[k]! : exact ? c * pmo.scale[k]! : c));
+    const length = Math.hypot(...n) || 1;
+    return n.map((c) => (exact ? Math.round((c / length) * 0x7f) / 0x7f : c / length));
+  };
 
   // ---- vertex table and primitives ------------------------------------------
   // Vertices are stored as their final record bytes; identical records merge.
+  // A morph target's offsets go in a record of their own (floats: position
+  // then normal, per target), part of what makes two vertices the same.
   const records: Buffer[] = [];
+  const targetStride = targets.length * 24;
+  const targetRecords: Buffer[] = [];
   const recordIndex = new Map<string, number>();
   const primitives = new Map<string, Primitive>();
   for (const [meshIndex, mesh] of pmo.meshes.entries()) {
@@ -446,25 +491,15 @@ export async function buildGlb(
         primitive = { part, material: source.materialIndex, uvScale: mesh.uvScale, indices: [] };
         primitives.set(key, primitive);
       }
-      const remap = vertices.map((v) => {
+      const remap = vertices.map((v, j) => {
         const record = Buffer.alloc(layout.stride);
+        const position = storedPosition(v);
+        const normal = storedNormal(v);
         if (exact) {
-          v.position.forEach((c, k) =>
-            record.writeInt16LE(
-              roundTo(Math.round(c * 0x7fff), positionStep, -0x7fff, 0x7fff),
-              EXACT.position + k * 2,
-            ),
+          position.forEach((c, k) =>
+            record.writeInt16LE(Math.round(c * 0x7fff), EXACT.position + k * 2),
           );
-          // Unskinned, the model's scale sits on the node, and renderers
-          // transform normals by its inverse-transpose (1/scale per axis).
-          // The source normals are in scaled model space, so pre-multiply by
-          // the scale to cancel that out. Skinned, the scale is in the
-          // inverse bind matrices, and three.js transforms normals by the
-          // skinning matrix itself (scale per axis): divide instead.
-          // Re-rounding to s8 costs well under a degree.
-          const n = v.normal!.map((c, k) => (skinned ? c / pmo.scale[k]! : c * pmo.scale[k]!));
-          const length = Math.hypot(...n) || 1;
-          n.forEach((c, k) => record.writeInt8(Math.round((c / length) * 0x7f), EXACT.normal + k));
+          normal.forEach((c, k) => record.writeInt8(Math.round(c * 0x7f), EXACT.normal + k));
           v.uv!.forEach((c, k) =>
             record.writeUInt16LE(
               roundTo(Math.round(c * UV_ONE), uvStep, 0, 0xffff),
@@ -472,13 +507,8 @@ export async function buildGlb(
             ),
           );
         } else {
-          v.position.forEach((c, k) => record.writeFloatLE(c, FLOATS.position + k * 4));
-          // Skinned, undo the scale the skinning matrix applies (see above).
-          const [x, y, z] = (v.normal ?? [0, 1, 0]).map((c, k) =>
-            skinned ? c / pmo.scale[k]! : c,
-          ) as [number, number, number];
-          const length = Math.hypot(x, y, z) || 1;
-          [x, y, z].forEach((c, k) => record.writeFloatLE(c / length, FLOATS.normal + k * 4));
+          position.forEach((c, k) => record.writeFloatLE(c, FLOATS.position + k * 4));
+          normal.forEach((c, k) => record.writeFloatLE(c, FLOATS.normal + k * 4));
           const [u, w] = v.uv ?? [0, 0];
           record.writeFloatLE(u * mesh.uvScale[0], FLOATS.uv);
           record.writeFloatLE(w * mesh.uvScale[1], FLOATS.uv + 4);
@@ -488,11 +518,21 @@ export async function buildGlb(
           joints.forEach((j, k) => record.writeUInt8(j, layout.joints! + k));
           weights.forEach((w, k) => record.writeUInt8(w, layout.weights! + k));
         }
-        const id = record.toString("latin1");
+        const offsets = Buffer.alloc(targetStride);
+        targets.forEach((target, t) => {
+          const shape =
+            target.pmo.meshes[meshIndex]!.primitives[primitiveIndex]!.geometry.vertices[j]!;
+          const moved = [...storedPosition(shape), ...storedNormal(shape)];
+          [...position, ...normal].forEach((c, k) =>
+            offsets.writeFloatLE(moved[k]! - c, t * 24 + k * 4),
+          );
+        });
+        const id = record.toString("latin1") + offsets.toString("latin1");
         let index = recordIndex.get(id);
         if (index === undefined) {
           index = records.length;
           records.push(record);
+          targetRecords.push(offsets);
           recordIndex.set(id, index);
         }
         return index;
@@ -535,6 +575,9 @@ export async function buildGlb(
   const vertexCount = newIndex.size;
   const vertexData = Buffer.alloc(vertexCount * layout.stride);
   for (const [old, index] of newIndex) records[old]!.copy(vertexData, index * layout.stride);
+  const targetData = Buffer.alloc(vertexCount * targetStride);
+  if (targetStride)
+    for (const [old, index] of newIndex) targetRecords[old]!.copy(targetData, index * targetStride);
 
   // Index buffer: every primitive's triangles back to back.
   const wide = vertexCount > 0xffff;
@@ -640,6 +683,47 @@ export async function buildGlb(
       },
     );
 
+  // Morph targets: float offsets in their own stream, POSITION then NORMAL.
+  const targetAccessors: { POSITION: number; NORMAL: number }[] = [];
+  if (targetStride) {
+    const targetView = writer.addStream(
+      new Uint8Array(targetData.buffer, targetData.byteOffset, targetData.byteLength),
+      vertexCount,
+      targetStride,
+      "vertex",
+    );
+    targets.forEach((_, t) => {
+      const min = [Infinity, Infinity, Infinity];
+      const max = [-Infinity, -Infinity, -Infinity];
+      for (let i = 0; i < vertexCount; i++)
+        for (let k = 0; k < 3; k++) {
+          const value = targetData.readFloatLE(i * targetStride + t * 24 + k * 4);
+          min[k] = Math.min(min[k]!, value);
+          max[k] = Math.max(max[k]!, value);
+        }
+      const offset = (bytes: number) => (bytes ? { byteOffset: bytes } : {});
+      accessors.push(
+        {
+          bufferView: targetView,
+          ...offset(t * 24),
+          componentType: FLOAT,
+          count: vertexCount,
+          type: "VEC3",
+          min,
+          max,
+        },
+        {
+          bufferView: targetView,
+          byteOffset: t * 24 + 12,
+          componentType: FLOAT,
+          count: vertexCount,
+          type: "VEC3",
+        },
+      );
+      targetAccessors.push({ POSITION: accessors.length - 2, NORMAL: accessors.length - 1 });
+    });
+  }
+
   // ---- textures and materials -------------------------------------------------
   // Encode every texture the primitives use (async), in first-use order.
   const encoded = new Map<number, EncodedTexture>();
@@ -727,6 +811,7 @@ export async function buildGlb(
         TEXCOORD_0: 2,
         ...(skinned ? { JOINTS_0: 3, WEIGHTS_0: 4 } : {}),
       },
+      ...(targetAccessors.length ? { targets: targetAccessors } : {}),
       indices: accessors.length - 1,
       material: materialFor(primitive),
     };
@@ -767,9 +852,13 @@ export async function buildGlb(
   const meshPrimitives = (part: number) =>
     gltfPrimitives.filter((p) => p.part === part).map(({ part: _, ...primitive }) => primitive);
   const whole = parts.length <= 1;
+  // A mesh's morph targets, named (three.js reads `extras.targetNames`) and off.
+  const morph = targets.length
+    ? { weights: targets.map(() => 0), extras: { targetNames: targets.map((t) => t.name) } }
+    : {};
   const meshes = whole
-    ? [{ primitives: gltfPrimitives.map(({ part: _, ...primitive }) => primitive) }]
-    : parts.map((part) => ({ primitives: meshPrimitives(part) }));
+    ? [{ primitives: gltfPrimitives.map(({ part: _, ...primitive }) => primitive), ...morph }]
+    : parts.map((part) => ({ primitives: meshPrimitives(part), ...morph }));
   // Positions are in source units (normalized s16); unskinned, the model's
   // scale goes on the node.
   const meshNodes: object[] = whole
