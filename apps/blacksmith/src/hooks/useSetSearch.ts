@@ -6,6 +6,7 @@ import {
   DEFAULT_LIMIT,
   mergeResults,
   SEARCH_ROUNDS,
+  type ArmorSet,
   type SearchData,
   type SearchQuery,
   type SearchResult,
@@ -84,12 +85,16 @@ interface Pending {
   round: number;
   parts: (SearchResult | null)[];
   found: number[];
+  /** Each worker's best sets so far this round, and the last round's. */
+  partial: ArmorSet[][];
+  before: ArmorSet[];
 }
 
 /** Ask every worker for its shard of a round. */
 function postRound(workers: Worker[], run: Pending) {
   run.parts = workers.map(() => null);
   run.found = workers.map(() => 0);
+  run.partial = workers.map(() => []);
   workers.forEach((worker, index) =>
     worker.postMessage({
       type: "search",
@@ -145,6 +150,8 @@ export function useSetSearch(): SetSearchState {
       round: 0,
       parts: [],
       found: [],
+      partial: [],
+      before: [],
     };
     pending.current = run;
     setSearching(true);
@@ -172,6 +179,25 @@ export function useSetSearch(): SetSearchState {
             stop(msg.error);
             return;
           }
+          if (msg.type === "sets") {
+            // Show the best sets found so far: they're real sets, and the
+            // last round's are still good until this round finds better.
+            run.partial[shard] = msg.sets;
+            const sofar = mergeResults(
+              [run.before, ...run.partial].map((sets) => ({
+                sets,
+                timedOut: false,
+                unknownSkills: [],
+                elapsedMs: 0,
+              })),
+              run.query.limit ?? DEFAULT_LIMIT,
+              run.query.sort,
+            );
+            setResult(sofar);
+            setQuery(run.query);
+            setIndexState((i) => Math.min(i, Math.max(0, sofar.sets.length - 1)));
+            return;
+          }
           if (msg.type === "progress") {
             run.found[shard] = msg.found;
             // Each round starts counting again: show the most found so far.
@@ -186,11 +212,12 @@ export function useSetSearch(): SetSearchState {
           // Not enough sets above this round's floor: lower it.
           const sets = parts.reduce((n, r) => n + r.sets.length, 0);
           if (sets < limit && !parts.some((r) => r.timedOut) && run.round + 1 < SEARCH_ROUNDS) {
+            run.before = parts.flatMap((r) => r.sets);
             run.round++;
             postRound(workersRef.current, run);
             return;
           }
-          const merged = mergeResults(parts, limit);
+          const merged = mergeResults(parts, limit, run.query.sort);
           pending.current = null;
           const shown = Math.min(run.index, Math.max(0, merged.sets.length - 1));
           setSearching(false);

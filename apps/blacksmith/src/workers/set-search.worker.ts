@@ -7,6 +7,7 @@
  */
 import {
   prepareSearch,
+  type ArmorSet,
   type PreparedSearch,
   type SearchData,
   type SearchOptions,
@@ -26,6 +27,7 @@ export type SetSearchRequest =
 
 export type SetSearchResponse =
   | { type: "progress"; id: number; found: number }
+  | { type: "sets"; id: number; sets: ArmorSet[] }
   | { type: "result"; id: number; result: SearchResult }
   | { type: "error"; id: number; error: string };
 
@@ -54,6 +56,7 @@ scope.onmessage = ({ data: message }) => {
     const result = current.search.run(round, {
       shard,
       onProgress: (found) => scope.postMessage({ type: "progress", id, found }),
+      onSets: (sets) => scope.postMessage({ type: "sets", id, sets }),
     });
     scope.postMessage({ type: "result", id, result });
   } catch (e) {

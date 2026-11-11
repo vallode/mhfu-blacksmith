@@ -16,9 +16,9 @@
  *    threshold are dropped, and fills that are equivalent for what remains
  *    (beyond a threshold extra points no longer matter) are merged.
  *
- * Of all the fills that work, it picks the one that leaves the most weapon
- * slots free, then uses the fewest slots, then the fewest decorations, then
- * has the smallest penalties.
+ * Of all the fills that work, it picks the one that uses the fewest slots,
+ * then leaves the most weapon slots free, then uses the fewest decorations,
+ * then has the smallest penalties.
  */
 import type { Deco, DecoBin } from "./set-search";
 
@@ -72,7 +72,7 @@ interface State {
 /** `a` is a better way to fill than `b`. */
 function better(a: State, b: State): boolean {
   return (
-    (a.weapon - b.weapon || a.slots - b.slots || a.count - b.count || a.penalty - b.penalty) < 0
+    (a.slots - b.slots || a.weapon - b.weapon || a.count - b.count || a.penalty - b.penalty) < 0
   );
 }
 
