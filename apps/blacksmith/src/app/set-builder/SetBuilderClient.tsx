@@ -137,24 +137,21 @@ const WEAPON_SLOTS: Choice<number>[] = [0, 1, 2, 3].map((n) => ({
 function PieceList({
   label,
   note,
-  hrefs,
-  byHref,
+  pieces,
   onRemove,
 }: {
   label: string;
   note: string;
-  hrefs: string[];
-  byHref: Map<string, Piece>;
+  pieces: Piece[];
   onRemove: (href: string) => void;
 }) {
-  if (hrefs.length === 0) return null;
+  if (pieces.length === 0) return null;
   return (
     <div className="flex flex-col gap-[0.4rem]">
       <span className={ui.statusLabel}>{label}</span>
       <p className={ui.note}>{note}</p>
       <ul className="m-0 flex list-none flex-wrap gap-x-[1.6rem] gap-y-[0.4rem] p-0 text-fine">
-        {hrefs.map((href) => {
-          const name = byHref.get(href)?.name ?? href;
+        {pieces.map(({ href, name }) => {
           return (
             <li key={href} className="flex items-center">
               <Link href={href} className="text-white/80 hover:text-white">
@@ -245,11 +242,13 @@ export default function SetBuilderClient() {
         : { ...f, locked, excluded };
     });
   }, [data, byHref, restored]);
-  const pieceIds = (hrefs: string[]) =>
+  // Empty until the data loads; links it doesn't have are dropped above.
+  const piecesOf = (hrefs: string[]) =>
     hrefs.flatMap((href) => {
       const p = byHref.get(href);
-      return p ? [p.id] : [];
+      return p ? [p] : [];
     });
+  const pieceIds = (hrefs: string[]) => piecesOf(hrefs).map((p) => p.id);
   const pieceActions: PieceActions = {
     isLocked: (p) => form.locked.includes(p.href),
     onLock: (p) =>
@@ -630,8 +629,7 @@ export default function SetBuilderClient() {
             <PieceList
               label="Locked"
               note="Every set uses these, whatever the rank or quest progress."
-              hrefs={form.locked}
-              byHref={byHref}
+              pieces={piecesOf(form.locked)}
               onRemove={(href) =>
                 update(
                   "locked",
@@ -642,8 +640,7 @@ export default function SetBuilderClient() {
             <PieceList
               label="Excluded"
               note="The search never uses these."
-              hrefs={form.excluded}
-              byHref={byHref}
+              pieces={piecesOf(form.excluded)}
               onRemove={(href) =>
                 update(
                   "excluded",
