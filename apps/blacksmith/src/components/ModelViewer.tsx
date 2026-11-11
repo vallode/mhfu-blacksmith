@@ -7,6 +7,7 @@ import { cn } from "@/lib/cn";
 import {
   fetchHunterClips,
   HUNTER_MODEL,
+  SHEATHED_TARGET,
   WEAPON_MOUNTS,
   type HunterClip,
   type WeaponMount,
@@ -242,8 +243,18 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
             mount: WeaponMount & { hold: NonNullable<WeaponMount["hold"]> };
           };
           let held: Held[] = [];
+          // A great sword's or long sword's bones in the sheathed pose, as a
+          // morph target on the drawn mesh (mhfu-extract's weapon-pose.ts).
+          const poses: { influences: number[]; sheathed: number }[] = [];
+          weapon.traverse((node) => {
+            const mesh = node as import("three").Mesh;
+            const sheathed = mesh.morphTargetDictionary?.[SHEATHED_TARGET];
+            if (sheathed !== undefined && mesh.morphTargetInfluences)
+              poses.push({ influences: mesh.morphTargetInfluences, sheathed });
+          });
           placeWeapon = (sheathed) => {
             const plan = mounts && (sheathed ? mounts.sheathed : mounts.drawn);
+            for (const pose of poses) pose.influences[pose.sheathed] = sheathed ? 1 : 0;
             held = [];
             parts.forEach((part, i) => {
               const mount = plan?.[Math.min(i, plan.length - 1)];
