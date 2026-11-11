@@ -331,3 +331,16 @@ describe("questHp", () => {
     assert.equal(questHp(800, 1.15), 920);
   });
 });
+
+test("encodeQuestBundle marks the quests area-maps.json has", () => {
+  const { bundle } = encodeQuestBundle({
+    quests: [quest({ id: 1 }), quest({ id: 2 })],
+    itemId: () => undefined,
+    monsterPage: () => undefined,
+    hasAreaMap: (id) => id === 2,
+  });
+  assert.deepEqual(
+    decodeQuests(bundle).map((q) => q.hasAreaMap),
+    [false, true],
+  );
+});

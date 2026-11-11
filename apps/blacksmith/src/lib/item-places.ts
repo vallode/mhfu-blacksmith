@@ -13,10 +13,18 @@ export type GatherKind = "gather" | "mine" | "bug";
 export interface GatheringFile {
   layouts: {
     map: string;
+    texture?: string;
     quests: number[];
     areas: {
       area: number;
-      nodes: { kind: GatherKind; count: number; items: { item: string; chance: number }[] }[];
+      nodes: {
+        kind: GatherKind;
+        count: number;
+        gathers?: number | null;
+        most_gathers?: number | null;
+        items: { item: string; chance: number }[];
+        positions?: [number, number][];
+      }[];
     }[];
   }[];
 }
