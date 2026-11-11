@@ -88,8 +88,8 @@ interface Pending {
   /** Each worker's best sets so far this round, and the last round's. */
   partial: ArmorSet[][];
   before: ArmorSet[];
-  /** Its sets are on screen (until then, the last search's are). */
-  shown: boolean;
+  /** Its sets are on screen (until then, the last search's are): the latest. */
+  shown: SearchResult | null;
 }
 
 /** Ask every worker for its shard of a round. */
@@ -154,7 +154,7 @@ export function useSetSearch(): SetSearchState {
       found: [],
       partial: [],
       before: [],
-      shown: false,
+      shown: null,
     };
     pending.current = run;
     setSearching(true);
@@ -208,7 +208,7 @@ export function useSetSearch(): SetSearchState {
             setQuery(run.query);
             // The set asked for (or stepped to since), not the last search's.
             setIndexState(Math.min(run.index, last));
-            run.shown = true;
+            run.shown = sofar;
             return;
           }
           if (msg.type === "progress") {
@@ -305,8 +305,12 @@ export function useSetSearch(): SetSearchState {
 
   const cancel = useCallback(() => {
     if (!data) return;
+    // Its live results stay on screen: they're the last search now.
+    const run = pending.current;
+    if (run?.shown) writeLast({ query: run.query, index: run.index, result: run.shown });
     searchId.current++;
     pending.current = null;
+    failed.current = false;
     for (const w of workersRef.current) w.terminate();
     startWorkers(data);
     setSearching(false);
