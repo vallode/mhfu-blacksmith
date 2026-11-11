@@ -44,7 +44,7 @@ import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { MHP2G_PROFILE } from "../games/mhp2g.js";
 import { buildPlayerClips, PLAYER_GROUP_SLOTS, type ClipOptions } from "../models/animation.js";
-import { isAhi, readAhi } from "../models/ahi.js";
+import { isAhi, readAhi, type Bone } from "../models/ahi.js";
 import { skeletonFor } from "../models/attach.js";
 import { buildGlb, type GlbOptions, type GlbPartOf } from "../models/gltf.js";
 import { boneRoots, composeHunter, readHunterPiece, type HunterSlot } from "../models/hunter.js";
@@ -54,6 +54,7 @@ import { packageModel } from "../models/rig.js";
 import { isPac, readPac, type PacEntry } from "../models/pac.js";
 import { isPmo, type Pmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
+import { DRAWN_BONE_SCALES, poseWeapon } from "../models/weapon-pose.js";
 import { parseOvl, type OvlFile } from "../container/ovl.js";
 import { readMonsterCollision } from "../monsters/collision.js";
 import { buildSiteHitboxes, jointPositions } from "../monsters/hitboxes.js";
@@ -118,6 +119,7 @@ type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string 
  * is skinned, and its motions come back apart, packed (motion-pack.ts), so a
  * page can show the model before fetching them; `motionsFile` names the file
  * the GLB should point at for them (monsters with the same motions share one).
+ * A weapon's bones are posed as the game has them drawn (`pose`, weapon-pose.ts).
  */
 async function packageToGlb(
   buf: Buffer,
@@ -125,13 +127,17 @@ async function packageToGlb(
   options: GlbOptions,
   clipOptions: ClipOptions,
   motionsFile: (motions: Buffer) => string,
+  pose?: Pose,
 ): Promise<{ glb: Buffer; motions?: Buffer } | null> {
   if (!isPac(buf)) return null;
   const entries = readPac(buf);
   const pmoEntry = entries.find((entry) => isPmo(entry.data));
   if (!pmoEntry) return null;
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
-  const { pmo, rig } = packageModel(entries, pmoEntry.index, clipOptions);
+  const model = packageModel(entries, pmoEntry.index, clipOptions);
+  const { rig } = model;
+  const bones = pose && weaponSkeleton(entries, pmoEntry.index);
+  const pmo = pose && bones ? poseWeapon(model.pmo, bones, pose) : model.pmo;
   const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
   const motions = rig?.clips?.length ? packMotions(rig.clips) : undefined;
   const { glb } = await buildGlb(
@@ -144,20 +150,28 @@ async function packageToGlb(
   return { glb, motions };
 }
 
+/** A drawn pose's bone scales (weapon-pose.ts). */
+type Pose = (typeof DRAWN_BONE_SCALES)[keyof typeof DRAWN_BONE_SCALES];
+
+/** A weapon's skeleton: the first `.ahi` after its mesh, if it parses. */
+function weaponSkeleton(entries: PacEntry[], pmoIndex: number): Bone[] | undefined {
+  const ahi = entries.slice(pmoIndex + 1).find((entry) => isAhi(entry.data));
+  if (!ahi) return undefined;
+  try {
+    return readAhi(ahi.data);
+  } catch {
+    return undefined;
+  }
+}
+
 /**
  * A weapon's pieces: a primitive belongs to the root of its most-weighted
  * bone, in the skeleton that follows the mesh (see `boneRoots`). Undefined for
  * a model with one root, which is all but the two-piece weapons.
  */
 function partsByRoot(entries: PacEntry[], pmoIndex: number, pmo: Pmo): GlbPartOf | undefined {
-  const ahi = entries.slice(pmoIndex + 1).find((entry) => isAhi(entry.data));
-  if (!ahi) return undefined;
-  let bones;
-  try {
-    bones = readAhi(ahi.data);
-  } catch {
-    return undefined;
-  }
+  const bones = weaponSkeleton(entries, pmoIndex);
+  if (!bones) return undefined;
   const roots = boneRoots(bones);
   if (Math.max(...roots) === 0) return undefined;
   return (mesh, primitive) => {
@@ -259,7 +273,7 @@ class Converter {
     private readonly clipOptions: ClipOptions,
   ) {}
 
-  async convert(source: string, relativeOut: string): Promise<string | null> {
+  async convert(source: string, relativeOut: string, pose?: Pose): Promise<string | null> {
     const cached = this.done.get(source);
     if (cached !== undefined) return cached;
     let result: string | null = null;
@@ -285,6 +299,7 @@ class Converter {
           shared = existing !== undefined;
           return existing ?? ownMotions;
         },
+        pose,
       );
       if (converted) {
         await mkdir(path.dirname(file), { recursive: true });
@@ -459,7 +474,11 @@ async function exportWeapons(
       const page = ids[list]?.[entry.index];
       if (!page?.type) continue;
       const id = String(entry.modelId).padStart(3, "0");
-      const relative = await converter.convert(`weapon/we${id}.pac`, `weapons/we${id}.glb`);
+      const relative = await converter.convert(
+        `weapon/we${id}.pac`,
+        `weapons/we${id}.glb`,
+        DRAWN_BONE_SCALES[page.type as keyof typeof DRAWN_BONE_SCALES],
+      );
       if (relative) {
         (weapons[page.type] ??= {})[page.name] = entry.modelId;
         count++;

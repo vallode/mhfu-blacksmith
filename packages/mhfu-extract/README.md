@@ -740,36 +740,32 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   back they're placed by eye (`WEAPON_MOUNTS` in the site's `src/lib/hunter.ts`),
   so a sheathed weapon is only roughly where the game has it. Only the male
   Battle set is exported.
-- **Open: posed weapon bones.** Some weapons skin pieces to extra bones with
-  fixed partial weights that the game must move at run time: the Ravager
-  Blade's (`we012`) claws are weighted 0.87/0.13 to bones 1 and 3 (bone 3
-  sits at (140.5, 0, 19.3)), and in the bind pose they lie inside the blade,
-  where wiki renders show them standing out of its back (as do Wyvern Blade
-  "Blood"'s, `we008`). No motion file animates weapon bones. What the EU
-  eboot does with a weapon's bones, all of it checked against a PPSSPP save
-  state's RAM:
-  - Skinning (0x088641C0, 0x08860648) is the usual chain · inverse bind,
-    with the inverse taken from the AHI bind pose (0x0886053C, root parent =
-    diag(1/PMO scale)); drawWeight (0x088646F0) uploads that skin matrix
-    (joint + 0x50, stride 0x250) per palette slot. A bone left at its bind
-    pose therefore skins to the identity, exactly as the export has it.
-  - The player's draw (vtable slot 8, 0x088D3F68) poses the weapon's joints
-    by class (byte 0x1E8, `WEAPON_TYPE_NAMES` order) before skinning: a root
-    scale of 0.8 (great sword, long sword, hammer, hunting horn, gunlance,
-    heavy bowgun, bow), 0.9 (lance) or 1 (the rest), then per class (jump
-    table 0x089323EC) bone 2 and 3 binds. For great swords and long swords
-    bone 2 becomes diag(1, 1, 0.73) about its own translation and bone 3 is
-    left as is; nothing reads whether the weapon is drawn or sheathed.
-  - A per-model joint interpreter (0x088CF2C8, records keyed by model id in
-    the table at 0x089B07B4) animates 98 models (43, 54, 79, 80, 109, 110,
-    ...); 8 and 12 are not among them.
-    So by the code found, the Ravager Blade's bone 3 stays at rest, which
-    leaves the claws inside the blade, and the great sword's bone 2 scale
-    would pull the handles weighted to it (`we243`'s) into their blades,
-    which the renders don't show either. No one rule (weighted ±offset, the
-    bone 2 scale) matches the renders of `we008`, `we012` and `we243`, so the
-    export keeps the bind pose. Settling it needs an emulator capture of one
-    of these weapons drawn in game (the joint matrices at player + 0x1090).
+- **Posed weapon bones** (`models/weapon-pose.ts`). Some weapons skin
+  pieces to extra bones that the game moves at run time, and no motion file
+  animates them: the Ravager Blade's (`we012`) claws are weighted 0.87/0.13
+  to bones 1 and 3 and lie inside the blade in the bind pose. Skinning
+  (EU 0x088641C0, 0x08860648, drawWeight 0x088646F0) is chain · inverse of
+  the AHI bind, so a bone left alone skins to the identity; the player's
+  per-frame code sets some binds by weapon class first. The eboot's copy
+  (vtable slot 8, 0x088D3F68) runs in town, where weapons are always away:
+  great swords and long swords get bone 2 = diag(1, 1, 0.73) and bone 3 at
+  rest. The quest copy is in `game_task.ovl` (EU 0x9A932C0, great sword and
+  long sword case 0x9A93F0C) and reads whether the weapon is drawn (player
+  flag 0x410 bit 3): drawn, bone 2 is at rest and bone 3 = diag(2.6, 1, 2.5)
+  at its own translation, which throws the claws out of the spine. Draw and
+  sheathe motions animate between the two with keyframe tracks in the
+  eboot's data (bone 3's x goes 1, 3.15, 2.6 while drawing). A JP save state
+  with the Ravager Blade drawn has exactly that bind on bone 3 and bone 2 at
+  rest. The export bakes the drawn pose into great swords and long swords
+  (11 great sword models have pieces on bone 3: the Ravager, Lacerator and
+  Tactical Blades' claws, the Serpentblades' fins, the Tigrex swords'
+  spikes, the Ceanataur blades' claw); unrotated bones only. The pose is
+  baked into the mesh, so the hunter's sheathed motions carry the weapon
+  drawn too. Other classes
+  aren't posed: the lance's drawn bone 2 and the hammer's bone 3 (outside a
+  charge) are at rest, while the gunlance, bow and bowguns turn bones in
+  ways not decoded yet. The per-model joint interpreter (0x088CF2C8, records
+  keyed by model id at 0x089B07B4) animates other models and isn't applied.
 
 ## Emit layer
 
