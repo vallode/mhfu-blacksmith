@@ -42,7 +42,7 @@ function statsWith(seed: string, changes: Partial<Record<OptionKey, unknown>> = 
 const key = (w: WeaponStats) => `${w.family}:${w.index}`;
 const byKey = (weapons: WeaponStats[]) => new Map(weapons.map((w) => [key(w), w]));
 
-/** Bounds a value must stay in: the same type, one rarity either side. */
+/** Bounds a value must stay in: the same type, one rarity either side; none for a lone weapon. */
 function bounds(
   all: WeaponStats[],
   w: WeaponStats,
@@ -52,7 +52,7 @@ function bounds(
     .filter((o) => o.type === w.type && Math.abs(o.rarity - w.rarity) <= 1)
     .map(value)
     .filter((v): v is number => v !== null);
-  return [Math.min(...values), Math.max(...values)];
+  return values.length > 1 ? [Math.min(...values), Math.max(...values)] : [-Infinity, Infinity];
 }
 
 test("reads the fixture's weapons: attack, affinity, element and status, both families", async () => {
@@ -103,6 +103,7 @@ test("weapon stats are deterministic, stay in bounds and change something", asyn
   const before = collectWeaponStats(game.eboot!, game.resolver);
   let changed = 0;
   let gunnerElement = false;
+  let loneStatus = false;
   for (const seed of ["a", "b", "c", "d", "e", "f"]) {
     const settings = statsWith(seed, {
       "weapons.attackSpread": 0.5,
@@ -138,6 +139,13 @@ test("weapon stats are deterministic, stay in bounds and change something", asyn
       assert.equal(now.type, w.type);
       if (now.attack !== w.attack || now.affinity !== w.affinity) changed++;
       if (w.family === "Gunner" && now.element!.value !== w.element!.value) gunnerElement = true;
+      // Weapon 5 is the only status Great Sword: the spread alone limits it.
+      if (w.family === "Blademaster" && w.index === 5 && now.element!.value !== w.element!.value) {
+        loneStatus = true;
+        assert.ok(
+          Math.abs(now.element!.value - w.element!.value) <= Math.ceil(w.element!.value * 0.5),
+        );
+      }
     }
     const report = result.reports.find((r) => r.title === "Weapon stats")!;
     assert.ok(report.lines.length > 0);
@@ -148,6 +156,7 @@ test("weapon stats are deterministic, stay in bounds and change something", asyn
   }
   assert.ok(changed > 0);
   assert.ok(gunnerElement, "a bow's element moves");
+  assert.ok(loneStatus, "a weapon alone with its status still moves");
   close();
 });
 
@@ -175,7 +184,17 @@ test("each stat draws from its own stream, and none moves another shuffle's outp
   const attackOnly = stats(
     statsWith("own", { "weapons.affinity": false, "weapons.element": false }),
   );
-  for (const [k, w] of all) assert.equal(attackOnly.get(k)!.attack, w.attack, k);
+  const affinityOnly = stats(
+    statsWith("own", { "weapons.attack": false, "weapons.element": false }),
+  );
+  const elementOnly = stats(
+    statsWith("own", { "weapons.attack": false, "weapons.affinity": false }),
+  );
+  for (const [k, w] of all) {
+    assert.equal(attackOnly.get(k)!.attack, w.attack, k);
+    assert.equal(affinityOnly.get(k)!.affinity, w.affinity, k);
+    assert.equal(elementOnly.get(k)!.element?.value, w.element?.value, k);
+  }
 
   // The weapons shuffle and costs give the same tables with or without stats on.
   const base = settingsWith("own", ["weapons", "recipes", "costs"]);
@@ -236,5 +255,20 @@ test("weapon stats off: the EBOOT's weapon records are untouched", async () => {
     );
   }
   assert.ok(!result.reports.some((r) => r.title === "Weapon stats"));
+  close();
+});
+
+test("spoiler groups sort by rarity as a number", async () => {
+  const { game, close } = await load();
+  const report = randomize(game, statsWith("order", { "weapons.attackSpread": 0.9 })).reports.find(
+    (r) => r.title === "Weapon stats",
+  )!;
+  const rarities = report.lines
+    .filter((l) => l.where.startsWith("Blademaster: Great Sword"))
+    .map((l) => Number(/rarity (\d+)/.exec(l.where)![1]));
+  assert.deepEqual(
+    rarities,
+    [...rarities].sort((a, b) => a - b),
+  );
   close();
 });

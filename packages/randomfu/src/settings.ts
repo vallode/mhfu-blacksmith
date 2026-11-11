@@ -442,7 +442,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.element",
     section: "Weapons",
     label: "Randomize weapon element and status",
-    help: "Weapons with an element or status get a new value for it, staying within what weapons of its type have from one rarity below to one above. They keep which element or status it is; weapons without one stay without, and dual-element weapons keep theirs.",
+    help: "Weapons with an element or status get a new value for it, staying within what weapons of its type have from one rarity below to one above. They keep which element or status it is; weapons without one stay without, and dual-element weapons keep theirs. A weapon that's the only one of its type with that element or status nearby varies by the spread alone.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",

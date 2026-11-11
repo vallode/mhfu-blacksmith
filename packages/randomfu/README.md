@@ -286,13 +286,17 @@ value; the game shows it times its type's class modifier) and element or
 status values are multiplied by a random factor within their spread;
 affinity moves by up to `weapons.affinitySpread` points, in steps of 5.
 Each value is then kept between the lowest and highest that weapons of the
-same type have, from one rarity below to one above, read from your disc.
-Only weapons that already have an element or status get a new value, and
-they keep which one; the dual-element weapons (`WepDualAttr`) keep theirs.
+same type have, from one rarity below to one above, read from your disc; a
+weapon with no other of its type (or, for elements, of its element or
+status) in that window is limited by the spread alone. Only weapons that already have an element or status get a new value, and
+they keep which one; the dual-element weapons (listed in `WepDualAttr`) are
+skipped.
 Sharpness, slots, defense bonus, horn notes, shelling, ammo, rarity and
 price never change. Records with no attack (unused entries) are skipped.
-The logged affinity is the stored base value: for some positive-affinity
-Blademaster weapons the Blacksmith site lists up to 10 points more. Weapon
+Affinity's spread and bounds apply to the affinity as shown, including the
+up to 10 points the Blacksmith site adds to positive Blademaster affinity
+for long sharpness, so a weapon crossing to positive affinity can't jump
+further than the spread. Weapon
 stats are so far tested only against the synthetic disc.
 
 `gathering` moves item IDs between the gathering item tables of Village
