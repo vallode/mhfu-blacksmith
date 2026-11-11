@@ -53,7 +53,7 @@ const OPTION_STEPS: Step[] = [
     icon: "star",
     sections: ["Logic"],
     intro:
-      "How far items can move. Every shuffle follows this, so with logic on, every recipe stays craftable as early in the game as before.",
+      "Logic applies to every item shuffle: quest rewards, carves, gathering points, supply boxes and recipe materials. At Same star level, every recipe stays craftable as early in the game as before.",
   },
   {
     id: "rewards",
@@ -87,7 +87,7 @@ const OPTION_STEPS: Step[] = [
     tint: "var(--color-gem-orange)",
     sections: ["Quest monsters", "Monster stats", "Weaknesses"],
     intro:
-      "Which monsters quests have and how tough they are. Swaps, quest sizes and quest text have been tried in game; the rest is untested, so try a quest before a long run.",
+      "Which monsters quests have and how tough they are. No preset turns these on yet: swaps, quest sizes and quest text have been tried in game, the rest is untested, so try a quest before a long run.",
   },
   {
     id: "smithy",
@@ -115,7 +115,7 @@ if (unclaimed.length > 0) {
 
 const STEPS: Step[] = [
   { id: "game", title: "Your game", icon: "binoculars" },
-  { id: "start", title: "Seed", icon: "seed", tint: "var(--color-gem-green)" },
+  { id: "start", title: "Seed & preset", icon: "seed", tint: "var(--color-gem-green)" },
   ...OPTION_STEPS,
   { id: "review", title: "Review", icon: "ticket", tint: "var(--color-parchment)" },
   { id: "run", title: "Randomize", icon: "max" },
@@ -401,6 +401,9 @@ function render(): void {
   for (const radio of document.querySelectorAll<HTMLInputElement>("input[name=preset]")) {
     radio.checked = radio.value === preset?.name;
   }
+  $("preset-note").textContent = preset
+    ? "A preset replaces every option but keeps your seed. You can change anything in the next steps."
+    : "Your settings don't match a preset. Picking one replaces every option but keeps your seed.";
 
   $<HTMLTextAreaElement>("share").value = encodeSettings(settings);
   renderSteps();
@@ -498,7 +501,7 @@ function renderSummary(preset: Preset | undefined): void {
   ]);
   group(byId("start"), [
     { text: `Seed: ${settings.seed}` },
-    { text: `Preset: ${preset ? preset.name : "custom"}` },
+    { text: `Preset: ${preset ? preset.name : "none (custom settings)"}` },
   ]);
   for (const step of OPTION_STEPS) {
     const lines: { text: string; off?: boolean }[] = [];
@@ -521,7 +524,7 @@ function renderSummary(preset: Preset | undefined): void {
 /** Why the player can't leave a step yet, or null if they can. */
 function blocker(step: string): string | null {
   if (step === "game") {
-    if (!iso) return "Pick your disc image first.";
+    if (!iso) return "Choose your disc image first.";
     if (checking) return "Still checking your disc…";
     if (checkError) return checkError;
     if (!discOk()) return "That disc isn't supported: use the EU or JP disc.";
@@ -680,7 +683,7 @@ function outputName(file: File, seed: string): string {
 async function run(dryRun: boolean): Promise<void> {
   if (busy) return;
   const reason = blocker("game");
-  if (reason || !iso) return say($("nav-status"), reason ?? "Pick your disc image first.", "err");
+  if (reason || !iso) return say($("nav-status"), reason ?? "Choose your disc image first.", "err");
   const file = iso;
   const seed = settings.seed;
   ranWith = { settings: encodeSettings(settings), iso: file };
@@ -826,7 +829,7 @@ function init(): void {
       loaded(
         version === LOGIC_VERSION
           ? "Loaded the settings string."
-          : `Made with logic v${version}; this is v${LOGIC_VERSION}, so the same seed gives a different game.`,
+          : `Loaded, but it was made with logic v${version} and this is v${LOGIC_VERSION}, so the same seed gives a different game.`,
         version === LOGIC_VERSION ? "ok" : "err",
       );
     } catch (error) {

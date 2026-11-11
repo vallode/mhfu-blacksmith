@@ -84,7 +84,7 @@ try {
   // Step 1: the disc. Next waits for one.
   assert.equal(await title(), "Your game");
   await page.click("#next");
-  assert.match((await page.textContent("#nav-status"))!, /Pick your disc image first/);
+  assert.match((await page.textContent("#nav-status"))!, /Choose your disc image first/);
   await page.setInputFiles("#iso", isoPath);
   await page.waitForFunction(() =>
     /supported/.test(document.getElementById("check-status")!.textContent ?? ""),
@@ -99,7 +99,7 @@ try {
   await page.click("#next");
 
   // Step 2: seed and presets; load the shared settings.
-  assert.equal(await title(), "Seed");
+  assert.equal(await title(), "Seed & preset");
   await page.click("#load summary");
   await page.fill("#paste", settingsString);
   await page.click("#apply-paste");

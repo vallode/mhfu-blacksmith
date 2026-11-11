@@ -35,7 +35,7 @@ browser (or prints its address). On it you can:
 
 - enter the paths to your disc and the output, and check them;
 - set every option, with its explanation, or start from a preset
-  (Rewards only, Full, Chaos);
+  (see [Presets](#presets));
 - copy the **settings string** (seed and settings in one line), load one,
   or save and load settings files;
 - preview the spoiler log, randomize, watch the log and search the
@@ -102,15 +102,15 @@ added there shows up everywhere.
 | --------------------------------- | ----------- | --------------------------------------------------------------------------------- |
 | `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`)              |
 | `questRewards.enabled`            | on          | Shuffle quest rewards                                                             |
-| `monsterRewards.enabled`          | on          | Shuffle carves                                                                    |
+| `monsterRewards.enabled`          | on          | Shuffle carves and shiny drops                                                    |
 | `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                 |
 | `gathering.enabled`               | off         | Shuffle gathering points                                                          |
-| `gathering.pool`                  | `gathered`  | What spots give: items you could gather, any item of the same `rank`, or `any`    |
+| `gathering.pool`                  | `gathered`  | What spots give: gathering point items, any item of the same `rank`, or `any`     |
 | `gathering.keepItems`             | on          | With a wider pool, every gatherable item stays findable at its point in the game  |
 | `supplies.enabled`                | off         | Randomize supply boxes                                                            |
 | `supplies.pool`                   | `supplies`  | Supply box items, any item of the same `rank`, or `add` random stacks to each box |
-| `supplies.keepEssentials`         | on          | Keep Maps, ballista and cannon ammo and the other quest-only supplies             |
-| `terms.money`                     | off         | Randomize quest fees, rewards and penalties                                       |
+| `supplies.keepEssentials`         | on          | Keep maps, ballista and cannon ammo and the other quest-only supplies             |
+| `terms.money`                     | off         | Randomize quest money: fees, reward money and penalties                           |
 | `terms.moneySpread`               | 0.5         | How far they move                                                                 |
 | `terms.time`                      | off         | Randomize time limits                                                             |
 | `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                |
@@ -121,9 +121,9 @@ added there shows up everywhere.
 | `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                     |
 | `costs.enabled`                   | off         | Randomize crafting costs                                                          |
 | `costs.spread`                    | 0.5         | How far costs move                                                                |
-| `weapons.enabled`                 | off         | Shuffle weapon progression                                                        |
-| `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)               |
-| `armor.enabled`                   | off         | Shuffle armor progression                                                         |
+| `weapons.enabled`                 | off         | Shuffle which weapons the smithy makes                                            |
+| `weapons.mix`                     | `same-type` | Whether a spot keeps its weapon type (`any-type`: any Blademaster or Gunner type) |
+| `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                              |
 | `armorSkills.enabled`             | off         | Change armor skills                                                               |
 | `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points, or `randomize`: new trees and points             |
 | `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                |
@@ -155,6 +155,18 @@ added there shows up everywhere.
 | `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                          |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                       |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                 |
+
+### Presets
+
+Each preset replaces every option and keeps the seed. None changes the
+monster options yet (`questMonsters`, `monsterStats`, `weaknesses`): turn
+those on yourself once you've tried them on your disc.
+
+| Preset       | What it turns on                                                                                                                                           |
+| ------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rewards only | The defaults: quest rewards, carves and capture and break rewards, at the same star level                                                                  |
+| Full         | Every shuffle but the monster ones, at the same star level: gathering from the same rank, shops with Low Rank items, armor skills shuffled                 |
+| Chaos        | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, new armor skills, any item in shops, gathering and supply boxes, wide spreads |
 
 ## Shuffles
 

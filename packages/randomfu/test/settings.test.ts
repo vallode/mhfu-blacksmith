@@ -13,6 +13,7 @@ import {
   defaultSettings,
   describeSettings,
   encodeSettings,
+  isActive,
   needsEboot,
   parseAssignments,
   settingsFromJson,
@@ -37,6 +38,38 @@ test("every option has a default its own checks accept", () => {
   }
   assert.equal(OPTIONS.find((o) => o.key === "armor.enabled")!.eboot, true);
   assert.ok(!OPTIONS.find((o) => o.key === "gathering.enabled")!.eboot);
+});
+
+test("presets do what their help says", () => {
+  const MONSTERS = ["Quest monsters", "Monster stats", "Weaknesses"];
+  const sectionsOn = (name: string) => {
+    const settings = applySettings(
+      defaultSettings("S"),
+      PRESETS.find((p) => p.name === name)!.changes,
+    );
+    const on = OPTIONS.filter(
+      (o) => o.type.kind === "boolean" && settings[o.key] === true && isActive(settings, o),
+    );
+    return { settings, sections: new Set(on.map((o) => o.section)) };
+  };
+  // "The defaults: only Rewards, with logic at Same star level."
+  const rewards = sectionsOn("Rewards only");
+  assert.deepEqual(rewards.settings, defaultSettings("S"));
+  assert.deepEqual([...rewards.sections].sort(), ["Monster rewards", "Quest rewards"]);
+  // "Every step but Monsters": each other section has something on.
+  const optionSections = new Set(
+    OPTIONS.filter((o) => o.section !== "Logic").map((o) => o.section),
+  );
+  for (const [name, tiers] of [
+    ["Full", "star"],
+    ["Chaos", "none"],
+  ] as const) {
+    const { settings, sections } = sectionsOn(name);
+    assert.equal(settings["logic.tiers"], tiers, `${name}'s logic`);
+    for (const section of optionSections) {
+      assert.equal(sections.has(section), !MONSTERS.includes(section), `${name}: ${section}`);
+    }
+  }
 });
 
 test("settings strings round-trip, seed included, and stay short for the defaults", () => {
@@ -84,7 +117,7 @@ test("describeSettings hides options whose switch is off", () => {
   assert.ok(lines.includes("Costs / Randomize crafting costs: no"));
   assert.ok(!lines.some((l) => l.includes("Cost variation")));
   const on = describeSettings(applySettings(defaultSettings("S"), { "costs.enabled": true }));
-  assert.ok(on.includes("Costs / Cost variation: ±50%"));
+  assert.ok(on.includes("Costs / Crafting cost variation: ±50%"));
 });
 
 test("CLI flags layer: file < string < --shuffles < shorthand < --set < --seed", () => {

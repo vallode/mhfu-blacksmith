@@ -388,7 +388,10 @@
         <section class="card" aria-labelledby="presets-h">
           <h2 id="presets-h">Presets</h2>
           <div class="presets" id="presets"></div>
-          <p class="hint">A preset keeps your seed. Change anything after.</p>
+          <p class="hint">
+            A preset replaces every option but keeps your seed. No preset changes the monster
+            options yet. Change anything after.
+          </p>
         </section>
 
         <section class="card" aria-labelledby="share-h">
@@ -593,7 +596,8 @@
       }
 
       function format(option, value) {
-        return option.type.percent ? `±${Math.round(value * 100)}%` : String(value);
+        if (option.type.percent) return `±${Math.round(value * 100)}%`;
+        return option.type.unit ? `±${value} ${option.type.unit}` : String(value);
       }
 
       function render() {
