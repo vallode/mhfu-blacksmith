@@ -82,9 +82,13 @@ export interface WeaponMount {
   rotation: [number, number, number];
 }
 
-/** The middle of each palm from its wrist joint, the median over the game's gauntlet meshes. */
-const RIGHT_PALM: [number, number, number] = [-8.7, -0.8, 5.1];
-const LEFT_PALM: [number, number, number] = [8.7, -0.8, 5.1];
+/**
+ * The middle of each fist from its wrist joint: the centre of the median
+ * bounding box of the hand vertices over the game's gauntlet meshes. A fist
+ * grips along its joint's Z axis.
+ */
+const RIGHT_PALM: [number, number, number] = [-10.5, 0, 1.9];
+const LEFT_PALM: [number, number, number] = [10.5, 0, 1.9];
 
 const rightHand: WeaponMount = {
   joint: JOINT.RIGHT_HAND,
@@ -94,12 +98,28 @@ const rightHand: WeaponMount = {
 const leftHand: WeaponMount = { joint: JOINT.LEFT_HAND, position: LEFT_PALM, rotation: [0, 0, 0] };
 
 /**
- * A two-handed weapon in the right palm, turned so its handle reaches the left
- * palm in the class's drawn stance (group 0, slot 1 of its motion file). A heavy
- * bowgun's barrel runs along -Z, so its rotation includes a half turn. The hammer
- * isn't here: its left hand doesn't reach the shaft in that stance.
+ * A two-handed melee weapon, rigid in the left fist and running along its
+ * grip, with its origin `reach` up the handle from it. In the motions the
+ * right fist stays on the left fist's grip axis, at a set distance (great
+ * sword 53, long sword 62, hammer 79, hunting horn 42, in most frames of each
+ * class), while the left fist's place in the right fist's frame wanders: the
+ * left hand holds the weapon and the right slides on it. The origin is the
+ * upper hand's place, but a hammer's handle starts only 26 below its origin,
+ * so its origin is the left fist itself. `rotation` tilts the handle onto the
+ * right fist where that sits a little off the left fist's axis.
  */
-const twoHanded = (x: number, y: number, z: number): WeaponMount => ({
+const leftGrip = (reach: number, rotation: [number, number, number] = [0, 0, 0]): WeaponMount => ({
+  ...leftHand,
+  position: [LEFT_PALM[0], LEFT_PALM[1], LEFT_PALM[2] + reach],
+  rotation,
+});
+
+/**
+ * A bowgun in the right fist, turned so its stock reaches the left fist in most
+ * frames of the class's motions. A heavy bowgun's barrel runs along -Z, so its
+ * rotation includes a half turn.
+ */
+const bowgun = (x: number, y: number, z: number): WeaponMount => ({
   ...rightHand,
   rotation: [x, y, z],
 });
@@ -129,19 +149,19 @@ const tipDown = (lean: number): [number, number, number] => [115 * DEG, lean * D
 
 export const WEAPON_MOUNTS: Record<string, WeaponMounts> = {
   "great-sword": {
-    drawn: [twoHanded(-0.04, -0.538, -0.011)],
+    drawn: [leftGrip(53)],
     sheathed: [back([-8, 22, -13], tipDown(30))],
   },
   "long-sword": {
-    drawn: [twoHanded(-0.48, -0.209, -0.051)],
+    drawn: [leftGrip(62)],
     sheathed: [back([-8, 20, -12], tipDown(30)), back([-8, 20, -12], tipDown(30))],
   },
   hammer: {
-    drawn: [rightHand],
+    drawn: [leftGrip(0, [0.074, -0.018, 0])],
     sheathed: [back([-14, -30, -14], headUp(40))],
   },
   "hunting-horn": {
-    drawn: [twoHanded(-0.007, -0.269, -0.001)],
+    drawn: [leftGrip(42)],
     sheathed: [back([-14, -30, -14], headUp(40))],
   },
   lance: {
@@ -161,16 +181,18 @@ export const WEAPON_MOUNTS: Record<string, WeaponMounts> = {
     sheathed: [back([-8, 14, -11], tipDown(20)), back([8, 14, -11], tipDown(-20))],
   },
   "light-bowgun": {
-    drawn: [twoHanded(0.363, -0.043, 0.008)],
+    drawn: [bowgun(0.376, 0.078, -0.015)],
     sheathed: [back([-10, -6, -14], headUp(25))],
   },
   "heavy-bowgun": {
-    drawn: [twoHanded(-2.779, 0.043, -0.008)],
+    drawn: [bowgun(-2.812, -0.034, 0.006)],
     sheathed: [back([-10, -6, -16], headUp(25))],
   },
-  // A bow's length runs along its Y axis, so it stands upright as it is.
+  // A bow's length runs along its Y axis and its limbs curve along Z. On the
+  // back it leans 40 degrees toward the left shoulder, turned so the curve lies
+  // across the back instead of through the body.
   bow: {
     drawn: [leftHand, back([0, -25, -8], [0, 0, 0])],
-    sheathed: [back([0, 0, -12], [0, 0, -30 * DEG]), back([0, -25, -8], [0, 0, 0])],
+    sheathed: [back([0, 0, -20], [90 * DEG, 50 * DEG, -90 * DEG]), back([0, -25, -8], [0, 0, 0])],
   },
 };
