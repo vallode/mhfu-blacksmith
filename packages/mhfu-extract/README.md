@@ -26,9 +26,13 @@ Monster hitzones, status tolerances and carve/capture/break rewards live in
 the `game_task.ovl` and `game_sub.ovl` overlays, also in `DATA.BIN` (see
 "Monster overlays" below).
 
-**Not extractable this way:** flavor text and a few cosmetic groupings.
-Equipment-side gaps of this kind
-come from hand-authored files under `src/overlay/` — see "Overlay data".
+Item, equipment and skill names and descriptions, in all five EU
+languages, are in the str_tbl message files (see "Disc text").
+
+**Not extractable this way:** monster descriptions (on the disc, but not yet
+tied to monsters) and a few cosmetic groupings. Equipment-side gaps of this
+kind come from hand-authored files under `src/overlay/` — see "Overlay
+data".
 
 ## Usage
 
@@ -45,6 +49,7 @@ pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests.json --tsv .cache/mhfu/quest-size.tsv
 pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
 pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Velocidrome
+pnpm --filter mhfu-extract disc-text --unpacked .cache/mhfu
 ```
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
@@ -91,6 +96,9 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
   its tables, the strings containing `--grep`, or a run of strings
   (`--table`, `--from`, `--count`), with control bytes as `\xNN`. It prints
   game text, so keep the output out of the repository.
+- `disc-text` writes the game's item, equipment and skill names and
+  descriptions from an EU disc to `data/text/<language>.json`, one file per
+  language. See "Disc text".
 - `quest-flags` searches the unpacked EBOOT and overlays for the table
   that maps quest IDs to their "cleared" bit in a save, and writes
   `quest-flags.json` (or `--out`). See "Save quest flags".
@@ -1121,6 +1129,49 @@ and `build-data` writes them into `data/items.json` by ID
 - The three placeholder IDs (`placeholder` in `data/items.json`) get no
   stats.
 
+### Disc text
+
+`disc-text` reads the EU str_tbl, DATA.BIN 19-23 (English, French, German,
+Italian, Spanish; `src/strings/disc-text.ts`), and writes
+`data/text/{en,fr,de,it,es}.json`: names and descriptions by game ID for
+items (by item ID), weapons and armor (keyed and indexed as in
+`data/equipment-ids.json`), and names for skill trees and skills.
+
+- **Tables** (the same in every language): 1 and 2 are item names and
+  descriptions, 1261 each. Names and descriptions for equipment follow in
+  pairs: blademaster 3/4 (1150 names, 556 descriptions), gunner 5/6 (354,
+  205), then head, chest, arm, waist and leg armor 7-16. Table 0 is
+  interface text, with the 100 skill trees at 806 + `SkillID` and the 218
+  skills at 906 + the "Skills 2" ID in `equip.enum`. Table 17 has 62 monster
+  descriptions (see below); 18 is save messages and 19-22 the name filter's
+  word lists.
+- **Equipment shares descriptions** (Carbalite Sword and Carbalite Sword+
+  have one between them), so the EBOOT maps each equipment ID to its
+  description: seven u16 arrays, blademaster to leg in the order above, each
+  starting on a 4-byte boundary (`src/tables/descriptions.ts`). EU has them
+  at `0x1987b0` (`equipmentDescriptions`); in every array the largest index
+  is exactly the description table's last entry. JP's address isn't known.
+- **Text**: color codes (`~C03`...`~C00`, the only codes in these tables)
+  are dropped. The game wraps every line by hand, often mid-word with a
+  hyphen (`tum-\nbando`), so the line breaks are kept as `\n` rather than
+  guessed away.
+- **Unused IDs**: ID 0 ("Nothing equipped.") and the JP collaboration items
+  and gear EU dropped, named `dummy` (or `none` in a few German and Italian
+  entries), are `null`. That leaves 1244 items, 1481 weapons, 2052 armor
+  pieces, 99 skill trees and 217 skills in every language.
+- **Names are the EU disc's.** English agrees with the site's names for
+  87-98% of each kind; the rest are EU spellings (`Hornet Helm`,
+  `Hunter's Vambraces`). Key by ID, not by name.
+- **Skills have no descriptions on the disc.** A skill is only described
+  through its decoration's item description ("Decoration that raises the
+  Auto-Guard Skill.").
+- **Monster descriptions** (table 17, 62 entries, Felyne first and Fatalis
+  last) aren't written: species share an entry (Gypceros and Purple
+  Gypceros), and the table mapping monsters to entries hasn't been found. No
+  u8 or u16 list indexed by `emID`, nor one listing `emID`s by entry, is in
+  the EBOOT or the `_task`/`_sub` overlays. 46 entries match the committed
+  English descriptions exactly.
+
 ### Shops
 
 `src/shops/shops.ts` finds the shops' stock in `overlay/lobby_task.ovl`,
@@ -1290,8 +1341,9 @@ Other sources checked:
   and `arcade_str.pac` (4756-4758). The EU disc has 20 more files than the
   JP one, several of them just before those (`filelist-eu.json`'s
   unmatched entries), which fits one set of message files per language,
-  but which EU file is which language isn't known. randomfu doesn't read
-  them: it learns names from the quests' own text instead.
+  and the EU str_tbl is 19-23, one file per language (see "Disc text").
+  randomfu doesn't read them: it learns names from the quests' own text
+  instead.
 
 ### Quest script
 

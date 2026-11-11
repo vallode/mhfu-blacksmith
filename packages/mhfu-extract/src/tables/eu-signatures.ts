@@ -69,6 +69,19 @@ const ITEM_TABLE_EU: TableSignature = {
   signatureOffset: 0,
 };
 
+const EQUIPMENT_DESCRIPTIONS_EU: TableSignature = {
+  // The equipment description indexes (tables/descriptions.ts): the
+  // blademaster array's first 24 entries (0, 1, 1, 2, ...), the only match in
+  // the EU EBOOT. Real EU offset 0x1987b0. Found on the EU disc alone, with no
+  // JP dump to diff against: every one of the seven arrays reads back with
+  // its largest index exactly its str_tbl description table's last entry.
+  signature: Buffer.from(
+    "00000100010002000300040005000600070008000900090009000a000a000a000b000b000c000d000c000e000f000e00",
+    "hex",
+  ),
+  signatureOffset: 0,
+};
+
 const UI_SPRITE_TABLE_EU: TableSignature = {
   // The UI sprite table (tables/item-icons.ts), anchored on sprites 186-188,
   // the 16x16 item icons' first three. Real EU offset 0x13775c, the sprites
@@ -243,6 +256,7 @@ const BOWGUN_MOD_TABLE_POOL_EU: TableSignature = {
 export const EU_TABLE_SIGNATURES: Readonly<Record<string, TableSignature>> = {
   weaponClassModifiers: WEAPON_CLASS_MODIFIERS_EU,
   itemTable: ITEM_TABLE_EU,
+  equipmentDescriptions: EQUIPMENT_DESCRIPTIONS_EU,
   uiSpriteTable: UI_SPRITE_TABLE_EU,
   itemIconSpriteIndex: ITEM_ICON_SPRITE_INDEX_EU,
   itemColorPalette: ITEM_COLOR_PALETTE_EU,
