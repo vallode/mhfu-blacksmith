@@ -522,6 +522,30 @@ function pieceClasses(
     .sort((a, b) => b.members[0].defence - a.members[0].defence);
 }
 
+/** A way to fill the last slots: points in the wanted trees, slots, Torso Up pieces. */
+interface Completion {
+  vec: number[];
+  slots: number;
+  torsoUps: number;
+}
+
+/** The first slot (search order) the search precomputes completions from. */
+const FIRST_COMPLETION = 2;
+
+/** The completions no other one beats, with as many Torso Up pieces. */
+function unbeaten(list: Completion[]): Completion[] {
+  const sum = (c: Completion) => c.vec.reduce((a, b) => a + b, c.slots);
+  const kept: Completion[] = [];
+  for (const c of [...list].sort((a, b) => sum(b) - sum(a))) {
+    const beaten = kept.some(
+      (o) =>
+        o.torsoUps === c.torsoUps && o.slots >= c.slots && o.vec.every((v, i) => v >= c.vec[i]),
+    );
+    if (!beaten) kept.push(c);
+  }
+  return kept;
+}
+
 /** A set found by the search, before it's built into an ArmorSet. */
 interface Found {
   defence: number;
@@ -535,11 +559,72 @@ interface Found {
 /** `a` ranks above `b`. */
 const ranksAbove = (a: Found, b: Found) => a.defence - b.defence || a.freeSlots - b.freeSlots;
 
+export interface SearchOptions {
+  /** Called as the list of best sets grows. */
+  onProgress?: (found: number) => void;
+  /**
+   * Search only part of the sets, for running a search in several workers:
+   * shard `index` of `count`. Merge the parts with mergeResults.
+   */
+  shard?: { index: number; count: number };
+}
+
+/**
+ * A search with its pieces grouped and bounds worked out, to run round by
+ * round (see searchSets).
+ */
+export interface PreparedSearch {
+  /**
+   * The best `limit` sets in round `round` (0 to SEARCH_ROUNDS - 1): only
+   * sets with at least that round's defence. The last round takes all.
+   */
+  run(round: number, options?: SearchOptions): SearchResult;
+}
+
+/** How far below the highest possible defence each round's floor is. */
+const FLOOR_STEPS = [8, 16, 32, 64, 128];
+export const SEARCH_ROUNDS = FLOOR_STEPS.length + 1;
+
+/** Results order: highest defence first, then most free slots. */
+export function compareSets(a: ArmorSet, b: ArmorSet): number {
+  return b.defence - a.defence || b.freeSlots - a.freeSlots;
+}
+
+/** One result from the shards of a search (see SearchOptions.shard). */
+export function mergeResults(parts: SearchResult[], limit = DEFAULT_LIMIT): SearchResult {
+  return {
+    sets: parts
+      .flatMap((p) => p.sets)
+      .sort(compareSets)
+      .slice(0, limit),
+    timedOut: parts.some((p) => p.timedOut),
+    unknownSkills: parts[0]?.unknownSkills ?? [],
+    elapsedMs: Math.max(0, ...parts.map((p) => p.elapsedMs)),
+  };
+}
+
+/**
+ * The search, in rounds: each takes only sets with at least so much defence,
+ * lower each time. A round that finds `limit` sets has found the best ones
+ * (every set it didn't take has less defence), and the early rounds, which
+ * cut almost everything, are cheap.
+ */
 export function searchSets(
   data: SearchData,
   query: SearchQuery,
-  onProgress?: (found: number) => void,
+  options: SearchOptions = {},
 ): SearchResult {
+  const search = prepareSearch(data, query);
+  const limit = Math.max(1, query.limit ?? DEFAULT_LIMIT);
+  let result = search.run(0, options);
+  for (let round = 1; round < SEARCH_ROUNDS; round++) {
+    if (result.timedOut || result.sets.length >= limit) break;
+    result = search.run(round, options);
+  }
+  return result;
+}
+
+export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSearch {
   const started = Date.now();
   const limit = Math.max(1, query.limit ?? DEFAULT_LIMIT);
   const deadline = started + (query.timeLimitMs ?? DEFAULT_TIME_LIMIT_MS);
@@ -554,7 +639,8 @@ export function searchSets(
     unknownSkills: unknown,
     elapsedMs: Date.now() - started,
   });
-  if (k === 0) return done([]);
+  const nothing: PreparedSearch = { run: () => done([]) };
+  if (k === 0) return nothing;
 
   const eligible = eligiblePieces(data, query);
   const bySlot = SEARCH_ORDER.map((slot) => eligible.filter((p) => p.slot === slot));
@@ -567,7 +653,7 @@ export function searchSets(
     ? []
     : riskyTrees(bySlot, decorations, limits, query.weaponSlots);
   const classes = bySlot.map((ps) => pieceClasses(ps, trees, risky));
-  if (classes.some((c) => c.length === 0)) return done([]);
+  if (classes.some((c) => c.length === 0)) return nothing;
 
   const solver = new DecoSolver({
     decorations,
@@ -601,15 +687,22 @@ export function searchSets(
 
   /** The best sets so far, best first. */
   const best: Found[] = [];
+  /** The running round's options. */
+  let options: SearchOptions = {};
+  /** The running round's defence floor: sets below it are left out. */
+  let floor = -Infinity;
   /** Defence a new set needs to make the list. */
-  const bar = () => (best.length < limit ? -Infinity : best[limit - 1].defence);
+  const bar = () => Math.max(floor, best.length < limit ? -Infinity : best[limit - 1].defence);
+
   const keep = (f: Found) => {
     let i = best.length;
     while (i > 0 && ranksAbove(f, best[i - 1]) > 0) i--;
     best.splice(i, 0, f);
     if (best.length > limit) best.pop();
-    found++;
-    if (found % 100 === 0) onProgress?.(found);
+    if (best.length > found) {
+      found = best.length;
+      if (found % 50 === 0) options.onProgress?.(found);
+    }
   };
 
   const chosen: PieceClass[] = [];
@@ -650,6 +743,52 @@ export function searchSets(
       required += Math.ceil(deficit / perSlot[i]);
     }
     return required <= capacity;
+  };
+
+  // The ways to fill the last slots (from FIRST_COMPLETION on) that no
+  // other way beats: as many points in every wanted tree and as many slots,
+  // with the same number of Torso Up pieces. Checking a branch against these
+  // cuts far more than `reachable`, which takes each tree's best separately.
+  const completions: Completion[][] = [];
+  completions[SEARCH_ORDER.length] = [{ vec: trees.map(() => 0), slots: 0, torsoUps: 0 }];
+  for (let d = SEARCH_ORDER.length - 1; d >= FIRST_COMPLETION; d--) {
+    completions[d] = unbeaten(
+      classes[d].flatMap((c) =>
+        completions[d + 1].map((p) =>
+          c.torsoUp
+            ? { ...p, torsoUps: p.torsoUps + 1 }
+            : {
+                vec: p.vec.map((v, i) => v + c.vec[i]),
+                slots: p.slots + c.slots,
+                torsoUps: p.torsoUps,
+              },
+        ),
+      ),
+    );
+  }
+
+  // Could some completion of the slots from `depth` make every threshold?
+  const completable = (depth: number): boolean => {
+    const plateVec = chosen[0].vec;
+    let torsoUps = 0;
+    let capacity = query.weaponSlots;
+    for (let d = 1; d < chosen.length; d++) {
+      if (chosen[d].torsoUp) torsoUps++;
+      else capacity += chosen[d].slots;
+    }
+    completions: for (const p of completions[depth]) {
+      const slots = capacity + p.slots + chosen[0].slots * (1 + torsoUps + p.torsoUps);
+      let required = 0;
+      for (let i = 0; i < k; i++) {
+        const deficit = need[i] - (cur[i] + p.vec[i] + p.torsoUps * plateVec[i]);
+        if (deficit <= 0) continue;
+        if (perSlot[i] <= 0) continue completions;
+        required += Math.ceil(deficit / perSlot[i]);
+        if (required > slots) continue completions;
+      }
+      return true;
+    }
+    return false;
   };
 
   /** The weapon's and pieces' slots, as decoration bins. */
@@ -730,27 +869,39 @@ export function searchSets(
     if (result.pick) keep(result.pick);
   };
 
+  // A shard takes every count-th torso and helmet pair.
+  let plateIndex = 0;
+  const inShard = (depth: number, i: number) => {
+    const { shard } = options;
+    return (
+      !shard || depth !== 1 || (plateIndex * classes[1].length + i) % shard.count === shard.index
+    );
+  };
+
   const dfs = (depth: number, defence: number) => {
     if (outOfTime()) return;
     if (depth === SEARCH_ORDER.length) {
       finish();
       return;
     }
-    for (const c of classes[depth]) {
+    for (const [i, c] of classes[depth].entries()) {
+      if (depth === 0) plateIndex = i;
+      if (!inShard(depth, i)) continue;
       // Classes are best first: once one can't make the list, none after it can.
       if (defence + c.members[0].defence + defenceLeft[depth + 1] < bar()) break;
       const vec = c.torsoUp && depth > 0 ? chosen[0].vec : c.vec;
       for (let i = 0; i < k; i++) cur[i] += vec[i];
       chosen.push(c);
-      if (reachable(depth + 1)) dfs(depth + 1, defence + c.members[0].defence);
+      const next = depth + 1;
+      if (next >= FIRST_COMPLETION ? completable(next) : reachable(next)) {
+        dfs(next, defence + c.members[0].defence);
+      }
       chosen.pop();
       for (let i = 0; i < k; i++) cur[i] -= vec[i];
       if (timedOut) return;
     }
   };
-  dfs(0, 0);
-
-  const sets = best.map((f): ArmorSet => {
+  const build = (f: Found): ArmorSet => {
     const ordered = ARMOR_SLOTS.map((slot) => SEARCH_ORDER.indexOf(slot));
     const pieces = ordered.map((d) => f.pieces[d]);
     const set = evaluateSet(data, pieces, f.decorations, query.weaponSlots, trees);
@@ -773,6 +924,16 @@ export function searchSets(
       f.classes[d].all.filter((p) => p !== pieces[i] && swaps(pieces[i], p)),
     );
     return { ...set, alternatives };
-  });
-  return done(sets, timedOut);
+  };
+
+  return {
+    run(round, runOptions = {}) {
+      options = runOptions;
+      floor = round < FLOOR_STEPS.length ? defenceLeft[0] - FLOOR_STEPS[round] : -Infinity;
+      best.length = 0;
+      found = 0;
+      if (!timedOut) dfs(0, 0);
+      return done(best.map(build), timedOut);
+    },
+  };
 }
