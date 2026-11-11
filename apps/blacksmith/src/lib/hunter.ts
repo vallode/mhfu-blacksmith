@@ -119,9 +119,13 @@ const leftHand: WeaponMount = { joint: JOINT.LEFT_HAND, position: LEFT_PALM, rot
  * two agree there). `left` is the weapon's place from the left fist: its origin
  * `reach` up the left fist's grip, `rotation` from there; the right fist sits
  * `fistReach` up it. The origin is the upper hand's place, except on a hammer,
- * whose handle starts only 26 below its origin: there it's the left fist,
- * `rotation` tilting the handle onto the right fist, which sits a little off
- * the left fist's axis.
+ * whose handle starts only 26 below its origin: there it's the left fist, its
+ * X and Y rotation tilting the handle onto the right fist, which sits a little
+ * off the left fist's axis. The fists don't say how far round its length a
+ * weapon is turned, so `rotation`'s Z gives it the roll that leaves none in the
+ * right fist (`right.rotation`'s Z is 0), the right fist's own, as one-handed
+ * weapons have it. That turns a great sword's spine away from the hunter, as
+ * in the game.
  */
 const twoHanded = (
   right: { position: Vec3; rotation: Vec3 },
@@ -175,26 +179,47 @@ const tipDown = (lean: number): [number, number, number] => [115 * DEG, lean * D
 
 export const WEAPON_MOUNTS: Record<string, WeaponMounts> = {
   "great-sword": {
-    drawn: [twoHanded({ position: [-9.6, -1.3, 2.1], rotation: [-0.034, -0.544, 2.787] }, 53)],
+    drawn: [
+      twoHanded(
+        { position: [-9.6, -1.3, 2.1], rotation: [-0.034, -0.544, 0] },
+        53,
+        53,
+        [0, 0, -2.787],
+      ),
+    ],
     sheathed: [back([-8, 22, -13], tipDown(30))],
   },
   "long-sword": {
-    drawn: [twoHanded({ position: [-7.7, -0.2, 2.3], rotation: [-0.542, -0.183, -2.455] }, 62)],
+    drawn: [
+      twoHanded(
+        { position: [-7.7, -0.2, 2.3], rotation: [-0.542, -0.183, 0] },
+        62,
+        62,
+        [0, 0, 2.455],
+      ),
+    ],
     sheathed: [back([-8, 20, -12], tipDown(30)), back([-8, 20, -12], tipDown(30))],
   },
   hammer: {
     drawn: [
       twoHanded(
-        { position: [-3.8, -23.5, -73.2], rotation: [-0.297, -0.086, 3.123] },
+        { position: [-3.8, -23.5, -73.2], rotation: [-0.297, -0.086, 0] },
         0,
         79,
-        [0.074, -0.018, 0],
+        [0.074, -0.018, -3.123],
       ),
     ],
     sheathed: [back([-14, -30, -14], headUp(40))],
   },
   "hunting-horn": {
-    drawn: [twoHanded({ position: [-6.6, -1.8, 2.9], rotation: [0.042, -0.278, 0.032] }, 42)],
+    drawn: [
+      twoHanded(
+        { position: [-6.6, -1.8, 2.9], rotation: [0.042, -0.278, 0] },
+        42,
+        42,
+        [0, 0, -0.032],
+      ),
+    ],
     sheathed: [back([-14, -30, -14], headUp(40))],
   },
   lance: {

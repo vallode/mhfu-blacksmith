@@ -736,10 +736,17 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   the main weapon, then a shield, second blade, quiver or scabbard. `export-site`
   groups the mesh by root, and a weapon with more than one gets a `part_<n>`
   node per piece.
-- **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit in the fist (the middle of the gauntlets' hand vertices), gripped along the wrist joint's Z axis. The great sword, long sword, hammer and hunting horn are the right hand's (it draws and sheathes them alone), but while both hands hold one the right fist stays on the left fist's Z axis at a set distance (53, 62, 79 and 42) in most frames, turning about it, while the left fist wanders in the right's frame. So the viewer moves these to the left fist, along that axis, whenever the right fist is on it, and back to the right fist (in the place they share in the drawn stance) when it isn't. Bowguns are in the right fist, turned so the stock reaches the left fist in most frames. All of this is a fit to the motions, not read from the game; at the end of a sheathe the weapon is still in the hand, since when the game moves it to the back isn't known. On the
+- **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit in the fist (the middle of the gauntlets' hand vertices), gripped along the wrist joint's Z axis. The great sword, long sword, hammer and hunting horn are the right hand's (it draws and sheathes them alone), but while both hands hold one the right fist stays on the left fist's Z axis at a set distance (53, 62, 79 and 42) in most frames, turning about it, while the left fist wanders in the right's frame. So the viewer moves these to the left fist, along that axis, whenever the right fist is on it, and back to the right fist (in the place they share in the drawn stance) when it isn't. The fists don't say how far round its length a weapon is turned: these take the roll the right fist's own frame gives them, as one-handed weapons do, which matches the game for the Ravager Blade. Bowguns are in the right fist, turned so the stock reaches the left fist in most frames. All of this is a fit to the motions, not read from the game; at the end of a sheathe the weapon is still in the hand, since when the game moves it to the back isn't known. On the
   back they're placed by eye (`WEAPON_MOUNTS` in the site's `src/lib/hunter.ts`),
   so a sheathed weapon is only roughly where the game has it. Only the male
   Battle set is exported.
+- **Open: posed weapon bones.** Some weapons skin pieces to extra bones with
+  fixed partial weights that the game must move at run time: the Ravager
+  Blade's (`we012`) claws are weighted 0.87/0.13 to bones 1 and 3 (bone 3
+  sits at (140.5, 0, 19.3)), and in the bind pose they lie inside the blade,
+  where the game shows them standing out of its back. No motion file animates
+  weapon bones, and skinning without inverse binds moves other weapons'
+  handles into their blades, so what the game does with them isn't known.
 
 ## Emit layer
 
