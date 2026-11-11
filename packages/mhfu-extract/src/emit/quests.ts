@@ -141,7 +141,12 @@ export type MultiplierLookup = (
 
 export interface EmittedSmallMonsterSpawn {
   monster: string;
+  /** The most of this species in any single zone. */
   max_quantity: number;
+  /** All of this species across the quest's zones, each distinct spawn table counted once. */
+  total_quantity: number;
+  /** Present when a spawn is marked 99, which the game uses for a species that keeps coming; those spawns are left out of the counts. */
+  endless?: true;
 }
 
 export interface EmittedQuestTarget {
@@ -253,25 +258,48 @@ function dedupeLargeMonsters(
   return out;
 }
 
+/** The quantity the game gives a species that keeps spawning (554 spawn records on disc, against at most 20 for the rest). */
+const ENDLESS_QUANTITY = 99;
+
 /**
- * Small-monster spawn tables are frequently repeated verbatim across
- * several `SmallMonIndex` entries (real quests seen with the *entire* zone
- * list duplicated 2x+ — see `readSmallMonsters`'s docs) and are broken down
- * per zone, which isn't meaningful once resolved to a public-facing name.
- * Flattens to one row per distinct species actually encountered anywhere in
- * the quest, keeping the largest quantity seen for it in any single zone.
+ * Small-monster spawn tables are frequently repeated across several
+ * `SmallMonIndex` entries (real quests seen with the *entire* zone list
+ * pointing at the same records 2x+ — see `readSmallMonsters`'s docs). Those
+ * repeats are dropped (same zone, same record address), then one row per
+ * species remains: the largest quantity in any single zone, and the total
+ * across the quest's distinct spawn tables.
  */
 function dedupeSmallMonsters(tables: SmallMonsterTable[]): EmittedSmallMonsterSpawn[] {
   const names = getNameResolver();
-  const maxByMonster = new Map<string, number>();
+  const seen = new Set<string>();
+  const stats = new Map<string, { max: number; total: number; endless: boolean }>();
   for (const table of tables) {
+    const key = `${table.stageId}:${table.dataPtr}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const inTable = new Map<string, { quantity: number; endless: boolean }>();
     for (const spawn of table.monsters) {
       const monster = names.resolve("emID", spawn.monsterId);
       if (!monster) continue;
-      maxByMonster.set(monster, Math.max(maxByMonster.get(monster) ?? 0, spawn.quantity));
+      const entry = inTable.get(monster) ?? { quantity: 0, endless: false };
+      if (spawn.quantity === ENDLESS_QUANTITY) entry.endless = true;
+      else entry.quantity += spawn.quantity;
+      inTable.set(monster, entry);
+    }
+    for (const [monster, { quantity, endless }] of inTable) {
+      const row = stats.get(monster) ?? { max: 0, total: 0, endless: false };
+      row.max = Math.max(row.max, quantity);
+      row.total += quantity;
+      row.endless ||= endless;
+      stats.set(monster, row);
     }
   }
-  return [...maxByMonster.entries()].map(([monster, max_quantity]) => ({ monster, max_quantity }));
+  return [...stats.entries()].map(([monster, { max, total, endless }]) => ({
+    monster,
+    max_quantity: max,
+    total_quantity: total,
+    ...(endless ? { endless: true as const } : {}),
+  }));
 }
 
 /**

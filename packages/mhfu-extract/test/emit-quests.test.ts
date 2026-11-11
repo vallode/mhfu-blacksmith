@@ -62,9 +62,10 @@ const GIADROME_HUNT: ParsedQuest = {
   ],
   largeMonsters: [{ monsterId: 77, quantity: 1, power: 4, stage: 97 }], // Giadrome
   smallMonsters: [
-    { stageId: 92, monsters: [] },
+    { stageId: 92, dataPtr: 90, monsters: [] },
     {
       stageId: 93,
+      dataPtr: 100,
       monsters: [
         { monsterId: 35, quantity: 2, power: 0 }, // Giaprey
         { monsterId: 35, quantity: 1, power: 0 },
@@ -76,11 +77,16 @@ const GIADROME_HUNT: ParsedQuest = {
     // this time, to prove dedup keeps the *max* quantity seen anywhere.
     {
       stageId: 93,
+      dataPtr: 200,
       monsters: [
         { monsterId: 35, quantity: 5, power: 0 },
         { monsterId: 19, quantity: 3, power: 0 },
       ],
     },
+    // The same records again (same address): counted once.
+    { stageId: 93, dataPtr: 100, monsters: [{ monsterId: 35, quantity: 2, power: 0 }] },
+    // 99 marks a species that keeps spawning: flagged, not counted.
+    { stageId: 94, dataPtr: 300, monsters: [{ monsterId: 19, quantity: 99, power: 0 }] },
   ],
   strings: {
     title: "強敵、ドスギアノス現る！",
@@ -131,10 +137,10 @@ test("emitQuest reproduces the real 'Hunt 1 Giadrome' quest end-to-end", () => {
     { chance: 4, item: "Armor Sphere", amount: 1 },
   ]);
   assert.deepEqual(emitted.large_monsters, [{ monster: "Giadrome", quantity: 1, power: 4 }]);
-  // Deduped across the two verbatim-repeated zone lists, keeping the max quantity seen per species.
+  // The repeat of the first table is dropped; per species: the most in one table, and the sum of the distinct tables.
   assert.deepEqual(emitted.small_monsters, [
-    { monster: "Giaprey", max_quantity: 5 },
-    { monster: "Vespoid", max_quantity: 3 },
+    { monster: "Giaprey", max_quantity: 5, total_quantity: 8 },
+    { monster: "Vespoid", max_quantity: 3, total_quantity: 6, endless: true },
   ]);
   assert.equal(emitted.title, "強敵、ドスギアノス現る！");
   assert.equal(emitted.client, "元気のいい少年");
