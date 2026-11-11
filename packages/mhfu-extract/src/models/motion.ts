@@ -25,7 +25,14 @@
  *   (cubic Hermite, value units per frame; mostly the slope between the
  *   neighbouring keys). Values are fixed point: scale and translation 1/16
  *   (16 = 1.0; Kelbi's hip sits 1411/16 = 88 units up, its legs ~80 long),
- *   rotation 0x8000 = pi (keys reach exactly +-0x8000, never beyond).
+ *   rotation 0x2000 = pi. At that unit Kelbi's, Mosswine's and Bullfango's
+ *   lowest bone sits at exactly 0 through their typical motion, a stance's
+ *   feet are level on the player, and an evade roll ends upright (the hips
+ *   turn 364 degrees). Keys can go past a full turn.
+ *
+ * The player's `motion/plcom_tbl.bin` and `wNN_tbl.bin` are the same format
+ * with tables paired by motion group, not skeleton part alone: tables 2g and
+ * 2g + 1 are group g's lower and upper body (animation.ts, `buildPlayerClips`).
  *
  * Not yet known: the Euler order (XYZ and ZYX distort meshes alike; most
  * vertices follow one bone) and which of the two tangents is which (they're
@@ -71,9 +78,9 @@ const EMPTY = 0xffffffff;
 const ONE = 16;
 const PROPERTIES: MotionProperty[] = ["scale", "rotation", "translation"];
 
-/** Value of a raw key for a channel bit: scale and translation /16, rotation 0x8000 = pi. */
+/** Value of a raw key for a channel bit: scale and translation /16, rotation 0x2000 = pi. */
 function unit(bit: number): number {
-  return bit >= 3 && bit < 6 ? Math.PI / 0x8000 : 1 / ONE;
+  return bit >= 3 && bit < 6 ? Math.PI / 0x2000 : 1 / ONE;
 }
 
 /** The (count, offset) table directory, without the terminating pair; null if it doesn't fit. */

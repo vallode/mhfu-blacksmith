@@ -81,7 +81,8 @@ function worldPositions(bones: Bone[]): Vec3[] {
 /** Bone ids from `id` up to its root, `id` first. */
 function ancestry(bones: Bone[], id: number): number[] {
   const path: number[] = [];
-  for (let b = bones[id]; b; b = b.parent >= 0 ? bones[b.parent] : undefined) path.push(b.id);
+  for (let b: Bone | undefined = bones[id]; b; b = b.parent >= 0 ? bones[b.parent] : undefined)
+    path.push(b.id);
   return path;
 }
 
