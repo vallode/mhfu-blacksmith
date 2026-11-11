@@ -27,6 +27,10 @@
  *   (16 = 1.0; Kelbi's hip sits 1411/16 = 88 units up, its legs ~80 long),
  *   rotation 0x8000 = pi (keys reach exactly +-0x8000, never beyond).
  *
+ * The player's `motion/plcom_tbl.bin` and `wNN_tbl.bin` are the same format
+ * with tables paired by motion group, not skeleton part alone: tables 2g and
+ * 2g + 1 are group g's lower and upper body (animation.ts, `buildPlayerClips`).
+ *
  * Not yet known: the Euler order (XYZ and ZYX distort meshes alike; most
  * vertices follow one bone) and which of the two tangents is which (they're
  * equal on most keys). Frames are 1/60 s: the game, at 30 fps, advances

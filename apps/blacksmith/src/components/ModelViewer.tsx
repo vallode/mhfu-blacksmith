@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import Loading from "@/components/Loading";
 import { capsuleBone } from "@/lib/capsule-bone";
 import { cn } from "@/lib/cn";
+import { fetchHunterClips, HUNTER_MODEL, WEAPON_MOUNTS, type HunterClip } from "@/lib/hunter";
 import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 
@@ -30,6 +31,8 @@ interface Props {
   pair?: boolean;
   /** Translucent capsules over the model, e.g. a monster's hitboxes. */
   capsules?: ModelCapsule[];
+  /** Show `src` (a weapon) in the hands of the hunter, playing this weapon type's motions. */
+  hunter?: string;
 }
 
 type Three = typeof import("three");
@@ -76,6 +79,8 @@ interface MotionState {
   count: number;
   index: number;
   playing: boolean;
+  /** Each clip's name, when they have them (the hunter's). */
+  labels?: string[];
 }
 
 /** Drives the loaded motions from React; set while a model with motions shows. */
@@ -90,7 +95,7 @@ const panelButton = cn(modelPanelButton, "text-parchment");
  * Interactive 3D view of a .glb model: drag to rotate, scroll/pinch to zoom.
  * three.js is imported on demand so it only loads on pages that show a model.
  */
-export default function ModelViewer({ src, label, pair = false, capsules }: Props) {
+export default function ModelViewer({ src, label, pair = false, capsules, hunter }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("loading");
   /** Set while a model is shown, for the capsule effect below. */
@@ -168,6 +173,8 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       };
 
       let model: import("three").Object3D | null = null;
+      /** Moves the weapon between the hunter's hands and back; only with `hunter`. */
+      let placeWeapon: ((sheathed: boolean) => void) | null = null;
       let ground: import("three").Mesh | null = null;
       const abort = new AbortController();
       cleanup = () => {
@@ -198,11 +205,32 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       };
 
       try {
-        const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(src);
+        const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+        const gltf = await loader.loadAsync(hunter ? HUNTER_MODEL : src);
+        const weapon = hunter ? (await loader.loadAsync(src)).scene : null;
         if (disposed) return;
         model = gltf.scene;
         const copies = [model];
-        if (pair) {
+        if (weapon) {
+          scene.add(model);
+          // A two-piece weapon's nodes are part_0, part_1; a whole one is one mesh.
+          const named = weapon.children.filter((child) => child.name.startsWith("part_"));
+          const parts = named.length > 0 ? named : [weapon.children[0]!];
+          const mounts = WEAPON_MOUNTS[hunter!];
+          const body = model;
+          placeWeapon = (sheathed) => {
+            const plan = mounts && (sheathed ? mounts.sheathed : mounts.drawn);
+            parts.forEach((part, i) => {
+              const mount = plan?.[Math.min(i, plan.length - 1)];
+              const bone = mount && body.getObjectByName(`bone_${mount.joint}`);
+              if (!mount || !bone) return;
+              bone.add(part);
+              part.position.set(...mount.position);
+              part.rotation.set(...mount.rotation);
+            });
+          };
+          placeWeapon(true);
+        } else if (pair) {
           // Weapon models hold the grip at the origin with the blade along +Z,
           // flat in the XZ plane: turn each copy PAIR_OFFSET about Y, and
           // mirror the second across X so it's the left-hand blade.
@@ -382,8 +410,9 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         // framed: its first pose can stand far from the bind pose (Rathian's
         // is ~320 units up). On a slow connection it shows still meanwhile.
         const motionsFile = (gltf.asset.extras as { motions?: unknown } | undefined)?.motions;
-        const motions: Promise<MotionClip[]> =
-          typeof motionsFile === "string" && !pair
+        const motions: Promise<MotionClip[]> = hunter
+          ? fetchHunterClips(hunter, abort.signal).catch(() => [])
+          : typeof motionsFile === "string" && !pair
             ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
                 // The model still shows, just still.
                 .catch(() => [])
@@ -460,9 +489,17 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           });
           const apply = () => {
             const action = actions[state.index]!;
+            placeWeapon?.((sources[state.index] as HunterClip | undefined)?.sheathed === true);
             if (!action.isRunning() && !action.paused) action.play();
             action.paused = !state.playing;
-            setMotion({ count: actions.length, index: state.index, playing: state.playing });
+            setMotion({
+              count: actions.length,
+              index: state.index,
+              playing: state.playing,
+              labels: sources.some((clip) => (clip as HunterClip).label)
+                ? sources.map((clip) => (clip as HunterClip).label)
+                : undefined,
+            });
           };
           playerRef.current = {
             select: (index) => {
@@ -529,7 +566,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       disposed = true;
       cleanup();
     };
-  }, [src, pair]);
+  }, [src, pair, hunter]);
 
   // Capsules live in their own group, rebuilt when they change; there are
   // few (Rathian has 32), so rebuilding is cheaper than diffing.
@@ -610,16 +647,31 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           >
             ‹
           </button>
-          <span className="tabular-nums" aria-live="polite">
-            Motion {/* As wide as the largest number, so the panel keeps its size. */}
-            <span
-              className="inline-block text-right"
-              style={{ width: `calc(var(--cell) * ${String(motion.count).length})` }}
+          {motion.labels ? (
+            <select
+              aria-label="Motion"
+              className="cursor-pointer bg-transparent tracking-game"
+              value={motion.index}
+              onChange={(event) => playerRef.current?.select(Number(event.target.value))}
             >
-              {motion.index + 1}
+              {motion.labels.map((name, index) => (
+                <option key={index} value={index} className="bg-black">
+                  {name}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <span className="tabular-nums" aria-live="polite">
+              Motion {/* As wide as the largest number, so the panel keeps its size. */}
+              <span
+                className="inline-block text-right"
+                style={{ width: `calc(var(--cell) * ${String(motion.count).length})` }}
+              >
+                {motion.index + 1}
+              </span>
+              /{motion.count}
             </span>
-            /{motion.count}
-          </span>
+          )}
           <button
             type="button"
             className={panelButton}

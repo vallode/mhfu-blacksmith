@@ -65,7 +65,16 @@ export interface GlbOptions {
   webp?: boolean;
   /** Lossy: re-quantize each texture's palette to this libimagequant quality (0-100). */
   textureQuality?: number;
+  /**
+   * Which piece of a model a primitive belongs to (see `GlbPartOf`). More than
+   * one piece: each gets its own mesh and node, `part_0`, `part_1`, ..., in
+   * the model's space, so a viewer can move them apart. Unskinned models only.
+   */
+  partOf?: GlbPartOf;
 }
+
+/** The piece (0, 1, ...) a primitive of the model belongs to, by mesh and primitive index. */
+export type GlbPartOf = (mesh: number, primitive: number) => number;
 
 /** A skeleton to skin the mesh to, and optionally its animation clips. */
 export interface Rig {
@@ -392,6 +401,7 @@ function writeAnimations(
 }
 
 interface Primitive {
+  part: number;
   material: number;
   uvScale: [number, number];
   /** Triangle list, as indices into the model's vertex table. */
@@ -421,18 +431,19 @@ export async function buildGlb(
   const records: Buffer[] = [];
   const recordIndex = new Map<string, number>();
   const primitives = new Map<string, Primitive>();
-  for (const mesh of pmo.meshes) {
-    for (const source of mesh.primitives) {
+  for (const [meshIndex, mesh] of pmo.meshes.entries()) {
+    for (const [primitiveIndex, source] of mesh.primitives.entries()) {
       const { vertices, triangles } = source.geometry;
       if (triangles.length === 0) continue;
+      const part = options.partOf?.(meshIndex, primitiveIndex) ?? 0;
       // Primitives are keyed by what their glTF material ends up containing
       // (texture, UV scale), not the PMO material index: PMO materials that
       // differ only in their (unused) colours merge, along with their geometry.
       const texture = pmo.materials[source.materialIndex]!.textureIndex;
-      const key = `${texture}:${exact ? mesh.uvScale.join(",") : ""}`;
+      const key = `${part}:${texture}:${exact ? mesh.uvScale.join(",") : ""}`;
       let primitive = primitives.get(key);
       if (!primitive) {
-        primitive = { material: source.materialIndex, uvScale: mesh.uvScale, indices: [] };
+        primitive = { part, material: source.materialIndex, uvScale: mesh.uvScale, indices: [] };
         primitives.set(key, primitive);
       }
       const remap = vertices.map((v) => {
@@ -709,6 +720,7 @@ export async function buildGlb(
     });
     firstIndex += primitive.indices.length;
     return {
+      part: primitive.part,
       attributes: {
         POSITION: 0,
         NORMAL: 1,
@@ -748,6 +760,22 @@ export async function buildGlb(
     ...(compress ? ["EXT_meshopt_compression"] : []),
     ...(usesWebp ? ["EXT_texture_webp"] : []),
   ];
+  // One mesh per piece, unless the model is whole (the usual case).
+  const parts = [...new Set(gltfPrimitives.map((primitive) => primitive.part))].sort(
+    (a, b) => a - b,
+  );
+  const meshPrimitives = (part: number) =>
+    gltfPrimitives.filter((p) => p.part === part).map(({ part: _, ...primitive }) => primitive);
+  const whole = parts.length <= 1;
+  const meshes = whole
+    ? [{ primitives: gltfPrimitives.map(({ part: _, ...primitive }) => primitive) }]
+    : parts.map((part) => ({ primitives: meshPrimitives(part) }));
+  // Positions are in source units (normalized s16); unskinned, the model's
+  // scale goes on the node.
+  const meshNodes: object[] = whole
+    ? [skinned ? { mesh: 0, skin: 0 } : { mesh: 0, scale: pmo.scale.map(f32) }]
+    : parts.map((part, mesh) => ({ name: `part_${part}`, mesh, scale: pmo.scale.map(f32) }));
+
   const json = {
     asset: {
       version: "2.0",
@@ -755,14 +783,9 @@ export async function buildGlb(
     },
     ...(extensions.length ? { extensionsUsed: extensions, extensionsRequired: extensions } : {}),
     scene: 0,
-    scenes: [{ nodes: [0, ...skeleton.roots] }],
-    // Positions are in source units (normalized s16); unskinned, the model's
-    // scale goes on the node.
-    nodes: [
-      skinned ? { mesh: 0, skin: 0 } : { mesh: 0, scale: pmo.scale.map(f32) },
-      ...skeleton.nodes,
-    ],
-    meshes: [{ primitives: gltfPrimitives }],
+    scenes: [{ nodes: [...meshNodes.keys(), ...skeleton.roots] }],
+    nodes: [...meshNodes, ...skeleton.nodes],
+    meshes,
     ...(skins.length ? { skins } : {}),
     ...(animations.length ? { animations } : {}),
     materials,
