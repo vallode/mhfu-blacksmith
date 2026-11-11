@@ -82,6 +82,11 @@ function penaltyOf(deco: Deco): number {
   return sum;
 }
 
+interface TreeStats {
+  own: Map<string, { densest: number; biggest: number; hurt: boolean }>;
+  ratios: Map<string, Map<string, number>>;
+}
+
 /** Forget the cached answers past this many (they're cheap to redo). */
 const MAX_ANSWERS = 200_000;
 
@@ -89,6 +94,8 @@ export class DecoSolver {
   private readonly decorations: Deco[];
   private readonly wanted: Map<string, number>;
   private readonly bad: Map<string, number> | null;
+  /** Trees (joined) -> what their useful decorations can do (see statsFor). */
+  private readonly stats = new Map<string, TreeStats>();
   /** Tracked trees (joined) -> loadouts by item size. */
   private readonly tables = new Map<string, Loadout[][]>();
   /** Bins and points (see `solve`) -> placements, by position in fill order. */
@@ -254,20 +261,12 @@ export class DecoSolver {
     for (const [t, limit] of bad) if ((armor[t] ?? 0) <= limit) risky.add(t);
     for (;;) {
       const trees = new Set([...wanted, ...risky]);
-      const useful = this.useful(trees);
+      const { own, ratios } = this.statsFor(trees);
       // Most points decorations could add to each tree that matters.
       const most = new Map<string, number>();
-      for (const t of trees) {
-        const own = useful.filter((d) => (d.points[t] ?? 0) > 0);
-        if (own.length === 0) continue;
-        let densest = 0;
-        let biggest = 0;
-        for (const d of own) {
-          densest = Math.max(densest, d.points[t] / d.slots);
-          biggest = Math.max(biggest, d.points[t]);
-        }
+      for (const [t, { densest, biggest, hurt }] of own) {
         let points = capacity * densest;
-        if (!useful.some((d) => (d.points[t] ?? 0) < 0)) {
+        if (!hurt) {
           const n = need(t);
           points = Math.min(points, n > 0 ? n - 1 + biggest * maxMult : 0);
         }
@@ -278,15 +277,7 @@ export class DecoSolver {
         if (trees.has(t)) continue;
         // The worst decorations for each tree that matters could do to `t`.
         let worst = 0;
-        for (const [s, points] of most) {
-          let ratio = 0;
-          for (const d of useful) {
-            const v = d.points[t];
-            const p = d.points[s] ?? 0;
-            if (v !== undefined && p > 0 && v / p < ratio) ratio = v / p;
-          }
-          worst += points * ratio;
-        }
+        for (const [s, ratio] of ratios.get(t) ?? []) worst += (most.get(s) ?? 0) * ratio;
         if ((armor[t] ?? 0) + worst <= limit) {
           risky.add(t);
           added = true;
@@ -294,6 +285,45 @@ export class DecoSolver {
       }
       if (!added) return [...wanted, ...[...risky].sort()];
     }
+  }
+
+  /**
+   * For the decorations useful to `trees` (cached): per tree they add to,
+   * their best points per slot, their biggest points, and whether another
+   * of them takes points off it; and per other tree, the most each tree's
+   * decorations take off it per point they add (a negative ratio).
+   */
+  private statsFor(trees: Set<string>): TreeStats {
+    const key = [...trees].sort().join("|");
+    const cached = this.stats.get(key);
+    if (cached) return cached;
+    const useful = this.useful(trees);
+    const own = new Map<string, { densest: number; biggest: number; hurt: boolean }>();
+    const ratios = new Map<string, Map<string, number>>();
+    for (const d of useful) {
+      for (const [s, p] of Object.entries(d.points)) {
+        if (p <= 0 || !trees.has(s)) continue;
+        const o = own.get(s) ?? { densest: 0, biggest: 0, hurt: false };
+        o.densest = Math.max(o.densest, p / d.slots);
+        o.biggest = Math.max(o.biggest, p);
+        own.set(s, o);
+        for (const [t, v] of Object.entries(d.points)) {
+          if (v >= 0) continue;
+          const byTree = ratios.get(t) ?? new Map<string, number>();
+          byTree.set(s, Math.min(byTree.get(s) ?? 0, v / p));
+          ratios.set(t, byTree);
+        }
+      }
+    }
+    for (const d of useful) {
+      for (const [t, v] of Object.entries(d.points)) {
+        const o = own.get(t);
+        if (v < 0 && o) o.hurt = true;
+      }
+    }
+    const stats = { own, ratios };
+    this.stats.set(key, stats);
+    return stats;
   }
 
   /** Decorations that add points to one of `trees`. */

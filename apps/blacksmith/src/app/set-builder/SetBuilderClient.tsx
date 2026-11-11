@@ -233,6 +233,18 @@ export default function SetBuilderClient() {
   const { questProgress } = usePreferences().prefs;
   const questLimit = form.ignoreQuestProgress ? null : questProgress;
   const byHref = useMemo(() => new Map(data?.pieces.map((p) => [p.href, p]) ?? []), [data]);
+  // Locked and excluded pieces the data no longer has (renamed or removed):
+  // drop them, so the lists show what the search uses.
+  useEffect(() => {
+    if (!data || !restored) return;
+    setForm((f) => {
+      const locked = f.locked.filter((h) => byHref.has(h));
+      const excluded = f.excluded.filter((h) => byHref.has(h));
+      return locked.length === f.locked.length && excluded.length === f.excluded.length
+        ? f
+        : { ...f, locked, excluded };
+    });
+  }, [data, byHref, restored]);
   const pieceIds = (hrefs: string[]) =>
     hrefs.flatMap((href) => {
       const p = byHref.get(href);
@@ -670,7 +682,7 @@ export default function SetBuilderClient() {
                     {set ? (
                       <>
                         <SetHeader index={index} count={sets.length} onStep={step} />
-                        {sets.length >= (searched?.limit ?? DEFAULT_LIMIT) && (
+                        {!searching && sets.length >= (searched?.limit ?? DEFAULT_LIMIT) && (
                           <p className={ui.note}>
                             The {sets.length} best sets by {sortLabel(searched?.sort)}. Add skills
                             to narrow the search.

@@ -637,7 +637,7 @@ interface Found {
 const ranksAbove = (a: Found, b: Found) => a.score - b.score || a.freeSlots - b.freeSlots;
 
 export interface SearchOptions {
-  /** Called as the list of best sets grows. */
+  /** Called as the list of best sets grows (up to `limit`). */
   onProgress?: (found: number) => void;
   /**
    * Called with the best sets so far, at most every PARTIAL_MS while the
@@ -791,7 +791,7 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
     if (best.length > limit) best.pop();
     if (best.length > found) {
       found = best.length;
-      if (found % 50 === 0) options.onProgress?.(found);
+      options.onProgress?.(found);
     }
     if (options.onSets && Date.now() - shown >= PARTIAL_MS) {
       shown = Date.now();
@@ -1003,6 +1003,7 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       floor = round < FLOOR_STEPS.length ? scoreLeft[0] - FLOOR_STEPS[round] * unit : -Infinity;
       const before = best.splice(0);
       found = 0;
+      if (Date.now() > deadline) timedOut = true;
       if (!timedOut) dfs(0, 0);
       // Out of time partway through this round: the sets the last round
       // found are still good, and this one may not have found them again.

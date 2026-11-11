@@ -14,7 +14,9 @@ import {
   evaluateSet,
   mergeResults,
   parseDecorationSkill,
+  prepareSearch,
   prepareSearchData,
+  SEARCH_ROUNDS,
   searchSets,
   setScore,
   treeNameIndex,
@@ -666,6 +668,23 @@ describe("searchSets (data/)", () => {
     const byDefence = searchSets(shipped, { ...q, sort: "defence" });
     assert.ok(result.sets[0].res[0] >= Math.max(...byDefence.sets.map((s) => s.res[0])));
     assert.ok(result.sets[0].res[0] > byDefence.sets[0].res[0], "fire res should beat defence");
+  });
+
+  test("a round that runs out of time keeps the last round's sets", (t) => {
+    const q = query(["Attack Up (Large)", "ESP"], { weaponSlots: 1, limit: 1000 });
+    const search = prepareSearch(data, q);
+    // The first round that finds any sets (but not all of them).
+    let round = 0;
+    let first = search.run(round);
+    while (first.sets.length === 0) first = search.run(++round);
+    assert.ok(round + 1 < SEARCH_ROUNDS && first.sets.length < 1000, `round ${round}`);
+    // Past the deadline from here on.
+    const now = Date.now();
+    t.mock.method(Date, "now", () => now + 3_600_000);
+    const second = search.run(round + 1);
+    assert.equal(second.timedOut, true);
+    const ids = (r: SearchResult) => r.sets.map((s) => s.pieces.map((p) => p.id).join());
+    assert.deepEqual(ids(second), ids(first));
   });
 
   test("an impossible request finds nothing quickly", () => {

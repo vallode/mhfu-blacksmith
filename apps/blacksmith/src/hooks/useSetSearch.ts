@@ -163,11 +163,16 @@ export function useSetSearch(): SetSearchState {
     postRound(workers, run);
   }, []);
 
+  /** Starts fresh workers (startWorkers, once it exists). */
+  const restart = useRef<(() => void) | null>(null);
+
   const stop = useCallback((message: string) => {
     searchId.current++;
     pending.current = null;
     setSearching(false);
     setError(message);
+    // The other workers may still be on the search: start afresh.
+    restart.current?.();
   }, []);
 
   const startWorkers = useCallback(
@@ -247,6 +252,14 @@ export function useSetSearch(): SetSearchState {
     },
     [stop],
   );
+
+  useEffect(() => {
+    if (!data) return;
+    restart.current = () => {
+      for (const w of workersRef.current) w.terminate();
+      startWorkers(data);
+    };
+  }, [data, startWorkers]);
 
   useEffect(() => {
     if (!data) return;
