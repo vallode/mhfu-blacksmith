@@ -22,7 +22,12 @@ import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-r
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import { median, type ShuffleReport } from "./shuffles/shuffle.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
-import { locateItemTable, randomizeShops } from "./shuffles/shops.js";
+import {
+  itemsOnSale,
+  locateItemTable,
+  randomizeShopPrices,
+  randomizeShops,
+} from "./shuffles/shops.js";
 import { tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";
@@ -385,35 +390,47 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     }
   }
 
-  if (settings["shops.enabled"]) {
-    const prices = settings["shops.prices"];
-    const stacks = settings["shops.stacks"];
-    reports.push(
-      randomizeShops(
-        findShops(game.lobbyTask.ovl),
+  const prices = settings["shops.prices"];
+  const stacks = settings["shops.stacks"];
+  if (settings["shops.enabled"] || prices || stacks) {
+    const shops = findShops(game.lobbyTask.ovl);
+    const items = shopItemTable(game, prices || stacks);
+    // Prices are the item's own, so they need no stock shuffle: without
+    // one, they go to what the shops sell anyway.
+    let sold = itemsOnSale(shops);
+    if (settings["shops.enabled"]) {
+      const stock = randomizeShops(
+        shops,
         {
           pool: settings["shops.pool"],
           mix: settings["shops.mix"],
           keepEssentials: settings["shops.keepEssentials"],
           special: settings["shops.special"],
           countSpread: settings["shops.countSpread"],
-          priceSpread: prices ? settings["shops.priceSpread"] : null,
-          stackSpread: stacks ? settings["shops.stackSpread"] : null,
         },
         {
           bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
           allItems: sellableItems(),
-          items: shopItemTable(game, prices || stacks),
+          canPrice: items !== null,
         },
-        {
-          stock: rng.fork("shops"),
-          prices: rng.fork("shop-prices"),
-          stacks: rng.fork("shop-stacks"),
-        },
+        rng.fork("shops"),
         edits,
         game.lobbyTask,
-      ),
+      );
+      reports.push(stock.report);
+      sold = stock.sold;
+    }
+    const report = randomizeShopPrices(
+      sold,
+      {
+        priceSpread: prices ? settings["shops.priceSpread"] : null,
+        stackSpread: stacks ? settings["shops.stackSpread"] : null,
+      },
+      items,
+      { prices: rng.fork("shop-prices"), stacks: rng.fork("shop-stacks") },
+      edits,
     );
+    if (report) reports.push(report);
   }
 
   if (settings["costs.enabled"]) {

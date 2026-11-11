@@ -76,14 +76,14 @@ pnpm settings --write my.json       # write every setting to a file to edit
 
 Settings come from these flags, later ones winning:
 
-| Flag                                                          | What it sets                                                                                                                                                                     |
-| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                                     |
-| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                                          |
-| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops, supplies, quest-money, time-limits, deliveries |
-| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                                    |
-| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                              |
-| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                                   |
+| Flag                                                          | What it sets                                                                                                                                                                                                |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                                                                |
+| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                                                                     |
+| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops, shop-prices, carry-limits, supplies, quest-money, time-limits, deliveries |
+| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                                                               |
+| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                                                         |
+| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                                                              |
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
@@ -146,9 +146,9 @@ pages and `pnpm settings` show as a tag):
 | `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                        |
 | `shops.special`                   | off         | Include the Point Exchange (Armor Spheres, jewels, Pokke Tickets)                      |
 | `shops.countSpread`               | 0           | How much more or fewer items each shop sells                                           |
-| `shops.prices`                    | off         | Randomize prices of what shops sell                                                    |
+| `shops.prices`                    | off         | Randomize prices of what shops sell, with or without `shops.enabled`                   |
 | `shops.priceSpread`               | 0.5         | How far prices move                                                                    |
-| `shops.stacks`                    | off         | Randomize carry limits of what shops sell                                              |
+| `shops.stacks`                    | off         | Randomize carry limits of what shops sell, with or without `shops.enabled`             |
 | `shops.stackSpread`               | 0.5         | How far carry limits move                                                              |
 | `questMonsters.species`           | off         | Shuffle large monsters between quests                                                  |
 | `questMonsters.speciesPool`       | `variants`  | Into one of their `variants`, any monster of the same `rank`, or `any`                 |
@@ -178,16 +178,13 @@ preset: monster difficulty, small monster counts, base HP, base size, status
 resistance and weaknesses. Turn those on yourself once you've tried them on
 your disc.
 
-| Preset       | Does                | What it turns on                                                                                                                                                        |
-| ------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                         |
-| Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills, shop stock, large monsters (into variants)      |
-| Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, quest money, time limits, deliveries, quest monster size, new armor skills             |
-| Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled                            |
-| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills, any item in shops, gathering and supply boxes, wide spreads |
-
-Shop prices, carry limits and stock size only change along with shop
-stock (`shops.enabled`), so Randomized leaves them out.
+| Preset       | Does                | What it turns on                                                                                                                                                                          |
+| ------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                           |
+| Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills, shop stock, large monsters (into variants)                        |
+| Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, new armor skills |
+| Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled                                              |
+| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills, any item in shops, gathering and supply boxes, wide spreads                   |
 
 ## Shuffles
 
@@ -366,8 +363,12 @@ commands that found them.
   only grow into space others free, so growth is scaled back until it
   fits. This refuses to run if that space holds anything but lists and
   padding. Without it, lists stay where they are.
-- **Prices and carry limits** are the item's own (EBOOT item table), so
-  they apply wherever the item is. The buy price field isn't documented:
+- **Prices and carry limits** (`shops.prices`, `shops.stacks`) are the
+  item's own (EBOOT item table), so they apply wherever the item is, and
+  they don't need the stock shuffle: they change for everything the shops
+  sell, which is what they sell now with `shops.enabled` and their own
+  stock without it (the Point Exchange, bought with Pokke Points, only with
+  `shops.special`). The buy price field isn't documented:
   randomfu finds it on the disc as the one field holding the general
   store's prices (Herb 20z, Potion 66z, ...) and checks the carry limit
   byte (+3) against Potion 10 and Whetstone 20, refusing to edit if they

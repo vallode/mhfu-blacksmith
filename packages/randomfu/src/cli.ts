@@ -62,6 +62,8 @@ const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   armor: "armor.enabled",
   "armor-skills": "armorSkills.enabled",
   shops: "shops.enabled",
+  "shop-prices": "shops.prices",
+  "carry-limits": "shops.stacks",
   gathering: "gathering.enabled",
   supplies: "supplies.enabled",
   "quest-money": "terms.money",
