@@ -1,12 +1,13 @@
 /**
- * `build-data`'s `items` target: writes each item's rarity, carry limit and
- * price from the disc's item table (`emit/items.ts`) into `data/items.json`,
- * pairing by ID. Names, aliases, regions and placeholder flags stay as
- * committed; placeholders get no stats.
+ * `build-data`'s `items` target: writes each item's rarity, carry limit,
+ * price, icon and colour from the disc's item table (`emit/items.ts`) into
+ * `data/items.json`, pairing by ID, and the colour palette next to them.
+ * Names, aliases, regions and placeholder flags stay as committed;
+ * placeholders get no stats.
  */
 import type { EmittedItem } from "../emit/items.js";
 
-export const ITEM_STAT_FIELDS = ["rarity", "carry", "price"] as const;
+export const ITEM_STAT_FIELDS = ["rarity", "carry", "price", "icon", "color"] as const;
 export type ItemStatField = (typeof ITEM_STAT_FIELDS)[number];
 
 interface CommittedItem {
@@ -15,6 +16,8 @@ interface CommittedItem {
   rarity?: number;
   carry?: number;
   price?: number;
+  icon?: number;
+  color?: number;
   regions?: string[];
   placeholder?: true;
   [key: string]: unknown;
@@ -39,9 +42,13 @@ export interface ItemStatsMerge {
 /**
  * The committed file with the disc's stats on every item but the
  * placeholders. New stats go before `regions`; every other key keeps its
- * place.
+ * place. `colors` is the disc's palette, kept as committed when absent.
  */
-export function mergeItemStats(committed: unknown, disc: EmittedItem[]): ItemStatsMerge {
+export function mergeItemStats(
+  committed: unknown,
+  disc: EmittedItem[],
+  colors?: string[],
+): ItemStatsMerge {
   const doc = committed as ItemStatsMerge["content"];
   if (!Array.isArray(doc?.items)) throw new Error("data/items.json has no items array");
   const byId = new Map(disc.map((item) => [item.id, item]));
@@ -54,7 +61,13 @@ export function mergeItemStats(committed: unknown, disc: EmittedItem[]): ItemSta
       if (!item.placeholder) missing.push({ id: item.id, name: item.name });
       return item;
     }
-    const stats = { rarity: found.rarity, carry: found.carry, price: found.price };
+    const stats = {
+      rarity: found.rarity,
+      carry: found.carry,
+      price: found.price,
+      icon: found.icon,
+      color: found.color,
+    };
     for (const field of ITEM_STAT_FIELDS) {
       if (item[field] !== found[field])
         changes.push({
@@ -71,5 +84,6 @@ export function mergeItemStats(committed: unknown, disc: EmittedItem[]): ItemSta
     if (regions) out.regions = regions;
     return out;
   });
-  return { content: { ...doc, items }, changes, missing };
+  const { items: _, ...head } = doc;
+  return { content: { ...head, ...(colors ? { colors } : {}), items }, changes, missing };
 }

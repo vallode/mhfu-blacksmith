@@ -52,10 +52,10 @@ test("emitItems writes each named item's display rarity, carry limit and price",
   assert.equal(items.length, 1260);
   assert.deepEqual(
     items.find((i) => i.id === 7),
-    { id: 7, name: "Potion", rarity: 1, carry: 10, price: 66 },
+    { id: 7, name: "Potion", rarity: 1, carry: 10, price: 66, icon: 24, color: 2 },
   );
   assert.deepEqual(
     items.find((i) => i.id === 1116),
-    { id: 1116, name: "Giadrome Jewel", rarity: 8, carry: 1, price: 15000 },
+    { id: 1116, name: "Giadrome Jewel", rarity: 8, carry: 1, price: 15000, icon: 1, color: 3 },
   );
 });

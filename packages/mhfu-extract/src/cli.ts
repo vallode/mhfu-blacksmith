@@ -7,6 +7,7 @@
  *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
  *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
+ *   tsx src/cli.ts item-icons --unpacked <dir> [--out <dir>]
  *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
  *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
@@ -16,6 +17,7 @@ import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.
 import { parseCategories, runCompare } from "./cli/compare.js";
 import { printDiffSummary, runDiff } from "./cli/diff.js";
 import { runExportSite } from "./cli/export-site.js";
+import { runItemIcons } from "./cli/item-icons.js";
 import { runExtract } from "./cli/extract.js";
 import { runModels } from "./cli/models.js";
 import { runQuestFlags } from "./cli/quest-flags.js";
@@ -62,6 +64,7 @@ const USAGE = `Usage:
   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
+  tsx src/cli.ts item-icons --unpacked <dir> [--out <dir>]
   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations] [--report <path>] [--markdown <path>] [--dry-run]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
@@ -162,6 +165,14 @@ export async function main(argv: string[]): Promise<void> {
       console.log(
         `\nDone. Manifest: ${Object.keys(manifest.monsters).length} monsters, ${count(manifest.weapons)} weapons, ${count(manifest.armor)} armor pieces.`,
       );
+      return;
+    }
+    case "item-icons": {
+      const count = await runItemIcons({
+        unpacked: requireFlag(flags, "unpacked"),
+        out: flags.out ?? "../../apps/blacksmith/public/images",
+      });
+      console.log(`Done. Wrote ${count} item icons.`);
       return;
     }
     case "compare": {

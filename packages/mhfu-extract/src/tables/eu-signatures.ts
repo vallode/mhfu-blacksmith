@@ -69,6 +69,39 @@ const ITEM_TABLE_EU: TableSignature = {
   signatureOffset: 0,
 };
 
+const UI_SPRITE_TABLE_EU: TableSignature = {
+  // The UI sprite table (tables/item-icons.ts), anchored on sprites 186-188,
+  // the 16x16 item icons' first three. Real EU offset 0x13775c, the sprites
+  // at 0x138014. Unique in the EBOOT. JP not checked (no JP disc to hand).
+  signature: Buffer.from(
+    "c00000001000100000800b00d00000001000100000800b00e00000001000100000800b00",
+    "hex",
+  ),
+  signatureOffset: 186 * 12,
+};
+
+const ITEM_ICON_SPRITE_INDEX_EU: TableSignature = {
+  // The icon shape -> sprite lists (tables/item-icons.ts), anchored on the
+  // 24x24 list's shapes 39-55, the out-of-sequence part (its start is the
+  // same run of IDs as several other tables). Real EU offset 0x139080,
+  // unique in the EBOOT. JP not checked.
+  signature: Buffer.from(
+    "6b006b008f01900191016b0092016b006b006b0093019401950196016b00f001ef01",
+    "hex",
+  ),
+  signatureOffset: 39 * 2,
+};
+
+const ITEM_COLOR_PALETTE_EU: TableSignature = {
+  // The item colour palette (tables/item-icons.ts), all 11 u32s. Real EU
+  // offset 0x139010, unique in the EBOOT. JP not checked.
+  signature: Buffer.from(
+    "ffffff01ff5d5d0173cb8d0196b5fd01ffd35d01b895c6019bdff001ff985d01ed93a40100000001a0a0a001",
+    "hex",
+  ),
+  signatureOffset: 0,
+};
+
 const WEAPONS_BLADEMASTER_EU: TableSignature = {
   // weaponsBlademaster (tables/weapons.ts) — first 2 entries (48 bytes,
   // WEAPON_BM_ENTRY_SIZE=24). Real EU offset 0x158580, JP static offset
@@ -210,6 +243,9 @@ const BOWGUN_MOD_TABLE_POOL_EU: TableSignature = {
 export const EU_TABLE_SIGNATURES: Readonly<Record<string, TableSignature>> = {
   weaponClassModifiers: WEAPON_CLASS_MODIFIERS_EU,
   itemTable: ITEM_TABLE_EU,
+  uiSpriteTable: UI_SPRITE_TABLE_EU,
+  itemIconSpriteIndex: ITEM_ICON_SPRITE_INDEX_EU,
+  itemColorPalette: ITEM_COLOR_PALETTE_EU,
   weaponsBlademaster: WEAPONS_BLADEMASTER_EU,
   weaponsGunner: WEAPONS_GUNNER_EU,
   decorationSkills: DECORATION_SKILLS_EU,

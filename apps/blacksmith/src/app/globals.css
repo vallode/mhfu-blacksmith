@@ -71,6 +71,19 @@
   --color-parchment: #c3be9f; /* menu labels and toast titles */
   --color-selector: rgb(96 102 94 / 0.78); /* flat grey bar of in-game selectors and menu headers */
 
+  /* Item icon tints: the palette in data/items.json, by index, from the disc
+     (scripts/validate.ts checks they match). */
+  --color-item-0: #ffffff;
+  --color-item-1: #ff5d5d;
+  --color-item-2: #73cb8d;
+  --color-item-3: #96b5fd;
+  --color-item-4: #ffd35d;
+  --color-item-5: #b895c6;
+  --color-item-6: #9bdff0;
+  --color-item-7: #ff985d;
+  --color-item-8: #ed93a4;
+  --color-item-10: #a0a0a0;
+
   /* Item rarity tints (rarities 1–3 are untinted) */
   --color-rarity-4: #52f152;
   --color-rarity-5: #fd9dc8;
