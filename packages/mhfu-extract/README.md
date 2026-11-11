@@ -756,12 +756,13 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   sheathe motions animate between the two with keyframe tracks in the
   eboot's data (bone 3's x goes 1, 3.15, 2.6 while drawing). A JP save state
   with the Ravager Blade drawn has exactly that bind on bone 3 and bone 2 at
-  rest. The export bakes the drawn pose into great swords and long swords
-  (11 great sword models have pieces on bone 3: the Ravager, Lacerator and
-  Tactical Blades' claws, the Serpentblades' fins, the Tigrex swords'
-  spikes, the Ceanataur blades' claw); unrotated bones only. The pose is
-  baked into the mesh, so the hunter's sheathed motions carry the weapon
-  drawn too. Other classes
+  rest. The export bakes the drawn pose into great swords' and long swords'
+  meshes (11 great sword models have pieces on bone 3: the Ravager,
+  Lacerator and Tactical Blades' claws, the Serpentblades' fins, the Tigrex
+  swords' spikes, the Ceanataur blades' claw) and writes the sheathed pose
+  as a morph target named `sheathed` (float offsets, `extras.targetNames`),
+  unrotated bones only. The site's hunter viewer turns the target on for
+  sheathed motions; a weapon shown alone stays drawn. Other classes
   aren't posed: the lance's drawn bone 2 and the hammer's bone 3 (outside a
   charge) are at rest, while the gunlance, bow and bowguns turn bones in
   ways not decoded yet. The per-model joint interpreter (0x088CF2C8, records
