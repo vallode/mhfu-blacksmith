@@ -2,10 +2,11 @@
 
 /**
  * Set builder: an armor set search after Athena's Armor Set Search. Pick the
- * skills you want and the hunter's options; the search (in a worker, see
- * hooks/useSetSearch.ts) lists every armor set with decorations that
- * activates them, highest defence first, shown like the game's equipment
- * set screen.
+ * skills you want and the hunter's options; the search (in workers, see
+ * hooks/useSetSearch.ts) lists the best armor sets with decorations that
+ * activate them, by defence or another sort, shown like the game's
+ * equipment set screen. Pieces of a result can be locked into every set or
+ * excluded from the next search.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
@@ -48,9 +49,10 @@ import {
   selectableSkills,
   type Piece,
   type SearchQuery,
+  type SortKey,
 } from "@/lib/set-search";
 import * as ui from "@/styles/settings";
-import ArmorSetView, { PanelTitle, SetHeader, SetStatus } from "./ArmorSetView";
+import ArmorSetView, { PanelTitle, SetHeader, SetStatus, type PieceActions } from "./ArmorSetView";
 import MySets from "./MySets";
 import SetEditor from "./SetEditor";
 import SkillPicker from "./SkillPicker";
@@ -66,6 +68,11 @@ interface Form {
   ownedOnly: boolean;
   /** Search armor beyond the quest progress set on the Options page. */
   ignoreQuestProgress: boolean;
+  sort: SortKey;
+  /** Pieces (by page link, which survives data updates) in every set. */
+  locked: string[];
+  /** Pieces the search leaves out. */
+  excluded: string[];
 }
 
 const DEFAULT_FORM: Form = {
@@ -77,6 +84,9 @@ const DEFAULT_FORM: Form = {
   allowBadSkills: false,
   ownedOnly: false,
   ignoreQuestProgress: false,
+  sort: "defence",
+  locked: [],
+  excluded: [],
 };
 
 const STORAGE_KEY = "set-builder";
@@ -106,10 +116,60 @@ const RANKS: Choice<ArmorRank>[] = [
   { value: "high-rank", label: "High Rank" },
   { value: "g-rank", label: "G Rank" },
 ];
+const SORTS: Choice<SortKey>[] = [
+  { value: "defence", label: "Defence" },
+  { value: "fire", label: "Fire Res" },
+  { value: "water", label: "Water Res" },
+  { value: "thunder", label: "Thundr Res" },
+  { value: "ice", label: "Ice Res" },
+  { value: "dragon", label: "Dragon Res" },
+  { value: "slots", label: "Free slots" },
+];
+const sortLabel = (sort: SortKey | undefined) =>
+  SORTS.find((s) => s.value === (sort ?? "defence"))!.label.toLowerCase();
+
 const WEAPON_SLOTS: Choice<number>[] = [0, 1, 2, 3].map((n) => ({
   value: n,
   label: n === 0 ? "None" : "O".repeat(n).padEnd(3, "-"),
 }));
+
+/** The locked or excluded pieces, each with × to take it off the list. */
+function PieceList({
+  label,
+  note,
+  pieces,
+  onRemove,
+}: {
+  label: string;
+  note: string;
+  pieces: Piece[];
+  onRemove: (href: string) => void;
+}) {
+  if (pieces.length === 0) return null;
+  return (
+    <div className="flex flex-col gap-[0.4rem]">
+      <span className={ui.statusLabel}>{label}</span>
+      <p className={ui.note}>{note}</p>
+      <ul className="m-0 flex list-none flex-wrap gap-x-[1.6rem] gap-y-[0.4rem] p-0 text-fine">
+        {pieces.map(({ href, name }) => (
+          <li key={href} className="flex items-center">
+            <Link href={href} className="text-white/80 hover:text-white">
+              {name}
+            </Link>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-small leading-none text-white/50 hover:text-negative focus-visible:text-negative"
+              aria-label={`Take ${name} off the ${label.toLowerCase()} pieces`}
+              onClick={() => onRemove(href)}
+            >
+              ×
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 function readForm(): Form {
   try {
@@ -167,9 +227,52 @@ export default function SetBuilderClient() {
   const ownedOnly = form.ownedOnly && progress.active;
   const { questProgress } = usePreferences().prefs;
   const questLimit = form.ignoreQuestProgress ? null : questProgress;
+  const byHref = useMemo(() => new Map(data?.pieces.map((p) => [p.href, p]) ?? []), [data]);
+  // Locked and excluded pieces the data no longer has (renamed or removed):
+  // drop them, so the lists show what the search uses.
+  useEffect(() => {
+    if (!data || !restored) return;
+    setForm((f) => {
+      const locked = f.locked.filter((h) => byHref.has(h));
+      const excluded = f.excluded.filter((h) => byHref.has(h));
+      return locked.length === f.locked.length && excluded.length === f.excluded.length
+        ? f
+        : { ...f, locked, excluded };
+    });
+  }, [data, byHref, restored]);
+  // Empty until the data loads; links it doesn't have are dropped above.
+  const piecesOf = (hrefs: string[]) =>
+    hrefs.flatMap((href) => {
+      const p = byHref.get(href);
+      return p ? [p] : [];
+    });
+  const pieceIds = (hrefs: string[]) => piecesOf(hrefs).map((p) => p.id);
+  const pieceActions: PieceActions = {
+    isLocked: (p) => form.locked.includes(p.href),
+    onLock: (p) =>
+      setForm((f) =>
+        f.locked.includes(p.href)
+          ? { ...f, locked: f.locked.filter((h) => h !== p.href) }
+          : {
+              ...f,
+              // One locked piece per slot.
+              locked: [...f.locked.filter((h) => byHref.get(h)?.slot !== p.slot), p.href],
+              excluded: f.excluded.filter((h) => h !== p.href),
+            },
+      ),
+    onExclude: (p) =>
+      setForm((f) => ({
+        ...f,
+        excluded: f.excluded.includes(p.href) ? f.excluded : [...f.excluded, p.href],
+        locked: f.locked.filter((h) => h !== p.href),
+      })),
+  };
   const runSearch = () => {
     if (!data || form.skills.length === 0) return;
     const query: SearchQuery = {
+      sort: form.sort,
+      lockPieces: pieceIds(form.locked),
+      excludePieces: pieceIds(form.excluded),
       skills: form.skills,
       hunterType: form.hunterType,
       sex: form.sex,
@@ -406,14 +509,17 @@ export default function SetBuilderClient() {
   else if (!result)
     message = (
       <p className={ui.note}>
-        Add the skills you want, then search. Sets are sorted by defence, highest first.
+        Add the skills you want, then search. The best sets come first: by defence, or by what you
+        sort by.
       </p>
     );
   else if (sets.length === 0)
     message = (
       <p className={ui.note}>
         No set activates all of these skills. Try fewer skills, a higher rank, more weapon slots,
-        allowing bad skills{searched?.progress ? ", or ignoring your quest progress" : ""}.
+        allowing bad skills
+        {searched?.lockPieces?.length ? ", unlocking pieces" : ""}
+        {searched?.progress ? ", or ignoring your quest progress" : ""}.
       </p>
     );
 
@@ -480,6 +586,13 @@ export default function SetBuilderClient() {
               value={form.weaponSlots}
               onChange={(v) => update("weaponSlots", v)}
             />
+            <SelectorRow
+              label="Sort by"
+              note="Ties go to the higher defence."
+              choices={SORTS}
+              value={form.sort}
+              onChange={(v) => update("sort", v)}
+            />
             <ToggleRow
               label="Allow bad skills"
               note="Keep sets that also activate a negative skill, such as Defense -20."
@@ -511,6 +624,28 @@ export default function SetBuilderClient() {
                 onChange={(v) => update("ownedOnly", v)}
               />
             )}
+            <PieceList
+              label="Locked"
+              note="Every set uses these, whatever the rank or quest progress."
+              pieces={piecesOf(form.locked)}
+              onRemove={(href) =>
+                update(
+                  "locked",
+                  form.locked.filter((h) => h !== href),
+                )
+              }
+            />
+            <PieceList
+              label="Excluded"
+              note="The search never uses these."
+              pieces={piecesOf(form.excluded)}
+              onRemove={(href) =>
+                update(
+                  "excluded",
+                  form.excluded.filter((h) => h !== href),
+                )
+              }
+            />
             <div className={ui.actions}>
               <button
                 type="submit"
@@ -542,13 +677,18 @@ export default function SetBuilderClient() {
                     {set ? (
                       <>
                         <SetHeader index={index} count={sets.length} onStep={step} />
-                        {sets.length >= (searched?.limit ?? DEFAULT_LIMIT) && (
-                          <p className={ui.note}>
-                            The {sets.length} highest-defence sets. Add skills to narrow the search.
-                          </p>
-                        )}
+                        {!searching &&
+                          !result?.timedOut &&
+                          sets.length >= (searched?.limit ?? DEFAULT_LIMIT) && (
+                            <p className={ui.note}>
+                              The {sets.length} best sets by {sortLabel(searched?.sort)}. Add skills
+                              to narrow the search.
+                            </p>
+                          )}
                         {result?.timedOut && (
-                          <p className={ui.note}>The search took too long and stopped early.</p>
+                          <p className={ui.note}>
+                            The search stopped early: better sets may exist.
+                          </p>
                         )}
                         <div className={ui.actions}>
                           <button
@@ -566,6 +706,7 @@ export default function SetBuilderClient() {
                           set={set}
                           weaponSlots={searched?.weaponSlots ?? 0}
                           weaponIcon={weaponIcon}
+                          pieceActions={pieceActions}
                           status={
                             <>
                               <PanelTitle>Status</PanelTitle>

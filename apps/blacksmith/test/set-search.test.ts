@@ -14,17 +14,22 @@ import {
   evaluateSet,
   mergeResults,
   parseDecorationSkill,
+  prepareSearch,
   prepareSearchData,
+  SEARCH_ROUNDS,
   searchSets,
+  setScore,
   treeNameIndex,
   type ArmorInput,
   type ArmorSet,
   type DecorationInput,
   type SearchData,
   type SearchQuery,
+  type SearchResult,
   type SkillTreeData,
 } from "../src/lib/set-search";
 import { DATA_DIR } from "../src/lib/paths";
+import { loadShippedSetData } from "./helpers/set-data";
 
 const dataDir = DATA_DIR;
 const readJson = <T>(file: string): T =>
@@ -336,6 +341,32 @@ describe("searchSets (hand-made)", () => {
     assert.equal(anyway.sets[0].pieces[0].name, "Plain Helm");
   });
 
+  test("locks and excludes pieces", () => {
+    const armor = [
+      ...filler(0).filter((p) => p.slot !== "helmet"),
+      piece("helmet", "Sharp Helm", { defence: 1, skills: [{ name: "Attack", amount: 10 }] }),
+      piece("helmet", "Sturdy Helm", { defence: 50, skills: [{ name: "Attack", amount: 10 }] }),
+      piece("helmet", "Late Helm", {
+        defence: 5,
+        rank: "g-rank",
+        skills: [{ name: "Attack", amount: 10 }],
+      }),
+    ];
+    const data = prepareSearchData(tiny, armor, []);
+    const id = (name: string) => data.pieces.find((p) => p.name === name)!.id;
+    const helms = (extra: Partial<SearchQuery>) =>
+      searchSets(data, query(["Attack Up (Small)"], extra)).sets.flatMap((s) => [
+        s.pieces[0].name,
+        ...s.alternatives[0].map((p) => p.name),
+      ]);
+    assert.deepEqual(helms({}), ["Sturdy Helm", "Late Helm", "Sharp Helm"]);
+    assert.deepEqual(helms({ excludePieces: [id("Sturdy Helm")] }), ["Late Helm", "Sharp Helm"]);
+    assert.deepEqual(helms({ lockPieces: [id("Sharp Helm")] }), ["Sharp Helm"]);
+    // A locked piece is used whatever the rank.
+    assert.deepEqual(helms({ lockPieces: [id("Late Helm")], rank: "low-rank" }), ["Late Helm"]);
+    assert.deepEqual(helms({ rank: "low-rank" }), ["Sturdy Helm", "Sharp Helm"]);
+  });
+
   test("decoration negatives count against other wanted skills", () => {
     const armor = [
       ...filler(0).filter((p) => p.slot !== "plate"),
@@ -370,35 +401,37 @@ randomTrees.push({ tree: "Torso Inc", skills: [{ name: "Torso Inc", points: 10 }
 const RANDOM_TREES = ["A", "B", "C", "D"];
 
 /**
- * Every points vector the decorations can add to these bins. `cache` keeps
- * the vectors for each run of bins seen, for the next call.
+ * Every points vector the decorations can add to these bins; with
+ * `withSlots`, each followed by minus the slots it takes. `cache` keeps the
+ * vectors for each run of bins seen, for the next call.
  */
 function decoVectors(
   data: SearchData,
   bins: { size: number; mult: number }[],
   trees: string[],
+  withSlots: boolean,
   cache = new Map<string, number[][]>(),
 ) {
+  const zero = () => [...trees.map(() => 0), ...(withSlots ? [0] : [])];
   const fills = (size: number): number[][] => {
     // Multisets of decorations that fit in `size` slots.
-    const out: number[][] = [trees.map(() => 0)];
+    const out: number[][] = [zero()];
     const go = (from: number, left: number, acc: number[]) => {
       for (let d = from; d < data.decorations.length; d++) {
         const deco = data.decorations[d];
         if (deco.slots > left) continue;
-        const next = acc.map((v, i) => v + (deco.points[trees[i]] ?? 0));
+        const next = [
+          ...trees.map((t, i) => acc[i] + (deco.points[t] ?? 0)),
+          ...(withSlots ? [acc[trees.length] - deco.slots] : []),
+        ];
         out.push(next);
         go(d, left - deco.slots, next);
       }
     };
-    go(
-      0,
-      size,
-      trees.map(() => 0),
-    );
+    go(0, size, zero());
     return out;
   };
-  let reach = [trees.map(() => 0)];
+  let reach = [zero()];
   let key = "";
   for (const bin of bins) {
     key += `${bin.size}x${bin.mult},`;
@@ -410,8 +443,11 @@ function decoVectors(
     const next = new Map<string, number[]>();
     for (const v of reach) {
       for (const f of fills(bin.size)) {
-        const w = v.map((x, i) => x + f[i] * bin.mult);
-        next.set(w.join(), w);
+        const w = v.map((x, i) => x + f[i] * (i < trees.length ? bin.mult : 1));
+        // For the same points, fewer slots is all that matters.
+        const key = w.slice(0, trees.length).join();
+        const seen = next.get(key);
+        if (!seen || (withSlots && seen[trees.length] < w[trees.length])) next.set(key, w);
       }
     }
     reach = [...next.values()];
@@ -421,8 +457,9 @@ function decoVectors(
 }
 
 /**
- * The highest defence of any set that answers the query, trying every piece
- * combination and decoration placement; -Infinity when there is none.
+ * The best score (setScore, for the query's sort) of any set that answers
+ * the query, trying every piece combination and decoration placement;
+ * -Infinity when there is none.
  */
 function bruteForce(data: SearchData, q: SearchQuery): number {
   const need = new Map(
@@ -435,15 +472,36 @@ function bruteForce(data: SearchData, q: SearchQuery): number {
   const trees = q.allowBadSkills ? [...need.keys()] : RANDOM_TREES;
   const ok = (tree: string, points: number) =>
     need.has(tree) ? points >= need.get(tree)! : points > -10;
+  type P = (typeof data.pieces)[number];
+  const score = (combo: P[], freeSlots: number) =>
+    setScore(
+      {
+        defence: combo.reduce((n, p) => n + p.defence, 0),
+        res: [0, 1, 2, 3, 4].map((i) => combo.reduce((n, p) => n + p.res[i], 0)),
+        freeSlots,
+      },
+      q.sort,
+    );
+  const capacity = (combo: P[]) => combo.reduce((n, p) => n + p.slots, q.weaponSlots);
 
   const bySlot = ARMOR_SLOTS.map((slot) => data.pieces.filter((p) => p.slot === slot));
-  let combos: (typeof data.pieces)[number][][] = [[]];
+  let combos: P[][] = [[]];
   for (const pieces of bySlot) combos = combos.flatMap((c) => pieces.map((p) => [...c, p]));
-  const defence = (c: (typeof data.pieces)[number][]) => c.reduce((n, p) => n + p.defence, 0);
-  combos.sort((a, b) => defence(b) - defence(a));
+  // Best possible first: with every slot free.
+  const bound = (c: P[]) => score(c, capacity(c));
+  combos.sort((a, b) => bound(b) - bound(a));
 
   const fills = new Map<string, number[][]>();
+  const slotFills = new Map<string, number[][]>();
+  const bySlots = new WeakSet<number[][]>();
+  // The most decorations in one piece of each size can add to each tree.
+  const most = [0, 1, 2, 3].map((size) => {
+    const all = decoVectors(data, [{ size, mult: 1 }], trees, false);
+    return trees.map((_, k) => Math.max(...all.map((v) => v[k])));
+  });
+  let best = -Infinity;
   for (const combo of combos) {
+    if (bound(combo) <= best) break;
     const plate = combo[1];
     const torsoUps = combo.filter((p) => p.torsoUp && p.slot !== "plate").length;
     const armor = trees.map((t) =>
@@ -457,10 +515,25 @@ function bruteForce(data: SearchData, q: SearchQuery): number {
       { size: q.weaponSlots, mult: 1 },
       ...combo.map((p) => ({ size: p.slots, mult: p === plate ? 1 + torsoUps : 1 })),
     ];
-    const vectors = decoVectors(data, bins, trees, fills);
-    if (vectors.some((v) => trees.every((t, k) => ok(t, armor[k] + v[k])))) return defence(combo);
+    const works = (v: number[]) => trees.every((t, k) => ok(t, armor[k] + v[k]));
+    // Skip the combination when even the most each tree can get isn't enough.
+    const ceiling = trees.map((_, k) => bins.reduce((n, b) => n + b.mult * most[b.size][k], 0));
+    if (!works(ceiling)) continue;
+    if (q.sort !== "slots") {
+      // The score doesn't depend on the decorations.
+      if (decoVectors(data, bins, trees, false, fills).some(works)) return score(combo, 0);
+      continue;
+    }
+    // Fewest slots first: the first that works leaves the most free.
+    const vectors = decoVectors(data, bins, trees, true, slotFills);
+    if (!bySlots.has(vectors)) {
+      vectors.sort((x, y) => y[trees.length] - x[trees.length]);
+      bySlots.add(vectors);
+    }
+    const v = vectors.find(works);
+    if (v) best = Math.max(best, score(combo, capacity(combo) + v[trees.length]));
   }
-  return -Infinity;
+  return best;
 }
 
 describe("searchSets (brute force)", () => {
@@ -475,6 +548,7 @@ describe("searchSets (brute force)", () => {
         armor.push(
           piece(slot, `${slot} ${i}`, {
             defence: int(1, 30),
+            res: [0, 1, 2, 3, 4].map(() => int(-3, 3)),
             slots: torsoUp ? 0 : int(0, 3),
             skills: torsoUp
               ? [{ name: "Torso Inc", amount: 1 }]
@@ -506,29 +580,32 @@ describe("searchSets (brute force)", () => {
       .map((t) => `${t}${random() < 0.5 ? 10 : 15}`);
     if (skills.length === 0) continue;
     const weaponSlots = int(0, 3);
+    const sort = (["defence", "fire", "slots"] as const)[trial % 3];
+    const best = (r: SearchResult) => (r.sets[0] ? setScore(r.sets[0], sort) : -Infinity);
 
     for (const allowBadSkills of [true, false]) {
-      const q = query(skills, { weaponSlots, allowBadSkills });
-      test(`trial ${trial}: ${skills.join(" + ")}${allowBadSkills ? "" : ", no bad skills"}`, () => {
+      const q = query(skills, { weaponSlots, allowBadSkills, sort });
+      const name = `trial ${trial}: ${skills.join(" + ")} by ${sort}`;
+      test(`${name}${allowBadSkills ? "" : ", no bad skills"}`, () => {
         const expected = bruteForce(data, q);
         outcomes.add(expected > -Infinity);
         const result = searchSets(data, q);
-        assert.equal(result.sets[0]?.defence ?? -Infinity, expected, "best defence");
+        assert.equal(best(result), expected, "best set");
         for (const set of result.sets) assertValid(data, set, q);
-        // Defence first.
+        // Best first.
         for (let i = 1; i < result.sets.length; i++) {
-          assert.ok(result.sets[i - 1].defence >= result.sets[i].defence);
+          assert.ok(setScore(result.sets[i - 1], sort) >= setScore(result.sets[i], sort));
         }
         // Keeping only the best set still finds it.
         const top = searchSets(data, { ...q, limit: 1 });
-        assert.equal(top.sets[0]?.defence ?? -Infinity, expected, "best defence, limit 1");
+        assert.equal(best(top), expected, "best set, limit 1");
         // So do three workers with a shard each.
         const shards = [0, 1, 2].map((index) =>
           searchSets(data, { ...q, limit: 3 }, { shard: { index, count: 3 } }),
         );
         assert.deepEqual(
-          mergeResults(shards, 3).sets.map((s) => s.defence),
-          searchSets(data, { ...q, limit: 3 }).sets.map((s) => s.defence),
+          mergeResults(shards, 3, sort).sets.map((s) => setScore(s, sort)),
+          searchSets(data, { ...q, limit: 3 }).sets.map((s) => setScore(s, sort)),
           "shards",
         );
       });
@@ -578,6 +655,37 @@ describe("searchSets (data/)", () => {
       }
     });
   }
+
+  test("sorts by a resistance", () => {
+    const shipped = loadShippedSetData().data;
+    const q = query(["Attack Up (Large)", "ESP"], { weaponSlots: 1, sort: "fire", limit: 20 });
+    const result = searchSets(shipped, q);
+    assert.equal(result.sets.length, 20);
+    for (const set of result.sets) assertValid(shipped, set, q);
+    for (let i = 1; i < result.sets.length; i++) {
+      assert.ok(setScore(result.sets[i - 1], "fire") >= setScore(result.sets[i], "fire"));
+    }
+    const byDefence = searchSets(shipped, { ...q, sort: "defence" });
+    assert.ok(result.sets[0].res[0] >= Math.max(...byDefence.sets.map((s) => s.res[0])));
+    assert.ok(result.sets[0].res[0] > byDefence.sets[0].res[0], "fire res should beat defence");
+  });
+
+  test("a round that runs out of time keeps the last round's sets", (t) => {
+    const q = query(["Attack Up (Large)", "ESP"], { weaponSlots: 1, limit: 1000 });
+    const search = prepareSearch(data, q);
+    // The first round that finds any sets (but not all of them).
+    let round = 0;
+    let first = search.run(round);
+    while (first.sets.length === 0) first = search.run(++round);
+    assert.ok(round + 1 < SEARCH_ROUNDS && first.sets.length < 1000, `round ${round}`);
+    // Past the deadline from here on.
+    const now = Date.now();
+    t.mock.method(Date, "now", () => now + 3_600_000);
+    const second = search.run(round + 1);
+    assert.equal(second.timedOut, true);
+    const ids = (r: SearchResult) => r.sets.map((s) => s.pieces.map((p) => p.id).join());
+    assert.deepEqual(ids(second), ids(first));
+  });
 
   test("an impossible request finds nothing quickly", () => {
     const q = query(["Attack Up (Large)", "ESP", "Evade +2", "Guard +2", "Earplug"], {

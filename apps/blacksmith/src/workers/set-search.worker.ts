@@ -7,6 +7,7 @@
  */
 import {
   prepareSearch,
+  type ArmorSet,
   type PreparedSearch,
   type SearchData,
   type SearchOptions,
@@ -22,10 +23,13 @@ export type SetSearchRequest =
       query: SearchQuery;
       round: number;
       shard?: SearchOptions["shard"];
-    };
+    }
+  /** The search is over: let go of what it prepared. */
+  | { type: "done"; id: number };
 
 export type SetSearchResponse =
   | { type: "progress"; id: number; found: number }
+  | { type: "sets"; id: number; sets: ArmorSet[] }
   | { type: "result"; id: number; result: SearchResult }
   | { type: "error"; id: number; error: string };
 
@@ -44,6 +48,10 @@ scope.onmessage = ({ data: message }) => {
     data = message.data;
     return;
   }
+  if (message.type === "done") {
+    if (current?.id === message.id) current = null;
+    return;
+  }
   const { id, query, round, shard } = message;
   if (!data) {
     scope.postMessage({ type: "error", id, error: "The armor data hasn't loaded yet." });
@@ -54,6 +62,7 @@ scope.onmessage = ({ data: message }) => {
     const result = current.search.run(round, {
       shard,
       onProgress: (found) => scope.postMessage({ type: "progress", id, found }),
+      onSets: (sets) => scope.postMessage({ type: "sets", id, sets }),
     });
     scope.postMessage({ type: "result", id, result });
   } catch (e) {

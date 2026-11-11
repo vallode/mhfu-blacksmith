@@ -6,6 +6,7 @@ import {
   DEFAULT_LIMIT,
   mergeResults,
   SEARCH_ROUNDS,
+  type ArmorSet,
   type SearchData,
   type SearchQuery,
   type SearchResult,
@@ -33,12 +34,15 @@ export interface SetSearchState {
 /**
  * The last search, kept across visits to the page: in memory for client-side
  * navigation (back from a piece's page shows it at once), and its query in
- * sessionStorage, so a reload or a full page load reruns it.
+ * sessionStorage, so a reload or a full page load reruns it (unless it was
+ * cancelled or failed).
  */
 interface LastSearch {
   query: SearchQuery;
   index: number;
   result?: SearchResult;
+  /** Cancelled or failed: a reload doesn't run it again. */
+  stopped?: boolean;
 }
 
 const STORAGE_KEY = "set-builder-search";
@@ -48,7 +52,9 @@ function readLast(): LastSearch | null {
   if (lastSearch) return lastSearch;
   try {
     const stored = JSON.parse(sessionStorage.getItem(STORAGE_KEY) ?? "null") as LastSearch | null;
-    return stored?.query ? { query: stored.query, index: stored.index ?? 0 } : null;
+    return stored?.query
+      ? { query: stored.query, index: stored.index ?? 0, stopped: stored.stopped }
+      : null;
   } catch {
     return null;
   }
@@ -58,7 +64,8 @@ function writeLast(last: LastSearch | null) {
   lastSearch = last;
   try {
     if (last) {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ query: last.query, index: last.index }));
+      const { query, index, stopped } = last;
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ query, index, stopped }));
     } else {
       sessionStorage.removeItem(STORAGE_KEY);
     }
@@ -84,12 +91,18 @@ interface Pending {
   round: number;
   parts: (SearchResult | null)[];
   found: number[];
+  /** Each worker's best sets so far this round, and the last round's. */
+  partial: ArmorSet[][];
+  before: ArmorSet[];
+  /** Its sets are on screen (until then, the last search's are): the latest. */
+  shown: SearchResult | null;
 }
 
 /** Ask every worker for its shard of a round. */
 function postRound(workers: Worker[], run: Pending) {
   run.parts = workers.map(() => null);
   run.found = workers.map(() => 0);
+  run.partial = workers.map(() => []);
   workers.forEach((worker, index) =>
     worker.postMessage({
       type: "search",
@@ -145,6 +158,9 @@ export function useSetSearch(): SetSearchState {
       round: 0,
       parts: [],
       found: [],
+      partial: [],
+      before: [],
+      shown: null,
     };
     pending.current = run;
     setSearching(true);
@@ -153,12 +169,35 @@ export function useSetSearch(): SetSearchState {
     postRound(workers, run);
   }, []);
 
-  const stop = useCallback((message: string) => {
-    searchId.current++;
-    pending.current = null;
-    setSearching(false);
-    setError(message);
+  /** Starts fresh workers (startWorkers, once it exists). */
+  const restart = useRef<(() => void) | null>(null);
+  /** The workers failed outside a search: start new ones for the next. */
+  const failed = useRef(false);
+
+  /**
+   * A search ended before finishing (cancelled or failed): its live results,
+   * if any are on screen, become the last search, marked as stopped early.
+   */
+  const keepShown = useCallback(() => {
+    const run = pending.current;
+    if (!run?.shown) return;
+    const result = { ...run.shown, timedOut: true };
+    setResult(result);
+    writeLast({ query: run.query, index: run.index, result, stopped: true });
   }, []);
+
+  const stop = useCallback(
+    (message: string) => {
+      keepShown();
+      searchId.current++;
+      pending.current = null;
+      setSearching(false);
+      setError(message);
+      // The other workers may still be on the search: start afresh.
+      restart.current?.();
+    },
+    [keepShown],
+  );
 
   const startWorkers = useCallback(
     (d: SearchData) => {
@@ -172,11 +211,35 @@ export function useSetSearch(): SetSearchState {
             stop(msg.error);
             return;
           }
+          if (msg.type === "sets") {
+            // Show the best sets found so far: they're real sets, and the
+            // last round's are still good until this round finds better.
+            run.partial[shard] = msg.sets;
+            const sofar = mergeResults(
+              [run.before, ...run.partial].map((sets) => ({
+                sets,
+                timedOut: false,
+                unknownSkills: [],
+                elapsedMs: 0,
+              })),
+              run.query.limit ?? DEFAULT_LIMIT,
+              run.query.sort,
+            );
+            const last = Math.max(0, sofar.sets.length - 1);
+            setResult(sofar);
+            setQuery(run.query);
+            // The set asked for (or stepped to since), not the last search's.
+            setIndexState(Math.min(run.index, last));
+            run.shown = sofar;
+            return;
+          }
           if (msg.type === "progress") {
             run.found[shard] = msg.found;
             // Each round starts counting again: show the most found so far.
+            // Each worker counts up to the limit, but only that many are kept.
             const sum = run.found.reduce((a, b) => a + b, 0);
-            setFound((f) => Math.max(f, sum));
+            const limit = run.query.limit ?? DEFAULT_LIMIT;
+            setFound((f) => Math.max(f, Math.min(sum, limit)));
             return;
           }
           run.parts[shard] = msg.result;
@@ -186,12 +249,16 @@ export function useSetSearch(): SetSearchState {
           // Not enough sets above this round's floor: lower it.
           const sets = parts.reduce((n, r) => n + r.sets.length, 0);
           if (sets < limit && !parts.some((r) => r.timedOut) && run.round + 1 < SEARCH_ROUNDS) {
+            run.before = parts.flatMap((r) => r.sets);
             run.round++;
             postRound(workersRef.current, run);
             return;
           }
-          const merged = mergeResults(parts, limit);
+          const merged = mergeResults(parts, limit, run.query.sort);
           pending.current = null;
+          for (const w of workersRef.current) {
+            w.postMessage({ type: "done", id: run.id } satisfies SetSearchRequest);
+          }
           const shown = Math.min(run.index, Math.max(0, merged.sets.length - 1));
           setSearching(false);
           setResult(merged);
@@ -200,7 +267,18 @@ export function useSetSearch(): SetSearchState {
           setError(null);
           writeLast({ query: run.query, index: shown, result: merged });
         };
-        worker.onerror = (event) => stop(event.message || "The search stopped unexpectedly.");
+        worker.onerror = (event) => {
+          // Only the current workers count (one restart per failure), and
+          // only a running search restarts them: a worker that can't even
+          // load would fail again.
+          if (!workersRef.current.includes(worker)) return;
+          const message = event.message || "The search stopped unexpectedly.";
+          if (pending.current) stop(message);
+          else {
+            failed.current = true;
+            setError(message);
+          }
+        };
         worker.postMessage({ type: "init", data: d } satisfies SetSearchRequest);
         return worker;
       });
@@ -212,11 +290,22 @@ export function useSetSearch(): SetSearchState {
 
   useEffect(() => {
     if (!data) return;
+    restart.current = () => {
+      for (const w of workersRef.current) w.terminate();
+      startWorkers(data);
+    };
+    return () => {
+      restart.current = null;
+    };
+  }, [data, startWorkers]);
+
+  useEffect(() => {
+    if (!data) return;
     const workers = startWorkers(data);
     // A search kept from an earlier visit without its results (after a
     // reload): run it again.
     const last = readLast();
-    if (last && !last.result) post(workers, last.query, last.index);
+    if (last && !last.result && !last.stopped) post(workers, last.query, last.index);
     return () => {
       // cancel() may have replaced the first workers.
       for (const w of workersRef.current) w.terminate();
@@ -226,6 +315,11 @@ export function useSetSearch(): SetSearchState {
 
   const search = useCallback(
     (q: SearchQuery) => {
+      // Once only: if the new workers fail too, the search stops with the error.
+      if (failed.current) {
+        failed.current = false;
+        restart.current?.();
+      }
       if (workersRef.current.length > 0) post(workersRef.current, q);
     },
     [post],
@@ -233,16 +327,22 @@ export function useSetSearch(): SetSearchState {
 
   const cancel = useCallback(() => {
     if (!data) return;
+    keepShown();
     searchId.current++;
     pending.current = null;
+    failed.current = false;
     for (const w of workersRef.current) w.terminate();
     startWorkers(data);
     setSearching(false);
-  }, [data, startWorkers]);
+  }, [data, startWorkers, keepShown]);
 
   const setIndex = useCallback((i: number) => {
     setIndexState(i);
-    if (lastSearch) writeLast({ ...lastSearch, index: i });
+    // Stepping through live results: keep the set when the search ends.
+    // Until they show, the steps are through the last search's sets.
+    const run = pending.current;
+    if (run?.shown) run.index = i;
+    else if (lastSearch) writeLast({ ...lastSearch, index: i });
   }, []);
 
   return {
