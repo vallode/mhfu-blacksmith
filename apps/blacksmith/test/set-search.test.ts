@@ -12,6 +12,7 @@ import { armorSlugs, slugify } from "../src/lib/slug";
 import {
   activeSkill,
   evaluateSet,
+  mergeResults,
   parseDecorationSkill,
   prepareSearchData,
   searchSets,
@@ -521,6 +522,15 @@ describe("searchSets (brute force)", () => {
         // Keeping only the best set still finds it.
         const top = searchSets(data, { ...q, limit: 1 });
         assert.equal(top.sets[0]?.defence ?? -Infinity, expected, "best defence, limit 1");
+        // So do three workers with a shard each.
+        const shards = [0, 1, 2].map((index) =>
+          searchSets(data, { ...q, limit: 3 }, { shard: { index, count: 3 } }),
+        );
+        assert.deepEqual(
+          mergeResults(shards, 3).sets.map((s) => s.defence),
+          searchSets(data, { ...q, limit: 3 }).sets.map((s) => s.defence),
+          "shards",
+        );
       });
     }
   }
@@ -554,6 +564,14 @@ describe("searchSets (data/)", () => {
       assert.deepEqual(result.unknownSkills, []);
       assert.ok(result.sets.length > 0, "found no sets");
       for (const set of result.sets) assertValid(data, set, q);
+      const shards = [0, 1, 2, 3].map((index) =>
+        searchSets(data, q, { shard: { index, count: 4 } }),
+      );
+      assert.deepEqual(
+        mergeResults(shards, q.limit).sets.map((s) => s.defence),
+        result.sets.map((s) => s.defence),
+        "shards",
+      );
       // Sorted by defence.
       for (let i = 1; i < result.sets.length; i++) {
         assert.ok(result.sets[i - 1].defence >= result.sets[i].defence);

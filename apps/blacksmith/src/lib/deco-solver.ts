@@ -82,12 +82,17 @@ function penaltyOf(deco: Deco): number {
   return sum;
 }
 
+/** Forget the cached answers past this many (they're cheap to redo). */
+const MAX_ANSWERS = 200_000;
+
 export class DecoSolver {
   private readonly decorations: Deco[];
   private readonly wanted: Map<string, number>;
   private readonly bad: Map<string, number> | null;
   /** Tracked trees (joined) -> loadouts by item size. */
   private readonly tables = new Map<string, Loadout[][]>();
+  /** Bins and points (see `solve`) -> placements, by position in fill order. */
+  private readonly answers = new Map<string, Placement[] | null>();
 
   constructor(options: SolverOptions) {
     this.decorations = options.decorations;
@@ -99,17 +104,11 @@ export class DecoSolver {
    * Decorations for `bins` given the armor's points per tree (Torso Up
    * already applied), or null when no placement works. An empty list means
    * the armor needs none.
+   *
+   * Answers are cached: items of the same size and multiplier are
+   * interchangeable, and only the points in trees that could matter count.
    */
   solve(bins: SolverBin[], armor: Record<string, number>): Placement[] | null {
-    const capacity = bins.reduce((n, b) => n + b.size * b.mult, 0);
-    const trees = this.tracked(armor, capacity);
-    const req = trees.map(
-      (t) => (this.wanted.has(t) ? this.wanted.get(t)! : this.bad!.get(t)! + 1) - (armor[t] ?? 0),
-    );
-    if (req.every((r) => r <= 0)) return [];
-
-    const tables = this.tablesFor(trees);
-    const k = trees.length;
     // Fill the torso and other pieces first, the weapon last.
     const order = bins
       .map((_, i) => i)
@@ -123,6 +122,37 @@ export class DecoSolver {
           y.size - x.size
         );
       });
+
+    let key = "";
+    for (const i of order)
+      key += `${bins[i].slot === "weapon" ? "w" : ""}${bins[i].size}x${bins[i].mult},`;
+    for (const t of this.wanted.keys()) key += `${armor[t] ?? 0},`;
+    if (this.bad) for (const t of this.bad.keys()) key += `${armor[t] ?? 0},`;
+    let answer = this.answers.get(key);
+    if (answer === undefined) {
+      answer = this.place(bins, order, armor);
+      if (this.answers.size >= MAX_ANSWERS) this.answers.clear();
+      this.answers.set(key, answer);
+    }
+    return answer && answer.map(({ deco, bin }) => ({ deco, bin: order[bin] }));
+  }
+
+  /** `solve` for bins filled in `order`; bins in the answer are positions in it. */
+  private place(
+    bins: SolverBin[],
+    order: number[],
+    armor: Record<string, number>,
+  ): Placement[] | null {
+    const capacity = bins.reduce((n, b) => n + b.size * b.mult, 0);
+    const maxMult = Math.max(1, ...bins.filter((b) => b.size > 0).map((b) => b.mult));
+    const trees = this.tracked(armor, capacity, maxMult);
+    const req = trees.map(
+      (t) => (this.wanted.has(t) ? this.wanted.get(t)! : this.bad!.get(t)! + 1) - (armor[t] ?? 0),
+    );
+    if (req.every((r) => r <= 0)) return [];
+
+    const tables = this.tablesFor(trees);
+    const k = trees.length;
 
     // Most and least each remaining item can still add, per tree.
     const n = order.length;
@@ -157,8 +187,7 @@ export class DecoSolver {
       },
     ];
     for (let j = 0; j < n; j++) {
-      const binIndex = order[j];
-      const bin = bins[binIndex];
+      const bin = bins[order[j]];
       const isWeapon = bin.slot === "weapon";
       const max = remMax[j + 1];
       const min = remMin[j + 1];
@@ -182,7 +211,7 @@ export class DecoSolver {
             penalty: s.penalty + l.penalty * bin.mult,
             prev: s,
             loadout: l,
-            bin: binIndex,
+            bin: j,
           };
           const seen = next.get(key);
           if (!seen || better(state, seen)) next.set(key, state);
@@ -208,29 +237,62 @@ export class DecoSolver {
    * The trees that matter for these armor points: the wanted ones, then (in
    * name order) every tree that is at, or could be pushed to, a negative
    * skill by decorations that add to a tree that matters.
+   *
+   * How far decorations could push a tree down is bounded by how many points
+   * they add where they're useful: the placement picked never has a
+   * decoration it could do without (dropping it would use fewer slots). So
+   * decorations for a tree add less than it needs plus one more decoration,
+   * unless other decorations take points off it too.
    */
-  private tracked(armor: Record<string, number>, capacity: number): string[] {
+  private tracked(armor: Record<string, number>, capacity: number, maxMult: number): string[] {
     const wanted = [...this.wanted.keys()];
     if (!this.bad) return wanted;
-    const bad = new Set<string>();
-    for (const [t, limit] of this.bad) if ((armor[t] ?? 0) <= limit) bad.add(t);
+    const bad = this.bad;
+    const need = (t: string) =>
+      (this.wanted.has(t) ? this.wanted.get(t)! : bad.get(t)! + 1) - (armor[t] ?? 0);
+    const risky = new Set<string>();
+    for (const [t, limit] of bad) if ((armor[t] ?? 0) <= limit) risky.add(t);
     for (;;) {
-      const useful = this.useful(new Set([...wanted, ...bad]));
-      let added = false;
-      for (const [t, limit] of this.bad) {
-        if (bad.has(t)) continue;
-        // The worst these decorations could do to `t`, per slot.
-        let worst = 0;
-        for (const d of useful) {
-          const v = d.points[t];
-          if (v !== undefined && v / d.slots < worst) worst = v / d.slots;
+      const trees = new Set([...wanted, ...risky]);
+      const useful = this.useful(trees);
+      // Most points decorations could add to each tree that matters.
+      const most = new Map<string, number>();
+      for (const t of trees) {
+        const own = useful.filter((d) => (d.points[t] ?? 0) > 0);
+        if (own.length === 0) continue;
+        let densest = 0;
+        let biggest = 0;
+        for (const d of own) {
+          densest = Math.max(densest, d.points[t] / d.slots);
+          biggest = Math.max(biggest, d.points[t]);
         }
-        if (worst < 0 && (armor[t] ?? 0) + capacity * worst <= limit) {
-          bad.add(t);
+        let points = capacity * densest;
+        if (!useful.some((d) => (d.points[t] ?? 0) < 0)) {
+          const n = need(t);
+          points = Math.min(points, n > 0 ? n - 1 + biggest * maxMult : 0);
+        }
+        most.set(t, points);
+      }
+      let added = false;
+      for (const [t, limit] of bad) {
+        if (trees.has(t)) continue;
+        // The worst decorations for each tree that matters could do to `t`.
+        let worst = 0;
+        for (const [s, points] of most) {
+          let ratio = 0;
+          for (const d of useful) {
+            const v = d.points[t];
+            const p = d.points[s] ?? 0;
+            if (v !== undefined && p > 0 && v / p < ratio) ratio = v / p;
+          }
+          worst += points * ratio;
+        }
+        if ((armor[t] ?? 0) + worst <= limit) {
+          risky.add(t);
           added = true;
         }
       }
-      if (!added) return [...wanted, ...[...bad].sort()];
+      if (!added) return [...wanted, ...[...risky].sort()];
     }
   }
 

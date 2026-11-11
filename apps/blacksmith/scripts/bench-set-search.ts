@@ -3,11 +3,20 @@
  * data the site ships: `pnpm --filter blacksmith bench-set-search`.
  *
  * Prints, per search, how long it took, how many sets it returned and the
- * best and worst defence among them. Run it before and after changing the
- * search.
+ * best and worst defence among them. "4 workers" is how long it takes split
+ * into four shards, as the page runs it on a machine with eight cores or
+ * more: round by round, the slowest shard (they run at once). Run it before
+ * and after changing the search.
  */
 import { loadShippedSetData } from "../test/helpers/set-data";
-import { searchSets, type SearchQuery } from "../src/lib/set-search";
+import {
+  mergeResults,
+  prepareSearch,
+  searchSets,
+  SEARCH_ROUNDS,
+  type SearchQuery,
+  type SearchResult,
+} from "../src/lib/set-search";
 
 const query = (skills: string[], extra: Partial<SearchQuery> = {}): SearchQuery => ({
   skills,
@@ -42,9 +51,25 @@ const { data } = loadShippedSetData();
 const rows = cases.map((q) => {
   const result = searchSets(data, q);
   const defence = result.sets.map((s) => s.defence);
+  // As useSetSearch runs it.
+  const shards = [0, 1, 2, 3].map((index) => ({ index, search: prepareSearch(data, q) }));
+  let parts: SearchResult[] = [];
+  let parallelMs = 0;
+  for (let round = 0; round < SEARCH_ROUNDS; round++) {
+    parts = shards.map(({ index, search }) => {
+      const started = Date.now();
+      const r = search.run(round, { shard: { index, count: shards.length } });
+      return { ...r, elapsedMs: Date.now() - started };
+    });
+    parallelMs += Math.max(...parts.map((r) => r.elapsedMs));
+    if (parts.reduce((n, r) => n + r.sets.length, 0) >= (q.limit ?? 200)) break;
+  }
+  const merged = mergeResults(parts).sets.map((s) => s.defence);
+  if (merged.join() !== defence.join()) throw new Error(`Shards disagree: ${q.skills.join(", ")}`);
   return {
     search: `${q.skills.join(" + ")} (${q.hunterType}, ${q.rank}, ${q.weaponSlots} slots${q.allowBadSkills ? ", bad skills" : ""})`,
     ms: result.elapsedMs,
+    "4 workers": parallelMs,
     sets: result.sets.length,
     best: defence.length ? Math.max(...defence) : "-",
     worst: defence.length ? Math.min(...defence) : "-",
