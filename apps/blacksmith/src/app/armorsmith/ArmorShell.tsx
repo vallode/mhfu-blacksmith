@@ -4,7 +4,7 @@ import { useEffect } from "react";
 import { usePathname } from "next/navigation";
 import ArmorNav from "@/components/ArmorNav";
 import ArmorTreePanel from "@/components/ArmorTreePanel";
-import BorderRule from "@/components/BorderRule";
+import SplitPage from "@/components/SplitPage";
 import TreeScroll from "@/components/TreeScroll";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import { useVisibleTree } from "@/hooks/useVisibleTree";
@@ -41,7 +41,6 @@ function ArmorSidebar({ slot, rank, slug }: { slot: ArmorSlot; rank: ArmorRank; 
               basePath={basePath}
               treeKey={treeKey}
               activeSlug={slug}
-              scroll={false}
             />
           </ul>
         ))}
@@ -51,11 +50,11 @@ function ArmorSidebar({ slot, rank, slug }: { slot: ArmorSlot; rank: ArmorRank; 
 }
 
 /**
- * The armorsmith frame: slot nav, divider and the slot's tree at the current
- * rank down the left, with the page (a piece's details, or NO DATA on the
- * slot's own page) on the right. It lives in the armorsmith layout so it stays
- * mounted while you move between pieces, slots and ranks; only the right-hand
- * card re-renders.
+ * The armorsmith frame: page bar with the slot tabs, and the slot's tree at
+ * the current rank down the left, with the page (a piece's details, or NO
+ * DATA on the slot's own page) on the right. It lives in the armorsmith layout
+ * so it stays mounted while you move between pieces, slots and ranks; only
+ * the right-hand card re-renders.
  */
 export function ArmorShell({
   slot,
@@ -71,12 +70,13 @@ export function ArmorShell({
   return (
     <>
       <ArmorNav activeSlot={slot} rank={rank} />
-      <BorderRule />
       {slot && rank ? (
-        <div className="split-page">
-          <ArmorSidebar slot={slot} rank={rank} slug={slug} />
+        <SplitPage
+          list={<ArmorSidebar slot={slot} rank={rank} slug={slug} />}
+          closeHref={slug && `/armorsmith/${slot}/${rank}/`}
+        >
           {children}
-        </div>
+        </SplitPage>
       ) : (
         children
       )}

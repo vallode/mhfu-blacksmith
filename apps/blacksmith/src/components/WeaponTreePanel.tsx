@@ -17,17 +17,15 @@ import { TreeFilterContext, WeaponTreeContext } from "@/context/TreeFilterContex
 import { cycleTreeFilter, filterTree, TREE_FILTERS, type TreeFilterId } from "@/lib/tree-filter";
 import { readTreeFilter, writeTreeFilter } from "@/lib/tree-filter-store";
 import type { WeaponTreeNode } from "@/lib/types";
-import { cn } from "@/lib/cn";
 
 interface Props {
   type: string;
   /** Null/undefined while the tree loads. */
   tree: WeaponTreeNode[] | null | undefined;
   activeSlug?: string;
-  className?: string;
 }
 
-export default function WeaponTreePanel({ type, tree, activeSlug, className }: Props) {
+export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   const progress = useHunterProgress();
   const basePath = `/blacksmith/${type}/`;
   const treeKey = `weapon-${type}`;
@@ -58,10 +56,7 @@ export default function WeaponTreePanel({ type, tree, activeSlug, className }: P
   return (
     // Takes the tree card's place in .split-page; above the card (z-1) so the
     // bar and its arrows draw over the frame.
-    <div
-      data-tree-panel
-      className={cn("relative z-2 flex min-h-0 min-w-0 flex-1 flex-col", className)}
-    >
+    <div data-tree-panel className="relative z-2 flex min-h-0 min-w-0 flex-1 flex-col">
       <Card variant="weapon-tree">
         <TreeScroll treeKey={treeKey} activeSlug={activeSlug}>
           <TreeFilterContext.Provider value={result}>

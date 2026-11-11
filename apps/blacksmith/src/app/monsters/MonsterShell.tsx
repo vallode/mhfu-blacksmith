@@ -4,9 +4,9 @@ import { useEffect } from "react";
 import ReactDOM from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
 import MonsterNav from "@/components/MonsterNav";
+import SplitPage from "@/components/SplitPage";
 import TreeScroll from "@/components/TreeScroll";
 import { cn } from "@/lib/cn";
 import { getQuests, useMonsterList } from "@/lib/client-data";
@@ -42,9 +42,6 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
             key={m.slug}
             id={m.slug}
             href={`/monsters/${category}/${m.slug}/`}
-            // The list stays put; don't let the router scroll the page to the
-            // new detail card (on phones it sits below the list).
-            scroll={false}
             aria-current={m.slug === slug ? "page" : undefined}
             // The selected monster gets the weapon tree's active row: the hover
             // glow's green, held still.
@@ -68,11 +65,12 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
 }
 
 /**
- * The bestiary frame: type nav, divider and the list of the type's monsters
- * down the left, with the page (a monster's details, or NO DATA on the type's
- * own page) on the right. It lives in the monsters layout so it stays mounted
- * while you move between monsters (and types); only the right-hand card
- * re-renders, instead of the whole page being torn down and rebuilt.
+ * The bestiary frame: page bar with the type tabs, and the list of the type's
+ * monsters down the left, with the page (a monster's details, or NO DATA on
+ * the type's own page) on the right. It lives in the monsters layout so it
+ * stays mounted while you move between monsters (and types); only the
+ * right-hand card re-renders, instead of the whole page being torn down and
+ * rebuilt.
  */
 export function MonsterShell({
   category,
@@ -95,12 +93,13 @@ export function MonsterShell({
   return (
     <>
       <MonsterNav activeCategory={category} />
-      <BorderRule />
       {category ? (
-        <div className="split-page">
-          <MonsterSidebar category={category} slug={slug} />
+        <SplitPage
+          list={<MonsterSidebar category={category} slug={slug} />}
+          closeHref={slug && `/monsters/${category}/`}
+        >
           {children}
-        </div>
+        </SplitPage>
       ) : (
         children
       )}
