@@ -739,7 +739,7 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   the main weapon, then a shield, second blade, quiver or scabbard. `export-site`
   groups the mesh by root, and a weapon with more than one gets a `part_<n>`
   node per piece.
-- **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit at the hand joint with no offset, which looks right in the drawn stances but isn't confirmed against the game. On the
+- **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit at the palm. Two-handed classes (great sword, long sword, hunting horn, both bowguns) are turned so the handle reaches the left palm in the drawn stance, a fit to the motions and not read from the game, so the hands can drift off the handle in other motions. On the
   back they're placed by eye (`WEAPON_MOUNTS` in the site's `src/lib/hunter.ts`),
   so a sheathed weapon is only roughly where the game has it. Only the male
   Battle set is exported.

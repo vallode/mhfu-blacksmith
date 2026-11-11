@@ -82,14 +82,27 @@ export interface WeaponMount {
   rotation: [number, number, number];
 }
 
-const hand = (joint: number): WeaponMount => ({
-  joint,
-  position: [0, 0, 0],
-  rotation: [0, 0, 0],
-});
+/** The middle of each palm from its wrist joint, the median over the game's gauntlet meshes. */
+const RIGHT_PALM: [number, number, number] = [-8.7, -0.8, 5.1];
+const LEFT_PALM: [number, number, number] = [8.7, -0.8, 5.1];
 
-const rightHand = hand(JOINT.RIGHT_HAND);
-const leftHand = hand(JOINT.LEFT_HAND);
+const rightHand: WeaponMount = {
+  joint: JOINT.RIGHT_HAND,
+  position: RIGHT_PALM,
+  rotation: [0, 0, 0],
+};
+const leftHand: WeaponMount = { joint: JOINT.LEFT_HAND, position: LEFT_PALM, rotation: [0, 0, 0] };
+
+/**
+ * A two-handed weapon in the right palm, turned so its handle reaches the left
+ * palm in the class's drawn stance (group 0, slot 1 of its motion file). A heavy
+ * bowgun's barrel runs along -Z, so its rotation includes a half turn. The hammer
+ * isn't here: its left hand doesn't reach the shaft in that stance.
+ */
+const twoHanded = (x: number, y: number, z: number): WeaponMount => ({
+  ...rightHand,
+  rotation: [x, y, z],
+});
 
 /**
  * Sheathed places, relative to the chest (Y up, Z forward) and placed by eye:
@@ -115,13 +128,22 @@ const headUp = (lean: number): [number, number, number] => [-110 * DEG, lean * D
 const tipDown = (lean: number): [number, number, number] => [115 * DEG, lean * DEG, 0];
 
 export const WEAPON_MOUNTS: Record<string, WeaponMounts> = {
-  "great-sword": { drawn: [rightHand], sheathed: [back([-8, 22, -13], tipDown(30))] },
+  "great-sword": {
+    drawn: [twoHanded(-0.04, -0.538, -0.011)],
+    sheathed: [back([-8, 22, -13], tipDown(30))],
+  },
   "long-sword": {
-    drawn: [rightHand],
+    drawn: [twoHanded(-0.48, -0.209, -0.051)],
     sheathed: [back([-8, 20, -12], tipDown(30)), back([-8, 20, -12], tipDown(30))],
   },
-  hammer: { drawn: [rightHand], sheathed: [back([-14, -30, -14], headUp(40))] },
-  "hunting-horn": { drawn: [rightHand], sheathed: [back([-14, -30, -14], headUp(40))] },
+  hammer: {
+    drawn: [rightHand],
+    sheathed: [back([-14, -30, -14], headUp(40))],
+  },
+  "hunting-horn": {
+    drawn: [twoHanded(-0.007, -0.269, -0.001)],
+    sheathed: [back([-14, -30, -14], headUp(40))],
+  },
   lance: {
     drawn: [rightHand, leftHand],
     sheathed: [back([-14, -30, -14], headUp(30)), back([0, 12, -8], headUp(0))],
@@ -138,8 +160,14 @@ export const WEAPON_MOUNTS: Record<string, WeaponMounts> = {
     drawn: [rightHand, leftHand],
     sheathed: [back([-8, 14, -11], tipDown(20)), back([8, 14, -11], tipDown(-20))],
   },
-  "light-bowgun": { drawn: [rightHand], sheathed: [back([-10, -6, -14], headUp(25))] },
-  "heavy-bowgun": { drawn: [rightHand], sheathed: [back([-10, -6, -16], headUp(25))] },
+  "light-bowgun": {
+    drawn: [twoHanded(0.363, -0.043, 0.008)],
+    sheathed: [back([-10, -6, -14], headUp(25))],
+  },
+  "heavy-bowgun": {
+    drawn: [twoHanded(-2.779, 0.043, -0.008)],
+    sheathed: [back([-10, -6, -16], headUp(25))],
+  },
   // A bow's length runs along its Y axis, so it stands upright as it is.
   bow: {
     drawn: [leftHand, back([0, -25, -8], [0, 0, 0])],
