@@ -42,7 +42,13 @@ import {
   describeDropped,
   encodeSet,
 } from "@/lib/set-codec";
-import { resolveWanted, selectableSkills, type Piece, type SearchQuery } from "@/lib/set-search";
+import {
+  DEFAULT_LIMIT,
+  resolveWanted,
+  selectableSkills,
+  type Piece,
+  type SearchQuery,
+} from "@/lib/set-search";
 import * as ui from "@/styles/settings";
 import ArmorSetView, { PanelTitle, SetHeader, SetStatus } from "./ArmorSetView";
 import MySets from "./MySets";
@@ -536,10 +542,9 @@ export default function SetBuilderClient() {
                     {set ? (
                       <>
                         <SetHeader index={index} count={sets.length} onStep={step} />
-                        {result && result.total > sets.length && (
+                        {sets.length >= (searched?.limit ?? DEFAULT_LIMIT) && (
                           <p className={ui.note}>
-                            The {sets.length} highest-defence sets of {result.total}
-                            {result.truncated ? "+" : ""} found. Add skills to narrow the search.
+                            The {sets.length} highest-defence sets. Add skills to narrow the search.
                           </p>
                         )}
                         {result?.timedOut && (

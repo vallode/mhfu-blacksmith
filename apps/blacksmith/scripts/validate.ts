@@ -281,6 +281,7 @@ section("Validating skills…");
     fs.readFileSync(path.join(dataDir, "decorations.json"), "utf-8"),
   ) as { decorations: { name: string; skills?: string[] }[] };
   for (const d of decorations) {
+    let positive = 0;
     for (const s of d.skills ?? []) {
       const parsed = parseDecorationSkill(s);
       if (!parsed) {
@@ -288,7 +289,11 @@ section("Validating skills…");
         continue;
       }
       if (!names.has(parsed.name)) unknown.set(parsed.name, d.name);
+      if (parsed.amount > 0) positive++;
     }
+    // The set search's bounds count each decoration slot toward one wanted
+    // skill (set-search.ts, `reachable`).
+    if (positive > 1) error(`decoration ${d.name}: adds to more than one skill tree`);
   }
   for (const [tree, item] of unknown) {
     error(`skills: "${tree}" (on ${item}) is not a tree or alias in data/skills.json`);
