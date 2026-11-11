@@ -634,7 +634,7 @@ motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   long; the tail-tip copy (part 3) has no motions. A bone record holds up to
   nine channels (scale, rotation, translation x/y/z; a missing one keeps the
   bind value) of cubic Hermite keys: s16 value, u16 frame, s16 tangents in
-  and out. Scale and translation are 1/16 fixed point, rotation 0x8000 = pi.
+  and out. Scale and translation are 1/16 fixed point, rotation 0x2000 = pi (0x2000 keeps a stance's feet level and Kelbi's lowest bone at exactly 0).
   On an EU disc all 89 banks (em01-em89) parse, 9,995 motions, and in all
   but 3 (em82's, which split its body and head 32/8 bones, not 29/11) every
   motion's bone count is its part's. Driving skinned meshes with them in a
@@ -686,8 +686,8 @@ file paths:
 Monster motions go next to the models as `monsters/emNN.motions.bin`
 (`src/models/motion-pack.ts` has the layout): gzip of the clips as
 delta-coded s16 keys, at a looser tolerance (0.5 degrees, 0.1 units), since
-glTF's per-track JSON outweighed the key data (68 MB for all monsters as
-glTF animations, 12.3 MB like this). Monsters that share a bank share a
+glTF's per-track JSON outweighed the key data (about five times the size as
+glTF animations; 22.7 MB for all monsters like this). Monsters that share a bank share a
 file: the `.glb` names its own in `asset.extras.motions`. Skinning grew the
 83 monster models from 6.0 to 7.0 MB. The site's viewer
 (`apps/blacksmith/src/lib/motions.ts`, `ModelViewer.tsx`) plays them in
@@ -718,10 +718,7 @@ unpacked directory; the log says `no hunter: ...` if it can't.
 - **Motions.** `motion/plcom_tbl.bin` and `motion/wNN_tbl.bin` are the same
   bank format as a monster's (`motion.ts`), but their tables pair by motion
   group: table 2g moves the 9 lower bones and 2g + 1 the 12 upper bones of
-  group g. Weapon files have 3 groups, `plcom` 5. Rotation keys are 0x2000 = pi,
-  four times a monster's (`PLAYER_ROTATION_UNIT`): at the monster unit the arms
-  stay near a T-pose and the feet sink under the floor in most motions, at this
-  one a stance's feet both sit 10 units up and an evade roll ends upright. `buildPlayerClips` numbers a
+  group g. Weapon files have 3 groups, `plcom` 5. `buildPlayerClips` numbers a
   clip's slot group x 1000 + slot, in the same `MHM1` pack as monsters. Files
   run in the game's weapon class order: 00 great sword, 01 heavy bowgun, 02
   hammer, 03 lance, 04 sword and shield, 05 light bowgun, 06 dual blades, 07

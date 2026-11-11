@@ -49,7 +49,7 @@ import { skeletonFor } from "../models/attach.js";
 import { buildGlb, type GlbOptions, type GlbPartOf } from "../models/gltf.js";
 import { boneRoots, composeHunter, readHunterPiece, type HunterSlot } from "../models/hunter.js";
 import { packMotions } from "../models/motion-pack.js";
-import { PLAYER_ROTATION_UNIT, readMotionBank } from "../models/motion.js";
+import { readMotionBank } from "../models/motion.js";
 import { packageModel } from "../models/rig.js";
 import { isPac, readPac, type PacEntry } from "../models/pac.js";
 import { isPmo, type Pmo } from "../models/pmo.js";
@@ -231,10 +231,7 @@ async function exportHunter(
     await writeFile(path.join(dir, file), pack);
   };
   const bank = async (name: string) =>
-    readMotionBank(
-      await readFile(path.join(dataBin, "motion", `${name}_tbl.bin`)),
-      PLAYER_ROTATION_UNIT,
-    );
+    readMotionBank(await readFile(path.join(dataBin, "motion", `${name}_tbl.bin`)));
   await writeClips(
     "common.motions.bin",
     buildPlayerClips(bones, await bank("plcom"), clipOptions).filter((clip) =>

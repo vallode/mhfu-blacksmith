@@ -25,16 +25,14 @@
  *   (cubic Hermite, value units per frame; mostly the slope between the
  *   neighbouring keys). Values are fixed point: scale and translation 1/16
  *   (16 = 1.0; Kelbi's hip sits 1411/16 = 88 units up, its legs ~80 long),
- *   rotation 0x8000 = pi (keys reach exactly +-0x8000, never beyond).
+ *   rotation 0x2000 = pi. At that unit Kelbi's, Mosswine's and Bullfango's
+ *   lowest bone sits at exactly 0 through their typical motion, a stance's
+ *   feet are level on the player, and an evade roll ends upright (the hips
+ *   turn 364 degrees). Keys can go past a full turn.
  *
  * The player's `motion/plcom_tbl.bin` and `wNN_tbl.bin` are the same format
  * with tables paired by motion group, not skeleton part alone: tables 2g and
- * 2g + 1 are group g's lower and upper body (animation.ts, `buildPlayerClips`),
- * and rotation keys are 0x2000 = pi (`PLAYER_ROTATION_UNIT`), four times a
- * monster's. Read at the monster unit, the arms stay near a T-pose and the feet
- * sink under the floor; at this one, both feet of a stance sit at the same
- * height (10 units) in every weapon class checked, the arms hang, and a full
- * evade roll ends upright (the hips turn 364 degrees).
+ * 2g + 1 are group g's lower and upper body (animation.ts, `buildPlayerClips`).
  *
  * Not yet known: the Euler order (XYZ and ZYX distort meshes alike; most
  * vertices follow one bone) and which of the two tangents is which (they're
@@ -80,14 +78,9 @@ const EMPTY = 0xffffffff;
 const ONE = 16;
 const PROPERTIES: MotionProperty[] = ["scale", "rotation", "translation"];
 
-/** Radians of one rotation key unit in a monster's bank: 0x8000 = pi. */
-const MONSTER_ROTATION_UNIT = Math.PI / 0x8000;
-/** Radians of one rotation key unit in the player's banks: 0x2000 = pi. */
-export const PLAYER_ROTATION_UNIT = Math.PI / 0x2000;
-
-/** Value of a raw key for a channel bit: scale and translation /16, rotation `rotationUnit`. */
-function unit(bit: number, rotationUnit: number): number {
-  return bit >= 3 && bit < 6 ? rotationUnit : 1 / ONE;
+/** Value of a raw key for a channel bit: scale and translation /16, rotation 0x2000 = pi. */
+function unit(bit: number): number {
+  return bit >= 3 && bit < 6 ? Math.PI / 0x2000 : 1 / ONE;
 }
 
 /** The (count, offset) table directory, without the terminating pair; null if it doesn't fit. */
@@ -117,7 +110,7 @@ export function isMotionBank(buf: Buffer): boolean {
   return first !== undefined && first + 4 <= buf.length && reader.u32(first) === MOTION_MAGIC;
 }
 
-function readMotion(reader: BinaryReader, at: number, rotationUnit: number): Motion {
+function readMotion(reader: BinaryReader, at: number): Motion {
   if (reader.u32(at) !== MOTION_MAGIC) throw new Error(`No motion at 0x${at.toString(16)}`);
   const boneCount = reader.u32(at + 4);
   const end = at + reader.u32(at + 8);
@@ -141,7 +134,7 @@ function readMotion(reader: BinaryReader, at: number, rotationUnit: number): Mot
       if (reader.u16(q + 2) !== KEY_FORMAT || bit < 0 || bit > 8 || !(tag & (1 << bit)))
         throw new Error(`Motion at 0x${at.toString(16)}: unknown channel at 0x${q.toString(16)}`);
       const keyCount = reader.u32(q + 4);
-      const scale = unit(bit, rotationUnit);
+      const scale = unit(bit);
       const keys: MotionKey[] = [];
       for (let k = 0; k < keyCount; k++) {
         const key = q + 12 + k * KEY_SIZE;
@@ -170,16 +163,13 @@ function readMotion(reader: BinaryReader, at: number, rotationUnit: number): Mot
 }
 
 /** Every table of a bank, in file order, with null for empty slots. */
-export function readMotionBank(
-  buf: Buffer,
-  rotationUnit: number = MONSTER_ROTATION_UNIT,
-): (Motion | null)[][] {
+export function readMotionBank(buf: Buffer): (Motion | null)[][] {
   if (!isMotionBank(buf)) throw new Error("Not a motion bank");
   const reader = new BinaryReader(buf);
   return readDirectory(reader)!.map(({ count, offset }) =>
     Array.from({ length: count }, (_, k) => {
       const at = reader.u32(offset + k * 4);
-      return at === EMPTY ? null : readMotion(reader, at, rotationUnit);
+      return at === EMPTY ? null : readMotion(reader, at);
     }),
   );
 }

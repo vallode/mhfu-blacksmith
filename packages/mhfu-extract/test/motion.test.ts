@@ -3,7 +3,6 @@ import { test } from "node:test";
 import {
   isMotionBank,
   partMotions,
-  PLAYER_ROTATION_UNIT,
   readMotionBank,
   sampleChannel,
   type MotionKey,
@@ -77,8 +76,8 @@ const BODY = motion(
       [
         4,
         [
-          [0x4000, 0, 0, 0],
-          [-0x8000, 30, 0, 0],
+          [0x1000, 0, 0, 0],
+          [-0x2000, 30, 0, 0],
         ] as RawKey[],
       ], // rotation y: pi/2 -> -pi
       [
@@ -178,21 +177,4 @@ test("sampleChannel interpolates with Hermite tangents and holds outside the key
   // Tangents equal to the slope make it linear.
   const linear = [key(0, 0, 1), key(10, 10, 1)];
   assert.ok(Math.abs(sampleChannel(linear, 2) - 2) < 1e-9);
-});
-
-test("readMotionBank scales only rotation keys by the unit it's given", () => {
-  const buf = bank([[BODY], [null], [HEAD], [null]]);
-  const channels = (unit?: number) => readMotionBank(buf, unit)[0]![0]!.bones.flat();
-  const monster = channels();
-  const player = channels(PLAYER_ROTATION_UNIT);
-  assert.ok(monster.some((c) => c.property === "rotation"));
-  monster.forEach((channel, c) =>
-    channel.keys.forEach((key, k) =>
-      assert.ok(
-        Math.abs(
-          player[c]!.keys[k]!.value - key.value * (channel.property === "rotation" ? 4 : 1),
-        ) < 1e-9,
-      ),
-    ),
-  );
 });
