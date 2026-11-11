@@ -28,6 +28,7 @@ import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
+import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stats.js";
 import {
   collectQuestMonsters,
   multiplierSets,
@@ -334,6 +335,28 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         game.resolver,
         settings["weapons.mix"],
         rng.fork("weapons"),
+        edits,
+      ),
+    );
+  }
+
+  // Stats are in each weapon's own record, which the weapons shuffle never
+  // touches, so they go with the weapon and the order doesn't matter.
+  const weaponSpreads = {
+    attack: settings["weapons.attack"] ? settings["weapons.attackSpread"] : null,
+    affinity: settings["weapons.affinity"] ? settings["weapons.affinitySpread"] : null,
+    element: settings["weapons.element"] ? settings["weapons.elementSpread"] : null,
+  };
+  if (Object.values(weaponSpreads).some((v) => v !== null)) {
+    reports.push(
+      randomizeWeaponStats(
+        collectWeaponStats(game.eboot!, game.resolver),
+        weaponSpreads,
+        {
+          attack: rng.fork("weapon-attack"),
+          affinity: rng.fork("weapon-affinity"),
+          element: rng.fork("weapon-element"),
+        },
         edits,
       ),
     );

@@ -81,7 +81,7 @@ const FAMILIES: Family[] = [
   },
 ];
 
-const TYPE_NAMES: Record<WeaponTypeName, string> = {
+export const TYPE_NAMES: Record<WeaponTypeName, string> = {
   "great-sword": "Great Sword",
   "long-sword": "Long Sword",
   "sword-and-shield": "Sword and Shield",

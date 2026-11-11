@@ -39,6 +39,9 @@ const settings = applySettings(defaultSettings("WEB-E2E"), {
   "monsterStats.status": true,
   "weaknesses.elements": true,
   "weaknesses.parts": true,
+  "weapons.attack": true,
+  "weapons.affinity": true,
+  "weapons.element": true,
 });
 const settingsString = encodeSettings(settings);
 

@@ -34,6 +34,12 @@ export interface Settings {
   "costs.spread": number;
   "weapons.enabled": boolean;
   "weapons.mix": "same-type" | "any-type";
+  "weapons.attack": boolean;
+  "weapons.attackSpread": number;
+  "weapons.affinity": boolean;
+  "weapons.affinitySpread": number;
+  "weapons.element": boolean;
+  "weapons.elementSpread": number;
   "armor.enabled": boolean;
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
@@ -365,7 +371,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.enabled",
     section: "Weapons",
     label: "Shuffle which weapons the smithy makes",
-    help: "Each spot in the smithy's weapon trees makes a different weapon of the same rarity. Spots keep their materials and upgrade paths; weapons keep their stats and cost.",
+    help: "Each spot in the smithy's weapon trees makes a different weapon of the same rarity. Spots keep their materials and upgrade paths; weapons keep their stats and cost wherever they go.",
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
@@ -393,6 +399,63 @@ export const OPTIONS: readonly OptionDef[] = [
     },
     default: "same-type",
     enabledBy: "weapons.enabled",
+  },
+  {
+    key: "weapons.attack",
+    section: "Weapons",
+    label: "Randomize weapon attack",
+    help: "Each weapon's attack varies, staying within what weapons of its type have from one rarity below to one above. Sharpness, slots, defense bonus, horn notes, shelling, ammo and cost stay fixed. Stats go with the weapon wherever the smithy makes it.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+    eboot: true,
+  },
+  {
+    key: "weapons.attackSpread",
+    section: "Weapons",
+    label: "Attack variation",
+    help: "How far attack can move from its usual value, up or down.",
+    type: SPREAD,
+    default: 0.2,
+    enabledBy: "weapons.attack",
+  },
+  {
+    key: "weapons.affinity",
+    section: "Weapons",
+    label: "Randomize weapon affinity",
+    help: "Each weapon's affinity moves up or down in steps of 5%, staying within what weapons of its type have from one rarity below to one above.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+    eboot: true,
+  },
+  {
+    key: "weapons.affinitySpread",
+    section: "Weapons",
+    label: "Affinity variation",
+    help: "How many points affinity can move, up or down.",
+    type: { kind: "number", min: 5, max: 50, step: 5 },
+    default: 15,
+    enabledBy: "weapons.affinity",
+  },
+  {
+    key: "weapons.element",
+    section: "Weapons",
+    label: "Randomize weapon element and status",
+    help: "Weapons with an element or status get a new value for it, staying within what weapons of its type have from one rarity below to one above. They keep which element or status it is; weapons without one stay without, and dual-element weapons keep theirs.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+    eboot: true,
+  },
+  {
+    key: "weapons.elementSpread",
+    section: "Weapons",
+    label: "Element variation",
+    help: "How far element and status values can move from their usual value, up or down.",
+    type: SPREAD,
+    default: 0.3,
+    enabledBy: "weapons.element",
   },
   {
     key: "armor.enabled",
