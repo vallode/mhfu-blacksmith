@@ -545,7 +545,7 @@ textarea.text-input {
   gap: 2rem;
   padding: 2.4rem 2.6rem;
   border-style: solid;
-  border-image: var(--image-card-frame) 84 88 80 88 fill / 21px 22px 20px 22px round;
+  border-image: var(--image-card-frame) 24 fill / 18px round;
   cursor: pointer;
   position: relative;
 
