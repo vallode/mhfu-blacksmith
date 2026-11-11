@@ -703,22 +703,25 @@ previous manifest, so a run without `eboot.bin` keeps weapons and armor.
 ### Hunter
 
 `export-site` writes a hunter for the weapon pages' viewer to
-`public/models/hunter/` (808 KB in all, 245 two-piece weapon models grew by
+`public/models/hunter/` (1.4 MB in all, 245 two-piece weapon models grew by
 63 KB). Needs only `player/` and `motion/` from the
 unpacked directory; the log says `no hunter: ...` if it can't.
 
 | File                 | Size      | Holds                                                 |
 | -------------------- | --------- | ----------------------------------------------------- |
 | `hunter.glb`         | 50 KB     | Male Battle armor set, skinned to the player skeleton |
-| `common.motions.bin` | 587 B     | The sheathed standing motion, from `plcom_tbl.bin`    |
-| `wNN.motions.bin`    | 47-110 KB | Every motion of weapon class NN                       |
+| `common.motions.bin` | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`    |
+| `wNN.motions.bin`    | 92-196 KB | Every motion of weapon class NN                       |
 
 - **Skeleton.** 21 bones (`src/models/hunter.ts` lists them), T-pose, origin
   at the hips, left +X, facing +Z. Bones 0-8 are part 0 and 9-20 part 1.
 - **Motions.** `motion/plcom_tbl.bin` and `motion/wNN_tbl.bin` are the same
   bank format as a monster's (`motion.ts`), but their tables pair by motion
   group: table 2g moves the 9 lower bones and 2g + 1 the 12 upper bones of
-  group g. Weapon files have 3 groups, `plcom` 5. `buildPlayerClips` numbers a
+  group g. Weapon files have 3 groups, `plcom` 5. Rotation keys are 0x2000 = pi,
+  four times a monster's (`PLAYER_ROTATION_UNIT`): at the monster unit the arms
+  stay near a T-pose and the feet sink under the floor in most motions, at this
+  one a stance's feet both sit 10 units up and an evade roll ends upright. `buildPlayerClips` numbers a
   clip's slot group x 1000 + slot, in the same `MHM1` pack as monsters. Files
   run in the game's weapon class order: 00 great sword, 01 heavy bowgun, 02
   hammer, 03 lance, 04 sword and shield, 05 light bowgun, 06 dual blades, 07
@@ -736,8 +739,7 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   the main weapon, then a shield, second blade, quiver or scabbard. `export-site`
   groups the mesh by root, and a weapon with more than one gets a `part_<n>`
   node per piece.
-- **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit
-  at the hand joint with no offset, and that lines up for every class. On the
+- **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit at the hand joint with no offset, which looks right in the drawn stances but isn't confirmed against the game. On the
   back they're placed by eye (`WEAPON_MOUNTS` in the site's `src/lib/hunter.ts`),
   so a sheathed weapon is only roughly where the game has it. Only the male
   Battle set is exported.
