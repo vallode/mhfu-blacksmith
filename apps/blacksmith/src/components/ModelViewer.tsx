@@ -4,7 +4,13 @@ import { useEffect, useRef, useState } from "react";
 import Loading from "@/components/Loading";
 import { capsuleBone } from "@/lib/capsule-bone";
 import { cn } from "@/lib/cn";
-import { fetchHunterClips, HUNTER_MODEL, WEAPON_MOUNTS, type HunterClip } from "@/lib/hunter";
+import {
+  fetchHunterClips,
+  HUNTER_MODEL,
+  WEAPON_MOUNTS,
+  type HunterClip,
+  type WeaponMount,
+} from "@/lib/hunter";
 import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 
@@ -68,6 +74,14 @@ type Status = "loading" | "ready" | "error";
 
 /** How long a model waits for its motions before showing still (see the effect). */
 const MOTIONS_WAIT_MS = 1500;
+/**
+ * A two-handed weapon goes to its holding hand (`WeaponMount.hold`) while the
+ * other fist is within GRIP_ON of the handle line, and back by GRIP_OFF. The
+ * fist can slide GRIP_SLIDE along the handle and still count as on it.
+ */
+const GRIP_ON = 8;
+const GRIP_OFF = 16;
+const GRIP_SLIDE = 20;
 
 /** Poses of the first motion sampled for the ground's height. */
 const GROUND_SAMPLES = 8;
@@ -168,6 +182,7 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
       const animate = () => {
         frame = requestAnimationFrame(animate);
         mixer?.update(clock.getDelta());
+        holdWeapon?.();
         controls.update();
         renderer.render(scene, camera);
       };
@@ -175,6 +190,8 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
       let model: import("three").Object3D | null = null;
       /** Moves the weapon between the hunter's hands and back; only with `hunter`. */
       let placeWeapon: ((sheathed: boolean) => void) | null = null;
+      /** Hands a two-handed weapon between the fists each frame (`WeaponMount.hold`). */
+      let holdWeapon: (() => void) | null = null;
       let ground: import("three").Mesh | null = null;
       const abort = new AbortController();
       cleanup = () => {
@@ -218,8 +235,16 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
           const parts = named.length > 0 ? named : [weapon.children[0]!];
           const mounts = WEAPON_MOUNTS[hunter!];
           const body = model;
+          type Held = {
+            part: import("three").Object3D;
+            bone: import("three").Object3D;
+            holder: import("three").Object3D;
+            mount: WeaponMount & { hold: NonNullable<WeaponMount["hold"]> };
+          };
+          let held: Held[] = [];
           placeWeapon = (sheathed) => {
             const plan = mounts && (sheathed ? mounts.sheathed : mounts.drawn);
+            held = [];
             parts.forEach((part, i) => {
               const mount = plan?.[Math.min(i, plan.length - 1)];
               const bone = mount && body.getObjectByName(`bone_${mount.joint}`);
@@ -227,7 +252,51 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
               bone.add(part);
               part.position.set(...mount.position);
               part.rotation.set(...mount.rotation);
+              const holder = mount.hold && body.getObjectByName(`bone_${mount.hold.joint}`);
+              if (mount.hold && holder)
+                held.push({ part, bone, holder, mount: { ...mount, hold: mount.hold } });
             });
+          };
+          const fist = new THREE.Vector3();
+          const toHolder = new THREE.Matrix4();
+          const inHolder = new THREE.Matrix4();
+          const one = new THREE.Vector3(1, 1, 1);
+          const euler = new THREE.Euler();
+          const own = { position: new THREE.Vector3(), quaternion: new THREE.Quaternion() };
+          const taken = { position: new THREE.Vector3(), quaternion: new THREE.Quaternion() };
+          const scale = new THREE.Vector3();
+          holdWeapon = () => {
+            if (held.length === 0) return;
+            body.updateMatrixWorld(true);
+            for (const { part, bone, holder, mount } of held) {
+              const { hold } = mount;
+              // Where the first fist is along the holder's grip line.
+              toHolder.copy(holder.matrixWorld).invert();
+              fist
+                .set(...hold.fist)
+                .applyMatrix4(bone.matrixWorld)
+                .applyMatrix4(toHolder);
+              const off = Math.hypot(
+                fist.x - hold.grip[0],
+                fist.y - hold.grip[1],
+                Math.max(0, Math.abs(fist.z - hold.grip[2]) - GRIP_SLIDE),
+              );
+              const weight = 1 - THREE.MathUtils.smoothstep(off, GRIP_ON, GRIP_OFF);
+              own.position.set(...mount.position);
+              own.quaternion.setFromEuler(euler.set(...mount.rotation));
+              // The holder's place, in the first fist's frame (the part's parent).
+              inHolder.compose(
+                taken.position.set(...hold.position),
+                taken.quaternion.setFromEuler(euler.set(...hold.rotation)),
+                one,
+              );
+              inHolder
+                .premultiply(holder.matrixWorld)
+                .premultiply(toHolder.copy(bone.matrixWorld).invert())
+                .decompose(taken.position, taken.quaternion, scale);
+              part.position.lerpVectors(own.position, taken.position, weight);
+              part.quaternion.slerpQuaternions(own.quaternion, taken.quaternion, weight);
+            }
           };
           placeWeapon(true);
         } else if (pair) {

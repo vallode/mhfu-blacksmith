@@ -75,11 +75,20 @@ export async function fetchHunterClips(type: string, signal?: AbortSignal): Prom
   ];
 }
 
+type Vec3 = [number, number, number];
+
 /** Where one piece of a weapon rides: under `joint`, `position` and `rotation` (X-Y-Z Euler radians) from it. */
 export interface WeaponMount {
   joint: number;
-  position: [number, number, number];
-  rotation: [number, number, number];
+  position: Vec3;
+  rotation: Vec3;
+  /**
+   * A second hand that takes the weapon over while the first is on its grip:
+   * the weapon follows `hold` when `fist` (in `joint`'s frame) is within a few
+   * units of the handle line through `grip` (in `hold.joint`'s frame, along
+   * its Z), and `joint` otherwise.
+   */
+  hold?: { joint: number; position: Vec3; rotation: Vec3; grip: Vec3; fist: Vec3 };
 }
 
 /**
@@ -98,20 +107,37 @@ const rightHand: WeaponMount = {
 const leftHand: WeaponMount = { joint: JOINT.LEFT_HAND, position: LEFT_PALM, rotation: [0, 0, 0] };
 
 /**
- * A two-handed melee weapon, rigid in the left fist and running along its
- * grip, with its origin `reach` up the handle from it. In the motions the
- * right fist stays on the left fist's grip axis, at a set distance (great
- * sword 53, long sword 62, hammer 79, hunting horn 42, in most frames of each
- * class), while the left fist's place in the right fist's frame wanders: the
- * left hand holds the weapon and the right slides on it. The origin is the
- * upper hand's place, but a hammer's handle starts only 26 below its origin,
- * so its origin is the left fist itself. `rotation` tilts the handle onto the
- * right fist where that sits a little off the left fist's axis.
+ * A two-handed melee weapon. It's the right hand's: drawing and sheathing,
+ * the right hand carries it alone. While both hold it, though, the right fist
+ * stays on the left fist's grip axis, at a set distance (great sword 53, long
+ * sword 62, hammer 79, hunting horn 42) in most frames of each class, but turns
+ * about it, while the left fist's place in the right fist's frame wanders. So
+ * then the weapon runs along the left fist's grip, with the right fist on it.
+ *
+ * `right` is the weapon in the right fist (the left-held place, carried into
+ * the right fist's frame in the drawn stance, group 0 slot 1 frame 0, so the
+ * two agree there). `left` is the weapon's place from the left fist: its origin
+ * `reach` up the left fist's grip, `rotation` from there; the right fist sits
+ * `fistReach` up it. The origin is the upper hand's place, except on a hammer,
+ * whose handle starts only 26 below its origin: there it's the left fist,
+ * `rotation` tilting the handle onto the right fist, which sits a little off
+ * the left fist's axis.
  */
-const leftGrip = (reach: number, rotation: [number, number, number] = [0, 0, 0]): WeaponMount => ({
-  ...leftHand,
-  position: [LEFT_PALM[0], LEFT_PALM[1], LEFT_PALM[2] + reach],
-  rotation,
+const twoHanded = (
+  right: { position: Vec3; rotation: Vec3 },
+  reach: number,
+  fistReach = reach,
+  rotation: Vec3 = [0, 0, 0],
+): WeaponMount => ({
+  joint: JOINT.RIGHT_HAND,
+  ...right,
+  hold: {
+    joint: JOINT.LEFT_HAND,
+    position: [LEFT_PALM[0], LEFT_PALM[1], LEFT_PALM[2] + reach],
+    rotation,
+    grip: [LEFT_PALM[0], LEFT_PALM[1], LEFT_PALM[2] + fistReach],
+    fist: RIGHT_PALM,
+  },
 });
 
 /**
@@ -149,19 +175,26 @@ const tipDown = (lean: number): [number, number, number] => [115 * DEG, lean * D
 
 export const WEAPON_MOUNTS: Record<string, WeaponMounts> = {
   "great-sword": {
-    drawn: [leftGrip(53)],
+    drawn: [twoHanded({ position: [-9.6, -1.3, 2.1], rotation: [-0.034, -0.544, 2.787] }, 53)],
     sheathed: [back([-8, 22, -13], tipDown(30))],
   },
   "long-sword": {
-    drawn: [leftGrip(62)],
+    drawn: [twoHanded({ position: [-7.7, -0.2, 2.3], rotation: [-0.542, -0.183, -2.455] }, 62)],
     sheathed: [back([-8, 20, -12], tipDown(30)), back([-8, 20, -12], tipDown(30))],
   },
   hammer: {
-    drawn: [leftGrip(0, [0.074, -0.018, 0])],
+    drawn: [
+      twoHanded(
+        { position: [-3.8, -23.5, -73.2], rotation: [-0.297, -0.086, 3.123] },
+        0,
+        79,
+        [0.074, -0.018, 0],
+      ),
+    ],
     sheathed: [back([-14, -30, -14], headUp(40))],
   },
   "hunting-horn": {
-    drawn: [leftGrip(42)],
+    drawn: [twoHanded({ position: [-6.6, -1.8, 2.9], rotation: [0.042, -0.278, 0.032] }, 42)],
     sheathed: [back([-14, -30, -14], headUp(40))],
   },
   lance: {
