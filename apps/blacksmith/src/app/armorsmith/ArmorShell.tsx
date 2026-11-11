@@ -41,7 +41,6 @@ function ArmorSidebar({ slot, rank, slug }: { slot: ArmorSlot; rank: ArmorRank; 
               basePath={basePath}
               treeKey={treeKey}
               activeSlug={slug}
-              scroll={false}
             />
           </ul>
         ))}
@@ -52,10 +51,10 @@ function ArmorSidebar({ slot, rank, slug }: { slot: ArmorSlot; rank: ArmorRank; 
 
 /**
  * The armorsmith frame: page bar with the slot tabs, and the slot's tree at
- * the current rank down the left, with the page (a piece's details, or NO DATA on the
- * slot's own page) on the right. It lives in the armorsmith layout so it stays
- * mounted while you move between pieces, slots and ranks; only the right-hand
- * card re-renders.
+ * the current rank down the left, with the page (a piece's details, or NO
+ * DATA on the slot's own page) on the right. It lives in the armorsmith layout
+ * so it stays mounted while you move between pieces, slots and ranks; only
+ * the right-hand card re-renders.
  */
 export function ArmorShell({
   slot,

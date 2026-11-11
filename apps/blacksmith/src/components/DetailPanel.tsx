@@ -14,11 +14,17 @@ import type { Material } from "@/lib/types";
  * the height of the page, as beside a tree (SplitPage); elsewhere on a phone
  * the card grows instead.
  */
-export function DetailCard({ children }: { children: React.ReactNode }) {
+export function DetailCard({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
   return (
     // The 4rem basis keeps the row split it had when Card's 4rem of side
     // padding sat on this flex item (tree card 530px, this 570px at 1400px).
-    <Card className="basis-[4rem] mobile:basis-[0%]" scroll>
+    <Card className={cn("basis-[4rem] mobile:basis-[0%]", className)} scroll>
       {children}
     </Card>
   );
@@ -45,10 +51,11 @@ export function DetailName({ children, id }: { children: React.ReactNode; id?: s
 /**
  * The detail card with nothing selected (a section's own page, beside its
  * tree): NO DATA where the item's name would be, plus an optional note.
+ * Phones show the list alone on that page, unless there is a note.
  */
 export function NoDataCard({ children }: { children?: React.ReactNode }) {
   return (
-    <DetailCard>
+    <DetailCard className={children ? undefined : "mobile:hidden"}>
       <DetailHeader>
         <p className="uppercase">No data</p>
       </DetailHeader>

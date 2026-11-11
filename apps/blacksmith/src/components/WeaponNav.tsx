@@ -3,17 +3,11 @@
 import { useEffect } from "react";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import { writeLastWeapon } from "@/lib/last-weapon";
+import { titleCase } from "@/lib/title-case";
 import PageBar, { PageTab, PageTabs } from "./PageBar";
 
 interface WeaponNavProps {
   activeType: WeaponType;
-}
-
-function formatWeaponName(type: string): string {
-  return type
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase())
-    .replace(" And ", " and ");
 }
 
 /** The weapon pages' PageBar: the type as title and one tab per weapon type. */
@@ -23,7 +17,7 @@ export default function WeaponNav({ activeType }: WeaponNavProps) {
     writeLastWeapon(activeType);
   }, [activeType]);
 
-  const typeName = formatWeaponName(activeType);
+  const typeName = titleCase(activeType);
 
   return (
     <PageBar
@@ -34,7 +28,7 @@ export default function WeaponNav({ activeType }: WeaponNavProps) {
             <PageTab
               key={type}
               href={`/blacksmith/${type}/`}
-              label={formatWeaponName(type)}
+              label={titleCase(type)}
               icon={type}
               active={activeType === type}
             />

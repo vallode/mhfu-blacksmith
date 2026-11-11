@@ -3,6 +3,7 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import Card from "@/components/Card";
 import { cn } from "@/lib/cn";
+import { PHONE } from "@/lib/media";
 
 /**
  * Desktop: absolutely positioned in the .split-page (position: relative); the
@@ -106,8 +107,6 @@ interface PopoverProps {
 
 /** Gap between the popover and the side card's edges, on every side. */
 const INSET = 14;
-/** Matches the stacked .split-page layout, where the popover floats instead (see the SCSS). */
-const STACKED = "(max-width: 899px)";
 
 /**
  * The 3D model, in the alternative blue frame, laid over the side card of
@@ -125,7 +124,7 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
     const page = popover?.closest<HTMLElement>(".split-page");
     const side = page?.firstElementChild as HTMLElement | null | undefined;
     if (!popover || !page || !side || side === popover) return;
-    const stacked = window.matchMedia(STACKED);
+    const stacked = window.matchMedia(PHONE);
     const place = () => {
       if (stacked.matches) {
         popover.style.cssText = "";

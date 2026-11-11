@@ -42,8 +42,7 @@ export default function PageBar({ title, tabs, actions }: PageBarProps) {
 /**
  * The strip of section tabs in a PageBar. On phones it is one row that
  * scrolls sideways, bleeding to both edges of the screen, starting with the
- * active tab in view; on desktop
- * the tabs wrap if they don't fit.
+ * active tab in view; on desktop the tabs wrap if they don't fit.
  */
 export function PageTabs({ label, children }: { label: string; children: React.ReactNode }) {
   const ref = useRef<HTMLElement>(null);

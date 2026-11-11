@@ -30,8 +30,8 @@ interface WeaponTreeRowProps {
   hasNextSibling?: boolean;
   /**
    * Let the router scroll the page to the new page on click (the default).
-   * Trees in a layout that stays mounted turn it off: on phones the detail
-   * card sits below the tree, and the page would jump down to it.
+   * Pages that stack the detail card below the tree on phones (decorations)
+   * turn it off, or the page would jump down to it.
    */
   scroll?: boolean;
 }

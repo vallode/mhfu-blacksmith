@@ -3,16 +3,13 @@
 import { useEffect } from "react";
 import { ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
 import { writeLastArmor } from "@/lib/armor-last-store";
+import { titleCase } from "@/lib/title-case";
 import PageBar, { PageTab, PageTabs } from "./PageBar";
 
 interface ArmorNavProps {
   activeSlot?: ArmorSlot;
   /** Rank the slot links open at; defaults to low rank. */
   rank?: ArmorRank;
-}
-
-function formatSlotName(slot: string): string {
-  return slot.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
 }
 
 /** The armor pages' PageBar: one tab per armor slot. */
@@ -24,14 +21,14 @@ export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProp
 
   return (
     <PageBar
-      title={activeSlot ? `${formatSlotName(activeSlot)} armor` : "Armor"}
+      title={activeSlot ? `${titleCase(activeSlot)} armor` : "Armor"}
       tabs={
         <PageTabs label="Armor slots">
           {ARMOR_SLOTS.map((slot) => (
             <PageTab
               key={slot}
               href={`/armorsmith/${slot}/${rank}/`}
-              label={formatSlotName(slot)}
+              label={titleCase(slot)}
               icon={slot}
               active={activeSlot === slot}
             />

@@ -200,7 +200,7 @@
 /* Breakpoints. The layout has three widths:
    - mobile (below 900px: phones and portrait tablets): one pane at a time,
      with the tab bar along the bottom. `mobile:flex-col`. The bare media
-     queries below (body, .split-page) and ModelPopover's STACKED use the
+     queries below (body, .split-page) and PHONE in src/lib/media.ts use the
      same width; change them together.
    - compact (900px to 1199px: landscape tablets and small laptops): two
      panes, with the sidebar an icon rail that opens over the page.

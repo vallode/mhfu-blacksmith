@@ -42,9 +42,6 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
             key={m.slug}
             id={m.slug}
             href={`/monsters/${category}/${m.slug}/`}
-            // The list stays put; don't let the router scroll the page to the
-            // new detail card.
-            scroll={false}
             aria-current={m.slug === slug ? "page" : undefined}
             // The selected monster gets the weapon tree's active row: the hover
             // glow's green, held still.
@@ -68,11 +65,12 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
 }
 
 /**
- * The bestiary frame: page bar with the type tabs, and the list of the type's monsters
- * down the left, with the page (a monster's details, or NO DATA on the type's
- * own page) on the right. It lives in the monsters layout so it stays mounted
- * while you move between monsters (and types); only the right-hand card
- * re-renders, instead of the whole page being torn down and rebuilt.
+ * The bestiary frame: page bar with the type tabs, and the list of the type's
+ * monsters down the left, with the page (a monster's details, or NO DATA on
+ * the type's own page) on the right. It lives in the monsters layout so it
+ * stays mounted while you move between monsters (and types); only the
+ * right-hand card re-renders, instead of the whole page being torn down and
+ * rebuilt.
  */
 export function MonsterShell({
   category,
