@@ -127,6 +127,7 @@ export type CompactQuest = [
   urgent: 0 | 1,
   monsterStats: CompactMonsterStats[], // distinct rows, in disc order
   areaMap: 0 | 1,
+  smallCounts: ([total: number] | [total: number, endless: 1])[], // parallel to smallMonsters
 ];
 
 export interface QuestsBundle {
@@ -193,6 +194,12 @@ export interface Quest {
   /** Each distinct large monster spawn's stats; empty when the data has none. */
   monsterStats: QuestMonsterStats[];
   smallMonsters: QuestMonster[];
+  /**
+   * Each small monster's total in the quest (parallel to `smallMonsters`),
+   * and whether it keeps spawning, in which case the total leaves those out.
+   * Empty in a bundle cached before the totals were added.
+   */
+  smallSpawns: { total: number; endless: boolean }[];
   /** Distinct supply rows; `stacks` is how many times the disc lists the row. */
   supplies: { itemId: number; amount: number; stacks: number }[];
   rewardTables: QuestRewardTable[];
@@ -244,6 +251,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       ur,
       ms,
       am,
+      sc,
     ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
@@ -264,6 +272,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
         stagger,
       })),
       smallMonsters: sm.map((i) => monsters[i]!),
+      smallSpawns: (sc ?? []).map(([total, endless]) => ({ total, endless: endless === 1 })),
       supplies: (su === null ? [] : (b.supplies[su] ?? [])).map(([itemId, amount, stacks]) => ({
         itemId,
         amount,
@@ -334,6 +343,48 @@ export function questsWithMonster(quests: Quest[], name: string): Quest[] {
   return quests
     .filter((q) => q.target?.monster.name === name || q.largeMonsters.some((m) => m.name === name))
     .sort((a, b) => hubOrder(a) - hubOrder(b) || a.stars - b.stars || a.id - b.id);
+}
+
+/** One star level of a quest board, with the quests that hold the most of a small monster. */
+export interface SmallMonsterStage {
+  hub: QuestHubSlug;
+  stars: number;
+  /** The quests with the most (all of them on a tie), each with its total. */
+  best: { quest: Quest; total: number }[];
+  /** Quests where it keeps spawning (not counted in the totals), when any. */
+  endless: Quest[];
+}
+
+/**
+ * Where a small monster is most plentiful: for each star level of the village
+ * and guild boards, the quests with the biggest total of it (every distinct
+ * spawn table counted once), in board and star order. Star levels without it
+ * are left out; Training School and Treasure Hunting are not stages of the game.
+ */
+export function smallMonsterStages(quests: Quest[], name: string): SmallMonsterStage[] {
+  const stages = new Map<string, SmallMonsterStage>();
+  for (const quest of quests) {
+    if (isHiddenQuest(quest.id)) continue;
+    if (quest.hub === "training-school" || quest.hub === "treasure-hunting") continue;
+    const at = quest.smallMonsters.findIndex((m) => m.name === name);
+    const spawn = quest.smallSpawns[at];
+    if (!spawn) continue;
+    const key = `${quest.hub}:${quest.stars}`;
+    let stage = stages.get(key);
+    if (!stage) {
+      stage = { hub: quest.hub, stars: quest.stars, best: [], endless: [] };
+      stages.set(key, stage);
+    }
+    if (spawn.endless) stage.endless.push(quest);
+    if (spawn.total === 0) continue;
+    const top = stage.best[0]?.total ?? 0;
+    if (spawn.total > top) stage.best = [{ quest, total: spawn.total }];
+    else if (spawn.total === top) stage.best.push({ quest, total: spawn.total });
+  }
+  const hubOrder = (s: SmallMonsterStage) => QUEST_HUB_SLUGS.indexOf(s.hub);
+  return [...stages.values()]
+    .filter((s) => s.best.length > 0 || s.endless.length > 0)
+    .sort((a, b) => hubOrder(a) - hubOrder(b) || a.stars - b.stars);
 }
 
 /**

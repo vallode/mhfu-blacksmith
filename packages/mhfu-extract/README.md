@@ -996,9 +996,10 @@ raw `90000` -> 50 minutes). `target` is null when there's no single hunt/
 capture objective (`targetNum === 0`, or `targetId` doesn't resolve to a
 real monster — e.g. Treasure Hunting quests reuse this field for something
 else entirely, with real values like 928 far outside `emID`'s 90-entry
-range). `small_monsters` is deduplicated to one row per species with the
-max quantity seen across every zone, since `SmallMonIndex` frequently
-repeats an entire zone list verbatim (confirmed on real data); `large_monsters`
+range). `small_monsters` is one row per species: `max_quantity` is the most in any
+single zone, `total_quantity` the sum over the quest's zones. `SmallMonIndex`
+frequently points several entries at the same records (confirmed on real
+data), so a table at an address already seen for that zone is counted once. A spawn with quantity 99 (554 records; the rest top out at 20) is not counted and sets `endless`; `large_monsters`
 is deduplicated the same way for exact-duplicate `(monster, quantity, power)`
 rows. Each large monster's `multipliers` are its stat multiplier row (see
 "Monster overlays").

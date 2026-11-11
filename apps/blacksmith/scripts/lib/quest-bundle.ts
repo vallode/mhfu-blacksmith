@@ -40,7 +40,7 @@ export interface QuestRecord {
     monster: string;
     multipliers?: { hp: number; attack: number; defense: number; status: number };
   }[];
-  small_monsters: { monster: string }[];
+  small_monsters: { monster: string; total_quantity?: number; endless?: boolean }[];
   title: string | null;
   goal: string | null;
   details: string | null;
@@ -177,10 +177,25 @@ export function encodeQuestBundle({
     return [...rows.values()];
   };
 
+  /** The small monsters, with each one's total in the quest, parallel to each other. */
+  const smallMonsters = (list: QuestRecord["small_monsters"]) => {
+    const spawns = new Map<number, [total: number] | [total: number, endless: 1]>();
+    for (const x of list) {
+      if (QUEST_NON_MONSTERS.has(x.monster)) continue;
+      const i = monster(x.monster);
+      const row = spawns.get(i) ?? [0];
+      row[0] += x.total_quantity ?? 0;
+      if (x.endless) (row as number[])[1] = 1;
+      spawns.set(i, row);
+    }
+    return { indices: [...spawns.keys()], counts: [...spawns.values()] };
+  };
+
   const items: CompactQuest[] = [];
   for (const q of quests) {
     const hub = questHubSlug(q.hub, q.rank);
     if (!hub) continue;
+    const small = smallMonsters(q.small_monsters);
     items.push([
       q.id,
       QUEST_HUBS.findIndex((h) => h.slug === hub),
@@ -191,13 +206,7 @@ export function encodeQuestBundle({
       q.time_limit_minutes,
       q.target ? [monster(q.target.monster), q.target.amount] : null,
       [...new Set(q.large_monsters.map((x) => monster(x.monster)))],
-      [
-        ...new Set(
-          q.small_monsters
-            .filter((x) => !QUEST_NON_MONSTERS.has(x.monster))
-            .map((x) => monster(x.monster)),
-        ),
-      ],
+      small.indices,
       supplyList(q.supplies),
       q.reward_tables.map(table),
       str(q.title),
@@ -209,6 +218,7 @@ export function encodeQuestBundle({
       q.urgent ? 1 : 0,
       monsterStats(q.large_monsters),
       hasAreaMap(q.id) ? 1 : 0,
+      small.counts,
     ]);
   }
 

@@ -78,11 +78,13 @@
     },
     "small_monster_spawn": {
       "type": "object",
-      "required": ["monster", "max_quantity"],
+      "required": ["monster", "max_quantity", "total_quantity"],
       "additionalProperties": false,
       "properties": {
-        "monster":      { "type": "string", "minLength": 1 },
-        "max_quantity": { "type": "integer", "minimum": 0 }
+        "monster":        { "type": "string", "minLength": 1 },
+        "max_quantity":   { "type": "integer", "minimum": 0, "$comment": "The most of this species in any single zone." },
+        "total_quantity": { "type": "integer", "minimum": 0, "$comment": "All of this species across the quest's zones; zone tables that share an address are counted once." },
+        "endless":        { "const": true, "$comment": "A spawn of this species is marked 99, the game's value for one that keeps coming; those spawns are not in the counts." }
       }
     },
     "target": {

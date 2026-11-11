@@ -70,23 +70,29 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 31
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 11
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 8,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 30
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Mountain Herb Picking",
@@ -190,23 +196,29 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 31
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 11
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 8,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 30
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "An Anteka in the Snow",
@@ -321,23 +333,29 @@
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 14
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 35
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 5
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 30
         }
       ],
       "title": "Hunt the Carnivore!",
@@ -470,27 +488,34 @@
       "small_monsters": [
         {
           "monster": "Anteka",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 10
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 14,
+          "total_quantity": 22
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 3,
+          "total_quantity": 4,
+          "endless": true
         }
       ],
       "title": "Sinking Feeling",
@@ -610,31 +635,39 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 7,
+          "total_quantity": 26,
+          "endless": true
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 13
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 14,
+          "total_quantity": 41
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 5
         },
         {
           "monster": "Popo",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Blango",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         }
       ],
       "title": "Slay the Blangos!",
@@ -699,23 +732,29 @@
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 14
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 35
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 5
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 30
         }
       ],
       "title": "Gathering - Snowy Mountains",
@@ -780,43 +819,56 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 9,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 56
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 11,
+          "total_quantity": 19,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 20
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Melynx",
-          "max_quantity": 5
+          "max_quantity": 6,
+          "total_quantity": 6
         }
       ],
       "title": "Gathering - Jungle Zone",
@@ -881,31 +933,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 14
         },
         {
           "monster": "Apceros",
-          "max_quantity": 5
+          "max_quantity": 12,
+          "total_quantity": 29
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 13,
+          "total_quantity": 61
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 13
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Melynx",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Gathering - Desert Zone",
@@ -1057,23 +1116,28 @@
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 28
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 35
         },
         {
           "monster": "Anteka",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         },
         {
           "monster": "Popo",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 15
         }
       ],
       "title": "The Carnivorous Leader",
@@ -1216,23 +1280,29 @@
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 14
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 35
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 5
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 30
         }
       ],
       "title": "Reckless Bulldrome Hunter",
@@ -1359,23 +1429,28 @@
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 28
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 35
         },
         {
           "monster": "Anteka",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         },
         {
           "monster": "Popo",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 15
         }
       ],
       "title": "Slay the Giaprey!",
@@ -1502,31 +1577,38 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Anteka",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 22
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 13
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 14,
+          "total_quantity": 41
         },
         {
           "monster": "Blango",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 9
         },
         {
           "monster": "Popo",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "The Pack of Blangos",
@@ -1619,31 +1701,39 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Anteka",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 22
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 13
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 39
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 1,
+          "total_quantity": 1,
+          "endless": true
         }
       ],
       "title": "The Taboo of Negligence!",
@@ -1787,43 +1877,56 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 9,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 56
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 11,
+          "total_quantity": 19,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 20
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Melynx",
-          "max_quantity": 5
+          "max_quantity": 6,
+          "total_quantity": 6
         }
       ],
       "title": "Hunt Down the Velocidrome!",
@@ -1976,39 +2079,50 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 13,
+          "total_quantity": 53
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 17
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Felyne",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         }
       ],
       "title": "Jungle Menace",
@@ -2151,39 +2265,50 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 13,
+          "total_quantity": 53
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 17
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Felyne",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         }
       ],
       "title": "Rarest of the Rare Beasts",
@@ -2311,31 +2436,39 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 3
+          "max_quantity": 8,
+          "total_quantity": 22
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 16
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 12,
+          "total_quantity": 12
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 7
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 6
         }
       ],
       "title": "Hunt the Rare Forest Congas!",
@@ -2450,27 +2583,33 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 5
+          "max_quantity": 20,
+          "total_quantity": 43
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 3
+          "max_quantity": 10,
+          "total_quantity": 50
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 12
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 8
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Attack of the Giant Bugs!",
@@ -2569,43 +2708,56 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 9,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 56
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 11,
+          "total_quantity": 19,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 20
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Melynx",
-          "max_quantity": 5
+          "max_quantity": 6,
+          "total_quantity": 6
         }
       ],
       "title": "Collect to Combine",
@@ -2752,31 +2904,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 14
         },
         {
           "monster": "Apceros",
-          "max_quantity": 5
+          "max_quantity": 12,
+          "total_quantity": 29
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 13,
+          "total_quantity": 61
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 13
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Melynx",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Hunt the Gendrome!",
@@ -2933,31 +3092,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 9
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 36
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         }
       ],
       "title": "The Land Shark",
@@ -3098,31 +3264,39 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 8,
+          "endless": true
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 9
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 36
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 10
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Liver of Legend!",
@@ -3229,31 +3403,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 14
         },
         {
           "monster": "Apceros",
-          "max_quantity": 5
+          "max_quantity": 12,
+          "total_quantity": 29
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 13,
+          "total_quantity": 61
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 13
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Melynx",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Gone Fishin'",
@@ -3318,43 +3499,54 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 10
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 15
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 8,
+          "total_quantity": 24
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 14
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 9
         }
       ],
       "title": "Gathering - Swamp Zone",
@@ -3419,31 +3611,39 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 25
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 19,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 11
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 30
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 25
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Gathering - Forest and Hills",
@@ -3589,23 +3789,28 @@
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 28
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 35
         },
         {
           "monster": "Anteka",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         },
         {
           "monster": "Popo",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 15
         }
       ],
       "title": "Shadow in the Snow",
@@ -3732,27 +3937,33 @@
       "small_monsters": [
         {
           "monster": "Anteka",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 15
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 20
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Popo",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Blango",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 10
         }
       ],
       "title": "The Subterranean Glutton",
@@ -3889,27 +4100,33 @@
       "small_monsters": [
         {
           "monster": "Anteka",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 15
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 20
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Popo",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Blango",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 10
         }
       ],
       "title": "Blango Slaying Tactics",
@@ -4036,39 +4253,50 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 13,
+          "total_quantity": 53
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 17
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Felyne",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         }
       ],
       "title": "Aim for the Jungle Crab",
@@ -4210,39 +4438,50 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 13,
+          "total_quantity": 53
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 17
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Felyne",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         }
       ],
       "title": "Master of the Giant Lake",
@@ -4380,27 +4619,36 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 11,
+          "total_quantity": 35
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 12
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 5,
+          "total_quantity": 5,
+          "endless": true
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 8,
+          "total_quantity": 14
         }
       ],
       "title": "A Swarm of Hermitaurs",
@@ -4537,39 +4785,50 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 13,
+          "total_quantity": 53
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 17
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Felyne",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         }
       ],
       "title": "The Purple Poison Menace",
@@ -4700,31 +4959,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 16
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 13,
+          "total_quantity": 53
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 34
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "The Lurking Desert Giant",
@@ -4870,31 +5136,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 9
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 36
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         }
       ],
       "title": "Water Wyvern in the Desert",
@@ -5021,31 +5294,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 16
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 13,
+          "total_quantity": 53
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 34
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Slay the Genprey!",
@@ -5182,43 +5462,54 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 4
+          "max_quantity": 10,
+          "total_quantity": 19
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 4
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 10
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 10
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 7
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Gypceros: Venomous Terror",
@@ -5355,43 +5646,54 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 4
+          "max_quantity": 10,
+          "total_quantity": 19
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 4
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 10
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 10
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 7
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Attack of the Blue Kut-Ku",
@@ -5522,43 +5824,54 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 10
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 15
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 8,
+          "total_quantity": 24
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 14
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 9
         }
       ],
       "title": "The Mischief-maker",
@@ -5690,43 +6003,54 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 10
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 15
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 8,
+          "total_quantity": 24
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 14
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 9
         }
       ],
       "title": "Fang of the Iodrome!",
@@ -5863,31 +6187,39 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 25
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 19,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 11
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 30
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 25
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Slay the Great Kut-Ku!",
@@ -5991,31 +6323,39 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 25
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 19,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 11
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 30
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 25
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "A Killing from Mushrooms",
@@ -6080,35 +6420,43 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 28
         },
         {
           "monster": "Rocks",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 31
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 10,
+          "total_quantity": 18
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Remobra",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         }
       ],
       "title": "Gathering - Volcanic Zone",
@@ -6239,27 +6587,33 @@
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 19
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Blango",
-          "max_quantity": 3
+          "max_quantity": 8,
+          "total_quantity": 25
         },
         {
           "monster": "Anteka",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Popo",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 6
         }
       ],
       "title": "The Ruler of the Snow",
@@ -6400,43 +6754,54 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 4
+          "max_quantity": 10,
+          "total_quantity": 19
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 4
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 10
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 10
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 7
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Red Shadow in the Swampland",
@@ -6573,39 +6938,50 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 13,
+          "total_quantity": 53
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 17
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Felyne",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         }
       ],
       "title": "The Lone Black Garuga",
@@ -6747,11 +7123,13 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 50
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 9
         }
       ],
       "title": "Twin Velocidrome",
@@ -6887,27 +7265,34 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 3
+          "max_quantity": 10,
+          "total_quantity": 48
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 12,
+          "total_quantity": 18
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 13,
+          "total_quantity": 58
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         }
       ],
       "title": "Attack of the Giant Bugs!",
@@ -7053,27 +7438,34 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 8
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 30
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Melynx",
-          "max_quantity": 99
+          "max_quantity": 3,
+          "total_quantity": 8,
+          "endless": true
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Apceros",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         }
       ],
       "title": "Battle of the Blos",
@@ -7219,31 +7611,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 9
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 36
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         }
       ],
       "title": "The Silver Horn",
@@ -7379,43 +7778,54 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 10
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 15
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 8,
+          "total_quantity": 24
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 14
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 9
         }
       ],
       "title": "Supreme Ruler of the Swamp",
@@ -7573,15 +7983,18 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 16
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 18
+          "max_quantity": 18,
+          "total_quantity": 18
         }
       ],
       "title": "Trapped by Yian Kut-Ku ",
@@ -7717,35 +8130,43 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 28
         },
         {
           "monster": "Rocks",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 31
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 10,
+          "total_quantity": 18
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Remobra",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         }
       ],
       "title": "The Ioprey Leader",
@@ -7886,35 +8307,43 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 28
         },
         {
           "monster": "Rocks",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 31
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 10,
+          "total_quantity": 18
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Remobra",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         }
       ],
       "title": "Basarios: Unseen Peril",
@@ -8046,23 +8475,28 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 17
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 23
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 8,
+          "total_quantity": 21
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         }
       ],
       "title": "Commander in the Flames",
@@ -8194,27 +8628,33 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 13
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 8
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 5
+          "max_quantity": 11,
+          "total_quantity": 32
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 9,
+          "total_quantity": 17
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         }
       ],
       "title": "Ioprey Hunting",
@@ -8351,31 +8791,38 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Rocks",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 4
+          "max_quantity": 11,
+          "total_quantity": 15
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 15
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Apceros",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "A Band of Ceanataurs",
@@ -8491,35 +8938,43 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 28
         },
         {
           "monster": "Rocks",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 31
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 10,
+          "total_quantity": 18
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Remobra",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         }
       ],
       "title": "More Coal Please",
@@ -9007,7 +9462,8 @@
       "small_monsters": [
         {
           "monster": "Hermitaur",
-          "max_quantity": 10
+          "max_quantity": 22,
+          "total_quantity": 36
         }
       ],
       "title": "Hermitaur Buffet",
@@ -9158,31 +9614,38 @@
       "small_monsters": [
         {
           "monster": "Anteka",
-          "max_quantity": 5
+          "max_quantity": 7,
+          "total_quantity": 14
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 7
         },
         {
           "monster": "Blango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 4
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 4
         }
       ],
       "title": "Absolute Power",
@@ -9308,31 +9771,39 @@
       "small_monsters": [
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 5,
+          "total_quantity": 9,
+          "endless": true
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Blango",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 10
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "The Legendary Kirin",
@@ -9473,7 +9944,8 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         }
       ],
       "title": "Two Roars in the Snow",
@@ -9631,11 +10103,13 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 50
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 9
         }
       ],
       "title": "The Poison Siege",
@@ -9786,31 +10260,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 9
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 36
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         }
       ],
       "title": "The Tigrex's Roar",
@@ -9956,31 +10437,38 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 9
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 36
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         }
       ],
       "title": "The Runaway Diablos",
@@ -10131,27 +10619,34 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 8
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 30
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Melynx",
-          "max_quantity": 99
+          "max_quantity": 3,
+          "total_quantity": 8,
+          "endless": true
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Apceros",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         }
       ],
       "title": "The Fierce Black Horn",
@@ -10287,11 +10782,13 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 30
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 5
+          "max_quantity": 5,
+          "total_quantity": 5
         }
       ],
       "title": "Ultimate Crab Dinner",
@@ -10433,43 +10930,54 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 4
+          "max_quantity": 10,
+          "total_quantity": 19
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 4
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 10
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 10
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 7
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Black Rock in the Swamp",
@@ -10597,35 +11105,44 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 25
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 8
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 7,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 11
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Seeking the Strange Mask",
@@ -10771,35 +11288,43 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 28
         },
         {
           "monster": "Rocks",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 31
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 10,
+          "total_quantity": 18
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Remobra",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         }
       ],
       "title": "Terror of the Gravios",
@@ -10916,23 +11441,28 @@
       "small_monsters": [
         {
           "monster": "Remobra",
-          "max_quantity": 2
+          "max_quantity": 8,
+          "total_quantity": 17
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 1
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 3
+          "max_quantity": 14,
+          "total_quantity": 14
         }
       ],
       "title": "Check the Ancient Tower",
@@ -11295,27 +11825,33 @@
       "small_monsters": [
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 8
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         }
       ],
       "title": "Overseer of the Ancients",
@@ -11483,15 +12019,18 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 24
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "The Elder Dragon of Mist",
@@ -11659,7 +12198,8 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Towards the Silence",
@@ -11796,43 +12336,54 @@
       "small_monsters": [
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 10
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 12
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Small Shadow over the Swamp",
@@ -11973,15 +12524,19 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 12
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Congalala Territorial Fight",
@@ -12139,19 +12694,23 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 5,
+          "total_quantity": 10
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "A Troublesome Pair",
@@ -12326,7 +12885,8 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 50
         }
       ],
       "title": "Dual Plesioth",
@@ -12478,27 +13038,35 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 13,
+          "total_quantity": 53
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 6
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 8,
+          "total_quantity": 14
         }
       ],
       "title": "Pink Dance in the Jungle",
@@ -12667,11 +13235,13 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 30
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 5
+          "max_quantity": 5,
+          "total_quantity": 5
         }
       ],
       "title": "Four Horns",
@@ -12862,7 +13432,8 @@
       "small_monsters": [
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "A Sun with Fangs",
@@ -13216,11 +13787,13 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "The Shogun's Encampment",
@@ -13372,35 +13945,44 @@
       "small_monsters": [
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 8
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 4
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 5,
+          "total_quantity": 9
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 8,
+          "endless": true
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Attack of the Rathalos",
@@ -13886,7 +14468,8 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "A Giant Dragon Invades!",
@@ -14019,35 +14602,43 @@
       "small_monsters": [
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 24
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 4
+          "max_quantity": 10,
+          "total_quantity": 18
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 4
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 10
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Bullfangos in the Night",
@@ -14186,7 +14777,8 @@
       "small_monsters": [
         {
           "monster": "Shakalaka",
-          "max_quantity": 5
+          "max_quantity": 20,
+          "total_quantity": 20
         }
       ],
       "title": "Whack a Shakalaka",
@@ -14323,19 +14915,27 @@
       "small_monsters": [
         {
           "monster": "Velociprey",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Genprey",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         }
       ],
       "title": "Carnivore Carnival",
@@ -14493,43 +15093,58 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 10,
+          "total_quantity": 52,
+          "endless": true
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 14
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 99
+          "max_quantity": 5,
+          "total_quantity": 12,
+          "endless": true
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 5
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Conga",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Remobra",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "The Beating of Royal Wings",
@@ -14657,43 +15272,53 @@
       "small_monsters": [
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 10
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 6
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 9
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 20
+          "max_quantity": 20,
+          "total_quantity": 23
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Secret Request: Hypnocatrice",
@@ -14859,27 +15484,33 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 4
         },
         {
           "monster": "Apceros",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 7
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "The Burning Dunes",
@@ -15016,31 +15647,38 @@
       "small_monsters": [
         {
           "monster": "Melynx",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 21
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 15
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         }
       ],
       "title": "Stealing in the Old Swamp!",
@@ -15188,15 +15826,19 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 12
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "The Purple Poison Menace",
@@ -15352,39 +15994,48 @@
       "small_monsters": [
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 8
+          "max_quantity": 16,
+          "total_quantity": 55
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Genprey",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 13
         }
       ],
       "title": "Target: Basarios",
@@ -15540,27 +16191,36 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         }
       ],
       "title": "Old Jungle Lightning",
@@ -15727,11 +16387,13 @@
       "small_monsters": [
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 10
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 10
         }
       ],
       "title": "Red Shadow in the Snow",
@@ -15958,43 +16620,55 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 11
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 3,
+          "total_quantity": 3,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 12
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Congalalas' Assault",
@@ -16217,27 +16891,37 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 13,
+          "total_quantity": 33,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 9,
+          "total_quantity": 9,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 15
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 10,
+          "endless": true
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 8,
+          "total_quantity": 8
         }
       ],
       "title": "The Meeting of Daimyo",
@@ -16444,27 +17128,36 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 13,
+          "total_quantity": 43
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 9,
+          "total_quantity": 9,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 15,
+          "endless": true
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 8,
+          "total_quantity": 13
         }
       ],
       "title": "Epic Hunt in the Jungle!",
@@ -16606,7 +17299,8 @@
       "small_monsters": [
         {
           "monster": "Remobra",
-          "max_quantity": 15
+          "max_quantity": 45,
+          "total_quantity": 45
         }
       ],
       "title": "The Remobra Den",
@@ -16749,11 +17443,14 @@
       "small_monsters": [
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 99
+          "max_quantity": 3,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "The Sleepy Great Forest",
@@ -16904,27 +17601,36 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 9
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 6
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Felyne",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         }
       ],
       "title": "Eyes in the Underground Lake",
@@ -17076,7 +17782,9 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         }
       ],
       "title": "Green Waves of Verdure",
@@ -17223,43 +17931,53 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 10
+          "max_quantity": 20,
+          "total_quantity": 20
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 18
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 17
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 6
+          "max_quantity": 15,
+          "total_quantity": 15
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 10
+          "max_quantity": 20,
+          "total_quantity": 20
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 12
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Elegy for a Lone Wolf",
@@ -17415,35 +18133,43 @@
       "small_monsters": [
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Cephalos",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Apceros",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 5
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 47
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 9
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         }
       ],
       "title": "Battle with the Monoblos",
@@ -17615,11 +18341,14 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Genprey",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 4
         }
       ],
       "title": "Secret Request: 2 Monoblos!",
@@ -17863,15 +18592,18 @@
       "small_monsters": [
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 24
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Kut-Ku Calamity!",
@@ -18113,7 +18845,8 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Basarios Season",
@@ -18345,31 +19078,38 @@
       "small_monsters": [
         {
           "monster": "Ceanataur",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 26
         },
         {
           "monster": "Rocks",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 20
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 10
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Remobra",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Apceros",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "A Shogun Tastes Like...?",
@@ -18586,19 +19326,24 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Blango",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 12,
+          "endless": true
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Bl-Bl-Blangongas!",
@@ -18803,35 +19548,43 @@
       "small_monsters": [
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Cephalos",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Apceros",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 5
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 47
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 9
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         }
       ],
       "title": "Operation Desert Winds",
@@ -19037,43 +19790,54 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 4
+          "max_quantity": 10,
+          "total_quantity": 19
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 4
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 5
+          "max_quantity": 10,
+          "total_quantity": 10
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 10
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 7
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 4,
+          "endless": true
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Congalala in a Crab Shell",
@@ -19275,35 +20039,43 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 12
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 8
+          "max_quantity": 12,
+          "total_quantity": 43
         },
         {
           "monster": "Conga",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Sleepy Miasma, Poison Mist",
@@ -19509,43 +20281,56 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 3,
+          "endless": true
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         }
       ],
       "title": "Carnivores of the Old Jungle",
@@ -20144,11 +20929,14 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         },
         {
           "monster": "Felyne",
-          "max_quantity": 99
+          "max_quantity": 1,
+          "total_quantity": 1,
+          "endless": true
         }
       ],
       "title": "Indigo Meteor",
@@ -20326,7 +21114,8 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Lao-Shan Lung Draws Near!",
@@ -20484,39 +21273,49 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 7
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 5
+          "max_quantity": 9,
+          "total_quantity": 25
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 20
+          "max_quantity": 20,
+          "total_quantity": 27
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         }
       ],
       "title": "Secret Request: Nargacuga!",
@@ -20674,43 +21473,56 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 3,
+          "endless": true
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         }
       ],
       "title": "Assassin of the Jungle",
@@ -20871,7 +21683,8 @@
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Land of the Tremors",
@@ -21032,35 +21845,43 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 13
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 4,
+          "total_quantity": 8
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Apceros",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 9
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Remobra",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "A King, Robed in Smoke",
@@ -21221,27 +22042,34 @@
       "small_monsters": [
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 19
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 6
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 4,
+          "total_quantity": 4
         }
       ],
       "title": "Dancing Desert Queen",
@@ -21409,11 +22237,13 @@
       "small_monsters": [
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 16
         }
       ],
       "title": "Descendants of the King",
@@ -21564,31 +22394,40 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 30
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 8
         },
         {
           "monster": "Melynx",
-          "max_quantity": 99
+          "max_quantity": 3,
+          "total_quantity": 8,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Felyne",
-          "max_quantity": 99
+          "max_quantity": 4,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Apceros",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         }
       ],
       "title": "Diablos, the Demon King",
@@ -21749,11 +22588,14 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Genprey",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 4
         }
       ],
       "title": "The Four Spires",
@@ -21930,19 +22772,23 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 12
         },
         {
           "monster": "Apceros",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 5
+          "max_quantity": 7,
+          "total_quantity": 7
         }
       ],
       "title": "Armored Supremacy",
@@ -22509,7 +23355,8 @@
       "small_monsters": [
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Fire Ring, Lunar Ring",
@@ -22662,23 +23509,28 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 2
+          "max_quantity": 8,
+          "total_quantity": 17
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Attack of the Rajang",
@@ -22816,35 +23668,44 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 5
+          "max_quantity": 9,
+          "total_quantity": 17
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "It's Electric",
@@ -23050,23 +23911,29 @@
       "small_monsters": [
         {
           "monster": "Blango",
-          "max_quantity": 99
+          "max_quantity": 3,
+          "total_quantity": 13,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 20
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 8
         },
         {
           "monster": "Anteka",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 12
         },
         {
           "monster": "Popo",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 14
         }
       ],
       "title": "Diamond Dust",
@@ -23267,27 +24134,33 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 2
+          "max_quantity": 7,
+          "total_quantity": 28
         },
         {
           "monster": "Melynx",
-          "max_quantity": 4
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Remobra",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 5
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Hard-Shelled Terrors",
@@ -23532,43 +24405,53 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 10
+          "max_quantity": 20,
+          "total_quantity": 20
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 10
+          "max_quantity": 10,
+          "total_quantity": 18
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 17
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 6
+          "max_quantity": 15,
+          "total_quantity": 15
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 10
+          "max_quantity": 20,
+          "total_quantity": 20
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 12
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Bird Wyvern All-Stars",
@@ -23812,39 +24695,49 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Apceros",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Sand Dune's Might",
@@ -24037,15 +24930,18 @@
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 12
+          "max_quantity": 12,
+          "total_quantity": 24
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "The Elder Dragon of Mist",
@@ -24632,11 +25528,13 @@
       "small_monsters": [
         {
           "monster": "Hornetaur",
-          "max_quantity": 8
+          "max_quantity": 8,
+          "total_quantity": 9
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 18
+          "max_quantity": 18,
+          "total_quantity": 18
         }
       ],
       "title": "A Midnight Audience",
@@ -24787,7 +25685,8 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "The Approaching Gaoren",
