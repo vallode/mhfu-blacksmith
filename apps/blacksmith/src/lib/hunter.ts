@@ -10,10 +10,10 @@ const HUNTER_DIR = "/models/hunter";
 export const HUNTER_MODEL = `${HUNTER_DIR}/hunter.glb`;
 
 /** The player's joints (mhfu-extract's `src/models/hunter.ts`). */
-const JOINT = { CHEST: 10, LEFT_HAND: 14, RIGHT_HAND: 18 } as const;
+export const JOINT = { CHEST: 10, LEFT_HAND: 14, RIGHT_HAND: 18 } as const;
 
 /** The game's weapon class of each site weapon type: `motion/wNN_tbl.bin`. */
-const WEAPON_CLASS: Record<string, number> = {
+export const WEAPON_CLASS: Record<string, number> = {
   "great-sword": 0,
   "heavy-bowgun": 1,
   hammer: 2,
@@ -35,7 +35,7 @@ export interface HunterClip extends MotionClip {
 }
 
 /** Motion slot numbering in a player bank (mhfu-extract's `PLAYER_GROUP_SLOTS`). */
-const GROUP_SLOTS = 1000;
+export const GROUP_SLOTS = 1000;
 /** The looping stance motion that opens every weapon file's first group. */
 const DRAWN_IDLE_SLOT = 1;
 /** The common standing motion, weapon put away. */

@@ -440,6 +440,8 @@ export async function buildGlb(
   const layout = skinned ? skinnedLayout(exact ? EXACT : FLOATS) : exact ? EXACT : FLOATS;
   const targets = options.targets ?? [];
   if (targets.length && skinned) throw new Error("morph targets on a skinned model");
+  // Each piece's node would need the skin, and its joints the pieces' places.
+  if (options.partOf && skinned) throw new Error("pieces of a skinned model");
   for (const target of targets)
     if (target.pmo.scale.some((s, k) => s !== pmo.scale[k]))
       throw new Error(`morph target ${target.name} has another scale`);
@@ -458,11 +460,12 @@ export async function buildGlb(
    * model space, so pre-multiply by the scale to cancel that out. Skinned,
    * the scale is in the inverse bind matrices, and three.js transforms
    * normals by the skinning matrix itself (scale per axis): divide instead.
+   * Either layout, since positions are in the same scaled space in both.
    * Exact, it's re-rounded to s8, which costs well under a degree.
    */
   const storedNormal = (v: DecodedVertex): number[] => {
     const source = exact ? v.normal! : (v.normal ?? [0, 1, 0]);
-    const n = source.map((c, k) => (skinned ? c / pmo.scale[k]! : exact ? c * pmo.scale[k]! : c));
+    const n = source.map((c, k) => (skinned ? c / pmo.scale[k]! : c * pmo.scale[k]!));
     const length = Math.hypot(...n) || 1;
     return n.map((c) => (exact ? Math.round((c / length) * 0x7f) / 0x7f : c / length));
   };

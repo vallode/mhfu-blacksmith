@@ -65,7 +65,7 @@ function boneScales(bones: Bone[], scales: BoneScales) {
   for (const [id, posed] of scales) {
     const pivot: Vec3 = [0, 0, 0];
     let ok = bones[id] !== undefined;
-    for (let b = bones[id]; b; b = b.parent >= 0 ? bones[b.parent] : undefined) {
+    for (let b: Bone | undefined = bones[id]; b; b = b.parent >= 0 ? bones[b.parent] : undefined) {
       if (!isUnrotatedBone(b) || (b.id !== id && b.scale.some((c) => Math.abs(c - 1) > 1e-3)))
         ok = false;
       b.translation.forEach((c, k) => (pivot[k] = pivot[k]! + c));

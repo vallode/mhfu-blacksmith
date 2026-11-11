@@ -470,7 +470,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
       </DetailCard>
       {modelOpen && (
         <ModelPopover title={weapon.name} onClose={() => setOpenModel(null)}>
-          <ModelViewer src={modelUrl} label={weapon.name} hunter={type} />
+          <ModelViewer
+            src={modelUrl}
+            label={weapon.name}
+            hunter={type}
+            pair={type === "dual-blades"}
+          />
         </ModelPopover>
       )}
     </>

@@ -33,12 +33,16 @@ interface Props {
   label: string;
   /**
    * Show the model twice, fanned out from the grip and mirrored, as the game
-   * shows a pair of dual blades (each blade's file holds only one).
+   * shows a pair of dual blades (each blade's file holds only one). Only when
+   * the model shows alone, not held by the hunter.
    */
   pair?: boolean;
   /** Translucent capsules over the model, e.g. a monster's hitboxes. */
   capsules?: ModelCapsule[];
-  /** Show `src` (a weapon) in the hands of the hunter, playing this weapon type's motions. */
+  /**
+   * Show `src` (a weapon) in the hands of the hunter, playing this weapon
+   * type's motions. If the hunter's model can't load, the weapon shows alone.
+   */
   hunter?: string;
 }
 
@@ -76,9 +80,11 @@ type Status = "loading" | "ready" | "error";
 /** How long a model waits for its motions before showing still (see the effect). */
 const MOTIONS_WAIT_MS = 1500;
 /**
- * A two-handed weapon goes to its holding hand (`WeaponMount.hold`) while the
- * other fist is within GRIP_ON of the handle line, and back by GRIP_OFF. The
- * fist can slide GRIP_SLIDE along the handle and still count as on it.
+ * A two-handed weapon is wholly in its holding hand (`WeaponMount.hold`) while
+ * the other fist is within GRIP_ON of the handle line, wholly in that fist
+ * from GRIP_OFF, and blended between the two in between (no latch: each frame
+ * stands alone). The fist can slide GRIP_SLIDE along the handle and still
+ * count as on it.
  */
 const GRIP_ON = 8;
 const GRIP_OFF = 16;
@@ -224,17 +230,23 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
 
       try {
         const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-        const gltf = await loader.loadAsync(hunter ? HUNTER_MODEL : src);
-        const weapon = hunter ? (await loader.loadAsync(src)).scene : null;
+        // Without the hunter (an export that couldn't make one), the weapon shows alone.
+        const [body, own] = await Promise.all([
+          hunter ? loader.loadAsync(HUNTER_MODEL).catch(() => null) : null,
+          loader.loadAsync(src),
+        ]);
         if (disposed) return;
+        const gltf = body ?? own;
+        const weapon = body && own.scene;
+        const holding = body ? hunter : undefined;
         model = gltf.scene;
         const copies = [model];
-        if (weapon) {
+        if (weapon && holding) {
           scene.add(model);
           // A two-piece weapon's nodes are part_0, part_1; a whole one is one mesh.
           const named = weapon.children.filter((child) => child.name.startsWith("part_"));
           const parts = named.length > 0 ? named : [weapon.children[0]!];
-          const mounts = WEAPON_MOUNTS[hunter!];
+          const mounts = WEAPON_MOUNTS[holding];
           const body = model;
           type Held = {
             part: import("three").Object3D;
@@ -278,8 +290,10 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
           const scale = new THREE.Vector3();
           holdWeapon = () => {
             if (held.length === 0) return;
-            body.updateMatrixWorld(true);
             for (const { part, bone, holder, mount } of held) {
+              // Only the two hands' chains are read; render updates the rest.
+              bone.updateWorldMatrix(true, false);
+              holder.updateWorldMatrix(true, false);
               const { hold } = mount;
               // Where the first fist is along the holder's grip line.
               toHolder.copy(holder.matrixWorld).invert();
@@ -490,8 +504,8 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
         // framed: its first pose can stand far from the bind pose (Rathian's
         // is ~320 units up). On a slow connection it shows still meanwhile.
         const motionsFile = (gltf.asset.extras as { motions?: unknown } | undefined)?.motions;
-        const motions: Promise<MotionClip[]> = hunter
-          ? fetchHunterClips(hunter, abort.signal).catch(() => [])
+        const motions: Promise<MotionClip[]> = holding
+          ? fetchHunterClips(holding, abort.signal).catch(() => [])
           : typeof motionsFile === "string" && !pair
             ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
                 // The model still shows, just still.

@@ -142,7 +142,8 @@ async function packageToGlb(
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
   const model = packageModel(entries, pmoEntry.index, clipOptions);
   const { rig } = model;
-  const bones = pose && weaponSkeleton(entries, pmoEntry.index);
+  // An unrigged model's skeleton still splits it into pieces and poses it.
+  const bones = rig ? undefined : weaponSkeleton(entries, pmoEntry.index);
   const { pmo, sheathed } = pose && bones ? poseWeapon(model.pmo, bones, pose) : { pmo: model.pmo };
   const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
   const motions = rig?.clips?.length ? packMotions(rig.clips) : undefined;
@@ -154,7 +155,7 @@ async function packageToGlb(
       ? options
       : {
           ...options,
-          partOf: partsByRoot(entries, pmoEntry.index, pmo),
+          partOf: bones && partsByRoot(bones, pmo),
           ...(sheathed ? { targets: [{ name: SHEATHED_TARGET, pmo: sheathed }] } : {}),
         },
     rig && { bones: rig.bones, motionsFile: motions && motionsFile(motions) },
@@ -175,12 +176,11 @@ function weaponSkeleton(entries: PacEntry[], pmoIndex: number): Bone[] | undefin
 
 /**
  * A weapon's pieces: a primitive belongs to the root of its most-weighted
- * bone, in the skeleton that follows the mesh (see `boneRoots`). Undefined for
- * a model with one root, which is all but the two-piece weapons.
+ * bone, in the skeleton that follows the mesh (`weaponSkeleton`, see
+ * `boneRoots`). Undefined for a model with one root, which is all but the
+ * two-piece weapons.
  */
-function partsByRoot(entries: PacEntry[], pmoIndex: number, pmo: Pmo): GlbPartOf | undefined {
-  const bones = weaponSkeleton(entries, pmoIndex);
-  if (!bones) return undefined;
+function partsByRoot(bones: Bone[], pmo: Pmo): GlbPartOf | undefined {
   const roots = boneRoots(bones);
   if (Math.max(...roots) === 0) return undefined;
   return (mesh, primitive) => {
