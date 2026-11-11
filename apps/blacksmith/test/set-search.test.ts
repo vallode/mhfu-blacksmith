@@ -486,13 +486,20 @@ function bruteForce(data: SearchData, q: SearchQuery): number {
   let combos: P[][] = [[]];
   for (const pieces of bySlot) combos = combos.flatMap((c) => pieces.map((p) => [...c, p]));
   // Best possible first: with every slot free.
-  const most = (c: P[]) => score(c, capacity(c));
-  combos.sort((a, b) => most(b) - most(a));
+  const bound = (c: P[]) => score(c, capacity(c));
+  combos.sort((a, b) => bound(b) - bound(a));
 
   const fills = new Map<string, number[][]>();
+  const slotFills = new Map<string, number[][]>();
+  const bySlots = new WeakSet<number[][]>();
+  // The most decorations in one piece of each size can add to each tree.
+  const most = [0, 1, 2, 3].map((size) => {
+    const all = decoVectors(data, [{ size, mult: 1 }], trees, false);
+    return trees.map((_, k) => Math.max(...all.map((v) => v[k])));
+  });
   let best = -Infinity;
   for (const combo of combos) {
-    if (most(combo) <= best) break;
+    if (bound(combo) <= best) break;
     const plate = combo[1];
     const torsoUps = combo.filter((p) => p.torsoUp && p.slot !== "plate").length;
     const armor = trees.map((t) =>
@@ -507,14 +514,22 @@ function bruteForce(data: SearchData, q: SearchQuery): number {
       ...combo.map((p) => ({ size: p.slots, mult: p === plate ? 1 + torsoUps : 1 })),
     ];
     const works = (v: number[]) => trees.every((t, k) => ok(t, armor[k] + v[k]));
+    // Skip the combination when even the most each tree can get isn't enough.
+    const ceiling = trees.map((_, k) => bins.reduce((n, b) => n + b.mult * most[b.size][k], 0));
+    if (!works(ceiling)) continue;
     if (q.sort !== "slots") {
       // The score doesn't depend on the decorations.
       if (decoVectors(data, bins, trees, false, fills).some(works)) return score(combo, 0);
       continue;
     }
-    for (const v of decoVectors(data, bins, trees, true, fills)) {
-      if (works(v)) best = Math.max(best, score(combo, capacity(combo) + v[trees.length]));
+    // Fewest slots first: the first that works leaves the most free.
+    const vectors = decoVectors(data, bins, trees, true, slotFills);
+    if (!bySlots.has(vectors)) {
+      vectors.sort((x, y) => y[trees.length] - x[trees.length]);
+      bySlots.add(vectors);
     }
+    const v = vectors.find(works);
+    if (v) best = Math.max(best, score(combo, capacity(combo) + v[trees.length]));
   }
   return best;
 }

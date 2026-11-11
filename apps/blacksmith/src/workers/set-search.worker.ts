@@ -23,7 +23,9 @@ export type SetSearchRequest =
       query: SearchQuery;
       round: number;
       shard?: SearchOptions["shard"];
-    };
+    }
+  /** The search is over: let go of what it prepared. */
+  | { type: "done"; id: number };
 
 export type SetSearchResponse =
   | { type: "progress"; id: number; found: number }
@@ -44,6 +46,10 @@ let current: { id: number; search: PreparedSearch } | null = null;
 scope.onmessage = ({ data: message }) => {
   if (message.type === "init") {
     data = message.data;
+    return;
+  }
+  if (message.type === "done") {
+    if (current?.id === message.id) current = null;
     return;
   }
   const { id, query, round, shard } = message;

@@ -88,6 +88,8 @@ interface Pending {
   /** Each worker's best sets so far this round, and the last round's. */
   partial: ArmorSet[][];
   before: ArmorSet[];
+  /** Whether its sets are on screen yet (until then, the last search's are). */
+  shown: boolean;
 }
 
 /** Ask every worker for its shard of a round. */
@@ -152,6 +154,7 @@ export function useSetSearch(): SetSearchState {
       found: [],
       partial: [],
       before: [],
+      shown: false,
     };
     pending.current = run;
     setSearching(true);
@@ -193,16 +196,21 @@ export function useSetSearch(): SetSearchState {
               run.query.limit ?? DEFAULT_LIMIT,
               run.query.sort,
             );
+            const last = Math.max(0, sofar.sets.length - 1);
             setResult(sofar);
             setQuery(run.query);
-            setIndexState((i) => Math.min(i, Math.max(0, sofar.sets.length - 1)));
+            // The first time, show the set asked for, not the last search's.
+            setIndexState((i) => Math.min(run.shown ? i : run.index, last));
+            run.shown = true;
             return;
           }
           if (msg.type === "progress") {
             run.found[shard] = msg.found;
             // Each round starts counting again: show the most found so far.
+            // Each worker counts up to the limit, but only that many are kept.
             const sum = run.found.reduce((a, b) => a + b, 0);
-            setFound((f) => Math.max(f, sum));
+            const limit = run.query.limit ?? DEFAULT_LIMIT;
+            setFound((f) => Math.max(f, Math.min(sum, limit)));
             return;
           }
           run.parts[shard] = msg.result;
@@ -219,6 +227,9 @@ export function useSetSearch(): SetSearchState {
           }
           const merged = mergeResults(parts, limit, run.query.sort);
           pending.current = null;
+          for (const w of workersRef.current) {
+            w.postMessage({ type: "done", id: run.id } satisfies SetSearchRequest);
+          }
           const shown = Math.min(run.index, Math.max(0, merged.sets.length - 1));
           setSearching(false);
           setResult(merged);

@@ -363,7 +363,7 @@ export interface SearchResult {
   elapsedMs: number;
 }
 
-export const DEFAULT_LIMIT = 200;
+export const DEFAULT_LIMIT = 60;
 /** How often a search reports its best sets so far (SearchOptions.onSets). */
 export const PARTIAL_MS = 250;
 export const DEFAULT_TIME_LIMIT_MS = 20_000;
@@ -608,9 +608,6 @@ interface Completion {
   torsoUps: number;
 }
 
-/** The first slot (search order) the search precomputes completions from. */
-const FIRST_COMPLETION = 2;
-
 /** The completions no other one beats, with as many Torso Up pieces. */
 function unbeaten(list: Completion[]): Completion[] {
   const sum = (c: Completion) => c.vec.reduce((a, b) => a + b, c.slots);
@@ -765,14 +762,6 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
   const perSlot = trees.map((t) =>
     decorations.reduce((best, d) => Math.max(best, (d.points[t] ?? 0) / d.slots), 0),
   );
-  // Per slot (search order): best points per tree, most slots, has Torso Up.
-  const slotMax = classes.map((cs) => ({
-    vec: trees.map((_, i) =>
-      Math.max(...cs.filter((c) => !c.torsoUp).map((c) => c.vec[i]), -Infinity),
-    ),
-    slots: Math.max(...cs.map((c) => c.slots)),
-    torsoUp: cs.some((c) => c.torsoUp),
-  }));
   // Each piece's points, without Torso Up.
   const pointList = data.pieces.map((p) =>
     Object.entries(p.points).filter(([t]) => t !== TORSO_UP_TREE),
@@ -806,7 +795,8 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
     }
     if (options.onSets && Date.now() - shown >= PARTIAL_MS) {
       shown = Date.now();
-      options.onSets(best.map(build));
+      // Alternatives can wait for the end: they're the costly part.
+      options.onSets(best.map((f) => build(f, false)));
     }
   };
 
@@ -819,44 +809,13 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
     return timedOut;
   };
 
-  // Could the remaining slots (from `depth`) still make every threshold?
-  const reachable = (depth: number): boolean => {
-    const plateVec = chosen[0].vec;
-    let torsoUps = 0;
-    let capacity = query.weaponSlots;
-    for (let d = 1; d < chosen.length; d++) {
-      if (chosen[d].torsoUp) torsoUps++;
-      else capacity += chosen[d].slots;
-    }
-    let possibleTorsoUps = torsoUps;
-    for (let d = depth; d < SEARCH_ORDER.length; d++) {
-      capacity += slotMax[d].slots;
-      if (slotMax[d].torsoUp) possibleTorsoUps++;
-    }
-    capacity += chosen[0].slots * (1 + possibleTorsoUps);
-
-    let required = 0;
-    for (let i = 0; i < k; i++) {
-      let most = cur[i];
-      for (let d = depth; d < SEARCH_ORDER.length; d++) {
-        const m = slotMax[d];
-        most += Math.max(m.vec[i], m.torsoUp ? plateVec[i] : -Infinity);
-      }
-      const deficit = need[i] - most;
-      if (deficit <= 0) continue;
-      if (perSlot[i] <= 0) return false;
-      required += Math.ceil(deficit / perSlot[i]);
-    }
-    return required <= capacity;
-  };
-
-  // The ways to fill the last slots (from FIRST_COMPLETION on) that no
-  // other way beats: as many points in every wanted tree and as many slots,
-  // with the same number of Torso Up pieces. Checking a branch against these
-  // cuts far more than `reachable`, which takes each tree's best separately.
+  // The ways to fill the slots after the torso that no other way beats: as
+  // many points in every wanted tree and as many slots, with the same number
+  // of Torso Up pieces. A branch is checked against these, all wanted trees
+  // at once.
   const completions: Completion[][] = [];
   completions[SEARCH_ORDER.length] = [{ vec: trees.map(() => 0), slots: 0, torsoUps: 0 }];
-  for (let d = SEARCH_ORDER.length - 1; d >= FIRST_COMPLETION; d--) {
+  for (let d = SEARCH_ORDER.length - 1; d >= 1; d--) {
     completions[d] = unbeaten(
       classes[d].flatMap((c) =>
         completions[d + 1].map((p) =>
@@ -967,7 +926,8 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
         const own = pieceScore(p, sort);
         const most = score + own + left[d + 1];
         // Members are best first: once one can't win, none after it can.
-        if (most < bar() || (result.pick && most <= result.pick.score)) break;
+        // (An equal score can still win on free slots.)
+        if (most < bar() || (result.pick && most < result.pick.score)) break;
         pieces.push(p);
         go(d + 1, score + own);
         pieces.pop();
@@ -1001,7 +961,7 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       for (let i = 0; i < k; i++) cur[i] += vec[i];
       chosen.push(c);
       const next = depth + 1;
-      if (next >= FIRST_COMPLETION ? completable(next) : reachable(next)) {
+      if (completable(next)) {
         dfs(next, score + c.best);
       }
       chosen.pop();
@@ -1009,10 +969,11 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       if (timedOut) return;
     }
   };
-  const build = (f: Found): ArmorSet => {
+  const build = (f: Found, withAlternatives = true): ArmorSet => {
     const ordered = ARMOR_SLOTS.map((slot) => SEARCH_ORDER.indexOf(slot));
     const pieces = ordered.map((d) => f.pieces[d]);
     const set = evaluateSet(data, pieces, f.decorations, query.weaponSlots, trees);
+    if (!withAlternatives) return { ...set, alternatives: pieces.map(() => []) };
     const torsoMult = 1 + pieces.filter((p) => p.torsoUp && p.slot !== "plate").length;
     // Swapping `p` in for `old` keeps every wanted skill and adds no bad one.
     const swaps = (old: Piece, p: Piece) => {
@@ -1040,10 +1001,23 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       shown = Date.now();
       const unit = sort === "defence" ? 1 : SCORE_SCALE;
       floor = round < FLOOR_STEPS.length ? scoreLeft[0] - FLOOR_STEPS[round] * unit : -Infinity;
-      best.length = 0;
+      const before = best.splice(0);
       found = 0;
       if (!timedOut) dfs(0, 0);
-      return done(best.map(build), timedOut);
+      // Out of time partway through this round: the sets the last round
+      // found are still good, and this one may not have found them again.
+      if (timedOut) {
+        const seen = new Set(best.map((f) => f.pieces.map((p) => p.id).join()));
+        for (const f of before) {
+          if (!seen.has(f.pieces.map((p) => p.id).join())) best.push(f);
+        }
+        best.sort((a, b) => ranksAbove(b, a));
+        best.length = Math.min(best.length, limit);
+      }
+      return done(
+        best.map((f) => build(f)),
+        timedOut,
+      );
     },
   };
 }
