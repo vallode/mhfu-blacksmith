@@ -20,6 +20,7 @@ import {
   OPTIONS,
   PRESETS,
   SettingsError,
+  actionsOf,
   applySettings,
   decodeSettings,
   defaultSettings,
@@ -146,7 +147,13 @@ export async function startGui(options: GuiOptions): Promise<Gui> {
     if (req.method === "GET" && route === "/api/schema") {
       return sendJson(res, 200, {
         options: OPTIONS,
-        presets: PRESETS,
+        // Each with what it does: shuffle, randomize or both.
+        presets: PRESETS.map((preset) => ({
+          ...preset,
+          actions: [
+            ...new Set(actionsOf(applySettings(defaultSettings("-"), preset.changes)).values()),
+          ].sort(),
+        })),
         defaults: defaultSettings(randomSeed()),
         logicVersion: LOGIC_VERSION,
       });

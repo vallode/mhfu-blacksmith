@@ -245,7 +245,10 @@ test("costs vary within the spread in steps of 10z", async () => {
     if (after !== before) changed++;
   }
   assert.ok(changed > 0);
-  assert.match(formatSpoiler(game, settings("c", "costs"), result), /Cost variation: ±50%/);
+  assert.match(
+    formatSpoiler(game, settings("c", "costs"), result),
+    /Crafting cost variation: ±50%/,
+  );
   close();
 });
 
@@ -367,7 +370,7 @@ test("the CLI writes an ISO and a spoiler log, and refuses to overwrite", async 
     ]);
     const spoiler = readFileSync(path.join(dir, "random.spoiler.txt"), "utf-8");
     assert.match(spoiler, /Seed:\s+cli/);
-    assert.match(spoiler, /Cost variation: ±25%/);
+    assert.match(spoiler, /Crafting cost variation: ±25%/);
     assert.match(spoiler, /== Quest rewards ==/);
     assert.match(spoiler, /== Gathering points ==/);
     assert.match(spoiler, /== Armor progression ==/);

@@ -62,6 +62,8 @@ const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   armor: "armor.enabled",
   "armor-skills": "armorSkills.enabled",
   shops: "shops.enabled",
+  "shop-prices": "shops.prices",
+  "carry-limits": "shops.stacks",
   gathering: "gathering.enabled",
   supplies: "supplies.enabled",
   "quest-money": "terms.money",
@@ -140,6 +142,9 @@ Settings (later ones win):
   --seed <seed>`;
 
 function printSettings(): void {
+  console.log(
+    "[shuffle] moves what's already in the game to new places; [randomize] rolls new values.",
+  );
   let section = "";
   for (const option of OPTIONS) {
     if (option.section !== section) {
@@ -153,7 +158,8 @@ function printSettings(): void {
         : type.kind === "number"
           ? `${type.min}-${type.max}`
           : type.choices.map((c) => c.value).join("|");
-    console.log(`  ${option.key} = ${String(option.default)}   (${values})`);
+    const action = option.action ? `   [${option.action}]` : "";
+    console.log(`  ${option.key} = ${String(option.default)}   (${values})${action}`);
     console.log(`      ${option.label}. ${option.help}`);
   }
 }

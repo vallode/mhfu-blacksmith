@@ -40,6 +40,7 @@ import {
   ITEM_ENTRY_SIZE,
   JP_BASE_ADDRESS,
   WEAPON_BM_ENTRY_SIZE,
+  WEAPON_GUN_ENTRY_SIZE,
   tableOffset,
 } from "mhfu-extract/src/tables/offsets.js";
 import { ARMOR_POINTER_INDEX, ARMOR_SLOTS, type ArmorSlot } from "mhfu-extract/src/tables/armor.js";
@@ -623,6 +624,12 @@ export interface FixtureWeapon {
   type: "great-sword" | "long-sword";
   /** Raw rarity (shown as rarity + 1). */
   rarity: number;
+  /** Raw attack (shown times the class modifier / 100). */
+  attack: number;
+  affinity: number;
+  /** Element (eleType, eleValue) or status (statusType, statusValue), raw: a tenth of the shown value. */
+  element?: [number, number];
+  status?: [number, number];
 }
 
 /**
@@ -631,16 +638,25 @@ export interface FixtureWeapon {
  * rarity 1: 6; rarity 2: 8 (an upgrade from Great Sword 3, as the game has).
  */
 export const FIXTURE_WEAPONS: FixtureWeapon[] = [
-  { index: 1, type: "great-sword", rarity: 0 },
-  { index: 2, type: "great-sword", rarity: 0 },
-  { index: 3, type: "great-sword", rarity: 0 },
-  { index: 4, type: "great-sword", rarity: 1 },
-  { index: 5, type: "great-sword", rarity: 1 },
-  { index: 6, type: "long-sword", rarity: 0 },
-  { index: 7, type: "great-sword", rarity: 0 },
-  { index: 8, type: "long-sword", rarity: 1 },
-  { index: 9, type: "great-sword", rarity: 0 },
+  { index: 1, type: "great-sword", rarity: 0, attack: 60, affinity: 0 },
+  { index: 2, type: "great-sword", rarity: 0, attack: 70, affinity: 0, element: [1, 12] },
+  { index: 3, type: "great-sword", rarity: 0, attack: 80, affinity: -10 },
+  { index: 4, type: "great-sword", rarity: 1, attack: 100, affinity: 10, element: [2, 20] },
+  { index: 5, type: "great-sword", rarity: 1, attack: 110, affinity: 0, status: [1, 15] },
+  { index: 6, type: "long-sword", rarity: 0, attack: 70, affinity: 0 },
+  { index: 7, type: "great-sword", rarity: 0, attack: 90, affinity: 5, element: [3, 25] },
+  { index: 8, type: "long-sword", rarity: 1, attack: 90, affinity: 15, status: [3, 30] },
+  { index: 9, type: "great-sword", rarity: 0, attack: 75, affinity: 0 },
 ];
+
+/** Gunner weapons outside the smithy trees: bows, model ID 20 + index. */
+export const FIXTURE_GUNNER_WEAPONS = [
+  { index: 1, rarity: 0, attack: 20, affinity: 0, element: [5, 8] },
+  { index: 2, rarity: 1, attack: 30, affinity: 10, element: [1, 12] },
+] as const;
+
+/** `WepClassMod`, in table order (Great Sword first). */
+export const FIXTURE_CLASS_MODIFIERS = [480, 130, 520, 230, 140, 120, 140, 480, 520, 230, 120];
 
 type Materials = { itemId: number; quantity: number }[];
 
@@ -728,10 +744,27 @@ export function buildEboot(
   const weapons = tableOffset("weaponsBlademaster");
   const models = tableOffset("modelToWeaponType");
   for (const w of FIXTURE_WEAPONS) {
-    buf.writeUInt16LE(w.index, weapons + w.index * WEAPON_BM_ENTRY_SIZE);
-    buf[weapons + w.index * WEAPON_BM_ENTRY_SIZE + 2] = w.rarity;
+    const at = weapons + w.index * WEAPON_BM_ENTRY_SIZE;
+    buf.writeUInt16LE(w.index, at);
+    buf[at + 2] = w.rarity;
+    buf.writeUInt16LE(w.attack, at + 10);
+    buf.writeInt8(w.affinity, at + 13);
+    if (w.element) [buf[at + 14], buf[at + 15]] = w.element;
+    if (w.status) [buf[at + 16], buf[at + 17]] = w.status;
     buf[models + w.index] = WEAPON_TYPE_NAMES.indexOf(w.type);
   }
+  for (const gun of FIXTURE_GUNNER_WEAPONS) {
+    const at = tableOffset("weaponsGunner") + gun.index * WEAPON_GUN_ENTRY_SIZE;
+    buf.writeUInt16LE(20 + gun.index, at);
+    buf[at + 2] = gun.rarity;
+    buf.writeUInt16LE(gun.attack, at + 8);
+    buf.writeInt8(gun.affinity, at + 13);
+    [buf[at + 17], buf[at + 18]] = gun.element;
+    buf[models + 20 + gun.index] = WEAPON_TYPE_NAMES.indexOf("bow");
+  }
+  FIXTURE_CLASS_MODIFIERS.forEach((mod, i) =>
+    buf.writeUInt32LE(mod, tableOffset("weaponClassModifiers") + i * 4),
+  );
 
   ARMOR_SLOTS.forEach((slot, i) => {
     const array = ARMOR_ARRAYS + i * 20_000;

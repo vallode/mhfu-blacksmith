@@ -19,9 +19,11 @@
  *   are rewritten back to back in the space the lists use now, and the
  *   pointer tables are updated; without this setting every list stays where
  *   it is.
- * - Prices and carry limits live in the EBOOT's item table (24-byte records,
- *   `mhfu-extract/src/tables/items.ts`). The price field isn't documented, so
- *   it's found on the disc from the general store's prices, and the carry
+ * - Prices and carry limits (`randomizeShopPrices`, separate from the stock
+ *   shuffle) live in the EBOOT's item table (24-byte records,
+ *   `mhfu-extract/src/tables/items.ts`), so they change for whatever shops
+ *   sell, with the stock shuffled or not. The price field isn't documented,
+ *   so it's found on the disc from the general store's prices, and the carry
  *   limit (+3) is checked the same way; both refuse to run if the disc
  *   disagrees.
  */
@@ -137,10 +139,6 @@ export interface ShopOptions {
   special: boolean;
   /** Each group's list lengths scale by up to this fraction; 0 keeps them. */
   countSpread: number;
-  /** Buy prices vary by up to this fraction, or null to keep them. */
-  priceSpread: number | null;
-  /** Carry limits vary by up to this fraction, or null to keep them. */
-  stackSpread: number | null;
 }
 
 export interface ShopContext {
@@ -148,8 +146,8 @@ export interface ShopContext {
   bands: ReadonlyMap<number, "low" | "high" | "g">;
   /** Every item that can be sold (has a name and an item record). */
   allItems: readonly number[];
-  /** The EBOOT's item table, for prices and carry limits. */
-  items: ItemTable | null;
+  /** Whether the EBOOT's item table is there to price items never sold before. */
+  canPrice: boolean;
 }
 
 /** Groups of tables that must share one replacement per item: tables sharing a list, or all. */
@@ -360,15 +358,13 @@ export function randomizeShops(
   data: ShopData,
   options: ShopOptions,
   context: ShopContext,
-  rng: { stock: Rng; prices: Rng; stacks: Rng },
+  rng: Rng,
   edits: Edits,
   lobby: LoadedOverlay,
-): ShuffleReport {
+): { report: ShuffleReport; sold: number[] } {
   const included = data.tables.filter((t) => options.special || !t.special);
   const pinned = new Set(options.keepEssentials ? ESSENTIALS : []);
-  const allShopItems = [
-    ...new Set(included.flatMap((t) => t.lists.flatMap((o) => data.lists.get(o)!.items))),
-  ];
+  const allShopItems = itemsSoldBy(data, included);
   const maxLength = Math.max(...[...data.lists.values()].map((l) => l.items.length));
   const lines: { where: string; text: string }[] = [];
   const contents = new Map<number, number[]>();
@@ -383,10 +379,10 @@ export function randomizeShops(
       poolFor(own, allShopItems, options, context),
       pinned,
       maxLength,
-      rng.stock,
+      rng,
     );
     const s = options.countSpread;
-    const factor = s > 0 ? 1 - s + rng.stock.float() * 2 * s : 1;
+    const factor = s > 0 ? 1 - s + rng.float() * 2 * s : 1;
     return { group, plan, factor };
   });
 
@@ -431,74 +427,12 @@ export function randomizeShops(
 
   const layout = writeLists(lobby.ovl, data, contents, edits.overlay(lobby));
 
-  // Prices and carry limits, for every item a shop now sells.
-  const sold = [...new Set([...contents.values()].flat())].sort((a, b) => a - b);
   const notes: string[] = [];
-  const priceLines: { where: string; text: string }[] = [];
-  const stackLines: { where: string; text: string }[] = [];
-  const table = context.items;
-  if ((options.priceSpread !== null || options.stackSpread !== null) && !table) {
-    throw new Error("Shop prices and carry limits need the decrypted EBOOT");
-  }
-  if (table) {
-    const eboot = edits.eboot();
-    let priced = 0;
-    for (const id of sold) {
-      if (id >= table.count) continue;
-      const at = table.base + id * ITEM_ENTRY_SIZE;
-      let price = eboot.readUInt32LE(at + table.priceField);
-      const old = price;
-      if (price === 0) {
-        // Never on sale before, so no price: one from its rarity, so nothing is free.
-        price = 100 * (eboot.readUInt8(at + RARITY_FIELD) + 1) ** 2;
-        priced++;
-      }
-      if (options.priceSpread !== null) {
-        const s = options.priceSpread;
-        price = Math.max(1, Math.round(price * (1 - s + rng.prices.float() * 2 * s)));
-      }
-      if (price !== old) {
-        eboot.writeUInt32LE(price, at + table.priceField);
-        priceLines.push({ where: "Prices", text: `${itemName(id)}: ${price}z (was ${old}z)` });
-      }
-      if (options.stackSpread !== null) {
-        const oldStack = eboot.readUInt8(at + STACK_FIELD);
-        if (oldStack === 0) continue;
-        const s = options.stackSpread;
-        const stack = Math.min(
-          99,
-          Math.max(1, Math.round(oldStack * (1 - s + rng.stacks.float() * 2 * s))),
-        );
-        eboot.writeUInt8(stack, at + STACK_FIELD);
-        if (stack !== oldStack) {
-          stackLines.push({
-            where: "Carry limits",
-            text: `${itemName(id)}: ${stack} (was ${oldStack})`,
-          });
-        }
-      }
-    }
-    if (priced > 0) {
-      notes.push(
-        `${priced} items had no price, so they got one from their rarity: 100z × (rarity + 1)², before any variation.`,
-      );
-    }
-    if (options.priceSpread !== null) {
-      notes.push(
-        `Prices of everything shops sell vary by up to ${Math.round(options.priceSpread * 100)}%. The price is the item's own, so it applies in every shop.`,
-      );
-    }
-    if (options.stackSpread !== null) {
-      notes.push(
-        `Carry limits of everything shops sell vary by up to ${Math.round(options.stackSpread * 100)}% (1 to 99). They apply everywhere, not just in shops.`,
-      );
-    }
-  } else if (options.pool !== "shop") {
+  if (!context.canPrice && options.pool !== "shop") {
     notes.push(
       "Without the decrypted EBOOT, items that are never normally sold can't be given a price, so some may be free.",
     );
   }
-  lines.push(...priceLines, ...stackLines);
 
   const skipped = data.tables.filter((t) => !included.includes(t)).map((t) => t.name);
   const poolText: Record<ShopPool, string> = {
@@ -507,8 +441,8 @@ export function randomizeShops(
     high: "shop items and anything first found in Low or High Rank",
     any: "any item in the game",
   };
-  return {
-    title: "Shops",
+  const report: ShuffleReport = {
+    title: "Shop stock",
     notes: [
       `Each item a shop sells is replaced by one drawn from ${poolText[options.pool]}, the same in every stage of that shop.`,
       options.mix === "all"
@@ -525,4 +459,107 @@ export function randomizeShops(
     ],
     lines,
   };
+  // Every item a shop now sells, for prices and carry limits.
+  return { report, sold: [...new Set([...contents.values()].flat())].sort((a, b) => a - b) };
+}
+
+// ---------------------------------------------------------------- prices and carry limits
+
+/**
+ * What the shops sell with their stock unchanged: every item of every shop
+ * but the Point Exchange, which takes Pokke Points (so it's priced only when
+ * it's in the stock shuffle, `shops.special`).
+ */
+export function itemsOnSale(data: ShopData): number[] {
+  return itemsSoldBy(
+    data,
+    data.tables.filter((t) => !t.special),
+  ).sort((a, b) => a - b);
+}
+
+/** Every item `tables` sell, once each, in list order. */
+function itemsSoldBy(data: ShopData, tables: readonly ShopTable[]): number[] {
+  return [...new Set(tables.flatMap((t) => t.lists.flatMap((o) => data.lists.get(o)!.items)))];
+}
+
+export interface PriceOptions {
+  /** Buy prices vary by up to this fraction, or null to keep them. */
+  priceSpread: number | null;
+  /** Carry limits vary by up to this fraction, or null to keep them. */
+  stackSpread: number | null;
+}
+
+/**
+ * Prices and carry limits of `sold` (what the shops sell, after any stock
+ * shuffle). Any of them with no price, never on sale before, gets one from
+ * its rarity, so nothing is free. Null when there's nothing to report.
+ */
+export function randomizeShopPrices(
+  sold: readonly number[],
+  options: PriceOptions,
+  table: ItemTable | null,
+  rng: { prices: Rng; stacks: Rng },
+  edits: Edits,
+): ShuffleReport | null {
+  if ((options.priceSpread !== null || options.stackSpread !== null) && !table) {
+    throw new Error("Shop prices and carry limits need the decrypted EBOOT");
+  }
+  if (!table) return null;
+  const notes: string[] = [];
+  const priceLines: { where: string; text: string }[] = [];
+  const stackLines: { where: string; text: string }[] = [];
+  const eboot = edits.eboot();
+  let priced = 0;
+  for (const id of sold) {
+    if (id >= table.count) continue;
+    const at = table.base + id * ITEM_ENTRY_SIZE;
+    let price = eboot.readUInt32LE(at + table.priceField);
+    const old = price;
+    if (price === 0) {
+      // Never on sale before, so no price: one from its rarity, so nothing is free.
+      price = 100 * (eboot.readUInt8(at + RARITY_FIELD) + 1) ** 2;
+      priced++;
+    }
+    if (options.priceSpread !== null) {
+      const s = options.priceSpread;
+      price = Math.max(1, Math.round(price * (1 - s + rng.prices.float() * 2 * s)));
+    }
+    if (price !== old) {
+      eboot.writeUInt32LE(price, at + table.priceField);
+      priceLines.push({ where: "Prices", text: `${itemName(id)}: ${price}z (was ${old}z)` });
+    }
+    if (options.stackSpread !== null) {
+      const oldStack = eboot.readUInt8(at + STACK_FIELD);
+      if (oldStack === 0) continue;
+      const s = options.stackSpread;
+      const stack = Math.min(
+        99,
+        Math.max(1, Math.round(oldStack * (1 - s + rng.stacks.float() * 2 * s))),
+      );
+      eboot.writeUInt8(stack, at + STACK_FIELD);
+      if (stack !== oldStack) {
+        stackLines.push({
+          where: "Carry limits",
+          text: `${itemName(id)}: ${stack} (was ${oldStack})`,
+        });
+      }
+    }
+  }
+  if (priced > 0) {
+    notes.push(
+      `${priced} items had no price, so they got one from their rarity: 100z × (rarity + 1)², before any variation.`,
+    );
+  }
+  if (options.priceSpread !== null) {
+    notes.push(
+      `Prices of everything shops sell vary by up to ${Math.round(options.priceSpread * 100)}%. The price is the item's own, so it applies in every shop.`,
+    );
+  }
+  if (options.stackSpread !== null) {
+    notes.push(
+      `Carry limits of everything shops sell vary by up to ${Math.round(options.stackSpread * 100)}% (1 to 99). They apply everywhere, not just in shops.`,
+    );
+  }
+  if (notes.length === 0) return null;
+  return { title: "Shop prices", notes, lines: [...priceLines, ...stackLines] };
 }

@@ -71,7 +71,7 @@
       <!-- 1. The disc -->
       <section class="panel" data-step="game" hidden>
         <p class="intro">
-          Pick a disc image of <b>Monster Hunter Freedom Unite</b> (EU) or
+          Choose a disc image of <b>Monster Hunter Freedom Unite</b> (EU) or
           <b>Monster Hunter Portable 2nd G</b> (JP), dumped from your own disc. It stays on your
           computer: RandomFU runs in this page and nothing is uploaded.
         </p>
@@ -93,8 +93,8 @@
       <!-- 2. Seed, presets and shared settings -->
       <section class="panel" data-step="start" hidden>
         <p class="intro">
-          The seed decides every shuffle: the same disc, seed and settings always make the same
-          game. Then start from a preset, or load settings someone shared with you.
+          The seed decides every random choice: the same disc, seed and settings always make the
+          same game. Then start from a preset, or load settings someone shared with you.
         </p>
         <h3 class="subheading">Seed</h3>
         <div class="row">
@@ -110,11 +110,29 @@
         </div>
 
         <h3 class="subheading">Preset</h3>
+        <p class="note">Every option does one of two things, and the presets mix them:</p>
+        <dl class="actions">
+          <div>
+            <dt><span class="tag shuffle">Shuffle</span></dt>
+            <dd class="note">
+              Moves what's already in the game to new places: rewards, gathering points, the
+              smithy's weapons and armor, shop stock, the monsters in quests. Nothing new is made.
+            </dd>
+          </div>
+          <div>
+            <dt><span class="tag randomize">Randomize</span></dt>
+            <dd class="note">
+              Rolls new values: material amounts, costs, prices, quest money and time limits,
+              monster size and stats, armor skills, weapon stats.
+            </dd>
+          </div>
+        </dl>
         <div class="choices" id="presets" role="radiogroup" aria-label="Preset"></div>
-        <p class="note">A preset keeps your seed. You can change anything in the next steps.</p>
+        <p class="note" id="preset-note"></p>
 
         <details class="load" id="load">
           <summary class="subheading">Load shared settings</summary>
+          <p class="note">Loading replaces every option, and your seed if it has one.</p>
           <label class="field">
             <span class="label">Settings string</span>
             <span class="row">

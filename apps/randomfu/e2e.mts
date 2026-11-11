@@ -32,7 +32,6 @@ const settings = applySettings(defaultSettings("WEB-E2E"), {
   ...chaos.changes,
   "logic.tiers": "star",
   // Not in a preset until they're tried on a real disc.
-  "questMonsters.species": true,
   "questMonsters.difficulty": true,
   "questMonsters.smallCounts": true,
   "monsterStats.hp": true,
@@ -40,6 +39,9 @@ const settings = applySettings(defaultSettings("WEB-E2E"), {
   "monsterStats.status": true,
   "weaknesses.elements": true,
   "weaknesses.parts": true,
+  "weapons.attack": true,
+  "weapons.affinity": true,
+  "weapons.element": true,
 });
 const settingsString = encodeSettings(settings);
 
@@ -84,7 +86,7 @@ try {
   // Step 1: the disc. Next waits for one.
   assert.equal(await title(), "Your game");
   await page.click("#next");
-  assert.match((await page.textContent("#nav-status"))!, /Pick your disc image first/);
+  assert.match((await page.textContent("#nav-status"))!, /Choose your disc image first/);
   await page.setInputFiles("#iso", isoPath);
   await page.waitForFunction(() =>
     /supported/.test(document.getElementById("check-status")!.textContent ?? ""),
@@ -99,7 +101,7 @@ try {
   await page.click("#next");
 
   // Step 2: seed and presets; load the shared settings.
-  assert.equal(await title(), "Seed");
+  assert.equal(await title(), "Seed & preset");
   assert.ok(await page.isVisible("#skip"), "the options can be skipped without shared settings");
   await page.click("#load summary");
   await page.fill("#paste", settingsString);
