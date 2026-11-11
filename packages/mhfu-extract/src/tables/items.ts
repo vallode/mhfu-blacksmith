@@ -22,9 +22,12 @@
  * is a tenth of `price` on items that can be sold (Herb 2, Rathalos Ruby
  * 9700) and 0 on the rest, likely the sell price; not confirmed on screen.
  *
- * `iconDeco`/`iconId`/`color` are named for their role in DecorationValue
- * and may mean something different (or nothing) for a non-decoration item;
- * kept as raw fields rather than guessing further here.
+ * `iconId` is the item's icon shape and `color` its tint, on every item
+ * (`tables/item-icons.ts` has what they index): each potion is 24, each ore
+ * 27, each fang 31; Dragonite Ore is green and Eltalite Ore red. `iconDeco`
+ * is named for its role in DecorationValue; on other items its bits are
+ * set on groups such as cooked meat and fish (1) and the charms (32), with
+ * no known meaning.
  */
 import { BinaryReader } from "../binary/reader.js";
 import { ITEM_ENTRY_SIZE, TABLE_COUNTS, resolveTableOffset } from "./offsets.js";

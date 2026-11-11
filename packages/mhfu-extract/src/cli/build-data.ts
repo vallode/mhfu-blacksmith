@@ -64,7 +64,7 @@ export interface CategoryBuildReport {
   filesWritten: string[];
 }
 
-/** Item stats (rarity, carry limit, price) written into `data/items.json`. */
+/** Item stats (rarity, carry limit, price, icon, colour) written into `data/items.json`. */
 export interface ItemsBuildReport {
   changes: ItemStatChange[];
   /** Committed items the disc has no entry for, left as they were. */
@@ -215,7 +215,8 @@ async function buildItems(options: BuildDataOptions): Promise<ItemsBuildReport> 
   if (!source) throw new Error(`items.json is missing from ${options.extracted}; rerun extract`);
   const file = path.join(options.data, "items.json");
   const previous = await readFile(file, "utf-8");
-  const merged = mergeItemStats(JSON.parse(previous), (source as { items: EmittedItem[] }).items);
+  const { items, colors } = source as { items: EmittedItem[]; colors?: string[] };
+  const merged = mergeItemStats(JSON.parse(previous), items, colors);
   const next = `${JSON.stringify(merged.content, null, 2)}\n`;
   const filesWritten: string[] = [];
   if (next !== previous) {

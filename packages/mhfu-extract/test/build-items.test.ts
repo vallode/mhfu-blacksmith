@@ -18,17 +18,26 @@ const committed = {
 };
 
 const disc = [
-  { id: 1, name: "Book of Combos 1", rarity: 4, carry: 1, price: 1000 },
-  { id: 7, name: "Potion", rarity: 1, carry: 10, price: 66 },
-  { id: 92, name: "Promo Tkt", rarity: 3, carry: 99, price: 0 },
-  { id: 128, name: "No Coating", rarity: 1, carry: 255, price: 0 },
+  { id: 1, name: "Book of Combos 1", rarity: 4, carry: 1, price: 1000, icon: 36, color: 10 },
+  { id: 7, name: "Potion", rarity: 1, carry: 10, price: 66, icon: 24, color: 2 },
+  { id: 92, name: "Promo Tkt", rarity: 3, carry: 99, price: 0, icon: 37, color: 4 },
+  { id: 128, name: "No Coating", rarity: 1, carry: 255, price: 0, icon: 51, color: 10 },
 ];
 
 test("mergeItemStats writes the disc's stats by ID and keeps everything else", () => {
   const { content, changes, missing } = mergeItemStats(committed, disc);
   assert.equal(content.$comment, "test");
   assert.deepEqual(content.items, [
-    { id: 1, name: "Book of Combos 1", name_jp: "調合書①入門編", rarity: 4, carry: 1, price: 1000 },
+    {
+      id: 1,
+      name: "Book of Combos 1",
+      name_jp: "調合書①入門編",
+      rarity: 4,
+      carry: 1,
+      price: 1000,
+      icon: 36,
+      color: 10,
+    },
     {
       id: 7,
       name: "Potion",
@@ -37,6 +46,8 @@ test("mergeItemStats writes the disc's stats by ID and keeps everything else", (
       rarity: 1,
       carry: 10,
       price: 66,
+      icon: 24,
+      color: 2,
     },
     {
       id: 92,
@@ -45,6 +56,8 @@ test("mergeItemStats writes the disc's stats by ID and keeps everything else", (
       rarity: 3,
       carry: 99,
       price: 0,
+      icon: 37,
+      color: 4,
       regions: ["jp"],
     },
     committed.items[3],
@@ -58,14 +71,24 @@ test("mergeItemStats writes the disc's stats by ID and keeps everything else", (
     "rarity",
     "carry",
     "price",
+    "icon",
+    "color",
     "regions",
   ]);
   assert.deepEqual(
     changes.filter((c) => c.before !== undefined),
     [{ id: 7, name: "Potion", field: "rarity", before: 2, after: 1 }],
   );
-  assert.equal(changes.filter((c) => c.before === undefined).length, 7);
+  assert.equal(changes.filter((c) => c.before === undefined).length, 13);
   assert.deepEqual(missing, [{ id: 1300, name: "Not On Disc" }]);
+});
+
+test("mergeItemStats puts the disc's palette before the items, and keeps it when given none", () => {
+  const colors = ["#ffffff", "#ff5d5d"];
+  const { content } = mergeItemStats(committed, disc, colors);
+  assert.deepEqual(Object.keys(content), ["$comment", "colors", "items"]);
+  assert.deepEqual(content.colors, colors);
+  assert.deepEqual(mergeItemStats(content, disc).content.colors, colors);
 });
 
 test("runBuildData writes item stats into data/items.json, and a second run is a no-op", async () => {

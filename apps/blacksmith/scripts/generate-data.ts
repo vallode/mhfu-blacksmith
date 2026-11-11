@@ -612,6 +612,12 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
   push("equipment-ids.json", out);
 }
 
+/** The Icon `type` and `color` for an item's disc icon, or null when the disc gave none. */
+function itemIcon(record: ItemRecord | undefined): [string, string] | null {
+  if (record?.icon === undefined || record.color === undefined) return null;
+  return [`item-${record.icon}`, `item-${record.color}`];
+}
+
 // Items (in-game item ID -> name). Runs after every bundle above so that all
 // recipe/drop material names are interned and can be linked to an item ID.
 {
@@ -623,6 +629,17 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
   for (const name of materialIndex.keys()) {
     const id = index.get(normalizeItemName(name));
     if (id !== undefined) materials[name] = id;
+  }
+
+  // The disc gives items their own icon and tint (see `itemIcon` above).
+  // Materials use that too, wherever one names an item that has one.
+  const recordById = new Map(records.map((r) => [r.id, r]));
+  for (const [name, id] of Object.entries(materials)) {
+    const icon = itemIcon(recordById.get(id));
+    if (!icon) continue;
+    materialTC.set(name, icon);
+    intern(typeIndex, icon[0]);
+    intern(colorIndex, icon[1]);
   }
 
   // Pick an icon for each item from its linked materials: prefer the material
@@ -645,7 +662,7 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
     if (r.rarity !== undefined) out.r = r.rarity;
     if (r.carry !== undefined) out.l = r.carry;
     if (r.price !== undefined) out.z = r.price;
-    const icon = iconFor.get(r.id);
+    const icon = itemIcon(r) ?? iconFor.get(r.id);
     if (icon) {
       out.t = intern(typeIndex, icon[0]);
       out.c = intern(colorIndex, icon[1]);

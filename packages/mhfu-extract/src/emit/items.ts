@@ -1,7 +1,7 @@
 /**
  * Maps the item table (`tables/items.ts`) onto the stats in
  * `data/items.json` (schema: `data/schemas/item.schema.json`): each item's
- * rarity, carry limit and price, by ItemID. Names come from the `ItemID`
+ * rarity, carry limit, price, icon shape and tint, by ItemID. Names come from the `ItemID`
  * enum, so `diff` can pair the entries with `data/items.json` by name;
  * `build-data` pairs them by ID and writes only the stats.
  */
@@ -17,6 +17,10 @@ export interface EmittedItem {
   rarity: number;
   carry: number;
   price: number;
+  /** Icon shape: which `item-<icon>.png` the `item-icons` command wrote. */
+  icon: number;
+  /** Index into the palette `items.json` carries as `colors`. */
+  color: number;
 }
 
 /** Every named item (ID 0, "None", has no name), in ID order. */
@@ -32,6 +36,8 @@ export function emitItems(reader: BinaryReader, resolver?: TableAddressResolver)
       rarity: displayRarity(entry.rarity),
       carry: entry.stackLimit,
       price: entry.price,
+      icon: entry.iconId,
+      color: entry.color,
     });
   }
   return out;
