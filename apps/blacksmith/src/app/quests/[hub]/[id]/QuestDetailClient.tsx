@@ -18,6 +18,7 @@ import {
   type QuestMonster,
   type QuestMonsterStats,
 } from "@/lib/quests";
+import QuestAreaMap from "@/components/AreaMap";
 import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
 import { cn } from "@/lib/cn";
@@ -198,6 +199,10 @@ export default function QuestDetailClient({ hub, id }: Props) {
       label: "Supplies",
       content: <QuestSupplies supplies={quest.supplies} />,
     });
+  }
+
+  if (quest.hasAreaMap) {
+    tabs.push({ id: "map", label: "Map", content: <QuestAreaMap questId={id} /> });
   }
 
   return (

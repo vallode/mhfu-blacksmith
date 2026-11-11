@@ -58,6 +58,8 @@ export interface QuestBundleInputs {
   monsterPage: (name: string) => { category: string; slug: string } | undefined;
   /** site monster name -> its base HP */
   baseHp?: (name: string) => number | undefined;
+  /** whether area-maps.json has this quest */
+  hasAreaMap?: (questId: number) => boolean;
 }
 
 export function encodeQuestBundle({
@@ -65,6 +67,7 @@ export function encodeQuestBundle({
   itemId,
   monsterPage,
   baseHp = () => undefined,
+  hasAreaMap = () => false,
 }: QuestBundleInputs): {
   bundle: QuestsBundle;
   unresolvedItems: string[];
@@ -205,6 +208,7 @@ export function encodeQuestBundle({
       q.requires ?? null,
       q.urgent ? 1 : 0,
       monsterStats(q.large_monsters),
+      hasAreaMap(q.id) ? 1 : 0,
     ]);
   }
 
