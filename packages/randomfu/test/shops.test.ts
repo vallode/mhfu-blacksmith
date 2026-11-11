@@ -200,23 +200,28 @@ test("item counts scale every stage of a shop alike, and the lists are rewritten
 
 test("lists won't be rewritten over anything that isn't a shop list", async () => {
   const { game, close } = await load();
+  // A seed whose lists change length, so they'd be rewritten.
+  const vanilla = findShops(parseOvl(lobby.buf));
+  const lengths = (data: {
+    tables: { lists: number[] }[];
+    lists: Map<number, { items: number[] }>;
+  }) => data.tables.map((t) => t.lists.map((o) => data.lists.get(o)!.items.length)).join();
+  const seed = "abcdefghijklmnopqrstuvwxyz".split("").find((seed) => {
+    const s = settingsWith(seed, ["shops"], { "shops.countSpread": 0.9 });
+    const edited = parseOvl(randomize(game, s).edits.overlay(game.lobbyTask));
+    return (
+      lengths(readTablesAt(edited, lobby.tablesAt, FIXTURE_SHOP_TABLES.length)) !== lengths(vanilla)
+    );
+  });
+  assert.ok(seed, "some seed changes a list's length");
+
   const buf = game.dataBin.read(game.lobbyTask.index);
   const gap = lobby.listAt.empty! + 2; // the padding after the empty list
   const saved = buf.readUInt16LE(gap);
   buf.writeUInt16LE(0x1234, gap);
   try {
-    // Seeds whose lists change length (most, at 0.9) are refused; the rest stay in place.
-    let refused = 0;
-    for (const seed of ["w", "x", "y", "z"]) {
-      const s = settingsWith(seed, ["shops"], { "shops.countSpread": 0.9 });
-      try {
-        randomize(game, s);
-      } catch (e) {
-        assert.match(String(e), /something other than shop lists/);
-        refused++;
-      }
-    }
-    assert.ok(refused > 0);
+    const s = settingsWith(seed, ["shops"], { "shops.countSpread": 0.9 });
+    assert.throws(() => randomize(game, s), /something other than shop lists/);
   } finally {
     buf.writeUInt16LE(saved, gap);
     close();

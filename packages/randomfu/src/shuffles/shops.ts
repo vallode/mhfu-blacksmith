@@ -364,9 +364,7 @@ export function randomizeShops(
 ): { report: ShuffleReport; sold: number[] } {
   const included = data.tables.filter((t) => options.special || !t.special);
   const pinned = new Set(options.keepEssentials ? ESSENTIALS : []);
-  const allShopItems = [
-    ...new Set(included.flatMap((t) => t.lists.flatMap((o) => data.lists.get(o)!.items))),
-  ];
+  const allShopItems = itemsSoldBy(data, included);
   const maxLength = Math.max(...[...data.lists.values()].map((l) => l.items.length));
   const lines: { where: string; text: string }[] = [];
   const contents = new Map<number, number[]>();
@@ -473,10 +471,15 @@ export function randomizeShops(
  * it's in the stock shuffle, `shops.special`).
  */
 export function itemsOnSale(data: ShopData): number[] {
-  const items = data.tables
-    .filter((t) => !t.special)
-    .flatMap((t) => t.lists.flatMap((o) => data.lists.get(o)!.items));
-  return [...new Set(items)].sort((a, b) => a - b);
+  return itemsSoldBy(
+    data,
+    data.tables.filter((t) => !t.special),
+  ).sort((a, b) => a - b);
+}
+
+/** Every item `tables` sell, once each, in list order. */
+function itemsSoldBy(data: ShopData, tables: readonly ShopTable[]): number[] {
+  return [...new Set(tables.flatMap((t) => t.lists.flatMap((o) => data.lists.get(o)!.items)))];
 }
 
 export interface PriceOptions {

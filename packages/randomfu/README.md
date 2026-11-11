@@ -76,14 +76,14 @@ pnpm settings --write my.json       # write every setting to a file to edit
 
 Settings come from these flags, later ones winning:
 
-| Flag                                                          | What it sets                                                                                                                                                                     |
-| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                                     |
-| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                                          |
-| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops, supplies, quest-money, time-limits, deliveries |
-| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                                    |
-| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                              |
-| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                                   |
+| Flag                                                          | What it sets                                                                                                                                                                                                |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                                                                |
+| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                                                                     |
+| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops, shop-prices, carry-limits, supplies, quest-money, time-limits, deliveries |
+| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                                                               |
+| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                                                         |
+| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                                                              |
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
