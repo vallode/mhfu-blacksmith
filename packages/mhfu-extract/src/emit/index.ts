@@ -13,6 +13,7 @@ import type { TableAddressResolver } from "../tables/resolver.js";
 import { WEAPON_TYPE_NAMES, type WeaponTypeName } from "../tables/weapons.js";
 import { emitArmor } from "./armor.js";
 import { emitDecorations } from "./decorations.js";
+import { readItemColors } from "../tables/item-icons.js";
 import { emitItems } from "./items.js";
 import {
   attachHornMelodies,
@@ -78,7 +79,11 @@ export function emitAll(
 ): EmitOutput {
   const output: EmitOutput = {};
 
-  output["items.json"] = { items: emitItems(reader, resolver) };
+  // The palette's address is only known for EU's EBOOT, so JP's has none.
+  output["items.json"] = {
+    ...(resolver ? { colors: readItemColors(reader, resolver) } : {}),
+    items: emitItems(reader, resolver),
+  };
   output["decorations.json"] = { decorations: emitDecorations(reader, resolver) };
 
   const armor = emitArmor(reader, resolver);

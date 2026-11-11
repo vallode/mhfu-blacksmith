@@ -380,7 +380,10 @@ const itemsFile = path.join(dataDir, "items.json");
 if (!fs.existsSync(itemsFile)) {
   error("Missing data/items.json");
 } else {
-  const data = JSON.parse(fs.readFileSync(itemsFile, "utf-8")) as { items: ItemRecord[] };
+  const data = JSON.parse(fs.readFileSync(itemsFile, "utf-8")) as {
+    colors?: string[];
+    items: ItemRecord[];
+  };
   const ITEM_KEYS = new Set([
     "id",
     "name",
@@ -389,6 +392,8 @@ if (!fs.existsSync(itemsFile)) {
     "rarity",
     "carry",
     "price",
+    "icon",
+    "color",
     "regions",
     "placeholder",
   ]);
@@ -399,6 +404,14 @@ if (!fs.existsSync(itemsFile)) {
     error('items.json: "items" is not an array');
     data.items = [];
   }
+
+  // Icon tints live twice, the palette here and as --color-item-* tokens.
+  const css = fs.readFileSync(path.join(root, "src/app/globals.css"), "utf-8");
+  const tint = (i: number) => css.match(new RegExp(`--color-item-${i}:\\s*(#[0-9a-f]{6})`))?.[1];
+  data.colors?.forEach((hex, i) => {
+    if (i !== 9 && tint(i) !== hex)
+      error(`items.json: colors[${i}] is ${hex}, but --color-item-${i} is ${tint(i)}`);
+  });
 
   // Structural checks mirroring data/schemas/item.schema.json.
   for (const it of data.items) {
@@ -412,6 +425,12 @@ if (!fs.existsSync(itemsFile)) {
     else if (it.name !== it.name.trim()) error(`${label}: name has surrounding whitespace`);
     else if (it.name.length > ITEM_NAME_LENGTH)
       error(`${label}: name "${it.name}" is longer than the game's ${ITEM_NAME_LENGTH} characters`);
+    if (it.icon !== undefined) {
+      const sprite = path.join(root, "public/images", `item-${it.icon}.png`);
+      if (!fs.existsSync(sprite)) error(`${label}: no sprite for icon ${it.icon}`);
+    }
+    if (it.color !== undefined && (it.color === 9 || !tint(it.color)))
+      error(`${label}: no --color-item-${it.color} token`);
     if (typeof it.name_jp !== "string" || !it.name_jp) error(`${label}: missing name_jp`);
     if (it.aliases !== undefined) {
       if (

@@ -39,6 +39,7 @@ pnpm --filter mhfu-extract extract --unpacked .cache/mhfu --out .cache/mhfu/extr
 pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
+pnpm --filter mhfu-extract item-icons --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests.json --tsv .cache/mhfu/quest-size.tsv
 pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
@@ -65,6 +66,8 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
   from the disc".
 - `build-data` rewrites committed `data/` from the extracted output. See
   "Building `data/` from the disc".
+- `item-icons` slices the item icons out of the UI atlas into the site's
+  `public/images/`. See "Items".
 - `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
   open quest questions (`src/emit/quest-probe.ts`): the values the monster
   size candidates take, the header's two objective slots, each script
@@ -970,10 +973,11 @@ u16 table, u16 most gathers, u16 type, u16 fewest gathers`), ending at
 
 ### Items
 
-`src/emit/items.ts` writes each item's rarity, carry limit and price from
-the EBOOT's item table (`src/tables/items.ts`) to `items.json`, and
-`build-data` writes them into `data/items.json` by ID (`src/build/items.ts`),
-keeping the names, aliases and regions as committed.
+`src/emit/items.ts` writes each item's rarity, carry limit, price, icon and
+colour from the EBOOT's item table (`src/tables/items.ts`) to `items.json`,
+and `build-data` writes them into `data/items.json` by ID
+(`src/build/items.ts`), keeping the names, aliases and regions as committed.
+`item-icons` writes the icons themselves (see below).
 
 - **Layout**: 24 bytes per ItemID, the same layout as the decorations'
   table, which is entries 948–1116 of this one. The table runs on through
@@ -989,6 +993,27 @@ keeping the names, aliases and regions as committed.
   `+16` is a tenth of it on items that can be sold (Herb 2z, Rathalos Ruby
   9700z) and 0 on the rest, likely the sell price; not checked on screen, so
   not written.
+- **Icon** (`+5`, u8) is the item's shape: potions and drinks are 24,
+  ores 27, jewels 43, shots 26. **Colour** (`+6`, u8) is its tint: Dragonite
+  Ore is 2 (green), Eltalite Ore 1 (red). The byte at `+4` has flags (cooked
+  meat and fish 1, charms 32) with no known meaning, so isn't written. Weapon
+  records have no icon or colour field, and armor's `colorSeries` (0–3) is
+  not this palette, so equipment keeps the site's own icons.
+- **Palette**: 11 u32s (R, G, B, 1) by colour index: white, red, green, blue,
+  yellow, purple, cyan, orange, pink, an empty slot no item uses, gray.
+  Written as `colors` in `data/items.json`, and kept as the site's
+  `--color-item-*` tokens (`scripts/validate.ts` checks they match).
+- **Sprites**: the game looks an icon up in two u16 lists of 56 (24x24, then
+  16x16; game code at vaddr `0x088303b8`), which index the UI sprite table
+  (12 bytes: u16 x, y, width, height, two flags). The atlas is
+  `cockpit/cock.tmh`'s first image, in grays the game tints with the colour.
+  Shapes 0–38 are consecutive; 39 and up jump around, and shapes no item uses
+  point at shape 33's "?". The addresses are EU's; `src/tables/item-icons.ts`
+  has them, and JP's aren't known.
+- `item-icons` writes each shape's 16x16 icon to
+  `apps/blacksmith/public/images/item-<icon>.png`, skipping the shapes that
+  fall back to the "?". The site draws them like its other sprites, tinted
+  with the item's colour.
 - The three placeholder IDs (`placeholder` in `data/items.json`) get no
   stats.
 

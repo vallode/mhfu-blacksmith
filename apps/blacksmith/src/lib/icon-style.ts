@@ -54,6 +54,9 @@ const ITEM_MASKS = new Set([
   "leggings",
 ]);
 
+/** Item icons from the disc: type `item-<icon>` (a sprite at /images/item-<icon>.png) and color `item-<index>`. */
+const ITEM_ICON = /^item-\d+$/;
+
 /** Monster categories with a mask at /images/monsters/<type>.png. */
 const MONSTER_MASKS = new Set([
   "bird-wyvern",
@@ -114,6 +117,7 @@ export interface IconStyleOptions {
 }
 
 function tintFor({ rarity, color, active }: IconStyleOptions): string | undefined {
+  if (color && ITEM_ICON.test(color)) return `var(--color-${color})`;
   if (color?.startsWith("note-")) {
     const note = color.slice("note-".length);
     if (NOTE_COLORS.has(note)) return `var(--color-note-${note})`;
@@ -126,7 +130,7 @@ function tintFor({ rarity, color, active }: IconStyleOptions): string | undefine
 }
 
 function maskFor({ type, size }: IconStyleOptions): string | undefined {
-  if (ITEM_MASKS.has(type)) {
+  if (ITEM_ICON.test(type) || ITEM_MASKS.has(type)) {
     return `url("/images/${type}${size === "mini" ? "-mini" : ""}.png")`;
   }
   if (MONSTER_MASKS.has(type)) return `url("/images/monsters/${type}.png")`;
