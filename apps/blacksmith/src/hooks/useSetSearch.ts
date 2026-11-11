@@ -88,6 +88,8 @@ interface Pending {
   /** Each worker's best sets so far this round, and the last round's. */
   partial: ArmorSet[][];
   before: ArmorSet[];
+  /** Its sets are on screen (until then, the last search's are). */
+  shown: boolean;
 }
 
 /** Ask every worker for its shard of a round. */
@@ -152,6 +154,7 @@ export function useSetSearch(): SetSearchState {
       found: [],
       partial: [],
       before: [],
+      shown: false,
     };
     pending.current = run;
     setSearching(true);
@@ -162,6 +165,8 @@ export function useSetSearch(): SetSearchState {
 
   /** Starts fresh workers (startWorkers, once it exists). */
   const restart = useRef<(() => void) | null>(null);
+  /** The workers failed outside a search: start new ones for the next. */
+  const failed = useRef(false);
 
   const stop = useCallback((message: string) => {
     searchId.current++;
@@ -203,6 +208,7 @@ export function useSetSearch(): SetSearchState {
             setQuery(run.query);
             // The set asked for (or stepped to since), not the last search's.
             setIndexState(Math.min(run.index, last));
+            run.shown = true;
             return;
           }
           if (msg.type === "progress") {
@@ -246,7 +252,10 @@ export function useSetSearch(): SetSearchState {
           if (!workersRef.current.includes(worker)) return;
           const message = event.message || "The search stopped unexpectedly.";
           if (pending.current) stop(message);
-          else setError(message);
+          else {
+            failed.current = true;
+            setError(message);
+          }
         };
         worker.postMessage({ type: "init", data: d } satisfies SetSearchRequest);
         return worker;
@@ -284,6 +293,11 @@ export function useSetSearch(): SetSearchState {
 
   const search = useCallback(
     (q: SearchQuery) => {
+      // Once only: if the new workers fail too, the search stops with the error.
+      if (failed.current) {
+        failed.current = false;
+        restart.current?.();
+      }
       if (workersRef.current.length > 0) post(workersRef.current, q);
     },
     [post],
@@ -301,7 +315,9 @@ export function useSetSearch(): SetSearchState {
   const setIndex = useCallback((i: number) => {
     setIndexState(i);
     // Stepping through live results: keep the set when the search ends.
-    if (pending.current) pending.current.index = i;
+    // Until they show, the steps are through the last search's sets.
+    const run = pending.current;
+    if (run?.shown) run.index = i;
     else if (lastSearch) writeLast({ ...lastSearch, index: i });
   }, []);
 

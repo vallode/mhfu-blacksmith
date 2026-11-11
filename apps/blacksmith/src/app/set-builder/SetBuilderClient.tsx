@@ -151,23 +151,21 @@ function PieceList({
       <span className={ui.statusLabel}>{label}</span>
       <p className={ui.note}>{note}</p>
       <ul className="m-0 flex list-none flex-wrap gap-x-[1.6rem] gap-y-[0.4rem] p-0 text-fine">
-        {pieces.map(({ href, name }) => {
-          return (
-            <li key={href} className="flex items-center">
-              <Link href={href} className="text-white/80 hover:text-white">
-                {name}
-              </Link>
-              <button
-                type="button"
-                className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-small leading-none text-white/50 hover:text-negative focus-visible:text-negative"
-                aria-label={`Take ${name} off the ${label.toLowerCase()} pieces`}
-                onClick={() => onRemove(href)}
-              >
-                ×
-              </button>
-            </li>
-          );
-        })}
+        {pieces.map(({ href, name }) => (
+          <li key={href} className="flex items-center">
+            <Link href={href} className="text-white/80 hover:text-white">
+              {name}
+            </Link>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-small leading-none text-white/50 hover:text-negative focus-visible:text-negative"
+              aria-label={`Take ${name} off the ${label.toLowerCase()} pieces`}
+              onClick={() => onRemove(href)}
+            >
+              ×
+            </button>
+          </li>
+        ))}
       </ul>
     </div>
   );
