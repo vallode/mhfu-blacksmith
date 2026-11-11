@@ -160,7 +160,11 @@ export function iconStyle(opts: IconStyleOptions): { className: string; style: C
       "relative mr-[6px] flex h-[32px] w-[32px] flex-[0_0_3.2rem]",
       // flex-basis must grow with the box or the row squashes it horizontally
       size === "large" && "h-[52px] w-[52px] flex-[0_0_52px]",
-      mask && "before:icon-mask",
+      // The tint multiplies over the sprite alone: isolate makes the icon its
+      // blend group. Without it the group is the nearest stacking context (a
+      // card's body), and Safari, compositing a hovered row for its glow
+      // animation, stops drawing the card's background under it.
+      mask && "isolate before:icon-mask",
       // Tint fill. Nav icons are grey until hovered, unless tinted (active).
       mask && !nav && "before:[background:var(--icon-tint)]",
       mask && nav && "before:bg-[var(--icon-tint,#bdbdbd)] hover:before:bg-white",
