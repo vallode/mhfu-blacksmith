@@ -54,6 +54,37 @@ export function readMessageFile(buf: Buffer): MessageTable[] | null {
 }
 
 /**
+ * A message file with these tables of strings (bytes, without the NUL), laid
+ * out as the EU str_tbl is: the header, then each table's offset list and its
+ * strings in order, each string once, with one more NUL after each table's
+ * last string. Rebuilding an unedited str_tbl this way gives back its bytes
+ * up to the end of the last table; the disc's file goes on to the end of its
+ * last sector with bytes nothing points at.
+ */
+export function buildMessageFile(tables: readonly (readonly Buffer[])[], unknown = 8): Buffer {
+  const header = Buffer.alloc(8 + tables.length * 4);
+  header.writeUInt32LE(tables.length, 0);
+  header.writeUInt32LE(unknown, 4);
+  const parts: Buffer[] = [header];
+  let at = header.length;
+  tables.forEach((strings, t) => {
+    header.writeUInt32LE(at, 8 + t * 4);
+    const list = Buffer.alloc(strings.length * 4 + 4);
+    let rel = list.length;
+    const bodies: Buffer[] = [];
+    strings.forEach((s, i) => {
+      list.writeUInt32LE(rel, i * 4);
+      bodies.push(s, Buffer.alloc(1));
+      rel += s.length + 1;
+    });
+    list.writeUInt32LE(END, strings.length * 4);
+    parts.push(list, ...bodies, Buffer.alloc(1));
+    at += rel + 1;
+  });
+  return Buffer.concat(parts);
+}
+
+/**
  * A string as text, with anything that isn't printable UTF-8 shown as
  * `\xNN` (control codes, such as a placeholder for a name, show up this
  * way) and new lines as `\n`.

@@ -18,7 +18,8 @@ checked against the EU disc's quest files (every changed quest re-reads as
 expected) but not yet played in game. Star-level tiers, gathering sources,
 `recipe-amounts`, `costs`, `armor` and `gathering` are so far tested only
 against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
-has been written to the EU disc and read back, but not yet played. A PSP
+has been written to the EU disc and read back, but not yet played; so have
+the ammo and coating descriptions `carry-limits` rewrites. A PSP
 with custom firmware isn't tested. Run `roundtrip` on a new disc first.
 
 ## Usage
@@ -61,8 +62,8 @@ pnpm settings                       # list every setting with its values and hel
 pnpm settings --write my.json       # write every setting to a file to edit
 ```
 
-- `roundtrip` re-encrypts every quest and both monster overlays without
-  changing them and checks the result matches the disc byte for byte. If it
+- `roundtrip` re-encrypts every quest, the overlays shuffles edit and, on
+  EU, the five str_tbl message files without changing them and checks the result matches the disc byte for byte. If it
   passes, edited files are written the way the game expects to read them.
   It writes nothing.
 - `randomize` copies the image (`.iso` or `.cso`; the output is always an
@@ -213,6 +214,7 @@ except `supplies.pool add`, which grows quests into their sector padding
 | `armor`           | Armor create entries in the EBOOT                   | Which piece each place makes (see below)             |
 | `armor-skills`    | `ArmorValues` skill entries in the EBOOT            | Each piece's skill trees and points (see below)      |
 | `shops`           | Shop item lists in `lobby_task.ovl`                 | Which items each shop sells (see below)              |
+| descriptions      | Item descriptions in the EU str_tbl                 | Carry limits in ammo and coating text (see below)    |
 | `supplies`        | Supply box lists in each quest `.mib`               | Item and amount of each stack (see below)            |
 | `terms`           | Quest header fee, reward, penalty, time limit       | The numbers, varied (see below)                      |
 | `deliveries`      | Delivery quest header target and goal line          | Which item and how many (see below)                  |
@@ -405,6 +407,23 @@ commands that found them.
   don't match. Any item a shop now sells that has no price gets one from
   its rarity (100z × (rarity + 1)²), so nothing is free; that needs the
   EBOOT, so without it, wide pools may sell some items for free.
+- **Descriptions follow carry limits** (`src/shuffles/descriptions.ts`).
+  Ammo and coating descriptions end with their carry limit ("Max 60
+  shots.", "Max. 60 Schuss.", "Disp. máx. 60."), so on the EU disc the
+  number changes with the limit, in all five languages: the str_tbl
+  message files, DATA.BIN 19-23 (see mhfu-extract's "Disc text"). A
+  description is rewritten only when its last number, on its last line, is
+  the old limit: exactly the 37 ammo and coating descriptions, in every
+  language. Lines are wrapped by hand to the file's widest (26 characters)
+  and longest (3 lines) description; a number that grows a digit and no
+  longer fits is wrapped again after the last hand-hyphenated line, and
+  failing that loses the word after it ("Max 10." for "Max 10 shots."). The
+  one description where neither works is Spanish Crag S Lv2 going from 9 to
+  10 or more ("Disp. máx. 9." ends a full last line): it keeps the old
+  number, and the spoiler log says so. The file is rebuilt with the rest of
+  its strings unchanged and kept to its sectors; an unedited str_tbl
+  rebuilds byte for byte. Other regions' text isn't known, so on JP the
+  spoiler log notes that descriptions keep the old limits.
 
 ### Monsters
 
@@ -622,6 +641,12 @@ quest can still be finished.
   (`src/disc/quest-file.ts`). A quest can grow into its own sector
   padding: its size field and hash cover the longer payload, and the
   entry keeps its sectors.
+- **Message files** (the EU str_tbl) are rebuilt from their strings
+  (mhfu-extract's `buildMessageFile`): each table's offsets and strings, in
+  order, with one more NUL after each table. A rewritten file can be a few
+  bytes longer or shorter than before; it overwrites the unused bytes
+  between its last string and the end of its sectors (127 to 1875 bytes
+  on EU), and refuses to grow past them.
 - **EBOOT.BIN** is written back as the decrypted, unsigned ELF. It's
   replaced in place if it fits its old sectors; otherwise it's moved to the
   end of the image, and its directory record and the volume size are
@@ -656,6 +681,9 @@ quest can still be finished.
 - Large monster counts. What `quantity` means for a large monster (it's 1
   in 536 of 554 records, 10 or 5 in a few), and how it relates to the
   header's `TargetNum`, isn't known.
+- Rewritten descriptions in game. Whether the game reads a str_tbl that
+  ends a few bytes later or earlier (within its sectors) isn't confirmed:
+  the item box hasn't been looked at on a randomized disc yet.
 - Attack patterns and animations. Monster AI lives in code (`game_task.ovl`
   and each `emNN.ovl`) and the motion banks (each `emmodel/emNN.pac`'s entry 3) aren't decoded, so there's nothing to shuffle yet.
 
