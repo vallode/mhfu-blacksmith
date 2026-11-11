@@ -449,7 +449,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.enabled",
-    section: "Shops",
+    section: "Shop stock",
     label: "Shuffle shop stock",
     help: "Each item a shop sells is replaced by another item from the game, the same in every stage of that shop, so later stages still include earlier stock.",
     type: { kind: "boolean" },
@@ -458,7 +458,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.pool",
-    section: "Shops",
+    section: "Shop stock",
     label: "What shops can sell",
     help: "Where replacement items come from.",
     type: {
@@ -491,7 +491,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.mix",
-    section: "Shops",
+    section: "Shop stock",
     label: "Replacements across shops",
     help: "Whether an item is replaced by the same thing in every shop. With shop items only, this also decides whether shops trade stock.",
     type: {
@@ -514,7 +514,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.keepEssentials",
-    section: "Shops",
+    section: "Shop stock",
     label: "Keep the essentials on sale",
     help: "Potion, Whetstone, pickaxes, bugnets, BBQ Spit, Normal S Lv1/2 and Empty Bottle stay where they are.",
     type: { kind: "boolean" },
@@ -523,7 +523,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.special",
-    section: "Shops",
+    section: "Shop stock",
     label: "Include the Point Exchange",
     help: "The Pokke Village shop that takes Pokke Points: Armor Spheres, jewels, Pokke Tickets and Gourmet BBQ Spit. Off keeps armor upgrades as usual.",
     type: { kind: "boolean" },
@@ -532,7 +532,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.countSpread",
-    section: "Shops",
+    section: "Shop stock",
     label: "Stock size variation",
     help: "How far the number of items each shop sells can move, up or down, every stage alike. Above 0%, the shop lists are rewritten and the game is pointed at their new places.",
     type: SPREAD,
@@ -542,18 +542,17 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.prices",
-    section: "Shops",
+    section: "Shop prices",
     label: "Randomize prices",
-    help: "The price of everything shops sell changes. A price is the item's own, so it's the same in every shop.",
+    help: "The price of everything shops sell changes, with or without the stock shuffle (with it, of what they sell now). A price is the item's own, so it's the same in every shop.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
     eboot: true,
-    enabledBy: "shops.enabled",
   },
   {
     key: "shops.priceSpread",
-    section: "Shops",
+    section: "Shop prices",
     label: "Price variation",
     help: "How far a price can move, up or down.",
     type: SPREAD,
@@ -562,18 +561,17 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.stacks",
-    section: "Shops",
+    section: "Shop prices",
     label: "Randomize carry limits",
-    help: "How many of each item you can carry changes (1 to 99), for everything shops sell. This applies everywhere, not just in shops.",
+    help: "How many of each item you can carry changes (1 to 99), for everything shops sell, with or without the stock shuffle. This applies everywhere, not just in shops.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
     eboot: true,
-    enabledBy: "shops.enabled",
   },
   {
     key: "shops.stackSpread",
-    section: "Shops",
+    section: "Shop prices",
     label: "Carry limit variation",
     help: "How far a carry limit can move, up or down.",
     type: SPREAD,
@@ -973,12 +971,14 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Randomized",
-    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, quest money, time limits, delivery targets and each quest's monster size are rolled anew, and armor gets new skills.",
+    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets and each quest's monster size are rolled anew, and armor gets new skills.",
     changes: {
       "questRewards.enabled": false,
       "monsterRewards.enabled": false,
       "recipes.amounts": true,
       "costs.enabled": true,
+      "shops.prices": true,
+      "shops.stacks": true,
       "terms.money": true,
       "terms.time": true,
       "deliveries.enabled": true,

@@ -103,7 +103,7 @@ const OPTION_STEPS: Step[] = [
     title: "Shops",
     icon: "coin",
     tint: "var(--color-gem-yellow)",
-    sections: ["Shops"],
+    sections: ["Shop stock", "Shop prices"],
     intro: "What the village, Guild Hall and peddling granny sell, and for how much.",
   },
 ];
