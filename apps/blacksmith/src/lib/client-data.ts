@@ -484,26 +484,36 @@ export function useItemSources(): { sources: Map<number, ItemSources> | null; er
 // ---------------------------------------------------------------------------
 // Area maps: each quest's gathering points on the game's map
 // ---------------------------------------------------------------------------
+let areaMapsCache: AreaMapsBundle | null = null;
 let areaMapsPromise: Promise<AreaMapsBundle> | null = null;
 
-/** A quest's map with its gathering points: null while loading, or if it has none. */
-export function useAreaMap(questId: number): AreaMap | null {
-  const [bundle, setBundle] = useState<AreaMapsBundle | null>(null);
-  useEffect(() => {
-    let cancelled = false;
-    areaMapsPromise ??= fetchJson<AreaMapsBundle>("/data/area-maps.json").catch((e) => {
+function getAreaMaps(): Promise<AreaMapsBundle> {
+  areaMapsPromise ??= fetchJson<AreaMapsBundle>("/data/area-maps.json")
+    .then((bundle) => (areaMapsCache = bundle))
+    .catch((e) => {
       areaMapsPromise = null; // allow a retry on the next call
       throw e;
     });
-    areaMapsPromise.then(
+  return areaMapsPromise;
+}
+
+/** A quest's map with its gathering points; `map` is null while loading, on error, or if it has none. */
+export function useAreaMap(questId: number): { map: AreaMap | null; loading: boolean } {
+  const [bundle, setBundle] = useState(areaMapsCache);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    if (areaMapsCache) return;
+    let cancelled = false;
+    getAreaMaps().then(
       (b) => !cancelled && setBundle(b),
-      () => {}, // the quest page just goes without its map
+      () => !cancelled && setFailed(true),
     );
     return () => {
       cancelled = true;
     };
   }, []);
-  return useMemo(() => (bundle ? decodeAreaMap(bundle, questId) : null), [bundle, questId]);
+  const map = useMemo(() => (bundle ? decodeAreaMap(bundle, questId) : null), [bundle, questId]);
+  return { map, loading: !bundle && !failed };
 }
 
 // ---------------------------------------------------------------------------

@@ -1,9 +1,15 @@
 /** Area maps (lib/area-maps.ts): gathering points by quest. */
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { existsSync, readFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
-import { AREA_MAP_SIZE, areaLabel, buildAreaMaps, decodeAreaMap } from "../src/lib/area-maps";
+import {
+  AREA_MAP_SIZE,
+  areaLabel,
+  buildAreaMaps,
+  decodeAreaMap,
+  nextSelection,
+} from "../src/lib/area-maps";
 import type { GatheringFile } from "../src/lib/item-places";
 import { DATA_DIR } from "../src/lib/paths";
 
@@ -54,17 +60,36 @@ test("buildAreaMaps gives each position its own point, and skips layouts with no
   );
 });
 
-test("every committed position is on its texture", () => {
+test("every committed position is inside its texture, and the texture exists", () => {
   const file = JSON.parse(
     readFileSync(path.join(DATA_DIR, "gathering.json"), "utf-8"),
   ) as GatheringFile;
   const bundle = buildAreaMaps(file);
   assert.ok(bundle.maps.length > 50);
-  for (const [, points] of bundle.maps) {
+  for (const [texture, points] of bundle.maps) {
+    const png = path.join(process.cwd(), "public", "images", "area-maps", `${texture}.png`);
+    assert.ok(existsSync(png), `${texture}.png is missing`);
     for (const [, , x, y] of points) {
-      assert.ok(x >= -20 && y >= -20 && x <= AREA_MAP_SIZE + 20 && y <= AREA_MAP_SIZE + 20);
+      assert.ok(
+        x >= 0 && y >= 0 && x <= AREA_MAP_SIZE && y <= AREA_MAP_SIZE,
+        `${texture} ${x},${y}`,
+      );
     }
   }
+});
+
+test("nextSelection steps through overlapping points, nearest first, then to none", () => {
+  const points = [
+    { x: 10, y: 10, index: 0 },
+    { x: 12, y: 10, index: 1 },
+    { x: 40, y: 40, index: 2 },
+  ];
+  assert.equal(nextSelection(points, 11.5, 10, 5, null), 1);
+  assert.equal(nextSelection(points, 11.5, 10, 5, 1), 0);
+  assert.equal(nextSelection(points, 11.5, 10, 5, 0), null);
+  assert.equal(nextSelection(points, 11.5, 10, 5, 2), 1); // the selection is elsewhere
+  assert.equal(nextSelection(points, 40, 40, 5, null), 2);
+  assert.equal(nextSelection(points, 40, 40, 5, 2), null);
 });
 
 test("areaLabel names the Base Camp", () => {

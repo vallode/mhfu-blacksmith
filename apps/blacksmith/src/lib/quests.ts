@@ -126,6 +126,7 @@ export type CompactQuest = [
   requires: number | null, // quest ID cleared before this one appears
   urgent: 0 | 1,
   monsterStats: CompactMonsterStats[], // distinct rows, in disc order
+  areaMap: 0 | 1,
 ];
 
 export interface QuestsBundle {
@@ -204,6 +205,8 @@ export interface Quest {
   requires: number | null;
   /** An Urgent Quest, which unlocks the next star level. */
   urgent: boolean;
+  /** Whether area-maps.json places this quest's gathering points. */
+  hasAreaMap: boolean;
 }
 
 export function decodeQuests(b: QuestsBundle): Quest[] {
@@ -240,6 +243,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       rq,
       ur,
       ms,
+      am,
     ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
@@ -273,6 +277,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       client: str(c),
       requires: rq ?? null,
       urgent: ur === 1,
+      hasAreaMap: am === 1,
     }),
   );
 }

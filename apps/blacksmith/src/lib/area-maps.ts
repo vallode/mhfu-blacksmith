@@ -109,6 +109,26 @@ export function decodeAreaMap(bundle: AreaMapsBundle, questId: number): AreaMap 
   };
 }
 
+/**
+ * What a click at (x, y) selects among the points within `reach` of it,
+ * nearest first: each press moves on to the next, then to none, so points
+ * that overlap can all be reached.
+ */
+export function nextSelection(
+  points: readonly { x: number; y: number; index: number }[],
+  x: number,
+  y: number,
+  reach: number,
+  selected: number | null,
+): number | null {
+  const distance = (p: { x: number; y: number }) => Math.hypot(p.x - x, p.y - y);
+  const under = points
+    .filter((p) => Math.abs(p.x - x) <= reach && Math.abs(p.y - y) <= reach)
+    .sort((a, b) => distance(a) - distance(b) || a.index - b.index)
+    .map((p) => p.index);
+  return under[(selected === null ? -1 : under.indexOf(selected)) + 1] ?? null;
+}
+
 export const areaMapSrc = (texture: string) => `/images/area-maps/${texture}.png`;
 
 export const areaLabel = (area: number) => (area === 0 ? "Base Camp" : `Area ${area}`);

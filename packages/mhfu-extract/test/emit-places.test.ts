@@ -1,12 +1,27 @@
 /** emit/gathering.ts and emit/shops.ts: data/gathering.json and data/shops.json. */
 import assert from "node:assert/strict";
+import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
+import { tmpdir } from "node:os";
+import path from "node:path";
 import { test } from "node:test";
 import { emitGathering } from "../src/emit/gathering.js";
 import { emitShops } from "../src/emit/shops.js";
 import type { ParsedQuest } from "../src/quests/parser.js";
 import type { ShopData } from "../src/shops/shops.js";
-import { projectToMap, type MapLayout } from "../src/tables/map-layout.js";
-import { ITEM_ENTRY_SIZE, TABLE_COUNTS, tableOffset } from "../src/tables/offsets.js";
+import { BinaryReader } from "../src/binary/reader.js";
+import type { OvlFile } from "../src/container/ovl.js";
+import {
+  loadMapLayouts,
+  projectToMap,
+  readMapGeometry,
+  type MapLayout,
+} from "../src/tables/map-layout.js";
+import {
+  ITEM_ENTRY_SIZE,
+  JP_BASE_ADDRESS,
+  TABLE_COUNTS,
+  tableOffset,
+} from "../src/tables/offsets.js";
 import { fixtureReader } from "./helpers.js";
 
 // Real ItemID enum entries.
@@ -167,6 +182,59 @@ test("projectToMap adds the stage's origin and scales by the map's size and zoom
   assert.ok(Math.abs(u - 21.1) < 1e-9);
   assert.ok(Math.abs(v - 21.1) < 1e-9);
   assert.equal(projectToMap(map, 1, 0, 0), null);
+});
+
+/** The map tables with Forest and Hills (map 2) and the Swamp (map 4) in them. */
+function mapTables({ campX = 11400, swampZoom = 0.9 } = {}) {
+  const SIZES = 0x0893887c - JP_BASE_ADDRESS;
+  const ZOOMS = 0x08938a7c - JP_BASE_ADDRESS;
+  const { buf: ebootBuf, reader: eboot } = fixtureReader(ZOOMS + 32 * 4);
+  ebootBuf.writeFloatLE(45000, SIZES + 2 * 8);
+  ebootBuf.writeFloatLE(50000, SIZES + 2 * 8 + 4);
+  ebootBuf.writeFloatLE(1, ZOOMS + 2 * 4);
+  ebootBuf.writeFloatLE(swampZoom, ZOOMS + 4 * 4);
+
+  const base = 0x09c19000;
+  const lists = 0x09ce4708 - base;
+  const origins = 0x09cdef40 - base;
+  const stageIds = lists + 32 * 8; // all stage 0
+  const sub = Buffer.alloc(stageIds + 13 * 2);
+  for (const [map, count] of [
+    [2, 13],
+    [4, 1],
+  ] as const) {
+    sub.writeUInt32LE(count, lists + map * 8);
+    sub.writeUInt32LE(base + stageIds, lists + map * 8 + 4);
+  }
+  sub.writeFloatLE(campX, origins);
+  sub.writeFloatLE(37000, origins + 4);
+  const gameSub = {
+    reader: new BinaryReader(sub),
+    vaddrToOffset: (vaddr: number) => vaddr - base,
+  } as unknown as OvlFile;
+  return { eboot, gameSub };
+}
+
+test("readMapGeometry checks the tables against known maps", () => {
+  const good = mapTables();
+  assert.equal(readMapGeometry(good.eboot, good.gameSub).get(2)!.origins[0]![0], 11400);
+  const moved = mapTables({ campX: 0 });
+  assert.throws(() => readMapGeometry(moved.eboot, moved.gameSub), /EU addresses/);
+  const zoom = mapTables({ swampZoom: 1 });
+  assert.throws(() => readMapGeometry(zoom.eboot, zoom.gameSub), /EU addresses/);
+});
+
+test("loadMapLayouts stops on a bad texture, or when there are none", async () => {
+  const { eboot, gameSub } = mapTables();
+  const dir = await mkdtemp(path.join(tmpdir(), "area-maps-"));
+  try {
+    await assert.rejects(loadMapLayouts(dir, eboot, gameSub), /map2/);
+    await mkdir(path.join(dir, "data-bin", "cockpit"), { recursive: true });
+    await writeFile(path.join(dir, "data-bin", "cockpit", "map2.tmh"), "not a texture");
+    await assert.rejects(loadMapLayouts(dir, eboot, gameSub), /TMH/);
+  } finally {
+    await rm(dir, { recursive: true });
+  }
 });
 
 test("emitGathering places points on the map, and drops areas the map doesn't draw", () => {

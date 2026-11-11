@@ -69,8 +69,8 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
   "Building `data/` from the disc".
 - `item-icons` slices the item icons out of the UI atlas into the site's
   `public/images/`. See "Items".
-- `area-maps` writes the area map textures to the site's
-  `public/images/area-maps/`. See "Area maps".
+- `area-maps` writes the area map textures `data/gathering.json` uses to
+  the site's `public/images/area-maps/`. See "Area maps".
 - `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
   open quest questions (`src/emit/quest-probe.ts`): the values the monster
   size candidates take, the header's two objective slots, each script
@@ -996,14 +996,16 @@ pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
   list, so index 0 is the Base Camp. Stage IDs aren't in area order.
 - **Textures**: `data-bin/cockpit/map<N>.tmh`, 160x160, named by quest map
   ID. Night maps reuse the day map's (16 uses 2, 18 uses 4, 21 uses 11, 31
-  uses 30). `area-maps` writes them all to `public/images/area-maps/`.
+  uses 30). `area-maps` writes the ones `data/gathering.json` uses to
+  `public/images/area-maps/`, so run it after `build-data`.
 - **Not placed**: the Tower's maps (14 and 15) draw their floors on separate
   pages this formula doesn't reach. A few areas aren't drawn on their map
   at all (the Desert's 11th), so an area with no point on opaque art loses
   its `positions`.
-- **Regions**: the addresses are the EU disc's. `extract` only places points
-  for EU, and warns and carries on if the tables aren't where they should
-  be.
+- **Regions**: the addresses are the EU disc's, so `extract` only places
+  points for EU. On an EU disc it stops if the tables aren't where they
+  should be or a texture can't be read, rather than write data without
+  positions.
 
 ### Items
 

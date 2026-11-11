@@ -530,11 +530,14 @@ for (const category of MONSTER_CATEGORIES) {
     .filter((f) => f.endsWith(".json"))
     .sort()
     .flatMap((f) => readJson<{ quests: QuestRecord[] }>(path.join(questDir, f)).quests);
+  const gathering = readJson<GatheringFile>(path.join(dataDir, "gathering.json"));
+  const areaMaps = buildAreaMaps(gathering);
   const { bundle, unresolvedItems } = encodeQuestBundle({
     quests,
     itemId: (name) => index.get(normalizeItemName(name)),
     monsterPage: (name) => monsterPages.get(name),
     baseHp: (name) => baseHp.get(name),
+    hasAreaMap: (questId) => questId in areaMaps.quests,
   });
   if (unresolvedItems.length > 0) {
     console.warn(`generate-data: quest items not in items.json: ${unresolvedItems.join(", ")}`);
@@ -543,8 +546,7 @@ for (const category of MONSTER_CATEGORIES) {
   push("quests.json", bundle);
 
   // Where each item is gathered (data/gathering.json) or sold (data/shops.json).
-  const gathering = readJson<GatheringFile>(path.join(dataDir, "gathering.json"));
-  push("area-maps.json", buildAreaMaps(gathering));
+  push("area-maps.json", areaMaps);
   const places = buildItemPlaces(
     gathering,
     readJson<ShopsFile>(path.join(dataDir, "shops.json")),

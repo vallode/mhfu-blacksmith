@@ -91,9 +91,18 @@ export function readMapGeometry(eboot: BinaryReader, gameSub: OvlFile): Map<numb
       }),
     });
   }
-  // Forest and Hills: a known size and its Base Camp's origin.
-  const check = out.get(2);
-  if (check?.width !== 45000 || check.depth !== 50000 || check.origins.length !== 13) {
+  // Forest and Hills' size, zoom and Base Camp, and the Swamp's zoom.
+  const forest = out.get(2);
+  const camp = forest?.origins[0];
+  if (
+    forest?.width !== 45000 ||
+    forest.depth !== 50000 ||
+    forest.zoom !== 1 ||
+    forest.origins.length !== 13 ||
+    camp?.[0] !== 11400 ||
+    camp[1] !== 37000 ||
+    out.get(4)?.zoom !== Math.fround(0.9)
+  ) {
     throw new Error("the map tables aren't at their EU addresses");
   }
   return out;
@@ -123,15 +132,18 @@ export async function loadMapLayouts(
   for (const [map, geometry] of readMapGeometry(eboot, gameSub)) {
     const texture = mapTextureName(map);
     if (!texture) continue;
-    let image: TmhImage | undefined;
+    let bytes: Buffer;
     try {
-      [image] = readTmh(await readFile(path.join(unpackedDir, mapTextureFile(texture))));
-    } catch {
-      continue; // no texture for this map (the map menu's own pictures)
+      bytes = await readFile(path.join(unpackedDir, mapTextureFile(texture)));
+    } catch (error) {
+      // No texture for this map (the map menu's own pictures).
+      if ((error as NodeJS.ErrnoException).code === "ENOENT") continue;
+      throw error;
     }
-    if (!image) continue;
-    const art = image;
+    const [art] = readTmh(bytes);
+    if (!art) throw new Error(`${texture} has no image.`);
     out.set(map, { ...geometry, texture, onArt: (u, v) => hasArt(art, u, v) });
   }
+  if (!out.has(2)) throw new Error(`no ${mapTextureFile("map2")} in ${unpackedDir}`);
   return out;
 }

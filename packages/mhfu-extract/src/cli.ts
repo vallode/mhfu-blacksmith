@@ -8,7 +8,7 @@
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
  *   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
  *   tsx src/cli.ts item-icons --unpacked <dir> [--out <dir>]
- *   tsx src/cli.ts area-maps --unpacked <dir> [--out <dir>]
+ *   tsx src/cli.ts area-maps --unpacked <dir> [--data <dir>] [--out <dir>]
  *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
  *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
@@ -67,7 +67,7 @@ const USAGE = `Usage:
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
   tsx src/cli.ts export-site --unpacked <dir> [--data <dir>] [--out <dir>] [--lossless]
   tsx src/cli.ts item-icons --unpacked <dir> [--out <dir>]
-  tsx src/cli.ts area-maps --unpacked <dir> [--out <dir>]
+  tsx src/cli.ts area-maps --unpacked <dir> [--data <dir>] [--out <dir>]
   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations] [--report <path>] [--markdown <path>] [--dry-run]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
@@ -181,6 +181,7 @@ export async function main(argv: string[]): Promise<void> {
     case "area-maps": {
       const count = await runAreaMaps({
         unpacked: requireFlag(flags, "unpacked"),
+        data: flags.data ?? "../../data",
         out: flags.out ?? "../../apps/blacksmith/public/images",
       });
       console.log(`Done. Wrote ${count} area maps.`);
