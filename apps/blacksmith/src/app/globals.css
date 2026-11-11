@@ -153,6 +153,18 @@
   /* The phone menu drawer (AppShell) slides in from the left */
   --animate-drawer-in: drawer-in 160ms ease-out;
 
+  /* The phone detail sheet (SplitPage) slides up over the list */
+  --animate-sheet-in: sheet-in 180ms ease-out;
+
+  @keyframes sheet-in {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
   @keyframes drawer-in {
     from {
       transform: translateX(-100%);
@@ -188,7 +200,7 @@
 /* Breakpoints. The layout has three widths:
    - mobile (below 900px: phones and portrait tablets): one pane at a time,
      with the tab bar along the bottom. `mobile:flex-col`. The bare media
-     queries below (body, .split-page) and ModelPopover's STACKED use the
+     queries below (body, .split-page) and PHONE in src/lib/media.ts use the
      same width; change them together.
    - compact (900px to 1199px: landscape tablets and small laptops): two
      panes, with the sidebar an icon rail that opens over the page.

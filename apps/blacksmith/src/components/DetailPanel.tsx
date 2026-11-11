@@ -10,8 +10,9 @@ import type { Material } from "@/lib/types";
 
 /**
  * The detail card; shares the row with the tree card. Long content
- * (a quest's rewards, a monster's drops) scrolls inside it on desktop, where
- * the card is the height of the page; on a phone the card grows instead.
+ * (a quest's rewards, a monster's drops) scrolls inside it where the card is
+ * the height of the page, as beside a tree (SplitPage); elsewhere on a phone
+ * the card grows instead.
  */
 export function DetailCard({
   children,
@@ -50,16 +51,11 @@ export function DetailName({ children, id }: { children: React.ReactNode; id?: s
 /**
  * The detail card with nothing selected (a section's own page, beside its
  * tree): NO DATA where the item's name would be, plus an optional note.
+ * Phones show the list alone on that page, unless there is a note.
  */
-export function NoDataCard({
-  children,
-  className,
-}: {
-  children?: React.ReactNode;
-  className?: string;
-}) {
+export function NoDataCard({ children }: { children?: React.ReactNode }) {
   return (
-    <DetailCard className={className}>
+    <DetailCard className={children ? undefined : "mobile:hidden"}>
       <DetailHeader>
         <p className="uppercase">No data</p>
       </DetailHeader>

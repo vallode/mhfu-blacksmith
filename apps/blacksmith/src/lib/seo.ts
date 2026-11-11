@@ -2,6 +2,7 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Metadata, Viewport } from "next";
 import { rankName, type GuildRank } from "./min-rank";
+import { titleCase } from "./title-case";
 import type { ArmorPiece, Decoration, Monster, Weapon } from "./types";
 
 export const SITE_NAME = "MHFU Blacksmith";
@@ -144,12 +145,7 @@ export function tintFor(rarity?: number | null, gem?: string | null): string | u
   return undefined;
 }
 
-/** "sword-and-shield" → "Sword and Shield". */
-export const titleCase = (s: string): string =>
-  s
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase())
-    .replace(/(?<=.) (And|Of|The) /g, (w) => w.toLowerCase());
+export { titleCase };
 
 export const rankLabel = (rank: string | undefined): string =>
   rank ? rankName(rank as GuildRank) : "";

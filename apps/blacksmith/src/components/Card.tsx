@@ -34,6 +34,9 @@ const linkGlow =
  * notches and bands. The frame is on the outer box, which never scrolls; the
  * body is what scrolls (`scroll`), so the frame stays put over a scrolling
  * list.
+ *
+ * Cards are see-through. A `--card-fill` colour set on an ancestor fills the
+ * body, which ends at the frame's outline (SplitPage's sheet, over the list).
  */
 export default function Card({
   children,
@@ -68,7 +71,7 @@ export default function Card({
     // card-body: at the frame's outline, with card-p* padding (globals.css).
     // card-copy: paragraph defaults (globals.css, components layer).
     // isolate keeps the content's own z-indexes under the frame.
-    "card-copy isolate card-body flex min-h-0 flex-1 flex-col overflow-hidden",
+    "card-copy isolate card-body flex min-h-0 flex-1 flex-col overflow-hidden bg-(color:--card-fill)",
     (scroll || variant === "weapon-tree") && "overflow-auto",
     // Tree lists run their rows out to the outline on the sides; the first
     // and last rows start below and end above the frame's 11px bands.

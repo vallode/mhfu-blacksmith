@@ -11,8 +11,7 @@ interface Props {
 
 /**
  * /blacksmith/<type>/: the tree is down the left in the blacksmith layout
- * (WeaponShell); with no weapon selected, the detail card is empty. Phones
- * show only the tree here.
+ * (WeaponShell); with no weapon selected, the detail card is empty.
  */
 export default function WeaponTreeListClient({ type }: Props) {
   const { tree } = useWeaponTree(type);
@@ -21,7 +20,7 @@ export default function WeaponTreeListClient({ type }: Props) {
   const allHidden = !!tree?.length && visibleTree?.length === 0;
 
   return (
-    <NoDataCard className="mobile:hidden">
+    <NoDataCard>
       {allHidden && (
         <p className="whitespace-normal">Nothing here is within your quest progress yet.</p>
       )}

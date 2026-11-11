@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import { PHONE } from "@/lib/media";
 
 /**
  * Persistent-scroll wrapper for the weapon/armor/decoration tree sidebar.
@@ -95,7 +96,10 @@ export default function TreeScroll({
       } else if (activeSlug) {
         // First visit to this tree: bring the active item into view.
         const active = el.querySelector<HTMLElement>(`#${CSS.escape(activeSlug)}`);
-        active?.scrollIntoView({ block: "center" });
+        // On a phone's list-and-detail page (SplitPage) the detail sheet
+        // covers all but the list's top rows, so bring it in there.
+        const underSheet = window.matchMedia(PHONE).matches && !!el.closest("[data-fill-screen]");
+        active?.scrollIntoView({ block: underSheet ? "start" : "center" });
       }
       // Reveal in the same frame the scroll is applied — no jump.
       reveal();
