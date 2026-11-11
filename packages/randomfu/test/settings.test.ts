@@ -54,6 +54,9 @@ const UNTRIED: readonly OptionKey[] = [
   "monsterStats.status",
   "weaknesses.elements",
   "weaknesses.parts",
+  "weapons.attack",
+  "weapons.affinity",
+  "weapons.element",
 ];
 
 test("presets do what their help says", () => {

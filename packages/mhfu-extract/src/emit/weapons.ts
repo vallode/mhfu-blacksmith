@@ -22,6 +22,9 @@ import {
   readGunnerWeapons,
   readModelToWeaponType,
   readWeaponClassModifiers,
+  CLASS_MODIFIER_KEYS,
+  ELEMENT_NAMES,
+  STATUS_NAMES,
   WEAPON_TYPE_NAMES,
   type WeaponTypeName,
 } from "../tables/weapons.js";
@@ -46,15 +49,6 @@ import {
   materialsOrNull,
   resolveMaterials,
 } from "./common.js";
-
-const ELEMENT_NAMES: Record<number, string> = {
-  1: "Fire",
-  2: "Water",
-  3: "Thunder",
-  4: "Dragon",
-  5: "Ice",
-};
-const STATUS_NAMES: Record<number, string> = { 1: "Poison", 2: "Paralysis", 3: "Sleep" };
 
 /** Raw element/status values are stored as true-value/10 (confirmed against ~170 real elemental weapons, zero exceptions). */
 const ELEMENT_VALUE_SCALE = 10;
@@ -331,26 +325,12 @@ export function emitBlademasterWeapons(
     inverted: invertUpgradeTree(upgrade.blademaster),
   };
 
-  const classModByType: Record<WeaponTypeName, number> = {
-    "great-sword": classMods.greatSword,
-    "long-sword": classMods.longSword,
-    "sword-and-shield": classMods.swordAndShield,
-    "dual-blades": classMods.dualBlades,
-    hammer: classMods.hammer,
-    "hunting-horn": classMods.huntingHorn,
-    lance: classMods.lance,
-    gunlance: classMods.gunLance,
-    "light-bowgun": classMods.lightBowgun,
-    "heavy-bowgun": classMods.heavyBowgun,
-    bow: classMods.bow,
-  };
-
   const out: EmittedWeapon[] = [];
   for (const w of weapons) {
     const name = names.resolve("WepBMID", w.index);
     if (!name) continue;
     const type = modelToType[w.modelId] ?? null;
-    const classMod = type ? classModByType[type] : 100;
+    const classMod = type ? classMods[CLASS_MODIFIER_KEYS[type]] : 100;
     const typeId = type ? WEAPON_TYPE_NAMES.indexOf(type) : null;
     const sharp = emitSharpness(sharpnessTables.entryFor(typeId, w.sharpnessId), w.sharpnessAmount);
 

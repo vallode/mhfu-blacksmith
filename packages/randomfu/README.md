@@ -105,11 +105,13 @@ pages and `pnpm settings` show as a tag):
   carves, gathering points, supply boxes, recipe materials, the smithy's
   weapons and armor, armor skills (`armorSkills.mode shuffle`), shop stock,
   the large monsters in quests, and monsters' weaknesses. Nothing new is
-  made; a weapon keeps its own stats wherever it turns up.
+  made; a weapon keeps its own stats wherever it turns up (randomized or
+  not).
 - A randomizer rolls new values: material amounts, crafting costs, shop
   prices, carry limits and stock size, quest money and time limits,
   delivery targets, monster difficulty, size, small monster counts, base HP
-  and status resistance, and new armor skills (`armorSkills.mode` `randomize`). Weapon stats aren't randomized.
+  and status resistance, new armor skills (`armorSkills.mode` `randomize`),
+  and weapons' attack, affinity and element or status values.
 
 | Setting                           | Default     | What it does                                                                           |
 | --------------------------------- | ----------- | -------------------------------------------------------------------------------------- |
@@ -136,6 +138,12 @@ pages and `pnpm settings` show as a tag):
 | `costs.spread`                    | 0.5         | How far costs move                                                                     |
 | `weapons.enabled`                 | off         | Shuffle which weapons the smithy makes                                                 |
 | `weapons.mix`                     | `same-type` | Whether a spot keeps its weapon type (`any-type`: any Blademaster or Gunner type)      |
+| `weapons.attack`                  | off         | Randomize each weapon's attack                                                         |
+| `weapons.attackSpread`            | 0.2         | How far it moves                                                                       |
+| `weapons.affinity`                | off         | Randomize each weapon's affinity, in steps of 5%                                       |
+| `weapons.affinitySpread`          | 15          | How many points it can move                                                            |
+| `weapons.element`                 | off         | Randomize element and status values of weapons that have one                           |
+| `weapons.elementSpread`           | 0.3         | How far they move                                                                      |
 | `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                   |
 | `armorSkills.enabled`             | off         | Change armor skills                                                                    |
 | `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`) |
@@ -175,7 +183,7 @@ Each preset replaces every option and keeps the seed. They're built on
 the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
 them to what's described here. Options not yet tried in game are in no
 preset: monster difficulty, small monster counts, base HP, base size, status
-resistance and weaknesses. Turn those on yourself once you've tried them on
+resistance, weaknesses and weapon stats. Turn those on yourself once you've tried them on
 your disc.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                          |
@@ -201,6 +209,7 @@ except `supplies.pool add`, which grows quests into their sector padding
 | `recipe-amounts`  | The same recipe tables                              | Quantities, rescaled and varied (see below)          |
 | `costs`           | Weapon, armor and decoration prices in the EBOOT    | Crafting and upgrade costs, varied in steps of 10z   |
 | `weapons`         | Weapon create and upgrade entries in the EBOOT      | Which weapon each place makes (see below)            |
+| weapon stats      | `WepBMValues` / `WepGunValues` in the EBOOT         | Attack, affinity, element or status (see below)      |
 | `armor`           | Armor create entries in the EBOOT                   | Which piece each place makes (see below)             |
 | `armor-skills`    | `ArmorValues` skill entries in the EBOOT            | Each piece's skill trees and points (see below)      |
 | `shops`           | Shop item lists in `lobby_task.ovl`                 | Which items each shop sells (see below)              |
@@ -265,6 +274,27 @@ Sword to Long Sword, Lance to Gunlance and more), but never between bows
 and bowguns, so that pairing is untested. Weapons from Ancient/Rusted
 shards stay put. It runs before the recipe shuffles, which then shuffle
 the tables it left.
+
+Weapon stats (`weapons.attack`, `weapons.affinity`, `weapons.element`)
+change values in each weapon's own record (`src/shuffles/weapon-stats.ts`),
+which the `weapons` shuffle never touches, so stats go with the weapon
+wherever it ends up, and the two can run in either order. Attack (the raw
+value; the game shows it times its type's class modifier) and element or
+status values are multiplied by a random factor within their spread;
+affinity moves by up to `weapons.affinitySpread` points, in steps of 5.
+Each value is then kept between the lowest and highest that weapons of the
+same type have, from one rarity below to one above, read from your disc; a
+weapon with no other of its type (or, for elements, of its element or
+status) in that window is limited by the spread alone. Only weapons that already have an element or status get a new value, and
+they keep which one; the dual-element weapons (listed in `WepDualAttr`) are
+skipped.
+Sharpness, slots, defense bonus, horn notes, shelling, ammo, rarity and
+price never change. Records with no attack (unused entries) are skipped.
+Affinity's spread and bounds apply to the affinity as shown, including the
+up to 10 points the Blacksmith site adds to positive Blademaster affinity
+for long sharpness, so a weapon crossing to positive affinity can't jump
+further than the spread. Weapon
+stats are so far tested only against the synthetic disc.
 
 `gathering` moves item IDs between the gathering item tables of Village
 and Guild quests of the same tier, like the quest reward shuffle. A pair's
