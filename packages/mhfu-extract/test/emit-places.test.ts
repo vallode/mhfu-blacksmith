@@ -5,6 +5,7 @@ import { emitGathering } from "../src/emit/gathering.js";
 import { emitShops } from "../src/emit/shops.js";
 import type { ParsedQuest } from "../src/quests/parser.js";
 import type { ShopData } from "../src/shops/shops.js";
+import { projectToMap, type MapLayout } from "../src/tables/map-layout.js";
 import { ITEM_ENTRY_SIZE, TABLE_COUNTS, tableOffset } from "../src/tables/offsets.js";
 import { fixtureReader } from "./helpers.js";
 
@@ -20,6 +21,8 @@ interface Node {
   table: number;
   gathers?: number;
   most?: number;
+  x?: number;
+  z?: number;
 }
 
 /**
@@ -51,6 +54,8 @@ function payload(tables: [number, number][][], areas: Record<number, Node[]>): B
   for (const [area, nodes] of Object.entries(areas)) {
     const b = Buffer.alloc(nodes.length * 24 + 4);
     nodes.forEach((n, i) => {
+      b.writeFloatLE(n.x ?? 0, i * 24);
+      b.writeFloatLE(n.z ?? 0, i * 24 + 8);
       b.writeUInt16LE(n.table, i * 24 + 16);
       b.writeUInt16LE(n.most ?? 6, i * 24 + 18);
       b.writeUInt16LE(n.type, i * 24 + 20);
@@ -152,6 +157,59 @@ test("emitGathering writes each set of points once, with the quests that use it"
         },
       ],
     },
+  ]);
+});
+
+test("projectToMap adds the stage's origin and scales by the map's size and zoom", () => {
+  const map = { width: 1500, depth: 3000, zoom: 1, origins: [[100, 200]] as [number, number][] };
+  assert.deepEqual(projectToMap(map, 0, 50, 100), [15, 15]);
+  const [u, v] = projectToMap({ ...map, zoom: 0.9 }, 0, 50, 100)!;
+  assert.ok(Math.abs(u - 21.1) < 1e-9);
+  assert.ok(Math.abs(v - 21.1) < 1e-9);
+  assert.equal(projectToMap(map, 1, 0, 0), null);
+});
+
+test("emitGathering places points on the map, and drops areas the map doesn't draw", () => {
+  const maps = new Map<number, MapLayout>([
+    [
+      TOWN,
+      {
+        width: 1500,
+        depth: 1500,
+        zoom: 1,
+        origins: [
+          [0, 0],
+          [0, 0],
+          [1000, 1000],
+        ],
+        texture: "map12",
+        onArt: (u) => u < 50,
+      },
+    ],
+  ]);
+  const points = payload([[[100, POTION]]], {
+    1: [
+      { type: 0, table: 0, x: 100, z: 200 },
+      { type: 0, table: 0, x: 300, z: 400 },
+      // A stray point off the art stays: its area has another point on it.
+      { type: 3, table: 0, x: 1400, z: 0 },
+    ],
+    2: [{ type: 0, table: 0 }], // past the art
+    3: [{ type: 0, table: 0 }], // no stage for this area
+  });
+  const { layouts } = emitGathering([{ parsed: quest(1001), payload: points }], maps);
+  assert.equal(layouts[0]!.texture, "map12");
+  const positions = layouts[0]!.areas.map((a) => a.nodes.map((n) => n.positions));
+  assert.deepEqual(positions, [
+    [
+      [
+        [10, 20],
+        [30, 40],
+      ],
+      [[140, 0]],
+    ],
+    [undefined],
+    [undefined],
   ]);
 });
 

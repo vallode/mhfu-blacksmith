@@ -109,6 +109,9 @@ export interface GatheringNode {
   gathers: number;
   /** How many times it can be gathered, at most (+18); 255 means it doesn't run out. */
   mostGathers: number;
+  /** Position in its stage's coordinates (+0 and +8; +4 is the height). */
+  x: number;
+  z: number;
 }
 
 export interface GatheringResult {
@@ -184,6 +187,8 @@ export function readGatheringItems(payload: Buffer, quest: ParsedQuest): Gatheri
         table,
         gathers: payload.readUInt16LE(at + 22),
         mostGathers: payload.readUInt16LE(at + 18),
+        x: payload.readFloatLE(at),
+        z: payload.readFloatLE(at + 8),
       });
     }
   }

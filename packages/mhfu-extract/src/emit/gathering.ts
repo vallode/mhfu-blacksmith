@@ -6,11 +6,13 @@
  * quests have about a hundred different sets. So the file holds each
  * distinct set once, with its map and the quests that use it, rather than a
  * copy per quest. Within an area, nodes with the same kind, gather counts
- * and item table are one entry with a `count`.
+ * and item table are one entry with a `count`, and `positions` says where
+ * each of them is on the map's texture, when `maps` can place them.
  */
 import type { ParsedQuest } from "../quests/parser.js";
 import { NODE_KINDS, readGatheringItems, type GatheringNode } from "../quests/gathering.js";
 import { getNameResolver } from "../strings/names.js";
+import { projectToMap, type MapLayouts } from "../tables/map-layout.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import { isPlaceholderQuest, questHub } from "./quests.js";
 
@@ -32,6 +34,8 @@ export interface EmittedGatheringNode {
   /** Most gathers before it runs out, or null if it never does. */
   most_gathers: number | null;
   items: EmittedGatheringItem[];
+  /** Pixels on the layout's `texture`, one per point; absent where the map doesn't draw the area. */
+  positions?: [number, number][];
 }
 
 export interface EmittedGatheringArea {
@@ -42,6 +46,8 @@ export interface EmittedGatheringArea {
 
 export interface EmittedGatheringLayout {
   map: string;
+  /** The map's texture, for `positions`: `map2` is `area-maps/map2.png`. */
+  texture?: string;
   /** IDs of the quests that use these points. */
   quests: number[];
   areas: EmittedGatheringArea[];
@@ -63,7 +69,12 @@ function counts(n: number): number | null {
   return n === ENDLESS ? null : n;
 }
 
-export function emitGathering(quests: GatheringQuestInput[]): GatheringEmitResult {
+const tenth = (n: number) => Math.round(n * 10) / 10;
+
+export function emitGathering(
+  quests: GatheringQuestInput[],
+  maps?: MapLayouts,
+): GatheringEmitResult {
   const names = getNameResolver();
   const problems: GatheringEmitResult["problems"] = [];
   const byKey = new Map<string, { mapId: number; layout: EmittedGatheringLayout }>();
@@ -86,6 +97,8 @@ export function emitGathering(quests: GatheringQuestInput[]): GatheringEmitResul
         return [{ item, chance: payload.readUInt16LE(at) }];
       });
 
+    const mapId = parsed.header.map;
+    const map = maps?.get(mapId);
     const areas = new Map<number, Map<string, EmittedGatheringNode>>();
     const nodeKey = (n: GatheringNode) => `${n.type}|${n.gathers}|${n.mostGathers}|${n.table}`;
     for (const node of result.nodes) {
@@ -96,10 +109,13 @@ export function emitGathering(quests: GatheringQuestInput[]): GatheringEmitResul
       }
       const area = areas.get(node.area) ?? new Map<string, EmittedGatheringNode>();
       areas.set(node.area, area);
+      const pixel = map && projectToMap(map, node.area, node.x, node.z);
+      const position: [number, number][] = pixel ? [[tenth(pixel[0]), tenth(pixel[1])]] : [];
       const key = nodeKey(node);
       const seen = area.get(key);
       if (seen) {
         seen.count++;
+        seen.positions?.push(...position);
         continue;
       }
       area.set(key, {
@@ -108,10 +124,21 @@ export function emitGathering(quests: GatheringQuestInput[]): GatheringEmitResul
         gathers: counts(node.gathers),
         most_gathers: counts(node.mostGathers),
         items: tableItems(node.table),
+        ...(map && { positions: position }),
       });
     }
 
-    const mapId = parsed.header.map;
+    // Some areas aren't drawn on the map (Desert's 11th, say): their points
+    // land on nothing, and showing them would mislead.
+    if (map) {
+      for (const nodes of areas.values()) {
+        const drawn = [...nodes.values()].some((n) =>
+          n.positions?.some(([u, v]) => map.onArt(u, v)),
+        );
+        for (const n of nodes.values()) if (!drawn) delete n.positions;
+      }
+    }
+
     const emittedAreas = [...areas]
       .sort(([a], [b]) => a - b)
       .map(([area, nodes]) => ({ area, nodes: [...nodes.values()] }));
@@ -126,6 +153,7 @@ export function emitGathering(quests: GatheringQuestInput[]): GatheringEmitResul
       mapId,
       layout: {
         map: resolveMapName(mapId) ?? `Map ${mapId}`,
+        ...(map && { texture: map.texture }),
         quests: [questId],
         areas: emittedAreas,
       },

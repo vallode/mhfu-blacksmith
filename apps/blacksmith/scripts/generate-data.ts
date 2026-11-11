@@ -11,6 +11,7 @@
  *   - equipment-ids.json         (save-file equipment IDs -> item pages)
  *   - items.json                 (in-game item ID -> name, linked to materials)
  *   - item-places.json           (where each item is gathered or sold, see src/lib/item-places.ts)
+ *   - area-maps.json             (each quest's gathering points on the map, see src/lib/area-maps.ts)
  *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - data-manifest.json         ({ files, version })
  *
@@ -72,6 +73,7 @@ import {
   type GatheringFile,
   type ShopsFile,
 } from "../src/lib/item-places";
+import { buildAreaMaps } from "../src/lib/area-maps";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import type { HitboxCapsule } from "../src/lib/models";
 
@@ -83,7 +85,7 @@ const outDir = path.join(root, "public", "data");
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
 
-const BUDGET_BYTES = 1.7 * 1024 * 1024;
+const BUDGET_BYTES = 1.8 * 1024 * 1024;
 
 function readJson<T>(p: string): T {
   return JSON.parse(fs.readFileSync(p, "utf-8")) as T;
@@ -541,8 +543,10 @@ for (const category of MONSTER_CATEGORIES) {
   push("quests.json", bundle);
 
   // Where each item is gathered (data/gathering.json) or sold (data/shops.json).
+  const gathering = readJson<GatheringFile>(path.join(dataDir, "gathering.json"));
+  push("area-maps.json", buildAreaMaps(gathering));
   const places = buildItemPlaces(
-    readJson<GatheringFile>(path.join(dataDir, "gathering.json")),
+    gathering,
     readJson<ShopsFile>(path.join(dataDir, "shops.json")),
     quests,
     (name) => index.get(normalizeItemName(name)),

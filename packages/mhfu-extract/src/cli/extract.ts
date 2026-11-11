@@ -12,6 +12,7 @@ import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
 import { emitCombinations } from "../emit/combinations.js";
 import { emitMonsters } from "../emit/monsters.js";
 import { emitGathering, type GatheringQuestInput } from "../emit/gathering.js";
+import { loadMapLayouts, type MapLayouts } from "../tables/map-layout.js";
 import { emitQuestsFile, type MultiplierLookup } from "../emit/quests.js";
 import { emitShops } from "../emit/shops.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
@@ -252,7 +253,18 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     : undefined;
   Object.assign(output, emitQuestsFile(quests, multiplierLookup));
 
-  const gathering = emitGathering(payloads);
+  // Only the EU disc's map tables are known; elsewhere points get no positions.
+  let maps: MapLayouts | undefined;
+  if (manifest.region === "eu") {
+    try {
+      maps = await loadMapLayouts(options.unpacked, reader, overlays.gameSub);
+    } catch (error) {
+      console.warn(
+        `Warning: gathering points get no map positions. ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+  }
+  const gathering = emitGathering(payloads, maps);
   for (const { questId, problem } of gathering.problems) {
     console.log(`Quest ${questId}: gathering points skipped (${problem}).`);
   }

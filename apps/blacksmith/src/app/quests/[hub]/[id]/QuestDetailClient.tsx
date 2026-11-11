@@ -6,7 +6,7 @@ import { QuestRewards, QuestSupplies } from "@/components/QuestRewards";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
-import { useQuests } from "@/lib/client-data";
+import { useAreaMap, useQuests } from "@/lib/client-data";
 import {
   clearedQuestIds,
   questHref,
@@ -18,6 +18,7 @@ import {
   type QuestMonster,
   type QuestMonsterStats,
 } from "@/lib/quests";
+import AreaMap from "@/components/AreaMap";
 import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
 import { cn } from "@/lib/cn";
@@ -98,6 +99,7 @@ export default function QuestDetailClient({ hub, id }: Props) {
   const { quests, error } = useQuests();
   const { save } = useSave();
   const { markCleared } = usePreferences().prefs;
+  const areaMap = useAreaMap(id);
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const quest = onHub.find((q) => q.id === id);
   const cleared = markCleared && (clearedQuestIds(save)?.has(id) ?? false);
@@ -198,6 +200,10 @@ export default function QuestDetailClient({ hub, id }: Props) {
       label: "Supplies",
       content: <QuestSupplies supplies={quest.supplies} />,
     });
+  }
+
+  if (areaMap) {
+    tabs.push({ id: "map", label: "Map", content: <AreaMap map={areaMap} /> });
   }
 
   return (

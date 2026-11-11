@@ -10,7 +10,7 @@
  *   navigating between already-loaded items renders with no loading frame
  * - typed hooks return { item, tree, loading }
  */
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Weapon, ArmorPiece, Monster, Decoration, WeaponTreeNode } from "./types";
 import {
   type Dictionaries,
@@ -27,6 +27,7 @@ import {
   decodeTree,
 } from "./schema";
 import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
+import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
 import { decodeCombinations, type CombinationIndex, type CombinationsBundle } from "./combinations";
@@ -478,6 +479,31 @@ export function useItemSources(): { sources: Map<number, ItemSources> | null; er
     };
   }, []);
   return { sources, error };
+}
+
+// ---------------------------------------------------------------------------
+// Area maps: each quest's gathering points on the game's map
+// ---------------------------------------------------------------------------
+let areaMapsPromise: Promise<AreaMapsBundle> | null = null;
+
+/** A quest's map with its gathering points: null while loading, or if it has none. */
+export function useAreaMap(questId: number): AreaMap | null {
+  const [bundle, setBundle] = useState<AreaMapsBundle | null>(null);
+  useEffect(() => {
+    let cancelled = false;
+    areaMapsPromise ??= fetchJson<AreaMapsBundle>("/data/area-maps.json").catch((e) => {
+      areaMapsPromise = null; // allow a retry on the next call
+      throw e;
+    });
+    areaMapsPromise.then(
+      (b) => !cancelled && setBundle(b),
+      () => {}, // the quest page just goes without its map
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return useMemo(() => (bundle ? decodeAreaMap(bundle, questId) : null), [bundle, questId]);
 }
 
 // ---------------------------------------------------------------------------
