@@ -11,6 +11,7 @@ import { randomSeed } from "randomfu/src/rng.js";
 import {
   OPTIONS,
   PRESETS,
+  actionsOf,
   SettingsError,
   applySettings,
   decodeSettings,
@@ -20,6 +21,7 @@ import {
   isActive,
   settingsFromJson,
   settingsToJson,
+  type Action,
   type OptionDef,
   type OptionKey,
   type Preset,
@@ -87,7 +89,7 @@ const OPTION_STEPS: Step[] = [
     tint: "var(--color-gem-orange)",
     sections: ["Quest monsters", "Monster stats", "Weaknesses"],
     intro:
-      "Which monsters quests have and how tough they are. No preset turns these on yet: swaps, quest sizes and quest text have been tried in game, the rest is untested, so try a quest before a long run.",
+      "Which monsters quests have and how tough they are. Swaps, quest sizes and quest text have been tried in game, and the presets use them. The rest is untested and in no preset, so try a quest before a long run.",
   },
   {
     id: "smithy",
@@ -244,10 +246,16 @@ function update(key: OptionKey, value: boolean | number | string): void {
   render();
 }
 
+/** A Shuffle or Randomize badge: shuffles move what's in the game, randomizers roll new values. */
+function tag(action: Action | undefined): HTMLElement | null {
+  if (!action) return null;
+  return el("span", { class: `tag ${action}` }, action === "shuffle" ? "Shuffle" : "Randomize");
+}
+
 function optionText(option: OptionDef, labelFor: string | null): HTMLElement {
   const title = labelFor
-    ? el("label", { class: "option-title", for: labelFor }, option.label)
-    : el("span", { class: "option-title" }, option.label);
+    ? el("label", { class: "option-title", for: labelFor }, option.label, tag(option.action))
+    : el("span", { class: "option-title" }, option.label, tag(option.action));
   return el("div", { class: "option-text" }, title, el("p", { class: "note" }, option.help));
 }
 
@@ -305,7 +313,7 @@ function renderOption(option: OptionDef): HTMLElement {
           el(
             "span",
             { class: "choice-text" },
-            el("span", { class: "choice-label" }, choice.label),
+            el("span", { class: "choice-label" }, choice.label, tag(choice.action)),
             el("span", { class: "note" }, choice.help),
           ),
         ),
@@ -361,7 +369,14 @@ function buildPresets(): void {
         el(
           "span",
           { class: "choice-text" },
-          el("span", { class: "choice-label" }, preset.name),
+          el(
+            "span",
+            { class: "choice-label" },
+            preset.name,
+            ...(["shuffle", "randomize"] as const).map((action) =>
+              [...actionsOf(presetSettings(preset)).values()].includes(action) ? tag(action) : null,
+            ),
+          ),
           el("span", { class: "note" }, preset.help),
         ),
       ),

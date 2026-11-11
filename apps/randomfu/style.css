@@ -702,6 +702,48 @@ textarea.text-input {
   text-shadow: 0.15rem 0.15rem 0 black;
 }
 
+/* Shuffle or Randomize, beside an option, a choice or a preset: what it does to the game. */
+.tag {
+  display: inline-block;
+  margin-left: 0.8rem;
+  padding: 0 0.4rem;
+  border: 1px solid currentColor;
+  font-size: var(--text-fine);
+  line-height: 1.5;
+  text-shadow: none;
+  vertical-align: 0.15em;
+  white-space: nowrap;
+
+  &.shuffle {
+    color: var(--color-gem-blue);
+  }
+
+  &.randomize {
+    color: var(--color-gem-orange);
+  }
+
+  dt > & {
+    margin-left: 0;
+  }
+}
+
+/* The key to the tags, above the presets. */
+.actions {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.8rem 1.2rem;
+  align-items: baseline;
+  margin: 0;
+
+  & > div {
+    display: contents;
+  }
+
+  & dd {
+    margin: 0;
+  }
+}
+
 /* ─── Options ──────────────────────────────────────────────────────────────── */
 
 .option-section {

@@ -267,6 +267,30 @@
       .presets small {
         color: var(--muted);
       }
+      /* Shuffle (moves what's in the game) or Randomize (rolls new values). */
+      .tag {
+        display: inline-block;
+        margin-left: 6px;
+        padding: 0 5px;
+        border: 1px solid currentColor;
+        border-radius: 4px;
+        font-size: 11px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.04em;
+        vertical-align: 1px;
+      }
+      .tag.shuffle {
+        color: #2f6fb3;
+      }
+      .tag.randomize {
+        color: var(--accent);
+      }
+      @media (prefers-color-scheme: dark) {
+        .tag.shuffle {
+          color: #80c2fc;
+        }
+      }
       .actions {
         position: fixed;
         inset: auto 0 0 0;
@@ -389,8 +413,9 @@
           <h2 id="presets-h">Presets</h2>
           <div class="presets" id="presets"></div>
           <p class="hint">
-            A preset replaces every option but keeps your seed. No preset changes the monster
-            options yet. Change anything after.
+            <span class="tag shuffle">Shuffle</span> moves what's already in the game to new places.
+            <span class="tag randomize">Randomize</span> rolls new values. A preset replaces every
+            option but keeps your seed; change anything after.
           </p>
         </section>
 
@@ -531,6 +556,15 @@
         }
       }
 
+      function tag(action) {
+        if (!action) return null;
+        return el(
+          "span",
+          { class: `tag ${action}` },
+          action === "shuffle" ? "Shuffle" : "Randomize",
+        );
+      }
+
       function renderOption(option) {
         const wrap = el("div", { class: "option", "data-key": option.key });
         const id = `opt-${option.key}`;
@@ -544,7 +578,7 @@
               "label",
               { class: "switch", for: id },
               input,
-              el("div", {}, el("div", { class: "title" }, option.label), help),
+              el("div", {}, el("div", { class: "title" }, option.label, tag(option.action)), help),
             ),
           );
         } else if (type.kind === "number") {
@@ -561,7 +595,7 @@
             update(option.key, Number(input.value));
           });
           wrap.append(
-            el("label", { class: "title", for: id }, option.label),
+            el("label", { class: "title", for: id }, option.label, tag(option.action)),
             help,
             el("div", { class: "range" }, input, out),
           );
@@ -579,7 +613,12 @@
                 "label",
                 { class: "choice" },
                 input,
-                el("span", {}, el("b", {}, choice.label), el("small", {}, choice.help)),
+                el(
+                  "span",
+                  {},
+                  el("b", {}, choice.label, tag(choice.action)),
+                  el("small", {}, choice.help),
+                ),
               ),
             );
           }
@@ -793,7 +832,7 @@
           const button = el(
             "button",
             { type: "button" },
-            el("b", {}, preset.name),
+            el("b", {}, preset.name, ...preset.actions.map(tag)),
             el("small", {}, preset.help),
           );
           button.addEventListener("click", () => {

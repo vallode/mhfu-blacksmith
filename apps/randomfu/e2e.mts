@@ -32,7 +32,6 @@ const settings = applySettings(defaultSettings("WEB-E2E"), {
   ...chaos.changes,
   "logic.tiers": "star",
   // Not in a preset until they're tried on a real disc.
-  "questMonsters.species": true,
   "questMonsters.difficulty": true,
   "questMonsters.smallCounts": true,
   "monsterStats.hp": true,

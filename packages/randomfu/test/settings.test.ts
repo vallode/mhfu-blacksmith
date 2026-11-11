@@ -6,6 +6,7 @@ import { test } from "node:test";
 import { settingsFromFlags } from "../src/cli.js";
 import {
   OPTIONS,
+  actionsOf,
   PRESETS,
   SettingsError,
   applySettings,
@@ -18,6 +19,10 @@ import {
   parseAssignments,
   settingsFromJson,
   settingsToJson,
+  type Action,
+  type OptionDef,
+  type OptionKey,
+  type Settings,
 } from "../src/settings.js";
 import { LOGIC_VERSION } from "../src/version.js";
 
@@ -40,35 +45,80 @@ test("every option has a default its own checks accept", () => {
   assert.ok(!OPTIONS.find((o) => o.key === "gathering.enabled")!.eboot);
 });
 
+/** Options no preset turns on until they're tried in game (see the README's status). */
+const UNTRIED: readonly OptionKey[] = [
+  "questMonsters.difficulty",
+  "questMonsters.smallCounts",
+  "monsterStats.hp",
+  "monsterStats.size",
+  "monsterStats.status",
+  "weaknesses.elements",
+  "weaknesses.parts",
+];
+
 test("presets do what their help says", () => {
-  const MONSTERS = ["Quest monsters", "Monster stats", "Weaknesses"];
-  const sectionsOn = (name: string) => {
-    const settings = applySettings(
-      defaultSettings("S"),
-      PRESETS.find((p) => p.name === name)!.changes,
+  const preset = (name: string) =>
+    applySettings(defaultSettings("S"), PRESETS.find((p) => p.name === name)!.changes);
+  const keys = (settings: Settings) => [...actionsOf(settings).keys()].sort();
+  const of = (settings: Settings, action: Action) =>
+    [...actionsOf(settings)].filter(([, a]) => a === action).map(([k]) => k);
+  const tried = (action: Action) =>
+    OPTIONS.filter(
+      (o) =>
+        !UNTRIED.includes(o.key) &&
+        (o.action === action ||
+          (o.type.kind === "choice" && o.type.choices.some((c) => c.action === action))),
     );
-    const on = OPTIONS.filter(
-      (o) => o.type.kind === "boolean" && settings[o.key] === true && isActive(settings, o),
-    );
-    return { settings, sections: new Set(on.map((o) => o.section)) };
-  };
-  // "The defaults: only Rewards, with logic at Same star level."
-  const rewards = sectionsOn("Rewards only");
-  assert.deepEqual(rewards.settings, defaultSettings("S"));
-  assert.deepEqual([...rewards.sections].sort(), ["Monster rewards", "Quest rewards"]);
-  // "Every step but Monsters": each other section has something on.
-  const optionSections = new Set(
-    OPTIONS.filter((o) => o.section !== "Logic").map((o) => o.section),
+
+  // "The defaults: quest rewards and carves are shuffled."
+  assert.deepEqual(preset("Rewards only"), defaultSettings("S"));
+  assert.deepEqual(keys(preset("Rewards only")), [
+    "monsterRewards.enabled",
+    "questRewards.enabled",
+  ]);
+
+  // Shuffled: every shuffle that's been tried, and no randomizer.
+  const shuffled = preset("Shuffled");
+  assert.deepEqual(of(shuffled, "randomize"), []);
+  assert.deepEqual(
+    of(shuffled, "shuffle").sort(),
+    tried("shuffle")
+      .map((o) => o.key)
+      .sort(),
   );
-  for (const [name, tiers] of [
-    ["Full", "star"],
-    ["Chaos", "none"],
-  ] as const) {
-    const { settings, sections } = sectionsOn(name);
-    assert.equal(settings["logic.tiers"], tiers, `${name}'s logic`);
-    for (const section of optionSections) {
-      assert.equal(sections.has(section), !MONSTERS.includes(section), `${name}: ${section}`);
-    }
+  for (const option of OPTIONS.filter((o) => o.type.kind === "choice")) {
+    if (option.key === "armorSkills.mode") continue;
+    assert.equal(shuffled[option.key], option.default, `Shuffled keeps ${option.key}'s pool`);
+  }
+
+  // Randomized: no shuffle, and every randomizer that's been tried and needs no shuffle on.
+  const randomized = preset("Randomized");
+  assert.deepEqual(of(randomized, "shuffle"), []);
+  const needsShuffle = (o: OptionDef) => {
+    const parent = OPTIONS.find((p) => p.key === o.enabledBy);
+    return parent?.action === "shuffle";
+  };
+  assert.deepEqual(
+    of(randomized, "randomize").sort(),
+    tried("randomize")
+      .filter((o) => !needsShuffle(o))
+      .map((o) => o.key)
+      .sort(),
+  );
+
+  // Full: both together, with logic; Chaos: all of Full, without.
+  const full = preset("Full");
+  const chaos = preset("Chaos");
+  assert.equal(full["logic.tiers"], "star");
+  assert.equal(chaos["logic.tiers"], "none");
+  for (const key of [...keys(shuffled), ...keys(randomized)]) {
+    assert.ok(actionsOf(full).has(key), `Full has ${key}`);
+  }
+  for (const key of keys(full)) assert.ok(actionsOf(chaos).has(key), `Chaos has ${key}`);
+
+  // Nothing untried is in a preset.
+  for (const { name } of PRESETS) {
+    for (const key of UNTRIED) assert.ok(!actionsOf(preset(name)).has(key), `${name}: ${key}`);
   }
 });
 
