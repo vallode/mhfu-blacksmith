@@ -11,6 +11,7 @@
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
  *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
  *   tsx src/cli.ts table-probe --reference <mhfu unpack> --target <unpack> [--out <path>]
+ *   tsx src/cli.ts message-probe --unpacked <dir> [--out <path>]
  */
 import { fileURLToPath } from "node:url";
 import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.js";
@@ -22,6 +23,7 @@ import { runModels } from "./cli/models.js";
 import { runQuestFlags } from "./cli/quest-flags.js";
 import { runQuestTextScan } from "./cli/quest-text-scan.js";
 import { runTableProbe } from "./cli/table-probe.js";
+import { runMessageProbe } from "./cli/message-probe.js";
 import { runMessages } from "./cli/messages.js";
 import { readFile, writeFile } from "node:fs/promises";
 import { manifestGame, runUnpack, type UnpackManifest } from "./cli/unpack.js";
@@ -89,7 +91,8 @@ const USAGE = `Usage:
   tsx src/cli.ts quest-probe --quests <raw/quests.json> [--tsv <path>]
   tsx src/cli.ts quest-text-scan --unpacked <dir> --quest <id> [--out <path>]
   tsx src/cli.ts messages --unpacked <dir> --file <index> [--grep <word>] [--table <n> [--from <i>] [--count <n>]]
-  tsx src/cli.ts table-probe --reference <mhfu unpack> --target <unpack> [--out <path>]`;
+  tsx src/cli.ts table-probe --reference <mhfu unpack> --target <unpack> [--out <path>]
+  tsx src/cli.ts message-probe --unpacked <dir> [--out <path>]`;
 
 export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
@@ -112,6 +115,10 @@ export async function main(argv: string[]): Promise<void> {
             ? "."
             : `, ${manifest.usrdirFiles} USRDIR files copied.`),
       );
+      return;
+    }
+    case "message-probe": {
+      await runMessageProbe({ unpacked: requireFlag(flags, "unpacked"), out: flags.out });
       return;
     }
     case "table-probe": {

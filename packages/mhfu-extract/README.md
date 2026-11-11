@@ -292,9 +292,14 @@ Getting data out of them takes a disc of each, then, per game:
    the checks that tie them together, and have `extract` read them, as
    `src/games/mhp2.ts` and `src/cli/extract-mhp2.ts` do for EU MHF2. MHF1
    (`mhp.ts`) is still to do.
-4. Name things from the game's own message files (`messages`), and decide
-   where its output goes. `data/` and the site are MHFU's; a second game
-   needs its own data directory and a way to pick it on the site.
+4. Name things from the game's own message files. `message-probe` lists
+   every message file in an unpack (`.pac` entries included) with each
+   table's string count, and marks the tables whose count matches an
+   equipment table's, give or take a dummy entry: a name table has one
+   string per entry (`src/strings/message-probe.ts`; counts only). Then
+   `messages` reads a table it points at.
+5. Write the game's output to its own `data/<game>/` for the site, which
+   serves it under `/<game>/` beside MHFU's pages.
 
 ### EBOOT decryption
 
