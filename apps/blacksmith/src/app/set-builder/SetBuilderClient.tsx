@@ -677,14 +677,18 @@ export default function SetBuilderClient() {
                     {set ? (
                       <>
                         <SetHeader index={index} count={sets.length} onStep={step} />
-                        {!searching && sets.length >= (searched?.limit ?? DEFAULT_LIMIT) && (
-                          <p className={ui.note}>
-                            The {sets.length} best sets by {sortLabel(searched?.sort)}. Add skills
-                            to narrow the search.
-                          </p>
-                        )}
+                        {!searching &&
+                          !result?.timedOut &&
+                          sets.length >= (searched?.limit ?? DEFAULT_LIMIT) && (
+                            <p className={ui.note}>
+                              The {sets.length} best sets by {sortLabel(searched?.sort)}. Add skills
+                              to narrow the search.
+                            </p>
+                          )}
                         {result?.timedOut && (
-                          <p className={ui.note}>The search took too long and stopped early.</p>
+                          <p className={ui.note}>
+                            The search stopped early: better sets may exist.
+                          </p>
                         )}
                         <div className={ui.actions}>
                           <button

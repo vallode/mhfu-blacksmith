@@ -34,12 +34,15 @@ export interface SetSearchState {
 /**
  * The last search, kept across visits to the page: in memory for client-side
  * navigation (back from a piece's page shows it at once), and its query in
- * sessionStorage, so a reload or a full page load reruns it.
+ * sessionStorage, so a reload or a full page load reruns it (unless it was
+ * cancelled or failed).
  */
 interface LastSearch {
   query: SearchQuery;
   index: number;
   result?: SearchResult;
+  /** Cancelled or failed: a reload doesn't run it again. */
+  stopped?: boolean;
 }
 
 const STORAGE_KEY = "set-builder-search";
@@ -49,7 +52,9 @@ function readLast(): LastSearch | null {
   if (lastSearch) return lastSearch;
   try {
     const stored = JSON.parse(sessionStorage.getItem(STORAGE_KEY) ?? "null") as LastSearch | null;
-    return stored?.query ? { query: stored.query, index: stored.index ?? 0 } : null;
+    return stored?.query
+      ? { query: stored.query, index: stored.index ?? 0, stopped: stored.stopped }
+      : null;
   } catch {
     return null;
   }
@@ -59,7 +64,8 @@ function writeLast(last: LastSearch | null) {
   lastSearch = last;
   try {
     if (last) {
-      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ query: last.query, index: last.index }));
+      const { query, index, stopped } = last;
+      sessionStorage.setItem(STORAGE_KEY, JSON.stringify({ query, index, stopped }));
     } else {
       sessionStorage.removeItem(STORAGE_KEY);
     }
@@ -168,14 +174,30 @@ export function useSetSearch(): SetSearchState {
   /** The workers failed outside a search: start new ones for the next. */
   const failed = useRef(false);
 
-  const stop = useCallback((message: string) => {
-    searchId.current++;
-    pending.current = null;
-    setSearching(false);
-    setError(message);
-    // The other workers may still be on the search: start afresh.
-    restart.current?.();
+  /**
+   * A search ended before finishing (cancelled or failed): its live results,
+   * if any are on screen, become the last search, marked as stopped early.
+   */
+  const keepShown = useCallback(() => {
+    const run = pending.current;
+    if (!run?.shown) return;
+    const result = { ...run.shown, timedOut: true };
+    setResult(result);
+    writeLast({ query: run.query, index: run.index, result, stopped: true });
   }, []);
+
+  const stop = useCallback(
+    (message: string) => {
+      keepShown();
+      searchId.current++;
+      pending.current = null;
+      setSearching(false);
+      setError(message);
+      // The other workers may still be on the search: start afresh.
+      restart.current?.();
+    },
+    [keepShown],
+  );
 
   const startWorkers = useCallback(
     (d: SearchData) => {
@@ -283,7 +305,7 @@ export function useSetSearch(): SetSearchState {
     // A search kept from an earlier visit without its results (after a
     // reload): run it again.
     const last = readLast();
-    if (last && !last.result) post(workers, last.query, last.index);
+    if (last && !last.result && !last.stopped) post(workers, last.query, last.index);
     return () => {
       // cancel() may have replaced the first workers.
       for (const w of workersRef.current) w.terminate();
@@ -305,16 +327,14 @@ export function useSetSearch(): SetSearchState {
 
   const cancel = useCallback(() => {
     if (!data) return;
-    // Its live results stay on screen: they're the last search now.
-    const run = pending.current;
-    if (run?.shown) writeLast({ query: run.query, index: run.index, result: run.shown });
+    keepShown();
     searchId.current++;
     pending.current = null;
     failed.current = false;
     for (const w of workersRef.current) w.terminate();
     startWorkers(data);
     setSearching(false);
-  }, [data, startWorkers]);
+  }, [data, startWorkers, keepShown]);
 
   const setIndex = useCallback((i: number) => {
     setIndexState(i);
