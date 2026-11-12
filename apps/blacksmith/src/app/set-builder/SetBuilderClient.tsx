@@ -133,16 +133,21 @@ const WEAPON_SLOTS: Choice<number>[] = [0, 1, 2, 3].map((n) => ({
   label: n === 0 ? "None" : "O".repeat(n).padEnd(3, "-"),
 }));
 
-/** The locked or excluded pieces, each with × to take it off the list. */
+/**
+ * The locked or excluded pieces, each with × to take it off the list, and
+ * why the search can't use it, if it can't.
+ */
 function PieceList({
   label,
   note,
   pieces,
+  unused,
   onRemove,
 }: {
   label: string;
   note: string;
   pieces: Piece[];
+  unused?: (piece: Piece) => string | null;
   onRemove: (href: string) => void;
 }) {
   if (pieces.length === 0) return null;
@@ -151,24 +156,38 @@ function PieceList({
       <span className={ui.statusLabel}>{label}</span>
       <p className={ui.note}>{note}</p>
       <ul className="m-0 flex list-none flex-wrap gap-x-[1.6rem] gap-y-[0.4rem] p-0 text-fine">
-        {pieces.map(({ href, name }) => (
-          <li key={href} className="flex items-center">
-            <Link href={href} className="text-white/80 hover:text-white">
-              {name}
-            </Link>
-            <button
-              type="button"
-              className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-small leading-none text-white/50 hover:text-negative focus-visible:text-negative"
-              aria-label={`Take ${name} off the ${label.toLowerCase()} pieces`}
-              onClick={() => onRemove(href)}
-            >
-              ×
-            </button>
-          </li>
-        ))}
+        {pieces.map((piece) => {
+          const { href, name } = piece;
+          const why = unused?.(piece);
+          return (
+            <li key={href} className="flex items-center">
+              <Link href={href} className="text-white/80 hover:text-white">
+                {name}
+              </Link>
+              {why && <span className="ml-[0.6rem] text-white/40">({why})</span>}
+              <button
+                type="button"
+                className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-small leading-none text-white/50 hover:text-negative focus-visible:text-negative"
+                aria-label={`Take ${name} off the ${label.toLowerCase()} pieces`}
+                onClick={() => onRemove(href)}
+              >
+                ×
+              </button>
+            </li>
+          );
+        })}
       </ul>
     </div>
   );
+}
+
+/** Why the hunter in the form can't wear `piece`, or null if they can. */
+function cantWear(piece: Piece, form: Pick<Form, "hunterType" | "sex">): string | null {
+  if (piece.hunterType !== "Both" && piece.hunterType !== form.hunterType) {
+    return `${piece.hunterType} only`;
+  }
+  if (piece.sex !== "Both" && piece.sex !== form.sex) return `${piece.sex} only`;
+  return null;
 }
 
 function readForm(): Form {
@@ -247,44 +266,50 @@ export default function SetBuilderClient() {
       return p ? [p] : [];
     });
   const pieceIds = (hrefs: string[]) => piecesOf(hrefs).map((p) => p.id);
-  const pieceActions: PieceActions = {
-    isLocked: (p) => form.locked.includes(p.href),
-    onLock: (p) =>
-      setForm((f) =>
-        f.locked.includes(p.href)
-          ? { ...f, locked: f.locked.filter((h) => h !== p.href) }
-          : {
-              ...f,
-              // One locked piece per slot.
-              locked: [...f.locked.filter((h) => byHref.get(h)?.slot !== p.slot), p.href],
-              excluded: f.excluded.filter((h) => h !== p.href),
-            },
-      ),
-    onExclude: (p) =>
-      setForm((f) => ({
-        ...f,
-        excluded: f.excluded.includes(p.href) ? f.excluded : [...f.excluded, p.href],
-        locked: f.locked.filter((h) => h !== p.href),
-      })),
-  };
-  const runSearch = () => {
-    if (!data || form.skills.length === 0) return;
+  const runSearch = (f: Form = form) => {
+    if (!data || f.skills.length === 0) return;
     const query: SearchQuery = {
-      sort: form.sort,
-      lockPieces: pieceIds(form.locked),
-      excludePieces: pieceIds(form.excluded),
-      skills: form.skills,
-      hunterType: form.hunterType,
-      sex: form.sex,
-      rank: form.rank,
-      weaponSlots: form.weaponSlots,
-      allowBadSkills: form.allowBadSkills,
+      sort: f.sort,
+      lockPieces: pieceIds(f.locked),
+      excludePieces: pieceIds(f.excluded),
+      skills: f.skills,
+      hunterType: f.hunterType,
+      sex: f.sex,
+      rank: f.rank,
+      weaponSlots: f.weaponSlots,
+      allowBadSkills: f.allowBadSkills,
       progress: questLimit,
       onlyPieces: ownedOnly
         ? data.pieces.filter((p) => progress.isOwned(p.href)).map((p) => p.id)
         : undefined,
     };
     search(query);
+  };
+  // Locking or excluding a result's piece searches again, so the results
+  // show the change (a running search takes it up next time).
+  const changePieces = (next: Form) => {
+    setForm(next);
+    if (!searching) runSearch(next);
+  };
+  const pieceActions: PieceActions = {
+    isLocked: (p) => form.locked.includes(p.href),
+    onLock: (p) =>
+      changePieces(
+        form.locked.includes(p.href)
+          ? { ...form, locked: form.locked.filter((h) => h !== p.href) }
+          : {
+              ...form,
+              // One locked piece per slot.
+              locked: [...form.locked.filter((h) => byHref.get(h)?.slot !== p.slot), p.href],
+              excluded: form.excluded.filter((h) => h !== p.href),
+            },
+      ),
+    onExclude: (p) =>
+      changePieces({
+        ...form,
+        excluded: form.excluded.includes(p.href) ? form.excluded : [...form.excluded, p.href],
+        locked: form.locked.filter((h) => h !== p.href),
+      }),
   };
 
   const sets = result?.sets ?? [];
@@ -519,6 +544,7 @@ export default function SetBuilderClient() {
         No set activates all of these skills. Try fewer skills, a higher rank, more weapon slots,
         allowing bad skills
         {searched?.lockPieces?.length ? ", unlocking pieces" : ""}
+        {searched?.excludePieces?.length ? ", removing excluded pieces" : ""}
         {searched?.progress ? ", or ignoring your quest progress" : ""}.
       </p>
     );
@@ -626,8 +652,9 @@ export default function SetBuilderClient() {
             )}
             <PieceList
               label="Locked"
-              note="Every set uses these, whatever the rank or quest progress."
+              note="Every set uses these, whatever the rank or quest progress, if the hunter can wear them."
               pieces={piecesOf(form.locked)}
+              unused={(p) => cantWear(p, form)}
               onRemove={(href) =>
                 update(
                   "locked",
