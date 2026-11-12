@@ -7,7 +7,8 @@ import { parseOvl } from "mhfu-extract/src/container/ovl.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { needsEboot } from "../src/settings.js";
-import { ESSENTIALS, findShops, locateItemTable } from "../src/shuffles/shops.js";
+import { findShops } from "mhfu-extract/src/shops/shops.js";
+import { ESSENTIALS, locateItemTable } from "../src/shuffles/shops.js";
 import {
   buildFixtureDisc,
   buildLobbyTask,
@@ -72,7 +73,7 @@ test("findShops reads every table next to the general store's, and names them", 
       ["Village general store", [7, 9, 0], false],
       ["Peddler", [3, 4, 5], false],
       ["Guild Hall store", [4, 5], false],
-      ["Sphere and jewel shop", [1, 3], true],
+      ["Point Exchange", [1, 3], true],
     ],
   );
   assert.equal(data.tables[0]!.at, lobby.tablesAt);
@@ -170,7 +171,8 @@ test("shops can sell items from wider pools, consistently across stages", async 
 
 test("item counts scale every stage of a shop alike, and the lists are rewritten and repointed", async () => {
   const { game, close } = await load();
-  for (const seed of ["a", "b", "c", "d", "e"]) {
+  // Enough seeds that a stage shrinks below its pinned essentials.
+  for (const seed of "abcdefghijklmnopqrstuvwxyz".split("")) {
     const s = settingsWith(seed, ["shops"], { "shops.countSpread": 0.9, "shops.pool": "any" });
     const result = randomize(game, s);
     const edited = parseOvl(result.edits.overlay(game.lobbyTask));
@@ -198,12 +200,27 @@ test("item counts scale every stage of a shop alike, and the lists are rewritten
 
 test("lists won't be rewritten over anything that isn't a shop list", async () => {
   const { game, close } = await load();
+  // A seed whose lists change length, so they'd be rewritten.
+  const vanilla = findShops(parseOvl(lobby.buf));
+  const lengths = (data: {
+    tables: { lists: number[] }[];
+    lists: Map<number, { items: number[] }>;
+  }) => data.tables.map((t) => t.lists.map((o) => data.lists.get(o)!.items.length)).join();
+  const seed = "abcdefghijklmnopqrstuvwxyz".split("").find((seed) => {
+    const s = settingsWith(seed, ["shops"], { "shops.countSpread": 0.9 });
+    const edited = parseOvl(randomize(game, s).edits.overlay(game.lobbyTask));
+    return (
+      lengths(readTablesAt(edited, lobby.tablesAt, FIXTURE_SHOP_TABLES.length)) !== lengths(vanilla)
+    );
+  });
+  assert.ok(seed, "some seed changes a list's length");
+
   const buf = game.dataBin.read(game.lobbyTask.index);
   const gap = lobby.listAt.empty! + 2; // the padding after the empty list
   const saved = buf.readUInt16LE(gap);
   buf.writeUInt16LE(0x1234, gap);
   try {
-    const s = settingsWith("x", ["shops"], { "shops.countSpread": 0.5 });
+    const s = settingsWith(seed, ["shops"], { "shops.countSpread": 0.9 });
     assert.throws(() => randomize(game, s), /something other than shop lists/);
   } finally {
     buf.writeUInt16LE(saved, gap);
@@ -254,7 +271,8 @@ test("prices and carry limits: the price field is found on the disc and only sho
   // rarity (0 here, so 100z), before the variation.
   const plain = randomize(game, settingsWith("p", ["shops"]));
   assert.equal(plain.edits.eboot().readUInt32LE(at(300) + 12), 100);
-  assert.match(plain.reports[0]!.notes.join(" "), /\d+ items had no price/);
+  const pricing = plain.reports.find((r) => r.title === "Shop prices");
+  assert.match(pricing!.notes.join(" "), /\d+ items had no price/);
 
   // A disc whose prices don't match is refused, not edited.
   const wrong = Buffer.from(game.eboot!);
@@ -266,9 +284,97 @@ test("prices and carry limits: the price field is found on the disc and only sho
   source.close();
 });
 
-test("price and carry limit settings only need the EBOOT when shops are on", () => {
-  const off = settingsWith("n", [], { "shops.prices": true });
-  assert.equal(needsEboot(off), false);
+test("prices and carry limits change without the stock shuffle, and the stock stays", async () => {
+  const file = path.join(tempDir(), "disc.iso");
+  writeFileSync(file, buildFixtureDisc());
+  const { source, iso } = openDiscImage(file);
+  const game = await loadGame(source, iso, { eboot: {} });
+  const table = locateItemTable(game.eboot!, undefined);
+  const at = (id: number) => table.base + id * 24;
+  const vanilla = game.eboot!;
+
+  const s = settingsWith("q", [], {
+    "shops.prices": true,
+    "shops.priceSpread": 0.5,
+    "shops.stacks": true,
+    "shops.stackSpread": 0.5,
+  });
+  const result = randomize(game, s);
+  assert.deepEqual(
+    result.reports.map((r) => r.title).filter((t) => t.startsWith("Shop")),
+    ["Shop prices"],
+    "no stock report",
+  );
+  assert.deepEqual(listsIn(result.edits.overlay(game.lobbyTask)), FIXTURE_SHOP_LISTS);
+
+  const eboot = result.edits.eboot();
+  let prices = 0;
+  for (const [id, price] of FIXTURE_ITEM_PRICES) {
+    const now = eboot.readUInt32LE(at(id) + 12);
+    assert.ok(now >= Math.round(price * 0.5) && now <= Math.round(price * 1.5), `${id}: ${now}`);
+    if (now !== price) prices++;
+  }
+  assert.ok(prices > 0, "prices change");
+  let stacks = 0;
+  for (const [id, stack] of FIXTURE_ITEM_STACKS) {
+    const now = eboot[at(id) + 3]!;
+    assert.ok(now >= 1 && now <= Math.round(stack * 1.5) + 1, `${id}: ${stack} -> ${now}`);
+    if (now !== stack) stacks++;
+  }
+  assert.ok(stacks > 0, "carry limits change");
+  // Item 300 is on sale (village stage 2) with no price: it gets one.
+  assert.ok(eboot.readUInt32LE(at(300) + 12) > 0);
+  // Not in a shop, or only in the Point Exchange: untouched.
+  for (const id of [999, 223, 224]) {
+    assert.equal(eboot.readUInt32LE(at(id) + 12), vanilla.readUInt32LE(at(id) + 12), `${id}`);
+    assert.equal(eboot[at(id) + 3], vanilla[at(id) + 3], `${id}`);
+  }
+  source.close();
+});
+
+test("with the stock shuffle, prices follow what shops sell now", async () => {
+  const file = path.join(tempDir(), "disc.iso");
+  writeFileSync(file, buildFixtureDisc());
+  const { source, iso } = openDiscImage(file);
+  const game = await loadGame(source, iso, { eboot: {} });
+  const table = locateItemTable(game.eboot!, undefined);
+  const at = (id: number) => table.base + id * 24;
+  for (const seed of ["a", "b", "c", "d"]) {
+    const s = settingsWith(seed, ["shops"], {
+      "shops.pool": "any",
+      "shops.prices": true,
+      "shops.stacks": true,
+    });
+    const result = randomize(game, s);
+    assert.deepEqual(
+      result.reports.map((r) => r.title).filter((t) => t.startsWith("Shop")),
+      ["Shop stock", "Shop prices"],
+    );
+    const eboot = result.edits.eboot();
+    const lists = listsIn(result.edits.overlay(game.lobbyTask));
+    const sold = new Set(
+      Object.entries(lists)
+        .filter(([name]) => !name.startsWith("special"))
+        .flatMap(([, items]) => items),
+    );
+    for (const id of sold) {
+      if (id >= table.count) continue;
+      assert.ok(eboot.readUInt32LE(at(id) + 12) > 0, `${id} is on sale, so it has a price`);
+    }
+    // What no shop sells any more keeps its price and carry limit.
+    for (const [id] of FIXTURE_ITEM_PRICES) {
+      if (sold.has(id)) continue;
+      assert.equal(eboot.readUInt32LE(at(id) + 12), game.eboot!.readUInt32LE(at(id) + 12));
+      assert.equal(eboot[at(id) + 3], game.eboot![at(id) + 3]);
+    }
+  }
+  source.close();
+});
+
+test("price and carry limit settings need the EBOOT, with or without the stock shuffle", () => {
+  assert.equal(needsEboot(settingsWith("n", [], { "shops.prices": true })), true);
+  assert.equal(needsEboot(settingsWith("n", [], { "shops.stacks": true })), true);
   assert.equal(needsEboot(settingsWith("n", ["shops"], { "shops.prices": true })), true);
   assert.equal(needsEboot(settingsWith("n", ["shops"])), false);
+  assert.equal(needsEboot(settingsWith("n", [])), false);
 });

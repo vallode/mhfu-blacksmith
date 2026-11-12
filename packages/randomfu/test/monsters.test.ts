@@ -138,11 +138,11 @@ test("rank swaps leave quests with several kinds of monster, and stay in the ran
       assert.ok(!result.edits.quests.has(byId(game, id).index), `quest ${id} unchanged`);
     }
     const quest = byId(game, 1001);
-    const ids = readSpawns(payloadAfter(result, quest), quest.parsed.header).large.map(
-      (s) => s.monsterId,
-    );
-    assert.ok([1, 2, 37].includes(ids[0]!));
-    changed.add(ids[0]!);
+    const [spawn] = readSpawns(payloadAfter(result, quest), quest.parsed.header).large;
+    assert.ok([1, 2, 37].includes(spawn!.monsterId));
+    // Fatalis has its own stat tables: it takes its Low Rank level (6), Rathians keep 3.
+    assert.equal(spawn!.power, spawn!.monsterId === 2 ? 6 : 3);
+    changed.add(spawn!.monsterId);
   }
   assert.ok(changed.size > 1);
   close();
@@ -160,10 +160,12 @@ test("difficulty levels move within the levels quests of the same rank use", asy
       game,
       only(`d${seed}`, { "questMonsters.difficulty": true, "questMonsters.difficultySpread": 31 }),
     );
-    // Low Rank quests use levels 3 to 6; the one High Rank quest only 12.
-    for (const id of [1001, 10101, 10102]) {
-      for (const p of levels(result, id)) assert.ok(p >= 3 && p <= 6, `${id}: ${p}`);
+    // Low Rank Rathians use levels 3 and 4; Low Rank Fatalis, with its own
+    // tables, only 6; the one High Rank quest only 12.
+    for (const id of [1001, 10102]) {
+      for (const p of levels(result, id)) assert.ok(p >= 3 && p <= 4, `${id}: ${p}`);
     }
+    assert.deepEqual(levels(result, 10101), [6]);
     assert.deepEqual(levels(result, 2001), [12]);
     assert.deepEqual(levels(result, 20001), [0]);
     moved ||= levels(result, 1001)[0] !== 3;
@@ -176,11 +178,36 @@ test("difficulty levels move within the levels quests of the same rank use", asy
         "questMonsters.difficultyRange": "any",
       }),
     );
-    for (const id of [1001, 10101, 10102, 2001]) {
+    for (const id of [1001, 10102, 2001]) {
       for (const p of levels(any, id)) assert.ok(p >= 3 && p <= 12, `${id}: ${p}`);
     }
+    assert.deepEqual(levels(any, 10101), [6]);
   }
   assert.ok(moved);
+  close();
+});
+
+test("difficulty follows the monster a species swap left, not the one it replaced", async () => {
+  const { game, close } = await load();
+  const quest = byId(game, 1001);
+  let fatalis = 0;
+  for (let seed = 0; seed < 20; seed++) {
+    const result = randomize(
+      game,
+      only(`ds${seed}`, {
+        "questMonsters.species": true,
+        "questMonsters.speciesPool": "rank",
+        "questMonsters.difficulty": true,
+        "questMonsters.difficultySpread": 31,
+      }),
+    );
+    const [spawn] = readSpawns(payloadAfter(result, quest), quest.parsed.header).large;
+    if (spawn!.monsterId !== 2) continue;
+    fatalis++;
+    // Fatalis's Low Rank levels are only 6, whatever Rathian's were.
+    assert.equal(spawn!.power, 6);
+  }
+  assert.ok(fatalis > 0);
   close();
 });
 

@@ -23,12 +23,24 @@
  * (`QuestScript`) need nothing: on the EU disc no packet argument is ever
  * a quest's target or one of its monsters (mhfu-extract `quest-probe`).
  *
- * Difficulty is the `power` byte, the row of the quest's stat multiplier
- * table (HP, attack, defense, status: mhfu-extract `monsters/multipliers.ts`).
- * New rows stay within those Village and Guild quests of the same table set
- * use (header rank 0 picks set 0, the rest set 1), and with "rank", the same
- * rank: rows past them may be filler.
+ * Difficulty is the `power` byte, the row of the stat multiplier table
+ * (HP, attack, defense, status: mhfu-extract `monsters/multipliers.ts`).
+ * The game picks the table set by the monster (`emChunk +0x14F`: Fatalis
+ * and the siege-style elders have their own) and the table by the quest
+ * header's `statTable`. A row means something else in another set, and the
+ * Fatalis and siege sets are filler past the rows their quests use, so:
+ *
+ * - a species swap that changes the set also changes the spawn's level, to
+ *   the one the new monster usually has with the quest's table and rank;
+ * - new levels stay within those Village and Guild quests use for monsters
+ *   of the same set and the same table, and with "rank", the same rank.
  */
+import type { OvlFile } from "mhfu-extract/src/container/ovl.js";
+import {
+  locateMonsterChunks,
+  MONSTER_CHUNK_SIZE,
+  MULTIPLIER_SET_OFFSET,
+} from "mhfu-extract/src/monsters/hitzones.js";
 import type { LoadedQuest } from "../game/load.js";
 import { RECORD_TARGET_ID, type BoardFile } from "../game/board.js";
 import { DELIVERY_TYPE, QUEST_TYPE } from "../game/quest-fields.js";
@@ -48,7 +60,7 @@ import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
 import { monsterName, questLabel } from "../names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport } from "./shuffle.js";
+import { median, type ShuffleReport } from "./shuffle.js";
 
 /** Variants that share their base species' skeleton, moves and overlay, by emID. */
 export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
@@ -84,6 +96,19 @@ export function habitat(map: number): number {
   return NIGHT_TO_DAY[map] ?? map;
 }
 
+/** The stat multiplier table sets, as `emChunk +0x14F` numbers them. */
+const SET_NAMES = ["small monsters", "large monsters", "Fatalis", "siege monsters"];
+
+/** A monster's stat multiplier set, by emID. */
+export type MultiplierSetOf = (emId: number) => number;
+
+/** Reads each monster's stat multiplier set from its `emChunk` (`+0x14F`). */
+export function multiplierSets(ovl: OvlFile): MultiplierSetOf {
+  const found = locateMonsterChunks(ovl);
+  if (!found) throw new Error("game_task.ovl: the monster table wasn't found");
+  return (emId) => ovl.reader.s8(found.offset + emId * MONSTER_CHUNK_SIZE + MULTIPLIER_SET_OFFSET);
+}
+
 export interface QuestMonsters {
   quest: LoadedQuest;
   tier: Tier;
@@ -115,6 +140,7 @@ export function swapSpecies(
   rng: Rng,
   edits: Edits,
   allQuests: readonly LoadedQuest[],
+  setOf: MultiplierSetOf,
   boards: readonly BoardFile[] = [],
 ): {
   report: ShuffleReport;
@@ -124,16 +150,42 @@ export function swapSpecies(
 } {
   const onMap = new Map<number, Set<number>>();
   const bands = new Map<number, Set<Band>>();
+  /** Levels by monster or set, quest table and rank (see `usualLevel`). */
+  const levels = new Map<string, number[]>();
+  const push = (key: string, power: number) =>
+    (levels.get(key) ?? levels.set(key, []).get(key)!).push(power);
   for (const { quest, tier, spawns } of list) {
     const map = habitat(quest.parsed.header.map);
-    for (const { monsterId } of spawns.large) {
+    const table = quest.parsed.header.statTable;
+    for (const { monsterId, power } of spawns.large) {
       (onMap.get(map) ?? onMap.set(map, new Set()).get(map)!).add(monsterId);
       (bands.get(monsterId) ?? bands.set(monsterId, new Set()).get(monsterId)!).add(tier.band);
+      const set = setOf(monsterId);
+      push(`m${monsterId}:${table}:${tier.band}`, power);
+      push(`s${set}:${table}:${tier.band}`, power);
+      push(`s${set}:${tier.band}`, power);
+      push(`m${monsterId}`, power);
     }
   }
+  /**
+   * The level (lower median) a monster usually has in quests of this table
+   * and rank; failing that, what its set has there (Lunastra has no G Rank
+   * quest), its set at this rank, and last the monster anywhere.
+   */
+  const usualLevel = (emId: number, table: number, band: Band) => {
+    const set = setOf(emId);
+    const found =
+      levels.get(`m${emId}:${table}:${band}`) ??
+      levels.get(`s${set}:${table}:${band}`) ??
+      levels.get(`s${set}:${band}`) ??
+      levels.get(`m${emId}`)!;
+    return median(found, "lower");
+  };
 
   const lines: ShuffleReport["lines"] = [];
   const changed = new Map<number, Map<number, number>>();
+  /** Each changed quest's new levels (old emID -> level), where the set changed. */
+  const relevelled = new Map<number, Map<number, number>>();
   let mixed = 0;
   let stuck = 0;
   let drawnSame = 0;
@@ -171,10 +223,21 @@ export function swapSpecies(
       continue;
     }
 
+    // Another set's rows mean something else: take the new monster's usual level.
+    const level = new Map<number, number>();
+    for (const [old, next] of mapping) {
+      if (setOf(next) !== setOf(old)) {
+        level.set(old, usualLevel(next, quest.parsed.header.statTable, tier.band));
+      }
+    }
     const payload = edits.quest(quest);
     for (const { offset, monsterId } of [...spawns.large, ...spawns.loads]) {
       const next = mapping.get(monsterId);
       if (next !== undefined) payload.writeUInt16LE(next, offset);
+    }
+    for (const { offset, monsterId } of spawns.large) {
+      const next = level.get(monsterId);
+      if (next !== undefined) payload[offset + POWER_OFFSET] = next;
     }
     // A delivery quest's TargetID is an item, not a monster.
     const delivery = payload[QUEST_TYPE] === DELIVERY_TYPE;
@@ -196,10 +259,15 @@ export function swapSpecies(
       }
     }
     changed.set(quest.index, mapping);
+    if (level.size > 0) relevelled.set(quest.index, level);
     for (const [old, next] of mapping) {
+      const was = spawns.large.find((s) => s.monsterId === old)?.power;
+      const now = level.get(old);
       lines.push({
         where: questLabel(quest),
-        text: `${monsterName(next)} (was ${monsterName(old)})`,
+        text:
+          `${monsterName(next)} (was ${monsterName(old)})` +
+          (now === undefined ? "" : `, level ${now} (was ${was})`),
       });
     }
   }
@@ -217,6 +285,11 @@ export function swapSpecies(
     );
   }
   if (drawnSame > 0) notes.push(`${drawnSame} quests drew their own monsters again.`);
+  if (relevelled.size > 0) {
+    notes.push(
+      `${relevelled.size} quests got a monster with another stat table set (Fatalis, Lao-Shan Lung and their kind have their own), which takes the level it usually has with the quest's table and rank.`,
+    );
+  }
   const neverMoves = [...movable].filter(([, m]) => !m).map(([id]) => monsterName(id));
   if (neverMoves.length > 0) {
     notes.push(
@@ -229,42 +302,51 @@ export function swapSpecies(
     questsAfter: allQuests.map((q) => {
       const mapping = changed.get(q.index);
       if (!mapping) return q.parsed;
+      const level = relevelled.get(q.index);
       return {
         ...q.parsed,
         largeMonsters: q.parsed.largeMonsters.map((m) => ({
           ...m,
           monsterId: mapping.get(m.monsterId) ?? m.monsterId,
+          power: level?.get(m.monsterId) ?? m.power,
         })),
       };
     }),
   };
 }
 
-/** The multiplier table set a quest's header rank picks (mhfu-extract `multipliers.ts`). */
-const multiplierSet = (quest: LoadedQuest) => (quest.parsed.header.rank === 0 ? 0 : 1);
-
 export function randomizeDifficulty(
   list: readonly QuestMonsters[],
   options: { spread: number; range: "rank" | "any" },
   rng: Rng,
   edits: Edits,
+  setOf: MultiplierSetOf,
 ): ShuffleReport {
-  const key = (q: QuestMonsters) =>
-    options.range === "rank"
-      ? `${multiplierSet(q.quest)}:${q.tier.band}`
-      : `${multiplierSet(q.quest)}`;
+  // A level is a row of one table: the monster's set, the quest's table.
+  const key = (q: QuestMonsters, emId: number) =>
+    `${setOf(emId)}:${q.quest.parsed.header.statTable}` +
+    (options.range === "rank" ? `:${q.tier.band}` : "");
   const bounds = new Map<string, [number, number]>();
   for (const q of list) {
-    for (const { power } of q.spawns.large) {
-      const [lo, hi] = bounds.get(key(q)) ?? [power, power];
-      bounds.set(key(q), [Math.min(lo, power), Math.max(hi, power)]);
+    for (const { monsterId, power } of q.spawns.large) {
+      const k = key(q, monsterId);
+      const [lo, hi] = bounds.get(k) ?? [power, power];
+      bounds.set(k, [Math.min(lo, power), Math.max(hi, power)]);
     }
   }
 
   const lines: ShuffleReport["lines"] = [];
+  let unbounded = 0;
   for (const q of list) {
-    const [lo, hi] = bounds.get(key(q)) ?? [0, 0];
-    for (const spawn of q.spawns.large) {
+    // As the species swap left them: monsters, and levels it reset.
+    const now = readSpawns(edits.questNow(q.quest), q.quest.parsed.header);
+    for (const spawn of now.large) {
+      const range = bounds.get(key(q, spawn.monsterId));
+      if (!range) {
+        unbounded++;
+        continue;
+      }
+      const [lo, hi] = range;
       const delta = rng.int(options.spread * 2 + 1) - options.spread;
       const next = Math.min(hi, Math.max(lo, spawn.power + delta));
       if (next === spawn.power) continue;
@@ -272,24 +354,29 @@ export function randomizeDifficulty(
       payload[spawn.offset + POWER_OFFSET] = next;
       lines.push({
         where: questLabel(q.quest),
-        text: `${monsterName(payload.readUInt16LE(spawn.offset))}: level ${next} (was ${spawn.power})`,
+        text: `${monsterName(spawn.monsterId)}: level ${next} (was ${spawn.power})`,
       });
     }
   }
   const ranges = [...bounds]
+    .sort(([a], [b]) => a.localeCompare(b))
     .map(([k, [lo, hi]]) => {
-      const [set, band] = k.split(":");
-      return `table set ${set}${band ? `, ${BAND_NAMES[band as Band]}` : ""}: ${lo}-${hi}`;
+      const [set, table, band] = k.split(":");
+      const where = [SET_NAMES[Number(set)] ?? `set ${set}`, `table ${table}`];
+      if (band) where.push(BAND_NAMES[band as Band]);
+      return `${where.join(", ")}: ${lo}-${hi}`;
     })
     .join("; ");
-  return {
-    title: "Monster difficulty",
-    notes: [
-      `Large monsters moved up to ${options.spread} difficulty levels (the row of the quest's HP, attack and defense multipliers).`,
-      `Levels stay within those quests use: ${ranges}.`,
-    ],
-    lines,
-  };
+  const notes = [
+    `Large monsters moved up to ${options.spread} difficulty levels (the row of their HP, attack and defense multipliers).`,
+    `Levels stay within those quests use for the same monster table set and quest table: ${ranges}.`,
+  ];
+  if (unbounded > 0) {
+    notes.push(
+      `${unbounded} large monsters kept their level: no quest uses their table set with their quest's table${options.range === "rank" ? " at that rank" : ""}.`,
+    );
+  }
+  return { title: "Monster difficulty", notes, lines };
 }
 
 /** Counts at or above this are left alone: 99 looks like "keeps coming". */

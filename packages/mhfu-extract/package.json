@@ -11,6 +11,7 @@
     "diff": "tsx src/cli.ts diff",
     "models": "tsx src/cli.ts models",
     "export-site": "tsx src/cli.ts export-site",
+    "item-icons": "tsx src/cli.ts item-icons",
     "compare": "tsx src/cli.ts compare",
     "build-data": "tsx src/cli.ts build-data",
     "quest-flags": "tsx src/cli.ts quest-flags",

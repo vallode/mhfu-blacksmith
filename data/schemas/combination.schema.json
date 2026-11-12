@@ -1,0 +1,69 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Item combinations file (the in-game Combination List)",
+  "type": "object",
+  "required": ["books", "book_bonus", "combinations"],
+  "additionalProperties": false,
+  "properties": {
+    "$comment": { "type": "string" },
+    "books": {
+      "type": "array",
+      "description": "The Books of Combos, in order",
+      "items": { "$ref": "#/definitions/itemRef" },
+      "minItems": 1
+    },
+    "book_bonus": {
+      "type": "array",
+      "description": "Success rate bonus (percent) for owning the first 0, 1, ... books",
+      "items": { "type": "integer", "minimum": 0, "maximum": 100 }
+    },
+    "combinations": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/combination" }
+    }
+  },
+  "definitions": {
+    "itemRef": {
+      "type": "object",
+      "required": ["id", "name"],
+      "additionalProperties": false,
+      "properties": {
+        "id": { "type": "integer", "minimum": 1, "description": "In-game item ID (data/items.json)" },
+        "name": { "type": "string", "minLength": 1 }
+      }
+    },
+    "combination": {
+      "type": "object",
+      "required": ["number", "result", "ingredients", "success_rate", "quantity"],
+      "additionalProperties": false,
+      "properties": {
+        "number": { "type": "integer", "minimum": 1, "description": "Position in the in-game Combination List" },
+        "result": { "$ref": "#/definitions/itemRef" },
+        "ingredients": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/itemRef" },
+          "minItems": 2,
+          "maxItems": 2
+        },
+        "success_rate": { "type": "integer", "minimum": 1, "maximum": 100, "description": "Percent, before Books of Combos and skills" },
+        "quantity": {
+          "type": "array",
+          "description": "What one success gives, smallest amount first; chances sum to 100",
+          "minItems": 1,
+          "items": {
+            "type": "object",
+            "required": ["amount", "chance"],
+            "additionalProperties": false,
+            "properties": {
+              "amount": { "type": "integer", "minimum": 1 },
+              "chance": { "type": "integer", "minimum": 1, "maximum": 100 }
+            }
+          }
+        },
+        "alchemy": { "const": true, "description": "Needs the Alchemy skill, or the Alchemy Guide in the box or pouch" },
+        "bomb": { "const": true, "description": "Always succeeds with the Bomber skill" },
+        "trap": { "const": true, "description": "Always succeeds with the Trap Master skill" }
+      }
+    }
+  }
+}

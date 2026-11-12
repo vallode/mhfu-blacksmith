@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import BorderRule from "@/components/BorderRule";
 import QuestNav from "@/components/QuestNav";
@@ -17,14 +18,16 @@ export default function QuestBoardsContent() {
       <BorderRule />
 
       <div className="flex h-full w-full flex-wrap justify-center gap-[1.3rem] overflow-auto">
-        <Card className="overflow-auto py-7">
-          {QUEST_HUBS.map((hub) => (
-            <Link key={hub.slug} href={`/quests/${hub.slug}/`} className="list-row">
-              <Icon type="ticket" alt="" />
-              <p>{t.hubs[hub.slug]}</p>
-            </Link>
-          ))}
-        </Card>
+        <CardBox>
+          <Card scroll bodyClassName="card-py-7">
+            {QUEST_HUBS.map((hub) => (
+              <Link key={hub.slug} href={`/quests/${hub.slug}/`} className="list-row">
+                <Icon type="ticket" alt="" />
+                <p>{t.hubs[hub.slug]}</p>
+              </Link>
+            ))}
+          </Card>
+        </CardBox>
       </div>
     </>
   );

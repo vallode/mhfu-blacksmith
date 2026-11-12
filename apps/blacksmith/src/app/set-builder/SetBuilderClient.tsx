@@ -2,20 +2,22 @@
 
 /**
  * Set builder: an armor set search after Athena's Armor Set Search. Pick the
- * skills you want and the hunter's options; the search (in a worker, see
- * hooks/useSetSearch.ts) lists every armor set with decorations that
- * activates them, highest defence first, shown like the game's equipment
- * set screen.
+ * skills you want and the hunter's options; the search (in workers, see
+ * hooks/useSetSearch.ts) lists the best armor sets with decorations that
+ * activate them, by defence or another sort, shown like the game's
+ * equipment set screen. Pieces of a result can be locked into every set or
+ * excluded from the next search.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import Tabs from "@/components/Tabs";
 import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
 import { useHunterProgress } from "@/context/HunterProgressContext";
-import { useLocale, useT } from "@/context/LanguageContext";
+import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useToast } from "@/context/ToastContext";
@@ -45,9 +47,15 @@ import {
   type DecodeError,
   type DroppedRef,
 } from "@/lib/set-codec";
-import { resolveWanted, selectableSkills, type Piece, type SearchQuery } from "@/lib/set-search";
+import {
+  resolveWanted,
+  selectableSkills,
+  type Piece,
+  type SearchQuery,
+  type SortKey,
+} from "@/lib/set-search";
 import * as ui from "@/styles/settings";
-import ArmorSetView, { PanelTitle, SetHeader, SetStatus } from "./ArmorSetView";
+import ArmorSetView, { PanelTitle, SetHeader, SetStatus, type PieceActions } from "./ArmorSetView";
 import MySets from "./MySets";
 import SetEditor from "./SetEditor";
 import SkillPicker from "./SkillPicker";
@@ -63,6 +71,11 @@ interface Form {
   ownedOnly: boolean;
   /** Search armor beyond the quest progress set on the Options page. */
   ignoreQuestProgress: boolean;
+  sort: SortKey;
+  /** Pieces (by page link, which survives data updates) in every set. */
+  locked: string[];
+  /** Pieces the search leaves out. */
+  excluded: string[];
 }
 
 const DEFAULT_FORM: Form = {
@@ -74,6 +87,9 @@ const DEFAULT_FORM: Form = {
   allowBadSkills: false,
   ownedOnly: false,
   ignoreQuestProgress: false,
+  sort: "defence",
+  locked: [],
+  excluded: [],
 };
 
 const STORAGE_KEY = "set-builder";
@@ -127,6 +143,44 @@ const SHARE_PARAM = "s";
 
 const HUNTER_TYPES: Form["hunterType"][] = ["Blademaster", "Gunner"];
 const SEXES: Form["sex"][] = ["Male", "Female"];
+const SORTS: SortKey[] = ["defence", "fire", "water", "thunder", "ice", "dragon", "slots"];
+
+/** The locked or excluded pieces, each with × to take it off the list. */
+function PieceList({
+  text,
+  pieces,
+  onRemove,
+}: {
+  text: Messages["setBuilder"]["form"]["locked"];
+  pieces: Piece[];
+  onRemove: (href: string) => void;
+}) {
+  const game = useGameText();
+  if (pieces.length === 0) return null;
+  return (
+    <div className="flex flex-col gap-[0.4rem]">
+      <span className={ui.statusLabel}>{text.title}</span>
+      <p className={ui.note}>{text.note}</p>
+      <ul className="m-0 flex list-none flex-wrap gap-x-[1.6rem] gap-y-[0.4rem] p-0 text-fine">
+        {pieces.map(({ href, name }) => (
+          <li key={href} className="flex items-center">
+            <Link href={href} className="text-white/80 hover:text-white">
+              {game.name("armor", name)}
+            </Link>
+            <button
+              type="button"
+              className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-small leading-none text-white/50 hover:text-negative focus-visible:text-negative"
+              aria-label={text.remove(game.name("armor", name))}
+              onClick={() => onRemove(href)}
+            >
+              ×
+            </button>
+          </li>
+        ))}
+      </ul>
+    </div>
+  );
+}
 
 function readForm(): Form {
   try {
@@ -187,9 +241,52 @@ export default function SetBuilderClient() {
   const ownedOnly = form.ownedOnly && progress.active;
   const { questProgress } = usePreferences().prefs;
   const questLimit = form.ignoreQuestProgress ? null : questProgress;
+  const byHref = useMemo(() => new Map(data?.pieces.map((p) => [p.href, p]) ?? []), [data]);
+  // Locked and excluded pieces the data no longer has (renamed or removed):
+  // drop them, so the lists show what the search uses.
+  useEffect(() => {
+    if (!data || !restored) return;
+    setForm((f) => {
+      const locked = f.locked.filter((h) => byHref.has(h));
+      const excluded = f.excluded.filter((h) => byHref.has(h));
+      return locked.length === f.locked.length && excluded.length === f.excluded.length
+        ? f
+        : { ...f, locked, excluded };
+    });
+  }, [data, byHref, restored]);
+  // Empty until the data loads; links it doesn't have are dropped above.
+  const piecesOf = (hrefs: string[]) =>
+    hrefs.flatMap((href) => {
+      const p = byHref.get(href);
+      return p ? [p] : [];
+    });
+  const pieceIds = (hrefs: string[]) => piecesOf(hrefs).map((p) => p.id);
+  const pieceActions: PieceActions = {
+    isLocked: (p) => form.locked.includes(p.href),
+    onLock: (p) =>
+      setForm((f) =>
+        f.locked.includes(p.href)
+          ? { ...f, locked: f.locked.filter((h) => h !== p.href) }
+          : {
+              ...f,
+              // One locked piece per slot.
+              locked: [...f.locked.filter((h) => byHref.get(h)?.slot !== p.slot), p.href],
+              excluded: f.excluded.filter((h) => h !== p.href),
+            },
+      ),
+    onExclude: (p) =>
+      setForm((f) => ({
+        ...f,
+        excluded: f.excluded.includes(p.href) ? f.excluded : [...f.excluded, p.href],
+        locked: f.locked.filter((h) => h !== p.href),
+      })),
+  };
   const runSearch = () => {
     if (!data || form.skills.length === 0) return;
     const query: SearchQuery = {
+      sort: form.sort,
+      lockPieces: pieceIds(form.locked),
+      excludePieces: pieceIds(form.excluded),
       skills: form.skills,
       hunterType: form.hunterType,
       sex: form.sex,
@@ -429,6 +526,10 @@ export default function SetBuilderClient() {
     value: n,
     label: n === 0 ? text.form.noWeaponSlots : "O".repeat(n).padEnd(3, "-"),
   }));
+  const sortChoices: Choice<SortKey>[] = SORTS.map((v) => ({
+    value: v,
+    label: text.form.sorts[v],
+  }));
 
   const r = text.results;
   let message: React.ReactNode = null;
@@ -440,7 +541,10 @@ export default function SetBuilderClient() {
       <Loading className={ui.note}>{r.searching(found ? formatNumber(found) : "")}</Loading>
     );
   else if (!result) message = <p className={ui.note}>{r.intro}</p>;
-  else if (sets.length === 0) message = <p className={ui.note}>{r.noSets(!!searched?.progress)}</p>;
+  else if (sets.length === 0)
+    message = (
+      <p className={ui.note}>{r.noSets(!!searched?.progress, !!searched?.lockPieces?.length)}</p>
+    );
 
   return (
     <>
@@ -463,192 +567,223 @@ export default function SetBuilderClient() {
       <BorderRule />
 
       <div className="split-page">
-        <Card className="max-w-[56rem] gap-[1.3rem] overflow-auto py-7 text-small mobile:max-w-none mobile:flex-none">
-          <PanelTitle>{text.form.title}</PanelTitle>
-          <form
-            className="flex flex-col gap-[1.3rem]"
-            onSubmit={(e) => {
-              e.preventDefault();
-              runSearch();
-            }}
-          >
-            <SkillPicker
-              skills={skills}
-              value={form.skills}
-              onChange={(v) => update("skills", v)}
-            />
-            <SelectorRow
-              label={text.form.hunter}
-              choices={hunterChoices}
-              value={form.hunterType}
-              onChange={(v) => update("hunterType", v)}
-            />
-            <SelectorRow
-              label={text.form.sex}
-              choices={sexChoices}
-              value={form.sex}
-              onChange={(v) => update("sex", v)}
-            />
-            <SelectorRow
-              label={text.form.rank}
-              choices={rankChoices}
-              value={form.rank}
-              onChange={(v) => update("rank", v)}
-            />
-            <SelectorRow
-              label={text.form.weaponSlots}
-              choices={weaponSlotChoices}
-              value={form.weaponSlots}
-              onChange={(v) => update("weaponSlots", v)}
-            />
-            <ToggleRow
-              label={text.form.allowBadSkills}
-              note={text.form.allowBadSkillsNote}
-              value={form.allowBadSkills}
-              onChange={(v) => update("allowBadSkills", v)}
-            />
-            {questProgress && (
-              <ToggleRow
-                label={text.form.ignoreProgress}
-                note={text.form.ignoreProgressNote(
-                  tierText(t, questProgress),
-                  <Link className="underline hover:text-white" href="/options/">
-                    {t.common.sections.options}
-                  </Link>,
-                )}
-                value={form.ignoreQuestProgress}
-                onChange={(v) => update("ignoreQuestProgress", v)}
+        <CardBox className="max-w-[56rem] mobile:max-w-none mobile:flex-none">
+          <Card className="text-small" scroll bodyClassName="gap-[1.3rem] card-py-7">
+            <PanelTitle>{text.form.title}</PanelTitle>
+            <form
+              className="flex flex-col gap-[1.3rem]"
+              onSubmit={(e) => {
+                e.preventDefault();
+                runSearch();
+              }}
+            >
+              <SkillPicker
+                skills={skills}
+                value={form.skills}
+                onChange={(v) => update("skills", v)}
               />
-            )}
-            {progress.active && (
-              <ToggleRow
-                label={text.form.ownedOnly}
-                note={text.form.ownedOnlyNote}
-                value={form.ownedOnly}
-                onChange={(v) => update("ownedOnly", v)}
+              <SelectorRow
+                label={text.form.hunter}
+                choices={hunterChoices}
+                value={form.hunterType}
+                onChange={(v) => update("hunterType", v)}
               />
-            )}
-            <div className={ui.actions}>
-              <button
-                type="submit"
-                className={ui.button}
-                disabled={!data || searching || form.skills.length === 0}
-              >
-                {text.form.search}
-              </button>
-              {searching && (
-                <button type="button" className={ui.buttonSecondary} onClick={cancel}>
-                  {text.form.cancel}
-                </button>
+              <SelectorRow
+                label={text.form.sex}
+                choices={sexChoices}
+                value={form.sex}
+                onChange={(v) => update("sex", v)}
+              />
+              <SelectorRow
+                label={text.form.rank}
+                choices={rankChoices}
+                value={form.rank}
+                onChange={(v) => update("rank", v)}
+              />
+              <SelectorRow
+                label={text.form.weaponSlots}
+                choices={weaponSlotChoices}
+                value={form.weaponSlots}
+                onChange={(v) => update("weaponSlots", v)}
+              />
+              <SelectorRow
+                label={text.form.sortBy}
+                note={text.form.sortNote}
+                choices={sortChoices}
+                value={form.sort}
+                onChange={(v) => update("sort", v)}
+              />
+              <ToggleRow
+                label={text.form.allowBadSkills}
+                note={text.form.allowBadSkillsNote}
+                value={form.allowBadSkills}
+                onChange={(v) => update("allowBadSkills", v)}
+              />
+              {questProgress && (
+                <ToggleRow
+                  label={text.form.ignoreProgress}
+                  note={text.form.ignoreProgressNote(
+                    tierText(t, questProgress),
+                    <Link className="underline hover:text-white" href="/options/">
+                      {t.common.sections.options}
+                    </Link>,
+                  )}
+                  value={form.ignoreQuestProgress}
+                  onChange={(v) => update("ignoreQuestProgress", v)}
+                />
               )}
-            </div>
-          </form>
-        </Card>
+              {progress.active && (
+                <ToggleRow
+                  label={text.form.ownedOnly}
+                  note={text.form.ownedOnlyNote}
+                  value={form.ownedOnly}
+                  onChange={(v) => update("ownedOnly", v)}
+                />
+              )}
+              <PieceList
+                text={text.form.locked}
+                pieces={piecesOf(form.locked)}
+                onRemove={(href) =>
+                  update(
+                    "locked",
+                    form.locked.filter((h) => h !== href),
+                  )
+                }
+              />
+              <PieceList
+                text={text.form.excluded}
+                pieces={piecesOf(form.excluded)}
+                onRemove={(href) =>
+                  update(
+                    "excluded",
+                    form.excluded.filter((h) => h !== href),
+                  )
+                }
+              />
+              <div className={ui.actions}>
+                <button
+                  type="submit"
+                  className={ui.button}
+                  disabled={!data || searching || form.skills.length === 0}
+                >
+                  {text.form.search}
+                </button>
+                {searching && (
+                  <button type="button" className={ui.buttonSecondary} onClick={cancel}>
+                    {text.form.cancel}
+                  </button>
+                )}
+              </div>
+            </form>
+          </Card>
+        </CardBox>
 
-        <Card className="gap-[1.3rem] overflow-auto py-7 text-small">
-          <Tabs
-            label={t.common.sections.setBuilder}
-            active={view}
-            onChange={(id) => setView(id as View)}
-            tabs={[
-              {
-                id: "results",
-                label: text.tabs.results,
-                content: (
-                  <div className="flex flex-col gap-[1.3rem]">
-                    {set ? (
-                      <>
-                        <SetHeader index={index} count={sets.length} onStep={step} />
-                        {result && result.total > sets.length && (
-                          <p className={ui.note}>
-                            {r.truncated(
-                              formatNumber(sets.length),
-                              formatNumber(result.total),
-                              result.truncated,
-                            )}
-                          </p>
-                        )}
-                        {result?.timedOut && <p className={ui.note}>{r.timedOut}</p>}
-                        <div className={ui.actions}>
-                          <button
-                            type="button"
-                            className={ui.button}
-                            onClick={() =>
-                              searched &&
-                              openInEditor(buildFromResult(set, searched), { origin: "result" })
+        <CardBox>
+          <Card className="text-small" scroll bodyClassName="gap-[1.3rem] card-py-7">
+            <Tabs
+              label={t.common.sections.setBuilder}
+              active={view}
+              onChange={(id) => setView(id as View)}
+              tabs={[
+                {
+                  id: "results",
+                  label: text.tabs.results,
+                  content: (
+                    <div className="flex flex-col gap-[1.3rem]">
+                      {set ? (
+                        <>
+                          <SetHeader
+                            index={index}
+                            count={sets.length}
+                            onStep={step}
+                            action={
+                              <button
+                                type="button"
+                                className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
+                                aria-label={r.editThis}
+                                title={r.editThis}
+                                onClick={() =>
+                                  searched &&
+                                  openInEditor(buildFromResult(set, searched), {
+                                    origin: "result",
+                                  })
+                                }
+                              >
+                                <Icon type="item-37" className="mr-0" alt="" />
+                              </button>
                             }
-                          >
-                            {r.editThis}
-                          </button>
-                        </div>
-                        <ArmorSetView
-                          set={set}
-                          weaponSlots={searched?.weaponSlots ?? 0}
-                          weaponIcon={weaponIcon}
-                          status={
-                            <>
-                              <PanelTitle>{r.status}</PanelTitle>
-                              <SetStatus set={set} />
-                            </>
-                          }
+                          />
+                          {result?.timedOut && <p className={ui.note}>{r.timedOut}</p>}
+                          <ArmorSetView
+                            set={set}
+                            weaponSlots={searched?.weaponSlots ?? 0}
+                            weaponIcon={weaponIcon}
+                            pieceActions={pieceActions}
+                            status={
+                              <>
+                                <PanelTitle>{r.status}</PanelTitle>
+                                <SetStatus set={set} />
+                              </>
+                            }
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <PanelTitle>{t.common.sections.setBuilder}</PanelTitle>
+                          {message}
+                        </>
+                      )}
+                      {set && searching && message}
+                    </div>
+                  ),
+                },
+                {
+                  id: "editor",
+                  label: text.tabs.editor,
+                  content: (
+                    <>
+                      {data ? (
+                        <SetEditor
+                          data={data}
+                          set={build}
+                          onChange={editBuild}
+                          wanted={wanted}
+                          rank={form.rank}
+                          questLimit={questLimit}
+                          ownedOnly={ownedOnly}
+                          isOwned={isOwned}
+                          weaponIcon={editorWeaponIcon}
+                          extraWarnings={openWarnings.map((w) => openWarningText(t, w))}
+                          title={editorTitle}
                         />
-                      </>
-                    ) : (
-                      <>
-                        <PanelTitle>{t.common.sections.setBuilder}</PanelTitle>
-                        {message}
-                      </>
-                    )}
-                    {set && searching && message}
-                  </div>
-                ),
-              },
-              {
-                id: "editor",
-                label: text.tabs.editor,
-                content: (
-                  <>
-                    {data ? (
-                      <SetEditor
-                        data={data}
-                        set={build}
-                        onChange={editBuild}
-                        wanted={wanted}
-                        rank={form.rank}
-                        questLimit={questLimit}
-                        ownedOnly={ownedOnly}
-                        isOwned={isOwned}
-                        weaponIcon={editorWeaponIcon}
-                        extraWarnings={openWarnings.map((w) => openWarningText(t, w))}
-                        title={editorTitle}
-                      />
-                    ) : (
-                      message
-                    )}
-                  </>
-                ),
-              },
-              {
-                id: "sets",
-                label: text.tabs.sets,
-                content: (
-                  <MySets
-                    sets={savedSets}
-                    data={data}
-                    tables={tables}
-                    openId={savedId}
-                    onOpen={(set) => openCode(set.code, { savedId: set.id })}
-                    onRename={(id, name) => storeSets(updateSet(savedSets, id, { name }))}
-                    onDuplicate={(id) =>
-                      storeSets(duplicateSet(savedSets, id, text.editor.copyName))
-                    }
-                    onDelete={deleteSaved}
-                  />
-                ),
-              },
-            ]}
-          />
-        </Card>
+                      ) : (
+                        message
+                      )}
+                    </>
+                  ),
+                },
+                {
+                  id: "sets",
+                  label: text.tabs.sets,
+                  content: (
+                    <MySets
+                      sets={savedSets}
+                      data={data}
+                      tables={tables}
+                      openId={savedId}
+                      onOpen={(set) => openCode(set.code, { savedId: set.id })}
+                      onRename={(id, name) => storeSets(updateSet(savedSets, id, { name }))}
+                      onDuplicate={(id) =>
+                        storeSets(duplicateSet(savedSets, id, text.editor.copyName))
+                      }
+                      onDelete={deleteSaved}
+                    />
+                  ),
+                },
+              ]}
+            />
+          </Card>
+        </CardBox>
       </div>
     </>
   );

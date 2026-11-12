@@ -17,7 +17,7 @@ root excludes common disc image extensions; double check before committing.
 ## Why this works
 
 Nearly all equipment data (weapons, armor, items, decorations, crafting
-recipes, and the entire weapon upgrade tree) is stored as static, fixed-size
+recipes, the entire weapon upgrade tree, and item combinations) is stored as static, fixed-size
 arrays inside the game's main executable (`EBOOT.BIN`). Quests are
 individual `.mib` files inside `DATA.BIN`. See `NOTICE.md` for the
 reverse-engineering sources this is built on.
@@ -27,8 +27,7 @@ the `game_task.ovl` and `game_sub.ovl` overlays, also in `DATA.BIN` (see
 "Monster overlays" below).
 
 **Not extractable this way:** flavor text and a few cosmetic groupings.
-Which of three quest stat multiplier tables a quest uses isn't settled yet
-(see "Monster overlays"). Equipment-side gaps of this kind
+Equipment-side gaps of this kind
 come from hand-authored files under `src/overlay/` — see "Overlay data".
 
 ## Usage
@@ -40,6 +39,8 @@ pnpm --filter mhfu-extract extract --unpacked .cache/mhfu --out .cache/mhfu/extr
 pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
+pnpm --filter mhfu-extract item-icons --unpacked .cache/mhfu
+pnpm --filter mhfu-extract area-maps --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 pnpm --filter mhfu-extract find-names --unpacked .cache/mhfu
 pnpm --filter mhfu-extract locales --unpacked .cache/mhfu --data ../../data
@@ -68,6 +69,10 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
   from the disc".
 - `build-data` rewrites committed `data/` from the extracted output. See
   "Building `data/` from the disc".
+- `item-icons` slices the item icons out of the UI atlas into the site's
+  `public/images/`. See "Items".
+- `area-maps` writes the area map textures `data/gathering.json` uses to
+  the site's `public/images/area-maps/`. See "Area maps".
 - `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
   open quest questions (`src/emit/quest-probe.ts`): the values the monster
   size candidates take, the header's two objective slots, each script
@@ -298,9 +303,10 @@ text). Two things worth flagging for anyone extending it:
   cross-validates against the same quest's monster/reward/supply data (all
   about hunting a Giadrome and its Giaprey pack).
 
-Not implemented (out of scope for now): `QuestScript` (opcodes are marked
-"TBD" even in the upstream pattern; see "Quest script" below), gathering
-node locations/items, and arena sets. The quest-wide monster size is decoded; its spread isn't
+Gathering points are read too (see "Gathering points" below). Not
+implemented (out of scope for now): `QuestScript` (opcodes are marked
+"TBD" even in the upstream pattern; see "Quest script" below) and arena
+sets. The quest-wide monster size is decoded; its spread isn't
 (see "Monster size" below).
 
 ### Monster overlays: hitzones, tolerances and rewards
@@ -341,22 +347,27 @@ the module comments:
 
 - **Base HP and quest multipliers** (`src/monsters/multipliers.ts`): the
   chunk's `+0x100` is the base HP (Felyne 40, Yian Kut-Ku 1600, Rathian
-  4000, Lao-Shan Lung 26666). A quest's large-monster `power` byte (0-31)
-  picks a row of four floats (HP, attack, defense, and a fourth that rises
-  to 2.3-2.5 in G rank, probably status) in a 32-row table. The tables
+  4000, Lao-Shan Lung 26666). Quests scale it, and attack, defense and
+  flinch thresholds, by a row of four floats in a 32-row table. The tables
   follow the hitzone pool in sets of three, reached from a master list of
-  four sets (EU: master list at file offset `0x168c80`). Set 1's first row,
-  HP 0.35 / attack 1.02, matches a published figure for the first Village
-  Elder quest. A quest's header `rank` byte picks the set (0 → set 0, the
-  1/2/5 low/high/G tiers of Village and Guild quests → set 1, 3 treasure →
-  set 2, 4 subjugation training → set 3): sets 2 and 3 hold real values
-  exactly on the rows those quests use, and set 1 is the harder set. Which of the set's three tables
-  applies isn't stored in the quest (the large monsters' `attr1`/`attr2`
-  are almost always 0), so it is probably chosen at run time; set 1's
-  three differ mostly in HP. `extract --raw` writes the tables to
-  `raw/monsters.json` and each quest's selector bytes to
-  `raw/quest-monsters.json`; nothing is written to `data/` until the table
-  choice is known.
+  four sets (EU: master list at file offset `0x168c80`). `game_task` picks
+  the row as `master[set][table][power]` (EU `0x09AC9020` HP,
+  `0x09AC9180` attack, `0x09AC9218` defense):
+  - the set is the monster's own, the s8 at its chunk's `+0x14F`: 0 small
+    monsters, 1 large monsters, 2 the Fatalis trio, 3 Lao-Shan Lung,
+    Ashen Lao-Shan Lung, Shen Gaoren, Yama Tsukami, Akantor and Ukanlos.
+    Sets 2 and 3 repeat one table three times.
+  - the table is the quest header's u8 at `0x49` (`Unkn6` in the hexpat,
+    `statTable` here), which the EBOOT's quest loader (EU `0x08869DEC`)
+    copies into the quest state. 0 is the usual table, 1 one with lower
+    HP, 2 one with hand-set rows (Training School, Treasure Hunting and a
+    few Guild quests).
+  - the row is the large monster's `power` byte (0-31).
+
+  HP is `trunc(base HP * hp)`. Furious Rajang's attack and defense are
+  multiplied again by a value set at run time. `extract` writes each
+  large monster's row to `data/quests` as `multipliers`, and with `--raw`
+  the tables to `raw/monsters.json`.
 
 The per-monster `emXX.ovl` files aren't needed: every chunk's hitzones are
 in `game_task.ovl`.
@@ -386,7 +397,13 @@ matching the committed data against the EU disc, then reviewed:
 
 Monsters pair with the site by emID through the same overlay (the enum
 spells two differently: "One-Ear Yian Garuga", "Terra Shogun Ceanatur").
-`base_hp` is written to `data/monsters` and shown on the monster page; `tolerances` is extracted but has no committed field yet.
+`base_hp` is written to `data/monsters` and shown on the monster page.
+`tolerances` is written to `data/monsters` too (`siteTolerances`):
+paralysis, sleep, KO and poison in snake_case keys, `null` where `initial`
+is 0xFFFF (immune). The fourth status is left out until it is identified
+(`initial` 100 or 160 or immune, the rest the same on every monster), and
+poison's `damagePerSecond` is written as `damage_interval`: it is 150 on
+every monster, so it is likely the ticks between hits.
 
 ### Monster hitboxes
 
@@ -463,7 +480,7 @@ Open questions:
   0x40 bytes) and its PMO header, mesh records and vertex-group records,
   with each group's vertex count, weights per vertex and position bounds.
 - `raw/emmodel/emNN.<index>.bin`: package entries that are neither PMO nor
-  TMH, whole: index 0 is the skeleton, index 3 (`d`) probably the motions.
+  TMH, whole: index 0 is the skeleton, index 3 the motion bank (`motion.ts`).
 
 These dumps come from the disc, so they stay in `.cache/` like the rest of
 the extracted output.
@@ -504,6 +521,43 @@ part's counter (`+0x580 + part * 8`) from the record (EU `0x09AD3B10`),
 in some cases multiplied by the fourth float of the quest's stat
 multiplier row (EU `0x09AD3B88`, `multipliers.ts`: 1.0 to 2.5).
 
+### Combinations
+
+The Combination List is in `EBOOT.BIN` too, as four tables that
+`eboot.hexpat` doesn't describe. They were decoded from the EU disc by
+following the game's combine code (EBOOT `0x59b6c`-`0x5a6ec` there), and
+`src/tables/combinations.ts` finds them by their shape, not an address.
+EU file offsets:
+
+| Offset     | Table                                                                                                                                                                                                                               |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `0x1a2d84` | 172 recipes of 10 bytes, sorted by lower-ID ingredient: `u16` other ingredient, `u16` result, `u8` rate class, `u8` quantity class, `u8` own index, `u8` flags, `u8` an older list number (255 on most G-rank-only recipes), `u8` 0 |
+| `0x1a343c` | Per item ID, `u8` count and `u8` first recipe of the recipes whose lower-ID ingredient it is: how the game looks a pair up                                                                                                          |
+| `0x1a3e18` | The Combination List: both ingredients of each recipe as `u16` pairs in the in-game order (Potion first), ended by `0xffffffff`                                                                                                     |
+| `0x1a40cc` | The tables below, one after another                                                                                                                                                                                                 |
+
+After the list: one quantity roll per quantity class (a `u8` first amount,
+then the percent chance of that amount and each one after it, summing to
+100), pointers to the 7 rolls, the largest amount per class, the success
+rate per rate class (100, 95, 90, 85, 75, 65, 55), the Books of Combos
+1-5's item IDs, and the rate bonus for owning the first 0-5 of them (0, 5,
+10, 20, 30, 50).
+
+The game's success rate is the rate class's, plus the bonus for the books
+owned in order from Book 1, plus Combination's 15, 25 or 45 (or minus 5,
+10 or 15), at most 100. Flag `0x02` recipes (bombs) always succeed with
+Bomber, flag `0x10` recipes (traps and drugged meats) with Trap Master.
+Flag `0x01` recipes need the Alchemy skill or the Alchemy Guide. The
+Bullet Limit skill makes every combine give the largest amount. Flags
+`0x04` and `0x08` are only read by the combine menu's drawing code. The
+skill numbers are the `Skills 2` list in `equip.enum`: 69 Bomber,
+153-158 Combine Success, 159 Bullet Limit, 160 Alchemy, 194 Trap Master.
+
+`extract` writes `combinations.json` in list order, and `build-data`
+(target `combinations`) writes `data/combinations.json` with each item
+under its `data/items.json` name. `success_rate` is the rate class's,
+before books and skills.
+
 ## 3D models (experimental)
 
 ```bash
@@ -518,7 +572,7 @@ pnpm --filter mhfu-extract export-site --unpacked .cache/mhfu
 texture set) into `.glb` files. The source lives in `src/models/`: `pac.ts`
 is the container, `pmo.ts` the mesh tables, `ge.ts` the PSP GE display lists
 that hold the geometry, `tmh.ts` the textures, `ahi.ts` the skeleton,
-`attach.ts` puts severable tails together, `gltf.ts`/`texture.ts`/`png.ts`
+`attach.ts` puts severable tails together, `motion.ts` reads monster motions and `animation.ts` makes clips of them, `rig.ts` puts a monster together, `hunter.ts` an armor set on the player's skeleton, `gltf.ts`/`texture.ts`/`png.ts`
 the output. Two corrections to mhff's description of PMO 1.0, both
 confirmed on real files: mesh records are 0x18 bytes, and materials go
 through a per-slot byte map at header offset 0x28.
@@ -559,11 +613,12 @@ Status:
   far (em01-em05: Rathian, Fatalis, Kelbi, Mosswine, Bullfango) convert, and
   renders of a spread of them are correct: textured, assembled, right UVs.
   Armor pieces (`player/**`) convert the same way.
-- Output is the static bind pose: mesh pieces are already in model space, so
-  no skeleton is needed to assemble them, but skinning weights are dropped
-  and there's no animation (`motion/*.bin` and a monster package's entry 3,
-  its motion bank, aren't decoded). The one exception is a severable tail,
-  below.
+- Weapons and armor are the static bind pose: mesh pieces are already in
+  model space, so no skeleton is needed to assemble them. Monsters are
+  skinned (`src/models/rig.ts` gathers the skeleton, mesh and motions of a
+  package): bone nodes `bone_<id>`, four weights a vertex (u8, summing to
+  255), the model's scale in the inverse bind matrices instead of on the
+  mesh node. `models` writes their clips into the `.glb` (below).
 - **Severable tails.** A monster package is `[.ahi skeleton, PMO, .TMH,
 motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   byte (0x50 in its record): 1 the head chain, 2 the tail chain, 3 a
@@ -578,7 +633,37 @@ motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   0.01 rad / 1%): Yian Garuga's crest and Basarios's neck don't count, and
   Gravios's ~0.001 rad of authoring noise is ignored. Renders checked for
   all 32 monsters it changes; Lavasioth's copy is already in place, and
-  small monsters have none.
+  small monsters have none. Skinned, the tip's vertices move from the copy
+  to the main bones it lands on (`detachedBoneCounterparts`: 45 and 46 ->
+  43, 47 -> 44 on every severable tail), so the tip follows the tail when
+  the monster moves, as in the game while the tail is on.
+- **Motions.** Entry 3 of a monster package is its motion bank
+  (`src/models/motion.ts` has the byte layout). It holds two tables of
+  motions per skeleton part: tables 2p and 2p + 1 animate the bones of part
+  p, numbered 0-99 and 100 on, and each motion has one record per bone of
+  that part, in skeleton order. So a body motion (part 0) plays together
+  with the head (1) and tail (2) motions in the same slot, which last as
+  long; the tail-tip copy (part 3) has no motions. A bone record holds up to
+  nine channels (scale, rotation, translation x/y/z; a missing one keeps the
+  bind value) of cubic Hermite keys: s16 value, u16 frame, s16 tangents in
+  and out. Scale and translation are 1/16 fixed point, rotation 0x2000 = pi (0x2000 keeps a stance's feet level and Kelbi's lowest bone at exactly 0).
+  On an EU disc all 89 banks (em01-em89) parse, 9,995 motions, and in all
+  but 3 (em82's, which split its body and head 32/8 bones, not 29/11) every
+  motion's bone count is its part's. Driving skinned meshes with them in a
+  three.js probe, Kelbi stands with its hooves on the ground at frame 0
+  (hip 1411/16 = 88 units up), and Rathian and Cephalos hold natural poses
+  mid-motion (Rathian rearing, Cephalos lunging). Open: the Euler order (no order distorts the meshes less
+  than another: most vertices follow a single bone), which tangent is which
+  (they're equal on most keys). The player's motions are under "Hunter" below. Frames are 1/60 s: the game runs at 30 fps and
+  steps motions two frames at a time, so 9,972 of the 9,995 motions last an
+  even number of frames (played at 30 a second, they look half speed).
+- **Clips.** `animation.ts` turns each slot into one clip over the whole
+  skeleton: it samples every frame, converts rotations to quaternions, and
+  keeps only the keys glTF interpolation (slerp for rotations) needs within a tolerance (by
+  default 0.002 rad, 0.02 units, 0.001 scale); a track that never leaves
+  the bind pose is dropped. A part's motion whose bone count isn't the
+  part's is left out of its clip. Clips can carry the monster far from the
+  origin (Rathian's charge goes ~1,800 units forward).
 - A package's second PMO isn't converted: it's effect geometry (a shadow
   quad on the Raths, Cephalos's sand spray, Tigrex's roar ring, Lavasioth's
   lava).
@@ -610,8 +695,90 @@ file paths:
   arrays as `src/tables/armor.ts` (see `src/tables/armor-models.ts`). Each
   slot's highest model IDs are exactly the last files in its folder.
 
+Monster motions go next to the models as `monsters/emNN.motions.bin`
+(`src/models/motion-pack.ts` has the layout): gzip of the clips as
+delta-coded s16 keys, at a looser tolerance (0.5 degrees, 0.1 units), since
+glTF's per-track JSON outweighed the key data (about five times the size as
+glTF animations; 22.7 MB for all monsters like this). Monsters that share a bank share a
+file: the `.glb` names its own in `asset.extras.motions`. Skinning grew the
+83 monster models from 6.0 to 7.0 MB. The site's viewer
+(`apps/blacksmith/src/lib/motions.ts`, `ModelViewer.tsx`) plays them in
+place (the hips keep their horizontal bind position), loops a looping
+motion from its loop start as the game does (1,847 of the 3,334 looping
+motions have a lead-in before it), and holds the bind pose while hitboxes
+show, since those are placed in bind-pose space. A model waits up to 1.5 s
+for its motions so it first shows posed, and shows still if they're slower.
+
 Each run replaces the categories it could export and keeps the rest of the
 previous manifest, so a run without `eboot.bin` keeps weapons and armor.
+
+### Hunter
+
+`export-site` writes a hunter for the weapon pages' viewer to
+`public/models/hunter/` (1.4 MB in all, 245 two-piece weapon models grew by
+63 KB). Needs only `player/` and `motion/` from the
+unpacked directory; the log says `no hunter: ...` if it can't.
+
+| File                 | Size      | Holds                                                 |
+| -------------------- | --------- | ----------------------------------------------------- |
+| `hunter.glb`         | 50 KB     | Male Battle armor set, skinned to the player skeleton |
+| `common.motions.bin` | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`    |
+| `wNN.motions.bin`    | 92-196 KB | Every motion of weapon class NN                       |
+
+- **Skeleton.** 21 bones (`src/models/hunter.ts` lists them), T-pose, origin
+  at the hips, left +X, facing +Z. Bones 0-8 are part 0 and 9-20 part 1.
+- **Motions.** `motion/plcom_tbl.bin` and `motion/wNN_tbl.bin` are the same
+  bank format as a monster's (`motion.ts`), but their tables pair by motion
+  group: table 2g moves the 9 lower bones and 2g + 1 the 12 upper bones of
+  group g. Weapon files have 3 groups, `plcom` 5. `buildPlayerClips` numbers a
+  clip's slot group x 1000 + slot, in the same `MHM1` pack as monsters. Files
+  run in the game's weapon class order: 00 great sword, 01 heavy bowgun, 02
+  hammer, 03 lance, 04 sword and shield, 05 light bowgun, 06 dual blades, 07
+  long sword, 08 hunting horn, 09 gunlance, 10 bow. Slot 1 of group 0 is the
+  drawn stance in a weapon file and standing with the weapon away in `plcom`.
+  The disc has no names for the rest: the site calls groups 0-1 "Move" and the
+  others "Attack", which is a guess from what they look like.
+- **Armor.** Each piece has a partial skeleton and sits in that skeleton's
+  bind pose; helmets are in `player/<m|f>/hair/`, then `body`, `arm`, `wst`,
+  `reg`. `composeHunter` moves each vertex by the distance between its bones'
+  places in the piece and in the player, and remaps the palette to player
+  joints through `ARMOR_JOINT_MAPS`, copied from `MODEL_JOINT_MAP` in
+  tclamb/mhp2g-decomp (`player_manager.joint_map.cpp`).
+- **Weapons.** A weapon's `.ahi` has one root per piece the game moves apart:
+  the main weapon, then a shield, second blade, quiver or scabbard. `export-site`
+  groups the mesh by root, and a weapon with more than one gets a `part_<n>`
+  node per piece.
+- **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit in the fist (the middle of the gauntlets' hand vertices), gripped along the wrist joint's Z axis. The great sword, long sword, hammer and hunting horn are the right hand's (it draws and sheathes them alone), but while both hands hold one the right fist stays on the left fist's Z axis at a set distance (53, 62, 79 and 42) in most frames, turning about it, while the left fist wanders in the right's frame. So the viewer moves these to the left fist, along that axis, whenever the right fist is on it, and back to the right fist (in the place they share in the drawn stance) when it isn't. The fists don't say how far round its length a weapon is turned: these take the roll the right fist's own frame gives them, as one-handed weapons do, which matches the game for the Ravager Blade. Bowguns are in the right fist, turned so the stock reaches the left fist in most frames. All of this is a fit to the motions, not read from the game; at the end of a sheathe the weapon is still in the hand, since when the game moves it to the back isn't known. On the
+  back they're placed by eye (`WEAPON_MOUNTS` in the site's `src/lib/hunter.ts`),
+  so a sheathed weapon is only roughly where the game has it. Only the male
+  Battle set is exported.
+- **Posed weapon bones** (`models/weapon-pose.ts`). Some weapons skin
+  pieces to extra bones that the game moves at run time, and no motion file
+  animates them: the Ravager Blade's (`we012`) claws are weighted 0.87/0.13
+  to bones 1 and 3 and lie inside the blade in the bind pose. Skinning
+  (EU 0x088641C0, 0x08860648, drawWeight 0x088646F0) is chain · inverse of
+  the AHI bind, so a bone left alone skins to the identity; the player's
+  per-frame code sets some binds by weapon class first. The eboot's copy
+  (vtable slot 8, 0x088D3F68) runs in town, where weapons are always away:
+  great swords and long swords get bone 2 = diag(1, 1, 0.73) and bone 3 at
+  rest. The quest copy is in `game_task.ovl` (EU 0x9A932C0, great sword and
+  long sword case 0x9A93F0C) and reads whether the weapon is drawn (player
+  flag 0x410 bit 3): drawn, bone 2 is at rest and bone 3 = diag(2.6, 1, 2.5)
+  at its own translation, which throws the claws out of the spine. Draw and
+  sheathe motions animate between the two with keyframe tracks in the
+  eboot's data (bone 3's x goes 1, 3.15, 2.6 while drawing). A JP save state
+  with the Ravager Blade drawn has exactly that bind on bone 3 and bone 2 at
+  rest. The export bakes the drawn pose into great swords' and long swords'
+  meshes (11 great sword models have pieces on bone 3: the Ravager,
+  Lacerator and Tactical Blades' claws, the Serpentblades' fins, the Tigrex
+  swords' spikes, the Ceanataur blades' claw) and writes the sheathed pose
+  as a morph target named `sheathed` (float offsets, `extras.targetNames`),
+  unrotated bones only. The site's hunter viewer turns the target on for
+  sheathed motions; a weapon shown alone stays drawn. Other classes
+  aren't posed: the lance's drawn bone 2 and the hammer's bone 3 (outside a
+  charge) are at rest, while the gunlance, bow and bowguns turn bones in
+  ways not decoded yet. The per-model joint interpreter (0x088CF2C8, records
+  keyed by model id at 0x089B07B4) animates other models and isn't applied.
 
 ## Emit layer
 
@@ -642,11 +809,12 @@ derivation notes for specifics):
   order. All 15 match the site's values; the site listed 5 of them the
   other way round (Firestorm, Volcanic Storm, Twin Nails, Twin Nails+, Fire
   and Ice), and `build-data` now writes the disc's order.
-- Material `type`/`color` (e.g. "ore"/"gray") and decoration `category`
-  aren't derivable from the disc at all — they're presentation metadata,
-  supplied by the `src/overlay/materials.json` and
-  `src/overlay/decoration-categories.json` overlays (generated once from the
-  committed `data/` files; see git history).
+- Material `type`/`color` (e.g. "ore"/"gray") aren't derivable from the
+  disc at all — they're presentation metadata, supplied by the
+  `src/overlay/materials.json` overlay (generated once from the committed
+  `data/` files; see git history).
+- Decorations are emitted in the game's crafting list order: the order of
+  their first recipe in the `EquipmentCreate` decoration section.
 
 Known gaps and approximations, tracked in
 [#38](https://github.com/vallode/mhfu-blacksmith/issues/38):
@@ -835,15 +1003,162 @@ raw `90000` -> 50 minutes). `target` is null when there's no single hunt/
 capture objective (`targetNum === 0`, or `targetId` doesn't resolve to a
 real monster — e.g. Treasure Hunting quests reuse this field for something
 else entirely, with real values like 928 far outside `emID`'s 90-entry
-range). `small_monsters` is deduplicated to one row per species with the
-max quantity seen across every zone, since `SmallMonIndex` frequently
-repeats an entire zone list verbatim (confirmed on real data); `large_monsters`
+range). `small_monsters` is one row per species: `max_quantity` is the most in any
+single zone, `total_quantity` the sum over the quest's zones. `SmallMonIndex`
+frequently points several entries at the same records (confirmed on real
+data), so a table at an address already seen for that zone is counted once. A spawn with quantity 99 (554 records; the rest top out at 20) is not counted and sets `endless`; `large_monsters`
 is deduplicated the same way for exact-duplicate `(monster, quantity, power)`
-rows.
+rows. Each large monster's `multipliers` are its stat multiplier row (see
+"Monster overlays").
 
 Not implemented (out of scope for now, same as the underlying parser —
-see "Quests (.mib)" above): `QuestScript`, gathering node locations/items,
-and arena sets.
+see "Quests (.mib)" above): `QuestScript` and arena sets.
+
+### Gathering points
+
+`src/quests/gathering.ts` reads a quest's mining, gathering and bug
+catching points, and `src/emit/gathering.ts` writes them to
+`data/gathering.json` (schema: `data/schemas/gathering.schema.json`).
+randomfu's `gathering` shuffle edits the same tables.
+
+- **Layout** (`quest.hexpat`): the header's `GatheringLocTblPTR` (`+28`)
+  points at one u32 per area of the map (the count depends on the map,
+  `MAP_AREAS`), each to that area's 24-byte nodes (`f32 x, y, z, f32;
+u16 table, u16 most gathers, u16 type, u16 fewest gathers`), ending at
+  an x of -1.0f. `GatheringItemsPTR` (`+36`) points at the item tables:
+  `{ u16 chance, u16 item }` pairs ending at `0xFFFF`. Every used table's
+  chances add up to 100; item 0 is a draw that gives nothing, and isn't
+  written.
+- **Node type** (`+20`), from the items each type gives on the EU disc: 3
+  holds the ores (mining), 4 the bugs, and 0 everything else (plants,
+  mushrooms, bones, honey, eggs, ammo and barrel piles). No other value
+  occurs.
+- **Gather counts**: on all 19,130 EU nodes the u16 at `+18` is at least
+  the one at `+22`, and both are 255 on the points that never run out, so
+  they're read as the most and fewest gathers. Written as `most_gathers`
+  and `gathers`, null for 255.
+- **Areas**: index 0 is the Base Camp, then the map's numbered areas. Index
+  0 has no points on most maps, and the numbered areas match the maps'
+  (Forest and Hills has 12, its list 13). Some lists have a spare slot
+  after the last area (Snowy Mountains, Desert).
+- **Shared sets**: quests on one map and rank almost always have the same
+  points, so `data/gathering.json` holds each distinct set once with the
+  quests that use it: 87 sets for the 540 emitted EU quests. Most maps
+  have one per rank, plus one for each Treasure Hunting or Training School
+  quest there and a few gathering quests' own (Great Ore Discovery, A
+  Mushroom Goldrush!, Mountain Herb Picking). Within an area, identical
+  points are one entry with a `count`.
+
+### Area maps
+
+`src/tables/map-layout.ts` works out where a gathering point sits on the
+map, and `emit/gathering.ts` writes it as `positions` (one pixel per point)
+and the layout's `texture`. The formula is the one the map screen draws the
+player's arrow with (EU EBOOT, around `0x8843358`), for x and z separately:
+
+```
+pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
+```
+
+| Table                                     | Where    | Address      | Layout                                  |
+| ----------------------------------------- | -------- | ------------ | --------------------------------------- |
+| Map size, by quest map ID                 | EBOOT    | `0x0893887c` | `{ f32 width, f32 depth }`              |
+| Zoom (1.0 or 0.9), by quest map ID        | EBOOT    | `0x08938a7c` | `f32`                                   |
+| Stages, by quest map ID                   | game_sub | `0x09ce4708` | `{ u32 count, u32 pointer to u16 IDs }` |
+| `Gamestage::stage_world_tbl`, by stage ID | game_sub | `0x09cdef40` | 32 bytes, starting `f32 x, f32 z`       |
+
+- **Areas**: a gathering point's area index is its place in the map's stage
+  list, so index 0 is the Base Camp. Stage IDs aren't in area order.
+- **Textures**: `data-bin/cockpit/map<N>.tmh`, 160x160, named by quest map
+  ID. Night maps reuse the day map's (16 uses 2, 18 uses 4, 21 uses 11, 31
+  uses 30). `area-maps` writes the ones `data/gathering.json` uses to
+  `public/images/area-maps/`, so run it after `build-data`.
+- **Not placed**: the Tower's maps (14 and 15) draw their floors on separate
+  pages this formula doesn't reach. A few areas aren't drawn on their map
+  at all (the Desert's 11th), so an area with no point on opaque art loses
+  its `positions`.
+- **Regions**: the addresses are the EU disc's, so `extract` only places
+  points for EU. On an EU disc it stops if the tables aren't where they
+  should be or a texture can't be read, rather than write data without
+  positions.
+
+### Items
+
+`src/emit/items.ts` writes each item's rarity, carry limit, price, icon and
+colour from the EBOOT's item table (`src/tables/items.ts`) to `items.json`,
+and `build-data` writes them into `data/items.json` by ID
+(`src/build/items.ts`), keeping the names, aliases and regions as committed.
+`item-icons` writes the icons themselves (see below).
+
+- **Layout**: 24 bytes per ItemID, the same layout as the decorations'
+  table, which is entries 948–1116 of this one. The table runs on through
+  the last ItemID, 1260 (treasure, Felyne and arena items); entry 1261 is
+  unrelated data.
+- **Rarity** (`+2`, u8) is 0-based like the equipment tables'. Before the
+  disc, `data/items.json` had rarity from community lists on 1017 items: the
+  disc agrees on 1016. The other is DragonslyrJewel (lists 5, disc 4, as in
+  `data/decorations.json`).
+- **Carry limit** (`+3`, u8): Potion 10, Whetstone 20, Pierce S Lv1 60, most
+  materials 99. Normal S Lv1, which is unlimited, has 255.
+- **Price** (`+12`, u32): the shops' buy price (see "Shops"). The u32 at
+  `+16` is a tenth of it on items that can be sold (Herb 2z, Rathalos Ruby
+  9700z) and 0 on the rest, likely the sell price; not checked on screen, so
+  not written.
+- **Icon** (`+5`, u8) is the item's shape: potions and drinks are 24,
+  ores 27, jewels 43, shots 26. **Colour** (`+6`, u8) is its tint: Dragonite
+  Ore is 2 (green), Eltalite Ore 1 (red). The byte at `+4` has flags (cooked
+  meat and fish 1, charms 32) with no known meaning, so isn't written. Weapon
+  records have no icon or colour field, and armor's `colorSeries` (0–3) is
+  not this palette, so equipment keeps the site's own icons.
+- **Palette**: 11 u32s (R, G, B, 1) by colour index: white, red, green, blue,
+  yellow, purple, cyan, orange, pink, an empty slot no item uses, gray.
+  Written as `colors` in `data/items.json`, and kept as the site's
+  `--color-item-*` tokens (`scripts/validate.ts` checks they match).
+- **Sprites**: the game looks an icon up in two u16 lists of 56 (24x24, then
+  16x16; game code at vaddr `0x088303b8`), which index the UI sprite table
+  (12 bytes: u16 x, y, width, height, two flags). The atlas is
+  `cockpit/cock.tmh`'s first image, in grays the game tints with the colour.
+  Shapes 0–38 are consecutive; 39 and up jump around, and shapes no item uses
+  point at shape 33's "?". The addresses are EU's; `src/tables/item-icons.ts`
+  has them, and JP's aren't known.
+- `item-icons` writes each shape's 16x16 icon to
+  `apps/blacksmith/public/images/item-<icon>.png`, skipping the shapes that
+  fall back to the "?". The site draws them like its other sprites, tinted
+  with the item's colour.
+- The three placeholder IDs (`placeholder` in `data/items.json`) get no
+  stats.
+
+### Shops
+
+`src/shops/shops.ts` finds the shops' stock in `overlay/lobby_task.ovl`,
+and `src/emit/shops.ts` writes it to `data/shops.json` (schema:
+`data/schemas/shop.schema.json`). randomfu's `shop-scan` and
+`shop-lists` research commands found the layout, and its `shops` shuffle
+edits it.
+
+- **Layout**: each shop has a table of u32 pointers (ending in a 0 word),
+  one per stage of the game, each to a list of u16 item IDs ending in
+  `0xFFFF` or 0. Tables can share lists. `findShops` finds the table
+  whose first list starts with the general store's opening items (Herb,
+  Potion, Antidote, Whetstone), then the tables right before and after it.
+- **Names**: the disc doesn't name the shops, so each table is named from
+  what it sells: the village general store (opens with Herb), the Guild
+  Hall store (opens with Potion), the Point Exchange (Armor Spheres,
+  jewels and Pokke Tickets, bought with Pokke Points) and the peddler,
+  whose lists are smaller pools of plants, bugs, fish and monster parts.
+  On the EU disc each has 9 lists. The general store's and the Point
+  Exchange's last lists are empty;
+  the peddler's 6th and 7th are empty and its 8th and 9th are the Guild
+  Hall store's last two.
+- **Stages**: written as each item's list numbers (1-based, in disc
+  order). The general store, Guild Hall store and Point Exchange only add
+  items from one list to the next. What moves a shop to its next list
+  isn't on the disc that we know of; it's presumably story progress.
+- **Prices**: the item table's u32 at `+12` (`tables/items.ts`), which
+  holds the general store's prices as the game's shop screen shows them
+  (Herb 20z, Potion 66z, Whetstone 80z; randomfu's `KNOWN_PRICES`). Only
+  those were checked on screen. The Point Exchange's Pokke Point prices
+  haven't been found, so its prices are null.
 
 ### Monster size
 
@@ -875,12 +1190,11 @@ the unedited quest.
 that percentage, and nothing yet shows what sets the spread. Candidates
 from the EU disc:
 
-- `Unkn6`/`Unkn7` (u8 at `0x49`/`0x4a`) take small values: `Unkn7` 0-4,
-  `Unkn6` 0-2, and 20 combinations in all (`0,0,0,0` in 142 quests,
-  `0,0,0,3` in 122, `0,0,0,4` in 86). `Unkn4`/`Unkn5` are always 0. Small
-  indexes like these fit a size-variation (crown) table, or something else
-  entirely. Frontier's unlabelled u16 after its size is the same kind of
-  lead.
+- `Unkn7` (u8 at `0x4a`) takes small values, 0-4. `Unkn4`/`Unkn5` are
+  always 0, and `Unkn6` is the stat multiplier table (see "Monster
+  overlays"). A small index like `Unkn7` fits a size-variation (crown)
+  table, or something else entirely. Frontier's unlabelled u16 after its
+  size is the same kind of lead.
 - The large monster records barely vary:
   - `Attr2` (`+7`) is always 0, and `Attr1` (`+6`) is 0 in 545 of 554
     records (30, 10, 2 and 1 otherwise).
@@ -893,7 +1207,7 @@ from the EU disc:
 
 To settle the crown spread: take `quest-probe --tsv`'s rows for a monster
 whose crowns players report as easy in one quest and rare in another,
-and compare `Unkn6`/`Unkn7`. Or change one in a quest and measure many
+and compare `Unkn7`. Or change one in a quest and measure many
 hunts. Before this, randomfu could only scale size per species
 (`emChunk +0x40`); that option stays.
 
@@ -1267,7 +1581,8 @@ by `str_tbl.pac`'s layout) once the EU layout is known.
 ## Building `data/` from the disc
 
 `data/armor/*.json`, `data/weapons/*.json`, `data/decorations.json`,
-`data/quests/*.json` and the hitzones and drops in `data/monsters/*.json`
+the rarity, carry limit and price in `data/items.json`, `data/quests/*.json`, `data/gathering.json`, `data/shops.json`,
+`data/combinations.json` and the hitzones and drops in `data/monsters/*.json`
 are generated from an EU (ULES01213) disc with `build-data`. The disc is the source of truth for every field it holds.
 Every field it doesn't hold is kept from the committed files.
 
@@ -1295,7 +1610,8 @@ order, key order and file layout don't change, and a second run is a no-op. Disc
 Piercings, Pink Metal Boots, Rookie Knife, Swordfish Bow G) aren't added.
 `overlay/keep-site-values.json` lists reviewed disagreements where the site
 is right, currently the 10 Ruststone weapons, which have no `EquipCreate`
-recipe on the disc. Quests are copied through (see "Material names").
+recipe on the disc. Quests, gathering points and shops are copied
+through (see "Material names").
 
 **Material names.** Materials, drops and quest supply and reward items are
 always written with the game's own item name (`data/items.json` `name`, the same string as the
@@ -1304,8 +1620,8 @@ is written "Firestone", "Elder Drgn Bone" "Eldr Dragon Bone". The game
 caps item names at 16 characters, so many are abbreviated, and the site
 pads them to that width when it renders them. `build-data` renames every
 material in the files it writes, including fields it doesn't take (weapon
-`alternative_create_mats`) and items with no disc match. Quests are
-copied through with each item under its game name (the `ItemID` enum
+`alternative_create_mats`) and items with no disc match. Quests, gathering
+points and shops are copied through with each item under its game name (the `ItemID` enum
 differs from `items.json` only on a few Japanese promo tickets). `pnpm
 validate` fails on a recipe material, drop or quest item that isn't spelled
 like its item. Old site spellings stay in `data/items.json` as `aliases`, so they
@@ -1327,12 +1643,12 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 **Taken fields**, decided from `compare` against the committed data
 (agreement before the first build):
 
-| category    | taken                                                                                                                                  | agreement                                                                             | not taken                                                                                       |
-| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
-| armor       | rarity, rank, slots, defence, resistances, sex, hunter_type, max_defence, max_defence_pre_ukanlos, create_cost, skills, create_mats    | 97.5–100%                                                                             | `hr`, `elder` (not on the disc), `alternative_create_mats` (not emitted)                        |
-| weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing)     |
-| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                                  |
-| monsters    | base_hp, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                                           | base_hp new; per part 97.3%, per drop group 86.5% (see below)                         | `description`, `habitats`, `sizes`, `icon` (not on the disc), `tolerances` (no committed field) |
+| category    | taken                                                                                                                                  | agreement                                                                             | not taken                                                                                   |
+| ----------- | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
+| armor       | rarity, rank, slots, defence, resistances, sex, hunter_type, max_defence, max_defence_pre_ukanlos, create_cost, skills, create_mats    | 97.5–100%                                                                             | `hr`, `elder` (not on the disc), `alternative_create_mats` (not emitted)                    |
+| weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing) |
+| decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                              |
+| monsters    | base_hp, tolerances, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                               | base_hp, tolerances new; per part 97.3%, per drop group 86.5% (see below)             | `description`, `habitats`, `sizes`, `icon` (not on the disc)                                |
 
 Affinity was taken later (#33). Before, it agreed on 86.8% (198
 disagreements): heavy bowgun wrote zero as `"0"` (82, now compared by

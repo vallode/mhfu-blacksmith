@@ -68,6 +68,14 @@ export interface SetEditing {
   isOwned?: (piece: Piece) => boolean;
 }
 
+/** Search actions on a result's pieces: keep one in every set, or leave it out. */
+export interface PieceActions {
+  isLocked: (piece: Piece) => boolean;
+  /** Lock the piece, or unlock it if it's locked. */
+  onLock: (piece: Piece) => void;
+  onExclude: (piece: Piece) => void;
+}
+
 const smallButton =
   "cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white";
 
@@ -112,6 +120,7 @@ function EquipRow({
   slots,
   decos,
   alternatives,
+  actions,
   edit,
   warnings,
 }: {
@@ -121,6 +130,7 @@ function EquipRow({
   slots: React.ReactNode;
   decos: { placed: PlacedDeco; index: number }[];
   alternatives?: React.ReactNode;
+  actions?: React.ReactNode;
   edit?: SetEditing;
   warnings?: SetWarning[];
 }) {
@@ -152,6 +162,7 @@ function EquipRow({
             {t.setBuilder.setView.addJewel}
           </button>
         )}
+        {actions}
       </div>
       {warnings?.map((w, i) => (
         <p
@@ -201,14 +212,47 @@ function WeaponSlots({ count, edit }: { count: number; edit?: SetEditing }) {
   );
 }
 
+/** "Lock" and "Exclude" under a result's piece. */
+function PieceButtons({ piece, actions }: { piece: Piece; actions: PieceActions }) {
+  const text = useT().setBuilder.setView;
+  const name = useGameText().name("armor", piece.name);
+  const locked = actions.isLocked(piece);
+  return (
+    <span className="ml-auto flex gap-[1.2rem]">
+      <button
+        type="button"
+        className={cn(smallButton, locked && "text-stat")}
+        aria-pressed={locked}
+        aria-label={text.lockLabel(name)}
+        onClick={() => actions.onLock(piece)}
+      >
+        {locked ? text.locked : text.lock}
+      </button>
+      {!locked && (
+        <button
+          type="button"
+          className={cn(smallButton, "hover:text-negative focus-visible:text-negative")}
+          aria-label={text.excludeLabel(name)}
+          onClick={() => actions.onExclude(piece)}
+        >
+          {text.exclude}
+        </button>
+      )}
+    </span>
+  );
+}
+
 export function SetHeader({
   index,
   count,
   onStep,
+  action,
 }: {
   index: number;
   count: number;
   onStep: (by: 1 | -1) => void;
+  /** A button shown beside the set number. */
+  action?: React.ReactNode;
 }) {
   const text = useT().setBuilder.setView;
   return (
@@ -228,11 +272,14 @@ export function SetHeader({
         onClick={() => onStep(-1)}
       />
       <span
-        className={cn("flex-1 text-main text-stat text-shadow-[0.15rem_0.15rem_black]")}
+        className={cn(
+          "min-w-0 flex-1 truncate text-main text-stat text-shadow-[0.15rem_0.15rem_black]",
+        )}
         aria-live="polite"
       >
         {text.setNumber(index + 1)}
       </span>
+      {action}
       <span className={cn("text-main text-white text-shadow-[0.15rem_0.15rem_black]")}>
         {index + 1}/{count}
       </span>
@@ -293,6 +340,7 @@ export default function ArmorSetView({
   weaponIcon,
   status,
   edit,
+  pieceActions,
 }: {
   set: Pick<ArmorSet, "pieces" | "decorations" | "skills" | "totals"> &
     Partial<Pick<ArmorSet, "alternatives">>;
@@ -301,6 +349,7 @@ export default function ArmorSetView({
   /** The Status panel, beside [Activate Skill]. */
   status: React.ReactNode;
   edit?: SetEditing;
+  pieceActions?: PieceActions;
 }) {
   const t = useT();
   const game = useGameText();
@@ -342,6 +391,7 @@ export default function ArmorSetView({
               decos={decosIn(slot)}
               edit={edit}
               warnings={warningsFor(slot)}
+              actions={p && pieceActions && <PieceButtons piece={p} actions={pieceActions} />}
               alternatives={
                 alts.length > 0 && (
                   <span

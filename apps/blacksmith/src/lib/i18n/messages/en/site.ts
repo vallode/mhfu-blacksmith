@@ -6,6 +6,25 @@ import type { ReactNode } from "react";
 export const site = {
   /** The title image's alt text. */
   logoAlt: "Blacksmith",
+  /** The sidebar, its icon rail and the phone tab bar (AppShell). Tab labels fit a fifth of a phone. */
+  nav: {
+    weapons: "Weapons",
+    armor: "Armor",
+    monsters: "Monsters",
+    decorations: "Decorations",
+    quests: "Quests",
+    items: "Items",
+    sets: "Sets",
+    hunter: "Hunter",
+    options: "Options",
+    home: "Home",
+    main: "Main",
+    search: "Search",
+    collapse: "Collapse",
+    collapseSidebar: "Collapse sidebar",
+    expandSidebar: "Expand sidebar",
+    menu: "Menu",
+  },
   language: {
     heading: "Language",
     label: "Language",

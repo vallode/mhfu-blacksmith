@@ -1,9 +1,7 @@
 /**
  * The randomfu web app's page: a step-by-step builder over the same
  * `OPTIONS` and `PRESETS` the CLI uses. The steps are the disc, the seed and
- * a preset, one step per group of option sections, a decrypted EBOOT dump
- * (only when the settings change the EBOOT and the disc's own can't be
- * decrypted in the browser), a review, and the run.
+ * a preset, one step per group of option sections, a review, and the run.
  *
  * Runs happen in a worker. The finished ISO is assembled as a Blob from
  * slices of the user's own file plus the changed bytes, so a whole disc
@@ -13,6 +11,7 @@ import { randomSeed } from "randomfu/src/rng.js";
 import {
   OPTIONS,
   PRESETS,
+  actionsOf,
   SettingsError,
   applySettings,
   decodeSettings,
@@ -20,9 +19,9 @@ import {
   encodeSettings,
   formatOption,
   isActive,
-  needsEboot,
   settingsFromJson,
   settingsToJson,
+  type Action,
   type OptionDef,
   type OptionKey,
   type Preset,
@@ -56,7 +55,7 @@ const OPTION_STEPS: Step[] = [
     icon: "star",
     sections: ["Logic"],
     intro:
-      "How far items can move. Every shuffle follows this, so with logic on, every recipe stays craftable as early in the game as before.",
+      "Logic applies to every item shuffle: quest rewards, carves, gathering points, supply boxes and recipe materials. At Same star level, every recipe stays craftable as early in the game as before.",
   },
   {
     id: "rewards",
@@ -90,22 +89,21 @@ const OPTION_STEPS: Step[] = [
     tint: "var(--color-gem-orange)",
     sections: ["Quest monsters", "Monster stats", "Weaknesses"],
     intro:
-      "Which monsters quests have and how tough they are. Swaps, quest sizes and quest text have been tried in game; the rest is untested, so try a quest before a long run.",
+      "Which monsters quests have and how tough they are. Swaps, quest sizes and quest text have been tried in game, and the presets use them. The rest is untested and in no preset, so try a quest before a long run.",
   },
   {
     id: "smithy",
     title: "Smithy",
     icon: "hammer",
     sections: ["Crafting", "Costs", "Weapons", "Armor"],
-    intro:
-      "What the smithy makes and what it asks for. Settings marked EBOOT change the game's program, which randomfu decrypts from your disc.",
+    intro: "What the smithy makes and what it asks for.",
   },
   {
     id: "shops",
     title: "Shops",
     icon: "coin",
     tint: "var(--color-gem-yellow)",
-    sections: ["Shops"],
+    sections: ["Shop stock", "Shop prices"],
     intro: "What the village, Guild Hall and peddling granny sell, and for how much.",
   },
 ];
@@ -119,15 +117,8 @@ if (unclaimed.length > 0) {
 
 const STEPS: Step[] = [
   { id: "game", title: "Your game", icon: "binoculars" },
-  { id: "start", title: "Seed", icon: "seed", tint: "var(--color-gem-green)" },
+  { id: "start", title: "Seed & preset", icon: "seed", tint: "var(--color-gem-green)" },
   ...OPTION_STEPS,
-  {
-    id: "eboot",
-    title: "EBOOT",
-    icon: "deco",
-    tint: "var(--color-gem-cyan)",
-    when: () => ebootStepNeeded(),
-  },
   { id: "review", title: "Review", icon: "ticket", tint: "var(--color-parchment)" },
   { id: "run", title: "Randomize", icon: "max" },
 ];
@@ -145,7 +136,6 @@ let busy = false;
 let ranWith: { settings: string; iso: File } | null = null;
 
 let iso: File | null = null;
-let eboot: File | null = null;
 /** The last check of the files: null while one is pending or before the first. */
 let disc: Extract<Response, { type: "checked" }> | null = null;
 let checking = false;
@@ -156,11 +146,6 @@ const urls: string[] = [];
 
 const visibleSteps = () => STEPS.filter((s) => !s.when || s.when());
 const discOk = () => disc?.supported === true;
-const ebootOk = () => disc?.eboot?.ok === true;
-/** The disc's own EBOOT decrypts here, so no dump is needed. */
-const ebootFromDisc = () => disc?.discEboot?.ok === true;
-/** The settings change the EBOOT and the disc's can't be decrypted here: ask for a dump. */
-const ebootStepNeeded = () => needsEboot(settings) && !ebootFromDisc();
 
 // ---------------------------------------------------------------- the worker
 
@@ -261,11 +246,16 @@ function update(key: OptionKey, value: boolean | number | string): void {
   render();
 }
 
+/** A Shuffle or Randomize badge: shuffles move what's in the game, randomizers roll new values. */
+function tag(action: Action | undefined): HTMLElement | null {
+  if (!action) return null;
+  return el("span", { class: `tag ${action}` }, action === "shuffle" ? "Shuffle" : "Randomize");
+}
+
 function optionText(option: OptionDef, labelFor: string | null): HTMLElement {
-  const badge = option.eboot ? el("span", { class: "badge" }, "EBOOT") : null;
   const title = labelFor
-    ? el("label", { class: "option-title", for: labelFor }, option.label, badge)
-    : el("span", { class: "option-title" }, option.label, badge);
+    ? el("label", { class: "option-title", for: labelFor }, option.label, tag(option.action))
+    : el("span", { class: "option-title" }, option.label, tag(option.action));
   return el("div", { class: "option-text" }, title, el("p", { class: "note" }, option.help));
 }
 
@@ -323,7 +313,7 @@ function renderOption(option: OptionDef): HTMLElement {
           el(
             "span",
             { class: "choice-text" },
-            el("span", { class: "choice-label" }, choice.label),
+            el("span", { class: "choice-label" }, choice.label, tag(choice.action)),
             el("span", { class: "note" }, choice.help),
           ),
         ),
@@ -369,7 +359,7 @@ function buildPresets(): void {
     input.addEventListener("change", () => {
       settings = presetSettings(preset);
       render();
-      say($("share-status"), `Loaded the ${preset.name} preset.`, "ok");
+      say($("share-status"), "");
     });
     $("presets").append(
       el(
@@ -379,7 +369,14 @@ function buildPresets(): void {
         el(
           "span",
           { class: "choice-text" },
-          el("span", { class: "choice-label" }, preset.name),
+          el(
+            "span",
+            { class: "choice-label" },
+            preset.name,
+            ...(["shuffle", "randomize"] as const).map((action) =>
+              [...actionsOf(presetSettings(preset)).values()].includes(action) ? tag(action) : null,
+            ),
+          ),
           el("span", { class: "note" }, preset.help),
         ),
       ),
@@ -419,19 +416,11 @@ function render(): void {
   for (const radio of document.querySelectorAll<HTMLInputElement>("input[name=preset]")) {
     radio.checked = radio.value === preset?.name;
   }
+  $("preset-note").textContent = preset
+    ? "A preset replaces every option but keeps your seed. You can change anything in the next steps."
+    : "Your settings don't match a preset. Picking one replaces every option but keeps your seed.";
 
   $<HTMLTextAreaElement>("share").value = encodeSettings(settings);
-  $("eboot-why").textContent = disc?.discEboot?.detail ?? "it hasn't been checked yet";
-  $("eboot-list").replaceChildren(
-    ...OPTIONS.filter((o) => o.eboot && settings[o.key] === true && isActive(settings, o)).map(
-      (o) => el("li", {}, o.label),
-    ),
-  );
-  // Settings that drop the EBOOT step while it's showing move on to the review.
-  if (!visibleSteps().some((s) => s.id === current)) {
-    current = "review";
-    reached.add(current);
-  }
   renderSteps();
   if (current === "review") renderSummary(preset);
   if (current === "run") renderStale();
@@ -527,7 +516,7 @@ function renderSummary(preset: Preset | undefined): void {
   ]);
   group(byId("start"), [
     { text: `Seed: ${settings.seed}` },
-    { text: `Preset: ${preset ? preset.name : "custom"}` },
+    { text: `Preset: ${preset ? preset.name : "none (custom settings)"}` },
   ]);
   for (const step of OPTION_STEPS) {
     const lines: { text: string; off?: boolean }[] = [];
@@ -542,13 +531,6 @@ function renderSummary(preset: Preset | undefined): void {
     }
     group(step, lines);
   }
-  if (needsEboot(settings)) {
-    group(byId("eboot"), [
-      ebootFromDisc()
-        ? { text: "Decrypted from your disc" }
-        : { text: eboot ? eboot.name : "No EBOOT yet", off: !eboot || !ebootOk() },
-    ]);
-  }
   $("summary").replaceChildren(...groups);
 }
 
@@ -557,17 +539,12 @@ function renderSummary(preset: Preset | undefined): void {
 /** Why the player can't leave a step yet, or null if they can. */
 function blocker(step: string): string | null {
   if (step === "game") {
-    if (!iso) return "Pick your disc image first.";
+    if (!iso) return "Choose your disc image first.";
     if (checking) return "Still checking your disc…";
     if (checkError) return checkError;
     if (!discOk()) return "That disc isn't supported: use the EU or JP disc.";
   }
   if (step === "start" && !$<HTMLInputElement>("seed").value.trim()) return "Enter a seed.";
-  if (step === "eboot" && ebootStepNeeded()) {
-    if (!eboot) return "Add your decrypted EBOOT, or turn these settings off.";
-    if (checking) return "Still checking your EBOOT…";
-    if (!ebootOk()) return "That EBOOT isn't decrypted: dump it with PPSSPP.";
-  }
   return null;
 }
 
@@ -620,43 +597,40 @@ function step(by: 1 | -1): void {
   if (target) go(target);
 }
 
-/** From the start step straight to the review, stopping at any step that still needs something. */
-function skipToReview(): void {
+/** From the start step straight to the run, stopping at any step that still needs something. */
+function downloadNow(): void {
   for (const s of visibleSteps()) {
-    if (s.id === "review") return go("review");
-    if (s.id === "run") continue;
+    if (s.id === "review" || s.id === "run") break;
     reached.add(s.id);
     if (blocker(s.id)) return go(s.id);
   }
+  reached.add("review");
+  void run(false);
 }
 
 // ---------------------------------------------------------------- files
 
-function setFile(kind: "iso" | "eboot", file: File | null): void {
-  if (kind === "iso") iso = file;
-  else eboot = file;
-  const drop = $(`${kind}-drop`);
-  drop.classList.toggle("chosen", file !== null);
-  $(`${kind}-name`).textContent = file
+function setFile(file: File | null): void {
+  iso = file;
+  $("iso-drop").classList.toggle("chosen", file !== null);
+  $("iso-name").textContent = file
     ? `${file.name} (${megabytes(file)})`
-    : kind === "iso"
-      ? "Choose your disc image (.iso)"
-      : "Choose your decrypted EBOOT";
+    : "Choose your disc image (.iso)";
   void checkFiles();
 }
 
 /**
- * Shows how a file's check went on its picker: a spinner while it runs, a
+ * Shows how the disc's check went on its picker: a spinner while it runs, a
  * green tick once it passes, a red cross if it fails. A failure's reason is
  * spelled out under the picker; a pass's sentence is only read out to screen
  * readers, as the tick says it all.
  */
-function checked(kind: "iso" | "eboot", text: string, state?: "ok" | "err" | "busy"): void {
-  const mark = $(`${kind}-mark`);
+function checked(text: string, state?: "ok" | "err" | "busy"): void {
+  const mark = $("iso-mark");
   mark.className = `drop-mark${state ? ` ${state}` : ""}`;
   mark.textContent = state === "ok" ? "✓" : state === "err" ? "✗" : "";
   mark.title = state === "busy" ? "" : text;
-  const status = $(`${kind === "iso" ? "check" : "eboot"}-status`);
+  const status = $("check-status");
   say(status, text, state === "busy" ? undefined : state);
   status.classList.toggle("visually-hidden", state === "ok" || state === "busy");
 }
@@ -668,44 +642,39 @@ async function checkFiles(): Promise<void> {
     disc = null;
     checking = false;
     checkError = null;
-    checked("iso", "");
+    checked("");
     return;
   }
   checking = true;
   checkError = null;
-  checked("iso", "Checking your disc…", "busy");
-  if (eboot) checked("eboot", "Checking your EBOOT…", "busy");
-  const r = await ask({ type: "check", iso, eboot });
+  checked("Checking your disc…", "busy");
+  const r = await ask({ type: "check", iso });
   if (token !== checkToken) return;
   checking = false;
   say($("nav-status"), "");
   if (r.type === "error") {
     disc = null;
     checkError = r.message;
-    checked("iso", r.message, "err");
+    checked(r.message, "err");
     return render();
   }
   if (r.type !== "checked") return;
   disc = r;
   const region = r.region ? ` (${r.region.toUpperCase()})` : "";
   checked(
-    "iso",
     r.supported
       ? `${r.discId}${region} is supported. Ready when you are!`
       : `${r.discId ?? "This disc"}${region} isn't supported yet (the EU and JP discs are).`,
     r.supported ? "ok" : "err",
   );
-  if (r.eboot) {
-    checked("eboot", `The EBOOT is ${r.eboot.detail}.`, r.eboot.ok ? "ok" : "err");
-  } else checked("eboot", "");
   render();
 }
 
-/** Drag and drop onto a file picker, as well as clicking it. */
-function droppable(kind: "iso" | "eboot"): void {
-  const drop = $(`${kind}-drop`);
-  const input = $<HTMLInputElement>(kind);
-  input.addEventListener("change", () => setFile(kind, input.files?.[0] ?? null));
+/** Drag and drop onto the disc picker, as well as clicking it. */
+function droppable(): void {
+  const drop = $("iso-drop");
+  const input = $<HTMLInputElement>("iso");
+  input.addEventListener("change", () => setFile(input.files?.[0] ?? null));
   drop.addEventListener("dragover", (event) => {
     event.preventDefault();
     drop.classList.add("dragging");
@@ -717,20 +686,20 @@ function droppable(kind: "iso" | "eboot"): void {
     event.preventDefault();
     drop.classList.remove("dragging");
     const file = event.dataTransfer?.files[0];
-    if (file) setFile(kind, file);
+    if (file) setFile(file);
   });
 }
 
 // ---------------------------------------------------------------- runs
 
 function outputName(file: File, seed: string): string {
-  return `${file.name.replace(/\.iso$/i, "")} (randomfu ${seed}).iso`;
+  return `${file.name.replace(/\.iso$/i, "")} (RandomFU ${seed}).iso`;
 }
 
 async function run(dryRun: boolean): Promise<void> {
   if (busy) return;
-  const reason = blocker("game") ?? blocker("eboot");
-  if (reason || !iso) return say($("nav-status"), reason ?? "Pick your disc image first.", "err");
+  const reason = blocker("game");
+  if (reason || !iso) return say($("nav-status"), reason ?? "Choose your disc image first.", "err");
   const file = iso;
   const seed = settings.seed;
   ranWith = { settings: encodeSettings(settings), iso: file };
@@ -750,7 +719,7 @@ async function run(dryRun: boolean): Promise<void> {
     log.scrollTop = log.scrollHeight;
   };
   try {
-    const r = await ask({ type: "run", iso: file, eboot, settings, dryRun });
+    const r = await ask({ type: "run", iso: file, settings, dryRun });
     if (r.type === "error") throw new Error(r.message);
     if (r.type !== "done") throw new Error("The run stopped without finishing.");
     showSpoiler(r.spoiler);
@@ -841,7 +810,6 @@ function filterSpoiler(): void {
 function loaded(message: string, kind: "ok" | "err"): void {
   render();
   say($("share-status"), message, kind);
-  $("skip-row").hidden = false;
 }
 
 // ---------------------------------------------------------------- start
@@ -850,8 +818,7 @@ function init(): void {
   restore();
   buildOptionPanels();
   buildPresets();
-  droppable("iso");
-  droppable("eboot");
+  droppable();
   stepMenu();
   render();
 
@@ -877,7 +844,7 @@ function init(): void {
       loaded(
         version === LOGIC_VERSION
           ? "Loaded the settings string."
-          : `Made with logic v${version}; this is v${LOGIC_VERSION}, so the same seed gives a different game.`,
+          : `Loaded, but it was made with logic v${version} and this is v${LOGIC_VERSION}, so the same seed gives a different game.`,
         version === LOGIC_VERSION ? "ok" : "err",
       );
     } catch (error) {
@@ -898,15 +865,8 @@ function init(): void {
       input.value = "";
     }
   });
-  $("skip").addEventListener("click", skipToReview);
-
-  $("drop-eboot").addEventListener("click", () => {
-    const off = Object.fromEntries(
-      OPTIONS.filter((o) => o.eboot && o.type.kind === "boolean").map((o) => [o.key, false]),
-    );
-    settings = applySettings(settings, off);
-    go("review");
-  });
+  $("download").addEventListener("click", downloadNow);
+  $("customize").addEventListener("click", () => step(1));
 
   $("copy").addEventListener("click", () => {
     navigator.clipboard.writeText($<HTMLTextAreaElement>("share").value).then(

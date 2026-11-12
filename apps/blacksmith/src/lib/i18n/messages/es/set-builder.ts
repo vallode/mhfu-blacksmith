@@ -24,6 +24,17 @@ export const setBuilder: Messages["setBuilder"] = {
     rank: "Rango",
     weaponSlots: "Ranuras del arma",
     noWeaponSlots: "Ninguna",
+    sortBy: "Ordenar por",
+    sortNote: "En caso de empate, va primero la defensa más alta.",
+    sorts: {
+      defence: "Defensa",
+      fire: "Res. Fuego",
+      water: "Res. Agua",
+      thunder: "Res. Trueno",
+      ice: "Res. Hielo",
+      dragon: "Res. Dragón",
+      slots: "Ranuras libres",
+    },
     allowBadSkills: "Permitir habilidades negativas",
     allowBadSkillsNote:
       "Conservar conjuntos que también activan una habilidad negativa, como Defensa -20.",
@@ -38,6 +49,16 @@ export const setBuilder: Messages["setBuilder"] = {
       ),
     ownedOnly: "Solo armadura obtenida",
     ownedOnlyNote: "Usar solo la armadura de la caja de equipo de tu cazador.",
+    locked: {
+      title: "Piezas fijadas",
+      note: "Todos los conjuntos las usan, sea cual sea el rango o el progreso de misiones.",
+      remove: (name: string) => `Quitar ${name} de las piezas fijadas`,
+    },
+    excluded: {
+      title: "Piezas excluidas",
+      note: "La búsqueda nunca las usa.",
+      remove: (name: string) => `Quitar ${name} de las piezas excluidas`,
+    },
     search: "Buscar",
     cancel: "Cancelar",
   },
@@ -53,14 +74,20 @@ export const setBuilder: Messages["setBuilder"] = {
     loading: "Cargando armaduras…",
     searching: (found: string) => (found ? `Buscando… ${found}` : "Buscando…"),
     intro:
-      "Añade las habilidades que quieras y busca. Los conjuntos se ordenan por defensa, de mayor a menor.",
-    noSets: (progress: boolean) =>
-      progress
-        ? "Ningún conjunto activa todas estas habilidades. Prueba con menos habilidades, un rango más alto, más ranuras de arma, permitir habilidades negativas o ignorar tu progreso de misiones."
-        : "Ningún conjunto activa todas estas habilidades. Prueba con menos habilidades, un rango más alto, más ranuras de arma o permitir habilidades negativas.",
-    truncated: (shown: string, total: string, more: boolean) =>
-      `Se muestran los ${shown} conjuntos con más defensa de ${total}${more ? "+" : ""} encontrados. Añade habilidades para acotar la búsqueda.`,
-    timedOut: "La búsqueda tardó demasiado y se detuvo antes de terminar.",
+      "Añade las habilidades que quieras y busca. Los mejores conjuntos aparecen primero: por defensa o por el orden que elijas.",
+    noSets: (progress: boolean, locked: boolean) => {
+      const tips = [
+        "menos habilidades",
+        "un rango más alto",
+        "más ranuras de arma",
+        "permitir habilidades negativas",
+        ...(locked ? ["quitar piezas fijadas"] : []),
+        ...(progress ? ["ignorar tu progreso de misiones"] : []),
+      ];
+      const last = tips.pop();
+      return `Ningún conjunto activa todas estas habilidades. Prueba con ${tips.join(", ")} o ${last}.`;
+    },
+    timedOut: "La búsqueda se detuvo antes de terminar: puede haber conjuntos mejores.",
     editThis: "Editar este conjunto",
     status: "Estado",
     errors: {
@@ -124,7 +151,8 @@ export const setBuilder: Messages["setBuilder"] = {
     sets: "Conjuntos",
     previousSet: "Conjunto anterior",
     nextSet: "Conjunto siguiente",
-    setNumber: (n: number) => `Conjunto ${n}`,
+    // Short, so the set bar fits a phone beside the edit icon and "60/60".
+    setNumber: (n: number) => `Conj. ${n}`,
     pieceLabel: (slot: string, name: string) => `${slot}: ${name}. Cambiar`,
     emptyLabel: (slot: string) => `${slot}: vacío. Elegir una pieza`,
     choose: "- Elegir -",
@@ -139,6 +167,11 @@ export const setBuilder: Messages["setBuilder"] = {
         : `Otras ${n} piezas dan los mismos puntos en tus habilidades`,
     alternativesNote:
       "Sus otras habilidades son distintas, así que un cambio puede añadir o quitar una habilidad.",
+    lock: "Fijar",
+    locked: "Fijada",
+    exclude: "Excluir",
+    lockLabel: (name: string) => `Fijar ${name}: usarla en todos los conjuntos`,
+    excludeLabel: (name: string) => `Excluir ${name}: no usarla nunca`,
   },
 
   status: {

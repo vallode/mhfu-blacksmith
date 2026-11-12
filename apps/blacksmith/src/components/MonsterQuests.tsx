@@ -18,7 +18,7 @@ export default function MonsterQuests({
   const t = useT().quests;
   const game = useGameText();
   return (
-    <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1">
+    <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1 compact:grid-cols-1">
       {QUEST_HUBS.map((hub) => {
         const onHub = quests.filter((q) => q.hub === hub.slug);
         if (onHub.length === 0) return null;

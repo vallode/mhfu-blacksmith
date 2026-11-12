@@ -19,39 +19,43 @@ export const statTable = [
 /**
  * Hunting horn melodies: note icons, effect, duration. The effect column
  * takes the slack and wraps on a phone; the notes and the duration stay on
- * one line. A phone has no room for the duration column next to four notes,
- * so there the duration goes under the effect (`melodyDuration`,
- * `melodyDurationBelow`) and the effect column ends the row.
+ * one line. A phone, or a compact screen's narrower detail pane, has no room
+ * for the duration column next to four notes, so there the duration goes
+ * under the effect (`melodyDuration`, `melodyDurationBelow`) and the effect
+ * column ends the row.
  */
 export const melodyTable = [
-  "h-min w-full border-collapse text-main leading-[1.25] font-medium mobile:text-small",
+  "h-min w-full border-collapse text-main leading-[1.25] font-medium mobile:text-small compact:text-small",
   "[&_th]:pr-[1rem] [&_th]:pb-[0.4rem] [&_th]:text-left [&_th]:font-medium [&_th]:whitespace-nowrap [&_th]:text-warm [&_th:first-of-type]:text-gold",
   "[&_td]:py-[0.2rem] [&_td]:pr-[1rem] [&_td]:text-left [&_td]:align-middle [&_td:last-of-type]:whitespace-nowrap",
   "[&_th:last-of-type]:pr-0 [&_td:last-of-type]:pr-0 [&_th:nth-of-type(2)]:w-full",
   "mobile:[&_td:nth-of-type(2)]:pr-0 mobile:[&_th:nth-of-type(2)]:pr-0",
+  "compact:[&_td:nth-of-type(2)]:pr-0 compact:[&_th:nth-of-type(2)]:pr-0",
 ].join(" ");
 
 /** A melody's note icon: no gap between notes on a phone, where four would not fit. */
-export const melodyNote = "mobile:mr-0";
+export const melodyNote = "mobile:mr-0 compact:mr-0";
 
-/** The duration column (header and cells): hidden on a phone. */
-export const melodyDuration = "mobile:hidden";
+/** The duration column (header and cells): hidden on a phone or a compact screen. */
+export const melodyDuration = "mobile:hidden compact:hidden";
 
-/** The duration under the effect, shown only on a phone. */
-export const melodyDurationBelow = "hidden text-muted mobile:block";
+/** The duration under the effect, shown only on a phone or a compact screen. */
+export const melodyDurationBelow = "hidden text-muted mobile:block compact:block";
 
 /**
  * Monster hitzone table: part names left-aligned, values right-aligned in
  * fixed-width columns with thin separators between them. Normal tracking:
- * nine columns are too tight for the game tracking on a phone.
+ * nine columns are too tight for the game tracking on a phone. On a phone,
+ * and in the narrower detail pane of a compact screen, the table steps down
+ * a text size and the part column narrows.
  */
 export const hitzoneTable = [
-  "h-min w-full table-fixed border-collapse text-small tracking-normal tabular-nums mobile:text-fine",
+  "h-min w-full table-fixed border-collapse text-small tracking-normal tabular-nums mobile:text-fine compact:text-fine",
   "[&_th]:pr-[0.8rem] [&_th]:pb-[0.4rem] [&_th]:text-right [&_th]:font-normal [&_th]:text-warm",
-  // Part names ("Chest-Broken") fit on one line; on a phone the column is
-  // narrower and they wrap instead.
-  "[&_th:first-of-type]:w-cells-13 [&_th:first-of-type]:text-left [&_th:first-of-type]:text-gold mobile:[&_th:first-of-type]:w-cells-7",
-  "[&_td]:relative [&_td]:py-[0.2rem] [&_td]:pr-[0.8rem] [&_td]:text-right [&_td:first-of-type]:text-left [&_td:first-of-type]:whitespace-nowrap [&_td:first-of-type]:capitalize mobile:[&_td:first-of-type]:whitespace-normal",
+  // Part names ("Chest-Broken") fit on one line; on a phone or a compact
+  // screen the column is narrower and they wrap instead.
+  "[&_th:first-of-type]:w-cells-13 [&_th:first-of-type]:text-left [&_th:first-of-type]:text-gold mobile:[&_th:first-of-type]:w-cells-7 compact:[&_th:first-of-type]:w-cells-7",
+  "[&_td]:relative [&_td]:py-[0.2rem] [&_td]:pr-[0.8rem] [&_td]:text-right [&_td:first-of-type]:text-left [&_td:first-of-type]:whitespace-nowrap [&_td:first-of-type]:capitalize mobile:[&_td:first-of-type]:whitespace-normal compact:[&_td:first-of-type]:whitespace-normal",
   // Column separators (none after the last column)
   "[&_td:not(:last-of-type)]:after:absolute [&_td:not(:last-of-type)]:after:top-1/2 [&_td:not(:last-of-type)]:after:right-px [&_td:not(:last-of-type)]:after:h-[60%] [&_td:not(:last-of-type)]:after:w-px [&_td:not(:last-of-type)]:after:-translate-y-1/2 [&_td:not(:last-of-type)]:after:bg-unavailable [&_td:not(:last-of-type)]:after:opacity-50",
 ].join(" ");

@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Card from "@/components/Card";
 import { DetailBody, DetailCard, DetailRule } from "@/components/DetailPanel";
 import { cn } from "@/lib/cn";
 import { hitzoneBest, hitzoneTable, hitzoneZero } from "@/styles/tables";
@@ -13,11 +12,12 @@ import MonsterBreaks from "@/components/MonsterBreaks";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
+import SmallMonsterQuests from "@/components/SmallMonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { breakIndex, breakKey } from "@/lib/monster-breaks";
 import { formatRank } from "@/lib/monster-drops";
 import { monsterRecordFor } from "@/lib/monster-ids";
-import { clearedQuestIds, questsWithMonster } from "@/lib/quests";
+import { clearedQuestIds, questsWithMonster, smallMonsterStages } from "@/lib/quests";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useMonsterHitboxes, useMonsterModel, type HitboxCapsule } from "@/lib/models";
@@ -131,9 +131,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // layout (MonsterShell), which stays mounted; this is only the detail panel.
   if (loading || !monster) {
     return (
-      <Card>
+      <DetailCard>
         {loading ? <Loading>{t.common.loading}</Loading> : <p>{t.monsters.detail.notFound}</p>}
-      </Card>
+      </DetailCard>
     );
   }
 
@@ -267,10 +267,21 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           },
         ]
       : [];
+  const stages = quests ? smallMonsterStages(quests, monster.name) : [];
+  const spawnTab: Tab[] =
+    stages.length > 0
+      ? [
+          {
+            id: "spawns",
+            label: t.monsters.detail.tabs.spawns,
+            content: <SmallMonsterQuests stages={stages} />,
+          },
+        ]
+      : [];
   // The loaded hunter's Guild Card counts. Only large monsters (the ones with
   // sizes) can be captured.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
-  const tabs = [...hitzoneTab, ...dropTabs, ...questTab];
+  const tabs = [...hitzoneTab, ...dropTabs, ...questTab, ...spawnTab];
 
   return (
     <>

@@ -6,5 +6,6 @@ import { equipment } from "./equipment";
 import { monsters } from "./monsters";
 import { quests } from "./quests";
 import { setBuilder } from "./set-builder";
+import { items } from "./items";
 
-export const es: Messages = { common, site, equipment, monsters, quests, setBuilder };
+export const es: Messages = { common, site, equipment, monsters, quests, setBuilder, items };

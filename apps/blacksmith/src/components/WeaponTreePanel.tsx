@@ -8,12 +8,13 @@
  */
 import { useState } from "react";
 import Card from "./Card";
+import CardBox from "./CardBox";
 import TreeScroll from "./TreeScroll";
 import WeaponTreeRow from "./WeaponTreeRow";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
 import { useVisibleTree } from "@/hooks/useVisibleTree";
 import { useHunterProgress } from "@/context/HunterProgressContext";
-import { TreeFilterContext } from "@/context/TreeFilterContext";
+import { TreeFilterContext, WeaponTreeContext } from "@/context/TreeFilterContext";
 import { cycleTreeFilter, filterTree, type TreeFilterId } from "@/lib/tree-filter";
 import { readTreeFilter, writeTreeFilter } from "@/lib/tree-filter-store";
 import type { WeaponTreeNode } from "@/lib/types";
@@ -57,21 +58,23 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   return (
     // Takes the tree card's place in .split-page; above the card (z-1) so the
     // bar and its arrows draw over the frame.
-    <div data-tree-panel className="relative z-2 flex min-h-0 min-w-0 flex-1 flex-col">
+    <CardBox data-tree-panel>
       <Card variant="weapon-tree">
         <TreeScroll treeKey={treeKey} activeSlug={activeSlug}>
           <TreeFilterContext.Provider value={result}>
-            {visibleTree?.map((node) => (
-              <ul key={node.slug}>
-                <WeaponTreeRow
-                  node={node}
-                  sectionType={type}
-                  basePath={basePath}
-                  treeKey={treeKey}
-                  activeSlug={activeSlug}
-                />
-              </ul>
-            ))}
+            <WeaponTreeContext.Provider value={visibleTree}>
+              {visibleTree?.map((node) => (
+                <ul key={node.slug}>
+                  <WeaponTreeRow
+                    node={node}
+                    sectionType={type}
+                    basePath={basePath}
+                    treeKey={treeKey}
+                    activeSlug={activeSlug}
+                  />
+                </ul>
+              ))}
+            </WeaponTreeContext.Provider>
           </TreeFilterContext.Provider>
           {/* Room to scroll the last rows clear of the filter bar. */}
           {result && <div style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />}
@@ -89,6 +92,6 @@ export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
           countLabel={tt.filterCount(result.matched, result.total)}
         />
       )}
-    </div>
+    </CardBox>
   );
 }

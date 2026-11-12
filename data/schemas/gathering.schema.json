@@ -1,0 +1,83 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Gathering points file",
+  "description": "Each distinct set of mining, gathering and bug catching points, read from the quest files. Quests on one map and rank usually share one set.",
+  "type": "object",
+  "required": ["layouts"],
+  "additionalProperties": false,
+  "properties": {
+    "layouts": {
+      "type": "array",
+      "items": { "$ref": "#/definitions/layout" }
+    }
+  },
+  "definitions": {
+    "item": {
+      "type": "object",
+      "required": ["item", "chance"],
+      "additionalProperties": false,
+      "properties": {
+        "item":   { "type": "string", "minLength": 1, "description": "Game name, as in data/items.json" },
+        "chance": { "type": "integer", "minimum": 0, "maximum": 100, "description": "Percent per gather. A node's chances can add up to less than 100: the rest gives nothing." }
+      }
+    },
+    "node": {
+      "type": "object",
+      "required": ["kind", "count", "gathers", "most_gathers", "items"],
+      "additionalProperties": false,
+      "properties": {
+        "kind":         { "enum": ["gather", "mine", "bug"] },
+        "count":        { "type": "integer", "minimum": 1, "description": "How many such points the area has" },
+        "gathers":      { "type": ["integer", "null"], "minimum": 0, "description": "Fewest gathers before the point runs out; null if it never does" },
+        "most_gathers": { "type": ["integer", "null"], "minimum": 0, "description": "Most gathers before the point runs out; null if it never does" },
+        "items": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/item" }
+        },
+        "positions": {
+          "type": "array",
+          "description": "Pixels on the layout's texture, one per point. Absent where the game's map doesn't draw the area.",
+          "items": {
+            "type": "array",
+            "items": { "type": "number" },
+            "minItems": 2,
+            "maxItems": 2
+          }
+        }
+      }
+    },
+    "area": {
+      "type": "object",
+      "required": ["area", "nodes"],
+      "additionalProperties": false,
+      "properties": {
+        "area":  { "type": "integer", "minimum": 0, "description": "0 is the Base Camp, then the map's numbered areas" },
+        "nodes": {
+          "type": "array",
+          "minItems": 1,
+          "items": { "$ref": "#/definitions/node" }
+        }
+      }
+    },
+    "layout": {
+      "type": "object",
+      "required": ["map", "quests", "areas"],
+      "additionalProperties": false,
+      "properties": {
+        "map":    { "type": "string", "minLength": 1, "description": "Same names as a quest's map" },
+        "texture": { "type": "string", "description": "The map's texture for this layout's positions: map2 is public/images/area-maps/map2.png" },
+        "quests": {
+          "type": "array",
+          "minItems": 1,
+          "description": "IDs of the quests (data/quests) with these points",
+          "items": { "type": "integer", "minimum": 1 },
+          "uniqueItems": true
+        },
+        "areas": {
+          "type": "array",
+          "items": { "$ref": "#/definitions/area" }
+        }
+      }
+    }
+  }
+}

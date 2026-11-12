@@ -14,6 +14,7 @@ import { useFileSync } from "@/context/FileSyncContext";
 import { useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import type { SaveData } from "@/lib/save-store";
 import Loading from "@/components/Loading";
 
@@ -21,8 +22,11 @@ const SLOTS = [0, 1, 2];
 
 // One hunter slot. The card is the frame; this fills it so the whole slot is
 // the target, top-aligned so an empty slot's NO DATA sits where a name does.
+// Fills the card's body, which starts 6px in, at the frame's outline: the
+// padding and height leave out those 6px, so the text sits 2.6rem by 2.4rem
+// from the card's edge and the card is 16rem tall.
 const slotBase =
-  "box-border flex min-h-[16rem] w-full flex-col justify-start gap-[0.8rem] border-0 bg-transparent px-[2.6rem] py-[2.4rem] text-left font-[inherit] leading-none tracking-[0.06em] text-white";
+  "box-border flex min-h-[14.8rem] w-full flex-col justify-start gap-[0.8rem] border-0 bg-transparent px-[2rem] py-[1.8rem] text-left font-[inherit] leading-none tracking-[0.06em] text-white";
 
 // The chosen hunter, lit like the game's selected slot. Hover keeps the fill
 // so clicking again (to deselect) reads as acting on this card.
@@ -79,59 +83,67 @@ function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
   const { formatNumber } = useLocale();
   if (!hunter) {
     return (
-      <Card className="flex-none p-0">
-        <div className={slotBase}>
-          <span className={slotName}>
-            <span>{slot + 1}</span>
-            <span className="uppercase">{text.noData}</span>
-          </span>
-        </div>
-      </Card>
+      <CardBox className="flex-none">
+        <Card bodyClassName="card-p-0">
+          <div className={slotBase}>
+            <span className={slotName}>
+              <span>{slot + 1}</span>
+              <span className="uppercase">{text.noData}</span>
+            </span>
+          </div>
+        </Card>
+      </CardBox>
     );
   }
   return (
-    <Card className="flex-none p-0">
-      <button
-        type="button"
-        className={cn(
-          slotBase,
-          "cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-6 focus-visible:outline-white",
-          active ? slotActive : "hover:hover-glow",
-        )}
-        onClick={onToggle}
-        aria-pressed={active}
-        title={active ? text.deselect : undefined}
-      >
-        <span className={slotName}>
-          <span>{slot + 1}</span>
-          {hunter.name}
-        </span>
-        {(hunter.playTime !== undefined || hunter.sex) && (
-          <span className={slotRow}>
-            {hunter.playTime !== undefined && (
-              <>
-                <span className={slotLabel}>{text.time}</span>
-                <span>{formatPlayTime(hunter.playTime)}</span>
-              </>
-            )}
-            {hunter.sex && <span className="uppercase">{text.sex[hunter.sex] ?? hunter.sex}</span>}
+    <CardBox className="flex-none">
+      <Card bodyClassName="card-p-0">
+        <button
+          type="button"
+          className={cn(
+            slotBase,
+            // 7px in from the body (at the frame's outline), so the ring sits
+            // just inside the frame's bands, which cover the body's edge.
+            "cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-7 focus-visible:outline-white",
+            active ? slotActive : "hover:hover-glow",
+          )}
+          onClick={onToggle}
+          aria-pressed={active}
+          title={active ? text.deselect : undefined}
+        >
+          <span className={slotName}>
+            <span>{slot + 1}</span>
+            {hunter.name}
           </span>
-        )}
-        {hunter.hunterRank !== undefined && (
-          <span className={slotRow}>
-            <span className={slotLabel}>{text.rank}</span>
-            <span>{hunter.hunterRank}</span>
-          </span>
-        )}
-        {hunter.zenny !== undefined && (
-          <span className={slotRow}>
-            <span className={slotLabel}>{text.money}</span>
-            <span>{formatNumber(hunter.zenny)}z</span>
-          </span>
-        )}
-        {active && <span className="sr-only">{text.selected}</span>}
-      </button>
-    </Card>
+          {(hunter.playTime !== undefined || hunter.sex) && (
+            <span className={slotRow}>
+              {hunter.playTime !== undefined && (
+                <>
+                  <span className={slotLabel}>{text.time}</span>
+                  <span>{formatPlayTime(hunter.playTime)}</span>
+                </>
+              )}
+              {hunter.sex && (
+                <span className="uppercase">{text.sex[hunter.sex] ?? hunter.sex}</span>
+              )}
+            </span>
+          )}
+          {hunter.hunterRank !== undefined && (
+            <span className={slotRow}>
+              <span className={slotLabel}>{text.rank}</span>
+              <span>{hunter.hunterRank}</span>
+            </span>
+          )}
+          {hunter.zenny !== undefined && (
+            <span className={slotRow}>
+              <span className={slotLabel}>{text.money}</span>
+              <span>{formatNumber(hunter.zenny)}z</span>
+            </span>
+          )}
+          {active && <span className="sr-only">{text.selected}</span>}
+        </button>
+      </Card>
+    </CardBox>
   );
 }
 
@@ -223,31 +235,32 @@ export default function SaveUpload() {
         {error && <div className={cn(notice, "text-negative")}>{error}</div>}
       </div>
 
-      <Card
-        className={cn(
-          "min-w-0 flex-none self-start mobile:-order-1",
-          isDragOver && "outline-2 -outline-offset-4 outline-white/40 outline-dashed",
-        )}
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        {fileSync.isSupported ? (
-          <button type="button" className={loaderCta} onClick={handlePick}>
-            {text.drop}
-          </button>
-        ) : (
-          <label className={loaderCta}>
-            <input
-              type="file"
-              accept=".bin,.BIN"
-              className="absolute h-0 w-0 opacity-0"
-              onChange={handleFileChange}
-            />
-            {text.drop}
-          </label>
-        )}
-      </Card>
+      <CardBox className="min-w-0 flex-none self-start mobile:-order-1">
+        <Card
+          className={cn(
+            isDragOver && "outline-2 -outline-offset-4 outline-white/40 outline-dashed",
+          )}
+          onDragOver={handleDragOver}
+          onDragLeave={handleDragLeave}
+          onDrop={handleDrop}
+        >
+          {fileSync.isSupported ? (
+            <button type="button" className={loaderCta} onClick={handlePick}>
+              {text.drop}
+            </button>
+          ) : (
+            <label className={loaderCta}>
+              <input
+                type="file"
+                accept=".bin,.BIN"
+                className="absolute h-0 w-0 opacity-0"
+                onChange={handleFileChange}
+              />
+              {text.drop}
+            </label>
+          )}
+        </Card>
+      </CardBox>
     </div>
   );
 }

@@ -16,20 +16,40 @@ export const quests: Messages["quests"] = {
   loadError: "No se pudieron cargar las misiones.",
   notFound: "No encontrada.",
   board: {
+    title: (hub: string) => `Misiones: ${hub}`,
     selectQuest: "Elige una misión.",
     urgent: "Urgente",
-    starLevels: "Nivel de estrellas",
-    previousStarLevel: "Nivel de estrellas anterior",
-    nextStarLevel: "Nivel de estrellas siguiente",
-    starLevelOf: (level: number, total: number) => `Nivel de estrellas ${level} de ${total}`,
+    starLevels: "Niveles de estrellas",
+    starLevel: (stars: number, g: boolean) =>
+      `${g ? "G " : ""}${stars} ${stars === 1 ? "estrella" : "estrellas"}`,
+    // Short, for the selector bar at the foot of the list at phone width.
+    allTypes: "Todas",
+    typeFilter: "Tipo de misión",
+    previousType: "Tipo de misión anterior",
+    nextType: "Tipo de misión siguiente",
+    typeOf: (n: number, total: number) => `Tipo de misión ${n} de ${total}`,
+  },
+  types: {
+    hunting: "Caza",
+    slaying: "Matanza",
+    gathering: "Recolección",
+    treasure: "Tesoros",
+  },
+  typeHeadings: {
+    hunting: "Misión de caza",
+    slaying: "Misión de matanza",
+    gathering: "Misión de recolección",
+    treasure: "Misión de tesoros",
   },
   detail: {
     urgent: "¡URGENTE!",
     tabsLabel: (quest: string) => `Datos de ${quest}`,
     tabs: {
       details: "Detalles",
+      monsters: "Monstruos",
       rewards: "Recompensas",
       supplies: "Suministros",
+      map: "Mapa",
     },
     goal: "Objetivo:",
     failure: "Fracaso:",
@@ -42,6 +62,33 @@ export const quests: Messages["quests"] = {
     monsters: "Monstruos:",
     smallMonsters: "Monstruos pequeños:",
     client: "Cliente:",
+  },
+  monsterStats: {
+    hp: "Vida:",
+    attack: "Ataque:",
+    defense: "Defensa:",
+    stagger: "Retroceso:",
+    times: (n: string) => `×${n}`,
+    note: "El ataque y la defensa multiplican el daño que el monstruo causa y recibe, así que una defensa más baja significa que recibe menos. El retroceso multiplica el daño que una parte aguanta antes de hacerlo retroceder.",
+    changesDuringHunt: (monster: string) =>
+      `El ataque y la defensa del ${monster} vuelven a cambiar durante la cacería.`,
+  },
+  areaMap: {
+    loading: "Cargando mapa…",
+    loadError: "No se pudo cargar el mapa.",
+    kinds: {
+      gather: "Recolección",
+      mine: "Minería",
+      bug: "Insectos",
+    },
+    area: (area: number) => (area === 0 ? "Campamento base" : `Zona ${area}`),
+    pointLabel: (area: string, kind: string) => `${area}, ${kind}`,
+    areaHeading: (area: string) => `${area}:`,
+    gathers: "Recolecciones:",
+    gatherRange: (fewest: string, most: string) => `${fewest}–${most}`,
+    neverRunsOut: "No se agota",
+    chance: (percent: string) => `${percent}%`,
+    hint: "Elige un punto para ver lo que da, y vuelve a elegirlo para recorrer los que se solapan.",
   },
   rewards: {
     kinds: {

@@ -19,9 +19,7 @@ expected) but not yet played in game. Star-level tiers, gathering sources,
 `recipe-amounts`, `costs`, `armor` and `gathering` are so far tested only
 against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
 has been written to the EU disc and read back, but not yet played. A PSP
-with custom firmware isn't tested. Run `roundtrip` on a new disc first. In-process EBOOT
-decryption is also tested only on synthetic EBOOTs so far; until it has run
-on a real disc, a PPSSPP dump (`--eboot`) is the proven path.
+with custom firmware isn't tested. Run `roundtrip` on a new disc first.
 
 ## Usage
 
@@ -35,10 +33,9 @@ pnpm gui
 This starts a small server on your computer and opens a page in your
 browser (or prints its address). On it you can:
 
-- enter the paths to your disc and the output (and a decrypted EBOOT, if
-  the disc's can't be decrypted in-process), and check them;
+- enter the paths to your disc and the output, and check them;
 - set every option, with its explanation, or start from a preset
-  (Rewards only, Full, Chaos);
+  (see [Presets](#presets));
 - copy the **settings string** (seed and settings in one line), load one,
   or save and load settings files;
 - preview the spoiler log, randomize, watch the log and search the
@@ -59,7 +56,6 @@ see `apps/randomfu` (its README covers how it works).
 
 ```bash
 pnpm roundtrip --iso /path/to/mhp2g.iso
-pnpm eboot-info --iso /path/to/mhp2g.iso [--eboot dump.bin]   # how the EBOOT decrypts
 pnpm randomize --iso /path/to/mhp2g.iso --out /path/to/random.iso --seed MYSEED
 pnpm settings                       # list every setting with its values and help
 pnpm settings --write my.json       # write every setting to a file to edit
@@ -74,22 +70,20 @@ pnpm settings --write my.json       # write every setting to a file to edit
   back to check it, and writes `random.spoiler.txt` next to the output.
   - `--dry-run` prints the spoiler log without writing an image.
   - `--spoiler <path>` writes the log somewhere else.
-  - `--eboot <path>` / `--pspdecrypt-bin <name>`: only needed if the
-    disc's EBOOT can't be decrypted in-process (see `mhfu-extract unpack`).
-    PPSSPP can dump it: turn on "Dump Decrypted Eboot.bin on game boot" and
-    boot the game once.
+  - `--pspdecrypt-bin <name>`: decrypt with this `pspdecrypt` binary instead
+    of in-process (see `mhfu-extract unpack`).
   - `--force` overwrites an existing output file.
 
 Settings come from these flags, later ones winning:
 
-| Flag                                                          | What it sets                                                                                                                                                                     |
-| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                                     |
-| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                                          |
-| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops, supplies, quest-money, time-limits, deliveries |
-| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                                    |
-| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                              |
-| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                                   |
+| Flag                                                          | What it sets                                                                                                                                                                                                |
+| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                                                                |
+| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                                                                     |
+| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops, shop-prices, carry-limits, supplies, quest-money, time-limits, deliveries |
+| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                                                               |
+| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                                                         |
+| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                                                              |
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
@@ -104,63 +98,101 @@ All of them are defined once, in `src/settings.ts` (`OPTIONS`), which the
 CLI, settings files, settings strings and the page all read: a new option
 added there shows up everywhere.
 
-| Setting                           | Default     | What it does                                                                      |
-| --------------------------------- | ----------- | --------------------------------------------------------------------------------- |
-| `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`)              |
-| `questRewards.enabled`            | on          | Shuffle quest rewards                                                             |
-| `monsterRewards.enabled`          | on          | Shuffle carves                                                                    |
-| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                 |
-| `gathering.enabled`               | off         | Shuffle gathering points                                                          |
-| `gathering.pool`                  | `gathered`  | What spots give: items you could gather, any item of the same `rank`, or `any`    |
-| `gathering.keepItems`             | on          | With a wider pool, every gatherable item stays findable at its point in the game  |
-| `supplies.enabled`                | off         | Randomize supply boxes                                                            |
-| `supplies.pool`                   | `supplies`  | Supply box items, any item of the same `rank`, or `add` random stacks to each box |
-| `supplies.keepEssentials`         | on          | Keep Maps, ballista and cannon ammo and the other quest-only supplies             |
-| `terms.money`                     | off         | Randomize quest fees, rewards and penalties                                       |
-| `terms.moneySpread`               | 0.5         | How far they move                                                                 |
-| `terms.time`                      | off         | Randomize time limits                                                             |
-| `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                |
-| `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                            |
-| `recipes.materials`               | off         | Shuffle crafting and upgrade materials (EBOOT)                                    |
-| `recipes.amounts`                 | off         | Randomize material amounts (EBOOT)                                                |
-| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                          |
-| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                     |
-| `costs.enabled`                   | off         | Randomize crafting costs (EBOOT)                                                  |
-| `costs.spread`                    | 0.5         | How far costs move                                                                |
-| `weapons.enabled`                 | off         | Shuffle weapon progression (EBOOT)                                                |
-| `weapons.mix`                     | `same-type` | Whether a place keeps its weapon type (`any-type` mixes the family)               |
-| `armor.enabled`                   | off         | Shuffle armor progression (EBOOT)                                                 |
-| `armorSkills.enabled`             | off         | Change armor skills (EBOOT)                                                       |
-| `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points, or `randomize`: new trees and points             |
-| `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                |
-| `shops.enabled`                   | off         | Randomize shops                                                                   |
-| `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`               |
-| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                           |
-| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                   |
-| `shops.special`                   | off         | Include the Armor Sphere, jewel and Pokke Ticket shop                             |
-| `shops.countSpread`               | 0           | How much more or fewer items each shop sells                                      |
-| `shops.prices`                    | off         | Randomize prices of what shops sell (EBOOT)                                       |
-| `shops.priceSpread`               | 0.5         | How far prices move                                                               |
-| `shops.stacks`                    | off         | Randomize carry limits of what shops sell (EBOOT)                                 |
-| `shops.stackSpread`               | 0.5         | How far carry limits move                                                         |
-| `questMonsters.species`           | off         | Swap large monsters in quests                                                     |
-| `questMonsters.speciesPool`       | `variants`  | Into one of their `variants`, any monster of the same `rank`, or `any`            |
-| `questMonsters.text`              | on          | Rename swapped monsters in the quest's text                                       |
-| `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                         |
-| `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                       |
-| `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                     |
-| `questMonsters.size`              | off         | Randomize each quest's monster size (its size percentage)                         |
-| `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                      |
-| `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                    |
-| `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                               |
-| `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                  |
-| `monsterStats.hpSpread`           | 0.25        | How far HP moves                                                                  |
-| `monsterStats.size`               | off         | Randomize each monster's base size                                                |
-| `monsterStats.sizeSpread`         | 0.2         | How far size moves (at most 50%)                                                  |
-| `monsterStats.status`             | off         | Randomize poison, paralysis, sleep and KO resistance                              |
-| `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                          |
-| `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                       |
-| `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                 |
+Each option either **shuffles** or **randomizes** (its `action`, which the
+pages and `pnpm settings` show as a tag):
+
+- A shuffle moves what's already in the game to new places: quest rewards,
+  carves, gathering points, supply boxes, recipe materials, the smithy's
+  weapons and armor, armor skills (`armorSkills.mode shuffle`), shop stock,
+  the large monsters in quests, and monsters' weaknesses. Nothing new is
+  made; a weapon keeps its own stats wherever it turns up (randomized or
+  not).
+- A randomizer rolls new values: material amounts, crafting costs, shop
+  prices, carry limits and stock size, quest money and time limits,
+  delivery targets, monster difficulty, size, small monster counts, base HP
+  and status resistance, new armor skills (`armorSkills.mode` `randomize`),
+  and weapons' attack, affinity and element or status values.
+
+| Setting                           | Default     | What it does                                                                           |
+| --------------------------------- | ----------- | -------------------------------------------------------------------------------------- |
+| `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`)                   |
+| `questRewards.enabled`            | on          | Shuffle quest rewards                                                                  |
+| `monsterRewards.enabled`          | on          | Shuffle carves and shiny drops                                                         |
+| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                      |
+| `gathering.enabled`               | off         | Shuffle gathering points                                                               |
+| `gathering.pool`                  | `gathered`  | What spots give: gathering point items, any item of the same `rank`, or `any`          |
+| `gathering.keepItems`             | on          | With a wider pool, every gatherable item stays findable at its point in the game       |
+| `supplies.enabled`                | off         | Shuffle supply boxes                                                                   |
+| `supplies.pool`                   | `supplies`  | Supply box items, any item of the same `rank`, or `add` random stacks to each box      |
+| `supplies.keepEssentials`         | on          | Keep maps, ballista and cannon ammo and the other quest-only supplies                  |
+| `terms.money`                     | off         | Randomize quest money: fees, reward money and penalties                                |
+| `terms.moneySpread`               | 0.5         | How far they move                                                                      |
+| `terms.time`                      | off         | Randomize time limits                                                                  |
+| `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                     |
+| `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                                 |
+| `recipes.materials`               | off         | Shuffle crafting and upgrade materials                                                 |
+| `recipes.amounts`                 | off         | Randomize material amounts                                                             |
+| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                               |
+| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                          |
+| `costs.enabled`                   | off         | Randomize crafting costs                                                               |
+| `costs.spread`                    | 0.5         | How far costs move                                                                     |
+| `weapons.enabled`                 | off         | Shuffle which weapons the smithy makes                                                 |
+| `weapons.mix`                     | `same-type` | Whether a spot keeps its weapon type (`any-type`: any Blademaster or Gunner type)      |
+| `weapons.attack`                  | off         | Randomize each weapon's attack                                                         |
+| `weapons.attackSpread`            | 0.2         | How far it moves                                                                       |
+| `weapons.affinity`                | off         | Randomize each weapon's affinity, in steps of 5%                                       |
+| `weapons.affinitySpread`          | 15          | How many points it can move                                                            |
+| `weapons.element`                 | off         | Randomize element and status values of weapons that have one                           |
+| `weapons.elementSpread`           | 0.3         | How far they move                                                                      |
+| `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                   |
+| `armorSkills.enabled`             | off         | Change armor skills                                                                    |
+| `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`) |
+| `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                     |
+| `shops.enabled`                   | off         | Shuffle shop stock                                                                     |
+| `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`                    |
+| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                                |
+| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                        |
+| `shops.special`                   | off         | Include the Point Exchange (Armor Spheres, jewels, Pokke Tickets)                      |
+| `shops.countSpread`               | 0           | How much more or fewer items each shop sells                                           |
+| `shops.prices`                    | off         | Randomize prices of what shops sell, with or without `shops.enabled`                   |
+| `shops.priceSpread`               | 0.5         | How far prices move                                                                    |
+| `shops.stacks`                    | off         | Randomize carry limits of what shops sell, with or without `shops.enabled`             |
+| `shops.stackSpread`               | 0.5         | How far carry limits move                                                              |
+| `questMonsters.species`           | off         | Shuffle large monsters between quests                                                  |
+| `questMonsters.speciesPool`       | `variants`  | Into one of their `variants`, any monster of the same `rank`, or `any`                 |
+| `questMonsters.text`              | on          | Rename swapped monsters in the quest's text                                            |
+| `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                              |
+| `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                            |
+| `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                          |
+| `questMonsters.size`              | off         | Randomize each quest's monster size (its size percentage)                              |
+| `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                           |
+| `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                         |
+| `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                                    |
+| `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                       |
+| `monsterStats.hpSpread`           | 0.25        | How far HP moves                                                                       |
+| `monsterStats.size`               | off         | Randomize each monster's base size                                                     |
+| `monsterStats.sizeSpread`         | 0.2         | How far size moves (at most 50%)                                                       |
+| `monsterStats.status`             | off         | Randomize poison, paralysis, sleep and KO resistance                                   |
+| `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                               |
+| `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                            |
+| `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                      |
+
+### Presets
+
+Each preset replaces every option and keeps the seed. They're built on
+the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
+them to what's described here. Options not yet tried in game are in no
+preset: monster difficulty, small monster counts, base HP, base size, status
+resistance, weaknesses and weapon stats. Turn those on yourself once you've tried them on
+your disc.
+
+| Preset       | Does                | What it turns on                                                                                                                                                                          |
+| ------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                           |
+| Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills, shop stock, large monsters (into variants)                        |
+| Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, new armor skills |
+| Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled                                              |
+| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills, any item in shops, gathering and supply boxes, wide spreads                   |
 
 ## Shuffles
 
@@ -177,6 +209,7 @@ except `supplies.pool add`, which grows quests into their sector padding
 | `recipe-amounts`  | The same recipe tables                              | Quantities, rescaled and varied (see below)          |
 | `costs`           | Weapon, armor and decoration prices in the EBOOT    | Crafting and upgrade costs, varied in steps of 10z   |
 | `weapons`         | Weapon create and upgrade entries in the EBOOT      | Which weapon each place makes (see below)            |
+| weapon stats      | `WepBMValues` / `WepGunValues` in the EBOOT         | Attack, affinity, element or status (see below)      |
 | `armor`           | Armor create entries in the EBOOT                   | Which piece each place makes (see below)             |
 | `armor-skills`    | `ArmorValues` skill entries in the EBOOT            | Each piece's skill trees and points (see below)      |
 | `shops`           | Shop item lists in `lobby_task.ovl`                 | Which items each shop sells (see below)              |
@@ -241,6 +274,27 @@ Sword to Long Sword, Lance to Gunlance and more), but never between bows
 and bowguns, so that pairing is untested. Weapons from Ancient/Rusted
 shards stay put. It runs before the recipe shuffles, which then shuffle
 the tables it left.
+
+Weapon stats (`weapons.attack`, `weapons.affinity`, `weapons.element`)
+change values in each weapon's own record (`src/shuffles/weapon-stats.ts`),
+which the `weapons` shuffle never touches, so stats go with the weapon
+wherever it ends up, and the two can run in either order. Attack (the raw
+value; the game shows it times its type's class modifier) and element or
+status values are multiplied by a random factor within their spread;
+affinity moves by up to `weapons.affinitySpread` points, in steps of 5.
+Each value is then kept between the lowest and highest that weapons of the
+same type have, from one rarity below to one above, read from your disc; a
+weapon with no other of its type (or, for elements, of its element or
+status) in that window is limited by the spread alone. Only weapons that already have an element or status get a new value, and
+they keep which one; the dual-element weapons (listed in `WepDualAttr`) are
+skipped.
+Sharpness, slots, defense bonus, horn notes, shelling, ammo, rarity and
+price never change. Records with no attack (unused entries) are skipped.
+Affinity's spread and bounds apply to the affinity as shown, including the
+up to 10 points the Blacksmith site adds to positive Blademaster affinity
+for long sharpness, so a weapon crossing to positive affinity can't jump
+further than the spread. Weapon
+stats are so far tested only against the synthetic disc.
 
 `gathering` moves item IDs between the gathering item tables of Village
 and Guild quests of the same tier, like the quest reward shuffle. A pair's
@@ -318,8 +372,9 @@ shop's stock is a list of u16 item IDs ending in 0xFFFF, one list per stage
 of the game, and the game picks one from a table of pointers per shop
 (each ending in a 0 word). On the EU disc the tables are at 0xa7da8: the
 village general store (8 stages), the peddling granny's pools (her table
-also uses two Guild lists), the Guild Hall store (9 stages) and a shop of
-Armor Spheres, jewels and Pokke Tickets. They're found by their shape, from
+also uses two Guild lists), the Guild Hall store (9 stages) and the Point
+Exchange (Armor Spheres, jewels and Pokke Tickets, bought with Pokke
+Points). They're found by their shape, from
 the table holding the general store's list (Herb, Potion, Antidote,
 Whetstone), not by address; `shop-scan` and `shop-lists` are the research
 commands that found them.
@@ -338,8 +393,12 @@ commands that found them.
   only grow into space others free, so growth is scaled back until it
   fits. This refuses to run if that space holds anything but lists and
   padding. Without it, lists stay where they are.
-- **Prices and carry limits** are the item's own (EBOOT item table), so
-  they apply wherever the item is. The buy price field isn't documented:
+- **Prices and carry limits** (`shops.prices`, `shops.stacks`) are the
+  item's own (EBOOT item table), so they apply wherever the item is, and
+  they don't need the stock shuffle: they change for everything the shops
+  sell, which is what they sell now with `shops.enabled` and their own
+  stock without it (the Point Exchange, bought with Pokke Points, only with
+  `shops.special`). The buy price field isn't documented:
   randomfu finds it on the disc as the one field holding the general
   store's prices (Herb 20z, Potion 66z, ...) and checks the carry limit
   byte (+3) against Potion 10 and Whetstone 20, refusing to edit if they

@@ -5,7 +5,7 @@ import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { Edits } from "../src/edits.js";
-import { gatheringYields } from "../src/game/gathering.js";
+import { gatheringYields } from "mhfu-extract/src/quests/gathering.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import {
   deliveryTarget,
@@ -271,8 +271,13 @@ test("quest terms: money and time limits move within their spreads", async () =>
         }
       }
       assert.ok(after.fee <= after.reward, "the fee never exceeds the reward");
-      // The penalty keeps its share of the reward.
-      assert.ok(Math.abs(after.penalty / after.reward - before.penalty / before.reward) < 0.02);
+      // The penalty keeps its share of the reward, give or take rounding both
+      // to 10z (5z each), which moves a small reward's share by more than 2%.
+      const share = (before.penalty / before.reward) * after.reward;
+      assert.ok(
+        Math.abs(after.penalty - share) <= 10,
+        `${id}: penalty ${after.penalty}, share ${share}`,
+      );
       const minutes = after.timeLimit / TICKS_PER_MINUTE;
       assert.ok(Number.isInteger(minutes));
       assert.ok(minutes >= 20 && minutes <= 50, `${id}: ${minutes} min, within the disc's range`);

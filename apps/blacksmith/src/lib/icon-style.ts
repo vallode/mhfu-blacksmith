@@ -54,6 +54,9 @@ const ITEM_MASKS = new Set([
   "leggings",
 ]);
 
+/** Item icons from the disc: type `item-<icon>` (a sprite at /images/item-<icon>.png) and color `item-<index>`. */
+const ITEM_ICON = /^item-\d+$/;
+
 /** Monster categories with a mask at /images/monsters/<type>.png. */
 const MONSTER_MASKS = new Set([
   "bird-wyvern",
@@ -114,6 +117,7 @@ export interface IconStyleOptions {
 }
 
 function tintFor({ rarity, color, active }: IconStyleOptions): string | undefined {
+  if (color && ITEM_ICON.test(color)) return `var(--color-${color})`;
   if (color?.startsWith("note-")) {
     const note = color.slice("note-".length);
     if (NOTE_COLORS.has(note)) return `var(--color-note-${note})`;
@@ -126,7 +130,7 @@ function tintFor({ rarity, color, active }: IconStyleOptions): string | undefine
 }
 
 function maskFor({ type, size }: IconStyleOptions): string | undefined {
-  if (ITEM_MASKS.has(type)) {
+  if (ITEM_ICON.test(type) || ITEM_MASKS.has(type)) {
     return `url("/images/${type}${size === "mini" ? "-mini" : ""}.png")`;
   }
   if (MONSTER_MASKS.has(type)) return `url("/images/monsters/${type}.png")`;
@@ -139,7 +143,7 @@ function maskFor({ type, size }: IconStyleOptions): string | undefined {
  * with the rarity/gem/note colour) and an optional corner badge.
  */
 export function iconStyle(opts: IconStyleOptions): { className: string; style: CSSProperties } {
-  const { element, rank, size, nav } = opts;
+  const { element, rank, size, nav, monster } = opts;
   const mask = maskFor(opts);
   const tint = tintFor(opts);
   // Only one corner badge fits; rank wins over element.
@@ -160,7 +164,16 @@ export function iconStyle(opts: IconStyleOptions): { className: string; style: C
       "relative mr-[6px] flex h-[32px] w-[32px] flex-[0_0_3.2rem]",
       // flex-basis must grow with the box or the row squashes it horizontally
       size === "large" && "h-[52px] w-[52px] flex-[0_0_52px]",
-      mask && "before:icon-mask",
+      // Large monster type icons (36px sprites) are drawn at their own size,
+      // so their pixels scale by whole numbers at every screen density, and
+      // the box shrinks to them so the tint mask (which fills the box) lines
+      // up with the sprite. The margin keeps the 52px slot.
+      size === "large" && monster && "m-[8px] mr-[14px] h-[36px] w-[36px] flex-[0_0_36px]",
+      // The tint multiplies over the sprite alone: isolate makes the icon its
+      // blend group. Without it the group is the nearest stacking context (a
+      // card's body), and Safari, compositing a hovered row for its glow
+      // animation, stops drawing the card's background under it.
+      mask && "isolate before:icon-mask",
       // Tint fill. Nav icons are grey until hovered, unless tinted (active).
       mask && !nav && "before:[background:var(--icon-tint)]",
       mask && nav && "before:bg-[var(--icon-tint,#bdbdbd)] hover:before:bg-white",
@@ -180,7 +193,7 @@ export function iconImgClass({
 }: Pick<IconStyleOptions, "size" | "monster">): string {
   return cn(
     "relative h-[32px] w-[32px] pixelated",
-    size === "large" && "h-[52px] w-[52px]",
-    monster && "p-[4px]",
+    size === "large" && (monster ? "h-[36px] w-[36px]" : "h-[52px] w-[52px]"),
+    monster && size !== "large" && "p-[4px]",
   );
 }

@@ -1,7 +1,10 @@
 import type { Messages } from "../en";
 
 export const monsters: Messages["monsters"] = {
-  noData: "Sin datos",
+  nav: {
+    title: (category: string) => `Monstruos: ${category}`,
+    types: "Tipos de monstruo",
+  },
   detail: {
     notFound: "No encontrado.",
     size: "Tamaño:",
@@ -13,7 +16,14 @@ export const monsters: Messages["monsters"] = {
     tabs: {
       hitzones: "Zonas débiles",
       quests: "Misiones",
+      spawns: "Dónde abunda",
     },
+  },
+  spawns: {
+    count: (total: string) => `×${total}`,
+    more: (count: string, total: string) => `+${count} más con ×${total}`,
+    // Short: it sits beside a quest title at phone width.
+    keepsSpawning: "reaparece",
   },
   hitzones: {
     part: "Parte",

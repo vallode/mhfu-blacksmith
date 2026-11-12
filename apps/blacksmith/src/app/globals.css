@@ -52,6 +52,10 @@
   --text-small: 1.6rem;
   --text-fine: 1.4rem;
 
+  /* Height of the phone tab bar (AppShell), so fixed things above the page
+     bottom (toasts) clear it: bottom-[calc(var(--spacing-tabbar)+1.4rem)]. */
+  --spacing-tabbar: 8.1rem;
+
   /* UI palette */
   --color-accent: #037703;
   --color-hr: #6e905f;
@@ -66,6 +70,19 @@
   --color-unavailable: #808080; /* greyed-out entries: ammo you cannot load, etc. */
   --color-parchment: #c3be9f; /* menu labels and toast titles */
   --color-selector: rgb(96 102 94 / 0.78); /* flat grey bar of in-game selectors and menu headers */
+
+  /* Item icon tints: the palette in data/items.json, by index, from the disc
+     (scripts/validate.ts checks they match). */
+  --color-item-0: #ffffff;
+  --color-item-1: #ff5d5d;
+  --color-item-2: #73cb8d;
+  --color-item-3: #96b5fd;
+  --color-item-4: #ffd35d;
+  --color-item-5: #b895c6;
+  --color-item-6: #9bdff0;
+  --color-item-7: #ff985d;
+  --color-item-8: #ed93a4;
+  --color-item-10: #a0a0a0;
 
   /* Item rarity tints (rarities 1–3 are untinted) */
   --color-rarity-4: #52f152;
@@ -146,6 +163,30 @@
     }
   }
 
+  /* The phone menu drawer (AppShell) slides in from the left */
+  --animate-drawer-in: drawer-in 160ms ease-out;
+
+  /* The phone detail sheet (SplitPage) slides up over the list */
+  --animate-sheet-in: sheet-in 180ms ease-out;
+
+  @keyframes sheet-in {
+    from {
+      transform: translateY(100%);
+    }
+    to {
+      transform: translateY(0);
+    }
+  }
+
+  @keyframes drawer-in {
+    from {
+      transform: translateX(-100%);
+    }
+    to {
+      transform: translateX(0);
+    }
+  }
+
   /* Loading animation (Loading): hidden for a moment, so quick loads never
      show it, then fades in */
   --animate-loading-in: loading-in 150ms ease-out 250ms both;
@@ -169,9 +210,18 @@
 
 /* ─── Custom variants ────────────────────────────────────────────────────────── */
 
-/* Phone layout: `mobile:flex-col` applies at 600px wide and below, matching
-   the `@media screen and (max-width: 600px)` queries in the CSS modules. */
-@custom-variant mobile (@media screen and (max-width: 600px));
+/* Breakpoints. The layout has three widths:
+   - mobile (below 900px: phones and portrait tablets): one pane at a time,
+     with the tab bar along the bottom. `mobile:flex-col`. The bare media
+     queries below (body, .split-page) and PHONE in src/lib/media.ts use the
+     same width; change them together.
+   - compact (900px to 1199px: landscape tablets and small laptops): two
+     panes, with the sidebar an icon rail that opens over the page.
+   - wide (1200px and up): the full sidebar, which the user can collapse.
+   Phones proper (600px and below) also set text-main a step smaller. */
+@custom-variant mobile (@media screen and (max-width: 899px));
+@custom-variant compact (@media screen and (min-width: 900px) and (max-width: 1199px));
+@custom-variant wide (@media screen and (min-width: 1200px));
 
 /* ─── Custom utilities ─────────────────────────────────────────────────────────
    Effects that are awkward as utility class strings. They work with variants
@@ -241,17 +291,35 @@
   image-rendering: pixelated;
 }
 
-/* Decorative in-game 9-slice frame used by cards and toasts */
+/* Decorative in-game 9-slice frame used by cards and toasts.
+   Each frame is drawn twice: as the element's border image, with its fill,
+   under the content; and, with frame-cover, its opaque pixels again
+   (--frame-cover) over the content, so whatever runs out to the edge (a
+   highlighted row, a scrolled list) passes under the frame rather than over
+   it. --card-inset-* is how deep the transparent notches around the frame's
+   outer edge go, on each side (with a unit, 0px not 0: card-body subtracts
+   it in calc()): Card's body sits there (card-body), so nothing shows
+   outside the frame.
+   Every frame's image is the game's art at 4x, and every frame is drawn at
+   3x (a 6px slice is 24 image pixels, drawn 18px wide). This one: 6px slices,
+   copper squares in the corners. */
 @utility card-frame {
   border-image-outset: 0;
   border-image-repeat: round round;
-  border-image-slice: 84 88 80 88 fill;
-  border-image-source: url("data:image/png;base64,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");
-  border-image-width: 21px 22px 20px 22px;
+  border-image-slice: 24 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACrUlEQVR42u3dMW7UQBQGYBsBErKUBppIKDRIdOwhcoA9CW0OkZaT7AFyiNAh0SRCSgOlFQkK0yYG1jv7ZuL1zvd1QZudYZmn+WftZ9qmaYamrDbx9XPPx/gVrYdnDVRMAaAAoFbPx3+wuTgPveH68irrBOeej/GPez3YARCBQAGAM0B6htshkw0H9ncejH8840fXpx0AEQgUADgD5Bf93tb4dY+f+zqCHQAUACgAmD4DRDPcp823ax8zAauS69MOgAgECgAq1DaJ92Z0Xffo577vt77+9Oz0y8OfX7x6OfjY+Z/f978e9Qzf3d59zLke7QCgAEABwD+f0TJsy1iv37653pbZZHye8owwXm8/v/9YTZwJWjsAKABQADgDTEo6Exx7xjT/w5Ka+e0AoABAAUB6T/A4Y53cnzxp5oxm3PHvR18fHb+2+ef+90+998cOAAoAFADE7wUqnfGipjJq6ni536/2+efmXiAQgUABwKTws0Fzfy88/v3U77FzZ2LzLzv/udebHQARCBQAVEg/AIumHwBEIFAAkKy6foC5mX/e8fUDgAIABQDJqu8HyJ1xzT82/yj9ACACgQKASYvvB0jNnKWfq2P+y7oOZAdABAIFABWqrh9gKkPmfpam+ZelHwBEIFAAkGxx/QBRU/Mz/2Wd4fQDgAIABQDJivcD1Pb/1pI346euF/0AIAKBAoCdzgBFM/nZh3eeHcrebr/erOwAoABAAUBWf90LtLk4D73h+vLKp0oxudenHQARCBQAOAOkZ/qpTPZ5/X7lY2b/zH5TdH3aARCBQAGAM0CJDBe7LjD3dQnjH/d1ITsAIhAoAHAGyJ8Bm92eP/pQ6Z7h1vgHPX7SfKLr0w6ACAQKACqUvSd4/Byhvu+dAYy/9xmg67phtJ7sAKAAQAFAzB8QH5B6hmOezQAAAABJRU5ErkJggg==");
+  border-image-width: var(--frame-width);
   border-style: solid;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
+  --frame-width: 18px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAAB80lEQVR42u3cwW3CMBQGYKfi5rEYgG0yBNswAGNxdq8NVDKObULi77u1quIU+dd7L2CmEEIKfU2Ff7/1/Vh/oP3wE2BgAoAAwKhOz7+4zeeqC16u96Y3uPX9WP/Y+0EFQAsEAgBmgPIe7o2eLH3Z/5ysf5z1a/enCoAWCAQAzADt1T63tf7Y67d+H0EFAAEAAYD8DNCgh5u8zFRIPfenCoAWCAQABjSFws9mxBgXPz8ej3fWgC4zwIr9qAKAAIAAYAbI9Fz/9Fh6er5WjDFlZoJJBQABAAHADJBlJuAwPb8KAAIAAgDlM8DKa0AvVftTBUALBAIAZoDXnspzf/bEZ4FACwQCAAIAAgACAAIAC84DsGvOA4AWCAQA+s8AK68BvTgPAFogEAConwE892e3nAcALRAIAAgACAAIAAgALDgPwK45DwBaIBAA6D8DrLwG9OI8AGiBQACgfgbw3J/dch4AtEAgAPDWDJA+sAas1XV/qgBogUAAYECn51/c5nPVBS/Xu1eVblrvTxUALRAIAJgBynv6XE92m8/Jy0yvmbJ2f6oAaIFAAMAM8PkeLmfr9yWsf+z3hVQAtEAgAGAGaN8DhvLzAFufT7D+tusX3U/t/lQB0AKBAMCAmp8JbvA9QnpwM8Df/ZT7nh8VAAQABADK/AKZ86s1a7K0NAAAAABJRU5ErkJggg==");
+  --frame-cover-slice: 24;
+  --card-inset-t: 6px;
+  --card-inset-r: 6px;
+  --card-inset-b: 6px;
+  --card-inset-l: 6px;
 }
 
 /* Alternative in-game frame: red and teal bands, copper corner squares. 6px slices drawn at 3x. */
@@ -260,11 +328,18 @@
   border-image-repeat: round round;
   border-image-slice: 24 fill;
   border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACXUlEQVR42u3bv0ojURQH4MkS2GKELP4Ji9uk2doXECws0iyID7Bsva2FlWWqFGm3Fh9ABJsUFoIv4BvYrIWrhWBqt54x5HInd9DJfF836kS43B/3nMmcTpZlr1mNNofDDKp6nE5r/fxPlpg2EwAEANqqW/7BxfH+Uh94ML4qXH/uf7XKJJN6fzoBUAKBAIAeIFwzLVuTnbw8Lfz9aG3D/e6vXNPH7k8nAEogEAAQABAAEAAQAFhxnaw0D5D6XYs/hz+sMpX9Pr/M6tyfTgCUQCAAoAcIy/N84e9ns1nh+mhv1ypT2eT6Zqn95wQAAQABgLk9QNnCnqC/Pbi1bHxUD/d3OzF73gmAEggEAPQAcxV6gvJz2Ly3pSfg3cye/xVq/jnfA3ScACAAIABQ0I29oVxj5b0tq8j79QCR7/44AUAAQAAg/C6Q5/40qieI/F7ACYASCAQAWij4PYDn/jSqBzATDAIAAgAh5gFods1vHgCUQCAAEMs8AM3uAcwDgACAAEAs8wCsVk9gHgCUQCAAEGIegNXqAcwDgACAAECIeQCaXfObBwAlEAgAxDIPQLN7APMAIAAgABArOA9Q1t8eeO7Ph/Vwf7cTs+edACiBQACgpT3Aa53/4Ghv1ypT2eT6xgkAAgACAGm9eRfo4nh/qQ88GF8Vrr+vf7HKJJN6fzoBUAKBAIAeIFwzxdZko7WNwvXJy1PU35e5v933p96fTgCUQCAAIAAgACAAIACw4t7MA6R+1+Lbz19Wmcr+np1mde5PJwBKIBAA0AOktzkcWmUqe5xOnQAgACAAkNZ/oQPJgDMx8lUAAAAASUVORK5CYII=");
-  border-image-width: 18px;
+  border-image-width: var(--frame-width);
   border-style: solid;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
+  --frame-width: 18px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACM0lEQVR42u3bv0rDUBQH4FQKDnEQFRGcfQvBwaGLUHwAcXZ1cHJ0cnB1Fh9ABJcOHQRfxa1uzVznpmLM/YPRfN+W1kS43B/nnLZ3UBTFoshoZzQqINRsMsn6/DVLTJ8JAAIAfTWsv/B8dRz1wPHtdOl6fXfPKpNM6v2pAqAFAgEAM0BzzxTbk13PP759/2Zj2/3uD+7p2+5PFQAtEAgACAAIAAgACAD8c4Oidh4g9W8t7k9PrDLBLp5eipz7UwVACwQCAGaAZmVZfvt+VVVL15dHh1aZYHevb1H7TwUAAQABgC9ngLpFwD3QFa32rwqAFggEAMwAzT1V/XPYqqrMBPyasiwXtf3Yao+rAGiBQADADNA8AwQ+A3KJ2p8qAFogEAAwA6z2VD735y9p+72ACoAWCAQAzACrM8AP74GucB4AtEAgABDfz/tegM5yHgC0QCAAkH8GCHwG5OI8AGiBQAAgfgbwuT9/lvMAoAUCAYD4GeCH90BXOA8AWiAQAIjv530vQGc5DwBaIBAAyD8DBD4DcnEeALRAIAAQPwPo+enNTKACoAUCAYCezgCLnP/g8ujQKhPs7vVNBQABAAGAtIb1F56vjqMeOL6dLl0fbG1aZZJJvT9VALRAIABgBmjumdr2ZDcb20vX1/OPVn9f5/5+3596f6oAaIFAAEAAQABAAEAA4J9bOQ+Q+rcW+2fnVplg748PRc79qQKgBQIBADNAejujkVUm2GwyUQFAAEAAIK1P6uWv0BH5c0QAAAAASUVORK5CYII=");
+  --frame-cover-slice: 24;
+  --card-inset-t: 0px;
+  --card-inset-r: 6px;
+  --card-inset-b: 0px;
+  --card-inset-l: 6px;
 }
 
 /* Alternative in-game frame: rows of green squares. 8px slices drawn at 3x. */
@@ -273,11 +348,18 @@
   border-image-repeat: round round;
   border-image-slice: 32 fill;
   border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABgCAYAAADVenpJAAABw0lEQVR42u3dvU0DQRCG4T1EdgERBER04B6cIVGFG0E04iqQyOiBDogIICK4+MiN7jDM/sjs84a2rE9avZqZHet0Q0ppTuiWM0dAABAAvXJ++MH9065o4MPtfvV7+XXzVQAtAASAGWCJx/1zKOButw39Xn7ZfBVACwABYAbI1VOiPUt+3XwVQAsAAUAAEAAEAAFgD9Dyniu/br4KoAWAADADLBH9PzuK/K0KAAKAACjBkDI/GziOo1MtyDRNKgAIAAIg1x5g+OVvVmeG8eLyxbEWnQE2R8x1KgAIAALgmD1AlHltD2AmCPb8z4/ND3uAQQUAAUAA/HEPkPueejgDOOWM56kCgAAgABruAdz7/9FeQAXQAkAA2AO49/e5F1ABtAAQAPYAAewFTujerwKAACAAcu0B7AVO696vAoAAIAACd8jVZwOvrm/c+wvy/vbq2UBoASAAcs0As2NQAUAAEADd8e2/gNrvr5ffNl8F0AJAAJgBlij9/nr5bfNVAC0ABIAZIFdPKf1ePfl581UALQAEAAFAABAABIA9QMt7rvy6+SqAFgACwAywROn318tvm68CaAEgALrFs4EqAAgAAqBPvgC9cJunID7JfgAAAABJRU5ErkJggg==");
-  border-image-width: 24px;
+  border-image-width: var(--frame-width);
   border-style: solid;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
+  --frame-width: 24px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABgCAYAAADVenpJAAABnUlEQVR42u3dMWoDMRRFUU1wp125C2QV3ojxRrwKQ7rsSvWktxkbI31psM4tE5IPw+W9LwVnlpTSmjAtXx4BAUAAzMrh/gvn31PowMv39en3ze87XwKoABAAdoAtbte/qgE/p2PVz5sfO18CqAAQAHaAVp1S21nm950vAVQACAACgAAgAAgA9wAjz7nm950vAVQACAA7wBa1f8+uxfyjBAABQABEsKTGnw3MOXuqgZRSJAAIAAKg1Q7wLmvA78Sg5y8BVAAIADtAq066vwcopdgJKsg5ry/uARYJAAKAANjDDuBeYN/nfgkAAoAAqOgP5/4PuheQACoABIAdwLl/znsBCaACQADYAVp1knuBfZ/7JQAIAAIgagdwL7Dvc78EAAFAAFT0h87/oJ1AAqgAEABT7wCrxyABQAAQANPx8L+Ce7+/3vyx8yWACgABYAfYIvr99eaPnS8BVAAIADtAq06Jfq+e+W3nSwAVAAKAACAACAACwD3AyHOu+X3nSwAVAALADrBF9PvrzR87XwKoABAA0+KzgRIABAABMCf/20+JxVdxCuAAAAAASUVORK5CYII=");
+  --frame-cover-slice: 32;
+  --card-inset-t: 0px;
+  --card-inset-r: 12px;
+  --card-inset-b: 0px;
+  --card-inset-l: 12px;
 }
 
 /* Alternative in-game frame: blue chain-link bands, patterned fill. 6px slices drawn at 3x. */
@@ -286,11 +368,106 @@
   border-image-repeat: round round;
   border-image-slice: 24 fill;
   border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACx0lEQVR42u3dP2obQRQH4FWSwqAiYEOKgEyagDsdwifwCXKOgEtDzpET+AQ+hDtDmiBBikDSCdwEpc1uFI1fZsba1Xxf5z9oRmIe83u7O/as67ptV9cs+PuHno/xG1oPLzpomAJAAUCrXg2/cXl9m/WCdzdXRSd46PkY/7jXgx0AEQgUAOgB4hnuCZlsO7L3vDX+8Yyfuz7tAIhAoABAD1Be7nVb47c9fun7CHYAUACgACDdA+RmuC+fP977mMmwrLk+7QCIQKAAoEGzLvhsxnw+73292Wz2/v6bt+96PcDJyxOfOv/0+Oux9/X3b1+XJdejHQAUACgA2Pk3Wvb2BOeLi/t9mU3G5zl7hOF6W60flpE1bwdABAIFAHqAnXo9wfC669npYtLP+qQy5dh7nKnPP9ePn+te5t9xH2BmBwAFAAoAesJngocZa/66bsYcZtih6Hip10v9PDeDtz7/0ush+uyPHQAUACgASD8LdOjr/tFMWztjl3498y8rel/ADoAIBAoAGpS8DzDMUGen+zNi7cxX+1kX8z/s/KM9yXA8Z4JBAYACgKTmzwMwbc4DgAgECgDCRnce4NjOuDpzXHc+zgOAAgAFAGHOAwTHi2Zg83ceAEQgUAAwMpM7D1A7Iz93xm1t/qV7QucBQAQCBQBh/j+AZ3UmzXkAEIFAAUDY6P8/QG2p+Y79/Ux9/rk9j/MAoABAAUBY8jzA0PniInTd/9ivQ1M340fXy2r9sIyseTsAIhAoAGi0B9jWHCDaM0Aw09sBQAGAAoCYv54Fury+zXrBu5srnyrVlF6fdgBEIFAAoAeIZ/pUJnv/4dPSx8z/WiXWX+76tAMgAoECAD1Aebn3BQ59X8L4x31fyA6ACAQKAPQA5TNg97S/P/qnbeX3PDP+qMcPzSd3fdoBEIFAAUCDqp8J1gMYf8zrwQ6ACAQKABr0G1r3W4ybcRxkAAAAAElFTkSuQmCC");
-  border-image-width: 18px;
+  border-image-width: var(--frame-width);
   border-style: solid;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
+  --frame-width: 18px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACBklEQVR42u3bwXGDMBAFUJHxjbJcgfvh6H6owGVxVs7BmQGxCLD13i2eGBGPdvavibqUUk51dYW/f/b9WL+h/fCToGEKAAUArbrNX7gPY+iCr+dj1xs8+36s/937QQdABAIFAGaA8gy3IpPli/3N2frfs350f+oAiECgAMAMsL/o97bWb3v9vZ8j6ACgAEABwPIMsEOG63zMBOSa+1MHQAQCBQAN6lLh/2b0ff/n52ma1qwBVWaADftRBwAFAAoAM0Bh5pLp+eSZYb5/dQBEIFAAYAZYzlT/fO9qJuA0fd/n2X4s2uM6ACIQKAAwAyzPABuvAbWE9qcOgAgECgDMAO+Zyvf+fJLS5wI6ACIQKAAwA7zPACvfA1fhPACIQKAAIJ7nPRfgspwHABEIFADUnwE2XgNqcR4ARCBQABCfAXzvz8dyHgBEIFAAEJ8BVr4HrsJ5ABCBQAFAPM97LsBlOQ8AIhAoAKg/A2y8BtTiPACIQKAAID4DyPw0MxPoAIhAoACg0RkgH7AG1Mr0OgAoAFAAUOY2f+E+jKELvp4PnyrV7L0/dQBEIFAAYAYoz/RLmew+jNnHTK2ZMro/dQBEIFAAYAY4PsMtOfu5hPW/+7mQDoAIBAoAzAD7Z8BUfh7g7PMJ1j93/aL7ie5PHQARCBQANOiKZ4JlcDPAYfejAyACgQKABv0C9kGdS66+2xoAAAAASUVORK5CYII=");
+  --frame-cover-slice: 24;
+  --card-inset-t: 6px;
+  --card-inset-r: 6px;
+  --card-inset-b: 6px;
+  --card-inset-l: 6px;
+}
+
+/* The frame's opaque pixels again, over the element's content (see
+   card-frame). The element must be positioned and must not scroll itself, or
+   this would scroll away with the content: Card scrolls an inner body. */
+@utility frame-cover {
+  &::after {
+    /* Longhands, like the frame's own: Safari doesn't reliably draw a
+       border-image shorthand built from var()s. */
+    border-image-outset: 0;
+    border-image-repeat: round;
+    border-image-slice: var(--frame-cover-slice);
+    border-image-source: var(--frame-cover);
+    border-image-width: var(--frame-width);
+    border-style: solid;
+    content: "";
+    image-rendering: -webkit-optimize-contrast;
+    image-rendering: crisp-edges;
+    image-rendering: pixelated;
+    inset: 0;
+    pointer-events: none;
+    position: absolute;
+    /* Its own compositing layer, ordered by z-index: Safari on macOS gives a
+       scrolling body a layer of its own, which can otherwise draw over an
+       overlay painted into the card's layer. */
+    will-change: transform;
+    z-index: 1;
+  }
+}
+
+/* Card's body: at the frame's outline (--card-inset-*), with its padding
+   counted from the card's outer edge (card-p-*, card-px-*, card-py-*,
+   card-pl-*, card-pr-*; 2.6rem by 2rem by default) less that inset. A
+   padding smaller than the inset computes to 0: calc() in padding is clamped
+   at 0, so the content starts at the outline. */
+@utility card-body {
+  margin: var(--card-inset-t) var(--card-inset-r) var(--card-inset-b) var(--card-inset-l);
+  padding: calc(var(--card-py, var(--card-p, 2.6rem)) - var(--card-inset-t))
+    calc(var(--card-pr, var(--card-px, var(--card-p, 2rem))) - var(--card-inset-r))
+    calc(var(--card-py, var(--card-p, 2.6rem)) - var(--card-inset-b))
+    calc(var(--card-pl, var(--card-px, var(--card-p, 2rem))) - var(--card-inset-l));
+}
+
+/* Not inherited, so a card nested in another's body takes its own defaults. */
+@property --card-p {
+  syntax: "*";
+  inherits: false;
+}
+@property --card-px {
+  syntax: "*";
+  inherits: false;
+}
+@property --card-py {
+  syntax: "*";
+  inherits: false;
+}
+@property --card-pl {
+  syntax: "*";
+  inherits: false;
+}
+@property --card-pr {
+  syntax: "*";
+  inherits: false;
+}
+
+@utility card-p-* {
+  --card-p: calc(var(--spacing) * --value(integer));
+  --card-p: --value([length]);
+}
+
+@utility card-px-* {
+  --card-px: calc(var(--spacing) * --value(integer));
+  --card-px: --value([length]);
+}
+
+@utility card-py-* {
+  --card-py: calc(var(--spacing) * --value(integer));
+  --card-py: --value([length]);
+}
+
+@utility card-pl-* {
+  --card-pl: calc(var(--spacing) * --value(integer));
+  --card-pl: --value([length]);
+}
+
+@utility card-pr-* {
+  --card-pr: calc(var(--spacing) * --value(integer));
+  --card-pr: --value([length]);
 }
 
 /* ─── Typography ─────────────────────────────────────────────────────────────── */
@@ -345,7 +522,7 @@ body {
     z-index: -1;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 899px) {
     height: auto;
     min-height: 100%;
   }
@@ -485,7 +662,7 @@ img {
     min-width: 0;
   }
 
-  @media screen and (max-width: 600px) {
+  @media screen and (max-width: 899px) {
     flex-direction: column;
   }
 }

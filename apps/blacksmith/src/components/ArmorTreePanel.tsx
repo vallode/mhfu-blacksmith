@@ -7,6 +7,7 @@
  */
 import { useRouter } from "next/navigation";
 import Card from "./Card";
+import CardBox from "./CardBox";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "./SelectorBar";
 import { ARMOR_RANKS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
 import { prefetchBundle } from "@/lib/client-data";
@@ -34,7 +35,7 @@ export default function ArmorTreePanel({ slot, rank, children }: Props) {
   };
 
   return (
-    <div data-tree-panel className="relative z-2 flex min-h-0 min-w-0 flex-1 flex-col">
+    <CardBox data-tree-panel>
       <Card variant="weapon-tree">
         {children}
         {/* Room to scroll the last rows clear of the rank bar. flex-none: the
@@ -48,6 +49,6 @@ export default function ArmorTreePanel({ slot, rank, children }: Props) {
         nextLabel={tt.nextRank}
         onStep={step}
       />
-    </div>
+    </CardBox>
   );
 }

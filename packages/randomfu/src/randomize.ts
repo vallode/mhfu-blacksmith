@@ -21,14 +21,22 @@ import {
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import { median, type ShuffleReport } from "./shuffles/shuffle.js";
-import { findShops, locateItemTable, randomizeShops } from "./shuffles/shops.js";
+import { findShops } from "mhfu-extract/src/shops/shops.js";
+import {
+  itemsOnSale,
+  locateItemTable,
+  randomizeShopPrices,
+  randomizeShops,
+} from "./shuffles/shops.js";
 import { tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
+import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stats.js";
 import {
   collectQuestMonsters,
+  multiplierSets,
   randomizeDifficulty,
   randomizeQuestSize,
   randomizeSmallCounts,
@@ -120,6 +128,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
 
   // Monster swaps first: carves are found where their monsters now are.
   const questMonsters = collectQuestMonsters(game.quests);
+  const setOf = multiplierSets(game.gameTask.ovl);
   let questsAfter = game.quests.map((q) => q.parsed);
   if (settings["questMonsters.species"]) {
     const result = swapSpecies(
@@ -128,6 +137,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       rng.fork("monster-species"),
       edits,
       game.quests,
+      setOf,
       game.boards,
     );
     reports.push(result.report);
@@ -146,6 +156,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         },
         rng.fork("monster-difficulty"),
         edits,
+        setOf,
       ),
     );
   }
@@ -334,6 +345,28 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     );
   }
 
+  // Stats are in each weapon's own record, which the weapons shuffle never
+  // touches, so they go with the weapon and the order doesn't matter.
+  const weaponSpreads = {
+    attack: settings["weapons.attack"] ? settings["weapons.attackSpread"] : null,
+    affinity: settings["weapons.affinity"] ? settings["weapons.affinitySpread"] : null,
+    element: settings["weapons.element"] ? settings["weapons.elementSpread"] : null,
+  };
+  if (Object.values(weaponSpreads).some((v) => v !== null)) {
+    reports.push(
+      randomizeWeaponStats(
+        collectWeaponStats(game.eboot!, game.resolver),
+        weaponSpreads,
+        {
+          attack: rng.fork("weapon-attack"),
+          affinity: rng.fork("weapon-affinity"),
+          element: rng.fork("weapon-element"),
+        },
+        edits,
+      ),
+    );
+  }
+
   // Armor only changes which piece each create entry makes, so the recipe
   // shuffles' spoiler names the new pieces.
   if (settings["armor.enabled"]) {
@@ -380,35 +413,47 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     }
   }
 
-  if (settings["shops.enabled"]) {
-    const prices = settings["shops.prices"];
-    const stacks = settings["shops.stacks"];
-    reports.push(
-      randomizeShops(
-        findShops(game.lobbyTask.ovl),
+  const prices = settings["shops.prices"];
+  const stacks = settings["shops.stacks"];
+  if (settings["shops.enabled"] || prices || stacks) {
+    const shops = findShops(game.lobbyTask.ovl);
+    const items = shopItemTable(game, prices || stacks);
+    // Prices are the item's own, so they need no stock shuffle: without
+    // one, they go to what the shops sell anyway.
+    let sold = itemsOnSale(shops);
+    if (settings["shops.enabled"]) {
+      const stock = randomizeShops(
+        shops,
         {
           pool: settings["shops.pool"],
           mix: settings["shops.mix"],
           keepEssentials: settings["shops.keepEssentials"],
           special: settings["shops.special"],
           countSpread: settings["shops.countSpread"],
-          priceSpread: prices ? settings["shops.priceSpread"] : null,
-          stackSpread: stacks ? settings["shops.stackSpread"] : null,
         },
         {
           bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
           allItems: sellableItems(),
-          items: shopItemTable(game, prices || stacks),
+          canPrice: items !== null,
         },
-        {
-          stock: rng.fork("shops"),
-          prices: rng.fork("shop-prices"),
-          stacks: rng.fork("shop-stacks"),
-        },
+        rng.fork("shops"),
         edits,
         game.lobbyTask,
-      ),
+      );
+      reports.push(stock.report);
+      sold = stock.sold;
+    }
+    const report = randomizeShopPrices(
+      sold,
+      {
+        priceSpread: prices ? settings["shops.priceSpread"] : null,
+        stackSpread: stacks ? settings["shops.stackSpread"] : null,
+      },
+      items,
+      { prices: rng.fork("shop-prices"), stacks: rng.fork("shop-stacks") },
+      edits,
     );
+    if (report) reports.push(report);
   }
 
   if (settings["costs.enabled"]) {

@@ -4,15 +4,24 @@
  */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
-import { checkCraft, checkCreate, checkUpgrade, type CraftCheck } from "../src/lib/hunter-progress";
+import {
+  attachedDecorationCounts,
+  checkCraft,
+  checkCreate,
+  checkDecoration,
+  checkUpgrade,
+  type CraftCheck,
+} from "../src/lib/hunter-progress";
 import {
   cycleTreeFilter,
   filterTree,
   matchesTreeFilter,
+  rowStatus,
+  treeRowKey,
   type ProgressLookups,
   type TreeFilterId,
 } from "../src/lib/tree-filter";
-import type { CompactWeapon, Dictionaries } from "../src/lib/schema";
+import type { CompactDecoration, CompactWeapon, Dictionaries } from "../src/lib/schema";
 import type { WeaponTreeNode } from "../src/lib/types";
 
 const dict = {
@@ -310,10 +319,122 @@ describe("tree filter", () => {
     assert.equal(rows.get("root")?.match, true);
   });
 
+  test("an alias row has its own status, and its weapon counts once", () => {
+    // m upgrades from both p (not owned) and q (owned); its branch is under p.
+    const merged: WeaponTreeNode[] = [
+      {
+        slug: "p",
+        name: "P",
+        type: "great-sword",
+        rarity: 1,
+        children: [{ slug: "m", name: "M", type: "great-sword", rarity: 2 }],
+      },
+      {
+        slug: "q",
+        name: "Q",
+        type: "great-sword",
+        rarity: 1,
+        children: [{ slug: "m", name: "M", type: "great-sword", rarity: 2, alias: true }],
+      },
+    ];
+    const lookups: ProgressLookups = {
+      active: true,
+      isOwned: (href) => href === "/blacksmith/great-sword/q/",
+      craftCheck: (_type, slug, parentOwned) =>
+        slug === "m" && parentOwned ? ready : { status: "unknown" },
+    };
+    const { rows, matched, total } = filterTree(
+      merged,
+      "great-sword",
+      "/blacksmith/great-sword/",
+      lookups,
+      "craftable",
+    );
+    const first = rows.get(treeRowKey(merged[0].children![0], "/blacksmith/great-sword/p/"));
+    const alias = rows.get(treeRowKey(merged[1].children![0], "/blacksmith/great-sword/q/"));
+    // Only the upgrade from the owned parent, under the alias, is ready.
+    assert.equal(first?.match, false);
+    assert.equal(alias?.match, true);
+    assert.equal(total, 3);
+    assert.equal(matched, 1);
+  });
+
   test("cycles in order and wraps around", () => {
     const order: TreeFilterId[] = ["all"];
     for (let i = 0; i < 5; i++) order.push(cycleTreeFilter(order[order.length - 1], 1));
     assert.deepEqual(order, ["all", "owned", "not-owned", "craftable", "within-one", "all"]);
     assert.equal(cycleTreeFilter("all", -1), "within-one");
+  });
+});
+
+describe("decorations", () => {
+  const jewel = (cm: CompactDecoration["cm"], am?: CompactDecoration["am"]): CompactDecoration => ({
+    n: "Test Jewel",
+    s: "test-jewel",
+    cc: 200,
+    cm,
+    ...(am && { am }),
+  });
+
+  test("checkDecoration takes whichever recipe is closer", () => {
+    const counts = new Map([[12, 4]]);
+    const check = checkDecoration(dict, materials, jewel([[0, 1]], [[2, 4]]), counts, 500);
+    assert.equal(check.status, "ready");
+    assert.deepEqual(check.status === "ready" && check.materials, [
+      { name: "Monster Bone S", need: 4, have: 4 },
+    ]);
+    assert.deepEqual(
+      checkDecoration(dict, materials, jewel([[0, 1]]), counts, 500),
+      checkCreate(dict, materials, { n: "", s: "", cm: [[0, 1]], cc: 200 }, counts, 500),
+    );
+  });
+
+  test("attachedDecorationCounts counts jewels in every piece of equipment", () => {
+    const save = {
+      equipment: [
+        { type: 1, id: 1, decorations: [990, 990] },
+        { type: 2, id: 2, decorations: [990, 951] },
+        { type: 3, id: 3 },
+      ],
+    } as Parameters<typeof attachedDecorationCounts>[0];
+    assert.deepEqual(
+      attachedDecorationCounts(save),
+      new Map([
+        [990, 3],
+        [951, 1],
+      ]),
+    );
+    assert.equal(attachedDecorationCounts(null), null);
+  });
+
+  test("a jewel row gets a craft check even when owned", () => {
+    const ready: CraftCheck = {
+      status: "ready",
+      via: "create",
+      cost: 0,
+      materials: [],
+      missing: 0,
+    };
+    const asked: string[] = [];
+    const lookups: ProgressLookups = {
+      active: true,
+      isOwned: () => true,
+      craftCheck: (type, slug) => {
+        asked.push(`${type}/${slug}`);
+        return ready;
+      },
+    };
+    const node: WeaponTreeNode = {
+      slug: "attack-jewel",
+      type: "decoration",
+      name: "Attack Jewel",
+      rarity: 4,
+    };
+    const status = rowStatus(node, "decoration", "/decorations/", undefined, lookups);
+    assert.equal(status.href, "/decorations/attack-jewel/");
+    assert.equal(status.owned, true);
+    assert.equal(status.craft, ready);
+    assert.deepEqual(asked, ["decoration/attack-jewel"]);
+    assert.ok(matchesTreeFilter("craftable", status));
   });
 });

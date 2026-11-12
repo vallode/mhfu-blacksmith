@@ -56,13 +56,17 @@ export const TABLE_COUNTS = {
   sharpnessEntries: 40,
   decorations: 169,
   /**
-   * Real item entries at itemTable's base — NOT the ItemID enum's declared
-   * size (that name table runs to 1261 actual entries, covering additional
-   * names with no corresponding stat entry here, e.g. arena/quest-only
-   * rewards). This 948 is what verifyOffsets() cross-checks against:
-   * decorationValues sits at exactly itemTable + 948 * ITEM_ENTRY_SIZE.
+   * Item entries before the decorations: decorationValues sits at exactly
+   * itemTable + 948 * ITEM_ENTRY_SIZE, which verifyOffsets() cross-checks.
    */
   regularItems: 948,
+  /**
+   * Every itemTable entry, one per ItemID (0 = "None" through 1260): the
+   * 948 regular items, the 169 decorations, then 144 more items (treasure,
+   * Felyne and arena items) with the same layout. Entry 1261 is unrelated
+   * data (rarity 117, carry limit 0).
+   */
+  items: 1261,
   modelToWeaponType: 553,
   dualAttributeWeapons: 15,
 } as const;

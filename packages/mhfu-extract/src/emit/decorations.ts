@@ -15,7 +15,6 @@ import {
 import { readEquipmentCreate } from "../tables/recipes.js";
 import type { TableAddressResolver } from "../tables/resolver.js";
 import { getNameResolver } from "../strings/names.js";
-import { resolveDecorationCategory } from "../overlay/decoration-categories.js";
 import { resolveMaterialStyle } from "../overlay/materials.js";
 import type { BinaryReader } from "../binary/reader.js";
 import {
@@ -37,7 +36,6 @@ export interface EmittedDecoration {
   create_cost: number;
   type: "decoration";
   alternative_create_mats: ReturnType<typeof resolveMaterials> | null;
-  category: string;
 }
 
 /** DecorationValues -> ItemID index offset (see tables/decorations.ts). */
@@ -53,8 +51,21 @@ export function emitDecorations(
   const createByEquipId = groupEquipCreateByEquipId(create.decoration);
   const names = getNameResolver();
 
+  // The game's crafting list order: the create table's, by each jewel's first
+  // recipe (a jewel with two recipes has two entries in a row). Jewels with no
+  // recipe follow, in item order.
+  const craftOrder = [...createByEquipId.keys()];
+  const position = (itemId: number) => {
+    const i = craftOrder.indexOf(itemId);
+    return i === -1 ? craftOrder.length + itemId : i;
+  };
+  const ordered = [...decoValues].sort(
+    (a, b) =>
+      position(a.index + DECORATION_ITEM_ID_OFFSET) - position(b.index + DECORATION_ITEM_ID_OFFSET),
+  );
+
   const out: EmittedDecoration[] = [];
-  for (const deco of decoValues) {
+  for (const deco of ordered) {
     const itemId = deco.index + DECORATION_ITEM_ID_OFFSET;
     const name = names.resolve("ItemID", itemId);
     if (!name) continue; // dummy/placeholder slot, nothing to emit
@@ -86,7 +97,6 @@ export function emitDecorations(
       create_cost: halveCost(deco.price),
       type: "decoration",
       alternative_create_mats: materialsOrNull(altMats),
-      category: resolveDecorationCategory(name),
     });
   }
   return out;

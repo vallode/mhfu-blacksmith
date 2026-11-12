@@ -3,6 +3,24 @@ import type { Messages } from "../en";
 
 export const site: Messages["site"] = {
   logoAlt: "Herrería",
+  nav: {
+    weapons: "Armas",
+    armor: "Armadura",
+    monsters: "Monstruos",
+    decorations: "Adornos",
+    quests: "Misiones",
+    items: "Objetos",
+    sets: "Conjuntos",
+    hunter: "Cazador",
+    options: "Opciones",
+    home: "Inicio",
+    main: "Principal",
+    search: "Buscar",
+    collapse: "Plegar",
+    collapseSidebar: "Plegar menú lateral",
+    expandSidebar: "Desplegar menú lateral",
+    menu: "Menú",
+  },
   language: {
     heading: "Idioma",
     label: "Idioma",

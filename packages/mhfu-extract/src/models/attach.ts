@@ -59,28 +59,43 @@ export function skeletonFor(entries: PacEntry[], pmoIndex: number): Bone[] {
   }
 }
 
-/**
- * Offset to move each bone of a parentless (detached) chain onto the main
- * hierarchy, by bone index. Bones without an entry stay where they are.
- */
-export function detachedBoneOffsets(bones: Bone[]): Map<number, Vec3> {
-  const offsets = new Map<number, Vec3>();
+interface DetachedChain {
+  /** The chain's bones, root first. */
+  bones: number[];
+  /** Offset that puts the chain onto the main hierarchy. */
+  offset: Vec3;
+  /** The main hierarchy's leaf that the chain's matched leaf copies. */
+  mainLeaf: number;
+}
+
+/** Translation-only world position of each bone (see `rigid` in detachedChains). */
+function worldPositions(bones: Bone[]): Vec3[] {
+  return bones.map((bone) => {
+    const sum: Vec3 = [0, 0, 0];
+    for (const id of ancestry(bones, bone.id))
+      bones[id]!.translation.forEach((c, k) => (sum[k] = sum[k]! + c));
+    return sum;
+  });
+}
+
+/** Bone ids from `id` up to its root, `id` first. */
+function ancestry(bones: Bone[], id: number): number[] {
+  const path: number[] = [];
+  for (let b: Bone | undefined = bones[id]; b; b = b.parent >= 0 ? bones[b.parent] : undefined)
+    path.push(b.id);
+  return path;
+}
+
+/** The parentless chains that copy the end of a main-hierarchy chain, and where they go. */
+function detachedChains(bones: Bone[]): DetachedChain[] {
+  const chains: DetachedChain[] = [];
 
   const children = new Map<number, number[]>();
   for (const bone of bones) {
     if (bone.parent >= 0)
       children.set(bone.parent, [...(children.get(bone.parent) ?? []), bone.id]);
   }
-  const ancestry = (id: number): Bone[] => {
-    const path: Bone[] = [];
-    for (let b = bones[id]; b; b = b.parent >= 0 ? bones[b.parent] : undefined) path.push(b);
-    return path;
-  };
-  const world = (id: number): Vec3 => {
-    const sum: Vec3 = [0, 0, 0];
-    for (const b of ancestry(id)) b.translation.forEach((c, k) => (sum[k] = sum[k]! + c));
-    return sum;
-  };
+  const world = worldPositions(bones);
   // Positions are summed as pure translations, so every bone that feeds one
   // must be (close to) unrotated and unscaled. Other bones may be anything
   // (Yian Garuga's crest bones turn 75 degrees, Basarios's neck scales to
@@ -94,32 +109,93 @@ export function detachedBoneOffsets(bones: Bone[]): Map<number, Vec3> {
   const isLeaf = (id: number) => !children.has(id);
 
   const [main, ...detached] = bones.filter((b) => b.parent < 0).map((b) => subtree(b.id));
-  if (!main) return offsets;
+  if (!main) return chains;
   const mainLeaves = main.filter((id) => isLeaf(id) && bones[id]!.parent >= 0);
 
   for (const chain of detached) {
     let offset: Vec3 | null = null;
+    let mainLeaf = -1;
     let consistent = true;
     for (const leaf of chain.filter((id) => isLeaf(id) && bones[id]!.parent >= 0)) {
       const matches = mainLeaves.filter((id) =>
         near(bones[id]!.translation, bones[leaf]!.translation),
       );
       if (matches.length !== 1) continue;
-      const path = [...ancestry(bones[matches[0]!]!.parent), ...chain.map((id) => bones[id]!)];
+      const path = [...ancestry(bones, bones[matches[0]!]!.parent), ...chain].map(
+        (id) => bones[id]!,
+      );
       if (!path.every(rigid)) {
         consistent = false;
         continue;
       }
-      const target = world(bones[matches[0]!]!.parent);
-      const source = world(bones[leaf]!.parent);
+      const target = world[bones[matches[0]!]!.parent]!;
+      const source = world[bones[leaf]!.parent]!;
       const candidate = target.map((c, k) => c - source[k]!) as Vec3;
       if (offset && !near(offset, candidate)) consistent = false;
-      offset ??= candidate;
+      if (!offset) {
+        offset = candidate;
+        mainLeaf = matches[0]!;
+      }
     }
-    if (!offset || !consistent || near(offset, [0, 0, 0])) continue;
+    // A chain already in place (Lavasioth's) has a zero offset: nothing to
+    // move, but it still copies the main hierarchy's bones (counterparts).
+    if (!offset || !consistent) continue;
+    chains.push({ bones: chain, offset, mainLeaf });
+  }
+  return chains;
+}
+
+/**
+ * Offset to move each bone of a parentless (detached) chain onto the main
+ * hierarchy, by bone index. Bones without an entry stay where they are.
+ */
+export function detachedBoneOffsets(bones: Bone[]): Map<number, Vec3> {
+  const offsets = new Map<number, Vec3>();
+  for (const { bones: chain, offset } of detachedChains(bones)) {
+    if (near(offset, [0, 0, 0])) continue;
     for (const id of chain) offsets.set(id, offset);
   }
   return offsets;
+}
+
+/**
+ * For each bone of a detached chain, the main-hierarchy bone it sits on once
+ * moved (detachedBoneOffsets): the deepest bone at that place on the way up
+ * from the leaf it copies. Skinning the tip to these instead makes it follow
+ * the tail when the monster moves, as the game does while the tail is on.
+ */
+export function detachedBoneCounterparts(bones: Bone[]): Map<number, number> {
+  const counterparts = new Map<number, number>();
+  const world = worldPositions(bones);
+  for (const { bones: chain, offset, mainLeaf } of detachedChains(bones)) {
+    const line = ancestry(bones, mainLeaf);
+    for (const id of chain) {
+      const target = world[id]!.map((c, k) => c + offset[k]!);
+      const match = line.find((other) => near(world[other]!, target));
+      if (match !== undefined) counterparts.set(id, match);
+    }
+  }
+  return counterparts;
+}
+
+/**
+ * The PMO with each vertex group's detached-chain bones swapped for their
+ * counterparts (detachedBoneCounterparts), for a skinned model whose tail
+ * tip is already moved into place (attachDetachedParts).
+ */
+export function skinDetachedParts(pmo: Pmo, bones: Bone[]): Pmo {
+  const counterparts = detachedBoneCounterparts(bones);
+  if (counterparts.size === 0) return pmo;
+  return {
+    ...pmo,
+    meshes: pmo.meshes.map((mesh) => ({
+      ...mesh,
+      primitives: mesh.primitives.map((primitive) => ({
+        ...primitive,
+        bones: primitive.bones.map((bone) => counterparts.get(bone) ?? bone),
+      })),
+    })),
+  };
 }
 
 /**

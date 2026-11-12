@@ -6,7 +6,7 @@ import { useT } from "@/context/LanguageContext";
 import { matchOfflineRoute, renderOfflineRoute, type RouteMatch } from "@/lib/offline-routes";
 
 /**
- * Served by the service worker (see `fallbacks.document` in next.config.ts)
+ * Served by the service worker (see `fallbacks.document` in next.config.mjs)
  * in place of a network error for a *cold* offline navigation (typed URL,
  * bookmark, or reload) that isn't cached. The browser's address bar still
  * shows the URL that was actually requested, so we read it directly off

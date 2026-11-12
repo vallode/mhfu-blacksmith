@@ -10,6 +10,9 @@
  *   - skills.json                (skill trees and activations, for the set builder)
  *   - equipment-ids.json         (save-file equipment IDs -> item pages)
  *   - items.json                 (in-game item ID -> name, linked to materials)
+ *   - item-places.json           (where each item is gathered or sold, see src/lib/item-places.ts)
+ *   - area-maps.json             (each quest's gathering points on the map, see src/lib/area-maps.ts)
+ *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - data-manifest.json         ({ files, version })
  *   - locale-<code>.json         (game text in other languages, from data/locales;
  *                                 fetched only in that language, so outside the
@@ -18,8 +21,9 @@
  * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
  *
- * Budget: asserts total public/data raw size < 1.6 MB and logs a gzip estimate
- * (raised from 1.5 MB for quests.json, ~190 KB).
+ * Budget: asserts total public/data raw size < 1.7 MB and logs a gzip estimate
+ * (raised from 1.5 MB for quests.json, ~190 KB, and from 1.6 MB for
+ * item-places.json, ~80 KB).
  */
 import fs from "fs";
 import path from "path";
@@ -66,6 +70,14 @@ import {
 } from "../src/lib/items";
 import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
 import { buildLocaleBundles } from "./lib/locales";
+import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
+import {
+  buildItemPlaces,
+  encodeItemPlaces,
+  type GatheringFile,
+  type ShopsFile,
+} from "../src/lib/item-places";
+import { buildAreaMaps } from "../src/lib/area-maps";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import type { HitboxCapsule } from "../src/lib/models";
 
@@ -77,7 +89,7 @@ const outDir = path.join(root, "public", "data");
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
 
-const BUDGET_BYTES = 1.6 * 1024 * 1024;
+const BUDGET_BYTES = 1.8 * 1024 * 1024;
 
 function readJson<T>(p: string): T {
   return JSON.parse(fs.readFileSync(p, "utf-8")) as T;
@@ -162,6 +174,7 @@ function compactTreeNode(
   if (mr) out.m = mr;
   const md = maxDefenceOf?.(node.slug);
   if (md !== undefined) out.d = md;
+  if (node.alias) out.a = 1;
   if (node.children && node.children.length > 0) {
     out.k = node.children.map((c) => compactTreeNode(c, bundleType, minRankOf, maxDefenceOf));
   }
@@ -373,6 +386,8 @@ function encodeDecoration(
   }
   const cm = matTuples(x.create_mats);
   if (cm) out.cm = cm;
+  const am = matTuples(x.alternative_create_mats);
+  if (am) out.am = am;
   const mr = encodeMinRank(minRank);
   if (mr) out.mr = mr;
   return out;
@@ -391,6 +406,9 @@ let totalItems = 0;
 function push(name: string, obj: unknown) {
   files.push({ name, json: JSON.stringify(obj) });
 }
+
+// Decorations' item IDs -> gem colour, so items.json gives jewels their icon.
+const decorationIcons = new Map<number, string>();
 
 // Page refs by name, for equipment-ids.json below.
 const weaponRefs = new Map<string, EquipRef>(); // "<type>|<name>"
@@ -496,14 +514,17 @@ for (const category of MONSTER_CATEGORIES) {
 }
 
 // Quests: one bundle for every hub. Items are in-game IDs (names and icons
-// come from items.json), monsters link to their pages.
+// come from items.json), monsters link to their pages and get their HP in
+// each quest from their base HP.
 {
   const monsterPages = new Map<string, { category: string; slug: string }>();
+  const baseHp = new Map<string, number>();
   for (const category of MONSTER_CATEGORIES) {
     const p = path.join(dataDir, "monsters", `${category}.json`);
     if (!fs.existsSync(p)) continue;
     for (const m of readJson<{ monsters: Monster[] }>(p).monsters) {
       monsterPages.set(m.name, { category, slug: slugify(m.name) });
+      if (typeof m.base_hp === "number") baseHp.set(m.name, m.base_hp);
     }
   }
   const { index } = buildItemNameIndex(
@@ -515,16 +536,34 @@ for (const category of MONSTER_CATEGORIES) {
     .filter((f) => f.endsWith(".json"))
     .sort()
     .flatMap((f) => readJson<{ quests: QuestRecord[] }>(path.join(questDir, f)).quests);
+  const gathering = readJson<GatheringFile>(path.join(dataDir, "gathering.json"));
+  const areaMaps = buildAreaMaps(gathering);
   const { bundle, unresolvedItems } = encodeQuestBundle({
     quests,
     itemId: (name) => index.get(normalizeItemName(name)),
     monsterPage: (name) => monsterPages.get(name),
+    baseHp: (name) => baseHp.get(name),
+    hasAreaMap: (questId) => questId in areaMaps.quests,
   });
   if (unresolvedItems.length > 0) {
     console.warn(`generate-data: quest items not in items.json: ${unresolvedItems.join(", ")}`);
   }
   totalItems += bundle.items.length;
   push("quests.json", bundle);
+
+  // Where each item is gathered (data/gathering.json) or sold (data/shops.json).
+  push("area-maps.json", areaMaps);
+  const places = buildItemPlaces(
+    gathering,
+    readJson<ShopsFile>(path.join(dataDir, "shops.json")),
+    quests,
+    (name) => index.get(normalizeItemName(name)),
+  );
+  push("item-places.json", encodeItemPlaces(places));
+  push(
+    "combinations.json",
+    encodeCombinations(readJson<CombinationsFile>(path.join(dataDir, "combinations.json"))),
+  );
 }
 
 // Decorations
@@ -545,6 +584,9 @@ for (const category of MONSTER_CATEGORIES) {
       `generate-data: FAIL — decorations with no item in items.json: ${unmatched.map((d) => d.name).join(", ")}`,
     );
     process.exit(1);
+  }
+  for (const d of crafting.decorations) {
+    decorationIcons.set(decorationItemId(d.name, itemIndex)!, d.color ?? "");
   }
   const items = crafting.decorations.map((d) =>
     encodeDecoration(
@@ -582,6 +624,12 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
   push("equipment-ids.json", out);
 }
 
+/** The Icon `type` and `color` for an item's disc icon, or null when the disc gave none. */
+function itemIcon(record: ItemRecord | undefined): [string, string] | null {
+  if (record?.icon === undefined || record.color === undefined) return null;
+  return [`item-${record.icon}`, `item-${record.color}`];
+}
+
 // Items (in-game item ID -> name). Runs after every bundle above so that all
 // recipe/drop material names are interned and can be linked to an item ID.
 {
@@ -595,6 +643,17 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
     if (id !== undefined) materials[name] = id;
   }
 
+  // The disc gives items their own icon and tint (see `itemIcon` above).
+  // Materials use that too, wherever one names an item that has one.
+  const recordById = new Map(records.map((r) => [r.id, r]));
+  for (const [name, id] of Object.entries(materials)) {
+    const icon = itemIcon(recordById.get(id));
+    if (!icon) continue;
+    materialTC.set(name, icon);
+    intern(typeIndex, icon[0]);
+    intern(colorIndex, icon[1]);
+  }
+
   // Pick an icon for each item from its linked materials: prefer the material
   // spelled exactly like the item, then any linked material with a known type.
   const iconFor = new Map<number, [string, string]>();
@@ -604,13 +663,18 @@ push("skills.json", readJson<{ skills: unknown[] }>(path.join(dataDir, "skills.j
     if (!type) continue;
     if (!iconFor.has(id) || name === byName.get(id)) iconFor.set(id, [type, color]);
   }
+  for (const [id, color] of decorationIcons) {
+    if (!iconFor.has(id)) iconFor.set(id, ["decoration", color]);
+  }
 
   const maxId = Math.max(...records.map((r) => r.id));
   const items: (CompactItem | null)[] = new Array(maxId + 1).fill(null);
   for (const r of records) {
     const out: CompactItem = { n: r.name };
     if (r.rarity !== undefined) out.r = r.rarity;
-    const icon = iconFor.get(r.id);
+    if (r.carry !== undefined) out.l = r.carry;
+    if (r.price !== undefined) out.z = r.price;
+    const icon = itemIcon(r) ?? iconFor.get(r.id);
     if (icon) {
       out.t = intern(typeIndex, icon[0]);
       out.c = intern(colorIndex, icon[1]);

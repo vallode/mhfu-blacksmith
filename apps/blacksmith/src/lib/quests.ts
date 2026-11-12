@@ -39,6 +39,34 @@ export const QUEST_MONSTER_ALIASES: Record<string, string> = {
 /** Small-monster spawns that aren't monsters: Treasure Hunting's breakable rocks. */
 export const QUEST_NON_MONSTERS: ReadonlySet<string> = new Set(["Rocks"]);
 
+/** Quest types, in the order the boards' filter steps through them. */
+export const QUEST_TYPES = ["hunting", "slaying", "gathering", "treasure"] as const;
+export type QuestType = (typeof QUEST_TYPES)[number];
+
+/** A quest type as the quest card heads it ("Hunting Quest"). */
+export function questTypeLabel(type: QuestType): string {
+  return `${type[0]!.toUpperCase()}${type.slice(1)} Quest`;
+}
+
+/**
+ * A quest's type, read from its goal: the data has no type of its own (the
+ * disc's quest header has one, not yet extracted). Slay N small monsters is
+ * Slaying; deliveries, and the gathering tours that end on the Paw Pass
+ * Ticket, are Gathering; Treasure Hunting's are Treasure; the rest (hunts
+ * and the fortress defences) are Hunting.
+ */
+export function questType(hub: string, goal: string | null): QuestType {
+  if (hub === "treasure-hunting") return "treasure";
+  if (goal?.startsWith("Slay ")) return "slaying";
+  if (goal?.startsWith("Deliver ") || goal?.includes("Paw Pass Ticket")) return "gathering";
+  return "hunting";
+}
+
+/** The types a list of quests covers, in QUEST_TYPES order. */
+export function questTypesIn(quests: Pick<Quest, "type">[]): QuestType[] {
+  return QUEST_TYPES.filter((t) => quests.some((q) => q.type === t));
+}
+
 // ---------------------------------------------------------------------------
 // Bundle (public/data/quests.json)
 // ---------------------------------------------------------------------------
@@ -57,6 +85,18 @@ export type CompactRewardTable = [
 
 /** [name, category, slug]; category and slug are null when the site has no page for it. */
 export type CompactQuestMonster = [name: string, category: string | null, slug: string | null];
+
+/**
+ * A large monster's stats in one quest: the monster, its HP (null without a
+ * base HP) and its attack, defense and stagger multipliers.
+ */
+export type CompactMonsterStats = [
+  monster: number,
+  hp: number | null,
+  attack: number,
+  defense: number,
+  stagger: number,
+];
 
 /** One supply list: [item ID, amount, stacks (only when more than 1)] rows, distinct, in disc order. */
 export type CompactSupplies = ([number, number] | [number, number, number])[];
@@ -85,6 +125,9 @@ export type CompactQuest = [
   client: number | null,
   requires: number | null, // quest ID cleared before this one appears
   urgent: 0 | 1,
+  monsterStats: CompactMonsterStats[], // distinct rows, in disc order
+  areaMap: 0 | 1,
+  smallCounts: ([total: number] | [total: number, endless: 1])[], // parallel to smallMonsters
 ];
 
 export interface QuestsBundle {
@@ -108,6 +151,22 @@ export interface QuestMonster {
   href: string | null;
 }
 
+/**
+ * A large monster's stats in a quest, from its stat multiplier row
+ * (data/schemas/quest.schema.json `multipliers`).
+ */
+export interface QuestMonsterStats {
+  monster: QuestMonster;
+  /** Base HP times the quest's HP multiplier, as the game rounds it; null without a base HP. */
+  hp: number | null;
+  /** Multiplies the damage it deals. */
+  attack: number;
+  /** Multiplies the damage it takes: lower is tougher. */
+  defense: number;
+  /** Multiplies the damage a part takes before the monster flinches. */
+  stagger: number;
+}
+
 export interface QuestReward {
   chance: number;
   itemId: number;
@@ -124,6 +183,7 @@ export interface QuestRewardTable {
 export interface Quest {
   id: number;
   hub: QuestHubSlug;
+  type: QuestType;
   stars: number;
   map: string | null;
   fee: number;
@@ -131,7 +191,15 @@ export interface Quest {
   timeLimit: number;
   target: { monster: QuestMonster; amount: number } | null;
   largeMonsters: QuestMonster[];
+  /** Each distinct large monster spawn's stats; empty when the data has none. */
+  monsterStats: QuestMonsterStats[];
   smallMonsters: QuestMonster[];
+  /**
+   * Each small monster's total in the quest (parallel to `smallMonsters`),
+   * and whether it keeps spawning, in which case the total leaves those out.
+   * Empty in a bundle cached before the totals were added.
+   */
+  smallSpawns: { total: number; endless: boolean }[];
   /** Distinct supply rows; `stacks` is how many times the disc lists the row. */
   supplies: { itemId: number; amount: number; stacks: number }[];
   rewardTables: QuestRewardTable[];
@@ -144,6 +212,8 @@ export interface Quest {
   requires: number | null;
   /** An Urgent Quest, which unlocks the next star level. */
   urgent: boolean;
+  /** Whether area-maps.json places this quest's gathering points. */
+  hasAreaMap: boolean;
 }
 
 export function decodeQuests(b: QuestsBundle): Quest[] {
@@ -159,9 +229,33 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
     items: items.map(([chance, itemId, amount]) => ({ chance, itemId, amount: amount ?? 1 })),
   }));
   return b.items.map(
-    ([id, hub, stars, map, fee, reward, timeLimit, tg, lm, sm, su, rw, n, g, x, d, c, rq, ur]) => ({
+    ([
+      id,
+      hub,
+      stars,
+      map,
+      fee,
+      reward,
+      timeLimit,
+      tg,
+      lm,
+      sm,
+      su,
+      rw,
+      n,
+      g,
+      x,
+      d,
+      c,
+      rq,
+      ur,
+      ms,
+      am,
+      sc,
+    ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
+      type: questType(QUEST_HUBS[hub]?.slug ?? "village", str(g)),
       stars,
       map: str(map),
       fee,
@@ -169,7 +263,16 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       timeLimit,
       target: tg ? { monster: monsters[tg[0]]!, amount: tg[1] } : null,
       largeMonsters: lm.map((i) => monsters[i]!),
+      // `?? []`: a bundle cached before stats were added has none.
+      monsterStats: (ms ?? []).map(([m, hp, attack, defense, stagger]) => ({
+        monster: monsters[m]!,
+        hp,
+        attack,
+        defense,
+        stagger,
+      })),
       smallMonsters: sm.map((i) => monsters[i]!),
+      smallSpawns: (sc ?? []).map(([total, endless]) => ({ total, endless: endless === 1 })),
       supplies: (su === null ? [] : (b.supplies[su] ?? [])).map(([itemId, amount, stacks]) => ({
         itemId,
         amount,
@@ -183,8 +286,18 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       client: str(c),
       requires: rq ?? null,
       urgent: ur === 1,
+      hasAreaMap: am === 1,
     }),
   );
+}
+
+/**
+ * A monster's HP in a quest, as the game works it out: base HP times the HP
+ * multiplier in single precision, truncated (mhfu-extract
+ * `monsters/multipliers.ts`).
+ */
+export function questHp(baseHp: number, multiplier: number): number {
+  return Math.trunc(Math.fround(Math.fround(baseHp) * Math.fround(multiplier)));
 }
 
 /**
@@ -230,6 +343,48 @@ export function questsWithMonster(quests: Quest[], name: string): Quest[] {
   return quests
     .filter((q) => q.target?.monster.name === name || q.largeMonsters.some((m) => m.name === name))
     .sort((a, b) => hubOrder(a) - hubOrder(b) || a.stars - b.stars || a.id - b.id);
+}
+
+/** One star level of a quest board, with the quests that hold the most of a small monster. */
+export interface SmallMonsterStage {
+  hub: QuestHubSlug;
+  stars: number;
+  /** The quests with the most (all of them on a tie), each with its total. */
+  best: { quest: Quest; total: number }[];
+  /** Quests where it keeps spawning (not counted in the totals), when any. */
+  endless: Quest[];
+}
+
+/**
+ * Where a small monster is most plentiful: for each star level of the village
+ * and guild boards, the quests with the biggest total of it (every distinct
+ * spawn table counted once), in board and star order. Star levels without it
+ * are left out; Training School and Treasure Hunting are not stages of the game.
+ */
+export function smallMonsterStages(quests: Quest[], name: string): SmallMonsterStage[] {
+  const stages = new Map<string, SmallMonsterStage>();
+  for (const quest of quests) {
+    if (isHiddenQuest(quest.id)) continue;
+    if (quest.hub === "training-school" || quest.hub === "treasure-hunting") continue;
+    const at = quest.smallMonsters.findIndex((m) => m.name === name);
+    const spawn = quest.smallSpawns[at];
+    if (!spawn) continue;
+    const key = `${quest.hub}:${quest.stars}`;
+    let stage = stages.get(key);
+    if (!stage) {
+      stage = { hub: quest.hub, stars: quest.stars, best: [], endless: [] };
+      stages.set(key, stage);
+    }
+    if (spawn.endless) stage.endless.push(quest);
+    if (spawn.total === 0) continue;
+    const top = stage.best[0]?.total ?? 0;
+    if (spawn.total > top) stage.best = [{ quest, total: spawn.total }];
+    else if (spawn.total === top) stage.best.push({ quest, total: spawn.total });
+  }
+  const hubOrder = (s: SmallMonsterStage) => QUEST_HUB_SLUGS.indexOf(s.hub);
+  return [...stages.values()]
+    .filter((s) => s.best.length > 0 || s.endless.length > 0)
+    .sort((a, b) => hubOrder(a) - hubOrder(b) || a.stars - b.stars);
 }
 
 /**

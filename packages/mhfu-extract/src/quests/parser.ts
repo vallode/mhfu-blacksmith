@@ -35,8 +35,13 @@ export interface QuestHeader {
   rank: number;
   spawn: number;
   supplyCond: number;
-  /** The hexpat's Unkn4..Unkn7 (u8 @ 71..74); raw, for #35's multiplier-table selection. */
+  /** The hexpat's Unkn4, Unkn5 and Unkn7 (u8 @ 71, 72, 74); raw, meaning unknown. */
   unknownFlags: number[];
+  /**
+   * The hexpat's Unkn6 (u8 @ 73): which of its monsters' three stat
+   * multiplier tables the quest uses (src/monsters/multipliers.ts).
+   */
+  statTable: number;
   attackRoll: number;
   questType: number;
   fee: number;
@@ -69,7 +74,8 @@ export function readQuestHeader(reader: BinaryReader): QuestHeader {
     rank: reader.u8(68),
     spawn: reader.u8(69),
     supplyCond: reader.u8(70),
-    unknownFlags: [reader.u8(71), reader.u8(72), reader.u8(73), reader.u8(74)],
+    unknownFlags: [reader.u8(71), reader.u8(72), reader.u8(74)],
+    statTable: reader.u8(73),
     attackRoll: reader.u8(75),
     questType: reader.u32(76),
     fee: reader.u32(80),
@@ -153,7 +159,7 @@ export interface MonsterSpawn {
   monsterId: number;
   quantity: number;
   power: number;
-  /** The hexpat's Attr1/Attr2 (u8 after `power`); raw, for #35's multiplier-table selection. */
+  /** The hexpat's Attr1/Attr2 (u8 after `power`); raw, meaning unknown. */
   attr1?: number;
   attr2?: number;
 }
@@ -221,6 +227,8 @@ function readSmallMonsterData(reader: BinaryReader, ptr: number): MonsterSpawn[]
 export interface SmallMonsterTable {
   /** Index into stageID. */
   stageId: number;
+  /** Address of the spawn records; index entries that share it list the same spawns twice. */
+  dataPtr: number;
   monsters: MonsterSpawn[];
 }
 
@@ -230,7 +238,7 @@ function readSmallMonsterTablesAt(reader: BinaryReader, ptr: number): SmallMonst
   while (reader.u32(off) !== 0) {
     const stageId = reader.u16(off);
     const dataPtr = reader.u32(off + 12);
-    tables.push({ stageId, monsters: readSmallMonsterData(reader, dataPtr) });
+    tables.push({ stageId, dataPtr, monsters: readSmallMonsterData(reader, dataPtr) });
     off += 16;
   }
   return tables;

@@ -1,8 +1,10 @@
 /**
  * Writes the crafting trees (content/**\/map.json) from data/.
  *
- * Weapons: one tree per type, following improve_to. Armor: a flat list per
- * slot and rank. Decorations: grouped by category.
+ * Weapons: one tree per type, following improve_to; a weapon with several
+ * parents has its branch under the first and an alias row under the rest.
+ * Armor: a flat list per slot and rank. Decorations: one flat list, in the
+ * game's crafting order (data/decorations.json's order).
  */
 import fs from "fs";
 import path from "path";
@@ -30,6 +32,12 @@ interface MapNode {
   rarity: number | string | null;
   color?: string;
   element?: string;
+  /**
+   * A weapon that can be upgraded from more than one weapon is listed under
+   * each of them, but its own upgrades only under the first: here it is a leaf
+   * that points back up to that row.
+   */
+  alias?: true;
   children?: MapNode[];
 }
 
@@ -63,16 +71,21 @@ function writeMap(file: string, map: MapNode[]) {
 /** `parseInt` semantics of Ruby's `to_i`: non-numeric rarity sorts as 0. */
 const rarityOf = (item: { rarity: number | string }) => parseInt(String(item.rarity), 10) || 0;
 
+const weaponKey = (weapon: Weapon) => `${weapon.type}|${weapon.name}`;
+
 /**
- * `path` holds the names above this weapon: some upgrades run both ways (Azure
- * Ogre Sword <-> Ultimus Heaven&Earth), so a child already on the path is
- * skipped rather than followed forever.
+ * `placed` holds every weapon already in this tree (by type and name), in the
+ * order the tree is read. A weapon with several parents gets its branch under
+ * the first one; under the others it is an alias row with no children, so the
+ * same branch isn't listed twice. Upgrades that run both ways (Azure Ogre
+ * Sword <-> Ultimus Heaven&Earth) end the same way: the weapon above is
+ * already placed, so the way back up is an alias row.
  */
 function weaponNode(
   weapon: Weapon,
   own: Weapon[],
   sibling: Weapon[],
-  path: readonly string[] = [],
+  placed: Set<string>,
 ): MapNode {
   const node: MapNode = {
     slug: slugify(weapon.name),
@@ -84,15 +97,19 @@ function weaponNode(
   // TODO: Adjust to use both elements in dual element weapons.
   if (weapon.elements) node.element = weapon.elements[0].name.toLowerCase();
 
+  if (placed.has(weaponKey(weapon))) {
+    node.alias = true;
+    return node;
+  }
+  placed.add(weaponKey(weapon));
+
   if (weapon.improve_to) {
     node.children = [];
-    const here = [...path, weapon.name];
     for (const childName of weapon.improve_to) {
-      if (here.includes(childName)) continue;
       const child =
         own.find((w) => w.name === childName) ??
         sibling.find((w) => w.name === childName && w.type !== weapon.type);
-      if (child) node.children.push(weaponNode(child, own, sibling, here));
+      if (child) node.children.push(weaponNode(child, own, sibling, placed));
     }
   }
   return node;
@@ -114,10 +131,14 @@ for (const [type, siblingType] of WEAPON_PAIRS) {
   const sorted = roots.toSorted((a, b) => rarityOf(a) - rarityOf(b));
   roots = [...sorted.filter((w) => !isDeadEnd(w)), ...sorted.filter(isDeadEnd)];
 
-  writeMap(
-    path.join(contentDir, "blacksmith", type, "map.json"),
-    roots.map((w) => weaponNode(w, weapons, sibling)),
-  );
+  // A root already listed under a weapon above it (a paired-type weapon that
+  // this type also upgrades into) has its branch there.
+  const placed = new Set<string>();
+  const map: MapNode[] = [];
+  for (const w of roots) {
+    if (!placed.has(weaponKey(w))) map.push(weaponNode(w, weapons, sibling, placed));
+  }
+  writeMap(path.join(contentDir, "blacksmith", type, "map.json"), map);
 }
 
 for (const slot of ARMOR_SLOTS) {
@@ -139,29 +160,14 @@ for (const slot of ARMOR_SLOTS) {
   }
 }
 
-const decorations = readJson<{
-  decorations: (Weapon & { category?: string })[];
-}>(dataDir, "decorations.json").decorations;
-const categories = new Map<string, MapNode[]>();
-for (const d of decorations) {
-  if (!d.category) continue;
-  const list = categories.get(d.category) ?? [];
-  list.push({
+const decorations = readJson<{ decorations: Weapon[] }>(dataDir, "decorations.json").decorations;
+writeMap(
+  path.join(contentDir, "decorations", "map.json"),
+  decorations.map((d) => ({
     slug: slugify(d.name),
     type: d.type,
     name: d.name,
     rarity: d.rarity,
     ...(d.color && { color: d.color }),
-  });
-  categories.set(d.category, list);
-}
-writeMap(
-  path.join(contentDir, "decorations", "map.json"),
-  [...categories].map(([name, children]) => ({
-    slug: slugify(name),
-    type: "",
-    name,
-    rarity: null,
-    children,
   })),
 );

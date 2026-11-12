@@ -1,23 +1,39 @@
 "use client";
 
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import MaterialRow from "@/components/MaterialRow";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { cn } from "@/lib/cn";
 import type { Material } from "@/lib/types";
-import { useT } from "@/context/LanguageContext";
+import { useGameText, useT } from "@/context/LanguageContext";
 
 // Building blocks for the right-hand detail panel on weapon, armor,
 // decoration and monster pages. Text in the panel is yellow (text-stat) by
 // default; values are white.
 
 /**
- * The detail card; shares the row equally with the tree card. Long content
- * (a quest's rewards, a monster's drops) scrolls inside it on desktop, where
- * the card is the height of the page; on a phone the card grows instead.
+ * The detail card; shares the row with the tree card. Long content
+ * (a quest's rewards, a monster's drops) scrolls inside it where the card is
+ * the height of the page, as beside a tree (SplitPage); elsewhere on a phone
+ * the card grows instead.
  */
-export function DetailCard({ children }: { children: React.ReactNode }) {
-  return <Card className="min-w-0 overflow-auto">{children}</Card>;
+export function DetailCard({
+  children,
+  className,
+}: {
+  children: React.ReactNode;
+  className?: string;
+}) {
+  return (
+    // In a CardBox like the tree cards (see CardBox), but z-1 as the card was,
+    // under a tree panel's filter-bar arrows. The 4rem basis keeps the row
+    // split it had when Card's 4rem of side padding sat on this flex item
+    // (tree card 530px, this 570px at 1400px).
+    <CardBox className={cn("z-1 basis-[4rem] mobile:basis-[0%]", className)}>
+      <Card scroll>{children}</Card>
+    </CardBox>
+  );
 }
 
 /** Icon + name (+ sharpness) row at the top of the panel. */
@@ -41,11 +57,12 @@ export function DetailName({ children, id }: { children: React.ReactNode; id?: s
 /**
  * The detail card with nothing selected (a section's own page, beside its
  * tree): NO DATA where the item's name would be, plus an optional note.
+ * Phones show the list alone on that page, unless there is a note.
  */
 export function NoDataCard({ children }: { children?: React.ReactNode }) {
   const t = useT();
   return (
-    <DetailCard>
+    <DetailCard className={children ? undefined : "mobile:hidden"}>
       <DetailHeader>
         <p className="uppercase">{t.equipment.detail.noData}</p>
       </DetailHeader>
@@ -134,6 +151,33 @@ export function Slots({ count }: { count?: number }) {
     <span id="weaponSlots" className="text-white opacity-50">
       {Array.from({ length: 3 }, (_, i) => (i < (count ?? 0) ? "O" : "-")).join("")}
     </span>
+  );
+}
+
+/**
+ * Skill points, one row each: the skill tree's name and its points, green
+ * when they add and red when they take away (armor and decorations).
+ */
+export function SkillPoints({ skills }: { skills: { name: string; amount: string | number }[] }) {
+  const game = useGameText();
+  return (
+    <div className="flex flex-1 flex-col gap-[13px]">
+      {skills.map((skill, i) => (
+        <div key={i} className="flex">
+          <h3 className="m-0 flex w-cells-10 leading-none font-normal">
+            {game.name("skill", skill.name)}
+          </h3>
+          <p
+            className={cn(
+              "w-cells-4 text-right",
+              Number(skill.amount) < 0 ? "text-negative" : "text-positive",
+            )}
+          >
+            {skill.amount}
+          </p>
+        </div>
+      ))}
+    </div>
   );
 }
 

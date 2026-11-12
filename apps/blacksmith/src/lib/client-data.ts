@@ -10,7 +10,7 @@
  *   navigating between already-loaded items renders with no loading frame
  * - typed hooks return { item, tree, loading }
  */
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Weapon, ArmorPiece, Monster, Decoration, WeaponTreeNode } from "./types";
 import {
   type Dictionaries,
@@ -26,7 +26,13 @@ import {
   decodeDecoration,
   decodeTree,
 } from "./schema";
-import { ARMOR_RANKS, ARMOR_SLOTS } from "./constants";
+import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
+import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
+import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
+import { buildItemSources, type ItemSources } from "./item-sources";
+import { decodeCombinations, type CombinationIndex, type CombinationsBundle } from "./combinations";
+import { normalizeItemName } from "./items";
+import { slugify } from "./slug";
 import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
 import type { SearchData, SkillTreeData } from "./set-search";
 import { setSearchDataFromBundles } from "./set-data";
@@ -184,6 +190,20 @@ export function useDecoration(slug: string): DetailState<Decoration> {
   });
 }
 
+/**
+ * The decoration list and every decoration in it (the list's filters need
+ * their slots and skills), from the same bundle as the detail page.
+ */
+export function useDecorationList(): DetailState<Decoration[]> {
+  return useBundle<Decoration[]>("decorations", (bundle, dict) => {
+    const b = bundle as DecorationBundle;
+    return {
+      item: b.items.map((d) => decodeDecoration(dict, d)),
+      tree: decodeTree(b.tree, "decoration"),
+    };
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Tree/list-only hooks — for the [type]/[slot+rank]/[category] tree/list
 // pages, which only need the tree structure (or item names), not a single
@@ -232,13 +252,6 @@ export function useArmorTree(slot: string, rank: string): ListState<never> {
   });
 }
 
-export function useDecorationTree(): ListState<never> {
-  return useBundleList("decorations", (bundle) => {
-    const b = bundle as DecorationBundle;
-    return { tree: decodeTree(b.tree, "decoration"), items: null };
-  });
-}
-
 export function useMonsterList(category: string): ListState<MonsterListItem> {
   return useBundleList<MonsterListItem>(`monster-${category}`, (bundle) => {
     const b = bundle as MonsterBundle;
@@ -274,10 +287,16 @@ export function useMelodies(notes: string[] | null | undefined) {
 export interface ResolvedItem {
   id: number;
   name: string;
+  /** Its page's slug (see `itemHref`) */
+  slug: string;
   /** icon type (falls back to "ukwn" for items with no linked material) */
   type: string;
   color: string;
   rarity?: number;
+  /** Carry limit; 255 means unlimited */
+  carry?: number;
+  /** Price in zenny; 0 for items with none */
+  price?: number;
   known: boolean;
 }
 
@@ -285,27 +304,56 @@ export interface ItemLookup {
   get(id: number): ResolvedItem;
   /** recipe/drop material name -> in-game item ID */
   materials: Record<string, number>;
+  /** Every real item (no unused IDs or placeholders), by ID */
+  list: ResolvedItem[];
+  /** An item by its page slug */
+  bySlug(slug: string): ResolvedItem | undefined;
+  /** The item a recipe or drop name ("Plesioth Scale", "Akantor Claw x1") is */
+  idOf(name: string): number | undefined;
 }
 
 let itemsPromise: Promise<ItemLookup> | null = null;
 let itemsCache: ItemLookup | null = null;
 
 function buildItemLookup(bundle: ItemsBundle, d: Dictionaries): ItemLookup {
+  const resolve = (id: number): ResolvedItem | null => {
+    const it = bundle.items[id];
+    if (!it || it.p) return null;
+    return {
+      id,
+      name: it.n,
+      slug: slugify(it.n),
+      type: it.t !== undefined ? d.types[it.t] || "ukwn" : "ukwn",
+      color: it.c !== undefined ? d.colors[it.c] || "gray" : "gray",
+      rarity: it.r,
+      carry: it.l,
+      price: it.z,
+      known: true,
+    };
+  };
+  const list = bundle.items.flatMap((_, id) => resolve(id) ?? []);
+  const slugs = new Map(list.map((it) => [it.slug, it]));
+  // Names as recipes and drops spell them: the items' own, plus every
+  // material the build linked to an item (aliases, quantity suffixes).
+  const names = new Map<string, number>();
+  for (const it of list) names.set(normalizeItemName(it.name), it.id);
+  for (const [name, id] of Object.entries(bundle.materials)) names.set(normalizeItemName(name), id);
   return {
     materials: bundle.materials,
+    list,
+    bySlug: (slug) => slugs.get(slug),
+    idOf: (name) => names.get(normalizeItemName(name)),
     get(id: number): ResolvedItem {
-      const it = bundle.items[id];
-      if (!it || it.p) {
-        return { id, name: `Unknown item #${id}`, type: "ukwn", color: "gray", known: false };
-      }
-      return {
-        id,
-        name: it.n,
-        type: it.t !== undefined ? d.types[it.t] || "ukwn" : "ukwn",
-        color: it.c !== undefined ? d.colors[it.c] || "gray" : "gray",
-        rarity: it.r,
-        known: true,
-      };
+      return (
+        resolve(id) ?? {
+          id,
+          name: `Unknown item #${id}`,
+          slug: "",
+          type: "ukwn",
+          color: "gray",
+          known: false,
+        }
+      );
     },
   };
 }
@@ -385,6 +433,176 @@ export function useQuests(): { quests: Quest[] | null; error: boolean } {
     };
   }, []);
   return { quests, error };
+}
+
+// ---------------------------------------------------------------------------
+// Item sources: every monster drop and quest reward, by item ID
+// ---------------------------------------------------------------------------
+let itemSourcesPromise: Promise<Map<number, ItemSources>> | null = null;
+let itemSourcesCache: Map<number, ItemSources> | null = null;
+
+/** Where every item comes from, from the items, monster and quest bundles. */
+export function getItemSources(): Promise<Map<number, ItemSources>> {
+  if (itemSourcesCache) return Promise.resolve(itemSourcesCache);
+  if (!itemSourcesPromise) {
+    itemSourcesPromise = Promise.all([
+      getItems(),
+      getDictionaries(),
+      getQuests(),
+      ...MONSTER_CATEGORIES.map((c) => getBundle(`monster-${c}`)),
+    ])
+      .then(([items, dict, quests, ...bundles]) => {
+        const monsters = (bundles as MonsterBundle[]).flatMap((b) =>
+          b.items.map((cm) => ({
+            name: cm.n,
+            href: `/monsters/${b.category}/${cm.s}/`,
+            drops: decodeMonster(dict, cm, b.category).drops,
+          })),
+        );
+        itemSourcesCache = buildItemSources(monsters, quests, items.idOf);
+        return itemSourcesCache;
+      })
+      .catch((e) => {
+        itemSourcesPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return itemSourcesPromise;
+}
+
+/** `getItemSources` as a hook: null while loading or on error (`error` set). */
+export function useItemSources(): { sources: Map<number, ItemSources> | null; error: boolean } {
+  const [sources, setSources] = useState(itemSourcesCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (itemSourcesCache) return;
+    let cancelled = false;
+    getItemSources().then(
+      (s) => !cancelled && setSources(s),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { sources, error };
+}
+
+// ---------------------------------------------------------------------------
+// Area maps: each quest's gathering points on the game's map
+// ---------------------------------------------------------------------------
+let areaMapsCache: AreaMapsBundle | null = null;
+let areaMapsPromise: Promise<AreaMapsBundle> | null = null;
+
+function getAreaMaps(): Promise<AreaMapsBundle> {
+  areaMapsPromise ??= fetchJson<AreaMapsBundle>("/data/area-maps.json")
+    .then((bundle) => (areaMapsCache = bundle))
+    .catch((e) => {
+      areaMapsPromise = null; // allow a retry on the next call
+      throw e;
+    });
+  return areaMapsPromise;
+}
+
+/** A quest's map with its gathering points; `map` is null while loading, on error, or if it has none. */
+export function useAreaMap(questId: number): { map: AreaMap | null; loading: boolean } {
+  const [bundle, setBundle] = useState(areaMapsCache);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    if (areaMapsCache) return;
+    let cancelled = false;
+    getAreaMaps().then(
+      (b) => !cancelled && setBundle(b),
+      () => !cancelled && setFailed(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const map = useMemo(() => (bundle ? decodeAreaMap(bundle, questId) : null), [bundle, questId]);
+  return { map, loading: !bundle && !failed };
+}
+
+// ---------------------------------------------------------------------------
+// Item places: where each item is gathered or sold, by item ID
+// ---------------------------------------------------------------------------
+let itemPlacesPromise: Promise<Map<number, ItemPlaces>> | null = null;
+let itemPlacesCache: Map<number, ItemPlaces> | null = null;
+
+/** Every item's gathering points and shops, from item-places.json. */
+export function getItemPlaces(): Promise<Map<number, ItemPlaces>> {
+  if (itemPlacesCache) return Promise.resolve(itemPlacesCache);
+  if (!itemPlacesPromise) {
+    itemPlacesPromise = fetchJson<ItemPlacesBundle>("/data/item-places.json")
+      .then((bundle) => {
+        itemPlacesCache = decodeItemPlaces(bundle);
+        return itemPlacesCache;
+      })
+      .catch((e) => {
+        itemPlacesPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return itemPlacesPromise;
+}
+
+/** `getItemPlaces` as a hook: null while loading or on error (`error` set). */
+export function useItemPlaces(): { places: Map<number, ItemPlaces> | null; error: boolean } {
+  const [places, setPlaces] = useState(itemPlacesCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (itemPlacesCache) return;
+    let cancelled = false;
+    getItemPlaces().then(
+      (p) => !cancelled && setPlaces(p),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { places, error };
+}
+
+// ---------------------------------------------------------------------------
+// Combinations: what each item is combined from and into, by item ID
+// ---------------------------------------------------------------------------
+let combinationsPromise: Promise<CombinationIndex> | null = null;
+let combinationsCache: CombinationIndex | null = null;
+
+/** The Combination List by item, from combinations.json. */
+export function getCombinations(): Promise<CombinationIndex> {
+  if (combinationsCache) return Promise.resolve(combinationsCache);
+  if (!combinationsPromise) {
+    combinationsPromise = fetchJson<CombinationsBundle>("/data/combinations.json")
+      .then((bundle) => {
+        combinationsCache = decodeCombinations(bundle);
+        return combinationsCache;
+      })
+      .catch((e) => {
+        combinationsPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return combinationsPromise;
+}
+
+/** `getCombinations` as a hook: null while loading or on error (`error` set). */
+export function useCombinations(): { combinations: CombinationIndex | null; error: boolean } {
+  const [combinations, setCombinations] = useState(combinationsCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (combinationsCache) return;
+    let cancelled = false;
+    getCombinations().then(
+      (c) => !cancelled && setCombinations(c),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { combinations, error };
 }
 
 // ---------------------------------------------------------------------------

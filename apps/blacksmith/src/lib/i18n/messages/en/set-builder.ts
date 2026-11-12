@@ -30,6 +30,18 @@ export const setBuilder = {
     rank: "Rank",
     weaponSlots: "Weapon slots",
     noWeaponSlots: "None",
+    sortBy: "Sort by",
+    sortNote: "Ties go to the higher defence.",
+    /** The sorts (lib/set-search.ts SortKey). */
+    sorts: {
+      defence: "Defence",
+      fire: "Fire Res",
+      water: "Water Res",
+      thunder: "Thundr Res",
+      ice: "Ice Res",
+      dragon: "Dragon Res",
+      slots: "Free slots",
+    },
     allowBadSkills: "Allow bad skills",
     allowBadSkillsNote: "Keep sets that also activate a negative skill, such as Defense -20.",
     ignoreProgress: "Ignore quest progress",
@@ -44,6 +56,17 @@ export const setBuilder = {
       ),
     ownedOnly: "Owned armor only",
     ownedOnlyNote: "Only use armor in your hunter's equipment box.",
+    /** The locked pieces, under the form; `remove` labels each one's ×. */
+    locked: {
+      title: "Locked",
+      note: "Every set uses these, whatever the rank or quest progress.",
+      remove: (name: string) => `Take ${name} off the locked pieces`,
+    },
+    excluded: {
+      title: "Excluded",
+      note: "The search never uses these.",
+      remove: (name: string) => `Take ${name} off the excluded pieces`,
+    },
     search: "Search",
     cancel: "Cancel",
   },
@@ -60,16 +83,23 @@ export const setBuilder = {
     loading: "Loading armor…",
     /** `found` is the number of sets found so far, formatted; "" before any. */
     searching: (found: string) => (found ? `Searching… ${found}` : "Searching…"),
-    intro: "Add the skills you want, then search. Sets are sorted by defence, highest first.",
-    /** `progress`: the search was limited by quest progress. */
-    noSets: (progress: boolean): string =>
-      progress
-        ? "No set activates all of these skills. Try fewer skills, a higher rank, more weapon slots, allowing bad skills, or ignoring your quest progress."
-        : "No set activates all of these skills. Try fewer skills, a higher rank, more weapon slots, or allowing bad skills.",
-    /** `shown` and `total` are formatted; `more`: the search stopped counting at `total`. */
-    truncated: (shown: string, total: string, more: boolean) =>
-      `The ${shown} highest-defence sets of ${total}${more ? "+" : ""} found. Add skills to narrow the search.`,
-    timedOut: "The search took too long and stopped early.",
+    intro:
+      "Add the skills you want, then search. The best sets come first: by defence, or by what you sort by.",
+    /** `progress`: the search was limited by quest progress; `locked`: it had locked pieces. */
+    noSets: (progress: boolean, locked: boolean): string => {
+      const tips = [
+        "fewer skills",
+        "a higher rank",
+        "more weapon slots",
+        "allowing bad skills",
+        ...(locked ? ["unlocking pieces"] : []),
+        ...(progress ? ["ignoring your quest progress"] : []),
+      ];
+      const last = tips.pop();
+      return `No set activates all of these skills. Try ${tips.join(", ")}, or ${last}.`;
+    },
+    timedOut: "The search stopped early: better sets may exist.",
+    /** The edit icon's label, beside the set number. */
     editThis: "Edit this set",
     status: "Status",
     errors: {
@@ -147,6 +177,12 @@ export const setBuilder = {
     alternatives: (n: number) =>
       `${n} other ${s(n, "piece gives", "pieces give")} the same points in your skills`,
     alternativesNote: "Their other skills differ, so a swap can add or remove a skill.",
+    /** The buttons on a result's piece: lock it into every set, or leave it out. */
+    lock: "Lock",
+    locked: "Locked",
+    exclude: "Exclude",
+    lockLabel: (name: string) => `Lock ${name}: use it in every set`,
+    excludeLabel: (name: string) => `Exclude ${name}: never use it`,
   },
 
   /** The Status panel. */

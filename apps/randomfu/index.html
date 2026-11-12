@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>randomfu — Monster Hunter Freedom Unite randomizer</title>
+    <title>RandomFU — Monster Hunter Freedom Unite randomizer</title>
     <meta
       name="description"
       content="A seeded randomizer for Monster Hunter Freedom Unite that runs in your browser on your own disc image."
@@ -13,9 +13,9 @@
     <!-- Link previews. Their URLs must be absolute: build.mjs fills in %SITE_URL%. -->
     <link rel="canonical" href="%SITE_URL%/" />
     <meta property="og:type" content="website" />
-    <meta property="og:site_name" content="randomfu" />
+    <meta property="og:site_name" content="RandomFU" />
     <meta property="og:url" content="%SITE_URL%/" />
-    <meta property="og:title" content="randomfu — Monster Hunter Freedom Unite randomizer" />
+    <meta property="og:title" content="RandomFU — Monster Hunter Freedom Unite randomizer" />
     <meta
       property="og:description"
       content="Shuffle rewards, monsters, quests and shops in Monster Hunter Freedom Unite. Seeded, with optional logic that keeps every recipe craftable, and it runs in your browser on your own disc image."
@@ -26,7 +26,7 @@
     <meta property="og:image:height" content="630" />
     <meta
       property="og:image:alt"
-      content="randomfu, Monster Hunter Freedom Unite randomizer: shuffle rewards, monsters, quests and shops."
+      content="RandomFU, Monster Hunter Freedom Unite randomizer: shuffle rewards, monsters, quests and shops."
     />
     <meta name="twitter:card" content="summary_large_image" />
     <!-- Everything runs here: the page can't send the disc, or anything else, anywhere. -->
@@ -42,7 +42,9 @@
   </head>
   <body>
     <header class="masthead">
-      <h1 class="masthead-title">Randomfu</h1>
+      <h1 class="masthead-title">
+        <img class="wordmark" src="images/randomfu.png" alt="RandomFU" width="197" height="24" />
+      </h1>
       <p class="masthead-sub">Monster Hunter Freedom Unite randomizer</p>
     </header>
     <hr class="divider" />
@@ -69,9 +71,9 @@
       <!-- 1. The disc -->
       <section class="panel" data-step="game" hidden>
         <p class="intro">
-          Pick a disc image of <b>Monster Hunter Freedom Unite</b> (EU) or
+          Choose a disc image of <b>Monster Hunter Freedom Unite</b> (EU) or
           <b>Monster Hunter Portable 2nd G</b> (JP), dumped from your own disc. It stays on your
-          computer: randomfu runs in this page and nothing is uploaded.
+          computer: RandomFU runs in this page and nothing is uploaded.
         </p>
         <label class="drop" id="iso-drop">
           <span class="drop-icon icon" style="--icon: url(images/binoculars.png)"></span>
@@ -91,8 +93,8 @@
       <!-- 2. Seed, presets and shared settings -->
       <section class="panel" data-step="start" hidden>
         <p class="intro">
-          The seed decides every shuffle: the same disc, seed and settings always make the same
-          game. Then start from a preset, or load settings someone shared with you.
+          The seed decides every random choice: the same disc, seed and settings always make the
+          same game. Then start from a preset, or load settings someone shared with you.
         </p>
         <h3 class="subheading">Seed</h3>
         <div class="row">
@@ -108,13 +110,32 @@
         </div>
 
         <h3 class="subheading">Preset</h3>
+        <p class="note">Every option does one of two things, and the presets mix them:</p>
+        <dl class="actions">
+          <div>
+            <dt><span class="tag shuffle">Shuffle</span></dt>
+            <dd class="note">
+              Moves what's already in the game to new places: rewards, gathering points, the
+              smithy's weapons and armor, shop stock, the monsters in quests. Nothing new is made.
+            </dd>
+          </div>
+          <div>
+            <dt><span class="tag randomize">Randomize</span></dt>
+            <dd class="note">
+              Rolls new values: material amounts, costs, prices, quest money and time limits,
+              monster size and stats, armor skills, weapon stats.
+            </dd>
+          </div>
+        </dl>
         <div class="choices" id="presets" role="radiogroup" aria-label="Preset"></div>
-        <p class="note">A preset keeps your seed. You can change anything in the next steps.</p>
 
-        <details class="load" id="load">
-          <summary class="subheading">Load shared settings</summary>
-          <label class="field">
-            <span class="label">Settings string</span>
+        <div class="choice-load" id="load">
+          <span class="choice-text">
+            <label class="choice-label" for="paste">Shared settings</label>
+            <span class="note">
+              Paste a settings string or load a settings file. Replaces every option, and your seed
+              if it has one.
+            </span>
             <span class="row">
               <input
                 type="text"
@@ -125,54 +146,22 @@
                 spellcheck="false"
               />
               <button type="button" class="button" id="apply-paste">Load</button>
+              <button type="button" class="button" id="import">File…</button>
+              <input type="file" id="import-file" accept=".json,application/json" hidden />
             </span>
-          </label>
-          <div class="row">
-            <button type="button" class="button" id="import">Load settings file</button>
-            <input type="file" id="import-file" accept=".json,application/json" hidden />
-          </div>
-        </details>
+          </span>
+        </div>
+        <p class="note" id="preset-note"></p>
         <p class="status" id="share-status" role="status"></p>
-        <div class="row" id="skip-row" hidden>
-          <button type="button" class="button" id="skip">Skip to review ▶</button>
+        <div class="row skip">
+          <button type="button" class="button" id="download">Download ▶</button>
+          <button type="button" class="button" id="customize">Customize ▶</button>
+          <span class="note grow">Happy with these? Randomize now, or go through the options.</span>
         </div>
       </section>
 
       <!-- The option steps are built from OPTIONS here. -->
       <div id="option-panels"></div>
-
-      <!-- The decrypted EBOOT, only when the settings need it -->
-      <section class="panel" data-step="eboot" hidden>
-        <p class="intro">
-          These settings change the game's EBOOT, its program, which is encrypted on the disc.
-          randomfu couldn't decrypt yours itself (<span id="eboot-why"></span>), so it needs a
-          decrypted copy, which PPSSPP can make for you:
-        </p>
-        <ul class="eboot-list" id="eboot-list"></ul>
-        <ol class="howto">
-          <li>In PPSSPP, open Settings → Tools → Developer tools.</li>
-          <li>Turn on “Dump Decrypted Eboot.bin on game boot”.</li>
-          <li>Start the game once. The file is in <code>PSP/SYSTEM/DUMP</code>.</li>
-        </ol>
-        <label class="drop" id="eboot-drop">
-          <span
-            class="drop-icon icon"
-            style="--icon: url(images/deco.png); --tint: var(--color-gem-cyan)"
-          ></span>
-          <span class="drop-text">
-            <span class="drop-title" id="eboot-name">Choose your decrypted EBOOT</span>
-            <span class="drop-hint">or drop it here</span>
-          </span>
-          <span class="drop-mark" id="eboot-mark" aria-hidden="true"></span>
-          <input type="file" id="eboot" class="visually-hidden" />
-        </label>
-        <p class="status" id="eboot-status" role="status"></p>
-        <div class="row">
-          <button type="button" class="button secondary" id="drop-eboot">
-            Turn these settings off instead
-          </button>
-        </div>
-      </section>
 
       <!-- Review, share and run -->
       <section class="panel" data-step="review" hidden>
@@ -240,7 +229,7 @@
     </main>
 
     <footer class="footer">
-      randomfu runs entirely in your browser. Not affiliated with Capcom.
+      RandomFU runs entirely in your browser. Not affiliated with Capcom.
     </footer>
 
     <script src="app.js"></script>

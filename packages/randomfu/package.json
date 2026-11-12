@@ -8,7 +8,6 @@
   "scripts": {
     "randomize": "tsx src/cli.ts randomize",
     "roundtrip": "tsx src/cli.ts roundtrip",
-    "eboot-info": "tsx src/cli.ts eboot-info",
     "gui": "tsx src/cli.ts gui",
     "settings": "tsx src/cli.ts settings",
     "test": "tsx --test test/**/*.test.ts",

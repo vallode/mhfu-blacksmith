@@ -9,7 +9,7 @@
  * overlay maps are emitted. Values stay numeric: hitzones as numbers under
  * the site's column keys, drops as `{ itemId, name, chance, amount }` with
  * the `ItemID` enum name. `base_hp` is the chunk's base HP; `tolerances`
- * has no committed counterpart yet. `breaks` lists the parts behind each
+ * its status tolerances (`siteTolerances`). `breaks` lists the parts behind each
  * of the monster's break rewards (`monsters/breaks.ts`, `overlay/breaks.ts`),
  * named after its `break …` drop group. `flinch_thresholds` is each body
  * part's flinch threshold (`hitzones.ts` `readFlinchThresholds`).
@@ -18,7 +18,13 @@
  * same way it does for equipment.
  */
 import type { BreakRecord } from "../monsters/breaks.js";
-import type { HitzoneColumn, MonsterChunk } from "../monsters/hitzones.js";
+import type {
+  HitzoneColumn,
+  MonsterChunk,
+  PoisonTolerance,
+  StatusTolerance,
+  Tolerances,
+} from "../monsters/hitzones.js";
 import { codeBreaks, type BreakDamage } from "../overlay/breaks.js";
 import type { CapBreakTable, CarveTables, RewardEntry, RewardRank } from "../monsters/rewards.js";
 import { MONSTER_OVERLAY, parseDropSlot } from "../overlay/monsters.js";
@@ -51,10 +57,78 @@ export interface EmittedMonster {
   base_hp: number;
   hitzones?: Record<string, Record<string, number>>;
   drops?: Record<string, Record<string, EmittedDrop[]>>;
-  tolerances: MonsterChunk["tolerances"];
+  tolerances: EmittedTolerances;
   breaks?: EmittedBreak[];
   /** Damage each body part (hitbox capsule `part`) takes before a flinch; null: no such part. */
   flinch_thresholds?: (number | null)[];
+}
+
+/** A status tolerance (`hitzones.ts` `StatusTolerance`) in the site's keys. */
+export interface EmittedStatusTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  duration: number;
+}
+
+/** Poison's tolerance (`hitzones.ts` `PoisonTolerance`) in the site's keys. */
+export interface EmittedPoisonTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  damage: number;
+  damage_interval: number;
+  total_time: number;
+}
+
+/** Status tolerances by status; null where the monster is immune. */
+export interface EmittedTolerances {
+  paralysis: EmittedStatusTolerance | null;
+  sleep: EmittedStatusTolerance | null;
+  ko: EmittedStatusTolerance | null;
+  poison: EmittedPoisonTolerance | null;
+}
+
+/** `initial` 0xFFFF: the status never builds up. */
+const IMMUNE = 0xffff;
+
+/**
+ * The chunk's tolerances in `data/`'s shape. The fourth status (`unknown`)
+ * is left out until it is identified. Poison's `damagePerSecond` is
+ * written as `damage_interval`: it is 150 on every monster, so it is
+ * likely the ticks between hits, not a damage figure.
+ */
+export function siteTolerances(t: Tolerances): EmittedTolerances {
+  const status = (s: StatusTolerance): EmittedStatusTolerance | null =>
+    s.initial === IMMUNE
+      ? null
+      : {
+          initial: s.initial,
+          increase: s.increase,
+          recovery: s.recovery,
+          recovery_time: s.recoveryTime,
+          duration: s.duration,
+        };
+  const poison = (p: PoisonTolerance): EmittedPoisonTolerance | null =>
+    p.initial === IMMUNE
+      ? null
+      : {
+          initial: p.initial,
+          increase: p.increase,
+          recovery: p.recovery,
+          recovery_time: p.recoveryTime,
+          damage: p.damage,
+          damage_interval: p.damagePerSecond,
+          total_time: p.totalTime,
+        };
+  return {
+    paralysis: status(t.paralysis),
+    sleep: status(t.sleep),
+    ko: status(t.ko),
+    poison: poison(t.poison),
+  };
 }
 
 /** One break reward and the body parts behind it. */
@@ -164,7 +238,7 @@ export function emitMonsters(tables: MonsterTables): EmitOutput {
     const monster: EmittedMonster = {
       name: enumName(entry.id),
       base_hp: chunk.baseHp,
-      tolerances: chunk.tolerances,
+      tolerances: siteTolerances(chunk.tolerances),
     };
     if (chunk.flinchThresholds) monster.flinch_thresholds = chunk.flinchThresholds;
 

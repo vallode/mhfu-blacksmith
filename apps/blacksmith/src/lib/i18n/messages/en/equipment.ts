@@ -1,4 +1,5 @@
 import { tierLabel, type Tier } from "../../../min-rank";
+import type { DecorationFilterId } from "../../../decoration-filter";
 
 /**
  * The blacksmith (weapons), armorsmith and decorations: navs, trees, detail
@@ -9,10 +10,15 @@ export const equipment = {
   /** The top bar of each section. */
   nav: {
     search: "Search",
+    /** The weapon type tabs, and the page heading: "Great Sword weapons". */
+    weaponTypes: "Weapon types",
+    weaponsTitle: (type: string) => `${type} weapons`,
+    /** The armor slot tabs, and the page heading: "Head armor". */
+    armorSlots: "Armor slots",
+    armorTitle: (slot: string) => `${slot} armor`,
   },
   /** The tree sidebars. */
   tree: {
-    selectWeapon: "Select a weapon from the tree.",
     /** Armor page with every piece hidden by the Quest progress preference. */
     nothingYet: "Nothing here is within your quest progress yet.",
     expand: "Expand",
@@ -21,12 +27,20 @@ export const equipment = {
     ownedNote: " (owned)",
     canUpgradeNote: " (you can make this upgrade now)",
     canForgeNote: " (you can forge this now)",
+    /** Decorations are made, not forged. */
+    canMakeNote: " (you can make this now)",
     /** A row's tooltip when the hunter has everything to make it. */
     canUpgradeTitle: (cost: string) =>
       `You can make this upgrade now (${cost}z, materials in your item box)`,
     canForgeTitle: (cost: string) =>
       `You can forge this now (${cost}z, materials in your item box)`,
+    canMakeTitle: (cost: string) => `You can make this now (${cost}z, materials in your item box)`,
     ownedTitle: "In your equipment box",
+    /** An owned decoration: jewels sit in the item box or in equipment. */
+    ownedJewelTitle: "In your item box or equipment",
+    /** The [↑] after a weapon listed again under a second parent. */
+    aliasLabel: "Upgrades listed above: go to them",
+    aliasTitle: "Upgrades listed above",
     /** Armor rows: the max defence on the right. */
     maxDefence: "Max defence",
     maxDefenceTitle: (value: number) => `Max defence ${value}`,
@@ -201,7 +215,27 @@ export const equipment = {
     } as Record<string, string>,
   },
   decoration: {
-    category: "Category:",
+    /** The search box above the list. */
+    searchLabel: "Filter decorations by name or skill",
+    searchPlaceholder: "Filter by name or skill, e.g. Attack",
+    noMatch: "No decorations match.",
+    /** The selector under the list (lib/decoration-filter). */
+    filterGroup: "Decoration filter",
+    filterCount: (matched: number, total: number) => `${matched} of ${total} decorations`,
+    filters: {
+      all: "All",
+      "slots-1": "1 slot",
+      "slots-2": "2 slots",
+      "slots-3": "3 slots",
+      owned: "Owned",
+      "not-owned": "Not owned",
+      craftable: "Craftable",
+      "within-one": "Within 1 material",
+    } satisfies Record<DecorationFilterId, string>,
+    /** With a save loaded: jewels in the item box and pouch, and attached to equipment. */
+    owned: "Owned:",
+    attached: (count: string) => `+${count} attached`,
+    recipesLabel: (name: string) => `${name} recipes`,
   },
   /** The 3D model button and popover. */
   model: {
@@ -218,5 +252,17 @@ export const equipment = {
     /** The model's accessible name: "Rathalos Helm (male)". */
     maleModel: (name: string) => `${name} (male)`,
     femaleModel: (name: string) => `${name} (female)`,
+    /** The motion controls over an animated model. */
+    motions: "Motions",
+    motion: "Motion",
+    previousMotion: "Previous motion",
+    nextMotion: "Next motion",
+    play: "Play",
+    pause: "Pause",
+    /** The hunter's motions (lib/hunter names them in English). */
+    sheathedIdle: "Sheathed idle",
+    drawnIdle: "Drawn idle",
+    moveN: (n: number) => `Move ${n}`,
+    attackN: (n: number) => `Attack ${n}`,
   },
 };

@@ -1,7 +1,12 @@
 /** The bestiary: monster pages, hitzones and drop tables. */
 export const monsters = {
-  /** A monster type's page before a monster is picked. */
-  noData: "No data",
+  /** The bestiary's page bar. */
+  nav: {
+    /** The page's screen-reader heading: "Flying Wyvern monsters". */
+    title: (category: string) => `${category} monsters`,
+    /** The type tabs' accessible name. */
+    types: "Monster types",
+  },
   detail: {
     notFound: "Not found.",
     size: "Size:",
@@ -16,7 +21,18 @@ export const monsters = {
     tabs: {
       hitzones: "Hitzones",
       quests: "Quests",
+      /** A small monster's tab: the quests with the most of it. */
+      spawns: "Most plentiful",
     },
+  },
+  /** A small monster's "Most plentiful" tab. */
+  spawns: {
+    /** How many of it a quest has: "×12". */
+    count: (total: string) => `×${total}`,
+    /** Under the first few quests of a star level: "+4 more with ×12". */
+    more: (count: string, total: string) => `+${count} more with ×${total}`,
+    /** A quest where it keeps spawning, so it has no total. */
+    keepsSpawning: "keeps spawning",
   },
   hitzones: {
     part: "Part",

@@ -9,8 +9,12 @@ import { fileURLToPath } from "node:url";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { emitAll, writeEmitOutput, type EmitOutput } from "../emit/index.js";
+import { emitCombinations } from "../emit/combinations.js";
 import { emitMonsters } from "../emit/monsters.js";
-import { emitQuestsFile } from "../emit/quests.js";
+import { emitGathering, type GatheringQuestInput } from "../emit/gathering.js";
+import { loadMapLayouts } from "../tables/map-layout.js";
+import { emitQuestsFile, type MultiplierLookup } from "../emit/quests.js";
+import { emitShops } from "../emit/shops.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
@@ -24,16 +28,20 @@ import {
   hornNotesFromCommitted,
 } from "../emit/melody-raw.js";
 import { MHP2G_EMIT_TABLES, MHP2G_PROFILE } from "../games/mhp2g.js";
-import { loadMonsterOverlays } from "../monsters/overlays.js";
+import { parseOvl } from "../container/ovl.js";
+import { loadMonsterOverlays, OVERLAY_DIR } from "../monsters/overlays.js";
+import { multiplierRow } from "../monsters/multipliers.js";
 import { readMonsterTables } from "../monsters/read.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
+import { findShops } from "../shops/shops.js";
 import {
   JP_BASE_ADDRESS,
   verifyOffsets,
   type OffsetVerificationResult,
 } from "../tables/offsets.js";
+import { readCombinations } from "../tables/combinations.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -79,8 +87,14 @@ export interface ExtractionManifest {
 export async function readQuestsFromUnpackedDir(
   unpackedDir: string,
   region: Region,
-): Promise<{ quests: ParsedQuest[]; skipped: SkippedQuest[]; raw: QuestRawEntry[] }> {
+): Promise<{
+  quests: ParsedQuest[];
+  skipped: SkippedQuest[];
+  raw: QuestRawEntry[];
+  payloads: GatheringQuestInput[];
+}> {
   const quests: ParsedQuest[] = [];
+  const payloads: GatheringQuestInput[] = [];
   const skipped: SkippedQuest[] = [];
   const raw: QuestRawEntry[] = [];
 
@@ -95,13 +109,14 @@ export async function readQuestsFromUnpackedDir(
       }
       const parsed = parseQuest(payload);
       quests.push(parsed);
+      payloads.push({ parsed, payload });
       raw.push(dumpQuestRaw(ref.path, payload, parsed, file.length));
     } catch (error) {
       const reason = error instanceof QuestCipherError ? error.message : String(error);
       skipped.push({ path: ref.path, reason });
     }
   }
-  return { quests, skipped, raw };
+  return { quests, skipped, raw, payloads };
 }
 
 /** Written before emitting, so the dump survives an emit error. */
@@ -151,6 +166,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
 
   let offsetResult: OffsetVerificationResult | ResolverCoverageResult;
   let output: EmitOutput;
+  let resolver: TableAddressResolver | undefined;
   if (manifest.region === "jp") {
     offsetResult = verifyOffsets(reader);
     if (!offsetResult.ok) {
@@ -165,7 +181,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     if (options.raw) await writeRawDumps(options.out, reader);
     output = emitAll(reader, undefined, overlays.gameTask.reader);
   } else {
-    const resolver = MHP2G_PROFILE.resolverForRegion(manifest.region);
+    resolver = MHP2G_PROFILE.resolverForRegion(manifest.region) ?? undefined;
     if (!resolver) {
       throw new Error(
         `extract has no table address resolver for region "${manifest.region}" yet — see README's "Region support" section.`,
@@ -187,8 +203,22 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     output = emitAll(reader, resolver, overlays.gameTask.reader);
   }
 
+  // Found by shape, not address, so this is the same for every region. A
+  // disc they can't be found on still gets everything else.
+  try {
+    const combinations = readCombinations(ebootBuf, JP_BASE_ADDRESS);
+    console.log(
+      `Combination List at 0x${combinations.offsets.list.toString(16)} (${combinations.recipes.length} combinations), recipes at 0x${combinations.offsets.records.toString(16)}.`,
+    );
+    output["combinations.json"] = emitCombinations(combinations);
+  } catch (error) {
+    console.warn(
+      `Warning: skipping combinations.json. ${error instanceof Error ? error.message : String(error)}`,
+    );
+  }
+
   console.log("Reading and parsing quest files...");
-  const { quests, skipped, raw } = await readQuestsFromUnpackedDir(
+  const { quests, skipped, raw, payloads } = await readQuestsFromUnpackedDir(
     options.unpacked,
     manifest.region,
   );
@@ -199,8 +229,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     await writeFile(rawPath, `${JSON.stringify(raw)}\n`, "utf-8");
     console.log(`Wrote ${rawPath}`);
   }
-  Object.assign(output, emitQuestsFile(quests));
-
+  // Read before the quests: their large monsters take stat multipliers from them.
   console.log("Reading monster tables from game_task.ovl and game_sub.ovl...");
   // The EBOOT's species table maps subspecies to their base species' breaks;
   // EU and JP load it at the same address.
@@ -213,29 +242,45 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   console.log(
     `Monster chunks at 0x${monsters.locations.chunks.offset.toString(16)}, reward tables at 0x${monsters.locations.rewards.carves.pointers.toString(16)} / 0x${monsters.locations.rewards.capBreak.pointers.toString(16)}.`,
   );
+  const multipliers = monsters.multipliers;
+  if (!multipliers)
+    console.warn("Warning: quest stat multiplier tables not found; quests get none.");
+  const multiplierLookup: MultiplierLookup | undefined = multipliers
+    ? (emId, statTable, power) => {
+        const chunk = monsters.chunks[emId];
+        return chunk ? multiplierRow(multipliers, chunk.multiplierSet, statTable, power) : null;
+      }
+    : undefined;
+  Object.assign(output, emitQuestsFile(quests, multiplierLookup));
+
+  // Only the EU disc's map tables are known; elsewhere points get no positions.
+  const maps =
+    manifest.region === "eu"
+      ? await loadMapLayouts(options.unpacked, reader, overlays.gameSub)
+      : undefined;
+  if (!maps) {
+    console.warn(`Warning: region "${manifest.region}" has no map tables, so no map positions.`);
+  }
+  const gathering = emitGathering(payloads, maps);
+  for (const { questId, problem } of gathering.problems) {
+    console.log(`Quest ${questId}: gathering points skipped (${problem}).`);
+  }
+  console.log(`Gathering: ${gathering.layouts.length} distinct sets of points.`);
+  output["gathering.json"] = { layouts: gathering.layouts };
+
+  console.log("Reading shop stock from lobby_task.ovl...");
+  const lobbyTask = parseOvl(
+    await readFile(path.join(options.unpacked, OVERLAY_DIR, "lobby_task.ovl")),
+  );
+  const shops = emitShops(findShops(lobbyTask), reader, resolver);
+  console.log(`Shops: ${shops.map((s) => `${s.name} (${s.items.length} items)`).join(", ")}.`);
+  output["shops.json"] = { shops };
+
   if (options.raw) {
     const rawPath = path.join(options.out, "raw", "monsters.json");
     await mkdir(path.dirname(rawPath), { recursive: true });
     await writeFile(rawPath, `${JSON.stringify(monsters)}\n`, "utf-8");
     console.log(`Wrote ${rawPath}`);
-    // How a quest picks its multiplier set and table is still open (#35):
-    // each quest's candidate selector bytes, by quest ID.
-    const questMonsters = quests.map((q) => ({
-      questId: q.header.questId,
-      stars: q.header.questStars,
-      questType: q.header.questType,
-      rank: q.header.rank,
-      spawn: q.header.spawn,
-      supplyCond: q.header.supplyCond,
-      unknownFlags: q.header.unknownFlags,
-      attackRoll: q.header.attackRoll,
-      specialCond: q.header.specialCond,
-      monSizeModifier: q.header.monSizeModifier,
-      large: q.largeMonsters,
-    }));
-    const questPath = path.join(options.out, "raw", "quest-monsters.json");
-    await writeFile(questPath, `${JSON.stringify(questMonsters)}\n`, "utf-8");
-    console.log(`Wrote ${questPath}`);
 
     // Hunting horn note-set/melody table candidates (#14): searched in the
     // EBOOT and both overlays against the committed horn notes.
@@ -246,12 +291,7 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
         { name: "game_task.ovl", reader: overlays.gameTask.reader },
         { name: "game_sub.ovl", reader: overlays.gameSub.reader },
       ],
-      hornNotesFromCommitted(
-        reader,
-        manifest.region === "jp"
-          ? undefined
-          : (MHP2G_PROFILE.resolverForRegion(manifest.region) ?? undefined),
-      ),
+      hornNotesFromCommitted(reader, resolver),
       committedMelodyCombos(),
     );
     const melodyPath = path.join(options.out, "raw", "melodies.json");

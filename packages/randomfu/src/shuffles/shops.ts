@@ -1,13 +1,10 @@
 /**
  * Shops: what they sell, how much of it, at what price and stack size.
  *
- * Where the data is (found with `shop-scan` and `shop-lists` on the EU
- * disc): `overlay/lobby_task.ovl` holds each shop's stock as lists of u16
- * item IDs ending in 0xFFFF, one list per stage of the game, picked through
- * a table of u32 pointers per shop (each ending in a 0 word). On the EU disc
- * the tables are at 0xa7da8: the village store, the peddling granny's pools
- * (also using two Guild lists), the Guild Hall store and a shop of Armor
- * Spheres, jewels and Pokke Tickets. Tables can share lists.
+ * Where the data is: `overlay/lobby_task.ovl` holds each shop's stock as
+ * lists of u16 item IDs, one list per stage of the game, picked through a
+ * table of u32 pointers per shop. `mhfu-extract/src/shops/shops.ts` finds
+ * them (`findShops`).
  *
  * What changes:
  *
@@ -22,14 +19,22 @@
  *   are rewritten back to back in the space the lists use now, and the
  *   pointer tables are updated; without this setting every list stays where
  *   it is.
- * - Prices and carry limits live in the EBOOT's item table (24-byte records,
- *   `mhfu-extract/src/tables/items.ts`). The price field isn't documented, so
- *   it's found on the disc from the general store's prices, and the carry
+ * - Prices and carry limits (`randomizeShopPrices`, separate from the stock
+ *   shuffle) live in the EBOOT's item table (24-byte records,
+ *   `mhfu-extract/src/tables/items.ts`), so they change for whatever shops
+ *   sell, with the stock shuffled or not. The price field isn't documented,
+ *   so it's found on the disc from the general store's prices, and the carry
  *   limit (+3) is checked the same way; both refuse to run if the disc
  *   disagrees.
  */
-import type { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
+import type { OvlFile } from "mhfu-extract/src/container/ovl.js";
+import {
+  LIST_END,
+  type ShopData,
+  type ShopList,
+  type ShopTable,
+} from "mhfu-extract/src/shops/shops.js";
 import {
   ITEM_ENTRY_SIZE,
   TABLE_COUNTS,
@@ -41,16 +46,6 @@ import type { Edits } from "../edits.js";
 import { itemName } from "../names.js";
 import type { Rng } from "../rng.js";
 import type { ShuffleReport } from "./shuffle.js";
-
-const ITEM_COUNT = 1262;
-const LIST_END = 0xffff;
-const MAX_LIST = 200;
-const MAX_TABLE = 32;
-
-/** The general store's opening items: how the first table is recognised. */
-const STORE_ITEMS = [163, 7, 11, 153]; // Herb, Potion, Antidote, Whetstone
-/** A shop selling Armor Spheres is the special shop. */
-const ARMOR_SPHERE = 223;
 
 /** Items shops keep selling with `keepEssentials`. */
 export const ESSENTIALS: readonly number[] = [
@@ -65,124 +60,6 @@ export const ESSENTIALS: readonly number[] = [
   97, // Normal S Lv2
   129, // Empty Bottle
 ];
-
-// ---------------------------------------------------------------- finding the shops
-
-export interface ShopList {
-  /** File offset of the first item. */
-  offset: number;
-  items: number[];
-}
-
-export interface ShopTable {
-  /** File offset of the table's first pointer. */
-  at: number;
-  name: string;
-  /** File offsets of its lists, by stage. */
-  lists: number[];
-  special: boolean;
-}
-
-export interface ShopData {
-  tables: ShopTable[];
-  lists: Map<number, ShopList>;
-}
-
-/** The item list at `offset`, or null if it isn't one (a value that isn't an item before the end). */
-function readList(ovl: OvlFile, offset: number): ShopList | null {
-  const r = ovl.reader;
-  const items: number[] = [];
-  for (let at = offset; at + 2 <= r.length && items.length <= MAX_LIST; at += 2) {
-    const v = r.u16(at);
-    if (v === LIST_END || v === 0) return { offset, items };
-    if (v >= ITEM_COUNT) return null;
-    items.push(v);
-  }
-  return null;
-}
-
-/** The table of pointers at `at`: own pointers to item lists, ending in a 0 word. */
-function readTable(ovl: OvlFile, at: number, lists: Map<number, ShopList>): number[] | null {
-  const r = ovl.reader;
-  const out: number[] = [];
-  for (let p = at; p + 4 <= r.length && out.length <= MAX_TABLE; p += 4) {
-    const word = r.u32(p);
-    if (word === 0) return out.length >= 2 ? out : null;
-    if (!ovl.isOwnVaddr(word)) return null;
-    const offset = ovl.vaddrToOffset(word);
-    if (offset % 2 !== 0) return null;
-    const list = lists.get(offset) ?? readList(ovl, offset);
-    if (!list) return null;
-    lists.set(offset, list);
-    out.push(offset);
-  }
-  return null;
-}
-
-function startsWith(items: readonly number[], prefix: readonly number[]): boolean {
-  return prefix.every((v, i) => items[i] === v);
-}
-
-function nameTable(lists: ShopList[]): { name: string; special: boolean } {
-  const all = lists.flatMap((l) => l.items);
-  if (all.includes(ARMOR_SPHERE)) return { name: "Sphere and jewel shop", special: true };
-  const first = lists.find((l) => l.items.length > 0)?.items ?? [];
-  if (startsWith(first, STORE_ITEMS)) return { name: "Village general store", special: false };
-  if (startsWith(first, STORE_ITEMS.slice(1))) return { name: "Guild Hall store", special: false };
-  return { name: "Peddler", special: false };
-}
-
-/**
- * Finds the shop tables: the table holding the general store's list, and
- * every table directly before and after it.
- */
-export function findShops(ovl: OvlFile): ShopData {
-  const r = ovl.reader;
-  const lists = new Map<number, ShopList>();
-  let first = -1;
-  for (let at = 0x80; at + 4 <= r.length && first === -1; at += 4) {
-    const word = r.u32(at);
-    if (!ovl.isOwnVaddr(word)) continue;
-    const list = readList(ovl, ovl.vaddrToOffset(word));
-    if (!list || !startsWith(list.items, STORE_ITEMS)) continue;
-    // Back up to the start of this table (the word after the previous 0).
-    let start = at;
-    while (start - 4 >= 0x80 && ovl.isOwnVaddr(r.u32(start - 4))) start -= 4;
-    if (readTable(ovl, start, lists)) first = start;
-  }
-  if (first === -1) throw new Error("lobby_task.ovl: the shop tables weren't found");
-
-  const starts: number[] = [];
-  // Earlier tables: each ends in a 0 word right before the next one starts.
-  for (let end = first - 4; end - 4 >= 0x80 && r.u32(end) === 0;) {
-    let start = end;
-    while (start - 4 >= 0x80 && ovl.isOwnVaddr(r.u32(start - 4))) start -= 4;
-    if (start === end || !readTable(ovl, start, lists)) break;
-    starts.unshift(start);
-    end = start - 4;
-  }
-  for (let at = first; ;) {
-    const offsets = readTable(ovl, at, lists);
-    if (!offsets) break;
-    starts.push(at);
-    at += (offsets.length + 1) * 4;
-  }
-  const tables: ShopTable[] = starts.map((at) => ({
-    at,
-    lists: readTable(ovl, at, lists)!,
-    name: "",
-    special: false,
-  }));
-  const seen = new Map<string, number>();
-  for (const table of tables) {
-    const { name, special } = nameTable(table.lists.map((o) => lists.get(o)!));
-    const n = (seen.get(name) ?? 0) + 1;
-    seen.set(name, n);
-    table.name = n === 1 ? name : `${name} ${n}`;
-    table.special = special;
-  }
-  return { tables, lists };
-}
 
 // ---------------------------------------------------------------- the item table
 
@@ -262,10 +139,6 @@ export interface ShopOptions {
   special: boolean;
   /** Each group's list lengths scale by up to this fraction; 0 keeps them. */
   countSpread: number;
-  /** Buy prices vary by up to this fraction, or null to keep them. */
-  priceSpread: number | null;
-  /** Carry limits vary by up to this fraction, or null to keep them. */
-  stackSpread: number | null;
 }
 
 export interface ShopContext {
@@ -273,8 +146,8 @@ export interface ShopContext {
   bands: ReadonlyMap<number, "low" | "high" | "g">;
   /** Every item that can be sold (has a name and an item record). */
   allItems: readonly number[];
-  /** The EBOOT's item table, for prices and carry limits. */
-  items: ItemTable | null;
+  /** Whether the EBOOT's item table is there to price items never sold before. */
+  canPrice: boolean;
 }
 
 /** Groups of tables that must share one replacement per item: tables sharing a list, or all. */
@@ -317,7 +190,9 @@ function poolFor(
  * first stage their item appears in (random within a stage), then extras.
  * N grows with floor and shrinks with ceil from one factor per group, capped
  * so the longest list fits, which keeps every gap between stages at least
- * as big as before.
+ * as big as before. A list also keeps everything the lists nested in it
+ * kept, which priority alone doesn't promise when a later stage has more
+ * pinned items than an earlier one.
  */
 function prepareGroup(
   lists: ShopList[],
@@ -371,7 +246,9 @@ function prepareGroup(
   const contents = (requested: number): Map<number, number[]> => {
     const factor = Math.min(requested, maxLength / longest);
     const out = new Map<number, number[]>();
-    for (const list of lists) {
+    const kept = new Map<ShopList, Set<number>>();
+    // Smaller lists first, so a list's nested lists are settled before it.
+    for (const list of [...lists].sort((a, b) => a.items.length - b.items.length)) {
       const replaced = [...new Set(list.items.map((v) => sigma.get(v)!))];
       if (list.items.length === 0) {
         out.set(list.offset, []);
@@ -383,9 +260,16 @@ function prepareGroup(
           ? size + Math.floor((factor - 1) * size)
           : Math.max(1, Math.ceil(factor * size));
       const candidates = factor > 1 ? [...replaced, ...extras] : replaced;
-      const keep = new Set(
-        [...candidates].sort((a, b) => priority.get(a)! - priority.get(b)!).slice(0, target),
-      );
+      // Whatever a nested list kept stays (see above).
+      const keep = new Set<number>();
+      for (const [inner, items] of kept) {
+        if (inner.items.every((v) => list.items.includes(v))) for (const v of items) keep.add(v);
+      }
+      for (const v of [...candidates].sort((a, b) => priority.get(a)! - priority.get(b)!)) {
+        if (keep.size >= target) break;
+        keep.add(v);
+      }
+      kept.set(list, keep);
       out.set(
         list.offset,
         candidates.filter((v) => keep.has(v)),
@@ -474,15 +358,13 @@ export function randomizeShops(
   data: ShopData,
   options: ShopOptions,
   context: ShopContext,
-  rng: { stock: Rng; prices: Rng; stacks: Rng },
+  rng: Rng,
   edits: Edits,
   lobby: LoadedOverlay,
-): ShuffleReport {
+): { report: ShuffleReport; sold: number[] } {
   const included = data.tables.filter((t) => options.special || !t.special);
   const pinned = new Set(options.keepEssentials ? ESSENTIALS : []);
-  const allShopItems = [
-    ...new Set(included.flatMap((t) => t.lists.flatMap((o) => data.lists.get(o)!.items))),
-  ];
+  const allShopItems = itemsSoldBy(data, included);
   const maxLength = Math.max(...[...data.lists.values()].map((l) => l.items.length));
   const lines: { where: string; text: string }[] = [];
   const contents = new Map<number, number[]>();
@@ -497,10 +379,10 @@ export function randomizeShops(
       poolFor(own, allShopItems, options, context),
       pinned,
       maxLength,
-      rng.stock,
+      rng,
     );
     const s = options.countSpread;
-    const factor = s > 0 ? 1 - s + rng.stock.float() * 2 * s : 1;
+    const factor = s > 0 ? 1 - s + rng.float() * 2 * s : 1;
     return { group, plan, factor };
   });
 
@@ -545,74 +427,12 @@ export function randomizeShops(
 
   const layout = writeLists(lobby.ovl, data, contents, edits.overlay(lobby));
 
-  // Prices and carry limits, for every item a shop now sells.
-  const sold = [...new Set([...contents.values()].flat())].sort((a, b) => a - b);
   const notes: string[] = [];
-  const priceLines: { where: string; text: string }[] = [];
-  const stackLines: { where: string; text: string }[] = [];
-  const table = context.items;
-  if ((options.priceSpread !== null || options.stackSpread !== null) && !table) {
-    throw new Error("Shop prices and carry limits need the decrypted EBOOT");
-  }
-  if (table) {
-    const eboot = edits.eboot();
-    let priced = 0;
-    for (const id of sold) {
-      if (id >= table.count) continue;
-      const at = table.base + id * ITEM_ENTRY_SIZE;
-      let price = eboot.readUInt32LE(at + table.priceField);
-      const old = price;
-      if (price === 0) {
-        // Never on sale before, so no price: one from its rarity, so nothing is free.
-        price = 100 * (eboot.readUInt8(at + RARITY_FIELD) + 1) ** 2;
-        priced++;
-      }
-      if (options.priceSpread !== null) {
-        const s = options.priceSpread;
-        price = Math.max(1, Math.round(price * (1 - s + rng.prices.float() * 2 * s)));
-      }
-      if (price !== old) {
-        eboot.writeUInt32LE(price, at + table.priceField);
-        priceLines.push({ where: "Prices", text: `${itemName(id)}: ${price}z (was ${old}z)` });
-      }
-      if (options.stackSpread !== null) {
-        const oldStack = eboot.readUInt8(at + STACK_FIELD);
-        if (oldStack === 0) continue;
-        const s = options.stackSpread;
-        const stack = Math.min(
-          99,
-          Math.max(1, Math.round(oldStack * (1 - s + rng.stacks.float() * 2 * s))),
-        );
-        eboot.writeUInt8(stack, at + STACK_FIELD);
-        if (stack !== oldStack) {
-          stackLines.push({
-            where: "Carry limits",
-            text: `${itemName(id)}: ${stack} (was ${oldStack})`,
-          });
-        }
-      }
-    }
-    if (priced > 0) {
-      notes.push(
-        `${priced} items had no price, so they got one from their rarity: 100z × (rarity + 1)², before any variation.`,
-      );
-    }
-    if (options.priceSpread !== null) {
-      notes.push(
-        `Prices of everything shops sell vary by up to ${Math.round(options.priceSpread * 100)}%. The price is the item's own, so it applies in every shop.`,
-      );
-    }
-    if (options.stackSpread !== null) {
-      notes.push(
-        `Carry limits of everything shops sell vary by up to ${Math.round(options.stackSpread * 100)}% (1 to 99). They apply everywhere, not just in shops.`,
-      );
-    }
-  } else if (options.pool !== "shop") {
+  if (!context.canPrice && options.pool !== "shop") {
     notes.push(
       "Without the decrypted EBOOT, items that are never normally sold can't be given a price, so some may be free.",
     );
   }
-  lines.push(...priceLines, ...stackLines);
 
   const skipped = data.tables.filter((t) => !included.includes(t)).map((t) => t.name);
   const poolText: Record<ShopPool, string> = {
@@ -621,8 +441,8 @@ export function randomizeShops(
     high: "shop items and anything first found in Low or High Rank",
     any: "any item in the game",
   };
-  return {
-    title: "Shops",
+  const report: ShuffleReport = {
+    title: "Shop stock",
     notes: [
       `Each item a shop sells is replaced by one drawn from ${poolText[options.pool]}, the same in every stage of that shop.`,
       options.mix === "all"
@@ -639,4 +459,107 @@ export function randomizeShops(
     ],
     lines,
   };
+  // Every item a shop now sells, for prices and carry limits.
+  return { report, sold: [...new Set([...contents.values()].flat())].sort((a, b) => a - b) };
+}
+
+// ---------------------------------------------------------------- prices and carry limits
+
+/**
+ * What the shops sell with their stock unchanged: every item of every shop
+ * but the Point Exchange, which takes Pokke Points (so it's priced only when
+ * it's in the stock shuffle, `shops.special`).
+ */
+export function itemsOnSale(data: ShopData): number[] {
+  return itemsSoldBy(
+    data,
+    data.tables.filter((t) => !t.special),
+  ).sort((a, b) => a - b);
+}
+
+/** Every item `tables` sell, once each, in list order. */
+function itemsSoldBy(data: ShopData, tables: readonly ShopTable[]): number[] {
+  return [...new Set(tables.flatMap((t) => t.lists.flatMap((o) => data.lists.get(o)!.items)))];
+}
+
+export interface PriceOptions {
+  /** Buy prices vary by up to this fraction, or null to keep them. */
+  priceSpread: number | null;
+  /** Carry limits vary by up to this fraction, or null to keep them. */
+  stackSpread: number | null;
+}
+
+/**
+ * Prices and carry limits of `sold` (what the shops sell, after any stock
+ * shuffle). Any of them with no price, never on sale before, gets one from
+ * its rarity, so nothing is free. Null when there's nothing to report.
+ */
+export function randomizeShopPrices(
+  sold: readonly number[],
+  options: PriceOptions,
+  table: ItemTable | null,
+  rng: { prices: Rng; stacks: Rng },
+  edits: Edits,
+): ShuffleReport | null {
+  if ((options.priceSpread !== null || options.stackSpread !== null) && !table) {
+    throw new Error("Shop prices and carry limits need the decrypted EBOOT");
+  }
+  if (!table) return null;
+  const notes: string[] = [];
+  const priceLines: { where: string; text: string }[] = [];
+  const stackLines: { where: string; text: string }[] = [];
+  const eboot = edits.eboot();
+  let priced = 0;
+  for (const id of sold) {
+    if (id >= table.count) continue;
+    const at = table.base + id * ITEM_ENTRY_SIZE;
+    let price = eboot.readUInt32LE(at + table.priceField);
+    const old = price;
+    if (price === 0) {
+      // Never on sale before, so no price: one from its rarity, so nothing is free.
+      price = 100 * (eboot.readUInt8(at + RARITY_FIELD) + 1) ** 2;
+      priced++;
+    }
+    if (options.priceSpread !== null) {
+      const s = options.priceSpread;
+      price = Math.max(1, Math.round(price * (1 - s + rng.prices.float() * 2 * s)));
+    }
+    if (price !== old) {
+      eboot.writeUInt32LE(price, at + table.priceField);
+      priceLines.push({ where: "Prices", text: `${itemName(id)}: ${price}z (was ${old}z)` });
+    }
+    if (options.stackSpread !== null) {
+      const oldStack = eboot.readUInt8(at + STACK_FIELD);
+      if (oldStack === 0) continue;
+      const s = options.stackSpread;
+      const stack = Math.min(
+        99,
+        Math.max(1, Math.round(oldStack * (1 - s + rng.stacks.float() * 2 * s))),
+      );
+      eboot.writeUInt8(stack, at + STACK_FIELD);
+      if (stack !== oldStack) {
+        stackLines.push({
+          where: "Carry limits",
+          text: `${itemName(id)}: ${stack} (was ${oldStack})`,
+        });
+      }
+    }
+  }
+  if (priced > 0) {
+    notes.push(
+      `${priced} items had no price, so they got one from their rarity: 100z × (rarity + 1)², before any variation.`,
+    );
+  }
+  if (options.priceSpread !== null) {
+    notes.push(
+      `Prices of everything shops sell vary by up to ${Math.round(options.priceSpread * 100)}%. The price is the item's own, so it applies in every shop.`,
+    );
+  }
+  if (options.stackSpread !== null) {
+    notes.push(
+      `Carry limits of everything shops sell vary by up to ${Math.round(options.stackSpread * 100)}% (1 to 99). They apply everywhere, not just in shops.`,
+    );
+  }
+  if (notes.length === 0) return null;
+  return { title: "Shop prices", notes, lines: [...priceLines, ...stackLines] };
 }

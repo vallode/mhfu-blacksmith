@@ -3,13 +3,14 @@
 import { useEffect, useLayoutEffect, useRef } from "react";
 import Card from "@/components/Card";
 import { cn } from "@/lib/cn";
+import { PHONE } from "@/lib/media";
 import { useT } from "@/context/LanguageContext";
 
 /**
  * Desktop: absolutely positioned in the .split-page (position: relative); the
  * exact box over the side card is set from measurement in a layout effect.
- * Phone (stacked layout): the cards stack and the page scrolls, so there's no
- * fixed-height side card to sit in; float over the viewport instead.
+ * Phone: the side card is under the detail sheet (SplitPage), so float over
+ * the viewport instead.
  */
 const POPOVER_CLASSES =
   "absolute top-0 bottom-0 left-0 z-30 flex w-1/2 mobile:fixed mobile:top-1/2 mobile:right-4 mobile:bottom-auto mobile:left-4 mobile:z-50 mobile:h-[min(75vh,36rem)] mobile:w-auto mobile:-translate-y-1/2";
@@ -109,8 +110,6 @@ interface PopoverProps {
 
 /** Gap between the popover and the side card's edges, on every side. */
 const INSET = 14;
-/** Matches the stacked .split-page layout, where the popover floats instead (see the SCSS). */
-const STACKED = "(max-width: 600px)";
 
 /**
  * The 3D model, in the alternative blue frame, laid over the side card of
@@ -122,13 +121,14 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
   const popoverRef = useRef<HTMLDivElement>(null);
 
   // Center the popover inside the side card (the .split-page's first child),
-  // measured rather than derived from the layout's CSS so it stays exact.
+  // measured rather than derived from the layout's CSS so it stays exact. The
+  // popover can sit in a wrapper inside the page (SplitPage's sheet).
   useLayoutEffect(() => {
     const popover = popoverRef.current;
-    const page = popover?.parentElement;
+    const page = popover?.closest<HTMLElement>(".split-page");
     const side = page?.firstElementChild as HTMLElement | null | undefined;
     if (!popover || !page || !side || side === popover) return;
-    const stacked = window.matchMedia(STACKED);
+    const stacked = window.matchMedia(PHONE);
     const place = () => {
       if (stacked.matches) {
         popover.style.cssText = "";
@@ -175,20 +175,21 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
       role="dialog"
       aria-label={t.equipment.model.label(title)}
     >
-      {/* No padding, and a layout border exactly as thick as the blue frame's
-          visible band (4 source px at 3x), so the render ends at the frame. */}
-      <Card frame="blue" className="border-[12px] p-0">
+      {/* Padding exactly as thick as the blue frame's visible band (4 source
+          px at 3x), so the render ends at the frame. */}
+      <Card frame="blue" bodyClassName="card-p-[1.2rem]">
         <div className="flex min-h-0 flex-1">{children}</div>
-        <button
-          ref={closeRef}
-          type="button"
-          onClick={onClose}
-          aria-label={t.equipment.model.close}
-          className="absolute top-1 right-2 z-20 cursor-pointer px-2 text-[4.4rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:text-[3.4rem]"
-        >
-          ×
-        </button>
       </Card>
+      {/* Outside the card, so it sits over the frame rather than under it. */}
+      <button
+        ref={closeRef}
+        type="button"
+        onClick={onClose}
+        aria-label={t.equipment.model.close}
+        className="absolute top-1 right-2 z-20 cursor-pointer px-2 text-[4.4rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:text-[3.4rem]"
+      >
+        ×
+      </button>
     </div>
   );
 }

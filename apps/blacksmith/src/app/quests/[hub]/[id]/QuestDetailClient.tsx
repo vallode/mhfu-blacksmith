@@ -15,8 +15,11 @@ import {
   questStarLevel,
   type QuestHubSlug,
   type QuestMonster,
+  type QuestMonsterStats,
 } from "@/lib/quests";
+import QuestAreaMap from "@/components/AreaMap";
 import Loading from "@/components/Loading";
+import MapIcon from "@/components/MapIcon";
 import { cn } from "@/lib/cn";
 import StarMarks from "@/components/StarMarks";
 
@@ -42,6 +45,54 @@ function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
         </span>
       ))}
     </span>
+  );
+}
+
+/** The monster whose attack and defense change mid-hunt, as the note says. */
+const FURIOUS_RAJANG = "Furious Rajang";
+
+/** Each large monster's HP and multipliers in this quest. */
+function MonsterStats({ stats }: { stats: QuestMonsterStats[] }) {
+  const { t, game, formatNumber } = useLocale();
+  const m = t.quests.monsterStats;
+  const times = (n: number) => m.times(formatNumber(n));
+  return (
+    <div className="flex flex-col gap-6">
+      {stats.map((s, i) => (
+        <section key={i} className="flex flex-col gap-3">
+          <h3 className="m-0 leading-none font-normal text-warm">
+            {s.monster.href ? (
+              <Link href={s.monster.href} className="underline-offset-4 hover:underline">
+                {game.name("monster", s.monster.name)}
+              </Link>
+            ) : (
+              game.name("monster", s.monster.name)
+            )}
+          </h3>
+          <StatList>
+            {s.hp !== null && (
+              <Stat label={m.hp}>
+                <span className="text-white tabular-nums">{formatNumber(s.hp)}</span>
+              </Stat>
+            )}
+            <Stat label={m.attack}>
+              <span className="text-white tabular-nums">{times(s.attack)}</span>
+            </Stat>
+            <Stat label={m.defense}>
+              <span className="text-white tabular-nums">{times(s.defense)}</span>
+            </Stat>
+            <Stat label={m.stagger}>
+              <span className="text-white tabular-nums">{times(s.stagger)}</span>
+            </Stat>
+          </StatList>
+        </section>
+      ))}
+      <p className="text-fine leading-[1.4] whitespace-normal text-white/60">
+        {m.note}
+        {stats.some((s) => s.monster.name === FURIOUS_RAJANG) &&
+          ` ${m.changesDuringHunt(game.name("monster", FURIOUS_RAJANG))}`}
+      </p>
+    </div>
   );
 }
 
@@ -139,6 +190,13 @@ export default function QuestDetailClient({ hub, id }: Props) {
       ),
     },
   ];
+  if (quest.monsterStats.length > 0) {
+    tabs.push({
+      id: "monsters",
+      label: d.tabs.monsters,
+      content: <MonsterStats stats={quest.monsterStats} />,
+    });
+  }
   if (quest.rewardTables.length > 0) {
     tabs.push({
       id: "rewards",
@@ -154,13 +212,28 @@ export default function QuestDetailClient({ hub, id }: Props) {
     });
   }
 
+  if (quest.hasAreaMap) {
+    tabs.push({ id: "map", label: d.tabs.map, content: <QuestAreaMap questId={id} /> });
+  }
+
   return (
     <DetailCard>
-      {/* Title, board and description, like the quest scroll: the title
-          centred in white, the details in white with the game's roomy lines.
-          CLEAR!! (a quest the loaded hunter has cleared) and URGENT!!! sit in
-          the top corners, level with the title's first line, which keeps
-          clear of them; on a phone they take their own line. */}
+      {/* The map's icon, faded behind the card's bottom-right corner, as on
+          the game's quest card; brightened, as the art is dark on this card.
+          Behind the text (-z-1 inside the card's own stacking context) and
+          out of the way of clicks. */}
+      {quest.map && (
+        <MapIcon
+          map={quest.map}
+          className="pointer-events-none absolute right-[3.2rem] bottom-[3.2rem] -z-1 size-[22rem] opacity-30 brightness-200 mobile:size-[14rem]"
+        />
+      )}
+
+      {/* Type, title, board and description, like the quest scroll: the
+          type and title centred in white, the details in white with the
+          game's roomy lines. CLEAR!! (a quest the loaded hunter has cleared)
+          and URGENT!!! sit in the top corners, level with the type, which
+          keeps clear of them; on a phone they take their own line. */}
       <div className="relative flex flex-col gap-2 text-main text-white">
         {(cleared || quest.urgent) && (
           <div className="pointer-events-none absolute inset-x-0 top-0 flex text-small leading-[2.75rem] mobile:static mobile:leading-[1.25]">
@@ -174,8 +247,9 @@ export default function QuestDetailClient({ hub, id }: Props) {
             (cleared || quest.urgent) && "px-[9.6rem] mobile:px-0",
           )}
         >
-          {title}
+          {t.quests.typeHeadings[quest.type]}
         </p>
+        <p className="text-center leading-[1.25] whitespace-normal">{title}</p>
         <p className="text-center text-small leading-[1.25] whitespace-normal text-stat">
           {t.quests.hubs[hub]} · <StarMarks {...questStarLevel(hub, quest.stars)} />
         </p>

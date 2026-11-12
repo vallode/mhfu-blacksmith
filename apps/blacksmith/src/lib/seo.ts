@@ -2,18 +2,16 @@ import fs from "node:fs";
 import path from "node:path";
 import type { Metadata, Viewport } from "next";
 import { rankName, type GuildRank } from "./min-rank";
+import { titleCase } from "./title-case";
 import type { ArmorPiece, Decoration, Monster, Weapon } from "./types";
 
 export const SITE_NAME = "MHFU Blacksmith";
 /**
- * Absolute base for metadata URLs. Netlify deploy previews and branch deploys
- * use their own address, so their embeds load that build's icons and oEmbed
- * files rather than production's.
+ * Absolute base for metadata URLs. NEXT_PUBLIC_SITE_URL overrides it for a
+ * build served elsewhere (a preview), so its embeds load that build's icons
+ * and oEmbed files rather than production's.
  */
-export const SITE_URL =
-  (process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL) ||
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://mhfu-blacksmith.netlify.app";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://mhfu.vallode.com";
 export const SITE_DESCRIPTION =
   "Monster Hunter Freedom Unite — weapons, armor, decorations and monsters, with every recipe, skill and drop.";
 /** Discord colours the left edge of an embed with this. */
@@ -144,12 +142,7 @@ export function tintFor(rarity?: number | null, gem?: string | null): string | u
   return undefined;
 }
 
-/** "sword-and-shield" → "Sword and Shield". */
-export const titleCase = (s: string): string =>
-  s
-    .replace(/-/g, " ")
-    .replace(/\b\w/g, (c) => c.toUpperCase())
-    .replace(/(?<=.) (And|Of|The) /g, (w) => w.toLowerCase());
+export { titleCase };
 
 export const rankLabel = (rank: string | undefined): string =>
   rank ? rankName(rank as GuildRank) : "";
@@ -329,9 +322,9 @@ export function monsterDescription(m: Monster): string {
   );
 }
 
-/** "Rarity 5 Decoration · Attack up", linking to the decoration list. */
+/** "Rarity 5 Decoration", linking to the decoration list. */
 export const decorationAuthor = (d: Decoration): EmbedAuthor => ({
-  name: [`${rarityPrefix(d.rarity)}Decoration`, d.category ?? ""].filter(Boolean).join(" · "),
+  name: `${rarityPrefix(d.rarity)}Decoration`,
   path: "/decorations/",
 });
 
@@ -340,4 +333,8 @@ export function decorationDescription(d: Decoration): string {
     d.slots ? `Uses ${slotGlyphs(d.slots).replace(/—/g, "")}` : "",
     d.skills?.length && `Skills: ${d.skills.map((s) => s.replace(/ -(\d)/, " −$1")).join(", ")}`,
   );
+}
+
+export function itemDescription(name: string): string {
+  return `Where to get ${name} in Monster Hunter Freedom Unite: the monster carves, breaks, captures and quest rewards that give it, best chance first.`;
 }

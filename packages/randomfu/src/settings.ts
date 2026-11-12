@@ -34,6 +34,12 @@ export interface Settings {
   "costs.spread": number;
   "weapons.enabled": boolean;
   "weapons.mix": "same-type" | "any-type";
+  "weapons.attack": boolean;
+  "weapons.attackSpread": number;
+  "weapons.affinity": boolean;
+  "weapons.affinitySpread": number;
+  "weapons.element": boolean;
+  "weapons.elementSpread": number;
   "armor.enabled": boolean;
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
@@ -72,8 +78,28 @@ export type OptionKey = Exclude<keyof Settings, "seed">;
 
 export type OptionType =
   | { kind: "boolean" }
-  | { kind: "number"; min: number; max: number; step: number; percent?: boolean }
-  | { kind: "choice"; choices: { value: string; label: string; help: string }[] };
+  | {
+      kind: "number";
+      min: number;
+      max: number;
+      step: number;
+      /** Shown as ±50%. */
+      percent?: boolean;
+      /** Shown as ±4 levels. */
+      unit?: string;
+    }
+  | {
+      kind: "choice";
+      choices: { value: string; label: string; help: string; action?: Action }[];
+    };
+
+/**
+ * What an option does to the game. A shuffle moves what's already there (items,
+ * monsters, weapons, armor, skills, weak spots) to other places: nothing new is
+ * made. A randomizer rolls new values (amounts, costs, prices, HP, sizes, time
+ * limits). The pages tag options with it, and the presets are built on it.
+ */
+export type Action = "shuffle" | "randomize";
 
 export interface OptionDef {
   key: OptionKey;
@@ -82,6 +108,8 @@ export interface OptionDef {
   help: string;
   type: OptionType;
   default: boolean | number | string;
+  /** Shuffle or randomize: left out for options that only tune another (and for Logic). */
+  action?: Action;
   /** Needs the decrypted EBOOT when on (or, for non-booleans, when `enabledBy` is on). */
   eboot?: boolean;
   /** A boolean option that must be on for this one to matter. */
@@ -94,15 +122,15 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "logic.tiers",
     section: "Logic",
-    label: "Keep items in their place in the game",
-    help: "How far an item can move. Shuffles only swap items found first at the same point in the game, so recipes stay craftable as early as before.",
+    label: "How far items can move",
+    help: "An item's point in the game is the rank and star level where it's first found: the earliest Village or Guild quest that rewards it, has a monster that gives it, or has a gathering point with it.",
     type: {
       kind: "choice",
       choices: [
         {
           value: "star",
           label: "Same star level",
-          help: "Items only move between things first found at the same rank and star level. A 1★ recipe stays makeable at 1★.",
+          help: "Items only move between places at the same rank and star level. A 1★ recipe stays craftable at 1★.",
         },
         {
           value: "rank",
@@ -122,23 +150,25 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "questRewards.enabled",
     section: "Quest rewards",
     label: "Shuffle quest rewards",
-    help: "Items and amounts move between Village and Guild quests; each slot keeps its chance. Training School and Treasure Hunting quests are left alone.",
+    help: "Reward items and amounts move between Village and Guild quests at the same point in the game (see Logic); each slot keeps its chance. Training School and Treasure Hunting quests are left alone.",
     type: { kind: "boolean" },
     default: true,
+    action: "shuffle",
   },
   {
     key: "monsterRewards.enabled",
     section: "Monster rewards",
-    label: "Shuffle carves",
-    help: "Body, tail and shiny drop items move between monsters; chances stay with each slot.",
+    label: "Shuffle carves and shiny drops",
+    help: "Body carves, tail carves and shiny drops move between monsters at the same point in the game (see Logic); each slot keeps its chance.",
     type: { kind: "boolean" },
     default: true,
+    action: "shuffle",
   },
   {
     key: "monsterRewards.captureAndBreaks",
     section: "Monster rewards",
-    label: "Also shuffle capture and break rewards",
-    help: "Include capture rewards and part-break rewards in the same pool as carves.",
+    label: "Include capture and break rewards",
+    help: "Capture rewards and part-break rewards are shuffled along with carves.",
     type: { kind: "boolean" },
     default: true,
     enabledBy: "monsterRewards.enabled",
@@ -147,9 +177,10 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "gathering.enabled",
     section: "Gathering",
     label: "Shuffle gathering points",
-    help: "Items from mining, gathering and bug catching points move between Village and Guild quests (see Logic); each spot keeps its odds. Training School and Treasure Hunting quests are left alone.",
+    help: "Items from mining, gathering and bug catching points move between Village and Guild quests at the same point in the game (see Logic); each spot keeps its odds. Training School and Treasure Hunting quests are left alone.",
     type: { kind: "boolean" },
     default: false,
+    action: "shuffle",
   },
   {
     key: "gathering.pool",
@@ -161,13 +192,13 @@ export const OPTIONS: readonly OptionDef[] = [
       choices: [
         {
           value: "gathered",
-          label: "Items you could gather",
-          help: "The same items, moved between spots at the same point in the game.",
+          label: "Gathering point items",
+          help: "Only items gathering points give anyway, moved between spots.",
         },
         {
           value: "rank",
           label: "Any item from the same rank",
-          help: "A Low Rank quest's spots can give anything first found in Low Rank, monster parts included; likewise High and G Rank.",
+          help: "Anything first found at the quest's rank, monster parts included: a Low Rank quest's spots give Low Rank items, and likewise High and G Rank.",
         },
         {
           value: "any",
@@ -183,7 +214,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "gathering.keepItems",
     section: "Gathering",
     label: "Keep every gatherable item findable",
-    help: "With a wider pool, each item you could gather is still at one or more spots at the same point in the game, so recipes stay craftable. The rest of the spots get random items.",
+    help: "With a wider pool, each item gathering points give is still at one or more spots at the same point in the game, so recipes stay craftable. The other spots get random items.",
     type: { kind: "boolean" },
     default: true,
     enabledBy: "gathering.enabled",
@@ -191,10 +222,11 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "supplies.enabled",
     section: "Supplies",
-    label: "Randomize supply boxes",
-    help: "What each Village and Guild quest's supply box holds. Stacks laid out once per hunter change together, and a delivery quest's box never gets the item it asks for.",
+    label: "Shuffle supply boxes",
+    help: "Each Village and Guild quest's supply box holds other items from the game. Stacks laid out once per hunter change together, and a delivery quest's box never gets the item it asks for.",
     type: { kind: "boolean" },
     default: false,
+    action: "shuffle",
   },
   {
     key: "supplies.pool",
@@ -207,12 +239,12 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "supplies",
           label: "Supply box items",
-          help: "Items and amounts move between the supply boxes of quests at the same point in the game (see Logic).",
+          help: "Only items supply boxes hold anyway: items and amounts move between the boxes of quests at the same point in the game (see Logic).",
         },
         {
           value: "rank",
           label: "Any item from the same rank",
-          help: "Any item first found at the quest's rank, or found in any supply box, in its usual amount.",
+          help: "Anything first found at the quest's rank, or held by any supply box, in its usual amount.",
         },
         {
           value: "add",
@@ -227,7 +259,7 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "supplies.keepEssentials",
     section: "Supplies",
-    label: "Keep maps and quest items",
+    label: "Keep maps and quest supplies",
     help: "Maps, ballista and cannon ammo and the other quest-only supplies stay where they are. A quest's Paw Pass Ticket always stays. (Adding random items keeps everything anyway.)",
     type: { kind: "boolean" },
     default: true,
@@ -236,15 +268,16 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "terms.money",
     section: "Quest terms",
-    label: "Randomize fees and rewards",
-    help: "Each Village and Guild quest's reward and failure penalty change together; its contract fee changes on its own and never costs more than the reward.",
+    label: "Randomize quest money",
+    help: "Each Village and Guild quest's reward money and failure penalty change together; its contract fee changes on its own and never costs more than the reward.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
   },
   {
     key: "terms.moneySpread",
     section: "Quest terms",
-    label: "Money variation",
+    label: "Quest money variation",
     help: "How far a fee, reward or penalty can move, up or down, in steps of 10z.",
     type: SPREAD,
     default: 0.5,
@@ -257,6 +290,7 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Each Village and Guild quest's time limit changes, in whole minutes, staying between the shortest and longest limits in the game (20 and 50 minutes).",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
   },
   {
     key: "terms.timeSpread",
@@ -274,14 +308,16 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Each Village and Guild delivery quest asks for a different item that its own gathering points give, in an amount they can supply. The goal line changes to match (in English); the description doesn't. Paw Pass Ticket quests stay as they are.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
   },
   {
     key: "recipes.materials",
     section: "Crafting",
     label: "Shuffle recipe materials",
-    help: "Each crafting and upgrade material is replaced by another (see Logic). Shop, combined and ticket items stay.",
+    help: "Each crafting and upgrade material is replaced by another from the same point in the game (see Logic). Shop, combined and ticket items stay.",
     type: { kind: "boolean" },
     default: false,
+    action: "shuffle",
     eboot: true,
   },
   {
@@ -291,12 +327,13 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Each amount is rescaled to how many of that material recipes usually ask for, then varied.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
     eboot: true,
   },
   {
     key: "recipes.amountSpread",
     section: "Crafting",
-    label: "Amount variation",
+    label: "Material amount variation",
     help: "How far an amount can move from its usual value, up or down.",
     type: SPREAD,
     default: 0.5,
@@ -305,8 +342,8 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "recipes.maxQuantity",
     section: "Crafting",
-    label: "Most of one material",
-    help: "The largest amount of a single material a recipe can ask for.",
+    label: "Largest material amount",
+    help: "The most of a single material a recipe can ask for.",
     type: { kind: "number", min: 1, max: 99, step: 1 },
     default: 99,
     enabledBy: "recipes.amounts",
@@ -318,12 +355,13 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Weapon, armor and decoration zenny costs vary, in steps of 10z. A weapon's upgrade cost changes with it.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
     eboot: true,
   },
   {
     key: "costs.spread",
     section: "Costs",
-    label: "Cost variation",
+    label: "Crafting cost variation",
     help: "How far a cost can move from its usual value, up or down.",
     type: SPREAD,
     default: 0.5,
@@ -332,29 +370,30 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "weapons.enabled",
     section: "Weapons",
-    label: "Shuffle weapon progression",
-    help: "Each place in the smithy gives a different weapon of the same rarity. Places keep their materials and upgrade links; weapons keep their stats and cost.",
+    label: "Shuffle which weapons the smithy makes",
+    help: "Each spot in the smithy's weapon trees makes a different weapon of the same rarity. Spots keep their materials and upgrade paths; weapons keep their stats and cost wherever they go.",
     type: { kind: "boolean" },
     default: false,
+    action: "shuffle",
     eboot: true,
   },
   {
     key: "weapons.mix",
     section: "Weapons",
-    label: "Weapon types",
-    help: "Whether a place keeps its weapon type.",
+    label: "Weapon type",
+    help: "Whether a spot keeps its weapon type.",
     type: {
       kind: "choice",
       choices: [
         {
           value: "same-type",
           label: "Same type",
-          help: "A Great Sword place gets another Great Sword.",
+          help: "A Great Sword spot makes another Great Sword.",
         },
         {
           value: "any-type",
-          label: "Any type in the family",
-          help: "Any Blademaster (or any Gunner) weapon of the same rarity. A Great Sword line can turn into a Hunting Horn line.",
+          label: "Any Blademaster or Gunner type",
+          help: "A Blademaster spot makes any Blademaster weapon, a Gunner spot any Gunner weapon, of the same rarity. A Great Sword tree can turn into a Hunting Horn tree.",
         },
       ],
     },
@@ -362,19 +401,77 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "weapons.enabled",
   },
   {
-    key: "armor.enabled",
-    section: "Armor",
-    label: "Shuffle armor progression",
-    help: "Each place in the smithy gives a different armor piece for the same slot and rarity, wearable by the same hunters (Blademaster, Gunner or both; male, female or both). Places keep their materials; pieces keep their stats, skills and cost.",
+    key: "weapons.attack",
+    section: "Weapons",
+    label: "Randomize weapon attack",
+    help: "Each weapon's attack varies, staying within what weapons of its type have from one rarity below to one above. Sharpness, slots, defense bonus, horn notes, shelling, ammo and cost stay fixed. Stats go with the weapon wherever the smithy makes it.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
+    eboot: true,
+  },
+  {
+    key: "weapons.attackSpread",
+    section: "Weapons",
+    label: "Attack variation",
+    help: "How far attack can move from its usual value, up or down.",
+    type: SPREAD,
+    default: 0.2,
+    enabledBy: "weapons.attack",
+  },
+  {
+    key: "weapons.affinity",
+    section: "Weapons",
+    label: "Randomize weapon affinity",
+    help: "Each weapon's affinity moves up or down in steps of 5%, staying within what weapons of its type have from one rarity below to one above.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+    eboot: true,
+  },
+  {
+    key: "weapons.affinitySpread",
+    section: "Weapons",
+    label: "Affinity variation",
+    help: "How many points affinity can move, up or down.",
+    type: { kind: "number", min: 5, max: 50, step: 5 },
+    default: 15,
+    enabledBy: "weapons.affinity",
+  },
+  {
+    key: "weapons.element",
+    section: "Weapons",
+    label: "Randomize weapon element and status",
+    help: "Weapons with an element or status get a new value for it, staying within what weapons of its type have from one rarity below to one above. They keep which element or status it is; weapons without one stay without, and dual-element weapons keep theirs. A weapon that's the only one of its type with that element or status nearby varies by the spread alone.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+    eboot: true,
+  },
+  {
+    key: "weapons.elementSpread",
+    section: "Weapons",
+    label: "Element variation",
+    help: "How far element and status values can move from their usual value, up or down.",
+    type: SPREAD,
+    default: 0.3,
+    enabledBy: "weapons.element",
+  },
+  {
+    key: "armor.enabled",
+    section: "Armor",
+    label: "Shuffle which armor the smithy makes",
+    help: "Each spot in the smithy makes a different armor piece for the same slot and rarity, wearable by the same hunters (Blademaster, Gunner or both; male, female or both). Spots keep their materials; pieces keep their stats, skills and cost.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
     eboot: true,
   },
   {
     key: "armorSkills.enabled",
     section: "Armor",
     label: "Change armor skills",
-    help: "Change the skill points on armor pieces. Each piece keeps how many skills it has and which are negative; Torso Up and decorations stay as they are.",
+    help: "The skill points on armor pieces change. Each piece keeps how many skills it has and which are negative; Torso Up and decorations stay as they are.",
     type: { kind: "boolean" },
     default: false,
     eboot: true,
@@ -389,12 +486,14 @@ export const OPTIONS: readonly OptionDef[] = [
       choices: [
         {
           value: "shuffle",
-          label: "Shuffle",
+          label: "Trade between pieces",
+          action: "shuffle",
           help: "Pieces trade their skill points with other pieces of the same rarity and hunter type. The game has the same skills, on other pieces.",
         },
         {
           value: "randomize",
-          label: "Randomize",
+          label: "New skills and points",
+          action: "randomize",
           help: "Every skill on a piece is a new skill tree for its hunter type, with new points sized like that rarity's skills. Some skills may be hard to activate, or easier than ever.",
         },
       ],
@@ -413,15 +512,16 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.enabled",
-    section: "Shops",
-    label: "Randomize shops",
-    help: "Each item a shop sells is replaced by another, the same in every stage of that shop, so later stages still include earlier stock.",
+    section: "Shop stock",
+    label: "Shuffle shop stock",
+    help: "Each item a shop sells is replaced by another item from the game, the same in every stage of that shop, so later stages still include earlier stock.",
     type: { kind: "boolean" },
     default: false,
+    action: "shuffle",
   },
   {
     key: "shops.pool",
-    section: "Shops",
+    section: "Shop stock",
     label: "What shops can sell",
     help: "Where replacement items come from.",
     type: {
@@ -430,17 +530,17 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "shop",
           label: "Shop items",
-          help: "Only items shops sell anyway, in new places and stages.",
+          help: "Only items shops sell anyway, moved to other shops and stages.",
         },
         {
           value: "low",
-          label: "Shop items and Low Rank items",
+          label: "Shop and Low Rank items",
           help: "Also anything first found in Low Rank: herbs, ores, bones, Low Rank monster parts.",
         },
         {
           value: "high",
-          label: "Up to High Rank items",
-          help: "Also anything first found in High Rank.",
+          label: "Shop, Low and High Rank items",
+          help: "Also anything first found in Low or High Rank.",
         },
         {
           value: "any",
@@ -454,9 +554,9 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.mix",
-    section: "Shops",
-    label: "Shops share replacements",
-    help: "Whether one item is replaced by the same thing in every shop. With shop items only, this also decides whether shops trade stock.",
+    section: "Shop stock",
+    label: "Replacements across shops",
+    help: "Whether an item is replaced by the same thing in every shop. With shop items only, this also decides whether shops trade stock.",
     type: {
       kind: "choice",
       choices: [
@@ -477,7 +577,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.keepEssentials",
-    section: "Shops",
+    section: "Shop stock",
     label: "Keep the essentials on sale",
     help: "Potion, Whetstone, pickaxes, bugnets, BBQ Spit, Normal S Lv1/2 and Empty Bottle stay where they are.",
     type: { kind: "boolean" },
@@ -486,35 +586,36 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.special",
-    section: "Shops",
-    label: "Include the sphere and jewel shop",
-    help: "Armor Spheres, jewels, Pokke Tickets and Gourmet BBQ Spit. Off keeps armor upgrades as usual.",
+    section: "Shop stock",
+    label: "Include the Point Exchange",
+    help: "The Pokke Village shop that takes Pokke Points: Armor Spheres, jewels, Pokke Tickets and Gourmet BBQ Spit. Off keeps armor upgrades as usual.",
     type: { kind: "boolean" },
     default: false,
     enabledBy: "shops.enabled",
   },
   {
     key: "shops.countSpread",
-    section: "Shops",
-    label: "How many items each shop sells",
-    help: "Each shop sells up to this much more or fewer, every stage alike. Above 0, the shop lists are rewritten and the game is pointed at their new places.",
+    section: "Shop stock",
+    label: "Stock size variation",
+    help: "How far the number of items each shop sells can move, up or down, every stage alike. Above 0%, the shop lists are rewritten and the game is pointed at their new places.",
     type: SPREAD,
     default: 0,
+    action: "randomize",
     enabledBy: "shops.enabled",
   },
   {
     key: "shops.prices",
-    section: "Shops",
+    section: "Shop prices",
     label: "Randomize prices",
-    help: "Change the price of everything shops sell. A price is the item's own, so it's the same in every shop.",
+    help: "The price of everything shops sell changes, with or without the stock shuffle (with it, of what they sell now). A price is the item's own, so it's the same in every shop.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
     eboot: true,
-    enabledBy: "shops.enabled",
   },
   {
     key: "shops.priceSpread",
-    section: "Shops",
+    section: "Shop prices",
     label: "Price variation",
     help: "How far a price can move, up or down.",
     type: SPREAD,
@@ -523,17 +624,17 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "shops.stacks",
-    section: "Shops",
+    section: "Shop prices",
     label: "Randomize carry limits",
-    help: "Change how many of each item you can carry (1 to 99), for everything shops sell. This applies everywhere, not just in shops.",
+    help: "How many of each item you can carry changes (1 to 99), for everything shops sell, with or without the stock shuffle. This applies everywhere, not just in shops.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
     eboot: true,
-    enabledBy: "shops.enabled",
   },
   {
     key: "shops.stackSpread",
-    section: "Shops",
+    section: "Shop prices",
     label: "Carry limit variation",
     help: "How far a carry limit can move, up or down.",
     type: SPREAD,
@@ -543,16 +644,17 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "questMonsters.species",
     section: "Quest monsters",
-    label: "Swap large monsters",
-    help: "Village and Guild quests get other large monsters. A monster only goes to a map it's found on somewhere in the game, and the quest's target follows it. Untested on a real disc.",
+    label: "Shuffle large monsters",
+    help: "Village and Guild quests get other large monsters from the game. A monster only goes to a map it's found on somewhere in the game, and the quest's target follows it. Tried on the EU disc.",
     type: { kind: "boolean" },
     default: false,
+    action: "shuffle",
   },
   {
     key: "questMonsters.speciesPool",
     section: "Quest monsters",
-    label: "Which monsters can appear",
-    help: "What a quest's large monsters can turn into.",
+    label: "What large monsters can become",
+    help: "Where replacement monsters come from.",
     type: {
       kind: "choice",
       choices: [
@@ -564,7 +666,7 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "rank",
           label: "Any monster from the same rank",
-          help: "Any large monster met in a quest of the same rank (Low, High or G). Only quests with one kind of large monster change.",
+          help: "Any large monster found in a quest of the same rank (Low, High or G). Only quests with one kind of large monster change.",
         },
         {
           value: "any",
@@ -592,20 +694,21 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Each large monster in a Village or Guild quest gets another difficulty level: the row of HP, attack and defense multipliers the quest picks for it.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
   },
   {
     key: "questMonsters.difficultySpread",
     section: "Quest monsters",
     label: "Difficulty variation",
     help: "How many difficulty levels a monster can move, up or down (there are 32).",
-    type: { kind: "number", min: 1, max: 31, step: 1 },
+    type: { kind: "number", min: 1, max: 31, step: 1, unit: "levels" },
     default: 4,
     enabledBy: "questMonsters.difficulty",
   },
   {
     key: "questMonsters.difficultyRange",
     section: "Quest monsters",
-    label: "Difficulty limits",
+    label: "Difficulty range",
     help: "How hard or easy a monster can get.",
     type: {
       kind: "choice",
@@ -628,10 +731,11 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "questMonsters.size",
     section: "Quest monsters",
-    label: "Randomize monster size per quest",
+    label: "Randomize each quest's monster size",
     help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, up to 120% in others). Seen working in game (a tiny Giadrome); whether hitboxes follow the size is untested.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
   },
   {
     key: "questMonsters.sizeSpread",
@@ -649,11 +753,12 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "How many of each small monster a Village or Guild quest has. Never more than any quest has on the disc.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
   },
   {
     key: "questMonsters.smallCountSpread",
     section: "Quest monsters",
-    label: "Count variation",
+    label: "Small monster count variation",
     help: "How far a count can move, up or down.",
     type: SPREAD,
     default: 0.5,
@@ -662,16 +767,17 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "monsterStats.hp",
     section: "Monster stats",
-    label: "Randomize monster HP",
-    help: "Each monster's base HP changes, everywhere it appears. Quests still multiply it by their own difficulty.",
+    label: "Randomize each monster's base HP",
+    help: "Each monster's base HP changes, in every quest it appears in. Quests still multiply it by their own difficulty.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
   },
   {
     key: "monsterStats.hpSpread",
     section: "Monster stats",
-    label: "HP variation",
-    help: "How far HP can move, up or down.",
+    label: "Base HP variation",
+    help: "How far base HP can move, up or down.",
     type: SPREAD,
     default: 0.25,
     enabledBy: "monsterStats.hp",
@@ -679,16 +785,17 @@ export const OPTIONS: readonly OptionDef[] = [
   {
     key: "monsterStats.size",
     section: "Monster stats",
-    label: "Randomize monster size",
-    help: "Each monster's base size changes, everywhere it appears. Untested on a real disc: big changes may look or play oddly.",
+    label: "Randomize each monster's base size",
+    help: "Each monster's base size changes, in every quest it appears in, on top of the quest's own size. Untested on a real disc: big changes may look or play oddly.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
   },
   {
     key: "monsterStats.sizeSpread",
     section: "Monster stats",
-    label: "Size variation",
-    help: "How far size can move, up or down.",
+    label: "Base size variation",
+    help: "How far a base size can move, up or down.",
     type: { kind: "number", min: 0, max: 0.5, step: 0.05, percent: true },
     default: 0.2,
     enabledBy: "monsterStats.size",
@@ -700,6 +807,7 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "How much poison, paralysis, sleep and KO damage each monster takes before it's affected, and how much more each time after.",
     type: { kind: "boolean" },
     default: false,
+    action: "randomize",
   },
   {
     key: "monsterStats.statusSpread",
@@ -717,6 +825,7 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Each monster's fire, water, ice, thunder and dragon weaknesses trade places: a monster weak to fire may now be weak to ice instead. Every part keeps its overall profile.",
     type: { kind: "boolean" },
     default: false,
+    action: "shuffle",
   },
   {
     key: "weaknesses.parts",
@@ -725,6 +834,7 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Each large monster's body parts trade hitzones: the head may now be as tough as the tail was. Breaks and flinches stay with the part.",
     type: { kind: "boolean" },
     default: false,
+    action: "shuffle",
   },
 ];
 
@@ -801,6 +911,23 @@ export function isActive(settings: Settings, option: OptionDef): boolean {
   return settings[option.enabledBy] === true && isActive(settings, parent);
 }
 
+/** What `settings` shuffle and randomize: every option in effect that does either, with which. */
+export function actionsOf(settings: Settings): Map<OptionKey, Action> {
+  const out = new Map<OptionKey, Action>();
+  for (const option of OPTIONS) {
+    if (!isActive(settings, option)) continue;
+    const value = settings[option.key];
+    const type = option.type;
+    if (type.kind === "choice") {
+      const action = type.choices.find((c) => c.value === value)?.action;
+      if (action) out.set(option.key, action);
+    } else if (option.action && (value === true || (typeof value === "number" && value > 0))) {
+      out.set(option.key, option.action);
+    }
+  }
+  return out;
+}
+
 // base64url by hand: the browser's Buffer has plain base64 only.
 function toBase64Url(buf: Buffer): string {
   return buf.toString("base64").replace(/\+/g, "-").replace(/\//g, "_").replace(/=+$/, "");
@@ -859,11 +986,12 @@ export function settingsToJson(settings: Settings): string {
   return `${JSON.stringify(settings, null, 2)}\n`;
 }
 
-/** An option's value in words: yes/no, ±50%, a number, or the choice's label. */
+/** An option's value in words: yes/no, ±50%, ±4 levels, a number, or the choice's label. */
 export function formatOption(option: OptionDef, value: Settings[OptionKey]): string {
   const type = option.type;
   if (type.kind === "boolean") return value ? "yes" : "no";
   if (type.kind === "number" && type.percent) return `±${Math.round(Number(value) * 100)}%`;
+  if (type.kind === "number" && type.unit) return `±${String(value)} ${type.unit}`;
   if (type.kind === "choice") {
     return type.choices.find((c) => c.value === value)?.label ?? String(value);
   }
@@ -887,12 +1015,44 @@ export interface Preset {
 export const PRESETS: readonly Preset[] = [
   {
     name: "Rewards only",
-    help: "Quest rewards and monster drops. No EBOOT needed.",
+    help: "The defaults: quest rewards and carves are shuffled, at the same star level. Nothing else changes.",
     changes: {},
   },
   {
+    name: "Shuffled",
+    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock and large monsters (into their own variants) all trade places, at the same star level. Every amount, cost and stat stays as it was.",
+    changes: {
+      "gathering.enabled": true,
+      "supplies.enabled": true,
+      "recipes.materials": true,
+      "weapons.enabled": true,
+      "armor.enabled": true,
+      "armorSkills.enabled": true,
+      "shops.enabled": true,
+      "questMonsters.species": true,
+    },
+  },
+  {
+    name: "Randomized",
+    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets and each quest's monster size are rolled anew, and armor gets new skills.",
+    changes: {
+      "questRewards.enabled": false,
+      "monsterRewards.enabled": false,
+      "recipes.amounts": true,
+      "costs.enabled": true,
+      "shops.prices": true,
+      "shops.stacks": true,
+      "terms.money": true,
+      "terms.time": true,
+      "deliveries.enabled": true,
+      "armorSkills.enabled": true,
+      "armorSkills.mode": "randomize",
+      "questMonsters.size": true,
+    },
+  },
+  {
     name: "Full",
-    help: "Everything, keeping items at their star level, weapons in their type and armor with its hunter type. Armor skills are shuffled.",
+    help: "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before. Gathering points draw from the whole rank, shops add Low Rank items and prices change; armor skills are shuffled.",
     changes: {
       "recipes.materials": true,
       "recipes.amounts": true,
@@ -910,11 +1070,13 @@ export const PRESETS: readonly Preset[] = [
       "terms.money": true,
       "terms.time": true,
       "deliveries.enabled": true,
+      "questMonsters.species": true,
+      "questMonsters.size": true,
     },
   },
   {
     name: "Chaos",
-    help: "Everything, anywhere: no progression logic, any weapon type, wide amounts and costs, new armor skills. Armor still keeps its rarity, hunter type and sex.",
+    help: "Full with the limits off. Logic is at Anywhere, so recipes may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills, shops and gathering points can give anything, and every number varies widely.",
     changes: {
       "logic.tiers": "none",
       "recipes.materials": true,
@@ -947,6 +1109,10 @@ export const PRESETS: readonly Preset[] = [
       "terms.time": true,
       "terms.timeSpread": 0.6,
       "deliveries.enabled": true,
+      "questMonsters.species": true,
+      "questMonsters.speciesPool": "any",
+      "questMonsters.size": true,
+      "questMonsters.sizeSpread": 0.5,
     },
   },
 ];

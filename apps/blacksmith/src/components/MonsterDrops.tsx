@@ -1,8 +1,10 @@
 "use client";
 
+import Link from "next/link";
 import Icon from "@/components/Icon";
 import { useGameText, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
+import { itemHref } from "@/lib/item-sources";
 import { parseDropSource } from "@/lib/monster-drops";
 import type { MonsterDrop } from "@/lib/types";
 
@@ -19,13 +21,19 @@ interface MonsterDropsProps {
 export const dropName =
   "w-cells-16 min-w-0 truncate mobile:leading-[1.25] mobile:wrap-anywhere mobile:whitespace-normal";
 
+/** An item name that links to the item's page. */
+export const itemLink = "underline-offset-4 hover:underline";
+
 /** The "×N" column: three cells fit the largest amount, ×99. */
 export const dropQuantity = "w-cells-3 flex-none text-muted";
 
-/** Two-across grid of DropLists (one per column on phones). */
+/**
+ * Two-across grid of DropLists; one across on phones and in a compact
+ * screen's narrower detail pane, where two would cut the item names short.
+ */
 export function DropGrid({ children }: { children: React.ReactNode }) {
   return (
-    <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1">
+    <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1 compact:grid-cols-1">
       {children}
     </div>
   );
@@ -49,7 +57,12 @@ export default function MonsterDrops({ sources }: MonsterDropsProps) {
             title={t.sources[title] ?? title}
             count={count}
             note={note && (t.notes[note] ?? note)}
-            items={items.map((drop) => ({ ...drop, name: game.name("item", drop.name) }))}
+            // The page is found by the English name; the row shows the translation.
+            items={items.map((drop) => ({
+              ...drop,
+              name: game.name("item", drop.name),
+              href: itemHref(drop.name),
+            }))}
           />
         );
       })}
@@ -64,9 +77,14 @@ interface DropListProps {
   count?: number;
   /** Condition or detail, in small text */
   note?: string;
-  /** The rows, with item names already in the site's language. */
-  items: MonsterDrop[];
+  /**
+   * The rows, with item names already in the site's language, each with the
+   * item's page (from its English name), where it has one.
+   */
+  items: LinkedDrop[];
 }
+
+export type LinkedDrop = MonsterDrop & { href?: string };
 
 /** A titled list of drops: icon, item, quantity and chance per row. Shared by monster drops and quest rewards. */
 export function DropList({ title, count, note, items }: DropListProps) {
@@ -90,11 +108,17 @@ export function DropList({ title, count, note, items }: DropListProps) {
   );
 }
 
-function DropRow({ drop, showQuantity }: { drop: MonsterDrop; showQuantity: boolean }) {
+function DropRow({ drop, showQuantity }: { drop: LinkedDrop; showQuantity: boolean }) {
   return (
     <li className="flex items-center gap-[0.8rem] leading-none text-white">
       <Icon type={drop.type || "ukwn"} color={drop.color} />
-      <span className={dropName}>{drop.name}</span>
+      {drop.href ? (
+        <Link href={drop.href} className={cn(dropName, itemLink)}>
+          {drop.name}
+        </Link>
+      ) : (
+        <span className={dropName}>{drop.name}</span>
+      )}
       {showQuantity && (
         <span className={dropQuantity}>{drop.quantity !== undefined && `×${drop.quantity}`}</span>
       )}

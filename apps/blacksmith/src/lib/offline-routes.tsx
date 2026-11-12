@@ -8,8 +8,11 @@ import MonsterListClient from "@/app/monsters/[category]/MonsterListClient";
 import MonsterDetailClient from "@/app/monsters/[category]/[slug]/MonsterDetailClient";
 import DecorationsListClient from "@/app/decorations/DecorationsListClient";
 import DecorationDetailClient from "@/app/decorations/[slug]/DecorationDetailClient";
-import HomeContent from "@/app/HomeContent";
+import { ItemShell } from "@/app/items/ItemShell";
+import ItemsListClient from "@/app/items/ItemsListClient";
+import ItemDetailClient from "@/app/items/[slug]/ItemDetailClient";
 import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
+import { WeaponShell } from "@/app/blacksmith/WeaponShell";
 import ArmorRedirect from "@/app/armorsmith/ArmorRedirect";
 import { ArmorShell } from "@/app/armorsmith/ArmorShell";
 import { DecorationShell } from "@/app/decorations/DecorationShell";
@@ -47,6 +50,8 @@ export type RouteMatch =
   | { kind: "quest-list" }
   | { kind: "quest-hub"; hub: QuestHubSlug }
   | { kind: "quest-detail"; hub: QuestHubSlug; id: number }
+  | { kind: "item-list" }
+  | { kind: "item-detail"; slug: string }
   | { kind: "unknown" };
 
 /**
@@ -110,6 +115,11 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
     if (parts.length === 3 && Number.isInteger(id)) return { kind: "quest-detail", hub, id };
   }
 
+  if (parts[0] === "items") {
+    if (parts.length === 1) return { kind: "item-list" };
+    if (parts.length === 2) return { kind: "item-detail", slug: parts[1] };
+  }
+
   return { kind: "unknown" };
 }
 
@@ -117,13 +127,21 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
 export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
   switch (match.kind) {
     case "home":
-      return <HomeContent />;
+      return <LastWeaponRedirect />;
     case "weapon-list":
       return <LastWeaponRedirect />;
     case "weapon-tree":
-      return <WeaponTreeListClient type={match.type} />;
+      return (
+        <WeaponShell type={match.type}>
+          <WeaponTreeListClient type={match.type} />
+        </WeaponShell>
+      );
     case "weapon-detail":
-      return <WeaponDetailClient type={match.type} slug={match.slug} />;
+      return (
+        <WeaponShell type={match.type} slug={match.slug}>
+          <WeaponDetailClient type={match.type} slug={match.slug} />
+        </WeaponShell>
+      );
     case "armor-list":
       return (
         <ArmorShell>
@@ -185,6 +203,18 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
         <QuestHubShell hub={match.hub}>
           <QuestDetailClient hub={match.hub} id={match.id} />
         </QuestHubShell>
+      );
+    case "item-list":
+      return (
+        <ItemShell>
+          <ItemsListClient />
+        </ItemShell>
+      );
+    case "item-detail":
+      return (
+        <ItemShell slug={match.slug}>
+          <ItemDetailClient slug={match.slug} />
+        </ItemShell>
       );
     case "unknown":
       return null;

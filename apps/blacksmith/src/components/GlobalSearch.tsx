@@ -14,8 +14,10 @@ interface SearchEntry {
   name: string;
   slug: string;
   url: string;
-  category: "weapon" | "armor" | "decoration" | "monster" | "quest";
+  category: "weapon" | "armor" | "decoration" | "monster" | "quest" | "item";
   type: string;
+  /** An item's icon colour */
+  color?: string;
   rank: string | null;
   rarity: number;
   elements: string;
@@ -44,6 +46,8 @@ function iconStyleFor(item: SearchEntry) {
       return iconStyle({ type: "decoration", rarity: item.rarity });
     case "quest":
       return iconStyle({ type: "ticket" });
+    case "item":
+      return iconStyle({ type: item.type, color: item.color });
     default:
       return iconStyle({ type: item.type, monster: true });
   }
@@ -61,6 +65,8 @@ function iconSrcFor(item: SearchEntry): string {
       return `/images/monsters/${item.slug}.png`;
     case "quest":
       return "/images/ticket.png";
+    case "item":
+      return `/images/${item.type}.png`;
     default:
       return "/images/unknown.png";
   }
@@ -194,7 +200,7 @@ export default function GlobalSearch() {
       <div className="absolute inset-0 bg-black/70" onClick={close} />
 
       <div className="relative z-1 mx-[1.4rem] flex max-h-[80%] min-h-0 min-w-0 flex-[0_1_62rem] mobile:mx-4 mobile:max-h-none mobile:flex-auto">
-        <Card className="min-h-0 min-w-0 gap-0 px-[1.6rem] py-[1.6rem] text-sub">
+        <Card className="text-sub" bodyClassName="gap-0 card-p-[1.6rem]">
           {/* The frame's top band ends 11px into the card. This margin and the
               divider's leave 11px above and below the 22px row. */}
           <div className="mt-[0.6rem] flex shrink-0 items-center gap-[1rem]">

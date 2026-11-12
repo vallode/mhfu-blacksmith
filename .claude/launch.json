@@ -1,0 +1,20 @@
+{
+  "version": "0.0.1",
+  "configurations": [
+    {
+      "name": "blacksmith",
+      "runtimeExecutable": "pnpm",
+      "runtimeArgs": ["--filter", "blacksmith", "dev", "--port", "3457"],
+      "port": 3457
+    },
+    {
+      "name": "randomfu",
+      "runtimeExecutable": "sh",
+      "runtimeArgs": [
+        "-c",
+        "pnpm --filter randomfu-web build && exec python3 -m http.server 3458 --bind 127.0.0.1 --directory apps/randomfu/dist"
+      ],
+      "port": 3458
+    }
+  ]
+}

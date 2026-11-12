@@ -11,7 +11,7 @@
  * first found at.
  */
 import type { LoadedQuest } from "../game/load.js";
-import { readGatheringItems } from "../game/gathering.js";
+import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
 import { questTier, tierKey, type Band, type Tier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import { itemName, questLabel } from "../names.js";

@@ -16,6 +16,7 @@ import type {
   SmallMonsterTable,
   SupplyItem,
 } from "../quests/parser.js";
+import type { MultiplierRow } from "../monsters/multipliers.js";
 import { getNameResolver } from "../strings/names.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import { QUEST_PREREQUISITES } from "../tables/quest-prerequisites.js";
@@ -59,9 +60,8 @@ export function questHub(questId: number): QuestHub | null {
 }
 
 /**
- * `questHeader.Rank` -> rank tier, which also picks the quest's monster
- * stat multiplier set (src/monsters/multipliers.ts). 1/2/5 agree with the
- * quest ID block on every Guild quest. Village quests use them too: `10xxx`
+ * `questHeader.Rank` -> rank tier. 1/2/5 agree with the quest ID block on
+ * every Guild quest. Village quests use them too: `10xxx`
  * are 1 (one ★6 is 2), `11xxx` 2 (one ★9 is 5). 0 (the Training School's
  * Basic/Mastery quests, the Village's two Tigrex quests and the Guild's ★1
  * and ★2), 3 (Treasure Hunting) and 4 (Subjugation Training) have no tier.
@@ -125,11 +125,28 @@ export interface EmittedMonsterSpawn {
   monster: string;
   quantity: number;
   power: number;
+  /** The stat multiplier row this spawn gets (src/monsters/multipliers.ts); absent without one. */
+  multipliers?: MultiplierRow;
 }
+
+/**
+ * A large monster's stat multiplier row: by its emID, the quest's
+ * `statTable` and the spawn's `power` (`multiplierRow`), or null.
+ */
+export type MultiplierLookup = (
+  emId: number,
+  statTable: number,
+  power: number,
+) => MultiplierRow | null;
 
 export interface EmittedSmallMonsterSpawn {
   monster: string;
+  /** The most of this species in any single zone. */
   max_quantity: number;
+  /** All of this species across the quest's zones, each distinct spawn table counted once. */
+  total_quantity: number;
+  /** Present when a spawn is marked 99, which the game uses for a species that keeps coming; those spawns are left out of the counts. */
+  endless?: true;
 }
 
 export interface EmittedQuestTarget {
@@ -216,7 +233,11 @@ function resolveRewardTables(tables: RewardTable[]): EmittedRewardTable[] {
 }
 
 /** Dedupes exact-duplicate (monster, quantity, power) rows — `LargeMonTable`s are occasionally repeated verbatim, same as small monster tables (see dedupeSmallMonsters). */
-function dedupeLargeMonsters(spawns: (MonsterSpawn & { stage: number })[]): EmittedMonsterSpawn[] {
+function dedupeLargeMonsters(
+  spawns: (MonsterSpawn & { stage: number })[],
+  statTable: number,
+  multipliers?: MultiplierLookup,
+): EmittedMonsterSpawn[] {
   const names = getNameResolver();
   const seen = new Set<string>();
   const out: EmittedMonsterSpawn[] = [];
@@ -226,30 +247,59 @@ function dedupeLargeMonsters(spawns: (MonsterSpawn & { stage: number })[]): Emit
     const key = `${monster}:${spawn.quantity}:${spawn.power}`;
     if (seen.has(key)) continue;
     seen.add(key);
-    out.push({ monster, quantity: spawn.quantity, power: spawn.power });
+    const row = multipliers?.(spawn.monsterId, statTable, spawn.power);
+    out.push({
+      monster,
+      quantity: spawn.quantity,
+      power: spawn.power,
+      ...(row ? { multipliers: row } : {}),
+    });
   }
   return out;
 }
 
+/** The quantity the game gives a species that keeps spawning (554 spawn records on disc, against at most 20 for the rest). */
+const ENDLESS_QUANTITY = 99;
+
 /**
- * Small-monster spawn tables are frequently repeated verbatim across
- * several `SmallMonIndex` entries (real quests seen with the *entire* zone
- * list duplicated 2x+ — see `readSmallMonsters`'s docs) and are broken down
- * per zone, which isn't meaningful once resolved to a public-facing name.
- * Flattens to one row per distinct species actually encountered anywhere in
- * the quest, keeping the largest quantity seen for it in any single zone.
+ * Small-monster spawn tables are frequently repeated across several
+ * `SmallMonIndex` entries (real quests seen with the *entire* zone list
+ * pointing at the same records 2x+ — see `readSmallMonsters`'s docs). Those
+ * repeats are dropped (same zone, same record address), then one row per
+ * species remains: the largest quantity in any single zone, and the total
+ * across the quest's distinct spawn tables.
  */
 function dedupeSmallMonsters(tables: SmallMonsterTable[]): EmittedSmallMonsterSpawn[] {
   const names = getNameResolver();
-  const maxByMonster = new Map<string, number>();
+  const seen = new Set<string>();
+  const stats = new Map<string, { max: number; total: number; endless: boolean }>();
   for (const table of tables) {
+    const key = `${table.stageId}:${table.dataPtr}`;
+    if (seen.has(key)) continue;
+    seen.add(key);
+    const inTable = new Map<string, { quantity: number; endless: boolean }>();
     for (const spawn of table.monsters) {
       const monster = names.resolve("emID", spawn.monsterId);
       if (!monster) continue;
-      maxByMonster.set(monster, Math.max(maxByMonster.get(monster) ?? 0, spawn.quantity));
+      const entry = inTable.get(monster) ?? { quantity: 0, endless: false };
+      if (spawn.quantity === ENDLESS_QUANTITY) entry.endless = true;
+      else entry.quantity += spawn.quantity;
+      inTable.set(monster, entry);
+    }
+    for (const [monster, { quantity, endless }] of inTable) {
+      const row = stats.get(monster) ?? { max: 0, total: 0, endless: false };
+      row.max = Math.max(row.max, quantity);
+      row.total += quantity;
+      row.endless ||= endless;
+      stats.set(monster, row);
     }
   }
-  return [...maxByMonster.entries()].map(([monster, max_quantity]) => ({ monster, max_quantity }));
+  return [...stats.entries()].map(([monster, { max, total, endless }]) => ({
+    monster,
+    max_quantity: max,
+    total_quantity: total,
+    ...(endless ? { endless: true as const } : {}),
+  }));
 }
 
 /**
@@ -268,8 +318,12 @@ function resolveTarget(targetId: number, targetNum: number): EmittedQuestTarget 
 /**
  * Maps one parsed `.mib` quest to the `data/quests/*.json` shape, or null for
  * an unused/disabled quest slot or a quest on no board (see `questHub`).
+ * Large monsters get their stat multipliers from `multipliers`, if given.
  */
-export function emitQuest(parsed: ParsedQuest): EmittedQuest | null {
+export function emitQuest(
+  parsed: ParsedQuest,
+  multipliers?: MultiplierLookup,
+): EmittedQuest | null {
   if (isPlaceholderQuest(parsed)) return null;
   const { header } = parsed;
   const hub = questHub(header.questId);
@@ -290,7 +344,7 @@ export function emitQuest(parsed: ParsedQuest): EmittedQuest | null {
     target: resolveTarget(header.targetId, header.targetNum),
     supplies: resolveSupplies(parsed.supplies),
     reward_tables: resolveRewardTables(parsed.rewards),
-    large_monsters: dedupeLargeMonsters(parsed.largeMonsters),
+    large_monsters: dedupeLargeMonsters(parsed.largeMonsters, header.statTable, multipliers),
     small_monsters: dedupeSmallMonsters(parsed.smallMonsters),
     title: parsed.strings?.title ?? null,
     goal: parsed.strings?.goal ?? null,
@@ -312,6 +366,7 @@ export const QUEST_HUB_TO_FILE: Record<QuestHub, string> = {
 /** Maps every parsed quest into the `data/quests/*.json`-shaped output, grouped by hub, dropping unused slots. */
 export function emitQuestsFile(
   parsedQuests: ParsedQuest[],
+  multipliers?: MultiplierLookup,
 ): Record<string, { quests: EmittedQuest[] }> {
   const byHub: Record<QuestHub, EmittedQuest[]> = {
     village: [],
@@ -320,7 +375,7 @@ export function emitQuestsFile(
     "treasure-hunting": [],
   };
   for (const parsed of parsedQuests) {
-    const emitted = emitQuest(parsed);
+    const emitted = emitQuest(parsed, multipliers);
     if (emitted) byHub[emitted.hub].push(emitted);
   }
 
