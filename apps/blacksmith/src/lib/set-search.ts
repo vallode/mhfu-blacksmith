@@ -305,8 +305,9 @@ export function setScore(
 }
 
 /**
- * A piece's part of a set's score. For free slots it's the most the piece
- * can give: its slots, before any decorations.
+ * A piece's part of a set's score, for the search's bounds: the pieces' parts
+ * add up to the set's score (setScore), except for free slots, where a
+ * piece's part is the most it can give, its slots before any decorations.
  */
 function pieceScore(p: Piece, sort: SortKey): number {
   if (sort === "defence") return p.defence;
@@ -622,19 +623,22 @@ function unbeaten(list: Completion[]): Completion[] {
   return kept;
 }
 
-/** A set found by the search, before it's built into an ArmorSet. */
-interface Found {
-  /** See setScore. */
+/** What sets are ranked by: their score (setScore), then free slots. */
+interface Ranked {
   score: number;
   freeSlots: number;
+}
+
+/** Positive when `a` ranks above `b`, negative when below, zero for a tie. */
+const outranks = (a: Ranked, b: Ranked) => a.score - b.score || a.freeSlots - b.freeSlots;
+
+/** A set found by the search, before it's built into an ArmorSet. */
+interface Found extends Ranked {
   /** One per slot, SEARCH_ORDER. */
   pieces: Piece[];
   classes: PieceClass[];
   decorations: PlacedDeco[];
 }
-
-/** `a` ranks above `b`. */
-const ranksAbove = (a: Found, b: Found) => a.score - b.score || a.freeSlots - b.freeSlots;
 
 export interface SearchOptions {
   /** Called as the list of best sets grows (up to `limit`). */
@@ -672,7 +676,8 @@ export const SEARCH_ROUNDS = FLOOR_STEPS.length + 1;
 
 /** Results order: best first (see SortKey), then most free slots. */
 export function compareSets(a: ArmorSet, b: ArmorSet, sort: SortKey = "defence"): number {
-  return setScore(b, sort) - setScore(a, sort) || b.freeSlots - a.freeSlots;
+  const ranked = (x: ArmorSet): Ranked => ({ score: setScore(x, sort), freeSlots: x.freeSlots });
+  return outranks(ranked(b), ranked(a));
 }
 
 /**
@@ -786,7 +791,7 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
   let shown = 0;
   const keep = (f: Found) => {
     let i = best.length;
-    while (i > 0 && ranksAbove(f, best[i - 1]) > 0) i--;
+    while (i > 0 && outranks(f, best[i - 1]) > 0) i--;
     best.splice(i, 0, f);
     if (best.length > limit) best.pop();
     if (best.length > found) {
@@ -895,7 +900,7 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
 
     const result: { pick: Found | null } = { pick: null };
     const pieces: Piece[] = [];
-    // `score` is the pieces' (for free slots, before decorations).
+    // `score` is the most the pieces so far can add (see pieceScore).
     const go = (d: number, score: number) => {
       if (timedOut) return;
       if (d === chosen.length) {
@@ -909,17 +914,19 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
         const placed = plainWorks(armor) ? plain : solver.solve(bins, armor);
         if (!placed) return;
         const used = placed.reduce((n, x) => n + x.deco.slots, 0);
-        const capacity = bins.reduce((n, b) => n + b.size, 0);
+        const freeSlots = bins.reduce((n, b) => n + b.size, 0) - used;
+        const defence = pieces.reduce((n, p) => n + p.defence, 0);
+        const res = [0, 1, 2, 3, 4].map((i) => pieces.reduce((n, p) => n + p.res[i], 0));
         const f: Found = {
-          score: sort === "slots" ? score + (query.weaponSlots - used) * SCORE_SCALE : score,
-          freeSlots: capacity - used,
+          score: setScore({ defence, res, freeSlots }, sort),
+          freeSlots,
           pieces: [...pieces],
           classes: [...chosen],
           decorations: placed.map((x) => ({ deco: x.deco, bin: bins[x.bin].slot })),
         };
         // With free slots, the decorations can take it below what it promised.
         if (f.score < bar()) return;
-        if (!result.pick || ranksAbove(f, result.pick) > 0) result.pick = f;
+        if (!result.pick || outranks(f, result.pick) > 0) result.pick = f;
         return;
       }
       for (const p of chosen[d].members) {
@@ -1012,7 +1019,7 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
         for (const f of before) {
           if (!seen.has(f.pieces.map((p) => p.id).join())) best.push(f);
         }
-        best.sort((a, b) => ranksAbove(b, a));
+        best.sort((a, b) => outranks(b, a));
         best.length = Math.min(best.length, limit);
       }
       return done(
