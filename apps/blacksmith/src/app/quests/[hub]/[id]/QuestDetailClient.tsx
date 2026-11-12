@@ -240,7 +240,7 @@ export default function QuestDetailClient({ hub, id }: Props) {
         </p>
         <p className="text-center leading-[1.25] whitespace-normal">{quest.title}</p>
         <p className="text-center text-small leading-[1.25] whitespace-normal text-stat">
-          {questHubLabel(hub)} · <StarMarks {...questStarLevel(hub, quest.stars)} />
+          <StarMarks {...questStarLevel(hub, quest.stars)} />
         </p>
         {quest.details && (
           <p className="mt-2 text-small leading-[1.4] whitespace-normal">{quest.details}</p>

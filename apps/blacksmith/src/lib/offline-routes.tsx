@@ -18,8 +18,7 @@ import { ArmorShell } from "@/app/armorsmith/ArmorShell";
 import { DecorationShell } from "@/app/decorations/DecorationShell";
 import MonsterRedirect from "@/app/monsters/MonsterRedirect";
 import { MonsterShell } from "@/app/monsters/MonsterShell";
-import QuestBoardsContent from "@/app/quests/QuestBoardsContent";
-import QuestHubShell from "@/app/quests/[hub]/QuestHubShell";
+import QuestHubShell, { QuestBoardsShell } from "@/app/quests/[hub]/QuestHubShell";
 import QuestListClient from "@/app/quests/[hub]/QuestListClient";
 import QuestDetailClient from "@/app/quests/[hub]/[id]/QuestDetailClient";
 import { QUEST_HUB_SLUGS, type QuestHubSlug } from "./quests";
@@ -191,16 +190,20 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
         </DecorationShell>
       );
     case "quest-list":
-      return <QuestBoardsContent />;
+      return (
+        <QuestBoardsShell>
+          <QuestListClient boards />
+        </QuestBoardsShell>
+      );
     case "quest-hub":
       return (
-        <QuestHubShell hub={match.hub}>
-          <QuestListClient hub={match.hub} />
+        <QuestHubShell key={match.hub} hub={match.hub}>
+          <QuestListClient />
         </QuestHubShell>
       );
     case "quest-detail":
       return (
-        <QuestHubShell hub={match.hub}>
+        <QuestHubShell key={match.hub} hub={match.hub}>
           <QuestDetailClient hub={match.hub} id={match.id} />
         </QuestHubShell>
       );
