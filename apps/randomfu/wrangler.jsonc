@@ -13,4 +13,7 @@
   // workflow).
   "workers_dev": true,
   "preview_urls": true,
+  // Required by `wrangler preview`, which Workers Builds runs for branches
+  // other than main. Empty: assets and compatibility settings stay above.
+  "previews": {},
 }
