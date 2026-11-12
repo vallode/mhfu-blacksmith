@@ -250,12 +250,15 @@ export interface Decoration {
   slug: string;
   type: string;
   color?: string;
-  category?: string;
   rarity?: number;
   slots?: number;
   create_cost?: number | null;
   skills?: string[];
   create_mats?: Material[];
+  /** In-game item ID (data/items.json); decoded bundles only. */
+  item_id?: number;
+  /** A second recipe; the game lists the jewel once for each. */
+  alternative_create_mats?: Material[] | null;
   /** Earliest quest progress it can be made at (generated, see min-rank.ts). */
   min_rank?: MinRank;
 }

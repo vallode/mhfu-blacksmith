@@ -13,12 +13,12 @@ import {
   RequirementsPage,
   RequirementTabs,
   Requirements,
+  SkillPoints,
   Slots,
   Stat,
   StatList,
   StatValue,
 } from "@/components/DetailPanel";
-import { cn } from "@/lib/cn";
 import type { ArmorSlot, ArmorRank } from "@/lib/constants";
 import { useArmorPiece } from "@/lib/client-data";
 import ArmorModelViewer from "@/components/ArmorModelViewer";
@@ -129,23 +129,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                     label: "Skills",
                     content: (
                       <RequirementsPage>
-                        <div className="flex flex-1 flex-col gap-[13px]">
-                          {piece.skills.map((skill, i) => (
-                            <div key={i} className="flex">
-                              <h3 className="m-0 flex w-cells-10 leading-none font-normal">
-                                {skill.name}
-                              </h3>
-                              <p
-                                className={cn(
-                                  "w-cells-4 text-right",
-                                  Number(skill.amount) < 0 ? "text-negative" : "text-positive",
-                                )}
-                              >
-                                {skill.amount}
-                              </p>
-                            </div>
-                          ))}
-                        </div>
+                        <SkillPoints skills={piece.skills} />
                       </RequirementsPage>
                     ),
                   },

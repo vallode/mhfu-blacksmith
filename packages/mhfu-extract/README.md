@@ -803,11 +803,12 @@ derivation notes for specifics):
   order. All 15 match the site's values; the site listed 5 of them the
   other way round (Firestorm, Volcanic Storm, Twin Nails, Twin Nails+, Fire
   and Ice), and `build-data` now writes the disc's order.
-- Material `type`/`color` (e.g. "ore"/"gray") and decoration `category`
-  aren't derivable from the disc at all — they're presentation metadata,
-  supplied by the `src/overlay/materials.json` and
-  `src/overlay/decoration-categories.json` overlays (generated once from the
-  committed `data/` files; see git history).
+- Material `type`/`color` (e.g. "ore"/"gray") aren't derivable from the
+  disc at all — they're presentation metadata, supplied by the
+  `src/overlay/materials.json` overlay (generated once from the committed
+  `data/` files; see git history).
+- Decorations are emitted in the game's crafting list order: the order of
+  their first recipe in the `EquipmentCreate` decoration section.
 
 Known gaps and approximations, tracked in
 [#38](https://github.com/vallode/mhfu-blacksmith/issues/38):

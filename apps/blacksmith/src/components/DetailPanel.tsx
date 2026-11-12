@@ -147,6 +147,30 @@ export function Slots({ count }: { count?: number }) {
   );
 }
 
+/**
+ * Skill points, one row each: the skill tree's name and its points, green
+ * when they add and red when they take away (armor and decorations).
+ */
+export function SkillPoints({ skills }: { skills: { name: string; amount: string | number }[] }) {
+  return (
+    <div className="flex flex-1 flex-col gap-[13px]">
+      {skills.map((skill, i) => (
+        <div key={i} className="flex">
+          <h3 className="m-0 flex w-cells-10 leading-none font-normal">{skill.name}</h3>
+          <p
+            className={cn(
+              "w-cells-4 text-right",
+              Number(skill.amount) < 0 ? "text-negative" : "text-positive",
+            )}
+          >
+            {skill.amount}
+          </p>
+        </div>
+      ))}
+    </div>
+  );
+}
+
 /** Recipe section: cost line and materials. White text, yellow labels. */
 export function Requirements({ children }: { children: React.ReactNode }) {
   return <div className="flex flex-1 flex-row flex-wrap gap-[32px] text-white">{children}</div>;

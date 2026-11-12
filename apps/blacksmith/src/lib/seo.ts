@@ -325,9 +325,9 @@ export function monsterDescription(m: Monster): string {
   );
 }
 
-/** "Rarity 5 Decoration · Attack up", linking to the decoration list. */
+/** "Rarity 5 Decoration", linking to the decoration list. */
 export const decorationAuthor = (d: Decoration): EmbedAuthor => ({
-  name: [`${rarityPrefix(d.rarity)}Decoration`, d.category ?? ""].filter(Boolean).join(" · "),
+  name: `${rarityPrefix(d.rarity)}Decoration`,
   path: "/decorations/",
 });
 

@@ -382,6 +382,8 @@ function encodeDecoration(
   }
   const cm = matTuples(x.create_mats);
   if (cm) out.cm = cm;
+  const am = matTuples(x.alternative_create_mats);
+  if (am) out.am = am;
   const mr = encodeMinRank(minRank);
   if (mr) out.mr = mr;
   return out;
