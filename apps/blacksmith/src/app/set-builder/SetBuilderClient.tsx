@@ -14,7 +14,7 @@ import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
-import { TabStrip } from "@/components/Tabs";
+import Tabs from "@/components/Tabs";
 import {
   ChoiceRow,
   IconChoiceRow,
@@ -101,11 +101,6 @@ const DEFAULT_FORM: Form = {
 const STORAGE_KEY = "set-builder";
 
 type View = "results" | "editor" | "sets";
-const VIEW_TABS: { id: View; label: string }[] = [
-  { id: "results", label: "Results" },
-  { id: "editor", label: "Editor" },
-  { id: "sets", label: "My sets" },
-];
 
 type Origin = "new" | "result" | "link";
 const ORIGIN_TITLES: Record<Origin, string> = {
@@ -617,42 +612,30 @@ export default function SetBuilderClient() {
 
   return (
     <>
-      {/* Mirrors the split below: the search action over the skills, the
-          view tabs over the panel they switch. */}
-      <header className="flex min-h-[52px] w-full flex-none items-center gap-[1.3rem] mobile:flex-col mobile:items-stretch mobile:gap-[0.8rem]">
-        <div className="flex max-w-[56rem] min-w-0 flex-1 items-center gap-[1.2rem] mobile:max-w-none mobile:flex-none">
-          <button
-            type="submit"
-            form="set-search"
-            className={ui.button}
-            disabled={!data || searching || form.skills.length === 0}
-          >
-            Find sets
+      {/* Over the skills, where the search is set up. */}
+      <header className="flex min-h-[52px] w-full flex-none items-center gap-[1.2rem]">
+        <button
+          type="submit"
+          form="set-search"
+          className={ui.button}
+          disabled={!data || searching || form.skills.length === 0}
+        >
+          Find sets
+        </button>
+        {searching && (
+          <button type="button" className={ui.buttonSecondary} onClick={cancel}>
+            Cancel
           </button>
-          {searching && (
-            <button type="button" className={ui.buttonSecondary} onClick={cancel}>
-              Cancel
-            </button>
-          )}
-          <p className="m-0 min-w-0 truncate text-fine text-white/60" aria-live="polite">
-            {searching
-              ? `Searching… ${found || ""}`
-              : result
-                ? `${sets.length} ${sets.length === 1 ? "set" : "sets"} found`
-                : form.skills.length === 0
-                  ? "Pick the skills you want"
-                  : `${form.skills.length} ${form.skills.length === 1 ? "skill" : "skills"} picked`}
-          </p>
-        </div>
-        <div className="min-w-0 flex-1">
-          <TabStrip
-            label="Set builder"
-            idPrefix="set-builder"
-            active={view}
-            onChange={(id) => setView(id as View)}
-            tabs={VIEW_TABS}
-          />
-        </div>
+        )}
+        <p className="m-0 min-w-0 truncate text-fine text-white/60" aria-live="polite">
+          {searching
+            ? `Searching… ${found || ""}`
+            : result
+              ? `${sets.length} ${sets.length === 1 ? "set" : "sets"} found`
+              : form.skills.length === 0
+                ? "Pick the skills you want"
+                : `${form.skills.length} ${form.skills.length === 1 ? "skill" : "skills"} picked`}
+        </p>
       </header>
 
       <BorderRule />
@@ -753,96 +736,110 @@ export default function SetBuilderClient() {
 
         <CardBox>
           <Card className="text-small" scroll bodyClassName="gap-[1.3rem] card-py-7">
-            <div
-              role="tabpanel"
-              id="set-builder-panel"
-              aria-labelledby={`set-builder-tab-${view}`}
-              className="flex flex-col gap-[1.6rem]"
-            >
-              {view === "results" && (
-                <div className="flex flex-col gap-[1.3rem]">
-                  {set ? (
-                    <>
-                      <SetHeader
-                        index={index}
-                        count={sets.length}
-                        onStep={step}
-                        action={
-                          <button
-                            type="button"
-                            className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
-                            aria-label="Edit this set"
-                            title="Edit this set"
-                            onClick={() =>
-                              searched &&
-                              openInEditor(buildFromResult(set, searched), {
-                                origin: "result",
-                              })
+            <Tabs
+              label="Set builder"
+              active={view}
+              onChange={(id) => setView(id as View)}
+              tabs={[
+                {
+                  id: "results",
+                  label: "Results",
+                  content: (
+                    <div className="flex flex-col gap-[1.3rem]">
+                      {set ? (
+                        <>
+                          <SetHeader
+                            index={index}
+                            count={sets.length}
+                            onStep={step}
+                            action={
+                              <button
+                                type="button"
+                                className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
+                                aria-label="Edit this set"
+                                title="Edit this set"
+                                onClick={() =>
+                                  searched &&
+                                  openInEditor(buildFromResult(set, searched), {
+                                    origin: "result",
+                                  })
+                                }
+                              >
+                                <Icon type="item-37" className="mr-0" alt="" />
+                              </button>
                             }
-                          >
-                            <Icon type="item-37" className="mr-0" alt="" />
-                          </button>
-                        }
-                      />
-                      {result?.timedOut && (
-                        <p className={ui.note}>The search stopped early: better sets may exist.</p>
+                          />
+                          {result?.timedOut && (
+                            <p className={ui.note}>
+                              The search stopped early: better sets may exist.
+                            </p>
+                          )}
+                          <ArmorSetView
+                            set={set}
+                            weaponSlots={searched?.weaponSlots ?? 0}
+                            weaponIcon={weaponIcon}
+                            pieceActions={pieceActions}
+                            status={
+                              <>
+                                <PanelTitle>Status</PanelTitle>
+                                <SetStatus set={set} />
+                              </>
+                            }
+                          />
+                        </>
+                      ) : (
+                        <>
+                          <PanelTitle>Set Builder</PanelTitle>
+                          {message}
+                        </>
                       )}
-                      <ArmorSetView
-                        set={set}
-                        weaponSlots={searched?.weaponSlots ?? 0}
-                        weaponIcon={weaponIcon}
-                        pieceActions={pieceActions}
-                        status={
-                          <>
-                            <PanelTitle>Status</PanelTitle>
-                            <SetStatus set={set} />
-                          </>
-                        }
-                      />
-                    </>
-                  ) : (
+                      {set && searching && message}
+                    </div>
+                  ),
+                },
+                {
+                  id: "editor",
+                  label: "Editor",
+                  content: (
                     <>
-                      <PanelTitle>Set Builder</PanelTitle>
-                      {message}
+                      {data ? (
+                        <SetEditor
+                          data={data}
+                          set={build}
+                          onChange={editBuild}
+                          wanted={wanted}
+                          rank={form.rank}
+                          questLimit={questLimit}
+                          ownedOnly={ownedOnly}
+                          isOwned={isOwned}
+                          weaponIcon={editorWeaponIcon}
+                          extraWarnings={openWarnings}
+                          title={editorTitle}
+                        />
+                      ) : (
+                        message
+                      )}
                     </>
-                  )}
-                  {set && searching && message}
-                </div>
-              )}
-              {view === "editor" && (
-                <>
-                  {data ? (
-                    <SetEditor
+                  ),
+                },
+                {
+                  id: "sets",
+                  label: "My sets",
+                  content: (
+                    <MySets
+                      sets={savedSets}
                       data={data}
-                      set={build}
-                      onChange={editBuild}
-                      wanted={wanted}
-                      rank={form.rank}
-                      questLimit={questLimit}
-                      ownedOnly={ownedOnly}
-                      isOwned={isOwned}
-                      weaponIcon={editorWeaponIcon}
-                      extraWarnings={openWarnings}
-                      title={editorTitle}
+                      tables={tables}
+                      openId={savedId}
+                      onOpen={(set) => openCode(set.code, { savedId: set.id })}
+                      onRename={(id, name) => storeSets(updateSet(savedSets, id, { name }))}
+                      onDuplicate={(id) => storeSets(duplicateSet(savedSets, id))}
+                      onDelete={deleteSaved}
                     />
-                  ) : (
-                    message
-                  )}
-                </>
-              )}
-              {view === "sets" && (
-                <MySets
-                  sets={savedSets}
-                  data={data}
-                  tables={tables}
-                  openId={savedId}
-                  onOpen={(set) => openCode(set.code, { savedId: set.id })}
-                  onRename={(id, name) => storeSets(updateSet(savedSets, id, { name }))}
-                  onDuplicate={(id) => storeSets(duplicateSet(savedSets, id))}
-                  onDelete={deleteSaved}
-                />
-              )}
-            </div>
+                  ),
+                },
+              ]}
+            />
           </Card>
         </CardBox>
       </div>
