@@ -12,6 +12,7 @@ import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
 import { deliveryTargets, isQuestItem, readSupplySlots } from "./game/quest-fields.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
+import { rewriteCarryDescriptions } from "./shuffles/descriptions.js";
 import { collectGatheringSlots, shuffleGathering } from "./shuffles/gathering.js";
 import {
   collectMonsterRewardSlots,
@@ -454,6 +455,11 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       edits,
     );
     if (report) reports.push(report);
+    // Ammo and coating descriptions state their carry limit.
+    if (stacks && items) {
+      const text = rewriteCarryDescriptions(game, items, edits);
+      if (text) reports.push(text);
+    }
   }
 
   if (settings["costs.enabled"]) {

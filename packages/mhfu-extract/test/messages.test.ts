@@ -1,6 +1,11 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { findMessages, readMessageFile, showMessage } from "../src/strings/messages.js";
+import {
+  buildMessageFile,
+  findMessages,
+  readMessageFile,
+  showMessage,
+} from "../src/strings/messages.js";
 
 /** A message file: count, 8, table offsets; each table's offsets (from its start), -1, strings. */
 function messageFile(tables: string[][]): Buffer {
@@ -65,4 +70,19 @@ test("files that aren't message files are refused", () => {
   bad.writeUInt32LE(8, 4);
   bad.writeUInt32LE(28, 8); // its list runs off the end without -1
   assert.equal(readMessageFile(bad), null);
+});
+
+test("a built message file reads back, with one more NUL after each table", () => {
+  const tables = [["", "Max 60 shots."], ["Disp. máx. 60."]].map((t) =>
+    t.map((s) => Buffer.from(s, "utf8")),
+  );
+  const buf = buildMessageFile(tables);
+  const read = readMessageFile(buf)!;
+  assert.deepEqual(
+    read.map((t) => t.strings.map((s) => s.bytes.toString("utf8"))),
+    [["", "Max 60 shots."], ["Disp. máx. 60."]],
+  );
+  const lastOfTable0 = read[0]!.strings[1]!;
+  assert.equal(read[1]!.offset, lastOfTable0.offset + lastOfTable0.bytes.length + 2);
+  assert.equal(buf.readUInt32LE(4), 8);
 });

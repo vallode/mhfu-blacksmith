@@ -2,6 +2,7 @@
  * Writes edits into the output image, then reads every changed file back
  * through the normal decrypting path and checks it matches what was meant.
  */
+import { EU_STR_TBL_FILES } from "mhfu-extract/src/strings/disc-text.js";
 import { DataBin } from "./disc/databin.js";
 import type { PatchableImage } from "./disc/image.js";
 import { openQuestFile } from "./disc/quest-file.js";
@@ -81,7 +82,8 @@ export interface RoundTripResult {
 
 /**
  * Re-encrypts files without changing them and compares with the disc's own
- * bytes: every quest (both cipher layers) and the overlays shuffles edit. A
+ * bytes: every quest (both cipher layers), the overlays shuffles edit and,
+ * on EU, the str_tbl files item descriptions are rewritten in. A
  * clean result means edited files will be written in the format the game
  * reads. Nothing is written.
  */
@@ -101,7 +103,9 @@ export function roundTrip(
       mismatches.push(quest.path);
     }
   }
-  for (const { index } of [game.gameSub, game.gameTask, game.lobbyTask]) {
+  // The EU str_tbl, one per language, where item descriptions are rewritten.
+  const strTbl = game.region === "eu" ? Object.values(EU_STR_TBL_FILES) : [];
+  for (const index of [game.gameSub.index, game.gameTask.index, game.lobbyTask.index, ...strTbl]) {
     checked++;
     if (!game.dataBin.encode(index, game.dataBin.read(index)).equals(onDisc(index))) {
       mismatches.push(`DATA.BIN file ${index}`);

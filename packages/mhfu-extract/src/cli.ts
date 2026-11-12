@@ -12,6 +12,7 @@
  *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
  *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
+ *   tsx src/cli.ts disc-text --unpacked <dir> [--out <dir>]
  */
 import { fileURLToPath } from "node:url";
 import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.js";
@@ -25,6 +26,7 @@ import { runModels } from "./cli/models.js";
 import { runQuestFlags } from "./cli/quest-flags.js";
 import { runQuestTextScan } from "./cli/quest-text-scan.js";
 import { runMessages } from "./cli/messages.js";
+import { runDiscText } from "./cli/disc-text.js";
 import { readFile, writeFile } from "node:fs/promises";
 import { runUnpack } from "./cli/unpack.js";
 import { probeQuests, sizeTsv } from "./emit/quest-probe.js";
@@ -71,6 +73,7 @@ const USAGE = `Usage:
   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations] [--report <path>] [--markdown <path>] [--dry-run]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
+  tsx src/cli.ts disc-text --unpacked <dir> [--out <dir>]
   tsx src/cli.ts quest-probe --quests <raw/quests.json> [--tsv <path>]
   tsx src/cli.ts quest-text-scan --unpacked <dir> --quest <id> [--out <path>]
   tsx src/cli.ts messages --unpacked <dir> --file <index> [--grep <word>] [--table <n> [--from <i>] [--count <n>]]`;
@@ -91,6 +94,14 @@ export async function main(argv: string[]): Promise<void> {
       console.log(
         `\nDone. Region: ${manifest.region}, ${manifest.fileCount} DATA.BIN entries unpacked.`,
       );
+      return;
+    }
+    case "disc-text": {
+      const languages = await runDiscText({
+        unpacked: requireFlag(flags, "unpacked"),
+        out: flags.out ?? "../../data/text",
+      });
+      console.log(`Done. Wrote ${languages.length} languages.`);
       return;
     }
     case "messages": {

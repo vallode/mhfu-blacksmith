@@ -30,6 +30,7 @@ const checks: [label: string, schema: string, files: string[]][] = [
   ["combinations", "combination", ["combinations.json"]],
   ["skills", "skill", ["skills.json"]],
   ["equipment IDs", "equipment-ids", ["equipment-ids.json"]],
+  ["disc text", "text", jsonFiles("text")],
 ];
 
 let failed = false;
