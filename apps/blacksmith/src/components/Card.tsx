@@ -31,7 +31,9 @@ const linkGlow =
  *
  * The frame is drawn under the body and again over it (see `card-frame` in
  * globals.css), so rows that run out to the edge pass under the frame's
- * notches and bands. The frame is on the outer box, which never scrolls; the
+ * notches and bands. The body is also masked where the frame is opaque
+ * (`card-body`), since Safari can composite a scrolling body over the
+ * overlay. The frame is on the outer box, which never scrolls; the
  * body is what scrolls (`scroll`), so the frame stays put over a scrolling
  * list.
  *
