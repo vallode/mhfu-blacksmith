@@ -6,14 +6,17 @@ import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import PageBar, { PageTabs } from "@/components/PageBar";
+import SelectorArrow from "@/components/SelectorArrow";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
+import { writeLastQuestHub } from "@/lib/last-quest-hub";
 import { useQuests } from "@/lib/client-data";
 import {
   clearedQuestIds,
   questHref,
+  QUEST_HUB_SLUGS,
   questHubLabel,
   questsOnHub,
   questStarLevel,
@@ -74,6 +77,42 @@ function StarTab({
   );
 }
 
+/**
+ * The quest board selector at the start of the page bar, "◀ Village ▶" like
+ * the game's selectors: the arrows step through the boards, wrapping around.
+ * Where the star levels don't fit beside it (and always on phones) they
+ * wrap onto a row of their own below it.
+ */
+function HubSelector({ hub }: { hub: QuestHubSlug }) {
+  const n = QUEST_HUB_SLUGS.length;
+  const i = QUEST_HUB_SLUGS.indexOf(hub);
+  const previous = QUEST_HUB_SLUGS[(i - 1 + n) % n]!;
+  const next = QUEST_HUB_SLUGS[(i + 1) % n]!;
+  return (
+    <nav
+      aria-label="Quest board"
+      className="flex h-[52px] flex-none items-center mobile:w-full mobile:justify-center"
+    >
+      <SelectorArrow
+        className="z-1 -mr-[1.2rem] size-[44px] flex-none"
+        label={`Previous board: ${questHubLabel(previous)}`}
+        href={`/quests/${previous}/`}
+      />
+      {/* Wide enough for the longest label ("Treasure Hunting"), so the
+          arrows stay put as the board changes. */}
+      <span className="box-content flex h-[44px] w-cells-16 items-center justify-center bg-selector px-[2.8rem] text-main leading-none whitespace-nowrap text-stat text-shadow-[2px_2px_0_rgb(0_0_0/0.6)]">
+        {questHubLabel(hub)}
+      </span>
+      <SelectorArrow
+        next
+        className="z-1 -ml-[1.2rem] size-[44px] flex-none"
+        label={`Next board: ${questHubLabel(next)}`}
+        href={`/quests/${next}/`}
+      />
+    </nav>
+  );
+}
+
 /** The footer filter's label for a quest type, or for every type (null). */
 const typeFilterLabel = (type: QuestType | null) =>
   type ? questTypeLabel(type).replace(/ Quest$/, "") : "All quests";
@@ -104,6 +143,9 @@ export default function QuestHubShell({
   const { markCleared } = usePreferences().prefs;
   const cleared = useMemo(() => (markCleared ? clearedQuestIds(save) : null), [markCleared, save]);
   const revealed = useRef(false);
+
+  // Remember the board so the main menu's "Quests" entry reopens it.
+  useEffect(() => writeLastQuestHub(hub), [hub]);
 
   // The star level and type shown (null: every type). Opening a quest
   // switches to its level, and off a type that would hide it; the tabs and
@@ -152,22 +194,25 @@ export default function QuestHubShell({
       <PageBar
         title={`${questHubLabel(hub)} quests`}
         tabs={
-          levels.length > 0 && (
-            <PageTabs label="Star levels">
-              {levels.map((s) => (
-                <StarTab
-                  key={s}
-                  hub={hub}
-                  stars={s}
-                  active={s === current}
-                  onSelect={() => {
-                    setStars(s);
-                    scrollToTop();
-                  }}
-                />
-              ))}
-            </PageTabs>
-          )
+          <>
+            <HubSelector hub={hub} />
+            {levels.length > 0 && (
+              <PageTabs label="Star levels">
+                {levels.map((s) => (
+                  <StarTab
+                    key={s}
+                    hub={hub}
+                    stars={s}
+                    active={s === current}
+                    onSelect={() => {
+                      setStars(s);
+                      scrollToTop();
+                    }}
+                  />
+                ))}
+              </PageTabs>
+            )}
+          </>
         }
       />
 

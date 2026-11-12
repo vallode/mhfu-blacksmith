@@ -29,7 +29,7 @@ const NAV_GROUPS: NavItem[][] = [
     { label: "Armor", icon: "helmet", match: "/armorsmith/", section: "armor", tab: true },
     { label: "Monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
     { label: "Decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
-    { label: "Quests", icon: "ticket", match: "/quests/", href: "/quests/", tab: true },
+    { label: "Quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
     { label: "Items", icon: "fluid", match: "/items/", href: "/items/" },
   ],
   [
@@ -64,6 +64,7 @@ function useNavHrefs(pathname: string): (item: NavItem) => string {
     weapons: useSectionHref("weapons", pathname),
     armor: useSectionHref("armor", pathname),
     monsters: useSectionHref("monsters", pathname),
+    quests: useSectionHref("quests", pathname),
   };
   return (item) => item.href ?? sections[item.section!];
 }

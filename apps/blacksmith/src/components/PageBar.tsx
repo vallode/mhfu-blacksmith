@@ -26,7 +26,7 @@ interface PageBarProps {
 export default function PageBar({ title, tabs, actions }: PageBarProps) {
   return (
     <>
-      <header className="flex min-h-[52px] w-full flex-none items-center gap-x-2">
+      <header className="flex min-h-[52px] w-full flex-none flex-wrap items-center gap-x-2">
         {tabs}
 
         {actions && <div className="ml-auto flex flex-none items-center">{actions}</div>}

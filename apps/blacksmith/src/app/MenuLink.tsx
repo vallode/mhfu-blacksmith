@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { DEFAULT_WEAPON, readLastWeapon } from "@/lib/last-weapon";
 import { DEFAULT_ARMOR, readLastArmor } from "@/lib/armor-last-store";
 import { DEFAULT_MONSTER, readLastMonster } from "@/lib/last-monster";
+import { DEFAULT_QUEST_HUB, readLastQuestHub } from "@/lib/last-quest-hub";
 
 const SECTIONS = {
   weapons: {
@@ -23,6 +24,11 @@ const SECTIONS = {
     label: "Monsters",
     initial: `/monsters/${DEFAULT_MONSTER}/`,
     last: () => `/monsters/${readLastMonster()}/`,
+  },
+  quests: {
+    label: "Quests",
+    initial: `/quests/${DEFAULT_QUEST_HUB}/`,
+    last: () => `/quests/${readLastQuestHub()}/`,
   },
 };
 

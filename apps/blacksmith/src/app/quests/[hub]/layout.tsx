@@ -11,5 +11,11 @@ export default async function QuestHubLayout({
 }) {
   const { hub } = await params;
   if (!QUEST_HUB_SLUGS.includes(hub as QuestHubSlug)) notFound();
-  return <QuestHubShell hub={hub as QuestHubSlug}>{children}</QuestHubShell>;
+  // Keyed by board, so switching boards starts the new one on its first star
+  // level instead of carrying over the last board's level and filter.
+  return (
+    <QuestHubShell key={hub} hub={hub as QuestHubSlug}>
+      {children}
+    </QuestHubShell>
+  );
 }
