@@ -2,7 +2,7 @@ import { WEAPON_TYPES, ARMOR_SLOTS, ARMOR_RANKS, MONSTER_CATEGORIES } from "./co
 import { QUEST_HUB_SLUGS } from "./quests";
 
 const RUNTIME_CACHE = "mhfu-offline-v1";
-// Matches the `cacheName: "pages"` runtime-caching rule in next.config.ts —
+// Matches the `cacheName: "pages"` runtime-caching rule in next.config.mjs —
 // writing directly into it means these documents are indistinguishable from
 // ones next-pwa cached itself by ordinary browsing.
 const PAGES_CACHE = "pages";
@@ -21,7 +21,7 @@ interface Manifest {
  * same data rendered client-side, which was slow and mostly redundant bytes.
  * Pages you actually visit still get cached for offline reuse automatically
  * by next-pwa's normal runtime caching (the "pages"/"pages-rsc" rules in
- * next.config.ts) — this button just guarantees the underlying data is there
+ * next.config.mjs) — this button just guarantees the underlying data is there
  * up front so search and any page you do open work offline.
  */
 export async function collectOfflineUrls(): Promise<string[]> {
