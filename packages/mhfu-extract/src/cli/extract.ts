@@ -297,7 +297,11 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   if (options.raw) {
     const rawPath = path.join(options.out, "raw", "monsters.json");
     await mkdir(path.dirname(rawPath), { recursive: true });
-    await writeFile(rawPath, `${JSON.stringify(monsters)}\n`, "utf-8");
+    // Maps (the size tables' fixed-size quests) would serialize as `{}`.
+    const json = JSON.stringify(monsters, (_, v: unknown) =>
+      v instanceof Map ? Object.fromEntries(v) : v,
+    );
+    await writeFile(rawPath, `${json}\n`, "utf-8");
     console.log(`Wrote ${rawPath}`);
 
     // Hunting horn note-set/melody table candidates (#14): searched in the

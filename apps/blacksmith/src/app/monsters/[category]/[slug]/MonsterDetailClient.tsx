@@ -23,7 +23,7 @@ import {
   questsWithMonster,
   smallMonsterStages,
 } from "@/lib/quests";
-import { crownFor, sizeInCm, type Crown } from "@/lib/crowns";
+import { crownFor, formatCm, sizeInCm, type Crown } from "@/lib/crowns";
 import CrownIcon from "@/components/CrownIcon";
 import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -74,9 +74,6 @@ function capsuleMatches(capsule: HitboxCapsule, key: string, breaks: MonsterBrea
 
 const NO_BREAKS: MonsterBreak[] = [];
 
-/** Sizes are stored to two decimals; whole centimetres are enough here. */
-const formatSize = (cm: number) => Math.round(cm).toLocaleString("en-US");
-
 // Some monsters have no art; keep the layout and hide the broken-image glyph.
 const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
   e.currentTarget.style.visibility = "hidden";
@@ -87,7 +84,7 @@ function SizeRecord({ size, monster }: { size: number; monster: Monster }) {
   const crown = monster.crowns ? crownFor(size, monster.crowns) : null;
   return (
     <span className="text-white tabular-nums">
-      {formatSize(sizeInCm(size, monster.base_size ?? 0))} cm
+      {formatCm(sizeInCm(size, monster.base_size ?? 0))} cm
       {crown && <CrownIcon crown={crown} className="ml-[0.4rem] align-middle" />}
     </span>
   );
@@ -338,7 +335,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               <p className="text-small text-stat">
                 Size:{" "}
                 <span className="text-white tabular-nums">
-                  {formatSize(monster.sizes.min)}–{formatSize(monster.sizes.max)} cm
+                  {formatCm(monster.sizes.min)}–{formatCm(monster.sizes.max)} cm
                 </span>
               </p>
             )}
@@ -361,12 +358,24 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 )}
               </p>
             )}
-            {record && monster.base_size !== undefined && record.largest > 0 && (
-              <p className="text-small whitespace-normal text-stat">
-                Largest: <SizeRecord size={record.largest} monster={monster} />
-                {" · "}Smallest: <SizeRecord size={record.smallest} monster={monster} />
-              </p>
-            )}
+            {record &&
+              monster.base_size !== undefined &&
+              (record.largest > 0 || record.smallest > 0) && (
+                // A record the hunter hasn't set is 0; leave it out.
+                <p className="text-small whitespace-normal text-stat">
+                  {record.largest > 0 && (
+                    <>
+                      Largest: <SizeRecord size={record.largest} monster={monster} />
+                    </>
+                  )}
+                  {record.largest > 0 && record.smallest > 0 && " · "}
+                  {record.smallest > 0 && (
+                    <>
+                      Smallest: <SizeRecord size={record.smallest} monster={monster} />
+                    </>
+                  )}
+                </p>
+              )}
           </div>
           <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">
             <img

@@ -31,33 +31,41 @@ export default function MonsterQuests({
           <section key={hub.slug} className="flex min-w-0 flex-col gap-[0.6rem]">
             <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">{hub.label}</h3>
             <ul className="m-0 flex list-none flex-col gap-[0.4rem] p-0">
-              {onHub.map((q) => (
-                <li key={q.id} className="flex min-w-0 items-baseline gap-[0.8rem] leading-[1.25]">
-                  <span className="w-cells-3 flex-none text-stat">{q.stars}★</span>
-                  <Link
-                    href={questHref(q)}
-                    className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
+              {onHub.map((q) => {
+                const best = bestCrowns?.get(q.id);
+                return (
+                  <li
+                    key={q.id}
+                    className="flex min-w-0 items-baseline gap-[0.8rem] leading-[1.25]"
                   >
-                    {q.title}
-                  </Link>
-                  {bestCrowns?.has(q.id) && (
-                    // The 22px crowns overhang the 20px row by a pixel each
-                    // way instead of growing it.
-                    <span className="-my-px flex flex-none items-center gap-[0.2rem] self-center">
-                      {bestCrowns.get(q.id)!.map(({ crown, chance }) => (
-                        <CrownIcon
-                          key={crown}
-                          crown={crown}
-                          title={`Best chance of a ${CROWN_LABELS[crown].toLowerCase()} crown: ${formatChance(chance)}`}
-                        />
-                      ))}
-                    </span>
-                  )}
-                  {cleared?.has(q.id) && (
-                    <span className="ml-auto flex-none text-stat">CLEAR!!</span>
-                  )}
-                </li>
-              ))}
+                    <span className="w-cells-3 flex-none text-stat">{q.stars}★</span>
+                    <Link
+                      href={questHref(q)}
+                      className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
+                    >
+                      {q.title}
+                    </Link>
+                    {best && (
+                      // The 22px crowns overhang the 20px row by a pixel each
+                      // way instead of growing it, and sit a pixel high: their
+                      // weight is low (a jewel on top, the band at the
+                      // bottom), so centred on the text they look low.
+                      <span className="-my-px flex flex-none -translate-y-px items-center gap-[0.2rem] self-center">
+                        {best.map(({ crown, chance }) => (
+                          <CrownIcon
+                            key={crown}
+                            crown={crown}
+                            title={`Best chance of a ${CROWN_LABELS[crown].toLowerCase()} crown: ${formatChance(chance)}`}
+                          />
+                        ))}
+                      </span>
+                    )}
+                    {cleared?.has(q.id) && (
+                      <span className="ml-auto flex-none text-stat">CLEAR!!</span>
+                    )}
+                  </li>
+                );
+              })}
             </ul>
           </section>
         );

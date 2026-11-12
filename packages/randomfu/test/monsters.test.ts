@@ -393,7 +393,7 @@ test("quest size moves each Village and Guild quest's size percentage within the
   close();
 });
 
-test("crown spread gives every quest with large monsters one of the game's five spreads", async () => {
+test("crown spread gives every quest with large monsters one of the game's spreads", async () => {
   const { game, close } = await load();
   const withLarge = game.quests.filter(
     (q) => readSpawns(q.file.payload, q.parsed.header).large.length > 0,
@@ -425,7 +425,10 @@ test("crown spread gives every quest with large monsters one of the game's five 
       assert.ok(after < SIZE_VARIATIONS.length, `${after}`);
       if (quest.parsed.header.questId === 20001)
         assert.equal(after, quest.file.payload[SIZE_VARIATION_OFFSET], "training quests stay");
-      else if (withLarge.includes(quest)) seen.add(after);
+      else if (withLarge.includes(quest)) {
+        assert.notEqual(after, 0, "random never takes a quest's crowns away");
+        seen.add(after);
+      }
     }
   }
   assert.ok(seen.size > 1, "random picks more than one spread");

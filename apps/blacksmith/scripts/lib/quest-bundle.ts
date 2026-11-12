@@ -190,7 +190,18 @@ export function encodeQuestBundle({
     for (const { monster: name, crown_chances: c } of q.large_monsters) {
       if (!c) continue;
       const i = monster(name);
-      crowns.set(i, [i, outcomes(c.mini), outcomes(c.silver), outcomes(c.gold)]);
+      const row: CompactQuestSize[4][number] = [
+        i,
+        outcomes(c.mini),
+        outcomes(c.silver),
+        outcomes(c.gold),
+      ];
+      // Every spawn of a monster rolls with the quest's size and spread, so
+      // its chances are the same; the bundle keeps one row per monster.
+      const seen = crowns.get(i);
+      if (seen && seen.join() !== row.join())
+        throw new Error(`Quest ${q.id}: ${name} has different crown chances in two spawns.`);
+      crowns.set(i, row);
     }
     return [
       size.modifier,

@@ -126,9 +126,14 @@ export function readSizeTables(eboot: BinaryReader, baseAddress: number): SizeTa
     const mini = eboot.s16(entry + 8);
     if (silver === 0 && gold === 0 && mini === 0) continue;
     const emIds: number[] = [];
-    let member = at(eboot.u32(at(CROWN_GROUPS) + eboot.u8(entry + 3) * 4));
-    while (eboot.u8(member) !== 0xff && emIds.length < MONSTER_COUNT)
-      emIds.push(eboot.u8(member++));
+    const group = eboot.u32(at(CROWN_GROUPS) + eboot.u8(entry + 3) * 4);
+    // Every member goes through `at`, so a group running off the EBOOT is a
+    // SizeTableError too.
+    for (let n = 0; n < MONSTER_COUNT; n++) {
+      const emId = eboot.u8(at(group + n));
+      if (emId === 0xff) break;
+      emIds.push(emId);
+    }
     crowns.push({ emIds, mini, silver, gold });
   }
 

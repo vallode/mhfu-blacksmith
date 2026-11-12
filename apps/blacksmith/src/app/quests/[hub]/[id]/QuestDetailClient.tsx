@@ -24,7 +24,7 @@ import QuestAreaMap from "@/components/AreaMap";
 import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
 import { cn } from "@/lib/cn";
-import { CROWN_ORDER, formatChance, possibleCrowns } from "@/lib/crowns";
+import { formatChance, possibleCrowns } from "@/lib/crowns";
 import CrownIcon from "@/components/CrownIcon";
 import StarMarks from "@/components/StarMarks";
 
@@ -58,7 +58,7 @@ const times = (n: number) => `×${n}`;
 
 /** A monster's crown chances, gold first, leaving out crowns it can't get. */
 function CrownChances({ chances }: { chances: QuestCrownChances }) {
-  const crowns = CROWN_ORDER.filter((crown) => chances[crown] > 0);
+  const crowns = possibleCrowns([chances]);
   if (crowns.length === 0) return <span className="text-white">None</span>;
   return (
     <span className="inline-flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.4rem] text-white tabular-nums">

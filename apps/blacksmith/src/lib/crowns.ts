@@ -32,6 +32,11 @@ export function sizeInCm(size: number, baseSize: number): number {
   return (size * baseSize) / 100;
 }
 
+/** Centimetres to the nearest whole one ("1,629"); sizes are stored to two decimals. */
+export function formatCm(cm: number): string {
+  return Math.round(cm).toLocaleString("en-US");
+}
+
 /** A chance (0-1) as a short percent: "8.2%", "<0.1%". */
 export function formatChance(chance: number): string {
   const percent = chance * 100;

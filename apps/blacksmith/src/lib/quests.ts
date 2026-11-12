@@ -4,7 +4,7 @@
  * the generator, the pages and the client.
  */
 
-import type { Crown } from "./crowns";
+import { CROWN_ORDER, type Crown } from "./crowns";
 
 /** A quest board: Village, the three Guild ranks, Training School, Treasure Hunting. */
 export const QUEST_HUBS = [
@@ -497,16 +497,19 @@ export function bestCrownQuests(
   monster: string,
 ): Map<number, BestCrown[]> {
   const out = new Map<number, BestCrown[]>();
-  const chanceIn = (quest: Quest, crown: Crown) =>
-    quest.monsterSize?.crowns.find((c) => c.monster.name === monster)?.[crown] ?? 0;
-  for (const crown of ["gold", "silver", "mini"] as const) {
-    const best = Math.max(0, ...quests.map((q) => chanceIn(q, crown)));
+  // Each quest's chances for this monster, looked up once.
+  const rows = quests.flatMap((quest) => {
+    const chances = quest.monsterSize?.crowns.find((c) => c.monster.name === monster);
+    return chances ? [{ id: quest.id, chances }] : [];
+  });
+  for (const crown of CROWN_ORDER) {
+    const best = Math.max(0, ...rows.map((r) => r.chances[crown]));
     if (best === 0) continue;
-    for (const quest of quests)
-      if (chanceIn(quest, crown) === best) {
-        const list = out.get(quest.id) ?? [];
+    for (const { id, chances } of rows)
+      if (chances[crown] === best) {
+        const list = out.get(id) ?? [];
         list.push({ crown, chance: best });
-        out.set(quest.id, list);
+        out.set(id, list);
       }
   }
   return out;

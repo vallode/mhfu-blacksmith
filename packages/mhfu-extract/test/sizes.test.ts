@@ -52,7 +52,7 @@ const VARIATION = [100, 100, 100, 105, 100, 115, 95, 114, 85, 125];
  * roll tables, Rathalos' crown entry (with Silver and Azure Rathalos),
  * Giadrome's, 29 more filler entries and three fixed-size quests.
  */
-function sizeFixture() {
+function sizeFixture(tweak?: (buf: Buffer, at: (vaddr: number) => number) => void) {
   const { buf, reader } = fixtureReader(0x08a00000 - JP_BASE_ADDRESS);
   const at = (vaddr: number) => vaddr - JP_BASE_ADDRESS;
   TIER_PICK.forEach((t, i) => buf.writeUInt8(t, at(0x089a8164) + i));
@@ -90,6 +90,7 @@ function sizeFixture() {
   fixed(0, 322, 10104);
   fixed(1, 356, 3106);
   fixed(2, 351, 2227);
+  tweak?.(buf, at);
   return reader;
 }
 
@@ -124,6 +125,16 @@ test("readSizeTables maps fixed-size quests to their flag, null for the one that
 
 test("readSizeTables throws on an EBOOT without the EU tables", () => {
   const { reader } = fixtureReader(0x08a00000 - JP_BASE_ADDRESS);
+  assert.throws(() => readSizeTables(reader, JP_BASE_ADDRESS), SizeTableError);
+});
+
+test("readSizeTables throws SizeTableError on a crown group running off the EBOOT", () => {
+  const reader = sizeFixture((buf, at) => {
+    // Giadrome's group starts on the last byte, with no 0xff after it.
+    const last = buf.length - 1;
+    buf.writeUInt8(77, last);
+    buf.writeUInt32LE(last + JP_BASE_ADDRESS, at(0x0899bf40) + 77 * 4);
+  });
   assert.throws(() => readSizeTables(reader, JP_BASE_ADDRESS), SizeTableError);
 });
 

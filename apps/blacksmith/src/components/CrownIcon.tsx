@@ -6,8 +6,7 @@ import { CROWN_LABELS, type Crown } from "@/lib/crowns";
  * image 0): the gold crown (21x22) and the small silver one (13x13) used for
  * mini crowns. The game has no silver crown of the big size, so
  * `crown-silver.png` is the gold one in the small crown's silvers. Drawn
- * at 1x, and a pixel high: the sprites' weight sits low (a jewel on top,
- * the band at the bottom), so centred on text they look low.
+ * at 1x.
  */
 const SPRITES: Record<Crown, { src: string; size: string }> = {
   gold: { src: "/images/crown-gold.png", size: "h-[22px] w-[21px]" },
@@ -32,7 +31,7 @@ export default function CrownIcon({
       src={src}
       alt={label}
       title={label}
-      className={cn("inline-block flex-none -translate-y-px pixelated", size, className)}
+      className={cn("inline-block flex-none pixelated", size, className)}
     />
   );
 }

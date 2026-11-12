@@ -482,7 +482,9 @@ export function randomizeCrownSpread(
         ? SIZE_VARIATIONS.length - 1
         : mode === "none"
           ? 0
-          : rng.int(SIZE_VARIATIONS.length);
+          : // Spread 0 holds every monster at the quest's size, so no crowns:
+            // random only picks among the four that vary it.
+            1 + rng.int(SIZE_VARIATIONS.length - 1);
     if (next === before) continue;
     edits.quest(q.quest).writeUInt8(next, SIZE_VARIATION_OFFSET);
     lines.push({
@@ -492,7 +494,7 @@ export function randomizeCrownSpread(
   }
   const how = {
     random:
-      "Each quest's crown spread (the range its monsters' sizes roll in) is one of the game's five at random",
+      "Each quest's crown spread (the range its monsters' sizes roll in) is one of the game's four that vary it, at random",
     wide: "Every quest's crown spread (the range its monsters' sizes roll in) is the widest, 85-125% of its size",
     none: "Every quest's monsters are exactly the quest's size",
   }[mode];

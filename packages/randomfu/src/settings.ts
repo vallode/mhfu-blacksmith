@@ -768,7 +768,7 @@ export const OPTIONS: readonly OptionDef[] = [
         {
           value: "random",
           label: "Random",
-          help: "Each quest gets one of the five spreads at random.",
+          help: "Each quest gets one of the four spreads that vary size, at random.",
         },
         {
           value: "wide",
