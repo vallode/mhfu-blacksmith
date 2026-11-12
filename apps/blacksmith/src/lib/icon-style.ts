@@ -143,7 +143,7 @@ function maskFor({ type, size }: IconStyleOptions): string | undefined {
  * with the rarity/gem/note colour) and an optional corner badge.
  */
 export function iconStyle(opts: IconStyleOptions): { className: string; style: CSSProperties } {
-  const { element, rank, size, nav } = opts;
+  const { element, rank, size, nav, monster } = opts;
   const mask = maskFor(opts);
   const tint = tintFor(opts);
   // Only one corner badge fits; rank wins over element.
@@ -164,6 +164,11 @@ export function iconStyle(opts: IconStyleOptions): { className: string; style: C
       "relative mr-[6px] flex h-[32px] w-[32px] flex-[0_0_3.2rem]",
       // flex-basis must grow with the box or the row squashes it horizontally
       size === "large" && "h-[52px] w-[52px] flex-[0_0_52px]",
+      // Large monster type icons (36px sprites) are drawn at their own size,
+      // so their pixels scale by whole numbers at every screen density, and
+      // the box shrinks to them so the tint mask (which fills the box) lines
+      // up with the sprite. The margin keeps the 52px slot.
+      size === "large" && monster && "m-[8px] mr-[14px] h-[36px] w-[36px] flex-[0_0_36px]",
       // The tint multiplies over the sprite alone: isolate makes the icon its
       // blend group. Without it the group is the nearest stacking context (a
       // card's body), and Safari, compositing a hovered row for its glow
@@ -188,7 +193,7 @@ export function iconImgClass({
 }: Pick<IconStyleOptions, "size" | "monster">): string {
   return cn(
     "relative h-[32px] w-[32px] pixelated",
-    size === "large" && "h-[52px] w-[52px]",
-    monster && "p-[4px]",
+    size === "large" && (monster ? "h-[36px] w-[36px]" : "h-[52px] w-[52px]"),
+    monster && size !== "large" && "p-[4px]",
   );
 }

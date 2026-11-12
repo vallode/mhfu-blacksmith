@@ -71,6 +71,15 @@ jobs:
 
       - run: pnpm install --frozen-lockfile
 
+      # Next's webpack cache: without it every deploy compiles the site from
+      # scratch. The newest cache for the same lockfile is the best start.
+      - uses: actions/cache@v4
+        with:
+          path: apps/blacksmith/.next/cache
+          key: blacksmith-next-${{ hashFiles('pnpm-lock.yaml') }}-${{ hashFiles('apps/blacksmith/src/**', 'apps/blacksmith/*.mjs', 'apps/blacksmith/*.json') }}
+          restore-keys: |
+            blacksmith-next-${{ hashFiles('pnpm-lock.yaml') }}-
+
       # The account's workers.dev subdomain, for the sites' addresses.
       - name: Find the workers.dev subdomain
         id: account
