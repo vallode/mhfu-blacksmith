@@ -7,15 +7,11 @@ import type { ArmorPiece, Decoration, Monster, Weapon } from "./types";
 
 export const SITE_NAME = "MHFU Blacksmith";
 /**
- * Absolute base for metadata URLs. Netlify deploy previews and branch deploys
- * use their own address, so their embeds load that build's icons and oEmbed
- * files rather than production's. Elsewhere NEXT_PUBLIC_SITE_URL gives the
- * address (the Cloudflare workflow sets it for each deploy).
+ * Absolute base for metadata URLs. NEXT_PUBLIC_SITE_URL overrides it for a
+ * build served elsewhere (a preview), so its embeds load that build's icons
+ * and oEmbed files rather than production's.
  */
-export const SITE_URL =
-  (process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL) ||
-  process.env.NEXT_PUBLIC_SITE_URL ||
-  "https://mhfu-blacksmith.netlify.app";
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "https://mhfu.vallode.com";
 export const SITE_DESCRIPTION =
   "Monster Hunter Freedom Unite — weapons, armor, decorations and monsters, with every recipe, skill and drop.";
 /** Discord colours the left edge of an embed with this. */
