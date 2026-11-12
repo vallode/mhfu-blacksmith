@@ -326,12 +326,13 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
           placeWeapon(true);
         } else if (pair) {
           // Weapon models hold the grip at the origin with the blade along +Z,
-          // flat in the XZ plane: turn each copy PAIR_OFFSET about Y, and
-          // mirror the second across X so it's the left-hand blade.
+          // flat in the XZ plane: turn each copy PAIR_OFFSET about Y. The
+          // model is the left-hand blade; the second, the right-hand one,
+          // turns half round its length first, as the hunter holds it
+          // (WEAPON_MOUNTS).
           const second = model.clone();
           model.rotation.y = PAIR_OFFSET;
-          second.rotation.y = -PAIR_OFFSET;
-          second.scale.x = -1;
+          second.rotation.set(0, -PAIR_OFFSET, Math.PI);
           copies.push(second);
           scene.add(model, second);
         } else {
