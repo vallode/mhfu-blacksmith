@@ -4,13 +4,21 @@ import { ARMOR_SLOTS, ARMOR_RANKS, type ArmorSlot, type ArmorRank } from "./cons
 import { armorSlugs } from "./slug";
 import type { ArmorPiece, WeaponTree } from "./types";
 import { DATA_DIR } from "./paths";
+import { cached } from "./data-cache";
 
 const contentDir = path.join(process.cwd(), "content");
 const dataDir = DATA_DIR;
 
 // data/armor/<slot>.json holds every rank in one file; each piece carries
 // its own "rank" field.
+const allCache = new Map<ArmorSlot, ArmorPiece[]>();
+const rankCache = new Map<string, ArmorPiece[]>();
+
 function getAllArmorPieces(slot: ArmorSlot): ArmorPiece[] {
+  return cached(allCache, slot, () => loadArmorPieces(slot));
+}
+
+function loadArmorPieces(slot: ArmorSlot): ArmorPiece[] {
   const filePath = path.join(dataDir, "armor", `${slot}.json`);
   if (!fs.existsSync(filePath)) return [];
 
@@ -20,9 +28,11 @@ function getAllArmorPieces(slot: ArmorSlot): ArmorPiece[] {
 }
 
 export function getArmorPieces(slot: ArmorSlot, rank: ArmorRank): ArmorPiece[] {
-  const pieces = getAllArmorPieces(slot).filter((p) => p.rank === rank);
-  const slugs = armorSlugs(pieces);
-  return pieces.map((p, i) => ({ ...p, slug: slugs[i] }));
+  return cached(rankCache, `${slot}/${rank}`, () => {
+    const pieces = getAllArmorPieces(slot).filter((p) => p.rank === rank);
+    const slugs = armorSlugs(pieces);
+    return pieces.map((p, i) => ({ ...p, slug: slugs[i] }));
+  });
 }
 
 export function getArmorPiece(
