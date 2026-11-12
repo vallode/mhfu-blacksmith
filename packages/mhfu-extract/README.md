@@ -1160,11 +1160,12 @@ edits it.
 percent.** Its values suggested it (`quest-probe` over all 551 EU
 quests), and an in-game test confirmed that it sets the size: a randomfu
 image with `questMonsters.size` (spread 50%) gave a Giadrome quest a visibly
-tiny Giadrome in PPSSPP. That the value is exactly a percentage still
-comes from the values, not from a measurement. The evidence:
+tiny Giadrome in PPSSPP. The size code (below) confirms it's a percent.
+The evidence:
 
-- Only its low byte is ever set. It's 100 in 273 quests and 98-120 in the
-  rest (31 values; 105, 110, 102 and 104 most often after 100).
+- Only its low byte is ever set (the game reads it as an s16). It's 100
+  in 273 quests and 50-174 in the rest (31 values; 105, 110, 102 and 104
+  most often after 100).
 - Training and other rank 0, 3 and 4 quests are almost all 100. High Rank
   (2) and G Rank (5) quests use the wider spread, and fewer than half of
   them are 100.
@@ -1176,33 +1177,72 @@ comes from the values, not from a measurement. The evidence:
   rather than proving it.
 
 It applies to the whole quest. randomfu's `questMonsters.size` edits it.
-To pin down the scale, set one quest to 150 and another to 60 and compare
-the live `MHFU_ENT_SIZE_SCALE` (MHFU-ModKit, an f32 at entity `+0x24`) with
-the unedited quest.
 
-**Still unknown: how crowns vary.** A quest's monsters vary in size around
-that percentage, and nothing yet shows what sets the spread. Candidates
-from the EU disc:
+**Each monster rolls its size around it** (`monsters/sizes.ts`; EU EBOOT
+addresses). When a quest sets up its large monsters (`0x0886DB0C`), each
+one that can vary calls `0x0886D524`:
 
-- `Unkn7` (u8 at `0x4a`) takes small values, 0-4. `Unkn4`/`Unkn5` are
-  always 0, and `Unkn6` is the stat multiplier table (see "Monster
-  overlays"). A small index like `Unkn7` fits a size-variation (crown)
-  table, or something else entirely. Frontier's unlabelled u16 after its
-  size is the same kind of lead.
-- The large monster records barely vary:
-  - `Attr2` (`+7`) is always 0, and `Attr1` (`+6`) is 0 in 545 of 554
-    records (30, 10, 2 and 1 otherwise).
-  - `DynamicData1[0]` (`+0x0c`) is 96000 in 17 records and 36000 in 5, and
-    `DynamicData1[1]` (`+0x10`) is 60000 in 7. These read like timers in
-    ticks (a quest's time limit is minutes × 1800).
-  - `DynamicData1[3]` (`+0x18`) is 1-4 in 27 records, perhaps a spawn wave
-    or order.
-  - Neither looks like a size.
+```
+tier = TIER_PICK[rand() & 31]          // u8[32] at 0x089A8164, tiers 0-6
+roll = TIERS[tier][rand() & 31]        // u8*[7] at 0x089A8148, 75-125
+roll = clamp(roll, VARIATION[v])       // v: the header's u8 at 0x4a (Unkn7)
+size = MonSizeModifier * roll / 100    // integer divide
+```
 
-To settle the crown spread: take `quest-probe --tsv`'s rows for a monster
-whose crowns players report as easy in one quest and rare in another,
-and compare `Unkn7`. Or change one in a quest and measure many
-hunts. Before this, randomfu could only scale size per species
+- `TIER_PICK` is weighted toward tier 3 (95-105, 19 of 32 slots). Tiers 0
+  and 6 (75-79 and 121-125) take one slot each, so a roll of 121+ or 79-
+  is 1 in 32.
+- `VARIATION` (`{u8 min, u8 max}[5]` at `0x089A7EA4`, copied to
+  `0x08A62C80` at boot) is 0: [100, 100], 1: [100, 105], 2: [100, 115],
+  3: [95, 114], 4: [85, 125]. So `Unkn7` is the quest's size variation:
+  0 fixes every monster at `MonSizeModifier`, 1 and 2 only grow them, 4
+  allows the whole range. EU quests: 0 in 191, 1 in 38, 2 in 71, 3 in 134,
+  4 in 117. The parser calls it `sizeVariation`.
+- The size is kept in the monster's quest record (`+0x30`) and is what
+  the Guild Card records.
+- A monster is fixed at 100 (and `MonSizeModifier` is ignored) when:
+  - its emID isn't in the switch at `0x0886D644`. The list is exactly the
+    49 monsters with crowns.
+  - bit `0x10` of a global flag word (`+0x7af14`) is set. What sets it is
+    unknown.
+  - the quest is in the table at `0x089A8624` (`{u16 flag, u16 index,
+u16 questId}[38]`, read at `0x08874124`) and save flag `flag`
+    (bitfield at save `+0x508`) isn't set. Likely the quest's first
+    clear; not confirmed. Flag 356 (quest 3106) is treated as always set.
+
+**Crowns** come from the Guild Card's check at `0x08853F84`, which compares
+a record with its monster's entry in the crown table (`0x08930BDC`, 62
+entries of 14 bytes: `u8` index, two `u8`s, `u8` emID, then `s16` silver,
+gold and mini, in percent). A record at most `mini` is a mini crown, at
+least `gold` a gold crown, at least `silver` a silver one. 31 entries have
+thresholds; the rest are zero.
+
+- Subspecies share their base monster's entry: `u8*` by emID at
+  `0x0899BF40` lists the emIDs (ending `0xff`) whose records count
+  together, and the card takes the largest and smallest across them.
+- The card shows centimetres: the percent times the monster's base size
+  (`f32` by emID at `0x0899C760`), over 100. Monsters without crowns have
+  a base size of 0, except Akantor and Ukanlos (3049.97) and Shen Gaoren
+  (1000).
+- Records are u16 percents in the save, at the character's `+0x40e0`
+  (largest) and `+0x4194` (smallest).
+
+`extract` writes `base_size` and `crowns` into `data/monsters/`, and each
+quest's roll range as `monster_size` (`modifier`, `min`, `max`, and
+`fixed_until_flag` for the story quests above).
+
+Checked against what players report:
+
+- mhp2ndgwiki's silver and gold sizes match 26 of 27 monsters. The odd
+  one, Yian Garuga's gold at 1351.5, is likely a typo.
+- mhcrown's MHP2G largest and smallest possible sizes match 57 of 62.
+  The five that don't (larger Diablos, Tigrex, Kushala Daora and Teostra,
+  smaller Rajang, and larger "規格外" Lavasioth and Bulldrome) likely come
+  from download or event quests, which aren't on the disc.
+- mhcrown's Rajang mini crowns (912, 960 and 1008 cm) are all at most
+  105 percent.
+
+Before this, randomfu could only scale size per species
 (`emChunk +0x40`); that option stays.
 
 Other sources checked:

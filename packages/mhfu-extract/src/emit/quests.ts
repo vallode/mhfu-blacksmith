@@ -17,6 +17,7 @@ import type {
   SupplyItem,
 } from "../quests/parser.js";
 import type { MultiplierRow } from "../monsters/multipliers.js";
+import { sizeRange, type SizeTables } from "../monsters/sizes.js";
 import { getNameResolver } from "../strings/names.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import { QUEST_PREREQUISITES } from "../tables/quest-prerequisites.js";
@@ -168,6 +169,8 @@ export interface EmittedQuest {
   supplies: EmittedSupply[];
   reward_tables: EmittedRewardTable[];
   large_monsters: EmittedMonsterSpawn[];
+  /** How big the large monsters can be; null without large monsters or the size tables. */
+  monster_size: EmittedMonsterSize | null;
   small_monsters: EmittedSmallMonsterSpawn[];
   title: string | null;
   goal: string | null;
@@ -178,6 +181,37 @@ export interface EmittedQuest {
   requires: number | null;
   /** An Urgent Quest: the one that unlocks the next star level. Hand-entered, not on the disc. */
   urgent: boolean;
+}
+
+/**
+ * The quest's monster size, in percent of each monster's base size (see
+ * src/monsters/sizes.ts). Monsters without crowns are always 100.
+ */
+export interface EmittedMonsterSize {
+  /** The header's `MonSizeModifier`: the size a roll of 100 gives. */
+  modifier: number;
+  /** The smallest and largest size a roll can give. */
+  min: number;
+  max: number;
+  /**
+   * The save flag (bit) these story quests wait on: until it is set, every
+   * monster is 100 and `modifier`, `min` and `max` don't apply.
+   */
+  fixed_until_flag?: number;
+}
+
+function monsterSize(
+  parsed: ParsedQuest,
+  sizes: SizeTables | undefined,
+): EmittedMonsterSize | null {
+  if (!sizes || parsed.largeMonsters.length === 0) return null;
+  const { questId, monSizeModifier, sizeVariation } = parsed.header;
+  const flag = sizes.fixedSizeQuests.get(questId);
+  return {
+    modifier: monSizeModifier,
+    ...sizeRange(sizes, monSizeModifier, sizeVariation),
+    ...(flag != null ? { fixed_until_flag: flag } : {}),
+  };
 }
 
 function resolveSupplies(supplies: SupplyItem[]): EmittedSupply[] {
@@ -318,11 +352,13 @@ function resolveTarget(targetId: number, targetNum: number): EmittedQuestTarget 
 /**
  * Maps one parsed `.mib` quest to the `data/quests/*.json` shape, or null for
  * an unused/disabled quest slot or a quest on no board (see `questHub`).
- * Large monsters get their stat multipliers from `multipliers`, if given.
+ * Large monsters get their stat multipliers from `multipliers`, and the
+ * quest its `monster_size` from `sizes`, if given.
  */
 export function emitQuest(
   parsed: ParsedQuest,
   multipliers?: MultiplierLookup,
+  sizes?: SizeTables,
 ): EmittedQuest | null {
   if (isPlaceholderQuest(parsed)) return null;
   const { header } = parsed;
@@ -345,6 +381,7 @@ export function emitQuest(
     supplies: resolveSupplies(parsed.supplies),
     reward_tables: resolveRewardTables(parsed.rewards),
     large_monsters: dedupeLargeMonsters(parsed.largeMonsters, header.statTable, multipliers),
+    monster_size: monsterSize(parsed, sizes),
     small_monsters: dedupeSmallMonsters(parsed.smallMonsters),
     title: parsed.strings?.title ?? null,
     goal: parsed.strings?.goal ?? null,
@@ -367,6 +404,7 @@ export const QUEST_HUB_TO_FILE: Record<QuestHub, string> = {
 export function emitQuestsFile(
   parsedQuests: ParsedQuest[],
   multipliers?: MultiplierLookup,
+  sizes?: SizeTables,
 ): Record<string, { quests: EmittedQuest[] }> {
   const byHub: Record<QuestHub, EmittedQuest[]> = {
     village: [],
@@ -375,7 +413,7 @@ export function emitQuestsFile(
     "treasure-hunting": [],
   };
   for (const parsed of parsedQuests) {
-    const emitted = emitQuest(parsed, multipliers);
+    const emitted = emitQuest(parsed, multipliers, sizes);
     if (emitted) byHub[emitted.hub].push(emitted);
   }
 

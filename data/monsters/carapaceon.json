@@ -608,6 +608,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1044,
+      "crowns": {
+        "mini": 88,
+        "silver": 110,
+        "gold": 123
       }
     },
     {
@@ -838,6 +844,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1044,
+      "crowns": {
+        "mini": 88,
+        "silver": 110,
+        "gold": 123
       }
     },
     {
@@ -1516,6 +1528,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 863,
+      "crowns": {
+        "mini": 94,
+        "silver": 114,
+        "gold": 120
       }
     },
     {
@@ -1733,6 +1751,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 863,
+      "crowns": {
+        "mini": 94,
+        "silver": 114,
+        "gold": 120
       }
     },
     {
@@ -1835,7 +1859,8 @@
         "sleep": null,
         "ko": null,
         "poison": null
-      }
+      },
+      "base_size": 1000
     }
   ]
 }

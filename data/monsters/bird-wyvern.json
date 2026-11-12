@@ -267,6 +267,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 738.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
       }
     },
     {
@@ -541,6 +547,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 738.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
       }
     },
     {
@@ -815,6 +827,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 732.1,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
       }
     },
     {
@@ -1055,6 +1073,12 @@
           "damage_interval": 150,
           "total_time": 900
         }
+      },
+      "base_size": 774.6,
+      "crowns": {
+        "mini": 90,
+        "silver": 124,
+        "gold": 136
       }
     },
     {
@@ -1477,6 +1501,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 919.8,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 122
       }
     },
     {
@@ -1841,6 +1871,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 919.8,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 122
       }
     },
     {
@@ -2304,6 +2340,12 @@
           "duration": 300
         },
         "poison": null
+      },
+      "base_size": 1031.7,
+      "crowns": {
+        "mini": 91,
+        "silver": 113,
+        "gold": 121
       }
     },
     {
@@ -2425,6 +2467,12 @@
           "duration": 300
         },
         "poison": null
+      },
+      "base_size": 1031.7,
+      "crowns": {
+        "mini": 91,
+        "silver": 113,
+        "gold": 121
       }
     },
     {
@@ -2863,6 +2911,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1013.7,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 125
       }
     },
     {
@@ -3248,6 +3302,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1013.7,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 125
       }
     },
     {
@@ -3554,6 +3614,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 834.9,
+      "crowns": {
+        "mini": 91,
+        "silver": 115,
+        "gold": 121
       }
     }
   ]

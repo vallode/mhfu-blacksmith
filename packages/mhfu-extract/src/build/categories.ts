@@ -112,6 +112,8 @@ const MONSTERS: Category = {
     { field: "breaks", kind: "scalar" },
     { field: "flinch_thresholds", kind: "scalar" },
     { field: "tolerances", kind: "scalar" },
+    { field: "base_size", kind: "scalar" },
+    { field: "crowns", kind: "scalar" },
   ],
   // Reviewed against the EU disc (README "Monster overlays"): of 400
   // mapped hitzone parts 389 agree and the 11 that don't are site errors;
@@ -121,8 +123,18 @@ const MONSTERS: Category = {
   // `base_hp` (chunk +0x100) is new to the site: it has no committed value
   // to disagree with, and is the HP before a quest's multiplier.
   // `breaks` (monsters/breaks.ts, overlay/breaks.json) and
-  // `flinch_thresholds` and `tolerances` (hitzones.ts) are new too.
-  take: ["base_hp", "hitzones", "drops", "breaks", "flinch_thresholds", "tolerances"],
+  // `flinch_thresholds` and `tolerances` (hitzones.ts) are new too, as are
+  // `base_size` and `crowns` (monsters/sizes.ts).
+  take: [
+    "base_hp",
+    "hitzones",
+    "drops",
+    "breaks",
+    "flinch_thresholds",
+    "tolerances",
+    "base_size",
+    "crowns",
+  ],
 };
 
 export const CATEGORIES: Record<CategoryName, Category> = {

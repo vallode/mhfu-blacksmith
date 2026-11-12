@@ -13,6 +13,8 @@
  * of the monster's break rewards (`monsters/breaks.ts`, `overlay/breaks.ts`),
  * named after its `break …` drop group. `flinch_thresholds` is each body
  * part's flinch threshold (`hitzones.ts` `readFlinchThresholds`).
+ * `base_size` and `crowns` are its size at 100 percent and its crown
+ * thresholds (`monsters/sizes.ts`).
  *
  * Monsters are named by the `emID` enum, so `compare` recovers their IDs the
  * same way it does for equipment.
@@ -27,6 +29,7 @@ import type {
 } from "../monsters/hitzones.js";
 import { codeBreaks, type BreakDamage } from "../overlay/breaks.js";
 import type { CapBreakTable, CarveTables, RewardEntry, RewardRank } from "../monsters/rewards.js";
+import { crownsFor, type Crowns, type SizeTables } from "../monsters/sizes.js";
 import { MONSTER_OVERLAY, parseDropSlot } from "../overlay/monsters.js";
 import { getNameResolver } from "../strings/names.js";
 import type { EmitOutput } from "./index.js";
@@ -61,6 +64,10 @@ export interface EmittedMonster {
   breaks?: EmittedBreak[];
   /** Damage each body part (hitbox capsule `part`) takes before a flinch; null: no such part. */
   flinch_thresholds?: (number | null)[];
+  /** Centimetres at size 100 (`monsters/sizes.ts`); absent where the game has none. */
+  base_size?: number;
+  /** Crown thresholds in percent of `base_size`, shared with the monster's subspecies. */
+  crowns?: Crowns;
 }
 
 /** A status tolerance (`hitzones.ts` `StatusTolerance`) in the site's keys. */
@@ -155,6 +162,8 @@ export interface MonsterTables {
   breaks?: BreakRecord[];
   /** Species of each emID (EBOOT); absent, each monster is its own. */
   species?: number[] | null;
+  /** Base sizes and crowns (EBOOT, EU only); absent, monsters get neither. */
+  sizes?: SizeTables | null;
 }
 
 const BREAK_LABEL = /^break\s+/i;
@@ -241,6 +250,12 @@ export function emitMonsters(tables: MonsterTables): EmitOutput {
       tolerances: siteTolerances(chunk.tolerances),
     };
     if (chunk.flinchThresholds) monster.flinch_thresholds = chunk.flinchThresholds;
+    if (tables.sizes) {
+      const baseSize = tables.sizes.baseSizes[entry.id] ?? 0;
+      if (baseSize > 0) monster.base_size = Math.round(baseSize * 100) / 100;
+      const crowns = crownsFor(tables.sizes, entry.id);
+      if (crowns) monster.crowns = { mini: crowns.mini, silver: crowns.silver, gold: crowns.gold };
+    }
 
     if (entry.hitzones && chunk.hitzones) {
       const hitzones: Record<string, Record<string, number>> = {};

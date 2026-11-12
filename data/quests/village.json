@@ -67,6 +67,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -193,6 +194,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -330,6 +332,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -485,6 +488,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115,
+        "fixed_until_flag": 347
+      },
       "small_monsters": [
         {
           "monster": "Anteka",
@@ -632,6 +641,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -729,6 +739,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -816,6 +827,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -930,6 +942,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -1113,6 +1126,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114,
+        "fixed_until_flag": 322
+      },
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1277,6 +1296,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105,
+        "fixed_until_flag": 320
+      },
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1426,6 +1451,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114
+      },
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1574,6 +1604,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 101,
+        "min": 95,
+        "max": 115
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -1698,6 +1733,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -1874,6 +1914,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114,
+        "fixed_until_flag": 321
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -2076,6 +2122,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 98,
+        "min": 98,
+        "max": 112,
+        "fixed_until_flag": 323
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -2262,6 +2314,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105,
+        "fixed_until_flag": 327
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -2433,6 +2491,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -2580,6 +2643,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -2705,6 +2769,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -2901,6 +2970,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -3089,6 +3163,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115,
+        "fixed_until_flag": 324
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -3261,6 +3341,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -3400,6 +3485,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -3496,6 +3586,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -3608,6 +3699,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -3786,6 +3878,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115,
+        "fixed_until_flag": 329
+      },
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -3934,6 +4032,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Anteka",
@@ -4097,6 +4200,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Anteka",
@@ -4250,6 +4358,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -4435,6 +4548,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 104,
+        "max": 125
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -4616,6 +4734,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -4782,6 +4905,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -4956,6 +5084,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105,
+        "fixed_until_flag": 326
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -5133,6 +5267,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115,
+        "fixed_until_flag": 331
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -5291,6 +5431,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -5459,6 +5604,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115,
+        "fixed_until_flag": 325
+      },
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -5643,6 +5794,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114
+      },
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -5821,6 +5977,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 96,
+        "max": 116
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -6000,6 +6161,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -6184,6 +6350,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 98,
+        "min": 98,
+        "max": 112
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -6320,6 +6491,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 98,
+        "min": 98,
+        "max": 112
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -6417,6 +6593,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -6584,6 +6761,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 104,
+        "max": 125,
+        "fixed_until_flag": 330
+      },
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -6751,6 +6934,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -6935,6 +7123,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 86,
+        "max": 127,
+        "fixed_until_flag": 343
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -7120,6 +7314,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -7262,6 +7461,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 96,
+        "max": 116
+      },
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -7435,6 +7639,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114,
+        "fixed_until_flag": 340
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -7608,6 +7818,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 93,
+        "max": 137
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -7775,6 +7990,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -7980,6 +8200,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 96,
+        "max": 116
+      },
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -8127,6 +8352,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -8304,6 +8534,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 98,
+        "max": 118
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -8472,6 +8707,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 98,
+        "max": 118,
+        "fixed_until_flag": 332
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -8625,6 +8866,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 98,
+        "max": 118
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -8788,6 +9034,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 109,
+        "min": 103,
+        "max": 124
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -8935,6 +9186,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -9157,6 +9413,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 96,
+        "max": 116,
+        "fixed_until_flag": 334
+      },
       "small_monsters": [],
       "title": "The Frozen Dictator",
       "goal": "Slay the Kushala Daora",
@@ -9334,6 +9596,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 96,
+        "max": 116,
+        "fixed_until_flag": 328
+      },
       "small_monsters": [],
       "title": "The Elder Dragon of Wind",
       "goal": "Slay the Kushala Daora",
@@ -9459,6 +9727,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Hermitaur",
@@ -9611,6 +9880,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114,
+        "fixed_until_flag": 348
+      },
       "small_monsters": [
         {
           "monster": "Anteka",
@@ -9768,6 +10043,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 101,
+        "min": 95,
+        "max": 115,
+        "fixed_until_flag": 339
+      },
       "small_monsters": [
         {
           "monster": "Anteka",
@@ -9941,6 +10222,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 104,
+        "max": 125
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -10100,6 +10386,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -10257,6 +10548,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -10434,6 +10730,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115,
+        "fixed_until_flag": 333
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -10616,6 +10918,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 104,
+        "max": 125
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -10779,6 +11086,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 98,
+        "min": 93,
+        "max": 111
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -10927,6 +11239,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 109,
+        "min": 103,
+        "max": 124
+      },
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -11102,6 +11419,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -11285,6 +11607,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115,
+        "fixed_until_flag": 337
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -11438,6 +11766,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Remobra",
@@ -11645,6 +11974,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 86,
+        "max": 127,
+        "fixed_until_flag": 335
+      },
       "small_monsters": [],
       "title": "The Empress's Blazing Throne",
       "goal": "Slay the Lunastra",
@@ -11822,6 +12157,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 86,
+        "max": 127,
+        "fixed_until_flag": 338
+      },
       "small_monsters": [
         {
           "monster": "Remobra",
@@ -12016,6 +12357,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114,
+        "fixed_until_flag": 341
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -12195,6 +12542,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -12333,6 +12685,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 50,
+        "min": 50,
+        "max": 50
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
@@ -12521,6 +12878,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 96,
+        "max": 116
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -12691,6 +13053,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -12882,6 +13249,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 93,
+        "max": 137
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -13035,6 +13407,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 89,
+        "max": 131
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -13232,6 +13609,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 113,
+        "min": 96,
+        "max": 141
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -13429,6 +13811,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 86,
+        "max": 127
+      },
       "small_monsters": [
         {
           "monster": "Felyne",
@@ -13621,6 +14008,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 86,
+        "max": 127,
+        "fixed_until_flag": 336
+      },
       "small_monsters": [],
       "title": "Emperor of Flame",
       "goal": "Slay the Teostra",
@@ -13784,6 +14177,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 86,
+        "max": 127
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -13942,6 +14340,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 88,
+        "max": 130
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
@@ -14138,6 +14541,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [],
       "title": "A State of Crisis!",
       "goal": "Defend the Town from\nShen Gaoren",
@@ -14297,6 +14705,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100,
+        "fixed_until_flag": 342
+      },
       "small_monsters": [],
       "title": "The Final Invitation",
       "goal": "Hunt 2 Rajang",
@@ -14465,6 +14879,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -14599,6 +15018,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 103,
+        "min": 97,
+        "max": 117
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
@@ -14774,6 +15198,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Shakalaka",
@@ -14912,6 +15341,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Velociprey",
@@ -15090,6 +15520,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -15269,6 +15704,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 96,
+        "max": 116
+      },
       "small_monsters": [
         {
           "monster": "Velociprey",
@@ -15481,6 +15921,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 89,
+        "max": 131
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -15644,6 +16089,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 88,
+        "max": 130
+      },
       "small_monsters": [
         {
           "monster": "Melynx",
@@ -15823,6 +16273,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 89,
+        "max": 131
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -15991,6 +16446,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 106,
+        "min": 90,
+        "max": 132
+      },
       "small_monsters": [
         {
           "monster": "Remobra",
@@ -16188,6 +16648,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 108,
+        "min": 91,
+        "max": 135
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -16384,6 +16849,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 108,
+        "min": 91,
+        "max": 135
+      },
       "small_monsters": [
         {
           "monster": "Great Thunderbug",
@@ -16617,6 +17087,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 98,
+        "min": 98,
+        "max": 98
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -16888,6 +17363,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 98,
+        "min": 98,
+        "max": 98
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -17125,6 +17605,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 115
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -17296,6 +17781,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 112,
+        "min": 95,
+        "max": 140
+      },
       "small_monsters": [
         {
           "monster": "Remobra",
@@ -17440,6 +17930,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119,
+        "fixed_until_flag": 357
+      },
       "small_monsters": [
         {
           "monster": "Great Thunderbug",
@@ -17598,6 +18094,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 118,
+        "min": 118,
+        "max": 135
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -17779,6 +18280,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 119,
+        "min": 119,
+        "max": 136
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -17928,6 +18434,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 103,
+        "min": 87,
+        "max": 128
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -18130,6 +18641,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 93,
+        "max": 137
+      },
       "small_monsters": [
         {
           "monster": "Felyne",
@@ -18338,6 +18854,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 112,
+        "min": 95,
+        "max": 140
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -18589,6 +19110,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 96,
+        "min": 96,
+        "max": 96
+      },
       "small_monsters": [
         {
           "monster": "Shakalaka",
@@ -18842,6 +19368,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 98,
+        "min": 98,
+        "max": 98
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -19075,6 +19606,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 96,
+        "min": 96,
+        "max": 96
+      },
       "small_monsters": [
         {
           "monster": "Ceanataur",
@@ -19323,6 +19859,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 105,
+        "max": 105
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -19545,6 +20086,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 110,
+        "max": 126
+      },
       "small_monsters": [
         {
           "monster": "Felyne",
@@ -19787,6 +20333,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 105,
+        "max": 120
+      },
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -20036,6 +20587,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 105,
+        "max": 120
+      },
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -20278,6 +20834,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 110,
+        "max": 126
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -20524,6 +21085,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 88,
+        "max": 130
+      },
       "small_monsters": [],
       "title": "Attack of the Wind Dragon",
       "goal": "Slay the Kushala Daora",
@@ -20725,6 +21291,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 88,
+        "max": 130
+      },
       "small_monsters": [],
       "title": "The Empress's Blazing Throne",
       "goal": "Slay the Lunastra",
@@ -20926,6 +21497,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 88,
+        "max": 130
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -21111,6 +21687,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -21270,6 +21851,12 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119,
+        "fixed_until_flag": 358
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -21470,6 +22057,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 99,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -21680,6 +22272,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 95,
+        "max": 114
+      },
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -21842,6 +22439,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 102,
+        "min": 96,
+        "max": 116
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -22039,6 +22641,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 106,
+        "min": 100,
+        "max": 120
+      },
       "small_monsters": [
         {
           "monster": "Genprey",
@@ -22234,6 +22841,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 93,
+        "max": 137
+      },
       "small_monsters": [
         {
           "monster": "Shakalaka",
@@ -22391,6 +23003,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 118,
+        "min": 100,
+        "max": 147
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -22585,6 +23202,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 112,
+        "min": 95,
+        "max": 140
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -22769,6 +23391,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 111,
+        "min": 94,
+        "max": 138
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -22958,6 +23585,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 112,
+        "min": 95,
+        "max": 140
+      },
       "small_monsters": [],
       "title": "Two Black Suits of Armor",
       "goal": "Hunt 2 Black Gravios",
@@ -23069,6 +23701,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 108,
+        "min": 91,
+        "max": 135
+      },
       "small_monsters": [],
       "title": "Explore the Unexplored",
       "goal": "Hunt the Silver Rathalos",
@@ -23180,6 +23817,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 93,
+        "max": 137
+      },
       "small_monsters": [],
       "title": "A Single Beam of Moonlight",
       "goal": "Hunt the Gold Rathian",
@@ -23352,6 +23994,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 108,
+        "min": 91,
+        "max": 135
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
@@ -23506,6 +24153,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 120,
+        "min": 102,
+        "max": 150
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -23665,6 +24317,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 140,
+        "min": 119,
+        "max": 175
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -23908,6 +24565,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 105,
+        "max": 120
+      },
       "small_monsters": [
         {
           "monster": "Blango",
@@ -24131,6 +24793,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 105,
+        "max": 120
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -24402,6 +25069,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 104,
+        "min": 104,
+        "max": 119
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -24692,6 +25364,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 105,
+        "min": 105,
+        "max": 120
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -24927,6 +25604,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 115,
+        "min": 97,
+        "max": 143
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -25131,6 +25813,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 115,
+        "min": 97,
+        "max": 143
+      },
       "small_monsters": [],
       "title": "Evaporate into the Night",
       "goal": "Slay the Chameleos",
@@ -25328,6 +26015,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 103,
+        "min": 87,
+        "max": 128
+      },
       "small_monsters": [],
       "title": "Fight for Your Life!",
       "goal": "Slay the Teostra",
@@ -25525,6 +26217,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 103,
+        "min": 87,
+        "max": 128
+      },
       "small_monsters": [
         {
           "monster": "Hornetaur",
@@ -25682,6 +26379,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -25779,6 +26481,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [],
       "title": "Rise to the Summit",
       "goal": "Slay the Akantor",
@@ -26078,6 +26785,11 @@
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 110,
+        "max": 126
+      },
       "small_monsters": [],
       "title": "Monster Hunter",
       "goal": "Hunt all of the Large\nMonsters",
