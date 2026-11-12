@@ -107,13 +107,10 @@ const rootRule = [
 
 /**
  * Where the page is served, for the link-preview tags in index.html, which
- * need absolute URLs. Netlify deploy previews and branch deploys use their
- * own address, so their previews show that build's card.
+ * need absolute URLs. SITE_URL overrides it for a build served elsewhere (a
+ * preview), so its link previews show that build's card.
  */
-const siteUrl = (
-  (process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL) ||
-  "https://randomfu.vallode.com"
-).replace(/\/$/, "");
+const siteUrl = (process.env.SITE_URL || "https://randomfu.vallode.com").replace(/\/$/, "");
 
 const style = readFileSync(path.join(web, "style.css"), "utf8");
 const html = readFileSync(path.join(web, "index.html"), "utf8")
@@ -152,4 +149,6 @@ copyFileSync(path.join(web, "randomfu.png"), path.join(dist, "images", "randomfu
 // The link-preview picture (og:image), drawn by social-card.mts.
 copyFileSync(path.join(web, "social-card.png"), path.join(dist, "images", "social-card.png"));
 copyFileSync(path.join(web, "LICENSE"), path.join(dist, "LICENSE.txt"));
+// Response headers, read by Cloudflare and not served.
+copyFileSync(path.join(web, "_headers"), path.join(dist, "_headers"));
 console.log(`Built ${path.relative(process.cwd(), dist)}`);

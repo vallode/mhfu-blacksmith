@@ -177,6 +177,8 @@ export default function WeaponTreeRow({
   const craft = showCraftProgress ? status.craft : null;
   const dimmed = filtered ? !filtered.match : false;
   const ready = craft?.status === "ready" ? craft : null;
+  // Weapons are forged; jewels are made.
+  const makeVerb = sectionType === "decoration" ? "make" : "forge";
 
   // Subscribed above, so this also updates `collapsed`.
   const onToggle = () => setNodeCollapsed(treeKey, node.slug, !collapsed);
@@ -230,7 +232,7 @@ export default function WeaponTreeRow({
         <span className="sr-only">
           {ready.via === "upgrade"
             ? " (you can make this upgrade now)"
-            : " (you can forge this now)"}
+            : ` (you can ${makeVerb} this now)`}
         </span>
       )}
       {node.children && (
@@ -278,9 +280,11 @@ export default function WeaponTreeRow({
           scroll={scroll}
           title={
             ready
-              ? `You can ${ready.via === "upgrade" ? "make this upgrade" : "forge this"} now (${ready.cost.toLocaleString()}z, materials in your item box)`
+              ? `You can ${ready.via === "upgrade" ? "make this upgrade" : `${makeVerb} this`} now (${ready.cost.toLocaleString()}z, materials in your item box)`
               : owned
-                ? "In your equipment box"
+                ? sectionType === "decoration"
+                  ? "In your item box or equipment"
+                  : "In your equipment box"
                 : undefined
           }
           onPointerEnter={onPointerEnter}

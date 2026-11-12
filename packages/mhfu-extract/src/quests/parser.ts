@@ -227,6 +227,8 @@ function readSmallMonsterData(reader: BinaryReader, ptr: number): MonsterSpawn[]
 export interface SmallMonsterTable {
   /** Index into stageID. */
   stageId: number;
+  /** Address of the spawn records; index entries that share it list the same spawns twice. */
+  dataPtr: number;
   monsters: MonsterSpawn[];
 }
 
@@ -236,7 +238,7 @@ function readSmallMonsterTablesAt(reader: BinaryReader, ptr: number): SmallMonst
   while (reader.u32(off) !== 0) {
     const stageId = reader.u16(off);
     const dataPtr = reader.u32(off + 12);
-    tables.push({ stageId, monsters: readSmallMonsterData(reader, dataPtr) });
+    tables.push({ stageId, dataPtr, monsters: readSmallMonsterData(reader, dataPtr) });
     off += 16;
   }
   return tables;

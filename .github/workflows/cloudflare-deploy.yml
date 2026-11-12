@@ -1,0 +1,131 @@
+# Build the sites and deploy them to Cloudflare, on demand: Actions > Deploy
+# to Cloudflare > Run workflow, picking the branch in "Use workflow from" and
+# the site.
+#
+# Each site is a Cloudflare Worker with only static assets, configured by its
+# app's wrangler.jsonc (apps/blacksmith, apps/randomfu). Static asset
+# requests are free and unmetered, and deploys cost nothing.
+#
+# - main deploys to production: <worker>.<subdomain>.workers.dev, plus any
+#   custom domain added to the Worker in the Cloudflare dashboard.
+# - Any other branch uploads a version without deploying it, served at a
+#   preview URL named after the branch: <branch>-<worker>.<subdomain>.workers.dev.
+#   A Worker needs a production deploy before it can have previews, so deploy
+#   main first.
+#
+# Repository secrets: CLOUDFLARE_API_TOKEN, an API token made from the "Edit
+# Cloudflare Workers" template, and CLOUDFLARE_ACCOUNT_ID. Optional
+# repository variables BLACKSMITH_URL and RANDOMFU_URL (e.g.
+# https://randomfu.vallode.com) give a site's production address once it has
+# a custom domain; the builds write it into their link previews, and it
+# defaults to the workers.dev address.
+name: Deploy to Cloudflare
+
+on:
+  workflow_dispatch:
+    inputs:
+      site:
+        description: Site to deploy
+        type: choice
+        options:
+          - both
+          - blacksmith
+          - randomfu
+        default: both
+
+permissions:
+  contents: read
+
+# One deploy per branch at a time, so an older build can't finish last.
+concurrency:
+  group: cloudflare-deploy-${{ github.ref }}
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    env:
+      WRANGLER_VERSION: 4.152.0
+      CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+      CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+    steps:
+      - name: Check the secrets
+        run: |
+          for name in CLOUDFLARE_API_TOKEN CLOUDFLARE_ACCOUNT_ID; do
+            if [ -z "${!name}" ]; then
+              echo "::error::The $name secret isn't set."
+              exit 1
+            fi
+          done
+
+      - uses: actions/checkout@v5
+        with:
+          persist-credentials: false
+
+      # The pnpm version comes from packageManager in package.json.
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v5
+        with:
+          node-version: 22
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      # The account's workers.dev subdomain, for the sites' addresses.
+      - name: Find the workers.dev subdomain
+        id: account
+        run: |
+          subdomain="$(
+            curl --fail-with-body --silent --show-error \
+              -H "Authorization: Bearer $CLOUDFLARE_API_TOKEN" \
+              "https://api.cloudflare.com/client/v4/accounts/$CLOUDFLARE_ACCOUNT_ID/workers/subdomain" |
+              jq --raw-output --exit-status .result.subdomain
+          )" || {
+            echo "::error::Couldn't read the account's workers.dev subdomain. Open Workers & Pages in the Cloudflare dashboard once to set one up."
+            exit 1
+          }
+          echo "subdomain=$subdomain" >> "$GITHUB_OUTPUT"
+
+      - name: Build and deploy
+        env:
+          SITE: ${{ inputs.site }}
+          BRANCH: ${{ github.ref_name }}
+          SUBDOMAIN: ${{ steps.account.outputs.subdomain }}
+          MESSAGE: Deployed from GitHub Actions by ${{ github.actor }} (${{ github.ref_name }} ${{ github.sha }})
+          BLACKSMITH_URL: ${{ vars.BLACKSMITH_URL }}
+          RANDOMFU_URL: ${{ vars.RANDOMFU_URL }}
+        run: |
+          for site in blacksmith randomfu; do
+            [ "$SITE" = both ] || [ "$SITE" = "$site" ] || continue
+            case "$site" in
+              blacksmith) package=blacksmith worker=mhfu-blacksmith production_url="$BLACKSMITH_URL" ;;
+              randomfu) package=randomfu-web worker=randomfu production_url="$RANDOMFU_URL" ;;
+            esac
+            echo "::group::$site"
+
+            if [ "$BRANCH" = main ]; then
+              url="${production_url:-https://$worker.$SUBDOMAIN.workers.dev}"
+            else
+              # A preview alias is lowercase letters, digits and dashes, starts
+              # with a letter, and fits in one DNS label with the Worker's name.
+              alias="$(printf '%s' "$BRANCH" | tr '[:upper:]' '[:lower:]' | sed -E 's/[^a-z0-9]+/-/g; s/^-+//')"
+              [[ "$alias" =~ ^[a-z] ]] || alias="b-$alias"
+              alias="${alias:0:$((62 - ${#worker}))}"
+              alias="$(printf '%s' "$alias" | sed -E 's/-+$//')"
+              url="https://$alias-$worker.$SUBDOMAIN.workers.dev"
+            fi
+
+            # Where the build is served, for its link previews: seo.ts reads
+            # NEXT_PUBLIC_SITE_URL, randomfu's build.mjs reads SITE_URL.
+            NEXT_PUBLIC_SITE_URL="$url" SITE_URL="$url" pnpm --filter "$package" build
+
+            if [ "$BRANCH" = main ]; then
+              pnpm dlx "wrangler@$WRANGLER_VERSION" deploy --cwd "apps/$site" --message "$MESSAGE"
+            else
+              pnpm dlx "wrangler@$WRANGLER_VERSION" versions upload --cwd "apps/$site" \
+                --preview-alias "$alias" --message "$MESSAGE"
+            fi
+
+            echo "::endgroup::"
+            echo "Deployed $site from $BRANCH to $url" | tee -a "$GITHUB_STEP_SUMMARY"
+          done
