@@ -1,10 +1,18 @@
-import type { NextConfig } from "next";
+// Plain JavaScript, not next.config.ts, on purpose. Next compiles a .ts config
+// and everything it imports, next-pwa included, down to ES5 with SWC, which
+// turns next-pwa's async plugin functions (the offline fallback, the start-URL
+// cache) into calls to helpers defined elsewhere in its module. next-pwa
+// writes those functions into public/sw.js as source text, without the
+// helpers, so the service worker threw "_async_to_generator is not defined"
+// whenever a request failed, offline or not, instead of serving /offline/.
+// A .mjs config is imported as is.
 import withPWA, { runtimeCaching as defaultRuntimeCaching } from "@ducanh2912/next-pwa";
 import fs from "fs";
 import path from "path";
 import { createHash } from "crypto";
 
-const nextConfig: NextConfig = {
+/** @type {import("next").NextConfig} */
+const nextConfig = {
   output: "export",
   trailingSlash: true,
   experimental: { viewTransition: true },
@@ -16,17 +24,17 @@ const nextConfig: NextConfig = {
 // which runs first in the build script); images are globbed from public/images.
 // Each entry's revision is a content hash so updates bust the cache cleanly.
 // ---------------------------------------------------------------------------
-interface PrecacheEntry {
-  url: string;
-  revision: string;
-}
+/** @typedef {{ url: string, revision: string }} PrecacheEntry */
 
-function hashFile(p: string): string {
+/** @param {string} p */
+function hashFile(p) {
   return createHash("md5").update(fs.readFileSync(p)).digest("hex").slice(0, 16);
 }
 
-function collectPrecacheEntries(): PrecacheEntry[] {
-  const entries: PrecacheEntry[] = [];
+/** @returns {PrecacheEntry[]} */
+function collectPrecacheEntries() {
+  /** @type {PrecacheEntry[]} */
+  const entries = [];
   const publicDir = path.join(process.cwd(), "public");
 
   // All data bundles (+ dictionaries + manifest) from public/data.
@@ -47,14 +55,15 @@ function collectPrecacheEntries(): PrecacheEntry[] {
   // Images the site uses (pixel-art sprites / icons), minus the ones it never
   // loads (scripts/lib/precache-exclude.json: unused weapon renders, README art).
   const imagesDir = path.join(publicDir, "images");
-  const excluded = (
-    JSON.parse(
-      fs.readFileSync(path.join(process.cwd(), "scripts", "lib", "precache-exclude.json"), "utf-8"),
-    ) as { exclude: string[] }
+  /** @type {string[]} */
+  const excluded = JSON.parse(
+    fs.readFileSync(path.join(process.cwd(), "scripts", "lib", "precache-exclude.json"), "utf-8"),
   ).exclude;
-  const isExcluded = (relative: string) =>
+  /** @param {string} relative */
+  const isExcluded = (relative) =>
     excluded.some((e) => (e.endsWith("/") ? relative.startsWith(e) : relative === e));
-  const walk = (dir: string) => {
+  /** @param {string} dir */
+  const walk = (dir) => {
     for (const entry of fs.readdirSync(dir, { withFileTypes: true })) {
       const full = path.join(dir, entry.name);
       const relative = path.relative(imagesDir, full).split(path.sep).join("/");
@@ -74,9 +83,10 @@ const additionalManifestEntries = collectPrecacheEntries();
 // Version/cacheId from the data manifest hash so data updates invalidate cleanly.
 let cacheId = "mhfu-blacksmith";
 try {
+  /** @type {{ version?: string }} */
   const manifest = JSON.parse(
     fs.readFileSync(path.join(process.cwd(), "public", "data", "data-manifest.json"), "utf-8"),
-  ) as { version?: string };
+  );
   if (manifest.version) cacheId = `mhfu-${manifest.version}`;
 } catch {
   // manifest not generated yet (e.g. plain `next build` without the pipeline)
