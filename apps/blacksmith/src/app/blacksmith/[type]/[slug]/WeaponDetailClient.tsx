@@ -3,6 +3,7 @@
 import { useState } from "react";
 import SharpnessBar from "@/components/SharpnessBar";
 import Icon from "@/components/Icon";
+import AmmoName from "@/components/AmmoName";
 import {
   DetailBody,
   DetailCard,
@@ -278,7 +279,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                               key={i}
                               className={ammo.capacity.join("") === "000" ? "text-unavailable" : ""}
                             >
-                              <td>{ammo.name}</td>
+                              <AmmoName name={ammo.name} />
                               <td>:</td>
                               {ammo.capacity.map((cap, j) => (
                                 <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
@@ -310,7 +311,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                                   ammo.capacity.join("") === "000" ? "text-unavailable" : ""
                                 }
                               >
-                                <td>{ammo.name}</td>
+                                <AmmoName name={ammo.name} />
                                 <td>:</td>
                                 {ammo.capacity.map((cap, j) => (
                                   <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
@@ -345,7 +346,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                               key={i}
                               className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}
                             >
-                              <td>{ammo.name}</td>
+                              <AmmoName name={ammo.name} />
                               <td>:</td>
                               {ammo.capacity.map((cap, j) => (
                                 <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
@@ -373,7 +374,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                                 key={i}
                                 className={ammo.capacity.join("") === "0" ? "text-unavailable" : ""}
                               >
-                                <td>{ammo.name}</td>
+                                <AmmoName name={ammo.name} />
                                 <td>:</td>
                                 {ammo.capacity.map((cap, j) => (
                                   <td key={j} className={cap === 0 ? "text-unavailable" : ""}>
