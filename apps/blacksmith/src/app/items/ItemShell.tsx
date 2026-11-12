@@ -5,6 +5,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import QuestNav from "@/components/QuestNav";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
@@ -76,10 +77,7 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
         {/* Above the card (z-2) so the bar and its arrows draw over the frame.
             On a phone the detail card goes below the list, so the list
             scrolls in a box instead of running the length of a category. */}
-        <div
-          data-tree-panel
-          className="relative z-2 flex min-h-0 min-w-0 flex-1 flex-col gap-[0.8rem] mobile:h-[50vh] mobile:flex-none"
-        >
+        <CardBox data-tree-panel className="gap-[0.8rem] mobile:h-[50vh] mobile:flex-none">
           <input
             className={searchInput}
             type="search"
@@ -130,7 +128,7 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
                 : `Category ${index + 1} of ${ITEM_CATEGORIES.length}`
             }
           />
-        </div>
+        </CardBox>
         {children}
       </div>
     </>

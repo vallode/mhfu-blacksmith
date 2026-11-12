@@ -2,7 +2,6 @@
 
 import { Fragment, useMemo, type ReactNode } from "react";
 import Link from "next/link";
-import Card from "@/components/Card";
 import {
   DetailBody,
   DetailCard,
@@ -77,7 +76,7 @@ export default function ItemDetailClient({ slug }: Props) {
   const item = items?.bySlug(slug);
   if (!items || !item) {
     return (
-      <Card>
+      <DetailCard>
         {items ? (
           <p>Not found.</p>
         ) : error ? (
@@ -85,7 +84,7 @@ export default function ItemDetailClient({ slug }: Props) {
         ) : (
           <Loading>Loading…</Loading>
         )}
-      </Card>
+      </DetailCard>
     );
   }
 

@@ -4,6 +4,7 @@ import { useDeferredValue, useRef, useState } from "react";
 import { usePathname } from "next/navigation";
 import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import DecorationNav from "@/components/DecorationNav";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import TreeScroll from "@/components/TreeScroll";
@@ -95,10 +96,7 @@ export function DecorationShell({ slug, children }: { slug?: string; children: R
         {/* Above the card (z-2) so the bar and its arrows draw over the frame.
             On a phone the detail card goes below the list, so the list
             scrolls in a box instead of running the length of the page. */}
-        <div
-          data-tree-panel
-          className="relative z-2 flex min-h-0 min-w-0 flex-1 flex-col gap-[0.8rem] mobile:h-[50vh] mobile:flex-none"
-        >
+        <CardBox data-tree-panel className="gap-[0.8rem] mobile:h-[50vh] mobile:flex-none">
           <input
             className={searchInput}
             type="search"
@@ -138,7 +136,7 @@ export function DecorationShell({ slug, children }: { slug?: string; children: R
             count={shown && tree ? `${shown.length}/${tree.length}` : undefined}
             countLabel={shown && tree ? `${shown.length} of ${tree.length} decorations` : undefined}
           />
-        </div>
+        </CardBox>
         {children}
       </div>
     </>

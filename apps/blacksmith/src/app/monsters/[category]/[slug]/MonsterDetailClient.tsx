@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Card from "@/components/Card";
 import { DetailBody, DetailCard, DetailRule } from "@/components/DetailPanel";
 import { cn } from "@/lib/cn";
 import { hitzoneBest, hitzoneTable, hitzoneZero } from "@/styles/tables";
@@ -132,7 +131,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The nav and the list of monsters on the left come from the monsters
   // layout (MonsterShell), which stays mounted; this is only the detail panel.
   if (loading || !monster) {
-    return <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>;
+    return <DetailCard>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</DetailCard>;
   }
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
