@@ -1,5 +1,5 @@
-# Response headers for every host of dist/: build.mjs copies this file there,
-# and both Cloudflare and Netlify read it. The page's own
+# Response headers for every page of dist/: build.mjs copies this file there,
+# and Cloudflare reads it. The page's own
 # Content-Security-Policy is a <meta> tag in index.html, so it holds wherever
 # dist/ is hosted and pnpm test:e2e checks it. These are the parts a <meta>
 # tag can't set.
