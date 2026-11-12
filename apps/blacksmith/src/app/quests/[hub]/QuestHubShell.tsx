@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import PageBar, { PageTabs } from "@/components/PageBar";
-import SelectorArrow from "@/components/SelectorArrow";
+import Icon from "@/components/Icon";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
@@ -16,7 +16,7 @@ import { useQuests } from "@/lib/client-data";
 import {
   clearedQuestIds,
   questHref,
-  QUEST_HUB_SLUGS,
+  QUEST_HUBS,
   questHubLabel,
   questsOnHub,
   questStarLevel,
@@ -78,38 +78,44 @@ function StarTab({
 }
 
 /**
- * The quest board selector at the start of the page bar, "◀ Village ▶" like
- * the game's selectors: the arrows step through the boards, wrapping around.
- * Where the star levels don't fit beside it (and always on phones) they
- * wrap onto a row of their own below it.
+ * The top row of a board's quest list: a back arrow and the board's name,
+ * leading to the list of boards (/quests/), the way into another board.
  */
-function HubSelector({ hub }: { hub: QuestHubSlug }) {
-  const n = QUEST_HUB_SLUGS.length;
-  const i = QUEST_HUB_SLUGS.indexOf(hub);
-  const previous = QUEST_HUB_SLUGS[(i - 1 + n) % n]!;
-  const next = QUEST_HUB_SLUGS[(i + 1) % n]!;
+function BoardBackRow({ hub }: { hub: QuestHubSlug }) {
   return (
-    <nav
-      aria-label="Quest board"
-      className="flex h-[52px] flex-none items-center mobile:w-full mobile:justify-center"
+    <Link
+      href="/quests/"
+      className="list-row"
+      aria-label={`${questHubLabel(hub)}: back to quest boards`}
     >
-      <SelectorArrow
-        className="z-1 -mr-[1.2rem] size-[44px] flex-none"
-        label={`Previous board: ${questHubLabel(previous)}`}
-        href={`/quests/${previous}/`}
-      />
-      {/* Wide enough for the longest label ("Treasure Hunting"), so the
-          arrows stay put as the board changes. */}
-      <span className="box-content flex h-[44px] w-cells-16 items-center justify-center bg-selector px-[2.8rem] text-main leading-none whitespace-nowrap text-stat text-shadow-[2px_2px_0_rgb(0_0_0/0.6)]">
-        {questHubLabel(hub)}
-      </span>
-      <SelectorArrow
-        next
-        className="z-1 -ml-[1.2rem] size-[44px] flex-none"
-        label={`Next board: ${questHubLabel(next)}`}
-        href={`/quests/${next}/`}
-      />
-    </nav>
+      <Icon type="arrow" alt="" />
+      <p className="truncate text-stat">{questHubLabel(hub)}</p>
+    </Link>
+  );
+}
+
+/**
+ * /quests/: the same frame as a board's page (without its bar of star
+ * levels), with the quest boards in the list card and a prompt on the right. The sidebar's Quests entry skips it,
+ * opening the board last viewed; a board's back row leads here.
+ */
+export function QuestBoardsShell({ children }: { children: React.ReactNode }) {
+  return (
+    <div className="split-page">
+      <CardBox data-tree-panel>
+        <Card variant="weapon-tree">
+          <nav aria-label="Quest boards" className="flex flex-col">
+            {QUEST_HUBS.map((h) => (
+              <Link key={h.slug} href={`/quests/${h.slug}/`} className="list-row">
+                <Icon type="ticket" alt="" />
+                <p className="truncate">{h.label}</p>
+              </Link>
+            ))}
+          </nav>
+        </Card>
+      </CardBox>
+      {children}
+    </div>
   );
 }
 
@@ -119,7 +125,7 @@ const typeFilterLabel = (type: QuestType | null) =>
 
 /**
  * A quest board: the board's star levels as tabs in the page bar, the
- * selected level's quests down the left, with a selector at the bottom of
+ * selected level's quests down the left (under a row back to the boards), with a selector at the bottom of
  * the card (like the weapon tree's filter bar) that filters them by type,
  * and the selected quest (or a prompt to pick one) on the right. With a
  * hunter loaded, the quests they have cleared are marked CLEAR!!, like the
@@ -194,25 +200,22 @@ export default function QuestHubShell({
       <PageBar
         title={`${questHubLabel(hub)} quests`}
         tabs={
-          <>
-            <HubSelector hub={hub} />
-            {levels.length > 0 && (
-              <PageTabs label="Star levels">
-                {levels.map((s) => (
-                  <StarTab
-                    key={s}
-                    hub={hub}
-                    stars={s}
-                    active={s === current}
-                    onSelect={() => {
-                      setStars(s);
-                      scrollToTop();
-                    }}
-                  />
-                ))}
-              </PageTabs>
-            )}
-          </>
+          levels.length > 0 && (
+            <PageTabs label="Star levels">
+              {levels.map((s) => (
+                <StarTab
+                  key={s}
+                  hub={hub}
+                  stars={s}
+                  active={s === current}
+                  onSelect={() => {
+                    setStars(s);
+                    scrollToTop();
+                  }}
+                />
+              ))}
+            </PageTabs>
+          )
         }
       />
 
@@ -221,6 +224,7 @@ export default function QuestHubShell({
         <CardBox data-tree-panel>
           <Card variant="weapon-tree">
             <div ref={listRef} className="flex flex-col">
+              <BoardBackRow hub={hub} />
               {error && <p className="px-[16px] text-negative">Couldn&apos;t load quests.</p>}
               {shown.map((q) => (
                 <Link

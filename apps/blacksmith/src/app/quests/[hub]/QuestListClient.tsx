@@ -1,12 +1,13 @@
 import { DetailCard } from "@/components/DetailPanel";
-import { questHubLabel, type QuestHubSlug } from "@/lib/quests";
 
-/** /quests/<hub>/: the board's list is in the layout; this is the empty detail pane. */
-export default function QuestListClient({ hub }: { hub: QuestHubSlug }) {
+/**
+ * The empty detail pane beside a list in the quest frame: on /quests/ (the
+ * boards) and on /quests/<hub>/ (a board's quests).
+ */
+export default function QuestListClient({ boards = false }: { boards?: boolean }) {
   return (
     <DetailCard>
-      <p className="text-gold">{questHubLabel(hub)}</p>
-      <p className="text-stat">Select a quest.</p>
+      <p className="text-stat">{boards ? "Select a quest board." : "Select a quest."}</p>
     </DetailCard>
   );
 }

@@ -1,10 +1,15 @@
 import type { Metadata } from "next";
-import QuestHubRedirect from "./QuestHubRedirect";
+import { QuestBoardsShell } from "./[hub]/QuestHubShell";
+import QuestListClient from "./[hub]/QuestListClient";
 
 export const metadata: Metadata = {
   title: "Quests — MHFU Blacksmith",
 };
 
 export default function QuestsPage() {
-  return <QuestHubRedirect />;
+  return (
+    <QuestBoardsShell>
+      <QuestListClient boards />
+    </QuestBoardsShell>
+  );
 }

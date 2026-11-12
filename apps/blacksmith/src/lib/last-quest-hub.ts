@@ -1,7 +1,6 @@
 /**
  * The quest board the user last viewed, kept in localStorage so the main
- * menu's "Quests" entry (and /quests/) can open it directly instead of a list
- * of boards.
+ * menu's "Quests" entry can open it directly instead of the list of boards.
  */
 import { QUEST_HUB_SLUGS, type QuestHubSlug } from "./quests";
 
