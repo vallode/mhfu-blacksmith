@@ -112,10 +112,16 @@ const ORIGIN_TITLES: Record<Origin, string> = {
 /** The share link's query parameter: /set-builder/?s=<code>. */
 const SHARE_PARAM = "s";
 
-/** The weapon class's icon: grey, or green when chosen (as in the nav). */
+/** The weapon class's mini icon: grey, or green when chosen (as in the nav). */
 function classIcon(type: string) {
   return function ClassIcon(checked: boolean) {
-    return <Icon type={type} nav active={checked} className="mr-0" />;
+    return <Icon type={type} size="mini" nav active={checked} className="mr-0" />;
+  };
+}
+/** Text for a choice button, centred on its letters (ui.centredText). */
+function choiceText(text: string, size = "text-main") {
+  return function ChoiceText() {
+    return <span className={cn(ui.centredText, size)}>{text}</span>;
   };
 }
 const HUNTER_TYPES: IconChoice<Form["hunterType"]>[] = [
@@ -123,19 +129,13 @@ const HUNTER_TYPES: IconChoice<Form["hunterType"]>[] = [
   { value: "Gunner", label: "Gunner", icon: classIcon("heavy-bowgun") },
 ];
 const SEXES: IconChoice<Form["sex"]>[] = [
-  { value: "Male", label: "Male", icon: () => "♂" },
-  { value: "Female", label: "Female", icon: () => "♀" },
+  { value: "Male", label: "Male", icon: choiceText("♂") },
+  { value: "Female", label: "Female", icon: choiceText("♀") },
 ];
-/** Short text for a choice button. */
-function choiceText(text: string) {
-  return function ChoiceText() {
-    return <span className="text-sub">{text}</span>;
-  };
-}
 const RANKS: IconChoice<ArmorRank>[] = [
-  { value: "low-rank", label: "Low Rank", icon: choiceText("LR") },
-  { value: "high-rank", label: "High Rank", icon: choiceText("HR") },
-  { value: "g-rank", label: "G Rank", icon: choiceText("G") },
+  { value: "low-rank", label: "Low Rank", icon: choiceText("LR", "text-sub") },
+  { value: "high-rank", label: "High Rank", icon: choiceText("HR", "text-sub") },
+  { value: "g-rank", label: "G Rank", icon: choiceText("G", "text-sub") },
 ];
 const SORTS: Choice<SortKey>[] = [
   { value: "defence", label: "Defence" },
@@ -186,7 +186,7 @@ function WeaponSlotsRow({ value, onChange }: { value: number; onChange: (n: numb
               className={cn(slotButton, lit ? "text-stat" : "text-white/30 hover:text-white/70")}
               onClick={() => onChange(n)}
             >
-              {n === 0 ? "-" : "O"}
+              <span className={ui.centredText}>{n === 0 ? "-" : "O"}</span>
             </button>
           );
         })}

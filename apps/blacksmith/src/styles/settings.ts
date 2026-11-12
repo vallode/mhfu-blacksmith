@@ -89,3 +89,10 @@ export const iconChoiceOn = "border-stat bg-stat/20 text-stat";
 
 export const iconChoiceOff =
   "border-white/25 bg-black/30 text-white/45 hover:border-stat/60 hover:text-white/80";
+
+/**
+ * For text centred in a box (choice buttons): the game's letter-spacing
+ * (`--tracking-game`, 14%) also follows the last letter, which pushes the
+ * letters off centre to the left; the negative margin takes it back off.
+ */
+export const centredText = "-mr-[0.14em]";
