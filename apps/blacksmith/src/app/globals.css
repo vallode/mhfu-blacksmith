@@ -301,22 +301,26 @@
    it in calc()): Card's body sits there (card-body), so nothing shows
    outside the frame.
    Every frame's image is the game's art at 4x, and every frame is drawn at
-   3x (a 6px slice is 24 image pixels, drawn 18px wide). This one: 6px slices,
-   copper squares in the corners. */
+   3x (a 6px slice is 24 image pixels, drawn 18px wide). This one: copper
+   squares in the corners, 6px slices top and bottom and 8px at the sides, so
+   the 3px gap between each corner and its first notch sits in the corner
+   slice. Each middle strip is a whole number of the art's periods (24px: 3
+   notches, 2 columns of stars; 8px: 2 side zigzags, 1 row of stars), so
+   repeating it leaves no seams. */
 @utility card-frame {
   border-image-outset: 0;
   border-image-repeat: round round;
-  border-image-slice: 24 fill;
-  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACrUlEQVR42u3dMW7UQBQGYBsBErKUBppIKDRIdOwhcoA9CW0OkZaT7AFyiNAh0SRCSgOlFQkK0yYG1jv7ZuL1zvd1QZudYZmn+WftZ9qmaYamrDbx9XPPx/gVrYdnDVRMAaAAoFbPx3+wuTgPveH68irrBOeej/GPez3YARCBQAGAM0B6htshkw0H9ncejH8840fXpx0AEQgUADgD5Bf93tb4dY+f+zqCHQAUACgAmD4DRDPcp823ax8zAauS69MOgAgECgAq1DaJ92Z0Xffo577vt77+9Oz0y8OfX7x6OfjY+Z/f978e9Qzf3d59zLke7QCgAEABwD+f0TJsy1iv37653pbZZHye8owwXm8/v/9YTZwJWjsAKABQADgDTEo6Exx7xjT/w5Ka+e0AoABAAUB6T/A4Y53cnzxp5oxm3PHvR18fHb+2+ef+90+998cOAAoAFADE7wUqnfGipjJq6ni536/2+efmXiAQgUABwKTws0Fzfy88/v3U77FzZ2LzLzv/udebHQARCBQAVEg/AIumHwBEIFAAkKy6foC5mX/e8fUDgAIABQDJqu8HyJ1xzT82/yj9ACACgQKASYvvB0jNnKWfq2P+y7oOZAdABAIFABWqrh9gKkPmfpam+ZelHwBEIFAAkGxx/QBRU/Mz/2Wd4fQDgAIABQDJivcD1Pb/1pI346euF/0AIAKBAoCdzgBFM/nZh3eeHcrebr/erOwAoABAAUBWf90LtLk4D73h+vLKp0oxudenHQARCBQAOAOkZ/qpTPZ5/X7lY2b/zH5TdH3aARCBQAGAM0CJDBe7LjD3dQnjH/d1ITsAIhAoAHAGyJ8Bm92eP/pQ6Z7h1vgHPX7SfKLr0w6ACAQKACqUvSd4/Byhvu+dAYy/9xmg67phtJ7sAKAAQAFAzB8QH5B6hmOezQAAAABJRU5ErkJggg==");
+  border-image-slice: 24 32 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAYAAACeXX40AAACKElEQVR42u3dPU7DQBAG0HUUCYlUUTqE6AgH4QCIg9ByiLQcBHEADgJ0CNEhqiDRxLTE/ASzdnY3fq8EK7sxo5lPthOqEEId+lW1PD71foa+/lb3MwqQkAJEATJc4+YPbi5Po17wbHHb6QZT72fo6/e9Hx0QIxgFCHlkwLYZ4g+ZoM7sPdfW705sfeiAGMEoQMgzA8aKvW5k/bTrd30dUQfECAYFSBkZMDZDXFzf3TvNRZv3WR86IEYwChCSqELP9yaPjg9lwII9PjzNdUCMYFCA7GQGbFrLhJPJZO2Xs4OpTMePXp5f1zLjcrn8teZ0QIxgFCBkkwGzyoT1arW/tuHR6K2kE1z6/rvOfDogRjAoQLLQ+jMhzRk/C9NOM1Ls8W0zVmxGK33/sb7JfDogRjAoQPKX3b3gtplqU+Zp+3rbXi+3/cdyLxgjGBQgRRjntqFmRintXmrp+9cBUYCgABmE5M8D7vp1uiqEvcbJfM9p/7E8D4gRDAqQIiV/HnDTdbPY47ediZqZ7x/Hv6Xcf2w96IAYwaAAKYLvhulYbpl02zwPiBEMCpBiMqDviOZHviMaIxgUIDvpy73g3P+/LGl1XR86IEYwChDyyIBtM92mTHB1fjJ3mst1tnjqtT50QIxgFCDkmQHjM0TcdcHU1yWHvr4OiBEMCpBhZsDYDBL+9v0zn9U9v+fK+t39PWLrQwfECEYBQhK9fyZEBtztDKgDYgSDAqRIH/sa58WeoPMsAAAAAElFTkSuQmCC");
   border-image-width: var(--frame-width);
   border-style: solid;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
-  --frame-width: 18px;
-  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAAB80lEQVR42u3cwW3CMBQGYKfi5rEYgG0yBNswAGNxdq8NVDKObULi77u1quIU+dd7L2CmEEIKfU2Ff7/1/Vh/oP3wE2BgAoAAwKhOz7+4zeeqC16u96Y3uPX9WP/Y+0EFQAsEAgBmgPIe7o2eLH3Z/5ysf5z1a/enCoAWCAQAzADt1T63tf7Y67d+H0EFAAEAAYD8DNCgh5u8zFRIPfenCoAWCAQABjSFws9mxBgXPz8ej3fWgC4zwIr9qAKAAIAAYAbI9Fz/9Fh6er5WjDFlZoJJBQABAAHADJBlJuAwPb8KAAIAAgDlM8DKa0AvVftTBUALBAIAZoDXnspzf/bEZ4FACwQCAAIAAgACAAIAC84DsGvOA4AWCAQA+s8AK68BvTgPAFogEAConwE892e3nAcALRAIAAgACAAIAAgALDgPwK45DwBaIBAA6D8DrLwG9OI8AGiBQACgfgbw3J/dch4AtEAgAPDWDJA+sAas1XV/qgBogUAAYECn51/c5nPVBS/Xu1eVblrvTxUALRAIAJgBynv6XE92m8/Jy0yvmbJ2f6oAaIFAAMAM8PkeLmfr9yWsf+z3hVQAtEAgAGAGaN8DhvLzAFufT7D+tusX3U/t/lQB0AKBAMCAmp8JbvA9QnpwM8Df/ZT7nh8VAAQABADK/AKZ86s1a7K0NAAAAABJRU5ErkJggg==");
-  --frame-cover-slice: 24;
-  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAQAAADhybViAAAA/ElEQVR42u3ZUY6FIAxA0eL+94wrMAZFWsM5n5M8P7yh0kyLUf3i7+3lc/7++4fPOYJUAgggAAIIgAAAAAB7aMO/6F7azDdqE04mgAACIIAACLDrrbVf3F/d97/dD7oTYAQhQKFvQPgWrJz9ToARhAACIIAAAlBiD3D/T9kHnAAjSAAEEAABBCB1Dwj7wMr7vxNgBCGAAAgggACU2APc/1P2ASfACBIAAQRAAAFI3QPCPrDy/u8EGEEIIAACCCAAJfYA9/+UfcAJMIIEoNBkuufbMPWNOgFGkAAIIAACCAAAAMAC8/4f0F4+5++/f/gcm3AyAQQQAAEEQIA9nT51IY//SQO9AAAAAElFTkSuQmCC");
+  --frame-width: 18px 24px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAYAAACeXX40AAABpElEQVR42u3dwVHDMBAFUJnhprJSAN2kCLpJAZTlsziTDDa2bLSy3jsCY4nkz+6OoyRTSqmkc00b/771fkZf/1/385agIQFEABnX+/MPHvdb1QU/Pr8O3WDr/Yy+/tn7UQHRghFAiDEDbp0h/jATlGD/c7H+cWrzoQKiBSOAEHMGrFV738j6bdc/+j6iCogWDAJIHzPgATPE5GHuWjkzHyogWjACCE1MKd57EOhoBlQB0YJBAOl2Blzs+TnnH7+c59lMx69yzuUpL4uZUwHRghFACDMDmgk5beZTAdGCQQDpcwbceQ2uqyofKiBaMAIIYWZA9/3YzWvBaMEggAggCCACCAJISM4DUsV5QLRgEEDGmAF3XoPrch4QLRgEkGvMgO77sZvzgGjBIIB0MwP6jGiW+IxotGAQQK7n5bvion+/LG0dnQ8VEC0YAYQYM+DWmW5tJnjcb8XD3K+15782HyogWjACCDFnwLNniDWt70uOvr4KiBYMAsiYM2DtDJK2nwdsfT5x9PU37ac2HyogWjACCE1EfE+IGXCg50MFRAtGAKGJb4uqga/xXSW8AAAAAElFTkSuQmCC");
+  --frame-cover-slice: 24 32;
+  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAQAAAA0VLa/AAAAvklEQVR42u3cQQqEMAxA0dT73zmeQCWtKA3vLwd08WhLOjAzolpefD4W3/P385PvOUJLAQQIECBAAZQkSZK+bJSfSCJuIq5yAAEKIECALaaevJh/Es7tfJhWoC0MsNUZGM7CytlnBdrCAAEKIECA7sLuwrKFAQIEKIAAt54DwzxYmf+sQFsYIEABBAiwzRxo/puaB61AWxhgq539nN+JWIG2MECAAggQoCRJkrRr730f6H+k5SoHECBAAQS4UyeLCxlzDHnfVgAAAABJRU5ErkJggg==");
   --card-inset-t: 6px;
   --card-inset-r: 6px;
   --card-inset-b: 6px;
@@ -653,9 +657,9 @@ img {
   align-items: center;
   display: flex;
   flex: 0 0 38px;
-  gap: 10px;
   height: 38px;
-  padding: 0 16px;
+  /* Like a weapon-tree row: flush left, the icon's own margin is the gap. */
+  padding-right: 0.9rem;
 
   &:hover {
     animation: var(--animate-hover-glow);

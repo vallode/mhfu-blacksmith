@@ -15,7 +15,15 @@ import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import Tabs from "@/components/Tabs";
-import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
+import {
+  ChoiceRow,
+  IconChoiceRow,
+  IconChoices,
+  SelectorRow,
+  ToggleRow,
+  type Choice,
+  type IconChoice,
+} from "@/components/SettingRows";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
@@ -36,7 +44,8 @@ import {
   writeSavedSets,
   type SavedSet,
 } from "@/lib/saved-sets-store";
-import { buildFromResult, emptyBuild, type BuildSet } from "@/lib/set-build";
+import { cn } from "@/lib/cn";
+import { buildFromResult, emptyBuild, MAX_WEAPON_SLOTS, type BuildSet } from "@/lib/set-build";
 import {
   buildCodecTables,
   decodeSet,
@@ -103,18 +112,30 @@ const ORIGIN_TITLES: Record<Origin, string> = {
 /** The share link's query parameter: /set-builder/?s=<code>. */
 const SHARE_PARAM = "s";
 
-const HUNTER_TYPES: Choice<Form["hunterType"]>[] = [
-  { value: "Blademaster", label: "Blademaster" },
-  { value: "Gunner", label: "Gunner" },
+/** The weapon class's mini icon: grey, or green when chosen (as in the nav). */
+function classIcon(type: string) {
+  return function ClassIcon(checked: boolean) {
+    return <Icon type={type} size="mini" nav active={checked} className="mr-0" />;
+  };
+}
+/** Text for a choice button, centred on its letters (ui.centredText). */
+function choiceText(text: string, size = "text-main") {
+  return function ChoiceText() {
+    return <span className={cn(ui.centredText, size)}>{text}</span>;
+  };
+}
+const HUNTER_TYPES: IconChoice<Form["hunterType"]>[] = [
+  { value: "Blademaster", label: "Blademaster", icon: classIcon("great-sword") },
+  { value: "Gunner", label: "Gunner", icon: classIcon("heavy-bowgun") },
 ];
-const SEXES: Choice<Form["sex"]>[] = [
-  { value: "Male", label: "Male" },
-  { value: "Female", label: "Female" },
+const SEXES: IconChoice<Form["sex"]>[] = [
+  { value: "Male", label: "Male", icon: choiceText("♂") },
+  { value: "Female", label: "Female", icon: choiceText("♀") },
 ];
-const RANKS: Choice<ArmorRank>[] = [
-  { value: "low-rank", label: "Low Rank" },
-  { value: "high-rank", label: "High Rank" },
-  { value: "g-rank", label: "G Rank" },
+const RANKS: IconChoice<ArmorRank>[] = [
+  { value: "low-rank", label: "Low Rank", icon: choiceText("LR", "text-sub") },
+  { value: "high-rank", label: "High Rank", icon: choiceText("HR", "text-sub") },
+  { value: "g-rank", label: "G Rank", icon: choiceText("G", "text-sub") },
 ];
 const SORTS: Choice<SortKey>[] = [
   { value: "defence", label: "Defence" },
@@ -126,10 +147,78 @@ const SORTS: Choice<SortKey>[] = [
   { value: "slots", label: "Free slots" },
 ];
 
-const WEAPON_SLOTS: Choice<number>[] = [0, 1, 2, 3].map((n) => ({
-  value: n,
-  label: n === 0 ? "None" : "O".repeat(n).padEnd(3, "-"),
-}));
+/** One glyph of the "-OOO" weapon slots picker. */
+const slotButton =
+  "flex size-[3.4rem] cursor-pointer items-center justify-center border-none bg-transparent p-0 font-[inherit] text-main leading-none text-shadow-[0.15rem_0.15rem_black] focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white";
+const slotsLabel = (n: number) => (n === 0 ? "No slots" : n === 1 ? "1 slot" : `${n} slots`);
+
+/**
+ * Weapon slots as "-OOO": pressing the nth O lights the Os up to it, "-"
+ * clears them. A radio group (the arrow keys step the count).
+ */
+function WeaponSlotsRow({ value, onChange }: { value: number; onChange: (n: number) => void }) {
+  return (
+    <ChoiceRow label="Weapon slots" value={slotsLabel(value)}>
+      <div
+        role="radiogroup"
+        aria-label="Weapon slots"
+        className="flex flex-none items-center"
+        onKeyDown={(event) => {
+          const by = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1 }[event.key];
+          if (!by) return;
+          event.preventDefault();
+          const next = Math.min(MAX_WEAPON_SLOTS, Math.max(0, value + by));
+          onChange(next);
+          event.currentTarget.querySelectorAll<HTMLButtonElement>("[role=radio]")[next]?.focus();
+        }}
+      >
+        {Array.from({ length: MAX_WEAPON_SLOTS + 1 }, (_, n) => {
+          const lit = n === 0 ? value === 0 : n <= value;
+          return (
+            <button
+              key={n}
+              type="button"
+              role="radio"
+              aria-checked={n === value}
+              aria-label={slotsLabel(n)}
+              title={slotsLabel(n)}
+              tabIndex={n === value ? 0 : -1}
+              className={cn(slotButton, lit ? "text-stat" : "text-white/30 hover:text-white/70")}
+              onClick={() => onChange(n)}
+            >
+              <span className={ui.centredText}>{n === 0 ? "-" : "O"}</span>
+            </button>
+          );
+        })}
+      </div>
+    </ChoiceRow>
+  );
+}
+
+/** The hunter the sets are for: weapon class and sex, on one line. */
+function HunterRow({
+  hunterType,
+  sex,
+  onHunterType,
+  onSex,
+}: {
+  hunterType: Form["hunterType"];
+  sex: Form["sex"];
+  onHunterType: (value: Form["hunterType"]) => void;
+  onSex: (value: Form["sex"]) => void;
+}) {
+  return (
+    <ChoiceRow label="Hunter" value={`${hunterType}, ${sex.toLowerCase()}`}>
+      <IconChoices
+        label="Weapon class"
+        choices={HUNTER_TYPES}
+        value={hunterType}
+        onChange={onHunterType}
+      />
+      <IconChoices label="Sex" choices={SEXES} value={sex} onChange={onSex} />
+    </ChoiceRow>
+  );
+}
 
 /** The locked or excluded pieces, each with × to take it off the list. */
 function PieceList({
@@ -557,30 +646,19 @@ export default function SetBuilderClient() {
                 value={form.skills}
                 onChange={(v) => update("skills", v)}
               />
-              <SelectorRow
-                label="Hunter"
-                choices={HUNTER_TYPES}
-                value={form.hunterType}
-                onChange={(v) => update("hunterType", v)}
+              <HunterRow
+                hunterType={form.hunterType}
+                sex={form.sex}
+                onHunterType={(v) => update("hunterType", v)}
+                onSex={(v) => update("sex", v)}
               />
-              <SelectorRow
-                label="Gender"
-                choices={SEXES}
-                value={form.sex}
-                onChange={(v) => update("sex", v)}
-              />
-              <SelectorRow
+              <IconChoiceRow
                 label="Rank"
                 choices={RANKS}
                 value={form.rank}
                 onChange={(v) => update("rank", v)}
               />
-              <SelectorRow
-                label="Weapon slots"
-                choices={WEAPON_SLOTS}
-                value={form.weaponSlots}
-                onChange={(v) => update("weaponSlots", v)}
-              />
+              <WeaponSlotsRow value={form.weaponSlots} onChange={(v) => update("weaponSlots", v)} />
               <SelectorRow
                 label="Sort by"
                 note="Ties go to the higher defence."
