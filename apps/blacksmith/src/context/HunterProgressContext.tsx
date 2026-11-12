@@ -18,8 +18,28 @@ import {
   type ItemLookup,
 } from "@/lib/client-data";
 import { useEquipmentIds } from "@/lib/equipment";
-import { checkCraft, ownedHrefs, ownedItemCounts, type CraftCheck } from "@/lib/hunter-progress";
-import type { WeaponBundle } from "@/lib/schema";
+import {
+  attachedDecorationCounts,
+  checkCraft,
+  checkDecoration,
+  ownedHrefs,
+  ownedItemCounts,
+  type CraftCheck,
+} from "@/lib/hunter-progress";
+import type { CompactDecoration, DecorationBundle, WeaponBundle } from "@/lib/schema";
+
+/** A decoration bundle's jewels by slug, built once per bundle. */
+const decorationsBySlug = new WeakMap<DecorationBundle, Map<string, CompactDecoration>>();
+function decorationBySlug(bundle: DecorationBundle, slug: string): CompactDecoration | undefined {
+  let bySlug = decorationsBySlug.get(bundle);
+  if (!bySlug) {
+    bySlug = new Map(bundle.items.map((d) => [d.s, d]));
+    decorationsBySlug.set(bundle, bySlug);
+  }
+  return bySlug.get(slug);
+}
+
+const DECORATION_PATH = "/decorations/";
 
 interface HunterProgressValue {
   /** A save with an equipment box is loaded and its IDs are resolved. */
@@ -27,7 +47,8 @@ interface HunterProgressValue {
   isOwned: (href: string) => boolean;
   /**
    * Can the hunter make this weapon now, forged from scratch or (when they own
-   * its tree parent) upgraded? null while its data loads.
+   * its tree parent) upgraded? With `type` "decoration", can they make this
+   * jewel with either of its recipes? null while its data loads.
    */
   craftCheck: (type: string, slug: string, parentOwned: boolean) => CraftCheck | null;
 }
@@ -83,27 +104,55 @@ export function HunterProgressProvider({ children }: { children: React.ReactNode
     };
   }, [wanted]);
 
-  const isOwned = useCallback((href: string) => owned?.has(href) ?? false, [owned]);
+  // Jewels in the item box and pouch, and attached to equipment.
+  const attached = useMemo(() => attachedDecorationCounts(save), [save]);
+
+  /** A bundle if it's loaded; otherwise asks for it, and rows re-render once it's in. */
+  const want = useCallback((file: string) => {
+    const bundle = peekBundle(file);
+    const dict = peekDictionaries();
+    if (bundle && dict) return { bundle, dict };
+    // After render: this runs during it.
+    queueMicrotask(() => setWanted((w) => (w.has(file) ? w : new Set(w).add(file))));
+    return null;
+  }, []);
+
+  const isOwned = useCallback(
+    (href: string) => {
+      if (!href.startsWith(DECORATION_PATH)) return owned?.has(href) ?? false;
+      const data = want("decorations");
+      if (!data) return false;
+      const slug = href.slice(DECORATION_PATH.length).replace(/\/$/, "");
+      const id = decorationBySlug(data.bundle as DecorationBundle, slug)?.i;
+      if (id === undefined) return false;
+      return (counts?.get(id) ?? 0) + (attached?.get(id) ?? 0) > 0;
+    },
+    // `loaded` re-creates the callback so rows re-check once a bundle arrives.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+    [owned, counts, attached, want, loaded],
+  );
 
   const craftCheck = useCallback(
     (type: string, slug: string, parentOwned: boolean): CraftCheck | null => {
-      const file = `weapon-${type}`;
-      const bundle = peekBundle(file) as WeaponBundle | null;
-      const dict = peekDictionaries();
       if (!items) return null;
-      if (!bundle || !dict) {
-        // Ask for it after render; rows re-render once it's in.
-        queueMicrotask(() => setWanted((w) => (w.has(file) ? w : new Set(w).add(file))));
-        return null;
+      if (type === "decoration") {
+        const data = want("decorations");
+        if (!data) return null;
+        const deco = decorationBySlug(data.bundle as DecorationBundle, slug);
+        return deco
+          ? checkDecoration(data.dict, items.materials, deco, counts, zenny)
+          : { status: "unknown" };
       }
-      const weapon = bundle.items.find((w) => w.s === slug);
+      const data = want(`weapon-${type}`);
+      if (!data) return null;
+      const weapon = (data.bundle as WeaponBundle).items.find((w) => w.s === slug);
       return weapon
-        ? checkCraft(dict, items.materials, weapon, counts, zenny, parentOwned)
+        ? checkCraft(data.dict, items.materials, weapon, counts, zenny, parentOwned)
         : { status: "unknown" };
     },
     // `loaded` re-creates the callback so rows re-check once a bundle arrives.
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [items, counts, zenny, loaded],
+    [items, counts, zenny, want, loaded],
   );
 
   const value = useMemo<HunterProgressValue>(

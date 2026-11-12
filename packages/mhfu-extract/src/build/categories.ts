@@ -8,9 +8,8 @@
  * disagreements are site errors rather than extractor gaps; see
  * `packages/mhfu-extract/README.md`'s "Building data/ from the disc" for the
  * numbers each decision was based on. Every other field, including ones
- * the disc doesn't have at all (armor `hr`/`elder`,
- * decoration `category`), is kept
- * from the committed file.
+ * the disc doesn't have at all (armor `hr`/`elder`), is kept from the
+ * committed file.
  */
 import type { NameTable } from "../strings/names.js";
 import type { FieldSpec } from "./fields.js";

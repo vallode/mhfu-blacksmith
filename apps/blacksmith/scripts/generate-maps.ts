@@ -3,7 +3,8 @@
  *
  * Weapons: one tree per type, following improve_to; a weapon with several
  * parents has its branch under the first and an alias row under the rest.
- * Armor: a flat list per slot and rank. Decorations: grouped by category.
+ * Armor: a flat list per slot and rank. Decorations: one flat list, in the
+ * game's crafting order (data/decorations.json's order).
  */
 import fs from "fs";
 import path from "path";
@@ -159,29 +160,14 @@ for (const slot of ARMOR_SLOTS) {
   }
 }
 
-const decorations = readJson<{
-  decorations: (Weapon & { category?: string })[];
-}>(dataDir, "decorations.json").decorations;
-const categories = new Map<string, MapNode[]>();
-for (const d of decorations) {
-  if (!d.category) continue;
-  const list = categories.get(d.category) ?? [];
-  list.push({
+const decorations = readJson<{ decorations: Weapon[] }>(dataDir, "decorations.json").decorations;
+writeMap(
+  path.join(contentDir, "decorations", "map.json"),
+  decorations.map((d) => ({
     slug: slugify(d.name),
     type: d.type,
     name: d.name,
     rarity: d.rarity,
     ...(d.color && { color: d.color }),
-  });
-  categories.set(d.category, list);
-}
-writeMap(
-  path.join(contentDir, "decorations", "map.json"),
-  [...categories].map(([name, children]) => ({
-    slug: slugify(name),
-    type: "",
-    name,
-    rarity: null,
-    children,
   })),
 );

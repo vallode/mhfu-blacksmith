@@ -190,6 +190,20 @@ export function useDecoration(slug: string): DetailState<Decoration> {
   });
 }
 
+/**
+ * The decoration list and every decoration in it (the list's filters need
+ * their slots and skills), from the same bundle as the detail page.
+ */
+export function useDecorationList(): DetailState<Decoration[]> {
+  return useBundle<Decoration[]>("decorations", (bundle, dict) => {
+    const b = bundle as DecorationBundle;
+    return {
+      item: b.items.map((d) => decodeDecoration(dict, d)),
+      tree: decodeTree(b.tree, "decoration"),
+    };
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Tree/list-only hooks — for the [type]/[slot+rank]/[category] tree/list
 // pages, which only need the tree structure (or item names), not a single
@@ -235,13 +249,6 @@ export function useArmorTree(slot: string, rank: string): ListState<never> {
   return useBundleList(`armor-${slot}-${rank}`, (bundle) => {
     const b = bundle as ArmorBundle;
     return { tree: decodeTree(b.tree, b.slot), items: null };
-  });
-}
-
-export function useDecorationTree(): ListState<never> {
-  return useBundleList("decorations", (bundle) => {
-    const b = bundle as DecorationBundle;
-    return { tree: decodeTree(b.tree, "decoration"), items: null };
   });
 }
 

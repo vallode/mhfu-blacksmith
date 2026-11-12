@@ -1,6 +1,6 @@
 /**
- * What the loaded hunter owns and which weapons they can make right now, from
- * the save's equipment box, items and zenny.
+ * What the loaded hunter owns and which weapons and decorations they can make
+ * right now, from the save's equipment box, items and zenny.
  *
  * A weapon can be made two ways: forged from scratch with its create recipe,
  * or upgraded from its tree parent (which the hunter must own) with its
@@ -9,9 +9,19 @@
  * as ready) when a material doesn't link to an in-game item or an amount isn't
  * a plain number. A save stored before zenny was kept still gets a material
  * check; only the cost goes unchecked.
+ *
+ * Decorations are items: the hunter owns those in their item box and pouch,
+ * and those attached to equipment in their equipment box. A jewel with two
+ * recipes can be made with either.
  */
 import { resolveEquip } from "./equipment";
-import type { CompactWeapon, Dictionaries, EquipmentIds, MatTuple } from "./schema";
+import type {
+  CompactDecoration,
+  CompactWeapon,
+  Dictionaries,
+  EquipmentIds,
+  MatTuple,
+} from "./schema";
 import type { SaveData } from "./save-store";
 
 /** One recipe material: how many the recipe needs and how many the hunter has. */
@@ -44,6 +54,16 @@ export function ownedItemCounts(save: SaveData | null): Map<number, number> | nu
   const counts = new Map<number, number>();
   for (const { id, qty } of save.items) {
     counts.set(id, (counts.get(id) ?? 0) + (qty === INFINITE_STACK ? Infinity : qty));
+  }
+  return counts;
+}
+
+/** How many of each decoration (by item ID) are attached to the hunter's equipment. */
+export function attachedDecorationCounts(save: SaveData | null): Map<number, number> | null {
+  if (!save) return null;
+  const counts = new Map<number, number>();
+  for (const slot of save.equipment ?? []) {
+    for (const id of slot.decorations ?? []) counts.set(id, (counts.get(id) ?? 0) + 1);
   }
   return counts;
 }
@@ -131,4 +151,24 @@ export function checkCraft(
   if (!parentOwned) return create;
   const upgrade = checkUpgrade(dict, materials, weapon, counts, zenny);
   return rank(create) < rank(upgrade) ? create : upgrade;
+}
+
+/**
+ * The hunter's best way to make this decoration now: its create recipe or
+ * its second recipe, whichever is closer. Owning some already doesn't stop
+ * them making more.
+ */
+export function checkDecoration(
+  dict: Dictionaries,
+  /** recipe material name -> in-game item ID (ItemLookup.materials) */
+  materials: Record<string, number>,
+  decoration: CompactDecoration,
+  counts: Map<number, number> | null,
+  zenny: number | undefined,
+): CraftCheck {
+  const cost = decoration.cc ?? 0;
+  const create = checkRecipe(dict, materials, "create", decoration.cm, cost, counts, zenny);
+  if (!decoration.am) return create;
+  const alt = checkRecipe(dict, materials, "create", decoration.am, cost, counts, zenny);
+  return rank(alt) < rank(create) ? alt : create;
 }

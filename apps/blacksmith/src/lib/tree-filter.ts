@@ -2,6 +2,7 @@
  * The weapon tree's hunter filter (All / Owned / Not owned / Craftable /
  * Within 1 material): each row's owned and craft status for the loaded
  * hunter, whether it matches the chosen filter, and the tree's match count.
+ * The decoration list uses the same row status and filters.
  *
  * Pure functions over the tree data and the HunterProgress lookups, so the
  * list-level hook and the rows share one definition of a row's status.
@@ -85,15 +86,20 @@ export function rowStatus(
 ): RowStatus {
   const href = treeRowHref(node, sectionType, basePath);
   const owned = href ? progress.isOwned(href) : false;
-  // Only weapons have recipes, and only an owned tree parent can be upgraded.
-  const craft =
-    progress.active && href?.startsWith("/blacksmith/") && !owned
-      ? progress.craftCheck(
-          node.type,
-          node.slug,
-          parentHref !== undefined && progress.isOwned(parentHref),
-        )
-      : null;
+  // Weapons and decorations have recipes. A weapon is made once, and only an
+  // owned tree parent can be upgraded; jewels stack, so owning one doesn't
+  // stop you making more.
+  const craft = !progress.active
+    ? null
+    : href?.startsWith("/decorations/")
+      ? progress.craftCheck("decoration", node.slug, false)
+      : href?.startsWith("/blacksmith/") && !owned
+        ? progress.craftCheck(
+            node.type,
+            node.slug,
+            parentHref !== undefined && progress.isOwned(parentHref),
+          )
+        : null;
   return { href, external: isExternalRow(node, sectionType), owned, craft };
 }
 
