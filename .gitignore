@@ -33,6 +33,9 @@ out
 # Vercel
 .vercel
 
+# Wrangler (Cloudflare) local state from `wrangler dev`
+.wrangler
+
 # TypeScript incremental build info
 tsconfig.tsbuildinfo
 
