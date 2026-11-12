@@ -17,11 +17,19 @@ import Tabs, { type Tab } from "@/components/Tabs";
 import { breakIndex, breakKey } from "@/lib/monster-breaks";
 import { formatRank } from "@/lib/monster-drops";
 import { monsterRecordFor } from "@/lib/monster-ids";
-import { clearedQuestIds, questsWithMonster, smallMonsterStages } from "@/lib/quests";
+import {
+  bestCrownQuests,
+  clearedQuestIds,
+  questsWithMonster,
+  smallMonsterStages,
+} from "@/lib/quests";
+import { crownFor, sizeInCm, type Crown } from "@/lib/crowns";
+import CrownIcon from "@/components/CrownIcon";
+import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useMonsterHitboxes, useMonsterModel, type HitboxCapsule } from "@/lib/models";
-import type { MonsterBreak } from "@/lib/types";
+import type { Monster, MonsterBreak } from "@/lib/types";
 import Loading from "@/components/Loading";
 
 interface Props {
@@ -73,6 +81,17 @@ const formatSize = (cm: number) => Math.round(cm).toLocaleString("en-US");
 const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
   e.currentTarget.style.visibility = "hidden";
 };
+
+/** A Guild Card size record (percent) in centimetres, with the crown it earns. */
+function SizeRecord({ size, monster }: { size: number; monster: Monster }) {
+  const crown = monster.crowns ? crownFor(size, monster.crowns) : null;
+  return (
+    <span className="text-white tabular-nums">
+      {formatSize(sizeInCm(size, monster.base_size ?? 0))} cm
+      {crown && <CrownIcon crown={crown} className="ml-[0.4rem] align-middle" />}
+    </span>
+  );
+}
 
 export default function MonsterDetailClient({ category, slug }: Props) {
   const { item: monster, loading } = useMonster(category, slug);
@@ -239,7 +258,21 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     label: formatRank(rank),
     content: <MonsterDrops sources={sources} />,
   }));
+  // Crown cutoffs in centimetres.
+  const crowns =
+    monster.crowns && monster.base_size !== undefined
+      ? {
+          mini: sizeInCm(monster.crowns.mini, monster.base_size),
+          silver: sizeInCm(monster.crowns.silver, monster.base_size),
+          gold: sizeInCm(monster.crowns.gold, monster.base_size),
+        }
+      : null;
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
+  // The quests with the best chance of each crown, and that chance.
+  const bestCrowns = bestCrownQuests(monsterQuests, monster.name);
+  const bestChance: Partial<Record<Crown, number>> = {};
+  for (const list of bestCrowns.values())
+    for (const { crown, chance } of list) bestChance[crown] = chance;
   const cleared = markCleared ? clearedQuestIds(save) : null;
   const questTab: Tab[] =
     monsterQuests.length > 0
@@ -247,7 +280,16 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           {
             id: "quests",
             label: "Quests",
-            content: <MonsterQuests quests={monsterQuests} cleared={cleared} />,
+            content: (
+              <MonsterQuests
+                quests={monsterQuests}
+                cleared={cleared}
+                bestCrowns={bestCrowns}
+                // The crown cutoffs, as the key to the crowns marking the
+                // best quest for each.
+                legend={crowns && <CrownCutoffs cutoffs={crowns} best={bestChance} />}
+              />
+            ),
           },
         ]
       : [];
@@ -317,6 +359,12 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                     <span className="text-white tabular-nums">{record.captures}</span>
                   </>
                 )}
+              </p>
+            )}
+            {record && monster.base_size !== undefined && record.largest > 0 && (
+              <p className="text-small whitespace-normal text-stat">
+                Largest: <SizeRecord size={record.largest} monster={monster} />
+                {" · "}Smallest: <SizeRecord size={record.smallest} monster={monster} />
               </p>
             )}
           </div>

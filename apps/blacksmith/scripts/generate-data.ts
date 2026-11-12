@@ -346,6 +346,8 @@ function encodeMonster(m: Monster): CompactMonster {
     out.sz = [m.sizes.min, m.sizes.max];
   }
   if (typeof m.base_hp === "number") out.hp = m.base_hp;
+  if (typeof m.base_size === "number") out.bs = m.base_size;
+  if (m.crowns) out.cr = [m.crowns.mini, m.crowns.silver, m.crowns.gold];
   if (Array.isArray(m.breaks) && m.breaks.length > 0) out.bk = m.breaks;
   const flinch = out.hz && hitzoneFlinch(m);
   if (flinch) out.hf = flinch.map((v) => (v === null ? null : intern(stringIndex, v)));

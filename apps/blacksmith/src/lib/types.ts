@@ -1,4 +1,5 @@
 import type { Tier } from "./min-rank";
+import type { Crowns } from "./crowns";
 
 export interface Material {
   name: string;
@@ -195,6 +196,10 @@ export interface Monster {
   sizes?: { min: number; max: number };
   /** HP before a quest's multiplier, from the disc */
   base_hp?: number;
+  /** Centimetres at size 100 percent, as the Guild Card shows sizes (from the disc) */
+  base_size?: number;
+  /** Guild Card crown thresholds, in percent of `base_size` (src/lib/crowns.ts) */
+  crowns?: Crowns;
   /** Breakable parts, one entry per break reward */
   breaks?: MonsterBreak[];
   /**

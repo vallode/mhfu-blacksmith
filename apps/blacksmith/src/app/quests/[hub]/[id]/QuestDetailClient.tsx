@@ -15,13 +15,17 @@ import {
   questStarLevel,
   questTypeLabel,
   type QuestHubSlug,
+  type QuestCrownChances,
   type QuestMonster,
+  type QuestMonsterSize,
   type QuestMonsterStats,
 } from "@/lib/quests";
 import QuestAreaMap from "@/components/AreaMap";
 import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
 import { cn } from "@/lib/cn";
+import { CROWN_ORDER, formatChance, possibleCrowns } from "@/lib/crowns";
+import CrownIcon from "@/components/CrownIcon";
 import StarMarks from "@/components/StarMarks";
 
 interface Props {
@@ -52,8 +56,30 @@ function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
 
 const times = (n: number) => `×${n}`;
 
-/** Each large monster's HP and multipliers in this quest. */
-function MonsterStats({ stats }: { stats: QuestMonsterStats[] }) {
+/** A monster's crown chances, gold first, leaving out crowns it can't get. */
+function CrownChances({ chances }: { chances: QuestCrownChances }) {
+  const crowns = CROWN_ORDER.filter((crown) => chances[crown] > 0);
+  if (crowns.length === 0) return <span className="text-white">None</span>;
+  return (
+    <span className="inline-flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.4rem] text-white tabular-nums">
+      {crowns.map((crown) => (
+        <span key={crown} className="inline-flex items-center gap-[0.4rem] whitespace-nowrap">
+          <CrownIcon crown={crown} />
+          {formatChance(chances[crown])}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/** Each large monster's HP and multipliers in this quest, and its size and crown chances. */
+function MonsterStats({
+  stats,
+  size,
+}: {
+  stats: QuestMonsterStats[];
+  size: QuestMonsterSize | null;
+}) {
   return (
     <div className="flex flex-col gap-6">
       {stats.map((s, i) => (
@@ -82,6 +108,7 @@ function MonsterStats({ stats }: { stats: QuestMonsterStats[] }) {
             <Stat label="Stagger:">
               <span className="text-white tabular-nums">{times(s.stagger)}</span>
             </Stat>
+            {size && <MonsterSizeStats size={size} monster={s.monster.name} />}
           </StatList>
         </section>
       ))}
@@ -90,8 +117,35 @@ function MonsterStats({ stats }: { stats: QuestMonsterStats[] }) {
         it takes less. Stagger multiplies how much damage a part takes before it flinches.
         {stats.some((s) => s.monster.name === "Furious Rajang") &&
           " Furious Rajang's attack and defense change again during the hunt."}
+        {size && size.crowns.length > 0 && (
+          <>
+            {" "}
+            Size is a percent of the monster&apos;s normal size, rolled for each monster; crown
+            chances are per monster.
+            {size.fixedFirst &&
+              " Until a story flag is set (likely the quest's first clear), every monster here is its normal size."}
+          </>
+        )}
       </p>
     </div>
+  );
+}
+
+/** A crowned monster's size range and crown chances; nothing for a monster without crowns. */
+function MonsterSizeStats({ size, monster }: { size: QuestMonsterSize; monster: string }) {
+  const chances = size.crowns.find((c) => c.monster.name === monster);
+  if (!chances) return null;
+  return (
+    <>
+      <Stat label="Size:">
+        <span className="text-white tabular-nums">
+          {size.min === size.max ? `${size.min}%` : `${size.min}–${size.max}%`}
+        </span>
+      </Stat>
+      <Stat label="Crowns:">
+        <CrownChances chances={chances} />
+      </Stat>
+    </>
   );
 }
 
@@ -118,6 +172,9 @@ export default function QuestDetailClient({ hub, id }: Props) {
       </DetailCard>
     );
   }
+
+  // The crowns any of the quest's monsters can roll here.
+  const crowns = possibleCrowns(quest.monsterSize?.crowns ?? []);
 
   const tabs: Tab[] = [
     {
@@ -165,6 +222,16 @@ export default function QuestDetailClient({ hub, id }: Props) {
               <MonsterLinks monsters={quest.largeMonsters} />
             </Stat>
           )}
+          {crowns.length > 0 && (
+            <Stat label="Crowns:">
+              <span className="inline-flex flex-wrap items-center gap-[0.6rem] whitespace-normal text-white">
+                {crowns.map((c) => (
+                  <CrownIcon key={c} crown={c} />
+                ))}
+                {quest.monsterSize?.fixedFirst && <span>(likely after the first clear)</span>}
+              </span>
+            </Stat>
+          )}
           {quest.smallMonsters.length > 0 && (
             <Stat label="Small monsters:">
               <MonsterLinks monsters={quest.smallMonsters} />
@@ -183,7 +250,7 @@ export default function QuestDetailClient({ hub, id }: Props) {
     tabs.push({
       id: "monsters",
       label: "Monsters",
-      content: <MonsterStats stats={quest.monsterStats} />,
+      content: <MonsterStats stats={quest.monsterStats} size={quest.monsterSize} />,
     });
   }
   if (quest.rewardTables.length > 0) {

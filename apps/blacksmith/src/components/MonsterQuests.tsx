@@ -1,19 +1,29 @@
 import Link from "next/link";
-import { QUEST_HUBS, questHref, type Quest } from "@/lib/quests";
+import CrownIcon from "@/components/CrownIcon";
+import { CROWN_LABELS, formatChance } from "@/lib/crowns";
+import { QUEST_HUBS, questHref, type BestCrown, type Quest } from "@/lib/quests";
 
 /**
  * A monster's quests, one titled list per quest board, linking to each quest.
- * Quests in `cleared` (the loaded hunter's) are marked CLEAR!!.
+ * Quests in `cleared` (the loaded hunter's) are marked CLEAR!!, and the
+ * quests in `bestCrowns` (`bestCrownQuests`) with the crowns they give the
+ * monster the best chance of.
  */
 export default function MonsterQuests({
   quests,
   cleared,
+  bestCrowns,
+  legend,
 }: {
   quests: Quest[];
   cleared?: ReadonlySet<number> | null;
+  bestCrowns?: ReadonlyMap<number, BestCrown[]>;
+  /** Shown above the lists, across both columns (the crown cutoffs). */
+  legend?: React.ReactNode;
 }) {
   return (
     <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1 compact:grid-cols-1">
+      {legend && <div className="col-span-full">{legend}</div>}
       {QUEST_HUBS.map((hub) => {
         const onHub = quests.filter((q) => q.hub === hub.slug);
         if (onHub.length === 0) return null;
@@ -30,6 +40,19 @@ export default function MonsterQuests({
                   >
                     {q.title}
                   </Link>
+                  {bestCrowns?.has(q.id) && (
+                    // The 22px crowns overhang the 20px row by a pixel each
+                    // way instead of growing it.
+                    <span className="-my-px flex flex-none items-center gap-[0.2rem] self-center">
+                      {bestCrowns.get(q.id)!.map(({ crown, chance }) => (
+                        <CrownIcon
+                          key={crown}
+                          crown={crown}
+                          title={`Best chance of a ${CROWN_LABELS[crown].toLowerCase()} crown: ${formatChance(chance)}`}
+                        />
+                      ))}
+                    </span>
+                  )}
                   {cleared?.has(q.id) && (
                     <span className="ml-auto flex-none text-stat">CLEAR!!</span>
                   )}

@@ -9,10 +9,12 @@ import {
   QUEST_MONSTER_ALIASES,
   QUEST_NON_MONSTERS,
   REWARD_KINDS,
+  ROLL_OUTCOMES,
   questHp,
   questHubSlug,
   type CompactMonsterStats,
   type CompactQuest,
+  type CompactQuestSize,
   type CompactRewardTable,
   type CompactSupplies,
   type QuestsBundle,
@@ -39,7 +41,9 @@ export interface QuestRecord {
   large_monsters: {
     monster: string;
     multipliers?: { hp: number; attack: number; defense: number; status: number };
+    crown_chances?: { mini: number; silver: number; gold: number };
   }[];
+  monster_size?: { modifier: number; min: number; max: number; fixed_until_flag?: number } | null;
   small_monsters: { monster: string; total_quantity?: number; endless?: boolean }[];
   title: string | null;
   goal: string | null;
@@ -177,6 +181,26 @@ export function encodeQuestBundle({
     return [...rows.values()];
   };
 
+  /** The roll's range and each crowned monster's chances, once per monster. */
+  const monsterSize = (q: QuestRecord): CompactQuestSize | null => {
+    const size = q.monster_size;
+    if (!size) return null;
+    const crowns = new Map<number, CompactQuestSize[4][number]>();
+    const outcomes = (chance: number) => Math.round(chance * ROLL_OUTCOMES);
+    for (const { monster: name, crown_chances: c } of q.large_monsters) {
+      if (!c) continue;
+      const i = monster(name);
+      crowns.set(i, [i, outcomes(c.mini), outcomes(c.silver), outcomes(c.gold)]);
+    }
+    return [
+      size.modifier,
+      size.min,
+      size.max,
+      size.fixed_until_flag === undefined ? 0 : 1,
+      [...crowns.values()],
+    ];
+  };
+
   /** The small monsters, with each one's total in the quest, parallel to each other. */
   const smallMonsters = (list: QuestRecord["small_monsters"]) => {
     const spawns = new Map<number, [total: number] | [total: number, endless: 1]>();
@@ -219,6 +243,7 @@ export function encodeQuestBundle({
       monsterStats(q.large_monsters),
       hasAreaMap(q.id) ? 1 : 0,
       small.counts,
+      monsterSize(q),
     ]);
   }
 
