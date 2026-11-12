@@ -21,6 +21,7 @@ import {
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import { median, type ShuffleReport } from "./shuffles/shuffle.js";
+import { findEquipmentStore } from "mhfu-extract/src/shops/equipment.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
 import {
   itemsOnSale,
@@ -80,6 +81,12 @@ function shopItemTable(game: GameData, required: boolean) {
   } catch {
     return null;
   }
+}
+
+/** The smithy's weapon and armor store, for the weapons and armor shuffles to follow; null if not found. */
+function equipmentStore(game: GameData) {
+  const data = findEquipmentStore(game.lobbyTask.ovl);
+  return data ? { data, lobby: game.lobbyTask } : null;
 }
 
 /** Every item with a name and an item record: what "any item" shops can sell. */
@@ -341,6 +348,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         settings["weapons.mix"],
         rng.fork("weapons"),
         edits,
+        equipmentStore(game),
       ),
     );
   }
@@ -370,7 +378,9 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
   // Armor only changes which piece each create entry makes, so the recipe
   // shuffles' spoiler names the new pieces.
   if (settings["armor.enabled"]) {
-    reports.push(shuffleArmor(game.eboot!, game.resolver, rng.fork("armor"), edits));
+    reports.push(
+      shuffleArmor(game.eboot!, game.resolver, rng.fork("armor"), edits, equipmentStore(game)),
+    );
   }
 
   // Skills are the pieces' own, so they go with a piece wherever the armor shuffle puts it.

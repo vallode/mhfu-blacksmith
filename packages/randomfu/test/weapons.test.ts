@@ -26,7 +26,9 @@ import type { Settings } from "../src/settings.js";
 import { settingsWith } from "./settings-helper.js";
 import {
   buildFixtureDisc,
+  buildLobbyTask,
   FIXTURE_RUST_CREATE,
+  FIXTURE_STORE_LISTS,
   FIXTURE_UPGRADES,
   FIXTURE_WEAPON_CREATE,
   FIXTURE_WEAPONS,
@@ -83,6 +85,9 @@ const weapon = (i: number) => FIXTURE_WEAPONS.find((w) => w.index === i)!;
 function checkIsomorphic(before: Tables, after: Tables): Map<number, number> {
   const sigma = new Map<number, number>();
   FIXTURE_WEAPON_CREATE.forEach(([w], i) => sigma.set(w, after.create[i]!));
+  sigma.set(FIXTURE_RUST_CREATE[0]![0], after.rust);
+  // Weapon 11 has no create entry to read its place from: it's a shard weapon, so it stays.
+  sigma.set(11, 11);
   // Weapons only reached by upgrading: read their new IDs off their parent's new targets.
   for (const u of FIXTURE_UPGRADES) {
     const newTargets = after.upgrade(sigma.get(u.index) ?? u.index).targets;
@@ -122,7 +127,10 @@ test("same-type: places get weapons of the same type and rarity, trees keep thei
       assert.equal(weapon(to).rarity, weapon(from).rarity, `${from} -> ${to}`);
       if (from !== to) movedAny = true;
     }
-    assert.ok(!sigma.has(2) && !sigma.has(7), "weapons outside the trees stay out");
+    assert.ok(!sigma.has(2), "weapons outside the trees stay out");
+    assert.equal(sigma.get(7), 7, "the shard weapon stays");
+    assert.equal(sigma.get(10), 10, "so does its polished form");
+    assert.equal(sigma.get(12), 12, "a shard weapon with no create entry keeps its polished form");
     assert.equal(tables(result.edits.eboot()).upgrade(2).targets.length, 0);
   }
   assert.ok(movedAny);
@@ -145,6 +153,47 @@ test("any-type: places keep their rarity but can change type", async () => {
   close();
 });
 
+test("the smithy's store sells the weapon now in each sold weapon's place", async () => {
+  const { game, close } = await load();
+  const { storeAt } = buildLobbyTask();
+  const before = tables(game.eboot!);
+  const storeIn = (buf: Buffer) =>
+    Object.fromEntries(
+      Object.entries(FIXTURE_STORE_LISTS).map(([name, entries]) => [
+        name,
+        entries.map((_, k) => [
+          buf.readUInt16LE(storeAt[name]! + k * 4),
+          buf.readUInt16LE(storeAt[name]! + k * 4 + 2),
+        ]),
+      ]),
+    );
+  let movedAny = false;
+  for (const seed of ["a", "b", "c", "d"]) {
+    const result = randomize(game, settings(seed, "any-type"));
+    const sigma = checkIsomorphic(before, tables(result.edits.eboot()));
+    const after = storeIn(result.edits.overlay(game.lobbyTask));
+    for (const [name, entries] of Object.entries(FIXTURE_STORE_LISTS)) {
+      const expected = entries.map(([category, id]) => [
+        category,
+        category === 5 ? (sigma.get(id) ?? id) : id,
+      ]);
+      assert.deepEqual(after[name], expected, `${seed}: ${name}`);
+    }
+    if (after.weapons2!.some(([, id], k) => id !== FIXTURE_STORE_LISTS.weapons2![k]![1])) {
+      movedAny = true;
+    }
+    const lines = result.reports
+      .find((r) => r.title === "Weapon progression")!
+      .lines.filter((l) => l.where === "Weapon store");
+    assert.equal(lines.length, 4, "each weapon on sale once");
+  }
+  assert.ok(movedAny, "some seed changes what the store sells");
+  // Without the weapons shuffle, the store is left alone.
+  const other = randomize(game, settingsWith("a", ["recipes"]));
+  assert.deepEqual(storeIn(other.edits.overlay(game.lobbyTask)), FIXTURE_STORE_LISTS);
+  close();
+});
+
 test("weapons and recipes together: recipes shuffle the tables weapons left", async () => {
   const { game, close } = await load();
   const both = randomize(game, settingsWith("z", ["weapons", "recipes"]));
@@ -152,7 +201,9 @@ test("weapons and recipes together: recipes shuffle the tables weapons left", as
   // Same weapon permutation (each shuffle has its own random stream).
   assert.deepEqual(tables(both.edits.eboot()).create, tables(weaponsOnly.edits.eboot()).create);
   const report = both.reports.find((r) => r.title === "Weapon progression")!;
-  assert.ok(report.lines.every((l) => l.text.includes(" -> ")));
+  assert.ok(
+    report.lines.filter((l) => l.where !== "Weapon store").every((l) => l.text.includes(" -> ")),
+  );
   assert.deepEqual(both.problems, []);
   close();
 });
