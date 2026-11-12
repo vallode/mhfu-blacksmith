@@ -31,7 +31,7 @@ import {
 import type { ProtoSearch } from "./useProtoSearch";
 
 /** Horizontal swipes on `onStep`'s element step the set. */
-export function useSwipe(onStep: (by: 1 | -1) => void) {
+function useSwipe(onStep: (by: 1 | -1) => void) {
   const start = useRef<{ x: number; y: number } | null>(null);
   return {
     onTouchStart: (e: React.TouchEvent) => {
@@ -183,7 +183,7 @@ export default function LoadoutPrototype({ s }: { s: ProtoSearch }) {
           </button>
         }
       >
-        <OptionsForm s={s} withSort />
+        <OptionsForm s={s} />
       </Sheet>
 
       <PieceSheet

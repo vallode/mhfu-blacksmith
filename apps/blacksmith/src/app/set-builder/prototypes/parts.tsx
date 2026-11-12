@@ -31,9 +31,9 @@ import type { ProtoForm, ProtoSearch } from "./useProtoSearch";
 // Constants
 // ---------------------------------------------------------------------------
 
-export const ELEMENTS = ["fire", "water", "thunder", "ice", "dragon"] as const;
+const ELEMENTS = ["fire", "water", "thunder", "ice", "dragon"] as const;
 
-export const SORTS: { value: SortKey; label: string; icon?: string }[] = [
+const SORTS: { value: SortKey; label: string; icon?: string }[] = [
   { value: "defence", label: "Defence" },
   { value: "fire", label: "Fire", icon: "fire" },
   { value: "water", label: "Water", icon: "water" },
@@ -63,10 +63,10 @@ const SLOT_LABELS: Record<DecoBin, string> = {
   leggings: "Legs",
 };
 
-export const rarityColor = (rarity?: number) =>
+const rarityColor = (rarity?: number) =>
   rarity ? `var(--color-rarity-${Math.min(10, Math.max(4, rarity))})` : undefined;
 
-export const weaponIconFor = (hunterType: string) =>
+const weaponIconFor = (hunterType: string) =>
   hunterType === "Gunner" ? "heavy-bowgun" : "great-sword";
 
 /** A pressable row or tile: green glow on hover/focus, like the site's lists. */
@@ -74,15 +74,15 @@ export const pressable =
   "cursor-pointer border-none bg-transparent p-0 text-left font-[inherit] text-[inherit] hover:hover-glow focus-visible:hover-glow focus-visible:outline-none active:hover-glow";
 
 /** A small framed chip (skills, sorts). */
-export const chip =
+const chip =
   "inline-flex min-h-[3.6rem] flex-none cursor-pointer items-center gap-[0.6rem] border-2 px-[1rem] font-[inherit] text-small leading-none shadow-[0.2rem_0.2rem_0_black] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
-export const chipOn = "border-stat bg-stat/20 text-stat";
-export const chipOff = "border-white/25 bg-black/40 text-white/75 hover:border-stat/60";
+const chipOn = "border-stat bg-stat/20 text-stat";
+const chipOff = "border-white/25 bg-black/40 text-white/75 hover:border-stat/60";
 
 /** The big button of an action bar. */
 export const primaryButton =
   "flex min-h-[4.8rem] flex-1 cursor-pointer items-center justify-center gap-[1rem] border-2 border-stat bg-accent px-[1.6rem] font-[inherit] text-sub text-white shadow-[0.2rem_0.2rem_0_black] text-shadow-[0.15rem_0.15rem_black] enabled:hover:hover-glow disabled:cursor-default disabled:border-white/25 disabled:bg-line disabled:text-white/40";
-export const secondaryButton =
+const secondaryButton =
   "flex min-h-[4.8rem] flex-none cursor-pointer items-center justify-center border-2 border-white/30 bg-line px-[1.6rem] font-[inherit] text-small text-white/75 shadow-[0.2rem_0.2rem_0_black] hover:border-white/60";
 
 // ---------------------------------------------------------------------------
@@ -189,7 +189,7 @@ export function Sheet({
 // ---------------------------------------------------------------------------
 
 /** Pick a skill: replaces one of the same tree, or removes it if chosen. */
-export function toggleSkill(value: string[], skill: SkillOption, all: SkillOption[]): string[] {
+function toggleSkill(value: string[], skill: SkillOption, all: SkillOption[]): string[] {
   if (value.includes(skill.name)) return value.filter((v) => v !== skill.name);
   const treeOf = new Map(all.map((s) => [s.name, s.tree]));
   const same = value.findIndex((v) => treeOf.get(v) === skill.tree);
@@ -245,12 +245,10 @@ export function SkillBrowser({
   skills,
   value,
   onChange,
-  autoFocus,
 }: {
   skills: SkillOption[];
   value: string[];
   onChange: (value: string[]) => void;
-  autoFocus?: boolean;
 }) {
   const [query, setQuery] = useState("");
   const groups = useMemo(() => {
@@ -274,7 +272,6 @@ export function SkillBrowser({
           value={query}
           autoComplete="off"
           spellCheck={false}
-          autoFocus={autoFocus}
           onChange={(e) => setQuery(e.target.value)}
         />
         <p className="m-0 truncate text-fine text-white/60">
@@ -368,10 +365,10 @@ const SLOT_CHOICES: IconChoice<number>[] = Array.from({ length: MAX_WEAPON_SLOTS
   icon: text(n === 0 ? "-" : "O".repeat(n), "text-sub"),
 }));
 
-export const slotsText = (n: number) => "O".repeat(n) + "-".repeat(MAX_WEAPON_SLOTS - n);
+const slotsText = (n: number) => "O".repeat(n) + "-".repeat(MAX_WEAPON_SLOTS - n);
 
-/** The hunter's options as rows: class and sex, rank, weapon slots, toggles. */
-export function OptionsForm({ s, withSort }: { s: ProtoSearch; withSort?: boolean }) {
+/** The hunter's options as rows: class and sex, rank, weapon slots, sort, toggles. */
+export function OptionsForm({ s }: { s: ProtoSearch }) {
   const { form, update, questProgress } = s;
   return (
     <div className="flex flex-col gap-[1.6rem]">
@@ -401,12 +398,10 @@ export function OptionsForm({ s, withSort }: { s: ProtoSearch; withSort?: boolea
         value={form.weaponSlots}
         onChange={(v) => update("weaponSlots", v)}
       />
-      {withSort && (
-        <div className="flex flex-col gap-[0.8rem]">
-          <span className={ui.statusLabel}>Best first by</span>
-          <SortChips value={form.sort} onChange={(v) => update("sort", v)} wrap />
-        </div>
-      )}
+      <div className="flex flex-col gap-[0.8rem]">
+        <span className={ui.statusLabel}>Best first by</span>
+        <SortChips value={form.sort} onChange={(v) => update("sort", v)} />
+      </div>
       <ToggleRow
         label="Allow bad skills"
         note="Keep sets that also activate a negative skill."
@@ -427,7 +422,7 @@ export function OptionsForm({ s, withSort }: { s: ProtoSearch; withSort?: boolea
 }
 
 /** Locked and excluded pieces, as chips that come off with a tap. */
-export function PinnedPieces({ s }: { s: ProtoSearch }) {
+function PinnedPieces({ s }: { s: ProtoSearch }) {
   const { form, piecesOf, update } = s;
   const lists = [
     { key: "locked" as const, label: "Locked in every set", pieces: piecesOf(form.locked) },
@@ -506,27 +501,10 @@ export function OptionsSummary({ form }: { form: ProtoForm }) {
   );
 }
 
-/** What the results are sorted by, as a scrolling row of chips. */
-export function SortChips({
-  value,
-  onChange,
-  wrap,
-}: {
-  value: SortKey;
-  onChange: (v: SortKey) => void;
-  wrap?: boolean;
-}) {
+/** What the results are sorted by, as wrapping chips. */
+function SortChips({ value, onChange }: { value: SortKey; onChange: (v: SortKey) => void }) {
   return (
-    <div
-      role="radiogroup"
-      aria-label="Best first by"
-      className={cn(
-        "flex gap-[0.6rem]",
-        wrap
-          ? "flex-wrap"
-          : "-mx-[0.4rem] [scrollbar-width:none] overflow-x-auto px-[0.4rem] pb-[0.6rem]",
-      )}
-    >
+    <div role="radiogroup" aria-label="Best first by" className="flex flex-wrap gap-[0.6rem]">
       {SORTS.map((o) => (
         <button
           key={o.value}
@@ -557,14 +535,12 @@ const resColor = (n: number) => (n > 0 ? "text-positive" : n < 0 ? "text-negativ
 export function StatusStrip({
   set,
   sort,
-  compact,
 }: {
   set: Pick<ArmorSet, "defence" | "res" | "freeSlots">;
   sort?: SortKey;
-  compact?: boolean;
 }) {
   return (
-    <div className={cn("flex items-center gap-[1.4rem]", compact && "gap-[1rem]")}>
+    <div className="flex items-center gap-[1.4rem]">
       <div
         className={cn(
           "flex flex-none flex-col items-start leading-none",
@@ -574,8 +550,7 @@ export function StatusStrip({
         <span className="text-fine text-parchment">DEF</span>
         <span
           className={cn(
-            "text-shadow-[0.15rem_0.15rem_black]",
-            compact ? "text-sub" : "text-[2.8rem]",
+            "text-[2.8rem] text-shadow-[0.15rem_0.15rem_black]",
             sort === "defence" ? "text-stat" : "text-white",
           )}
         >
@@ -583,10 +558,7 @@ export function StatusStrip({
         </span>
       </div>
       <ul
-        className={cn(
-          "m-0 grid min-w-0 flex-1 list-none grid-cols-5 p-0",
-          compact ? "gap-[0.2rem]" : "gap-[0.4rem]",
-        )}
+        className="m-0 grid min-w-0 flex-1 list-none grid-cols-5 gap-[0.4rem] p-0"
         aria-label="Resistances"
       >
         {ELEMENTS.map((el, i) => (
@@ -604,19 +576,12 @@ export function StatusStrip({
           </li>
         ))}
       </ul>
-      {!compact && (
-        <div
-          className={cn(
-            "flex flex-none flex-col items-end leading-none",
-            sort === "slots" && "text-stat",
-          )}
-        >
-          <span className="text-fine text-parchment">Free</span>
-          <span className={cn("text-sub", sort === "slots" ? "text-stat" : "text-white")}>
-            {set.freeSlots}
-          </span>
-        </div>
-      )}
+      <div className="flex flex-none flex-col items-end leading-none">
+        <span className="text-fine text-parchment">Free</span>
+        <span className={cn("text-sub", sort === "slots" ? "text-stat" : "text-white")}>
+          {set.freeSlots}
+        </span>
+      </div>
     </div>
   );
 }
@@ -723,20 +688,10 @@ export function PieceRows({
 }
 
 /** The activated skills as one wrapped line: wanted in yellow, extras in white, bad in red. */
-export function SkillLine({
-  set,
-  wanted,
-  limit,
-}: {
-  set: Pick<ArmorSet, "skills">;
-  wanted: string[];
-  limit?: number;
-}) {
-  const shown = limit ? set.skills.slice(0, limit) : set.skills;
-  const more = set.skills.length - shown.length;
+export function SkillLine({ set, wanted }: { set: Pick<ArmorSet, "skills">; wanted: string[] }) {
   return (
     <ul className="m-0 flex list-none flex-wrap gap-x-[1.2rem] gap-y-[0.4rem] p-0 text-small">
-      {shown.map((sk) => (
+      {set.skills.map((sk) => (
         <li
           key={sk.tree}
           className={cn(
@@ -750,7 +705,6 @@ export function SkillLine({
           {sk.name}
         </li>
       ))}
-      {more > 0 && <li className="text-white/40">+{more} more</li>}
     </ul>
   );
 }
@@ -894,7 +848,7 @@ export function searchMessage(s: ProtoSearch): React.ReactNode {
 // ---------------------------------------------------------------------------
 
 /** A bar that sticks above the phone's tab bar (and to the bottom elsewhere). */
-export function ActionBar({ children }: { children: React.ReactNode }) {
+function ActionBar({ children }: { children: React.ReactNode }) {
   return (
     <div className="sticky bottom-[1.6rem] z-20 flex gap-[0.8rem] mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.8rem)]">
       {children}
@@ -905,26 +859,14 @@ export function ActionBar({ children }: { children: React.ReactNode }) {
 /**
  * Search, as the bar's big button: says what it will do ("Search 3 skills",
  * "Update results"), and turns into progress and Cancel while it runs.
- * Hidden when the results already match the form, unless `always`.
+ * Hidden when the results already match the form.
  */
-export function SearchBar({
-  s,
-  always,
-  onSearched,
-  before,
-}: {
-  s: ProtoSearch;
-  always?: boolean;
-  onSearched?: () => void;
-  /** Another button at the left (Back, Edit). */
-  before?: React.ReactNode;
-}) {
+export function SearchBar({ s }: { s: ProtoSearch }) {
   const { searching, found, cancel, stale, form, data, result, run } = s;
-  if (!always && !searching && !stale && !before) return null;
+  if (!searching && !stale) return null;
   const n = form.skills.length;
   return (
     <ActionBar>
-      {before}
       {searching ? (
         <>
           <div className={cn(primaryButton, "cursor-default border-white/40 bg-line")}>
@@ -939,19 +881,14 @@ export function SearchBar({
         <button
           type="button"
           className={primaryButton}
-          disabled={!data || n === 0 || (!stale && !always)}
-          onClick={() => {
-            run();
-            onSearched?.();
-          }}
+          disabled={!data || n === 0}
+          onClick={() => run()}
         >
           {n === 0
             ? "Pick a skill to search"
-            : !stale
-              ? "Search again"
-              : result
-                ? "Update results"
-                : `Search ${n} skill${n > 1 ? "s" : ""}`}
+            : result
+              ? "Update results"
+              : `Search ${n} skill${n > 1 ? "s" : ""}`}
         </button>
       )}
     </ActionBar>
