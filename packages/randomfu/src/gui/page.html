@@ -838,7 +838,7 @@
           button.addEventListener("click", () => {
             settings = { ...schema.defaults, ...preset.changes, seed: settings.seed };
             render();
-            say($("share-status"), `Loaded the ${preset.name} preset.`, "ok");
+            say($("share-status"), "");
           });
           $("presets").append(button);
         }

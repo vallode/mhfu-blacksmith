@@ -359,7 +359,7 @@ function buildPresets(): void {
     input.addEventListener("change", () => {
       settings = presetSettings(preset);
       render();
-      say($("share-status"), `Loaded the ${preset.name} preset.`, "ok");
+      say($("share-status"), "");
     });
     $("presets").append(
       el(
@@ -597,14 +597,15 @@ function step(by: 1 | -1): void {
   if (target) go(target);
 }
 
-/** From the start step straight to the review, stopping at any step that still needs something. */
-function skipToReview(): void {
+/** From the start step straight to the run, stopping at any step that still needs something. */
+function downloadNow(): void {
   for (const s of visibleSteps()) {
-    if (s.id === "review") return go("review");
-    if (s.id === "run") continue;
+    if (s.id === "review" || s.id === "run") break;
     reached.add(s.id);
     if (blocker(s.id)) return go(s.id);
   }
+  reached.add("review");
+  void run(false);
 }
 
 // ---------------------------------------------------------------- files
@@ -864,7 +865,8 @@ function init(): void {
       input.value = "";
     }
   });
-  $("skip").addEventListener("click", skipToReview);
+  $("download").addEventListener("click", downloadNow);
+  $("customize").addEventListener("click", () => step(1));
 
   $("copy").addEventListener("click", () => {
     navigator.clipboard.writeText($<HTMLTextAreaElement>("share").value).then(

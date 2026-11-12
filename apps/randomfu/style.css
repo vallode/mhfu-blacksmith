@@ -939,19 +939,32 @@ input[type="range"] {
 
 /* ─── Start ────────────────────────────────────────────────────────────────── */
 
-.load {
-  & summary {
-    cursor: pointer;
-    margin-bottom: 1rem;
+/* The shared-settings row, laid out like a preset but taking a string. */
+.choice-load {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 1rem;
+  margin-top: 0.2rem;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 3px solid transparent;
+
+  & .choice-text {
+    grid-column: 2;
   }
 
   & .row {
-    margin-top: 1rem;
+    margin-top: 0.4rem;
   }
 }
 
 .skip {
+  justify-content: center;
   margin-top: 0.4rem;
+
+  & .note {
+    flex-basis: 100%;
+    text-align: center;
+  }
 }
 
 /* ─── Review ───────────────────────────────────────────────────────────────── */
