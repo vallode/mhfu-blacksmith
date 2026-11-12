@@ -90,9 +90,11 @@ export const secondaryButton =
 // ---------------------------------------------------------------------------
 
 /**
- * A bottom sheet over the page and the tab bar: a teal-framed card that
- * rises from the bottom edge, closed by ×, Escape or a tap on the dimmed page.
- * `tall` makes it nearly full height (pickers), otherwise it fits its content.
+ * A card over the page, in the site's card frame and the fill of its
+ * phone sheets (SplitPage). On phones it rises from the bottom edge, over
+ * the tab bar; on wider screens it is a dialog in the middle of the page.
+ * Closed by ×, Escape or a tap on the dimmed page. `tall` makes it nearly
+ * full height (pickers), otherwise it fits its content.
  */
 export function Sheet({
   open,
@@ -126,7 +128,7 @@ export function Sheet({
   }, [open, onClose]);
   if (!open || typeof document === "undefined") return null;
   return createPortal(
-    <div className="fixed inset-0 z-900 flex flex-col justify-end">
+    <div className="fixed inset-0 z-900 flex flex-col items-center justify-center p-[2.4rem] mobile:justify-end mobile:p-0">
       <button
         type="button"
         aria-label="Close"
@@ -141,15 +143,12 @@ export function Sheet({
         aria-label={typeof title === "string" ? title : undefined}
         tabIndex={-1}
         className={cn(
-          "relative mx-auto flex min-h-0 w-full max-w-[64rem] flex-col outline-none",
-          tall ? "h-[92dvh]" : "max-h-[85dvh]",
+          "relative flex min-h-0 w-full max-w-[64rem] flex-col outline-none [--card-fill:var(--color-sheet)]",
+          "motion-safe:animate-toast-in mobile:max-w-none mobile:motion-safe:animate-sheet-in",
+          tall ? "h-[min(80dvh,80rem)] mobile:h-[92dvh]" : "max-h-[80dvh] mobile:max-h-[85dvh]",
         )}
       >
-        <Card
-          frame="teal"
-          className="flex-[1_1_auto] bg-black/85 text-small backdrop-blur-sm"
-          bodyClassName="card-px-[2.4rem] card-pt-[2.2rem] card-pb-[calc(1.8rem+env(safe-area-inset-bottom))] gap-[1.2rem]"
-        >
+        <Card className="flex-[1_1_auto] text-small" bodyClassName="card-p-7 gap-[1.2rem]">
           <div className="flex flex-none items-center gap-[1rem]">
             <h2 className="m-0 min-w-0 flex-1 truncate text-main font-normal text-stat text-shadow-[0.15rem_0.15rem_black]">
               {title}
@@ -157,7 +156,7 @@ export function Sheet({
             <button
               type="button"
               aria-label="Close"
-              className="flex size-[4.4rem] flex-none cursor-pointer items-center justify-center border-none bg-transparent p-0 text-[3rem] leading-none text-white/60 hover:text-white"
+              className="-my-[0.8rem] flex size-[4.4rem] flex-none cursor-pointer items-center justify-center border-none bg-transparent p-0 text-[3rem] leading-none text-white/60 hover:text-white"
               onClick={onClose}
             >
               ×
@@ -166,7 +165,11 @@ export function Sheet({
           <div className="-mx-[0.4rem] flex min-h-0 flex-1 flex-col gap-[1.3rem] overflow-y-auto overscroll-contain px-[0.4rem]">
             {children}
           </div>
-          {footer && <div className="flex flex-none gap-[0.8rem]">{footer}</div>}
+          {footer && (
+            <div className="flex flex-none gap-[0.8rem] mobile:mb-[env(safe-area-inset-bottom)]">
+              {footer}
+            </div>
+          )}
         </Card>
       </div>
     </div>,
@@ -225,9 +228,11 @@ export function SkillChips({
 }
 
 /**
- * Every skill, by tree, with a filter box: tap an activation to choose it
- * (it replaces another from the same tree), tap again to drop it.
- * Browsing beats typing on a phone, and shows the tree's other levels.
+ * Every skill, by tree, like the game's menus: each tree a grey title bar
+ * with its activations as rows under it, a yellow box at the left filled
+ * when chosen. Tap a row to choose it (it replaces another from the same
+ * tree), tap again to drop it. The filter box and what's chosen stay at the
+ * top while the list scrolls; the list keeps its order as you choose.
  */
 export function SkillBrowser({
   skills,
@@ -248,53 +253,79 @@ export function SkillBrowser({
       if (q && !s.name.toLowerCase().includes(q) && !s.tree.toLowerCase().includes(q)) continue;
       byTree.set(s.tree, [...(byTree.get(s.tree) ?? []), s]);
     }
-    const chosenTrees = new Set(skills.filter((s) => value.includes(s.name)).map((s) => s.tree));
-    // Trees with a chosen skill first, then by name.
-    return [...byTree.entries()].sort(
-      ([a], [b]) => Number(chosenTrees.has(b)) - Number(chosenTrees.has(a)) || a.localeCompare(b),
-    );
-  }, [skills, query, value]);
+    return [...byTree.entries()].sort(([a], [b]) => a.localeCompare(b));
+  }, [skills, query]);
 
   return (
-    <div className="flex flex-col gap-[1.2rem]">
-      <input
-        className={cn(ui.searchInput, "min-h-[4.4rem] text-sub")}
-        type="search"
-        aria-label="Filter skills"
-        placeholder="Filter, e.g. attack, evasion"
-        value={query}
-        autoComplete="off"
-        spellCheck={false}
-        autoFocus={autoFocus}
-        onChange={(e) => setQuery(e.target.value)}
-      />
+    <div className="flex flex-col gap-[1.6rem]">
+      <div className="sticky top-0 z-1 -mx-[0.4rem] flex flex-col gap-[0.8rem] bg-sheet px-[0.4rem] pb-[0.8rem]">
+        <input
+          className={cn(ui.searchInput, "min-h-[4.4rem] text-sub")}
+          type="search"
+          aria-label="Filter skills"
+          placeholder="Filter, e.g. attack, evade"
+          value={query}
+          autoComplete="off"
+          spellCheck={false}
+          autoFocus={autoFocus}
+          onChange={(e) => setQuery(e.target.value)}
+        />
+        <p className="m-0 truncate text-fine text-white/60">
+          {value.length === 0 ? (
+            "Nothing chosen yet."
+          ) : (
+            <>
+              Chosen: <span className="text-stat">{value.join(", ")}</span>
+            </>
+          )}
+        </p>
+      </div>
       {groups.length === 0 && <p className={ui.note}>No skill matches “{query}”.</p>}
-      <ul className="m-0 flex list-none flex-col p-0">
-        {groups.map(([tree, list]) => (
-          <li key={tree} className="flex flex-col gap-[0.6rem] border-b border-white/10 py-[1rem]">
-            <span className="text-fine text-parchment">{tree}</span>
-            <div className="flex flex-wrap gap-[0.6rem]">
+      {groups.map(([tree, list]) => {
+        const chosen = list.some((s) => value.includes(s.name));
+        return (
+          <section key={tree} className="flex flex-col" aria-label={tree}>
+            <h3
+              className={cn(
+                "m-0 flex items-center justify-between border-b-[3px] bg-selector px-[1rem] py-[0.6rem] text-small font-normal text-shadow-[0.15rem_0.15rem_black]",
+                chosen ? "border-stat text-stat" : "border-white/30 text-parchment",
+              )}
+            >
+              {tree}
+            </h3>
+            <ul className="m-0 list-none bg-black/25 p-0">
               {list.map((s) => {
                 const on = value.includes(s.name);
                 return (
-                  <button
-                    key={s.name}
-                    type="button"
-                    aria-pressed={on}
-                    className={cn(chip, on ? chipOn : chipOff)}
-                    onClick={() => onChange(toggleSkill(value, s, skills))}
-                  >
-                    {s.name}
-                    <span className={cn("text-fine", on ? "text-stat/70" : "text-white/40")}>
-                      {s.points}
-                    </span>
-                  </button>
+                  <li key={s.name}>
+                    <button
+                      type="button"
+                      aria-pressed={on}
+                      className={cn(
+                        pressable,
+                        "grid min-h-[4.6rem] w-full grid-cols-[2.2rem_minmax(0,1fr)_auto] items-center gap-x-[1.2rem] border-b border-white/10 px-[1rem]",
+                      )}
+                      onClick={() => onChange(toggleSkill(value, s, skills))}
+                    >
+                      <span
+                        aria-hidden="true"
+                        className={cn(
+                          "size-[2.2rem] border-[3px] border-stat shadow-[0.2rem_0.2rem_0_black]",
+                          on ? "bg-stat" : "bg-transparent",
+                        )}
+                      />
+                      <span className={cn("truncate text-sub", on ? "text-stat" : "text-white")}>
+                        {s.name}
+                      </span>
+                      <span className="text-fine text-white/45">{s.points} pts</span>
+                    </button>
+                  </li>
                 );
               })}
-            </div>
-          </li>
-        ))}
-      </ul>
+            </ul>
+          </section>
+        );
+      })}
     </div>
   );
 }

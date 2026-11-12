@@ -162,15 +162,6 @@ export default function LoadoutPrototype({ s }: { s: ProtoSearch }) {
           </button>
         }
       >
-        <SkillChips
-          value={form.skills}
-          onRemove={(n) =>
-            update(
-              "skills",
-              form.skills.filter((v) => v !== n),
-            )
-          }
-        />
         <SkillBrowser skills={skills} value={form.skills} onChange={(v) => update("skills", v)} />
       </Sheet>
 

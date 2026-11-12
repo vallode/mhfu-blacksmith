@@ -70,6 +70,7 @@
   --color-unavailable: #808080; /* greyed-out entries: ammo you cannot load, etc. */
   --color-parchment: #c3be9f; /* menu labels and toast titles */
   --color-selector: rgb(96 102 94 / 0.78); /* flat grey bar of in-game selectors and menu headers */
+  --color-sheet: #1b1f17; /* the fill of a card that lies over the page (sheets, dialogs) */
 
   /* Item icon tints: the palette in data/items.json, by index, from the disc
      (scripts/validate.ts checks they match). */
