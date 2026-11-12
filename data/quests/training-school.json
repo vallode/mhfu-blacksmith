@@ -67,6 +67,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Popo",
@@ -159,6 +160,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Popo",
@@ -252,6 +254,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -350,6 +353,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -453,6 +457,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -548,6 +553,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -703,9 +709,19 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105
+      },
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -809,6 +825,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -911,6 +928,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1013,6 +1031,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1115,6 +1134,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1217,6 +1237,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1319,6 +1340,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1421,6 +1443,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1523,6 +1546,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1637,6 +1661,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1751,6 +1776,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1853,6 +1879,7 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
@@ -1938,9 +1965,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2010,9 +2047,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2082,9 +2129,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2154,9 +2211,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2226,9 +2293,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2298,9 +2375,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2370,9 +2457,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2442,9 +2539,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2514,9 +2621,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2586,9 +2703,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
@@ -2658,9 +2785,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -2760,9 +2897,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -2878,9 +3025,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -2990,9 +3147,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
@@ -3103,9 +3270,19 @@
             "attack": 1.02,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 1,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
@@ -3196,9 +3373,19 @@
             "attack": 2.2,
             "defense": 1,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
@@ -3294,9 +3481,19 @@
             "attack": 2.2,
             "defense": 1,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Conga",
@@ -3392,9 +3589,19 @@
             "attack": 2.2,
             "defense": 1,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Genprey",
@@ -3505,9 +3712,19 @@
             "attack": 2.2,
             "defense": 1,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
@@ -3603,9 +3820,19 @@
             "attack": 2.2,
             "defense": 1,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Genprey",
@@ -3716,9 +3943,19 @@
             "attack": 2.2,
             "defense": 1,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
@@ -3813,9 +4050,19 @@
             "attack": 2.2,
             "defense": 1,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Velociprey",
@@ -3925,9 +4172,19 @@
             "attack": 2.2,
             "defense": 1,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 1,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
@@ -4029,9 +4286,19 @@
             "attack": 1.3,
             "defense": 0.95,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [],
       "title": "Blue Yian Kut-Ku Exercises",
       "goal": "Slay the Blue Yian Kut-Ku",
@@ -4112,9 +4379,19 @@
             "attack": 1.5,
             "defense": 0.95,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
@@ -4232,9 +4509,19 @@
             "attack": 1.6,
             "defense": 0.95,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
@@ -4352,9 +4639,19 @@
             "attack": 1.3,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [],
       "title": "Congalala Exercises",
       "goal": "Slay the Congalala",
@@ -4435,9 +4732,19 @@
             "attack": 1.6,
             "defense": 0.95,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 110,
+        "max": 110
+      },
       "small_monsters": [],
       "title": "Shogun Ceanataur Exercises",
       "goal": "Slay 1 Shogun Ceanataur",
@@ -4523,9 +4830,19 @@
             "attack": 2.5,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
+      "monster_size": {
+        "modifier": 108,
+        "min": 108,
+        "max": 108
+      },
       "small_monsters": [],
       "title": "Tigrex Exercises",
       "goal": "Slay 2 Tigrex",

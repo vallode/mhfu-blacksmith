@@ -54,6 +54,18 @@
         "items": { "type": "array", "items": { "$ref": "#/definitions/reward_item" } }
       }
     },
+    "monster_size": {
+      "type": "object",
+      "required": ["modifier", "min", "max"],
+      "additionalProperties": false,
+      "$comment": "The size, in percent, the quest's large monsters roll; see mhfu-extract's src/monsters/sizes.ts. 'modifier' is the header's MonSizeModifier, the centre of the roll; 'min' and 'max' bound it after the header's size variation (u8 at 0x4a). Monsters without crowns are always 100. 'fixed_until_flag': the monsters stay at 'modifier' until this save flag is set (likely the quest's first clear).",
+      "properties": {
+        "modifier":         { "type": "integer", "minimum": 0 },
+        "min":              { "type": "integer", "minimum": 0 },
+        "max":              { "type": "integer", "minimum": 0 },
+        "fixed_until_flag": { "type": "integer", "minimum": 0 }
+      }
+    },
     "monster_spawn": {
       "type": "object",
       "required": ["monster", "quantity", "power"],
@@ -62,6 +74,17 @@
         "monster":  { "type": "string", "minLength": 1 },
         "quantity": { "type": "integer", "minimum": 0 },
         "power":    { "type": "integer", "minimum": 0 },
+        "crown_chances": {
+          "type": "object",
+          "required": ["mini", "silver", "gold"],
+          "additionalProperties": false,
+          "$comment": "The chance (0-1) this monster rolls a mini, silver or gold crown size in the quest; silver counts only sizes short of gold. Absent for monsters without crowns, which are always 100. For quests with monster_size.fixed_until_flag, the chance once the flag is set. See mhfu-extract's src/monsters/sizes.ts crownChances.",
+          "properties": {
+            "mini":   { "type": "number", "minimum": 0, "maximum": 1 },
+            "silver": { "type": "number", "minimum": 0, "maximum": 1 },
+            "gold":   { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
         "multipliers": {
           "type": "object",
           "required": ["hp", "attack", "defense", "status"],
@@ -123,6 +146,10 @@
         "reward_tables":  { "type": "array", "items": { "$ref": "#/definitions/reward_table" } },
         "large_monsters": { "type": "array", "items": { "$ref": "#/definitions/monster_spawn" } },
         "small_monsters": { "type": "array", "items": { "$ref": "#/definitions/small_monster_spawn" } },
+        "monster_size": {
+          "oneOf": [{ "$ref": "#/definitions/monster_size" }, { "type": "null" }],
+          "$comment": "null when the quest has no large monsters."
+        },
         "title":   { "type": ["string", "null"], "$comment": "Extracted verbatim from the disc: English on the EU disc. See mhfu-extract's README." },
         "goal":    { "type": ["string", "null"], "$comment": "See 'title'." },
         "details": { "type": ["string", "null"], "$comment": "See 'title'." },

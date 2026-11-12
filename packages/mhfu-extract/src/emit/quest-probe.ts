@@ -77,7 +77,7 @@ export function sizeTsv(entries: readonly QuestRawEntry[]): string {
           e.header.questStars,
           e.header.map,
           hex(e.headerWords[14] ?? 0),
-          e.header.unknownFlags.join(","),
+          [...e.header.unknownFlags, e.header.sizeVariation].join(","),
           e.header.statTable,
           r[0]! & 0xffff,
           ...RECORD_BYTES.map(([, o]) => byte(r, o)),
@@ -101,7 +101,8 @@ export function probeQuests(entries: readonly QuestRawEntry[]): string {
     );
   }
   out.push(
-    `Unkn4/5/7 (u8 @0x47, 0x48, 0x4a): ${top(entries, (e) => e.header.unknownFlags.join(","))}`,
+    `Unkn4/5 (u8 @0x47, 0x48): ${top(entries, (e) => e.header.unknownFlags.join(","))}`,
+    `sizeVariation (u8 @0x4a): ${top(entries, (e) => String(e.header.sizeVariation))}`,
   );
   out.push(`statTable (u8 @0x49): ${top(entries, (e) => String(e.header.statTable))}`);
   const records = entries.flatMap((e) => e.largeMonsterRecords);

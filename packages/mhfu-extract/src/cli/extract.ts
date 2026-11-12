@@ -32,6 +32,7 @@ import { parseOvl } from "../container/ovl.js";
 import { loadMonsterOverlays, OVERLAY_DIR } from "../monsters/overlays.js";
 import { multiplierRow } from "../monsters/multipliers.js";
 import { readMonsterTables } from "../monsters/read.js";
+import { readSizeTables, type SizeTables } from "../monsters/sizes.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
@@ -251,7 +252,24 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
         return chunk ? multiplierRow(multipliers, chunk.multiplierSet, statTable, power) : null;
       }
     : undefined;
-  Object.assign(output, emitQuestsFile(quests, multiplierLookup));
+  // Only the EU disc's size tables are known; elsewhere there are no sizes or crowns.
+  let sizes: SizeTables | null = null;
+  if (manifest.region === "eu") {
+    try {
+      sizes = readSizeTables(reader, JP_BASE_ADDRESS);
+      console.log(
+        `Size tables: ${sizes.crowns.length} crown entries, ${sizes.fixedSizeQuests.size} fixed-size quests.`,
+      );
+    } catch (error) {
+      console.warn(
+        `Warning: no monster sizes or crowns. ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+  } else {
+    console.warn(`Warning: region "${manifest.region}" has no size tables, so no sizes or crowns.`);
+  }
+  monsters.sizes = sizes;
+  Object.assign(output, emitQuestsFile(quests, multiplierLookup, sizes ?? undefined));
 
   // Only the EU disc's map tables are known; elsewhere points get no positions.
   const maps =
@@ -279,7 +297,11 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   if (options.raw) {
     const rawPath = path.join(options.out, "raw", "monsters.json");
     await mkdir(path.dirname(rawPath), { recursive: true });
-    await writeFile(rawPath, `${JSON.stringify(monsters)}\n`, "utf-8");
+    // Maps (the size tables' fixed-size quests) would serialize as `{}`.
+    const json = JSON.stringify(monsters, (_, v: unknown) =>
+      v instanceof Map ? Object.fromEntries(v) : v,
+    );
+    await writeFile(rawPath, `${json}\n`, "utf-8");
     console.log(`Wrote ${rawPath}`);
 
     // Hunting horn note-set/melody table candidates (#14): searched in the

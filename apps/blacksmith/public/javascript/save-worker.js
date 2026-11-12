@@ -96,7 +96,7 @@ function parseClearedQuests(view, base) {
 
 /**
  * Every monster with a record: kills, captures, and the largest and smallest
- * size recorded (raw values; their unit isn't decoded). Monster ID 0 is
+ * size recorded (percent of the monster's base size). Monster ID 0 is
  * "none" and never set.
  */
 function parseMonsterRecords(view, base) {

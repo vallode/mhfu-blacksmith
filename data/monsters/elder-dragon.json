@@ -152,6 +152,12 @@
           "damage_interval": 150,
           "total_time": 900
         }
+      },
+      "base_size": 464.3,
+      "crowns": {
+        "mini": 97,
+        "silver": 130,
+        "gold": 177
       }
     },
     {
@@ -285,6 +291,12 @@
           "damage_interval": 150,
           "total_time": 3600
         }
+      },
+      "base_size": 1577,
+      "crowns": {
+        "mini": 91,
+        "silver": 110,
+        "gold": 120
       }
     },
     {
@@ -419,6 +431,12 @@
           "damage_interval": 150,
           "total_time": 3600
         }
+      },
+      "base_size": 1577,
+      "crowns": {
+        "mini": 91,
+        "silver": 110,
+        "gold": 120
       }
     },
     {
@@ -785,6 +803,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1744,
+      "crowns": {
+        "mini": 96,
+        "silver": 120,
+        "gold": 141
       }
     },
     {
@@ -1109,6 +1133,12 @@
           "damage_interval": 150,
           "total_time": 900
         }
+      },
+      "base_size": 1740,
+      "crowns": {
+        "mini": 91,
+        "silver": 115,
+        "gold": 121
       }
     },
     {
@@ -1549,6 +1579,12 @@
           "damage_interval": 150,
           "total_time": 600
         }
+      },
+      "base_size": 1740,
+      "crowns": {
+        "mini": 88,
+        "silver": 110,
+        "gold": 125
       }
     },
     {
