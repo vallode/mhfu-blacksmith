@@ -699,6 +699,27 @@ describe("searchSets (data/)", () => {
     assert.ok(result.sets[0].res[0] > byDefence.sets[0].res[0], "fire res should beat defence");
   });
 
+  test("sorts by free slots", () => {
+    const shipped = loadShippedSetData().data;
+    // The bounds count the slots the decorations need: without that, this
+    // ran out of time with no sets.
+    const q = query(["Attack Up (Large)", "ESP"], {
+      weaponSlots: 1,
+      sort: "slots",
+      limit: 20,
+      timeLimitMs: 5_000,
+    });
+    const result = searchSets(shipped, q);
+    assert.equal(result.timedOut, false, "timed out");
+    assert.equal(result.sets.length, 20);
+    for (const set of result.sets) assertValid(shipped, set, q);
+    for (let i = 1; i < result.sets.length; i++) {
+      assert.ok(setScore(result.sets[i - 1], "slots") >= setScore(result.sets[i], "slots"));
+    }
+    const byDefence = searchSets(shipped, { ...q, sort: "defence" });
+    assert.ok(result.sets[0].freeSlots >= Math.max(...byDefence.sets.map((s) => s.freeSlots)));
+  });
+
   test("a round that runs out of time keeps the last round's sets", (t) => {
     const q = query(["Attack Up (Large)", "ESP"], { weaponSlots: 1, limit: 1000 });
     const search = prepareSearch(data, q);

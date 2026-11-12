@@ -578,18 +578,25 @@ function pieceClasses(
         vec,
       });
   }
+  // Best score first (byScore's order): only a profile scoring at least as
+  // much can beat another, so the checks stop at the first that scores less.
   const list = [...profiles.values()];
   const kept = new Set<Piece>();
   for (const a of list) {
-    const beaten = list.some(
-      (b) =>
-        b !== a &&
-        b.torsoUp === a.torsoUp &&
-        b.slots >= a.slots &&
-        b.score >= a.score &&
-        b.defence >= a.defence &&
-        b.vec.every((v, i) => v >= a.vec[i]),
-    );
+    const n = a.vec.length;
+    let beaten = false;
+    for (const b of list) {
+      if (b.score < a.score) break;
+      if (b === a || b.torsoUp !== a.torsoUp || b.slots < a.slots || b.defence < a.defence) {
+        continue;
+      }
+      let i = 0;
+      while (i < n && b.vec[i] >= a.vec[i]) i++;
+      if (i === n) {
+        beaten = true;
+        break;
+      }
+    }
     if (!beaten) kept.add(a.piece);
   }
 
@@ -621,14 +628,29 @@ interface Completion {
 
 /** The completions no other one beats, with as many Torso Up pieces. */
 function unbeaten(list: Completion[]): Completion[] {
-  const sum = (c: Completion) => c.vec.reduce((a, b) => a + b, c.slots);
+  // Most points and slots first: one can only be beaten by one before it.
+  const sums = new Map(list.map((c) => [c, c.vec.reduce((a, b) => a + b, c.slots)]));
+  const sorted = [...list].sort((a, b) => sums.get(b)! - sums.get(a)!);
   const kept: Completion[] = [];
-  for (const c of [...list].sort((a, b) => sum(b) - sum(a))) {
-    const beaten = kept.some(
-      (o) =>
-        o.torsoUps === c.torsoUps && o.slots >= c.slots && o.vec.every((v, i) => v >= c.vec[i]),
-    );
-    if (!beaten) kept.push(c);
+  const byTorsoUps = new Map<number, Completion[]>();
+  for (const c of sorted) {
+    let same = byTorsoUps.get(c.torsoUps);
+    if (!same) byTorsoUps.set(c.torsoUps, (same = []));
+    const n = c.vec.length;
+    let beaten = false;
+    for (const o of same) {
+      if (o.slots < c.slots) continue;
+      let i = 0;
+      while (i < n && o.vec[i] >= c.vec[i]) i++;
+      if (i === n) {
+        beaten = true;
+        break;
+      }
+    }
+    if (!beaten) {
+      kept.push(c);
+      same.push(c);
+    }
   }
   return kept;
 }
@@ -827,27 +849,39 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
   // The ways to fill the slots after the torso that no other way beats: as
   // many points in every wanted tree and as many slots, with the same number
   // of Torso Up pieces. A branch is checked against these, all wanted trees
-  // at once.
+  // at once. Those after the torso alone aren't sifted: they're checked once
+  // per torso (see slotsNeeded), and sifting them can cost more than that.
   const completions: Completion[][] = [];
   completions[SEARCH_ORDER.length] = [{ vec: trees.map(() => 0), slots: 0, torsoUps: 0 }];
   for (let d = SEARCH_ORDER.length - 1; d >= 1; d--) {
-    completions[d] = unbeaten(
-      classes[d].flatMap((c) =>
-        completions[d + 1].map((p) =>
-          c.torsoUp
-            ? { ...p, torsoUps: p.torsoUps + 1 }
-            : {
-                vec: p.vec.map((v, i) => v + c.vec[i]),
-                slots: p.slots + c.slots,
-                torsoUps: p.torsoUps,
-              },
-        ),
+    const all = classes[d].flatMap((c) =>
+      completions[d + 1].map((p) =>
+        c.torsoUp
+          ? { ...p, torsoUps: p.torsoUps + 1 }
+          : {
+              vec: p.vec.map((v, i) => v + c.vec[i]),
+              slots: p.slots + c.slots,
+              torsoUps: p.torsoUps,
+            },
       ),
     );
+    completions[d] = d === 1 ? all : unbeaten(all);
   }
+  /** slotsNeeded(1) for each torso class: it depends on the torso alone. */
+  const afterTorso = new Map<PieceClass, number>();
 
   // Could some completion of the slots from `depth` make every threshold?
-  const completable = (depth: number): boolean => {
+  // The fewest decoration slots one would need, or Infinity if none can.
+  // (Only the free slots sort needs the fewest: the others take any.)
+  const slotsNeeded = (depth: number): number => {
+    if (depth === 1) {
+      let fewest = afterTorso.get(chosen[0]);
+      if (fewest === undefined) afterTorso.set(chosen[0], (fewest = fewestSlots(1)));
+      return fewest;
+    }
+    return fewestSlots(depth);
+  };
+  const fewestSlots = (depth: number): number => {
     const plateVec = chosen[0].vec;
     let torsoUps = 0;
     let capacity = query.weaponSlots;
@@ -855,8 +889,12 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       if (chosen[d].torsoUp) torsoUps++;
       else capacity += chosen[d].slots;
     }
+    let fewest = Infinity;
     completions: for (const p of completions[depth]) {
-      const slots = capacity + p.slots + chosen[0].slots * (1 + torsoUps + p.torsoUps);
+      // Slots counted as often as their decorations count: the torso's once
+      // more per Torso Up piece.
+      const copies = torsoUps + p.torsoUps;
+      const slots = capacity + p.slots + chosen[0].slots * (1 + copies);
       let required = 0;
       for (let i = 0; i < k; i++) {
         const deficit = need[i] - (cur[i] + p.vec[i] + p.torsoUps * plateVec[i]);
@@ -865,9 +903,12 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
         required += Math.ceil(deficit / perSlot[i]);
         if (required > slots) continue completions;
       }
-      return true;
+      if (sort !== "slots") return 0;
+      // Counted that way, the torso's slots could stand for more of them.
+      fewest = Math.min(fewest, Math.max(0, required - copies * chosen[0].slots));
+      if (fewest === 0) break;
     }
-    return false;
+    return fewest;
   };
 
   /** The weapon's and pieces' slots, as decoration bins. */
@@ -904,8 +945,11 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       return true;
     };
 
+    // With free slots, the slots any working decorations take: at least
+    // those for the wanted skills alone.
+    const taken = sort === "slots" ? plain.reduce((n, x) => n + x.deco.slots, 0) * SCORE_SCALE : 0;
     // Highest score the slots from `d` on can add.
-    const left = new Array<number>(chosen.length + 1).fill(scoreLeft[SEARCH_ORDER.length]);
+    const left = new Array<number>(chosen.length + 1).fill(scoreLeft[SEARCH_ORDER.length] - taken);
     for (let d = chosen.length - 1; d >= 0; d--) left[d] = left[d + 1] + chosen[d].best;
 
     const result: { pick: Found | null } = { pick: null };
@@ -978,8 +1022,12 @@ export function prepareSearch(data: SearchData, query: SearchQuery): PreparedSea
       for (let i = 0; i < k; i++) cur[i] += vec[i];
       chosen.push(c);
       const next = depth + 1;
-      if (completable(next)) {
-        dfs(next, score + c.best);
+      // With free slots, decorations take some of the slots counted in `best`.
+      const needed = slotsNeeded(next);
+      if (needed !== Infinity) {
+        if (score + c.best + scoreLeft[next] - needed * SCORE_SCALE >= bar()) {
+          dfs(next, score + c.best);
+        }
       }
       chosen.pop();
       for (let i = 0; i < k; i++) cur[i] -= vec[i];
