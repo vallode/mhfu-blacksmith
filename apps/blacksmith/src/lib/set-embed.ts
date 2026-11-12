@@ -2,8 +2,9 @@
  * Link embeds for shared sets (`/set-builder/?s=<code>`). The page is one
  * static file for every set, so the Cloudflare Worker
  * (src/cloudflare/worker.ts) decodes the code and writes these into its
- * meta tags: the set's skills as the title, its defense, resistances, pieces
- * and decorations as the description.
+ * meta tags: the set's skills as the title, its defense, resistances and bad
+ * skills as the description, and its card (set-card.ts) as the image, with
+ * the pieces and decorations also in the image's alt text.
  *
  * The Worker can't load the /data bundles the client builds its search data
  * from (too much to parse per request), so the build writes just what a code
@@ -15,7 +16,6 @@
 import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorSlot } from "./constants";
 import {
   ELEMENT_EMOJI,
-  embedIcon,
   lines,
   rankLabel,
   signed,
@@ -39,10 +39,12 @@ export const SET_EMBED_DATA_PATH = "/embed/set-data.json";
 /** What an embed needs of an armor piece. */
 type EmbedPiece = Pick<Piece, "name" | "rank" | "defence" | "res" | "slots" | "rarity" | "points">;
 /** What an embed needs of a decoration. */
-type EmbedDeco = Pick<Deco, "name" | "slots" | "points">;
+type EmbedDeco = Pick<Deco, "name" | "slots" | "points" | "color">;
 
 /** Everything a share code can name, keyed the way codes name it. */
 export interface SetEmbedData {
+  /** The game data's version (data-manifest.json), for cache keys. */
+  version: string;
   trees: SkillTreeData[];
   /** "<slot>:<equipment ID>" (as CodecTables.pieceByGameId) -> piece. */
   pieces: Record<string, EmbedPiece>;
@@ -51,7 +53,7 @@ export interface SetEmbedData {
 }
 
 /** The embed data from the search data and its codec tables. */
-export function setEmbedData(data: SearchData, tables: CodecTables): SetEmbedData {
+export function setEmbedData(data: SearchData, tables: CodecTables, version: string): SetEmbedData {
   const pieces: SetEmbedData["pieces"] = {};
   for (const [key, p] of tables.pieceByGameId) {
     const { name, rank, defence, res, slots, rarity, points } = p;
@@ -59,9 +61,9 @@ export function setEmbedData(data: SearchData, tables: CodecTables): SetEmbedDat
   }
   const decorations: SetEmbedData["decorations"] = {};
   for (const [itemId, d] of tables.decoByItemId) {
-    decorations[itemId] = { name: d.name, slots: d.slots, points: d.points };
+    decorations[itemId] = { name: d.name, slots: d.slots, points: d.points, color: d.color };
   }
-  return { trees: data.trees, pieces, decorations };
+  return { version, trees: data.trees, pieces, decorations };
 }
 
 /**
@@ -93,13 +95,20 @@ export function embedCodecTables(data: SetEmbedData): CodecTables {
 
 export interface SetEmbed {
   title: string;
+  /** Defense, resistances and bad skills: the card image shows the rest. */
   description: string;
+  /** Everything in words, the description and then the pieces and decorations: the card's alt text. */
+  details: string;
   /** The line above the title, served as oEmbed by the Worker. */
   author: string;
-  /** Thumbnail, a path under the site. */
-  image: { url: string; width: number; height: number };
   /** The embed's edge colour. */
   color: string;
+}
+
+/** "G-Rank Blademaster Set": the highest rank among the pieces, and the hunter. */
+export function setLabel(set: BuildSet): string {
+  const rank = ARMOR_RANKS.findLast((r) => set.pieces.some((p) => p?.rank === r));
+  return [rank && rankLabel(rank), set.hunterType, "Set"].filter(Boolean).join(" ");
 }
 
 /** Discord cuts an embed's title at 256 characters. */
@@ -117,10 +126,7 @@ function countNames(names: string[]): string {
   return [...counts].map(([n, c]) => (c > 1 ? `${n} ×${c}` : n)).join(", ");
 }
 
-/**
- * The embed for a set, or null for an empty one. The description puts what
- * matters most first, in case a client shortens it.
- */
+/** The embed for a set, or null for an empty one. */
 export function buildSetEmbed(set: BuildSet, trees: SkillTreeData[]): SetEmbed | null {
   const pieces = set.pieces.filter((p): p is Piece => p !== null);
   if (pieces.length === 0 && set.decorations.length === 0) return null;
@@ -131,36 +137,43 @@ export function buildSetEmbed(set: BuildSet, trees: SkillTreeData[]): SetEmbed |
   const title = truncate(good.length > 0 ? good.join(" · ") : "No skills", MAX_TITLE);
 
   const res = RES_NAMES.map((n, i) => `${ELEMENT_EMOJI[n]}${signed(stats.res[i])}`).join(" ");
+  const description = lines(
+    `Defense ${stats.defence} · ${res}`,
+    bad.length > 0 && `Bad skills: ${bad.join(", ")}`,
+  );
   const pieceLines = ARMOR_SLOTS.map((slot, i) => {
     const p = set.pieces[i];
     return p && `${BIN_LABELS[slot]}: ${p.name}`;
   });
   const jewels = countNames(stats.decorations.map((d) => d.deco.name));
-  const description = lines(
-    `Defense ${stats.defence} · ${res}`,
-    bad.length > 0 && `Bad skills: ${bad.join(", ")}`,
+  const details = lines(
+    `${setLabel(set)}: ${good.length > 0 ? good.join(", ") : "no skills"}`,
+    description,
     ...pieceLines,
     set.weaponSlots > 0 && `Weapon slots: ${slotGlyphs(set.weaponSlots)}`,
     jewels && `Jewels: ${jewels}`,
     stats.freeSlots > 0 && `${stats.freeSlots} free slot${stats.freeSlots === 1 ? "" : "s"}`,
   );
 
-  const rank = ARMOR_RANKS.findLast((r) => pieces.some((p) => p.rank === r));
   const rarity = Math.max(0, ...pieces.map((p) => p.rarity ?? 0)) || undefined;
   return {
     title,
     description,
-    author: [rank && rankLabel(rank), set.hunterType, "Set"].filter(Boolean).join(" "),
-    image: embedIcon("plate", rarity),
+    details,
+    author: setLabel(set),
     color: tintFor(rarity) ?? THEME_COLOR,
   };
 }
 
-/** Share code -> its embed, or null when it doesn't open or holds nothing. */
-export function setEmbedder(data: SetEmbedData): (code: string) => SetEmbed | null {
+/** A share code's set and its embed, or null when it doesn't open or holds nothing. */
+export type SetReader = (code: string) => { set: BuildSet; embed: SetEmbed } | null;
+
+export function setReader(data: SetEmbedData): SetReader {
   const tables = embedCodecTables(data);
   return (code) => {
     const r = decodeSet(code, tables);
-    return r.ok ? buildSetEmbed(r.set, data.trees) : null;
+    if (!r.ok) return null;
+    const embed = buildSetEmbed(r.set, data.trees);
+    return embed && { set: r.set, embed };
   };
 }

@@ -17,17 +17,19 @@ import {
   buildSetEmbed,
   embedCodecTables,
   setEmbedData,
-  setEmbedder,
+  setReader,
   type SetEmbedData,
 } from "../src/lib/set-embed";
+import { tintFor } from "../src/lib/embed-format";
 import type { Piece } from "../src/lib/set-search";
 import { loadShippedSetData } from "./helpers/set-data";
 
 const { data, ids } = loadShippedSetData();
 const tables = buildCodecTables(data, ids);
 /** As the Worker gets it: through JSON. */
-const embedData = JSON.parse(JSON.stringify(setEmbedData(data, tables))) as SetEmbedData;
-const embed = setEmbedder(embedData);
+const embedData = JSON.parse(JSON.stringify(setEmbedData(data, tables, "test"))) as SetEmbedData;
+const read = setReader(embedData);
+const embed = (code: string) => read(code)?.embed ?? null;
 
 const byName = (slot: string, name: string): Piece => {
   const p = data.pieces.find((x) => x.slot === slot && x.name === name);
@@ -79,6 +81,13 @@ describe("set embed data", () => {
     }
   });
 
+  it("keeps each decoration's gem colour, for the card's icons", () => {
+    const slim = embedCodecTables(embedData);
+    for (const d of data.decorations) {
+      assert.equal(slim.decoByItemId.get(d.itemId!)?.color, d.color, d.href);
+    }
+  });
+
   it("counts a Torso Up piece's chest skills again", () => {
     const torsoUp = data.pieces.find((p) => p.torsoUp && p.slot !== "plate");
     assert.ok(torsoUp);
@@ -95,7 +104,7 @@ describe("set embed data", () => {
 });
 
 describe("set embeds", () => {
-  it("titles the set with its skills and lists its stats, pieces and jewels", () => {
+  it("titles the set with its skills, with its stats below and everything in the alt text", () => {
     const set = rathalosSet();
     const stats = evaluateBuild(data, set);
     const e = embed(encodeSet(set, tables));
@@ -104,17 +113,23 @@ describe("set embeds", () => {
     assert.ok(good.length > 0);
     assert.equal(e.title, good.join(" · "));
     assert.equal(e.author, "Low Rank Blademaster Set");
-    const lines = e.description.split("\n");
-    assert.match(lines[0], new RegExp(`^Defense ${stats.defence} · 🔥`));
+    assert.match(e.description, new RegExp(`^Defense ${stats.defence} · 🔥`));
+    const details = e.details.split("\n");
+    assert.equal(details[0], `Low Rank Blademaster Set: ${good.join(", ")}`);
+    assert.ok(e.details.includes(e.description));
     for (const slot of ARMOR_SLOTS) {
       const piece = set.pieces[ARMOR_SLOTS.indexOf(slot)]!;
       assert.ok(
-        lines.some((l) => l.endsWith(`: ${piece.name}`)),
+        details.some((l) => l.endsWith(`: ${piece.name}`)),
         piece.name,
       );
+      assert.ok(
+        !e.description.includes(piece.name),
+        "pieces are in the image, not the description",
+      );
     }
-    assert.ok(lines.includes("Weapon slots: ○○—"));
-    assert.ok(lines.includes("Jewels: Attack Jewel ×2"));
+    assert.ok(details.includes("Weapon slots: ○○—"));
+    assert.ok(details.includes("Jewels: Attack Jewel ×2"));
   });
 
   it("lists bad skills on their own line", () => {
@@ -127,7 +142,7 @@ describe("set embeds", () => {
     else assert.equal(line, `Bad skills: ${bad.map((s) => s.name).join(", ")}`);
   });
 
-  it("names the highest rank and colours by the rarest piece", () => {
+  it("names the highest rank and colours the embed by the rarest piece", () => {
     let set = emptyBuild("Gunner");
     const low = data.pieces.find((p) => p.rank === "low-rank" && p.slot === "helmet")!;
     const g = data.pieces
@@ -137,7 +152,7 @@ describe("set embeds", () => {
     const e = buildSetEmbed(set, data.trees);
     assert.ok(e);
     assert.equal(e.author, "G-Rank Gunner Set");
-    assert.equal(e.image.url, `/embed/icons/plate-rarity-${g.rarity}.png`);
+    assert.equal(e.color, tintFor(g.rarity));
   });
 
   it("has no embed for an empty set or a code that doesn't open", () => {

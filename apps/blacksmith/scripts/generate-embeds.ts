@@ -13,6 +13,10 @@
  *   name, which the Cloudflare Worker reads to give shared sets their own
  *   embeds. See src/lib/set-embed.ts. Needs the /data bundles, so this runs
  *   after scripts/generate-data.ts.
+ * - set-card/: what the Worker draws a shared set's card image with
+ *   (src/lib/set-card.ts): frame.png, the site's card frame at the card's
+ *   size, and sprites.json, the icons it uses, tinted and scaled, as data:
+ *   URIs.
  */
 import fs from "fs";
 import path from "path";
@@ -33,6 +37,14 @@ import {
   type EmbedAuthor,
 } from "../src/lib/seo";
 import { buildCodecTables } from "../src/lib/set-codec";
+import {
+  CARD,
+  cardSpriteSources,
+  SET_CARD_FRAME_PATH,
+  SET_CARD_SPRITES_PATH,
+  SPRITE_SCALE,
+  type CardSprites,
+} from "../src/lib/set-card";
 import { SET_EMBED_DATA_PATH, setEmbedData } from "../src/lib/set-embed";
 import { getWeapons } from "../src/lib/weapons";
 import { readSetSearchData } from "./lib/set-data";
@@ -218,11 +230,93 @@ function writeOembeds() {
   return count;
 }
 
+/** A sprite multiplied by `tint` (as the site tints icons), at SPRITE_SCALE, as a data: URI. */
+async function tintedSprite(file: string, hex: string | undefined): Promise<string> {
+  const { data, info } = await sharp(file)
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  if (hex) {
+    const tint = hexToRgb(hex);
+    for (let i = 0; i < data.length; i += 4) {
+      for (let c = 0; c < 3; c++) data[i + c] = Math.round((data[i + c] * tint[c]) / 255);
+    }
+  }
+  const png = await sharp(data, { raw: { width: info.width, height: info.height, channels: 4 } })
+    .resize(info.width * SPRITE_SCALE, info.height * SPRITE_SCALE, { kernel: "nearest" })
+    .png({ palette: true })
+    .toBuffer();
+  return `data:image/png;base64,${png.toString("base64")}`;
+}
+
+/**
+ * The site's card frame (the card-frame utility's border image in
+ * globals.css: 160×80, 24px slices top and bottom, 32px at the sides, with
+ * its fill), drawn `width`×`height` by repeating its middle strips. The
+ * size must be a whole number of strips, so no tile is cut.
+ */
+async function drawFrame(width: number, height: number): Promise<Buffer> {
+  const css = fs.readFileSync(path.join(process.cwd(), "src/app/globals.css"), "utf-8");
+  const m =
+    /@utility card-frame \{[^}]*?border-image-source: url\("data:image\/png;base64,([^"]+)"\)/.exec(
+      css,
+    );
+  if (!m) throw new Error("No card-frame border image in globals.css");
+  const { data: art, info } = await sharp(Buffer.from(m[1], "base64"))
+    .ensureAlpha()
+    .raw()
+    .toBuffer({ resolveWithObject: true });
+  const { frameTop: top, frameSide: side } = CARD;
+  const midX = info.width - 2 * side;
+  const midY = info.height - 2 * top;
+  if ((width - 2 * side) % midX || (height - 2 * top) % midY) {
+    throw new Error(`A ${width}×${height} frame would cut its ${midX}×${midY} strips`);
+  }
+  const pick = (v: number, size: number, edge: number, mid: number, artSize: number) =>
+    v < edge ? v : v >= size - edge ? v - (size - artSize) : edge + ((v - edge) % mid);
+  const out = Buffer.alloc(width * height * 4);
+  for (let y = 0; y < height; y++) {
+    const sy = pick(y, height, top, midY, info.height);
+    for (let x = 0; x < width; x++) {
+      const sx = pick(x, width, side, midX, info.width);
+      art.copy(
+        out,
+        (y * width + x) * 4,
+        (sy * info.width + sx) * 4,
+        (sy * info.width + sx + 1) * 4,
+      );
+    }
+  }
+  return sharp(out, { raw: { width, height, channels: 4 } })
+    .png({ palette: true })
+    .toBuffer();
+}
+
+/** The set card's frame and sprites. */
+async function writeSetCard() {
+  const dir = path.join(publicDir, path.dirname(SET_CARD_FRAME_PATH));
+  fs.mkdirSync(dir, { recursive: true });
+  fs.writeFileSync(
+    path.join(publicDir, SET_CARD_FRAME_PATH),
+    await drawFrame(CARD.width, CARD.height),
+  );
+
+  const sprites: CardSprites = {};
+  for (const { name, file, tint } of cardSpriteSources()) {
+    sprites[name] = await tintedSprite(path.join(publicDir, "images", file), tint);
+  }
+  fs.writeFileSync(path.join(publicDir, SET_CARD_SPRITES_PATH), JSON.stringify(sprites));
+  return Object.keys(sprites).length;
+}
+
 /** The pieces and decorations share codes name, for the Worker's set embeds. */
 function writeSetData() {
   const { data, ids } = readSetSearchData(path.join(publicDir, "data"));
   const tables = buildCodecTables(data, ids);
-  const embedData = setEmbedData(data, tables);
+  const { version } = JSON.parse(
+    fs.readFileSync(path.join(publicDir, "data", "data-manifest.json"), "utf-8"),
+  ) as { version: string };
+  const embedData = setEmbedData(data, tables, version);
   fs.writeFileSync(path.join(publicDir, SET_EMBED_DATA_PATH), JSON.stringify(embedData));
   return Object.keys(embedData.pieces).length + Object.keys(embedData.decorations).length;
 }
@@ -232,8 +326,9 @@ async function main() {
   const icons = await writeIcons();
   const oembeds = writeOembeds();
   const setEntries = writeSetData();
+  const cardSprites = await writeSetCard();
   console.log(
-    `Wrote ${icons} embed icons, ${oembeds} oEmbed files and set data for ${setEntries} pieces and decorations to public/embed/`,
+    `Wrote ${icons} embed icons, ${oembeds} oEmbed files, set data for ${setEntries} pieces and decorations, and the set card with ${cardSprites} sprites to public/embed/`,
   );
 }
 
