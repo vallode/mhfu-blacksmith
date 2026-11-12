@@ -45,7 +45,6 @@ import {
   encodeSet,
 } from "@/lib/set-codec";
 import {
-  DEFAULT_LIMIT,
   resolveWanted,
   selectableSkills,
   type Piece,
@@ -126,8 +125,6 @@ const SORTS: Choice<SortKey>[] = [
   { value: "dragon", label: "Dragon Res" },
   { value: "slots", label: "Free slots" },
 ];
-const sortLabel = (sort: SortKey | undefined) =>
-  SORTS.find((s) => s.value === (sort ?? "defence"))!.label.toLowerCase();
 
 const WEAPON_SLOTS: Choice<number>[] = [0, 1, 2, 3].map((n) => ({
   value: n,
@@ -676,32 +673,32 @@ export default function SetBuilderClient() {
                     <div className="flex flex-col gap-[1.3rem]">
                       {set ? (
                         <>
-                          <SetHeader index={index} count={sets.length} onStep={step} />
-                          {!searching &&
-                            !result?.timedOut &&
-                            sets.length >= (searched?.limit ?? DEFAULT_LIMIT) && (
-                              <p className={ui.note}>
-                                The {sets.length} best sets by {sortLabel(searched?.sort)}. Add
-                                skills to narrow the search.
-                              </p>
-                            )}
+                          <SetHeader
+                            index={index}
+                            count={sets.length}
+                            onStep={step}
+                            action={
+                              <button
+                                type="button"
+                                className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
+                                aria-label="Edit this set"
+                                title="Edit this set"
+                                onClick={() =>
+                                  searched &&
+                                  openInEditor(buildFromResult(set, searched), {
+                                    origin: "result",
+                                  })
+                                }
+                              >
+                                <Icon type="item-37" className="mr-0" alt="" />
+                              </button>
+                            }
+                          />
                           {result?.timedOut && (
                             <p className={ui.note}>
                               The search stopped early: better sets may exist.
                             </p>
                           )}
-                          <div className={ui.actions}>
-                            <button
-                              type="button"
-                              className={ui.button}
-                              onClick={() =>
-                                searched &&
-                                openInEditor(buildFromResult(set, searched), { origin: "result" })
-                              }
-                            >
-                              Edit this set
-                            </button>
-                          </div>
                           <ArmorSetView
                             set={set}
                             weaponSlots={searched?.weaponSlots ?? 0}
