@@ -89,12 +89,15 @@ export const secondaryButton =
 // Sheet
 // ---------------------------------------------------------------------------
 
+/** The overlays' frame: the blue of the 3D model popover, the site's other overlay. */
+const FRAME = "blue" as const;
+
 /**
- * A card over the page, in the site's card frame and the fill of its
- * phone sheets (SplitPage). On phones it rises from the bottom edge, over
- * the tab bar; on wider screens it is a dialog in the middle of the page.
- * Closed by ×, Escape or a tap on the dimmed page. `tall` makes it nearly
- * full height (pickers), otherwise it fits its content.
+ * A card over the page, in the overlays' blue frame and the fill of the
+ * site's phone sheets (SplitPage). On phones it rises from the bottom edge,
+ * over the tab bar; on wider screens it is a dialog in the middle of the
+ * page. Closed by ×, Escape or a tap on the dimmed page. `tall` makes it
+ * nearly full height (pickers), otherwise it fits its content.
  */
 export function Sheet({
   open,
@@ -148,7 +151,11 @@ export function Sheet({
           tall ? "h-[min(80dvh,80rem)] mobile:h-[92dvh]" : "max-h-[80dvh] mobile:max-h-[85dvh]",
         )}
       >
-        <Card className="flex-[1_1_auto] text-small" bodyClassName="card-p-7 gap-[1.2rem]">
+        <Card
+          frame={FRAME}
+          className="flex-[1_1_auto] text-small"
+          bodyClassName="card-p-7 gap-[1.2rem]"
+        >
           <div className="flex flex-none items-center gap-[1rem]">
             <h2 className="m-0 min-w-0 flex-1 truncate text-main font-normal text-stat text-shadow-[0.15rem_0.15rem_black]">
               {title}
