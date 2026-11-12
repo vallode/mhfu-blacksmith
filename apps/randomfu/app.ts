@@ -359,7 +359,7 @@ function buildPresets(): void {
     input.addEventListener("change", () => {
       settings = presetSettings(preset);
       render();
-      say($("share-status"), `Loaded the ${preset.name} preset.`, "ok");
+      say($("share-status"), "");
     });
     $("presets").append(
       el(

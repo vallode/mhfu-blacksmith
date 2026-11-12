@@ -130,11 +130,13 @@
         <div class="choices" id="presets" role="radiogroup" aria-label="Preset"></div>
         <p class="note" id="preset-note"></p>
 
-        <details class="load" id="load">
-          <summary class="subheading">Load shared settings</summary>
-          <p class="note">Loading replaces every option, and your seed if it has one.</p>
-          <label class="field">
-            <span class="label">Settings string</span>
+        <div class="choice-load" id="load">
+          <span class="choice-text">
+            <label class="choice-label" for="paste">Shared settings</label>
+            <span class="note">
+              Paste a settings string or load a settings file. Replaces every option, and your seed
+              if it has one.
+            </span>
             <span class="row">
               <input
                 type="text"
@@ -145,13 +147,11 @@
                 spellcheck="false"
               />
               <button type="button" class="button" id="apply-paste">Load</button>
+              <button type="button" class="button" id="import">File…</button>
+              <input type="file" id="import-file" accept=".json,application/json" hidden />
             </span>
-          </label>
-          <div class="row">
-            <button type="button" class="button" id="import">Load settings file</button>
-            <input type="file" id="import-file" accept=".json,application/json" hidden />
-          </div>
-        </details>
+          </span>
+        </div>
         <p class="status" id="share-status" role="status"></p>
         <div class="row skip">
           <button type="button" class="button" id="skip">Skip to review ▶</button>
