@@ -104,7 +104,8 @@ export function QuestBoardsShell({ children }: { children: React.ReactNode }) {
     <div className="split-page">
       <CardBox data-tree-panel>
         <Card variant="weapon-tree">
-          <nav aria-label="Quest boards" className="flex flex-col">
+          {/* Inset 13px, like the lists in TreeScroll (items, decorations). */}
+          <nav aria-label="Quest boards" className="flex flex-col pl-[13px]">
             {QUEST_HUBS.map((h) => (
               <Link key={h.slug} href={`/quests/${h.slug}/`} className="list-row">
                 <Icon type="ticket" alt="" />
@@ -223,7 +224,8 @@ export default function QuestHubShell({
         {/* Above the card (z-1) so the bar and its arrows draw over the frame. */}
         <CardBox data-tree-panel>
           <Card variant="weapon-tree">
-            <div ref={listRef} className="flex flex-col">
+            {/* Inset 13px, like the lists in TreeScroll (items, decorations). */}
+            <div ref={listRef} className="flex flex-col pl-[13px]">
               <BoardBackRow hub={hub} />
               {error && <p className="px-[16px] text-negative">Couldn&apos;t load quests.</p>}
               {shown.map((q) => (
@@ -232,7 +234,7 @@ export default function QuestHubShell({
                   data-quest={q.id}
                   href={questHref(q)}
                   aria-current={q.id === id ? "page" : undefined}
-                  className={cn("list-row pl-[16px]", q.id === id && "bg-white/10")}
+                  className={cn("list-row", q.id === id && "bg-white/10")}
                 >
                   <p className="truncate">{q.title}</p>
                   {(cleared?.has(q.id) || q.urgent) && (
