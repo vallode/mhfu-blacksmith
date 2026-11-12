@@ -680,7 +680,7 @@ export default function SetBuilderClient() {
                             action={
                               <button
                                 type="button"
-                                className="flex size-[3.4rem] items-center justify-center border border-hr bg-black/30 hover:bg-black/50"
+                                className="flex size-[4.2rem] items-center justify-center border border-hr bg-black/30 hover:bg-black/50"
                                 aria-label="Edit this set"
                                 title="Edit this set"
                                 onClick={() =>
@@ -690,7 +690,7 @@ export default function SetBuilderClient() {
                                   })
                                 }
                               >
-                                <Icon type="item-37" alt="" />
+                                <Icon type="item-37" className="mr-0" alt="" />
                               </button>
                             }
                           />
