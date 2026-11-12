@@ -4,6 +4,7 @@ import { Fragment, useCallback, useEffect, useState, useSyncExternalStore } from
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import { useSectionHref, type MenuSection } from "@/app/MenuLink";
 import { cn } from "@/lib/cn";
@@ -382,14 +383,16 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
       >
         <div className="absolute inset-0 bg-black/60" onClick={closeMenu} />
         {/* Dips under the screen's left edge, like the desktop sidebar. */}
-        <Card
-          frame="teal"
-          className="relative -ml-[1.5rem] h-full w-[29.5rem] max-w-[85vw] flex-none animate-drawer-in bg-black/70 text-sub"
-          scroll
-          bodyClassName="card-py-[2.2rem] card-pr-0 card-pl-[1.5rem]"
-        >
-          <SidebarContents pathname={pathname} hrefFor={hrefFor} onSearch={closeMenu} />
-        </Card>
+        <CardBox className="-ml-[1.5rem] h-full w-[29.5rem] max-w-[85vw] flex-none animate-drawer-in">
+          <Card
+            frame="teal"
+            className="bg-black/70 text-sub"
+            scroll
+            bodyClassName="card-py-[2.2rem] card-pr-0 card-pl-[1.5rem]"
+          >
+            <SidebarContents pathname={pathname} hrefFor={hrefFor} onSearch={closeMenu} />
+          </Card>
+        </CardBox>
       </div>
     </div>
   );

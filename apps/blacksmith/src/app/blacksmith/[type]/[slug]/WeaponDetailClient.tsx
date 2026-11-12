@@ -2,7 +2,6 @@
 
 import { useState } from "react";
 import SharpnessBar from "@/components/SharpnessBar";
-import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import {
   DetailBody,
@@ -68,7 +67,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
   // The page bar and the tree on the left come from the blacksmith layout
   // (WeaponShell), which stays mounted; this is only the detail panel.
   if (loading || !weapon) {
-    return <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>;
+    return <DetailCard>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</DetailCard>;
   }
 
   return (

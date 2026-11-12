@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import {
   DetailBody,
@@ -43,7 +42,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
   // The nav and the tree on the left come from the armorsmith layout
   // (ArmorShell), which stays mounted; this is only the detail panel.
   if (loading || !piece) {
-    return <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>;
+    return <DetailCard>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</DetailCard>;
   }
 
   return (

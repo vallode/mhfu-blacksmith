@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo } from "react";
-import Card from "@/components/Card";
 import Icon from "@/components/Icon";
 import {
   DetailBody,
@@ -52,7 +51,7 @@ export default function DecorationDetailClient({ slug }: Props) {
   // The nav and the list on the left come from the decorations layout
   // (DecorationShell), which stays mounted; this is only the detail panel.
   if (loading || !deco) {
-    return <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>;
+    return <DetailCard>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</DetailCard>;
   }
 
   const id = deco.item_id;
