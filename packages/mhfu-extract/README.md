@@ -1227,9 +1227,12 @@ thresholds; the rest are zero.
 - Records are u16 percents in the save, at the character's `+0x40e0`
   (largest) and `+0x4194` (smallest).
 
-`extract` writes `base_size` and `crowns` into `data/monsters/`, and each
+`extract` writes `base_size` and `crowns` into `data/monsters/`, each
 quest's roll range as `monster_size` (`modifier`, `min`, `max`, and
-`fixed_until_flag` for the story quests above).
+`fixed_until_flag` for the story quests above), and each crowned large
+monster's chance of a mini, silver or gold crown size in that quest as its
+spawn's `crown_chances` (`crownChances`, from all 1024 outcomes of the
+roll).
 
 Checked against what players report:
 

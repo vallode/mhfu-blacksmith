@@ -351,6 +351,11 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -747,6 +752,11 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -1165,6 +1175,11 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -1576,6 +1591,11 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         },
         {
@@ -1587,6 +1607,11 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -1994,6 +2019,11 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         },
         {
@@ -2005,6 +2035,11 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -2412,6 +2447,11 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         },
         {
@@ -2423,6 +2463,11 @@
             "attack": 1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -2827,6 +2872,11 @@
             "attack": 2,
             "defense": 0.8,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],

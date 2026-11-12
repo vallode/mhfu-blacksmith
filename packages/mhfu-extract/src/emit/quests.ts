@@ -17,7 +17,7 @@ import type {
   SupplyItem,
 } from "../quests/parser.js";
 import type { MultiplierRow } from "../monsters/multipliers.js";
-import { sizeRange, type SizeTables } from "../monsters/sizes.js";
+import { crownChances, sizeRange, type Crowns, type SizeTables } from "../monsters/sizes.js";
 import { getNameResolver } from "../strings/names.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import { QUEST_PREREQUISITES } from "../tables/quest-prerequisites.js";
@@ -128,6 +128,13 @@ export interface EmittedMonsterSpawn {
   power: number;
   /** The stat multiplier row this spawn gets (src/monsters/multipliers.ts); absent without one. */
   multipliers?: MultiplierRow;
+  /**
+   * The chance this monster rolls a mini, silver or gold crown size here
+   * (`crownChances`; silver short of gold). Absent for a monster without
+   * crowns, or without the size tables. For a quest with
+   * `monster_size.fixed_until_flag`, it's the chance once the flag is set.
+   */
+  crown_chances?: Crowns;
 }
 
 /**
@@ -269,8 +276,9 @@ function resolveRewardTables(tables: RewardTable[]): EmittedRewardTable[] {
 /** Dedupes exact-duplicate (monster, quantity, power) rows — `LargeMonTable`s are occasionally repeated verbatim, same as small monster tables (see dedupeSmallMonsters). */
 function dedupeLargeMonsters(
   spawns: (MonsterSpawn & { stage: number })[],
-  statTable: number,
+  header: Pick<ParsedQuest["header"], "statTable" | "monSizeModifier" | "sizeVariation">,
   multipliers?: MultiplierLookup,
+  sizes?: SizeTables,
 ): EmittedMonsterSpawn[] {
   const names = getNameResolver();
   const seen = new Set<string>();
@@ -281,12 +289,15 @@ function dedupeLargeMonsters(
     const key = `${monster}:${spawn.quantity}:${spawn.power}`;
     if (seen.has(key)) continue;
     seen.add(key);
-    const row = multipliers?.(spawn.monsterId, statTable, spawn.power);
+    const row = multipliers?.(spawn.monsterId, header.statTable, spawn.power);
+    const crowns =
+      sizes && crownChances(sizes, spawn.monsterId, header.monSizeModifier, header.sizeVariation);
     out.push({
       monster,
       quantity: spawn.quantity,
       power: spawn.power,
       ...(row ? { multipliers: row } : {}),
+      ...(crowns ? { crown_chances: crowns } : {}),
     });
   }
   return out;
@@ -380,7 +391,7 @@ export function emitQuest(
     target: resolveTarget(header.targetId, header.targetNum),
     supplies: resolveSupplies(parsed.supplies),
     reward_tables: resolveRewardTables(parsed.rewards),
-    large_monsters: dedupeLargeMonsters(parsed.largeMonsters, header.statTable, multipliers),
+    large_monsters: dedupeLargeMonsters(parsed.largeMonsters, header, multipliers, sizes),
     monster_size: monsterSize(parsed, sizes),
     small_monsters: dedupeSmallMonsters(parsed.smallMonsters),
     title: parsed.strings?.title ?? null,

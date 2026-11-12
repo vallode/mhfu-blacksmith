@@ -197,3 +197,25 @@ export function sizeChances(
 export function crownsFor(tables: SizeTables, emId: number): CrownEntry | undefined {
   return tables.crowns.find((c) => c.emIds.includes(emId));
 }
+
+/**
+ * The chance a monster rolls each crown in a quest: a mini, silver or gold
+ * crown size (silver short of gold). Undefined for a monster without crowns,
+ * which is always 100.
+ */
+export function crownChances(
+  tables: SizeTables,
+  emId: number,
+  modifier: number,
+  variation: number,
+): Crowns | undefined {
+  const crowns = crownsFor(tables, emId);
+  if (!crowns) return undefined;
+  const out: Crowns = { mini: 0, silver: 0, gold: 0 };
+  for (const [size, chance] of sizeChances(tables, modifier, variation)) {
+    if (size <= crowns.mini) out.mini += chance;
+    else if (size >= crowns.gold) out.gold += chance;
+    else if (size >= crowns.silver) out.silver += chance;
+  }
+  return out;
+}

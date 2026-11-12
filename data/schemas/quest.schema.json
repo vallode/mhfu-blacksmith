@@ -74,6 +74,17 @@
         "monster":  { "type": "string", "minLength": 1 },
         "quantity": { "type": "integer", "minimum": 0 },
         "power":    { "type": "integer", "minimum": 0 },
+        "crown_chances": {
+          "type": "object",
+          "required": ["mini", "silver", "gold"],
+          "additionalProperties": false,
+          "$comment": "The chance (0-1) this monster rolls a mini, silver or gold crown size in the quest; silver counts only sizes short of gold. Absent for monsters without crowns, which are always 100. For quests with monster_size.fixed_until_flag, the chance once the flag is set. See mhfu-extract's src/monsters/sizes.ts crownChances.",
+          "properties": {
+            "mini":   { "type": "number", "minimum": 0, "maximum": 1 },
+            "silver": { "type": "number", "minimum": 0, "maximum": 1 },
+            "gold":   { "type": "number", "minimum": 0, "maximum": 1 }
+          }
+        },
         "multipliers": {
           "type": "object",
           "required": ["hp", "attack", "defense", "status"],

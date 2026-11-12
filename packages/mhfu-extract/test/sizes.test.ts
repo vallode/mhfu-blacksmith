@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import {
+  crownChances,
   crownsFor,
   questSize,
   readSizeTables,
@@ -152,4 +153,19 @@ test("sizeChances gives each size's chance from the 32 x 32 roll", () => {
   assert.equal(wide.get(85), 2 / 32 + (2 / 32) * (1 / 32));
   assert.equal(atMost(90), 84 / 1024);
   assert.equal(wide.get(125), 1 / 1024);
+});
+
+test("crownChances splits the roll at the monster's crown thresholds", () => {
+  const t = readSizeTables(sizeFixture(), JP_BASE_ADDRESS);
+  // Giadrome: mini 90, silver 119, gold 123. Tier 5 (picked twice) has
+  // three rolls of 119-120 and tier 6 25 of 121-122 (silver), and seven of
+  // 123-125 (gold).
+  assert.deepEqual(crownChances(t, 77, 100, 4), {
+    mini: 84 / 1024,
+    silver: 31 / 1024,
+    gold: 7 / 1024,
+  });
+  // Variation 0 pins it at the modifier: 120 is always silver.
+  assert.deepEqual(crownChances(t, 77, 120, 0), { mini: 0, silver: 1, gold: 0 });
+  assert.equal(crownChances(t, 9, 100, 4), undefined);
 });

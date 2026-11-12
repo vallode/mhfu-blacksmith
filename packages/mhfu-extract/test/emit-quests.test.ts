@@ -382,8 +382,9 @@ test("emitQuest gives each large monster its stat multiplier row", () => {
 
 test("emitQuest gives the quest's monster size range, and the flag fixed-size story quests wait on", () => {
   const sizes: SizeTables = {
-    tierPick: [],
-    tiers: [],
+    // Every roll is 100.
+    tierPick: Array(32).fill(0),
+    tiers: [Array(32).fill(100)],
     variation: [
       [100, 100],
       [100, 105],
@@ -391,7 +392,7 @@ test("emitQuest gives the quest's monster size range, and the flag fixed-size st
       [95, 114],
       [85, 125],
     ],
-    crowns: [],
+    crowns: [{ emIds: [77], mini: 90, silver: 119, gold: 123 }],
     baseSizes: [],
     fixedSizeQuests: new Map([[10006, 322]]),
   };
@@ -404,6 +405,15 @@ test("emitQuest gives the quest's monster size range, and the flag fixed-size st
     min: 110,
     max: 162,
   });
+  // Giadrome at 130 is always a gold crown.
+  assert.deepEqual(
+    emitQuest(quest(1, 130, 4), undefined, sizes)!.large_monsters[0]!.crown_chances,
+    {
+      mini: 0,
+      silver: 0,
+      gold: 1,
+    },
+  );
   assert.deepEqual(emitQuest(quest(10006, 100, 3), undefined, sizes)!.monster_size, {
     modifier: 100,
     min: 95,

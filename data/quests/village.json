@@ -485,6 +485,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -1123,6 +1128,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -1293,6 +1303,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -1448,6 +1463,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -1601,6 +1621,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.2734375,
+            "silver": 0.123046875,
+            "gold": 0
           }
         }
       ],
@@ -1730,6 +1755,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -1911,6 +1941,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -2119,6 +2154,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -2311,6 +2351,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -2488,6 +2533,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -2766,6 +2816,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -2967,6 +3022,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -3160,6 +3220,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -3338,6 +3403,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -3482,6 +3552,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -3875,6 +3950,11 @@
             "attack": 1.06,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -4029,6 +4109,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -4197,6 +4282,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -4355,6 +4445,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -4545,6 +4640,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
           }
         }
       ],
@@ -4731,6 +4831,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -4902,6 +5007,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -5081,6 +5191,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -5264,6 +5379,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -5428,6 +5548,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -5601,6 +5726,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -5791,6 +5921,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -5974,6 +6109,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.1806640625,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -6158,6 +6298,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -6347,6 +6492,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -6488,6 +6638,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -6758,6 +6913,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -6931,6 +7091,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -7120,6 +7285,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.08203125,
+            "silver": 0.09765625,
+            "gold": 0.037109375
           }
         }
       ],
@@ -7311,6 +7481,11 @@
             "attack": 1.3,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -7458,6 +7633,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.1806640625,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -7636,6 +7816,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -7815,6 +8000,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.06640625,
+            "silver": 0.1875,
+            "gold": 0.09375
           }
         }
       ],
@@ -7987,6 +8177,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -8186,6 +8381,11 @@
             "attack": 1.2,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
           }
         },
         {
@@ -8197,6 +8397,11 @@
             "attack": 1.2,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
           }
         }
       ],
@@ -8349,6 +8554,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -8531,6 +8741,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -8704,6 +8919,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.15234375,
+            "gold": 0
           }
         }
       ],
@@ -8863,6 +9083,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -9031,6 +9256,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -9183,6 +9413,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -9410,6 +9645,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.193359375,
+            "gold": 0
           }
         }
       ],
@@ -9593,6 +9833,11 @@
             "attack": 1.1,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.193359375,
+            "gold": 0
           }
         }
       ],
@@ -9877,6 +10122,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -10040,6 +10290,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.2177734375,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -10219,6 +10474,11 @@
             "attack": 1.25,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -10372,6 +10632,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
           }
         },
         {
@@ -10383,6 +10648,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -10545,6 +10815,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -10727,6 +11002,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -10915,6 +11195,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
           }
         }
       ],
@@ -11083,6 +11368,11 @@
             "attack": 1.3,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -11236,6 +11526,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -11416,6 +11711,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -11604,6 +11904,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -11971,6 +12276,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.08203125,
+            "silver": 0.07421875,
+            "gold": 0.037109375
           }
         }
       ],
@@ -12154,6 +12464,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.08203125,
+            "silver": 0.07421875,
+            "gold": 0.037109375
           }
         }
       ],
@@ -12354,6 +12669,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.1806640625,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -12539,6 +12859,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.1806640625,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -12682,6 +13007,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 1,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -12875,6 +13205,11 @@
             "attack": 1.25,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.1806640625,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -13039,6 +13374,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         },
         {
@@ -13050,6 +13390,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -13235,6 +13580,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.076171875,
+            "silver": 0.1083984375,
+            "gold": 0.0146484375
           }
         },
         {
@@ -13246,6 +13596,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.076171875,
+            "silver": 0.1083984375,
+            "gold": 0.0146484375
           }
         }
       ],
@@ -13404,6 +13759,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.076171875,
+            "silver": 0.1044921875,
+            "gold": 0.0068359375
           }
         }
       ],
@@ -13595,6 +13955,11 @@
             "attack": 1.3,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.06640625,
+            "silver": 0.1669921875,
+            "gold": 0.0029296875
           }
         },
         {
@@ -13606,6 +13971,11 @@
             "attack": 1.3,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.06640625,
+            "silver": 0.1669921875,
+            "gold": 0.0029296875
           }
         }
       ],
@@ -13808,6 +14178,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.1865234375,
+            "gold": 0.0068359375
           }
         }
       ],
@@ -14005,6 +14380,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.1865234375,
+            "gold": 0.0068359375
           }
         }
       ],
@@ -14174,6 +14554,11 @@
             "attack": 1.25,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.10546875,
+            "silver": 0.078125,
+            "gold": 0.044921875
           }
         }
       ],
@@ -14337,6 +14722,11 @@
             "attack": 1.15,
             "defense": 1,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.1455078125,
+            "gold": 0.0068359375
           }
         }
       ],
@@ -14702,6 +15092,11 @@
             "attack": 1.7,
             "defense": 0.95,
             "status": 1
+          },
+          "crown_chances": {
+            "mini": 1,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -15015,6 +15410,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.1806640625,
+            "silver": 0.15234375,
+            "gold": 0
           }
         }
       ],
@@ -15517,6 +15917,11 @@
             "attack": 2.3,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -15701,6 +16106,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -15907,6 +16317,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.076171875,
+            "silver": 0.05078125,
+            "gold": 0.060546875
           }
         },
         {
@@ -15918,6 +16333,11 @@
             "attack": 2.3,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.06640625,
+            "silver": 0.060546875,
+            "gold": 0.044921875
           }
         }
       ],
@@ -16086,6 +16506,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.08203125,
+            "silver": 0.07421875,
+            "gold": 0.03125
           }
         }
       ],
@@ -16259,6 +16684,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.076171875,
+            "silver": 0.078125,
+            "gold": 0.033203125
           }
         },
         {
@@ -16270,6 +16700,11 @@
             "attack": 2.3,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.125,
+            "silver": 0.1904296875,
+            "gold": 0.0029296875
           }
         }
       ],
@@ -16443,6 +16878,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.072265625,
+            "silver": 0.1083984375,
+            "gold": 0.0146484375
           }
         }
       ],
@@ -16645,6 +17085,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.1513671875,
+            "gold": 0.0009765625
           }
         }
       ],
@@ -16835,6 +17280,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.1513671875,
+            "gold": 0.0009765625
           }
         },
         {
@@ -16846,6 +17296,11 @@
             "attack": 2.3,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.029296875,
+            "gold": 0.10546875
           }
         }
       ],
@@ -17084,6 +17539,11 @@
             "attack": 2.3,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -17360,6 +17820,11 @@
             "attack": 2.3,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -17591,6 +18056,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         },
         {
@@ -17602,6 +18072,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.15234375,
+            "gold": 0
           }
         }
       ],
@@ -17778,6 +18253,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.1201171875,
+            "gold": 0.0146484375
           }
         }
       ],
@@ -17927,6 +18407,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.15234375,
+            "gold": 0
           }
         }
       ],
@@ -18091,6 +18576,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.1943359375,
+            "gold": 0.10546875
           }
         }
       ],
@@ -18277,6 +18767,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.2255859375,
+            "gold": 0.111328125
           }
         }
       ],
@@ -18431,6 +18926,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.076171875,
+            "silver": 0.107421875,
+            "gold": 0.044921875
           }
         }
       ],
@@ -18638,6 +19138,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.06640625,
+            "silver": 0.1875,
+            "gold": 0.09375
           }
         }
       ],
@@ -18840,6 +19345,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.2314453125,
+            "gold": 0.10546875
           }
         },
         {
@@ -18851,6 +19361,11 @@
             "attack": 2.3,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.2314453125,
+            "gold": 0.10546875
           }
         }
       ],
@@ -19096,6 +19611,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         },
         {
@@ -19107,6 +19627,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -19365,6 +19890,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -19603,6 +20133,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -19856,6 +20391,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -20072,6 +20612,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
           }
         },
         {
@@ -20083,6 +20628,11 @@
             "attack": 2.3,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.28125,
+            "gold": 0
           }
         }
       ],
@@ -20319,6 +20869,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.15234375,
+            "gold": 0
           }
         },
         {
@@ -20330,6 +20885,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.0703125,
+            "gold": 0.099609375
           }
         }
       ],
@@ -20573,6 +21133,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
           }
         },
         {
@@ -20584,6 +21149,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.15234375,
+            "gold": 0
           }
         }
       ],
@@ -20820,6 +21390,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.193359375,
+            "gold": 0
           }
         },
         {
@@ -20831,6 +21406,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
           }
         }
       ],
@@ -21082,6 +21662,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.072265625,
+            "silver": 0.1875,
+            "gold": 0.09375
           }
         }
       ],
@@ -21288,6 +21873,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.072265625,
+            "silver": 0.07421875,
+            "gold": 0.060546875
           }
         }
       ],
@@ -21494,6 +22084,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.072265625,
+            "silver": 0.07421875,
+            "gold": 0.060546875
           }
         }
       ],
@@ -21848,6 +22443,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -22054,6 +22654,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -22269,6 +22874,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         }
       ],
@@ -22436,6 +23046,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
           }
         }
       ],
@@ -22638,6 +23253,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.123046875,
+            "gold": 0
           }
         }
       ],
@@ -22827,6 +23447,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.2431640625,
+            "gold": 0.09375
           }
         },
         {
@@ -22838,6 +23463,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.064453125,
+            "silver": 0.1484375,
+            "gold": 0.044921875
           }
         }
       ],
@@ -23000,6 +23630,11 @@
             "attack": 4,
             "defense": 0.6,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.2548828125,
+            "gold": 0.044921875
           }
         }
       ],
@@ -23199,6 +23834,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.1513671875,
+            "gold": 0.0009765625
           }
         }
       ],
@@ -23377,6 +24017,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.072265625,
+            "silver": 0.1201171875,
+            "gold": 0.0146484375
           }
         },
         {
@@ -23388,6 +24033,11 @@
             "attack": 2.5,
             "defense": 0.75,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.1162109375,
+            "gold": 0.0068359375
           }
         }
       ],
@@ -23582,6 +24232,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.12109375,
+            "gold": 0.03125
           }
         }
       ],
@@ -23698,6 +24353,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.236328125,
+            "gold": 0.044921875
           }
         }
       ],
@@ -23814,6 +24474,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.064453125,
+            "silver": 0.1484375,
+            "gold": 0.044921875
           }
         }
       ],
@@ -23980,6 +24645,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.068359375,
+            "silver": 0.119140625,
+            "gold": 0.033203125
           }
         },
         {
@@ -23991,6 +24661,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.236328125,
+            "gold": 0.044921875
           }
         }
       ],
@@ -24150,6 +24825,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.072265625,
+            "silver": 0.2392578125,
+            "gold": 0.060546875
           }
         }
       ],
@@ -24314,6 +24994,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.904296875,
+            "gold": 0
           }
         }
       ],
@@ -24551,6 +25236,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         },
         {
@@ -24562,6 +25252,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
@@ -24779,6 +25474,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
           }
         },
         {
@@ -24790,6 +25490,11 @@
             "attack": 2.5,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.0703125,
+            "gold": 0.099609375
           }
         }
       ],
@@ -25044,6 +25749,11 @@
             "attack": 2.5,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.15234375,
+            "gold": 0
           }
         },
         {
@@ -25055,6 +25765,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.134765625,
+            "gold": 0
           }
         },
         {
@@ -25066,6 +25781,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.169921875,
+            "gold": 0
           }
         }
       ],
@@ -25339,6 +26059,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.134765625,
+            "gold": 0
           }
         },
         {
@@ -25350,6 +26075,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.2998046875,
+            "gold": 0
           }
         },
         {
@@ -25361,6 +26091,11 @@
             "attack": 2.4,
             "defense": 0.85,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.111328125,
+            "gold": 0
           }
         }
       ],
@@ -25601,6 +26336,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.29296875,
+            "gold": 0.0068359375
           }
         }
       ],
@@ -25810,6 +26550,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.29296875,
+            "gold": 0.0068359375
           }
         }
       ],
@@ -26012,6 +26757,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.06640625,
+            "silver": 0.2080078125,
+            "gold": 0.0146484375
           }
         }
       ],
@@ -26214,6 +26964,11 @@
             "attack": 2.2,
             "defense": 0.8,
             "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0.06640625,
+            "silver": 0.2080078125,
+            "gold": 0.0146484375
           }
         }
       ],
@@ -26749,6 +27504,11 @@
             "attack": 4,
             "defense": 0.7,
             "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.3369140625,
+            "gold": 0
           }
         },
         {
@@ -26760,6 +27520,11 @@
             "attack": 4,
             "defense": 0.7,
             "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.046875,
+            "gold": 0.123046875
           }
         },
         {
@@ -26771,6 +27536,11 @@
             "attack": 4,
             "defense": 0.7,
             "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.046875,
+            "gold": 0.123046875
           }
         },
         {
@@ -26782,6 +27552,11 @@
             "attack": 4,
             "defense": 0.7,
             "status": 2.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0.10546875,
+            "gold": 0
           }
         }
       ],
