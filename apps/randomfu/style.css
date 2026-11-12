@@ -958,7 +958,13 @@ input[type="range"] {
 }
 
 .skip {
+  justify-content: center;
   margin-top: 0.4rem;
+
+  & .note {
+    flex-basis: 100%;
+    text-align: center;
+  }
 }
 
 /* ─── Review ───────────────────────────────────────────────────────────────── */
