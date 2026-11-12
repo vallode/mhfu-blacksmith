@@ -179,10 +179,11 @@ export interface WeaponMounts {
 
 /**
  * A weapon's length is its Z axis. Three's X-Y-Z Euler applies Y before X, so
- * `lean` swings the length toward the hunter's left (+X) before it's stood up.
+ * `lean` swings the length toward the hunter's left (+X) before it's stood up,
+ * and `roll` (Z, applied first) turns the weapon about its length.
  */
 const headUp = (lean: number): [number, number, number] => [-110 * DEG, lean * DEG, 0];
-const tipDown = (lean: number): [number, number, number] => [115 * DEG, lean * DEG, 0];
+const tipDown = (lean: number, roll = 0): [number, number, number] => [115 * DEG, lean * DEG, roll];
 
 export const WEAPON_MOUNTS: Record<string, WeaponMounts> = {
   "great-sword": {
@@ -241,9 +242,13 @@ export const WEAPON_MOUNTS: Record<string, WeaponMounts> = {
     drawn: [rightHand, leftHand],
     sheathed: [back([-10, -18, -8], headUp(10)), back([0, 12, -8], headUp(0))],
   },
+  // Both blades are the same mesh, its hook along +X: the left fist's fingers
+  // side. The right fist's fingers are at -X, so its blade turns half round
+  // its grip to put the hook past the knuckles there too, as the game has it.
+  // On the back it keeps that turn, so the hooks face away from each other.
   "dual-blades": {
-    drawn: [rightHand, leftHand],
-    sheathed: [back([-8, 14, -11], tipDown(20)), back([8, 14, -11], tipDown(-20))],
+    drawn: [{ ...rightHand, rotation: [0, 0, Math.PI] }, leftHand],
+    sheathed: [back([-8, 14, -11], tipDown(20, Math.PI)), back([8, 14, -11], tipDown(-20))],
   },
   "light-bowgun": {
     drawn: [bowgun(0.376, 0.078, -0.015)],
