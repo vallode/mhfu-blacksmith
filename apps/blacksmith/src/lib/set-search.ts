@@ -438,14 +438,24 @@ export function resolveWanted(
   return { wanted, unknown };
 }
 
+/** Why a hunter can't wear `piece` ("Blademaster only"), or null if they can. */
+export function cantWear(
+  piece: Pick<Piece, "hunterType" | "sex">,
+  hunter: Pick<SearchQuery, "hunterType" | "sex">,
+): string | null {
+  if (piece.hunterType !== "Both" && piece.hunterType !== hunter.hunterType) {
+    return `${piece.hunterType} only`;
+  }
+  if (piece.sex !== "Both" && piece.sex !== hunter.sex) return `${piece.sex} only`;
+  return null;
+}
+
 /** Pieces a query may use, before pruning. */
 export function eligiblePieces(data: SearchData, query: SearchQuery): Piece[] {
   const maxRank = ARMOR_RANKS.indexOf(query.rank);
   const only = query.onlyPieces ? new Set(query.onlyPieces) : null;
   const excluded = new Set(query.excludePieces ?? []);
-  const wearable = (p: Piece) =>
-    (p.sex === "Both" || p.sex === query.sex) &&
-    (p.hunterType === "Both" || p.hunterType === query.hunterType);
+  const wearable = (p: Piece) => cantWear(p, query) === null;
   const locked = new Map<ArmorSlot, Piece>();
   for (const id of query.lockPieces ?? []) {
     const p = data.pieces[id];

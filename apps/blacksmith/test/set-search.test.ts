@@ -11,6 +11,7 @@ import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "../src
 import { armorSlugs, slugify } from "../src/lib/slug";
 import {
   activeSkill,
+  cantWear,
   evaluateSet,
   mergeResults,
   parseDecorationSkill,
@@ -365,6 +366,34 @@ describe("searchSets (hand-made)", () => {
     // A locked piece is used whatever the rank.
     assert.deepEqual(helms({ lockPieces: [id("Late Helm")], rank: "low-rank" }), ["Late Helm"]);
     assert.deepEqual(helms({ rank: "low-rank" }), ["Sturdy Helm", "Sharp Helm"]);
+  });
+
+  test("says why a hunter can't wear a piece", () => {
+    const gunner = { hunterType: "Gunner", sex: "Female" } as const;
+    assert.equal(cantWear({ hunterType: "Both", sex: "Both" }, gunner), null);
+    assert.equal(cantWear({ hunterType: "Gunner", sex: "Female" }, gunner), null);
+    assert.equal(cantWear({ hunterType: "Blademaster", sex: "Both" }, gunner), "Blademaster only");
+    assert.equal(cantWear({ hunterType: "Both", sex: "Male" }, gunner), "Male only");
+  });
+
+  test("ignores a locked piece the hunter can't wear", () => {
+    const armor = [
+      ...filler(0).filter((p) => p.slot !== "helmet"),
+      piece("helmet", "Blade Helm", {
+        hunterType: "Blademaster",
+        skills: [{ name: "Attack", amount: 10 }],
+      }),
+      piece("helmet", "Any Helm", { skills: [{ name: "Attack", amount: 10 }] }),
+    ];
+    const data = prepareSearchData(tiny, armor, []);
+    const blade = data.pieces.find((p) => p.name === "Blade Helm")!.id;
+    const helms = (extra: Partial<SearchQuery>) =>
+      searchSets(data, query(["Attack Up (Small)"], { lockPieces: [blade], ...extra })).sets.map(
+        (s) => s.pieces[0].name,
+      );
+    assert.deepEqual(helms({}), ["Blade Helm"]);
+    // A Gunner can't wear it: the slot is open again.
+    assert.deepEqual(helms({ hunterType: "Gunner" }), ["Any Helm"]);
   });
 
   test("decoration negatives count against other wanted skills", () => {

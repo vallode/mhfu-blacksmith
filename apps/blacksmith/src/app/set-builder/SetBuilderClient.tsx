@@ -44,6 +44,7 @@ import {
   encodeSet,
 } from "@/lib/set-codec";
 import {
+  cantWear,
   DEFAULT_LIMIT,
   resolveWanted,
   selectableSkills,
@@ -181,15 +182,6 @@ function PieceList({
   );
 }
 
-/** Why the hunter in the form can't wear `piece`, or null if they can. */
-function cantWear(piece: Piece, form: Pick<Form, "hunterType" | "sex">): string | null {
-  if (piece.hunterType !== "Both" && piece.hunterType !== form.hunterType) {
-    return `${piece.hunterType} only`;
-  }
-  if (piece.sex !== "Both" && piece.sex !== form.sex) return `${piece.sex} only`;
-  return null;
-}
-
 function readForm(): Form {
   try {
     const saved = JSON.parse(localStorage.getItem(STORAGE_KEY) ?? "null") as Partial<Form> | null;
@@ -266,11 +258,16 @@ export default function SetBuilderClient() {
       return p ? [p] : [];
     });
   const pieceIds = (hrefs: string[]) => piecesOf(hrefs).map((p) => p.id);
+  // Only locks the hunter can wear: the search ignores the others.
+  const lockIds = (hrefs: string[], hunter: Pick<SearchQuery, "hunterType" | "sex">) =>
+    piecesOf(hrefs)
+      .filter((p) => !cantWear(p, hunter))
+      .map((p) => p.id);
   const runSearch = (f: Form = form) => {
     if (!data || f.skills.length === 0) return;
     const query: SearchQuery = {
       sort: f.sort,
-      lockPieces: pieceIds(f.locked),
+      lockPieces: lockIds(f.locked, f),
       excludePieces: pieceIds(f.excluded),
       skills: f.skills,
       hunterType: f.hunterType,
@@ -285,11 +282,18 @@ export default function SetBuilderClient() {
     };
     search(query);
   };
-  // Locking or excluding a result's piece searches again, so the results
-  // show the change (a running search takes it up next time).
+  // Locking or excluding a result's piece runs the search behind the results
+  // again with only that change (not other edits made in the form since),
+  // restarting it if it's still running.
   const changePieces = (next: Form) => {
     setForm(next);
-    if (!searching) runSearch(next);
+    if (!searched) return;
+    if (searching) cancel();
+    search({
+      ...searched,
+      lockPieces: lockIds(next.locked, searched),
+      excludePieces: pieceIds(next.excluded),
+    });
   };
   const pieceActions: PieceActions = {
     isLocked: (p) => form.locked.includes(p.href),
