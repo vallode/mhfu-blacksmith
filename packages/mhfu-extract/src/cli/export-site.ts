@@ -30,6 +30,12 @@
  * monster's `overlay/emNN.ovl`, placed with the package's skeleton. The site
  * fetches it by the model's path; a monster whose hitboxes can't be read has
  * none, and the reason is logged.
+ *
+ * `public/models/hunter/` holds the hunter shown holding a weapon: `hunter.glb`
+ * (the default armor set on the player's skeleton, `models/hunter.ts`), one
+ * `wNN.motions.bin` per weapon class and `common.motions.bin`, the common
+ * motions the site uses (motion-pack.ts). Weapons are written in `part_<n>`
+ * pieces (a shield, a second blade) so the site can carry them apart.
  */
 import { createHash } from "node:crypto";
 import { access, mkdir, readFile, readdir, rm, writeFile } from "node:fs/promises";
@@ -37,14 +43,23 @@ import path from "node:path";
 import { BinaryReader } from "../binary/reader.js";
 import type { Region } from "../container/sfo.js";
 import { MHP2G_PROFILE } from "../games/mhp2g.js";
-import type { ClipOptions } from "../models/animation.js";
+import { buildPlayerClips, PLAYER_GROUP_SLOTS, type ClipOptions } from "../models/animation.js";
+import { isAhi, readAhi, type Bone } from "../models/ahi.js";
 import { skeletonFor } from "../models/attach.js";
-import { buildGlb, type GlbOptions } from "../models/gltf.js";
+import { buildGlb, type GlbOptions, type GlbPartOf } from "../models/gltf.js";
+import { boneRoots, composeHunter, readHunterPiece, type HunterSlot } from "../models/hunter.js";
 import { packMotions } from "../models/motion-pack.js";
+import { readMotionBank } from "../models/motion.js";
 import { packageModel } from "../models/rig.js";
-import { isPac, readPac } from "../models/pac.js";
-import { isPmo } from "../models/pmo.js";
+import { isPac, readPac, type PacEntry } from "../models/pac.js";
+import { isPmo, type Pmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
+import {
+  poseWeapon,
+  SHEATHED_TARGET,
+  WEAPON_POSES,
+  type WeaponPoses,
+} from "../models/weapon-pose.js";
 import { parseOvl, type OvlFile } from "../container/ovl.js";
 import { readMonsterCollision } from "../monsters/collision.js";
 import { buildSiteHitboxes, jointPositions } from "../monsters/hitboxes.js";
@@ -109,6 +124,8 @@ type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string 
  * is skinned, and its motions come back apart, packed (motion-pack.ts), so a
  * page can show the model before fetching them; `motionsFile` names the file
  * the GLB should point at for them (monsters with the same motions share one).
+ * A weapon's bones are posed as the game has them drawn, with the sheathed
+ * pose as a morph target (`pose`, weapon-pose.ts).
  */
 async function packageToGlb(
   buf: Buffer,
@@ -116,23 +133,67 @@ async function packageToGlb(
   options: GlbOptions,
   clipOptions: ClipOptions,
   motionsFile: (motions: Buffer) => string,
+  pose?: WeaponPoses,
 ): Promise<{ glb: Buffer; motions?: Buffer } | null> {
   if (!isPac(buf)) return null;
   const entries = readPac(buf);
   const pmoEntry = entries.find((entry) => isPmo(entry.data));
   if (!pmoEntry) return null;
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
-  const { pmo, rig } = packageModel(entries, pmoEntry.index, clipOptions);
+  const model = packageModel(entries, pmoEntry.index, clipOptions);
+  const { rig } = model;
+  // An unrigged model's skeleton still splits it into pieces and poses it.
+  const bones = rig ? undefined : weaponSkeleton(entries, pmoEntry.index);
+  const { pmo, sheathed } = pose && bones ? poseWeapon(model.pmo, bones, pose) : { pmo: model.pmo };
   const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
   const motions = rig?.clips?.length ? packMotions(rig.clips) : undefined;
   const { glb } = await buildGlb(
     pmo,
     textures,
     name,
-    options,
+    rig
+      ? options
+      : {
+          ...options,
+          partOf: bones && partsByRoot(bones, pmo),
+          ...(sheathed ? { targets: [{ name: SHEATHED_TARGET, pmo: sheathed }] } : {}),
+        },
     rig && { bones: rig.bones, motionsFile: motions && motionsFile(motions) },
   );
   return { glb, motions };
+}
+
+/** A weapon's skeleton: the first `.ahi` after its mesh, if it parses. */
+function weaponSkeleton(entries: PacEntry[], pmoIndex: number): Bone[] | undefined {
+  const ahi = entries.slice(pmoIndex + 1).find((entry) => isAhi(entry.data));
+  if (!ahi) return undefined;
+  try {
+    return readAhi(ahi.data);
+  } catch {
+    return undefined;
+  }
+}
+
+/**
+ * A weapon's pieces: a primitive belongs to the root of its most-weighted
+ * bone, in the skeleton that follows the mesh (`weaponSkeleton`, see
+ * `boneRoots`). Undefined for a model with one root, which is all but the
+ * two-piece weapons.
+ */
+function partsByRoot(bones: Bone[], pmo: Pmo): GlbPartOf | undefined {
+  const roots = boneRoots(bones);
+  if (Math.max(...roots) === 0) return undefined;
+  return (mesh, primitive) => {
+    const { bones: palette, geometry } = pmo.meshes[mesh]!.primitives[primitive]!;
+    const weight = new Map<number, number>();
+    for (const vertex of geometry.vertices)
+      vertex.weights?.forEach((w, slot) => {
+        const bone = palette[slot] ?? -1;
+        if (bone >= 0) weight.set(bone, (weight.get(bone) ?? 0) + w);
+      });
+    const main = [...weight].sort((a, b) => b[1] - a[1])[0]?.[0];
+    return main === undefined ? 0 : (roots[main] ?? 0);
+  };
 }
 
 async function exists(file: string): Promise<boolean> {
@@ -142,6 +203,69 @@ async function exists(file: string): Promise<boolean> {
   } catch {
     return false;
   }
+}
+
+/** The armor the hunter wears: the model of each slot's piece of this name, by data name. */
+const HUNTER_ARMOR: Record<HunterSlot, string> = {
+  helmet: "Battle Helm",
+  plate: "Battle Mail",
+  gauntlets: "Battle Vambraces",
+  waist: "Battle Tasset",
+  leggings: "Battle Greaves",
+};
+/** Weapon classes (`motion/wNN_tbl.bin`, by `WEAPON_TYPE_NAMES` index). */
+const WEAPON_CLASS_COUNT = 11;
+/** Slots of `motion/plcom_tbl.bin` the site plays: group 0's standing idle (weapon away). */
+const COMMON_MOTION_SLOTS = new Set([0 * PLAYER_GROUP_SLOTS + 1]);
+
+async function exportHunter(
+  reader: BinaryReader,
+  region: Region,
+  ids: EquipmentIds,
+  options: ExportSiteOptions,
+): Promise<void> {
+  const dataBin = path.join(options.unpacked, "data-bin");
+  const models = readArmorModelIds(reader, MHP2G_PROFILE.resolverForRegion(region) ?? undefined);
+  const pieces = await Promise.all(
+    (Object.entries(HUNTER_ARMOR) as [HunterSlot, string][]).map(async ([slot, name]) => {
+      const entry = models[slot].find((e) => ids[slot]?.[e.index]?.name === name);
+      if (!entry) throw new Error(`Default armor piece not found: ${name}`);
+      const source = path.join(dataBin, armorModelPath(slot, "m", entry.maleId));
+      return readHunterPiece(slot, readPac(await readFile(source)));
+    }),
+  );
+  const { pmo, textures, bones } = composeHunter(pieces);
+  const clipOptions = options.lossless ? {} : SITE_CLIP_OPTIONS;
+  const dir = path.join(options.out, "hunter");
+  await mkdir(dir, { recursive: true });
+  const { glb } = await buildGlb(
+    pmo,
+    textures,
+    "hunter",
+    options.lossless ? {} : SITE_GLB_OPTIONS,
+    { bones },
+  );
+  await writeFile(path.join(dir, "hunter.glb"), glb);
+
+  let size = glb.length;
+  const writeClips = async (file: string, clips: ReturnType<typeof buildPlayerClips>) => {
+    const pack = packMotions(clips);
+    size += pack.length;
+    await writeFile(path.join(dir, file), pack);
+  };
+  const bank = async (name: string) =>
+    readMotionBank(await readFile(path.join(dataBin, "motion", `${name}_tbl.bin`)));
+  await writeClips(
+    "common.motions.bin",
+    buildPlayerClips(bones, await bank("plcom"), clipOptions).filter((clip) =>
+      COMMON_MOTION_SLOTS.has(clip.slot),
+    ),
+  );
+  for (let weaponClass = 0; weaponClass < WEAPON_CLASS_COUNT; weaponClass++) {
+    const name = `w${String(weaponClass).padStart(2, "0")}`;
+    await writeClips(`${name}.motions.bin`, buildPlayerClips(bones, await bank(name), clipOptions));
+  }
+  console.log(`hunter: ${(size / 1024).toFixed(0)} KB`);
 }
 
 /** Converts each DATA.BIN package at most once, caching the result path (or null). */
@@ -158,7 +282,7 @@ class Converter {
     private readonly clipOptions: ClipOptions,
   ) {}
 
-  async convert(source: string, relativeOut: string): Promise<string | null> {
+  async convert(source: string, relativeOut: string, pose?: WeaponPoses): Promise<string | null> {
     const cached = this.done.get(source);
     if (cached !== undefined) return cached;
     let result: string | null = null;
@@ -184,6 +308,7 @@ class Converter {
           shared = existing !== undefined;
           return existing ?? ownMotions;
         },
+        pose,
       );
       if (converted) {
         await mkdir(path.dirname(file), { recursive: true });
@@ -358,7 +483,11 @@ async function exportWeapons(
       const page = ids[list]?.[entry.index];
       if (!page?.type) continue;
       const id = String(entry.modelId).padStart(3, "0");
-      const relative = await converter.convert(`weapon/we${id}.pac`, `weapons/we${id}.glb`);
+      const relative = await converter.convert(
+        `weapon/we${id}.pac`,
+        `weapons/we${id}.glb`,
+        WEAPON_POSES[page.type as keyof typeof WEAPON_POSES],
+      );
       if (relative) {
         (weapons[page.type] ??= {})[page.name] = entry.modelId;
         count++;
@@ -481,6 +610,9 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
     }
     if (await exists(path.join(options.unpacked, "data-bin", "player"))) {
       manifest.armor = await exportArmor(reader, unpackManifest.region, ids, converter);
+      await exportHunter(reader, unpackManifest.region, ids, options).catch((err: unknown) => {
+        console.log(`no hunter: ${err instanceof Error ? err.message : String(err)}`);
+      });
     }
   } else {
     console.log(

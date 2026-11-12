@@ -40,6 +40,7 @@ pnpm --filter mhfu-extract diff    --extracted .cache/mhfu/extracted --data ../.
 pnpm --filter mhfu-extract compare --extracted .cache/mhfu/extracted --data ../../data
 pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data ../../data --markdown .cache/mhfu/changes.md
 pnpm --filter mhfu-extract item-icons --unpacked .cache/mhfu
+pnpm --filter mhfu-extract area-maps --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests.json --tsv .cache/mhfu/quest-size.tsv
 pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
@@ -68,6 +69,8 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
   "Building `data/` from the disc".
 - `item-icons` slices the item icons out of the UI atlas into the site's
   `public/images/`. See "Items".
+- `area-maps` writes the area map textures `data/gathering.json` uses to
+  the site's `public/images/area-maps/`. See "Area maps".
 - `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
   open quest questions (`src/emit/quest-probe.ts`): the values the monster
   size candidates take, the header's two objective slots, each script
@@ -563,7 +566,7 @@ pnpm --filter mhfu-extract export-site --unpacked .cache/mhfu
 texture set) into `.glb` files. The source lives in `src/models/`: `pac.ts`
 is the container, `pmo.ts` the mesh tables, `ge.ts` the PSP GE display lists
 that hold the geometry, `tmh.ts` the textures, `ahi.ts` the skeleton,
-`attach.ts` puts severable tails together, `motion.ts` reads monster motions and `animation.ts` makes clips of them, `rig.ts` puts a monster together, `gltf.ts`/`texture.ts`/`png.ts`
+`attach.ts` puts severable tails together, `motion.ts` reads monster motions and `animation.ts` makes clips of them, `rig.ts` puts a monster together, `hunter.ts` an armor set on the player's skeleton, `gltf.ts`/`texture.ts`/`png.ts`
 the output. Two corrections to mhff's description of PMO 1.0, both
 confirmed on real files: mesh records are 0x18 bytes, and materials go
 through a per-slot byte map at header offset 0x28.
@@ -637,7 +640,7 @@ motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   long; the tail-tip copy (part 3) has no motions. A bone record holds up to
   nine channels (scale, rotation, translation x/y/z; a missing one keeps the
   bind value) of cubic Hermite keys: s16 value, u16 frame, s16 tangents in
-  and out. Scale and translation are 1/16 fixed point, rotation 0x8000 = pi.
+  and out. Scale and translation are 1/16 fixed point, rotation 0x2000 = pi (0x2000 keeps a stance's feet level and Kelbi's lowest bone at exactly 0).
   On an EU disc all 89 banks (em01-em89) parse, 9,995 motions, and in all
   but 3 (em82's, which split its body and head 32/8 bones, not 29/11) every
   motion's bone count is its part's. Driving skinned meshes with them in a
@@ -645,8 +648,7 @@ motion bank, .ahi, PMO, .TMH]`. In the first skeleton each bone has a part
   (hip 1411/16 = 88 units up), and Rathian and Cephalos hold natural poses
   mid-motion (Rathian rearing, Cephalos lunging). Open: the Euler order (no order distorts the meshes less
   than another: most vertices follow a single bone), which tangent is which
-  (they're equal on most keys), and what `motion/*.bin` (the player's and
-  shared motions) holds. Frames are 1/60 s: the game runs at 30 fps and
+  (they're equal on most keys). The player's motions are under "Hunter" below. Frames are 1/60 s: the game runs at 30 fps and
   steps motions two frames at a time, so 9,972 of the 9,995 motions last an
   even number of frames (played at 30 a second, they look half speed).
 - **Clips.** `animation.ts` turns each slot into one clip over the whole
@@ -690,8 +692,8 @@ file paths:
 Monster motions go next to the models as `monsters/emNN.motions.bin`
 (`src/models/motion-pack.ts` has the layout): gzip of the clips as
 delta-coded s16 keys, at a looser tolerance (0.5 degrees, 0.1 units), since
-glTF's per-track JSON outweighed the key data (68 MB for all monsters as
-glTF animations, 12.3 MB like this). Monsters that share a bank share a
+glTF's per-track JSON outweighed the key data (about five times the size as
+glTF animations; 22.7 MB for all monsters like this). Monsters that share a bank share a
 file: the `.glb` names its own in `asset.extras.motions`. Skinning grew the
 83 monster models from 6.0 to 7.0 MB. The site's viewer
 (`apps/blacksmith/src/lib/motions.ts`, `ModelViewer.tsx`) plays them in
@@ -703,6 +705,74 @@ for its motions so it first shows posed, and shows still if they're slower.
 
 Each run replaces the categories it could export and keeps the rest of the
 previous manifest, so a run without `eboot.bin` keeps weapons and armor.
+
+### Hunter
+
+`export-site` writes a hunter for the weapon pages' viewer to
+`public/models/hunter/` (1.4 MB in all, 245 two-piece weapon models grew by
+63 KB). Needs only `player/` and `motion/` from the
+unpacked directory; the log says `no hunter: ...` if it can't.
+
+| File                 | Size      | Holds                                                 |
+| -------------------- | --------- | ----------------------------------------------------- |
+| `hunter.glb`         | 50 KB     | Male Battle armor set, skinned to the player skeleton |
+| `common.motions.bin` | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`    |
+| `wNN.motions.bin`    | 92-196 KB | Every motion of weapon class NN                       |
+
+- **Skeleton.** 21 bones (`src/models/hunter.ts` lists them), T-pose, origin
+  at the hips, left +X, facing +Z. Bones 0-8 are part 0 and 9-20 part 1.
+- **Motions.** `motion/plcom_tbl.bin` and `motion/wNN_tbl.bin` are the same
+  bank format as a monster's (`motion.ts`), but their tables pair by motion
+  group: table 2g moves the 9 lower bones and 2g + 1 the 12 upper bones of
+  group g. Weapon files have 3 groups, `plcom` 5. `buildPlayerClips` numbers a
+  clip's slot group x 1000 + slot, in the same `MHM1` pack as monsters. Files
+  run in the game's weapon class order: 00 great sword, 01 heavy bowgun, 02
+  hammer, 03 lance, 04 sword and shield, 05 light bowgun, 06 dual blades, 07
+  long sword, 08 hunting horn, 09 gunlance, 10 bow. Slot 1 of group 0 is the
+  drawn stance in a weapon file and standing with the weapon away in `plcom`.
+  The disc has no names for the rest: the site calls groups 0-1 "Move" and the
+  others "Attack", which is a guess from what they look like.
+- **Armor.** Each piece has a partial skeleton and sits in that skeleton's
+  bind pose; helmets are in `player/<m|f>/hair/`, then `body`, `arm`, `wst`,
+  `reg`. `composeHunter` moves each vertex by the distance between its bones'
+  places in the piece and in the player, and remaps the palette to player
+  joints through `ARMOR_JOINT_MAPS`, copied from `MODEL_JOINT_MAP` in
+  tclamb/mhp2g-decomp (`player_manager.joint_map.cpp`).
+- **Weapons.** A weapon's `.ahi` has one root per piece the game moves apart:
+  the main weapon, then a shield, second blade, quiver or scabbard. `export-site`
+  groups the mesh by root, and a weapon with more than one gets a `part_<n>`
+  node per piece.
+- **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit in the fist (the middle of the gauntlets' hand vertices), gripped along the wrist joint's Z axis. The great sword, long sword, hammer and hunting horn are the right hand's (it draws and sheathes them alone), but while both hands hold one the right fist stays on the left fist's Z axis at a set distance (53, 62, 79 and 42) in most frames, turning about it, while the left fist wanders in the right's frame. So the viewer moves these to the left fist, along that axis, whenever the right fist is on it, and back to the right fist (in the place they share in the drawn stance) when it isn't. The fists don't say how far round its length a weapon is turned: these take the roll the right fist's own frame gives them, as one-handed weapons do, which matches the game for the Ravager Blade. Bowguns are in the right fist, turned so the stock reaches the left fist in most frames. All of this is a fit to the motions, not read from the game; at the end of a sheathe the weapon is still in the hand, since when the game moves it to the back isn't known. On the
+  back they're placed by eye (`WEAPON_MOUNTS` in the site's `src/lib/hunter.ts`),
+  so a sheathed weapon is only roughly where the game has it. Only the male
+  Battle set is exported.
+- **Posed weapon bones** (`models/weapon-pose.ts`). Some weapons skin
+  pieces to extra bones that the game moves at run time, and no motion file
+  animates them: the Ravager Blade's (`we012`) claws are weighted 0.87/0.13
+  to bones 1 and 3 and lie inside the blade in the bind pose. Skinning
+  (EU 0x088641C0, 0x08860648, drawWeight 0x088646F0) is chain · inverse of
+  the AHI bind, so a bone left alone skins to the identity; the player's
+  per-frame code sets some binds by weapon class first. The eboot's copy
+  (vtable slot 8, 0x088D3F68) runs in town, where weapons are always away:
+  great swords and long swords get bone 2 = diag(1, 1, 0.73) and bone 3 at
+  rest. The quest copy is in `game_task.ovl` (EU 0x9A932C0, great sword and
+  long sword case 0x9A93F0C) and reads whether the weapon is drawn (player
+  flag 0x410 bit 3): drawn, bone 2 is at rest and bone 3 = diag(2.6, 1, 2.5)
+  at its own translation, which throws the claws out of the spine. Draw and
+  sheathe motions animate between the two with keyframe tracks in the
+  eboot's data (bone 3's x goes 1, 3.15, 2.6 while drawing). A JP save state
+  with the Ravager Blade drawn has exactly that bind on bone 3 and bone 2 at
+  rest. The export bakes the drawn pose into great swords' and long swords'
+  meshes (11 great sword models have pieces on bone 3: the Ravager,
+  Lacerator and Tactical Blades' claws, the Serpentblades' fins, the Tigrex
+  swords' spikes, the Ceanataur blades' claw) and writes the sheathed pose
+  as a morph target named `sheathed` (float offsets, `extras.targetNames`),
+  unrotated bones only. The site's hunter viewer turns the target on for
+  sheathed motions; a weapon shown alone stays drawn. Other classes
+  aren't posed: the lance's drawn bone 2 and the hammer's bone 3 (outside a
+  charge) are at rest, while the gunlance, bow and bowguns turn bones in
+  ways not decoded yet. The per-model joint interpreter (0x088CF2C8, records
+  keyed by model id at 0x089B07B4) animates other models and isn't applied.
 
 ## Emit layer
 
@@ -733,11 +803,12 @@ derivation notes for specifics):
   order. All 15 match the site's values; the site listed 5 of them the
   other way round (Firestorm, Volcanic Storm, Twin Nails, Twin Nails+, Fire
   and Ice), and `build-data` now writes the disc's order.
-- Material `type`/`color` (e.g. "ore"/"gray") and decoration `category`
-  aren't derivable from the disc at all — they're presentation metadata,
-  supplied by the `src/overlay/materials.json` and
-  `src/overlay/decoration-categories.json` overlays (generated once from the
-  committed `data/` files; see git history).
+- Material `type`/`color` (e.g. "ore"/"gray") aren't derivable from the
+  disc at all — they're presentation metadata, supplied by the
+  `src/overlay/materials.json` overlay (generated once from the committed
+  `data/` files; see git history).
+- Decorations are emitted in the game's crafting list order: the order of
+  their first recipe in the `EquipmentCreate` decoration section.
 
 Known gaps and approximations, tracked in
 [#38](https://github.com/vallode/mhfu-blacksmith/issues/38):
@@ -926,9 +997,10 @@ raw `90000` -> 50 minutes). `target` is null when there's no single hunt/
 capture objective (`targetNum === 0`, or `targetId` doesn't resolve to a
 real monster — e.g. Treasure Hunting quests reuse this field for something
 else entirely, with real values like 928 far outside `emID`'s 90-entry
-range). `small_monsters` is deduplicated to one row per species with the
-max quantity seen across every zone, since `SmallMonIndex` frequently
-repeats an entire zone list verbatim (confirmed on real data); `large_monsters`
+range). `small_monsters` is one row per species: `max_quantity` is the most in any
+single zone, `total_quantity` the sum over the quest's zones. `SmallMonIndex`
+frequently points several entries at the same records (confirmed on real
+data), so a table at an address already seen for that zone is counted once. A spawn with quantity 99 (554 records; the rest top out at 20) is not counted and sets `endless`; `large_monsters`
 is deduplicated the same way for exact-duplicate `(monster, quantity, power)`
 rows. Each large monster's `multipliers` are its stat multiplier row (see
 "Monster overlays").
@@ -970,6 +1042,39 @@ u16 table, u16 most gathers, u16 type, u16 fewest gathers`), ending at
   quest there and a few gathering quests' own (Great Ore Discovery, A
   Mushroom Goldrush!, Mountain Herb Picking). Within an area, identical
   points are one entry with a `count`.
+
+### Area maps
+
+`src/tables/map-layout.ts` works out where a gathering point sits on the
+map, and `emit/gathering.ts` writes it as `positions` (one pixel per point)
+and the layout's `texture`. The formula is the one the map screen draws the
+player's arrow with (EU EBOOT, around `0x8843358`), for x and z separately:
+
+```
+pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
+```
+
+| Table                                     | Where    | Address      | Layout                                  |
+| ----------------------------------------- | -------- | ------------ | --------------------------------------- |
+| Map size, by quest map ID                 | EBOOT    | `0x0893887c` | `{ f32 width, f32 depth }`              |
+| Zoom (1.0 or 0.9), by quest map ID        | EBOOT    | `0x08938a7c` | `f32`                                   |
+| Stages, by quest map ID                   | game_sub | `0x09ce4708` | `{ u32 count, u32 pointer to u16 IDs }` |
+| `Gamestage::stage_world_tbl`, by stage ID | game_sub | `0x09cdef40` | 32 bytes, starting `f32 x, f32 z`       |
+
+- **Areas**: a gathering point's area index is its place in the map's stage
+  list, so index 0 is the Base Camp. Stage IDs aren't in area order.
+- **Textures**: `data-bin/cockpit/map<N>.tmh`, 160x160, named by quest map
+  ID. Night maps reuse the day map's (16 uses 2, 18 uses 4, 21 uses 11, 31
+  uses 30). `area-maps` writes the ones `data/gathering.json` uses to
+  `public/images/area-maps/`, so run it after `build-data`.
+- **Not placed**: the Tower's maps (14 and 15) draw their floors on separate
+  pages this formula doesn't reach. A few areas aren't drawn on their map
+  at all (the Desert's 11th), so an area with no point on opaque art loses
+  its `positions`.
+- **Regions**: the addresses are the EU disc's, so `extract` only places
+  points for EU. On an EU disc it stops if the tables aren't where they
+  should be or a texture can't be read, rather than write data without
+  positions.
 
 ### Items
 

@@ -224,6 +224,54 @@ test("buildGlb lossy positionBits rounds positions to the requested precision", 
   }
 });
 
+test("buildGlb writes morph targets as named float offsets from the stored vertices", async () => {
+  const model = readPmo(exactPmo());
+  // The target pushes every vertex half the scale along z, the normal unchanged.
+  const raised = {
+    ...model,
+    meshes: model.meshes.map((mesh) => ({
+      ...mesh,
+      primitives: mesh.primitives.map((primitive) => ({
+        ...primitive,
+        geometry: {
+          ...primitive.geometry,
+          vertices: primitive.geometry.vertices.map((v) => ({
+            ...v,
+            position: [v.position[0], v.position[1], v.position[2] + 0.5] as [
+              number,
+              number,
+              number,
+            ],
+          })),
+        },
+      })),
+    })),
+  };
+  for (const compress of [false, true]) {
+    const { glb, stats } = await buildGlb(model, [], "test", {
+      compress,
+      targets: [{ name: "raised", pmo: raised }],
+    });
+    assert.equal(stats.vertices, 4);
+    const json = glbJson(glb);
+    assert.deepEqual(json.meshes[0].extras.targetNames, ["raised"]);
+    assert.deepEqual(json.meshes[0].weights, [0]);
+    const [target] = json.meshes[0].primitives[0].targets;
+    const position = json.accessors[target.POSITION];
+    assert.equal(position.componentType, 5126);
+    await MeshoptDecoder.ready;
+    const offsets = Buffer.from(readView(glb, json, position.bufferView));
+    for (let i = 0; i < 4; i++) {
+      const at = i * 24;
+      const read = [0, 1, 2, 3, 4, 5].map((k) => offsets.readFloatLE(at + k * 4));
+      assert.deepEqual(
+        read.map((c) => Math.round(c * 1e4) / 1e4),
+        [0, 0, 0.5, 0, 0, 0],
+      );
+    }
+  }
+});
+
 test("buildGlb falls back to float attributes for other vertex layouts", async () => {
   const { glb, stats } = await buildGlb(readPmo(pmo()), [], "test", { compress: false });
   assert.deepEqual(stats, { primitives: 2, vertices: 4, triangles: 4, clips: 0 });

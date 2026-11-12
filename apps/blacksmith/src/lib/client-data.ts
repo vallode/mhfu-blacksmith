@@ -10,7 +10,7 @@
  *   navigating between already-loaded items renders with no loading frame
  * - typed hooks return { item, tree, loading }
  */
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import type { Weapon, ArmorPiece, Monster, Decoration, WeaponTreeNode } from "./types";
 import {
   type Dictionaries,
@@ -27,6 +27,7 @@ import {
   decodeTree,
 } from "./schema";
 import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
+import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
 import { decodeCombinations, type CombinationIndex, type CombinationsBundle } from "./combinations";
@@ -189,6 +190,20 @@ export function useDecoration(slug: string): DetailState<Decoration> {
   });
 }
 
+/**
+ * The decoration list and every decoration in it (the list's filters need
+ * their slots and skills), from the same bundle as the detail page.
+ */
+export function useDecorationList(): DetailState<Decoration[]> {
+  return useBundle<Decoration[]>("decorations", (bundle, dict) => {
+    const b = bundle as DecorationBundle;
+    return {
+      item: b.items.map((d) => decodeDecoration(dict, d)),
+      tree: decodeTree(b.tree, "decoration"),
+    };
+  });
+}
+
 // ---------------------------------------------------------------------------
 // Tree/list-only hooks — for the [type]/[slot+rank]/[category] tree/list
 // pages, which only need the tree structure (or item names), not a single
@@ -234,13 +249,6 @@ export function useArmorTree(slot: string, rank: string): ListState<never> {
   return useBundleList(`armor-${slot}-${rank}`, (bundle) => {
     const b = bundle as ArmorBundle;
     return { tree: decodeTree(b.tree, b.slot), items: null };
-  });
-}
-
-export function useDecorationTree(): ListState<never> {
-  return useBundleList("decorations", (bundle) => {
-    const b = bundle as DecorationBundle;
-    return { tree: decodeTree(b.tree, "decoration"), items: null };
   });
 }
 
@@ -478,6 +486,41 @@ export function useItemSources(): { sources: Map<number, ItemSources> | null; er
     };
   }, []);
   return { sources, error };
+}
+
+// ---------------------------------------------------------------------------
+// Area maps: each quest's gathering points on the game's map
+// ---------------------------------------------------------------------------
+let areaMapsCache: AreaMapsBundle | null = null;
+let areaMapsPromise: Promise<AreaMapsBundle> | null = null;
+
+function getAreaMaps(): Promise<AreaMapsBundle> {
+  areaMapsPromise ??= fetchJson<AreaMapsBundle>("/data/area-maps.json")
+    .then((bundle) => (areaMapsCache = bundle))
+    .catch((e) => {
+      areaMapsPromise = null; // allow a retry on the next call
+      throw e;
+    });
+  return areaMapsPromise;
+}
+
+/** A quest's map with its gathering points; `map` is null while loading, on error, or if it has none. */
+export function useAreaMap(questId: number): { map: AreaMap | null; loading: boolean } {
+  const [bundle, setBundle] = useState(areaMapsCache);
+  const [failed, setFailed] = useState(false);
+  useEffect(() => {
+    if (areaMapsCache) return;
+    let cancelled = false;
+    getAreaMaps().then(
+      (b) => !cancelled && setBundle(b),
+      () => !cancelled && setFailed(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  const map = useMemo(() => (bundle ? decodeAreaMap(bundle, questId) : null), [bundle, questId]);
+  return { map, loading: !bundle && !failed };
 }
 
 // ---------------------------------------------------------------------------

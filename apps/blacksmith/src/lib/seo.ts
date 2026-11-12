@@ -9,7 +9,8 @@ export const SITE_NAME = "MHFU Blacksmith";
 /**
  * Absolute base for metadata URLs. Netlify deploy previews and branch deploys
  * use their own address, so their embeds load that build's icons and oEmbed
- * files rather than production's.
+ * files rather than production's. Elsewhere NEXT_PUBLIC_SITE_URL gives the
+ * address (the Cloudflare workflow sets it for each deploy).
  */
 export const SITE_URL =
   (process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL) ||
@@ -325,9 +326,9 @@ export function monsterDescription(m: Monster): string {
   );
 }
 
-/** "Rarity 5 Decoration · Attack up", linking to the decoration list. */
+/** "Rarity 5 Decoration", linking to the decoration list. */
 export const decorationAuthor = (d: Decoration): EmbedAuthor => ({
-  name: [`${rarityPrefix(d.rarity)}Decoration`, d.category ?? ""].filter(Boolean).join(" · "),
+  name: `${rarityPrefix(d.rarity)}Decoration`,
   path: "/decorations/",
 });
 

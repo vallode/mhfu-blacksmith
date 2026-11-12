@@ -160,6 +160,7 @@ export interface CompactDecoration {
   cc?: number; // create_cost
   sk?: number[]; // skills stringIdx[]
   cm?: MatTuple[];
+  am?: MatTuple[]; // alternative_create_mats: the jewel's second recipe
   mr?: MinRankTuple; // earliest quest progress needed to make it
   i?: number; // in-game item ID (data/items.json)
 }
@@ -439,6 +440,8 @@ export function decodeDecoration(d: Dictionaries, x: CompactDecoration): Decorat
     create_cost: x.cc ?? null,
     skills: x.sk ? x.sk.map((si) => str(d, si)) : undefined,
     create_mats: decodeMats(d, x.cm),
+    alternative_create_mats: decodeMats(d, x.am),
+    item_id: x.i,
     min_rank: decodeMinRank(x.mr),
   };
 }

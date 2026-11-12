@@ -154,11 +154,53 @@ export function buildClips(
   tables: (Motion | null)[][],
   options: ClipOptions = {},
 ): Clip[] {
+  return clipsFromParts(
+    bones,
+    bonesByPart(bones).map((_, p) => partMotions(tables, p)),
+    0,
+    options,
+  );
+}
+
+/** Motion groups in a player bank's clips' `slot`: group * this + the slot within it. */
+export const PLAYER_GROUP_SLOTS = 1000;
+
+/**
+ * The clips from a player motion bank (`motion/plcom_tbl.bin`,
+ * `motion/wNN_tbl.bin`). Its tables come in pairs by motion group, one table
+ * per part of the player's skeleton (see motion.ts); a clip's `slot` is
+ * `group * PLAYER_GROUP_SLOTS + slot`.
+ */
+export function buildPlayerClips(
+  bones: readonly Bone[],
+  tables: (Motion | null)[][],
+  options: ClipOptions = {},
+): Clip[] {
+  const clips: Clip[] = [];
+  for (let group = 0; group * 2 < tables.length; group++) {
+    clips.push(
+      ...clipsFromParts(
+        bones,
+        [tables[group * 2] ?? [], tables[group * 2 + 1] ?? []],
+        group * PLAYER_GROUP_SLOTS,
+        options,
+      ),
+    );
+  }
+  return clips;
+}
+
+/** One clip per slot of the parts' motion lists (`byPart[p][slot]` animates part p), numbered from `firstSlot`. */
+function clipsFromParts(
+  bones: readonly Bone[],
+  byPart: (Motion | null)[][],
+  firstSlot: number,
+  options: ClipOptions,
+): Clip[] {
   const rotationTolerance = options.rotationTolerance ?? 0.002;
   const translationTolerance = options.translationTolerance ?? 0.02;
   const scaleTolerance = options.scaleTolerance ?? 0.001;
   const parts = bonesByPart(bones);
-  const byPart = parts.map((_, p) => partMotions(tables, p));
   const slots = Math.max(0, ...byPart.map((m) => m.length));
 
   const clips: Clip[] = [];
@@ -222,7 +264,7 @@ export function buildClips(
     }
     const lead = motions[0]!;
     clips.push({
-      slot,
+      slot: firstSlot + slot,
       duration: frames / FRAMES_PER_SECOND,
       loop: lead.loop,
       loopStart: lead.loopStart / FRAMES_PER_SECOND,

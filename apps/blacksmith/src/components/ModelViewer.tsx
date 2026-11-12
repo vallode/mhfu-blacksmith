@@ -4,6 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import Loading from "@/components/Loading";
 import { capsuleBone } from "@/lib/capsule-bone";
 import { cn } from "@/lib/cn";
+import {
+  fetchHunterClips,
+  HUNTER_MODEL,
+  SHEATHED_TARGET,
+  WEAPON_MOUNTS,
+  type HunterClip,
+  type WeaponMount,
+} from "@/lib/hunter";
 import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 
@@ -25,11 +33,17 @@ interface Props {
   label: string;
   /**
    * Show the model twice, fanned out from the grip and mirrored, as the game
-   * shows a pair of dual blades (each blade's file holds only one).
+   * shows a pair of dual blades (each blade's file holds only one). Only when
+   * the model shows alone, not held by the hunter.
    */
   pair?: boolean;
   /** Translucent capsules over the model, e.g. a monster's hitboxes. */
   capsules?: ModelCapsule[];
+  /**
+   * Show `src` (a weapon) in the hands of the hunter, playing this weapon
+   * type's motions. If the hunter's model can't load, the weapon shows alone.
+   */
+  hunter?: string;
 }
 
 type Three = typeof import("three");
@@ -65,6 +79,16 @@ type Status = "loading" | "ready" | "error";
 
 /** How long a model waits for its motions before showing still (see the effect). */
 const MOTIONS_WAIT_MS = 1500;
+/**
+ * A two-handed weapon is wholly in its holding hand (`WeaponMount.hold`) while
+ * the other fist is within GRIP_ON of the handle line, wholly in that fist
+ * from GRIP_OFF, and blended between the two in between (no latch: each frame
+ * stands alone). The fist can slide GRIP_SLIDE along the handle and still
+ * count as on it.
+ */
+const GRIP_ON = 8;
+const GRIP_OFF = 16;
+const GRIP_SLIDE = 20;
 
 /** Poses of the first motion sampled for the ground's height. */
 const GROUND_SAMPLES = 8;
@@ -76,6 +100,8 @@ interface MotionState {
   count: number;
   index: number;
   playing: boolean;
+  /** Each clip's name, when they have them (the hunter's). */
+  labels?: string[];
 }
 
 /** Drives the loaded motions from React; set while a model with motions shows. */
@@ -90,7 +116,7 @@ const panelButton = cn(modelPanelButton, "text-parchment");
  * Interactive 3D view of a .glb model: drag to rotate, scroll/pinch to zoom.
  * three.js is imported on demand so it only loads on pages that show a model.
  */
-export default function ModelViewer({ src, label, pair = false, capsules }: Props) {
+export default function ModelViewer({ src, label, pair = false, capsules, hunter }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("loading");
   /** Set while a model is shown, for the capsule effect below. */
@@ -163,11 +189,16 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       const animate = () => {
         frame = requestAnimationFrame(animate);
         mixer?.update(clock.getDelta());
+        holdWeapon?.();
         controls.update();
         renderer.render(scene, camera);
       };
 
       let model: import("three").Object3D | null = null;
+      /** Moves the weapon between the hunter's hands and back; only with `hunter`. */
+      let placeWeapon: ((sheathed: boolean) => void) | null = null;
+      /** Hands a two-handed weapon between the fists each frame (`WeaponMount.hold`). */
+      let holdWeapon: (() => void) | null = null;
       let ground: import("three").Mesh | null = null;
       const abort = new AbortController();
       cleanup = () => {
@@ -198,18 +229,110 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       };
 
       try {
-        const gltf = await new GLTFLoader().setMeshoptDecoder(MeshoptDecoder).loadAsync(src);
+        const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
+        // Without the hunter (an export that couldn't make one), the weapon shows alone.
+        const [body, own] = await Promise.all([
+          hunter ? loader.loadAsync(HUNTER_MODEL).catch(() => null) : null,
+          loader.loadAsync(src),
+        ]);
         if (disposed) return;
+        const gltf = body ?? own;
+        const weapon = body && own.scene;
+        const holding = body ? hunter : undefined;
         model = gltf.scene;
         const copies = [model];
-        if (pair) {
+        if (weapon && holding) {
+          scene.add(model);
+          // A two-piece weapon's nodes are part_0, part_1; a whole one is one mesh.
+          const named = weapon.children.filter((child) => child.name.startsWith("part_"));
+          const parts = named.length > 0 ? named : [weapon.children[0]!];
+          const mounts = WEAPON_MOUNTS[holding];
+          const body = model;
+          type Held = {
+            part: import("three").Object3D;
+            bone: import("three").Object3D;
+            holder: import("three").Object3D;
+            mount: WeaponMount & { hold: NonNullable<WeaponMount["hold"]> };
+          };
+          let held: Held[] = [];
+          // A great sword's or long sword's bones in the sheathed pose, as a
+          // morph target on the drawn mesh (mhfu-extract's weapon-pose.ts).
+          const poses: { influences: number[]; sheathed: number }[] = [];
+          weapon.traverse((node) => {
+            const mesh = node as import("three").Mesh;
+            const sheathed = mesh.morphTargetDictionary?.[SHEATHED_TARGET];
+            if (sheathed !== undefined && mesh.morphTargetInfluences)
+              poses.push({ influences: mesh.morphTargetInfluences, sheathed });
+          });
+          placeWeapon = (sheathed) => {
+            const plan = mounts && (sheathed ? mounts.sheathed : mounts.drawn);
+            for (const pose of poses) pose.influences[pose.sheathed] = sheathed ? 1 : 0;
+            held = [];
+            parts.forEach((part, i) => {
+              const mount = plan?.[Math.min(i, plan.length - 1)];
+              const bone = mount && body.getObjectByName(`bone_${mount.joint}`);
+              if (!mount || !bone) return;
+              bone.add(part);
+              part.position.set(...mount.position);
+              part.rotation.set(...mount.rotation);
+              const holder = mount.hold && body.getObjectByName(`bone_${mount.hold.joint}`);
+              if (mount.hold && holder)
+                held.push({ part, bone, holder, mount: { ...mount, hold: mount.hold } });
+            });
+          };
+          const fist = new THREE.Vector3();
+          const toHolder = new THREE.Matrix4();
+          const inHolder = new THREE.Matrix4();
+          const one = new THREE.Vector3(1, 1, 1);
+          const euler = new THREE.Euler();
+          const own = { position: new THREE.Vector3(), quaternion: new THREE.Quaternion() };
+          const taken = { position: new THREE.Vector3(), quaternion: new THREE.Quaternion() };
+          const scale = new THREE.Vector3();
+          holdWeapon = () => {
+            if (held.length === 0) return;
+            for (const { part, bone, holder, mount } of held) {
+              // Only the two hands' chains are read; render updates the rest.
+              bone.updateWorldMatrix(true, false);
+              holder.updateWorldMatrix(true, false);
+              const { hold } = mount;
+              // Where the first fist is along the holder's grip line.
+              toHolder.copy(holder.matrixWorld).invert();
+              fist
+                .set(...hold.fist)
+                .applyMatrix4(bone.matrixWorld)
+                .applyMatrix4(toHolder);
+              const off = Math.hypot(
+                fist.x - hold.grip[0],
+                fist.y - hold.grip[1],
+                Math.max(0, Math.abs(fist.z - hold.grip[2]) - GRIP_SLIDE),
+              );
+              const weight = 1 - THREE.MathUtils.smoothstep(off, GRIP_ON, GRIP_OFF);
+              own.position.set(...mount.position);
+              own.quaternion.setFromEuler(euler.set(...mount.rotation));
+              // The holder's place, in the first fist's frame (the part's parent).
+              inHolder.compose(
+                taken.position.set(...hold.position),
+                taken.quaternion.setFromEuler(euler.set(...hold.rotation)),
+                one,
+              );
+              inHolder
+                .premultiply(holder.matrixWorld)
+                .premultiply(toHolder.copy(bone.matrixWorld).invert())
+                .decompose(taken.position, taken.quaternion, scale);
+              part.position.lerpVectors(own.position, taken.position, weight);
+              part.quaternion.slerpQuaternions(own.quaternion, taken.quaternion, weight);
+            }
+          };
+          placeWeapon(true);
+        } else if (pair) {
           // Weapon models hold the grip at the origin with the blade along +Z,
-          // flat in the XZ plane: turn each copy PAIR_OFFSET about Y, and
-          // mirror the second across X so it's the left-hand blade.
+          // flat in the XZ plane: turn each copy PAIR_OFFSET about Y. The
+          // model is the left-hand blade; the second, the right-hand one,
+          // turns half round its length first, as the hunter holds it
+          // (WEAPON_MOUNTS).
           const second = model.clone();
           model.rotation.y = PAIR_OFFSET;
-          second.rotation.y = -PAIR_OFFSET;
-          second.scale.x = -1;
+          second.rotation.set(0, -PAIR_OFFSET, Math.PI);
           copies.push(second);
           scene.add(model, second);
         } else {
@@ -382,8 +505,9 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
         // framed: its first pose can stand far from the bind pose (Rathian's
         // is ~320 units up). On a slow connection it shows still meanwhile.
         const motionsFile = (gltf.asset.extras as { motions?: unknown } | undefined)?.motions;
-        const motions: Promise<MotionClip[]> =
-          typeof motionsFile === "string" && !pair
+        const motions: Promise<MotionClip[]> = holding
+          ? fetchHunterClips(holding, abort.signal).catch(() => [])
+          : typeof motionsFile === "string" && !pair
             ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
                 // The model still shows, just still.
                 .catch(() => [])
@@ -460,9 +584,17 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           });
           const apply = () => {
             const action = actions[state.index]!;
+            placeWeapon?.((sources[state.index] as HunterClip | undefined)?.sheathed === true);
             if (!action.isRunning() && !action.paused) action.play();
             action.paused = !state.playing;
-            setMotion({ count: actions.length, index: state.index, playing: state.playing });
+            setMotion({
+              count: actions.length,
+              index: state.index,
+              playing: state.playing,
+              labels: sources.some((clip) => (clip as HunterClip).label)
+                ? sources.map((clip) => (clip as HunterClip).label)
+                : undefined,
+            });
           };
           playerRef.current = {
             select: (index) => {
@@ -529,7 +661,7 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
       disposed = true;
       cleanup();
     };
-  }, [src, pair]);
+  }, [src, pair, hunter]);
 
   // Capsules live in their own group, rebuilt when they change; there are
   // few (Rathian has 32), so rebuilding is cheaper than diffing.
@@ -610,16 +742,31 @@ export default function ModelViewer({ src, label, pair = false, capsules }: Prop
           >
             ‹
           </button>
-          <span className="tabular-nums" aria-live="polite">
-            Motion {/* As wide as the largest number, so the panel keeps its size. */}
-            <span
-              className="inline-block text-right"
-              style={{ width: `calc(var(--cell) * ${String(motion.count).length})` }}
+          {motion.labels ? (
+            <select
+              aria-label="Motion"
+              className="cursor-pointer bg-transparent tracking-game"
+              value={motion.index}
+              onChange={(event) => playerRef.current?.select(Number(event.target.value))}
             >
-              {motion.index + 1}
+              {motion.labels.map((name, index) => (
+                <option key={index} value={index} className="bg-black">
+                  {name}
+                </option>
+              ))}
+            </select>
+          ) : (
+            <span className="tabular-nums" aria-live="polite">
+              Motion {/* As wide as the largest number, so the panel keeps its size. */}
+              <span
+                className="inline-block text-right"
+                style={{ width: `calc(var(--cell) * ${String(motion.count).length})` }}
+              >
+                {motion.index + 1}
+              </span>
+              /{motion.count}
             </span>
-            /{motion.count}
-          </span>
+          )}
           <button
             type="button"
             className={panelButton}

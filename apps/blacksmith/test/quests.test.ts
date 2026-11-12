@@ -11,6 +11,7 @@ import {
   questStarLevel,
   questStarLevels,
   questsWithMonster,
+  smallMonsterStages,
   questType,
   questTypeLabel,
   questTypesIn,
@@ -329,5 +330,82 @@ describe("questHp", () => {
     // Single precision lands either side of doubles (840, 919.999...).
     assert.equal(questHp(800, 1.05), 839);
     assert.equal(questHp(800, 1.15), 920);
+  });
+});
+
+test("encodeQuestBundle marks the quests area-maps.json has", () => {
+  const { bundle } = encodeQuestBundle({
+    quests: [quest({ id: 1 }), quest({ id: 2 })],
+    itemId: () => undefined,
+    monsterPage: () => undefined,
+    hasAreaMap: (id) => id === 2,
+  });
+  assert.deepEqual(
+    decodeQuests(bundle).map((q) => q.hasAreaMap),
+    [false, true],
+  );
+});
+
+describe("small monster totals", () => {
+  const spawn = (monster: string, total_quantity: number, endless?: boolean) => ({
+    monster,
+    max_quantity: total_quantity,
+    total_quantity,
+    ...(endless ? { endless } : {}),
+  });
+
+  test("round-trips each small monster's total and endless flag", () => {
+    const { bundle } = encode([
+      quest({
+        small_monsters: [spawn("Giaprey", 8), spawn("Vespoid", 0, true), spawn("Rocks", 5)],
+      }),
+    ]);
+    const q = decodeQuests(bundle)[0]!;
+    assert.deepEqual(
+      q.smallMonsters.map((m) => m.name),
+      ["Giaprey", "Vespoid"],
+    );
+    assert.deepEqual(q.smallSpawns, [
+      { total: 8, endless: false },
+      { total: 0, endless: true },
+    ]);
+  });
+
+  test("smallMonsterStages picks the biggest total per star level, keeping ties and endless quests", () => {
+    const { bundle } = encode([
+      quest({ id: 1, stars: 1, small_monsters: [spawn("Vespoid", 6)] }),
+      quest({ id: 2, stars: 1, small_monsters: [spawn("Vespoid", 9)] }),
+      quest({ id: 3, stars: 1, small_monsters: [spawn("Vespoid", 9)] }),
+      quest({ id: 4, stars: 1, small_monsters: [spawn("Vespoid", 0, true)] }),
+      quest({ id: 5, stars: 2, small_monsters: [spawn("Giaprey", 4)] }),
+      quest({ id: 6, stars: 3, small_monsters: [spawn("Vespoid", 2)] }),
+      quest({
+        id: 7,
+        hub: "training-school",
+        stars: 1,
+        small_monsters: [spawn("Vespoid", 50)],
+      }),
+    ]);
+    const stages = smallMonsterStages(decodeQuests(bundle), "Vespoid");
+    assert.deepEqual(
+      stages.map((s) => ({
+        hub: s.hub,
+        stars: s.stars,
+        best: s.best.map((b) => [b.quest.id, b.total]),
+        endless: s.endless.map((e) => e.id),
+      })),
+      [
+        {
+          hub: "village",
+          stars: 1,
+          best: [
+            [2, 9],
+            [3, 9],
+          ],
+          endless: [4],
+        },
+        { hub: "village", stars: 3, best: [[6, 2]], endless: [] },
+      ],
+    );
   });
 });

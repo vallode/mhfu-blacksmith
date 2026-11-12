@@ -4,16 +4,24 @@
  */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
-import { checkCraft, checkCreate, checkUpgrade, type CraftCheck } from "../src/lib/hunter-progress";
+import {
+  attachedDecorationCounts,
+  checkCraft,
+  checkCreate,
+  checkDecoration,
+  checkUpgrade,
+  type CraftCheck,
+} from "../src/lib/hunter-progress";
 import {
   cycleTreeFilter,
   filterTree,
   matchesTreeFilter,
+  rowStatus,
   treeRowKey,
   type ProgressLookups,
   type TreeFilterId,
 } from "../src/lib/tree-filter";
-import type { CompactWeapon, Dictionaries } from "../src/lib/schema";
+import type { CompactDecoration, CompactWeapon, Dictionaries } from "../src/lib/schema";
 import type { WeaponTreeNode } from "../src/lib/types";
 
 const dict = {
@@ -356,5 +364,77 @@ describe("tree filter", () => {
     for (let i = 0; i < 5; i++) order.push(cycleTreeFilter(order[order.length - 1], 1));
     assert.deepEqual(order, ["all", "owned", "not-owned", "craftable", "within-one", "all"]);
     assert.equal(cycleTreeFilter("all", -1), "within-one");
+  });
+});
+
+describe("decorations", () => {
+  const jewel = (cm: CompactDecoration["cm"], am?: CompactDecoration["am"]): CompactDecoration => ({
+    n: "Test Jewel",
+    s: "test-jewel",
+    cc: 200,
+    cm,
+    ...(am && { am }),
+  });
+
+  test("checkDecoration takes whichever recipe is closer", () => {
+    const counts = new Map([[12, 4]]);
+    const check = checkDecoration(dict, materials, jewel([[0, 1]], [[2, 4]]), counts, 500);
+    assert.equal(check.status, "ready");
+    assert.deepEqual(check.status === "ready" && check.materials, [
+      { name: "Monster Bone S", need: 4, have: 4 },
+    ]);
+    assert.deepEqual(
+      checkDecoration(dict, materials, jewel([[0, 1]]), counts, 500),
+      checkCreate(dict, materials, { n: "", s: "", cm: [[0, 1]], cc: 200 }, counts, 500),
+    );
+  });
+
+  test("attachedDecorationCounts counts jewels in every piece of equipment", () => {
+    const save = {
+      equipment: [
+        { type: 1, id: 1, decorations: [990, 990] },
+        { type: 2, id: 2, decorations: [990, 951] },
+        { type: 3, id: 3 },
+      ],
+    } as Parameters<typeof attachedDecorationCounts>[0];
+    assert.deepEqual(
+      attachedDecorationCounts(save),
+      new Map([
+        [990, 3],
+        [951, 1],
+      ]),
+    );
+    assert.equal(attachedDecorationCounts(null), null);
+  });
+
+  test("a jewel row gets a craft check even when owned", () => {
+    const ready: CraftCheck = {
+      status: "ready",
+      via: "create",
+      cost: 0,
+      materials: [],
+      missing: 0,
+    };
+    const asked: string[] = [];
+    const lookups: ProgressLookups = {
+      active: true,
+      isOwned: () => true,
+      craftCheck: (type, slug) => {
+        asked.push(`${type}/${slug}`);
+        return ready;
+      },
+    };
+    const node: WeaponTreeNode = {
+      slug: "attack-jewel",
+      type: "decoration",
+      name: "Attack Jewel",
+      rarity: 4,
+    };
+    const status = rowStatus(node, "decoration", "/decorations/", undefined, lookups);
+    assert.equal(status.href, "/decorations/attack-jewel/");
+    assert.equal(status.owned, true);
+    assert.equal(status.craft, ready);
+    assert.deepEqual(asked, ["decoration/attack-jewel"]);
+    assert.ok(matchesTreeFilter("craftable", status));
   });
 });

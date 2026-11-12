@@ -357,23 +357,30 @@
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Blango",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 4
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 11,
+          "total_quantity": 20,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 12,
+          "endless": true
         }
       ],
       "title": "Treasure in the Mountains!",
@@ -741,39 +748,52 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 3,
+          "total_quantity": 3,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 12,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 8
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 6,
+          "total_quantity": 6,
+          "endless": true
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 9
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Treasure in the Jungle!",
@@ -1141,35 +1161,45 @@
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 12
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 4
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Apceros",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         }
       ],
       "title": "Treasure in the Desert!",
@@ -1548,31 +1578,41 @@
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 9
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 4
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         }
       ],
       "title": "Treasure in the Swamp!",
@@ -1951,35 +1991,46 @@
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 9
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 3
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Treasure in the Hills!",
@@ -2353,27 +2404,33 @@
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 11
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 4
         },
         {
           "monster": "Remobra",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 8
         }
       ],
       "title": "Treasure in the Lava!",
@@ -2746,35 +2803,46 @@
       "small_monsters": [
         {
           "monster": "Kelbi",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 6
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 4,
+          "total_quantity": 8
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Treasure in the Grt Forest!",
