@@ -11,11 +11,53 @@ import fs from "fs";
 import path from "path";
 import { createHash } from "crypto";
 
+// ---------------------------------------------------------------------------
+// Build ID: a hash of what the client JavaScript is built from, instead of
+// Next's random one. Next writes the build ID into every exported page (its
+// HTML and its RSC payload), so with a random one all ~11,000 page files
+// changed on every build and Cloudflare re-uploaded them on every deploy,
+// which took longer than the build. Now a page only changes when its own
+// content or the code does. The ID still changes whenever the code can have
+// (source, config, dependencies, public env), so the client router keeps
+// telling an old tab apart from a new deploy and reloads instead of mixing
+// chunks. Game data isn't part of it: it reaches pages as props and the
+// fetched /data bundles, never the JavaScript.
+// ---------------------------------------------------------------------------
+const BUILD_INPUTS = [
+  "src",
+  "package.json",
+  "next.config.mjs",
+  "postcss.config.mjs",
+  "tsconfig.json",
+  "../../pnpm-lock.yaml",
+];
+
+/** @returns {string} */
+function sourceBuildId() {
+  const hash = createHash("sha256");
+  /** @param {string} p */
+  const add = (p) => {
+    const full = path.join(process.cwd(), p);
+    if (!fs.existsSync(full)) return;
+    if (fs.statSync(full).isDirectory()) {
+      for (const name of fs.readdirSync(full).sort()) add(path.join(p, name));
+    } else {
+      hash.update(`${p}\0`).update(fs.readFileSync(full)).update("\0");
+    }
+  };
+  for (const p of BUILD_INPUTS) add(p);
+  for (const [key, value] of Object.entries(process.env).sort()) {
+    if (key.startsWith("NEXT_PUBLIC_")) hash.update(`${key}=${value}\0`);
+  }
+  return hash.digest("hex").slice(0, 20);
+}
+
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   output: "export",
   trailingSlash: true,
   experimental: { viewTransition: true },
+  generateBuildId: sourceBuildId,
 };
 
 // ---------------------------------------------------------------------------
