@@ -76,13 +76,13 @@ function writeLast(last: LastSearch | null) {
 }
 
 /**
- * How many workers share a search: half the cores (the page and the rest of
- * the device keep the others), at most four.
+ * How many workers share a search. One: each worker prepares the search,
+ * compiles its code and holds the data on its own, and a shard can only cut
+ * sets against the best ones it found itself. Measured on the shipped data,
+ * more workers did two to three times the work and rarely finished sooner,
+ * which on phones costs battery for nothing.
  */
-function workerCount(): number {
-  const cores = typeof navigator === "undefined" ? 2 : navigator.hardwareConcurrency || 2;
-  return Math.max(1, Math.min(4, Math.floor(cores / 2)));
-}
+const WORKERS = 1;
 
 /** Ask every worker for its shard of the run's round. */
 function postRound(workers: Worker[], run: SearchRun) {
@@ -175,7 +175,7 @@ export function useSetSearch(): SetSearchState {
 
   const startWorkers = useCallback(
     (d: SearchData) => {
-      const workers = Array.from({ length: workerCount() }, (_, shard) => {
+      const workers = Array.from({ length: WORKERS }, (_, shard) => {
         const worker = new Worker(new URL("../workers/set-search.worker.ts", import.meta.url));
         worker.onmessage = (event: MessageEvent<SetSearchResponse>) => {
           const msg = event.data;
