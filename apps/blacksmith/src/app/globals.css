@@ -637,9 +637,9 @@ img {
   align-items: center;
   display: flex;
   flex: 0 0 38px;
-  gap: 10px;
   height: 38px;
-  padding: 0 16px;
+  /* Like a weapon-tree row: flush left, the icon's own margin is the gap. */
+  padding-right: 0.9rem;
 
   &:hover {
     animation: var(--animate-hover-glow);

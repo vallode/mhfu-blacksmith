@@ -53,7 +53,7 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
                 icons. Any smaller and nearest-neighbour scaling starts to
                 visibly drop rows of its pixels. */}
               <img
-                className="h-[32px] w-[32px] flex-none p-[2px] pixelated"
+                className="mr-[6px] h-[32px] w-[32px] flex-none p-[2px] pixelated"
                 src={`/images/monsters/${m.slug}.png`}
                 alt=""
                 decoding="sync"
