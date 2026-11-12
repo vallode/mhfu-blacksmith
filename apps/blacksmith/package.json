@@ -4,7 +4,8 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsx scripts/generate-data.ts && tsx scripts/generate-search-index.ts && tsx scripts/generate-embeds.ts && next build",
+    "build": "pnpm clean && tsx scripts/generate-data.ts && tsx scripts/generate-search-index.ts && tsx scripts/generate-embeds.ts && next build",
+    "clean": "node -e \"for (const d of ['.next', 'out']) require('fs').rmSync(d, { recursive: true, force: true })\"",
     "start": "next start",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit -p .",
