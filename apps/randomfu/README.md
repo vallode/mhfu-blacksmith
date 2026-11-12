@@ -28,15 +28,19 @@ green along Discord's edge, and `social-card.png`, a 1200×630 picture
 drawn by the built page itself in the site's style. Redraw it with
 `pnpm social-card` after changing the look or the card's wording, and
 commit it. The tags need absolute URLs, so `build.mjs` fills in
-`%SITE_URL%`: the deploy preview's own address on Netlify previews,
-`https://randomfu.vallode.com` otherwise.
+`%SITE_URL%`: the deploy preview's own address on Netlify previews, the
+`SITE_URL` environment variable if set (the Cloudflare workflow sets it to
+the address it deploys to), `https://randomfu.vallode.com` otherwise.
 
 `dist/` is a plain static site: host it anywhere (GitHub Pages, Netlify,
 any web server). It's deployed to [randomfu.vallode.com](https://randomfu.vallode.com)
 by a Netlify site of its own, configured by `netlify.toml` here: that site's
 base directory is `apps/randomfu`, so paths in it are relative to this
 folder. It only builds on demand, from the "Deploy to Netlify" workflow
-(see the root README).
+(see the root README). It's moving to a Cloudflare Worker, configured by
+`wrangler.jsonc` here and deployed by the "Deploy to Cloudflare" workflow.
+Response headers are in `_headers`, which `build.mjs` copies into `dist/`;
+both hosts read it.
 
 `index.html` sets a Content-Security-Policy: the page can only load its own
 scripts, styles and images and can't make any requests, so nothing it reads

@@ -22,12 +22,5 @@
 [build.environment]
   NODE_VERSION = "22"
 
-# The page's own Content-Security-Policy is a <meta> tag in index.html, so it
-# holds wherever dist/ is hosted and pnpm test:e2e checks it. These are the
-# parts a <meta> tag can't set.
-[[headers]]
-  for = "/*"
-  [headers.values]
-    Content-Security-Policy = "frame-ancestors 'none'"
-    X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "no-referrer"
+# Response headers are in _headers (build.mjs copies it into dist/), which
+# Netlify reads as Cloudflare does.

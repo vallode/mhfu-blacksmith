@@ -9,7 +9,8 @@ export const SITE_NAME = "MHFU Blacksmith";
 /**
  * Absolute base for metadata URLs. Netlify deploy previews and branch deploys
  * use their own address, so their embeds load that build's icons and oEmbed
- * files rather than production's.
+ * files rather than production's. Elsewhere NEXT_PUBLIC_SITE_URL gives the
+ * address (the Cloudflare workflow sets it for each deploy).
  */
 export const SITE_URL =
   (process.env.CONTEXT !== "production" && process.env.DEPLOY_PRIME_URL) ||
