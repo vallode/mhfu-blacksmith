@@ -4,6 +4,7 @@ import { useEffect, useMemo, useRef, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import PageBar, { PageTabs } from "@/components/PageBar";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -172,7 +173,7 @@ export default function QuestHubShell({
 
       <div className="split-page">
         {/* Above the card (z-1) so the bar and its arrows draw over the frame. */}
-        <div data-tree-panel className="relative z-2 flex min-h-0 min-w-0 flex-1 flex-col">
+        <CardBox data-tree-panel>
           <Card variant="weapon-tree">
             <div ref={listRef} className="flex flex-col">
               {error && <p className="px-[16px] text-negative">Couldn&apos;t load quests.</p>}
@@ -214,7 +215,7 @@ export default function QuestHubShell({
               countLabel={`Quest type ${index + 1} of ${filters.length}`}
             />
           )}
-        </div>
+        </CardBox>
         {children}
       </div>
     </>

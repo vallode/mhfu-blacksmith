@@ -3,6 +3,7 @@
 import { usePathname } from "next/navigation";
 import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import DecorationNav from "@/components/DecorationNav";
 import TreeScroll from "@/components/TreeScroll";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
@@ -21,22 +22,24 @@ export function DecorationShell({ slug, children }: { slug?: string; children: R
       <DecorationNav />
       <BorderRule />
       <div className="split-page">
-        <Card variant="weapon-tree">
-          <TreeScroll treeKey="decorations" activeSlug={slug}>
-            {tree?.map((node) => (
-              <ul key={node.slug}>
-                <WeaponTreeRow
-                  node={node}
-                  sectionType="decoration"
-                  basePath="/decorations/"
-                  treeKey="decorations"
-                  activeSlug={slug}
-                  scroll={false}
-                />
-              </ul>
-            ))}
-          </TreeScroll>
-        </Card>
+        <CardBox>
+          <Card variant="weapon-tree">
+            <TreeScroll treeKey="decorations" activeSlug={slug}>
+              {tree?.map((node) => (
+                <ul key={node.slug}>
+                  <WeaponTreeRow
+                    node={node}
+                    sectionType="decoration"
+                    basePath="/decorations/"
+                    treeKey="decorations"
+                    activeSlug={slug}
+                    scroll={false}
+                  />
+                </ul>
+              ))}
+            </TreeScroll>
+          </Card>
+        </CardBox>
         {children}
       </div>
     </>

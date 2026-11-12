@@ -5,6 +5,7 @@ import ReactDOM from "react-dom";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import MonsterNav from "@/components/MonsterNav";
 import SplitPage from "@/components/SplitPage";
 import TreeScroll from "@/components/TreeScroll";
@@ -35,32 +36,34 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
     ReactDOM.preload(`/images/monsters/${m.slug}.png`, { as: "image" });
   }
   return (
-    <Card variant="weapon-tree">
-      <TreeScroll treeKey={`monsters-${category}`} activeSlug={slug}>
-        {siblings?.map((m) => (
-          <Link
-            key={m.slug}
-            id={m.slug}
-            href={`/monsters/${category}/${m.slug}/`}
-            aria-current={m.slug === slug ? "page" : undefined}
-            // The selected monster gets the weapon tree's active row: the hover
-            // glow's green, held still.
-            className={cn("list-row", m.slug === slug && "bg-(image:--gradient-hover-glow)")}
-          >
-            {/* The portrait thumbnails fill their square, so they sit inside
+    <CardBox>
+      <Card variant="weapon-tree">
+        <TreeScroll treeKey={`monsters-${category}`} activeSlug={slug}>
+          {siblings?.map((m) => (
+            <Link
+              key={m.slug}
+              id={m.slug}
+              href={`/monsters/${category}/${m.slug}/`}
+              aria-current={m.slug === slug ? "page" : undefined}
+              // The selected monster gets the weapon tree's active row: the hover
+              // glow's green, held still.
+              className={cn("list-row", m.slug === slug && "bg-(image:--gradient-hover-glow)")}
+            >
+              {/* The portrait thumbnails fill their square, so they sit inside
                 the same 32px slot as other row icons with 4px of padding. */}
-            <img
-              className="h-[32px] w-[32px] flex-none p-[4px] pixelated"
-              src={`/images/monsters/${m.slug}-favicon.png`}
-              alt=""
-              decoding="sync"
-              onError={hideBroken}
-            />
-            <p>{m.name}</p>
-          </Link>
-        ))}
-      </TreeScroll>
-    </Card>
+              <img
+                className="h-[32px] w-[32px] flex-none p-[4px] pixelated"
+                src={`/images/monsters/${m.slug}-favicon.png`}
+                alt=""
+                decoding="sync"
+                onError={hideBroken}
+              />
+              <p>{m.name}</p>
+            </Link>
+          ))}
+        </TreeScroll>
+      </Card>
+    </CardBox>
   );
 }
 

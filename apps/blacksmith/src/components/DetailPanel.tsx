@@ -1,4 +1,5 @@
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import MaterialRow from "@/components/MaterialRow";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { cn } from "@/lib/cn";
@@ -22,11 +23,13 @@ export function DetailCard({
   className?: string;
 }) {
   return (
-    // The 4rem basis keeps the row split it had when Card's 4rem of side
-    // padding sat on this flex item (tree card 530px, this 570px at 1400px).
-    <Card className={cn("basis-[4rem] mobile:basis-[0%]", className)} scroll>
-      {children}
-    </Card>
+    // In a CardBox like the tree cards (see CardBox), but z-1 as the card was,
+    // under a tree panel's filter-bar arrows. The 4rem basis keeps the row
+    // split it had when Card's 4rem of side padding sat on this flex item
+    // (tree card 530px, this 570px at 1400px).
+    <CardBox className={cn("z-1 basis-[4rem] mobile:basis-[0%]", className)}>
+      <Card scroll>{children}</Card>
+    </CardBox>
   );
 }
 

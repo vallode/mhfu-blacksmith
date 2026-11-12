@@ -320,7 +320,15 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
           dips 1.5rem under the edge of the screen; the card's left padding
           gives that back to its rows. On compact screens the aside keeps the
           rail's width, and the opened sidebar lies over the page. */}
-      <aside className="relative -ml-[2.9rem] flex flex-none mobile:hidden compact:w-[10.1rem]">
+      <aside
+        className={cn(
+          "relative -ml-[2.9rem] flex flex-none mobile:hidden compact:w-[10.1rem]",
+          // A stacking context around the card, like a CardBox (Safari
+          // workaround). Open, it also lifts the rail's overlay and card
+          // (z-840, z-850) above the page.
+          railOpen ? "z-850" : "z-2",
+        )}
+      >
         {railOpen && (
           <div
             className="fixed inset-0 z-840 hidden bg-black/60 compact:block"
