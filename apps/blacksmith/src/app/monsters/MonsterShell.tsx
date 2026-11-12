@@ -49,11 +49,12 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
               // glow's green, held still.
               className={cn("list-row", m.slug === slug && "bg-(image:--gradient-hover-glow)")}
             >
-              {/* The portrait thumbnails fill their square, so they sit inside
-                the same 32px slot as other row icons with 4px of padding. */}
+              {/* The 36px portrait at 28px, in the same 32px slot as other row
+                icons. Any smaller and nearest-neighbour scaling starts to
+                visibly drop rows of its pixels. */}
               <img
-                className="h-[32px] w-[32px] flex-none p-[4px] pixelated"
-                src={`/images/monsters/${m.slug}-favicon.png`}
+                className="h-[32px] w-[32px] flex-none p-[2px] pixelated"
+                src={`/images/monsters/${m.slug}.png`}
                 alt=""
                 decoding="sync"
                 onError={hideBroken}
