@@ -301,21 +301,25 @@
    it in calc()): Card's body sits there (card-body), so nothing shows
    outside the frame.
    Every frame's image is the game's art at 4x, and every frame is drawn at
-   3x (a 6px slice is 24 image pixels, drawn 18px wide). This one: 6px slices,
-   copper squares in the corners. */
+   3x (a 6px slice is 24 image pixels, drawn 18px wide). This one: copper
+   squares in the corners, 6px slices top and bottom and 8px at the sides, so
+   the 3px gap between each corner and its first notch sits in the corner
+   slice. Each middle strip is a whole number of the art's periods (24px: 3
+   notches, 2 columns of stars; 8px: 2 side zigzags, 1 row of stars), so
+   repeating it leaves no seams. */
 @utility card-frame {
   border-image-outset: 0;
   border-image-repeat: round round;
-  border-image-slice: 24 fill;
-  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABQCAYAAABPunpEAAAACXBIWXMAAAPoAAAD6AG1e1JrAAACFklEQVR42u3dvU0DQRAG0MuvA8s4saiEnuiLchyT0QSkxkaczrO/nmfpy4xm8M4LVqu9W5Zl+a6cvZ/e/aifbB4AUB8AANQHAAD1swP4eH8LpfQ/3KEf9ZPNAwDqAwCA+gAAoD4Am38Q+v7eVPiH1Z+ofoP5BEB9AABQHwAA1AegcIHoDyi5A4AAAIAAAIAA0B5AtOHT6/Ei8mimPwm2iAKACAAiEwAoHYsoJQFMdyPMIgoAIgCIjAng3wsI67r+ikWRkXM7r49cyAFAAABAAABAEgIYCsTL+fB5ndkWRP/dN8nhDwD6BwAA/QMAgP6zAyh90HX7A0fTeoH137f/GpteAPQPAAD6BwAA/ScEMNSmN/qDt15g/fftf/qTYAOkfwAMkP4BMED67wPgqQ7CbFKfu38nwQYIAAAMEAAAGCAAHISNtsk7nQ9f19H/+JteAAAAAAAAAAAAgIQAhj4IG+3CxtbAbA3Q3Xf0n/upEADoHwAA9A8AAPr3YKzL7JfISx9M6X/fJfk/QABggAAAwAABAIABAsALMsQbYgAQAAAQAACQ1AC8KFu8KR4AAQAAAQAAyQ1gaxOx9f1ow5I7tecTAAEAAAEAAAGgSoFQKmx61J+oPgAGEAAADCAAABhAANoDKHHQEHkuUYd+1E82DwCoDwAA6gMAgPrZAdS4cFDyYbwN+lE/2TwAoD4AAKgPAADqJ5uHHyCZX3Pf4PnGAAAAAElFTkSuQmCC");
+  border-image-slice: 24 32 fill;
+  border-image-source: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAYAAACeXX40AAACKElEQVR42u3dPU7DQBAG0HUUCYlUUTqE6AgH4QCIg9ByiLQcBHEADgJ0CNEhqiDRxLTE/ASzdnY3fq8EK7sxo5lPthOqEEId+lW1PD71foa+/lb3MwqQkAJEATJc4+YPbi5Po17wbHHb6QZT72fo6/e9Hx0QIxgFCHlkwLYZ4g+ZoM7sPdfW705sfeiAGMEoQMgzA8aKvW5k/bTrd30dUQfECAYFSBkZMDZDXFzf3TvNRZv3WR86IEYwChCSqELP9yaPjg9lwII9PjzNdUCMYFCA7GQGbFrLhJPJZO2Xs4OpTMePXp5f1zLjcrn8teZ0QIxgFCBkkwGzyoT1arW/tuHR6K2kE1z6/rvOfDogRjAoQLLQ+jMhzRk/C9NOM1Ls8W0zVmxGK33/sb7JfDogRjAoQPKX3b3gtplqU+Zp+3rbXi+3/cdyLxgjGBQgRRjntqFmRintXmrp+9cBUYCgABmE5M8D7vp1uiqEvcbJfM9p/7E8D4gRDAqQIiV/HnDTdbPY47ediZqZ7x/Hv6Xcf2w96IAYwaAAKYLvhulYbpl02zwPiBEMCpBiMqDviOZHviMaIxgUIDvpy73g3P+/LGl1XR86IEYwChDyyIBtM92mTHB1fjJ3mst1tnjqtT50QIxgFCDkmQHjM0TcdcHU1yWHvr4OiBEMCpBhZsDYDBL+9v0zn9U9v+fK+t39PWLrQwfECEYBQhK9fyZEBtztDKgDYgSDAqRIH/sa58WeoPMsAAAAAElFTkSuQmCC");
   border-image-width: var(--frame-width);
   border-style: solid;
   image-rendering: -webkit-optimize-contrast;
   image-rendering: crisp-edges;
   image-rendering: pixelated;
-  --frame-width: 18px;
-  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABQCAYAAABPunpEAAAACXBIWXMAAAPoAAAD6AG1e1JrAAABnElEQVR42u3dQW7CMBCG0dnnWNyJe3FCWEdCioJjD/C/T/KOatLWr1JwUaqqnpPX2bqvx/yw/QCA+QAAYD4AAJifDuBxvw2tq7/hhusxP2w/AGA+AACYDwAA5gNw+AVDrz+7JnzD5v/Q/AX7EwDzAQDAfAAAMB+AiweM/gCt7AWABQAAFgAAWACsB9Bw8CFFnwRLAEgASKsBfMEHIKToT4RJAEgASA37c/eCbdt2y+9D39yb/Xr6DzIAAgAAAQCAAgEAoX+6Sb52AAACAAABAIACAZSDLv35TS8AAgAAAQCAvO/vpldOggEQAAAIAMk9ARAqJ8EACAAJAMn/AklOgiUAJAAk7/tLToIlACQAJACkWnUw9sn+BUAAACAAAFAAAA/IkCfEACAAABAAACgYgAdly5PiARAAAAgAAJQN4Ogm4uj1oxdsZa/Z+xMACwAALAAAsACYMmBoTbjpMf+H5gNgAwIAgA0IAAA2IADrATQchHVfj/lh+wEA8wEAwHwAADA/HUD1fyCm+3rMD9sPAJgPAADmAwCA+WH74QVZFUQ31EXu9wAAAABJRU5ErkJggg==");
-  --frame-cover-slice: 24;
+  --frame-width: 18px 24px;
+  --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAYAAACeXX40AAABpElEQVR42u3dwVHDMBAFUJnhprJSAN2kCLpJAZTlsziTDDa2bLSy3jsCY4nkz+6OoyRTSqmkc00b/771fkZf/1/385agIQFEABnX+/MPHvdb1QU/Pr8O3WDr/Yy+/tn7UQHRghFAiDEDbp0h/jATlGD/c7H+cWrzoQKiBSOAEHMGrFV738j6bdc/+j6iCogWDAJIHzPgATPE5GHuWjkzHyogWjACCE1MKd57EOhoBlQB0YJBAOl2Blzs+TnnH7+c59lMx69yzuUpL4uZUwHRghFACDMDmgk5beZTAdGCQQDpcwbceQ2uqyofKiBaMAIIYWZA9/3YzWvBaMEggAggCCACCAJISM4DUsV5QLRgEEDGmAF3XoPrch4QLRgEkGvMgO77sZvzgGjBIIB0MwP6jGiW+IxotGAQQK7n5bvion+/LG0dnQ8VEC0YAYQYM+DWmW5tJnjcb8XD3K+15782HyogWjACCDFnwLNniDWt70uOvr4KiBYMAsiYM2DtDJK2nwdsfT5x9PU37ac2HyogWjACCE1EfE+IGXCg50MFRAtGAKGJb4uqga/xXSW8AAAAAElFTkSuQmCC");
+  --frame-cover-slice: 24 32;
   --card-inset-t: 6px;
   --card-inset-r: 6px;
   --card-inset-b: 6px;
