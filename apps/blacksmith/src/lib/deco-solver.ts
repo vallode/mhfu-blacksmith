@@ -60,6 +60,8 @@ interface Loadout {
 
 interface State {
   vec: number[];
+  /** `vec` capped where more points can't matter (see `place`): its merge key. */
+  capped: number[];
   weapon: number;
   slots: number;
   count: number;
@@ -69,11 +71,9 @@ interface State {
   bin: number;
 }
 
-/** `a` is a better way to fill than `b`. */
-function better(a: State, b: State): boolean {
-  return (
-    (a.slots - b.slots || a.weapon - b.weapon || a.count - b.count || a.penalty - b.penalty) < 0
-  );
+/** A fill with these totals is better than `b`. */
+function better(slots: number, weapon: number, count: number, penalty: number, b: State): boolean {
+  return (slots - b.slots || weapon - b.weapon || count - b.count || penalty - b.penalty) < 0;
 }
 
 function penaltyOf(deco: Deco): number {
@@ -90,14 +90,25 @@ interface TreeStats {
 /** Forget the cached answers past this many (they're cheap to redo). */
 const MAX_ANSWERS = 200_000;
 
+/**
+ * Loadout tables, kept from one search to the next (the same skills, or
+ * some of them, are often searched again). By the data's first decoration
+ * (so only its own decorations share them), then the decorations' ids, then
+ * the tracked trees (joined).
+ */
+const sharedTables = new WeakMap<Deco, Map<string, Map<string, Loadout[][]>>>();
+/** Forget kept tables past this many sets of decorations, or of trees. */
+const MAX_DECORATION_SETS = 4;
+const MAX_TABLES = 64;
+
 export class DecoSolver {
   private readonly decorations: Deco[];
   private readonly wanted: Map<string, number>;
   private readonly bad: Map<string, number> | null;
   /** Trees (joined) -> what their useful decorations can do (see statsFor). */
   private readonly stats = new Map<string, TreeStats>();
-  /** Tracked trees (joined) -> loadouts by item size. */
-  private readonly tables = new Map<string, Loadout[][]>();
+  /** Tracked trees (joined) -> loadouts by item size (see sharedTables). */
+  private readonly tables: Map<string, Loadout[][]>;
   /** Bins and points (see `solve`) -> placements, by position in fill order. */
   private readonly answers = new Map<string, Placement[] | null>();
 
@@ -105,6 +116,17 @@ export class DecoSolver {
     this.decorations = options.decorations;
     this.wanted = options.wanted;
     this.bad = options.bad;
+    const first = this.decorations[0];
+    let byIds = first && sharedTables.get(first);
+    if (first && !byIds) sharedTables.set(first, (byIds = new Map()));
+    const ids = this.decorations.map((d) => d.id).join();
+    let tables = byIds?.get(ids);
+    if (!tables) {
+      tables = new Map();
+      if (byIds && byIds.size >= MAX_DECORATION_SETS) byIds.clear();
+      byIds?.set(ids, tables);
+    }
+    this.tables = tables;
   }
 
   /**
@@ -184,6 +206,7 @@ export class DecoSolver {
     let states: State[] = [
       {
         vec: new Array<number>(k).fill(0),
+        capped: [],
         weapon: 0,
         slots: 0,
         count: 0,
@@ -193,44 +216,85 @@ export class DecoSolver {
         bin: -1,
       },
     ];
+    // Scratch for the fill being tried: only fills that are kept are copied.
+    const vec = new Array<number>(k);
+    const capped = new Array<number>(k);
+    const sameCapped = (seen: number[]) => {
+      for (let i = 0; i < k; i++) if (seen[i] !== capped[i]) return false;
+      return true;
+    };
     for (let j = 0; j < n; j++) {
       const bin = bins[order[j]];
       const isWeapon = bin.slot === "weapon";
+      const mult = bin.mult;
+      const table = tables[bin.size];
       const max = remMax[j + 1];
-      const min = remMin[j + 1];
-      const next = new Map<string, State>();
+      // Beyond this, more points can't matter for what's left.
+      const cap = req.map((r, i) => r - remMin[j + 1][i]);
+      // Fills kept, in the order first seen, and their indices by a hash
+      // of their capped points (equal capped points: the same for what's left).
+      const next: State[] = [];
+      const byHash = new Map<number, number | number[]>();
       for (const s of states) {
-        loadouts: for (const l of tables[bin.size]) {
-          const vec = new Array<number>(k);
-          let key = "";
+        loadouts: for (const l of table) {
+          let hash = 0;
           for (let i = 0; i < k; i++) {
-            const v = s.vec[i] + l.vec[i] * bin.mult;
+            const v = s.vec[i] + l.vec[i] * mult;
             if (v + max[i] < req[i]) continue loadouts;
             vec[i] = v;
-            // Beyond this, more points can't matter for what's left.
-            key += Math.min(v, req[i] - min[i]) + ",";
+            const c = v < cap[i] ? v : cap[i];
+            capped[i] = c;
+            hash = (Math.imul(hash, 31) + c) | 0;
           }
+          const weapon = s.weapon + (isWeapon ? l.slots : 0);
+          const slots = s.slots + l.slots;
+          const count = s.count + l.decos.length;
+          const penalty = s.penalty + l.penalty * mult;
+          const at = byHash.get(hash);
+          let same = -1;
+          if (typeof at === "number") {
+            if (sameCapped(next[at].capped)) same = at;
+          } else if (at) {
+            for (const x of at) {
+              if (sameCapped(next[x].capped)) {
+                same = x;
+                break;
+              }
+            }
+          }
+          if (same >= 0 && !better(slots, weapon, count, penalty, next[same])) continue;
           const state: State = {
-            vec,
-            weapon: s.weapon + (isWeapon ? l.slots : 0),
-            slots: s.slots + l.slots,
-            count: s.count + l.decos.length,
-            penalty: s.penalty + l.penalty * bin.mult,
+            vec: vec.slice(),
+            capped: capped.slice(),
+            weapon,
+            slots,
+            count,
+            penalty,
             prev: s,
             loadout: l,
             bin: j,
           };
-          const seen = next.get(key);
-          if (!seen || better(state, seen)) next.set(key, state);
+          if (same >= 0) next[same] = state;
+          else {
+            next.push(state);
+            const index = next.length - 1;
+            if (at === undefined) byHash.set(hash, index);
+            else if (typeof at === "number") byHash.set(hash, [at, index]);
+            else at.push(index);
+          }
         }
       }
-      if (next.size === 0) return null;
-      states = [...next.values()];
+      if (next.length === 0) return null;
+      states = next;
     }
 
     let best: State | null = null;
     for (const s of states) {
-      if (s.vec.every((v, i) => v >= req[i]) && (!best || better(s, best))) best = s;
+      if (
+        s.vec.every((v, i) => v >= req[i]) &&
+        (!best || better(s.slots, s.weapon, s.count, s.penalty, best))
+      )
+        best = s;
     }
     if (!best) return null;
     const placed: Placement[] = [];
@@ -400,6 +464,7 @@ export class DecoSolver {
         ),
       );
     }
+    if (this.tables.size >= MAX_TABLES) this.tables.clear();
     this.tables.set(key, tables);
     return tables;
   }
