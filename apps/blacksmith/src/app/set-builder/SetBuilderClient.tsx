@@ -680,7 +680,7 @@ export default function SetBuilderClient() {
                             action={
                               <button
                                 type="button"
-                                className="flex size-[4.2rem] items-center justify-center border border-hr bg-black/30 hover:bg-black/50"
+                                className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
                                 aria-label="Edit this set"
                                 title="Edit this set"
                                 onClick={() =>
