@@ -690,7 +690,18 @@ export default function SetBuilderClient() {
                                   })
                                 }
                               >
-                                <Icon type="hammer" size="mini" alt="" />
+                                <svg
+                                  viewBox="0 0 16 16"
+                                  className="size-[2.2rem]"
+                                  aria-hidden="true"
+                                >
+                                  <polygon points="4,12 11,5 13,7 6,14" fill="var(--color-stat)" />
+                                  <polygon points="2,14 4,12 6,14" fill="var(--color-parchment)" />
+                                  <polygon
+                                    points="11,5 12,4 14,6 13,7"
+                                    fill="var(--color-negative)"
+                                  />
+                                </svg>
                               </button>
                             }
                           />
