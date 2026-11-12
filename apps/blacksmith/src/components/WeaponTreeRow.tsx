@@ -176,6 +176,7 @@ export default function WeaponTreeRow({
   const owned = markOwned && status.owned;
   const craft = showCraftProgress ? status.craft : null;
   const dimmed = filtered ? !filtered.match : false;
+  const showPips = craft != null && craft.status !== "unknown";
   const ready = craft?.status === "ready" ? craft : null;
   // Weapons are forged; jewels are made.
   const makeVerb = sectionType === "decoration" ? "make" : "forge";
@@ -249,8 +250,8 @@ export default function WeaponTreeRow({
           [↑]
         </RowButton>
       )}
-      {/* Armor: max defence, right-aligned (the pips, if any, follow it). */}
-      {node.max_defence !== undefined && (
+      {/* Armor: max defence, right-aligned, unless the craft pips take its place. */}
+      {node.max_defence !== undefined && !showPips && (
         <span
           className="relative z-10 ml-auto pl-4 text-muted"
           title={`Max defence ${node.max_defence}`}
@@ -259,12 +260,7 @@ export default function WeaponTreeRow({
           {node.max_defence}
         </span>
       )}
-      {craft && craft.status !== "unknown" && (
-        <MaterialPips
-          materials={craft.materials}
-          className={cn(node.max_defence !== undefined && "ml-0")}
-        />
-      )}
+      {showPips && <MaterialPips materials={craft.materials} />}
     </>
   );
 
