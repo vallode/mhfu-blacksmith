@@ -109,7 +109,7 @@ pages and `pnpm settings` show as a tag):
   not).
 - A randomizer rolls new values: material amounts, crafting costs, shop
   prices, carry limits and stock size, quest money and time limits,
-  delivery targets, monster difficulty, size, small monster counts, base HP
+  delivery targets, monster difficulty, size, crown spread, small monster counts, base HP
   and status resistance, new armor skills (`armorSkills.mode` `randomize`),
   and weapons' attack, affinity and element or status values.
 
@@ -166,6 +166,8 @@ pages and `pnpm settings` show as a tag):
 | `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                          |
 | `questMonsters.size`              | off         | Randomize each quest's monster size (its size percentage)                              |
 | `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                           |
+| `questMonsters.crowns`            | off         | Change each quest's crown spread (the range its monsters' sizes roll in)               |
+| `questMonsters.crownSpread`       | `random`    | One of the five at `random`, the `wide`st (85-125%) everywhere, or `none`              |
 | `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                         |
 | `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                                    |
 | `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                       |
@@ -182,7 +184,7 @@ pages and `pnpm settings` show as a tag):
 Each preset replaces every option and keeps the seed. They're built on
 the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
 them to what's described here. Options not yet tried in game are in no
-preset: monster difficulty, small monster counts, base HP, base size, status
+preset: crown spread, monster difficulty, small monster counts, base HP, base size, status
 resistance, weaknesses and weapon stats. Turn those on yourself once you've tried them on
 your disc.
 
@@ -521,9 +523,16 @@ list (`emLoadTable`).
   in PPSSPP. It's scaled by a random factor within
   `questMonsters.sizeSpread` and kept between 50% and 200%. It's a
   separate setting from `monsterStats.size` (each species' base scale);
-  both apply. Each monster then rolls 75-125 percent of it, clamped by the
-  header's `sizeVariation` (`Unkn7`, u8 at `0x4a`), which randomfu leaves
-  alone.
+  both apply.
+- **Crown spread** (`questMonsters.crowns`) is the header's u8 at `0x4a`
+  (`Unkn7`, mhfu-extract's `sizeVariation`). Each crowned monster rolls
+  75-125 percent of the quest size, clamped by one of five ranges this
+  picks: 0 none, 1 100-105%, 2 100-115%, 3 95-114%, 4 85-125%
+  (mhfu-extract README, "Monster size"). `crownSpread` gives each Village
+  and Guild quest with large monsters one at `random`, 4 (`wide`) or 0
+  (`none`). Monsters without crowns stay at 100%, and so do the story
+  quests the EBOOT holds at 100% until a flag is set. Worked out from the
+  game's code, not yet tried in game.
 
 **Monster stats and weaknesses** (`src/shuffles/monster-stats.ts`) edit the
 `emChunk` of every monster some quest spawns, in `game_task.ovl`

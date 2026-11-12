@@ -62,6 +62,8 @@ export interface Settings {
   "questMonsters.difficultyRange": "rank" | "any";
   "questMonsters.size": boolean;
   "questMonsters.sizeSpread": number;
+  "questMonsters.crowns": boolean;
+  "questMonsters.crownSpread": "random" | "wide" | "none";
   "questMonsters.smallCounts": boolean;
   "questMonsters.smallCountSpread": number;
   "monsterStats.hp": boolean;
@@ -732,7 +734,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "questMonsters.size",
     section: "Quest monsters",
     label: "Randomize each quest's monster size",
-    help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, up to 120% in others). Seen working in game (a tiny Giadrome); whether hitboxes follow the size is untested.",
+    help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, 50-174% in the rest). Seen working in game (a tiny Giadrome); whether hitboxes follow the size is untested.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
@@ -745,6 +747,43 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "number", min: 0.05, max: 0.5, step: 0.05, percent: true },
     default: 0.2,
     enabledBy: "questMonsters.size",
+  },
+  {
+    key: "questMonsters.crowns",
+    section: "Quest monsters",
+    label: "Change each quest's crown spread",
+    help: "Each large monster's size is rolled around its quest's size, and the quest picks one of five spreads that limit the roll: none, 100-105%, 100-115%, 95-114% or 85-125%. The spread decides which crowns a quest can give. Story quests that hold their monsters at 100% until first cleared still do. Worked out from the game's code; not yet tried in game.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "questMonsters.crownSpread",
+    section: "Quest monsters",
+    label: "Crown spread",
+    help: "Which spread each quest gets.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "random",
+          label: "Random",
+          help: "Each quest gets one of the five spreads at random.",
+        },
+        {
+          value: "wide",
+          label: "Widest everywhere",
+          help: "Every quest rolls 85-125%, so mini and gold crowns can turn up in any quest.",
+        },
+        {
+          value: "none",
+          label: "None",
+          help: "Every monster is exactly its quest's size: no crowns unless the quest's size is itself a crown size.",
+        },
+      ],
+    },
+    default: "random",
+    enabledBy: "questMonsters.crowns",
   },
   {
     key: "questMonsters.smallCounts",

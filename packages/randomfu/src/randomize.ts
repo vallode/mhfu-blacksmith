@@ -38,6 +38,7 @@ import {
   collectQuestMonsters,
   multiplierSets,
   randomizeDifficulty,
+  randomizeCrownSpread,
   randomizeQuestSize,
   randomizeSmallCounts,
   swapSpecies,
@@ -166,6 +167,16 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         questMonsters,
         settings["questMonsters.sizeSpread"],
         rng.fork("quest-size"),
+        edits,
+      ),
+    );
+  }
+  if (settings["questMonsters.crowns"]) {
+    reports.push(
+      randomizeCrownSpread(
+        questMonsters,
+        settings["questMonsters.crownSpread"],
+        rng.fork("crown-spread"),
         edits,
       ),
     );

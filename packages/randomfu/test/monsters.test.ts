@@ -12,7 +12,13 @@ import {
 } from "mhfu-extract/src/monsters/hitzones.js";
 import { openPatchableImage } from "../src/disc/node-file.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
-import { readSpawns, SIZE_PERCENT_OFFSET, TARGET_ID_OFFSET } from "../src/game/spawns.js";
+import {
+  readSpawns,
+  SIZE_PERCENT_OFFSET,
+  SIZE_VARIATION_OFFSET,
+  SIZE_VARIATIONS,
+  TARGET_ID_OFFSET,
+} from "../src/game/spawns.js";
 import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
 import { MONSTER_FAMILIES } from "../src/shuffles/quest-monsters.js";
@@ -384,6 +390,49 @@ test("quest size moves each Village and Guild quest's size percentage within the
     }
   }
   assert.ok(changed > 0);
+  close();
+});
+
+test("crown spread gives every quest with large monsters one of the game's five spreads", async () => {
+  const { game, close } = await load();
+  const withLarge = game.quests.filter(
+    (q) => readSpawns(q.file.payload, q.parsed.header).large.length > 0,
+  );
+  assert.ok(withLarge.length > 0);
+  const variation = (result: ReturnType<typeof randomize>, quest: LoadedQuest) =>
+    payloadAfter(result, quest)[SIZE_VARIATION_OFFSET]!;
+
+  const wide = randomize(
+    game,
+    only("c", { "questMonsters.crowns": true, "questMonsters.crownSpread": "wide" }),
+  );
+  const none = randomize(
+    game,
+    only("c", { "questMonsters.crowns": true, "questMonsters.crownSpread": "none" }),
+  );
+  for (const quest of withLarge) {
+    if (quest.parsed.header.questId === 20001) continue; // training: not a Village or Guild quest
+    assert.equal(variation(wide, quest), SIZE_VARIATIONS.length - 1);
+    assert.equal(variation(none, quest), 0);
+  }
+  assert.ok(wide.reports.find((r) => r.title === "Quest crown spread")!.lines.length > 0);
+
+  const seen = new Set<number>();
+  for (const seed of ["c0", "c1", "c2", "c3", "c4", "c5"]) {
+    const result = randomize(game, only(seed, { "questMonsters.crowns": true }));
+    for (const quest of game.quests) {
+      const after = variation(result, quest);
+      assert.ok(after < SIZE_VARIATIONS.length, `${after}`);
+      if (quest.parsed.header.questId === 20001)
+        assert.equal(after, quest.file.payload[SIZE_VARIATION_OFFSET], "training quests stay");
+      else if (withLarge.includes(quest)) seen.add(after);
+    }
+  }
+  assert.ok(seen.size > 1, "random picks more than one spread");
+
+  const off = randomize(game, only("c", { "questMonsters.species": true }));
+  for (const quest of game.quests)
+    assert.equal(variation(off, quest), quest.file.payload[SIZE_VARIATION_OFFSET]);
   close();
 });
 
