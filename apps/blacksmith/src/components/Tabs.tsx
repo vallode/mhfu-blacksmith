@@ -1,6 +1,7 @@
 "use client";
 
 import { useId, useState } from "react";
+import { cn } from "@/lib/cn";
 
 export interface Tab {
   id: string;
@@ -14,6 +15,46 @@ const tabButton = [
   "hover:text-white focus-visible:text-white focus-visible:outline-none",
   "aria-selected:border-stat aria-selected:bg-selector aria-selected:text-stat",
 ].join(" ");
+
+/**
+ * Just the row of tab buttons, for a page that places it away from the panel
+ * it switches (the set builder's page bar). Give the panel the matching
+ * `role="tabpanel"` and `id={panelId}`.
+ */
+export function TabStrip({
+  tabs,
+  label,
+  active,
+  onChange,
+  idPrefix,
+  className,
+}: {
+  tabs: { id: string; label: string }[];
+  label: string;
+  active: string;
+  onChange: (id: string) => void;
+  idPrefix: string;
+  className?: string;
+}) {
+  return (
+    <div role="tablist" aria-label={label} className={cn("flex flex-wrap gap-[0.4rem]", className)}>
+      {tabs.map((t) => (
+        <button
+          key={t.id}
+          type="button"
+          role="tab"
+          id={`${idPrefix}-tab-${t.id}`}
+          aria-selected={t.id === active}
+          aria-controls={`${idPrefix}-panel`}
+          className={tabButton}
+          onClick={() => onChange(t.id)}
+        >
+          {t.label}
+        </button>
+      ))}
+    </div>
+  );
+}
 
 /**
  * A tab row in the style of the game's menu headers, showing one panel at a

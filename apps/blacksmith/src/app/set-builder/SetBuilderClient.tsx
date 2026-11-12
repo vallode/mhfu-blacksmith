@@ -14,7 +14,7 @@ import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
-import Tabs from "@/components/Tabs";
+import { TabStrip } from "@/components/Tabs";
 import {
   ChoiceRow,
   IconChoiceRow,
@@ -101,6 +101,11 @@ const DEFAULT_FORM: Form = {
 const STORAGE_KEY = "set-builder";
 
 type View = "results" | "editor" | "sets";
+const VIEW_TABS: { id: View; label: string }[] = [
+  { id: "results", label: "Results" },
+  { id: "editor", label: "Editor" },
+  { id: "sets", label: "My sets" },
+];
 
 type Origin = "new" | "result" | "link";
 const ORIGIN_TITLES: Record<Origin, string> = {
@@ -612,21 +617,43 @@ export default function SetBuilderClient() {
 
   return (
     <>
-      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-        <div>
-          <Link href="/" aria-label="Back">
-            <Icon type="arrow" nav alt="Back" />
-          </Link>
-        </div>
-        <div className="ml-auto">
+      {/* Mirrors the split below: the search action over the skills, the
+          view tabs over the panel they switch. */}
+      <header className="flex min-h-[52px] w-full flex-none items-center gap-[1.3rem] mobile:flex-col mobile:items-stretch mobile:gap-[0.8rem]">
+        <div className="flex max-w-[56rem] min-w-0 flex-1 items-center gap-[1.2rem] mobile:max-w-none mobile:flex-none">
           <button
-            className="search-trigger flex h-[52px] w-[52px] cursor-pointer items-center border-none bg-transparent p-0 text-white/60 hover:text-white [&>img]:h-full"
-            aria-label="Search"
+            type="submit"
+            form="set-search"
+            className={ui.button}
+            disabled={!data || searching || form.skills.length === 0}
           >
-            <img src="/images/binoculars.png" alt="Search" decoding="sync" />
+            Find sets
           </button>
+          {searching && (
+            <button type="button" className={ui.buttonSecondary} onClick={cancel}>
+              Cancel
+            </button>
+          )}
+          <p className="m-0 min-w-0 truncate text-fine text-white/60" aria-live="polite">
+            {searching
+              ? `Searching… ${found || ""}`
+              : result
+                ? `${sets.length} ${sets.length === 1 ? "set" : "sets"} found`
+                : form.skills.length === 0
+                  ? "Pick the skills you want"
+                  : `${form.skills.length} ${form.skills.length === 1 ? "skill" : "skills"} picked`}
+          </p>
         </div>
-      </nav>
+        <div className="min-w-0 flex-1">
+          <TabStrip
+            label="Set builder"
+            idPrefix="set-builder"
+            active={view}
+            onChange={(id) => setView(id as View)}
+            tabs={VIEW_TABS}
+          />
+        </div>
+      </header>
 
       <BorderRule />
 
@@ -635,6 +662,7 @@ export default function SetBuilderClient() {
           <Card className="text-small" scroll bodyClassName="gap-[1.3rem] card-py-7">
             <PanelTitle>Skills</PanelTitle>
             <form
+              id="set-search"
               className="flex flex-col gap-[1.3rem]"
               onSubmit={(e) => {
                 e.preventDefault();
@@ -719,130 +747,102 @@ export default function SetBuilderClient() {
                   )
                 }
               />
-              <div className={ui.actions}>
-                <button
-                  type="submit"
-                  className={ui.button}
-                  disabled={!data || searching || form.skills.length === 0}
-                >
-                  Search
-                </button>
-                {searching && (
-                  <button type="button" className={ui.buttonSecondary} onClick={cancel}>
-                    Cancel
-                  </button>
-                )}
-              </div>
             </form>
           </Card>
         </CardBox>
 
         <CardBox>
           <Card className="text-small" scroll bodyClassName="gap-[1.3rem] card-py-7">
-            <Tabs
-              label="Set builder"
-              active={view}
-              onChange={(id) => setView(id as View)}
-              tabs={[
-                {
-                  id: "results",
-                  label: "Results",
-                  content: (
-                    <div className="flex flex-col gap-[1.3rem]">
-                      {set ? (
-                        <>
-                          <SetHeader
-                            index={index}
-                            count={sets.length}
-                            onStep={step}
-                            action={
-                              <button
-                                type="button"
-                                className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
-                                aria-label="Edit this set"
-                                title="Edit this set"
-                                onClick={() =>
-                                  searched &&
-                                  openInEditor(buildFromResult(set, searched), {
-                                    origin: "result",
-                                  })
-                                }
-                              >
-                                <Icon type="item-37" className="mr-0" alt="" />
-                              </button>
-                            }
-                          />
-                          {result?.timedOut && (
-                            <p className={ui.note}>
-                              The search stopped early: better sets may exist.
-                            </p>
-                          )}
-                          <ArmorSetView
-                            set={set}
-                            weaponSlots={searched?.weaponSlots ?? 0}
-                            weaponIcon={weaponIcon}
-                            pieceActions={pieceActions}
-                            status={
-                              <>
-                                <PanelTitle>Status</PanelTitle>
-                                <SetStatus set={set} />
-                              </>
-                            }
-                          />
-                        </>
-                      ) : (
-                        <>
-                          <PanelTitle>Set Builder</PanelTitle>
-                          {message}
-                        </>
-                      )}
-                      {set && searching && message}
-                    </div>
-                  ),
-                },
-                {
-                  id: "editor",
-                  label: "Editor",
-                  content: (
+            <div
+              role="tabpanel"
+              id="set-builder-panel"
+              aria-labelledby={`set-builder-tab-${view}`}
+              className="flex flex-col gap-[1.6rem]"
+            >
+              {view === "results" && (
+                <div className="flex flex-col gap-[1.3rem]">
+                  {set ? (
                     <>
-                      {data ? (
-                        <SetEditor
-                          data={data}
-                          set={build}
-                          onChange={editBuild}
-                          wanted={wanted}
-                          rank={form.rank}
-                          questLimit={questLimit}
-                          ownedOnly={ownedOnly}
-                          isOwned={isOwned}
-                          weaponIcon={editorWeaponIcon}
-                          extraWarnings={openWarnings}
-                          title={editorTitle}
-                        />
-                      ) : (
-                        message
+                      <SetHeader
+                        index={index}
+                        count={sets.length}
+                        onStep={step}
+                        action={
+                          <button
+                            type="button"
+                            className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
+                            aria-label="Edit this set"
+                            title="Edit this set"
+                            onClick={() =>
+                              searched &&
+                              openInEditor(buildFromResult(set, searched), {
+                                origin: "result",
+                              })
+                            }
+                          >
+                            <Icon type="item-37" className="mr-0" alt="" />
+                          </button>
+                        }
+                      />
+                      {result?.timedOut && (
+                        <p className={ui.note}>The search stopped early: better sets may exist.</p>
                       )}
+                      <ArmorSetView
+                        set={set}
+                        weaponSlots={searched?.weaponSlots ?? 0}
+                        weaponIcon={weaponIcon}
+                        pieceActions={pieceActions}
+                        status={
+                          <>
+                            <PanelTitle>Status</PanelTitle>
+                            <SetStatus set={set} />
+                          </>
+                        }
+                      />
                     </>
-                  ),
-                },
-                {
-                  id: "sets",
-                  label: "My sets",
-                  content: (
-                    <MySets
-                      sets={savedSets}
+                  ) : (
+                    <>
+                      <PanelTitle>Set Builder</PanelTitle>
+                      {message}
+                    </>
+                  )}
+                  {set && searching && message}
+                </div>
+              )}
+              {view === "editor" && (
+                <>
+                  {data ? (
+                    <SetEditor
                       data={data}
-                      tables={tables}
-                      openId={savedId}
-                      onOpen={(set) => openCode(set.code, { savedId: set.id })}
-                      onRename={(id, name) => storeSets(updateSet(savedSets, id, { name }))}
-                      onDuplicate={(id) => storeSets(duplicateSet(savedSets, id))}
-                      onDelete={deleteSaved}
+                      set={build}
+                      onChange={editBuild}
+                      wanted={wanted}
+                      rank={form.rank}
+                      questLimit={questLimit}
+                      ownedOnly={ownedOnly}
+                      isOwned={isOwned}
+                      weaponIcon={editorWeaponIcon}
+                      extraWarnings={openWarnings}
+                      title={editorTitle}
                     />
-                  ),
-                },
-              ]}
-            />
+                  ) : (
+                    message
+                  )}
+                </>
+              )}
+              {view === "sets" && (
+                <MySets
+                  sets={savedSets}
+                  data={data}
+                  tables={tables}
+                  openId={savedId}
+                  onOpen={(set) => openCode(set.code, { savedId: set.id })}
+                  onRename={(id, name) => storeSets(updateSet(savedSets, id, { name }))}
+                  onDuplicate={(id) => storeSets(duplicateSet(savedSets, id))}
+                  onDelete={deleteSaved}
+                />
+              )}
+            </div>
           </Card>
         </CardBox>
       </div>
