@@ -1162,6 +1162,20 @@ block N, entry M"). The pointer-table search, which reads only aligned
 words, had found just the head, chest and leg armor tables (the aligned
 ones) and the start of table 0 (skill trees and monsters).
 
+Each message file is one language throughout, so once every table is
+searched, `settleByFileLanguage` (`src/strings/name-search.ts`) takes each
+file's language from the guesses for all its tables (three tables and 60%
+of the weight at least) and uses it for that file's tables, in place of
+each table's own guess. On the EU disc, that guess was too weak for French
+waist armor (0.24) and read Italian leg armor as German.
+
+The 2026-11-12 run wrote items, Blademaster and Gunner weapons, decorations,
+skill trees, and head, chest and arm armor in all four languages, with each
+English table matching the enum on 97-99% (the rest are the disc's `dummy`
+entries). Monsters aren't written: the disc's monster table shows variants
+by their base name ("Rathian" for Pink Rathian) and has `dummy` slots, so
+its English matches the enum on only 70%.
+
 #### Pointer-table search
 
 Names are the harder half: the equipment structs carry no name pointer,

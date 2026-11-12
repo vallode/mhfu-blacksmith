@@ -6,7 +6,7 @@
  *
  * - weapons and armor: `data/equipment-ids.json` (slot -> ID -> site item),
  *   the same table `build-data` pairs equipment with;
- * - items: `data/items.json` by ID, under its name and every alias;
+ * - items: `data/items.json` by ID, under its name;
  * - decorations: `data/decorations.json` names, whose item ID comes from
  *   `data/items.json` like `build-data`'s decoration matching;
  * - monsters: `overlay/monsters.json` (emID -> site name; the site's
@@ -67,7 +67,9 @@ export function loadSiteKeys(dataDir: string): SiteKeys {
   }
 
   for (const item of site.items.values()) {
-    add(keys, "ItemID", item.id, "item", [item.name, ...(item.aliases ?? [])]);
+    // The site names items by `name` everywhere (#124); aliases are only
+    // for matching older spellings, and nothing looks a translation up by one.
+    add(keys, "ItemID", item.id, "item", [item.name]);
   }
   const decorations = JSON.parse(readFileSync(path.join(dataDir, "decorations.json"), "utf-8")) as {
     decorations: { name: string }[];

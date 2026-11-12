@@ -64,7 +64,7 @@ export function defaultComment(code: LocaleCode): string {
   return (
     `${LANGUAGE_LABELS[code]} game text: names keyed by their English name, quest board text keyed by quest ID. ` +
     `Missing entries fall back to English. Generated from the ${disc} disc by \`pnpm --filter mhfu-extract locales\` ` +
-    `(see tools/mhfu-extract/README.md, "Localized text"); don't hand-translate official names.`
+    `(see packages/mhfu-extract/README.md, "Localized text"); don't hand-translate official names.`
   );
 }
 

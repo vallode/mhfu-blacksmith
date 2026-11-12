@@ -791,6 +791,18 @@ export const CONFIDENT = {
 
 /** Why a table isn't confident enough to write, or null if it is. */
 export function confidenceProblem(english: EnglishTable, table: LanguageTable): string | null {
+  const problem = structuralProblem(english, table);
+  if (problem) return problem;
+  const { language, confidence } = table.guess;
+  if (language === null || language === "en")
+    return `doesn't read as a language other than English`;
+  if (confidence < CONFIDENT.languageConfidence)
+    return `language guess ${language} has confidence ${confidence}, below ${CONFIDENT.languageConfidence}`;
+  return null;
+}
+
+/** `confidenceProblem` without the language guess: whether the table itself lines up. */
+export function structuralProblem(english: EnglishTable, table: LanguageTable): string | null {
   if (english.matchRatio < CONFIDENT.englishMatch)
     return `English table matches the enum on ${english.matchRatio}, below ${CONFIDENT.englishMatch}`;
   if (table.valid < CONFIDENT.valid) return `only ${table.valid} of entries lead to a string`;
@@ -800,12 +812,71 @@ export function confidenceProblem(english: EnglishTable, table: LanguageTable): 
     return `${table.identical} of entries are the English text`;
   if (!isDecodable(table.encoding.encoding))
     return `encoding ${table.encoding.encoding} can't be decoded`;
-  const { language, confidence } = table.guess;
-  if (language === null || language === "en")
-    return `doesn't read as a language other than English`;
-  if (confidence < CONFIDENT.languageConfidence)
-    return `language guess ${language} has confidence ${confidence}, below ${CONFIDENT.languageConfidence}`;
   return null;
+}
+
+const fromMessageFile = (t: LanguageTable) => t.via.startsWith("message file");
+
+/**
+ * Each message file's language, from the guesses for every table found in
+ * it: a file is one language throughout, and its whole set of tables reads
+ * as that language far more surely than one table of short names does
+ * (French waist armor guessed 0.24, Italian leg armor read as German, on
+ * the EU disc). A file needs three tables and 60% of the guesses' weight.
+ */
+export function messageFileLanguages(results: readonly NameTableResult[]): Map<string, Language> {
+  const votes = new Map<string, Map<Language, number>>();
+  const tables = new Map<string, number>();
+  for (const r of results) {
+    for (const t of r.languages) {
+      const { language, confidence } = t.guess;
+      if (!fromMessageFile(t) || language === null) continue;
+      const byLang = votes.get(t.file) ?? new Map<Language, number>();
+      byLang.set(language, (byLang.get(language) ?? 0) + confidence);
+      votes.set(t.file, byLang);
+      tables.set(t.file, (tables.get(t.file) ?? 0) + 1);
+    }
+  }
+  const out = new Map<string, Language>();
+  for (const [file, byLang] of votes) {
+    const total = [...byLang.values()].reduce((a, b) => a + b, 0);
+    const [language, weight] = [...byLang.entries()].sort((a, b) => b[1] - a[1])[0]!;
+    if (language !== "en" && (tables.get(file) ?? 0) >= 3 && total > 0 && weight / total >= 0.6) {
+      out.set(file, language);
+    }
+  }
+  return out;
+}
+
+/**
+ * Settles each result's languages by its message files' language
+ * (`messageFileLanguages`): a message-file table that lines up is that
+ * file's language whatever its own guess, and a table is never kept under
+ * a language its file isn't. Notes each table this changes.
+ */
+export function settleByFileLanguage(results: NameTableResult[]): void {
+  const fileLanguage = messageFileLanguages(results);
+  for (const r of results) {
+    const best = r.english[0];
+    if (!best) continue;
+    for (const [language, t] of Object.entries(r.confident) as [Language, LanguageTable][]) {
+      const actual = fileLanguage.get(t.file);
+      if (actual && actual !== language) delete r.confident[language];
+    }
+    for (const t of r.languages) {
+      const language = fileLanguage.get(t.file);
+      if (!language || !fromMessageFile(t) || structuralProblem(best, t)) continue;
+      const current = r.confident[language];
+      if (current === t || (current && fromMessageFile(current))) continue;
+      r.confident[language] = t;
+      r.notes = r.notes.filter((n) => !n.startsWith(`Two ${language} candidates`));
+      if (t.guess.language !== language || t.guess.confidence < CONFIDENT.languageConfidence) {
+        r.notes.push(
+          `${language} from ${t.file}, the ${language} message file (its own guess: ${t.guess.language ?? "none"} ${t.guess.confidence}).`,
+        );
+      }
+    }
+  }
 }
 
 export interface NameTableResult {

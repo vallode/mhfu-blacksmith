@@ -16,6 +16,7 @@ import {
   type ScanFile,
 } from "../src/strings/name-search.js";
 import { parseStringPack, placeInPack } from "../src/strings/string-pack.js";
+import { searchAll } from "../src/cli/find-names.js";
 
 const PREFIX = {
   es: "Pequeña caza del ",
@@ -151,4 +152,46 @@ describe("searchNameTable through message files", () => {
       assert.equal(es[i], `${PREFIX.es}${names[i]}`);
     });
   }
+});
+
+describe("each message file's language settles its tables", () => {
+  // Four armor tables per file; in the Italian file, the leg armor reads as
+  // German (as on the EU disc, where its short names were guessed German).
+  const tables = ["HeadArmorID", "ChestArmorID", "ArmArmorID", "LegArmorID"] as const;
+  const enums = tables.map((t) => enumNames(t));
+  const fileNames: Record<Lang | "en", string> = {
+    en: "_unindexed/19.bin",
+    fr: "_unindexed/20.bin",
+    de: "_unindexed/21.bin",
+    it: "_unindexed/22.bin",
+    es: "message_jpn/str_tbl.pac",
+  };
+  const files: ScanFile[] = (["en", ...LANGS] as const).map((lang) => ({
+    name: `data-bin/${fileNames[lang]}`,
+    buf: messageFile(
+      enums.map((names, k) => {
+        const misread = lang === "it" && tables[k] === "LegArmorID";
+        return names.map((n, i) =>
+          lang === "en" || i === 0 || !n
+            ? (n ?? "dummy")
+            : `${misread ? "Großes Jagdschwert der Italiener " : PREFIX[lang]}${n}`,
+        );
+      }),
+    ),
+  }));
+
+  test("the misread table is written as Italian, and German keeps its own", () => {
+    const results = searchAll(files, tables);
+    const legs = results.find((r) => r.table === "LegArmorID")!;
+    assert.equal(legs.confident.it?.file, "data-bin/_unindexed/22.bin");
+    assert.equal(legs.confident.de?.file, "data-bin/_unindexed/21.bin");
+    assert.ok(
+      legs.notes.some((n) => /it from .*22\.bin/.test(n)),
+      legs.notes.join("; "),
+    );
+    for (const r of results) {
+      for (const lang of LANGS)
+        assert.equal(r.confident[lang]?.file, `data-bin/${fileNames[lang]}`);
+    }
+  });
 });

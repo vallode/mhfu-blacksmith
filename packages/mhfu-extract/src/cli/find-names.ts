@@ -13,6 +13,7 @@ import { BinaryReader } from "../binary/reader.js";
 import {
   confidenceProblem,
   failedResult,
+  settleByFileLanguage,
   FileIndex,
   searchNameTable,
   SEARCHED_TABLES,
@@ -116,7 +117,7 @@ export async function loadScanFiles(
 /** Runs the search over `files` for `tables`, logging progress. */
 export function searchAll(files: ScanFile[], tables: readonly NameTable[]): NameTableResult[] {
   const indexes = files.map((f) => new FileIndex(f));
-  return tables.map((table) => {
+  const results = tables.map((table) => {
     const started = Date.now();
     const seconds = () => ((Date.now() - started) / 1000).toFixed(1);
     try {
@@ -130,6 +131,8 @@ export function searchAll(files: ScanFile[], tables: readonly NameTable[]): Name
       return failedResult(table, message);
     }
   });
+  settleByFileLanguage(results);
+  return results;
 }
 
 /** Entry indices shown side by side: spread over the table, plus a few with non-ASCII text. */
@@ -160,7 +163,12 @@ const englishJson = (t: EnglishTable) => ({
   mismatches: t.mismatches,
 });
 
-const languageJson = (t: LanguageTable, english: EnglishTable, samples: number[]) => ({
+const languageJson = (
+  t: LanguageTable,
+  english: EnglishTable,
+  samples: number[],
+  written: LanguageTable[],
+) => ({
   file: t.file,
   offset: hex(t.offset),
   address: hex(t.offset + t.base),
@@ -174,7 +182,9 @@ const languageJson = (t: LanguageTable, english: EnglishTable, samples: number[]
   alignment: t.alignment,
   encoding: t.encoding,
   language: t.guess,
-  notWrittenBecause: confidenceProblem(english, t),
+  notWrittenBecause: written.includes(t)
+    ? null
+    : (confidenceProblem(english, t) ?? "another table was written for its language"),
   samples: samples.map((i) => [i, english.texts[i] ?? null, t.texts[i] ?? null]),
 });
 
@@ -195,7 +205,9 @@ export function resultJson(result: NameTableResult) {
     })),
     bases: result.bases.slice(0, 8).map((b) => ({ ...b, base: hex(b.base) })),
     english: result.english.map(englishJson),
-    languages: best ? result.languages.map((l) => languageJson(l, best, samples)) : [],
+    languages: best
+      ? result.languages.map((l) => languageJson(l, best, samples, Object.values(result.confident)))
+      : [],
   };
 }
 
