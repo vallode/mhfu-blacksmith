@@ -320,6 +320,7 @@
   --frame-width: 18px 24px;
   --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAYAAACeXX40AAABpElEQVR42u3dwVHDMBAFUJnhprJSAN2kCLpJAZTlsziTDDa2bLSy3jsCY4nkz+6OoyRTSqmkc00b/771fkZf/1/385agIQFEABnX+/MPHvdb1QU/Pr8O3WDr/Yy+/tn7UQHRghFAiDEDbp0h/jATlGD/c7H+cWrzoQKiBSOAEHMGrFV738j6bdc/+j6iCogWDAJIHzPgATPE5GHuWjkzHyogWjACCE1MKd57EOhoBlQB0YJBAOl2Blzs+TnnH7+c59lMx69yzuUpL4uZUwHRghFACDMDmgk5beZTAdGCQQDpcwbceQ2uqyofKiBaMAIIYWZA9/3YzWvBaMEggAggCCACCAJISM4DUsV5QLRgEEDGmAF3XoPrch4QLRgEkGvMgO77sZvzgGjBIIB0MwP6jGiW+IxotGAQQK7n5bvion+/LG0dnQ8VEC0YAYQYM+DWmW5tJnjcb8XD3K+15782HyogWjACCDFnwLNniDWt70uOvr4KiBYMAsiYM2DtDJK2nwdsfT5x9PU37ac2HyogWjACCE1EfE+IGXCg50MFRAtGAKGJb4uqga/xXSW8AAAAAElFTkSuQmCC");
   --frame-cover-slice: 24 32;
+  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAKAAAABQCAQAAAA0VLa/AAAAvklEQVR42u3cQQqEMAxA0dT73zmeQCWtKA3vLwd08WhLOjAzolpefD4W3/P385PvOUJLAQQIECBAAZQkSZK+bJSfSCJuIq5yAAEKIECALaaevJh/Es7tfJhWoC0MsNUZGM7CytlnBdrCAAEKIECA7sLuwrKFAQIEKIAAt54DwzxYmf+sQFsYIEABBAiwzRxo/puaB61AWxhgq539nN+JWIG2MECAAggQoCRJkrRr730f6H+k5SoHECBAAQS4UyeLCxlzDHnfVgAAAABJRU5ErkJggg==");
   --card-inset-t: 6px;
   --card-inset-r: 6px;
   --card-inset-b: 6px;
@@ -340,6 +341,7 @@
   --frame-width: 18px;
   --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACM0lEQVR42u3bv0rDUBQH4FQKDnEQFRGcfQvBwaGLUHwAcXZ1cHJ0cnB1Fh9ABJcOHQRfxa1uzVznpmLM/YPRfN+W1kS43B/nnLZ3UBTFoshoZzQqINRsMsn6/DVLTJ8JAAIAfTWsv/B8dRz1wPHtdOl6fXfPKpNM6v2pAqAFAgEAM0BzzxTbk13PP759/2Zj2/3uD+7p2+5PFQAtEAgACAAIAAgACAD8c4Oidh4g9W8t7k9PrDLBLp5eipz7UwVACwQCAGaAZmVZfvt+VVVL15dHh1aZYHevb1H7TwUAAQABgC9ngLpFwD3QFa32rwqAFggEAMwAzT1V/XPYqqrMBPyasiwXtf3Yao+rAGiBQADADNA8AwQ+A3KJ2p8qAFogEAAwA6z2VD735y9p+72ACoAWCAQAzACrM8AP74GucB4AtEAgABDfz/tegM5yHgC0QCAAkH8GCHwG5OI8AGiBQAAgfgbwuT9/lvMAoAUCAYD4GeCH90BXOA8AWiAQAIjv530vQGc5DwBaIBAAyD8DBD4DcnEeALRAIAAQPwPo+enNTKACoAUCAYCezgCLnP/g8ujQKhPs7vVNBQABAAGAtIb1F56vjqMeOL6dLl0fbG1aZZJJvT9VALRAIABgBmjumdr2ZDcb20vX1/OPVn9f5/5+3596f6oAaIFAAEAAQABAAEAA4J9bOQ+Q+rcW+2fnVplg748PRc79qQKgBQIBADNAejujkVUm2GwyUQFAAEAAIK1P6uWv0BH5c0QAAAAASUVORK5CYII=");
   --frame-cover-slice: 24;
+  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAQAAADhybViAAAAsElEQVR42u3XsQqAMAxF0ej//3PdBMHBIfQFOWdy7qWxqQIAAAAAAAAAAP7mqHV/PS2H03zSr+d7OpksAQTwD/g0q+id/W6AEYQAAiCAAAIwYg/w/o/sA26AESQAAgiAAAIQ3QPKPrDz/e8GGEEIIAACCCAAI/YA7//IPuAGGEECIIAACCAA0T2g7AM73/9ugBGEAAIggAACMGIP8P6P7ANugBEkAAAAAAAAAAAAAI0uLpkVU8VZBi8AAAAASUVORK5CYII=");
   --card-inset-t: 0px;
   --card-inset-r: 6px;
   --card-inset-b: 0px;
@@ -360,6 +362,7 @@
   --frame-width: 24px;
   --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABgCAYAAADVenpJAAABnUlEQVR42u3dMWoDMRRFUU1wp125C2QV3ojxRrwKQ7rsSvWktxkbI31psM4tE5IPw+W9LwVnlpTSmjAtXx4BAUAAzMrh/gvn31PowMv39en3ze87XwKoABAAdoAtbte/qgE/p2PVz5sfO18CqAAQAHaAVp1S21nm950vAVQACAACgAAgAAgA9wAjz7nm950vAVQACAA7wBa1f8+uxfyjBAABQABEsKTGnw3MOXuqgZRSJAAIAAKg1Q7wLmvA78Sg5y8BVAAIADtAq066vwcopdgJKsg5ry/uARYJAAKAANjDDuBeYN/nfgkAAoAAqOgP5/4PuheQACoABIAdwLl/znsBCaACQADYAVp1knuBfZ/7JQAIAAIgagdwL7Dvc78EAAFAAFT0h87/oJ1AAqgAEABT7wCrxyABQAAQANPx8L+Ce7+/3vyx8yWACgABYAfYIvr99eaPnS8BVAAIADtAq06Jfq+e+W3nSwAVAAKAACAACAACwD3AyHOu+X3nSwAVAALADrBF9PvrzR87XwKoABAA0+KzgRIABAABMCf/20+JxVdxCuAAAAAASUVORK5CYII=");
   --frame-cover-slice: 32;
+  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAIAAAABgCAQAAAB/c7LCAAAAcElEQVR42u3YIQ7AIAxA0cL971w0ggSBaXnPzmw/lDAiAAAAAAAAAIDuRuTxyS7LfdnV+8/fV4AA9oB8M0vVZt8KEEAAAQQQQAD/AkZAAAEEEEAA5wD3AUZAAAEEEEAA5wD3AUZAAAAAAAAAAACAZhZKog8371m6SwAAAABJRU5ErkJggg==");
   --card-inset-t: 0px;
   --card-inset-r: 12px;
   --card-inset-b: 0px;
@@ -380,6 +383,7 @@
   --frame-width: 18px;
   --frame-cover: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAYAAABLwH3pAAACBklEQVR42u3bwXGDMBAFUJHxjbJcgfvh6H6owGVxVs7BmQGxCLD13i2eGBGPdvavibqUUk51dYW/f/b9WL+h/fCToGEKAAUArbrNX7gPY+iCr+dj1xs8+36s/937QQdABAIFAGaA8gy3IpPli/3N2frfs350f+oAiECgAMAMsL/o97bWb3v9vZ8j6ACgAEABwPIMsEOG63zMBOSa+1MHQAQCBQAN6lLh/2b0ff/n52ma1qwBVWaADftRBwAFAAoAM0Bh5pLp+eSZYb5/dQBEIFAAYAZYzlT/fO9qJuA0fd/n2X4s2uM6ACIQKAAwAyzPABuvAbWE9qcOgAgECgDMAO+Zyvf+fJLS5wI6ACIQKAAwA7zPACvfA1fhPACIQKAAIJ7nPRfgspwHABEIFADUnwE2XgNqcR4ARCBQABCfAXzvz8dyHgBEIFAAEJ8BVr4HrsJ5ABCBQAFAPM97LsBlOQ8AIhAoAKg/A2y8BtTiPACIQKAAID4DyPw0MxPoAIhAoACg0RkgH7AG1Mr0OgAoAFAAUOY2f+E+jKELvp4PnyrV7L0/dQBEIFAAYAYoz/RLmew+jNnHTK2ZMro/dQBEIFAAYAY4PsMtOfu5hPW/+7mQDoAIBAoAzAD7Z8BUfh7g7PMJ1j93/aL7ie5PHQARCBQANOiKZ4JlcDPAYfejAyACgQKABv0C9kGdS66+2xoAAAAASUVORK5CYII=");
   --frame-cover-slice: 24;
+  --frame-mask: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAMAAAABgCAQAAADhybViAAAA/ElEQVR42u3ZUY6FIAxA0eL+94wrMAZFWsM5n5M8P7yh0kyLUf3i7+3lc/7++4fPOYJUAgggAAIIgAAAAAB7aMO/6F7azDdqE04mgAACIIAACLDrrbVf3F/d97/dD7oTYAQhQKFvQPgWrJz9ToARhAACIIAAAlBiD3D/T9kHnAAjSAAEEAABBCB1Dwj7wMr7vxNgBCGAAAgggACU2APc/1P2ASfACBIAAQRAAAFI3QPCPrDy/u8EGEEIIAACCCAAJfYA9/+UfcAJMIIEoNBkuufbMPWNOgFGkAAIIAACCAAAAMAC8/4f0F4+5++/f/gcm3AyAQQQAAEEQIA9nT51IY//SQO9AAAAAElFTkSuQmCC");
   --card-inset-t: 6px;
   --card-inset-r: 6px;
   --card-inset-b: 6px;
@@ -418,8 +422,20 @@
    counted from the card's outer edge (card-p-*, card-px-*, card-py-*,
    card-pl-*, card-pr-*; 2.6rem by 2rem by default) less that inset. A
    padding smaller than the inset computes to 0: calc() in padding is clamped
-   at 0, so the content starts at the outline. */
+   at 0, so the content starts at the outline.
+   It is also masked where the frame is opaque (--frame-mask: the inverse of
+   --frame-cover, laid out over the card's box by the outset), so nothing in
+   it can draw over the frame whatever order the browser composites the
+   layers in. Safari on macOS gives a scrolling body a layer of its own, and
+   draws it over frame-cover's overlay. Browsers without
+   -webkit-mask-box-image (Firefox) rely on the overlay alone. */
 @utility card-body {
+  -webkit-mask-box-image-outset: var(--card-inset-t) var(--card-inset-r) var(--card-inset-b)
+    var(--card-inset-l);
+  -webkit-mask-box-image-repeat: round;
+  -webkit-mask-box-image-slice: var(--frame-cover-slice) fill;
+  -webkit-mask-box-image-source: var(--frame-mask);
+  -webkit-mask-box-image-width: var(--frame-width);
   margin: var(--card-inset-t) var(--card-inset-r) var(--card-inset-b) var(--card-inset-l);
   padding: calc(var(--card-py, var(--card-p, 2.6rem)) - var(--card-inset-t))
     calc(var(--card-pr, var(--card-px, var(--card-p, 2rem))) - var(--card-inset-r))
