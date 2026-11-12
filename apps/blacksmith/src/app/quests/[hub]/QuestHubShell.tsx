@@ -183,7 +183,7 @@ export default function QuestHubShell({
                   data-quest={q.id}
                   href={questHref(q)}
                   aria-current={q.id === id ? "page" : undefined}
-                  className={cn("list-row", q.id === id && "bg-white/10")}
+                  className={cn("list-row pl-[16px]", q.id === id && "bg-white/10")}
                 >
                   <p className="truncate">{q.title}</p>
                   {(cleared?.has(q.id) || q.urgent) && (
