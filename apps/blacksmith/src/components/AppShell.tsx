@@ -20,13 +20,29 @@ interface NavItem {
   section?: MenuSection;
   /** Shown in the phone tab bar (the rest are in its menu drawer). */
   tab?: boolean;
+  /** Tab bar uses the 16px /images/<icon>-mini.png sprite. */
+  tabMini?: boolean;
 }
 
 /** The sidebar's entries, in groups with a divider between them: the game's data, then your own. */
 const NAV_GROUPS: NavItem[][] = [
   [
-    { label: "Weapons", icon: "great-sword", match: "/blacksmith/", section: "weapons", tab: true },
-    { label: "Armor", icon: "helmet", match: "/armorsmith/", section: "armor", tab: true },
+    {
+      label: "Weapons",
+      icon: "great-sword",
+      match: "/blacksmith/",
+      section: "weapons",
+      tab: true,
+      tabMini: true,
+    },
+    {
+      label: "Armor",
+      icon: "helmet",
+      match: "/armorsmith/",
+      section: "armor",
+      tab: true,
+      tabMini: true,
+    },
     { label: "Monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
     { label: "Decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
     { label: "Quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
@@ -229,7 +245,13 @@ function TabBar({
               aria-current={active ? "page" : undefined}
               className={cn(tab, active && tabActive)}
             >
-              <Icon type={item.icon} nav active={active} className={rowIcon} />
+              <Icon
+                type={item.icon}
+                size={item.tabMini ? "mini" : undefined}
+                nav
+                active={active}
+                className={rowIcon}
+              />
               <span className={label}>{item.label}</span>
             </Link>
           );
