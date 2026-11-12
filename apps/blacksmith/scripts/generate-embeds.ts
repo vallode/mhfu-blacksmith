@@ -9,6 +9,10 @@
  *   See embedIcon() in src/lib/seo.ts.
  * - oembed/<route>.json: each detail page's oEmbed file, which gives Discord
  *   the line above the title ("Rarity 10 Long Sword"). See oembedJson().
+ * - set-data.json: every armor piece and decoration a set share code can
+ *   name, which the Cloudflare Worker reads to give shared sets their own
+ *   embeds. See src/lib/set-embed.ts. Needs the /data bundles, so this runs
+ *   after scripts/generate-data.ts.
  */
 import fs from "fs";
 import path from "path";
@@ -28,7 +32,10 @@ import {
   weaponAuthor,
   type EmbedAuthor,
 } from "../src/lib/seo";
+import { buildCodecTables } from "../src/lib/set-codec";
+import { SET_EMBED_DATA_PATH, setEmbedData } from "../src/lib/set-embed";
 import { getWeapons } from "../src/lib/weapons";
+import { readSetSearchData } from "./lib/set-data";
 
 const publicDir = path.join(process.cwd(), "public");
 const outDir = path.join(publicDir, "embed");
@@ -211,11 +218,23 @@ function writeOembeds() {
   return count;
 }
 
+/** The pieces and decorations share codes name, for the Worker's set embeds. */
+function writeSetData() {
+  const { data, ids } = readSetSearchData(path.join(publicDir, "data"));
+  const tables = buildCodecTables(data, ids);
+  const embedData = setEmbedData(data, tables);
+  fs.writeFileSync(path.join(publicDir, SET_EMBED_DATA_PATH), JSON.stringify(embedData));
+  return Object.keys(embedData.pieces).length + Object.keys(embedData.decorations).length;
+}
+
 async function main() {
   fs.rmSync(outDir, { recursive: true, force: true });
   const icons = await writeIcons();
   const oembeds = writeOembeds();
-  console.log(`Wrote ${icons} embed icons and ${oembeds} oEmbed files to public/embed/`);
+  const setEntries = writeSetData();
+  console.log(
+    `Wrote ${icons} embed icons, ${oembeds} oEmbed files and set data for ${setEntries} pieces and decorations to public/embed/`,
+  );
 }
 
 main();

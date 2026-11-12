@@ -52,6 +52,7 @@ import {
   describeDecodeError,
   describeDropped,
   encodeSet,
+  SHARE_PARAM,
 } from "@/lib/set-codec";
 import {
   cantWear,
@@ -109,9 +110,6 @@ const ORIGIN_TITLES: Record<Origin, string> = {
   result: "Search result",
   link: "Shared set",
 };
-
-/** The share link's query parameter: /set-builder/?s=<code>. */
-const SHARE_PARAM = "s";
 
 /** The weapon class's mini icon: grey, or green when chosen (as in the nav). */
 function classIcon(type: string) {

@@ -35,12 +35,15 @@
  * Decoding never throws: it returns a set, or a typed error.
  */
 import { ARMOR_SLOTS, type ArmorSlot } from "./constants";
-import { resolveEquip } from "./equipment";
+import { resolveEquip } from "./equipment-ref";
 import { EQUIP_TYPE_SLOTS, type EquipmentIds } from "./schema";
 import { emptyBuild, type BuildSet } from "./set-build";
 import type { DecoBin, Deco, Piece, PlacedDeco, SearchData } from "./set-search";
 
 export const CODEC_VERSION = 1;
+
+/** The share link's query parameter: /set-builder/?s=<code>. */
+export const SHARE_PARAM = "s";
 
 export const FIELD = {
   armor: 1,

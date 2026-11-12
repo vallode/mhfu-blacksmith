@@ -7,20 +7,9 @@
  * data/equipment-ids.json.
  */
 import { useEffect, useState } from "react";
-import { ARMOR_RANKS, WEAPON_TYPES } from "./constants";
-import { EQUIP_TYPE_SLOTS, type EquipmentIds } from "./schema";
-import type { EquipSlot } from "./save-store";
-import { slugify } from "./slug";
+import type { EquipmentIds } from "./schema";
 
-export interface ResolvedEquip {
-  name: string;
-  /** Only for armor sold as separate Male and Female pieces under one name. */
-  sex?: string;
-  rarity: number | null;
-  /** Weapon type or armor slot; also the icon type. */
-  category: string;
-  href: string;
-}
+export { resolveEquip, type ResolvedEquip } from "./equipment-ref";
 
 let idsPromise: Promise<EquipmentIds> | null = null;
 let idsCache: EquipmentIds | null = null;
@@ -58,23 +47,4 @@ export function useEquipmentIds(enabled = true): { ids: EquipmentIds | null; err
     };
   }, [ids, enabled]);
   return { ids, error };
-}
-
-/** null for an unknown type code or an ID with no page. */
-export function resolveEquip(ids: EquipmentIds, slot: EquipSlot): ResolvedEquip | null {
-  const ref = ids[slot.type]?.[slot.id];
-  if (!ref) return null;
-  const [group, name, rarity, slug = slugify(name), sex] = ref;
-  const typeSlot = EQUIP_TYPE_SLOTS[slot.type];
-  if (typeSlot === "melee" || typeSlot === "ranged") {
-    const type = WEAPON_TYPES[group];
-    return { name, rarity, category: type, href: `/blacksmith/${type}/${slug}/` };
-  }
-  return {
-    name,
-    rarity,
-    category: typeSlot,
-    href: `/armorsmith/${typeSlot}/${ARMOR_RANKS[group]}/${slug}/`,
-    ...(sex ? { sex } : {}),
-  };
 }
