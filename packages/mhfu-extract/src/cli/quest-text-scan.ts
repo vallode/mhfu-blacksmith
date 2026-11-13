@@ -26,7 +26,7 @@ import {
   type TextNeedle,
   type TextScanFile,
 } from "../quests/text-scan.js";
-import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
+import { assertMhfuUnpack, type UnpackManifest } from "./unpack.js";
 
 export interface QuestTextScanOptions {
   unpacked: string;
@@ -63,7 +63,7 @@ export async function runQuestTextScan(options: QuestTextScanOptions): Promise<s
   const manifest: UnpackManifest = JSON.parse(
     await readFile(path.join(options.unpacked, "manifest.json"), "utf-8"),
   );
-  assertCurrentFileNames(manifest, options.unpacked);
+  assertMhfuUnpack(manifest, options.unpacked);
   const dataBin = path.join(options.unpacked, "data-bin");
 
   let needles: TextNeedle[] | null = null;

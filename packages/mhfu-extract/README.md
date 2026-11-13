@@ -49,7 +49,10 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
 
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
   and writes plain files to `--out` (an EBOOT dump, `data-bin/<index>` files
-  named via `vendor/fuctool/filelist.csv`, and detected region info).
+  named via `vendor/fuctool/filelist.csv`, and detected game and region
+  info). It also takes MHF1 and MHF2 discs; see "Other games". `--game`
+  and `--region` (both or neither) override what the disc ID says, for a
+  reissue or patched disc with an ID it doesn't know.
 - `extract` reads the unpacked directory and produces `data/*.json`-shaped
   output plus `EXTRACTION.json` provenance manifest. `--raw` also writes
   numbers-only dumps to `raw/` (sharpness, weapons, gunner, armor, and
@@ -214,6 +217,101 @@ Open:
   `mhp2g-patterns` enums for every region. Committed skill names are
   rewritten to the extractor's spelling before comparing (see "Overlay
   data").
+
+### Other games: MHF1 and MHF2
+
+`unpack` recognises every retail disc of the three PSP games by its
+`DISC_ID` (`KNOWN_DISCS`, `src/container/sfo.ts`, from mhef's `psp.py`):
+
+| Game                         | `game`  | JP          | US          | EU          |
+| ---------------------------- | ------- | ----------- | ----------- | ----------- |
+| Monster Hunter Freedom       | `mhp`   | `ULJM05066` | `ULUS10084` | `ULES00318` |
+| Monster Hunter Freedom 2     | `mhp2`  | `ULJM05156` | `ULUS10266` | `ULES00851` |
+| Monster Hunter Freedom Unite | `mhp2g` | `ULJM05500` | `ULUS10391` | `ULES01213` |
+
+and records it as `game` in `manifest.json` (a manifest without one is
+MHFU). For MHF1 and MHF2 it writes:
+
+- `eboot.bin`, decrypted the same way as MHFU's (see "EBOOT decryption").
+- `data-bin/_unindexed/<index>.bin`, one per `DATA.BIN` entry, read through
+  a **plain** table of contents. The cipher in `src/container/databin.ts`
+  is MHP2G's: mhef's `DataCipher` names only 2nd G and 3rd, and mhff's
+  `psp/data.py` reads the TOC as plain u32s. Nothing names the entries yet,
+  as `filelist.csv` does for MHFU.
+- `usrdir/`, every other file under `PSP_GAME/USRDIR` as it is, and
+  `DATA.BIN` itself when it has no plain TOC (`dataBinUnpacked: false`).
+
+Both EU discs have been through it: MHF1 (ULES00318) gave 5,874 entries
+and MHF2 (ULES00851) unpacked too, each with an in-process-decrypted EBOOT.
+None of what reads MHFU after `unpack` holds for them as is: the EBOOT
+table addresses and some struct layouts, the quest format and
+`QuestCipher` (mhef has it for 2nd G and 3rd only), the overlays, and the
+file names. `export-site`, `quest-flags` and `quest-text-scan` refuse an
+MHF1 or MHF2 unpack (`assertMhfuUnpack`) rather than misread it, as
+`extract` does an MHF1 one; `messages` reads either, by index. `randomfu`
+still takes MHFU discs only (`detectRegion` returns no region for the
+others).
+
+**MHF2 equipment (EU only).** `extract` on an EU MHF2 unpack reads its
+equipment tables (`src/games/mhp2.ts`) and writes them as numbers-only JSON,
+one file per table: blademaster and gunner weapons (with weapon types),
+armor per slot, sharpness, items, and decoration values and skills, plus
+`EXTRACTION.json` with each table's offset and count and the checks. The
+offsets and the three changed layouts (gunner weapons, armor, sharpness)
+were found with `table-probe`; the module comment has the field-by-field
+evidence. The checks: the EBOOT is the EU MHF2 one (by size); MHF2's own
+armor pointers are spaced exactly as the armor tables, which were found by
+content; every blademaster sharpness ID is in the sharpness table; every
+weapon's model has a weapon type; sharpness thresholds never decrease; and
+armor rarity stays at 10 or under. Names and descriptions come from MHF2's
+own message files (`src/games/mhp2-text.ts`): `message-probe` found DATA.BIN
+3-7, one file per language, whose tables pair up (names, descriptions) with
+the equipment tables by size. The English file is picked as the one with the
+fewest non-ASCII bytes in its weapon names, and each name table's count is
+checked against its entries (legs have one name more than entries; the
+check lists the empty names to place it). The item table holds all 960 item
+IDs, like MHFU's 1,261: 713 regular items, the decorations, then 123 more.
+Decoration d is item 713 + d, as it is 948 + d in MHFU. Not
+read yet: bow charge levels, bowgun ammo, dual-element weapons, crafting
+recipes and skills.
+
+Getting data out of them takes a disc of each, then, per game:
+
+1. `unpack` it, and check `DATA.BIN` came apart (`dataBinUnpacked`,
+   `fileCount`) and `eboot.bin` is an ELF.
+2. Find the equipment tables in `eboot.bin`. MHF2 is MHFU's base game, so
+   most of MHFU's structs should carry over with fewer entries. `table-probe`
+   searches the target EBOOT for every entry of every fixed-size MHFU table
+   (weapons, armor, items, decorations, sharpness, …) and reports where each
+   table would start, how many entries agree, and where inserted or removed
+   entries split it. For a table it finds, it shows which bytes of an entry
+   the target game changed. For one whose entries changed size, it looks up
+   every 8-byte run of every entry instead: runs found once vote for the
+   spacing between entries (the target's entry size) and for where each
+   MHFU field sits in a target entry. When that size differs from MHFU's,
+   it also lines up each MHFU byte with the target entry and prints its
+   shift, which shows the fields dropped or added (`src/tables/probe.ts`;
+   offsets and counts only):
+
+   ```bash
+   pnpm --filter mhfu-extract table-probe --reference .cache/mhfu --target .cache/mhf2
+   ```
+
+   MHF1 is further from MHFU; expect few matches and readers written from
+   scratch.
+
+3. Write down the offsets and changed layouts in `src/games/<game>.ts`, with
+   the checks that tie them together, and have `extract` read them, as
+   `src/games/mhp2.ts` and `src/cli/extract-mhp2.ts` do for EU MHF2. MHF1
+   (`mhp.ts`) is still to do.
+4. Name things from the game's own message files. `message-probe` lists
+   every message file in an unpack (`.pac` entries included) with each
+   table's string count, and marks the tables whose count matches an
+   equipment table's, give or take a dummy entry: a name table has one
+   string per entry (`src/strings/message-probe.ts`; counts only). Then
+   `messages` reads a table it points at.
+5. Write the game's output to its own `data/<game>/` for the site, which
+   serves it under `/<game>/` beside MHFU's pages.
 
 ### EBOOT decryption
 

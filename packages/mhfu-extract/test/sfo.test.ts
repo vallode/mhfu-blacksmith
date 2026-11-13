@@ -1,6 +1,6 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
-import { detectRegion, parseSfo } from "../src/container/sfo.js";
+import { detectDisc, detectRegion, parseSfo } from "../src/container/sfo.js";
 
 /** A PARAM.SFO with string entries; `usedLen` overrides an entry's recorded length. */
 function buildSfo(entries: { key: string; value: string; maxLen: number; usedLen?: number }[]) {
@@ -42,4 +42,18 @@ test("parseSfo reads a string past a stale recorded length (FUComplete's TITLE)"
   );
   assert.equal(sfo.get("TITLE"), title);
   assert.deepEqual(detectRegion(sfo), { region: "jp", discId: "ULJM05500" });
+});
+
+test("detectDisc names the game and region of each retail MHF1, MHF2 and MHFU disc", () => {
+  const disc = (id: string) =>
+    detectDisc(parseSfo(buildSfo([{ key: "DISC_ID", value: id, maxLen: 16 }])));
+  assert.deepEqual(disc("ULUS10084"), { game: "mhp", region: "us", discId: "ULUS10084" });
+  assert.deepEqual(disc("ULES00851"), { game: "mhp2", region: "eu", discId: "ULES00851" });
+  assert.deepEqual(disc("ULUS10391"), { game: "mhp2g", region: "us", discId: "ULUS10391" });
+  assert.deepEqual(disc("ULJM99999"), { game: null, region: null, discId: "ULJM99999" });
+});
+
+test("detectRegion still only accepts MHFU discs", () => {
+  const sfo = parseSfo(buildSfo([{ key: "DISC_ID", value: "ULJM05156", maxLen: 16 }]));
+  assert.deepEqual(detectRegion(sfo), { region: null, discId: "ULJM05156" });
 });

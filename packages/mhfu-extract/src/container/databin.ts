@@ -1,5 +1,5 @@
 /**
- * MHP2G/MHFU `DATA.BIN` decryption and TOC unpacking.
+ * `DATA.BIN` table-of-contents unpacking, and MHP2G/MHFU's cipher.
  *
  * Ported from `DataCipher` in svanheulen/mhef (mhef/psp.py) and the TOC
  * walking logic in svanheulen/mhff (psp/data.py), both GPL-3.0-or-later.
@@ -15,7 +15,7 @@
  * raw and must be left untouched.
  */
 import { DATA_CIPHER_DECODE_TABLE, DATA_CIPHER_ENCODE_TABLE } from "./data-cipher-tables.js";
-import type { Region } from "./sfo.js";
+import type { Game, Region } from "./sfo.js";
 
 const SECTOR_SIZE = 2048;
 
@@ -138,13 +138,20 @@ export interface UnpackedDataBin {
  * FUComplete (a patched JP disc, still ULJM05500) ships DATA.BIN with the
  * cipher removed: same TOC and files, no substitution or XOR. Which of the
  * two this is shows in the TOC, so both are tried.
+ *
+ * The cipher is MHP2G's: mhef's `DataCipher` names only 2nd G and 3rd, and
+ * mhff's `psp/data.py` reads its TOC as plain u32s. So for `mhp` and `mhp2`
+ * only the plain TOC is tried, and a DATA.BIN without one fails with the
+ * game named. Neither has been tried on a real disc yet.
  */
-export function readDataBin(raw: Buffer, region: Region): UnpackedDataBin {
-  const encryptedToc = readToc(raw, true);
+export function readDataBin(raw: Buffer, region: Region, game: Game = "mhp2g"): UnpackedDataBin {
+  const encryptedToc = game === "mhp2g" ? readToc(raw, true) : null;
   const parsed = encryptedToc ?? readToc(raw, false);
   if (!parsed) {
     throw new Error(
-      "DATA.BIN has no valid table of contents, encrypted or plain: no run of sector offsets ending at the file's size. Is this really a MHP2G/MHFU DATA.BIN?",
+      game === "mhp2g"
+        ? "DATA.BIN has no valid table of contents, encrypted or plain: no run of sector offsets ending at the file's size. Is this really a MHP2G/MHFU DATA.BIN?"
+        : `DATA.BIN has no plain table of contents (no run of sector offsets ending at the file's size), so this ${game} disc's DATA.BIN is laid out or encrypted differently from what mhff describes.`,
     );
   }
   const encrypted = encryptedToc !== null;
@@ -164,6 +171,6 @@ export function readDataBin(raw: Buffer, region: Region): UnpackedDataBin {
 }
 
 /** `readDataBin`'s files alone. */
-export function unpackDataBin(raw: Buffer, region: Region): DataBinFile[] {
-  return readDataBin(raw, region).files;
+export function unpackDataBin(raw: Buffer, region: Region, game: Game = "mhp2g"): DataBinFile[] {
+  return readDataBin(raw, region, game).files;
 }

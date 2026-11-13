@@ -117,30 +117,38 @@ export function readBlademasterWeapons(
   const base = resolveTableOffset("weaponsBlademaster", reader, resolver);
   const out: BlademasterWeapon[] = [];
   for (let i = 0; i < TABLE_COUNTS.weaponsBlademaster; i++) {
-    const off = base + i * WEAPON_BM_ENTRY_SIZE;
-    out.push({
-      index: i,
-      modelId: reader.u16(off + 0),
-      rarity: reader.u8(off + 2),
-      unkn1: reader.u8(off + 3),
-      price: reader.u32(off + 4),
-      sharpnessId: reader.u8(off + 8),
-      sharpnessAmount: reader.u8(off + 9),
-      attack: reader.u16(off + 10),
-      defense: reader.u8(off + 12),
-      affinity: reader.s8(off + 13),
-      eleType: reader.u8(off + 14),
-      eleValue: reader.u8(off + 15),
-      statusType: reader.u8(off + 16),
-      statusValue: reader.u8(off + 17),
-      slots: reader.u8(off + 18),
-      noteGlType: reader.u8(off + 19),
-      unkn2: reader.u8(off + 20),
-      sortOrder: reader.u16(off + 21),
-      unkn3: reader.u8(off + 23),
-    });
+    out.push(readBlademasterWeaponAt(reader, base + i * WEAPON_BM_ENTRY_SIZE, i));
   }
   return out;
+}
+
+/** One 24-byte `WepBMValue` at a file offset. MHF2 keeps the same layout (games/mhp2.ts). */
+export function readBlademasterWeaponAt(
+  reader: BinaryReader,
+  off: number,
+  index: number,
+): BlademasterWeapon {
+  return {
+    index,
+    modelId: reader.u16(off + 0),
+    rarity: reader.u8(off + 2),
+    unkn1: reader.u8(off + 3),
+    price: reader.u32(off + 4),
+    sharpnessId: reader.u8(off + 8),
+    sharpnessAmount: reader.u8(off + 9),
+    attack: reader.u16(off + 10),
+    defense: reader.u8(off + 12),
+    affinity: reader.s8(off + 13),
+    eleType: reader.u8(off + 14),
+    eleValue: reader.u8(off + 15),
+    statusType: reader.u8(off + 16),
+    statusValue: reader.u8(off + 17),
+    slots: reader.u8(off + 18),
+    noteGlType: reader.u8(off + 19),
+    unkn2: reader.u8(off + 20),
+    sortOrder: reader.u16(off + 21),
+    unkn3: reader.u8(off + 23),
+  };
 }
 
 /** Named bits of the ShotCoat u32 bitfield, in declaration order (bit 0 first). */

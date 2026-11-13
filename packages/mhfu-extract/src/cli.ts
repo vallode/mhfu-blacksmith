@@ -2,7 +2,7 @@
 /**
  * mhfu-extract CLI entrypoint. See README's "Usage" section.
  *
- *   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
+ *   tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>] [--game <mhp|mhp2|mhp2g> --region <jp|us|eu>]
  *   tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw]
  *   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
  *   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
@@ -12,6 +12,8 @@
  *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
  *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
+ *   tsx src/cli.ts table-probe --reference <mhfu unpack> --target <unpack> [--out <path>]
+ *   tsx src/cli.ts message-probe --unpacked <dir> [--out <path>]
  */
 import { fileURLToPath } from "node:url";
 import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.js";
@@ -24,9 +26,14 @@ import { runExtract } from "./cli/extract.js";
 import { runModels } from "./cli/models.js";
 import { runQuestFlags } from "./cli/quest-flags.js";
 import { runQuestTextScan } from "./cli/quest-text-scan.js";
+import { runTableProbe } from "./cli/table-probe.js";
+import { runMessageProbe } from "./cli/message-probe.js";
 import { runMessages } from "./cli/messages.js";
 import { readFile, writeFile } from "node:fs/promises";
-import { runUnpack } from "./cli/unpack.js";
+import { manifestGame, runUnpack, type UnpackManifest } from "./cli/unpack.js";
+import { runExtractMhp2 } from "./cli/extract-mhp2.js";
+import path from "node:path";
+import { isGame, isRegion, type Game, type Region } from "./container/sfo.js";
 import { probeQuests, sizeTsv } from "./emit/quest-probe.js";
 import type { QuestRawEntry } from "./emit/quests-raw.js";
 
@@ -54,6 +61,22 @@ export function parseFlags(argv: string[]): Record<string, string> {
   return flags;
 }
 
+/** `--game`, checked; undefined when absent. */
+function gameFlag(flags: Record<string, string>): Game | undefined {
+  const value = flags.game;
+  if (value === undefined) return undefined;
+  if (!isGame(value)) throw new Error(`--game must be one of mhp, mhp2, mhp2g (got "${value}")`);
+  return value;
+}
+
+/** `--region`, checked; undefined when absent. */
+function regionFlag(flags: Record<string, string>): Region | undefined {
+  const value = flags.region;
+  if (value === undefined) return undefined;
+  if (!isRegion(value)) throw new Error(`--region must be one of jp, us, eu (got "${value}")`);
+  return value;
+}
+
 function requireFlag(flags: Record<string, string>, name: string): string {
   const value = flags[name];
   if (!value) throw new Error(`Missing required flag --${name}`);
@@ -61,7 +84,7 @@ function requireFlag(flags: Record<string, string>, name: string): string {
 }
 
 const USAGE = `Usage:
-  tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>]
+  tsx src/cli.ts unpack  --iso <path> --out <dir> [--eboot <path> | --skip-eboot] [--pspdecrypt-bin <name>] [--game <mhp|mhp2|mhp2g> --region <jp|us|eu>]
   tsx src/cli.ts extract --unpacked <dir> --out <dir> [--raw]
   tsx src/cli.ts diff    --extracted <dir> --data <dir> [--out <path>]
   tsx src/cli.ts models  --in <file.pac|dir> --out <dir>
@@ -73,7 +96,9 @@ const USAGE = `Usage:
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
   tsx src/cli.ts quest-probe --quests <raw/quests.json> [--tsv <path>]
   tsx src/cli.ts quest-text-scan --unpacked <dir> --quest <id> [--out <path>]
-  tsx src/cli.ts messages --unpacked <dir> --file <index> [--grep <word>] [--table <n> [--from <i>] [--count <n>]]`;
+  tsx src/cli.ts messages --unpacked <dir> --file <index> [--grep <word>] [--table <n> [--from <i>] [--count <n>]]
+  tsx src/cli.ts table-probe --reference <mhfu unpack> --target <unpack> [--out <path>]
+  tsx src/cli.ts message-probe --unpacked <dir> [--out <path>]`;
 
 export async function main(argv: string[]): Promise<void> {
   const [command, ...rest] = argv;
@@ -87,10 +112,27 @@ export async function main(argv: string[]): Promise<void> {
         eboot: flags.eboot,
         skipEboot: flags["skip-eboot"] === "true",
         pspdecryptBin: flags["pspdecrypt-bin"],
+        game: gameFlag(flags),
+        region: regionFlag(flags),
       });
       console.log(
-        `\nDone. Region: ${manifest.region}, ${manifest.fileCount} DATA.BIN entries unpacked.`,
+        `\nDone. Game: ${manifest.game}, region: ${manifest.region}, ${manifest.fileCount} DATA.BIN entries unpacked` +
+          (manifest.usrdirFiles === undefined
+            ? "."
+            : `, ${manifest.usrdirFiles} USRDIR files copied.`),
       );
+      return;
+    }
+    case "message-probe": {
+      await runMessageProbe({ unpacked: requireFlag(flags, "unpacked"), out: flags.out });
+      return;
+    }
+    case "table-probe": {
+      await runTableProbe({
+        reference: requireFlag(flags, "reference"),
+        target: requireFlag(flags, "target"),
+        out: flags.out,
+      });
       return;
     }
     case "messages": {
@@ -128,6 +170,16 @@ export async function main(argv: string[]): Promise<void> {
       return;
     }
     case "extract": {
+      const unpacked = requireFlag(flags, "unpacked");
+      const unpackManifest = JSON.parse(
+        await readFile(path.join(unpacked, "manifest.json"), "utf-8"),
+      ) as UnpackManifest;
+      if (manifestGame(unpackManifest) === "mhp2") {
+        const result = await runExtractMhp2({ unpacked, out: requireFlag(flags, "out") });
+        const failed = result.checks.filter((c) => !c.ok).length;
+        console.log(`\nDone. MHF2 tables extracted; ${failed} check(s) failed.`);
+        return;
+      }
       const manifest = await runExtract({
         unpacked: requireFlag(flags, "unpacked"),
         out: requireFlag(flags, "out"),
