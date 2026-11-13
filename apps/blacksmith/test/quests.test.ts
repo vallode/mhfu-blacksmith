@@ -1,7 +1,11 @@
 /** The quests bundle (scripts/lib/quest-bundle.ts) round-tripped through its decoder (lib/quests.ts). */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
-import { encodeQuestBundle, type QuestRecord } from "../scripts/lib/quest-bundle";
+import {
+  encodeQuestBundle,
+  monsterSizeRanges,
+  type QuestRecord,
+} from "../scripts/lib/quest-bundle";
 import {
   bestCrownQuests,
   decodeQuests,
@@ -64,6 +68,40 @@ describe("questHubSlug", () => {
     assert.equal(questHubSlug("guild", "g-rank"), "g-rank");
     assert.equal(questHubSlug("training-school", null), "training-school");
     assert.equal(questHubSlug("guild", null), null);
+  });
+});
+
+describe("monsterSizeRanges", () => {
+  const giadrome = (size: QuestRecord["monster_size"]) =>
+    quest({
+      large_monsters: [
+        { monster: "Giadrome", crown_chances: { mini: 0, silver: 0, gold: 0 } },
+        // No crowns: always 100, so no range.
+        { monster: "Kirin" },
+      ],
+      monster_size: size,
+    });
+
+  test("spans every quest a crowned monster rolls in", () => {
+    const ranges = monsterSizeRanges([
+      giadrome({ modifier: 100, min: 85, max: 125 }),
+      giadrome({ modifier: 130, min: 130, max: 149 }),
+      giadrome(null),
+    ]);
+    assert.deepEqual([...ranges], [["Giadrome", { min: 85, max: 149 }]]);
+  });
+
+  test("counts 100 for a quest that holds its monsters there until a flag", () => {
+    // Rolls above 100 once the flag is set: 100 is the smallest.
+    assert.deepEqual(
+      monsterSizeRanges([giadrome({ modifier: 130, min: 130, max: 130, fixed_until_flag: 322 })]),
+      new Map([["Giadrome", { min: 100, max: 130 }]]),
+    );
+    // Rolls below 100 once the flag is set: 100 is the largest.
+    assert.deepEqual(
+      monsterSizeRanges([giadrome({ modifier: 80, min: 76, max: 92, fixed_until_flag: 322 })]),
+      new Map([["Giadrome", { min: 76, max: 100 }]]),
+    );
   });
 });
 

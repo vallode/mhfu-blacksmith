@@ -65,7 +65,7 @@ import {
   normalizeItemName,
   type ItemRecord,
 } from "../src/lib/items";
-import { encodeQuestBundle, type QuestRecord } from "./lib/quest-bundle";
+import { encodeQuestBundle, monsterSizeRanges, type QuestRecord } from "./lib/quest-bundle";
 import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
 import {
   buildItemPlaces,
@@ -325,7 +325,10 @@ function hitzoneFlinch(m: Monster): (string | null)[] | null {
   );
 }
 
-function encodeMonster(m: Monster): CompactMonster {
+function encodeMonster(
+  m: Monster,
+  sizeRange: { min: number; max: number } | undefined,
+): CompactMonster {
   const out: CompactMonster = { n: m.name, s: m.slug };
   const d = internString(m.description);
   if (d !== undefined) out.d = d;
@@ -342,12 +345,10 @@ function encodeMonster(m: Monster): CompactMonster {
       }),
     ]);
   }
-  if (typeof m.sizes?.min === "number" && typeof m.sizes?.max === "number") {
-    out.sz = [m.sizes.min, m.sizes.max];
-  }
   if (typeof m.base_hp === "number") out.hp = m.base_hp;
   if (typeof m.base_size === "number") out.bs = m.base_size;
   if (m.crowns) out.cr = [m.crowns.mini, m.crowns.silver, m.crowns.gold];
+  if (sizeRange) out.sz = [sizeRange.min, sizeRange.max];
   if (Array.isArray(m.breaks) && m.breaks.length > 0) out.bk = m.breaks;
   const flinch = out.hz && hitzoneFlinch(m);
   if (flinch) out.hf = flinch.map((v) => (v === null ? null : intern(stringIndex, v)));
@@ -501,12 +502,23 @@ for (const slot of ARMOR_SLOTS) {
   }
 }
 
+// Every quest, for the monsters' size ranges and the quests bundle.
+const questDir = path.join(dataDir, "quests");
+const quests = fs
+  .readdirSync(questDir)
+  .filter((f) => f.endsWith(".json"))
+  .sort()
+  .flatMap((f) => readJson<{ quests: QuestRecord[] }>(path.join(questDir, f)).quests);
+const sizeRanges = monsterSizeRanges(quests);
+
 // Monsters
 for (const category of MONSTER_CATEGORIES) {
   const p = path.join(dataDir, "monsters", `${category}.json`);
   if (!fs.existsSync(p)) continue;
   const data = readJson<{ monsters: Monster[] }>(p);
-  const items = data.monsters.map((m) => encodeMonster({ ...m, slug: slugify(m.name) }));
+  const items = data.monsters.map((m) =>
+    encodeMonster({ ...m, slug: slugify(m.name) }, sizeRanges.get(m.name)),
+  );
   totalItems += items.length;
   push(`monster-${category}.json`, { kind: "monster", category, items });
 }
@@ -528,12 +540,6 @@ for (const category of MONSTER_CATEGORIES) {
   const { index } = buildItemNameIndex(
     readJson<{ items: ItemRecord[] }>(path.join(dataDir, "items.json")).items,
   );
-  const questDir = path.join(dataDir, "quests");
-  const quests = fs
-    .readdirSync(questDir)
-    .filter((f) => f.endsWith(".json"))
-    .sort()
-    .flatMap((f) => readJson<{ quests: QuestRecord[] }>(path.join(questDir, f)).quests);
   const gathering = readJson<GatheringFile>(path.join(dataDir, "gathering.json"));
   const areaMaps = buildAreaMaps(gathering);
   const { bundle, unresolvedItems } = encodeQuestBundle({

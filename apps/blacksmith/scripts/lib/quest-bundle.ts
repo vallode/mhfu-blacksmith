@@ -66,6 +66,39 @@ export interface QuestBundleInputs {
   hasAreaMap?: (questId: number) => boolean;
 }
 
+/**
+ * The smallest and largest size, in percent, each monster can roll across
+ * these quests, by name. Only monsters with crowns roll (their spawns carry
+ * `crown_chances`); the rest are always 100 and are left out. A quest with
+ * `fixed_until_flag` holds its monsters at 100 until the flag is set, so 100
+ * counts there too.
+ *
+ * Not counted: the game also pins every monster at 100 while bit 0x10 of a
+ * global flag word is set (mhfu-extract's README, "Monster size"), but what
+ * sets it is unknown, so 100 isn't added to every range for it.
+ */
+export function monsterSizeRanges(
+  quests: readonly QuestRecord[],
+): Map<string, { min: number; max: number }> {
+  const out = new Map<string, { min: number; max: number }>();
+  for (const q of quests) {
+    const size = q.monster_size;
+    if (!size) continue;
+    const fixed = size.fixed_until_flag !== undefined;
+    const min = fixed ? Math.min(size.min, 100) : size.min;
+    const max = fixed ? Math.max(size.max, 100) : size.max;
+    for (const { monster, crown_chances } of q.large_monsters) {
+      if (!crown_chances) continue;
+      const range = out.get(monster);
+      out.set(
+        monster,
+        range ? { min: Math.min(range.min, min), max: Math.max(range.max, max) } : { min, max },
+      );
+    }
+  }
+  return out;
+}
+
 export function encodeQuestBundle({
   quests,
   itemId,
