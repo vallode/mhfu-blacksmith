@@ -8,7 +8,12 @@ import { compareCategory, loadInputs } from "../src/build/compare.js";
 import { canonical, percentValue, toSite, type FieldContext } from "../src/build/fields.js";
 import { assignDiscIds, discMaterialId, loadSiteIndex } from "../src/build/ids.js";
 import { mergeCategory, serializeDataFile } from "../src/build/merge.js";
-import { nameQuestItems, runBuildData } from "../src/cli/build-data.js";
+import {
+  nameGatheringItems,
+  nameQuestItems,
+  nameShopItems,
+  runBuildData,
+} from "../src/cli/build-data.js";
 
 // Real enum IDs from the vendored mhp2g-patterns tables.
 const LEATHER_HELM = 1;
@@ -374,7 +379,7 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
   try {
     const report = await runBuildData({ extracted, data, only: ["armor", "quests"] });
     assert.deepEqual(report.categories[0]!.filesWritten, ["armor/helmet.json"]);
-    assert.deepEqual(report.questFiles, [path.join("quests", "village.json")]);
+    assert.deepEqual(report.copiedFiles, [path.join("quests", "village.json")]);
 
     const written = await readFile(path.join(data, "armor", "helmet.json"), "utf-8");
     const expected = {
@@ -463,6 +468,25 @@ test("nameQuestItems writes quest supplies and rewards under their game names", 
     { chance: 50, item: "SpecFamitsuTckt", amount: 1 },
     { chance: 50, item: "Not An Item", amount: 1 },
   ]);
+});
+
+test("nameGatheringItems and nameShopItems write items under their game names", () => {
+  const site = {
+    items: new Map([[932, { id: 932, name: "SpecFamitsuTckt" }]]),
+  } as unknown as Parameters<typeof nameGatheringItems>[1];
+  const node = { kind: "gather", items: [{ item: "FamitsuCustomTkt", chance: 5 }] };
+  const gathering = nameGatheringItems(
+    { layouts: [{ map: "Town", quests: [1], areas: [{ area: 1, nodes: [node] }] }] },
+    site,
+  ) as { layouts: { areas: { nodes: (typeof node)[] }[] }[] };
+  assert.deepEqual(gathering.layouts[0]!.areas[0]!.nodes[0]!.items, [
+    { item: "SpecFamitsuTckt", chance: 5 },
+  ]);
+  const shops = nameShopItems(
+    { shops: [{ name: "Shop", items: [{ item: "FamitsuCustomTkt", price: 1, stages: [1] }] }] },
+    site,
+  ) as { shops: { items: { item: string }[] }[] };
+  assert.equal(shops.shops[0]!.items[0]!.item, "SpecFamitsuTckt");
 });
 
 test("mergeCategory writes a skill the committed list repeats once", async () => {

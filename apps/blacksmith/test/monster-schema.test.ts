@@ -59,3 +59,16 @@ test("decodeMonster has no flinch thresholds when the bundle has none", () => {
   const monster = decodeMonster(dict, { n: "Kelbi", s: "kelbi", hz: [[0, values]] }, "herbivore");
   assert.equal(monster.hitzone_flinch, undefined);
 });
+
+test("decodeMonster reads the size range, in percent", () => {
+  const monster = decodeMonster(
+    dict,
+    { n: "Kushala Daora", s: "kushala-daora", bs: 1577, sz: [90, 133] },
+    "elder-dragon",
+  );
+  assert.deepEqual(monster.size_range, { min: 90, max: 133 });
+  assert.equal(
+    decodeMonster(dict, { n: "Kirin", s: "kirin" }, "elder-dragon").size_range,
+    undefined,
+  );
+});

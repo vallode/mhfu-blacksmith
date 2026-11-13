@@ -67,14 +67,18 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 15,
+          "endless": true
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         }
       ],
       "title": "Basic Training - Basics",
@@ -156,14 +160,18 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 15,
+          "endless": true
         },
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 2
         }
       ],
       "title": "Basic Training - BBQ",
@@ -246,22 +254,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 15,
+          "endless": true
         }
       ],
       "title": "Basic Training - Gathering",
@@ -339,22 +353,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 15,
+          "endless": true
         }
       ],
       "title": "Basic Training - Combining",
@@ -437,22 +457,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 15,
+          "endless": true
         }
       ],
       "title": "Basic Training - Fishing",
@@ -527,22 +553,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 6
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 4
+          "max_quantity": 4,
+          "total_quantity": 5
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 4
         },
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 8,
+          "total_quantity": 15,
+          "endless": true
         }
       ],
       "title": "Basic Training - Transport",
@@ -671,25 +703,47 @@
         {
           "monster": "Giadrome",
           "quantity": 1,
-          "power": 1
+          "power": 1,
+          "multipliers": {
+            "hp": 0.3,
+            "attack": 1,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 105
+      },
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 19,
+          "endless": true
         }
       ],
       "title": "Basic Training - Hunting",
@@ -771,22 +825,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Sword Mastery",
@@ -868,22 +928,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Dual Blade Mastery",
@@ -965,22 +1031,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Great Sword Mastery",
@@ -1062,22 +1134,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Long Sword Mastery",
@@ -1159,22 +1237,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Hammer Mastery",
@@ -1256,22 +1340,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Hunting Horn Mastery",
@@ -1353,22 +1443,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Lance Mastery",
@@ -1450,22 +1546,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Gunlance Mastery",
@@ -1559,22 +1661,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Light Bowgun Mastery",
@@ -1668,22 +1776,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Heavy Bowgun Mastery",
@@ -1765,22 +1879,28 @@
         }
       ],
       "large_monsters": [],
+      "monster_size": null,
       "small_monsters": [
         {
           "monster": "Giaprey",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 7
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Anteka",
-          "max_quantity": 99
+          "max_quantity": 12,
+          "total_quantity": 17,
+          "endless": true
         },
         {
           "monster": "Popo",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 12
         }
       ],
       "title": "Bow Mastery",
@@ -1839,13 +1959,30 @@
         {
           "monster": "Yian Kut-Ku",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Yian Kut-Ku Training",
@@ -1904,13 +2041,30 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Congalala Training",
@@ -1969,13 +2123,30 @@
         {
           "monster": "Khezu",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Khezu Training",
@@ -2034,13 +2205,30 @@
         {
           "monster": "Daimyo Hermitaur",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Daimyo Hermitaur Training",
@@ -2099,13 +2287,30 @@
         {
           "monster": "Blangonga",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Blangonga Training",
@@ -2164,13 +2369,30 @@
         {
           "monster": "Yian Garuga",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.45,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Yian Garuga Training",
@@ -2229,13 +2451,30 @@
         {
           "monster": "Tigrex",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Tigrex Training",
@@ -2294,13 +2533,30 @@
         {
           "monster": "Diablos",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Diablos Training",
@@ -2359,13 +2615,30 @@
         {
           "monster": "Gravios",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.45,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Gravios Training",
@@ -2424,13 +2697,30 @@
         {
           "monster": "Kirin",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Rocks",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Kirin Training",
@@ -2489,37 +2779,60 @@
         {
           "monster": "Cephadrome",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Genprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 14
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 5
+          "max_quantity": 5,
+          "total_quantity": 10
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 8
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         }
       ],
       "title": "Cephadrome Training",
@@ -2578,49 +2891,76 @@
         {
           "monster": "Plesioth",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 1
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 15,
+          "total_quantity": 15,
+          "endless": true
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 5
+          "max_quantity": 9,
+          "total_quantity": 9
         },
         {
           "monster": "Conga",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 6
         }
       ],
       "title": "Plesioth Training",
@@ -2679,45 +3019,70 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 2
+          "power": 2,
+          "multipliers": {
+            "hp": 0.35,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         },
         {
           "monster": "Melynx",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         },
         {
           "monster": "Conga",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 12
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 9
         },
         {
           "monster": "Genprey",
-          "max_quantity": 4
+          "max_quantity": 6,
+          "total_quantity": 7
         }
       ],
       "title": "Shogun Ceanataur Training",
@@ -2776,45 +3141,71 @@
         {
           "monster": "Rathalos",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.45,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Mosswine",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 1
+          "max_quantity": 4,
+          "total_quantity": 8
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 9
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Rathalos Training",
@@ -2873,29 +3264,51 @@
         {
           "monster": "Rajang",
           "quantity": 1,
-          "power": 4
+          "power": 4,
+          "multipliers": {
+            "hp": 0.45,
+            "attack": 1.02,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 1,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Giaprey",
-          "max_quantity": 1
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Anteka",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Popo",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Rajang Training",
@@ -2954,33 +3367,56 @@
         {
           "monster": "Hypnocatrice",
           "quantity": 1,
-          "power": 5
+          "power": 5,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 2.2,
+            "defense": 1,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Conga",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 4
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Hypnocatrice Training",
@@ -3039,33 +3475,56 @@
         {
           "monster": "Emerald Congalala",
           "quantity": 1,
-          "power": 5
+          "power": 5,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 2.2,
+            "defense": 1,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Conga",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 3
+          "max_quantity": 9,
+          "total_quantity": 9
         }
       ],
       "title": "Emerald Congalala Training",
@@ -3124,45 +3583,71 @@
         {
           "monster": "Plum Daimyo Hermitaur",
           "quantity": 1,
-          "power": 5
+          "power": 5,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 2.2,
+            "defense": 1,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Genprey",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Cephalos",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Plum D.Hermitaur Training",
@@ -3221,33 +3706,56 @@
         {
           "monster": "Nargacuga",
           "quantity": 1,
-          "power": 5
+          "power": 5,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 2.2,
+            "defense": 1,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Ioprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Shakalaka",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Nargacuga Training",
@@ -3306,45 +3814,71 @@
         {
           "monster": "Copper Blangonga",
           "quantity": 1,
-          "power": 5
+          "power": 5,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 2.2,
+            "defense": 1,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Genprey",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 5
         },
         {
           "monster": "Felyne",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 99
+          "max_quantity": 0,
+          "total_quantity": 0,
+          "endless": true
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Great Thunderbug",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Cephalos",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Copper Blangonga Training",
@@ -3403,33 +3937,55 @@
         {
           "monster": "Lavasioth",
           "quantity": 1,
-          "power": 5
+          "power": 5,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 2.2,
+            "defense": 1,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Ioprey",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 5
         },
         {
           "monster": "Apceros",
-          "max_quantity": 3
+          "max_quantity": 5,
+          "total_quantity": 5
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Remobra",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 20
+          "max_quantity": 21,
+          "total_quantity": 21
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Lavasioth Training",
@@ -3488,45 +4044,70 @@
         {
           "monster": "Terra Shogun Ceanatur",
           "quantity": 1,
-          "power": 5
+          "power": 5,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 2.2,
+            "defense": 1,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Velociprey",
-          "max_quantity": 2
+          "max_quantity": 6,
+          "total_quantity": 6
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Aptonoth",
-          "max_quantity": 4
+          "max_quantity": 9,
+          "total_quantity": 9
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Ceanataur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 4
+          "max_quantity": 7,
+          "total_quantity": 7
         },
         {
           "monster": "Hornetaur",
-          "max_quantity": 1
+          "max_quantity": 2,
+          "total_quantity": 2
         }
       ],
       "title": "Terra S.Ceanataur Training",
@@ -3585,25 +4166,45 @@
         {
           "monster": "Furious Rajang",
           "quantity": 1,
-          "power": 5
+          "power": 5,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 2.2,
+            "defense": 1,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 1,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Vespoid",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 1
+          "max_quantity": 1,
+          "total_quantity": 1
         },
         {
           "monster": "Apceros",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 4
         },
         {
           "monster": "Melynx",
-          "max_quantity": 1
+          "max_quantity": 3,
+          "total_quantity": 3
         }
       ],
       "title": "Rajang Training",
@@ -3679,9 +4280,25 @@
         {
           "monster": "Blue Yian Kut-Ku",
           "quantity": 1,
-          "power": 15
+          "power": 15,
+          "multipliers": {
+            "hp": 0.78,
+            "attack": 1.3,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [],
       "title": "Blue Yian Kut-Ku Exercises",
       "goal": "Slay the Blue Yian Kut-Ku",
@@ -3756,33 +4373,56 @@
         {
           "monster": "Cephadrome",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 1.1,
+            "attack": 1.5,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Cephalos",
-          "max_quantity": 99
+          "max_quantity": 5,
+          "total_quantity": 15,
+          "endless": true
         },
         {
           "monster": "Apceros",
-          "max_quantity": 4
+          "max_quantity": 7,
+          "total_quantity": 12
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 10
+          "max_quantity": 12,
+          "total_quantity": 42
         },
         {
           "monster": "Genprey",
-          "max_quantity": 3
+          "max_quantity": 6,
+          "total_quantity": 10
         },
         {
           "monster": "Melynx",
-          "max_quantity": 2
+          "max_quantity": 4,
+          "total_quantity": 6
         },
         {
           "monster": "Felyne",
-          "max_quantity": 2
+          "max_quantity": 3,
+          "total_quantity": 5
         }
       ],
       "title": "Cephadrome Exercises",
@@ -3863,37 +4503,61 @@
         {
           "monster": "Rathian",
           "quantity": 1,
-          "power": 12
+          "power": 12,
+          "multipliers": {
+            "hp": 1.15,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [
         {
           "monster": "Aptonoth",
-          "max_quantity": 99
+          "max_quantity": 2,
+          "total_quantity": 2,
+          "endless": true
         },
         {
           "monster": "Kelbi",
-          "max_quantity": 5
+          "max_quantity": 14,
+          "total_quantity": 14
         },
         {
           "monster": "Vespoid",
-          "max_quantity": 6
+          "max_quantity": 6,
+          "total_quantity": 20
         },
         {
           "monster": "Hermitaur",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 3
         },
         {
           "monster": "Mosswine",
-          "max_quantity": 4
+          "max_quantity": 12,
+          "total_quantity": 20
         },
         {
           "monster": "Bullfango",
-          "max_quantity": 2
+          "max_quantity": 2,
+          "total_quantity": 2
         },
         {
           "monster": "Velociprey",
-          "max_quantity": 3
+          "max_quantity": 7,
+          "total_quantity": 12
         }
       ],
       "title": "Rathian Exercises",
@@ -3969,9 +4633,25 @@
         {
           "monster": "Congalala",
           "quantity": 1,
-          "power": 6
+          "power": 6,
+          "multipliers": {
+            "hp": 0.7,
+            "attack": 1.3,
+            "defense": 1,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 100,
+        "min": 100,
+        "max": 100
+      },
       "small_monsters": [],
       "title": "Congalala Exercises",
       "goal": "Slay the Congalala",
@@ -4046,9 +4726,25 @@
         {
           "monster": "Shogun Ceanataur",
           "quantity": 1,
-          "power": 11
+          "power": 11,
+          "multipliers": {
+            "hp": 0.65,
+            "attack": 1.6,
+            "defense": 0.95,
+            "status": 1
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 110,
+        "min": 110,
+        "max": 110
+      },
       "small_monsters": [],
       "title": "Shogun Ceanataur Exercises",
       "goal": "Slay 1 Shogun Ceanataur",
@@ -4128,9 +4824,25 @@
         {
           "monster": "Tigrex",
           "quantity": 2,
-          "power": 18
+          "power": 18,
+          "multipliers": {
+            "hp": 0.6,
+            "attack": 2.5,
+            "defense": 0.85,
+            "status": 1.3
+          },
+          "crown_chances": {
+            "mini": 0,
+            "silver": 0,
+            "gold": 0
+          }
         }
       ],
+      "monster_size": {
+        "modifier": 108,
+        "min": 108,
+        "max": 108
+      },
       "small_monsters": [],
       "title": "Tigrex Exercises",
       "goal": "Slay 2 Tigrex",

@@ -19,6 +19,14 @@ export interface ItemRecord {
   name_jp: string;
   aliases?: string[];
   rarity?: number;
+  /** Carry limit (255 = unlimited). */
+  carry?: number;
+  /** Price in zenny. */
+  price?: number;
+  /** Icon shape, from the disc: the sprite at /images/item-<icon>.png. */
+  icon?: number;
+  /** Tint, from the disc: an index into `--color-item-*`. */
+  color?: number;
   regions?: ("jp" | "us" | "eu")[];
   placeholder?: true;
 }

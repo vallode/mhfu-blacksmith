@@ -12,7 +12,13 @@ import {
 } from "mhfu-extract/src/monsters/hitzones.js";
 import { openPatchableImage } from "../src/disc/node-file.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
-import { readSpawns, SIZE_PERCENT_OFFSET, TARGET_ID_OFFSET } from "../src/game/spawns.js";
+import {
+  readSpawns,
+  SIZE_PERCENT_OFFSET,
+  SIZE_VARIATION_OFFSET,
+  SIZE_VARIATIONS,
+  TARGET_ID_OFFSET,
+} from "../src/game/spawns.js";
 import { randomize } from "../src/randomize.js";
 import type { OptionKey, Settings } from "../src/settings.js";
 import { MONSTER_FAMILIES } from "../src/shuffles/quest-monsters.js";
@@ -138,11 +144,11 @@ test("rank swaps leave quests with several kinds of monster, and stay in the ran
       assert.ok(!result.edits.quests.has(byId(game, id).index), `quest ${id} unchanged`);
     }
     const quest = byId(game, 1001);
-    const ids = readSpawns(payloadAfter(result, quest), quest.parsed.header).large.map(
-      (s) => s.monsterId,
-    );
-    assert.ok([1, 2, 37].includes(ids[0]!));
-    changed.add(ids[0]!);
+    const [spawn] = readSpawns(payloadAfter(result, quest), quest.parsed.header).large;
+    assert.ok([1, 2, 37].includes(spawn!.monsterId));
+    // Fatalis has its own stat tables: it takes its Low Rank level (6), Rathians keep 3.
+    assert.equal(spawn!.power, spawn!.monsterId === 2 ? 6 : 3);
+    changed.add(spawn!.monsterId);
   }
   assert.ok(changed.size > 1);
   close();
@@ -160,10 +166,12 @@ test("difficulty levels move within the levels quests of the same rank use", asy
       game,
       only(`d${seed}`, { "questMonsters.difficulty": true, "questMonsters.difficultySpread": 31 }),
     );
-    // Low Rank quests use levels 3 to 6; the one High Rank quest only 12.
-    for (const id of [1001, 10101, 10102]) {
-      for (const p of levels(result, id)) assert.ok(p >= 3 && p <= 6, `${id}: ${p}`);
+    // Low Rank Rathians use levels 3 and 4; Low Rank Fatalis, with its own
+    // tables, only 6; the one High Rank quest only 12.
+    for (const id of [1001, 10102]) {
+      for (const p of levels(result, id)) assert.ok(p >= 3 && p <= 4, `${id}: ${p}`);
     }
+    assert.deepEqual(levels(result, 10101), [6]);
     assert.deepEqual(levels(result, 2001), [12]);
     assert.deepEqual(levels(result, 20001), [0]);
     moved ||= levels(result, 1001)[0] !== 3;
@@ -176,11 +184,36 @@ test("difficulty levels move within the levels quests of the same rank use", asy
         "questMonsters.difficultyRange": "any",
       }),
     );
-    for (const id of [1001, 10101, 10102, 2001]) {
+    for (const id of [1001, 10102, 2001]) {
       for (const p of levels(any, id)) assert.ok(p >= 3 && p <= 12, `${id}: ${p}`);
     }
+    assert.deepEqual(levels(any, 10101), [6]);
   }
   assert.ok(moved);
+  close();
+});
+
+test("difficulty follows the monster a species swap left, not the one it replaced", async () => {
+  const { game, close } = await load();
+  const quest = byId(game, 1001);
+  let fatalis = 0;
+  for (let seed = 0; seed < 20; seed++) {
+    const result = randomize(
+      game,
+      only(`ds${seed}`, {
+        "questMonsters.species": true,
+        "questMonsters.speciesPool": "rank",
+        "questMonsters.difficulty": true,
+        "questMonsters.difficultySpread": 31,
+      }),
+    );
+    const [spawn] = readSpawns(payloadAfter(result, quest), quest.parsed.header).large;
+    if (spawn!.monsterId !== 2) continue;
+    fatalis++;
+    // Fatalis's Low Rank levels are only 6, whatever Rathian's were.
+    assert.equal(spawn!.power, 6);
+  }
+  assert.ok(fatalis > 0);
   close();
 });
 
@@ -357,6 +390,52 @@ test("quest size moves each Village and Guild quest's size percentage within the
     }
   }
   assert.ok(changed > 0);
+  close();
+});
+
+test("crown spread gives every quest with large monsters one of the game's spreads", async () => {
+  const { game, close } = await load();
+  const withLarge = game.quests.filter(
+    (q) => readSpawns(q.file.payload, q.parsed.header).large.length > 0,
+  );
+  assert.ok(withLarge.length > 0);
+  const variation = (result: ReturnType<typeof randomize>, quest: LoadedQuest) =>
+    payloadAfter(result, quest)[SIZE_VARIATION_OFFSET]!;
+
+  const wide = randomize(
+    game,
+    only("c", { "questMonsters.crowns": true, "questMonsters.crownSpread": "wide" }),
+  );
+  const none = randomize(
+    game,
+    only("c", { "questMonsters.crowns": true, "questMonsters.crownSpread": "none" }),
+  );
+  for (const quest of withLarge) {
+    if (quest.parsed.header.questId === 20001) continue; // training: not a Village or Guild quest
+    assert.equal(variation(wide, quest), SIZE_VARIATIONS.length - 1);
+    assert.equal(variation(none, quest), 0);
+  }
+  assert.ok(wide.reports.find((r) => r.title === "Quest crown spread")!.lines.length > 0);
+
+  const seen = new Set<number>();
+  for (const seed of ["c0", "c1", "c2", "c3", "c4", "c5"]) {
+    const result = randomize(game, only(seed, { "questMonsters.crowns": true }));
+    for (const quest of game.quests) {
+      const after = variation(result, quest);
+      assert.ok(after < SIZE_VARIATIONS.length, `${after}`);
+      if (quest.parsed.header.questId === 20001)
+        assert.equal(after, quest.file.payload[SIZE_VARIATION_OFFSET], "training quests stay");
+      else if (withLarge.includes(quest)) {
+        assert.notEqual(after, 0, "random never takes a quest's crowns away");
+        seen.add(after);
+      }
+    }
+  }
+  assert.ok(seen.size > 1, "random picks more than one spread");
+
+  const off = randomize(game, only("c", { "questMonsters.species": true }));
+  for (const quest of game.quests)
+    assert.equal(variation(off, quest), quest.file.payload[SIZE_VARIATION_OFFSET]);
   close();
 });
 

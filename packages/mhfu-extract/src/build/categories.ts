@@ -8,9 +8,8 @@
  * disagreements are site errors rather than extractor gaps; see
  * `packages/mhfu-extract/README.md`'s "Building data/ from the disc" for the
  * numbers each decision was based on. Every other field, including ones
- * the disc doesn't have at all (armor `hr`/`elder`,
- * decoration `category`), is kept
- * from the committed file.
+ * the disc doesn't have at all (armor `hr`/`elder`), is kept from the
+ * committed file.
  */
 import type { NameTable } from "../strings/names.js";
 import type { FieldSpec } from "./fields.js";
@@ -97,7 +96,7 @@ const MONSTER_TYPES = [
  * Monsters come from `game_task.ovl`/`game_sub.ovl` (`monsters/*.ts`) with
  * part names and drop-group labels from `overlay/monsters.json`, so only
  * the parts and groups that overlay maps are compared; the rest, and every
- * other field (`description`, `habitats`, `sizes`, `icon`), stay as
+ * other field (`description`, `habitats`, `icon`), stay as
  * committed. Monsters pair by emID through the same overlay.
  */
 const MONSTERS: Category = {
@@ -112,6 +111,9 @@ const MONSTERS: Category = {
     { field: "drops", kind: "drops" },
     { field: "breaks", kind: "scalar" },
     { field: "flinch_thresholds", kind: "scalar" },
+    { field: "tolerances", kind: "scalar" },
+    { field: "base_size", kind: "scalar" },
+    { field: "crowns", kind: "scalar" },
   ],
   // Reviewed against the EU disc (README "Monster overlays"): of 400
   // mapped hitzone parts 389 agree and the 11 that don't are site errors;
@@ -121,8 +123,18 @@ const MONSTERS: Category = {
   // `base_hp` (chunk +0x100) is new to the site: it has no committed value
   // to disagree with, and is the HP before a quest's multiplier.
   // `breaks` (monsters/breaks.ts, overlay/breaks.json) and
-  // `flinch_thresholds` (hitzones.ts) are new too.
-  take: ["base_hp", "hitzones", "drops", "breaks", "flinch_thresholds"],
+  // `flinch_thresholds` and `tolerances` (hitzones.ts) are new too, as are
+  // `base_size` and `crowns` (monsters/sizes.ts).
+  take: [
+    "base_hp",
+    "hitzones",
+    "drops",
+    "breaks",
+    "flinch_thresholds",
+    "tolerances",
+    "base_size",
+    "crowns",
+  ],
 };
 
 export const CATEGORIES: Record<CategoryName, Category> = {

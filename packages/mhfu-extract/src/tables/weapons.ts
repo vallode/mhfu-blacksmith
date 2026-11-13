@@ -55,6 +55,37 @@ export function readWeaponClassModifiers(
   };
 }
 
+/** `WepClassModifiers` field for each weapon type. */
+export const CLASS_MODIFIER_KEYS: Readonly<Record<WeaponTypeName, keyof WeaponClassModifiers>> = {
+  "great-sword": "greatSword",
+  "long-sword": "longSword",
+  "sword-and-shield": "swordAndShield",
+  "dual-blades": "dualBlades",
+  hammer: "hammer",
+  "hunting-horn": "huntingHorn",
+  lance: "lance",
+  gunlance: "gunLance",
+  "light-bowgun": "lightBowgun",
+  "heavy-bowgun": "heavyBowgun",
+  bow: "bow",
+};
+
+/** `EleType` values in `WepBMValue` / `WepGunValue`. */
+export const ELEMENT_NAMES: Readonly<Record<number, string>> = {
+  1: "Fire",
+  2: "Water",
+  3: "Thunder",
+  4: "Dragon",
+  5: "Ice",
+};
+
+/** `StatusType` values in `WepBMValue`. */
+export const STATUS_NAMES: Readonly<Record<number, string>> = {
+  1: "Poison",
+  2: "Paralysis",
+  3: "Sleep",
+};
+
 export interface BlademasterWeapon {
   /** Index into WepBMValues, and into WepBMID for name lookup. */
   index: number;

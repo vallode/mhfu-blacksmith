@@ -86,7 +86,33 @@
       "base_hp": 40,
       "flinch_thresholds": [
         60
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 80,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 300,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": null,
+        "poison": {
+          "initial": 10,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 150,
+          "damage": 40,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Vespoid Queen",
@@ -110,7 +136,33 @@
       "base_hp": 1800,
       "flinch_thresholds": [
         400
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 300,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": null,
+        "poison": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Hornetaur",
@@ -206,7 +258,33 @@
       "base_hp": 50,
       "flinch_thresholds": [
         60
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 80,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 0,
+          "recovery": 1,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "ko": null,
+        "poison": {
+          "initial": 10,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 5,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Great Thunderbug",
@@ -278,7 +356,21 @@
       "base_hp": 40,
       "flinch_thresholds": [
         50
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": null,
+        "ko": null,
+        "poison": {
+          "initial": 175,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 25,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     }
   ]
 }

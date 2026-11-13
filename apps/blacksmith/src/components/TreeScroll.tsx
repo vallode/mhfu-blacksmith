@@ -1,6 +1,7 @@
 "use client";
 
 import { useLayoutEffect, useRef } from "react";
+import { PHONE } from "@/lib/media";
 
 /**
  * Persistent-scroll wrapper for the weapon/armor/decoration tree sidebar.
@@ -20,8 +21,8 @@ import { useLayoutEffect, useRef } from "react";
  */
 /**
  * The element that actually scrolls the tree: the wrapper itself if it is a
- * scroll container, otherwise its nearest scrolling ancestor (the tree card,
- * which scrolls instead so Safari keeps painting the card's frame).
+ * scroll container, otherwise its nearest scrolling ancestor (the tree card's
+ * body, which scrolls under the card's frame).
  */
 function scrollContainer(el: HTMLElement): HTMLElement {
   for (let node: HTMLElement | null = el; node; node = node.parentElement) {
@@ -92,10 +93,25 @@ export default function TreeScroll({
       const saved = sessionStorage.getItem(`tree-scroll:${treeKey}`);
       if (saved !== null) {
         scroller.scrollTop = Number(saved);
+        // Arriving at an item outside the remembered view (from the global
+        // search, say): bring it in.
+        const active = activeSlug
+          ? el.querySelector<HTMLElement>(`#${CSS.escape(activeSlug)}`)
+          : null;
+        if (active) {
+          const box = scroller.getBoundingClientRect();
+          const row = active.getBoundingClientRect();
+          if (row.top < box.top || row.bottom > box.bottom) {
+            active.scrollIntoView({ block: "center" });
+          }
+        }
       } else if (activeSlug) {
         // First visit to this tree: bring the active item into view.
         const active = el.querySelector<HTMLElement>(`#${CSS.escape(activeSlug)}`);
-        active?.scrollIntoView({ block: "center" });
+        // On a phone's list-and-detail page (SplitPage) the detail sheet
+        // covers all but the list's top rows, so bring it in there.
+        const underSheet = window.matchMedia(PHONE).matches && !!el.closest("[data-fill-screen]");
+        active?.scrollIntoView({ block: underSheet ? "start" : "center" });
       }
       // Reveal in the same frame the scroll is applied — no jump.
       reveal();

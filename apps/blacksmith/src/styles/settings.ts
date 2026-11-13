@@ -1,11 +1,13 @@
 // Class strings for the settings cards on the Options page
 // (SettingsCard, PreferencesSettings, SaveSyncSettings, OfflineSettings).
 
-/** Passed to <Card className>. Repeats the size under `mobile:` because Card
- * sets its own `mobile:` size, which cn() only replaces with another
- * `mobile:` class. `flex-none` keeps each card its natural height (Card is
- * `flex-1`), so a long card scrolls the page instead of being clipped. */
-export const section = "flex flex-none flex-col gap-[1.3rem] text-small";
+/** Passed to <Card className>. `flex-none` keeps each card its natural
+ * height (Card is `flex-1`), so a long card scrolls the page instead of being
+ * clipped. */
+export const section = "flex-none text-small";
+
+/** Passed to <Card bodyClassName>: the space between the card's rows. */
+export const sectionBody = "gap-[1.3rem]";
 
 /** Explanatory text; wraps, unlike the one-line card paragraph default. */
 export const note = "m-0 text-fine leading-[1.4] whitespace-normal text-white/60";
@@ -78,3 +80,19 @@ export const selectorValue =
 /** A text/search box (set builder's skill and piece search). */
 export const searchInput =
   "w-full border border-hr bg-black/45 px-[1rem] py-[0.6rem] font-[inherit] text-small text-white outline-none placeholder:text-white/35 focus-visible:border-white";
+
+/** One button of an icon choice group (IconChoices): square, or wider for a few characters ("OO-"). */
+export const iconChoice =
+  "flex h-[3.8rem] min-w-[3.8rem] flex-none px-[0.4rem] cursor-pointer items-center justify-center border-2 p-0 font-[inherit] text-main leading-none shadow-[0.2rem_0.2rem_0_black] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-white";
+
+export const iconChoiceOn = "border-stat bg-stat/20 text-stat";
+
+export const iconChoiceOff =
+  "border-white/25 bg-black/30 text-white/45 hover:border-stat/60 hover:text-white/80";
+
+/**
+ * For text centred in a box (choice buttons): the game's letter-spacing
+ * (`--tracking-game`, 14%) also follows the last letter, which pushes the
+ * letters off centre to the left; the negative margin takes it back off.
+ */
+export const centredText = "-mr-[0.14em]";

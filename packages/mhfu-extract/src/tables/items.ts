@@ -1,24 +1,33 @@
 /**
- * Item struct reader for `itemTable` @ 0x0899A238.
+ * Item struct reader for `itemTable` @ 0x0899A238: one 24-byte entry per
+ * ItemID, 0 ("None") through 1260.
  *
  * Unlike the other tables in this directory, this struct is not documented
  * in `eboot.hexpat` (it has no named `ItemValue`/`ItemValues` declaration) —
- * its address, entry size, and count come from `verifyOffsets()`'s
+ * its address and entry size come from `verifyOffsets()`'s
  * `decorationValues == itemTable + 948 * ITEM_ENTRY_SIZE` invariant (which
  * *is* in the pattern), combined with reading raw bytes off a real EBOOT and
  * noticing the field layout that falls out is byte-for-byte identical to
  * `DecoValues`/`DecorationValue` (tables/decorations.ts) — unsurprising once
- * you realize `decorationValues` is just this same array's tail past index
- * 947. Confirmed plausible against real, known MHFU items (e.g. index 7 has
- * stackLimit=10, matching Potion's real in-game carry limit; a run of six
- * entries starting at index 1 has round, strictly-increasing prices 1000 →
- * 20000, matching "Book of Combos 1..5" + "Alchemy Guide").
+ * you realize `decorationValues` is just this same array's entries 948–1116.
+ * The array goes on past the decorations, through the last ItemID (1260):
+ * on the EU disc entries 1117–1260 hold the treasure, Felyne and arena
+ * items' rarity, carry limit and price, and entry 1261 is unrelated data.
  *
- * Field names/meanings are consequently lower-confidence than the
- * hexpat-transcribed tables — `iconDeco`/`iconId`/`color` in particular are
- * named for their role in DecorationValue and may mean something different
- * (or nothing) for a non-decoration item; kept as raw fields for the emit
- * layer to interpret rather than guessing further here.
+ * Checked against the EU disc: `rarity` + 1 equals the community item
+ * lists' rarity on 1016 of 1017 items they have it for (the other,
+ * DragonslyrJewel, matches `data/decorations.json`); `stackLimit` is Potion
+ * 10, Whetstone 20, Pierce S Lv1 60, materials 99; `price` is the general
+ * store's buy price (Herb 20z, Potion 66z, Whetstone 80z). The u32 at +16
+ * is a tenth of `price` on items that can be sold (Herb 2, Rathalos Ruby
+ * 9700) and 0 on the rest, likely the sell price; not confirmed on screen.
+ *
+ * `iconId` is the item's icon shape and `color` its tint, on every item
+ * (`tables/item-icons.ts` has what they index): each potion is 24, each ore
+ * 27, each fang 31; Dragonite Ore is green and Eltalite Ore red. `iconDeco`
+ * is named for its role in DecorationValue; on other items its bits are
+ * set on groups such as cooked meat and fish (1) and the charms (32), with
+ * no known meaning.
  */
 import { BinaryReader } from "../binary/reader.js";
 import { ITEM_ENTRY_SIZE, TABLE_COUNTS, resolveTableOffset } from "./offsets.js";
@@ -28,14 +37,16 @@ export interface ItemEntry {
   /** Index into itemTable, and into ItemID for name lookup. */
   index: number;
   unkn1: number;
+  /** 0-based, like every equipment table's (`emit/common.ts` `displayRarity`). */
   rarity: number;
-  /** Max carry/stack limit — matches known real values for the few items checked (e.g. Potion = 10). */
+  /** Carry limit: Potion 10, Whetstone 20, most materials 99; 255 on Normal S Lv1, which is unlimited. */
   stackLimit: number;
   iconDeco: number;
   iconId: number;
   color: number;
   unkn2: number;
   unkn3: number;
+  /** Price in zenny; for items the shops sell, their buy price. */
   price: number;
   unkn4: number;
   unkn5: number;
@@ -44,14 +55,15 @@ export interface ItemEntry {
 }
 
 /**
- * itemTable[948] @ 0x0899A238 — 24 bytes/entry, same layout as
- * DecorationValue. `resolver` defaults to JP's static table — pass e.g.
- * `MHP2G_EU_RESOLVER` (games/mhp2g.ts) to read from a different region.
+ * itemTable[1261] @ 0x0899A238 — 24 bytes/entry, same layout as
+ * DecorationValue, indexed by ItemID. `resolver` defaults to JP's static
+ * table — pass e.g. `MHP2G_EU_RESOLVER` (games/mhp2g.ts) to read from a
+ * different region.
  */
 export function readItemTable(reader: BinaryReader, resolver?: TableAddressResolver): ItemEntry[] {
   const base = resolveTableOffset("itemTable", reader, resolver);
   const out: ItemEntry[] = [];
-  for (let i = 0; i < TABLE_COUNTS.regularItems; i++) {
+  for (let i = 0; i < TABLE_COUNTS.items; i++) {
     out.push(readItemEntryAt(reader, base + i * ITEM_ENTRY_SIZE, i));
   }
   return out;

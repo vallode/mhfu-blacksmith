@@ -1,9 +1,0 @@
-# Build the MHFU Blacksmith site (apps/blacksmith) as a static export.
-# Overrides the build settings in the Netlify UI, which predate the
-# migration from Zola.
-[build]
-  command = "pnpm build"
-  publish = "apps/blacksmith/out"
-
-[build.environment]
-  NODE_VERSION = "22"

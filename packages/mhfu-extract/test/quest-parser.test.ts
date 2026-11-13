@@ -157,6 +157,7 @@ test("readSmallMonsters walks the index -> table -> data pointer chain", () => {
   const tables = readSmallMonsters(reader, header);
   assert.equal(tables.length, 1);
   assert.equal(tables[0]!.stageId, 93);
+  assert.equal(tables[0]!.dataPtr, 128);
   assert.deepEqual(tables[0]!.monsters, [{ monsterId: 35, quantity: 3, power: 1 }]);
 });
 

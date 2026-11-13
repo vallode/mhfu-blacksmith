@@ -63,7 +63,6 @@ test("schema, settings strings and files", async () => {
 
   const settings = { ...schema.defaults, seed: "GUI", "costs.enabled": true };
   const encoded = await json(call("/api/settings/encode", { settings }));
-  assert.equal(encoded.needsEboot, true);
   const decoded = await json(call("/api/settings/decode", { string: encoded.string }));
   assert.deepEqual(decoded.settings, encoded.settings);
   assert.equal(decoded.warning, null);
@@ -79,15 +78,12 @@ test("checking files and running the randomizer, with the log streamed", async (
   const dir = tempDir();
   const iso = path.join(dir, "disc.iso");
   writeFileSync(iso, buildFixtureDisc());
-  const eboot = path.join(dir, "not-an-eboot.bin");
-  writeFileSync(eboot, "nope");
 
-  const check = await json(call("/api/check", { iso, eboot }));
+  const check = await json(call("/api/check", { iso }));
   assert.deepEqual(check, {
     discId: "ULJM05500",
     region: "jp",
     supported: true,
-    eboot: { ok: false, detail: "Not a decrypted EBOOT (no ELF header)" },
   });
   assert.equal((await call("/api/check", { iso: path.join(dir, "missing.iso") })).status, 400);
 

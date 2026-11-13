@@ -166,10 +166,13 @@ export function SetHeader({
   index,
   count,
   onStep,
+  action,
 }: {
   index: number;
   count: number;
   onStep: (by: 1 | -1) => void;
+  /** A button shown beside the set number. */
+  action?: React.ReactNode;
 }) {
   return (
     <div
@@ -189,6 +192,7 @@ export function SetHeader({
       >
         Set {index + 1}
       </span>
+      {action}
       <span className={cn("text-main text-white text-shadow-[0.15rem_0.15rem_black]")}>
         {index + 1}/{count}
       </span>

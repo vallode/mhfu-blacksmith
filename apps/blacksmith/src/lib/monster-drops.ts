@@ -14,6 +14,16 @@ export function formatRank(rank: string): string {
     .replace(/\b[a-z]/g, (c) => c.toUpperCase());
 }
 
+/**
+ * Whether a monster can be captured: the disc gives it capture rewards at
+ * some rank (a "capture" or "capture rewards" drop source).
+ */
+export function canCapture(monster: { drops?: Record<string, Record<string, unknown>> }): boolean {
+  return Object.values(monster.drops ?? {}).some((sources) =>
+    Object.keys(sources).some((source) => source === "capture" || source === "capture rewards"),
+  );
+}
+
 export interface DropSource {
   /** How the item is obtained: "Body carves", "Break back fin", "Shiny drop" */
   title: string;

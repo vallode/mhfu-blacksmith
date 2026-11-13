@@ -3,14 +3,15 @@
  * image, load, randomize, write, check, write the spoiler log. Progress
  * goes to `log`.
  */
-import { existsSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { existsSync, rmSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { detectRegion, parseSfo } from "mhfu-extract/src/container/sfo.js";
 import { copyAsIso, openPatchableImage } from "./disc/node-file.js";
 import { loadGame } from "./game/load.js";
 import { randomize } from "./randomize.js";
-import { describeSettings, encodeSettings, needsEboot, type Settings } from "./settings.js";
+import { describeSettings, encodeSettings, type Settings } from "./settings.js";
+import { reportLogLine } from "./shuffles/shuffle.js";
 import { formatSpoiler } from "./spoiler.js";
 import { writeEdits } from "./write.js";
 
@@ -21,12 +22,12 @@ export interface RunOptions {
   /** Output image; null for a dry run (spoiler only, nothing written). */
   out: string | null;
   settings: Settings;
-  /** Decrypted EBOOT dump, for settings that edit the EBOOT. */
-  eboot?: string;
   pspdecryptBin?: string;
   /** Spoiler log path. Defaults to next to the output; a dry run returns it only. */
   spoiler?: string;
   force?: boolean;
+  /** For testing in game: a happy Poogie always gives the rarest reward. */
+  poogieTest?: boolean;
 }
 
 export interface RunResult {
@@ -41,9 +42,8 @@ export function defaultSpoilerPath(out: string): string {
 
 export async function runRandomizer(options: RunOptions, log: Log): Promise<RunResult> {
   const { iso: input, out: output, settings } = options;
-  const eboot = needsEboot(settings)
-    ? { overridePath: options.eboot || undefined, pspdecryptBin: options.pspdecryptBin }
-    : null;
+  // Always loaded: Poogie's luck patches it whatever the settings.
+  const eboot = { pspdecryptBin: options.pspdecryptBin };
 
   if (output) {
     if (path.resolve(output) === path.resolve(input)) {
@@ -70,8 +70,8 @@ export async function runRandomizer(options: RunOptions, log: Log): Promise<RunR
     log(`Seed ${settings.seed}. Settings string: ${encodeSettings(settings)}`);
     for (const line of describeSettings(settings)) log(`  ${line}`);
 
-    const result = randomize(game, settings);
-    for (const report of result.reports) log(`${report.title}: ${report.lines.length} slots`);
+    const result = randomize(game, settings, { poogieTest: options.poogieTest });
+    for (const report of result.reports) log(reportLogLine(report));
     if (result.problems.length > 0) {
       log(
         `Warning: ${result.problems.length} recipe materials can't be found as early as before; see the spoiler log.`,
@@ -106,12 +106,10 @@ export interface DiscCheck {
   discId: string | null;
   region: string | null;
   supported: boolean;
-  /** Set when an EBOOT path was given. */
-  eboot?: { ok: boolean; detail: string };
 }
 
-/** Quick checks for the GUI: is this a supported disc, is this file a decrypted EBOOT. */
-export function checkDisc(isoPath: string, ebootPath?: string): DiscCheck {
+/** Quick checks for the GUI: is this a supported disc. */
+export function checkDisc(isoPath: string): DiscCheck {
   const { source, iso } = openDiscImage(isoPath);
   let result: DiscCheck;
   try {
@@ -119,18 +117,6 @@ export function checkDisc(isoPath: string, ebootPath?: string): DiscCheck {
     result = { discId, region, supported: region === "jp" || region === "eu" };
   } finally {
     source.close();
-  }
-  if (ebootPath) {
-    if (!existsSync(ebootPath)) {
-      result.eboot = { ok: false, detail: "No file at that path" };
-    } else {
-      const head = readFileSync(ebootPath).subarray(0, 4);
-      const ok = head.equals(Buffer.from([0x7f, 0x45, 0x4c, 0x46]));
-      result.eboot = {
-        ok,
-        detail: ok ? "Decrypted EBOOT (ELF)" : "Not a decrypted EBOOT (no ELF header)",
-      };
-    }
   }
   return result;
 }

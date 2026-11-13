@@ -21,15 +21,25 @@ import {
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import { median, type ShuffleReport } from "./shuffles/shuffle.js";
-import { findShops, locateItemTable, randomizeShops } from "./shuffles/shops.js";
+import { findShops } from "mhfu-extract/src/shops/shops.js";
+import {
+  itemsOnSale,
+  locateItemTable,
+  randomizeShopPrices,
+  randomizeShops,
+} from "./shuffles/shops.js";
 import { tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
+import { findSmithyStore, storeReport } from "./shuffles/store.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
+import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stats.js";
 import {
   collectQuestMonsters,
+  multiplierSets,
   randomizeDifficulty,
+  randomizeCrownSpread,
   randomizeQuestSize,
   randomizeSmallCounts,
   swapSpecies,
@@ -40,6 +50,8 @@ import {
   randomizeMonsterStats,
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
+import { writeGuides } from "./hints/guides.js";
+import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export { LOGIC_VERSION };
@@ -109,7 +121,16 @@ function usualAmounts(
   };
 }
 
-export function randomize(game: GameData, settings: Settings): RandomizeResult {
+export interface RandomizeOptions {
+  /** For testing in game: a happy Poogie always gives the rarest reward. */
+  poogieTest?: boolean;
+}
+
+export function randomize(
+  game: GameData,
+  settings: Settings,
+  options: RandomizeOptions = {},
+): RandomizeResult {
   const rng = new Rng(`randomfu/${LOGIC_VERSION}/${settings.seed}`);
   const edits = new Edits(game);
   const reports: ShuffleReport[] = [];
@@ -120,6 +141,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
 
   // Monster swaps first: carves are found where their monsters now are.
   const questMonsters = collectQuestMonsters(game.quests);
+  const setOf = multiplierSets(game.gameTask.ovl);
   let questsAfter = game.quests.map((q) => q.parsed);
   if (settings["questMonsters.species"]) {
     const result = swapSpecies(
@@ -128,6 +150,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       rng.fork("monster-species"),
       edits,
       game.quests,
+      setOf,
       game.boards,
     );
     reports.push(result.report);
@@ -146,6 +169,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         },
         rng.fork("monster-difficulty"),
         edits,
+        setOf,
       ),
     );
   }
@@ -155,6 +179,16 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         questMonsters,
         settings["questMonsters.sizeSpread"],
         rng.fork("quest-size"),
+        edits,
+      ),
+    );
+  }
+  if (settings["questMonsters.crowns"]) {
+    reports.push(
+      randomizeCrownSpread(
+        questMonsters,
+        settings["questMonsters.crownSpread"],
+        rng.fork("crown-spread"),
         edits,
       ),
     );
@@ -320,6 +354,12 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     throw new Error("These settings need the decrypted EBOOT");
   }
 
+  // The smithy's store follows the weapons and armor shuffles: found once, for both.
+  const store =
+    settings["weapons.enabled"] || settings["armor.enabled"]
+      ? findSmithyStore(game.lobbyTask)
+      : null;
+
   // Weapons first: it moves upgrade materials between entries, and the
   // recipe shuffles then work on the tables as it left them.
   if (settings["weapons.enabled"]) {
@@ -330,6 +370,29 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         settings["weapons.mix"],
         rng.fork("weapons"),
         edits,
+        store,
+      ),
+    );
+  }
+
+  // Stats are in each weapon's own record, which the weapons shuffle never
+  // touches, so they go with the weapon and the order doesn't matter.
+  const weaponSpreads = {
+    attack: settings["weapons.attack"] ? settings["weapons.attackSpread"] : null,
+    affinity: settings["weapons.affinity"] ? settings["weapons.affinitySpread"] : null,
+    element: settings["weapons.element"] ? settings["weapons.elementSpread"] : null,
+  };
+  if (Object.values(weaponSpreads).some((v) => v !== null)) {
+    reports.push(
+      randomizeWeaponStats(
+        collectWeaponStats(game.eboot!, game.resolver),
+        weaponSpreads,
+        {
+          attack: rng.fork("weapon-attack"),
+          affinity: rng.fork("weapon-affinity"),
+          element: rng.fork("weapon-element"),
+        },
+        edits,
       ),
     );
   }
@@ -337,8 +400,9 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
   // Armor only changes which piece each create entry makes, so the recipe
   // shuffles' spoiler names the new pieces.
   if (settings["armor.enabled"]) {
-    reports.push(shuffleArmor(game.eboot!, game.resolver, rng.fork("armor"), edits));
+    reports.push(shuffleArmor(game.eboot!, game.resolver, rng.fork("armor"), edits, store));
   }
+  if (settings["weapons.enabled"] || settings["armor.enabled"]) reports.push(storeReport(store));
 
   // Skills are the pieces' own, so they go with a piece wherever the armor shuffle puts it.
   if (settings["armorSkills.enabled"]) {
@@ -380,35 +444,47 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     }
   }
 
-  if (settings["shops.enabled"]) {
-    const prices = settings["shops.prices"];
-    const stacks = settings["shops.stacks"];
-    reports.push(
-      randomizeShops(
-        findShops(game.lobbyTask.ovl),
+  const prices = settings["shops.prices"];
+  const stacks = settings["shops.stacks"];
+  if (settings["shops.enabled"] || prices || stacks) {
+    const shops = findShops(game.lobbyTask.ovl);
+    const items = shopItemTable(game, prices || stacks);
+    // Prices are the item's own, so they need no stock shuffle: without
+    // one, they go to what the shops sell anyway.
+    let sold = itemsOnSale(shops);
+    if (settings["shops.enabled"]) {
+      const stock = randomizeShops(
+        shops,
         {
           pool: settings["shops.pool"],
           mix: settings["shops.mix"],
           keepEssentials: settings["shops.keepEssentials"],
           special: settings["shops.special"],
           countSpread: settings["shops.countSpread"],
-          priceSpread: prices ? settings["shops.priceSpread"] : null,
-          stackSpread: stacks ? settings["shops.stackSpread"] : null,
         },
         {
           bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
           allItems: sellableItems(),
-          items: shopItemTable(game, prices || stacks),
+          canPrice: items !== null,
         },
-        {
-          stock: rng.fork("shops"),
-          prices: rng.fork("shop-prices"),
-          stacks: rng.fork("shop-stacks"),
-        },
+        rng.fork("shops"),
         edits,
         game.lobbyTask,
-      ),
+      );
+      reports.push(stock.report);
+      sold = stock.sold;
+    }
+    const report = randomizeShopPrices(
+      sold,
+      {
+        priceSpread: prices ? settings["shops.priceSpread"] : null,
+        stackSpread: stacks ? settings["shops.stackSpread"] : null,
+      },
+      items,
+      { prices: rng.fork("shop-prices"), stacks: rng.fork("shop-stacks") },
+      edits,
     );
+    if (report) reports.push(report);
   }
 
   if (settings["costs.enabled"]) {
@@ -421,6 +497,16 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       ),
     );
   }
+
+  reports.push(addPoogieLuck(game.eboot, edits, { guaranteed: options.poogieTest }));
+
+  // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.
+  reports.push(
+    ...writeGuides(game, questsAfter, settings.seed, edits, {
+      bestiary: settings["hints.bookshelf"],
+      almanac: settings["hints.almanac"],
+    }),
+  );
 
   return {
     edits,

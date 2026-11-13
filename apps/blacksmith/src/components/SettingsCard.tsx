@@ -1,4 +1,5 @@
 import Card from "@/components/Card";
+import CardBox from "@/components/CardBox";
 import * as ui from "@/styles/settings";
 
 /**
@@ -13,11 +14,13 @@ export default function SettingsCard({
   children: React.ReactNode;
 }) {
   return (
-    <Card frame="teal" className={ui.section}>
-      <div className={ui.menuHeader}>
-        <h2 className={ui.menuTitle}>{title}</h2>
-      </div>
-      {children}
-    </Card>
+    <CardBox className="flex-none">
+      <Card frame="teal" className="text-small" bodyClassName={ui.sectionBody}>
+        <div className={ui.menuHeader}>
+          <h2 className={ui.menuTitle}>{title}</h2>
+        </div>
+        {children}
+      </Card>
+    </CardBox>
   );
 }

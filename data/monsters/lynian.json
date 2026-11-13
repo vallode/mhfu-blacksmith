@@ -21,7 +21,39 @@
       "base_hp": 40,
       "flinch_thresholds": [
         10
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Melynx",
@@ -125,7 +157,39 @@
       "base_hp": 50,
       "flinch_thresholds": [
         10
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 5,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "Shakalaka",
@@ -387,7 +451,39 @@
       "base_hp": 120,
       "flinch_thresholds": [
         120
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 30,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 60,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     },
     {
       "name": "King Shakalaka",
@@ -568,7 +664,39 @@
       "base_hp": 800,
       "flinch_thresholds": [
         240
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      }
     }
   ]
 }

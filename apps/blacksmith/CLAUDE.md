@@ -22,7 +22,7 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
   component (see `src/components/DetailPanel.tsx`: `Stat`, `MaterialList`, …).
   For a class string shared by a few elements, use a named constant, either in
   the component file or in `src/styles/*.ts` (`tables.ts`, `settings.ts`,
-  `progress.ts`).
+  `progress.ts`, `set-builder.ts`).
 - **`globals.css` holds only what utilities can't express:** design tokens
   (`@theme`), custom utilities (`@utility`), element resets, and the few
   global layout classes (`.split-page`, `.list-row`, `.blacksmith__title`).
@@ -47,8 +47,8 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
   4px per step (`--spacing: 0.4rem`): `p-4` = 16px, `gap-2` = 8px.
 - **Text comes in four sizes,** the `--text-*` tokens in `@theme`. Use these
   instead of `text-[…rem]`:
-  - `text-main` (22px, 20px on phones): the game's text. Lists, values,
-    titles and selector bars; `Card`'s default.
+  - `text-main` (22px, 20px on phones up to 600px): the game's text.
+    Lists, values, titles and selector bars; `Card`'s default.
   - `text-sub` (18px): labels, notices and set-builder rows.
   - `text-small` (16px): descriptions, tabs, meta lines and settings.
   - `text-fine` (14px): hints, badges and the dense hitzone table.
@@ -65,8 +65,17 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
 - **Size text columns in character cells, not `ch`.** `1ch` is only the
   glyph; a cell is the glyph plus tracking (`--cell`). `w-cells-10` fits ten
   characters.
-- **Phone layout uses the `mobile:` variant** (600px wide and below), which
-  matches the original media queries. Use it rather than `sm:`/`md:`.
+- **Layouts use the site's own width variants,** not `sm:`/`md:`:
+  - `mobile:` (below 900px: phones and portrait tablets): one pane at a time,
+    with the tab bar along the bottom.
+  - `compact:` (900px to 1199px: landscape tablets, small laptops): two
+    panes, with the sidebar an icon rail that opens over the page. The detail
+    pane is about as narrow as a phone here, so dense content (hitzone and
+    melody tables, two-across drop lists) usually takes its phone styling
+    under `compact:` too.
+  - `wide:` (1200px and up): the full sidebar, which the user can collapse.
+
+  `text-main` steps down to 20px only on phones proper (600px and below).
 
 ### Custom utilities
 
@@ -78,7 +87,7 @@ Effects that are awkward as class strings are `@utility` rules in
 | `w-cells-N`               | Width of N character cells (`--cell`), e.g. `w-cells-12` for a 12-character label                      |
 | `pixelated`               | Crisp pixel-art image rendering                                                                        |
 | `hover-glow`              | Pulsing green highlight (with `animate-hover-glow` / `--gradient-hover-glow`)                          |
-| `card-frame`              | The in-game 9-slice frame (`Card`, toasts)                                                             |
+| `card-frame`              | The in-game 9-slice frame; `frame-cover` draws it over the content, `card-body` masks content under it |
 | `divider-tile`            | Tiled page-header divider (`BorderRule`)                                                               |
 | `icon-mask`, `icon-badge` | Icon tint mask and corner badge, driven by CSS variables from `iconStyle()` in `src/lib/icon-style.ts` |
 
@@ -103,7 +112,16 @@ delayed fade-in on `Loading`, the loading GIF next to a status message).
 
 `cn()` (`src/lib/cn.ts`) is `clsx` plus `tailwind-merge`. Components put their
 defaults first and the caller's `className` last, so a later class replaces a
-conflicting earlier one: `<Card className="overflow-auto py-7">`.
+conflicting earlier one: `<Card className="flex-none text-small">`.
+
+`Card` is two boxes: `className` styles the frame (its size and place in the
+layout, its text size) and `bodyClassName` the content inside it (gaps,
+direction). The body sits at the frame's outline and the frame draws over it,
+so rows that run out to the edge pass under its notches. Give the body its
+padding with the `card-p-*`, `card-px-*`, `card-py-*`, `card-pl-*` and
+`card-pr-*` utilities (`card-py-7`, `card-px-[1.6rem]`), not `p-*`: they count
+from the card's outer edge, whatever the frame. A card whose content scrolls
+takes `scroll`.
 
 `tailwind-merge` only replaces a class with one of the same variant: a
 `mobile:` class only replaces another `mobile:` class. `cn()` is told the type
@@ -122,8 +140,8 @@ scale's names, so `text-main` and `text-gold` don't replace each other, and
 
 ### Checking styling changes
 
-There are no style tests, so check changes in a browser at desktop (1400px)
-and phone (390px) widths.
+There are no style tests, so check changes in a browser at desktop (1400px),
+compact (900px and 1024px), tablet (768px) and phone (390px) widths.
 
 For refactors that shouldn't change the look, compare against the previous
 version: screenshots, or `getComputedStyle` of the affected elements. Some

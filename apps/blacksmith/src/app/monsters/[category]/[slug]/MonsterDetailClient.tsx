@@ -1,7 +1,6 @@
 "use client";
 
 import { useMemo, useState } from "react";
-import Card from "@/components/Card";
 import { DetailBody, DetailCard, DetailRule } from "@/components/DetailPanel";
 import { cn } from "@/lib/cn";
 import { hitzoneBest, hitzoneTable, hitzoneZero } from "@/styles/tables";
@@ -13,15 +12,24 @@ import MonsterBreaks from "@/components/MonsterBreaks";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import MonsterDrops from "@/components/MonsterDrops";
 import MonsterQuests from "@/components/MonsterQuests";
+import SmallMonsterQuests from "@/components/SmallMonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { breakIndex, breakKey } from "@/lib/monster-breaks";
-import { formatRank } from "@/lib/monster-drops";
+import { canCapture, formatRank } from "@/lib/monster-drops";
 import { monsterRecordFor } from "@/lib/monster-ids";
-import { clearedQuestIds, questsWithMonster } from "@/lib/quests";
+import {
+  bestCrownQuests,
+  clearedQuestIds,
+  questsWithMonster,
+  smallMonsterStages,
+} from "@/lib/quests";
+import { crownFor, formatCm, sizeInCm, type Crown } from "@/lib/crowns";
+import CrownIcon from "@/components/CrownIcon";
+import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useMonsterHitboxes, useMonsterModel, type HitboxCapsule } from "@/lib/models";
-import type { MonsterBreak } from "@/lib/types";
+import type { Monster, MonsterBreak } from "@/lib/types";
 import Loading from "@/components/Loading";
 
 interface Props {
@@ -66,13 +74,21 @@ function capsuleMatches(capsule: HitboxCapsule, key: string, breaks: MonsterBrea
 
 const NO_BREAKS: MonsterBreak[] = [];
 
-/** Sizes are stored to two decimals; whole centimetres are enough here. */
-const formatSize = (cm: number) => Math.round(cm).toLocaleString("en-US");
-
 // Some monsters have no art; keep the layout and hide the broken-image glyph.
 const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
   e.currentTarget.style.visibility = "hidden";
 };
+
+/** A Guild Card size record (percent) in centimetres, with the crown it earns. */
+function SizeRecord({ size, monster }: { size: number; monster: Monster }) {
+  const crown = monster.crowns ? crownFor(size, monster.crowns) : null;
+  return (
+    <span className="text-white tabular-nums">
+      {formatCm(sizeInCm(size, monster.base_size ?? 0))} cm
+      {crown && <CrownIcon crown={crown} className="ml-[0.4rem] align-middle" />}
+    </span>
+  );
+}
 
 export default function MonsterDetailClient({ category, slug }: Props) {
   const { item: monster, loading } = useMonster(category, slug);
@@ -131,7 +147,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The nav and the list of monsters on the left come from the monsters
   // layout (MonsterShell), which stays mounted; this is only the detail panel.
   if (loading || !monster) {
-    return <Card>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</Card>;
+    return <DetailCard>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</DetailCard>;
   }
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
@@ -239,7 +255,29 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     label: formatRank(rank),
     content: <MonsterDrops sources={sources} />,
   }));
+  // Crown cutoffs in centimetres.
+  const crowns =
+    monster.crowns && monster.base_size !== undefined
+      ? {
+          mini: sizeInCm(monster.crowns.mini, monster.base_size),
+          silver: sizeInCm(monster.crowns.silver, monster.base_size),
+          gold: sizeInCm(monster.crowns.gold, monster.base_size),
+        }
+      : null;
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
+  // The quests with the best chance of each crown, and that chance.
+  const bestCrowns = bestCrownQuests(monsterQuests, monster.name);
+  // The sizes its quests can roll, in centimetres.
+  const sizeRange =
+    monster.size_range && monster.base_size !== undefined
+      ? {
+          min: sizeInCm(monster.size_range.min, monster.base_size),
+          max: sizeInCm(monster.size_range.max, monster.base_size),
+        }
+      : null;
+  const bestChance: Partial<Record<Crown, number>> = {};
+  for (const list of bestCrowns.values())
+    for (const { crown, chance } of list) bestChance[crown] = chance;
   const cleared = markCleared ? clearedQuestIds(save) : null;
   const questTab: Tab[] =
     monsterQuests.length > 0
@@ -247,14 +285,34 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           {
             id: "quests",
             label: "Quests",
-            content: <MonsterQuests quests={monsterQuests} cleared={cleared} />,
+            content: (
+              <MonsterQuests
+                quests={monsterQuests}
+                cleared={cleared}
+                bestCrowns={bestCrowns}
+                // The crown cutoffs, as the key to the crowns marking the
+                // best quest for each.
+                legend={crowns && <CrownCutoffs cutoffs={crowns} best={bestChance} />}
+              />
+            ),
           },
         ]
       : [];
-  // The loaded hunter's Guild Card counts. Only large monsters (the ones with
-  // sizes) can be captured.
+  const stages = quests ? smallMonsterStages(quests, monster.name) : [];
+  const spawnTab: Tab[] =
+    stages.length > 0
+      ? [
+          {
+            id: "spawns",
+            label: "Most plentiful",
+            content: <SmallMonsterQuests stages={stages} />,
+          },
+        ]
+      : [];
+  // The loaded hunter's Guild Card counts. Captures only for monsters the
+  // game gives capture rewards for.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
-  const tabs = [...hitzoneTab, ...dropTabs, ...questTab];
+  const tabs = [...hitzoneTab, ...dropTabs, ...questTab, ...spawnTab];
 
   return (
     <>
@@ -281,11 +339,11 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 {monster.description}
               </p>
             )}
-            {monster.sizes && (
+            {sizeRange && (
               <p className="text-small text-stat">
                 Size:{" "}
                 <span className="text-white tabular-nums">
-                  {formatSize(monster.sizes.min)}–{formatSize(monster.sizes.max)} cm
+                  {formatCm(sizeRange.min)}–{formatCm(sizeRange.max)} cm
                 </span>
               </p>
             )}
@@ -300,7 +358,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             {record && (
               <p className="text-small whitespace-normal text-stat">
                 Hunted: <span className="text-white tabular-nums">{record.kills}</span>
-                {monster.sizes && (
+                {canCapture(monster) && (
                   <>
                     {" · "}Captured:{" "}
                     <span className="text-white tabular-nums">{record.captures}</span>
@@ -308,6 +366,24 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 )}
               </p>
             )}
+            {record &&
+              monster.base_size !== undefined &&
+              (record.largest > 0 || record.smallest > 0) && (
+                // A record the hunter hasn't set is 0; leave it out.
+                <p className="text-small whitespace-normal text-stat">
+                  {record.largest > 0 && (
+                    <>
+                      Largest: <SizeRecord size={record.largest} monster={monster} />
+                    </>
+                  )}
+                  {record.largest > 0 && record.smallest > 0 && " · "}
+                  {record.smallest > 0 && (
+                    <>
+                      Smallest: <SizeRecord size={record.smallest} monster={monster} />
+                    </>
+                  )}
+                </p>
+              )}
           </div>
           <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">
             <img

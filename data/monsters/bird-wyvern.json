@@ -73,7 +73,39 @@
       "base_hp": 70,
       "flinch_thresholds": [
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "ko": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Giadrome",
@@ -183,10 +215,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 649.8,
-        "max": 1048.77
-      },
       "hitzones": {
         "all": {
           "cut": "100",
@@ -203,7 +231,45 @@
       "base_hp": 800,
       "flinch_thresholds": [
         80
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 80,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 70,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 450
+        },
+        "ko": {
+          "initial": 80,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 25,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 738.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
+      }
     },
     {
       "name": "Velociprey",
@@ -283,7 +349,39 @@
       "base_hp": 70,
       "flinch_thresholds": [
         60
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "ko": {
+          "initial": 90,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Velocidrome",
@@ -393,10 +491,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 590.7,
-        "max": 1736.4
-      },
       "hitzones": {
         "all": {
           "cut": "100",
@@ -413,7 +507,45 @@
       "base_hp": 800,
       "flinch_thresholds": [
         110
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 80,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 70,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 450
+        },
+        "ko": {
+          "initial": 80,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 25,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 738.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
+      }
     },
     {
       "name": "Genprey",
@@ -489,7 +621,39 @@
       "base_hp": 100,
       "flinch_thresholds": [
         70
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "poison": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      }
     },
     {
       "name": "Gendrome",
@@ -603,10 +767,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 615,
-        "max": 1037.4
-      },
       "hitzones": {
         "all": {
           "cut": "90",
@@ -623,7 +783,45 @@
       "base_hp": 1200,
       "flinch_thresholds": [
         180
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 70,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 150
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 732.1,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
+      }
     },
     {
       "name": "Ioprey",
@@ -699,7 +897,39 @@
       "base_hp": 150,
       "flinch_thresholds": [
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "ko": {
+          "initial": 50,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Iodrome",
@@ -779,10 +1009,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 619.7,
-        "max": 1641.06
-      },
       "hitzones": {
         "all": {
           "cut": "80",
@@ -799,7 +1025,45 @@
       "base_hp": 1600,
       "flinch_thresholds": [
         220
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 80,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 75,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 110,
+          "increase": 15,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      },
+      "base_size": 774.6,
+      "crowns": {
+        "mini": 90,
+        "silver": 124,
+        "gold": 136
+      }
     },
     {
       "name": "Yian Kut-Ku",
@@ -1087,10 +1351,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 449.3,
-        "max": 1204.9
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -1189,7 +1449,45 @@
         100,
         80,
         80
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 65,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 110,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 65,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 919.8,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 122
+      }
     },
     {
       "name": "Blue Yian Kut-Ku",
@@ -1419,10 +1717,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 449.3,
-        "max": 1195.7
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -1521,7 +1815,45 @@
         100,
         80,
         80
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 110,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 130,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 919.8,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 122
+      }
     },
     {
       "name": "Yian Garuga",
@@ -1835,10 +2167,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 887.3,
-        "max": 1744.5
-      },
       "hitzones": {
         "head": {
           "cut": "65",
@@ -1960,7 +2288,37 @@
         200,
         150,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 600
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": null
+      },
+      "base_size": 1031.7,
+      "crowns": {
+        "mini": 91,
+        "silver": 113,
+        "gold": 121
+      }
     },
     {
       "name": "Scarred Yian Garuga",
@@ -2057,7 +2415,37 @@
         200,
         150,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 600
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": null
+      },
+      "base_size": 1031.7,
+      "crowns": {
+        "mini": 91,
+        "silver": 113,
+        "gold": 121
+      }
     },
     {
       "name": "Gypceros",
@@ -2361,10 +2749,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 811,
-        "max": 1348.2
-      },
       "hitzones": {
         "head": {
           "cut": "30",
@@ -2463,7 +2847,45 @@
         80,
         130,
         80
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1013.7,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 125
+      }
     },
     {
       "name": "Purple Gypceros",
@@ -2714,10 +3136,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 912.3,
-        "max": 1348.2
-      },
       "hitzones": {
         "head": {
           "cut": "30",
@@ -2816,7 +3234,45 @@
         80,
         130,
         80
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 100,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1500
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 300,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1013.7,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 125
+      }
     },
     {
       "name": "Hypnocatrice",
@@ -2988,10 +3444,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 751.4,
-        "max": 1485.8
-      },
       "hitzones": {
         "head": {
           "cut": "65",
@@ -3090,7 +3542,45 @@
         100,
         80,
         80
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 65,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 110,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 65,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 834.9,
+      "crowns": {
+        "mini": 91,
+        "silver": 115,
+        "gold": 121
+      }
     }
   ]
 }

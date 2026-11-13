@@ -174,7 +174,6 @@ export function formatShopScan(candidates: readonly ShopCandidate[], limit = 25)
 /** Opens a disc and scans the EBOOT and every overlay in DATA.BIN. */
 export async function runShopScan(
   isoPath: string,
-  ebootPath: string | undefined,
   log: (line: string) => void,
 ): Promise<ShopCandidate[]> {
   const { openDiscImage } = await import("mhfu-extract/src/container/image.js");
@@ -193,7 +192,7 @@ export async function runShopScan(
     try {
       files.push({
         name: "EBOOT.BIN",
-        buf: await decryptEboot(iso.readFile(EBOOT_PATH), { overridePath: ebootPath }),
+        buf: await decryptEboot(iso.readFile(EBOOT_PATH), {}),
       });
     } catch (error) {
       log(`Skipping the EBOOT: ${(error as Error).message.split("\n")[0]}`);

@@ -65,6 +65,7 @@ export interface CompactTreeNode {
   e?: string; // element
   m?: MinRankTuple; // earliest quest progress needed to make it
   d?: number; // armor max defence
+  a?: 1; // alias: listed again under another parent, its branch is under the first
   k?: CompactTreeNode[]; // children
 }
 
@@ -140,10 +141,14 @@ export interface CompactMonster {
   hz?: [number, (number | null)[]][];
   /** drops: [rankStringIdx, [sourceStringIdx, [materialId, chanceStringIdx][]][]][] */
   dr?: [number, [number, [number, number][]][]][];
-  /** sizes: [min, max] in cm */
-  sz?: [number, number];
   /** base_hp */
   hp?: number;
+  /** base_size, in cm */
+  bs?: number;
+  /** crowns: [mini, silver, gold] in percent */
+  cr?: [number, number, number];
+  /** size_range: [min, max] in percent, across the monster's quests */
+  sz?: [number, number];
   /** breaks, as is */
   bk?: MonsterBreak[];
   /** hitzone_flinch: a flinch stringIdx (or null) per `hz` row, in its order */
@@ -159,6 +164,7 @@ export interface CompactDecoration {
   cc?: number; // create_cost
   sk?: number[]; // skills stringIdx[]
   cm?: MatTuple[];
+  am?: MatTuple[]; // alternative_create_mats: the jewel's second recipe
   mr?: MinRankTuple; // earliest quest progress needed to make it
   i?: number; // in-game item ID (data/items.json)
 }
@@ -227,8 +233,12 @@ export const EQUIP_TYPE_SLOTS = [
 export interface CompactItem {
   /** NA name */
   n: string;
-  /** rarity (only when sources agree) */
+  /** rarity */
   r?: number;
+  /** carry limit (255 = unlimited) */
+  l?: number;
+  /** price in zenny (0 = none) */
+  z?: number;
   /** icon type index into Dictionaries.types */
   t?: number;
   /** icon colour index into Dictionaries.colors */
@@ -280,6 +290,7 @@ export function decodeTreeNode(node: CompactTreeNode, bundleType: string): Weapo
     element: node.e,
     min_rank: decodeMinRank(node.m),
     max_defence: node.d,
+    alias: node.a === 1 || undefined,
     children: node.k?.map((c) => decodeTreeNode(c, bundleType)),
   };
 }
@@ -415,8 +426,10 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     habitats: m.hb ? m.hb.map((hi) => str(d, hi)) : undefined,
     hitzones: m.hz ? hitzones : undefined,
     drops: m.dr ? drops : undefined,
-    sizes: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     base_hp: m.hp,
+    base_size: m.bs,
+    crowns: m.cr ? { mini: m.cr[0], silver: m.cr[1], gold: m.cr[2] } : undefined,
+    size_range: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     breaks: m.bk,
     hitzone_flinch: hitzoneFlinch,
   };
@@ -433,6 +446,8 @@ export function decodeDecoration(d: Dictionaries, x: CompactDecoration): Decorat
     create_cost: x.cc ?? null,
     skills: x.sk ? x.sk.map((si) => str(d, si)) : undefined,
     create_mats: decodeMats(d, x.cm),
+    alternative_create_mats: decodeMats(d, x.am),
+    item_id: x.i,
     min_rank: decodeMinRank(x.mr),
   };
 }

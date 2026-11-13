@@ -120,16 +120,15 @@ code {
 
 .masthead-title {
   margin: 0;
-  font-size: 5.2rem;
-  font-weight: normal;
-  line-height: 1.1;
-  letter-spacing: 0.35em;
-  margin-right: -0.35em; /* the trailing tracking would push the title off centre */
-  text-transform: uppercase;
-  color: var(--color-gold);
-  text-shadow:
-    0.3rem 0.3rem 0 black,
-    0 0 1.2rem rgb(0 0 0 / 0.6);
+  line-height: 0;
+}
+
+/* The wordmark, at twice its pixel size: 394×48. */
+.wordmark {
+  width: 39.4rem;
+  max-width: 100%;
+  height: auto;
+  image-rendering: pixelated;
 }
 
 .masthead-sub {
@@ -546,7 +545,7 @@ textarea.text-input {
   gap: 2rem;
   padding: 2.4rem 2.6rem;
   border-style: solid;
-  border-image: var(--image-card-frame) 84 88 80 88 fill / 21px 22px 20px 22px round;
+  border-image: var(--image-card-frame) 24 32 fill / 18px 24px round;
   cursor: pointer;
   position: relative;
 
@@ -703,6 +702,48 @@ textarea.text-input {
   text-shadow: 0.15rem 0.15rem 0 black;
 }
 
+/* Shuffle or Randomize, beside an option, a choice or a preset: what it does to the game. */
+.tag {
+  display: inline-block;
+  margin-left: 0.8rem;
+  padding: 0 0.4rem;
+  border: 1px solid currentColor;
+  font-size: var(--text-fine);
+  line-height: 1.5;
+  text-shadow: none;
+  vertical-align: 0.15em;
+  white-space: nowrap;
+
+  &.shuffle {
+    color: var(--color-gem-blue);
+  }
+
+  &.randomize {
+    color: var(--color-gem-orange);
+  }
+
+  dt > & {
+    margin-left: 0;
+  }
+}
+
+/* The key to the tags, above the presets. */
+.actions {
+  display: grid;
+  grid-template-columns: max-content minmax(0, 1fr);
+  gap: 0.8rem 1.2rem;
+  align-items: baseline;
+  margin: 0;
+
+  & > div {
+    display: contents;
+  }
+
+  & dd {
+    margin: 0;
+  }
+}
+
 /* ─── Options ──────────────────────────────────────────────────────────────── */
 
 .option-section {
@@ -760,17 +801,6 @@ textarea.text-input {
 .option-title {
   font-size: var(--text-sub);
   cursor: pointer;
-}
-
-.badge {
-  display: inline-block;
-  margin-left: 0.8rem;
-  padding: 0 0.6rem;
-  border: 1px solid var(--color-warm);
-  font-size: var(--text-fine);
-  letter-spacing: 0.1em;
-  color: var(--color-warm);
-  vertical-align: 0.2rem;
 }
 
 /* An On/Off option: the site's yellow box, outlined when off and filled when on. */
@@ -909,44 +939,31 @@ input[type="range"] {
 
 /* ─── Start ────────────────────────────────────────────────────────────────── */
 
-.load {
-  & summary {
-    cursor: pointer;
-    margin-bottom: 1rem;
+/* The shared-settings row, laid out like a preset but taking a string. */
+.choice-load {
+  display: grid;
+  grid-template-columns: 2.4rem 1fr;
+  gap: 1rem;
+  margin-top: 0.2rem;
+  padding: 0.8rem 1.2rem;
+  border-bottom: 3px solid transparent;
+
+  & .choice-text {
+    grid-column: 2;
   }
 
   & .row {
-    margin-top: 1rem;
+    margin-top: 0.4rem;
   }
 }
 
-/* ─── EBOOT ────────────────────────────────────────────────────────────────── */
+.skip {
+  justify-content: center;
+  margin-top: 0.4rem;
 
-.eboot-list {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 0.6rem;
-  margin: 0;
-  padding: 0;
-  list-style: none;
-
-  & li {
-    padding: 0.2rem 1rem;
-    border: 1px solid var(--color-warm);
-    font-size: var(--text-fine);
-    color: var(--color-warm);
-  }
-}
-
-.howto {
-  margin: 0;
-  padding-left: 2.4rem;
-  font-size: var(--text-small);
-  line-height: 1.6;
-  color: rgb(255 255 255 / 0.85);
-
-  & li::marker {
-    color: var(--color-stat);
+  & .note {
+    flex-basis: 100%;
+    text-align: center;
   }
 }
 
@@ -1162,12 +1179,6 @@ input[type="range"] {
 
   body {
     padding: 1rem 1rem 2rem;
-  }
-
-  .masthead-title {
-    font-size: 3.6rem;
-    letter-spacing: 0.25em;
-    margin-right: -0.25em;
   }
 
   .frame {

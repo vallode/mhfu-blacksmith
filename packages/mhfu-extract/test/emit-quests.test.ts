@@ -7,6 +7,7 @@ import {
   QUEST_HUB_TO_FILE,
   questHub,
 } from "../src/emit/quests.js";
+import type { SizeTables } from "../src/monsters/sizes.js";
 import type { ParsedQuest } from "../src/quests/parser.js";
 
 /** Real quest ID 1 ("Hunt 1 Giadrome", the game's very first quest) — every field below is a real decrypted/parsed value from the JP disc. */
@@ -22,7 +23,9 @@ const GIADROME_HUNT: ParsedQuest = {
     monSizeModifier: 0,
     rank: 0,
     spawn: 0,
-    unknownFlags: [0, 0, 0, 0],
+    unknownFlags: [0, 0],
+    sizeVariation: 0,
+    statTable: 0,
     supplyCond: 0,
     attackRoll: 4,
     questType: 4,
@@ -61,9 +64,10 @@ const GIADROME_HUNT: ParsedQuest = {
   ],
   largeMonsters: [{ monsterId: 77, quantity: 1, power: 4, stage: 97 }], // Giadrome
   smallMonsters: [
-    { stageId: 92, monsters: [] },
+    { stageId: 92, dataPtr: 90, monsters: [] },
     {
       stageId: 93,
+      dataPtr: 100,
       monsters: [
         { monsterId: 35, quantity: 2, power: 0 }, // Giaprey
         { monsterId: 35, quantity: 1, power: 0 },
@@ -75,11 +79,16 @@ const GIADROME_HUNT: ParsedQuest = {
     // this time, to prove dedup keeps the *max* quantity seen anywhere.
     {
       stageId: 93,
+      dataPtr: 200,
       monsters: [
         { monsterId: 35, quantity: 5, power: 0 },
         { monsterId: 19, quantity: 3, power: 0 },
       ],
     },
+    // The same records again (same address): counted once.
+    { stageId: 93, dataPtr: 100, monsters: [{ monsterId: 35, quantity: 2, power: 0 }] },
+    // 99 marks a species that keeps spawning: flagged, not counted.
+    { stageId: 94, dataPtr: 300, monsters: [{ monsterId: 19, quantity: 99, power: 0 }] },
   ],
   strings: {
     title: "強敵、ドスギアノス現る！",
@@ -130,10 +139,10 @@ test("emitQuest reproduces the real 'Hunt 1 Giadrome' quest end-to-end", () => {
     { chance: 4, item: "Armor Sphere", amount: 1 },
   ]);
   assert.deepEqual(emitted.large_monsters, [{ monster: "Giadrome", quantity: 1, power: 4 }]);
-  // Deduped across the two verbatim-repeated zone lists, keeping the max quantity seen per species.
+  // The repeat of the first table is dropped; per species: the most in one table, and the sum of the distinct tables.
   assert.deepEqual(emitted.small_monsters, [
-    { monster: "Giaprey", max_quantity: 5 },
-    { monster: "Vespoid", max_quantity: 3 },
+    { monster: "Giaprey", max_quantity: 5, total_quantity: 8 },
+    { monster: "Vespoid", max_quantity: 3, total_quantity: 6, endless: true },
   ]);
   assert.equal(emitted.title, "強敵、ドスギアノス現る！");
   assert.equal(emitted.client, "元気のいい少年");
@@ -349,4 +358,72 @@ test("emitQuestsFile groups quests by hub and drops unused slots and boardless q
   assert.equal(output[QUEST_HUB_TO_FILE["training-school"]]!.quests.length, 1);
   assert.equal(output[QUEST_HUB_TO_FILE.guild]!.quests.length, 1);
   assert.equal(output[QUEST_HUB_TO_FILE["treasure-hunting"]]!.quests.length, 0);
+});
+
+test("emitQuest gives each large monster its stat multiplier row", () => {
+  const calls: [number, number, number][] = [];
+  const row = { hp: 0.35, attack: 1.02, defense: 1, status: 1 };
+  const emitted = emitQuest(
+    { ...GIADROME_HUNT, header: { ...GIADROME_HUNT.header, statTable: 1 } },
+    (emId, statTable, power) => {
+      calls.push([emId, statTable, power]);
+      return row;
+    },
+  )!;
+  assert.deepEqual(calls, [[77, 1, 4]]);
+  assert.deepEqual(emitted.large_monsters, [
+    { monster: "Giadrome", quantity: 1, power: 4, multipliers: row },
+  ]);
+  // No row: the field is left out rather than null.
+  assert.deepEqual(emitQuest(GIADROME_HUNT, () => null)!.large_monsters, [
+    { monster: "Giadrome", quantity: 1, power: 4 },
+  ]);
+});
+
+test("emitQuest gives the quest's monster size range, and the flag fixed-size story quests wait on", () => {
+  const sizes: SizeTables = {
+    // Every roll is 100.
+    tierPick: Array(32).fill(0),
+    tiers: [Array(32).fill(100)],
+    variation: [
+      [100, 100],
+      [100, 105],
+      [100, 115],
+      [95, 114],
+      [85, 125],
+    ],
+    crowns: [{ emIds: [77], mini: 90, silver: 119, gold: 123 }],
+    baseSizes: [],
+    fixedSizeQuests: new Map([[10006, 322]]),
+  };
+  const quest = (questId: number, monSizeModifier: number, sizeVariation: number) => ({
+    ...GIADROME_HUNT,
+    header: { ...GIADROME_HUNT.header, questId, monSizeModifier, sizeVariation },
+  });
+  assert.deepEqual(emitQuest(quest(1, 130, 4), undefined, sizes)!.monster_size, {
+    modifier: 130,
+    min: 110,
+    max: 162,
+  });
+  // Giadrome at 130 is always a gold crown.
+  assert.deepEqual(
+    emitQuest(quest(1, 130, 4), undefined, sizes)!.large_monsters[0]!.crown_chances,
+    {
+      mini: 0,
+      silver: 0,
+      gold: 1,
+    },
+  );
+  assert.deepEqual(emitQuest(quest(10006, 100, 3), undefined, sizes)!.monster_size, {
+    modifier: 100,
+    min: 95,
+    max: 114,
+    fixed_until_flag: 322,
+  });
+  // No size tables, or no large monsters: null.
+  assert.equal(emitQuest(quest(1, 100, 0))!.monster_size, null);
+  assert.equal(
+    emitQuest({ ...quest(1, 100, 0), largeMonsters: [] }, undefined, sizes)!.monster_size,
+    null,
+  );
 });

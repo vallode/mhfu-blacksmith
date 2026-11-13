@@ -9,18 +9,27 @@
  * overlay maps are emitted. Values stay numeric: hitzones as numbers under
  * the site's column keys, drops as `{ itemId, name, chance, amount }` with
  * the `ItemID` enum name. `base_hp` is the chunk's base HP; `tolerances`
- * has no committed counterpart yet. `breaks` lists the parts behind each
+ * its status tolerances (`siteTolerances`). `breaks` lists the parts behind each
  * of the monster's break rewards (`monsters/breaks.ts`, `overlay/breaks.ts`),
  * named after its `break …` drop group. `flinch_thresholds` is each body
  * part's flinch threshold (`hitzones.ts` `readFlinchThresholds`).
+ * `base_size` and `crowns` are its size at 100 percent and its crown
+ * thresholds (`monsters/sizes.ts`).
  *
  * Monsters are named by the `emID` enum, so `compare` recovers their IDs the
  * same way it does for equipment.
  */
 import type { BreakRecord } from "../monsters/breaks.js";
-import type { HitzoneColumn, MonsterChunk } from "../monsters/hitzones.js";
+import type {
+  HitzoneColumn,
+  MonsterChunk,
+  PoisonTolerance,
+  StatusTolerance,
+  Tolerances,
+} from "../monsters/hitzones.js";
 import { codeBreaks, type BreakDamage } from "../overlay/breaks.js";
 import type { CapBreakTable, CarveTables, RewardEntry, RewardRank } from "../monsters/rewards.js";
+import { crownsFor, type Crowns, type SizeTables } from "../monsters/sizes.js";
 import { MONSTER_OVERLAY, parseDropSlot } from "../overlay/monsters.js";
 import { getNameResolver } from "../strings/names.js";
 import type { EmitOutput } from "./index.js";
@@ -51,10 +60,82 @@ export interface EmittedMonster {
   base_hp: number;
   hitzones?: Record<string, Record<string, number>>;
   drops?: Record<string, Record<string, EmittedDrop[]>>;
-  tolerances: MonsterChunk["tolerances"];
+  tolerances: EmittedTolerances;
   breaks?: EmittedBreak[];
   /** Damage each body part (hitbox capsule `part`) takes before a flinch; null: no such part. */
   flinch_thresholds?: (number | null)[];
+  /** Centimetres at size 100 (`monsters/sizes.ts`); absent where the game has none. */
+  base_size?: number;
+  /** Crown thresholds in percent of `base_size`, shared with the monster's subspecies. */
+  crowns?: Crowns;
+}
+
+/** A status tolerance (`hitzones.ts` `StatusTolerance`) in the site's keys. */
+export interface EmittedStatusTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  duration: number;
+}
+
+/** Poison's tolerance (`hitzones.ts` `PoisonTolerance`) in the site's keys. */
+export interface EmittedPoisonTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  damage: number;
+  damage_interval: number;
+  total_time: number;
+}
+
+/** Status tolerances by status; null where the monster is immune. */
+export interface EmittedTolerances {
+  paralysis: EmittedStatusTolerance | null;
+  sleep: EmittedStatusTolerance | null;
+  ko: EmittedStatusTolerance | null;
+  poison: EmittedPoisonTolerance | null;
+}
+
+/** `initial` 0xFFFF: the status never builds up. */
+const IMMUNE = 0xffff;
+
+/**
+ * The chunk's tolerances in `data/`'s shape. The fourth status (`unknown`)
+ * is left out until it is identified. Poison's `damagePerSecond` is
+ * written as `damage_interval`: it is 150 on every monster, so it is
+ * likely the ticks between hits, not a damage figure.
+ */
+export function siteTolerances(t: Tolerances): EmittedTolerances {
+  const status = (s: StatusTolerance): EmittedStatusTolerance | null =>
+    s.initial === IMMUNE
+      ? null
+      : {
+          initial: s.initial,
+          increase: s.increase,
+          recovery: s.recovery,
+          recovery_time: s.recoveryTime,
+          duration: s.duration,
+        };
+  const poison = (p: PoisonTolerance): EmittedPoisonTolerance | null =>
+    p.initial === IMMUNE
+      ? null
+      : {
+          initial: p.initial,
+          increase: p.increase,
+          recovery: p.recovery,
+          recovery_time: p.recoveryTime,
+          damage: p.damage,
+          damage_interval: p.damagePerSecond,
+          total_time: p.totalTime,
+        };
+  return {
+    paralysis: status(t.paralysis),
+    sleep: status(t.sleep),
+    ko: status(t.ko),
+    poison: poison(t.poison),
+  };
 }
 
 /** One break reward and the body parts behind it. */
@@ -81,6 +162,8 @@ export interface MonsterTables {
   breaks?: BreakRecord[];
   /** Species of each emID (EBOOT); absent, each monster is its own. */
   species?: number[] | null;
+  /** Base sizes and crowns (EBOOT, EU only); absent, monsters get neither. */
+  sizes?: SizeTables | null;
 }
 
 const BREAK_LABEL = /^break\s+/i;
@@ -164,9 +247,15 @@ export function emitMonsters(tables: MonsterTables): EmitOutput {
     const monster: EmittedMonster = {
       name: enumName(entry.id),
       base_hp: chunk.baseHp,
-      tolerances: chunk.tolerances,
+      tolerances: siteTolerances(chunk.tolerances),
     };
     if (chunk.flinchThresholds) monster.flinch_thresholds = chunk.flinchThresholds;
+    if (tables.sizes) {
+      const baseSize = tables.sizes.baseSizes[entry.id] ?? 0;
+      if (baseSize > 0) monster.base_size = Math.round(baseSize * 100) / 100;
+      const crowns = crownsFor(tables.sizes, entry.id);
+      if (crowns) monster.crowns = { mini: crowns.mini, silver: crowns.silver, gold: crowns.gold };
+    }
 
     if (entry.hitzones && chunk.hitzones) {
       const hitzones: Record<string, Record<string, number>> = {};

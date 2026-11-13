@@ -281,6 +281,7 @@ section("Validating skills…");
     fs.readFileSync(path.join(dataDir, "decorations.json"), "utf-8"),
   ) as { decorations: { name: string; skills?: string[] }[] };
   for (const d of decorations) {
+    let positive = 0;
     for (const s of d.skills ?? []) {
       const parsed = parseDecorationSkill(s);
       if (!parsed) {
@@ -288,7 +289,11 @@ section("Validating skills…");
         continue;
       }
       if (!names.has(parsed.name)) unknown.set(parsed.name, d.name);
+      if (parsed.amount > 0) positive++;
     }
+    // The set search's bounds count each decoration slot toward one wanted
+    // skill (set-search.ts, `reachable`).
+    if (positive > 1) error(`decoration ${d.name}: adds to more than one skill tree`);
   }
   for (const [tree, item] of unknown) {
     error(`skills: "${tree}" (on ${item}) is not a tree or alias in data/skills.json`);
@@ -380,13 +385,20 @@ const itemsFile = path.join(dataDir, "items.json");
 if (!fs.existsSync(itemsFile)) {
   error("Missing data/items.json");
 } else {
-  const data = JSON.parse(fs.readFileSync(itemsFile, "utf-8")) as { items: ItemRecord[] };
+  const data = JSON.parse(fs.readFileSync(itemsFile, "utf-8")) as {
+    colors?: string[];
+    items: ItemRecord[];
+  };
   const ITEM_KEYS = new Set([
     "id",
     "name",
     "name_jp",
     "aliases",
     "rarity",
+    "carry",
+    "price",
+    "icon",
+    "color",
     "regions",
     "placeholder",
   ]);
@@ -397,6 +409,14 @@ if (!fs.existsSync(itemsFile)) {
     error('items.json: "items" is not an array');
     data.items = [];
   }
+
+  // Icon tints live twice, the palette here and as --color-item-* tokens.
+  const css = fs.readFileSync(path.join(root, "src/app/globals.css"), "utf-8");
+  const tint = (i: number) => css.match(new RegExp(`--color-item-${i}:\\s*(#[0-9a-f]{6})`))?.[1];
+  data.colors?.forEach((hex, i) => {
+    if (i !== 9 && tint(i) !== hex)
+      error(`items.json: colors[${i}] is ${hex}, but --color-item-${i} is ${tint(i)}`);
+  });
 
   // Structural checks mirroring data/schemas/item.schema.json.
   for (const it of data.items) {
@@ -410,6 +430,12 @@ if (!fs.existsSync(itemsFile)) {
     else if (it.name !== it.name.trim()) error(`${label}: name has surrounding whitespace`);
     else if (it.name.length > ITEM_NAME_LENGTH)
       error(`${label}: name "${it.name}" is longer than the game's ${ITEM_NAME_LENGTH} characters`);
+    if (it.icon !== undefined) {
+      const sprite = path.join(root, "public/images", `item-${it.icon}.png`);
+      if (!fs.existsSync(sprite)) error(`${label}: no sprite for icon ${it.icon}`);
+    }
+    if (it.color !== undefined && (it.color === 9 || !tint(it.color)))
+      error(`${label}: no --color-item-${it.color} token`);
     if (typeof it.name_jp !== "string" || !it.name_jp) error(`${label}: missing name_jp`);
     if (it.aliases !== undefined) {
       if (
@@ -427,6 +453,10 @@ if (!fs.existsSync(itemsFile)) {
     ) {
       error(`${label}: rarity must be an integer 1–10`);
     }
+    if (it.carry !== undefined && (!Number.isInteger(it.carry) || it.carry < 1 || it.carry > 255))
+      error(`${label}: carry must be an integer 1–255`);
+    if (it.price !== undefined && (!Number.isInteger(it.price) || it.price < 0))
+      error(`${label}: price must be a non-negative integer`);
     if (
       it.regions !== undefined &&
       (!Array.isArray(it.regions) || it.regions.some((r) => !REGIONS.has(r)))

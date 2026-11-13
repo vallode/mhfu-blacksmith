@@ -1,0 +1,30 @@
+// The MHFU Blacksmith site on Cloudflare: a Worker serving the static export
+// in out/. Deployed by the "Deploy to Cloudflare" workflow
+// (.github/workflows/cloudflare-deploy.yml) after `pnpm build` has written
+// out/.
+{
+  "name": "mhfu-blacksmith",
+  "compatibility_date": "2026-10-22",
+  // Only runs for the set builder and share links (run_worker_first below):
+  // it serves share links and gives them their own embeds. See the file.
+  "main": "src/cloudflare/worker.ts",
+  "assets": {
+    "directory": "./out",
+    "binding": "ASSETS",
+    // `next build` exports trailingSlash pages as <page>/index.html, which
+    // this serves at /<page>/ (and redirects /<page> to it), as Next expects.
+    "html_handling": "auto-trailing-slash",
+    "not_found_handling": "404-page",
+    // Everything else is a free static asset request that never runs the
+    // script; these count as Worker requests. The second is share links
+    // (SHARE_PATH in src/lib/set-link.ts).
+    "run_worker_first": ["/set-builder/*", "/sets/*"],
+  },
+  // Production at mhfu-blacksmith.<account>.workers.dev, and a preview URL
+  // per branch (see the workflow).
+  "workers_dev": true,
+  "preview_urls": true,
+  // Required by `wrangler preview`, which Workers Builds runs for branches
+  // other than main. Empty: assets and compatibility settings stay above.
+  "previews": {},
+}

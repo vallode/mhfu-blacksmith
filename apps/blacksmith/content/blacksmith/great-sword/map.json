@@ -470,15 +470,7 @@
                                         "name": "Alveblade",
                                         "rarity": 9,
                                         "element": "dragon",
-                                        "children": [
-                                          {
-                                            "slug": "brunhild",
-                                            "type": "great-sword",
-                                            "name": "Brünhild",
-                                            "rarity": 10,
-                                            "element": "dragon"
-                                          }
-                                        ]
+                                        "alias": true
                                       }
                                     ]
                                   }
@@ -894,43 +886,7 @@
                         "type": "great-sword",
                         "name": "Killer's Scythe",
                         "rarity": 6,
-                        "children": [
-                          {
-                            "slug": "shogun-cutter",
-                            "type": "long-sword",
-                            "name": "Shogun Cutter",
-                            "rarity": 9,
-                            "children": []
-                          },
-                          {
-                            "slug": "carmine-blade",
-                            "type": "great-sword",
-                            "name": "Carmine Blade",
-                            "rarity": 9,
-                            "children": [
-                              {
-                                "slug": "killer-s-carver",
-                                "type": "great-sword",
-                                "name": "Killer's Carver",
-                                "rarity": 10
-                              }
-                            ]
-                          },
-                          {
-                            "slug": "violet-pincer",
-                            "type": "great-sword",
-                            "name": "Violet Pincer",
-                            "rarity": 9,
-                            "children": [
-                              {
-                                "slug": "grand-pincer",
-                                "type": "great-sword",
-                                "name": "Grand Pincer",
-                                "rarity": 9
-                              }
-                            ]
-                          }
-                        ]
+                        "alias": true
                       }
                     ]
                   }
@@ -1231,14 +1187,7 @@
         "type": "great-sword",
         "name": "Violet Pincer",
         "rarity": 9,
-        "children": [
-          {
-            "slug": "grand-pincer",
-            "type": "great-sword",
-            "name": "Grand Pincer",
-            "rarity": 9
-          }
-        ]
+        "alias": true
       }
     ]
   },

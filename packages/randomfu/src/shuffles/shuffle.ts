@@ -61,4 +61,11 @@ export interface ShuffleReport {
   /** Short notes on what was and wasn't shuffled. */
   notes: string[];
   lines: SpoilerLine[];
+  /** The run log's line for it, when a slot count doesn't fit. */
+  summary?: string;
+}
+
+/** A report's line in the run log: its summary, or how many slots it changed. */
+export function reportLogLine(report: ShuffleReport): string {
+  return report.summary ?? `${report.title}: ${report.lines.length} slots`;
 }

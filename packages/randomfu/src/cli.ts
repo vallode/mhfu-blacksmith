@@ -6,7 +6,6 @@ import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { ebootInfo } from "./eboot-info.js";
 import { loadGame } from "./game/load.js";
 import { randomSeed } from "./rng.js";
 import { runRandomizer } from "./run.js";
@@ -24,7 +23,7 @@ import {
 import { LOGIC_VERSION } from "./version.js";
 import { roundTrip } from "./write.js";
 
-const BOOLEAN_FLAGS = new Set(["dry-run", "force", "no-open"]);
+const BOOLEAN_FLAGS = new Set(["dry-run", "force", "no-open", "poogie-test"]);
 
 export function parseFlags(argv: string[]): Record<string, string> {
   const flags: Record<string, string> = {};
@@ -63,6 +62,8 @@ const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   armor: "armor.enabled",
   "armor-skills": "armorSkills.enabled",
   shops: "shops.enabled",
+  "shop-prices": "shops.prices",
+  "carry-limits": "shops.stacks",
   gathering: "gathering.enabled",
   supplies: "supplies.enabled",
   "quest-money": "terms.money",
@@ -122,13 +123,12 @@ export function settingsFromFlags(flags: Record<string, string>): Settings {
 
 const USAGE = `Usage:
   randomize --iso <in.iso|in.cso> --out <out.iso> [settings] [--spoiler <path>]
-            [--eboot <decrypted EBOOT>] [--pspdecrypt-bin <name>] [--force]
+            [--pspdecrypt-bin <name>] [--force] [--poogie-test]
   randomize --iso <in> --dry-run [settings]         print the spoiler log, write nothing
   roundtrip --iso <in>                              check files re-encrypt to the disc's bytes
-  eboot-info --iso <in> [--eboot <dump>]            how the disc's EBOOT decrypts (vs a dump)
   gui [--port <n>] [--no-open]                      open the settings page in a browser
   settings [--write <file.json>]                    list every setting, or write the defaults
-  shop-scan --iso <in> [--eboot <dump>] [--out <report.txt>]
+  shop-scan --iso <in> [--out <report.txt>]
                                                     research: look for the shops' item lists
   shop-lists --iso <in> [--out <report.txt>]        research: map the shop lists in lobby_task.ovl
 
@@ -139,9 +139,15 @@ Settings (later ones win):
   --tiers star|rank|none       --amount-spread <0-0.95>   --cost-spread <0-0.95>
   --weapon-mix same-type|any-type
   --set key=value,key=value    any setting by name
-  --seed <seed>`;
+  --seed <seed>
+
+Testing:
+  --poogie-test                a happy Poogie always gives the rarest reward (not for play)`;
 
 function printSettings(): void {
+  console.log(
+    "[shuffle] moves what's already in the game to new places; [randomize] rolls new values.",
+  );
   let section = "";
   for (const option of OPTIONS) {
     if (option.section !== section) {
@@ -155,7 +161,8 @@ function printSettings(): void {
         : type.kind === "number"
           ? `${type.min}-${type.max}`
           : type.choices.map((c) => c.value).join("|");
-    console.log(`  ${option.key} = ${String(option.default)}   (${values})`);
+    const action = option.action ? `   [${option.action}]` : "";
+    console.log(`  ${option.key} = ${String(option.default)}   (${values})${action}`);
     console.log(`      ${option.label}. ${option.help}`);
   }
 }
@@ -193,10 +200,10 @@ export async function main(argv: string[]): Promise<void> {
           iso: requireFlag(flags, "iso"),
           out: dryRun ? null : requireFlag(flags, "out"),
           settings: settingsFromFlags(flags),
-          eboot: flags.eboot,
           pspdecryptBin: flags["pspdecrypt-bin"],
           spoiler: flags.spoiler,
           force: flags.force === "true",
+          poogieTest: flags["poogie-test"] === "true",
         },
         (line) => console.log(line),
       );
@@ -205,9 +212,6 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "roundtrip":
       return runRoundTrip(flags);
-    case "eboot-info":
-      for (const line of ebootInfo(requireFlag(flags, "iso"), flags.eboot)) console.log(line);
-      return;
     case "gui": {
       const { startGui } = await import("./gui/server.js");
       await startGui({
@@ -218,9 +222,7 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "shop-scan": {
       const { formatShopScan, runShopScan } = await import("./research/shop-scan.js");
-      const candidates = await runShopScan(requireFlag(flags, "iso"), flags.eboot, (l) =>
-        console.log(l),
-      );
+      const candidates = await runShopScan(requireFlag(flags, "iso"), (l) => console.log(l));
       const report = formatShopScan(candidates);
       if (flags.out) {
         writeFileSync(flags.out, `${report}\n`, "utf-8");

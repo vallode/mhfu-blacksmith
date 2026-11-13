@@ -21,11 +21,18 @@
  * makes, IDs past the slot's array and pieces with no sex or no hunter type
  * bit (not real pieces).
  *
+ * The smithy's store (`mhfu-extract/src/shops/equipment.ts`, in
+ * `lobby_task.ovl`) follows the shuffle, as it does for weapons: where it
+ * sold a piece, it sells the piece now in that piece's places (the same
+ * slot, rarity and wearers). Pieces it sells that the shuffle leaves alone
+ * (no create entry makes them) stay.
+ *
  * Mixing Blademaster and Gunner pieces isn't offered: nothing on a disc has
  * shown how the smithy lists a place whose piece is for the other type.
  */
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { HUNTER_TYPE_BITS } from "mhfu-extract/src/emit/armor.js";
+import { ARMOR_CATEGORY } from "mhfu-extract/src/shops/equipment.js";
 import type { NameTable } from "mhfu-extract/src/strings/names.js";
 import {
   ARMOR_SLOT_COUNTS,
@@ -40,6 +47,7 @@ import type { Edits } from "../edits.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
 import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
+import { followStore, type SmithyStore } from "./store.js";
 
 const HUNTER_TYPE_AT = 4;
 const RARITY_AT = 5;
@@ -74,6 +82,8 @@ export function shuffleArmor(
   resolver: TableAddressResolver | undefined,
   rng: Rng,
   edits: Edits,
+  /** The smithy's store, or null to leave it (none found on the disc). */
+  store: SmithyStore | null,
 ): ShuffleReport {
   const reader = new BinaryReader(eboot);
   const create = equipmentCreateLayout(reader, resolver);
@@ -110,6 +120,18 @@ export function shuffleArmor(
     for (const at of entryAt) {
       const piece = reader.u16(at + 2);
       out.writeUInt16LE(sigma.get(piece) ?? piece, at + 2);
+    }
+
+    // The store sells whatever is now in the places of what it sold.
+    if (store) {
+      followStore(
+        store,
+        ARMOR_CATEGORY[slot],
+        (i) => sigma.get(i) ?? i,
+        name,
+        `Armor: ${label}`,
+        edits,
+      );
     }
 
     for (const piece of shuffled) {

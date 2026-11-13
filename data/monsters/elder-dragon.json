@@ -90,10 +90,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 371.4,
-        "max": 989.64
-      },
       "hitzones": {
         "head": {
           "cut": "45",
@@ -132,17 +128,39 @@
       "base_hp": 3200,
       "flinch_thresholds": [
         200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 600,
+          "duration": 1200
+        },
+        "ko": null,
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      },
+      "base_size": 464.3,
+      "crowns": {
+        "mini": 97,
+        "silver": 130,
+        "gold": 177
+      }
     },
     {
       "name": "Kushala Daora",
       "type": "elder-dragon",
       "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {},
-      "sizes": {
-        "min": 1261.6,
-        "max": 2391.41
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -233,7 +251,45 @@
         200,
         140,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 125,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 600
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 12,
+          "damage_interval": 150,
+          "total_time": 3600
+        }
+      },
+      "base_size": 1577,
+      "crowns": {
+        "mini": 91,
+        "silver": 110,
+        "gold": 120
+      }
     },
     {
       "name": "Rusted Kushala Daora",
@@ -241,10 +297,6 @@
       "icon": "kushala-daora",
       "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {},
-      "sizes": {
-        "min": 1261.6,
-        "max": 2129
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -335,7 +387,45 @@
         200,
         140,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 125,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 600
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 12,
+          "damage_interval": 150,
+          "total_time": 3600
+        }
+      },
+      "base_size": 1577,
+      "crowns": {
+        "mini": 91,
+        "silver": 110,
+        "gold": 120
+      }
     },
     {
       "name": "Chameleos",
@@ -565,10 +655,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1395.2,
-        "max": 2811.32
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -669,7 +755,45 @@
         200,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 110,
+          "increase": 120,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1744,
+      "crowns": {
+        "mini": 96,
+        "silver": 120,
+        "gold": 141
+      }
     },
     {
       "name": "Lunastra",
@@ -849,10 +973,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1444.2,
-        "max": 2575.2
-      },
       "hitzones": {
         "head": {
           "cut": "40",
@@ -961,7 +1081,45 @@
         200,
         140,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 175,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 50,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      },
+      "base_size": 1740,
+      "crowns": {
+        "mini": 91,
+        "silver": 115,
+        "gold": 121
+      }
     },
     {
       "name": "Teostra",
@@ -1257,10 +1415,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1479,
-        "max": 2610
-      },
       "hitzones": {
         "head": {
           "cut": "40",
@@ -1369,7 +1523,45 @@
         200,
         140,
         100
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 175,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 70,
+          "damage_interval": 150,
+          "total_time": 600
+        }
+      },
+      "base_size": 1740,
+      "crowns": {
+        "mini": 88,
+        "silver": 110,
+        "gold": 125
+      }
     },
     {
       "name": "Lao-Shan Lung",
@@ -1619,7 +1811,13 @@
         600,
         600,
         1200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": null,
+        "ko": null,
+        "poison": null
+      }
     },
     {
       "name": "Ashen Lao-Shan Lung",
@@ -1727,7 +1925,13 @@
         600,
         600,
         1200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": null,
+        "ko": null,
+        "poison": null
+      }
     },
     {
       "name": "Yama Tsukami",
@@ -1915,7 +2119,13 @@
         400,
         1000,
         300
-      ]
+      ],
+      "tolerances": {
+        "paralysis": null,
+        "sleep": null,
+        "ko": null,
+        "poison": null
+      }
     },
     {
       "name": "Fatalis",
@@ -2038,10 +2248,6 @@
             }
           ]
         }
-      },
-      "sizes": {
-        "min": 4110.6,
-        "max": 4137.17
       },
       "hitzones": {
         "face": {
@@ -2169,7 +2375,33 @@
         500,
         180,
         240
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": null,
+        "poison": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Crimson Fatalis",
@@ -2439,7 +2671,33 @@
         500,
         180,
         240
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 400,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1800
+        },
+        "ko": null,
+        "poison": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "White Fatalis",
@@ -2709,7 +2967,33 @@
         500,
         180,
         240
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 400,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": null,
+        "poison": {
+          "initial": 400,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     }
   ]
 }

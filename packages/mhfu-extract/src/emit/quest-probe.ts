@@ -3,8 +3,9 @@
  * `raw/quests.json`, for the questions a disc has to settle (README
  * "Monster size", "Quest text", "Quest script"):
  *
- * - size: the values `MonSizeModifier`, `Unkn4`-`Unkn7` and each byte or
- *   word of the large monster records take, and a per-quest TSV of them;
+ * - size: the values `MonSizeModifier`, `Unkn4`/`Unkn5`/`Unkn7`, `statTable`
+ *   and each byte or word of the large monster records take, and a
+ *   per-quest TSV of them;
  * - objectives: the header's two objective slots (0x28, 0x30): their kinds,
  *   and whether a monster objective's id is the quest's `TargetID` or one
  *   of its large monsters;
@@ -59,7 +60,8 @@ export function sizeTsv(entries: readonly QuestRawEntry[]): string {
       "stars",
       "map",
       "MonSizeModifier",
-      "unkn4-7",
+      "unkn4,5,7",
+      "statTable",
       "monster",
       ...RECORD_BYTES.map(([n]) => n),
       ...RECORD_WORDS.map(([n]) => n),
@@ -75,7 +77,8 @@ export function sizeTsv(entries: readonly QuestRawEntry[]): string {
           e.header.questStars,
           e.header.map,
           hex(e.headerWords[14] ?? 0),
-          e.header.unknownFlags.join(","),
+          [...e.header.unknownFlags, e.header.sizeVariation].join(","),
+          e.header.statTable,
           r[0]! & 0xffff,
           ...RECORD_BYTES.map(([, o]) => byte(r, o)),
           ...RECORD_WORDS.map(([, w]) => hex(r[w]!)),
@@ -97,7 +100,11 @@ export function probeQuests(entries: readonly QuestRawEntry[]): string {
       `  byte ${b} (@${hex(0x38 + b, 2)}): ${top(mods, (v) => String((v >>> (b * 8)) & 0xff))}`,
     );
   }
-  out.push(`Unkn4-7 (u8 @0x47-0x4a): ${top(entries, (e) => e.header.unknownFlags.join(","))}`);
+  out.push(
+    `Unkn4/5 (u8 @0x47, 0x48): ${top(entries, (e) => e.header.unknownFlags.join(","))}`,
+    `sizeVariation (u8 @0x4a): ${top(entries, (e) => String(e.header.sizeVariation))}`,
+  );
+  out.push(`statTable (u8 @0x49): ${top(entries, (e) => String(e.header.statTable))}`);
   const records = entries.flatMap((e) => e.largeMonsterRecords);
   out.push(`Large monster records: ${records.length}`);
   for (const [name, o] of RECORD_BYTES)

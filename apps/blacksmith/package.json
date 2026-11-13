@@ -11,6 +11,7 @@
     "generate-data": "tsx scripts/generate-data.ts",
     "generate-search": "tsx scripts/generate-search-index.ts",
     "validate": "tsx scripts/validate.ts",
+    "bench-set-search": "tsx scripts/bench-set-search.ts",
     "test": "tsx --test test/**/*.test.ts",
     "validate-schema": "tsx scripts/validate-schema.ts",
     "generate-maps": "tsx scripts/generate-maps.ts",
@@ -20,15 +21,18 @@
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.9",
+    "@resvg/resvg-wasm": "2.6.2",
     "clsx": "^2.1.1",
     "fuse.js": "^7.4.2",
     "modern-normalize": "^3.0.1",
     "next": "^15.3.3",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
+    "satori": "0.12.2",
     "tailwind-merge": "^3.7.0",
     "three": "^0.169.0",
-    "tsx": "^4.22.4"
+    "tsx": "^4.22.4",
+    "yoga-wasm-web": "0.3.3"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3.3.5",
@@ -40,6 +44,7 @@
     "ajv": "^8.20.0",
     "eslint": "^9",
     "eslint-config-next": "^15.3.3",
+    "mhfu-extract": "workspace:*",
     "postcss": "^8.5.25",
     "sharp": "0.34.5",
     "tailwindcss": "^4.3.3",

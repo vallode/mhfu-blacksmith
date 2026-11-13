@@ -9,8 +9,12 @@ import {
   QUEST_MONSTER_ALIASES,
   QUEST_NON_MONSTERS,
   REWARD_KINDS,
+  ROLL_OUTCOMES,
+  questHp,
   questHubSlug,
+  type CompactMonsterStats,
   type CompactQuest,
+  type CompactQuestSize,
   type CompactRewardTable,
   type CompactSupplies,
   type QuestsBundle,
@@ -34,8 +38,13 @@ export interface QuestRecord {
     condition?: number | null;
     items: { chance: number; item: string; amount: number }[];
   }[];
-  large_monsters: { monster: string }[];
-  small_monsters: { monster: string }[];
+  large_monsters: {
+    monster: string;
+    multipliers?: { hp: number; attack: number; defense: number; status: number };
+    crown_chances?: { mini: number; silver: number; gold: number };
+  }[];
+  monster_size?: { modifier: number; min: number; max: number; fixed_until_flag?: number } | null;
+  small_monsters: { monster: string; total_quantity?: number; endless?: boolean }[];
   title: string | null;
   goal: string | null;
   details: string | null;
@@ -51,9 +60,52 @@ export interface QuestBundleInputs {
   itemId: (name: string) => number | undefined;
   /** site monster name -> its page */
   monsterPage: (name: string) => { category: string; slug: string } | undefined;
+  /** site monster name -> its base HP */
+  baseHp?: (name: string) => number | undefined;
+  /** whether area-maps.json has this quest */
+  hasAreaMap?: (questId: number) => boolean;
 }
 
-export function encodeQuestBundle({ quests, itemId, monsterPage }: QuestBundleInputs): {
+/**
+ * The smallest and largest size, in percent, each monster can roll across
+ * these quests, by name. Only monsters with crowns roll (their spawns carry
+ * `crown_chances`); the rest are always 100 and are left out. A quest with
+ * `fixed_until_flag` holds its monsters at 100 until the flag is set, so 100
+ * counts there too.
+ *
+ * Not counted: the game also pins every monster at 100 while bit 0x10 of a
+ * global flag word is set (mhfu-extract's README, "Monster size"), but what
+ * sets it is unknown, so 100 isn't added to every range for it.
+ */
+export function monsterSizeRanges(
+  quests: readonly QuestRecord[],
+): Map<string, { min: number; max: number }> {
+  const out = new Map<string, { min: number; max: number }>();
+  for (const q of quests) {
+    const size = q.monster_size;
+    if (!size) continue;
+    const fixed = size.fixed_until_flag !== undefined;
+    const min = fixed ? Math.min(size.min, 100) : size.min;
+    const max = fixed ? Math.max(size.max, 100) : size.max;
+    for (const { monster, crown_chances } of q.large_monsters) {
+      if (!crown_chances) continue;
+      const range = out.get(monster);
+      out.set(
+        monster,
+        range ? { min: Math.min(range.min, min), max: Math.max(range.max, max) } : { min, max },
+      );
+    }
+  }
+  return out;
+}
+
+export function encodeQuestBundle({
+  quests,
+  itemId,
+  monsterPage,
+  baseHp = () => undefined,
+  hasAreaMap = () => false,
+}: QuestBundleInputs): {
   bundle: QuestsBundle;
   unresolvedItems: string[];
 } {
@@ -143,10 +195,75 @@ export function encodeQuestBundle({ quests, itemId, monsterPage }: QuestBundleIn
     return i;
   };
 
+  /** Each spawn with multipliers, once per distinct row. */
+  const monsterStats = (list: QuestRecord["large_monsters"]): CompactMonsterStats[] => {
+    const rows = new Map<string, CompactMonsterStats>();
+    for (const { monster: name, multipliers: m } of list) {
+      if (!m) continue;
+      const i = monster(name);
+      const base = baseHp(monsters[i]![0]);
+      const row: CompactMonsterStats = [
+        i,
+        base === undefined ? null : questHp(base, m.hp),
+        m.attack,
+        m.defense,
+        m.status,
+      ];
+      rows.set(JSON.stringify(row), row);
+    }
+    return [...rows.values()];
+  };
+
+  /** The roll's range and each crowned monster's chances, once per monster. */
+  const monsterSize = (q: QuestRecord): CompactQuestSize | null => {
+    const size = q.monster_size;
+    if (!size) return null;
+    const crowns = new Map<number, CompactQuestSize[4][number]>();
+    const outcomes = (chance: number) => Math.round(chance * ROLL_OUTCOMES);
+    for (const { monster: name, crown_chances: c } of q.large_monsters) {
+      if (!c) continue;
+      const i = monster(name);
+      const row: CompactQuestSize[4][number] = [
+        i,
+        outcomes(c.mini),
+        outcomes(c.silver),
+        outcomes(c.gold),
+      ];
+      // Every spawn of a monster rolls with the quest's size and spread, so
+      // its chances are the same; the bundle keeps one row per monster.
+      const seen = crowns.get(i);
+      if (seen && seen.join() !== row.join())
+        throw new Error(`Quest ${q.id}: ${name} has different crown chances in two spawns.`);
+      crowns.set(i, row);
+    }
+    return [
+      size.modifier,
+      size.min,
+      size.max,
+      size.fixed_until_flag === undefined ? 0 : 1,
+      [...crowns.values()],
+    ];
+  };
+
+  /** The small monsters, with each one's total in the quest, parallel to each other. */
+  const smallMonsters = (list: QuestRecord["small_monsters"]) => {
+    const spawns = new Map<number, [total: number] | [total: number, endless: 1]>();
+    for (const x of list) {
+      if (QUEST_NON_MONSTERS.has(x.monster)) continue;
+      const i = monster(x.monster);
+      const row = spawns.get(i) ?? [0];
+      row[0] += x.total_quantity ?? 0;
+      if (x.endless) (row as number[])[1] = 1;
+      spawns.set(i, row);
+    }
+    return { indices: [...spawns.keys()], counts: [...spawns.values()] };
+  };
+
   const items: CompactQuest[] = [];
   for (const q of quests) {
     const hub = questHubSlug(q.hub, q.rank);
     if (!hub) continue;
+    const small = smallMonsters(q.small_monsters);
     items.push([
       q.id,
       QUEST_HUBS.findIndex((h) => h.slug === hub),
@@ -157,13 +274,7 @@ export function encodeQuestBundle({ quests, itemId, monsterPage }: QuestBundleIn
       q.time_limit_minutes,
       q.target ? [monster(q.target.monster), q.target.amount] : null,
       [...new Set(q.large_monsters.map((x) => monster(x.monster)))],
-      [
-        ...new Set(
-          q.small_monsters
-            .filter((x) => !QUEST_NON_MONSTERS.has(x.monster))
-            .map((x) => monster(x.monster)),
-        ),
-      ],
+      small.indices,
       supplyList(q.supplies),
       q.reward_tables.map(table),
       str(q.title),
@@ -173,6 +284,10 @@ export function encodeQuestBundle({ quests, itemId, monsterPage }: QuestBundleIn
       str(q.client),
       q.requires ?? null,
       q.urgent ? 1 : 0,
+      monsterStats(q.large_monsters),
+      hasAreaMap(q.id) ? 1 : 0,
+      small.counts,
+      monsterSize(q),
     ]);
   }
 

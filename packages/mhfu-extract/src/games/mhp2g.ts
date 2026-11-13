@@ -63,7 +63,7 @@ const FIXED_STRIDE_TABLES: Readonly<
     count: TABLE_COUNTS.dualAttributeWeapons,
   },
   decorationValues: { entrySize: ITEM_ENTRY_SIZE, count: TABLE_COUNTS.decorations },
-  itemTable: { entrySize: ITEM_ENTRY_SIZE, count: TABLE_COUNTS.regularItems },
+  itemTable: { entrySize: ITEM_ENTRY_SIZE, count: TABLE_COUNTS.items },
 };
 
 /** Entry size only, for tables whose overall count isn't a single fixed number (see recipes.ts). */
@@ -106,8 +106,8 @@ export const MHP2G_EU_RESOLVER: TableAddressResolver = new SignatureResolver(EU_
  * real output. `armorValuesHead`/etc are `tables/armor.ts`'s
  * `ARMOR_SLOT_TABLE_NAMES`, not `armorValuePointers` itself (see that
  * module's doc comment for why). Doesn't include quest tables (an entirely
- * separate DataCipher/QuestCipher path, not table-address-resolved at all)
- * or tables no emit/*.ts module reads yet (`itemTable`). `bowgunModTable`
+ * separate DataCipher/QuestCipher path, not table-address-resolved at all).
+ * `itemTable` is emit/items.ts's and emit/shops.ts's. `bowgunModTable`
  * and the rapid fire table are found from `sharpnessTable`
  * (tables/gunner.ts), so they need no entry.
  */
@@ -124,6 +124,7 @@ export const MHP2G_EMIT_TABLES: readonly string[] = [
   "equipmentUpgrade",
   "decorationValues",
   "decorationSkills",
+  "itemTable",
   "armorValuesHead",
   "armorValuesChest",
   "armorValuesArm",

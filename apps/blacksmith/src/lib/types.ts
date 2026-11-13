@@ -1,4 +1,5 @@
 import type { Tier } from "./min-rank";
+import type { Crowns } from "./crowns";
 
 export interface Material {
   name: string;
@@ -91,6 +92,12 @@ export interface WeaponTreeNode {
   min_rank?: MinRank;
   /** Armor only: defence at the highest upgrade level. */
   max_defence?: number;
+  /**
+   * The weapon is also listed further up the tree, under another weapon it
+   * can be upgraded from, and its own upgrades are listed there: this row has
+   * no children of its own.
+   */
+  alias?: boolean;
   /**
    * The page of the weapon this one is upgraded from, when the tree row isn't
    * nested under it any more (its parent was pruned out of the tree).
@@ -185,10 +192,18 @@ export interface Monster {
   habitats?: string[];
   hitzones?: Record<string, HitzoneValues>;
   drops?: Record<string, Record<string, MonsterDrop[]>>;
-  /** Smallest and largest size, in cm */
-  sizes?: { min: number; max: number };
   /** HP before a quest's multiplier, from the disc */
   base_hp?: number;
+  /** Centimetres at size 100 percent, as the Guild Card shows sizes (from the disc) */
+  base_size?: number;
+  /** Guild Card crown thresholds, in percent of `base_size` (src/lib/crowns.ts) */
+  crowns?: Crowns;
+  /**
+   * The smallest and largest size, in percent of `base_size`, the monster
+   * rolls across its quests (scripts/lib/quest-bundle.ts monsterSizeRanges);
+   * absent for monsters that are always 100.
+   */
+  size_range?: { min: number; max: number };
   /** Breakable parts, one entry per break reward */
   breaks?: MonsterBreak[];
   /**
@@ -204,6 +219,39 @@ export interface Monster {
    * are absent; the field is absent without hitboxes or thresholds.
    */
   hitzone_flinch?: Record<string, string>;
+  /** Status tolerances from the disc; null where the monster is immune. Only in `data/` so far. */
+  tolerances?: MonsterTolerances;
+}
+
+/**
+ * A status's buildup: it takes `initial` to trigger, `increase` more each
+ * time after; the buildup drains by `recovery` every `recovery_time` ticks,
+ * and the status lasts `duration` ticks.
+ */
+export interface StatusTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  duration: number;
+}
+
+/** Poison's buildup, plus `damage` every `damage_interval` ticks for `total_time` ticks. */
+export interface PoisonTolerance {
+  initial: number;
+  increase: number;
+  recovery: number;
+  recovery_time: number;
+  damage: number;
+  damage_interval: number;
+  total_time: number;
+}
+
+export interface MonsterTolerances {
+  paralysis: StatusTolerance | null;
+  sleep: StatusTolerance | null;
+  ko: StatusTolerance | null;
+  poison: PoisonTolerance | null;
 }
 
 export interface Decoration {
@@ -211,12 +259,15 @@ export interface Decoration {
   slug: string;
   type: string;
   color?: string;
-  category?: string;
   rarity?: number;
   slots?: number;
   create_cost?: number | null;
   skills?: string[];
   create_mats?: Material[];
+  /** In-game item ID (data/items.json); decoded bundles only. */
+  item_id?: number;
+  /** A second recipe; the game lists the jewel once for each. */
+  alternative_create_mats?: Material[] | null;
   /** Earliest quest progress it can be made at (generated, see min-rank.ts). */
   min_rank?: MinRank;
 }

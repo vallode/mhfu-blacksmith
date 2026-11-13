@@ -26,6 +26,7 @@ import {
   HITZONE_ROW_SIZE,
   MONSTER_CHUNK_COUNT,
   MONSTER_CHUNK_SIZE,
+  MULTIPLIER_SET_OFFSET,
   TOLERANCE_OFFSET,
 } from "mhfu-extract/src/monsters/hitzones.js";
 import { encryptQuestBlock, questHash, QUEST_MAGIC } from "mhfu-extract/src/quests/mib.js";
@@ -40,6 +41,7 @@ import {
   ITEM_ENTRY_SIZE,
   JP_BASE_ADDRESS,
   WEAPON_BM_ENTRY_SIZE,
+  WEAPON_GUN_ENTRY_SIZE,
   tableOffset,
 } from "mhfu-extract/src/tables/offsets.js";
 import { ARMOR_POINTER_INDEX, ARMOR_SLOTS, type ArmorSlot } from "mhfu-extract/src/tables/armor.js";
@@ -349,6 +351,13 @@ export const FIXTURE_HITZONE_TABLES: Record<number, number> = { 1: 2, 2: 1, 16: 
 export const FIXTURE_SHARED_HITZONES: Record<number, number> = { 37: 1 };
 export const FILLER_HITZONE = 0;
 
+/** Stat multiplier sets as on the disc: 2 the Fatalis trio, 3 the siege monsters, 1 the rest. */
+export function fixtureMultiplierSet(emId: number): number {
+  if ([2, 36, 71].includes(emId)) return 2;
+  if ([7, 50, 55, 58, 72, 76, 88].includes(emId)) return 3;
+  return 1;
+}
+
 /** Base HP: 100 + emID, so every chunk counts as a monster. */
 export const fixtureHp = (emId: number) => 100 + emId;
 
@@ -385,6 +394,7 @@ export function buildGameTask(): Buffer {
     const chunk = chunks + emId * MONSTER_CHUNK_SIZE;
     buf.writeFloatLE(1, chunk + 0x40);
     buf.writeUInt16LE(fixtureHp(emId), chunk + BASE_HP_OFFSET);
+    buf.writeInt8(fixtureMultiplierSet(emId), chunk + MULTIPLIER_SET_OFFSET);
     const owner = FIXTURE_SHARED_HITZONES[emId] ?? emId;
     buf.writeUInt32LE(
       vaddr(listOf.get(owner) ?? listOf.get(FILLER_HITZONE)!),
@@ -507,6 +517,12 @@ export interface FixtureWeapon {
   type: "great-sword" | "long-sword";
   /** Raw rarity (shown as rarity + 1). */
   rarity: number;
+  /** Raw attack (shown times the class modifier / 100). */
+  attack: number;
+  affinity: number;
+  /** Element (eleType, eleValue) or status (statusType, statusValue), raw: a tenth of the shown value. */
+  element?: [number, number];
+  status?: [number, number];
 }
 
 /**
@@ -515,16 +531,30 @@ export interface FixtureWeapon {
  * rarity 1: 6; rarity 2: 8 (an upgrade from Great Sword 3, as the game has).
  */
 export const FIXTURE_WEAPONS: FixtureWeapon[] = [
-  { index: 1, type: "great-sword", rarity: 0 },
-  { index: 2, type: "great-sword", rarity: 0 },
-  { index: 3, type: "great-sword", rarity: 0 },
-  { index: 4, type: "great-sword", rarity: 1 },
-  { index: 5, type: "great-sword", rarity: 1 },
-  { index: 6, type: "long-sword", rarity: 0 },
-  { index: 7, type: "great-sword", rarity: 0 },
-  { index: 8, type: "long-sword", rarity: 1 },
-  { index: 9, type: "great-sword", rarity: 0 },
+  { index: 1, type: "great-sword", rarity: 0, attack: 60, affinity: 0 },
+  { index: 2, type: "great-sword", rarity: 0, attack: 70, affinity: 0, element: [1, 12] },
+  { index: 3, type: "great-sword", rarity: 0, attack: 80, affinity: -10 },
+  { index: 4, type: "great-sword", rarity: 1, attack: 100, affinity: 10, element: [2, 20] },
+  { index: 5, type: "great-sword", rarity: 1, attack: 110, affinity: 0, status: [1, 15] },
+  { index: 6, type: "long-sword", rarity: 0, attack: 70, affinity: 0 },
+  { index: 7, type: "great-sword", rarity: 0, attack: 90, affinity: 5, element: [3, 25] },
+  { index: 8, type: "long-sword", rarity: 1, attack: 90, affinity: 15, status: [3, 30] },
+  { index: 9, type: "great-sword", rarity: 0, attack: 75, affinity: 0 },
+  // Weapon 7 (from a shard) polished: stays with it.
+  { index: 10, type: "great-sword", rarity: 0, attack: 85, affinity: 0 },
+  // A shard weapon as the disc has them: no create entry, only polished into 12.
+  { index: 11, type: "great-sword", rarity: 0, attack: 65, affinity: 0 },
+  { index: 12, type: "great-sword", rarity: 0, attack: 95, affinity: 0 },
 ];
+
+/** Gunner weapons outside the smithy trees: bows, model ID 20 + index. */
+export const FIXTURE_GUNNER_WEAPONS = [
+  { index: 1, rarity: 0, attack: 20, affinity: 0, element: [5, 8] },
+  { index: 2, rarity: 1, attack: 30, affinity: 10, element: [1, 12] },
+] as const;
+
+/** `WepClassMod`, in table order (Great Sword first). */
+export const FIXTURE_CLASS_MODIFIERS = [480, 130, 520, 230, 140, 120, 140, 480, 520, 230, 120];
 
 type Materials = { itemId: number; quantity: number }[];
 
@@ -544,6 +574,9 @@ export const FIXTURE_UPGRADES: { index: number; craft: Materials; targets: numbe
   { index: 4, craft: [{ itemId: 102, quantity: 1 }], targets: [] },
   { index: 5, craft: [{ itemId: 103, quantity: 2 }], targets: [] },
   { index: 8, craft: [{ itemId: 103, quantity: 1 }], targets: [] },
+  { index: 7, craft: [], targets: [10] },
+  { index: 10, craft: [], targets: [] },
+  { index: 11, craft: [], targets: [12] },
 ];
 
 function writeMaterials(buf: Buffer, at: number, materials: Materials): void {
@@ -612,10 +645,27 @@ export function buildEboot(
   const weapons = tableOffset("weaponsBlademaster");
   const models = tableOffset("modelToWeaponType");
   for (const w of FIXTURE_WEAPONS) {
-    buf.writeUInt16LE(w.index, weapons + w.index * WEAPON_BM_ENTRY_SIZE);
-    buf[weapons + w.index * WEAPON_BM_ENTRY_SIZE + 2] = w.rarity;
+    const at = weapons + w.index * WEAPON_BM_ENTRY_SIZE;
+    buf.writeUInt16LE(w.index, at);
+    buf[at + 2] = w.rarity;
+    buf.writeUInt16LE(w.attack, at + 10);
+    buf.writeInt8(w.affinity, at + 13);
+    if (w.element) [buf[at + 14], buf[at + 15]] = w.element;
+    if (w.status) [buf[at + 16], buf[at + 17]] = w.status;
     buf[models + w.index] = WEAPON_TYPE_NAMES.indexOf(w.type);
   }
+  for (const gun of FIXTURE_GUNNER_WEAPONS) {
+    const at = tableOffset("weaponsGunner") + gun.index * WEAPON_GUN_ENTRY_SIZE;
+    buf.writeUInt16LE(20 + gun.index, at);
+    buf[at + 2] = gun.rarity;
+    buf.writeUInt16LE(gun.attack, at + 8);
+    buf.writeInt8(gun.affinity, at + 13);
+    [buf[at + 17], buf[at + 18]] = gun.element;
+    buf[models + 20 + gun.index] = WEAPON_TYPE_NAMES.indexOf("bow");
+  }
+  FIXTURE_CLASS_MODIFIERS.forEach((mod, i) =>
+    buf.writeUInt32LE(mod, tableOffset("weaponClassModifiers") + i * 4),
+  );
 
   ARMOR_SLOTS.forEach((slot, i) => {
     const array = ARMOR_ARRAYS + i * 20_000;
@@ -694,11 +744,38 @@ export const FIXTURE_SHOP_TABLES: string[][] = [
   ["special1", "special2"],
 ];
 
-/** `lobby_task.ovl` with the shop lists (0xFFFF-ended) and their pointer tables. */
+/**
+ * The smithy's store: (category, ID) lists, by stage, then an armor list
+ * (category 5 is a Blademaster weapon, 6 a Gunner one, 0-4 armor). Its table
+ * repeats a list and ends in a word that isn't a pointer, as on the EU disc.
+ */
+export const FIXTURE_STORE_LISTS: Record<string, [number, number][]> = {
+  weapons1: [
+    [5, 1],
+    [5, 6],
+    [6, 1],
+  ],
+  weapons2: [
+    [5, 1],
+    [5, 6],
+    [5, 9],
+    [6, 1],
+  ],
+  // Leg 2, head 3, and head 9, which no create entry makes.
+  armor: [
+    [0, 2],
+    [1, 3],
+    [1, 9],
+  ],
+};
+export const FIXTURE_STORE_TABLE = ["weapons1", "weapons1", "weapons2", "armor"];
+
+/** `lobby_task.ovl` with the shop lists (0xFFFF-ended) and their pointer tables, then the smithy's store. */
 export function buildLobbyTask(): {
   buf: Buffer;
   listAt: Record<string, number>;
   tablesAt: number;
+  storeAt: Record<string, number>;
 } {
   const buf = ovlHeader("lobby_task.ovl", LOBBY_LOAD, 0x1000);
   buf.fill(0x77, 0x80); // not items, not pointers
@@ -724,7 +801,25 @@ export function buildLobbyTask(): {
     buf.writeUInt32LE(0, p);
     p += 4;
   }
-  return { buf, listAt, tablesAt };
+
+  const storeAt: Record<string, number> = {};
+  at = 0x700;
+  for (const [name, entries] of Object.entries(FIXTURE_STORE_LISTS)) {
+    storeAt[name] = at;
+    for (const [category, id] of entries) {
+      buf.writeUInt16LE(category, at);
+      buf.writeUInt16LE(id, at + 2);
+      at += 4;
+    }
+    buf.writeUInt32LE(0xffff, at);
+    at += 4;
+  }
+  p = 0x780;
+  for (const name of FIXTURE_STORE_TABLE) {
+    buf.writeUInt32LE(LOBBY_LOAD + storeAt[name]!, p);
+    p += 4;
+  }
+  return { buf, listAt, tablesAt, storeAt };
 }
 
 // ---------------------------------------------------------------- quest board

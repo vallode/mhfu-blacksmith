@@ -14,6 +14,9 @@
  *           recovery time, recovery, duration, increase), then Poison (7
  *           u16: initial, recovery time, recovery, damage, total time,
  *           damage per second, increase)
+ *   +0x14F  s8 quest stat multiplier set (`multipliers.ts`): 0 small
+ *           monsters, 1 large monsters, 2 the Fatalis trio, 3 Lao-Shan Lung
+ *           and the other siege-style monsters
  *   +0x1B4  u32 `PartDurabilityPTR`: each body part's flinch threshold (see
  *           `readFlinchThresholds`)
  *
@@ -38,6 +41,8 @@ export const MONSTER_CHUNK_SIZE = 0x1d0;
 export const HITZONE_POINTER_OFFSET = 0x10c;
 /** u16; the following u16 is a second value (not HP) that small monsters fill in. */
 export const BASE_HP_OFFSET = 0x100;
+/** s8: which quest stat multiplier set the monster uses (`multipliers.ts`). */
+export const MULTIPLIER_SET_OFFSET = 0x14f;
 export const TOLERANCE_OFFSET = 0x110;
 export const HITZONE_ROW_SIZE = 10;
 /** Sanity limits: no real monster has more than 3 tables of 7 rows. */
@@ -94,6 +99,8 @@ export interface MonsterChunk {
   baseScale: number;
   /** Base HP before the quest's multiplier. */
   baseHp: number;
+  /** Which quest stat multiplier set the monster uses (`multipliers.ts`). */
+  multiplierSet: number;
   hitzonePointer: number;
   /** Hitzone tables, or null if the pointer doesn't lead to well-formed ones. */
   hitzones: HitzoneRow[][] | null;
@@ -207,6 +214,7 @@ export function readMonsterChunks(ovl: OvlFile, chunksOffset: number): MonsterCh
       emId,
       baseScale: ovl.reader.f32(base + 0x40),
       baseHp: ovl.reader.u16(base + BASE_HP_OFFSET),
+      multiplierSet: ovl.reader.s8(base + MULTIPLIER_SET_OFFSET),
       hitzonePointer: pointer,
       hitzones: readHitzoneTables(ovl, pointer),
       tolerances: readTolerances(ovl, base),

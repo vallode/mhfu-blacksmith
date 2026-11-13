@@ -4,6 +4,7 @@ import { WEAPON_TYPES, type WeaponType, WEAPON_CLASS_MULTIPLIER } from "./consta
 import { slugify } from "./slug";
 import type { Weapon } from "./types";
 import { DATA_DIR } from "./paths";
+import { cached } from "./data-cache";
 
 const dataDir = DATA_DIR;
 
@@ -11,7 +12,13 @@ export function getWeaponTypes(): WeaponType[] {
   return [...WEAPON_TYPES];
 }
 
+const cache = new Map<WeaponType, Weapon[]>();
+
 export function getWeapons(type: WeaponType): Weapon[] {
+  return cached(cache, type, () => loadWeapons(type));
+}
+
+function loadWeapons(type: WeaponType): Weapon[] {
   const filePath = path.join(dataDir, "weapons", `${type}.json`);
   const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { weapons: Weapon[] };
 

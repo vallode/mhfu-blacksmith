@@ -7,20 +7,11 @@
 import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
-import type {
-  ArmorBundle,
-  DecorationBundle,
-  Dictionaries,
-  EquipmentIds,
-} from "../../src/lib/schema";
-import { ARMOR_RANKS, ARMOR_SLOTS } from "../../src/lib/constants";
-import { setSearchDataFromBundles } from "../../src/lib/set-data";
-import type { SearchData, SkillTreeData } from "../../src/lib/set-search";
+import type { DecorationBundle, EquipmentIds } from "../../src/lib/schema";
+import type { SearchData } from "../../src/lib/set-search";
+import { readSetSearchData } from "../../scripts/lib/set-data";
 
 const outDir = path.join(process.cwd(), "public", "data");
-const read = <T>(file: string): T =>
-  JSON.parse(fs.readFileSync(path.join(outDir, file), "utf-8")) as T;
-
 function ensureBundles() {
   const decos = path.join(outDir, "decorations.json");
   const fresh =
@@ -41,17 +32,6 @@ let cached: { data: SearchData; ids: EquipmentIds } | null = null;
 export function loadShippedSetData(): { data: SearchData; ids: EquipmentIds } {
   if (cached) return cached;
   ensureBundles();
-  const armor = ARMOR_SLOTS.flatMap((slot) =>
-    ARMOR_RANKS.filter((rank) =>
-      fs.existsSync(path.join(outDir, `armor-${slot}-${rank}.json`)),
-    ).map((rank) => read<ArmorBundle>(`armor-${slot}-${rank}.json`)),
-  );
-  const data = setSearchDataFromBundles(
-    read<Dictionaries>("dictionaries.json"),
-    read<{ skills: SkillTreeData[] }>("skills.json").skills,
-    read<DecorationBundle>("decorations.json"),
-    armor,
-  );
-  cached = { data, ids: read<EquipmentIds>("equipment-ids.json") };
+  cached = readSetSearchData(outDir);
   return cached;
 }

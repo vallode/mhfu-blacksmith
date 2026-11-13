@@ -107,7 +107,27 @@
         1,
         1,
         1
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 0,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": null,
+        "ko": null,
+        "poison": {
+          "initial": 60,
+          "increase": 0,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 30,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      }
     },
     {
       "name": "Rathian",
@@ -551,10 +571,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1151.9,
-        "max": 2303.8
-      },
       "hitzones": {
         "head": {
           "cut": "80",
@@ -662,7 +678,45 @@
         200,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 110,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1645.6,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 129
+      }
     },
     {
       "name": "Pink Rathian",
@@ -1024,10 +1078,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1151.9,
-        "max": 2303.8
-      },
       "hitzones": {
         "head": {
           "cut": "80",
@@ -1135,7 +1185,45 @@
         200,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 125,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 125,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 15,
+          "recovery_time": 150,
+          "damage": 30,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1645.6,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 129
+      }
     },
     {
       "name": "Gold Rathian",
@@ -1383,10 +1471,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1151.9,
-        "max": 2303.8
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -1494,7 +1578,45 @@
         200,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 120,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 350,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 30,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1645.6,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 129
+      }
     },
     {
       "name": "Rathalos",
@@ -1934,10 +2056,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1140.6,
-        "max": 2248.6
-      },
       "hitzones": {
         "head": {
           "cut": "80",
@@ -2045,7 +2163,45 @@
         180,
         150,
         150
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 160,
+          "increase": 60,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 110,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1629.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 127
+      }
     },
     {
       "name": "Azure Rathalos",
@@ -2404,10 +2560,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1140.6,
-        "max": 2248.6
-      },
       "hitzones": {
         "head": {
           "cut": "80",
@@ -2515,7 +2667,45 @@
         180,
         150,
         150
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 125,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 175,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 215,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 30,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1629.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 127
+      }
     },
     {
       "name": "Silver Rathalos",
@@ -2760,10 +2950,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1140.6,
-        "max": 2248.6
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -2871,7 +3057,45 @@
         180,
         150,
         150
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 160,
+          "increase": 60,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 400,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 35,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1629.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 127
+      }
     },
     {
       "name": "Khezu",
@@ -3155,10 +3379,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 436.6,
-        "max": 1225.5
-      },
       "hitzones": {
         "head": {
           "cut": "45",
@@ -3257,7 +3477,45 @@
         140,
         200,
         90
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "poison": {
+          "initial": 110,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      },
+      "base_size": 873.2,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 135
+      }
     },
     {
       "name": "Red Khezu",
@@ -3488,10 +3746,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 436.6,
-        "max": 1205
-      },
       "hitzones": {
         "head": {
           "cut": "45",
@@ -3590,7 +3844,45 @@
         140,
         200,
         90
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 350,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 350,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 450,
+          "duration": 150
+        },
+        "poison": {
+          "initial": 110,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 900
+        }
+      },
+      "base_size": 873.2,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 135
+      }
     },
     {
       "name": "Basarios",
@@ -3858,10 +4150,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1154.9,
-        "max": 1754.6
-      },
       "hitzones": {
         "head": {
           "cut": "20",
@@ -3972,7 +4260,45 @@
         300,
         140,
         140
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 100,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1800
+        },
+        "ko": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1297.6,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 129
+      }
     },
     {
       "name": "Gravios",
@@ -4244,10 +4570,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1049.35,
-        "max": 3065.9
-      },
       "hitzones": {
         "head": {
           "cut": "20",
@@ -4358,7 +4680,45 @@
         700,
         200,
         200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1800
+        },
+        "ko": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 2099.9,
+      "crowns": {
+        "mini": 97,
+        "silver": 123,
+        "gold": 135
+      }
     },
     {
       "name": "Black Gravios",
@@ -4631,10 +4991,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1946.3,
-        "max": 3065.9
-      },
       "hitzones": {
         "head": {
           "cut": "20",
@@ -4745,7 +5101,45 @@
         700,
         200,
         200
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1800
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 40,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 2099.9,
+      "crowns": {
+        "mini": 97,
+        "silver": 123,
+        "gold": 135
+      }
     },
     {
       "name": "Monoblos",
@@ -4889,10 +5283,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1683.5,
-        "max": 2918.8
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -4992,7 +5382,45 @@
         200,
         180,
         180
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 3600
+        }
+      },
+      "base_size": 2004.2,
+      "crowns": {
+        "mini": 94,
+        "silver": 116,
+        "gold": 127
+      }
     },
     {
       "name": "White Monoblos",
@@ -5137,10 +5565,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1849.2,
-        "max": 2810.7
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -5240,7 +5664,45 @@
         200,
         180,
         180
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 100,
+          "increase": 100,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      },
+      "base_size": 2004.2,
+      "crowns": {
+        "mini": 94,
+        "silver": 116,
+        "gold": 127
+      }
     },
     {
       "name": "Diablos",
@@ -5472,10 +5934,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1796.26,
-        "max": 3030
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -5586,7 +6044,45 @@
         250,
         180,
         180
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 200,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1200
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 200,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 10,
+          "damage_interval": 150,
+          "total_time": 3600
+        }
+      },
+      "base_size": 1993.4,
+      "crowns": {
+        "mini": 97,
+        "silver": 123,
+        "gold": 139
+      }
     },
     {
       "name": "Black Diablos",
@@ -5834,10 +6330,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1865.66,
-        "max": 2930.3
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -5948,7 +6440,45 @@
         250,
         180,
         180
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 250,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 25,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 1500
+        },
+        "ko": {
+          "initial": 250,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 450,
+          "duration": 450
+        },
+        "poison": {
+          "initial": 250,
+          "increase": 50,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 2700
+        }
+      },
+      "base_size": 1993.4,
+      "crowns": {
+        "mini": 97,
+        "silver": 123,
+        "gold": 139
+      }
     },
     {
       "name": "Tigrex",
@@ -6320,10 +6850,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1388.2,
-        "max": 2914.8
-      },
       "hitzones": {
         "head": {
           "cut": "75",
@@ -6431,7 +6957,45 @@
         180,
         140,
         340
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 5400
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1735.31,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
+      }
     },
     {
       "name": "Nargacuga",
@@ -6699,10 +7263,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1602.19,
-        "max": 2355.13
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -6828,7 +7388,45 @@
         100,
         180,
         600
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 150,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 5400
+        },
+        "ko": {
+          "initial": 120,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 1602.18,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
+      }
     },
     {
       "name": "Akantor",
@@ -7052,7 +7650,40 @@
         300,
         250,
         400
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 350,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 350,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 400,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 3049.97
     },
     {
       "name": "Ukanlos",
@@ -7270,7 +7901,40 @@
         300,
         300,
         400
-      ]
+      ],
+      "tolerances": {
+        "paralysis": {
+          "initial": 350,
+          "increase": 100,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "sleep": {
+          "initial": 350,
+          "increase": 50,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 900
+        },
+        "ko": {
+          "initial": 150,
+          "increase": 75,
+          "recovery": 5,
+          "recovery_time": 300,
+          "duration": 300
+        },
+        "poison": {
+          "initial": 400,
+          "increase": 75,
+          "recovery": 10,
+          "recovery_time": 150,
+          "damage": 20,
+          "damage_interval": 150,
+          "total_time": 1800
+        }
+      },
+      "base_size": 3049.97
     }
   ]
 }

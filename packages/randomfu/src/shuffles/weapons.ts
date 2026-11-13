@@ -14,8 +14,23 @@
  * A weapon keeps its own stats, notes, shells and ammo. Prices stay with
  * the weapon.
  *
- * Weapons made from Ancient/Rusted shards, weapons with no known type and
- * weapons in no create entry or upgrade tree stay where they are.
+ * Shard weapons stay where they are, with their polished forms (what they
+ * upgrade into directly). Polishing an Ancient/Rusted shard makes them
+ * (Rusted and Worn weapons; Tarnished and Weathered polished), and no
+ * create entry does: the shard sections make placeholder IDs past the
+ * weapon table (1501-1510 on the EU disc). So they're found by their shape:
+ * a tree root no create entry makes, with exactly one upgrade, of the same
+ * type and rarity (its polished form; on the EU disc exactly those 8).
+ * Other roots no create entry makes are shuffled like any weapon. Moving them
+ * would let an ordinary place make a Rusted weapon and polishing give
+ * something else. What a polished weapon upgrades into is shuffled as
+ * usual. Weapons with no known type and weapons in no create entry or
+ * upgrade tree stay too.
+ *
+ * The smithy's store (`mhfu-extract/src/shops/equipment.ts`, in
+ * `lobby_task.ovl`) follows the shuffle: where it sold `w` it now sells
+ * `σ(w)`, the weapon now in `w`'s place, so what's for sale is the same
+ * rarity (and type, unless `any-type`) and starts the same tree as before.
  *
  * The game already upgrades across types within a family (Great Sword to
  * Long Sword, Lance to Gunlance, ...), so `any-type` should work for
@@ -39,10 +54,12 @@ import {
   readModelToWeaponType,
   type WeaponTypeName,
 } from "mhfu-extract/src/tables/weapons.js";
+import { EQUIPMENT_CATEGORY } from "mhfu-extract/src/shops/equipment.js";
 import type { Edits } from "../edits.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
 import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
+import { followStore, type SmithyStore } from "./store.js";
 
 export const WEAPON_MIXES = ["same-type", "any-type"] as const;
 export type WeaponMix = (typeof WEAPON_MIXES)[number];
@@ -54,8 +71,14 @@ interface Family {
   name: "Blademaster" | "Gunner";
   names: NameTable;
   upgrade: "blademaster" | "gunner";
+  /** The store's category for this family. */
+  storeCategory: number;
   create: (keyof EquipmentCreateTables)[];
-  /** Create sections for weapons polished from Ancient/Rusted shards: left alone. */
+  /**
+   * Create sections for Ancient/Rusted shards. They make placeholder IDs
+   * past the weapon table, not the Rusted/Worn weapons themselves, which are
+   * found by their tree shape (see above).
+   */
   rust: keyof EquipmentCreateTables;
 }
 
@@ -64,6 +87,7 @@ const FAMILIES: Family[] = [
     name: "Blademaster",
     names: "WepBMID",
     upgrade: "blademaster",
+    storeCategory: EQUIPMENT_CATEGORY.blademaster,
     create: [
       "greatSwordLongSword",
       "lanceGunlance",
@@ -76,12 +100,13 @@ const FAMILIES: Family[] = [
     name: "Gunner",
     names: "WepGunID",
     upgrade: "gunner",
+    storeCategory: EQUIPMENT_CATEGORY.gunner,
     create: ["lightBowgun", "heavyBowgun", "bow"],
     rust: "ancientRustGunner",
   },
 ];
 
-const TYPE_NAMES: Record<WeaponTypeName, string> = {
+export const TYPE_NAMES: Record<WeaponTypeName, string> = {
   "great-sword": "Great Sword",
   "long-sword": "Long Sword",
   "sword-and-shield": "Sword and Shield",
@@ -101,6 +126,8 @@ export function shuffleWeapons(
   mix: WeaponMix,
   rng: Rng,
   edits: Edits,
+  /** The smithy's store, or null to leave it (none found on the disc). */
+  store: SmithyStore | null,
 ): ShuffleReport {
   const reader = new BinaryReader(eboot);
   const create = equipmentCreateLayout(reader, resolver);
@@ -133,14 +160,34 @@ export function shuffleWeapons(
       Array.from({ length: TARGET_COUNT }, (_, k) => reader.u16(entryAt(i) + TARGETS_AT + k * 2));
 
     // Weapons in the smithy: created, upgraded from, or upgraded into.
-    const inTree = new Set<number>();
-    for (const at of createAt) inTree.add(reader.u16(at + 2));
+    const created = new Set(createAt.map((at) => reader.u16(at + 2)));
+    const inTree = new Set(created);
+    const upgraded = new Set<number>();
     for (let i = 1; i < count; i++) {
       const targets = targetsOf(i).filter((t) => t !== 0 && t < count);
       if (targets.length > 0) inTree.add(i);
-      for (const t of targets) inTree.add(t);
+      for (const t of targets) {
+        inTree.add(t);
+        upgraded.add(t);
+      }
     }
+    // Shard weapons and their polished forms stay (see above), as does
+    // whatever the shard sections make.
     const fixed = new Set(rustAt.map((at) => reader.u16(at + 2)));
+    for (const w of inTree) {
+      if (created.has(w) || upgraded.has(w)) continue;
+      const targets = targetsOf(w).filter((t) => t !== 0 && t < count);
+      const polished = targets[0];
+      if (
+        targets.length === 1 &&
+        polished !== undefined &&
+        typeOf(polished) === typeOf(w) &&
+        weapons[polished]?.rarity === weapons[w]?.rarity
+      ) {
+        fixed.add(w);
+        fixed.add(polished);
+      }
+    }
     const shuffled = [...inTree]
       .filter((i) => i > 0 && i < count && !fixed.has(i) && typeOf(i) !== null)
       .sort((a, b) => a - b);
@@ -163,6 +210,9 @@ export function shuffleWeapons(
       entry.copy(out, entryAt(map(i)));
     }
 
+    // The store sells whatever is now in the places of what it sold.
+    if (store) followStore(store, family.storeCategory, map, name, "Weapons", edits);
+
     for (const w of shuffled) {
       const now = map(w);
       if (now === w) continue;
@@ -183,7 +233,7 @@ export function shuffleWeapons(
       "Each line is a place in the smithy: you now get the second weapon where you used to get the first.",
       `The new weapon has the same rarity${mix === "same-type" ? " and type" : " (any weapon type in the same family)"}.`,
       "Places keep their materials and upgrade links, so the trees keep their shape. Weapons keep their own stats and price (the zenny cost).",
-      `${moved} weapons changed places. Weapons from Ancient/Rusted shards stay put.`,
+      `${moved} weapons changed places. Weapons from Ancient/Rusted shards stay put, and so do their polished forms (Tarnished, Weathered); what those upgrade into is shuffled.`,
     ],
     lines,
   };
