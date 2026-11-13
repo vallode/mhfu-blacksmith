@@ -1153,6 +1153,20 @@ edits it.
   (Herb 20z, Potion 66z, Whetstone 80z; randomfu's `KNOWN_PRICES`). Only
   those were checked on screen. The Point Exchange's Pokke Point prices
   haven't been found, so its prices are null.
+- **The smithy's store** (`src/shops/equipment.ts`): the weapons and
+  armor it sells outright, right after the item shops' tables (EU: lists
+  at `0xa7e48`, table at `0xa86a8`). Each list is pairs of u16
+  (category, ID) ending in a `0xFFFF` word, padded to 4 bytes; category 5
+  is a Blademaster weapon (`WepBMID`), 6 a Gunner weapon (`WepGunID`),
+  0-4 armor. The table has 18 u32 pointers and no 0 word after them:
+  6 weapon lists (all the same 15 rarity-1 weapons), then two runs of
+  6 armor lists. `findEquipmentStore` takes the first run of pointers to
+  such lists that has an all-weapon list; every ID must be below its
+  category's table size, so other tables of small numbers don't match. The armor categories are in
+  the order of the EBOOT's armor arrays (leg, head, chest, arm, waist,
+  `ARMOR_CATEGORY`): every list opens with the Mafumofu set, one piece of
+  each. randomfu's `weapons` and `armor` shuffles edit the entries; the
+  store isn't in `data/shops.json` yet.
 
 ### Monster size
 

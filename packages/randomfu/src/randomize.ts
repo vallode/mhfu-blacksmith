@@ -32,6 +32,7 @@ import { tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
+import { findSmithyStore, storeReport } from "./shuffles/store.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
 import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stats.js";
 import {
@@ -343,6 +344,12 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
     throw new Error("These settings need the decrypted EBOOT");
   }
 
+  // The smithy's store follows the weapons and armor shuffles: found once, for both.
+  const store =
+    settings["weapons.enabled"] || settings["armor.enabled"]
+      ? findSmithyStore(game.lobbyTask)
+      : null;
+
   // Weapons first: it moves upgrade materials between entries, and the
   // recipe shuffles then work on the tables as it left them.
   if (settings["weapons.enabled"]) {
@@ -353,6 +360,7 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
         settings["weapons.mix"],
         rng.fork("weapons"),
         edits,
+        store,
       ),
     );
   }
@@ -382,8 +390,9 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
   // Armor only changes which piece each create entry makes, so the recipe
   // shuffles' spoiler names the new pieces.
   if (settings["armor.enabled"]) {
-    reports.push(shuffleArmor(game.eboot!, game.resolver, rng.fork("armor"), edits));
+    reports.push(shuffleArmor(game.eboot!, game.resolver, rng.fork("armor"), edits, store));
   }
+  if (settings["weapons.enabled"] || settings["armor.enabled"]) reports.push(storeReport(store));
 
   // Skills are the pieces' own, so they go with a piece wherever the armor shuffle puts it.
   if (settings["armorSkills.enabled"]) {

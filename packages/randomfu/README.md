@@ -204,25 +204,25 @@ No shuffle changes a list's length, so every edited file keeps its size,
 except `supplies.pool add`, which grows quests into their sector padding
 (see below).
 
-| Shuffle           | Data                                                | What changes                                         |
-| ----------------- | --------------------------------------------------- | ---------------------------------------------------- |
-| `quest-rewards`   | `RewardTBL` items in each quest `.mib`              | Item and amount move; the chance stays with the slot |
-| `monster-rewards` | Carve, capture and break lists in `game_sub.ovl`    | Item moves; chance and amount stay with the slot     |
-| `gathering`       | Gathering item tables in each quest `.mib`          | Item moves; the value (weight) stays with the slot   |
-| `recipes`         | `EquipmentCreate` / `EquipmentUpgrade` in the EBOOT | Material moves; quantity stays with the slot         |
-| `recipe-amounts`  | The same recipe tables                              | Quantities, rescaled and varied (see below)          |
-| `costs`           | Weapon, armor and decoration prices in the EBOOT    | Crafting and upgrade costs, varied in steps of 10z   |
-| `weapons`         | Weapon create and upgrade entries in the EBOOT      | Which weapon each place makes (see below)            |
-| weapon stats      | `WepBMValues` / `WepGunValues` in the EBOOT         | Attack, affinity, element or status (see below)      |
-| `armor`           | Armor create entries in the EBOOT                   | Which piece each place makes (see below)             |
-| `armor-skills`    | `ArmorValues` skill entries in the EBOOT            | Each piece's skill trees and points (see below)      |
-| `shops`           | Shop item lists in `lobby_task.ovl`                 | Which items each shop sells (see below)              |
-| `supplies`        | Supply box lists in each quest `.mib`               | Item and amount of each stack (see below)            |
-| `terms`           | Quest header fee, reward, penalty, time limit       | The numbers, varied (see below)                      |
-| `deliveries`      | Delivery quest header target and goal line          | Which item and how many (see below)                  |
-| quest monsters    | Spawn records in each quest `.mib`                  | Which large monsters, their level, small counts      |
-| monster stats     | Each monster's `emChunk` in `game_task.ovl`         | Base HP, size, status resistance                     |
-| weaknesses        | Hitzone tables in `game_task.ovl`                   | Elemental weaknesses and weak spots                  |
+| Shuffle           | Data                                                                                   | What changes                                                  |
+| ----------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| `quest-rewards`   | `RewardTBL` items in each quest `.mib`                                                 | Item and amount move; the chance stays with the slot          |
+| `monster-rewards` | Carve, capture and break lists in `game_sub.ovl`                                       | Item moves; chance and amount stay with the slot              |
+| `gathering`       | Gathering item tables in each quest `.mib`                                             | Item moves; the value (weight) stays with the slot            |
+| `recipes`         | `EquipmentCreate` / `EquipmentUpgrade` in the EBOOT                                    | Material moves; quantity stays with the slot                  |
+| `recipe-amounts`  | The same recipe tables                                                                 | Quantities, rescaled and varied (see below)                   |
+| `costs`           | Weapon, armor and decoration prices in the EBOOT                                       | Crafting and upgrade costs, varied in steps of 10z            |
+| `weapons`         | Weapon create and upgrade entries in the EBOOT, the smithy's store in `lobby_task.ovl` | Which weapon each place makes and the store sells (see below) |
+| weapon stats      | `WepBMValues` / `WepGunValues` in the EBOOT                                            | Attack, affinity, element or status (see below)               |
+| `armor`           | Armor create entries in the EBOOT                                                      | Which piece each place makes (see below)                      |
+| `armor-skills`    | `ArmorValues` skill entries in the EBOOT                                               | Each piece's skill trees and points (see below)               |
+| `shops`           | Shop item lists in `lobby_task.ovl`                                                    | Which items each shop sells (see below)                       |
+| `supplies`        | Supply box lists in each quest `.mib`                                                  | Item and amount of each stack (see below)                     |
+| `terms`           | Quest header fee, reward, penalty, time limit                                          | The numbers, varied (see below)                               |
+| `deliveries`      | Delivery quest header target and goal line                                             | Which item and how many (see below)                           |
+| quest monsters    | Spawn records in each quest `.mib`                                                     | Which large monsters, their level, small counts               |
+| monster stats     | Each monster's `emChunk` in `game_task.ovl`                                            | Base HP, size, status resistance                              |
+| weaknesses        | Hitzone tables in `game_task.ovl`                                                      | Elemental weaknesses and weak spots                           |
 
 ### Logic
 
@@ -275,9 +275,28 @@ horn notes, shells, ammo and price. With `--weapon-mix any-type`, a place
 can take any weapon of the same rarity in the same family (Blademaster or
 Gunner). The game already upgrades across types within a family (Great
 Sword to Long Sword, Lance to Gunlance and more), but never between bows
-and bowguns, so that pairing is untested. Weapons from Ancient/Rusted
-shards stay put. It runs before the recipe shuffles, which then shuffle
-the tables it left.
+and bowguns, so that pairing is untested. It runs before the recipe
+shuffles, which then shuffle the tables it left.
+
+Weapons from Ancient/Rusted shards stay put, and so do their polished
+forms: Rusted and Worn weapons, and the Tarnished and Weathered ones they
+polish into. Polishing a shard makes them, not a create entry (the shard
+sections make placeholder IDs past the weapon table), so the shuffle finds
+them by shape: a tree root no create entry makes, with exactly one
+upgrade, of the same type and rarity. On the EU disc that's exactly
+those 8. Moving them would let an ordinary place make a Rusted
+weapon, or a rarity-1 Tarnished weapon show up as a starter or in the
+store. What a polished weapon upgrades into (Ancient Blade, Teostra
+Blade, ...) is shuffled as usual, and so are the G Rank Tarnished and
+Worn weapons, which have ordinary recipes.
+
+The smithy's store (the weapons it sells outright; on the EU disc 15
+rarity-1 weapons, the same at every stage) follows the shuffle: where it
+sold a weapon, it sells the weapon now in that weapon's place. That's the
+same rarity (and type, unless `any-type`) and starts the same tree, so
+what you can buy fits the shuffled smithy. It costs the new weapon's own
+price. Its armor follows `armor` the same way (see below). The spoiler
+lists the store in a "Smithy store" section of its own.
 
 Weapon stats (`weapons.attack`, `weapons.affinity`, `weapons.element`)
 change values in each weapon's own record (`src/shuffles/weapon-stats.ts`),
@@ -332,6 +351,9 @@ never mix: the permutation keeps every piece in the smithy either way,
 but nothing has shown how the smithy treats a place whose piece is for
 the other type, so there's no option for it. Like `weapons`, it runs
 before the recipe shuffles, whose spoiler lines then name the new pieces.
+The smithy's store follows it: where it sold a piece, it sells the piece
+now in that piece's places, at the new piece's own price. The store's
+categories 0-4 are leg, head, chest, arm and waist.
 
 `armor-skills` changes the skill points on each piece the smithy makes.
 A piece's `ArmorValue` has five entries of a skill tree (u8) and points
