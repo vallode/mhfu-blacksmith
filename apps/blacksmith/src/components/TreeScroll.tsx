@@ -93,6 +93,18 @@ export default function TreeScroll({
       const saved = sessionStorage.getItem(`tree-scroll:${treeKey}`);
       if (saved !== null) {
         scroller.scrollTop = Number(saved);
+        // Arriving at an item outside the remembered view (from the global
+        // search, say): bring it in.
+        const active = activeSlug
+          ? el.querySelector<HTMLElement>(`#${CSS.escape(activeSlug)}`)
+          : null;
+        if (active) {
+          const box = scroller.getBoundingClientRect();
+          const row = active.getBoundingClientRect();
+          if (row.top < box.top || row.bottom > box.bottom) {
+            active.scrollIntoView({ block: "center" });
+          }
+        }
       } else if (activeSlug) {
         // First visit to this tree: bring the active item into view.
         const active = el.querySelector<HTMLElement>(`#${CSS.escape(activeSlug)}`);
