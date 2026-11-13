@@ -34,14 +34,8 @@ import {
   setCardTree,
   type CardSprites,
 } from "../lib/set-card";
-import { SHARE_PARAM } from "../lib/set-codec";
-import {
-  SET_EMBED_DATA_PATH,
-  setReader,
-  type SetEmbed,
-  type SetEmbedData,
-  type SetReader,
-} from "../lib/set-embed";
+import { SHARE_PARAM, withoutName } from "../lib/set-codec";
+import { SET_EMBED_DATA_PATH, setReader, type SetEmbed, type SetEmbedData } from "../lib/set-embed";
 import type { ReactNode } from "react";
 import type { BuildSet } from "../lib/set-build";
 
@@ -69,11 +63,16 @@ declare const caches: { default: Cache };
 const OEMBED_PATH = "/set-builder/oembed.json";
 const CARD_PATH = "/set-builder/card.png";
 
-/** Load something once per isolate; a failure is retried on the next request. */
-function once<T>(load: () => Promise<T>): () => Promise<T> {
+/**
+ * Load something once per isolate, with the first call's arguments; a failure
+ * is retried on the next call.
+ */
+function once<A extends unknown[], T>(
+  load: (...args: A) => Promise<T>,
+): (...args: A) => Promise<T> {
   let promise: Promise<T> | null = null;
-  return () =>
-    (promise ??= load().catch((e: unknown) => {
+  return (...args) =>
+    (promise ??= load(...args).catch((e: unknown) => {
       promise = null;
       throw e;
     }));
@@ -85,13 +84,10 @@ async function asset(env: Env, origin: string, path: string): Promise<Response> 
   return res;
 }
 
-let embedData: (() => Promise<{ read: SetReader; version: string; data: SetEmbedData }>) | null =
-  null;
-const loadEmbedData = (env: Env, origin: string) =>
-  (embedData ??= once(async () => {
-    const data = (await (await asset(env, origin, SET_EMBED_DATA_PATH)).json()) as SetEmbedData;
-    return { read: setReader(data), version: `${data.version}.${SET_CARD_VERSION}`, data };
-  }))();
+const loadEmbedData = once(async (env: Env, origin: string) => {
+  const data = (await (await asset(env, origin, SET_EMBED_DATA_PATH)).json()) as SetEmbedData;
+  return { read: setReader(data), version: `${data.version}.${SET_CARD_VERSION}`, data };
+});
 
 async function readCode(env: Env, origin: string, code: string) {
   try {
@@ -114,35 +110,31 @@ function dataUri(bytes: ArrayBuffer, type: string): string {
 }
 
 /** The card renderer: the WebAssembly modules, the font, the frame and sprites. */
-let renderer:
-  (() => Promise<(set: BuildSet, trees: SetEmbedData["trees"]) => Promise<Uint8Array>>) | null =
-  null;
-const loadRenderer = (env: Env, origin: string) =>
-  (renderer ??= once(async () => {
-    const [yoga, , font, frame, sprites] = await Promise.all([
-      initYoga(yogaWasm),
-      initResvg(resvgWasm),
-      asset(env, origin, SET_CARD_FONT_PATH).then((r) => r.arrayBuffer()),
-      asset(env, origin, SET_CARD_FRAME_PATH).then(async (r) =>
-        dataUri(await r.arrayBuffer(), "image/png"),
-      ),
-      asset(env, origin, SET_CARD_SPRITES_PATH).then((r) => r.json() as Promise<CardSprites>),
-    ]);
-    initSatori(yoga);
-    const fonts = [
-      { name: SET_CARD_FONT, data: font, weight: 400 as const, style: "normal" as const },
-    ];
-    return async (set: BuildSet, trees: SetEmbedData["trees"]) => {
-      const tree = setCardTree(set, trees, sprites, frame);
-      // satori's types want a React element; the tree is the same shape.
-      const svg = await satori(tree as unknown as ReactNode, {
-        width: CARD.width,
-        height: CARD.height,
-        fonts,
-      });
-      return new Resvg(svg).render().asPng();
-    };
-  }))();
+const loadRenderer = once(async (env: Env, origin: string) => {
+  const [yoga, , font, frame, sprites] = await Promise.all([
+    initYoga(yogaWasm),
+    initResvg(resvgWasm),
+    asset(env, origin, SET_CARD_FONT_PATH).then((r) => r.arrayBuffer()),
+    asset(env, origin, SET_CARD_FRAME_PATH).then(async (r) =>
+      dataUri(await r.arrayBuffer(), "image/png"),
+    ),
+    asset(env, origin, SET_CARD_SPRITES_PATH).then((r) => r.json() as Promise<CardSprites>),
+  ]);
+  initSatori(yoga);
+  const fonts = [
+    { name: SET_CARD_FONT, data: font, weight: 400 as const, style: "normal" as const },
+  ];
+  return async (set: BuildSet, trees: SetEmbedData["trees"]) => {
+    const tree = setCardTree(set, trees, sprites, frame);
+    // satori's types want a React element; the tree is the same shape.
+    const svg = await satori(tree as unknown as ReactNode, {
+      width: CARD.width,
+      height: CARD.height,
+      fonts,
+    });
+    return new Resvg(svg).render().asPng();
+  };
+});
 
 const cardUrl = (origin: string, code: string, version: string) => {
   const url = new URL(CARD_PATH, origin);
@@ -151,37 +143,46 @@ const cardUrl = (origin: string, code: string, version: string) => {
   return url;
 };
 
-/** The card image, from Cloudflare's cache or drawn now. */
+/**
+ * The card image, from Cloudflare's cache or drawn now. The cache key is the
+ * card's canonical URL (the code without its name, the current version, no
+ * other parameters), so each set is drawn once per version whatever URL asks
+ * for it, and a HEAD request is answered from the same entry.
+ */
 async function cardResponse(
-  request: Request,
   env: Env,
   ctx: ExecutionContext,
   url: URL,
   code: string,
 ): Promise<Response> {
-  const cache = caches.default;
-  const hit = await cache.match(request);
-  if (hit) return hit;
-
   const r = await readCode(env, url.origin, code);
-  if (!r) return new Response("Not found", { status: 404 });
-  let png: Uint8Array;
-  try {
-    png = await (await loadRenderer(env, url.origin))(r.set, r.trees);
-  } catch (e) {
-    console.error("Couldn't draw the set card", e);
-    return new Response("Couldn't draw the card", { status: 500 });
+  const canonical = withoutName(code);
+  if (!r || !canonical) return new Response("Not found", { status: 404 });
+  const key = new Request(cardUrl(url.origin, canonical, r.version));
+
+  const cache = caches.default;
+  let res = await cache.match(key);
+  if (!res) {
+    let png: Uint8Array;
+    try {
+      png = await (await loadRenderer(env, url.origin))(r.set, r.trees);
+    } catch (e) {
+      console.error("Couldn't draw the set card", e);
+      return new Response("Couldn't draw the card", { status: 500 });
+    }
+    res = new Response(png as Uint8Array<ArrayBuffer>, {
+      headers: {
+        "Content-Type": "image/png",
+        "Cache-Control": "public, max-age=31536000, immutable",
+      },
+    });
+    ctx.waitUntil(cache.put(key, res.clone()));
   }
   // A link to an older version still gets the current card, but not for long.
-  const current = url.searchParams.get("v") === r.version;
-  const res = new Response(png as Uint8Array<ArrayBuffer>, {
-    headers: {
-      "Content-Type": "image/png",
-      "Cache-Control": current ? "public, max-age=31536000, immutable" : "public, max-age=3600",
-    },
-  });
-  ctx.waitUntil(cache.put(request, res.clone()));
-  return res;
+  if (url.searchParams.get("v") === r.version) return res;
+  const headers = new Headers(res.headers);
+  headers.set("Cache-Control", "public, max-age=3600");
+  return new Response(res.body, { status: res.status, headers });
 }
 
 const escapeHtml = (s: string) =>
@@ -256,7 +257,10 @@ function rewritePage(
         ),
     });
   for (const [selector, value] of Object.entries(content)) {
-    rewriter = rewriter.on(selector, { element: (el) => el.setAttribute("content", value) });
+    // setAttribute escapes quotes but not &, so a name with "&amp;" in it
+    // would be read back as "&".
+    const escaped = value.replace(/&/g, "&amp;");
+    rewriter = rewriter.on(selector, { element: (el) => el.setAttribute("content", escaped) });
   }
   const out = rewriter.transform(page);
   // The static file's ETag would let a revalidation answer 304 for a
@@ -274,7 +278,7 @@ const worker = {
       return env.ASSETS.fetch(request);
     }
 
-    if (url.pathname === CARD_PATH) return cardResponse(request, env, ctx, url, code);
+    if (url.pathname === CARD_PATH) return cardResponse(env, ctx, url, code);
 
     if (url.pathname === OEMBED_PATH) {
       const r = await readCode(env, url.origin, code);

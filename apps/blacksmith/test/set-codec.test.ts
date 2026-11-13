@@ -22,6 +22,7 @@ import {
   MAX_NAME,
   toBase64Url,
   toRaw,
+  withoutName,
   type DecodeResult,
 } from "../src/lib/set-codec";
 import type { Piece } from "../src/lib/set-search";
@@ -332,6 +333,18 @@ describe("set codec names", () => {
     const long = "😀".repeat(MAX_NAME + 5);
     const r = ok(decodeSet(encodeSet(set(), tables, long), tables));
     assert.equal([...r.name!].length, MAX_NAME);
+  });
+
+  it("keeps emoji joined with U+200D, but not bidirectional overrides", () => {
+    assert.equal(cleanName("🏳️\u200d🌈 build"), "🏳️\u200d🌈 build");
+    assert.equal(cleanName("a\u202eb"), "a b");
+  });
+
+  it("gives one name-free code per set", () => {
+    const plain = encodeSet(set(), tables);
+    assert.equal(withoutName(encodeSet(set(), tables, "Rath farming")), plain);
+    assert.equal(withoutName(plain), plain);
+    assert.equal(withoutName("not a code!"), null);
   });
 
   it("opens a set whose name isn't valid UTF-8", () => {

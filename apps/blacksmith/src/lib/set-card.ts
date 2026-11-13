@@ -10,12 +10,12 @@
  * 9-slice frame or tint an image. Pure: no fs, no process.env.
  */
 import { ARMOR_SLOTS } from "./constants";
-import { EMBED_ICON_TINTS, tintFor } from "./embed-format";
+import { EMBED_ICON_TINTS, slotGlyphs, tally, tintFor, UI_COLORS } from "./embed-format";
 import { binSlots, evaluateBuild, type BuildSet } from "./set-build";
 import type { DecoBin, Piece, SkillTreeData } from "./set-search";
 
 /** Bump when the card's look changes, so caches and link previews pick it up. */
-export const SET_CARD_VERSION = 2;
+export const SET_CARD_VERSION = 3;
 
 /**
  * The image: the site's card frame (the card-frame art, at the game's 4×,
@@ -76,10 +76,9 @@ export function cardSpriteSources(): { name: string; file: string; tint?: string
   ];
 }
 
-// Colours from the @theme block in src/app/globals.css.
+// The @theme tokens the card uses (embed-format.ts keeps the copies satori needs).
 const COLOR = {
-  stat: "#ffff50",
-  negative: "#f9455c",
+  ...UI_COLORS,
   white: "#ffffff",
   faint: "rgba(255,255,255,0.5)",
 };
@@ -106,29 +105,45 @@ const text = (style: Record<string, unknown>, value: string | number) =>
 const img = (sprites: CardSprites, name: string, size = SPRITE_SIZE) =>
   sprites[name] ? h("img", { src: sprites[name], style: { width: size, height: size } }) : null;
 
-/** The game's slot glyphs: "OO-". */
-const slotText = (count: number) =>
-  Array.from({ length: 3 }, (_, i) => (i < count ? "O" : "-")).join("");
+/**
+ * A jewel's name without "Jewel" (or the game's shortened "Jwl"), which its
+ * icon says: "Attack", "Steadfast+", "Snowblower+".
+ */
+export const jewelLabel = (name: string) => name.replace(/ ?(?:Jewel|Jwl)(?=\+|$)/, "");
 
-/** Decorations in a bin, as "Attack ×2" beside the jewel's icon ("Jewel" is in the icon). */
+/**
+ * Decorations in a bin, as "Attack ×2" beside the jewel's icon. Decorations in
+ * a bin with no slots (a shared set's missing piece) count for nothing, as in
+ * evaluateBuild, so they aren't drawn.
+ */
 function decoLine(set: BuildSet, bin: DecoBin, sprites: CardSprites): CardNode | null {
-  const counts = new Map<string, { n: number; color?: string }>();
-  for (const d of set.decorations) {
-    if (d.bin !== bin) continue;
-    const c = counts.get(d.deco.name) ?? { n: 0, color: d.deco.color };
-    c.n++;
-    counts.set(d.deco.name, c);
-  }
-  if (counts.size === 0) return null;
+  if (binSlots(set, bin) === 0) return null;
+  const counts = tally(
+    set.decorations.filter((d) => d.bin === bin),
+    (d) => d.deco.name,
+  );
+  if (counts.length === 0) return null;
   return h(
     "div",
-    { style: { display: "flex", gap: 18, marginLeft: 68, fontSize: 22, color: COLOR.white } },
-    ...[...counts].map(([name, { n, color }]) =>
+    // 18px fits the longest three different jewels a bin can hold
+    // (DivineProtect, Snowblower+, HvnlyShield) in one line under the name;
+    // anything longer is cut off rather than run into the skills.
+    {
+      style: {
+        display: "flex",
+        gap: 12,
+        marginLeft: 68,
+        fontSize: 18,
+        color: COLOR.white,
+        overflow: "hidden",
+      },
+    },
+    ...counts.map(([{ deco }, n]) =>
       h(
         "div",
-        { style: { display: "flex", alignItems: "center", gap: 4 } },
-        img(sprites, spriteName(ICONS.decoration, null, color)),
-        `${name.replace(/ Jewel$/, "")}${n > 1 ? ` ×${n}` : ""}`,
+        { style: { display: "flex", alignItems: "center", gap: 4, whiteSpace: "nowrap" } },
+        img(sprites, spriteName(ICONS.decoration, null, deco.color)),
+        `${jewelLabel(deco.name)}${n > 1 ? ` ×${n}` : ""}`,
       ),
     ),
   );
@@ -149,7 +164,7 @@ function equipRow(
       h("div", { style: { display: "flex", width: SPRITE_SIZE, marginRight: 8 } }, icon),
       text({ color: COLOR.stat, fontSize: 32, width: 28 }, ":"),
       h("div", { style: { display: "flex", flexGrow: 1, alignItems: "baseline", gap: 12 } }, name),
-      text({ color: COLOR.faint, fontSize: 24 }, slotText(slots)),
+      text({ color: COLOR.faint, fontSize: 24 }, slotGlyphs(slots, "O", "-")),
     ),
     decos,
   );
@@ -165,7 +180,7 @@ function pieceName(piece: Piece | null): CardNode {
   );
 }
 
-/** How many skills fit beside the Status panel before "and N more". */
+/** How many skills fit beside the Status panel before "and N more" (bad skills always show). */
 const MAX_SKILLS = 7;
 
 /**
@@ -200,7 +215,9 @@ export function setCardTree(
     }),
   ];
 
-  const shown = stats.skills.slice(0, MAX_SKILLS);
+  const bad = stats.skills.filter((s) => s.threshold < 0).slice(0, MAX_SKILLS);
+  const good = stats.skills.filter((s) => s.threshold > 0);
+  const shown = [...good.slice(0, MAX_SKILLS - bad.length), ...bad];
   const more = stats.skills.length - shown.length;
   const skills = h(
     "div",

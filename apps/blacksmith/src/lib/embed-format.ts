@@ -27,6 +27,9 @@ export const RARITY_COLORS: Record<number, string> = {
   9: "#ffc762",
   10: "#bb84fb",
 };
+/** The --color-stat and --color-negative tokens, for the set card (same deal: keep them in sync). */
+export const UI_COLORS = { stat: "#ffff50", negative: "#f9455c" } as const;
+
 export const GEM_COLORS: Record<string, string> = {
   blue: "#80c2fc",
   cyan: "#97e0ef",
@@ -113,6 +116,22 @@ export const ELEMENT_EMOJI: Record<string, string> = {
 export const element = (name: string): string =>
   ELEMENT_EMOJI[name] ? `${ELEMENT_EMOJI[name]} ${name}` : name;
 
-/** Slots as the game draws them: a circle per slot, dashes for the rest ("○○—"). */
-export const slotGlyphs = (count = 0): string =>
-  Array.from({ length: 3 }, (_, i) => (i < count ? "○" : "—")).join("");
+/**
+ * Slots as the game draws them: a circle per slot, dashes for the rest
+ * ("○○—"). The set card passes "O" and "-", as the site's Slots does, since
+ * its font has no ○.
+ */
+export const slotGlyphs = (count = 0, slot = "○", none = "—"): string =>
+  Array.from({ length: 3 }, (_, i) => (i < count ? slot : none)).join("");
+
+/** Items counted by key, in the order each key first appears: [first item, count]. */
+export function tally<T>(items: T[], key: (item: T) => string): [T, number][] {
+  const counts = new Map<string, [T, number]>();
+  for (const item of items) {
+    const k = key(item);
+    const c = counts.get(k);
+    if (c) c[1]++;
+    else counts.set(k, [item, 1]);
+  }
+  return [...counts.values()];
+}

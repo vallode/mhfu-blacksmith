@@ -10,10 +10,18 @@ import { before, describe, it } from "node:test";
 import { initWasm, Resvg } from "@resvg/resvg-wasm";
 import satori from "satori";
 import { ARMOR_SLOTS } from "../src/lib/constants";
-import { emptyBuild, withDecoration, withPiece, type BuildSet } from "../src/lib/set-build";
+import { GEM_COLORS, RARITY_COLORS, UI_COLORS } from "../src/lib/embed-format";
+import {
+  emptyBuild,
+  evaluateBuild,
+  withDecoration,
+  withPiece,
+  type BuildSet,
+} from "../src/lib/set-build";
 import {
   CARD,
   cardSpriteSources,
+  jewelLabel,
   SET_CARD_FONT,
   SET_CARD_FONT_PATH,
   setCardTree,
@@ -77,6 +85,66 @@ describe("set card sprites", () => {
     for (const s of sources) {
       assert.ok(fs.existsSync(path.join(process.cwd(), "public/images", s.file)), s.file);
     }
+  });
+});
+
+describe("set card contents", () => {
+  const texts = (node: CardNode | string | number | null | false): string[] => {
+    if (node === null || node === false) return [];
+    if (typeof node !== "object") return [String(node)];
+    const children = node.props.children;
+    return (Array.isArray(children) ? children : [children ?? null]).flatMap((c) =>
+      texts(c as CardNode),
+    );
+  };
+  const cardText = (set: BuildSet) => texts(setCardTree(set, data.trees, sprites, "data:,frame"));
+
+  it("shortens every jewel's name to fit beside its icon", () => {
+    assert.equal(jewelLabel("Attack Jewel"), "Attack");
+    assert.equal(jewelLabel("StrongShot Jewel+"), "StrongShot+");
+    assert.equal(jewelLabel("SnowblowerJewel+"), "Snowblower+");
+    assert.equal(jewelLabel("DivineProtectJwl"), "DivineProtect");
+    for (const d of data.decorations) {
+      assert.doesNotMatch(jewelLabel(d.name), /Jewel|Jwl/, d.name);
+      assert.ok(jewelLabel(d.name).length <= 13, d.name);
+    }
+  });
+
+  it("always shows bad skills, cutting good ones to make room", () => {
+    const set = fullSet("Blademaster");
+    const skills = evaluateBuild(data, set).skills;
+    const bad = skills.filter((s) => s.threshold < 0);
+    const text = cardText(set);
+    for (const s of bad) assert.ok(text.includes(s.name), s.name);
+  });
+
+  it("leaves out jewels in a slot with no piece, as the stats do", () => {
+    let set = withPiece(emptyBuild(), "gauntlets", fullSet("Blademaster").pieces[2]!);
+    set = withDecoration(
+      set,
+      "gauntlets",
+      data.decorations.find((d) => d.slots === 1)!,
+    );
+    const jewel = jewelLabel(set.decorations[0].deco.name);
+    assert.ok(cardText(set).includes(jewel));
+    set = withPiece(set, "gauntlets", null);
+    set.decorations = [
+      ...set.decorations,
+      { deco: data.decorations.find((d) => d.slots === 1)!, bin: "gauntlets" },
+    ];
+    assert.ok(!cardText(set).includes(jewel));
+  });
+});
+
+describe("embed colours", () => {
+  const css = fs.readFileSync(path.join(process.cwd(), "src/app/globals.css"), "utf-8");
+  const token = (name: string) =>
+    new RegExp(`--color-${name}:\\s*(#[0-9a-f]{6})`, "i").exec(css)?.[1];
+
+  it("match the @theme tokens they copy", () => {
+    for (const [name, hex] of Object.entries(UI_COLORS)) assert.equal(token(name), hex, name);
+    for (const [r, hex] of Object.entries(RARITY_COLORS)) assert.equal(token(`rarity-${r}`), hex);
+    for (const [gem, hex] of Object.entries(GEM_COLORS)) assert.equal(token(`gem-${gem}`), hex);
   });
 });
 

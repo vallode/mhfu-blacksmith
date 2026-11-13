@@ -21,6 +21,7 @@ import {
   rankLabel,
   signed,
   slotGlyphs,
+  tally,
   THEME_COLOR,
   tintFor,
 } from "./embed-format";
@@ -123,9 +124,9 @@ const truncate = (s: string, max: number) => (s.length > max ? `${s.slice(0, max
 
 /** "Attack Jewel ×2, Expert Jewel" in the order they first appear. */
 function countNames(names: string[]): string {
-  const counts = new Map<string, number>();
-  for (const n of names) counts.set(n, (counts.get(n) ?? 0) + 1);
-  return [...counts].map(([n, c]) => (c > 1 ? `${n} ×${c}` : n)).join(", ");
+  return tally(names, (n) => n)
+    .map(([n, c]) => (c > 1 ? `${n} ×${c}` : n))
+    .join(", ");
 }
 
 /** What the description asks people to do. */

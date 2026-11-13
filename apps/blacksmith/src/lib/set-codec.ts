@@ -61,9 +61,14 @@ export const FIELD = {
 /** The longest set name a code carries (My sets' rename field allows as many). */
 export const MAX_NAME = 40;
 
-/** A name as a code carries it: one line, trimmed, at most MAX_NAME characters; "" for none. */
+/**
+ * A name as a code carries it: one line, trimmed, at most MAX_NAME characters;
+ * "" for none. Control characters, line breaks and bidirectional overrides
+ * become spaces; other format characters stay, so emoji joined with U+200D
+ * keep their joiners.
+ */
 export function cleanName(name: string | undefined): string {
-  return [...(name ?? "").replace(/[\p{Cc}\p{Cf}]+/gu, " ").trim()]
+  return [...(name ?? "").replace(/[\p{Cc}\u2028\u2029\u202A-\u202E\u2066-\u2069]+/gu, " ").trim()]
     .slice(0, MAX_NAME)
     .join("")
     .trim();
@@ -409,6 +414,16 @@ export function fromRaw(raw: RawSet, tables: CodecTables): DecodeResult {
     return { ok: false, error: { kind: "unknown-ids", dropped } };
   }
   return { ok: true, set, dropped, ...(raw.name ? { name: raw.name } : {}) };
+}
+
+/**
+ * The same code without its name (and any fields this build doesn't know):
+ * one code per set, whatever it was shared as. Null if it doesn't decode.
+ */
+export function withoutName(code: string): string | null {
+  const bytes = fromBase64Url(code.trim());
+  const r = bytes && decodeRaw(bytes);
+  return r?.ok ? toBase64Url(encodeRaw({ ...r.raw, name: undefined })) : null;
 }
 
 /** A share code to a set. Never throws. */
