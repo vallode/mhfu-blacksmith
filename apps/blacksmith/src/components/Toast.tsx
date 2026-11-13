@@ -39,12 +39,12 @@ export default function ToastViewport({ toasts, onDismiss }: ToastViewportProps)
       {toasts.map((t) => (
         <div
           key={t.id}
-          className="frame-cover pointer-events-auto relative flex animate-toast-in flex-col gap-[0.8rem] card-frame-teal px-[2.4rem] py-[2.2rem] motion-reduce:animate-none"
+          className="frame-cover pointer-events-auto relative flex animate-toast-in flex-col gap-[0.8rem] card-frame-teal px-[2.4rem] py-[2.8rem] motion-reduce:animate-none"
           role="status"
         >
           <button
             type="button"
-            className="absolute top-[2rem] right-[2.2rem] cursor-pointer border-none bg-transparent px-[0.4rem] py-[0.2rem] font-[inherit] text-sub leading-none text-white/50 hover:text-white focus-visible:text-white"
+            className="absolute top-[2.6rem] right-[2.2rem] cursor-pointer border-none bg-transparent px-[0.4rem] py-[0.2rem] font-[inherit] text-sub leading-none text-white/50 hover:text-white focus-visible:text-white"
             onClick={() => onDismiss(t.id)}
             aria-label="Dismiss"
           >
