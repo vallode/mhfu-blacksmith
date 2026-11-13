@@ -37,6 +37,8 @@ function gameTask(tables: number[][][], shift: number): Buffer {
 const TABLES = Array.from({ length: TRADE_TABLE_COUNT }, (_, t) =>
   Array.from({ length: 4 }, (_, r) => [876 + r, 7 + t, 8 + t]),
 );
+// A jewel past the item records (Kut-Ku Jewel, 1117) is still an item.
+TABLES[2]![3]![2] = 1117;
 
 test("the seven trade lists are found at JP's offset, or shifted as on the EU disc", () => {
   for (const shift of [0, 0x110]) {

@@ -29,6 +29,7 @@ const file: VeggieTradesFile = {
         { give: "Wyvern Egg", common: "Potion", rare: "Mega Potion" },
         { give: "Iron Ore", common: "Potion", rare: "Potion" },
         { give: "Mystery Item", common: "Potion", rare: "Potion" },
+        { give: "Mega Potion", common: "Iron Ore", rare: "Iron Ore" },
       ],
     },
     { maps: ["Old Swamp"], trades: [{ give: "Potion", common: "Iron Ore", rare: "Mega Potion" }] },
@@ -39,11 +40,15 @@ describe("Veggie Elder trades", () => {
   const { bundle, unresolved } = encodeVeggieTrades(file, (name) => ITEM_IDS[name]);
   const trades = indexVeggieTrades(JSON.parse(JSON.stringify(bundle)));
 
-  test("rows become item IDs; a row with an unknown item is left out", () => {
+  test("rows become item IDs; a row with an unknown item is left out, the rest keep their place", () => {
     assert.deepEqual(unresolved, ["Mystery Item"]);
     assert.deepEqual(bundle.elders[0]!.rows, [
-      [4, 2, 5],
-      [1, 2, 2],
+      [1, 4, 2, 5],
+      [2, 1, 2, 2],
+      [4, 5, 1, 1],
+    ]);
+    assert.deepEqual(trades.get(5)!.takes, [
+      { maps: FH, row: 4, item: 1, chance: 100, rare: false },
     ]);
   });
 
@@ -83,6 +88,7 @@ describe("Veggie Elder trades", () => {
     assert.equal(real.bundle.elders.length, 7);
     // The Forest and Hills Elder's first trade: a Wyvern Egg for a Potion, or a Mega Potion.
     assert.deepEqual(real.bundle.elders[0]!.rows[0], [
+      1,
       id("Wyvern Egg"),
       id("Potion"),
       id("Mega Potion"),

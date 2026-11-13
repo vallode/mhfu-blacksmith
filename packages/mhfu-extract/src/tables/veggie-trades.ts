@@ -21,7 +21,7 @@
  */
 import type { OvlFile } from "../container/ovl.js";
 import { GAME_TASK_JP } from "../monsters/hitzones.js";
-import { TABLE_COUNTS } from "./offsets.js";
+import { ITEM_COUNT } from "../shops/shops.js";
 
 export const VEGGIE_TRADES_JP = 0x09bd2e58;
 export const TRADE_ROW_SIZE = 6;
@@ -59,8 +59,7 @@ export interface VeggieTrades {
 
 /** No table should come near this; it bounds the walk on a bad offset. */
 const MAX_ROWS = 512;
-const ITEM_RECORDS = TABLE_COUNTS.regularItems + TABLE_COUNTS.decorations;
-const isItem = (id: number) => id > 0 && id < ITEM_RECORDS;
+const isItem = (id: number) => id > 0 && id < ITEM_COUNT;
 
 /**
  * The tables at `offset`, or null unless all seven are well-formed, follow

@@ -37,6 +37,12 @@ const COPIED_TARGETS: CopiedTarget[] = [
   "combinations",
   "veggie-trades",
 ];
+/**
+ * Copied targets `extract` skips with a warning when it can't find them: a
+ * run that doesn't name them in `only` leaves them as they are instead of
+ * failing.
+ */
+const OPTIONAL_TARGETS: CopiedTarget[] = ["veggie-trades"];
 export type BuildTarget = CategoryName | "items" | CopiedTarget;
 export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "items", ...COPIED_TARGETS];
 
@@ -83,6 +89,8 @@ export interface BuildDataReport {
   items: ItemsBuildReport | null;
   /** Files copied from the disc (quests, gathering points, shops, combinations), relative to `data/`. */
   copiedFiles: string[];
+  /** Optional files the extract doesn't have, left as they are in `data/`. */
+  skippedFiles: string[];
 }
 
 export function parseTargets(value: string | undefined): BuildTarget[] {
@@ -253,12 +261,21 @@ async function buildItems(options: BuildDataOptions): Promise<ItemsBuildReport> 
   return { changes: merged.changes, missing: merged.missing, filesWritten };
 }
 
-async function copyTarget(target: CopiedTarget, options: BuildDataOptions): Promise<string[]> {
+async function copyTarget(
+  target: CopiedTarget,
+  options: BuildDataOptions,
+  skipped: string[],
+): Promise<string[]> {
   const { files, name } = await copiedFiles(target, options.extracted);
   const site = loadSiteIndex(options.data);
+  const optional = OPTIONAL_TARGETS.includes(target) && !options.only?.includes(target);
   const written: string[] = [];
   for (const rel of files) {
     const source = await readJsonOrNull(path.join(options.extracted, rel));
+    if (!source && optional) {
+      skipped.push(rel);
+      continue;
+    }
     if (!source) throw new Error(`${rel} is missing from ${options.extracted}; rerun extract`);
     const content = name(source, site);
     if (!options.dryRun) {
@@ -341,6 +358,23 @@ async function buildCategories(
   return categories;
 }
 
+/**
+ * Copies each of `targets`' disc files into `data/`. An optional target
+ * (`OPTIONAL_TARGETS`) that the extract lacks is skipped unless
+ * `options.only` names it; any other missing file is an error.
+ */
+export async function copyTargets(
+  targets: readonly BuildTarget[],
+  options: BuildDataOptions,
+): Promise<{ copied: string[]; skipped: string[] }> {
+  const copied: string[] = [];
+  const skipped: string[] = [];
+  for (const target of COPIED_TARGETS) {
+    if (targets.includes(target)) copied.push(...(await copyTarget(target, options, skipped)));
+  }
+  return { copied, skipped };
+}
+
 export async function runBuildData(options: BuildDataOptions): Promise<BuildDataReport> {
   const targets = options.only ?? BUILD_TARGETS;
   const categoryNames = targets.filter(
@@ -348,11 +382,13 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
   );
   const categories = await buildCategories(categoryNames, options);
   const items = targets.includes("items") ? await buildItems(options) : null;
-  const copied: string[] = [];
-  for (const target of COPIED_TARGETS) {
-    if (targets.includes(target)) copied.push(...(await copyTarget(target, options)));
-  }
-  const report: BuildDataReport = { categories, items, copiedFiles: copied };
+  const { copied, skipped } = await copyTargets(targets, options);
+  const report: BuildDataReport = {
+    categories,
+    items,
+    copiedFiles: copied,
+    skippedFiles: skipped,
+  };
   if (options.report)
     await writeFile(options.report, `${JSON.stringify(report, null, 2)}\n`, "utf-8");
   if (options.markdown) await writeFile(options.markdown, formatBuildReport(report), "utf-8");
@@ -400,6 +436,10 @@ export function printBuildSummary(report: BuildDataReport, dryRun = false): void
   }
   if (report.copiedFiles.length > 0)
     console.log(`copied from the disc: ${verb} ${report.copiedFiles.join(", ")}`);
+  if (report.skippedFiles.length > 0)
+    console.warn(
+      `not in the extract, left as they are: ${report.skippedFiles.join(", ")} (rerun extract to update them)`,
+    );
 }
 
 /** Short display form of a field value for the Markdown report. */
@@ -551,6 +591,15 @@ export function formatBuildReport(report: BuildDataReport): string {
       `${report.copiedFiles.length} file(s): quests, gathering points, shops, combinations and Veggie Elder trades.`,
       "",
       ...report.copiedFiles.map((f) => `- ${f}`),
+      "",
+    );
+  if (report.skippedFiles.length > 0)
+    out.push(
+      "## Not in the extract",
+      "",
+      "Left as they are; rerun extract to update them.",
+      "",
+      ...report.skippedFiles.map((f) => `- ${f}`),
       "",
     );
   return out.join("\n");

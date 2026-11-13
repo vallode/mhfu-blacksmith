@@ -17,11 +17,15 @@ export interface VeggieTradesFile {
   elders: { maps: string[]; trades: { give: string; common: string; rare: string }[] }[];
 }
 
-/** public/data/veggie-trades.json: each row is [give, common, rare] item IDs. */
+/**
+ * public/data/veggie-trades.json: each row is [row, give, common, rare], the
+ * row's place in the Elder's list (1-based) and its item IDs. The place is
+ * the disc's, so a row left out for an unknown item doesn't renumber the rest.
+ */
 export interface VeggieTradesBundle {
   kind: "veggie-trades";
   rareChance: number;
-  elders: { maps: string[]; rows: [number, number, number][] }[];
+  elders: { maps: string[]; rows: [number, number, number, number][] }[];
 }
 
 /** One trade, from one item's side. */
@@ -61,9 +65,10 @@ export function encodeVeggieTrades(
   };
   const elders = file.elders.map(({ maps, trades }) => ({
     maps,
-    rows: trades.flatMap(({ give, common, rare }): [number, number, number][] => {
-      const row = [id(give), id(common), id(rare)];
-      return row.every((v) => v !== undefined) ? [row as [number, number, number]] : [];
+    rows: trades.flatMap(({ give, common, rare }, i): [number, number, number, number][] => {
+      const ids = [id(give), id(common), id(rare)];
+      if (ids.some((v) => v === undefined)) return [];
+      return [[i + 1, ...(ids as [number, number, number])]];
     }),
   }));
   return {
@@ -85,8 +90,7 @@ export function indexVeggieTrades(bundle: VeggieTradesBundle): Map<number, ItemT
   };
   const rare = bundle.rareChance;
   for (const { maps, rows } of bundle.elders) {
-    rows.forEach(([give, common, rareItem], i) => {
-      const row = i + 1;
+    for (const [row, give, common, rareItem] of rows) {
       const sure = common === rareItem;
       const commonChance = sure ? 100 : 100 - rare;
       entry(common).gives.push({ maps, row, item: give, chance: commonChance, rare: false });
@@ -95,7 +99,7 @@ export function indexVeggieTrades(bundle: VeggieTradesBundle): Map<number, ItemT
         entry(rareItem).gives.push({ maps, row, item: give, chance: rare, rare: true });
         entry(give).takes.push({ maps, row, item: rareItem, chance: rare, rare: true });
       }
-    });
+    }
   }
   // Stable, so the Elders and their rows keep the game's order within a chance.
   for (const e of out.values()) e.gives.sort((a, b) => b.chance - a.chance);

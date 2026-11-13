@@ -12,6 +12,8 @@ import {
   nameGatheringItems,
   nameQuestItems,
   nameShopItems,
+  nameVeggieTradeItems,
+  copyTargets,
   runBuildData,
 } from "../src/cli/build-data.js";
 
@@ -407,6 +409,46 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
   }
 });
 
+test("a full build skips Veggie Elder trades that extract didn't find; named, they're copied or an error", async () => {
+  const { root, data, extracted } = await fixture();
+  try {
+    // A full build (no `only`) leaves a missing trades file alone.
+    const skipped = await copyTargets(["quests", "veggie-trades"], { extracted, data });
+    assert.deepEqual(skipped, {
+      copied: [path.join("quests", "village.json")],
+      skipped: ["veggie-trades.json"],
+    });
+    // Asked for by name, a missing file is still an error.
+    await assert.rejects(
+      runBuildData({ extracted, data, only: ["veggie-trades"] }),
+      /veggie-trades.json is missing/,
+    );
+
+    await writeFile(
+      path.join(extracted, "veggie-trades.json"),
+      JSON.stringify({
+        rare_chance: 20,
+        elders: [
+          {
+            maps: ["Old Swamp"],
+            trades: [{ give: "Iron Ore", common: "Kelbi Hide", rare: "Iron Ore" }],
+          },
+        ],
+      }),
+    );
+    const report = await runBuildData({ extracted, data, only: ["veggie-trades"] });
+    assert.deepEqual(report.copiedFiles, ["veggie-trades.json"]);
+    assert.deepEqual(report.skippedFiles, []);
+    const written = JSON.parse(await readFile(path.join(data, "veggie-trades.json"), "utf-8"));
+    assert.deepEqual(written.elders[0].trades, [
+      { give: "Iron Ore", common: "Kelbi Hide", rare: "Iron Ore" },
+    ]);
+    assert.equal(written.rare_chance, 20);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("runBuildData writes game names in material fields it doesn't take", async () => {
   const { root, data, extracted } = await fixture();
   try {
@@ -487,6 +529,22 @@ test("nameGatheringItems and nameShopItems write items under their game names", 
     site,
   ) as { shops: { items: { item: string }[] }[] };
   assert.equal(shops.shops[0]!.items[0]!.item, "SpecFamitsuTckt");
+  const trades = nameVeggieTradeItems(
+    {
+      rare_chance: 20,
+      elders: [
+        {
+          maps: ["Old Swamp"],
+          trades: [{ give: "FamitsuCustomTkt", common: "Potion", rare: "FamitsuCustomTkt" }],
+        },
+      ],
+    },
+    site,
+  ) as { rare_chance: number; elders: { trades: Record<string, string>[] }[] };
+  assert.equal(trades.rare_chance, 20);
+  assert.deepEqual(trades.elders[0]!.trades, [
+    { give: "SpecFamitsuTckt", common: "Potion", rare: "SpecFamitsuTckt" },
+  ]);
 });
 
 test("mergeCategory writes a skill the committed list repeats once", async () => {
