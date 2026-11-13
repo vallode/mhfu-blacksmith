@@ -12,7 +12,7 @@ interface SearchEntry {
   name: string;
   slug: string;
   url: string;
-  category: "weapon" | "armor" | "decoration" | "monster" | "quest" | "item";
+  category: "weapon" | "armor" | "decoration" | "monster" | "quest" | "item" | "page";
   type: string;
   /** An item's icon colour */
   color?: string;
@@ -46,6 +46,8 @@ function iconStyleFor(item: SearchEntry) {
       return iconStyle({ type: "ticket" });
     case "item":
       return iconStyle({ type: item.type, color: item.color });
+    case "page":
+      return iconStyle({ type: item.type });
     default:
       return iconStyle({ type: item.type, monster: true });
   }
@@ -64,6 +66,7 @@ function iconSrcFor(item: SearchEntry): string {
     case "quest":
       return "/images/ticket.png";
     case "item":
+    case "page":
       return `/images/${item.type}.png`;
     default:
       return "/images/unknown.png";
@@ -228,9 +231,9 @@ export default function GlobalSearch() {
           </div>
 
           <div className="min-h-0 flex-1 overflow-y-auto" role="listbox">
-            {results.length === 0 && (
+            {results.length === 0 && query.trim().length >= 2 && (
               <p className="px-[1.6rem] py-[1.6rem] text-center text-sub text-white/40">
-                {query.trim().length >= 2 ? "No results found" : "Type at least two letters"}
+                No results found
               </p>
             )}
 

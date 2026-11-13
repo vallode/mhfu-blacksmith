@@ -22,7 +22,7 @@ interface SearchEntry {
   name: string;
   slug: string;
   url: string;
-  category: "weapon" | "armor" | "decoration" | "monster" | "quest" | "item";
+  category: "weapon" | "armor" | "decoration" | "monster" | "quest" | "item" | "page";
   type: string;
   /** An item's icon colour */
   color?: string;
@@ -249,6 +249,19 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
     entries.push(entry);
   }
 }
+
+// Pages that aren't one thing's page. Their keywords go in `skills`, which the search also reads.
+entries.push({
+  name: "Veggie Elder",
+  slug: "veggie-elder",
+  url: "/veggie-elder/",
+  category: "page",
+  type: "mushroom",
+  rank: null,
+  rarity: 0,
+  elements: "",
+  skills: "trade trades swap exchange",
+});
 
 const outPath = path.join(root, "public", "search-data.json");
 fs.mkdirSync(path.dirname(outPath), { recursive: true });
