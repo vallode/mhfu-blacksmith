@@ -16,8 +16,8 @@ import {
   defaultSettings,
   describeSettings,
   encodeSettings,
-  needsEboot,
 } from "randomfu/src/settings.js";
+import { reportLogLine } from "randomfu/src/shuffles/shuffle.js";
 import { formatSpoiler } from "randomfu/src/spoiler.js";
 import { writeEdits } from "randomfu/src/write.js";
 import type { Request, Response, Segment } from "./protocol.js";
@@ -70,12 +70,12 @@ async function check(iso: File): Promise<Response> {
 async function run(request: Extract<Request, { type: "run" }>): Promise<Response> {
   const log = (line: string) => post({ type: "log", line });
   const settings = applySettings(defaultSettings(request.settings.seed), { ...request.settings });
-  const needs = needsEboot(settings);
   const overlay = new OverlaySource(openIso(request.iso));
   const image = new PatchableImage(overlay);
   log("Reading the disc...");
   const game = await loadGame(overlay, image.iso, {
-    eboot: needs ? { external: false } : null,
+    // Always loaded: Poogie's luck patches it whatever the settings.
+    eboot: { external: false },
   });
   log(
     `${game.discId} (${game.region}): ${game.quests.length} quests, ${game.skippedQuests.length} skipped.`,
@@ -84,7 +84,7 @@ async function run(request: Extract<Request, { type: "run" }>): Promise<Response
   for (const line of describeSettings(settings)) log(`  ${line}`);
 
   const result = randomize(game, settings);
-  for (const report of result.reports) log(`${report.title}: ${report.lines.length} slots`);
+  for (const report of result.reports) log(reportLogLine(report));
   if (result.problems.length > 0) {
     log(
       `Warning: ${result.problems.length} recipe materials can't be found as early as before; see the spoiler log.`,

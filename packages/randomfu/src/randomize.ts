@@ -51,6 +51,7 @@ import {
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
 import { writeGuides } from "./hints/guides.js";
+import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export { LOGIC_VERSION };
@@ -120,7 +121,16 @@ function usualAmounts(
   };
 }
 
-export function randomize(game: GameData, settings: Settings): RandomizeResult {
+export interface RandomizeOptions {
+  /** For testing in game: a happy Poogie always gives the rarest reward. */
+  poogieTest?: boolean;
+}
+
+export function randomize(
+  game: GameData,
+  settings: Settings,
+  options: RandomizeOptions = {},
+): RandomizeResult {
   const rng = new Rng(`randomfu/${LOGIC_VERSION}/${settings.seed}`);
   const edits = new Edits(game);
   const reports: ShuffleReport[] = [];
@@ -487,6 +497,8 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       ),
     );
   }
+
+  reports.push(addPoogieLuck(game.eboot, edits, { guaranteed: options.poogieTest }));
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.
   reports.push(
