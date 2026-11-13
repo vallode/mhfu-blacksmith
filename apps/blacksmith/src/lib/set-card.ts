@@ -12,11 +12,10 @@
 import { ARMOR_SLOTS } from "./constants";
 import { EMBED_ICON_TINTS, tintFor } from "./embed-format";
 import { binSlots, evaluateBuild, type BuildSet } from "./set-build";
-import { setLabel } from "./set-embed";
 import type { DecoBin, Piece, SkillTreeData } from "./set-search";
 
 /** Bump when the card's look changes, so caches and link previews pick it up. */
-export const SET_CARD_VERSION = 1;
+export const SET_CARD_VERSION = 2;
 
 /**
  * The image: the site's card frame (the card-frame art, at the game's 4×,
@@ -81,8 +80,6 @@ export function cardSpriteSources(): { name: string; file: string; tint?: string
 const COLOR = {
   stat: "#ffff50",
   negative: "#f9455c",
-  hr: "#6e905f",
-  parchment: "#c3be9f",
   white: "#ffffff",
   faint: "rgba(255,255,255,0.5)",
 };
@@ -125,7 +122,7 @@ function decoLine(set: BuildSet, bin: DecoBin, sprites: CardSprites): CardNode |
   if (counts.size === 0) return null;
   return h(
     "div",
-    { style: { display: "flex", gap: 18, marginLeft: 66, fontSize: 20, color: COLOR.white } },
+    { style: { display: "flex", gap: 18, marginLeft: 68, fontSize: 22, color: COLOR.white } },
     ...[...counts].map(([name, { n, color }]) =>
       h(
         "div",
@@ -148,22 +145,22 @@ function equipRow(
     { style: { display: "flex", flexDirection: "column", gap: 2 } },
     h(
       "div",
-      { style: { display: "flex", alignItems: "center", height: 38 } },
+      { style: { display: "flex", alignItems: "center", height: 44 } },
       h("div", { style: { display: "flex", width: SPRITE_SIZE, marginRight: 8 } }, icon),
-      text({ color: COLOR.stat, fontSize: 28, width: 26 }, ":"),
+      text({ color: COLOR.stat, fontSize: 32, width: 28 }, ":"),
       h("div", { style: { display: "flex", flexGrow: 1, alignItems: "baseline", gap: 12 } }, name),
-      text({ color: COLOR.faint, fontSize: 22 }, slotText(slots)),
+      text({ color: COLOR.faint, fontSize: 24 }, slotText(slots)),
     ),
     decos,
   );
 }
 
 function pieceName(piece: Piece | null): CardNode {
-  if (!piece) return text({ color: COLOR.faint, fontSize: 28 }, "-");
+  if (!piece) return text({ color: COLOR.faint, fontSize: 32 }, "-");
   return h(
     "div",
     { style: { display: "flex", alignItems: "baseline", gap: 12 } },
-    text({ color: COLOR.white, fontSize: 28 }, piece.name),
+    text({ color: COLOR.white, fontSize: 32 }, piece.name),
     piece.torsoUp && text({ color: COLOR.faint, fontSize: 18 }, "Torso Up"),
   );
 }
@@ -188,7 +185,7 @@ export function setCardTree(
     showWeapon &&
       equipRow(
         img(sprites, `${ICONS.weapons[set.hunterType]}-plain`),
-        text({ color: "rgba(255,255,255,0.6)", fontSize: 28 }, "Weapon"),
+        text({ color: "rgba(255,255,255,0.6)", fontSize: 32 }, "Weapon"),
         set.weaponSlots,
         decoLine(set, "weapon", sprites),
       ),
@@ -279,19 +276,10 @@ export function setCardTree(
       },
       h(
         "div",
-        { style: { display: "flex", justifyContent: "space-between", alignItems: "baseline" } },
-        text({ color: COLOR.stat, fontSize: 32 }, setLabel(set)),
-        text({ color: COLOR.parchment, fontSize: 20 }, "MHFU Blacksmith"),
-      ),
-      h("div", {
-        style: { display: "flex", height: 3, backgroundColor: COLOR.hr, margin: "10px 0 14px" },
-      }),
-      h(
-        "div",
         { style: { display: "flex", gap: 36, flexGrow: 1 } },
         h(
           "div",
-          { style: { display: "flex", flexDirection: "column", gap: 8, width: 600 } },
+          { style: { display: "flex", flexDirection: "column", gap: 8, width: 620 } },
           ...rows,
         ),
         h(

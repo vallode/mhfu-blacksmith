@@ -11,6 +11,7 @@ import {
 } from "../src/lib/set-build";
 import {
   buildCodecTables,
+  cleanName,
   CODEC_VERSION,
   decodeRaw,
   decodeSet,
@@ -18,7 +19,9 @@ import {
   encodeSet,
   FIELD,
   fromBase64Url,
+  MAX_NAME,
   toBase64Url,
+  toRaw,
   type DecodeResult,
 } from "../src/lib/set-codec";
 import type { Piece } from "../src/lib/set-search";
@@ -306,6 +309,37 @@ describe("set codec forward compatibility", () => {
     const r = decodeRaw(Uint8Array.from([CODEC_VERSION, tag, 1, tag, 3]));
     assert.ok(r.ok);
     assert.equal(r.raw.weaponSlots, 3);
+  });
+});
+
+describe("set codec names", () => {
+  const set = () => withPiece(emptyBuild(), "plate", byName("plate", "Rathalos Mail"));
+
+  it("carries a set's name, and leaves the set as it was", () => {
+    const r = ok(decodeSet(encodeSet(set(), tables, "Rath crit ☆ build"), tables));
+    assert.equal(r.name, "Rath crit ☆ build");
+    assert.deepEqual(shape(r.set), shape(set()));
+  });
+
+  it("leaves the name out when there is none", () => {
+    assert.equal(encodeSet(set(), tables, ""), encodeSet(set(), tables));
+    assert.equal(encodeSet(set(), tables, "  "), encodeSet(set(), tables));
+    assert.equal(ok(decodeSet(encodeSet(set(), tables), tables)).name, undefined);
+  });
+
+  it("keeps names to one line of MAX_NAME characters", () => {
+    assert.equal(cleanName("  two\nlines\u0000here  "), "two lines here");
+    const long = "😀".repeat(MAX_NAME + 5);
+    const r = ok(decodeSet(encodeSet(set(), tables, long), tables));
+    assert.equal([...r.name!].length, MAX_NAME);
+  });
+
+  it("opens a set whose name isn't valid UTF-8", () => {
+    const bytes = encodeRaw(toRaw(set(), tables));
+    const tag = (FIELD.name << 1) | 1;
+    const r = ok(decodeSet(toBase64Url(Uint8Array.from([...bytes, tag, 2, 0xff, 0x41])), tables));
+    assert.equal(r.name, "\ufffdA");
+    assert.deepEqual(shape(r.set), shape(set()));
   });
 });
 

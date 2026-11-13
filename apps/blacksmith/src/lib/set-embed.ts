@@ -2,9 +2,10 @@
  * Link embeds for shared sets (`/set-builder/?s=<code>`). The page is one
  * static file for every set, so the Cloudflare Worker
  * (src/cloudflare/worker.ts) decodes the code and writes these into its
- * meta tags: the set's skills as the title, its defense, resistances and bad
- * skills as the description, and its card (set-card.ts) as the image, with
- * the pieces and decorations also in the image's alt text.
+ * meta tags: the set's name (or, without one, its skills) as the title, its
+ * points in each active skill tree and a line inviting people to open it as
+ * the description, and its card (set-card.ts) as the image, with everything
+ * on the card also in the image's alt text.
  *
  * The Worker can't load the /data bundles the client builds its search data
  * from (too much to parse per request), so the build writes just what a code
@@ -94,8 +95,9 @@ export function embedCodecTables(data: SetEmbedData): CodecTables {
 }
 
 export interface SetEmbed {
+  /** The set's name, or its skills when it has none. */
   title: string;
-  /** Defense, resistances and bad skills: the card image shows the rest. */
+  /** Points in each active skill tree, and an invitation to open the set. */
   description: string;
   /** Everything in words, the description and then the pieces and decorations: the card's alt text. */
   details: string;
@@ -126,29 +128,38 @@ function countNames(names: string[]): string {
   return [...counts].map(([n, c]) => (c > 1 ? `${n} ×${c}` : n)).join(", ");
 }
 
-/** The embed for a set, or null for an empty one. */
-export function buildSetEmbed(set: BuildSet, trees: SkillTreeData[]): SetEmbed | null {
+/** What the description asks people to do. */
+export const SET_EMBED_ACTION = "Open it in the set builder to edit it or save it to My sets.";
+
+/** The embed for a set (and its name, from a saved set's share link), or null for an empty set. */
+export function buildSetEmbed(
+  set: BuildSet,
+  trees: SkillTreeData[],
+  name?: string,
+): SetEmbed | null {
   const pieces = set.pieces.filter((p): p is Piece => p !== null);
   if (pieces.length === 0 && set.decorations.length === 0) return null;
   const stats = evaluateBuild({ trees, pieces: [], decorations: [] }, set);
 
   const good = stats.skills.filter((s) => s.threshold > 0).map((s) => s.name);
   const bad = stats.skills.filter((s) => s.threshold < 0).map((s) => s.name);
-  const title = truncate(good.length > 0 ? good.join(" · ") : "No skills", MAX_TITLE);
+  const skills = good.length > 0 ? good.join(" · ") : "No skills";
+  const title = truncate(name || skills, MAX_TITLE);
+
+  const points = stats.skills.map((s) => `${s.tree} ${signed(s.points)}`).join(" · ");
+  const description = lines(points && `Skill points: ${points}`, SET_EMBED_ACTION);
 
   const res = RES_NAMES.map((n, i) => `${ELEMENT_EMOJI[n]}${signed(stats.res[i])}`).join(" ");
-  const description = lines(
-    `Defense ${stats.defence} · ${res}`,
-    bad.length > 0 && `Bad skills: ${bad.join(", ")}`,
-  );
   const pieceLines = ARMOR_SLOTS.map((slot, i) => {
     const p = set.pieces[i];
     return p && `${BIN_LABELS[slot]}: ${p.name}`;
   });
   const jewels = countNames(stats.decorations.map((d) => d.deco.name));
   const details = lines(
+    name,
     `${setLabel(set)}: ${good.length > 0 ? good.join(", ") : "no skills"}`,
-    description,
+    bad.length > 0 && `Bad skills: ${bad.join(", ")}`,
+    `Defense ${stats.defence} · ${res}`,
     ...pieceLines,
     set.weaponSlots > 0 && `Weapon slots: ${slotGlyphs(set.weaponSlots)}`,
     jewels && `Jewels: ${jewels}`,
@@ -173,7 +184,7 @@ export function setReader(data: SetEmbedData): SetReader {
   return (code) => {
     const r = decodeSet(code, tables);
     if (!r.ok) return null;
-    const embed = buildSetEmbed(r.set, data.trees);
+    const embed = buildSetEmbed(r.set, data.trees, r.name);
     return embed && { set: r.set, embed };
   };
 }

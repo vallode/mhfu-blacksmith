@@ -17,6 +17,7 @@ import {
   buildSetEmbed,
   embedCodecTables,
   setEmbedData,
+  SET_EMBED_ACTION,
   setReader,
   type SetEmbedData,
 } from "../src/lib/set-embed";
@@ -104,7 +105,7 @@ describe("set embed data", () => {
 });
 
 describe("set embeds", () => {
-  it("titles the set with its skills, with its stats below and everything in the alt text", () => {
+  it("titles an unnamed set with its skills, with everything in the alt text", () => {
     const set = rathalosSet();
     const stats = evaluateBuild(data, set);
     const e = embed(encodeSet(set, tables));
@@ -113,10 +114,9 @@ describe("set embeds", () => {
     assert.ok(good.length > 0);
     assert.equal(e.title, good.join(" · "));
     assert.equal(e.author, "Low Rank Blademaster Set");
-    assert.match(e.description, new RegExp(`^Defense ${stats.defence} · 🔥`));
     const details = e.details.split("\n");
     assert.equal(details[0], `Low Rank Blademaster Set: ${good.join(", ")}`);
-    assert.ok(e.details.includes(e.description));
+    assert.ok(details.some((l) => l.startsWith(`Defense ${stats.defence} · 🔥`)));
     for (const slot of ARMOR_SLOTS) {
       const piece = set.pieces[ARMOR_SLOTS.indexOf(slot)]!;
       assert.ok(
@@ -132,12 +132,34 @@ describe("set embeds", () => {
     assert.ok(details.includes("Jewels: Attack Jewel ×2"));
   });
 
-  it("lists bad skills on their own line", () => {
+  it("is titled with the set's name when its link has one", () => {
+    const set = rathalosSet();
+    const e = embed(encodeSet(set, tables, "Rath farming"));
+    assert.ok(e);
+    assert.equal(e.title, "Rath farming");
+    assert.equal(e.author, "Low Rank Blademaster Set");
+    assert.equal(e.details.split("\n")[0], "Rath farming");
+  });
+
+  it("describes the set's skill points and invites people to open it", () => {
+    const set = rathalosSet();
+    const stats = evaluateBuild(data, set);
+    const e = buildSetEmbed(set, data.trees);
+    assert.ok(e);
+    const [points, action] = e.description.split("\n");
+    assert.equal(
+      points,
+      `Skill points: ${stats.skills.map((s) => `${s.tree} ${s.points > 0 ? "+" : "−"}${Math.abs(s.points)}`).join(" · ")}`,
+    );
+    assert.equal(action, SET_EMBED_ACTION);
+  });
+
+  it("lists bad skills on their own line of the alt text", () => {
     const set = rathalosSet();
     const bad = evaluateBuild(data, set).skills.filter((s) => s.threshold < 0);
     const e = buildSetEmbed(set, data.trees);
     assert.ok(e);
-    const line = e.description.split("\n").find((l) => l.startsWith("Bad skills: "));
+    const line = e.details.split("\n").find((l) => l.startsWith("Bad skills: "));
     if (bad.length === 0) assert.equal(line, undefined);
     else assert.equal(line, `Bad skills: ${bad.map((s) => s.name).join(", ")}`);
   });

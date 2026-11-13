@@ -5,9 +5,9 @@
  *
  * It gives shared sets (`/set-builder/?s=<code>`) their own link embeds. The
  * page is one static file for every set, so this decodes the code and
- * rewrites the page's meta tags (src/lib/set-embed.ts): the set's skills as
- * the title, its defense, resistances and bad skills as the description, and
- * its card as the image. It also serves:
+ * rewrites the page's meta tags (src/lib/set-embed.ts): the set's name (or
+ * its skills) as the title, its skill points and an invitation to open it as
+ * the description, and its card as the image. It also serves:
  *
  * - `/set-builder/card.png?s=<code>&v=<version>`: the card, drawn with
  *   satori and resvg (src/lib/set-card.ts), and kept in Cloudflare's cache.

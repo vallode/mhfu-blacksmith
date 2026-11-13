@@ -25,6 +25,8 @@ export interface Draft {
   savedId?: string;
   /** Where it came from ("result", "link"), for the editor's title. */
   origin?: "new" | "result" | "link";
+  /** The name a shared link gave the set. */
+  name?: string;
 }
 
 function isSavedSet(x: unknown): x is SavedSet {
