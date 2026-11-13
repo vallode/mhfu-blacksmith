@@ -182,10 +182,15 @@ test("the smithy's store sells the weapon now in each sold weapon's place", asyn
     if (after.weapons2!.some(([, id], k) => id !== FIXTURE_STORE_LISTS.weapons2![k]![1])) {
       movedAny = true;
     }
-    const lines = result.reports
-      .find((r) => r.title === "Weapon progression")!
-      .lines.filter((l) => l.where === "Weapon store");
+    const lines = result.reports.find((r) => r.title === "Smithy store")!.lines;
     assert.equal(lines.length, 4, "each weapon on sale once");
+    assert.ok(lines.every((l) => l.where === "Weapons"));
+    assert.ok(
+      result.reports
+        .find((r) => r.title === "Weapon progression")!
+        .lines.every((l) => l.text.includes(" -> ")),
+      "the progression report lists only places",
+    );
   }
   assert.ok(movedAny, "some seed changes what the store sells");
   // Without the weapons shuffle, the store is left alone.
@@ -201,9 +206,7 @@ test("weapons and recipes together: recipes shuffle the tables weapons left", as
   // Same weapon permutation (each shuffle has its own random stream).
   assert.deepEqual(tables(both.edits.eboot()).create, tables(weaponsOnly.edits.eboot()).create);
   const report = both.reports.find((r) => r.title === "Weapon progression")!;
-  assert.ok(
-    report.lines.filter((l) => l.where !== "Weapon store").every((l) => l.text.includes(" -> ")),
-  );
+  assert.ok(report.lines.every((l) => l.text.includes(" -> ")));
   assert.deepEqual(both.problems, []);
   close();
 });

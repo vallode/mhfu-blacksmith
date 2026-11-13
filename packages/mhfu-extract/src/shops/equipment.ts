@@ -15,6 +15,7 @@
  */
 import type { OvlFile } from "../container/ovl.js";
 import type { ArmorSlot } from "../tables/armor.js";
+import { TABLE_COUNTS } from "../tables/offsets.js";
 
 const LIST_END = 0xffff;
 const MAX_ENTRIES = 200;
@@ -24,7 +25,6 @@ export const EQUIPMENT_CATEGORY = {
   blademaster: 5,
   gunner: 6,
 } as const;
-const MAX_CATEGORY = 6;
 
 /** Armor categories 0-4, by slot. */
 export const ARMOR_CATEGORY: Record<ArmorSlot, number> = {
@@ -34,6 +34,20 @@ export const ARMOR_CATEGORY: Record<ArmorSlot, number> = {
   arm: 3,
   waist: 4,
 };
+
+/**
+ * Entries in each category's table, by category: an ID must be below it.
+ * This keeps the search from taking some other table of small numbers.
+ */
+const CATEGORY_COUNTS = [
+  TABLE_COUNTS.legArmor,
+  TABLE_COUNTS.headArmor,
+  TABLE_COUNTS.chestArmor,
+  TABLE_COUNTS.armArmor,
+  TABLE_COUNTS.waistArmor,
+  TABLE_COUNTS.weaponsBlademaster,
+  TABLE_COUNTS.weaponsGunner,
+];
 
 export interface EquipmentEntry {
   /** File offset of the entry's category word; the ID is at `+2`. */
@@ -62,9 +76,10 @@ export function readEquipmentList(ovl: OvlFile, offset: number): EquipmentList |
   for (let at = offset; at + 2 <= r.length && entries.length <= MAX_ENTRIES; at += 4) {
     const category = r.u16(at);
     if (category === LIST_END) return entries.length > 0 ? { offset, entries } : null;
-    if (category > MAX_CATEGORY || at + 4 > r.length) return null;
+    const limit = CATEGORY_COUNTS[category];
+    if (limit === undefined || at + 4 > r.length) return null;
     const id = r.u16(at + 2);
-    if (id === 0 || id === LIST_END) return null;
+    if (id === 0 || id >= limit) return null;
     entries.push({ at, category, id });
   }
   return null;

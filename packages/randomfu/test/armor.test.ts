@@ -118,11 +118,7 @@ test("armor: each place gets a piece of the same slot, rarity, hunter type and s
     }
     const report = result.reports.find((r) => r.title === "Armor progression")!;
     const changed = [...sigma].filter(([k, v]) => Number(k.split(":")[1]) !== v);
-    assert.equal(
-      report.lines.filter((l) => !l.where.startsWith("Armor store")).length,
-      changed.length,
-      "one spoiler line per moved piece",
-    );
+    assert.equal(report.lines.length, changed.length, "one spoiler line per moved piece");
   }
   // Every exchangeable pair moves in some seed.
   for (const pair of ["head:6->8", "head:3->4", "chest:1->3", "chest:2->4", "leg:1->2"]) {
@@ -140,11 +136,7 @@ test("armor: the spoiler lists places by slot and rarity; output is deterministi
   assert.ok(a.edits.eboot().equals(b.edits.eboot()));
 
   const report = a.reports.find((r) => r.title === "Armor progression")!;
-  const places = report.lines.filter((l) => !l.where.startsWith("Armor store"));
-  assert.ok(
-    report.lines.slice(places.length).every((l) => l.where.startsWith("Armor store")),
-    "the store after the places",
-  );
+  const places = report.lines;
   const order = ["Head", "Chest", "Arms", "Waist", "Legs"];
   const keys = places.map((l) => {
     const [slot, rarity] = l.where.split(", rarity ");
@@ -207,10 +199,12 @@ test("armor: the smithy's store sells the piece now in each sold piece's places"
     assert.equal(storeIn(lobby, "armor")[2]![1], 9, "a piece the smithy doesn't make stays");
     assert.deepEqual(storeIn(lobby, "weapons2"), FIXTURE_STORE_LISTS.weapons2, "weapons untouched");
     if (expected.some(([, id], k) => id !== FIXTURE_STORE_LISTS.armor![k]![1])) movedAny = true;
-    const lines = result.reports
-      .find((r) => r.title === "Armor progression")!
-      .lines.filter((l) => l.where.startsWith("Armor store"));
-    assert.equal(lines.length, 3);
+    const lines = result.reports.find((r) => r.title === "Smithy store")!.lines;
+    assert.deepEqual(
+      lines.map((l) => l.where),
+      ["Armor: Head", "Armor: Head", "Armor: Legs"],
+      "one line per piece on sale, under its slot",
+    );
   }
   assert.ok(movedAny, "some seed changes what the store sells");
   close();

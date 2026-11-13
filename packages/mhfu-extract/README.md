@@ -1161,7 +1161,8 @@ edits it.
   0-4 armor. The table has 18 u32 pointers and no 0 word after them:
   6 weapon lists (all the same 15 rarity-1 weapons), then two runs of
   6 armor lists. `findEquipmentStore` takes the first run of pointers to
-  such lists that has an all-weapon list. The armor categories are in
+  such lists that has an all-weapon list; every ID must be below its
+  category's table size, so other tables of small numbers don't match. The armor categories are in
   the order of the EBOOT's armor arrays (leg, head, chest, arm, waist,
   `ARMOR_CATEGORY`): every list opens with the Mafumofu set, one piece of
   each. randomfu's `weapons` and `armor` shuffles edit the entries; the

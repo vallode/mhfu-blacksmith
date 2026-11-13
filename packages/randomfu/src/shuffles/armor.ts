@@ -32,11 +32,7 @@
  */
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { HUNTER_TYPE_BITS } from "mhfu-extract/src/emit/armor.js";
-import {
-  ARMOR_CATEGORY,
-  storeEntries,
-  type EquipmentStore,
-} from "mhfu-extract/src/shops/equipment.js";
+import { ARMOR_CATEGORY } from "mhfu-extract/src/shops/equipment.js";
 import type { NameTable } from "mhfu-extract/src/strings/names.js";
 import {
   ARMOR_SLOT_COUNTS,
@@ -48,10 +44,10 @@ import { ARMOR_ENTRY_SIZE, EQUIP_CREATE_ENTRY_SIZE } from "mhfu-extract/src/tabl
 import { equipmentCreateLayout } from "mhfu-extract/src/tables/recipes.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import type { Edits } from "../edits.js";
-import type { LoadedOverlay } from "../game/load.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
 import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
+import { followStore, type SmithyStore } from "./store.js";
 
 const HUNTER_TYPE_AT = 4;
 const RARITY_AT = 5;
@@ -87,15 +83,13 @@ export function shuffleArmor(
   rng: Rng,
   edits: Edits,
   /** The smithy's store, or null to leave it (none found on the disc). */
-  store: { data: EquipmentStore; lobby: LoadedOverlay } | null,
+  store: SmithyStore | null,
 ): ShuffleReport {
   const reader = new BinaryReader(eboot);
   const create = equipmentCreateLayout(reader, resolver);
   const values = armorValuesOffsets(reader, resolver);
   const out = edits.eboot();
   const lines: { where: string; text: string; order: number }[] = [];
-  const onSale = store ? storeEntries(store.data) : [];
-  const storeOut = store ? edits.overlay(store.lobby) : null;
   let moved = 0;
   let pieces = 0;
 
@@ -129,19 +123,15 @@ export function shuffleArmor(
     }
 
     // The store sells whatever is now in the places of what it sold.
-    const listed = new Set<number>();
-    for (const entry of onSale) {
-      if (entry.category !== ARMOR_CATEGORY[slot]) continue;
-      const now = sigma.get(entry.id) ?? entry.id;
-      storeOut!.writeUInt16LE(now, entry.at + 2);
-      if (listed.has(entry.id)) continue;
-      listed.add(entry.id);
-      lines.push({
-        where: `Armor store: ${label}`,
-        text:
-          now === entry.id ? `${name(entry.id)} (unchanged)` : `${name(entry.id)} -> ${name(now)}`,
-        order: 5 * 256 + slotIndex,
-      });
+    if (store) {
+      followStore(
+        store,
+        ARMOR_CATEGORY[slot],
+        (i) => sigma.get(i) ?? i,
+        name,
+        `Armor: ${label}`,
+        edits,
+      );
     }
 
     for (const piece of shuffled) {
@@ -164,11 +154,8 @@ export function shuffleArmor(
       "The new piece is for the same slot and rarity, and can be worn by the same hunters (Blademaster, Gunner or both; male, female or both).",
       "Places keep their materials; pieces keep their own stats, skills, slots and price. Where a piece had two recipes, both now make the same new piece.",
       `${moved} of ${pieces} pieces changed places.`,
-      store
-        ? "The smithy's store follows: where it sold a piece, it sells the piece now in that piece's places, at the new piece's own price. Pieces it sells that the smithy doesn't make stay."
-        : "The smithy's store wasn't found on this disc, so it sells the same armor as before.",
     ],
-    // By slot, then rarity, then the store (a stable sort keeps piece order within each).
+    // By slot, then rarity (a stable sort keeps piece order within each).
     lines: lines.sort((a, b) => a.order - b.order).map(({ where, text }) => ({ where, text })),
   };
 }

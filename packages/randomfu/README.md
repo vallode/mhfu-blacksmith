@@ -278,8 +278,9 @@ Weapons from Ancient/Rusted shards stay put, and so do their polished
 forms: Rusted and Worn weapons, and the Tarnished and Weathered ones they
 polish into. Polishing a shard makes them, not a create entry (the shard
 sections make placeholder IDs past the weapon table), so the shuffle finds
-them as the tree roots no create entry makes; on the EU disc that's
-exactly those 8. Moving them would let an ordinary place make a Rusted
+them by shape: a tree root no create entry makes, with exactly one
+upgrade, of the same type and rarity. On the EU disc that's exactly
+those 8. Moving them would let an ordinary place make a Rusted
 weapon, or a rarity-1 Tarnished weapon show up as a starter or in the
 store. What a polished weapon upgrades into (Ancient Blade, Teostra
 Blade, ...) is shuffled as usual, and so are the G Rank Tarnished and
@@ -290,7 +291,8 @@ rarity-1 weapons, the same at every stage) follows the shuffle: where it
 sold a weapon, it sells the weapon now in that weapon's place. That's the
 same rarity (and type, unless `any-type`) and starts the same tree, so
 what you can buy fits the shuffled smithy. It costs the new weapon's own
-price. Its armor follows `armor` the same way (see below).
+price. Its armor follows `armor` the same way (see below). The spoiler
+lists the store in a "Smithy store" section of its own.
 
 Weapon stats (`weapons.attack`, `weapons.affinity`, `weapons.element`)
 change values in each weapon's own record (`src/shuffles/weapon-stats.ts`),
