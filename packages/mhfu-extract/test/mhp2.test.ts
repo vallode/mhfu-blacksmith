@@ -67,7 +67,7 @@ function fixtureMessages(accent = ""): Buffer {
   };
   return messageFile([
     ["unrelated"],
-    ...pair("Item", 713 + 124, true),
+    ...pair("Item", 960, true),
     ...pair("Sword", 601, true),
     ...pair("Gun", 171, false),
     ...pair("Helm", 327, true),
@@ -137,7 +137,7 @@ test("readMhp2Tables reads MHF2's changed gunner, armor and sharpness layouts", 
     Object.fromEntries(Object.entries(tables.armor).map(([slot, a]) => [slot, a.length])),
     { head: 327, chest: 311, arm: 305, waist: 303, leg: 311 },
   );
-  assert.equal(tables.items.length, 713);
+  assert.equal(tables.items.length, 960);
   assert.equal(tables.decorationSkills.length, 123);
 
   const bm = tables.blademaster[0]!;
@@ -263,5 +263,5 @@ test("readMhp2Text picks the English file and the names table of each pair", () 
   assert.equal(result.text.gunner.nameTable, 6);
   assert.equal(result.text.gunner.names[3], "Gun 3");
   assert.equal(result.text.blademaster.nameTable, 3);
-  assert.equal(result.text.items.names.length, 837);
+  assert.equal(result.text.items.names.length, 960);
 });

@@ -269,8 +269,9 @@ own message files (`src/games/mhp2-text.ts`): `message-probe` found DATA.BIN
 the equipment tables by size. The English file is picked as the one with the
 fewest non-ASCII bytes in its weapon names, and each name table's count is
 checked against its entries (legs have one name more than entries; the
-check lists the empty names to place it). Decorations are named from the
-item names, which run on past the 713 items as MHFU's do past its 948. Not
+check lists the empty names to place it). The item table holds all 960 item
+IDs, like MHFU's 1,261: 713 regular items, the decorations, then 123 more.
+Decoration d is item 713 + d, as it is 948 + d in MHFU. Not
 read yet: bow charge levels, bowgun ammo, dual-element weapons, crafting
 recipes and skills.
 

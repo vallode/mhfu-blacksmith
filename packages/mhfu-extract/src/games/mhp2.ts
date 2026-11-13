@@ -28,7 +28,8 @@
  * gunner weapons begin, which end where the armor begins; head 327, chest
  * 311, arm 305, waist 303, leg 311 entries, then 124 decoration skills (a
  * dummy first) and the five armor pointers, then the model -> weapon type
- * map. Items (713) end where decoration values (124) begin.
+ * map. The item table holds every item ID, as MHFU's does: 713 regular
+ * items, then the 124 decoration values, then 123 more items.
  */
 import type { BinaryReader } from "../binary/reader.js";
 import { type ArmorSlot, ARMOR_SLOTS } from "../tables/armor.js";
@@ -44,6 +45,9 @@ import {
 
 /** Size of the decrypted EU MHF2 EBOOT these offsets were found in. */
 export const MHP2_EU_EBOOT_BYTES = 1_424_032;
+
+/** Item IDs before the decorations: decoration d is item ID 713 + d (MHFU: 948 + d). */
+export const MHP2_REGULAR_ITEMS = 713;
 
 export const MHP2_GUNNER_ENTRY_SIZE = 24;
 export const MHP2_ARMOR_ENTRY_SIZE = 32;
@@ -71,7 +75,13 @@ export const MHP2_EU_TABLES = {
   /** Up to the bowgun shot table; only entries for real model IDs mean anything. */
   modelToWeaponType: { offset: 0x132fa0, count: 464 },
   sharpnessTable: { offset: 0x1337d0, count: 40 },
-  itemTable: { offset: 0x134c60, count: 713 },
+  /**
+   * Every item ID, as MHFU's (TABLE_COUNTS.items): the 713 regular items,
+   * the 124 decorations (decorationValues below is the same entries), then
+   * 123 more. 960 is the count of MHF2's item names (games/mhp2-text.ts).
+   */
+  itemTable: { offset: 0x134c60, count: 960 },
+  /** itemTable + MHP2_REGULAR_ITEMS entries. */
   decorationValues: { offset: 0x138f38, count: 124 },
 } as const satisfies Record<string, Mhp2Table>;
 

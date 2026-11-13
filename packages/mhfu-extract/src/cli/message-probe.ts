@@ -6,7 +6,7 @@
  */
 import { readdir, readFile, stat, writeFile } from "node:fs/promises";
 import path from "node:path";
-import { MHP2_EU_TABLES } from "../games/mhp2.js";
+import { MHP2_EU_TABLES, MHP2_REGULAR_ITEMS } from "../games/mhp2.js";
 import { ARMOR_SLOT_COUNTS } from "../tables/armor.js";
 import { TABLE_COUNTS } from "../tables/offsets.js";
 import {
@@ -29,9 +29,9 @@ export function knownCounts(game: string): KnownCount[] {
       { name: "arm", count: t.armorArm.count },
       { name: "waist", count: t.armorWaist.count },
       { name: "leg", count: t.armorLeg.count },
+      { name: "regular items", count: MHP2_REGULAR_ITEMS },
       { name: "items", count: t.itemTable.count },
       { name: "decorations", count: t.decorationValues.count },
-      { name: "items+decorations", count: t.itemTable.count + t.decorationValues.count },
     ];
   }
   if (game === "mhp2g") {
@@ -40,9 +40,9 @@ export function knownCounts(game: string): KnownCount[] {
       { name: "gunner", count: TABLE_COUNTS.weaponsGunner },
       { name: "weapons", count: TABLE_COUNTS.weaponsBlademaster + TABLE_COUNTS.weaponsGunner },
       ...Object.entries(ARMOR_SLOT_COUNTS).map(([name, count]) => ({ name, count })),
-      { name: "items", count: TABLE_COUNTS.regularItems },
+      { name: "regular items", count: TABLE_COUNTS.regularItems },
+      { name: "items", count: TABLE_COUNTS.items },
       { name: "decorations", count: TABLE_COUNTS.decorations },
-      { name: "items+decorations", count: TABLE_COUNTS.regularItems + TABLE_COUNTS.decorations },
     ];
   }
   return [];

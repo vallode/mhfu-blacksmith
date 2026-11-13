@@ -5,9 +5,8 @@
  * come in pairs whose sizes match the equipment tables exactly, one string
  * per entry: blademaster weapons (tables 3/4), gunner weapons (5/6), head
  * (7/8), chest (9/10), arm (11/12), waist (13/14) and leg armor (15/16,
- * 312 strings for 311 entries), and items (1/2, 960 strings: the 713 items
- * with stats, then the decorations, as MHFU's item IDs run on into its
- * decorations). Which table of a pair holds the names is told by length:
+ * 312 strings for 311 entries), and items (1/2, 960 strings: one per item
+ * ID, the decorations included, as MHFU's). Which table of a pair holds the names is told by length:
  * names are the shorter strings.
  *
  * The language order isn't confirmed; MHFU's EU disc has English first. The
@@ -110,7 +109,7 @@ export function readMhp2Text(
     const shown = empty.slice(0, 8).map((i) => `#${i}`);
     checks.push({
       name: `${kind} names: one per entry`,
-      ok: kind === "items" ? names.length >= expected : names.length === expected,
+      ok: names.length === expected,
       detail:
         `${names.length} names (table ${text[kind].nameTable}) for ${expected} entries; ` +
         (empty.length

@@ -49,7 +49,7 @@ test("probeMessageFiles lines message tables up with MHF2's equipment counts", (
       { name: "data-bin/_unindexed/19.bin", buf: messageFile([5, 601, 172]) },
       {
         name: "data-bin/_unindexed/40.bin",
-        buf: pac([Buffer.alloc(32, 1), messageFile([327, 837])]),
+        buf: pac([Buffer.alloc(32, 1), messageFile([327, 960])]),
       },
       { name: "data-bin/_unindexed/41.bin", buf: Buffer.alloc(64, 0xab) },
     ],
@@ -70,7 +70,7 @@ test("probeMessageFiles lines message tables up with MHF2's equipment counts", (
         "data-bin/_unindexed/40.bin#1",
         [
           [327, ["head"]],
-          [837, ["items+decorations"]],
+          [960, ["items"]],
         ],
       ],
     ],

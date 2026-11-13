@@ -7,7 +7,13 @@
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { BinaryReader } from "../binary/reader.js";
-import { checkMhp2Tables, MHP2_EU_TABLES, readMhp2Tables, type Mhp2Check } from "../games/mhp2.js";
+import {
+  checkMhp2Tables,
+  MHP2_EU_TABLES,
+  MHP2_REGULAR_ITEMS,
+  readMhp2Tables,
+  type Mhp2Check,
+} from "../games/mhp2.js";
 import { MHP2_EU_MESSAGE_FILES, readMhp2Text } from "../games/mhp2-text.js";
 import { ARMOR_SLOTS } from "../tables/armor.js";
 import { manifestGame, type UnpackManifest } from "./unpack.js";
@@ -80,8 +86,8 @@ export async function runExtractMhp2(options: {
     "weapons-gunner.json": named(tables.gunner, "gunner"),
     "sharpness.json": tables.sharpness,
     "items.json": named(tables.items, "items"),
-    // Item IDs run on from the items into the decorations, as in MHFU (948 + d there).
-    "decoration-values.json": named(tables.decorationValues, "items", tables.items.length),
+    // Decoration d is item ID 713 + d, as in MHFU (948 + d there).
+    "decoration-values.json": named(tables.decorationValues, "items", MHP2_REGULAR_ITEMS),
     "decoration-skills.json": tables.decorationSkills,
     ...Object.fromEntries(
       ARMOR_SLOTS.map((slot) => [`armor-${slot}.json`, named(tables.armor[slot], slot)]),
