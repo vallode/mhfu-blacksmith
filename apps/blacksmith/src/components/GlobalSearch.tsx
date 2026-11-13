@@ -225,14 +225,6 @@ export default function GlobalSearch() {
               autoComplete="off"
               spellCheck={false}
             />
-            <button
-              type="button"
-              aria-label="Close search"
-              className="flex h-[2.6rem] flex-none cursor-pointer items-center border-[2px] border-white/35 bg-transparent px-[0.8rem] font-[inherit] text-fine leading-none text-white/60 hover:text-white"
-              onClick={close}
-            >
-              ESC
-            </button>
           </div>
 
           <div className="min-h-0 flex-1 overflow-y-auto" role="listbox">
