@@ -205,3 +205,27 @@ test("buildGlb keeps a skinned model's pieces on one mesh, each primitive naming
     [0, 4],
   );
 });
+
+test("composeHunter keeps a texture index past a piece's own off the next piece's textures", () => {
+  const skin = { width: 1, height: 1, rgba: Buffer.alloc(4), hasAlpha: false };
+  const legs = piece("leggings", playerSkeleton(), [JOINT.HIPS]);
+  const arms = piece(
+    "gauntlets",
+    Array.from({ length: 10 }, (_, i) => bone(i, i - 1, [0, 0, 0])),
+    [1],
+  );
+  // The leggings' material points one past their own texture: the skin's slot.
+  legs.pmo.materials[0] = { ...legs.pmo.materials[0]!, textureIndex: 1 };
+  const bare = composeHunter([legs, arms]);
+  // Without a skin, it is no texture at all, not the gauntlets'.
+  assert.ok(bare.pmo.materials[0]!.textureIndex >= bare.textures.length);
+  assert.equal(bare.pmo.materials[1]!.textureIndex, 1);
+
+  // With the skin after each piece's own textures, both pieces share one image.
+  legs.textures = [...legs.textures, skin];
+  arms.textures = [...arms.textures, skin];
+  const dressed = composeHunter([legs, arms]);
+  assert.equal(dressed.textures.length, 3);
+  assert.equal(dressed.textures[dressed.pmo.materials[0]!.textureIndex], skin);
+  assert.equal(dressed.pmo.materials[1]!.textureIndex, 2);
+});

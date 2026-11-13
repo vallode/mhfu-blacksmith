@@ -747,6 +747,16 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   back they're placed by eye (`WEAPON_MOUNTS` in the site's `src/lib/hunter.ts`),
   so a sheathed weapon is only roughly where the game has it. Weapons are
   shown on the male hunter only.
+- **Skin.** Some armor materials index past the end of their package's
+  own `.TMH` images: the parts that show skin (thighs, hips, a neck). The
+  disc keeps four skin tones per sex outside every armor package,
+  `player/<m|f>/skin/<m|f>_skin000-003.tmh`, so `export-site` puts the first
+  tone's images after each piece's own (`src/models/skin.ts`), for armor and
+  the hunters alike. That index mapping is inferred from the file layout,
+  not read from game code: the export lists any armor model whose materials
+  it still can't texture. (`composeHunter` also used to let such an index
+  fall onto the next piece's textures; each piece's textures are now mapped
+  one by one.) The `models` subcommand doesn't add skin.
 - **Wearing armor.** The armor pages' viewer puts a piece on the hunter of its
   sex in place of the default piece of its slot (the site's
   `src/lib/hunter-armor.ts`). Each primitive of `hunter.glb` and
