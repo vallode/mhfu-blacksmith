@@ -1,5 +1,5 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
+import { mkdirSync, mkdtempSync, readFileSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { test } from "node:test";
@@ -14,6 +14,69 @@ import {
   MHP2_SHARPNESS_ENTRY_SIZE,
   readMhp2Tables,
 } from "../src/games/mhp2.js";
+import { MHP2_EU_MESSAGE_FILES, readMhp2Text } from "../src/games/mhp2-text.js";
+
+/** A message file (strings/messages.ts) holding these tables of strings. */
+function messageFile(tables: string[][]): Buffer {
+  const header = Buffer.alloc(8 + tables.length * 4);
+  header.writeUInt32LE(tables.length, 0);
+  header.writeUInt32LE(8, 4);
+  const bodies: Buffer[] = [];
+  let at = header.length;
+  tables.forEach((strings, t) => {
+    header.writeUInt32LE(at, 8 + t * 4);
+    const offsets = Buffer.alloc((strings.length + 1) * 4);
+    const data = strings.map((s) => Buffer.from(`${s}\0`, "utf8"));
+    let rel = offsets.length;
+    data.forEach((d, i) => {
+      offsets.writeUInt32LE(rel, i * 4);
+      rel += d.length;
+    });
+    offsets.writeUInt32LE(0xffffffff, strings.length * 4);
+    const body = Buffer.concat([offsets, ...data]);
+    bodies.push(body);
+    at += body.length;
+  });
+  return Buffer.concat([header, ...bodies]);
+}
+
+const COUNTS = {
+  items: 713,
+  blademaster: 601,
+  gunner: 171,
+  head: 327,
+  chest: 311,
+  arm: 305,
+  waist: 303,
+  leg: 311,
+};
+
+/**
+ * MHF2's message file as message-probe found it: items in tables 1/2, then
+ * a pair per equipment kind. Pairs alternate which table holds the names;
+ * `accent` marks a non-English file.
+ */
+function fixtureMessages(accent = ""): Buffer {
+  const pair = (kind: string, n: number, namesFirst: boolean) => {
+    const names = Array.from({ length: n }, (_, i) => `${kind}${accent} ${i}`);
+    const descriptions = Array.from(
+      { length: n },
+      (_, i) => `A longer description of ${kind} ${i}.`,
+    );
+    return namesFirst ? [names, descriptions] : [descriptions, names];
+  };
+  return messageFile([
+    ["unrelated"],
+    ...pair("Item", 713 + 124, true),
+    ...pair("Sword", 601, true),
+    ...pair("Gun", 171, false),
+    ...pair("Helm", 327, true),
+    ...pair("Mail", 311, true),
+    ...pair("Vambraces", 305, true),
+    ...pair("Coil", 303, true),
+    ...pair("Greaves", 312, true),
+  ]);
+}
 
 /** A made-up EBOOT the size of the EU one, with a few entries in each MHF2 layout. */
 function fixtureEboot(): Buffer {
@@ -128,9 +191,14 @@ test("runExtractMhp2 writes each table and the checks", async () => {
   try {
     const unpacked = path.join(dir, "unpacked");
     const out = path.join(dir, "out");
-    const { mkdirSync } = await import("node:fs");
-    mkdirSync(unpacked);
+    mkdirSync(path.join(unpacked, "data-bin", "_unindexed"), { recursive: true });
     writeFileSync(path.join(unpacked, "eboot.bin"), fixtureEboot());
+    MHP2_EU_MESSAGE_FILES.forEach((index, i) =>
+      writeFileSync(
+        path.join(unpacked, "data-bin", "_unindexed", `${index}.bin`),
+        fixtureMessages(i === 0 ? "" : "é"),
+      ),
+    );
     writeFileSync(
       path.join(unpacked, "manifest.json"),
       JSON.stringify({
@@ -147,15 +215,22 @@ test("runExtractMhp2 writes each table and the checks", async () => {
     try {
       const result = await runExtractMhp2({ unpacked, out });
       assert.equal(result.counts["armor-leg.json"], 311);
-      assert.equal(
-        result.checks.every((c) => c.ok),
-        true,
+      // Every check passes but the legs' one extra name, as on the real disc.
+      assert.deepEqual(
+        result.checks.filter((c) => !c.ok).map((c) => c.name),
+        ["leg names: one per entry"],
       );
     } finally {
       console.log = log;
     }
     const gunner = JSON.parse(readFileSync(path.join(out, "weapons-gunner.json"), "utf-8"));
     assert.equal(gunner[1].shotCoatings, 0xabcd);
+    assert.equal(gunner[1].name, "Gun 1");
+    assert.equal(gunner[1].description, "A longer description of Gun 1.");
+    const decorations = JSON.parse(readFileSync(path.join(out, "decoration-values.json"), "utf-8"));
+    assert.equal(decorations[2].name, "Item 715");
+    const head = JSON.parse(readFileSync(path.join(out, "armor-head.json"), "utf-8"));
+    assert.equal(head[2].name, "Helm 2");
 
     writeFileSync(
       path.join(unpacked, "manifest.json"),
@@ -172,4 +247,21 @@ test("runExtractMhp2 writes each table and the checks", async () => {
   } finally {
     rmSync(dir, { recursive: true, force: true });
   }
+});
+
+test("readMhp2Text picks the English file and the names table of each pair", () => {
+  const files = [
+    fixtureMessages("é"),
+    fixtureMessages(),
+    fixtureMessages("é"),
+    fixtureMessages("é"),
+    fixtureMessages("é"),
+  ];
+  const result = readMhp2Text(files, COUNTS);
+  assert.equal(result.language, 1);
+  assert.equal(result.checks[0]!.ok, false); // English wasn't first
+  assert.equal(result.text.gunner.nameTable, 6);
+  assert.equal(result.text.gunner.names[3], "Gun 3");
+  assert.equal(result.text.blademaster.nameTable, 3);
+  assert.equal(result.text.items.names.length, 837);
 });

@@ -258,10 +258,16 @@ evidence. The checks: the EBOOT is the EU MHF2 one (by size); MHF2's own
 armor pointers are spaced exactly as the armor tables, which were found by
 content; every blademaster sharpness ID is in the sharpness table; every
 weapon's model has a weapon type; sharpness thresholds never decrease; and
-armor rarity stays at 10 or under. There are no names yet: they're in MHF2's
-own message files, and MHFU's name lists don't line up with MHF2's IDs
-(armor skill IDs, for one, are numbered differently). Not read yet: bow
-charge levels, bowgun ammo, and dual-element weapons.
+armor rarity stays at 10 or under. Names and descriptions come from MHF2's
+own message files (`src/games/mhp2-text.ts`): `message-probe` found DATA.BIN
+3-7, one file per language, whose tables pair up (names, descriptions) with
+the equipment tables by size. The English file is picked as the one with the
+fewest non-ASCII bytes in its weapon names, and each name table's count is
+checked against its entries (legs have one name more than entries; the
+check lists the empty names to place it). Decorations are named from the
+item names, which run on past the 713 items as MHFU's do past its 948. Not
+read yet: bow charge levels, bowgun ammo, dual-element weapons, crafting
+recipes and skills.
 
 Getting data out of them takes a disc of each, then, per game:
 
