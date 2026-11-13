@@ -13,10 +13,10 @@
  *   name, which the Cloudflare Worker reads to give shared sets their own
  *   embeds. See src/lib/set-embed.ts. Needs the /data bundles, so this runs
  *   after scripts/generate-data.ts.
- * - set-card/: what the Worker draws a shared set's card image with
- *   (src/lib/set-card.ts): frame.png, the site's card frame at the card's
- *   size, and sprites.json, the icons it uses, tinted and scaled, as data:
- *   URIs.
+ * - set-card.json: what the Worker draws a shared set's card image with
+ *   (src/lib/set-card.ts): the site's card frame at the card's size
+ *   (scripts/lib/card-frame.png, tiled) and the icons it uses, tinted and
+ *   scaled, as data: URIs.
  */
 import fs from "fs";
 import path from "path";
@@ -40,9 +40,9 @@ import { buildCodecTables } from "../src/lib/set-codec";
 import {
   CARD,
   cardSpriteSources,
-  SET_CARD_FRAME_PATH,
-  SET_CARD_SPRITES_PATH,
+  SET_CARD_ASSETS_PATH,
   SPRITE_SCALE,
+  type CardAssets,
   type CardSprites,
 } from "../src/lib/set-card";
 import { SET_EMBED_DATA_PATH, setEmbedData } from "../src/lib/set-embed";
@@ -250,19 +250,14 @@ async function tintedSprite(file: string, hex: string | undefined): Promise<stri
 }
 
 /**
- * The site's card frame (the card-frame utility's border image in
- * globals.css: 160×80, 24px slices top and bottom, 32px at the sides, with
- * its fill), drawn `width`×`height` by repeating its middle strips. The
- * size must be a whole number of strips, so no tile is cut.
+ * The site's card frame, drawn `width`×`height` by repeating its middle
+ * strips. scripts/lib/card-frame.png is the card-frame utility's border image
+ * in globals.css (160×80, 24px slices top and bottom, 32px at the sides, with
+ * its fill). The size must be a whole number of strips, so no tile is cut.
  */
 async function drawFrame(width: number, height: number): Promise<Buffer> {
-  const css = fs.readFileSync(path.join(process.cwd(), "src/app/globals.css"), "utf-8");
-  const m =
-    /@utility card-frame \{[^}]*?border-image-source: url\("data:image\/png;base64,([^"]+)"\)/.exec(
-      css,
-    );
-  if (!m) throw new Error("No card-frame border image in globals.css");
-  const { data: art, info } = await sharp(Buffer.from(m[1], "base64"))
+  const file = path.join(process.cwd(), "scripts/lib/card-frame.png");
+  const { data: art, info } = await sharp(file)
     .ensureAlpha()
     .raw()
     .toBuffer({ resolveWithObject: true });
@@ -294,18 +289,16 @@ async function drawFrame(width: number, height: number): Promise<Buffer> {
 
 /** The set card's frame and sprites. */
 async function writeSetCard() {
-  const dir = path.join(publicDir, path.dirname(SET_CARD_FRAME_PATH));
-  fs.mkdirSync(dir, { recursive: true });
-  fs.writeFileSync(
-    path.join(publicDir, SET_CARD_FRAME_PATH),
-    await drawFrame(CARD.width, CARD.height),
-  );
-
+  const frame = await drawFrame(CARD.width, CARD.height);
   const sprites: CardSprites = {};
   for (const { name, file, tint } of cardSpriteSources()) {
     sprites[name] = await tintedSprite(path.join(publicDir, "images", file), tint);
   }
-  fs.writeFileSync(path.join(publicDir, SET_CARD_SPRITES_PATH), JSON.stringify(sprites));
+  const assets: CardAssets = {
+    frame: `data:image/png;base64,${frame.toString("base64")}`,
+    sprites,
+  };
+  fs.writeFileSync(path.join(publicDir, SET_CARD_ASSETS_PATH), JSON.stringify(assets));
   return Object.keys(sprites).length;
 }
 

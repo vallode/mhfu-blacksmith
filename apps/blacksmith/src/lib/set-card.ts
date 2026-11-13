@@ -27,8 +27,7 @@ export const SET_CARD_VERSION = 3;
 export const CARD = { width: 1120, height: 592, frameTop: 24, frameSide: 32 } as const;
 
 /** Where the build writes the card's frame and sprites, under public/. */
-export const SET_CARD_FRAME_PATH = "/embed/set-card/frame.png";
-export const SET_CARD_SPRITES_PATH = "/embed/set-card/sprites.json";
+export const SET_CARD_ASSETS_PATH = "/embed/set-card.json";
 export const SET_CARD_FONT_PATH = "/fonts/biz-udgothic-latin-400-normal.ttf";
 export const SET_CARD_FONT = "BIZ UDGothic";
 
@@ -38,6 +37,12 @@ export const SPRITE_SIZE = 16 * SPRITE_SCALE;
 
 /** The sprites the card uses, by name (see spriteName): data: URIs. */
 export type CardSprites = Record<string, string>;
+
+/** What the build writes to SET_CARD_ASSETS_PATH: the frame at the card's size, and the sprites, as data: URIs. */
+export interface CardAssets {
+  frame: string;
+  sprites: CardSprites;
+}
 
 /** Icons the card draws: armor slots, decorations, the two weapon classes, elements. */
 const ICONS = {
@@ -181,11 +186,11 @@ function pieceName(piece: Piece | null): CardNode {
 }
 
 /** How many skills fit beside the Status panel before "and N more" (bad skills always show). */
-const MAX_SKILLS = 7;
+export const MAX_SKILLS = 7;
 
 /**
  * The card for a set, as a satori element tree. `frame` is the frame image
- * (SET_CARD_FRAME_PATH) as a data: URI.
+ * (CardAssets.frame) as a data: URI.
  */
 export function setCardTree(
   set: BuildSet,

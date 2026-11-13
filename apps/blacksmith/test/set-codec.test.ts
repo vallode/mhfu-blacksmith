@@ -22,7 +22,6 @@ import {
   MAX_NAME,
   toBase64Url,
   toRaw,
-  withoutName,
   type DecodeResult,
 } from "../src/lib/set-codec";
 import type { Piece } from "../src/lib/set-search";
@@ -342,9 +341,8 @@ describe("set codec names", () => {
 
   it("gives one name-free code per set", () => {
     const plain = encodeSet(set(), tables);
-    assert.equal(withoutName(encodeSet(set(), tables, "Rath farming")), plain);
-    assert.equal(withoutName(plain), plain);
-    assert.equal(withoutName("not a code!"), null);
+    assert.equal(ok(decodeSet(encodeSet(set(), tables, "Rath farming"), tables)).canonical, plain);
+    assert.equal(ok(decodeSet(plain, tables)).canonical, plain);
   });
 
   it("opens a set whose name isn't valid UTF-8", () => {

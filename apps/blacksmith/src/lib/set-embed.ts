@@ -177,15 +177,23 @@ export function buildSetEmbed(
   };
 }
 
-/** A share code's set and its embed, or null when it doesn't open or holds nothing. */
-export type SetReader = (code: string) => { set: BuildSet; embed: SetEmbed } | null;
+/** A shared set: what its code holds, decoded. */
+export interface SharedSet {
+  set: BuildSet;
+  /** Its name, from a saved set's share link. */
+  name?: string;
+  /** The code without the name: one per set (DecodeResult.canonical). */
+  canonical: string;
+}
+
+/** Share code -> its set, or null when it doesn't open or holds nothing. */
+export type SetReader = (code: string) => SharedSet | null;
 
 export function setReader(data: SetEmbedData): SetReader {
   const tables = embedCodecTables(data);
   return (code) => {
     const r = decodeSet(code, tables);
-    if (!r.ok) return null;
-    const embed = buildSetEmbed(r.set, data.trees, r.name);
-    return embed && { set: r.set, embed };
+    if (!r.ok || (!r.set.pieces.some(Boolean) && r.set.decorations.length === 0)) return null;
+    return { set: r.set, name: r.name, canonical: r.canonical };
   };
 }

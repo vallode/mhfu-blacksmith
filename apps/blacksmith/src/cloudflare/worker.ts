@@ -26,18 +26,24 @@ import yogaWasm from "yoga-wasm-web/dist/yoga.wasm";
 import { SITE_NAME } from "../lib/embed-format";
 import {
   CARD,
+  SET_CARD_ASSETS_PATH,
   SET_CARD_FONT,
   SET_CARD_FONT_PATH,
-  SET_CARD_FRAME_PATH,
-  SET_CARD_SPRITES_PATH,
   SET_CARD_VERSION,
   setCardTree,
-  type CardSprites,
+  type CardAssets,
 } from "../lib/set-card";
-import { SHARE_PARAM, withoutName } from "../lib/set-codec";
-import { SET_EMBED_DATA_PATH, setReader, type SetEmbed, type SetEmbedData } from "../lib/set-embed";
+import { SHARE_PARAM } from "../lib/set-codec";
+import {
+  buildSetEmbed,
+  SET_EMBED_DATA_PATH,
+  setReader,
+  type SetEmbed,
+  type SetEmbedData,
+} from "../lib/set-embed";
 import type { ReactNode } from "react";
 import type { BuildSet } from "../lib/set-build";
+import type { SkillTreeData } from "../lib/set-search";
 
 // The few Workers runtime types used here. @cloudflare/workers-types would
 // replace the DOM types the rest of the app is checked against.
@@ -86,55 +92,70 @@ async function asset(env: Env, origin: string, path: string): Promise<Response> 
 
 const loadEmbedData = once(async (env: Env, origin: string) => {
   const data = (await (await asset(env, origin, SET_EMBED_DATA_PATH)).json()) as SetEmbedData;
-  return { read: setReader(data), version: `${data.version}.${SET_CARD_VERSION}`, data };
+  return {
+    read: setReader(data),
+    version: `${data.version}.${SET_CARD_VERSION}`,
+    trees: data.trees,
+  };
 });
 
+/**
+ * A share code's set, or null when the code doesn't open. Throws when the set
+ * data can't be loaded, which is worth a retry (unavailable), not a 404.
+ */
 async function readCode(env: Env, origin: string, code: string) {
-  try {
-    const { read, version, data } = await loadEmbedData(env, origin);
-    const r = read(code);
-    return r && { ...r, version, trees: data.trees };
-  } catch (e) {
-    console.error("Couldn't load the set embed data", e);
-    return null;
-  }
+  const { read, version, trees } = await loadEmbedData(env, origin);
+  const shared = read(code);
+  return shared && { ...shared, version, trees };
 }
 
-function dataUri(bytes: ArrayBuffer, type: string): string {
-  const view = new Uint8Array(bytes);
-  let binary = "";
-  for (let i = 0; i < view.length; i += 0x8000) {
-    binary += String.fromCharCode(...view.subarray(i, i + 0x8000));
-  }
-  return `data:${type};base64,${btoa(binary)}`;
+/** A 503 for something that failed to load: clients retry instead of keeping a missing image. */
+function unavailable(what: string, e: unknown): Response {
+  console.error(`Couldn't load ${what}`, e);
+  return new Response(`Couldn't load ${what}`, {
+    status: 503,
+    headers: { "Retry-After": "60", "Cache-Control": "no-store" },
+  });
 }
 
-/** The card renderer: the WebAssembly modules, the font, the frame and sprites. */
-const loadRenderer = once(async (env: Env, origin: string) => {
-  const [yoga, , font, frame, sprites] = await Promise.all([
-    initYoga(yogaWasm),
-    initResvg(resvgWasm),
+// Each WebAssembly module is set up on its own: resvg refuses a second
+// initWasm, so a retry after a failed asset fetch mustn't run it again.
+const initResvgOnce = once(() => initResvg(resvgWasm));
+const initSatoriOnce = once(async () => initSatori(await initYoga(yogaWasm)));
+
+/** The card's font, frame and sprites. */
+const loadCardAssets = once(async (env: Env, origin: string) => {
+  const [font, assets] = await Promise.all([
     asset(env, origin, SET_CARD_FONT_PATH).then((r) => r.arrayBuffer()),
-    asset(env, origin, SET_CARD_FRAME_PATH).then(async (r) =>
-      dataUri(await r.arrayBuffer(), "image/png"),
-    ),
-    asset(env, origin, SET_CARD_SPRITES_PATH).then((r) => r.json() as Promise<CardSprites>),
+    asset(env, origin, SET_CARD_ASSETS_PATH).then((r) => r.json() as Promise<CardAssets>),
   ]);
-  initSatori(yoga);
   const fonts = [
     { name: SET_CARD_FONT, data: font, weight: 400 as const, style: "normal" as const },
   ];
-  return async (set: BuildSet, trees: SetEmbedData["trees"]) => {
-    const tree = setCardTree(set, trees, sprites, frame);
-    // satori's types want a React element; the tree is the same shape.
-    const svg = await satori(tree as unknown as ReactNode, {
-      width: CARD.width,
-      height: CARD.height,
-      fonts,
-    });
-    return new Resvg(svg).render().asPng();
-  };
+  return { fonts, assets };
 });
+
+/** The card for a set, as a PNG. */
+async function drawCard(
+  env: Env,
+  origin: string,
+  set: BuildSet,
+  trees: SkillTreeData[],
+): Promise<Uint8Array> {
+  const [{ fonts, assets }] = await Promise.all([
+    loadCardAssets(env, origin),
+    initResvgOnce(),
+    initSatoriOnce(),
+  ]);
+  const tree = setCardTree(set, trees, assets.sprites, assets.frame);
+  // satori's types want a React element; the tree is the same shape.
+  const svg = await satori(tree as unknown as ReactNode, {
+    width: CARD.width,
+    height: CARD.height,
+    fonts,
+  });
+  return new Resvg(svg).render().asPng();
+}
 
 const cardUrl = (origin: string, code: string, version: string) => {
   const url = new URL(CARD_PATH, origin);
@@ -155,20 +176,23 @@ async function cardResponse(
   url: URL,
   code: string,
 ): Promise<Response> {
-  const r = await readCode(env, url.origin, code);
-  const canonical = withoutName(code);
-  if (!r || !canonical) return new Response("Not found", { status: 404 });
-  const key = new Request(cardUrl(url.origin, canonical, r.version));
+  let r;
+  try {
+    r = await readCode(env, url.origin, code);
+  } catch (e) {
+    return unavailable("the set data", e);
+  }
+  if (!r) return new Response("Not found", { status: 404 });
+  const key = new Request(cardUrl(url.origin, r.canonical, r.version));
 
   const cache = caches.default;
   let res = await cache.match(key);
   if (!res) {
     let png: Uint8Array;
     try {
-      png = await (await loadRenderer(env, url.origin))(r.set, r.trees);
+      png = await drawCard(env, url.origin, r.set, r.trees);
     } catch (e) {
-      console.error("Couldn't draw the set card", e);
-      return new Response("Couldn't draw the card", { status: 500 });
+      return unavailable("the set card", e);
     }
     res = new Response(png as Uint8Array<ArrayBuffer>, {
       headers: {
@@ -215,11 +239,12 @@ function rewritePage(
   embed: SetEmbed,
   url: URL,
   code: string,
-  version: string,
+  shared: { canonical: string; version: string },
 ): Response {
   const shareUrl = new URL("/set-builder/", url.origin);
   shareUrl.searchParams.set(SHARE_PARAM, code);
-  const image = cardUrl(url.origin, code, version).href;
+  // The card doesn't show the name, so every name for a set shares one image URL.
+  const image = cardUrl(url.origin, shared.canonical, shared.version).href;
   const content: Record<string, string> = {
     'meta[name="description"]': embed.description,
     'meta[name="theme-color"]': embed.color,
@@ -281,14 +306,31 @@ const worker = {
     if (url.pathname === CARD_PATH) return cardResponse(env, ctx, url, code);
 
     if (url.pathname === OEMBED_PATH) {
-      const r = await readCode(env, url.origin, code);
-      return r ? oembedResponse(r.embed, url.origin) : new Response("Not found", { status: 404 });
+      let r;
+      try {
+        r = await readCode(env, url.origin, code);
+      } catch (e) {
+        return unavailable("the set data", e);
+      }
+      const embed = r && buildSetEmbed(r.set, r.trees, r.name);
+      return embed ? oembedResponse(embed, url.origin) : new Response("Not found", { status: 404 });
     }
 
     const page = await env.ASSETS.fetch(request);
     if (!page.ok || !page.headers.get("Content-Type")?.startsWith("text/html")) return page;
-    const r = await readCode(env, url.origin, code);
-    return r ? rewritePage(page, r.embed, url, code, r.version) : page;
+    let r;
+    try {
+      r = await readCode(env, url.origin, code);
+    } catch (e) {
+      // The page still opens the set; it just goes out with the generic
+      // embed, uncached, so the next fetch tries again.
+      console.error("Couldn't load the set data", e);
+      const headers = new Headers(page.headers);
+      headers.set("Cache-Control", "no-store");
+      return new Response(page.body, { status: page.status, headers });
+    }
+    const embed = r && buildSetEmbed(r.set, r.trees, r.name);
+    return r && embed ? rewritePage(page, embed, url, code, r) : page;
   },
 };
 

@@ -22,6 +22,7 @@ import {
   CARD,
   cardSpriteSources,
   jewelLabel,
+  MAX_SKILLS,
   SET_CARD_FONT,
   SET_CARD_FONT_PATH,
   setCardTree,
@@ -111,11 +112,28 @@ describe("set card contents", () => {
   });
 
   it("always shows bad skills, cutting good ones to make room", () => {
-    const set = fullSet("Blademaster");
+    // One made-up chest piece with the top skill of 9 trees and the worst bad
+    // skill of another.
+    const withGood = data.trees.filter((t) => t.skills.some((s) => s.points > 0));
+    const withBad = data.trees.filter((t) => t.skills.some((s) => s.points < 0));
+    const points: Record<string, number> = {};
+    for (const t of withGood.slice(0, MAX_SKILLS + 2)) {
+      points[t.tree] = Math.max(...t.skills.map((s) => s.points));
+    }
+    const badTree = withBad.find((t) => !(t.tree in points))!;
+    points[badTree.tree] = Math.min(...badTree.skills.map((s) => s.points));
+    const plate = { ...fullSet("Blademaster").pieces[1]!, points, torsoUp: false };
+    const set = withPiece(emptyBuild(), "plate", plate);
+
     const skills = evaluateBuild(data, set).skills;
     const bad = skills.filter((s) => s.threshold < 0);
+    const good = skills.filter((s) => s.threshold > 0);
+    assert.ok(good.length > MAX_SKILLS && bad.length > 0, "the set needs more skills than fit");
     const text = cardText(set);
     for (const s of bad) assert.ok(text.includes(s.name), s.name);
+    const shownGood = good.filter((s) => text.includes(s.name)).length;
+    assert.equal(shownGood, MAX_SKILLS - bad.length);
+    assert.ok(text.includes(`and ${good.length - shownGood} more`));
   });
 
   it("leaves out jewels in a slot with no piece, as the stats do", () => {

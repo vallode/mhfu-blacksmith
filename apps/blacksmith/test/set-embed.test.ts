@@ -30,7 +30,10 @@ const tables = buildCodecTables(data, ids);
 /** As the Worker gets it: through JSON. */
 const embedData = JSON.parse(JSON.stringify(setEmbedData(data, tables, "test"))) as SetEmbedData;
 const read = setReader(embedData);
-const embed = (code: string) => read(code)?.embed ?? null;
+const embed = (code: string) => {
+  const r = read(code);
+  return r && buildSetEmbed(r.set, embedData.trees, r.name);
+};
 
 const byName = (slot: string, name: string): Piece => {
   const p = data.pieces.find((x) => x.slot === slot && x.name === name);

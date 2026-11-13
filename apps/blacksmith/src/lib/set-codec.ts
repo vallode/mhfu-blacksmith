@@ -375,7 +375,17 @@ export function encodeSet(set: BuildSet, tables: CodecTables, name?: string): st
 }
 
 export type DecodeResult =
-  | { ok: true; set: BuildSet; dropped: DroppedRef[]; name?: string }
+  | {
+      ok: true;
+      set: BuildSet;
+      dropped: DroppedRef[];
+      name?: string;
+      /**
+       * The same code without its name (or fields this build doesn't know):
+       * one code per set, whatever it was shared as.
+       */
+      canonical: string;
+    }
   | { ok: false; error: DecodeError };
 
 /**
@@ -413,17 +423,8 @@ export function fromRaw(raw: RawSet, tables: CodecTables): DecodeResult {
   if (refs > 0 && dropped.length === refs) {
     return { ok: false, error: { kind: "unknown-ids", dropped } };
   }
-  return { ok: true, set, dropped, ...(raw.name ? { name: raw.name } : {}) };
-}
-
-/**
- * The same code without its name (and any fields this build doesn't know):
- * one code per set, whatever it was shared as. Null if it doesn't decode.
- */
-export function withoutName(code: string): string | null {
-  const bytes = fromBase64Url(code.trim());
-  const r = bytes && decodeRaw(bytes);
-  return r?.ok ? toBase64Url(encodeRaw({ ...r.raw, name: undefined })) : null;
+  const canonical = toBase64Url(encodeRaw({ ...raw, name: undefined }));
+  return { ok: true, set, dropped, canonical, ...(raw.name ? { name: raw.name } : {}) };
 }
 
 /** A share code to a set. Never throws. */

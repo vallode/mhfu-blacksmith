@@ -554,6 +554,8 @@ export default function SetBuilderClient() {
     const name = !savedSet && linkName ? linkName : nextSetName(savedSets);
     const [next, added] = addSet(savedSets, name, code);
     setSavedId(added.id);
+    // From here the saved set's name is the one shown and shared.
+    setLinkName(null);
     storeSets(next, `Saved as ${added.name}. Rename it in My sets.`);
   };
 
