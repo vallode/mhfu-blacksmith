@@ -34,6 +34,7 @@ import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useWeaponModel } from "@/lib/models";
 import { usePreferences } from "@/context/PreferencesContext";
 import Loading from "@/components/Loading";
+import WishlistButton from "@/components/WishlistButton";
 
 interface Props {
   type: WeaponType;
@@ -93,6 +94,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               className="ml-[0.4rem]"
             />
           )}
+
+          <WishlistButton
+            gear={{ kind: "weapon", type, slug }}
+            name={weapon.name}
+            className={modelUrl ? undefined : "ml-[0.4rem]"}
+          />
 
           {(weapon.sharpness || weapon.sharpness_plus) && (
             <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:mt-[1rem] mobile:mr-auto mobile:ml-0">

@@ -50,6 +50,7 @@ const NAV_GROUPS: NavItem[][] = [
   ],
   [
     { label: "Sets", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
+    { label: "Wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/" },
     { label: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
     { label: "Options", icon: "part", match: "/options/", href: "/options/" },
   ],
