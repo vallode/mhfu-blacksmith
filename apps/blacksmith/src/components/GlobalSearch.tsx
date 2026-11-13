@@ -24,7 +24,7 @@ interface SearchEntry {
 
 // A result row with a highlight strip (::before) that fills the row; it glows on hover/focus and for the keyboard-selected row.
 const resultRow = [
-  "relative flex h-[38px] items-center gap-[1rem] px-[1.6rem] text-white no-underline",
+  "relative flex h-[38px] items-center gap-[1rem] px-[0.6rem] text-white no-underline",
   "before:absolute before:top-0 before:left-0 before:-z-1 before:block before:h-full before:w-full before:bg-transparent",
   "hover:before:hover-glow focus:before:hover-glow",
 ].join(" ");
@@ -103,8 +103,12 @@ export default function GlobalSearch() {
   const open = useCallback(async () => {
     await loadIndex();
     setIsOpen(true);
-    setTimeout(() => inputRef.current?.focus(), 0);
   }, [loadIndex]);
+
+  // The dialog is display:none until it opens, so focus once it has rendered.
+  useEffect(() => {
+    if (isOpen) inputRef.current?.focus();
+  }, [isOpen]);
 
   const close = useCallback(() => {
     setIsOpen(false);
@@ -124,7 +128,10 @@ export default function GlobalSearch() {
         return;
       }
 
-      if (!isOpen && e.key === "/" && !["INPUT", "TEXTAREA"].includes(tag)) {
+      const typing =
+        ["INPUT", "TEXTAREA", "SELECT"].includes(tag) ||
+        (document.activeElement as HTMLElement)?.isContentEditable;
+      if (!isOpen && e.key === "/" && !typing && !e.ctrlKey && !e.metaKey && !e.altKey) {
         e.preventDefault();
         open();
         return;
@@ -188,11 +195,9 @@ export default function GlobalSearch() {
     >
       <div className="absolute inset-0 bg-black/70" onClick={close} />
 
-      <div className="relative z-1 mx-[1.4rem] flex max-h-[80%] min-h-0 min-w-0 flex-[0_1_62rem] mobile:mx-4 mobile:max-h-none mobile:flex-auto">
-        <Card className="text-sub" bodyClassName="gap-0 card-p-[1.6rem]">
-          {/* The frame's top band ends 11px into the card. This margin and the
-              divider's leave 11px above and below the 22px row. */}
-          <div className="mt-[0.6rem] flex shrink-0 items-center gap-[1rem]">
+      <div className="relative z-1 mx-[1.4rem] flex max-h-[80%] min-h-0 min-w-0 flex-[0_1_62rem] [--card-fill:var(--color-sheet)] mobile:mx-4 mobile:max-h-none mobile:flex-auto">
+        <Card frame="blue" className="text-sub" bodyClassName="gap-[1.2rem] card-p-7">
+          <div className="flex shrink-0 items-center gap-[1rem] border-[3px] border-white/25 bg-selector px-[1.2rem] focus-within:border-stat">
             <svg
               width="22"
               height="22"
@@ -203,16 +208,17 @@ export default function GlobalSearch() {
               strokeLinecap="round"
               strokeLinejoin="round"
               aria-hidden="true"
-              className="shrink-0 opacity-60"
+              className="shrink-0 text-stat"
             >
               <circle cx="11" cy="11" r="8" />
               <line x1="21" y1="21" x2="16.65" y2="16.65" />
             </svg>
             <input
               ref={inputRef}
-              className="min-w-0 flex-1 border-none bg-transparent px-[1.6rem] py-0 font-[inherit] text-main leading-none text-white outline-none placeholder:text-white/35 [&::-webkit-search-cancel-button]:hidden"
+              className="h-[4.4rem] min-w-0 flex-1 border-none bg-transparent px-[0.4rem] py-0 font-[inherit] text-main leading-none text-white outline-none placeholder:text-white/40 [&::-webkit-search-cancel-button]:hidden"
               type="search"
               placeholder="Search weapons, armor, monsters…"
+              aria-label="Search"
               value={query}
               onChange={handleQueryChange}
               onKeyDown={handleInputKeydown}
@@ -221,12 +227,10 @@ export default function GlobalSearch() {
             />
           </div>
 
-          <hr className="mt-[1.1rem] mb-[1rem]" />
-
           <div className="min-h-0 flex-1 overflow-y-auto" role="listbox">
-            {results.length === 0 && query.trim().length >= 2 && (
-              <p className="px-[1.6rem] py-[2rem] text-center text-sub text-white/40">
-                No results found
+            {results.length === 0 && (
+              <p className="px-[1.6rem] py-[1.6rem] text-center text-sub text-white/40">
+                {query.trim().length >= 2 ? "No results found" : "Type at least two letters"}
               </p>
             )}
 
@@ -256,9 +260,9 @@ export default function GlobalSearch() {
                     />
                   </div>
                   <p className="m-0 min-w-0 flex-1 truncate">{item.name}</p>
-                  {item.rank && (
-                    <span className="shrink-0 text-fine text-white/50 capitalize">{item.rank}</span>
-                  )}
+                  <span className="shrink-0 text-fine text-white/50 capitalize">
+                    {item.rank ?? item.category}
+                  </span>
                 </Link>
               );
             })}
