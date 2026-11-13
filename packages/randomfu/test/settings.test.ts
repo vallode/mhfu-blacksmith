@@ -108,6 +108,13 @@ test("presets do what their help says", () => {
   }
   for (const key of keys(full)) assert.ok(actionsOf(chaos).has(key), `Chaos has ${key}`);
 
+  // Every preset but Rewards only writes the bookshelf guides.
+  for (const { name } of PRESETS) {
+    for (const key of ["hints.bookshelf", "hints.almanac"] as const) {
+      assert.equal(preset(name)[key], name !== "Rewards only", `${name}: ${key}`);
+    }
+  }
+
   // Nothing untried is in a preset.
   for (const { name } of PRESETS) {
     for (const key of UNTRIED) assert.ok(!actionsOf(preset(name)).has(key), `${name}: ${key}`);

@@ -1104,6 +1104,22 @@ export interface Preset {
   changes: Partial<Record<OptionKey, boolean | number | string>>;
 }
 
+/** The bookshelf guides, written by every preset but Rewards only. */
+const HINTS = { "hints.bookshelf": true, "hints.almanac": true } as const;
+
+/** The monster and weapon randomizers that Randomized, Full and Chaos all turn on. */
+const STAT_RANDOMIZERS = {
+  "questMonsters.crowns": true,
+  "questMonsters.difficulty": true,
+  "questMonsters.smallCounts": true,
+  "monsterStats.hp": true,
+  "monsterStats.size": true,
+  "monsterStats.status": true,
+  "weapons.attack": true,
+  "weapons.affinity": true,
+  "weapons.element": true,
+} as const;
+
 export const PRESETS: readonly Preset[] = [
   {
     name: "Rewards only",
@@ -1124,8 +1140,7 @@ export const PRESETS: readonly Preset[] = [
       "questMonsters.species": true,
       "weaknesses.elements": true,
       "weaknesses.parts": true,
-      "hints.bookshelf": true,
-      "hints.almanac": true,
+      ...HINTS,
     },
   },
   {
@@ -1144,17 +1159,8 @@ export const PRESETS: readonly Preset[] = [
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
       "questMonsters.size": true,
-      "questMonsters.crowns": true,
-      "questMonsters.difficulty": true,
-      "questMonsters.smallCounts": true,
-      "monsterStats.hp": true,
-      "monsterStats.size": true,
-      "monsterStats.status": true,
-      "weapons.attack": true,
-      "weapons.affinity": true,
-      "weapons.element": true,
-      "hints.bookshelf": true,
-      "hints.almanac": true,
+      ...STAT_RANDOMIZERS,
+      ...HINTS,
     },
   },
   {
@@ -1165,9 +1171,6 @@ export const PRESETS: readonly Preset[] = [
       "recipes.amounts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
-      "weapons.attack": true,
-      "weapons.affinity": true,
-      "weapons.element": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
       "shops.enabled": true,
@@ -1182,16 +1185,10 @@ export const PRESETS: readonly Preset[] = [
       "deliveries.enabled": true,
       "questMonsters.species": true,
       "questMonsters.size": true,
-      "questMonsters.crowns": true,
-      "questMonsters.difficulty": true,
-      "questMonsters.smallCounts": true,
-      "monsterStats.hp": true,
-      "monsterStats.size": true,
-      "monsterStats.status": true,
+      ...STAT_RANDOMIZERS,
       "weaknesses.elements": true,
       "weaknesses.parts": true,
-      "hints.bookshelf": true,
-      "hints.almanac": true,
+      ...HINTS,
     },
   },
   {
@@ -1233,29 +1230,20 @@ export const PRESETS: readonly Preset[] = [
       "questMonsters.speciesPool": "any",
       "questMonsters.size": true,
       "questMonsters.sizeSpread": 0.5,
-      "questMonsters.crowns": true,
+      ...STAT_RANDOMIZERS,
       "questMonsters.crownSpread": "wide",
-      "questMonsters.difficulty": true,
       "questMonsters.difficultySpread": 12,
       "questMonsters.difficultyRange": "any",
-      "questMonsters.smallCounts": true,
       "questMonsters.smallCountSpread": 0.9,
-      "monsterStats.hp": true,
       "monsterStats.hpSpread": 0.5,
-      "monsterStats.size": true,
       "monsterStats.sizeSpread": 0.4,
-      "monsterStats.status": true,
       "monsterStats.statusSpread": 0.9,
       "weaknesses.elements": true,
       "weaknesses.parts": true,
-      "weapons.attack": true,
       "weapons.attackSpread": 0.5,
-      "weapons.affinity": true,
       "weapons.affinitySpread": 30,
-      "weapons.element": true,
       "weapons.elementSpread": 0.6,
-      "hints.bookshelf": true,
-      "hints.almanac": true,
+      ...HINTS,
     },
   },
 ];

@@ -437,9 +437,8 @@ commands that found them.
 
 ### Monsters
 
-Species swaps, quest size and quest text have been tried on the EU disc in
-PPSSPP; the other monster options haven't. None is in a preset. They're
-all in-place edits, so every file keeps its size.
+Every monster option has been tried on the EU disc in PPSSPP, and the
+presets use them. They're all in-place edits, so every file keeps its size.
 
 **Quest monsters** (`src/shuffles/quest-monsters.ts`) edit the spawn
 records of Village and Guild quests (`src/game/spawns.ts`): each
