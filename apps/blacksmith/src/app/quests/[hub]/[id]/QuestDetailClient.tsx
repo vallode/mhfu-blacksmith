@@ -288,19 +288,18 @@ export default function QuestDetailClient({ hub, id }: Props) {
       {/* Type, title, board and description, like the quest scroll: the
           type and title centred in white, the details in white with the
           game's roomy lines. CLEAR!! (a quest the loaded hunter has cleared)
-          and URGENT!!! sit in the top corners, level with the type, which
-          keeps clear of them; on a phone they take their own line. */}
+          sits in the top corner, level with the type, which keeps clear of
+          it; on a phone it takes its own line. */}
       <div className="relative flex flex-col gap-2 text-main text-white">
-        {(cleared || quest.urgent) && (
+        {cleared && (
           <div className="pointer-events-none absolute inset-x-0 top-0 flex text-small leading-[2.75rem] mobile:static mobile:leading-[1.25]">
-            {cleared && <p className="text-stat">CLEAR!!</p>}
-            {quest.urgent && <p className="ml-auto text-negative">URGENT!!!</p>}
+            <p className="text-stat">CLEAR!!</p>
           </div>
         )}
         <p
           className={cn(
             "text-center leading-[1.25] whitespace-normal",
-            (cleared || quest.urgent) && "px-[9.6rem] mobile:px-0",
+            cleared && "px-[9.6rem] mobile:px-0",
           )}
         >
           {questTypeLabel(quest.type)}

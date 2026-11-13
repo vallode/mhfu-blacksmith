@@ -236,12 +236,9 @@ export default function QuestHubShell({
                   aria-current={q.id === id ? "page" : undefined}
                   className={cn("list-row", q.id === id && "bg-white/10")}
                 >
-                  <p className="truncate">{q.title}</p>
-                  {(cleared?.has(q.id) || q.urgent) && (
-                    <span className="ml-auto flex flex-none gap-[1rem]">
-                      {cleared?.has(q.id) && <span className="text-stat">CLEAR!!</span>}
-                      {q.urgent && <span className="text-negative">Urgent</span>}
-                    </span>
+                  <p className={cn("truncate", q.urgent && "text-negative")}>{q.title}</p>
+                  {cleared?.has(q.id) && (
+                    <span className="ml-auto flex-none text-stat">CLEAR!!</span>
                   )}
                 </Link>
               ))}
