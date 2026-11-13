@@ -7,6 +7,7 @@ import {
   QUEST_HUB_TO_FILE,
   questHub,
 } from "../src/emit/quests.js";
+import type { SizeTables } from "../src/monsters/sizes.js";
 import type { ParsedQuest } from "../src/quests/parser.js";
 
 /** Real quest ID 1 ("Hunt 1 Giadrome", the game's very first quest) — every field below is a real decrypted/parsed value from the JP disc. */
@@ -22,7 +23,8 @@ const GIADROME_HUNT: ParsedQuest = {
     monSizeModifier: 0,
     rank: 0,
     spawn: 0,
-    unknownFlags: [0, 0, 0],
+    unknownFlags: [0, 0],
+    sizeVariation: 0,
     statTable: 0,
     supplyCond: 0,
     attackRoll: 4,
@@ -376,4 +378,52 @@ test("emitQuest gives each large monster its stat multiplier row", () => {
   assert.deepEqual(emitQuest(GIADROME_HUNT, () => null)!.large_monsters, [
     { monster: "Giadrome", quantity: 1, power: 4 },
   ]);
+});
+
+test("emitQuest gives the quest's monster size range, and the flag fixed-size story quests wait on", () => {
+  const sizes: SizeTables = {
+    // Every roll is 100.
+    tierPick: Array(32).fill(0),
+    tiers: [Array(32).fill(100)],
+    variation: [
+      [100, 100],
+      [100, 105],
+      [100, 115],
+      [95, 114],
+      [85, 125],
+    ],
+    crowns: [{ emIds: [77], mini: 90, silver: 119, gold: 123 }],
+    baseSizes: [],
+    fixedSizeQuests: new Map([[10006, 322]]),
+  };
+  const quest = (questId: number, monSizeModifier: number, sizeVariation: number) => ({
+    ...GIADROME_HUNT,
+    header: { ...GIADROME_HUNT.header, questId, monSizeModifier, sizeVariation },
+  });
+  assert.deepEqual(emitQuest(quest(1, 130, 4), undefined, sizes)!.monster_size, {
+    modifier: 130,
+    min: 110,
+    max: 162,
+  });
+  // Giadrome at 130 is always a gold crown.
+  assert.deepEqual(
+    emitQuest(quest(1, 130, 4), undefined, sizes)!.large_monsters[0]!.crown_chances,
+    {
+      mini: 0,
+      silver: 0,
+      gold: 1,
+    },
+  );
+  assert.deepEqual(emitQuest(quest(10006, 100, 3), undefined, sizes)!.monster_size, {
+    modifier: 100,
+    min: 95,
+    max: 114,
+    fixed_until_flag: 322,
+  });
+  // No size tables, or no large monsters: null.
+  assert.equal(emitQuest(quest(1, 100, 0))!.monster_size, null);
+  assert.equal(
+    emitQuest({ ...quest(1, 100, 0), largeMonsters: [] }, undefined, sizes)!.monster_size,
+    null,
+  );
 });

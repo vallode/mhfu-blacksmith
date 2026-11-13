@@ -145,6 +145,10 @@ export interface CompactMonster {
   sz?: [number, number];
   /** base_hp */
   hp?: number;
+  /** base_size, in cm */
+  bs?: number;
+  /** crowns: [mini, silver, gold] in percent */
+  cr?: [number, number, number];
   /** breaks, as is */
   bk?: MonsterBreak[];
   /** hitzone_flinch: a flinch stringIdx (or null) per `hz` row, in its order */
@@ -424,6 +428,8 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     drops: m.dr ? drops : undefined,
     sizes: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     base_hp: m.hp,
+    base_size: m.bs,
+    crowns: m.cr ? { mini: m.cr[0], silver: m.cr[1], gold: m.cr[2] } : undefined,
     breaks: m.bk,
     hitzone_flinch: hitzoneFlinch,
   };

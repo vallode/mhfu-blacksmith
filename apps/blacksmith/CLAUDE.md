@@ -22,7 +22,7 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
   component (see `src/components/DetailPanel.tsx`: `Stat`, `MaterialList`, …).
   For a class string shared by a few elements, use a named constant, either in
   the component file or in `src/styles/*.ts` (`tables.ts`, `settings.ts`,
-  `progress.ts`).
+  `progress.ts`, `set-builder.ts`).
 - **`globals.css` holds only what utilities can't express:** design tokens
   (`@theme`), custom utilities (`@utility`), element resets, and the few
   global layout classes (`.split-page`, `.list-row`, `.blacksmith__title`).

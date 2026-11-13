@@ -4,6 +4,8 @@
  * the generator, the pages and the client.
  */
 
+import { CROWN_ORDER, type Crown } from "./crowns";
+
 /** A quest board: Village, the three Guild ranks, Training School, Treasure Hunting. */
 export const QUEST_HUBS = [
   { slug: "village", label: "Village", hub: "village", rank: null },
@@ -98,6 +100,20 @@ export type CompactMonsterStats = [
   stagger: number,
 ];
 
+/**
+ * The size a quest's large monsters roll, in percent of their base size:
+ * the roll's centre and range, whether a story flag (likely the first clear)
+ * holds them at 100 first, and each crowned monster's chance of a mini,
+ * silver or gold crown size, in 1024ths (the roll has 1024 outcomes).
+ */
+export type CompactQuestSize = [
+  modifier: number,
+  min: number,
+  max: number,
+  fixedFirst: 0 | 1,
+  crowns: [monster: number, mini: number, silver: number, gold: number][],
+];
+
 /** One supply list: [item ID, amount, stacks (only when more than 1)] rows, distinct, in disc order. */
 export type CompactSupplies = ([number, number] | [number, number, number])[];
 
@@ -128,6 +144,7 @@ export type CompactQuest = [
   monsterStats: CompactMonsterStats[], // distinct rows, in disc order
   areaMap: 0 | 1,
   smallCounts: ([total: number] | [total: number, endless: 1])[], // parallel to smallMonsters
+  size: CompactQuestSize | null, // null without large monsters
 ];
 
 export interface QuestsBundle {
@@ -165,6 +182,26 @@ export interface QuestMonsterStats {
   defense: number;
   /** Multiplies the damage a part takes before the monster flinches. */
   stagger: number;
+}
+
+/** A crowned large monster's chance (0-1) of each crown size in a quest. */
+export interface QuestCrownChances {
+  monster: QuestMonster;
+  mini: number;
+  silver: number;
+  gold: number;
+}
+
+/** The size, in percent, a quest's large monsters roll (src/lib/crowns.ts). */
+export interface QuestMonsterSize {
+  /** The roll's centre: a roll of 100 gives this. */
+  modifier: number;
+  min: number;
+  max: number;
+  /** Monsters stay at 100 until a story flag (likely the quest's first clear) is set. */
+  fixedFirst: boolean;
+  /** Each monster with crowns; others are always 100. */
+  crowns: QuestCrownChances[];
 }
 
 export interface QuestReward {
@@ -214,7 +251,12 @@ export interface Quest {
   urgent: boolean;
   /** Whether area-maps.json places this quest's gathering points. */
   hasAreaMap: boolean;
+  /** Null without large monsters, or in a bundle cached before sizes were added. */
+  monsterSize: QuestMonsterSize | null;
 }
+
+/** The size roll's outcomes: 32 tiers by 32 rolls. Crown chances are stored as counts of these. */
+export const ROLL_OUTCOMES = 1024;
 
 export function decodeQuests(b: QuestsBundle): Quest[] {
   const str = (i: number | null) => (i === null ? null : (b.strings[i] ?? null));
@@ -252,6 +294,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       ms,
       am,
       sc,
+      sz,
     ]) => ({
       id,
       hub: QUEST_HUBS[hub]?.slug ?? "village",
@@ -287,6 +330,20 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
       requires: rq ?? null,
       urgent: ur === 1,
       hasAreaMap: am === 1,
+      monsterSize: sz
+        ? {
+            modifier: sz[0],
+            min: sz[1],
+            max: sz[2],
+            fixedFirst: sz[3] === 1,
+            crowns: sz[4].map(([m, mini, silver, gold]) => ({
+              monster: monsters[m]!,
+              mini: mini / ROLL_OUTCOMES,
+              silver: silver / ROLL_OUTCOMES,
+              gold: gold / ROLL_OUTCOMES,
+            })),
+          }
+        : null,
     }),
   );
 }
@@ -422,4 +479,38 @@ export function rewardTableHeading(t: QuestRewardTable): {
         note: t.condition === null ? undefined : `condition ${t.condition}`,
       };
   }
+}
+
+/** A crown a quest gives a monster the best chance of, and that chance. */
+export interface BestCrown {
+  crown: Crown;
+  chance: number;
+}
+
+/**
+ * For each crown, the quests that give a monster the best chance of it
+ * (every quest tied at that chance), by quest ID. Crowns no quest can give
+ * are left out; crowns are listed gold, silver, mini.
+ */
+export function bestCrownQuests(
+  quests: readonly Quest[],
+  monster: string,
+): Map<number, BestCrown[]> {
+  const out = new Map<number, BestCrown[]>();
+  // Each quest's chances for this monster, looked up once.
+  const rows = quests.flatMap((quest) => {
+    const chances = quest.monsterSize?.crowns.find((c) => c.monster.name === monster);
+    return chances ? [{ id: quest.id, chances }] : [];
+  });
+  for (const crown of CROWN_ORDER) {
+    const best = Math.max(0, ...rows.map((r) => r.chances[crown]));
+    if (best === 0) continue;
+    for (const { id, chances } of rows)
+      if (chances[crown] === best) {
+        const list = out.get(id) ?? [];
+        list.push({ crown, chance: best });
+        out.set(id, list);
+      }
+  }
+  return out;
 }

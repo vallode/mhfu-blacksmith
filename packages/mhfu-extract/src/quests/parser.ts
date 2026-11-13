@@ -35,8 +35,14 @@ export interface QuestHeader {
   rank: number;
   spawn: number;
   supplyCond: number;
-  /** The hexpat's Unkn4, Unkn5 and Unkn7 (u8 @ 71, 72, 74); raw, meaning unknown. */
+  /** The hexpat's Unkn4 and Unkn5 (u8 @ 71, 72); raw, meaning unknown (always 0 on the EU disc). */
   unknownFlags: number[];
+  /**
+   * The hexpat's Unkn7 (u8 @ 74): how far the quest's monsters vary in size
+   * around `monSizeModifier`, an index into the game's 5 roll clamps
+   * (src/monsters/sizes.ts).
+   */
+  sizeVariation: number;
   /**
    * The hexpat's Unkn6 (u8 @ 73): which of its monsters' three stat
    * multiplier tables the quest uses (src/monsters/multipliers.ts).
@@ -74,7 +80,8 @@ export function readQuestHeader(reader: BinaryReader): QuestHeader {
     rank: reader.u8(68),
     spawn: reader.u8(69),
     supplyCond: reader.u8(70),
-    unknownFlags: [reader.u8(71), reader.u8(72), reader.u8(74)],
+    unknownFlags: [reader.u8(71), reader.u8(72)],
+    sizeVariation: reader.u8(74),
     statTable: reader.u8(73),
     attackRoll: reader.u8(75),
     questType: reader.u32(76),

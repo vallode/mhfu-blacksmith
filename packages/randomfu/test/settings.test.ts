@@ -47,6 +47,7 @@ test("every option has a default its own checks accept", () => {
 
 /** Options no preset turns on until they're tried in game (see the README's status). */
 const UNTRIED: readonly OptionKey[] = [
+  "questMonsters.crowns",
   "questMonsters.difficulty",
   "questMonsters.smallCounts",
   "monsterStats.hp",

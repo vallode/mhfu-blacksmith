@@ -10,6 +10,7 @@ workspace:
 - `packages/mhfu-extract`: datamining pipeline from a disc image to `data/`
   and the site's `public/models/`.
 - `packages/randomfu`: the randomizer (library, CLI, local settings page).
+  Its own `CLAUDE.md` covers styling text written into the game.
 - `data/`: the game data, shared by the site and the extractor.
 
 Packages import each other by package name, never by a relative path out of

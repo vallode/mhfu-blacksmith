@@ -62,6 +62,8 @@ export interface Settings {
   "questMonsters.difficultyRange": "rank" | "any";
   "questMonsters.size": boolean;
   "questMonsters.sizeSpread": number;
+  "questMonsters.crowns": boolean;
+  "questMonsters.crownSpread": "random" | "wide" | "none";
   "questMonsters.smallCounts": boolean;
   "questMonsters.smallCountSpread": number;
   "monsterStats.hp": boolean;
@@ -72,6 +74,8 @@ export interface Settings {
   "monsterStats.statusSpread": number;
   "weaknesses.elements": boolean;
   "weaknesses.parts": boolean;
+  "hints.bookshelf": boolean;
+  "hints.almanac": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -371,7 +375,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.enabled",
     section: "Weapons",
     label: "Shuffle which weapons the smithy makes",
-    help: "Each spot in the smithy's weapon trees makes a different weapon of the same rarity. Spots keep their materials and upgrade paths; weapons keep their stats and cost wherever they go.",
+    help: "Each spot in the smithy's weapon trees makes a different weapon of the same rarity. Spots keep their materials and upgrade paths; weapons keep their stats and cost wherever they go. The smithy's store follows: it sells the weapons now in the spots of the ones it sold.",
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
@@ -461,7 +465,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "armor.enabled",
     section: "Armor",
     label: "Shuffle which armor the smithy makes",
-    help: "Each spot in the smithy makes a different armor piece for the same slot and rarity, wearable by the same hunters (Blademaster, Gunner or both; male, female or both). Spots keep their materials; pieces keep their stats, skills and cost.",
+    help: "Each spot in the smithy makes a different armor piece for the same slot and rarity, wearable by the same hunters (Blademaster, Gunner or both; male, female or both). Spots keep their materials; pieces keep their stats, skills and cost. The smithy's store follows: it sells the pieces now in the spots of the ones it sold.",
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
@@ -732,7 +736,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "questMonsters.size",
     section: "Quest monsters",
     label: "Randomize each quest's monster size",
-    help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, up to 120% in others). Seen working in game (a tiny Giadrome); whether hitboxes follow the size is untested.",
+    help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, 50-174% in the rest). Seen working in game (a tiny Giadrome); whether hitboxes follow the size is untested.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
@@ -745,6 +749,43 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "number", min: 0.05, max: 0.5, step: 0.05, percent: true },
     default: 0.2,
     enabledBy: "questMonsters.size",
+  },
+  {
+    key: "questMonsters.crowns",
+    section: "Quest monsters",
+    label: "Change each quest's crown spread",
+    help: "Each large monster's size is rolled around its quest's size, and the quest picks one of five spreads that limit the roll: none, 100-105%, 100-115%, 95-114% or 85-125%. The spread decides which crowns a quest can give. Story quests that hold their monsters at 100% until first cleared still do. Worked out from the game's code; not yet tried in game.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "questMonsters.crownSpread",
+    section: "Quest monsters",
+    label: "Crown spread",
+    help: "Which spread each quest gets.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "random",
+          label: "Random",
+          help: "Each quest gets one of the four spreads that vary size, at random.",
+        },
+        {
+          value: "wide",
+          label: "Widest everywhere",
+          help: "Every quest rolls 85-125%, so mini and gold crowns can turn up in any quest.",
+        },
+        {
+          value: "none",
+          label: "None",
+          help: "Every monster is exactly its quest's size: no crowns unless the quest's size is itself a crown size.",
+        },
+      ],
+    },
+    default: "random",
+    enabledBy: "questMonsters.crowns",
   },
   {
     key: "questMonsters.smallCounts",
@@ -835,6 +876,23 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
+  },
+  {
+    key: "hints.bookshelf",
+    section: "Hints",
+    label: "Monster guide on the bookshelf",
+    help: "The house bookshelf's Practical Hunting monster articles (Open Bookshelf, Info Magazine) become the RandomFU Bestiary: one page per large monster rating its elemental weaknesses, softest parts, status resistance and health in stars, as the shuffles left them, readable from the start. In English in every language. EU disc only; seen on the shelf in PPSSPP.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "hints.almanac",
+    section: "Hints",
+    label: "Item almanac on the bookshelf",
+    help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
+    type: { kind: "boolean" },
+    default: false,
+    eboot: true,
   },
 ];
 

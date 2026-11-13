@@ -12,52 +12,30 @@ import path from "path";
 import { createHash } from "crypto";
 
 // ---------------------------------------------------------------------------
-// Build ID: a hash of what the client JavaScript is built from, instead of
-// Next's random one. Next writes the build ID into every exported page (its
-// HTML and its RSC payload), so with a random one all ~11,000 page files
-// changed on every build and Cloudflare re-uploaded them on every deploy,
-// which took longer than the build. Now a page only changes when its own
-// content or the code does. The ID still changes whenever the code can have
-// (source, config, dependencies, public env), so the client router keeps
-// telling an old tab apart from a new deploy and reloads instead of mixing
-// chunks. Game data isn't part of it: it reaches pages as props and the
-// fetched /data bundles, never the JavaScript.
+// Build ID: fixed, changed by hand. Next writes the build ID into every
+// exported page (two copies in its HTML, one in its RSC payload), so any ID
+// that changes with the code (Next's random one, or a hash of src/) changes
+// all ~11,000 page files on every deploy that touches src/, and Cloudflare
+// uploads every one of them again. With a fixed ID a deploy uploads only the
+// files whose content changed: a set-builder change is a handful of files.
+//
+// The cost: the client router compares this ID to tell an old tab from a new
+// deploy, and reloads the page when they differ instead of loading the new
+// deploy's chunks into the old page. With a fixed ID, a tab left open across
+// a deploy keeps navigating client-side into the new pages. That's fine for
+// most changes, since chunks are content-hashed and module IDs are stable.
+// Bump BUILD_ID when a deploy must force open tabs to reload, e.g. a Next or
+// React upgrade, or a change to the root layout or to shared client state.
+// Bumping it re-uploads every page once.
 // ---------------------------------------------------------------------------
-const BUILD_INPUTS = [
-  "src",
-  "package.json",
-  "next.config.mjs",
-  "postcss.config.mjs",
-  "tsconfig.json",
-  "../../pnpm-lock.yaml",
-];
-
-/** @returns {string} */
-function sourceBuildId() {
-  const hash = createHash("sha256");
-  /** @param {string} p */
-  const add = (p) => {
-    const full = path.join(process.cwd(), p);
-    if (!fs.existsSync(full)) return;
-    if (fs.statSync(full).isDirectory()) {
-      for (const name of fs.readdirSync(full).sort()) add(path.join(p, name));
-    } else {
-      hash.update(`${p}\0`).update(fs.readFileSync(full)).update("\0");
-    }
-  };
-  for (const p of BUILD_INPUTS) add(p);
-  for (const [key, value] of Object.entries(process.env).sort()) {
-    if (key.startsWith("NEXT_PUBLIC_")) hash.update(`${key}=${value}\0`);
-  }
-  return hash.digest("hex").slice(0, 20);
-}
+const BUILD_ID = "2026-11-12";
 
 /** @type {import("next").NextConfig} */
 const nextConfig = {
   output: "export",
   trailingSlash: true,
   experimental: { viewTransition: true },
-  generateBuildId: sourceBuildId,
+  generateBuildId: () => BUILD_ID,
 };
 
 // ---------------------------------------------------------------------------

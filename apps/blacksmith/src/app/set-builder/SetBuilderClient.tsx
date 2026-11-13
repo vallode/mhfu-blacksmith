@@ -1,37 +1,27 @@
 "use client";
 
 /**
- * Set builder: an armor set search after Athena's Armor Set Search. Pick the
- * skills you want and the hunter's options; the search (in workers, see
- * hooks/useSetSearch.ts) lists the best armor sets with decorations that
- * activate them, by defence or another sort, shown like the game's
- * equipment set screen. Pieces of a result can be locked into every set or
- * excluded from the next search.
+ * Set builder: an armor set search after Athena's Armor Set Search, laid out
+ * for a phone first. The wanted skills are chips at the top, with the
+ * hunter's options in a line under them; both open in sheets (SkillBrowser,
+ * SearchOptions). The search (in workers, see hooks/useSetSearch.ts) lists
+ * the best armor sets with decorations that activate them, by defence or
+ * another sort, one at a time (ResultView). Pieces of a result can be
+ * locked into every set or excluded from the next search. Beside the
+ * results, the editor builds a set by hand, and My sets keeps saved ones.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
-import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
+import Loading from "@/components/Loading";
 import Tabs from "@/components/Tabs";
-import {
-  ChoiceRow,
-  IconChoiceRow,
-  IconChoices,
-  SelectorRow,
-  ToggleRow,
-  type Choice,
-  type IconChoice,
-} from "@/components/SettingRows";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useToast } from "@/context/ToastContext";
 import { useSetSearch } from "@/hooks/useSetSearch";
-import type { ArmorRank } from "@/lib/constants";
 import { useEquipmentIds } from "@/lib/equipment";
-import { tierLabel } from "@/lib/min-rank";
 import {
   addSet,
   deleteSet,
@@ -44,8 +34,7 @@ import {
   writeSavedSets,
   type SavedSet,
 } from "@/lib/saved-sets-store";
-import { cn } from "@/lib/cn";
-import { buildFromResult, emptyBuild, MAX_WEAPON_SLOTS, type BuildSet } from "@/lib/set-build";
+import { buildFromResult, emptyBuild, type BuildSet } from "@/lib/set-build";
 import {
   buildCodecTables,
   decodeSet,
@@ -60,45 +49,17 @@ import {
   selectableSkills,
   type Piece,
   type SearchQuery,
-  type SortKey,
 } from "@/lib/set-search";
+import { pressable, primaryButton } from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
-import ArmorSetView, { PanelTitle, SetHeader, SetStatus, type PieceActions } from "./ArmorSetView";
+import { PanelTitle } from "./ArmorSetView";
 import MySets from "./MySets";
+import ResultView, { type PieceActions } from "./ResultView";
+import SearchBar from "./SearchBar";
+import { DEFAULT_FORM, OptionsSummary, SearchOptions, type Form } from "./SearchOptions";
 import SetEditor from "./SetEditor";
-import SkillPicker from "./SkillPicker";
-import Loading from "@/components/Loading";
-
-interface Form {
-  skills: string[];
-  hunterType: SearchQuery["hunterType"];
-  sex: SearchQuery["sex"];
-  rank: ArmorRank;
-  weaponSlots: number;
-  allowBadSkills: boolean;
-  ownedOnly: boolean;
-  /** Search armor beyond the quest progress set on the Options page. */
-  ignoreQuestProgress: boolean;
-  sort: SortKey;
-  /** Pieces (by page link, which survives data updates) in every set. */
-  locked: string[];
-  /** Pieces the search leaves out. */
-  excluded: string[];
-}
-
-const DEFAULT_FORM: Form = {
-  skills: [],
-  hunterType: "Blademaster",
-  sex: "Male",
-  rank: "g-rank",
-  weaponSlots: 0,
-  allowBadSkills: false,
-  ownedOnly: false,
-  ignoreQuestProgress: false,
-  sort: "defence",
-  locked: [],
-  excluded: [],
-};
+import Sheet from "./Sheet";
+import { SkillBrowser, SkillChips } from "./SkillPicker";
 
 const STORAGE_KEY = "set-builder";
 
@@ -111,159 +72,24 @@ const ORIGIN_TITLES: Record<Origin, string> = {
   link: "Shared set",
 };
 
-/** The weapon class's mini icon: grey, or green when chosen (as in the nav). */
-function classIcon(type: string) {
-  return function ClassIcon(checked: boolean) {
-    return <Icon type={type} size="mini" nav active={checked} className="mr-0" />;
-  };
-}
-/** Text for a choice button, centred on its letters (ui.centredText). */
-function choiceText(text: string, size = "text-main") {
-  return function ChoiceText() {
-    return <span className={cn(ui.centredText, size)}>{text}</span>;
-  };
-}
-const HUNTER_TYPES: IconChoice<Form["hunterType"]>[] = [
-  { value: "Blademaster", label: "Blademaster", icon: classIcon("great-sword") },
-  { value: "Gunner", label: "Gunner", icon: classIcon("heavy-bowgun") },
-];
-const SEXES: IconChoice<Form["sex"]>[] = [
-  { value: "Male", label: "Male", icon: choiceText("♂") },
-  { value: "Female", label: "Female", icon: choiceText("♀") },
-];
-const RANKS: IconChoice<ArmorRank>[] = [
-  { value: "low-rank", label: "Low Rank", icon: choiceText("LR", "text-sub") },
-  { value: "high-rank", label: "High Rank", icon: choiceText("HR", "text-sub") },
-  { value: "g-rank", label: "G Rank", icon: choiceText("G", "text-sub") },
-];
-const SORTS: Choice<SortKey>[] = [
-  { value: "defence", label: "Defence" },
-  { value: "fire", label: "Fire Res" },
-  { value: "water", label: "Water Res" },
-  { value: "thunder", label: "Thundr Res" },
-  { value: "ice", label: "Ice Res" },
-  { value: "dragon", label: "Dragon Res" },
-  { value: "slots", label: "Free slots" },
-];
+/** The query fields a search's results depend on, to tell whether the form has changed since. */
+const QUERY_KEYS = [
+  "skills",
+  "hunterType",
+  "sex",
+  "rank",
+  "weaponSlots",
+  "allowBadSkills",
+  "sort",
+  "progress",
+  "lockPieces",
+  "excludePieces",
+] as const;
 
-/** One glyph of the "-OOO" weapon slots picker. */
-const slotButton =
-  "flex size-[3.4rem] cursor-pointer items-center justify-center border-none bg-transparent p-0 font-[inherit] text-main leading-none text-shadow-[0.15rem_0.15rem_black] focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white";
-const slotsLabel = (n: number) => (n === 0 ? "No slots" : n === 1 ? "1 slot" : `${n} slots`);
-
-/**
- * Weapon slots as "-OOO": pressing the nth O lights the Os up to it, "-"
- * clears them. A radio group (the arrow keys step the count).
- */
-function WeaponSlotsRow({ value, onChange }: { value: number; onChange: (n: number) => void }) {
+function sameQuery(a: SearchQuery, b: SearchQuery): boolean {
   return (
-    <ChoiceRow label="Weapon slots" value={slotsLabel(value)}>
-      <div
-        role="radiogroup"
-        aria-label="Weapon slots"
-        className="flex flex-none items-center"
-        onKeyDown={(event) => {
-          const by = { ArrowLeft: -1, ArrowDown: -1, ArrowRight: 1, ArrowUp: 1 }[event.key];
-          if (!by) return;
-          event.preventDefault();
-          const next = Math.min(MAX_WEAPON_SLOTS, Math.max(0, value + by));
-          onChange(next);
-          event.currentTarget.querySelectorAll<HTMLButtonElement>("[role=radio]")[next]?.focus();
-        }}
-      >
-        {Array.from({ length: MAX_WEAPON_SLOTS + 1 }, (_, n) => {
-          const lit = n === 0 ? value === 0 : n <= value;
-          return (
-            <button
-              key={n}
-              type="button"
-              role="radio"
-              aria-checked={n === value}
-              aria-label={slotsLabel(n)}
-              title={slotsLabel(n)}
-              tabIndex={n === value ? 0 : -1}
-              className={cn(slotButton, lit ? "text-stat" : "text-white/30 hover:text-white/70")}
-              onClick={() => onChange(n)}
-            >
-              <span className={ui.centredText}>{n === 0 ? "-" : "O"}</span>
-            </button>
-          );
-        })}
-      </div>
-    </ChoiceRow>
-  );
-}
-
-/** The hunter the sets are for: weapon class and sex, on one line. */
-function HunterRow({
-  hunterType,
-  sex,
-  onHunterType,
-  onSex,
-}: {
-  hunterType: Form["hunterType"];
-  sex: Form["sex"];
-  onHunterType: (value: Form["hunterType"]) => void;
-  onSex: (value: Form["sex"]) => void;
-}) {
-  return (
-    <ChoiceRow label="Hunter" value={`${hunterType}, ${sex.toLowerCase()}`}>
-      <IconChoices
-        label="Weapon class"
-        choices={HUNTER_TYPES}
-        value={hunterType}
-        onChange={onHunterType}
-      />
-      <IconChoices label="Sex" choices={SEXES} value={sex} onChange={onSex} />
-    </ChoiceRow>
-  );
-}
-
-/**
- * The locked or excluded pieces, each with × to take it off the list, and
- * why the search can't use it, if it can't.
- */
-function PieceList({
-  label,
-  note,
-  pieces,
-  unused,
-  onRemove,
-}: {
-  label: string;
-  note: string;
-  pieces: Piece[];
-  unused?: (piece: Piece) => string | null;
-  onRemove: (href: string) => void;
-}) {
-  if (pieces.length === 0) return null;
-  return (
-    <div className="flex flex-col gap-[0.4rem]">
-      <span className={ui.statusLabel}>{label}</span>
-      <p className={ui.note}>{note}</p>
-      <ul className="m-0 flex list-none flex-wrap gap-x-[1.6rem] gap-y-[0.4rem] p-0 text-fine">
-        {pieces.map((piece) => {
-          const { href, name } = piece;
-          const why = unused?.(piece);
-          return (
-            <li key={href} className="flex items-center">
-              <Link href={href} className="text-white/80 hover:text-white">
-                {name}
-              </Link>
-              {why && <span className="ml-[0.6rem] text-white/40">({why})</span>}
-              <button
-                type="button"
-                className="cursor-pointer border-none bg-transparent px-[0.6rem] font-[inherit] text-small leading-none text-white/50 hover:text-negative focus-visible:text-negative"
-                aria-label={`Take ${name} off the ${label.toLowerCase()} pieces`}
-                onClick={() => onRemove(href)}
-              >
-                ×
-              </button>
-            </li>
-          );
-        })}
-      </ul>
-    </div>
+    QUERY_KEYS.every((k) => JSON.stringify(a[k] ?? null) === JSON.stringify(b[k] ?? null)) &&
+    !a.onlyPieces === !b.onlyPieces
   );
 }
 
@@ -348,9 +174,10 @@ export default function SetBuilderClient() {
     piecesOf(hrefs)
       .filter((p) => !cantWear(p, hunter))
       .map((p) => p.id);
-  const runSearch = (f: Form = form) => {
-    if (!data || f.skills.length === 0) return;
-    const query: SearchQuery = {
+  /** The search the form asks for; null until the data loads or with no skills. */
+  const queryFor = (f: Form): SearchQuery | null => {
+    if (!data || f.skills.length === 0) return null;
+    return {
       sort: f.sort,
       lockPieces: lockIds(f.locked, f),
       excludePieces: pieceIds(f.excluded),
@@ -360,12 +187,19 @@ export default function SetBuilderClient() {
       rank: f.rank,
       weaponSlots: f.weaponSlots,
       allowBadSkills: f.allowBadSkills,
-      progress: questLimit,
-      onlyPieces: ownedOnly
-        ? data.pieces.filter((p) => progress.isOwned(p.href)).map((p) => p.id)
-        : undefined,
+      progress: f.ignoreQuestProgress ? null : questProgress,
+      onlyPieces:
+        f.ownedOnly && progress.active
+          ? data.pieces.filter((p) => progress.isOwned(p.href)).map((p) => p.id)
+          : undefined,
     };
+  };
+  const runSearch = (f: Form = form) => {
+    const query = queryFor(f);
+    if (!query) return;
+    if (searching) cancel();
     search(query);
+    setView("results");
   };
   // Locking or excluding a result's piece runs the search behind the results
   // again with only that change (not other edits made in the form since),
@@ -404,7 +238,6 @@ export default function SetBuilderClient() {
   const sets = result?.sets ?? [];
   const set = sets[Math.min(index, sets.length - 1)] ?? null;
   const step = (by: 1 | -1) => setIndex((index + by + sets.length) % sets.length);
-  const weaponIcon = searched?.hunterType === "Gunner" ? "heavy-bowgun" : "great-sword";
 
   // The set in the editor. Its hunter type and sex are the form's: changing
   // them in the form changes the set's, and opening a set sets the form's.
@@ -632,6 +465,16 @@ export default function SetBuilderClient() {
     </div>
   );
 
+  // Whether the form asks for something other than the results show.
+  const asked = queryFor(form);
+  const stale = !!asked && (!searched || !sameQuery(asked, searched));
+  const [sheet, setSheet] = useState<"skills" | "options" | null>(null);
+  const closeSheet = useCallback(() => setSheet(null), []);
+  const searchFromSheet = () => {
+    setSheet(null);
+    runSearch();
+  };
+
   let message: React.ReactNode = null;
   if (loadError) message = <p className={ui.error}>Couldn&apos;t load the armor data.</p>;
   else if (!data) message = <Loading className={ui.note}>Loading armor…</Loading>;
@@ -639,10 +482,17 @@ export default function SetBuilderClient() {
   else if (searching) message = <Loading className={ui.note}>Searching… {found || ""}</Loading>;
   else if (!result)
     message = (
-      <p className={ui.note}>
-        Add the skills you want, then search. The best sets come first: by defence, or by what you
-        sort by.
-      </p>
+      <>
+        <p className={ui.note}>
+          Add the skills you want, then search: every armor set with decorations that activates
+          them. The best sets come first: by defence, or by what you sort by.
+        </p>
+        {form.skills.length === 0 && (
+          <button type="button" className={primaryButton} onClick={() => setSheet("skills")}>
+            Add skills
+          </button>
+        )}
+      </>
     );
   else if (sets.length === 0)
     message = (
@@ -655,136 +505,63 @@ export default function SetBuilderClient() {
       </p>
     );
 
+  const searchFooter = (
+    <button
+      type="button"
+      className={primaryButton}
+      disabled={!data || form.skills.length === 0}
+      onClick={searchFromSheet}
+    >
+      Search
+    </button>
+  );
+
   return (
     <>
-      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-        <div>
-          <Link href="/" aria-label="Back">
-            <Icon type="arrow" nav alt="Back" />
-          </Link>
-        </div>
-        <div className="ml-auto">
-          <button
-            className="search-trigger flex h-[52px] w-[52px] cursor-pointer items-center border-none bg-transparent p-0 text-white/60 hover:text-white [&>img]:h-full"
-            aria-label="Search"
-          >
-            <img src="/images/binoculars.png" alt="Search" decoding="sync" />
-          </button>
-        </div>
-      </nav>
-
-      <BorderRule />
-
-      <div className="split-page">
-        <CardBox className="max-w-[56rem] mobile:max-w-none mobile:flex-none">
-          <Card className="text-small" scroll bodyClassName="gap-[1.3rem] card-py-7">
-            <PanelTitle>Skills</PanelTitle>
-            <form
-              className="flex flex-col gap-[1.3rem]"
-              onSubmit={(e) => {
-                e.preventDefault();
-                runSearch();
-              }}
-            >
-              <SkillPicker
-                skills={skills}
-                value={form.skills}
-                onChange={(v) => update("skills", v)}
-              />
-              <HunterRow
-                hunterType={form.hunterType}
-                sex={form.sex}
-                onHunterType={(v) => update("hunterType", v)}
-                onSex={(v) => update("sex", v)}
-              />
-              <IconChoiceRow
-                label="Rank"
-                choices={RANKS}
-                value={form.rank}
-                onChange={(v) => update("rank", v)}
-              />
-              <WeaponSlotsRow value={form.weaponSlots} onChange={(v) => update("weaponSlots", v)} />
-              <SelectorRow
-                label="Sort by"
-                note="Ties go to the higher defence."
-                choices={SORTS}
-                value={form.sort}
-                onChange={(v) => update("sort", v)}
-              />
-              <ToggleRow
-                label="Allow bad skills"
-                note="Keep sets that also activate a negative skill, such as Defense -20."
-                value={form.allowBadSkills}
-                onChange={(v) => update("allowBadSkills", v)}
-              />
-              {questProgress && (
-                <ToggleRow
-                  label="Ignore quest progress"
-                  note={
-                    <>
-                      Your quest progress ({tierLabel(questProgress)}, set on the{" "}
-                      <Link className="underline hover:text-white" href="/options/">
-                        Options
-                      </Link>{" "}
-                      page) leaves out armor and decorations that need materials from later quests.
-                      Turn on to search all of them.
-                    </>
-                  }
-                  value={form.ignoreQuestProgress}
-                  onChange={(v) => update("ignoreQuestProgress", v)}
-                />
-              )}
-              {progress.active && (
-                <ToggleRow
-                  label="Owned armor only"
-                  note="Only use armor in your hunter's equipment box."
-                  value={form.ownedOnly}
-                  onChange={(v) => update("ownedOnly", v)}
-                />
-              )}
-              <PieceList
-                label="Locked"
-                note="Every set uses these, whatever the rank or quest progress, if the hunter can wear them."
-                pieces={piecesOf(form.locked)}
-                unused={(p) => cantWear(p, form)}
-                onRemove={(href) =>
-                  update(
-                    "locked",
-                    form.locked.filter((h) => h !== href),
-                  )
-                }
-              />
-              <PieceList
-                label="Excluded"
-                note="The search never uses these."
-                pieces={piecesOf(form.excluded)}
-                onRemove={(href) =>
-                  update(
-                    "excluded",
-                    form.excluded.filter((h) => h !== href),
-                  )
-                }
-              />
-              <div className={ui.actions}>
+      {/* One column on phones; from 900px up the skills and options sit
+          beside the results, which get the room. */}
+      <div className="mx-auto flex w-full max-w-[64rem] flex-col gap-[1.3rem] pb-[1.6rem] min-[900px]:grid min-[900px]:max-w-[120rem] min-[900px]:grid-cols-[34rem_minmax(0,1fr)] min-[900px]:grid-rows-[auto_auto_1fr] min-[900px]:items-start min-[900px]:pt-[1.6rem] wide:grid-cols-[40rem_minmax(0,1fr)]">
+        <CardBox className="flex-none min-[900px]:col-start-1 min-[900px]:row-start-1">
+          <Card className="text-small" bodyClassName="card-py-7 gap-[1.2rem]">
+            <div className="flex items-baseline justify-between">
+              <PanelTitle>Skills</PanelTitle>
+              {form.skills.length > 0 && (
                 <button
-                  type="submit"
-                  className={ui.button}
-                  disabled={!data || searching || form.skills.length === 0}
+                  type="button"
+                  className="cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white"
+                  onClick={() => update("skills", [])}
                 >
-                  Search
+                  Clear
                 </button>
-                {searching && (
-                  <button type="button" className={ui.buttonSecondary} onClick={cancel}>
-                    Cancel
-                  </button>
-                )}
-              </div>
-            </form>
+              )}
+            </div>
+            <SkillChips
+              value={form.skills}
+              onRemove={(name) =>
+                update(
+                  "skills",
+                  form.skills.filter((v) => v !== name),
+                )
+              }
+              onAdd={() => setSheet("skills")}
+              addLabel={form.skills.length ? "+ Skill" : "+ Add the skills you want"}
+            />
+            <button
+              type="button"
+              className={`${pressable} flex min-h-[4.8rem] w-full items-center justify-between gap-[1rem] border-t border-white/15 pt-[0.8rem] text-small`}
+              aria-label="Options: hunter, rank, weapon slots, sort"
+              onClick={() => setSheet("options")}
+            >
+              <OptionsSummary form={form} ownedOnly={ownedOnly} />
+              <span className="flex-none text-white/50" aria-hidden="true">
+                Options ›
+              </span>
+            </button>
           </Card>
         </CardBox>
 
-        <CardBox>
-          <Card className="text-small" scroll bodyClassName="gap-[1.3rem] card-py-7">
+        <CardBox className="flex-none min-[900px]:col-start-2 min-[900px]:row-span-3 min-[900px]:row-start-1">
+          <Card className="text-small" bodyClassName="card-py-7 gap-[1.3rem]">
             <Tabs
               label="Set builder"
               active={view}
@@ -793,57 +570,43 @@ export default function SetBuilderClient() {
                 {
                   id: "results",
                   label: "Results",
-                  content: (
+                  content: set ? (
                     <div className="flex flex-col gap-[1.3rem]">
-                      {set ? (
-                        <>
-                          <SetHeader
-                            index={index}
-                            count={sets.length}
-                            onStep={step}
-                            action={
-                              <button
-                                type="button"
-                                className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
-                                aria-label="Edit this set"
-                                title="Edit this set"
-                                onClick={() =>
-                                  searched &&
-                                  openInEditor(buildFromResult(set, searched), {
-                                    origin: "result",
-                                  })
-                                }
-                              >
-                                <Icon type="item-37" className="mr-0" alt="" />
-                              </button>
+                      <ResultView
+                        set={set}
+                        index={index}
+                        count={sets.length}
+                        onStep={step}
+                        weaponSlots={searched?.weaponSlots ?? 0}
+                        hunterType={searched?.hunterType ?? form.hunterType}
+                        sort={searched?.sort}
+                        wanted={searched?.skills ?? []}
+                        actions={pieceActions}
+                        action={
+                          <button
+                            type="button"
+                            className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
+                            aria-label="Edit this set"
+                            title="Edit this set"
+                            onClick={() =>
+                              searched &&
+                              openInEditor(buildFromResult(set, searched), { origin: "result" })
                             }
-                          />
-                          {result?.timedOut && (
-                            <p className={ui.note}>
-                              The search stopped early: better sets may exist.
-                            </p>
-                          )}
-                          <ArmorSetView
-                            set={set}
-                            weaponSlots={searched?.weaponSlots ?? 0}
-                            weaponIcon={weaponIcon}
-                            pieceActions={pieceActions}
-                            status={
-                              <>
-                                <PanelTitle>Status</PanelTitle>
-                                <SetStatus set={set} />
-                              </>
-                            }
-                          />
-                        </>
-                      ) : (
-                        <>
-                          <PanelTitle>Set Builder</PanelTitle>
-                          {message}
-                        </>
-                      )}
-                      {set && searching && message}
+                          >
+                            <Icon type="item-37" className="mr-0" alt="" />
+                          </button>
+                        }
+                      >
+                        {result?.timedOut && (
+                          <p className={ui.note}>
+                            The search stopped early: better sets may exist.
+                          </p>
+                        )}
+                      </ResultView>
+                      {searching && message}
                     </div>
+                  ) : (
+                    <div className="flex flex-col gap-[1.3rem]">{message}</div>
                   ),
                 },
                 {
@@ -880,7 +643,7 @@ export default function SetBuilderClient() {
                       data={data}
                       tables={tables}
                       openId={savedId}
-                      onOpen={(set) => openCode(set.code, { savedId: set.id })}
+                      onOpen={(saved) => openCode(saved.code, { savedId: saved.id })}
                       onRename={(id, name) => storeSets(updateSet(savedSets, id, { name }))}
                       onDuplicate={(id) => storeSets(duplicateSet(savedSets, id))}
                       onDelete={deleteSaved}
@@ -891,7 +654,38 @@ export default function SetBuilderClient() {
             />
           </Card>
         </CardBox>
+
+        <SearchBar
+          searching={searching}
+          found={found}
+          stale={stale}
+          hasResult={!!result}
+          skillCount={form.skills.length}
+          ready={!!data}
+          onSearch={() => runSearch()}
+          onCancel={cancel}
+        />
       </div>
+
+      <Sheet
+        open={sheet === "skills"}
+        onClose={closeSheet}
+        title={`Skills${form.skills.length ? ` (${form.skills.length})` : ""}`}
+        tall
+        footer={searchFooter}
+      >
+        <SkillBrowser skills={skills} value={form.skills} onChange={(v) => update("skills", v)} />
+      </Sheet>
+
+      <Sheet open={sheet === "options"} onClose={closeSheet} title="Options" footer={searchFooter}>
+        <SearchOptions
+          form={form}
+          update={update}
+          questProgress={questProgress}
+          canOwnedOnly={progress.active}
+          piecesOf={piecesOf}
+        />
+      </Sheet>
     </>
   );
 }

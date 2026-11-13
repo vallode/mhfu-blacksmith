@@ -15,8 +15,8 @@ export interface EquipSlot {
 
 /**
  * One monster's records from the hunter's Guild Card tables, by the game's
- * monster ID (src/lib/monster-ids.ts). `largest`/`smallest` are the raw size
- * records; their unit isn't decoded.
+ * monster ID (src/lib/monster-ids.ts). `largest`/`smallest` are the size
+ * records, in percent of the monster's base size (src/lib/crowns.ts).
  */
 export interface MonsterRecord {
   id: number;

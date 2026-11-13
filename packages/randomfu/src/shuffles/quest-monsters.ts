@@ -52,6 +52,8 @@ import {
   POWER_OFFSET,
   QUANTITY_OFFSET,
   SIZE_PERCENT_OFFSET,
+  SIZE_VARIATION_OFFSET,
+  SIZE_VARIATIONS,
   TARGET_ID_OFFSET,
   type QuestSpawns,
 } from "../game/spawns.js";
@@ -448,6 +450,58 @@ export function randomizeQuestSize(
     notes: [
       `Each quest's monster size (its header's size percentage) moved by up to ${Math.round(spread * 100)}%, kept between ${SIZE_LIMITS[0]}% and ${SIZE_LIMITS[1]}%.`,
       "Changing it was seen to resize a quest's monsters in game; whether hitboxes follow is untested.",
+    ],
+    lines,
+  };
+}
+
+/**
+ * Each Village and Guild quest's size variation (`SIZE_VARIATION_OFFSET`):
+ * which of the game's five clamps limits its large monsters' size rolls,
+ * and so which crowns it can give. "random" picks one per quest, "wide"
+ * gives every quest the widest (85-125%), "none" pins every monster at the
+ * quest's size.
+ */
+export function randomizeCrownSpread(
+  list: readonly QuestMonsters[],
+  mode: "random" | "wide" | "none",
+  rng: Rng,
+  edits: Edits,
+): ShuffleReport {
+  const lines: ShuffleReport["lines"] = [];
+  const label = (v: number) => {
+    const [lo, hi] = SIZE_VARIATIONS[v]!;
+    return lo === hi ? "none" : `${lo}-${hi}%`;
+  };
+  for (const q of list) {
+    if (q.spawns.large.length === 0) continue;
+    const before = q.quest.file.payload[SIZE_VARIATION_OFFSET]!;
+    if (before >= SIZE_VARIATIONS.length) continue;
+    const next =
+      mode === "wide"
+        ? SIZE_VARIATIONS.length - 1
+        : mode === "none"
+          ? 0
+          : // Spread 0 holds every monster at the quest's size, so no crowns:
+            // random only picks among the four that vary it.
+            1 + rng.int(SIZE_VARIATIONS.length - 1);
+    if (next === before) continue;
+    edits.quest(q.quest).writeUInt8(next, SIZE_VARIATION_OFFSET);
+    lines.push({
+      where: questLabel(q.quest),
+      text: `crown spread ${label(next)} (was ${label(before)})`,
+    });
+  }
+  const how = {
+    random:
+      "Each quest's crown spread (the range its monsters' sizes roll in) is one of the game's four that vary it, at random",
+    wide: "Every quest's crown spread (the range its monsters' sizes roll in) is the widest, 85-125% of its size",
+    none: "Every quest's monsters are exactly the quest's size",
+  }[mode];
+  return {
+    title: "Quest crown spread",
+    notes: [
+      `${how}. Monsters without crowns stay at 100%, and story quests that hold their monsters at 100% until first cleared still do.`,
     ],
     lines,
   };
