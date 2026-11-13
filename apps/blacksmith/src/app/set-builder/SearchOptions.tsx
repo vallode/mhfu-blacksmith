@@ -15,7 +15,7 @@ import {
   type IconChoice,
 } from "@/components/SettingRows";
 import { cn } from "@/lib/cn";
-import type { ArmorRank } from "@/lib/constants";
+import type { ArmorRank, WeaponType } from "@/lib/constants";
 import { tierLabel, type Tier } from "@/lib/min-rank";
 import { MAX_WEAPON_SLOTS } from "@/lib/set-build";
 import type { Piece, SearchQuery, SortKey } from "@/lib/set-search";
@@ -28,6 +28,8 @@ export interface Form {
   sex: SearchQuery["sex"];
   rank: ArmorRank;
   weaponSlots: number;
+  /** The weapon class the result's weapon suggestions show; null for the last browsed. */
+  weaponClass: WeaponType | null;
   allowBadSkills: boolean;
   ownedOnly: boolean;
   /** Search armor beyond the quest progress set on the Options page. */
@@ -45,6 +47,7 @@ export const DEFAULT_FORM: Form = {
   sex: "Male",
   rank: "g-rank",
   weaponSlots: 0,
+  weaponClass: null,
   allowBadSkills: false,
   ownedOnly: false,
   ignoreQuestProgress: false,

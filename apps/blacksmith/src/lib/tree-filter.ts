@@ -8,6 +8,7 @@
  * list-level hook and the rows share one definition of a row's status.
  */
 import { WEAPON_TYPES } from "./constants";
+import { weaponHref } from "./equipment-ref";
 import type { CraftCheck } from "./hunter-progress";
 import type { WeaponTreeNode } from "./types";
 
@@ -63,7 +64,7 @@ export function treeRowHref(
 ): string | undefined {
   if (!node.rarity) return undefined;
   return isExternalRow(node, sectionType)
-    ? `/blacksmith/${node.type}/${node.slug}/`
+    ? weaponHref(node.type, node.slug)
     : `${basePath}${node.slug}/`;
 }
 
