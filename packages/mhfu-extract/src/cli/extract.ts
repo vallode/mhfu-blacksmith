@@ -15,6 +15,7 @@ import { emitGathering, type GatheringQuestInput } from "../emit/gathering.js";
 import { loadMapLayouts } from "../tables/map-layout.js";
 import { emitQuestsFile, type MultiplierLookup } from "../emit/quests.js";
 import { emitShops } from "../emit/shops.js";
+import { emitVeggieTrades } from "../emit/veggie-trades.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
@@ -43,6 +44,7 @@ import {
   type OffsetVerificationResult,
 } from "../tables/offsets.js";
 import { readCombinations } from "../tables/combinations.js";
+import { readVeggieTrades } from "../tables/veggie-trades.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -293,6 +295,18 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   const shops = emitShops(findShops(lobbyTask), reader, resolver);
   console.log(`Shops: ${shops.map((s) => `${s.name} (${s.items.length} items)`).join(", ")}.`);
   output["shops.json"] = { shops };
+
+  const trades = readVeggieTrades(overlays.gameTask);
+  if (trades) {
+    console.log(
+      `Veggie Elder trades at 0x${trades.offset.toString(16)}: ${trades.tables.map((t) => t.length).join(", ")} rows.`,
+    );
+    output["veggie-trades.json"] = emitVeggieTrades(trades);
+  } else {
+    console.warn(
+      "Warning: the Veggie Elder's trade tables weren't found; skipping veggie-trades.json.",
+    );
+  }
 
   if (options.raw) {
     const rawPath = path.join(options.out, "raw", "monsters.json");

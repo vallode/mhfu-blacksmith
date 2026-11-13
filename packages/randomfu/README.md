@@ -76,14 +76,14 @@ pnpm settings --write my.json       # write every setting to a file to edit
 
 Settings come from these flags, later ones winning:
 
-| Flag                                                          | What it sets                                                                                                                                                                                                |
-| ------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                                                                |
-| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                                                                     |
-| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops, shop-prices, carry-limits, supplies, quest-money, time-limits, deliveries |
-| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                                                               |
-| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                                                         |
-| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                                                              |
+| Flag                                                          | What it sets                                                                                                                                                                                                               |
+| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                                                                               |
+| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                                                                                    |
+| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops, shop-prices, carry-limits, supplies, quest-money, time-limits, deliveries, veggie-trades |
+| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                                                                              |
+| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                                                                        |
+| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                                                                             |
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
@@ -130,6 +130,8 @@ pages and `pnpm settings` show as a tag):
 | `terms.time`                      | off         | Randomize time limits                                                                    |
 | `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                       |
 | `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                                   |
+| `trades.enabled`                  | off         | Shuffle what the Veggie Elder's trades give                                              |
+| `trades.mix`                      | `elder`     | Within each hunting ground's Elder, or between `all` of them                             |
 | `recipes.materials`               | off         | Shuffle crafting and upgrade materials                                                   |
 | `recipes.amounts`                 | off         | Randomize material amounts                                                               |
 | `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                                 |
@@ -187,7 +189,7 @@ Each preset replaces every option and keeps the seed. They're built on
 the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
 them to what's described here. Options not yet tried in game are in no
 preset: crown spread, monster difficulty, small monster counts, base HP, base size, status
-resistance, weaknesses, weapon stats and the bookshelf guides. Turn those on yourself once you've tried them on
+resistance, weaknesses, weapon stats, the Veggie Elder's trades and the bookshelf guides. Turn those on yourself once you've tried them on
 your disc.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                          |
@@ -220,6 +222,7 @@ except `supplies.pool add`, which grows quests into their sector padding
 | `supplies`        | Supply box lists in each quest `.mib`                                                  | Item and amount of each stack (see below)                     |
 | `terms`           | Quest header fee, reward, penalty, time limit                                          | The numbers, varied (see below)                               |
 | `deliveries`      | Delivery quest header target and goal line                                             | Which item and how many (see below)                           |
+| `veggie-trades`   | The Veggie Elder's trade lists in `game_task.ovl`                                      | What each trade gives (see below)                             |
 | quest monsters    | Spawn records in each quest `.mib`                                                     | Which large monsters, their level, small counts               |
 | monster stats     | Each monster's `emChunk` in `game_task.ovl`                                            | Base HP, size, status resistance                              |
 | weaknesses        | Hitzone tables in `game_task.ovl`                                                      | Elemental weaknesses and weak spots                           |
@@ -747,6 +750,23 @@ Deliver the Paw Pass Ticket" quests stay as they are.
 The gathering shuffle never moves a delivery quest's own item away from
 its gathering points, whether or not `deliveries` is on, so every delivery
 quest can still be finished.
+
+### Veggie Elder trades
+
+The Veggie Elder trades on seven hunting grounds, each with its own list in
+`game_task.ovl` (mhfu-extract `tables/veggie-trades.ts`): Forest and Hills,
+Desert, Swamp, Jungle and Snowy Mountains (Day and Night share one), Old
+Jungle and Old Swamp. A list's rows are (item he takes, common trade, rare
+trade), 109 on the EU and JP discs, ending in 0xFFFF. He takes the first
+row's item that the hunter carries and gives the rare trade one time in
+five, or always with the Felyne Negotiations kitchen skill.
+
+`veggie-trades` moves each row's common and rare trade, as a pair, to
+another row: of the same Elder (`trades.mix elder`), or of any Elder
+(`all`). Rows keep the item he takes and their place in the list, so which
+of the hunter's items he picks doesn't change. No logic applies: a trade
+isn't counted as an item source, so the recipe check ignores it. Not yet
+played in game.
 
 ## How it writes the disc
 

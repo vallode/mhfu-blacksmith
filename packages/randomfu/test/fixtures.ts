@@ -29,6 +29,12 @@ import {
   TOLERANCE_OFFSET,
 } from "mhfu-extract/src/monsters/hitzones.js";
 import { encryptQuestBlock, questHash, QUEST_MAGIC } from "mhfu-extract/src/quests/mib.js";
+import {
+  TRADE_END,
+  TRADE_ROW_SIZE,
+  TRADE_TABLE_COUNT,
+  VEGGIE_TRADES_JP,
+} from "mhfu-extract/src/tables/veggie-trades.js";
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { equipmentCreateLayout, equipmentUpgradeLayout } from "mhfu-extract/src/tables/recipes.js";
 import { WEAPON_TYPE_NAMES } from "mhfu-extract/src/tables/weapons.js";
@@ -471,7 +477,20 @@ export const fixtureHp = (emId: number) => 100 + emId;
 /** Tolerance fields (+0x110) set on every monster: paralysis initial/increase, poison initial/increase. */
 export const FIXTURE_TOLERANCES = { paralysis: [150, 100], poison: [180, 75] } as const;
 
-/** `game_task.ovl` with `MonChunk[90]` at JP's file offset. */
+/**
+ * The Veggie Elders' trades, [give, common, rare] item IDs: four rows each,
+ * the first a sure trade (common and rare the same).
+ */
+export const FIXTURE_TRADES: [number, number, number][][] = Array.from(
+  { length: TRADE_TABLE_COUNT },
+  (_, elder) =>
+    Array.from({ length: 4 }, (_, row): [number, number, number] => {
+      const n = elder * 4 + row;
+      return [10 + n, 100 + n, row === 0 ? 100 + n : 200 + n];
+    }),
+);
+
+/** `game_task.ovl` with `MonChunk[90]` and the Veggie Elders' trades at JP's file offsets. */
 export function buildGameTask(): Buffer {
   const chunks = GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase;
   let at = chunks + MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
@@ -481,7 +500,19 @@ export function buildGameTask(): Buffer {
     // count pointers + terminator, then count tables of 7 rows + a zero u16.
     at += (Number(count) + 1) * 4 + Number(count) * (7 * HITZONE_ROW_SIZE + 4);
   }
-  const buf = ovlHeader("game_task.ovl", TASK_LOAD, at - 0x80);
+  const trades = VEGGIE_TRADES_JP - TASK_LOAD;
+  const tradesEnd =
+    trades + FIXTURE_TRADES.reduce((n, rows) => n + rows.length * TRADE_ROW_SIZE + 2, 0);
+  const buf = ovlHeader("game_task.ovl", TASK_LOAD, Math.max(at, tradesEnd) - 0x80);
+  let row = trades;
+  for (const rows of FIXTURE_TRADES) {
+    for (const ids of rows) {
+      ids.forEach((id, i) => buf.writeUInt16LE(id, row + i * 2));
+      row += TRADE_ROW_SIZE;
+    }
+    buf.writeUInt16LE(TRADE_END, row);
+    row += 2;
+  }
   const vaddr = (offset: number) => TASK_LOAD + offset;
   const listOf = new Map<number, number>();
   for (const { emId, at: list, count } of tables) {

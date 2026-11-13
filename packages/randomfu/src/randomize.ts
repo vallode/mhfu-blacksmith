@@ -34,6 +34,7 @@ import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supp
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
 import { findSmithyStore, storeReport } from "./shuffles/store.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
+import { collectTradeSlots, shuffleTrades } from "./shuffles/veggie-trades.js";
 import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stats.js";
 import {
   collectQuestMonsters,
@@ -346,6 +347,18 @@ export function randomize(
   if (settings["deliveries.enabled"]) {
     reports.push(
       shuffleDeliveries(collectDeliveries(game.quests), rng.fork("deliveries"), edits, game.boards),
+    );
+  }
+
+  if (settings["trades.enabled"]) {
+    reports.push(
+      shuffleTrades(
+        collectTradeSlots(game.gameTask),
+        settings["trades.mix"],
+        rng.fork("veggie-trades"),
+        edits,
+        game.gameTask,
+      ),
     );
   }
 

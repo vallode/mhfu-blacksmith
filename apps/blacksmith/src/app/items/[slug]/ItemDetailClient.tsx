@@ -26,6 +26,7 @@ import {
   useItemPlaces,
   useItems,
   useItemSources,
+  useItemTrades,
   useQuests,
   type ItemLookup,
 } from "@/lib/client-data";
@@ -53,6 +54,7 @@ import {
   questStarLevel,
   rewardTableHeading,
 } from "@/lib/quests";
+import { tradeMapsLabel, type ItemTrades, type Trade } from "@/lib/veggie-trades";
 
 interface Props {
   slug: string;
@@ -63,6 +65,7 @@ export default function ItemDetailClient({ slug }: Props) {
   const { sources, error: sourcesError } = useItemSources();
   const { places, error: placesError } = useItemPlaces();
   const { combinations, error: combinationsError } = useCombinations();
+  const { trades, error: tradesError } = useItemTrades();
   const { quests } = useQuests();
   const { save } = useSave();
   const { showMaterialCounts, markCleared } = usePreferences().prefs;
@@ -130,6 +133,14 @@ export default function ItemDetailClient({ slug }: Props) {
   if (placed?.shops.length) {
     tabs.push({ id: "shops", label: "Shops", content: <ShopPlaces places={placed.shops} /> });
   }
+  const traded = trades?.get(item.id);
+  if (traded) {
+    tabs.push({
+      id: "trades",
+      label: "Trades",
+      content: <VeggieTrades trades={traded} items={items} />,
+    });
+  }
   const combos = combinations?.byItem.get(item.id);
   if (combinations && combos) {
     tabs.push({
@@ -148,8 +159,11 @@ export default function ItemDetailClient({ slug }: Props) {
   // The tabs wait for every bundle to load or fail, so they don't reorder
   // under the reader; one that fails leaves the others' tabs and a note.
   const settled =
-    (sources || sourcesError) && (places || placesError) && (combinations || combinationsError);
-  const failed = sourcesError || placesError || combinationsError;
+    (sources || sourcesError) &&
+    (places || placesError) &&
+    (combinations || combinationsError) &&
+    (trades || tradesError);
+  const failed = sourcesError || placesError || combinationsError || tradesError;
 
   return (
     <DetailCard>
@@ -194,7 +208,8 @@ export default function ItemDetailClient({ slug }: Props) {
         ) : (
           !failed && (
             <p className="whitespace-normal text-white">
-              No monster drop, quest reward, gathering point, shop or combination gives this item.
+              No monster drop, quest reward, gathering point, shop, trade or combination gives this
+              item.
             </p>
           )
         )}
@@ -334,6 +349,46 @@ function ShopPlaces({ places }: { places: ShopPlace[] }) {
         }))}
       />
     </DropGrid>
+  );
+}
+
+/**
+ * The Veggie Elder trades that give the item and the ones that take it, a
+ * row per trade, with the list number that decides which one he makes.
+ */
+function VeggieTrades({ trades, items }: { trades: ItemTrades; items: ItemLookup }) {
+  const link = (id: number): LinkedName => {
+    const it = items.get(id);
+    return it.known ? { name: it.name, href: itemHref(it.name) } : { name: it.name };
+  };
+  const row = (p: Trade): SourceRow => ({
+    name: tradeMapsLabel(p.maps),
+    map: p.maps[0],
+    detail: (
+      <>
+        {"for "}
+        <NameLink {...link(p.item)} />
+        {` · ${p.rare ? "Rare trade · " : ""}List No. ${p.row}`}
+      </>
+    ),
+    value: `${p.chance}%`,
+    strong: p.chance >= 100,
+  });
+  return (
+    <div className="flex flex-col gap-[1.6rem]">
+      <DropGrid>
+        {trades.gives.length > 0 && (
+          <SourceList title="Veggie Elder gives it" rows={trades.gives.map(row)} />
+        )}
+        {trades.takes.length > 0 && (
+          <SourceList title="Trade it to the Veggie Elder" rows={trades.takes.map(row)} />
+        )}
+      </DropGrid>
+      <p className="m-0 text-fine whitespace-normal text-white/60">
+        He takes the first item on his list that you carry. The Felyne Negotiations kitchen skill
+        makes every trade a rare one.
+      </p>
+    </div>
   );
 }
 
