@@ -409,7 +409,11 @@ export default function SetBuilderClient() {
     const url = new URL(sharePath(encodeSet(build, tables, name), name), window.location.origin);
     try {
       await navigator.clipboard.writeText(url.href);
-      toast({ id: "set-builder-share", title: "Link copied", message: url.href });
+      toast({
+        id: "set-builder-share",
+        title: "Link copied",
+        message: "Paste it anywhere to share this set.",
+      });
     } catch {
       toast({
         id: "set-builder-share",
