@@ -5,8 +5,9 @@
  *
  * The hunter (`HUNTER_MODEL`, `HUNTER_FEMALE_MODEL` in `hunter.ts`) is the
  * default armor set of one sex composed on that sex's skeleton (mhfu-extract's
- * `models/hunter.ts`), one primitive per slot in `HUNTER_SLOTS` order. A
- * piece goes on the hunter of its own sex: the two skeletons differ.
+ * `models/hunter.ts`), each primitive naming its slot by index in
+ * `HUNTER_SLOTS` (`extras.part`). A piece goes on the hunter of its own sex:
+ * the two skeletons differ.
  *
  * An armor piece's own model is unskinned and sits where its package's
  * partial skeleton puts it: around the joint its first bone maps to
@@ -23,7 +24,7 @@ type Three = typeof import("three");
 
 export type HunterSlot = ArmorSlot;
 
-/** The slots, in the order of `hunter.glb`'s primitives (mhfu-extract's `HUNTER_ARMOR`). */
+/** The slots, in the order the hunter's primitives number them (mhfu-extract's `HUNTER_ARMOR`). */
 export const HUNTER_SLOTS: readonly HunterSlot[] = ARMOR_SLOTS;
 
 /**
@@ -121,7 +122,7 @@ export function transferSkin(
  * Puts `piece` (an armor piece's loaded glTF scene) on the hunter (the
  * hunter model's scene) in place of the default set's piece of `slot`. Its
  * meshes move into the hunter's model, keeping their materials; the replaced
- * default mesh is dropped. Throws, leaving the hunter as it was, when its
+ * default meshes are dropped. Throws, leaving the hunter as it was, when its
  * model isn't laid out as expected.
  */
 export function dressHunter(
@@ -135,8 +136,15 @@ export function dressHunter(
     if ((object as import("three").SkinnedMesh).isSkinnedMesh)
       defaults.push(object as import("three").SkinnedMesh);
   });
-  if (defaults.length !== HUNTER_SLOTS.length)
-    throw new Error(`hunter has ${defaults.length} meshes, not one a slot`);
+  // Each primitive names its slot (`extras.part`); an export from before
+  // that has one primitive per slot, in slot order.
+  const tagged = defaults.every((mesh) => typeof mesh.geometry.userData.part === "number");
+  if (!tagged && defaults.length !== HUNTER_SLOTS.length)
+    throw new Error(`hunter has ${defaults.length} untagged meshes, not one a slot`);
+  const replaced = defaults.filter(
+    (mesh, i) => HUNTER_SLOTS[tagged ? (mesh.geometry.userData.part as number) : i] === slot,
+  );
+  if (replaced.length === 0) throw new Error(`hunter has no ${slot}`);
   hunter.updateMatrixWorld(true);
   const { skeleton, bindMatrix } = defaults[0]!;
   // Skinned, the model's scale is in the inverse bind matrices: in the bind
@@ -148,30 +156,31 @@ export function dressHunter(
   );
   const fromModel = toModel.clone().invert();
   const vertex = new THREE.Vector3();
-  const replaced = defaults[HUNTER_SLOTS.indexOf(slot)]!;
 
   // The default piece's vertices, in the model's units, as weights to copy.
-  const { position, skinIndex, skinWeight } = replaced.geometry.attributes;
-  if (!position || !skinIndex || !skinWeight) throw new Error(`${slot}: no skin`);
-  const source: SkinSource = { positions: [], joints: [], weights: [] };
-  // A glTF mesh's primitives share their vertices: take the slot's own.
-  const index = replaced.geometry.index;
-  const used = index ? new Set(Array.from(index.array)) : Array(position.count).keys();
-  for (const i of used) {
-    vertex.fromBufferAttribute(position, i).applyMatrix4(toModel);
-    (source.positions as number[]).push(vertex.x, vertex.y, vertex.z);
-    (source.joints as number[]).push(
-      skinIndex.getX(i),
-      skinIndex.getY(i),
-      skinIndex.getZ(i),
-      skinIndex.getW(i),
-    );
-    (source.weights as number[]).push(
-      skinWeight.getX(i),
-      skinWeight.getY(i),
-      skinWeight.getZ(i),
-      skinWeight.getW(i),
-    );
+  const source = { positions: [] as number[], joints: [] as number[], weights: [] as number[] };
+  for (const mesh of replaced) {
+    const { position, skinIndex, skinWeight } = mesh.geometry.attributes;
+    if (!position || !skinIndex || !skinWeight) throw new Error(`${slot}: no skin`);
+    // A glTF mesh's primitives share their vertices: take the slot's own.
+    const index = mesh.geometry.index;
+    const used = index ? new Set(Array.from(index.array)) : Array(position.count).keys();
+    for (const i of used) {
+      vertex.fromBufferAttribute(position, i).applyMatrix4(toModel);
+      source.positions.push(vertex.x, vertex.y, vertex.z);
+      source.joints.push(
+        skinIndex.getX(i),
+        skinIndex.getY(i),
+        skinIndex.getZ(i),
+        skinIndex.getW(i),
+      );
+      source.weights.push(
+        skinWeight.getX(i),
+        skinWeight.getY(i),
+        skinWeight.getZ(i),
+        skinWeight.getW(i),
+      );
+    }
   }
 
   const root = skeleton.bones[SLOT_ROOT[slot]];
@@ -216,14 +225,15 @@ export function dressHunter(
   if (meshes.length === 0) throw new Error(`${slot}: no mesh`);
 
   // Only now change the hunter, once the piece is ready.
+  const place = replaced[0]!;
   for (const mesh of meshes) {
-    mesh.position.copy(replaced.position);
-    mesh.quaternion.copy(replaced.quaternion);
-    mesh.scale.copy(replaced.scale);
-    replaced.parent!.add(mesh);
+    mesh.position.copy(place.position);
+    mesh.quaternion.copy(place.quaternion);
+    mesh.scale.copy(place.scale);
+    place.parent!.add(mesh);
     mesh.bind(skeleton, bindMatrix);
   }
-  // Never drawn, so nothing to free; its vertices are shared with the other
-  // slots' meshes, so its geometry mustn't be disposed either.
-  replaced.removeFromParent();
+  // Never drawn, so nothing to free; their vertices are shared with the
+  // other slots' meshes, so their geometry mustn't be disposed either.
+  for (const mesh of replaced) mesh.removeFromParent();
 }

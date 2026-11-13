@@ -749,9 +749,9 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   shown on the male hunter only.
 - **Wearing armor.** The armor pages' viewer puts a piece on the hunter of its
   sex in place of the default piece of its slot (the site's
-  `src/lib/hunter-armor.ts`). It relies on `hunter.glb` and
-  `hunter-female.glb` holding one primitive per slot in `HUNTER_ARMOR`
-  order. Piece models are unskinned, so the site moves a piece to its slot's
+  `src/lib/hunter-armor.ts`). Each primitive of `hunter.glb` and
+  `hunter-female.glb` names its slot (`extras.part`, the index in
+  `HUNTER_ARMOR`); a piece with several textures has a primitive for each. Piece models are unskinned, so the site moves a piece to its slot's
   first mapped joint (as `composeHunter` does) and copies bone weights from
   the nearest vertices of the default piece; the female hunter plays the
   motions built on the male skeleton.

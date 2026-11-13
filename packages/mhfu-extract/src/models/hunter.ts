@@ -98,10 +98,11 @@ export type HunterSlot = keyof typeof ARMOR_JOINT_MAPS;
 /**
  * The armor the site's hunters wear (`export-site`): each sex's model of
  * each slot's piece of this name, by data name. `composeHunter` puts the
- * pieces together in this order, and as each has its own texture,
- * `hunter.glb` (and `hunter-female.glb`) has one primitive per slot in this
- * order: the site swaps a slot's piece for another by it (blacksmith's
- * `src/lib/hunter-armor.ts`).
+ * pieces together in this order. In `hunter.glb` and `hunter-female.glb`
+ * each primitive names its slot by index in this order (`extras.part`): the
+ * site swaps a slot's piece for another by it (blacksmith's
+ * `src/lib/hunter-armor.ts`). A piece with several textures has a primitive
+ * for each.
  */
 export const HUNTER_ARMOR: Record<HunterSlot, string> = {
   helmet: "Battle Helm",
@@ -121,6 +122,8 @@ export interface HunterPiece {
 
 export interface HunterModel {
   pmo: Pmo;
+  /** The slot of each of `pmo`'s meshes. */
+  meshSlots: HunterSlot[];
   textures: TmhImage[];
   /** The player's skeleton (the leggings'). */
   bones: Bone[];
@@ -160,6 +163,7 @@ export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
   const textures: TmhImage[] = [];
   const materials: Pmo["materials"] = [];
   const meshes: Pmo["meshes"] = [];
+  const meshSlots: HunterSlot[] = [];
   // Positions in model units, gathered first: the shared scale needs them all.
   type Placed = { position: Vec3; normal?: Vec3; scale: Vec3 };
   const placed: Placed[][][] = [];
@@ -207,6 +211,7 @@ export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
           return { position, normal: v.normal as Vec3 | undefined, scale: pmo.scale };
         }),
       );
+      meshSlots.push(slot);
       meshes.push({
         uvScale: mesh.uvScale,
         primitives: mesh.primitives.map((primitive) => ({
@@ -228,6 +233,7 @@ export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
   ) as Vec3;
   return {
     bones: skeleton,
+    meshSlots,
     textures,
     pmo: {
       radius: Math.hypot(...scale),

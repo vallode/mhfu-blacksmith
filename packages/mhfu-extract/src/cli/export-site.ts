@@ -54,6 +54,7 @@ import {
   composeHunter,
   HUNTER_ARMOR,
   readHunterPiece,
+  type HunterModel,
   type HunterSlot,
 } from "../models/hunter.js";
 import { packMotions } from "../models/motion-pack.js";
@@ -239,28 +240,34 @@ async function exportHunter(
         }),
       ),
     );
-  const { pmo, textures, bones } = await compose("m");
   const clipOptions = options.lossless ? {} : SITE_CLIP_OPTIONS;
-  const glbOptions = options.lossless ? {} : SITE_GLB_OPTIONS;
   const dir = path.join(options.out, "hunter");
   await mkdir(dir, { recursive: true });
-  const { glb } = await buildGlb(pmo, textures, "hunter", glbOptions, { bones });
-  await writeFile(path.join(dir, "hunter.glb"), glb);
-  let size = glb.length;
+  let size = 0;
+  /** Writes a composed hunter, each primitive tagged with its slot (`HUNTER_ARMOR` order). */
+  const writeHunter = async (name: string, hunter: HunterModel) => {
+    const slots = Object.keys(HUNTER_ARMOR);
+    const { glb } = await buildGlb(
+      hunter.pmo,
+      hunter.textures,
+      name,
+      {
+        ...(options.lossless ? {} : SITE_GLB_OPTIONS),
+        partOf: (mesh) => slots.indexOf(hunter.meshSlots[mesh]!),
+      },
+      { bones: hunter.bones },
+    );
+    await writeFile(path.join(dir, `${name}.glb`), glb);
+    size += glb.length;
+  };
+  const male = await compose("m");
+  const { bones } = male;
+  await writeHunter("hunter", male);
 
   // The female hunter wears the female pieces on her own skeleton, so the
   // site can show female armor in place; she plays the same motions.
   try {
-    const female = await compose("f");
-    const { glb: femaleGlb } = await buildGlb(
-      female.pmo,
-      female.textures,
-      "hunter-female",
-      glbOptions,
-      { bones: female.bones },
-    );
-    await writeFile(path.join(dir, "hunter-female.glb"), femaleGlb);
-    size += femaleGlb.length;
+    await writeHunter("hunter-female", await compose("f"));
   } catch (err) {
     console.log(`no female hunter: ${err instanceof Error ? err.message : String(err)}`);
   }
