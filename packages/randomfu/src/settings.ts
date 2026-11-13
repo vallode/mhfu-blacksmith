@@ -13,6 +13,8 @@ export interface Settings {
   seed: string;
   "logic.tiers": "star" | "rank" | "none";
   "questRewards.enabled": boolean;
+  "questRewards.pool": "rewards" | "rank" | "any";
+  "questRewards.keepItems": boolean;
   "monsterRewards.enabled": boolean;
   "monsterRewards.captureAndBreaks": boolean;
   "gathering.enabled": boolean;
@@ -56,6 +58,9 @@ export interface Settings {
   "shops.priceSpread": number;
   "shops.stacks": boolean;
   "shops.stackSpread": number;
+  "questMaps.enabled": boolean;
+  "questMaps.pool": "time" | "any";
+  "questMaps.starts": boolean;
   "questMonsters.species": boolean;
   "questMonsters.speciesPool": "variants" | "rank" | "any";
   "questMonsters.text": boolean;
@@ -66,6 +71,7 @@ export interface Settings {
   "questMonsters.sizeSpread": number;
   "questMonsters.crowns": boolean;
   "questMonsters.crownSpread": "random" | "wide" | "none";
+  "questMonsters.smallSpecies": boolean;
   "questMonsters.smallCounts": boolean;
   "questMonsters.smallCountSpread": number;
   "monsterStats.hp": boolean;
@@ -161,6 +167,45 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: true,
     action: "shuffle",
+  },
+  {
+    key: "questRewards.pool",
+    section: "Quest rewards",
+    label: "What quest rewards give",
+    help: "Where reward items come from.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rewards",
+          label: "Quest reward items",
+          help: "Only items quests reward anyway, moved between quests with their amounts.",
+        },
+        {
+          value: "rank",
+          label: "Any item from the same rank",
+          help: "Anything first found at the quest's rank, monster parts included, in the amount quests usually reward of it.",
+          action: "randomize",
+        },
+        {
+          value: "any",
+          label: "Any item (chaos)",
+          help: "Any item in the game, at any rank, in the amount quests usually reward of it.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "rewards",
+    enabledBy: "questRewards.enabled",
+  },
+  {
+    key: "questRewards.keepItems",
+    section: "Quest rewards",
+    label: "Keep every reward item",
+    help: "With a wider pool, every item a quest rewarded is still the reward of some quest at the same point in the game, so recipes that need it stay craftable. Off, the pool decides everything.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "questRewards.enabled",
   },
   {
     key: "monsterRewards.enabled",
@@ -681,6 +726,47 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "shops.stacks",
   },
   {
+    key: "questMaps.enabled",
+    section: "Quest maps",
+    label: "Move quests to other maps",
+    help: "Village and Guild quests move to another map where all of their large monsters are found. A moved quest takes its gathering points and small monsters from a quest already on that map, and its monsters start where monsters of their kind start there. Delivery quests and quests whose goal names a small monster or an item stay. The quest's text still names the old map. Written and read back on the EU disc; not yet tried in game.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
+  },
+  {
+    key: "questMaps.pool",
+    section: "Quest maps",
+    label: "Where quests can move",
+    help: "Which maps a quest can move to.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "time",
+          label: "Other time of day",
+          help: "The same place by night instead of by day, or the other way round (Forest and Hills, Desert, Swamp, Volcano, Jungle, Snowy Mountains, Great Forest).",
+        },
+        {
+          value: "any",
+          label: "Any map its monsters are on",
+          help: "Any map where every one of the quest's large monsters is found in some quest: a Rathian hunt can go to the Forest and Hills, the Arena or the Old Volcano.",
+        },
+      ],
+    },
+    default: "any",
+    enabledBy: "questMaps.enabled",
+  },
+  {
+    key: "questMaps.starts",
+    section: "Quest maps",
+    label: "Shuffle where large monsters start",
+    help: "Each large monster starts at another point on its map where the disc's quests start a monster of its kind (one whose kind starts nowhere else there keeps its own). Moved quests always get new starting points. Not yet tried in game.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
+  },
+  {
     key: "questMonsters.species",
     section: "Quest monsters",
     label: "Shuffle large monsters",
@@ -821,6 +907,15 @@ export const OPTIONS: readonly OptionDef[] = [
     },
     default: "random",
     enabledBy: "questMonsters.crowns",
+  },
+  {
+    key: "questMonsters.smallSpecies",
+    section: "Quest monsters",
+    label: "Shuffle small monsters",
+    help: "Each small monster species in a Village or Guild quest becomes another found in the same areas in some quest (Cephalos stay in sand). Every one of its kind in the quest changes together. Small monsters the goal names, and delivery quests' small monsters, stay. Not yet tried in game.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
   },
   {
     key: "questMonsters.smallCounts",

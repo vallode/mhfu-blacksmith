@@ -62,7 +62,7 @@ import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
 import { monsterName, questLabel } from "../names.js";
 import type { Rng } from "../rng.js";
-import { median, type ShuffleReport } from "./shuffle.js";
+import { getOrInsert, median, type ShuffleReport } from "./shuffle.js";
 
 /** Variants that share their base species' skeleton, moves and overlay, by emID. */
 export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
@@ -90,6 +90,11 @@ export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
 
 const FAMILY = new Map<number, readonly number[]>();
 for (const family of MONSTER_FAMILIES) for (const id of family) FAMILY.set(id, family);
+
+/** A monster's family (itself and its variants), by emID. */
+export function familyOf(emId: number): readonly number[] {
+  return FAMILY.get(emId) ?? [emId];
+}
 
 /** `questHeader.Map`: night versions share their day map's monsters. */
 const NIGHT_TO_DAY: Record<number, number> = { 16: 2, 17: 3, 18: 4, 19: 5, 20: 6, 21: 11, 31: 30 };
@@ -154,14 +159,13 @@ export function swapSpecies(
   const bands = new Map<number, Set<Band>>();
   /** Levels by monster or set, quest table and rank (see `usualLevel`). */
   const levels = new Map<string, number[]>();
-  const push = (key: string, power: number) =>
-    (levels.get(key) ?? levels.set(key, []).get(key)!).push(power);
+  const push = (key: string, power: number) => getOrInsert(levels, key, () => []).push(power);
   for (const { quest, tier, spawns } of list) {
     const map = habitat(quest.parsed.header.map);
     const table = quest.parsed.header.statTable;
     for (const { monsterId, power } of spawns.large) {
-      (onMap.get(map) ?? onMap.set(map, new Set()).get(map)!).add(monsterId);
-      (bands.get(monsterId) ?? bands.set(monsterId, new Set()).get(monsterId)!).add(tier.band);
+      getOrInsert(onMap, map, () => new Set()).add(monsterId);
+      getOrInsert(bands, monsterId, () => new Set()).add(tier.band);
       const set = setOf(monsterId);
       push(`m${monsterId}:${table}:${tier.band}`, power);
       push(`s${set}:${table}:${tier.band}`, power);

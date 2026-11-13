@@ -18,7 +18,9 @@ checked against the EU disc's quest files (every changed quest re-reads as
 expected) but not yet played in game. Star-level tiers, gathering sources,
 `recipe-amounts`, `costs`, `armor` and `gathering` are so far tested only
 against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
-has been written to the EU disc and read back, but not yet played. A PSP
+has been written to the EU disc and read back, but not yet played; so have
+quest maps, monster starts, small monster species and the wider quest
+reward pools. A PSP
 with custom firmware isn't tested. Run `roundtrip` on a new disc first.
 
 ## Usage
@@ -104,11 +106,13 @@ pages and `pnpm settings` show as a tag):
 - A shuffle moves what's already in the game to new places: quest rewards,
   carves, gathering points, supply boxes, recipe materials, the smithy's
   weapons and armor, armor skills (`armorSkills.mode shuffle`), shop stock,
-  the large monsters in quests, and monsters' weaknesses. Nothing new is
+  the large and small monsters in quests, quests' maps and where their
+  monsters start, and monsters' weaknesses. Nothing new is
   made; a weapon keeps its own stats wherever it turns up (randomized or
   not).
 - A randomizer rolls new values: material amounts, crafting costs, shop
-  prices, carry limits and stock size, quest money and time limits,
+  prices, carry limits and stock size, quest rewards from a wider pool
+  (`questRewards.pool`), quest money and time limits,
   delivery targets, monster difficulty, size, crown spread, small monster counts, base HP
   and status resistance, new armor skills (`armorSkills.mode` `randomize`),
   and weapons' attack, affinity and element or status values.
@@ -117,6 +121,8 @@ pages and `pnpm settings` show as a tag):
 | --------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
 | `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`)                     |
 | `questRewards.enabled`            | on          | Shuffle quest rewards                                                                    |
+| `questRewards.pool`               | `rewards`   | What rewards give: quest reward items, any item of the same `rank`, or `any`             |
+| `questRewards.keepItems`          | on          | With a wider pool, every reward item stays a reward at its point in the game             |
 | `monsterRewards.enabled`          | on          | Shuffle carves and shiny drops                                                           |
 | `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                        |
 | `gathering.enabled`               | off         | Shuffle gathering points                                                                 |
@@ -160,6 +166,9 @@ pages and `pnpm settings` show as a tag):
 | `shops.priceSpread`               | 0.5         | How far prices move                                                                      |
 | `shops.stacks`                    | off         | Randomize carry limits of what shops sell, with or without `shops.enabled`               |
 | `shops.stackSpread`               | 0.5         | How far carry limits move                                                                |
+| `questMaps.enabled`               | off         | Move quests to other maps                                                                |
+| `questMaps.pool`                  | `any`       | The other `time` of day only, or `any` map with all of the quest's large monsters        |
+| `questMaps.starts`                | off         | Shuffle where each large monster starts on its map                                       |
 | `questMonsters.species`           | off         | Shuffle large monsters between quests                                                    |
 | `questMonsters.speciesPool`       | `variants`  | Into one of their `variants`, any monster of the same `rank`, or `any`                   |
 | `questMonsters.text`              | on          | Rename swapped monsters in the quest's text                                              |
@@ -170,6 +179,7 @@ pages and `pnpm settings` show as a tag):
 | `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                             |
 | `questMonsters.crowns`            | off         | Change each quest's crown spread (the range its monsters' sizes roll in)                 |
 | `questMonsters.crownSpread`       | `random`    | One of the four that vary size at `random`, the `wide`st (85-125%) everywhere, or `none` |
+| `questMonsters.smallSpecies`      | off         | Shuffle which small monsters each quest has                                              |
 | `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                           |
 | `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                                      |
 | `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                         |
@@ -188,9 +198,9 @@ pages and `pnpm settings` show as a tag):
 
 Each preset replaces every option and keeps the seed. They're built on
 the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
-them to what's described here. The one option not yet tried in game is in
-no preset: the Veggie Elder's trades. Turn it on yourself once you've
-tried it on your disc. Every preset but Rewards only also writes the
+them to what's described here. Options not yet tried in game are in no
+preset: quest maps, monster starts, small monster species and the Veggie
+Elder's trades. Turn those on yourself once you've tried them on your disc. Every preset but Rewards only also writes the
 bookshelf guides (EU disc only).
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                |
@@ -204,8 +214,8 @@ bookshelf guides (EU disc only).
 ## Shuffles
 
 No shuffle changes a list's length, so every edited file keeps its size,
-except `supplies.pool add`, which grows quests into their sector padding
-(see below).
+except `supplies.pool add`, which grows quests into their sector padding,
+and the quest map options, which rebuild quests (see "Quest maps" below).
 
 | Shuffle           | Data                                                                                   | What changes                                                  |
 | ----------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
@@ -223,6 +233,7 @@ except `supplies.pool add`, which grows quests into their sector padding
 | `supplies`        | Supply box lists in each quest `.mib`                                                  | Item and amount of each stack (see below)                     |
 | `terms`           | Quest header fee, reward, penalty, time limit                                          | The numbers, varied (see below)                               |
 | `deliveries`      | Delivery quest header target and goal line                                             | Which item and how many (see below)                           |
+| quest maps        | Each quest `.mib`, rebuilt; the board's map byte                                       | The map, its gathering and small monsters, starts             |
 | `veggie-trades`   | The Veggie Elder's trade lists in `game_task.ovl`                                      | What each trade gives (see below)                             |
 | quest monsters    | Spawn records in each quest `.mib`                                                     | Which large monsters, their level, small counts               |
 | monster stats     | Each monster's `emChunk` in `game_task.ovl`                                            | Base HP, size, status resistance                              |
@@ -331,6 +342,12 @@ size. Only pairs in tables a node uses move: an unused table keeps its
 items, and so do Training School, Treasure Hunting and the unused
 gathering copies. A pair with item 0 is left as it is.
 
+`questRewards.pool` widens what quest rewards give the same way: `rank` or
+`any` items, each in the amount quest rewards usually give of it (the
+lower median, else 1), never a new quest-only item, with
+`questRewards.keepItems` putting every reward item of a tier back in one
+of its slots first. Each slot keeps its chance. The default, `rewards`, is the shuffle above, seed for seed.
+
 `gathering.pool` widens what spots give. `rank`: any item first found at
 the quest's rank (Low, High or G), monster parts included; `any`: any item
 in the game. With `gathering.keepItems` (on by default), each item the
@@ -435,6 +452,60 @@ commands that found them.
   don't match. Any item a shop now sells that has no price gets one from
   its rarity (100z × (rarity + 1)²), so nothing is free; that needs the
   EBOOT, so without it, wide pools may sell some items for free.
+
+### Quest maps
+
+`questMaps.enabled`, `questMaps.starts` and `questMonsters.smallSpecies`
+(`src/shuffles/quest-maps.ts`, `src/shuffles/small-monsters.ts`) work on
+whole quest documents (mhfu-extract `quests/document.ts`, shared with the
+quest editor), which are then rebuilt (`src/game/rebuild.ts`): a moved
+quest's lists change length. They run first, and every later shuffle works
+on the rebuilt quests. On the EU disc all 551 quests rebuild byte for
+byte, and a randomized image with all three on (and the large monster,
+reward, gathering, supply and delivery shuffles) writes and reads back,
+every quest still parsing. **None has been played in game yet**, so none
+is in a preset. A quest that doesn't survive a rebuild is left alone and
+named in the spoiler log. No rebuilt quest grows past its sectors or past
+the largest quest on the disc, a size the game is known to load.
+
+Item tiers hold through all three (`src/game/first-tiers.ts`): after them,
+each item's first tier (quest rewards, carves by where monsters now are,
+gathering) is checked against the disc's, and a quest whose changes took
+an item's earliest source away (its gathering point, or a monster that
+carries it) is put back as on the disc and named in the spoiler log. On
+the EU disc no quest has needed it: moves and swaps make some items
+earlier, none later.
+
+What belongs to a map, from the EU disc: stage (area) IDs, numbered across
+the game and different for a map's day and night versions; the gathering
+nodes (one layout per map, two on some) and the item tables they index;
+the position sets at `UnknPTR2` (only the Jungle by day has any); the
+small monster areas; and each large monster's starting stage, rotation and
+position. The header's unknown bytes and the quest script vary within a
+map and name no stage.
+
+- **Moving** (`questMaps.enabled`): a quest goes to another map where every
+  one of its large monsters is a large monster in some Village or Guild
+  quest (`any`), or to its map at the other time of day (`time`). It takes
+  the gathering points, item tables, position sets and small monsters of a
+  quest already there (the donor, of its own rank where there is one; one
+  whose parts don't fit is passed over), and each large monster starts at
+  a point the disc's quests start its family at on that map. A map with no
+  such point for one of its monsters isn't offered (another monster's
+  start may be ground it can't stand on). Its `spawn` byte stays unless
+  no quest on the new map uses that value (the Fortress and Castle
+  Schrade all use 2). Board records get the new map (`+0x1c`). Delivery
+  quests, quests with an item objective, and quests whose goal names a
+  small monster stay. The quest's text isn't changed, so it may still
+  name the old map.
+- **Starts** (`questMaps.starts`): each large monster of a quest that
+  didn't move starts at another of its family's points on its own map.
+- **Small monster species** (`questMonsters.smallSpecies`): one mapping per
+  quest from old species to new, applied to every spawn and preload entry,
+  so each area's group loads as many species as before and no two species
+  merge. A species only becomes one some quest has in every stage it's in.
+  Rocks and Great Thunderbugs (spawned as small monsters, but part of the
+  area), the goal's monsters and delivery quests' small monsters stay.
 
 ### Monsters
 
