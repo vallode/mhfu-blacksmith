@@ -198,6 +198,12 @@ export interface Monster {
   base_size?: number;
   /** Guild Card crown thresholds, in percent of `base_size` (src/lib/crowns.ts) */
   crowns?: Crowns;
+  /**
+   * The smallest and largest size, in percent of `base_size`, the monster
+   * rolls across its quests (scripts/lib/quest-bundle.ts monsterSizeRanges);
+   * absent for monsters that are always 100.
+   */
+  size_range?: { min: number; max: number };
   /** Breakable parts, one entry per break reward */
   breaks?: MonsterBreak[];
   /**

@@ -15,12 +15,11 @@ import MonsterQuests from "@/components/MonsterQuests";
 import SmallMonsterQuests from "@/components/SmallMonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { breakIndex, breakKey } from "@/lib/monster-breaks";
-import { formatRank } from "@/lib/monster-drops";
+import { canCapture, formatRank } from "@/lib/monster-drops";
 import { monsterRecordFor } from "@/lib/monster-ids";
 import {
   bestCrownQuests,
   clearedQuestIds,
-  monsterSizeRange,
   questsWithMonster,
   smallMonsterStages,
 } from "@/lib/quests";
@@ -269,12 +268,11 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The quests with the best chance of each crown, and that chance.
   const bestCrowns = bestCrownQuests(monsterQuests, monster.name);
   // The sizes its quests can roll, in centimetres.
-  const percentRange = monsterSizeRange(monsterQuests, monster.name);
   const sizeRange =
-    percentRange && monster.base_size !== undefined
+    monster.size_range && monster.base_size !== undefined
       ? {
-          min: sizeInCm(percentRange.min, monster.base_size),
-          max: sizeInCm(percentRange.max, monster.base_size),
+          min: sizeInCm(monster.size_range.min, monster.base_size),
+          max: sizeInCm(monster.size_range.max, monster.base_size),
         }
       : null;
   const bestChance: Partial<Record<Crown, number>> = {};
@@ -311,8 +309,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           },
         ]
       : [];
-  // The loaded hunter's Guild Card counts. Only large monsters (the ones with
-  // crowns) can be captured.
+  // The loaded hunter's Guild Card counts. Captures only for monsters the
+  // game gives capture rewards for.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
   const tabs = [...hitzoneTab, ...dropTabs, ...questTab, ...spawnTab];
 
@@ -360,7 +358,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             {record && (
               <p className="text-small whitespace-normal text-stat">
                 Hunted: <span className="text-white tabular-nums">{record.kills}</span>
-                {monster.crowns && (
+                {canCapture(monster) && (
                   <>
                     {" · "}Captured:{" "}
                     <span className="text-white tabular-nums">{record.captures}</span>

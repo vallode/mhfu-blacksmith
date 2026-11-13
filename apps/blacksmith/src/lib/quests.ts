@@ -482,26 +482,6 @@ export function rewardTableHeading(t: QuestRewardTable): {
 }
 
 /** A crown a quest gives a monster the best chance of, and that chance. */
-/**
- * The smallest and largest size, in percent, a monster can roll across
- * these quests, or null if it rolls in none (it has no crowns, so is
- * always 100). A quest with `fixedFirst` also holds it at 100 until its
- * flag is set.
- */
-export function monsterSizeRange(
-  quests: readonly Quest[],
-  monster: string,
-): { min: number; max: number } | null {
-  let range: { min: number; max: number } | null = null;
-  for (const { monsterSize: size } of quests) {
-    if (!size?.crowns.some((c) => c.monster.name === monster)) continue;
-    const min = size.fixedFirst ? Math.min(size.min, 100) : size.min;
-    const max = size.fixedFirst ? Math.max(size.max, 100) : size.max;
-    range = range ? { min: Math.min(range.min, min), max: Math.max(range.max, max) } : { min, max };
-  }
-  return range;
-}
-
 export interface BestCrown {
   crown: Crown;
   chance: number;
