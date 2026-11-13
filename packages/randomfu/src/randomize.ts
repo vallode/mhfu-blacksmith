@@ -49,6 +49,7 @@ import {
   randomizeMonsterStats,
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
+import { writeGuides } from "./hints/guides.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export { LOGIC_VERSION };
@@ -477,6 +478,14 @@ export function randomize(game: GameData, settings: Settings): RandomizeResult {
       ),
     );
   }
+
+  // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.
+  reports.push(
+    ...writeGuides(game, questsAfter, settings.seed, edits, {
+      bestiary: settings["hints.bookshelf"],
+      almanac: settings["hints.almanac"],
+    }),
+  );
 
   return {
     edits,
