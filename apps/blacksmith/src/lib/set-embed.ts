@@ -1,5 +1,5 @@
 /**
- * Link embeds for shared sets (`/s/<code>/<slug>/`, set-link.ts). The page is one
+ * Link embeds for shared sets (`/sets/<code>/<slug>/`, set-link.ts). The page is one
  * static file for every set, so the Cloudflare Worker
  * (src/cloudflare/worker.ts) decodes the code and writes these into its
  * meta tags: the set's name (or, without one, its skills) as the title, its
@@ -98,7 +98,10 @@ export function embedCodecTables(data: SetEmbedData): CodecTables {
 export interface SetEmbed {
   /** The set's name, or its skills when it has none. */
   title: string;
-  /** Points in each skill tree that activates a skill: "Attack +21 · Paralysis −10". */
+  /**
+   * Points in each skill tree that activates a skill: "Attack +21 · Paralysis −10".
+   * Without any, "No skills" for a named set and empty for one titled that.
+   */
   description: string;
   /** Everything in words, the description and then the pieces and decorations: the card's alt text. */
   details: string;
@@ -145,7 +148,8 @@ export function buildSetEmbed(
   const title = truncate(name || skills, MAX_TITLE);
 
   const points = stats.skills.map((s) => `${s.tree} ${signed(s.points)}`).join(" · ");
-  const description = points || "No skills";
+  // A set with no skills says so in its title, unless it has a name.
+  const description = points || (name ? "No skills" : "");
 
   const res = RES_NAMES.map((n, i) => `${ELEMENT_EMOJI[n]}${signed(stats.res[i])}`).join(" ");
   const pieceLines = ARMOR_SLOTS.map((slot, i) => {

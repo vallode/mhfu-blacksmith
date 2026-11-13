@@ -156,12 +156,18 @@ describe("set embeds", () => {
     );
   });
 
-  it("says a set with no skills has none", () => {
+  it("says a set with no skills has none, once", () => {
     const helm = data.pieces.find((p) => p.slot === "helmet" && Object.keys(p.points).length === 0);
     assert.ok(helm, "a helmet with no skill points");
-    const e = buildSetEmbed(withPiece(emptyBuild(), "helmet", helm), data.trees);
-    assert.ok(e);
-    assert.equal(e.description, "No skills");
+    const set = withPiece(emptyBuild(), "helmet", helm);
+    const named = buildSetEmbed(set, data.trees, "Fashion");
+    assert.ok(named);
+    assert.equal(named.title, "Fashion");
+    assert.equal(named.description, "No skills");
+    const unnamed = buildSetEmbed(set, data.trees);
+    assert.ok(unnamed);
+    assert.equal(unnamed.title, "No skills");
+    assert.equal(unnamed.description, "");
   });
 
   it("lists bad skills on their own line of the alt text", () => {
