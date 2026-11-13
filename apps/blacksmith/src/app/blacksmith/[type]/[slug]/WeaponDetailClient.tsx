@@ -173,7 +173,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   <>
                     {" "}
                     <StatValue className="whitespace-nowrap opacity-20">
-                      [ {el.attack / 10} ]
+                      [{el.attack / 10}]
                     </StatValue>
                   </>
                 )}
