@@ -5,8 +5,8 @@
 {
   "name": "mhfu-blacksmith",
   "compatibility_date": "2026-10-22",
-  // Only runs for the set builder (run_worker_first below): it gives shared
-  // set links their own embeds. See the file.
+  // Only runs for the set builder and share links (run_worker_first below):
+  // it serves share links and gives them their own embeds. See the file.
   "main": "src/cloudflare/worker.ts",
   "assets": {
     "directory": "./out",
@@ -17,7 +17,7 @@
     "not_found_handling": "404-page",
     // Everything else is a free static asset request that never runs the
     // script; these count as Worker requests.
-    "run_worker_first": ["/set-builder/*"],
+    "run_worker_first": ["/set-builder/*", "/s/*"],
   },
   // Production at mhfu-blacksmith.<account>.workers.dev, and a preview URL
   // per branch (see the workflow).

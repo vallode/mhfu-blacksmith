@@ -3,8 +3,10 @@
  * from out/ as assets; only the set builder runs this script first
  * (`run_worker_first`), so every other request stays a static one.
  *
- * It gives shared sets (`/set-builder/?s=<code>`) their own link embeds. The
- * page is one static file for every set, so this decodes the code and
+ * It serves share links (`/s/<code>/<slug>/`, src/lib/set-link.ts) the set
+ * builder's page, and gives them, and the older `/set-builder/?s=<code>`,
+ * their own link embeds. The page is one static file for every set, so this
+ * decodes the code and
  * rewrites the page's meta tags (src/lib/set-embed.ts): the set's name (or
  * its skills) as the title, its skill points and an invitation to open it as
  * the description, and its card as the image. It also serves:
@@ -34,6 +36,7 @@ import {
   type CardAssets,
 } from "../lib/set-card";
 import { SHARE_PARAM } from "../lib/set-codec";
+import { codeFromPath, sharePath } from "../lib/set-link";
 import {
   buildSetEmbed,
   SET_EMBED_DATA_PATH,
@@ -239,10 +242,9 @@ function rewritePage(
   embed: SetEmbed,
   url: URL,
   code: string,
-  shared: { canonical: string; version: string },
+  shared: { canonical: string; version: string; name?: string },
 ): Response {
-  const shareUrl = new URL("/set-builder/", url.origin);
-  shareUrl.searchParams.set(SHARE_PARAM, code);
+  const shareUrl = new URL(sharePath(code, shared.name), url.origin);
   // The card doesn't show the name, so every name for a set shares one image URL.
   const image = cardUrl(url.origin, shared.canonical, shared.version).href;
   const content: Record<string, string> = {
@@ -295,17 +297,29 @@ function rewritePage(
   return new Response(out.body, { status: out.status, statusText: out.statusText, headers });
 }
 
+/**
+ * The request for the set builder's page, which a share link's path is
+ * served. A validator the browser kept for the link isn't the page file's.
+ */
+function builderPage(request: Request, url: URL): Request {
+  const headers = new Headers(request.headers);
+  headers.delete("If-None-Match");
+  headers.delete("If-Modified-Since");
+  return new Request(new URL("/set-builder/", url.origin), { method: request.method, headers });
+}
+
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
-    const code = url.searchParams.get(SHARE_PARAM);
+    const pathCode = codeFromPath(url.pathname);
+    const code = pathCode ?? url.searchParams.get(SHARE_PARAM);
     if (!code || (request.method !== "GET" && request.method !== "HEAD")) {
       return env.ASSETS.fetch(request);
     }
 
-    if (url.pathname === CARD_PATH) return cardResponse(env, ctx, url, code);
+    if (!pathCode && url.pathname === CARD_PATH) return cardResponse(env, ctx, url, code);
 
-    if (url.pathname === OEMBED_PATH) {
+    if (!pathCode && url.pathname === OEMBED_PATH) {
       let r;
       try {
         r = await readCode(env, url.origin, code);
@@ -316,7 +330,7 @@ const worker = {
       return embed ? oembedResponse(embed, url.origin) : new Response("Not found", { status: 404 });
     }
 
-    const page = await env.ASSETS.fetch(request);
+    const page = await env.ASSETS.fetch(pathCode ? builderPage(request, url) : request);
     if (!page.ok || !page.headers.get("Content-Type")?.startsWith("text/html")) return page;
     let r;
     try {

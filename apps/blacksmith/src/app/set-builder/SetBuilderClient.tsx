@@ -43,6 +43,7 @@ import {
   encodeSet,
   SHARE_PARAM,
 } from "@/lib/set-codec";
+import { codeFromPath, sharePath } from "@/lib/set-link";
 import {
   cantWear,
   resolveWanted,
@@ -315,15 +316,18 @@ export default function SetBuilderClient() {
     [tables, openInEditor],
   );
 
-  // On load: a shared link (?s=) wins over everything stored; otherwise the
-  // set left in the editor this session. Saved sets are only read here.
+  // On load: a share link (/s/<code>/, or the older ?s=) wins over
+  // everything stored; otherwise the set left in the editor this session.
+  // Saved sets are only read here.
   const opened = useRef(false);
   useEffect(() => {
     setSavedSets(readSavedSets());
   }, []);
   useEffect(() => {
     if (opened.current || !restored) return;
-    const code = new URLSearchParams(window.location.search).get(SHARE_PARAM);
+    const code =
+      codeFromPath(window.location.pathname) ??
+      new URLSearchParams(window.location.search).get(SHARE_PARAM);
     if (code !== null && idsError) {
       opened.current = true;
       setOpenWarnings(["Couldn't load the equipment IDs to open this link. Try again online."]);
@@ -337,6 +341,7 @@ export default function SetBuilderClient() {
       // From here the editor's set is kept as the draft, so a reload doesn't
       // bring the link's set back over the player's edits.
       const url = new URL(window.location.href);
+      url.pathname = "/set-builder/";
       url.searchParams.delete(SHARE_PARAM);
       window.history.replaceState(window.history.state, "", url);
       return;
@@ -394,12 +399,10 @@ export default function SetBuilderClient() {
 
   const share = async () => {
     if (!code || !tables) return;
-    const url = new URL("/set-builder/", window.location.origin);
-    // The link carries the set's name, which its link preview is titled with.
-    url.searchParams.set(
-      SHARE_PARAM,
-      encodeSet(build, tables, savedSet?.name ?? linkName ?? undefined),
-    );
+    // The link carries the set's name, which its link preview is titled with
+    // and its address ends with.
+    const name = savedSet?.name ?? linkName ?? undefined;
+    const url = new URL(sharePath(encodeSet(build, tables, name), name), window.location.origin);
     try {
       await navigator.clipboard.writeText(url.href);
       toast({ id: "set-builder-share", title: "Link copied", message: url.href });

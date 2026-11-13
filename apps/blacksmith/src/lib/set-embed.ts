@@ -1,5 +1,5 @@
 /**
- * Link embeds for shared sets (`/set-builder/?s=<code>`). The page is one
+ * Link embeds for shared sets (`/s/<code>/<slug>/`, set-link.ts). The page is one
  * static file for every set, so the Cloudflare Worker
  * (src/cloudflare/worker.ts) decodes the code and writes these into its
  * meta tags: the set's name (or, without one, its skills) as the title, its
