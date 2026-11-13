@@ -96,3 +96,9 @@ export const iconChoiceOff =
  * letters off centre to the left; the negative margin takes it back off.
  */
 export const centredText = "-mr-[0.14em]";
+
+/** A tab above the Options cards (desktop): outlined, yellow when selected. */
+export const tab =
+  "cursor-pointer border border-hr bg-black/40 px-[1.6rem] py-[0.6rem] font-[inherit] text-small text-white/70 hover:hover-glow focus-visible:hover-glow focus-visible:outline-none";
+
+export const tabOn = "border-stat bg-stat/20 text-stat";
