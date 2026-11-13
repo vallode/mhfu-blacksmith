@@ -51,6 +51,7 @@ import { boneRoots, composeHunter, readHunterPiece, type HunterSlot } from "../m
 import { packMotions } from "../models/motion-pack.js";
 import { readMotionBank } from "../models/motion.js";
 import { packageModel } from "../models/rig.js";
+import { spawnHidden, withoutHidden } from "../models/spawn-parts.js";
 import { isPac, readPac, type PacEntry } from "../models/pac.js";
 import { isPmo, type Pmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
@@ -142,6 +143,14 @@ async function packageToGlb(
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
   const model = packageModel(entries, pmoEntry.index, clipOptions);
   const { rig } = model;
+  // A monster is shown as it spawns: no broken parts, stump caps or rage
+  // layers. A table that doesn't fit the model leaves every part drawn.
+  if (name.startsWith("emmodel/"))
+    try {
+      model.pmo = withoutHidden(model.pmo, spawnHidden(path.basename(name, ".pac")));
+    } catch (err) {
+      console.log(`${name}: ${err instanceof Error ? err.message : String(err)}, drawing them all`);
+    }
   // An unrigged model's skeleton still splits it into pieces and poses it.
   const bones = rig ? undefined : weaponSkeleton(entries, pmoEntry.index);
   const { pmo, sheathed } = pose && bones ? poseWeapon(model.pmo, bones, pose) : { pmo: model.pmo };

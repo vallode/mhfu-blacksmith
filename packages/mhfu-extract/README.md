@@ -571,6 +571,12 @@ the output. Two corrections to mhff's description of PMO 1.0, both
 confirmed on real files: mesh records are 0x18 bytes, and materials go
 through a per-slot byte map at header offset 0x28.
 
+A monster's PMO holds every look it can take (broken heads and wings, the
+caps over a cut tail's stump, rage layers), and the game picks which
+(mesh, material) pairs to draw. `export-site` shows each monster as it
+spawns, leaving out the pairs `spawn-parts.ts` lists as hidden then (from
+`vendor/mhfu-monster-viewer`, see NOTICE.md); `models` keeps them all.
+
 ### Output size
 
 `gltf.ts` makes the files as small as it can (measured on the 567 weapon,
