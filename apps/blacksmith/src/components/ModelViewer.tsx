@@ -6,12 +6,15 @@ import { capsuleBone } from "@/lib/capsule-bone";
 import { cn } from "@/lib/cn";
 import {
   fetchHunterClips,
+  fetchHunterIdle,
+  HUNTER_FEMALE_MODEL,
   HUNTER_MODEL,
   SHEATHED_TARGET,
   WEAPON_MOUNTS,
   type HunterClip,
   type WeaponMount,
 } from "@/lib/hunter";
+import { dressHunter, type HunterOutfit } from "@/lib/hunter-armor";
 import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
 
@@ -44,6 +47,12 @@ interface Props {
    * type's motions. If the hunter's model can't load, the weapon shows alone.
    */
   hunter?: string;
+  /**
+   * Show `src` (an armor piece) worn by the hunter of its sex, standing idle,
+   * in place of the default set's piece of its slot. If the hunter's model
+   * can't load, the piece shows alone.
+   */
+  wear?: HunterOutfit;
 }
 
 type Three = typeof import("three");
@@ -116,7 +125,7 @@ const panelButton = cn(modelPanelButton, "text-parchment");
  * Interactive 3D view of a .glb model: drag to rotate, scroll/pinch to zoom.
  * three.js is imported on demand so it only loads on pages that show a model.
  */
-export default function ModelViewer({ src, label, pair = false, capsules, hunter }: Props) {
+export default function ModelViewer({ src, label, pair = false, capsules, hunter, wear }: Props) {
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("loading");
   /** Set while a model is shown, for the capsule effect below. */
@@ -230,15 +239,26 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
 
       try {
         const loader = new GLTFLoader().setMeshoptDecoder(MeshoptDecoder);
-        // Without the hunter (an export that couldn't make one), the weapon shows alone.
+        // Without the hunter (an export that couldn't make one), the weapon
+        // or armor piece shows alone.
+        const bodyModel = wear?.sex === "female" ? HUNTER_FEMALE_MODEL : HUNTER_MODEL;
         const [body, own] = await Promise.all([
-          hunter ? loader.loadAsync(HUNTER_MODEL).catch(() => null) : null,
+          hunter || wear ? loader.loadAsync(bodyModel).catch(() => null) : null,
           loader.loadAsync(src),
         ]);
         if (disposed) return;
-        const gltf = body ?? own;
-        const weapon = body && own.scene;
-        const holding = body ? hunter : undefined;
+        const wearing = (() => {
+          if (!body || !wear) return false;
+          try {
+            dressHunter(THREE, body.scene, wear.slot, own.scene);
+            return true;
+          } catch {
+            return false;
+          }
+        })();
+        const weapon = body && hunter ? own.scene : null;
+        const gltf = weapon || wearing ? body! : own;
+        const holding = weapon ? hunter : undefined;
         model = gltf.scene;
         const copies = [model];
         if (weapon && holding) {
@@ -507,11 +527,13 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
         const motionsFile = (gltf.asset.extras as { motions?: unknown } | undefined)?.motions;
         const motions: Promise<MotionClip[]> = holding
           ? fetchHunterClips(holding, abort.signal).catch(() => [])
-          : typeof motionsFile === "string" && !pair
-            ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
-                // The model still shows, just still.
-                .catch(() => [])
-            : Promise.resolve([]);
+          : wearing
+            ? fetchHunterIdle("Idle", abort.signal).catch(() => [])
+            : typeof motionsFile === "string" && !pair
+              ? fetchMotions(new URL(motionsFile, new URL(src, location.href)).href, abort.signal)
+                  // The model still shows, just still.
+                  .catch(() => [])
+              : Promise.resolve([]);
         const early = await Promise.race([
           motions,
           new Promise<null>((resolve) => setTimeout(() => resolve(null), MOTIONS_WAIT_MS)),
@@ -661,7 +683,9 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
       disposed = true;
       cleanup();
     };
-  }, [src, pair, hunter]);
+    // `wear` is compared by its fields: callers pass a fresh object each render.
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [src, pair, hunter, wear?.slot, wear?.sex]);
 
   // Capsules live in their own group, rebuilt when they change; there are
   // few (Rathian has 32), so rebuilding is cheaper than diffing.

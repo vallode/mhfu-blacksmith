@@ -31,8 +31,10 @@
  * fetches it by the model's path; a monster whose hitboxes can't be read has
  * none, and the reason is logged.
  *
- * `public/models/hunter/` holds the hunter shown holding a weapon: `hunter.glb`
- * (the default armor set on the player's skeleton, `models/hunter.ts`), one
+ * `public/models/hunter/` holds the hunter shown holding a weapon or wearing
+ * armor: `hunter.glb` (the default armor set on the player's skeleton,
+ * `models/hunter.ts`), `hunter-female.glb` (the female set on the female
+ * skeleton, for female armor), one
  * `wNN.motions.bin` per weapon class and `common.motions.bin`, the common
  * motions the site uses (motion-pack.ts). Weapons are written in `part_<n>`
  * pieces (a shield, a second blade) so the site can carry them apart.
@@ -47,7 +49,13 @@ import { buildPlayerClips, PLAYER_GROUP_SLOTS, type ClipOptions } from "../model
 import { isAhi, readAhi, type Bone } from "../models/ahi.js";
 import { skeletonFor } from "../models/attach.js";
 import { buildGlb, type GlbOptions, type GlbPartOf } from "../models/gltf.js";
-import { boneRoots, composeHunter, readHunterPiece, type HunterSlot } from "../models/hunter.js";
+import {
+  boneRoots,
+  composeHunter,
+  HUNTER_ARMOR,
+  readHunterPiece,
+  type HunterSlot,
+} from "../models/hunter.js";
 import { packMotions } from "../models/motion-pack.js";
 import { readMotionBank } from "../models/motion.js";
 import { packageModel } from "../models/rig.js";
@@ -205,14 +213,6 @@ async function exists(file: string): Promise<boolean> {
   }
 }
 
-/** The armor the hunter wears: the model of each slot's piece of this name, by data name. */
-const HUNTER_ARMOR: Record<HunterSlot, string> = {
-  helmet: "Battle Helm",
-  plate: "Battle Mail",
-  gauntlets: "Battle Vambraces",
-  waist: "Battle Tasset",
-  leggings: "Battle Greaves",
-};
 /** Weapon classes (`motion/wNN_tbl.bin`, by `WEAPON_TYPE_NAMES` index). */
 const WEAPON_CLASS_COUNT = 11;
 /** Slots of `motion/plcom_tbl.bin` the site plays: group 0's standing idle (weapon away). */
@@ -226,28 +226,45 @@ async function exportHunter(
 ): Promise<void> {
   const dataBin = path.join(options.unpacked, "data-bin");
   const models = readArmorModelIds(reader, MHP2G_PROFILE.resolverForRegion(region) ?? undefined);
-  const pieces = await Promise.all(
-    (Object.entries(HUNTER_ARMOR) as [HunterSlot, string][]).map(async ([slot, name]) => {
-      const entry = models[slot].find((e) => ids[slot]?.[e.index]?.name === name);
-      if (!entry) throw new Error(`Default armor piece not found: ${name}`);
-      const source = path.join(dataBin, armorModelPath(slot, "m", entry.maleId));
-      return readHunterPiece(slot, readPac(await readFile(source)));
-    }),
-  );
-  const { pmo, textures, bones } = composeHunter(pieces);
+  /** The default set of one sex, composed on that sex's skeleton. */
+  const compose = async (sex: "m" | "f") =>
+    composeHunter(
+      await Promise.all(
+        (Object.entries(HUNTER_ARMOR) as [HunterSlot, string][]).map(async ([slot, name]) => {
+          const entry = models[slot].find((e) => ids[slot]?.[e.index]?.name === name);
+          if (!entry) throw new Error(`Default armor piece not found: ${name}`);
+          const id = sex === "m" ? entry.maleId : entry.femaleId;
+          const source = path.join(dataBin, armorModelPath(slot, sex, id));
+          return readHunterPiece(slot, readPac(await readFile(source)));
+        }),
+      ),
+    );
+  const { pmo, textures, bones } = await compose("m");
   const clipOptions = options.lossless ? {} : SITE_CLIP_OPTIONS;
+  const glbOptions = options.lossless ? {} : SITE_GLB_OPTIONS;
   const dir = path.join(options.out, "hunter");
   await mkdir(dir, { recursive: true });
-  const { glb } = await buildGlb(
-    pmo,
-    textures,
-    "hunter",
-    options.lossless ? {} : SITE_GLB_OPTIONS,
-    { bones },
-  );
+  const { glb } = await buildGlb(pmo, textures, "hunter", glbOptions, { bones });
   await writeFile(path.join(dir, "hunter.glb"), glb);
-
   let size = glb.length;
+
+  // The female hunter wears the female pieces on her own skeleton, so the
+  // site can show female armor in place; she plays the same motions.
+  try {
+    const female = await compose("f");
+    const { glb: femaleGlb } = await buildGlb(
+      female.pmo,
+      female.textures,
+      "hunter-female",
+      glbOptions,
+      { bones: female.bones },
+    );
+    await writeFile(path.join(dir, "hunter-female.glb"), femaleGlb);
+    size += femaleGlb.length;
+  } catch (err) {
+    console.log(`no female hunter: ${err instanceof Error ? err.message : String(err)}`);
+  }
+
   const writeClips = async (file: string, clips: ReturnType<typeof buildPlayerClips>) => {
     const pack = packMotions(clips);
     size += pack.length;

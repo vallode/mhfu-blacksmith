@@ -95,6 +95,22 @@ export const ARMOR_JOINT_MAPS = {
 
 export type HunterSlot = keyof typeof ARMOR_JOINT_MAPS;
 
+/**
+ * The armor the site's hunters wear (`export-site`): each sex's model of
+ * each slot's piece of this name, by data name. `composeHunter` puts the
+ * pieces together in this order, and as each has its own texture,
+ * `hunter.glb` (and `hunter-female.glb`) has one primitive per slot in this
+ * order: the site swaps a slot's piece for another by it (blacksmith's
+ * `src/lib/hunter-armor.ts`).
+ */
+export const HUNTER_ARMOR: Record<HunterSlot, string> = {
+  helmet: "Battle Helm",
+  plate: "Battle Mail",
+  gauntlets: "Battle Vambraces",
+  waist: "Battle Tasset",
+  leggings: "Battle Greaves",
+};
+
 /** One armor piece's mesh, skeleton and textures. */
 export interface HunterPiece {
   slot: HunterSlot;

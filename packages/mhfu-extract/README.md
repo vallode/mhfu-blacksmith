@@ -708,7 +708,7 @@ previous manifest, so a run without `eboot.bin` keeps weapons and armor.
 
 ### Hunter
 
-`export-site` writes a hunter for the weapon pages' viewer to
+`export-site` writes a hunter for the weapon and armor pages' viewer to
 `public/models/hunter/` (1.4 MB in all, 245 two-piece weapon models grew by
 63 KB). Needs only `player/` and `motion/` from the
 unpacked directory; the log says `no hunter: ...` if it can't.
@@ -716,6 +716,7 @@ unpacked directory; the log says `no hunter: ...` if it can't.
 | File                 | Size      | Holds                                                 |
 | -------------------- | --------- | ----------------------------------------------------- |
 | `hunter.glb`         | 50 KB     | Male Battle armor set, skinned to the player skeleton |
+| `hunter-female.glb`  |           | Female Battle armor set, on the female skeleton       |
 | `common.motions.bin` | 0.9 KB    | The sheathed standing motion, from `plcom_tbl.bin`    |
 | `wNN.motions.bin`    | 92-196 KB | Every motion of weapon class NN                       |
 
@@ -744,8 +745,16 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   node per piece.
 - **Open.** Where the game puts a weapon isn't decoded. In hand, weapons sit in the fist (the middle of the gauntlets' hand vertices), gripped along the wrist joint's Z axis. The great sword, long sword, hammer and hunting horn are the right hand's (it draws and sheathes them alone), but while both hands hold one the right fist stays on the left fist's Z axis at a set distance (53, 62, 79 and 42) in most frames, turning about it, while the left fist wanders in the right's frame. So the viewer moves these to the left fist, along that axis, whenever the right fist is on it, and back to the right fist (in the place they share in the drawn stance) when it isn't. The fists don't say how far round its length a weapon is turned: these take the roll the right fist's own frame gives them, as one-handed weapons do, which matches the game for the Ravager Blade. Bowguns are in the right fist, turned so the stock reaches the left fist in most frames. All of this is a fit to the motions, not read from the game; at the end of a sheathe the weapon is still in the hand, since when the game moves it to the back isn't known. On the
   back they're placed by eye (`WEAPON_MOUNTS` in the site's `src/lib/hunter.ts`),
-  so a sheathed weapon is only roughly where the game has it. Only the male
-  Battle set is exported.
+  so a sheathed weapon is only roughly where the game has it. Weapons are
+  shown on the male hunter only.
+- **Wearing armor.** The armor pages' viewer puts a piece on the hunter of its
+  sex in place of the default piece of its slot (the site's
+  `src/lib/hunter-armor.ts`). It relies on `hunter.glb` and
+  `hunter-female.glb` holding one primitive per slot in `HUNTER_ARMOR`
+  order. Piece models are unskinned, so the site moves a piece to its slot's
+  first mapped joint (as `composeHunter` does) and copies bone weights from
+  the nearest vertices of the default piece; the female hunter plays the
+  motions built on the male skeleton.
 - **Posed weapon bones** (`models/weapon-pose.ts`). Some weapons skin
   pieces to extra bones that the game moves at run time, and no motion file
   animates them: the Ravager Blade's (`we012`) claws are weighted 0.87/0.13
