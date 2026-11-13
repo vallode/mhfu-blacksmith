@@ -31,15 +31,37 @@ import { tradeMapsLabel } from "@/lib/veggie-trades";
 
 const note = "whitespace-normal text-white leading-[1.25]";
 
-/** An item's name as a link; a stat value, so no icon (it is a paragraph). */
-function ItemLink({ id, items }: { id: number; items: ItemLookup }) {
+/** One reward, laid out like a recipe material: icon, name and its chance. */
+function RewardRow({
+  id,
+  items,
+  chance,
+  rare,
+}: {
+  id: number;
+  items: ItemLookup;
+  chance: number;
+  rare?: boolean;
+}) {
   const item = items.get(id);
-  return item.known ? (
-    <Link href={itemHref(item.name)} className="text-white underline-offset-4 hover:underline">
-      {item.name}
-    </Link>
-  ) : (
-    <StatValue>{item.name}</StatValue>
+  return (
+    <div className="flex items-center">
+      <Icon type={item.type} color={item.color} />
+      {item.known ? (
+        <Link
+          href={itemHref(item.name)}
+          className={cn(
+            "w-cells-16 min-w-0 wrap-anywhere whitespace-normal underline-offset-4 hover:underline mobile:leading-[1.25]",
+            rare && "text-warm",
+          )}
+        >
+          {item.name}
+        </Link>
+      ) : (
+        <p className="w-cells-16 min-w-0">{item.name}</p>
+      )}
+      <p className={cn("flex-none text-right whitespace-pre", rare && "text-warm")}>{chance}%</p>
+    </div>
   );
 }
 
@@ -126,21 +148,18 @@ export default function VeggieElderClient() {
               <Stat label="List No.:">
                 <StatValue>{trade[0]}</StatValue>
               </Stat>
+            </StatList>
+            <div className="flex flex-col gap-y-[13px] text-white">
+              <p className="whitespace-normal text-stat">He gives:</p>
               {trade[2] === trade[3] ? (
-                <Stat label="Trade:">
-                  <ItemLink id={trade[2]} items={items} />
-                </Stat>
+                <RewardRow id={trade[2]} items={items} chance={100} />
               ) : (
                 <>
-                  <Stat label={`Common ${100 - bundle.rareChance}%:`}>
-                    <ItemLink id={trade[2]} items={items} />
-                  </Stat>
-                  <Stat label={`Rare ${bundle.rareChance}%:`}>
-                    <ItemLink id={trade[3]} items={items} />
-                  </Stat>
+                  <RewardRow id={trade[2]} items={items} chance={100 - bundle.rareChance} />
+                  <RewardRow id={trade[3]} items={items} chance={bundle.rareChance} rare />
                 </>
               )}
-            </StatList>
+            </div>
             <p className={note}>
               He takes the first item on his list that you carry, so a higher one wins. The Felyne
               Negotiations kitchen skill makes every trade a rare one.
