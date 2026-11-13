@@ -1,15 +1,14 @@
 /**
  * The site's Cloudflare Worker (wrangler.jsonc). The site is static, served
- * from out/ as assets; only the set builder runs this script first
- * (`run_worker_first`), so every other request stays a static one.
+ * from out/ as assets; only the set builder and share links run this script
+ * first (`run_worker_first`), so every other request stays a static one.
  *
  * It serves share links (`/s/<code>/<slug>/`, src/lib/set-link.ts) the set
  * builder's page, and gives them, and the older `/set-builder/?s=<code>`,
  * their own link embeds. The page is one static file for every set, so this
- * decodes the code and
- * rewrites the page's meta tags (src/lib/set-embed.ts): the set's name (or
- * its skills) as the title, its skill points and an invitation to open it as
- * the description, and its card as the image. It also serves:
+ * decodes the code and rewrites the page's meta tags (src/lib/set-embed.ts):
+ * the set's name (or its skills) as the title, its skill points as the
+ * description, and its card as the image. It also serves:
  *
  * - `/set-builder/card.png?s=<code>&v=<version>`: the card, drawn with
  *   satori and resvg (src/lib/set-card.ts), and kept in Cloudflare's cache.

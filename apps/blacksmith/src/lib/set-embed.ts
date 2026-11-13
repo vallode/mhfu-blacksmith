@@ -3,9 +3,9 @@
  * static file for every set, so the Cloudflare Worker
  * (src/cloudflare/worker.ts) decodes the code and writes these into its
  * meta tags: the set's name (or, without one, its skills) as the title, its
- * points in each active skill tree and a line inviting people to open it as
- * the description, and its card (set-card.ts) as the image, with everything
- * on the card also in the image's alt text.
+ * points in each skill tree that activates a skill as the description, and
+ * its card (set-card.ts) as the image, with everything on the card also in
+ * the image's alt text.
  *
  * The Worker can't load the /data bundles the client builds its search data
  * from (too much to parse per request), so the build writes just what a code
@@ -98,7 +98,7 @@ export function embedCodecTables(data: SetEmbedData): CodecTables {
 export interface SetEmbed {
   /** The set's name, or its skills when it has none. */
   title: string;
-  /** Points in each active skill tree, and an invitation to open the set. */
+  /** Points in each skill tree that activates a skill: "Attack +21 · Paralysis −10". */
   description: string;
   /** Everything in words, the description and then the pieces and decorations: the card's alt text. */
   details: string;
@@ -129,9 +129,6 @@ function countNames(names: string[]): string {
     .join(", ");
 }
 
-/** What the description asks people to do. */
-export const SET_EMBED_ACTION = "Open it in the set builder to edit it or save it to My sets.";
-
 /** The embed for a set (and its name, from a saved set's share link), or null for an empty set. */
 export function buildSetEmbed(
   set: BuildSet,
@@ -148,7 +145,7 @@ export function buildSetEmbed(
   const title = truncate(name || skills, MAX_TITLE);
 
   const points = stats.skills.map((s) => `${s.tree} ${signed(s.points)}`).join(" · ");
-  const description = lines(points && `Skill points: ${points}`, SET_EMBED_ACTION);
+  const description = points || "No skills";
 
   const res = RES_NAMES.map((n, i) => `${ELEMENT_EMOJI[n]}${signed(stats.res[i])}`).join(" ");
   const pieceLines = ARMOR_SLOTS.map((slot, i) => {
