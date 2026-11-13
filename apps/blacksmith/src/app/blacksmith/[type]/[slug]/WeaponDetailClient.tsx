@@ -116,7 +116,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               <Stat label="Attack:">
                 <StatValue>{weapon.attack}</StatValue>
                 {showRawValues && weapon.raw_attack && (
-                  <StatValue className="opacity-20">[ {weapon.raw_attack} ]</StatValue>
+                  <StatValue className="opacity-20">[{weapon.raw_attack}]</StatValue>
                 )}
                 {weapon.shelling && <StatValue>[{weapon.shelling.type} Type]</StatValue>}
               </Stat>
