@@ -83,7 +83,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 piece.max_defence_pre_ukanlos !== piece.max_defence ? (
                   <>
                     <StatValue>{piece.max_defence_pre_ukanlos}</StatValue>
-                    <StatValue className="opacity-20">[ {piece.max_defence} ]</StatValue>
+                    <StatValue className="ml-(--cell) opacity-20">[{piece.max_defence}]</StatValue>
                   </>
                 ) : (
                   <StatValue>{piece.max_defence}</StatValue>
