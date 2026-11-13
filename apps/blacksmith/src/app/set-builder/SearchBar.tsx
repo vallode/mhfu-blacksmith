@@ -35,7 +35,7 @@ export default function SearchBar({
   if (!searching && !stale) return null;
   const n = skillCount;
   return (
-    <div className="sticky bottom-[1.6rem] z-20 flex gap-[0.8rem] mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.8rem)]">
+    <div className="sticky bottom-[1.6rem] z-20 flex gap-[0.8rem] min-[900px]:static min-[900px]:col-start-1 min-[900px]:row-start-2 mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.8rem)]">
       {searching ? (
         <>
           <div
