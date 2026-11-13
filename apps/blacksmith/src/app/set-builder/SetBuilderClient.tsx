@@ -11,8 +11,6 @@
  * results, the editor builds a set by hand, and My sets keeps saved ones.
  */
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
-import Link from "next/link";
-import BorderRule from "@/components/BorderRule";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
@@ -505,26 +503,10 @@ export default function SetBuilderClient() {
 
   return (
     <>
-      <nav className="flex w-full items-center justify-start mobile:flex-wrap mobile:justify-center">
-        <div>
-          <Link href="/" aria-label="Back">
-            <Icon type="arrow" nav alt="Back" />
-          </Link>
-        </div>
-        <div className="ml-auto">
-          <button
-            className="search-trigger flex h-[52px] w-[52px] cursor-pointer items-center border-none bg-transparent p-0 text-white/60 hover:text-white [&>img]:h-full"
-            aria-label="Search"
-          >
-            <img src="/images/binoculars.png" alt="Search" decoding="sync" />
-          </button>
-        </div>
-      </nav>
-
-      <BorderRule />
-
-      <div className="mx-auto flex w-full max-w-[64rem] flex-col gap-[1.3rem] pb-[1.6rem]">
-        <CardBox className="flex-none">
+      {/* One column on phones; from 900px up the skills and options sit
+          beside the results, which get the room. */}
+      <div className="mx-auto flex w-full max-w-[64rem] flex-col gap-[1.3rem] pb-[1.6rem] min-[900px]:grid min-[900px]:max-w-[120rem] min-[900px]:grid-cols-[34rem_minmax(0,1fr)] min-[900px]:grid-rows-[auto_auto_1fr] min-[900px]:items-start min-[900px]:pt-[1.6rem] wide:grid-cols-[40rem_minmax(0,1fr)]">
+        <CardBox className="flex-none min-[900px]:col-start-1 min-[900px]:row-start-1">
           <Card className="text-small" bodyClassName="card-py-7 gap-[1.2rem]">
             <div className="flex items-baseline justify-between">
               <PanelTitle>Skills</PanelTitle>
@@ -563,7 +545,7 @@ export default function SetBuilderClient() {
           </Card>
         </CardBox>
 
-        <CardBox className="flex-none">
+        <CardBox className="flex-none min-[900px]:col-start-2 min-[900px]:row-span-3 min-[900px]:row-start-1">
           <Card className="text-small" bodyClassName="card-py-7 gap-[1.3rem]">
             <Tabs
               label="Set builder"
