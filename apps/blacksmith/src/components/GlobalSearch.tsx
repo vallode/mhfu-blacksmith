@@ -24,7 +24,7 @@ interface SearchEntry {
 
 // A result row with a highlight strip (::before) that fills the row; it glows on hover/focus and for the keyboard-selected row.
 const resultRow = [
-  "relative flex h-[38px] items-center gap-[1rem] px-[1.6rem] text-white no-underline",
+  "relative flex h-[38px] items-center gap-[1rem] px-[0.6rem] text-white no-underline",
   "before:absolute before:top-0 before:left-0 before:-z-1 before:block before:h-full before:w-full before:bg-transparent",
   "hover:before:hover-glow focus:before:hover-glow",
 ].join(" ");
