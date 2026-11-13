@@ -31,6 +31,7 @@ import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
 import { decodeCombinations, type CombinationIndex, type CombinationsBundle } from "./combinations";
+import { indexVeggieTrades, type ItemTrades, type VeggieTradesBundle } from "./veggie-trades";
 import { normalizeItemName } from "./items";
 import { slugify } from "./slug";
 import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
@@ -619,6 +620,47 @@ export function useCombinations(): { combinations: CombinationIndex | null; erro
     };
   }, []);
   return { combinations, error };
+}
+
+// ---------------------------------------------------------------------------
+// Veggie Elder trades, by item ID
+// ---------------------------------------------------------------------------
+let tradesPromise: Promise<Map<number, ItemTrades>> | null = null;
+let tradesCache: Map<number, ItemTrades> | null = null;
+
+/** The Veggie Elder's trades by item, from veggie-trades.json. */
+export function getItemTrades(): Promise<Map<number, ItemTrades>> {
+  if (tradesCache) return Promise.resolve(tradesCache);
+  if (!tradesPromise) {
+    tradesPromise = fetchJson<VeggieTradesBundle>("/data/veggie-trades.json")
+      .then((bundle) => {
+        tradesCache = indexVeggieTrades(bundle);
+        return tradesCache;
+      })
+      .catch((e) => {
+        tradesPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return tradesPromise;
+}
+
+/** `getItemTrades` as a hook: null while loading or on error (`error` set). */
+export function useItemTrades(): { trades: Map<number, ItemTrades> | null; error: boolean } {
+  const [trades, setTrades] = useState(tradesCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (tradesCache) return;
+    let cancelled = false;
+    getItemTrades().then(
+      (t) => !cancelled && setTrades(t),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { trades, error };
 }
 
 // ---------------------------------------------------------------------------

@@ -29,8 +29,14 @@ import { mergeItemStats, type ItemStatChange } from "../build/items.js";
 import type { EmittedItem } from "../emit/items.js";
 
 /** Targets copied from the disc whole, rather than merged with committed files. */
-export type CopiedTarget = "quests" | "gathering" | "shops" | "combinations";
-const COPIED_TARGETS: CopiedTarget[] = ["quests", "gathering", "shops", "combinations"];
+export type CopiedTarget = "quests" | "gathering" | "shops" | "combinations" | "veggie-trades";
+const COPIED_TARGETS: CopiedTarget[] = [
+  "quests",
+  "gathering",
+  "shops",
+  "combinations",
+  "veggie-trades",
+];
 export type BuildTarget = CategoryName | "items" | CopiedTarget;
 export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "items", ...COPIED_TARGETS];
 
@@ -166,6 +172,25 @@ export function nameShopItems(content: unknown, site: SiteIndex): unknown {
   };
 }
 
+/** Writes each Veggie Elder trade's items under their game names. */
+export function nameVeggieTradeItems(content: unknown, site: SiteIndex): unknown {
+  const rename = itemRenamer(site);
+  const name = (item: string) => rename({ item }).item;
+  const doc = content as { elders?: { trades: Record<"give" | "common" | "rare", string>[] }[] };
+  if (!Array.isArray(doc?.elders)) return content;
+  return {
+    ...doc,
+    elders: doc.elders.map((elder) => ({
+      ...elder,
+      trades: elder.trades.map((t) => ({
+        give: name(t.give),
+        common: name(t.common),
+        rare: name(t.rare),
+      })),
+    })),
+  };
+}
+
 interface ItemRef {
   id: number;
   name: string;
@@ -200,6 +225,8 @@ async function copiedFiles(
 ): Promise<{ files: string[]; name: (content: unknown, site: SiteIndex) => unknown }> {
   if (target === "gathering") return { files: ["gathering.json"], name: nameGatheringItems };
   if (target === "shops") return { files: ["shops.json"], name: nameShopItems };
+  if (target === "veggie-trades")
+    return { files: ["veggie-trades.json"], name: nameVeggieTradeItems };
   if (target === "combinations")
     return { files: ["combinations.json"], name: nameCombinationItems };
   const from = path.join(extractedDir, "quests");
@@ -521,7 +548,7 @@ export function formatBuildReport(report: BuildDataReport): string {
     out.push(
       "## Copied from the disc",
       "",
-      `${report.copiedFiles.length} file(s): quests, gathering points, shops and combinations.`,
+      `${report.copiedFiles.length} file(s): quests, gathering points, shops, combinations and Veggie Elder trades.`,
       "",
       ...report.copiedFiles.map((f) => `- ${f}`),
       "",

@@ -1,0 +1,3874 @@
+{
+  "rare_chance": 20,
+  "elders": [
+    {
+      "maps": [
+        "Forest and Hills (Day)",
+        "Forest and Hills (Night)"
+      ],
+      "trades": [
+        {
+          "give": "Wyvern Egg",
+          "common": "Potion",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Insect Husk",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Garbage",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Fish",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Meat",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Scatternut",
+          "common": "Special Mushroom",
+          "rare": "Bone"
+        },
+        {
+          "give": "Disk Stone",
+          "common": "Special Mushroom",
+          "rare": "Bone"
+        },
+        {
+          "give": "Bounce Bomb",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Gunpowder",
+          "common": "Lg Bone Husk",
+          "rare": "Sm Bone Husk"
+        },
+        {
+          "give": "Rumblefish",
+          "common": "Unknown Skull",
+          "rare": "Bone"
+        },
+        {
+          "give": "Toadstool",
+          "common": "Sm Bone Husk",
+          "rare": "Unknown Skull"
+        },
+        {
+          "give": "Dragon Toadstool",
+          "common": "Sm Monster Bone",
+          "rare": "Unknown Skull"
+        },
+        {
+          "give": "Carpenterbug",
+          "common": "Sharp Claw",
+          "rare": "Anteka Pelt"
+        },
+        {
+          "give": "Earth Crystal",
+          "common": "Sm Monster Bone",
+          "rare": "Giant Bone"
+        },
+        {
+          "give": "Spicy Mushroom",
+          "common": "Lg Bone Husk",
+          "rare": "Sm Bone Husk"
+        },
+        {
+          "give": "ShakalakaTreasre",
+          "common": "Bullfango Pelt",
+          "rare": "Giaprey Hide"
+        },
+        {
+          "give": "Bomb Arrowana",
+          "common": "Sharp Claw",
+          "rare": "Bone"
+        },
+        {
+          "give": "Suiko Jewel",
+          "common": "Velociprey Scale",
+          "rare": "Kelbi Horn"
+        },
+        {
+          "give": "Power Seed",
+          "common": "Sharp Claw",
+          "rare": "Lg Bone Husk"
+        },
+        {
+          "give": "Burst Arrowana",
+          "common": "Lg Bone Husk",
+          "rare": "Sm Monster Bone"
+        },
+        {
+          "give": "Fire Herb",
+          "common": "Unknown Skull",
+          "rare": "Mystery Bone"
+        },
+        {
+          "give": "Ruststone",
+          "common": "Remobra Skin",
+          "rare": "Striped Skin"
+        },
+        {
+          "give": "Large Ruststone",
+          "common": "Giadrome Hide",
+          "rare": "Iodrome Hide"
+        },
+        {
+          "give": "Needleberry",
+          "common": "Mystery Bone",
+          "rare": "Bone"
+        },
+        {
+          "give": "Rathalos Tail",
+          "common": "Ceanataur Shell",
+          "rare": "Ioprey Scale"
+        },
+        {
+          "give": "Velocidrome Claw",
+          "common": "Genprey Hide",
+          "rare": "Vespoid Wing"
+        },
+        {
+          "give": "Rathalos Webbing",
+          "common": "Pnk Rathian Scl",
+          "rare": "Tigrex Shell"
+        },
+        {
+          "give": "Chameleos Hide",
+          "common": "Monster Bone+",
+          "rare": "Eldr Dragon Bone"
+        },
+        {
+          "give": "Chameleos Horn",
+          "common": "Fire Drgn Webbng",
+          "rare": "Kirin Hide"
+        },
+        {
+          "give": "Ceanataur Claw",
+          "common": "Tigrex Scale",
+          "rare": "Garuga Shell"
+        },
+        {
+          "give": "Garuga Ear",
+          "common": "Kut-Ku Ear",
+          "rare": "Kut-Ku Webbing"
+        },
+        {
+          "give": "Daora Horn",
+          "common": "Daora Shell",
+          "rare": "DaoraDragonScale"
+        },
+        {
+          "give": "Tigrex Tail",
+          "common": "Plesioth Fin",
+          "rare": "Blangonga Whiskr"
+        },
+        {
+          "give": "Basarios Wing",
+          "common": "Wyvern Skull Shl",
+          "rare": "Iodrome Hide"
+        },
+        {
+          "give": "Gravios Skl Shl",
+          "common": "Rathian Shell",
+          "rare": "Rathian Spike"
+        },
+        {
+          "give": "Azur Rthlos Wing",
+          "common": "Monoblos Spine",
+          "rare": "FireWyvrn Marrow"
+        },
+        {
+          "give": "Felyne Fur Ruby",
+          "common": "Bullfango Pelt",
+          "rare": "Kut-Ku Scale"
+        },
+        {
+          "give": "Ancient Fish",
+          "common": "Lg Monster Bone",
+          "rare": "Thunderbug Juice"
+        },
+        {
+          "give": "ShakaInheritance",
+          "common": "Flame Sac",
+          "rare": "Poison Sac"
+        },
+        {
+          "give": "Akantor Tail",
+          "common": "Azure LaoS Shell",
+          "rare": "FireWyvrn BrnStm"
+        },
+        {
+          "give": "Azre Rthlos Scl+",
+          "common": "Toxin Sac",
+          "rare": "Blk Gravios Shl"
+        },
+        {
+          "give": "Kut-Ku Carapace",
+          "common": "Genprey Hide+",
+          "rare": "HornetaurInnrWng"
+        },
+        {
+          "give": "Velocidrome Clw+",
+          "common": "Rathian Scale",
+          "rare": "Rathalos Scale"
+        },
+        {
+          "give": "Blk Blos Thracic",
+          "common": "Stout Bone",
+          "rare": "Congalala Pelt+"
+        },
+        {
+          "give": "Splendid Beak",
+          "common": "Bulldrome Hide+",
+          "rare": "Giaprey Hide+"
+        },
+        {
+          "give": "Gold Rajang Pelt",
+          "common": "Inferno Sac",
+          "rare": "Hrd Monster Bone"
+        },
+        {
+          "give": "Hypno Bezoar",
+          "common": "Sleep Sac",
+          "rare": "Rathian Spike"
+        },
+        {
+          "give": "HvyAzurRthlsShl",
+          "common": "HvyBlueKut-KuShl",
+          "rare": "Str Kut-Ku Wing"
+        },
+        {
+          "give": "Hvy Gaoren Spine",
+          "common": "ThckRathianScl",
+          "rare": "Hrd Rathalos Scl"
+        },
+        {
+          "give": "VespoidQn'sCrown",
+          "common": "Rathian Scale+",
+          "rare": "Rathalos Scale+"
+        },
+        {
+          "give": "StoutBlkTwstdHrn",
+          "common": "Lucky Kut-Ku Ear",
+          "rare": "StrRathalosWing"
+        },
+        {
+          "give": "ThickGarugaScale",
+          "common": "ThkBullfangoPelt",
+          "rare": "RobustWyvernBone"
+        },
+        {
+          "give": "SpecialKirinHide",
+          "common": "Blazing Fire Sac",
+          "rare": "BigEDragonBone"
+        },
+        {
+          "give": "Hvy Ukanlos Tail",
+          "common": "Lao-Shan'sHvyShl",
+          "rare": "Rathian Thorn"
+        },
+        {
+          "give": "Dosbiscus",
+          "common": "Dung",
+          "rare": "Wyvern Droppings"
+        },
+        {
+          "give": "Chaos Mushroom",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Springnight Carp",
+          "common": "Net",
+          "rare": "Net"
+        },
+        {
+          "give": "Great Hornfly",
+          "common": "Godbug",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Sinister Cloth",
+          "common": "Dragon Treasure",
+          "rare": "Dragon Treasure"
+        },
+        {
+          "give": "Dragonmoss",
+          "common": "Lg Monster Bone",
+          "rare": "Eldr Dragon Bone"
+        },
+        {
+          "give": "Dragonmoss+",
+          "common": "Monster Bone+",
+          "rare": "Hrd Monster Bone"
+        },
+        {
+          "give": "Dragonwood",
+          "common": "Lg Monster Bone",
+          "rare": "Eldr Dragon Bone"
+        },
+        {
+          "give": "Dragonwood+",
+          "common": "Monster Bone+",
+          "rare": "Hrd Monster Bone"
+        },
+        {
+          "give": "Giant Corn",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Tailed Frog",
+          "common": "Frog",
+          "rare": "Frog"
+        },
+        {
+          "give": "Famitsu Ticket",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Famitsu PO",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Dengeki Ticket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Dengeki Ticket+",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "DemonKingTicket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Ticket J",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Hunter's Ticket",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Hunter Soul Tkt",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Amezari Shell",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "PtFamitsuTicket",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "SpecFamitsuTckt",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "Dengeki Ticket G",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Tckt J G",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Magazine Ticket",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Gt Amezari Shell",
+          "common": "Lightning Rod",
+          "rare": "Lightning Rod"
+        },
+        {
+          "give": "Blackbelt Ticket",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Expert Ticket",
+          "common": "Decayed Drgn Scl",
+          "rare": "Decayed Drgn Scl"
+        },
+        {
+          "give": "Hypno Ticket",
+          "common": "OrangeHypnoPelt",
+          "rare": "Sleep Sac"
+        },
+        {
+          "give": "Lavasioth Ticket",
+          "common": "ThckLavasiothScl",
+          "rare": "HvyLavasiothShl"
+        },
+        {
+          "give": "Kut-Ku Coin",
+          "common": "Kut-Ku Scale",
+          "rare": "Kut-Ku Shell"
+        },
+        {
+          "give": "Congalala Coin",
+          "common": "Congalala Pelt",
+          "rare": "Congalala Fang"
+        },
+        {
+          "give": "Khezu Coin",
+          "common": "Flabby Hide",
+          "rare": "Pale Extract"
+        },
+        {
+          "give": "Daimyo Coin",
+          "common": "Hermitaur Shell",
+          "rare": "Hermitaur Claw"
+        },
+        {
+          "give": "Blangonga Coin",
+          "common": "Blangonga Pelt",
+          "rare": "Blangonga Whiskr"
+        },
+        {
+          "give": "Yian Garuga Coin",
+          "common": "Garuga Scale",
+          "rare": "Garuga Shell"
+        },
+        {
+          "give": "Tigrex Coin",
+          "common": "Tigrex Scale",
+          "rare": "Tigrex Shell"
+        },
+        {
+          "give": "Diablos Coin",
+          "common": "Diablos Shell",
+          "rare": "Blos Fang"
+        },
+        {
+          "give": "Gravios Coin",
+          "common": "Gravios Shell",
+          "rare": "Lg Monster Bone"
+        },
+        {
+          "give": "Kirin Coin",
+          "common": "Kirin Mane",
+          "rare": "Kirin Horn"
+        },
+        {
+          "give": "Cephadrome Coin",
+          "common": "Cephalos Scale",
+          "rare": "Cephalos Fin"
+        },
+        {
+          "give": "Plesioth Coin",
+          "common": "Plesioth Scale",
+          "rare": "Plesioth Fin"
+        },
+        {
+          "give": "Shogun Coin",
+          "common": "Ceanataur Shell",
+          "rare": "Ceanataur Leg"
+        },
+        {
+          "give": "Fire Coin",
+          "common": "Rathalos Scale",
+          "rare": "Rathalos Shell"
+        },
+        {
+          "give": "Rajang Coin",
+          "common": "Commendation",
+          "rare": "Blk Rajang Pelt"
+        },
+        {
+          "give": "BlackBeltCoinG",
+          "common": "OrangeHypnoPelt+",
+          "rare": "E.CongalalaPelt+"
+        },
+        {
+          "give": "Expert Coin G",
+          "common": "C.BlangongaPelt+",
+          "rare": "ThickNargaScale"
+        },
+        {
+          "give": "Warrior Coin G",
+          "common": "ThckLavasiothScl",
+          "rare": "TerraCeanatrShl"
+        },
+        {
+          "give": "Legend Coin G",
+          "common": "Commendation S",
+          "rare": "Blk Rajang Pelt+"
+        },
+        {
+          "give": "VeggieElderTcket",
+          "common": "Max Potion",
+          "rare": "Lifecrystals"
+        },
+        {
+          "give": "VeggieElderTckt+",
+          "common": "Ancient Potion",
+          "rare": "Lifepowder"
+        },
+        {
+          "give": "VegElderTcktBrz",
+          "common": "Monster Bone+",
+          "rare": "Monster Bone+"
+        },
+        {
+          "give": "VegElderTcktSlv",
+          "common": "Rathalos Plate",
+          "rare": "Rathalos Plate"
+        },
+        {
+          "give": "VegElderTcktGld",
+          "common": "Rathalos Ruby",
+          "rare": "Rathalos Ruby"
+        },
+        {
+          "give": "VegElderTcktSky",
+          "common": "HvnlyRathianScl",
+          "rare": "HvnlyRathalosScl"
+        }
+      ]
+    },
+    {
+      "maps": [
+        "Desert (Day)",
+        "Desert (Night)"
+      ],
+      "trades": [
+        {
+          "give": "Herbivore Egg",
+          "common": "Potion",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Insect Husk",
+          "common": "Tropical Berry",
+          "rare": "Tropical Berry"
+        },
+        {
+          "give": "Garbage",
+          "common": "Tropical Berry",
+          "rare": "Tropical Berry"
+        },
+        {
+          "give": "Burnt Fish",
+          "common": "Tropical Berry",
+          "rare": "Tropical Berry"
+        },
+        {
+          "give": "Burnt Meat",
+          "common": "Tropical Berry",
+          "rare": "Tropical Berry"
+        },
+        {
+          "give": "Fire Herb",
+          "common": "Tropical Berry",
+          "rare": "Ice Crystal"
+        },
+        {
+          "give": "Cactus Flower",
+          "common": "Tropical Berry",
+          "rare": "Ice Crystal"
+        },
+        {
+          "give": "Bounce Bomb",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Barrel Lid",
+          "common": "Machalite Ore",
+          "rare": "Suiko Jewel"
+        },
+        {
+          "give": "ShakalakaTreasre",
+          "common": "Suiko Jewel",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Med Monster Bone",
+          "common": "Earth Crystal",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Sm Monster Bone",
+          "common": "Ice Crystal",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Bughopper",
+          "common": "Disk Stone",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Mystery Bone",
+          "common": "Stone",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Sleepyfish",
+          "common": "Iron Ore",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Sunset Herb",
+          "common": "Disk Stone",
+          "rare": "Stone"
+        },
+        {
+          "give": "Antidote Herb",
+          "common": "Stone",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Unknown Skull",
+          "common": "Iron Ore",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Antiseptic Stone",
+          "common": "Suiko Jewel",
+          "rare": "Suiko Jewel"
+        },
+        {
+          "give": "Dragon Toadstool",
+          "common": "Earth Crystal",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Frozen Berry",
+          "common": "Earth Crystal",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Remobra Skull",
+          "common": "Iron Ore",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Vespoid Shell",
+          "common": "Earth Crystal",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Large Ruststone",
+          "common": "Machalite Ore",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "Small Ruststone",
+          "common": "Machalite Ore",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "Tuna Bait",
+          "common": "Iron Ore",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Teostra Mane",
+          "common": "Armor Sphere",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "Black Blos Spine",
+          "common": "Armor Sphere",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "Gendrome Skull",
+          "common": "Machalite Ore",
+          "rare": "Earth Crystal"
+        },
+        {
+          "give": "Pawprint Stamp",
+          "common": "Suiko Jewel",
+          "rare": "Akito Jewel"
+        },
+        {
+          "give": "Black Blos Tail",
+          "common": "Machalite Ore",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Lao-Shan's Horn",
+          "common": "Machalite Ore",
+          "rare": "Firestone"
+        },
+        {
+          "give": "Garuga Tail",
+          "common": "Machalite Ore",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Gaoren Claw",
+          "common": "Machalite Ore",
+          "rare": "Firestone"
+        },
+        {
+          "give": "Congalala Claw",
+          "common": "Earth Crystal",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Ceanataur Pincer",
+          "common": "Akito Jewel",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Tigrex Skull Shl",
+          "common": "Machalite Ore",
+          "rare": "Suiko Jewel"
+        },
+        {
+          "give": "Giadrome Skull",
+          "common": "Suiko Jewel",
+          "rare": "Earth Crystal"
+        },
+        {
+          "give": "Fire Dragon Claw",
+          "common": "Firestone",
+          "rare": "BattlefieldJewel"
+        },
+        {
+          "give": "ShakaInheritance",
+          "common": "Armor Sphere",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "Grn Plsioth Scl+",
+          "common": "Akito Jewel",
+          "rare": "LapisLazuliJewel"
+        },
+        {
+          "give": "Teostra Horn+",
+          "common": "Carbalite Ore",
+          "rare": "Union Ore"
+        },
+        {
+          "give": "Tigrex Fang+",
+          "common": "Firestone",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Giaprey Scale+",
+          "common": "Machalite Ore",
+          "rare": "Dragonite Ore"
+        },
+        {
+          "give": "Azure LaoS Horn",
+          "common": "Firecell Stone",
+          "rare": "Novacrystal"
+        },
+        {
+          "give": "Kut-Ku Scale+",
+          "common": "Dragonite Ore",
+          "rare": "Armor Sphere"
+        },
+        {
+          "give": "Top-GrdRedHorn",
+          "common": "Firestone",
+          "rare": "Dragonite Ore"
+        },
+        {
+          "give": "Thick Kut-Ku Scl",
+          "common": "Carbalite Ore",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "HvyDiablosShell",
+          "common": "Eltalite Ore",
+          "rare": "LapisLazuliJewel"
+        },
+        {
+          "give": "ThckGrnPlesioScl",
+          "common": "LapisLazuliJewel",
+          "rare": "Novacrystal"
+        },
+        {
+          "give": "TerraCeanatrShl",
+          "common": "Union Ore",
+          "rare": "BattlefieldJewel"
+        },
+        {
+          "give": "Hvy Gaoren Spine",
+          "common": "Mellanje Ore",
+          "rare": "Hrd Armor Sphere"
+        },
+        {
+          "give": "Hvy Tigrex Fang",
+          "common": "Hrd Armor Sphere",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "HardTeostraHorn",
+          "common": "Ryl Armor Sphere",
+          "rare": "Purecrystal"
+        },
+        {
+          "give": "Dosbiscus",
+          "common": "Dung",
+          "rare": "Wyvern Droppings"
+        },
+        {
+          "give": "Chaos Mushroom",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Springnight Carp",
+          "common": "Net",
+          "rare": "Net"
+        },
+        {
+          "give": "Great Hornfly",
+          "common": "Godbug",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Sinister Cloth",
+          "common": "Dragon Treasure",
+          "rare": "Dragon Treasure"
+        },
+        {
+          "give": "Dragonmoss",
+          "common": "Armor Sphere",
+          "rare": "Armor Sphere"
+        },
+        {
+          "give": "Dragonmoss+",
+          "common": "Armor Sphere+",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "Dragonwood",
+          "common": "Armor Sphere",
+          "rare": "Armor Sphere"
+        },
+        {
+          "give": "Dragonwood+",
+          "common": "Armor Sphere+",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "Giant Corn",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Tailed Frog",
+          "common": "Frog",
+          "rare": "Frog"
+        },
+        {
+          "give": "Famitsu Ticket",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Famitsu PO",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Dengeki Ticket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Dengeki Ticket+",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "DemonKingTicket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Ticket J",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Hunter's Ticket",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Hunter Soul Tkt",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Amezari Shell",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "PtFamitsuTicket",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "SpecFamitsuTckt",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "Dengeki Ticket G",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Tckt J G",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Magazine Ticket",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Gt Amezari Shell",
+          "common": "Lightning Rod",
+          "rare": "Lightning Rod"
+        },
+        {
+          "give": "Blackbelt Ticket",
+          "common": "Tropical Berry",
+          "rare": "Tropical Berry"
+        },
+        {
+          "give": "Expert Ticket",
+          "common": "Decayed Drgn Scl",
+          "rare": "Decayed Drgn Scl"
+        },
+        {
+          "give": "Hypno Ticket",
+          "common": "Akito Jewel",
+          "rare": "Rainbow Ore"
+        },
+        {
+          "give": "Lavasioth Ticket",
+          "common": "Firestone",
+          "rare": "Union Ore"
+        },
+        {
+          "give": "Kut-Ku Coin",
+          "common": "Disk Stone",
+          "rare": "Stone"
+        },
+        {
+          "give": "Congalala Coin",
+          "common": "Iron Ore",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Khezu Coin",
+          "common": "Suiko Jewel",
+          "rare": "Ice Crystal"
+        },
+        {
+          "give": "Daimyo Coin",
+          "common": "Earth Crystal",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Blangonga Coin",
+          "common": "Ice Crystal",
+          "rare": "Earth Crystal"
+        },
+        {
+          "give": "Yian Garuga Coin",
+          "common": "Machalite Ore",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "Tigrex Coin",
+          "common": "Suiko Jewel",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Diablos Coin",
+          "common": "Machalite Ore",
+          "rare": "Suiko Jewel"
+        },
+        {
+          "give": "Gravios Coin",
+          "common": "Akito Jewel",
+          "rare": "Firestone"
+        },
+        {
+          "give": "Kirin Coin",
+          "common": "Suiko Jewel",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Cephadrome Coin",
+          "common": "Iron Ore",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Plesioth Coin",
+          "common": "Earth Crystal",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Shogun Coin",
+          "common": "Akito Jewel",
+          "rare": "Black Pearl"
+        },
+        {
+          "give": "Fire Coin",
+          "common": "Machalite Ore",
+          "rare": "Akito Jewel"
+        },
+        {
+          "give": "Rajang Coin",
+          "common": "BattlefieldJewel",
+          "rare": "Firestone"
+        },
+        {
+          "give": "BlackBeltCoinG",
+          "common": "Carbalite Ore",
+          "rare": "Rainbow Ore"
+        },
+        {
+          "give": "Expert Coin G",
+          "common": "Rainbow Ore",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Warrior Coin G",
+          "common": "Union Ore",
+          "rare": "Novacrystal"
+        },
+        {
+          "give": "Legend Coin G",
+          "common": "Eltalite Ore",
+          "rare": "Firecell Stone"
+        },
+        {
+          "give": "VeggieElderTcket",
+          "common": "Demondrug",
+          "rare": "Power Seed"
+        },
+        {
+          "give": "VeggieElderTckt+",
+          "common": "Mega Demondrug",
+          "rare": "Power Pill"
+        },
+        {
+          "give": "VegElderTcktBrz",
+          "common": "Plesioth Fin",
+          "rare": "Plesioth Fin"
+        },
+        {
+          "give": "VegElderTcktSlv",
+          "common": "Monoblos Heart",
+          "rare": "Monoblos Heart"
+        },
+        {
+          "give": "VegElderTcktGld",
+          "common": "Fire Drgn Jwl",
+          "rare": "Fire Drgn Jwl"
+        },
+        {
+          "give": "VegElderTcktSky",
+          "common": "HvnlyGaorenShell",
+          "rare": "HvnlyGaorenShell"
+        }
+      ]
+    },
+    {
+      "maps": [
+        "Swamp (Day)",
+        "Swamp (Night)"
+      ],
+      "trades": [
+        {
+          "give": "Sootstone Ore",
+          "common": "Potion",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Quartz Ore",
+          "common": "Potion",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Khezu Whelp",
+          "common": "Khz Whlp Ice Crm",
+          "rare": "Khz Whlp Ice Crm"
+        },
+        {
+          "give": "Insect Husk",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Garbage",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Fish",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Meat",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Toadstool",
+          "common": "Special Mushroom",
+          "rare": "Hot Drink"
+        },
+        {
+          "give": "Conga Pelt",
+          "common": "Special Mushroom",
+          "rare": "Antidote"
+        },
+        {
+          "give": "Bounce Bomb",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Mystery Bone",
+          "common": "Antidote Herb",
+          "rare": "Herb"
+        },
+        {
+          "give": "Sleepyfish",
+          "common": "Nitroshroom",
+          "rare": "Exciteshroom"
+        },
+        {
+          "give": "Kut-Ku Scale",
+          "common": "Gunpowder",
+          "rare": "Antidote"
+        },
+        {
+          "give": "Lost Umbrella",
+          "common": "Glutton Tuna",
+          "rare": "Power Extract"
+        },
+        {
+          "give": "Snakebee Larva",
+          "common": "Bomberry",
+          "rare": "Armor Seed"
+        },
+        {
+          "give": "Sm Monster Bone",
+          "common": "Cool Drink",
+          "rare": "Cold Meat"
+        },
+        {
+          "give": "Disk Stone",
+          "common": "Antidote",
+          "rare": "Exciteshroom"
+        },
+        {
+          "give": "Scatterfish",
+          "common": "Godbug",
+          "rare": "Antiseptic Stone"
+        },
+        {
+          "give": "Ice Crystal",
+          "common": "Dung",
+          "rare": "Wyvern Droppings"
+        },
+        {
+          "give": "Cricket",
+          "common": "Blue Mushroom",
+          "rare": "Bitterbug"
+        },
+        {
+          "give": "Paintberry",
+          "common": "Sap Plant",
+          "rare": "Fire Herb"
+        },
+        {
+          "give": "Spicy Mushroom",
+          "common": "Exciteshroom",
+          "rare": "Toadstool"
+        },
+        {
+          "give": "Goldenfish Bait",
+          "common": "Armor Seed",
+          "rare": "Armorskin"
+        },
+        {
+          "give": "Ruststone Rod",
+          "common": "Vespoid Wing",
+          "rare": "Vespoid Shell"
+        },
+        {
+          "give": "Flat Ruststone",
+          "common": "Hornetaur Wing",
+          "rare": "Hornetaur Shell"
+        },
+        {
+          "give": "ShakalakaTreasre",
+          "common": "Carpenterbug",
+          "rare": "Catalyst"
+        },
+        {
+          "give": "Dragonite Ore",
+          "common": "Hercudrome",
+          "rare": "Killer Beetle"
+        },
+        {
+          "give": "Lightcrystal",
+          "common": "Flashbug",
+          "rare": "Carpenterbug"
+        },
+        {
+          "give": "Sm Ceanataur Shl",
+          "common": "Power Seed",
+          "rare": "Tranquilizer"
+        },
+        {
+          "give": "Vibrant Pelt",
+          "common": "Mega Nutrients",
+          "rare": "Nutrients"
+        },
+        {
+          "give": "Velocidrome Head",
+          "common": "Mega Potion",
+          "rare": "Killer Beetle"
+        },
+        {
+          "give": "Chameleos Tail",
+          "common": "Mega Demondrug",
+          "rare": "Hot Meat"
+        },
+        {
+          "give": "Blangonga Fang",
+          "common": "Killer Beetle",
+          "rare": "Health Flute"
+        },
+        {
+          "give": "Twisted Horn",
+          "common": "Demondrug",
+          "rare": "Mega Demondrug"
+        },
+        {
+          "give": "Anteka Antlers",
+          "common": "Well-Done Steak",
+          "rare": "Rare Steak"
+        },
+        {
+          "give": "Teostra Tail",
+          "common": "Immunizer",
+          "rare": "Cold Meat"
+        },
+        {
+          "give": "Azur Rthlos Tail",
+          "common": "Hornetaur Shell",
+          "rare": "Vespoid Shell"
+        },
+        {
+          "give": "Blos Fang",
+          "common": "Psychoserum",
+          "rare": "Herbal Medicine"
+        },
+        {
+          "give": "Hornetaur Head",
+          "common": "Antidote Flute",
+          "rare": "Demon Flute"
+        },
+        {
+          "give": "ShakaInheritance",
+          "common": "King Scarab",
+          "rare": "Hercudrome"
+        },
+        {
+          "give": "LapisLazuliJewel",
+          "common": "Gourmet Steak",
+          "rare": "Power Extract"
+        },
+        {
+          "give": "Ceanataur Claw+",
+          "common": "Gourmet Fish+",
+          "rare": "Gourmet Fish"
+        },
+        {
+          "give": "Chameleos Spike",
+          "common": "Hornetaur Crapce",
+          "rare": "Vespoid Carapace"
+        },
+        {
+          "give": "Slvr Rthlos Wing",
+          "common": "HornetaurInnrWng",
+          "rare": "Vespoid InnrWng"
+        },
+        {
+          "give": "Lg Lobstershell",
+          "common": "Mega Demondrug",
+          "rare": "King Scarab"
+        },
+        {
+          "give": "Rajang Claw",
+          "common": "Power Juice",
+          "rare": "Mega Juice"
+        },
+        {
+          "give": "Blazing Fire Sac",
+          "common": "Lifepowder",
+          "rare": "Fire Dragon Pwdr"
+        },
+        {
+          "give": "DeadlyPoisonSac",
+          "common": "Power Extract",
+          "rare": "Power Juice"
+        },
+        {
+          "give": "TerraCeanatrClaw",
+          "common": "Mega Demondrug",
+          "rare": "Power Pill"
+        },
+        {
+          "give": "HrdE.CongaClaw",
+          "common": "Rare Scarab",
+          "rare": "King Scarab"
+        },
+        {
+          "give": "YamaTsukamiFluid",
+          "common": "Monster Essence",
+          "rare": "Emperor Cricket"
+        },
+        {
+          "give": "HrdChameleosHorn",
+          "common": "Vspoid Razorwing",
+          "rare": "Hornet Razorwing"
+        },
+        {
+          "give": "LthrSlvrRthlsTal",
+          "common": "Emperor Cricket",
+          "rare": "Max Potion"
+        },
+        {
+          "give": "Lightning Sac",
+          "common": "Thunderbug Jelly",
+          "rare": "Pale Extract"
+        },
+        {
+          "give": "Dosbiscus",
+          "common": "Dung",
+          "rare": "Wyvern Droppings"
+        },
+        {
+          "give": "Chaos Mushroom",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Springnight Carp",
+          "common": "Net",
+          "rare": "Net"
+        },
+        {
+          "give": "Great Hornfly",
+          "common": "Godbug",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Sinister Cloth",
+          "common": "Dragon Treasure",
+          "rare": "Dragon Treasure"
+        },
+        {
+          "give": "Dragonmoss",
+          "common": "Thunderbug Juice",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Dragonmoss+",
+          "common": "Pale Extract",
+          "rare": "Monster Broth"
+        },
+        {
+          "give": "Dragonwood",
+          "common": "Thunderbug Juice",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Dragonwood+",
+          "common": "Pale Extract",
+          "rare": "Monster Broth"
+        },
+        {
+          "give": "Giant Corn",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Tailed Frog",
+          "common": "Frog",
+          "rare": "Frog"
+        },
+        {
+          "give": "Famitsu Ticket",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Famitsu PO",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Dengeki Ticket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Dengeki Ticket+",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "DemonKingTicket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Ticket J",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Hunter's Ticket",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Hunter Soul Tkt",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Amezari Shell",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "PtFamitsuTicket",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "SpecFamitsuTckt",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "Dengeki Ticket G",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Tckt J G",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Magazine Ticket",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Gt Amezari Shell",
+          "common": "Lightning Rod",
+          "rare": "Lightning Rod"
+        },
+        {
+          "give": "Blackbelt Ticket",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Expert Ticket",
+          "common": "Decayed Drgn Scl",
+          "rare": "Decayed Drgn Scl"
+        },
+        {
+          "give": "Hypno Ticket",
+          "common": "Antidote Flute",
+          "rare": "Health Flute"
+        },
+        {
+          "give": "Lavasioth Ticket",
+          "common": "Lifepowder",
+          "rare": "Max Potion"
+        },
+        {
+          "give": "Kut-Ku Coin",
+          "common": "Potion",
+          "rare": "Herb"
+        },
+        {
+          "give": "Congalala Coin",
+          "common": "Honey",
+          "rare": "Blue Mushroom"
+        },
+        {
+          "give": "Khezu Coin",
+          "common": "Nutrients",
+          "rare": "Bitterbug"
+        },
+        {
+          "give": "Daimyo Coin",
+          "common": "Armorskin",
+          "rare": "Armor Seed"
+        },
+        {
+          "give": "Blangonga Coin",
+          "common": "Hot Meat",
+          "rare": "Hot Drink"
+        },
+        {
+          "give": "Yian Garuga Coin",
+          "common": "Herbal Medicine",
+          "rare": "Antidote"
+        },
+        {
+          "give": "Tigrex Coin",
+          "common": "Demondrug",
+          "rare": "Power Seed"
+        },
+        {
+          "give": "Diablos Coin",
+          "common": "Mega Potion",
+          "rare": "Potion"
+        },
+        {
+          "give": "Gravios Coin",
+          "common": "Armor Pill",
+          "rare": "Mega Armorskin"
+        },
+        {
+          "give": "Kirin Coin",
+          "common": "Well-Done Steak",
+          "rare": "Energy Drink"
+        },
+        {
+          "give": "Cephadrome Coin",
+          "common": "Cold Meat",
+          "rare": "Cool Drink"
+        },
+        {
+          "give": "Plesioth Coin",
+          "common": "Mega Nutrients",
+          "rare": "Catalyst"
+        },
+        {
+          "give": "Shogun Coin",
+          "common": "Gourmet Steak",
+          "rare": "Power Juice"
+        },
+        {
+          "give": "Fire Coin",
+          "common": "Power Pill",
+          "rare": "Mega Demondrug"
+        },
+        {
+          "give": "Rajang Coin",
+          "common": "Max Potion",
+          "rare": "Immunizer"
+        },
+        {
+          "give": "BlackBeltCoinG",
+          "common": "Mega Armorskin",
+          "rare": "Armor Flute"
+        },
+        {
+          "give": "Expert Coin G",
+          "common": "Mega Demondrug",
+          "rare": "Demon Flute"
+        },
+        {
+          "give": "Warrior Coin G",
+          "common": "Lifepowder",
+          "rare": "Health Flute"
+        },
+        {
+          "give": "Legend Coin G",
+          "common": "Ancient Potion",
+          "rare": "TerritorialDung+"
+        },
+        {
+          "give": "VeggieElderTcket",
+          "common": "Nutrients",
+          "rare": "Potion"
+        },
+        {
+          "give": "VeggieElderTckt+",
+          "common": "Mega Nutrients",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "VegElderTcktBrz",
+          "common": "Lightcrystal",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "VegElderTcktSlv",
+          "common": "Gravios Skl Shl",
+          "rare": "Gravios Skl Shl"
+        },
+        {
+          "give": "VegElderTcktGld",
+          "common": "Chameleos Jewel",
+          "rare": "Chameleos Jewel"
+        },
+        {
+          "give": "VegElderTcktSky",
+          "common": "HvnlyBlkGraviShl",
+          "rare": "HvnlyBlkGraviShl"
+        }
+      ]
+    },
+    {
+      "maps": [
+        "Jungle (Day)",
+        "Jungle (Night)"
+      ],
+      "trades": [
+        {
+          "give": "Wyvern Egg",
+          "common": "Potion",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Carnivore Egg",
+          "common": "Potion",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Insect Husk",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Garbage",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Fish",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Meat",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Ivy",
+          "common": "Special Mushroom",
+          "rare": "Bone"
+        },
+        {
+          "give": "Parashroom",
+          "common": "Special Mushroom",
+          "rare": "Sm Bone Husk"
+        },
+        {
+          "give": "Bounce Bomb",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Sushifish",
+          "common": "Lg Bone Husk",
+          "rare": "Sm Bone Husk"
+        },
+        {
+          "give": "Sleepyfish",
+          "common": "Sm Monster Bone",
+          "rare": "Unknown Skull"
+        },
+        {
+          "give": "Spiderweb",
+          "common": "Sm Bone Husk",
+          "rare": "Lg Bone Husk"
+        },
+        {
+          "give": "Thunderbug",
+          "common": "Giant Bone",
+          "rare": "Sharp Claw"
+        },
+        {
+          "give": "Vespoid Abdomen",
+          "common": "Paralysis Sac",
+          "rare": "Unknown Skull"
+        },
+        {
+          "give": "Yambug",
+          "common": "Sharp Claw",
+          "rare": "Bone"
+        },
+        {
+          "give": "Pin Tuna",
+          "common": "Brute Bone",
+          "rare": "Lg Bone Husk"
+        },
+        {
+          "give": "Armor Seed",
+          "common": "Sm Bone Husk",
+          "rare": "Unknown Skull"
+        },
+        {
+          "give": "Felvine",
+          "common": "Mystery Bone",
+          "rare": "Bone"
+        },
+        {
+          "give": "Suiko Jewel",
+          "common": "Med Monster Bone",
+          "rare": "Anteka Pelt"
+        },
+        {
+          "give": "Spicy Mushroom",
+          "common": "Sm Monster Bone",
+          "rare": "Giant Bone"
+        },
+        {
+          "give": "Arrowana Bait",
+          "common": "Bullfango Pelt",
+          "rare": "Sm Bone Husk"
+        },
+        {
+          "give": "Speartuna",
+          "common": "Black Pearl",
+          "rare": "Piscine Fang"
+        },
+        {
+          "give": "BattlefieldJewel",
+          "common": "Lg Monster Bone",
+          "rare": "Thunderbug Juice"
+        },
+        {
+          "give": "Killer Beetle",
+          "common": "Giaprey Hide",
+          "rare": "Bullfango Pelt"
+        },
+        {
+          "give": "Small Ruststone",
+          "common": "Remobra Skin",
+          "rare": "Striped Skin"
+        },
+        {
+          "give": "Ruststone Rod",
+          "common": "Velocidrome Hide",
+          "rare": "Gendrome Hide"
+        },
+        {
+          "give": "Sm Hermitaur Shl",
+          "common": "Giaprey Scale",
+          "rare": "Velociprey Scale"
+        },
+        {
+          "give": "Grn Plesioth Fin",
+          "common": "Genprey Hide",
+          "rare": "Plesioth Scale"
+        },
+        {
+          "give": "Sharpened Beak",
+          "common": "Cephalos Scale",
+          "rare": "Cephalos Fin"
+        },
+        {
+          "give": "Bulldrome Tusk",
+          "common": "Blango Pelt",
+          "rare": "Bulldrome Hide"
+        },
+        {
+          "give": "Bullfango Head",
+          "common": "Vespoid Wing",
+          "rare": "Hornetaur Wing"
+        },
+        {
+          "give": "Ceanataur Leg",
+          "common": "Rubbery Hide",
+          "rare": "Plesioth Fin"
+        },
+        {
+          "give": "Blangonga Tail",
+          "common": "Blangonga Pelt",
+          "rare": "Hermitaur Shell"
+        },
+        {
+          "give": "Lunastra Tail",
+          "common": "Lunastra Horn",
+          "rare": "Gravios Shell"
+        },
+        {
+          "give": "Lao-Shan's Claw",
+          "common": "Lao-Shan's Scale",
+          "rare": "Sm Lobstershell"
+        },
+        {
+          "give": "Mosswine Hide",
+          "common": "Kelbi Hide",
+          "rare": "Velociprey Hide"
+        },
+        {
+          "give": "Gypceros Head",
+          "common": "Flabby Hide",
+          "rare": "Hornetaur Shell"
+        },
+        {
+          "give": "Diablos Tail",
+          "common": "Monoblos Shell",
+          "rare": "Blood Red Horn"
+        },
+        {
+          "give": "Chameleos Claw",
+          "common": "Basarios Shell",
+          "rare": "Tigrex Claw"
+        },
+        {
+          "give": "ShakaInheritance",
+          "common": "Electro Sac",
+          "rare": "Paralysis Sac"
+        },
+        {
+          "give": "Grn Plsioth Fin+",
+          "common": "Ioprey Hide+",
+          "rare": "Cephalos Scale+"
+        },
+        {
+          "give": "Velociprey Scle+",
+          "common": "High Qualty Pelt",
+          "rare": "Ioprey Hide"
+        },
+        {
+          "give": "Blue Kut-Ku Scl+",
+          "common": "Blango Pelt+",
+          "rare": "Genprey Scale+"
+        },
+        {
+          "give": "Slvr Rthlos Scl+",
+          "common": "Rubbery Hide+",
+          "rare": "Ioprey Hide+"
+        },
+        {
+          "give": "Rajang Tail",
+          "common": "Fire Dragon Scl",
+          "rare": "Firecell Stone"
+        },
+        {
+          "give": "Lao-Shan's Ruby",
+          "common": "ElderDragonBlood",
+          "rare": "Wyvern Stone"
+        },
+        {
+          "give": "Rejuvenated Beak",
+          "common": "Coral Cphlos Scl",
+          "rare": "Coral Cphlos Fin"
+        },
+        {
+          "give": "LeatherNargaTail",
+          "common": "Black Narga Pelt",
+          "rare": "NargaCuttingWing"
+        },
+        {
+          "give": "SpecLavasioFin+",
+          "common": "ThckPlesiothScl",
+          "rare": "HvyPiscineFang"
+        },
+        {
+          "give": "Lucky Kut-Ku Ear",
+          "common": "Hvy Kut-Ku Shell",
+          "rare": "ThkBlueKut-KuScl"
+        },
+        {
+          "give": "StoutWarpedHorn",
+          "common": "HvyHermitaurShl",
+          "rare": "PlumD.HermitrShl"
+        },
+        {
+          "give": "LthrC.BlangoTail",
+          "common": "Lg Pelagus Fang",
+          "rare": "E.CongalalaPelt+"
+        },
+        {
+          "give": "HvyTeostraShell",
+          "common": "ThckDaoraDrgnScl",
+          "rare": "SpecChameleHide+"
+        },
+        {
+          "give": "Azure LaoS Claw",
+          "common": "HvyRathianShell",
+          "rare": "HvyRathalosShl"
+        },
+        {
+          "give": "Dosbiscus",
+          "common": "Dung",
+          "rare": "Wyvern Droppings"
+        },
+        {
+          "give": "Chaos Mushroom",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Springnight Carp",
+          "common": "Net",
+          "rare": "Net"
+        },
+        {
+          "give": "Great Hornfly",
+          "common": "Godbug",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Sinister Cloth",
+          "common": "Dragon Treasure",
+          "rare": "Dragon Treasure"
+        },
+        {
+          "give": "Dragonmoss",
+          "common": "Lg Monster Bone",
+          "rare": "Eldr Dragon Bone"
+        },
+        {
+          "give": "Dragonmoss+",
+          "common": "Monster Bone+",
+          "rare": "Hrd Monster Bone"
+        },
+        {
+          "give": "Dragonwood",
+          "common": "Lg Monster Bone",
+          "rare": "Eldr Dragon Bone"
+        },
+        {
+          "give": "Dragonwood+",
+          "common": "Monster Bone+",
+          "rare": "Hrd Monster Bone"
+        },
+        {
+          "give": "Giant Corn",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Tailed Frog",
+          "common": "Frog",
+          "rare": "Frog"
+        },
+        {
+          "give": "Famitsu Ticket",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Famitsu PO",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Dengeki Ticket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Dengeki Ticket+",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "DemonKingTicket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Ticket J",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Hunter's Ticket",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Hunter Soul Tkt",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Amezari Shell",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "PtFamitsuTicket",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "SpecFamitsuTckt",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "Dengeki Ticket G",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Tckt J G",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Magazine Ticket",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Gt Amezari Shell",
+          "common": "Lightning Rod",
+          "rare": "Lightning Rod"
+        },
+        {
+          "give": "Blackbelt Ticket",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Expert Ticket",
+          "common": "Decayed Drgn Scl",
+          "rare": "Decayed Drgn Scl"
+        },
+        {
+          "give": "Hypno Ticket",
+          "common": "OrangeHypnoPelt",
+          "rare": "Sleep Sac"
+        },
+        {
+          "give": "Lavasioth Ticket",
+          "common": "ThckLavasiothScl",
+          "rare": "HvyLavasiothShl"
+        },
+        {
+          "give": "Kut-Ku Coin",
+          "common": "Kut-Ku Scale",
+          "rare": "Kut-Ku Shell"
+        },
+        {
+          "give": "Congalala Coin",
+          "common": "Congalala Pelt",
+          "rare": "Congalala Fang"
+        },
+        {
+          "give": "Khezu Coin",
+          "common": "Flabby Hide",
+          "rare": "Pale Extract"
+        },
+        {
+          "give": "Daimyo Coin",
+          "common": "Hermitaur Shell",
+          "rare": "Hermitaur Claw"
+        },
+        {
+          "give": "Blangonga Coin",
+          "common": "Blangonga Pelt",
+          "rare": "Blangonga Whiskr"
+        },
+        {
+          "give": "Yian Garuga Coin",
+          "common": "Garuga Scale",
+          "rare": "Garuga Shell"
+        },
+        {
+          "give": "Tigrex Coin",
+          "common": "Tigrex Scale",
+          "rare": "Tigrex Shell"
+        },
+        {
+          "give": "Diablos Coin",
+          "common": "Diablos Shell",
+          "rare": "Blos Fang"
+        },
+        {
+          "give": "Gravios Coin",
+          "common": "Gravios Shell",
+          "rare": "Lg Monster Bone"
+        },
+        {
+          "give": "Kirin Coin",
+          "common": "Kirin Mane",
+          "rare": "Kirin Horn"
+        },
+        {
+          "give": "Cephadrome Coin",
+          "common": "Cephalos Scale",
+          "rare": "Cephalos Fin"
+        },
+        {
+          "give": "Plesioth Coin",
+          "common": "Plesioth Scale",
+          "rare": "Plesioth Fin"
+        },
+        {
+          "give": "Shogun Coin",
+          "common": "Ceanataur Shell",
+          "rare": "Ceanataur Leg"
+        },
+        {
+          "give": "Fire Coin",
+          "common": "Rathalos Scale",
+          "rare": "Rathalos Shell"
+        },
+        {
+          "give": "Rajang Coin",
+          "common": "Commendation",
+          "rare": "Blk Rajang Pelt"
+        },
+        {
+          "give": "BlackBeltCoinG",
+          "common": "OrangeHypnoPelt+",
+          "rare": "PlumD.HermitrShl"
+        },
+        {
+          "give": "Expert Coin G",
+          "common": "C.BlangongaPelt+",
+          "rare": "ThickNargaScale"
+        },
+        {
+          "give": "Warrior Coin G",
+          "common": "ThckLavasiothScl",
+          "rare": "TerraCeanatrShl"
+        },
+        {
+          "give": "Legend Coin G",
+          "common": "Commendation S",
+          "rare": "Blk Rajang Pelt+"
+        },
+        {
+          "give": "VeggieElderTcket",
+          "common": "Power Juice",
+          "rare": "Well-Done Steak"
+        },
+        {
+          "give": "VeggieElderTckt+",
+          "common": "Mega Juice",
+          "rare": "Gourmet Steak"
+        },
+        {
+          "give": "VegElderTcktBrz",
+          "common": "Vibrant Pelt",
+          "rare": "Vibrant Pelt"
+        },
+        {
+          "give": "VegElderTcktSlv",
+          "common": "Rathian Plate",
+          "rare": "Rathian Plate"
+        },
+        {
+          "give": "VegElderTcktGld",
+          "common": "Rathian Ruby",
+          "rare": "Rathian Ruby"
+        },
+        {
+          "give": "VegElderTcktSky",
+          "common": "Lao-ShanHvnlyScl",
+          "rare": "Lao-ShanHvnlyScl"
+        }
+      ]
+    },
+    {
+      "maps": [
+        "Snowy Mountains (Day)",
+        "Snowy Mountains (Night)"
+      ],
+      "trades": [
+        {
+          "give": "Carnivore Egg",
+          "common": "Potion",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Sootstone Ore",
+          "common": "Potion",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Khezu Whelp",
+          "common": "Khz Whlp Ice Crm",
+          "rare": "Khz Whlp Ice Crm"
+        },
+        {
+          "give": "Insect Husk",
+          "common": "Mountain Herbs",
+          "rare": "Mountain Herbs"
+        },
+        {
+          "give": "Garbage",
+          "common": "Mountain Herbs",
+          "rare": "Mountain Herbs"
+        },
+        {
+          "give": "Burnt Fish",
+          "common": "Mountain Herbs",
+          "rare": "Mountain Herbs"
+        },
+        {
+          "give": "Burnt Meat",
+          "common": "Mountain Herbs",
+          "rare": "Mountain Herbs"
+        },
+        {
+          "give": "Sleep Herb",
+          "common": "Mountain Herbs",
+          "rare": "Hot Drink"
+        },
+        {
+          "give": "Bone",
+          "common": "Mountain Herbs",
+          "rare": "Hot Pepper"
+        },
+        {
+          "give": "Bounce Bomb",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Ice Crystal",
+          "common": "Dung",
+          "rare": "Wyvern Droppings"
+        },
+        {
+          "give": "Sm Monster Bone",
+          "common": "Hot Drink",
+          "rare": "Hot Meat"
+        },
+        {
+          "give": "Throwing Knife",
+          "common": "Spicy Mushroom",
+          "rare": "Energy Drink"
+        },
+        {
+          "give": "Black Pearl",
+          "common": "Gourmet Fish+",
+          "rare": "Killer Beetle"
+        },
+        {
+          "give": "Small Goldenfish",
+          "common": "Carpenterbug",
+          "rare": "Goldenfish Bait"
+        },
+        {
+          "give": "Akito Jewel",
+          "common": "Flashbug",
+          "rare": "Thunderbug"
+        },
+        {
+          "give": "Frog",
+          "common": "Thawing Agent",
+          "rare": "Carpenterbug"
+        },
+        {
+          "give": "Firestone",
+          "common": "Demon Flute",
+          "rare": "Health Flute"
+        },
+        {
+          "give": "Flat Ruststone",
+          "common": "Vespoid Wing",
+          "rare": "Vespoid Shell"
+        },
+        {
+          "give": "Ruststone",
+          "common": "Hornetaur Wing",
+          "rare": "Hornetaur Shell"
+        },
+        {
+          "give": "Frozen Berry",
+          "common": "Exciteshroom",
+          "rare": "Toadstool"
+        },
+        {
+          "give": "Daora Tail",
+          "common": "Mega Nutrients",
+          "rare": "Nutrients"
+        },
+        {
+          "give": "Kirin Thndr Tail",
+          "common": "Hercudrome",
+          "rare": "Herbal Medicine"
+        },
+        {
+          "give": "Giadrome Claw",
+          "common": "Tranquilizer",
+          "rare": "Gunpowder"
+        },
+        {
+          "give": "Tigrex Fang",
+          "common": "Power Pill",
+          "rare": "Power Seed"
+        },
+        {
+          "give": "Daora Claw",
+          "common": "Armor Pill",
+          "rare": "Armor Seed"
+        },
+        {
+          "give": "Congalala Fang",
+          "common": "Dragon Toadstool",
+          "rare": "Cactus Flower"
+        },
+        {
+          "give": "TwstBlkBlosHrn",
+          "common": "Power Juice",
+          "rare": "Power Extract"
+        },
+        {
+          "give": "Blue Kut-Ku Scl",
+          "common": "Gourmet Steak",
+          "rare": "Well-Done Steak"
+        },
+        {
+          "give": "Iodrome Skull",
+          "common": "Armor Flute",
+          "rare": "Antidote Flute"
+        },
+        {
+          "give": "Teostra Horn",
+          "common": "Immunizer",
+          "rare": "Cold Meat"
+        },
+        {
+          "give": "Blk Gravios Skl",
+          "common": "Ancient Potion",
+          "rare": "Max Potion"
+        },
+        {
+          "give": "Teostra Shell",
+          "common": "Lifepowder",
+          "rare": "Lifecrystals"
+        },
+        {
+          "give": "Garuga Mane",
+          "common": "Dragon Toadstool",
+          "rare": "Antidote"
+        },
+        {
+          "give": "Carbalite Ore",
+          "common": "King Scarab",
+          "rare": "Hercudrome"
+        },
+        {
+          "give": "Novacrystal",
+          "common": "Ancient Potion",
+          "rare": "Lifepowder"
+        },
+        {
+          "give": "Ancient Fish",
+          "common": "Psychoserum",
+          "rare": "Catalyst"
+        },
+        {
+          "give": "ShakaInheritance",
+          "common": "King Scarab",
+          "rare": "Hercudrome"
+        },
+        {
+          "give": "Felyne Fur Ruby",
+          "common": "Gastronome Tuna",
+          "rare": "Glutton Tuna"
+        },
+        {
+          "give": "Giant Beak",
+          "common": "Demondrug",
+          "rare": "Dragon Toadstool"
+        },
+        {
+          "give": "Tigrex Scale+",
+          "common": "Mega Armorskin",
+          "rare": "Hot Meat"
+        },
+        {
+          "give": "Rajang Fang",
+          "common": "Vespoid Carapace",
+          "rare": "Hornetaur Crapce"
+        },
+        {
+          "give": "Giadrome Claw+",
+          "common": "Psychoserum",
+          "rare": "Thawing Agent"
+        },
+        {
+          "give": "Gaoren Thoracic",
+          "common": "Vespoid InnrWng",
+          "rare": "HornetaurInnrWng"
+        },
+        {
+          "give": "Slvr Rthlos Tail",
+          "common": "Mega Demondrug",
+          "rare": "King Scarab"
+        },
+        {
+          "give": "Congalala Claw+",
+          "common": "Armorskin",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Top-GrdPlatHorn",
+          "common": "Max Potion",
+          "rare": "Lifepowder"
+        },
+        {
+          "give": "KhezuSpecialCut",
+          "common": "Pale Extract",
+          "rare": "Catalyst"
+        },
+        {
+          "give": "StrBasariosWing",
+          "common": "Vspoid Razorwing",
+          "rare": "Hornet Razorwing"
+        },
+        {
+          "give": "AncientDrgnmoss",
+          "common": "Max Potion",
+          "rare": "Monster Essence"
+        },
+        {
+          "give": "Mellanje Ore",
+          "common": "Mega Demondrug",
+          "rare": "Power Pill"
+        },
+        {
+          "give": "Eltalite Ore",
+          "common": "Gourmet Steak",
+          "rare": "Power Extract"
+        },
+        {
+          "give": "ShakalakaTreasr+",
+          "common": "Power Extract",
+          "rare": "Power Juice"
+        },
+        {
+          "give": "Lthr Daora Tail",
+          "common": "Power Juice",
+          "rare": "Mega Juice"
+        },
+        {
+          "give": "Dosbiscus",
+          "common": "Dung",
+          "rare": "Wyvern Droppings"
+        },
+        {
+          "give": "Chaos Mushroom",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Springnight Carp",
+          "common": "Net",
+          "rare": "Net"
+        },
+        {
+          "give": "Great Hornfly",
+          "common": "Godbug",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Sinister Cloth",
+          "common": "Dragon Treasure",
+          "rare": "Dragon Treasure"
+        },
+        {
+          "give": "Dragonmoss",
+          "common": "Thunderbug Juice",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Dragonmoss+",
+          "common": "Pale Extract",
+          "rare": "Monster Broth"
+        },
+        {
+          "give": "Dragonwood",
+          "common": "Thunderbug Juice",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Dragonwood+",
+          "common": "Pale Extract",
+          "rare": "Monster Broth"
+        },
+        {
+          "give": "Giant Corn",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Tailed Frog",
+          "common": "Frog",
+          "rare": "Frog"
+        },
+        {
+          "give": "Famitsu Ticket",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Famitsu PO",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Dengeki Ticket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Dengeki Ticket+",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "DemonKingTicket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Ticket J",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Hunter's Ticket",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Hunter Soul Tkt",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Amezari Shell",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "PtFamitsuTicket",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "SpecFamitsuTckt",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "Dengeki Ticket G",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Tckt J G",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Magazine Ticket",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Gt Amezari Shell",
+          "common": "Lightning Rod",
+          "rare": "Lightning Rod"
+        },
+        {
+          "give": "Blackbelt Ticket",
+          "common": "Mountain Herbs",
+          "rare": "Mountain Herbs"
+        },
+        {
+          "give": "Expert Ticket",
+          "common": "Decayed Drgn Scl",
+          "rare": "Decayed Drgn Scl"
+        },
+        {
+          "give": "Hypno Ticket",
+          "common": "Antidote Flute",
+          "rare": "Health Flute"
+        },
+        {
+          "give": "Lavasioth Ticket",
+          "common": "Lifepowder",
+          "rare": "Max Potion"
+        },
+        {
+          "give": "Kut-Ku Coin",
+          "common": "Potion",
+          "rare": "Herb"
+        },
+        {
+          "give": "Congalala Coin",
+          "common": "Honey",
+          "rare": "Blue Mushroom"
+        },
+        {
+          "give": "Khezu Coin",
+          "common": "Nutrients",
+          "rare": "Bitterbug"
+        },
+        {
+          "give": "Daimyo Coin",
+          "common": "Armorskin",
+          "rare": "Armor Seed"
+        },
+        {
+          "give": "Blangonga Coin",
+          "common": "Hot Meat",
+          "rare": "Hot Drink"
+        },
+        {
+          "give": "Yian Garuga Coin",
+          "common": "Herbal Medicine",
+          "rare": "Antidote"
+        },
+        {
+          "give": "Tigrex Coin",
+          "common": "Demondrug",
+          "rare": "Power Seed"
+        },
+        {
+          "give": "Diablos Coin",
+          "common": "Mega Potion",
+          "rare": "Potion"
+        },
+        {
+          "give": "Gravios Coin",
+          "common": "Armor Pill",
+          "rare": "Mega Armorskin"
+        },
+        {
+          "give": "Kirin Coin",
+          "common": "Well-Done Steak",
+          "rare": "Energy Drink"
+        },
+        {
+          "give": "Cephadrome Coin",
+          "common": "Cold Meat",
+          "rare": "Cool Drink"
+        },
+        {
+          "give": "Plesioth Coin",
+          "common": "Mega Nutrients",
+          "rare": "Catalyst"
+        },
+        {
+          "give": "Shogun Coin",
+          "common": "Gourmet Steak",
+          "rare": "Power Juice"
+        },
+        {
+          "give": "Fire Coin",
+          "common": "Power Pill",
+          "rare": "Mega Demondrug"
+        },
+        {
+          "give": "Rajang Coin",
+          "common": "Max Potion",
+          "rare": "Immunizer"
+        },
+        {
+          "give": "BlackBeltCoinG",
+          "common": "Mega Armorskin",
+          "rare": "Armor Flute"
+        },
+        {
+          "give": "Expert Coin G",
+          "common": "Mega Demondrug",
+          "rare": "Demon Flute"
+        },
+        {
+          "give": "Warrior Coin G",
+          "common": "Lifepowder",
+          "rare": "Health Flute"
+        },
+        {
+          "give": "Legend Coin G",
+          "common": "Ancient Potion",
+          "rare": "TerritorialDung+"
+        },
+        {
+          "give": "VeggieElderTcket",
+          "common": "Armorskin",
+          "rare": "Armor Seed"
+        },
+        {
+          "give": "VeggieElderTckt+",
+          "common": "Mega Armorskin",
+          "rare": "Armor Pill"
+        },
+        {
+          "give": "VegElderTcktBrz",
+          "common": "Blangonga Fang",
+          "rare": "Blangonga Fang"
+        },
+        {
+          "give": "VegElderTcktSlv",
+          "common": "Pale Bone",
+          "rare": "Pale Bone"
+        },
+        {
+          "give": "VegElderTcktGld",
+          "common": "Daora Jewel",
+          "rare": "Daora Jewel"
+        },
+        {
+          "give": "VegElderTcktSky",
+          "common": "HvnlyTigrexScale",
+          "rare": "HvnlyTigrexScale"
+        }
+      ]
+    },
+    {
+      "maps": [
+        "Old Jungle"
+      ],
+      "trades": [
+        {
+          "give": "Insect Husk",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Garbage",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Fish",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Meat",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Sap Plant",
+          "common": "Special Mushroom",
+          "rare": "Hot Drink"
+        },
+        {
+          "give": "Conga Pelt",
+          "common": "Special Mushroom",
+          "rare": "Deodorant"
+        },
+        {
+          "give": "Bounce Bomb",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Disk Stone",
+          "common": "Stone",
+          "rare": "Green Seed"
+        },
+        {
+          "give": "Sleepyfish",
+          "common": "Parashroom",
+          "rare": "Exciteshroom"
+        },
+        {
+          "give": "Iodrome Hide",
+          "common": "Gunpowder",
+          "rare": "Antidote"
+        },
+        {
+          "give": "Unknown Skull",
+          "common": "Glutton Tuna",
+          "rare": "Scatterfish"
+        },
+        {
+          "give": "Kelbi Horn",
+          "common": "Bomberry",
+          "rare": "Armor Seed"
+        },
+        {
+          "give": "Sm Monster Bone",
+          "common": "Hot Drink",
+          "rare": "Hot Meat"
+        },
+        {
+          "give": "Iron Ore",
+          "common": "Exciteshroom",
+          "rare": "Toadstool"
+        },
+        {
+          "give": "Thunderbug",
+          "common": "Godbug",
+          "rare": "Antiseptic Stone"
+        },
+        {
+          "give": "Machalite Ore",
+          "common": "Carpenterbug",
+          "rare": "Honey"
+        },
+        {
+          "give": "Firefly",
+          "common": "Blue Mushroom",
+          "rare": "Bitterbug"
+        },
+        {
+          "give": "Nitroshroom",
+          "common": "Paintberry",
+          "rare": "Fire Herb"
+        },
+        {
+          "give": "Frozen Berry",
+          "common": "Exciteshroom",
+          "rare": "Toadstool"
+        },
+        {
+          "give": "Small Goldenfish",
+          "common": "Armor Seed",
+          "rare": "Armorskin"
+        },
+        {
+          "give": "Large Ruststone",
+          "common": "Vespoid Wing",
+          "rare": "Vespoid Shell"
+        },
+        {
+          "give": "Flat Ruststone",
+          "common": "Hornetaur Wing",
+          "rare": "Hornetaur Shell"
+        },
+        {
+          "give": "Vespoid Abdomen",
+          "common": "Honey",
+          "rare": "Catalyst"
+        },
+        {
+          "give": "Dragonite Ore",
+          "common": "Honey",
+          "rare": "Psychoserum"
+        },
+        {
+          "give": "Black Pearl",
+          "common": "Flashbug",
+          "rare": "Carpenterbug"
+        },
+        {
+          "give": "Bomb Arrowana",
+          "common": "Power Seed",
+          "rare": "Tranquilizer"
+        },
+        {
+          "give": "Bullfango Head",
+          "common": "Honey",
+          "rare": "Bitterbug"
+        },
+        {
+          "give": "Fire Dragon Scl",
+          "common": "Demondrug",
+          "rare": "Hot Meat"
+        },
+        {
+          "give": "Blangonga Fang",
+          "common": "Killer Beetle",
+          "rare": "Health Flute"
+        },
+        {
+          "give": "TwstBlkBlosHrn",
+          "common": "Demondrug",
+          "rare": "Mega Demondrug"
+        },
+        {
+          "give": "Gendrome Skull",
+          "common": "Well-Done Steak",
+          "rare": "Rare Steak"
+        },
+        {
+          "give": "Daora Horn",
+          "common": "Immunizer",
+          "rare": "Cold Meat"
+        },
+        {
+          "give": "Remobra Skull",
+          "common": "Hornetaur Shell",
+          "rare": "Vespoid Shell"
+        },
+        {
+          "give": "Gravios Shell",
+          "common": "Antiseptic Stone",
+          "rare": "Herbal Medicine"
+        },
+        {
+          "give": "Velocidrome Claw",
+          "common": "Honey",
+          "rare": "Godbug"
+        },
+        {
+          "give": "Congalala Fang",
+          "common": "Mega Potion",
+          "rare": "Killer Beetle"
+        },
+        {
+          "give": "Monster Bone+",
+          "common": "Honey",
+          "rare": "Nutrients"
+        },
+        {
+          "give": "Thunder Sac",
+          "common": "Monster Broth",
+          "rare": "Thunderbug Juice"
+        },
+        {
+          "give": "Pnk Rathian Scl+",
+          "common": "Monster Fluid",
+          "rare": "Armor Pill"
+        },
+        {
+          "give": "Toxin Sac",
+          "common": "Hercudrome",
+          "rare": "Rare Scarab"
+        },
+        {
+          "give": "Novacrystal",
+          "common": "Gourmet Steak",
+          "rare": "Power Extract"
+        },
+        {
+          "give": "Hermitaur Claw+",
+          "common": "Gourmet Fish+",
+          "rare": "Gourmet Fish"
+        },
+        {
+          "give": "Slvr Rthlos Tail",
+          "common": "Hornetaur Crapce",
+          "rare": "Vespoid Carapace"
+        },
+        {
+          "give": "Fire Dragon Pwdr",
+          "common": "HornetaurInnrWng",
+          "rare": "Vespoid InnrWng"
+        },
+        {
+          "give": "Pale Khezu Steak",
+          "common": "Thunderbug Juice",
+          "rare": "Rare Scarab"
+        },
+        {
+          "give": "Kirin Azure Horn",
+          "common": "Power Juice",
+          "rare": "Mega Juice"
+        },
+        {
+          "give": "Nargacuga Tail",
+          "common": "Power Extract",
+          "rare": "Mega Demondrug"
+        },
+        {
+          "give": "PlumD.HermitrClw",
+          "common": "Mega Armorskin",
+          "rare": "Armor Pill"
+        },
+        {
+          "give": "AncientDrgnwood",
+          "common": "Max Potion",
+          "rare": "Monster Essence"
+        },
+        {
+          "give": "ThckPnkRathnScl",
+          "common": "FireWyvern Fluid",
+          "rare": "Catalyst"
+        },
+        {
+          "give": "YamaTsukaFillet",
+          "common": "Vspoid Razorwing",
+          "rare": "Hornet Razorwing"
+        },
+        {
+          "give": "Purecrystal",
+          "common": "Power Extract",
+          "rare": "Power Juice"
+        },
+        {
+          "give": "SpecialKirinHide",
+          "common": "PhantomButterfly",
+          "rare": "Emperor Cricket"
+        },
+        {
+          "give": "LthrChameleoTail",
+          "common": "Power Juice",
+          "rare": "Mega Juice"
+        },
+        {
+          "give": "Dosbiscus",
+          "common": "Dung",
+          "rare": "Wyvern Droppings"
+        },
+        {
+          "give": "Chaos Mushroom",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Springnight Carp",
+          "common": "Net",
+          "rare": "Net"
+        },
+        {
+          "give": "Great Hornfly",
+          "common": "Godbug",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Sinister Cloth",
+          "common": "Dragon Treasure",
+          "rare": "Dragon Treasure"
+        },
+        {
+          "give": "Dragonmoss",
+          "common": "Lifecrystals",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Dragonmoss+",
+          "common": "Pale Extract",
+          "rare": "Monster Broth"
+        },
+        {
+          "give": "Dragonwood",
+          "common": "Lifecrystals",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Dragonwood+",
+          "common": "Pale Extract",
+          "rare": "Monster Broth"
+        },
+        {
+          "give": "Giant Corn",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Tailed Frog",
+          "common": "Frog",
+          "rare": "Frog"
+        },
+        {
+          "give": "Famitsu Ticket",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Famitsu PO",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Dengeki Ticket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Dengeki Ticket+",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "DemonKingTicket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Ticket J",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Hunter's Ticket",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Hunter Soul Tkt",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Amezari Shell",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "PtFamitsuTicket",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "SpecFamitsuTckt",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "Dengeki Ticket G",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Tckt J G",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Magazine Ticket",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Gt Amezari Shell",
+          "common": "Lightning Rod",
+          "rare": "Lightning Rod"
+        },
+        {
+          "give": "Blackbelt Ticket",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Expert Ticket",
+          "common": "Decayed Drgn Scl",
+          "rare": "Decayed Drgn Scl"
+        },
+        {
+          "give": "Hypno Ticket",
+          "common": "Antidote Flute",
+          "rare": "Health Flute"
+        },
+        {
+          "give": "Lavasioth Ticket",
+          "common": "Lifepowder",
+          "rare": "Max Potion"
+        },
+        {
+          "give": "Kut-Ku Coin",
+          "common": "Potion",
+          "rare": "Herb"
+        },
+        {
+          "give": "Congalala Coin",
+          "common": "Honey",
+          "rare": "Blue Mushroom"
+        },
+        {
+          "give": "Khezu Coin",
+          "common": "Nutrients",
+          "rare": "Bitterbug"
+        },
+        {
+          "give": "Daimyo Coin",
+          "common": "Armorskin",
+          "rare": "Armor Seed"
+        },
+        {
+          "give": "Blangonga Coin",
+          "common": "Hot Meat",
+          "rare": "Hot Drink"
+        },
+        {
+          "give": "Yian Garuga Coin",
+          "common": "Herbal Medicine",
+          "rare": "Antidote"
+        },
+        {
+          "give": "Tigrex Coin",
+          "common": "Demondrug",
+          "rare": "Power Seed"
+        },
+        {
+          "give": "Diablos Coin",
+          "common": "Mega Potion",
+          "rare": "Potion"
+        },
+        {
+          "give": "Gravios Coin",
+          "common": "Armor Pill",
+          "rare": "Mega Armorskin"
+        },
+        {
+          "give": "Kirin Coin",
+          "common": "Well-Done Steak",
+          "rare": "Energy Drink"
+        },
+        {
+          "give": "Cephadrome Coin",
+          "common": "Cold Meat",
+          "rare": "Cool Drink"
+        },
+        {
+          "give": "Plesioth Coin",
+          "common": "Mega Nutrients",
+          "rare": "Catalyst"
+        },
+        {
+          "give": "Shogun Coin",
+          "common": "Gourmet Steak",
+          "rare": "Power Juice"
+        },
+        {
+          "give": "Fire Coin",
+          "common": "Power Pill",
+          "rare": "Mega Demondrug"
+        },
+        {
+          "give": "Rajang Coin",
+          "common": "Max Potion",
+          "rare": "Immunizer"
+        },
+        {
+          "give": "BlackBeltCoinG",
+          "common": "Mega Armorskin",
+          "rare": "Armor Flute"
+        },
+        {
+          "give": "Expert Coin G",
+          "common": "Mega Demondrug",
+          "rare": "Demon Flute"
+        },
+        {
+          "give": "Warrior Coin G",
+          "common": "Lifepowder",
+          "rare": "Health Flute"
+        },
+        {
+          "give": "Legend Coin G",
+          "common": "Ancient Potion",
+          "rare": "TerritorialDung+"
+        },
+        {
+          "give": "VeggieElderTcket",
+          "common": "Lg Barrel-Bomb",
+          "rare": "Sm Barrel-Bomb"
+        },
+        {
+          "give": "VeggieElderTckt+",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Sm Barrel-Bomb+"
+        },
+        {
+          "give": "VegElderTcktBrz",
+          "common": "Hermitaur Claw",
+          "rare": "Hermitaur Claw"
+        },
+        {
+          "give": "VegElderTcktSlv",
+          "common": "Majestic Horn",
+          "rare": "Majestic Horn"
+        },
+        {
+          "give": "VegElderTcktGld",
+          "common": "Gravios BrainStm",
+          "rare": "Gravios BrainStm"
+        },
+        {
+          "give": "VegElderTcktSky",
+          "common": "HvnlyNargaScale",
+          "rare": "HvnlyNargaScale"
+        }
+      ]
+    },
+    {
+      "maps": [
+        "Old Swamp"
+      ],
+      "trades": [
+        {
+          "give": "Quartz Ore",
+          "common": "Potion",
+          "rare": "Mega Potion"
+        },
+        {
+          "give": "Insect Husk",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Garbage",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Fish",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Burnt Meat",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Toadstool",
+          "common": "Special Mushroom",
+          "rare": "Hot Drink"
+        },
+        {
+          "give": "Herb",
+          "common": "Special Mushroom",
+          "rare": "Antidote"
+        },
+        {
+          "give": "Bounce Bomb",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Screamer",
+          "common": "Earth Crystal",
+          "rare": "Suiko Jewel"
+        },
+        {
+          "give": "ShakalakaTreasre",
+          "common": "Earth Crystal",
+          "rare": "Suiko Jewel"
+        },
+        {
+          "give": "CarapaceonBrains",
+          "common": "Earth Crystal",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Carpenterbug",
+          "common": "Ice Crystal",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Mega Fishing Fly",
+          "common": "Disk Stone",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Brute Bone",
+          "common": "Iron Ore",
+          "rare": "Earth Crystal"
+        },
+        {
+          "give": "Small Goldenfish",
+          "common": "Iron Ore",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Sap Plant",
+          "common": "Disk Stone",
+          "rare": "Stone"
+        },
+        {
+          "give": "Hot Pepper",
+          "common": "Stone",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Wyvern Claw",
+          "common": "Iron Ore",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Frozen Berry",
+          "common": "Suiko Jewel",
+          "rare": "Suiko Jewel"
+        },
+        {
+          "give": "Exciteshroom",
+          "common": "Earth Crystal",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Spicy Mushroom",
+          "common": "Earth Crystal",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Killer Beetle",
+          "common": "Iron Ore",
+          "rare": "Earth Crystal"
+        },
+        {
+          "give": "Hornetaur Shell",
+          "common": "Earth Crystal",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Ruststone",
+          "common": "Machalite Ore",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "Small Ruststone",
+          "common": "Machalite Ore",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "Remobra Skin",
+          "common": "Iron Ore",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Chameleos Horn",
+          "common": "Armor Sphere",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "Blk Gravios Skl",
+          "common": "Armor Sphere",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "Bullfango Head",
+          "common": "Machalite Ore",
+          "rare": "Earth Crystal"
+        },
+        {
+          "give": "Lost Umbrella",
+          "common": "Suiko Jewel",
+          "rare": "Akito Jewel"
+        },
+        {
+          "give": "Blk Gravios Shl",
+          "common": "Earth Crystal",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Lao-Shan's Shell",
+          "common": "Machalite Ore",
+          "rare": "Firestone"
+        },
+        {
+          "give": "Monoblos Heart",
+          "common": "Earth Crystal",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Gaoren Pincer",
+          "common": "Earth Crystal",
+          "rare": "Firestone"
+        },
+        {
+          "give": "Blangonga Tail",
+          "common": "Earth Crystal",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Hermitaur Claw",
+          "common": "Machalite Ore",
+          "rare": "Akito Jewel"
+        },
+        {
+          "give": "Tigrex Tail",
+          "common": "Machalite Ore",
+          "rare": "Suiko Jewel"
+        },
+        {
+          "give": "Iodrome Skull",
+          "common": "Suiko Jewel",
+          "rare": "Earth Crystal"
+        },
+        {
+          "give": "Chameleos Claw",
+          "common": "Akito Jewel",
+          "rare": "BattlefieldJewel"
+        },
+        {
+          "give": "Gastronome Tuna",
+          "common": "Armor Sphere",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "Garuga Carapace",
+          "common": "BattlefieldJewel",
+          "rare": "LapisLazuliJewel"
+        },
+        {
+          "give": "Chameleos Spike",
+          "common": "LapisLazuliJewel",
+          "rare": "Union Ore"
+        },
+        {
+          "give": "Tigrex Claw+",
+          "common": "Firestone",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Ioprey Scale+",
+          "common": "Earth Crystal",
+          "rare": "Dragonite Ore"
+        },
+        {
+          "give": "Gaoren Thoracic",
+          "common": "Lightcrystal",
+          "rare": "Novacrystal"
+        },
+        {
+          "give": "Blue Kut-Ku Scl+",
+          "common": "Armor Stone",
+          "rare": "Armor Sphere"
+        },
+        {
+          "give": "Lunastra Spike",
+          "common": "Union Ore",
+          "rare": "LapisLazuliJewel"
+        },
+        {
+          "give": "Hvy Monster Bone",
+          "common": "Dragonite Ore",
+          "rare": "BattlefieldJewel"
+        },
+        {
+          "give": "HardGypcerosHead",
+          "common": "Carbalite Ore",
+          "rare": "Novacrystal"
+        },
+        {
+          "give": "HvyGraviosShell",
+          "common": "Armor Sphere+",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "StrAlluringWing",
+          "common": "LapisLazuliJewel",
+          "rare": "Novacrystal"
+        },
+        {
+          "give": "SpecLavasioFin+",
+          "common": "Hrd Armor Sphere",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "LthrSlvrRthlsTal",
+          "common": "Eltalite Ore",
+          "rare": "Wyvern Stone"
+        },
+        {
+          "give": "ThckFireDrgnScl",
+          "common": "Firecell Stone",
+          "rare": "Purecrystal"
+        },
+        {
+          "give": "Dosbiscus",
+          "common": "Dung",
+          "rare": "Wyvern Droppings"
+        },
+        {
+          "give": "Chaos Mushroom",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Springnight Carp",
+          "common": "Net",
+          "rare": "Net"
+        },
+        {
+          "give": "Great Hornfly",
+          "common": "Godbug",
+          "rare": "Monster Fluid"
+        },
+        {
+          "give": "Sinister Cloth",
+          "common": "Dragon Treasure",
+          "rare": "Dragon Treasure"
+        },
+        {
+          "give": "Dragonmoss",
+          "common": "Armor Sphere",
+          "rare": "Armor Sphere"
+        },
+        {
+          "give": "Dragonmoss+",
+          "common": "Armor Sphere+",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "Dragonwood",
+          "common": "Armor Sphere",
+          "rare": "Armor Sphere"
+        },
+        {
+          "give": "Dragonwood+",
+          "common": "Armor Sphere+",
+          "rare": "Armor Sphere+"
+        },
+        {
+          "give": "Giant Corn",
+          "common": "Honey",
+          "rare": "Honey"
+        },
+        {
+          "give": "Tailed Frog",
+          "common": "Frog",
+          "rare": "Frog"
+        },
+        {
+          "give": "Famitsu Ticket",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Famitsu PO",
+          "common": "Mega Bugnet",
+          "rare": "Bugnet"
+        },
+        {
+          "give": "Dengeki Ticket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Dengeki Ticket+",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "DemonKingTicket",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Ticket J",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Hunter's Ticket",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Hunter Soul Tkt",
+          "common": "Mega Pickaxe",
+          "rare": "Iron Pickaxe"
+        },
+        {
+          "give": "Amezari Shell",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "PtFamitsuTicket",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "SpecFamitsuTckt",
+          "common": "Lg Barrel-Bomb+",
+          "rare": "Lg Barrel-Bomb"
+        },
+        {
+          "give": "Dengeki Ticket G",
+          "common": "Polytan Bomb",
+          "rare": "Polytan Bomb"
+        },
+        {
+          "give": "Pirate Tckt J G",
+          "common": "JUMP Barrel-Bomb",
+          "rare": "JUMP Barrel-Bomb"
+        },
+        {
+          "give": "Magazine Ticket",
+          "common": "Bounce Bomb+",
+          "rare": "Bounce Bomb+"
+        },
+        {
+          "give": "Gt Amezari Shell",
+          "common": "Lightning Rod",
+          "rare": "Lightning Rod"
+        },
+        {
+          "give": "Blackbelt Ticket",
+          "common": "Special Mushroom",
+          "rare": "Special Mushroom"
+        },
+        {
+          "give": "Expert Ticket",
+          "common": "Decayed Drgn Scl",
+          "rare": "Decayed Drgn Scl"
+        },
+        {
+          "give": "Hypno Ticket",
+          "common": "Akito Jewel",
+          "rare": "Rainbow Ore"
+        },
+        {
+          "give": "Lavasioth Ticket",
+          "common": "Firestone",
+          "rare": "Union Ore"
+        },
+        {
+          "give": "Kut-Ku Coin",
+          "common": "Disk Stone",
+          "rare": "Stone"
+        },
+        {
+          "give": "Congalala Coin",
+          "common": "Iron Ore",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Khezu Coin",
+          "common": "Suiko Jewel",
+          "rare": "Ice Crystal"
+        },
+        {
+          "give": "Daimyo Coin",
+          "common": "Earth Crystal",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Blangonga Coin",
+          "common": "Ice Crystal",
+          "rare": "Earth Crystal"
+        },
+        {
+          "give": "Yian Garuga Coin",
+          "common": "Machalite Ore",
+          "rare": "Armor Stone"
+        },
+        {
+          "give": "Tigrex Coin",
+          "common": "Suiko Jewel",
+          "rare": "Machalite Ore"
+        },
+        {
+          "give": "Diablos Coin",
+          "common": "Machalite Ore",
+          "rare": "Suiko Jewel"
+        },
+        {
+          "give": "Gravios Coin",
+          "common": "Akito Jewel",
+          "rare": "Firestone"
+        },
+        {
+          "give": "Kirin Coin",
+          "common": "Suiko Jewel",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Cephadrome Coin",
+          "common": "Iron Ore",
+          "rare": "Disk Stone"
+        },
+        {
+          "give": "Plesioth Coin",
+          "common": "Earth Crystal",
+          "rare": "Iron Ore"
+        },
+        {
+          "give": "Shogun Coin",
+          "common": "Akito Jewel",
+          "rare": "Black Pearl"
+        },
+        {
+          "give": "Fire Coin",
+          "common": "Machalite Ore",
+          "rare": "Akito Jewel"
+        },
+        {
+          "give": "Rajang Coin",
+          "common": "BattlefieldJewel",
+          "rare": "Firestone"
+        },
+        {
+          "give": "BlackBeltCoinG",
+          "common": "Carbalite Ore",
+          "rare": "Rainbow Ore"
+        },
+        {
+          "give": "Expert Coin G",
+          "common": "Rainbow Ore",
+          "rare": "Lightcrystal"
+        },
+        {
+          "give": "Warrior Coin G",
+          "common": "Union Ore",
+          "rare": "Novacrystal"
+        },
+        {
+          "give": "Legend Coin G",
+          "common": "Eltalite Ore",
+          "rare": "Firecell Stone"
+        },
+        {
+          "give": "VeggieElderTcket",
+          "common": "Health Flute",
+          "rare": "Antidote Flute"
+        },
+        {
+          "give": "VeggieElderTckt+",
+          "common": "Armor Flute",
+          "rare": "Demon Flute"
+        },
+        {
+          "give": "VegElderTcktBrz",
+          "common": "Ceanataur Pincer",
+          "rare": "Ceanataur Pincer"
+        },
+        {
+          "give": "VegElderTcktSlv",
+          "common": "Gypceros Head",
+          "rare": "Gypceros Head"
+        },
+        {
+          "give": "VegElderTcktGld",
+          "common": "Lao-Shan's Ruby",
+          "rare": "Lao-Shan's Ruby"
+        },
+        {
+          "give": "VegElderTcktSky",
+          "common": "HvnlyGraviosShl",
+          "rare": "HvnlyGraviosShl"
+        }
+      ]
+    }
+  ]
+}

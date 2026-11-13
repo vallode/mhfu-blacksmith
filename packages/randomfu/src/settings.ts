@@ -26,6 +26,8 @@ export interface Settings {
   "terms.time": boolean;
   "terms.timeSpread": number;
   "deliveries.enabled": boolean;
+  "trades.enabled": boolean;
+  "trades.mix": "elder" | "all";
   "recipes.materials": boolean;
   "recipes.amounts": boolean;
   "recipes.amountSpread": number;
@@ -313,6 +315,38 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
+  },
+  {
+    key: "trades.enabled",
+    section: "Veggie Elder",
+    label: "Shuffle the Veggie Elder's trades",
+    help: "What each of his trades gives, the common and rare item together, moves to another trade. Each trade keeps the item he takes and its place in his list, so he still takes the first item on it that you carry.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
+  },
+  {
+    key: "trades.mix",
+    section: "Veggie Elder",
+    label: "Which trades",
+    help: "Where a trade's items can move to.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "elder",
+          label: "Same Elder",
+          help: "Each hunting ground's Elder gives the same items as before, for other things.",
+        },
+        {
+          value: "all",
+          label: "Any Elder",
+          help: "Items move between the Elders of every hunting ground.",
+        },
+      ],
+    },
+    default: "elder",
+    enabledBy: "trades.enabled",
   },
   {
     key: "recipes.materials",

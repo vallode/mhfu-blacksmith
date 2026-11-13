@@ -69,6 +69,7 @@ const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   "quest-money": "terms.money",
   "time-limits": "terms.time",
   deliveries: "deliveries.enabled",
+  "veggie-trades": "trades.enabled",
 };
 
 /** Shorthand flags for single settings. */

@@ -58,6 +58,7 @@ const UNTRIED: readonly OptionKey[] = [
   "weapons.attack",
   "weapons.affinity",
   "weapons.element",
+  "trades.enabled",
 ];
 
 test("presets do what their help says", () => {
