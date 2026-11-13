@@ -17,7 +17,8 @@
  *   Discord the line above the title ("G-Rank Blademaster Set"), like the
  *   detail pages' static ones.
  *
- * Anything else, or a code that doesn't open, gets the page as it is.
+ * Anything else, or a code that doesn't open, gets the page as it is. Which
+ * of these a request gets is decided in routes.ts.
  */
 import { initWasm as initResvg, Resvg } from "@resvg/resvg-wasm";
 import resvgWasm from "@resvg/resvg-wasm/index_bg.wasm";
@@ -35,7 +36,7 @@ import {
   type CardAssets,
 } from "../lib/set-card";
 import { SHARE_PARAM } from "../lib/set-codec";
-import { codeFromPath, sharePath } from "../lib/set-link";
+import { sharePath } from "../lib/set-link";
 import {
   buildSetEmbed,
   SET_EMBED_DATA_PATH,
@@ -43,6 +44,7 @@ import {
   type SetEmbed,
   type SetEmbedData,
 } from "../lib/set-embed";
+import { builderPage, CARD_PATH, OEMBED_PATH, route } from "./routes";
 import type { ReactNode } from "react";
 import type { BuildSet } from "../lib/set-build";
 import type { SkillTreeData } from "../lib/set-search";
@@ -67,9 +69,6 @@ declare class HTMLRewriter {
 }
 /** Cloudflare's cache for this zone. */
 declare const caches: { default: Cache };
-
-const OEMBED_PATH = "/set-builder/oembed.json";
-const CARD_PATH = "/set-builder/card.png";
 
 /**
  * Load something once per isolate, with the first call's arguments; a failure
@@ -296,29 +295,16 @@ function rewritePage(
   return new Response(out.body, { status: out.status, statusText: out.statusText, headers });
 }
 
-/**
- * The request for the set builder's page, which a share link's path is
- * served. A validator the browser kept for the link isn't the page file's.
- */
-function builderPage(request: Request, url: URL): Request {
-  const headers = new Headers(request.headers);
-  headers.delete("If-None-Match");
-  headers.delete("If-Modified-Since");
-  return new Request(new URL("/set-builder/", url.origin), { method: request.method, headers });
-}
-
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
-    const pathCode = codeFromPath(url.pathname);
-    const code = pathCode ?? url.searchParams.get(SHARE_PARAM);
-    if (!code || (request.method !== "GET" && request.method !== "HEAD")) {
-      return env.ASSETS.fetch(request);
-    }
+    const target = route(url, request.method);
+    if (target.kind === "asset") return env.ASSETS.fetch(request);
+    const { code } = target;
 
-    if (!pathCode && url.pathname === CARD_PATH) return cardResponse(env, ctx, url, code);
+    if (target.kind === "card") return cardResponse(env, ctx, url, code);
 
-    if (!pathCode && url.pathname === OEMBED_PATH) {
+    if (target.kind === "oembed") {
       let r;
       try {
         r = await readCode(env, url.origin, code);
@@ -329,7 +315,7 @@ const worker = {
       return embed ? oembedResponse(embed, url.origin) : new Response("Not found", { status: 404 });
     }
 
-    const page = await env.ASSETS.fetch(pathCode ? builderPage(request, url) : request);
+    const page = await env.ASSETS.fetch(target.shareLink ? builderPage(request) : request);
     if (!page.ok || !page.headers.get("Content-Type")?.startsWith("text/html")) return page;
     let r;
     try {

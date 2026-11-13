@@ -25,7 +25,12 @@ export const SHARE_PATH = "/sets/";
 /** The longest slug, cut at a word where it can be. */
 const MAX_SLUG = 60;
 
-/** A set's name as a link's slug: "Kirin's Gunner" is "kirins-gunner". */
+/**
+ * A set's name as a link's slug: "Kirin's Gunner" is "kirins-gunner". Not
+ * slugify (slug.ts): that one makes the site's page paths from equipment
+ * names, keeping non-Latin letters and spelling out "+", and they mustn't
+ * change. A slug here is only read by people, so it's plain ASCII.
+ */
 export function setSlug(name: string): string {
   const slug = name
     .normalize("NFKD")
