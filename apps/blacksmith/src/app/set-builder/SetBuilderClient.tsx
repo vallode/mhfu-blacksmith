@@ -41,6 +41,7 @@ import {
   describeDecodeError,
   describeDropped,
   encodeSet,
+  SHARE_PARAM,
 } from "@/lib/set-codec";
 import {
   cantWear,
@@ -70,9 +71,6 @@ const ORIGIN_TITLES: Record<Origin, string> = {
   result: "Search result",
   link: "Shared set",
 };
-
-/** The share link's query parameter: /set-builder/?s=<code>. */
-const SHARE_PARAM = "s";
 
 /** The query fields a search's results depend on, to tell whether the form has changed since. */
 const QUERY_KEYS = [
@@ -268,17 +266,23 @@ export default function SetBuilderClient() {
   const [savedId, setSavedId] = useState<string | null>(null);
   /** Where the editor's set came from, for its title. */
   const [origin, setOrigin] = useState<Origin>("new");
+  /** The name a shared link gave its set, for the editor's title and saving it. */
+  const [linkName, setLinkName] = useState<string | null>(null);
   const [savedSets, setSavedSets] = useState<SavedSet[]>([]);
   const { toast } = useToast();
   const { ids, error: idsError } = useEquipmentIds();
   const tables = useMemo(() => (data && ids ? buildCodecTables(data, ids) : null), [data, ids]);
 
   const openInEditor = useCallback(
-    (next: BuildSet, from: { savedId?: string; origin?: Origin; warnings?: string[] } = {}) => {
+    (
+      next: BuildSet,
+      from: { savedId?: string; origin?: Origin; name?: string; warnings?: string[] } = {},
+    ) => {
       setBuild(next);
       setForm((f) => ({ ...f, hunterType: next.hunterType, sex: next.sex }));
       setSavedId(from.savedId ?? null);
       setOrigin(from.origin ?? "new");
+      setLinkName(from.name ?? null);
       setOpenWarnings(from.warnings ?? []);
       setView("editor");
     },
@@ -306,7 +310,7 @@ export default function SetBuilderClient() {
               `Left out ${r.dropped.map(describeDropped).join(", ")}: not in this version of the site.`,
             ]
           : [];
-      openInEditor(r.set, { ...from, warnings });
+      openInEditor(r.set, { ...from, name: r.name, warnings });
     },
     [tables, openInEditor],
   );
@@ -344,6 +348,7 @@ export default function SetBuilderClient() {
       setForm((f) => ({ ...f, hunterType: r.set.hunterType, sex: r.set.sex }));
       setSavedId(draft.savedId ?? null);
       setOrigin(draft.origin ?? "new");
+      setLinkName(typeof draft.name === "string" ? draft.name : null);
       if (r.set.pieces.some(Boolean) || r.set.decorations.length > 0) setView("editor");
     }
   }, [tables, idsError, restored, openCode]);
@@ -351,8 +356,10 @@ export default function SetBuilderClient() {
   // Keep the editor's set for reloads and client-side navigation.
   const code = useMemo(() => (tables ? encodeSet(build, tables) : null), [build, tables]);
   useEffect(() => {
-    if (opened.current && code) writeDraft({ code, savedId: savedId ?? undefined, origin });
-  }, [code, savedId, origin]);
+    if (opened.current && code) {
+      writeDraft({ code, savedId: savedId ?? undefined, origin, name: linkName ?? undefined });
+    }
+  }, [code, savedId, origin, linkName]);
 
   const storeSets = (next: SavedSet[], done?: string) => {
     setSavedSets(next);
@@ -376,15 +383,23 @@ export default function SetBuilderClient() {
       storeSets(updateSet(savedSets, savedSet.id, { code }), `Saved ${savedSet.name}.`);
       return;
     }
-    const [next, added] = addSet(savedSets, nextSetName(savedSets), code);
+    // A shared set keeps the name it was shared with.
+    const name = !savedSet && linkName ? linkName : nextSetName(savedSets);
+    const [next, added] = addSet(savedSets, name, code);
     setSavedId(added.id);
+    // From here the saved set's name is the one shown and shared.
+    setLinkName(null);
     storeSets(next, `Saved as ${added.name}. Rename it in My sets.`);
   };
 
   const share = async () => {
-    if (!code) return;
+    if (!code || !tables) return;
     const url = new URL("/set-builder/", window.location.origin);
-    url.searchParams.set(SHARE_PARAM, code);
+    // The link carries the set's name, which its link preview is titled with.
+    url.searchParams.set(
+      SHARE_PARAM,
+      encodeSet(build, tables, savedSet?.name ?? linkName ?? undefined),
+    );
     try {
       await navigator.clipboard.writeText(url.href);
       toast({ id: "set-builder-share", title: "Link copied", message: url.href });
@@ -415,7 +430,7 @@ export default function SetBuilderClient() {
   const editorTitle = (
     <div className="flex flex-wrap items-center gap-[0.8rem]">
       <span className="min-w-0 flex-[1_1_20rem] truncate">
-        <PanelTitle>{savedSet ? savedSet.name : ORIGIN_TITLES[origin]}</PanelTitle>
+        <PanelTitle>{savedSet ? savedSet.name : (linkName ?? ORIGIN_TITLES[origin])}</PanelTitle>
       </span>
       <div className={ui.actions}>
         <button
