@@ -187,18 +187,18 @@ pages and `pnpm settings` show as a tag):
 
 Each preset replaces every option and keeps the seed. They're built on
 the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
-them to what's described here. Options not yet tried in game are in no
-preset: crown spread, monster difficulty, small monster counts, base HP, base size, status
-resistance, weaknesses, weapon stats, the Veggie Elder's trades and the bookshelf guides. Turn those on yourself once you've tried them on
-your disc.
+them to what's described here. The one option not yet tried in game is in
+no preset: the Veggie Elder's trades. Turn it on yourself once you've
+tried it on your disc. Every preset but Rewards only also writes the
+bookshelf guides (EU disc only).
 
-| Preset       | Does                | What it turns on                                                                                                                                                                          |
-| ------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                           |
-| Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills, shop stock, large monsters (into variants)                        |
-| Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, new armor skills |
-| Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled                                              |
-| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills, any item in shops, gathering and supply boxes, wide spreads                   |
+| Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                |
+| ------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                                                                                                                                 |
+| Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills, shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                                                         |
+| Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon stats, new armor skills |
+| Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled, difficulty within its rank                                                                                                                        |
+| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering and supply boxes, any crown spread and difficulty, wide spreads                                                           |
 
 ## Shuffles
 
@@ -437,9 +437,8 @@ commands that found them.
 
 ### Monsters
 
-Species swaps, quest size and quest text have been tried on the EU disc in
-PPSSPP; the other monster options haven't. None is in a preset. They're
-all in-place edits, so every file keeps its size.
+Every monster option has been tried on the EU disc in PPSSPP, and the
+presets use them. They're all in-place edits, so every file keeps its size.
 
 **Quest monsters** (`src/shuffles/quest-monsters.ts`) edit the spawn
 records of Village and Guild quests (`src/game/spawns.ts`): each
@@ -559,7 +558,7 @@ list (`emLoadTable`).
   and Guild quest with large monsters one of 1-4 at `random`, 4 (`wide`)
   or 0 (`none`). Monsters without crowns stay at 100%, and so do the story
   quests the EBOOT holds at 100% until a flag is set. Worked out from the
-  game's code, not yet tried in game.
+  game's code and tried in game.
 
 **Monster stats and weaknesses** (`src/shuffles/monster-stats.ts`) edit the
 `emChunk` of every monster some quest spawns, in `game_task.ovl`

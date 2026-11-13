@@ -12,7 +12,6 @@ import {
   decodeSettings,
   needsEboot,
   OPTIONS,
-  PRESETS,
   type OptionKey,
   type Settings,
 } from "../src/settings.js";
@@ -79,7 +78,7 @@ test("reads the fixture's weapons: attack, affinity, element and status, both fa
   close();
 });
 
-test("weapon stats: off by default, need the EBOOT, in no preset yet", () => {
+test("weapon stats: off by default, need the EBOOT", () => {
   const defaults = defaultSettings("S");
   for (const k of STAT_KEYS) {
     const option = OPTIONS.find((o) => o.key === k)!;
@@ -87,7 +86,6 @@ test("weapon stats: off by default, need the EBOOT, in no preset yet", () => {
     assert.equal(option.action, "randomize", k);
     assert.equal(option.section, "Weapons", k);
     assert.ok(needsEboot(applySettings(defaults, { [k]: true })), k);
-    for (const preset of PRESETS) assert.notEqual(preset.changes[k], true, `${preset.name}: ${k}`);
   }
   // A new option at its default leaves existing settings strings as they were.
   assert.equal(
