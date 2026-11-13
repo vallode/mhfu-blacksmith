@@ -14,6 +14,7 @@
  *
  * Pure: shared by the Worker and the page.
  */
+import { cleanName } from "./set-codec";
 
 /**
  * Where share links live. The Worker's routes (wrangler.jsonc) and the dev
@@ -39,9 +40,14 @@ export function setSlug(name: string): string {
   return (dash > 0 ? cut.slice(0, dash) : slug.slice(0, MAX_SLUG)).replace(/-+$/, "");
 }
 
-/** A share link's path, for a code and the name it carries. */
+/**
+ * A share link's path, for a code and the name it carries. The slug is made
+ * from the name as the code holds it (cleanName: one line, at most MAX_NAME
+ * characters), so the link the page copies and the one its embed names
+ * (from the decoded name) are the same.
+ */
 export function sharePath(code: string, name?: string | null): string {
-  const slug = name ? setSlug(name) : "";
+  const slug = setSlug(cleanName(name ?? undefined));
   return `${SHARE_PATH}${code}/${slug ? `${slug}/` : ""}`;
 }
 

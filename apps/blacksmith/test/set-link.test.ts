@@ -4,7 +4,7 @@
  */
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
-import { MAX_NAME } from "../src/lib/set-codec";
+import { cleanName, MAX_NAME } from "../src/lib/set-codec";
 import { codeFromPath, setSlug, sharePath } from "../src/lib/set-link";
 
 describe("setSlug", () => {
@@ -40,6 +40,15 @@ describe("setSlug", () => {
 describe("sharePath", () => {
   it("ends with the name's slug", () => {
     assert.equal(sharePath("AQID", "Rathalos Gunner"), "/sets/AQID/rathalos-gunner/");
+  });
+
+  it("slugs the name as a code carries it", () => {
+    const long = "Rathalos Soul Gunner for Rajang and Kushala Daora hunts";
+    assert.ok(long.length > MAX_NAME);
+    const carried = cleanName(long);
+    assert.equal(sharePath("AQID", long), sharePath("AQID", carried));
+    assert.equal(sharePath("AQID", long), `/sets/AQID/${setSlug(carried)}/`);
+    assert.equal(sharePath("AQID", "  Line one\nline two "), "/sets/AQID/line-one-line-two/");
   });
 
   it("has no slug without a name, or one with nothing to show", () => {
