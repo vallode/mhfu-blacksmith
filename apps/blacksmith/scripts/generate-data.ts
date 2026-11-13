@@ -342,9 +342,6 @@ function encodeMonster(m: Monster): CompactMonster {
       }),
     ]);
   }
-  if (typeof m.sizes?.min === "number" && typeof m.sizes?.max === "number") {
-    out.sz = [m.sizes.min, m.sizes.max];
-  }
   if (typeof m.base_hp === "number") out.hp = m.base_hp;
   if (typeof m.base_size === "number") out.bs = m.base_size;
   if (m.crowns) out.cr = [m.crowns.mini, m.crowns.silver, m.crowns.gold];

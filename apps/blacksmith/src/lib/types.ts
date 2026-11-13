@@ -192,8 +192,6 @@ export interface Monster {
   habitats?: string[];
   hitzones?: Record<string, HitzoneValues>;
   drops?: Record<string, Record<string, MonsterDrop[]>>;
-  /** Smallest and largest size, in cm */
-  sizes?: { min: number; max: number };
   /** HP before a quest's multiplier, from the disc */
   base_hp?: number;
   /** Centimetres at size 100 percent, as the Guild Card shows sizes (from the disc) */

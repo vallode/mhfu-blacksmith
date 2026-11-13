@@ -20,6 +20,7 @@ import { monsterRecordFor } from "@/lib/monster-ids";
 import {
   bestCrownQuests,
   clearedQuestIds,
+  monsterSizeRange,
   questsWithMonster,
   smallMonsterStages,
 } from "@/lib/quests";
@@ -267,6 +268,15 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
   // The quests with the best chance of each crown, and that chance.
   const bestCrowns = bestCrownQuests(monsterQuests, monster.name);
+  // The sizes its quests can roll, in centimetres.
+  const percentRange = monsterSizeRange(monsterQuests, monster.name);
+  const sizeRange =
+    percentRange && monster.base_size !== undefined
+      ? {
+          min: sizeInCm(percentRange.min, monster.base_size),
+          max: sizeInCm(percentRange.max, monster.base_size),
+        }
+      : null;
   const bestChance: Partial<Record<Crown, number>> = {};
   for (const list of bestCrowns.values())
     for (const { crown, chance } of list) bestChance[crown] = chance;
@@ -302,7 +312,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
         ]
       : [];
   // The loaded hunter's Guild Card counts. Only large monsters (the ones with
-  // sizes) can be captured.
+  // crowns) can be captured.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
   const tabs = [...hitzoneTab, ...dropTabs, ...questTab, ...spawnTab];
 
@@ -331,11 +341,11 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 {monster.description}
               </p>
             )}
-            {monster.sizes && (
+            {sizeRange && (
               <p className="text-small text-stat">
                 Size:{" "}
                 <span className="text-white tabular-nums">
-                  {formatCm(monster.sizes.min)}–{formatCm(monster.sizes.max)} cm
+                  {formatCm(sizeRange.min)}–{formatCm(sizeRange.max)} cm
                 </span>
               </p>
             )}
@@ -350,7 +360,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             {record && (
               <p className="text-small whitespace-normal text-stat">
                 Hunted: <span className="text-white tabular-nums">{record.kills}</span>
-                {monster.sizes && (
+                {monster.crowns && (
                   <>
                     {" · "}Captured:{" "}
                     <span className="text-white tabular-nums">{record.captures}</span>

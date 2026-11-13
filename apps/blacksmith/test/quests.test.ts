@@ -5,6 +5,7 @@ import { encodeQuestBundle, type QuestRecord } from "../scripts/lib/quest-bundle
 import {
   bestCrownQuests,
   decodeQuests,
+  monsterSizeRange,
   questHp,
   questHref,
   questHubSlug,
@@ -263,6 +264,11 @@ describe("encodeQuestBundle / decodeQuests", () => {
       ],
     );
     assert.equal(bestCrownQuests([a!, b!], "Kirin").size, 0);
+    // Quest 2 holds Giadrome at 100 until its flag is set, then at 130.
+    assert.deepEqual(monsterSizeRange([a!, b!, c!], "Giadrome"), { min: 85, max: 130 });
+    assert.deepEqual(monsterSizeRange([b!], "Giadrome"), { min: 100, max: 130 });
+    // Kirin has no crowns here, so it never rolls.
+    assert.equal(monsterSizeRange([a!, b!], "Kirin"), null);
   });
 
   test("keeps the urgent flag", () => {

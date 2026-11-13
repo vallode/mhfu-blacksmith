@@ -96,7 +96,7 @@ const MONSTER_TYPES = [
  * Monsters come from `game_task.ovl`/`game_sub.ovl` (`monsters/*.ts`) with
  * part names and drop-group labels from `overlay/monsters.json`, so only
  * the parts and groups that overlay maps are compared; the rest, and every
- * other field (`description`, `habitats`, `sizes`, `icon`), stay as
+ * other field (`description`, `habitats`, `icon`), stay as
  * committed. Monsters pair by emID through the same overlay.
  */
 const MONSTERS: Category = {
