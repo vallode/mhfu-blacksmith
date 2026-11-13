@@ -9,6 +9,9 @@ import { EQUIP_TYPE_SLOTS, type EquipmentIds } from "./schema";
 import type { EquipSlot } from "./save-store";
 import { slugify } from "./slug";
 
+/** A weapon's page. */
+export const weaponHref = (type: string, slug: string) => `/blacksmith/${type}/${slug}/`;
+
 export interface ResolvedEquip {
   name: string;
   /** Only for armor sold as separate Male and Female pieces under one name. */
@@ -27,7 +30,7 @@ export function resolveEquip(ids: EquipmentIds, slot: EquipSlot): ResolvedEquip 
   const typeSlot = EQUIP_TYPE_SLOTS[slot.type];
   if (typeSlot === "melee" || typeSlot === "ranged") {
     const type = WEAPON_TYPES[group];
-    return { name, rarity, category: type, href: `/blacksmith/${type}/${slug}/` };
+    return { name, rarity, category: type, href: weaponHref(type, slug) };
   }
   return {
     name,

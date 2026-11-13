@@ -67,7 +67,7 @@ export function binSlots(set: BuildSet, bin: DecoBin): number {
   return bin === "weapon" ? set.weaponSlots : (pieceIn(set, bin)?.slots ?? 0);
 }
 
-export function usedSlots(set: BuildSet, bin: DecoBin): number {
+export function usedSlots(set: Pick<BuildSet, "decorations">, bin: DecoBin): number {
   return set.decorations.reduce((n, d) => (d.bin === bin ? n + d.deco.slots : n), 0);
 }
 

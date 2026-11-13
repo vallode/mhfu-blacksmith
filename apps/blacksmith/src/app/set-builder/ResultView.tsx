@@ -16,9 +16,10 @@ import { Slots } from "@/components/DetailPanel";
 import { cn } from "@/lib/cn";
 import { ARMOR_SLOTS, type ArmorRank, type WeaponType } from "@/lib/constants";
 import { readLastWeapon } from "@/lib/last-weapon";
+import { usedSlots } from "@/lib/set-build";
 import type { Tier } from "@/lib/min-rank";
 import type { ArmorSet, DecoBin, Piece, SortKey } from "@/lib/set-search";
-import { pressable, primaryButton, secondaryButton } from "@/styles/set-builder";
+import { pressable, primaryButton, resultRow, secondaryButton } from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
 import { SetHeader } from "./ArmorSetView";
 import { weaponTypesFor } from "@/lib/weapon-suggest";
@@ -81,6 +82,8 @@ export default function ResultView({
   hunterType,
   rank,
   progress,
+  weaponClass,
+  onWeaponClass,
   sort,
   wanted,
   actions,
@@ -97,6 +100,9 @@ export default function ResultView({
   /** The search's rank and quest progress, for the weapon suggestions. */
   rank: ArmorRank;
   progress: Tier | null;
+  /** The weapon class chosen for the suggestions (kept with the form), if any. */
+  weaponClass: WeaponType | null;
+  onWeaponClass: (type: WeaponType) => void;
   /** What the sets are sorted by, highlighted in the status strip. */
   sort?: SortKey;
   /** The wanted skills, highlighted under [Activate Skill]. */
@@ -107,10 +113,10 @@ export default function ResultView({
 }) {
   const [picked, setPicked] = useState<{ piece: Piece; index: number } | null>(null);
   const [weaponsOpen, setWeaponsOpen] = useState(false);
-  // The weapon class suggested: the last one chosen here or browsed on the
-  // site, if the hunter type uses it.
+  // The weapon class suggested: the last one chosen in the sheet, else the
+  // last browsed on the site, if the hunter type uses it.
   // (Results only render in the browser, after a search, so storage is there.)
-  const [chosenType, setChosenType] = useState<WeaponType>(readLastWeapon);
+  const chosenType = weaponClass ?? readLastWeapon();
   const classes = weaponTypesFor(hunterType);
   const weaponType = classes.includes(chosenType) ? chosenType : classes[0];
   const swipe = useSwipe(onStep);
@@ -144,9 +150,9 @@ export default function ResultView({
         open={weaponsOpen}
         onClose={() => setWeaponsOpen(false)}
         type={weaponType}
-        onType={setChosenType}
+        onType={onWeaponClass}
         hunterType={hunterType}
-        slots={weaponSlots}
+        slots={usedSlots(set, "weapon")}
         rank={rank}
         progress={progress}
       />
@@ -251,20 +257,21 @@ function PieceRows({
   onPiece: (p: Piece, index: number) => void;
   onWeapon: () => void;
 }) {
-  const row =
-    "grid min-h-[5.2rem] w-full grid-cols-[3.2rem_minmax(0,1fr)_auto] items-center gap-x-[1rem] border-b border-white/10 px-[0.6rem] py-[0.6rem]";
+  const row = resultRow;
   return (
     <ul className="m-0 list-none p-0">
       <li>
         <button
           type="button"
           className={cn(pressable, row, decoSummary(set, "weapon").length === 0 && "min-h-[4rem]")}
-          aria-label="Weapon: suggest weapons for this set"
+          aria-haspopup="dialog"
           onClick={onWeapon}
         >
           <Icon type={weaponType} size="mini" alt="" className="mr-0" />
           <span className="flex min-w-0 flex-col gap-[0.2rem]">
-            <span className="text-small text-white/55">Weapon</span>
+            <span className="text-small text-white/55">
+              Weapon<span className="sr-only">: suggest weapons for this set.</span>
+            </span>
             <DecoLine set={set} bin="weapon" />
           </span>
           <span className="flex items-center gap-[0.8rem] text-fine">

@@ -7,6 +7,7 @@
  * one weapon class at a time. Owned weapons have gold names, as in the
  * weapon trees.
  */
+import { useMemo } from "react";
 import Link from "next/link";
 import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
@@ -14,17 +15,16 @@ import { Slots } from "@/components/DetailPanel";
 import { IconChoices, type IconChoice } from "@/components/SettingRows";
 import { useHunterProgress } from "@/context/HunterProgressContext";
 import { useWeaponList } from "@/lib/client-data";
-import { cn } from "@/lib/cn";
 import type { ArmorRank, WeaponType } from "@/lib/constants";
+import { weaponHref } from "@/lib/equipment-ref";
 import { rankName, tierLabel, type Tier } from "@/lib/min-rank";
 import { titleCase } from "@/lib/title-case";
 import type { Weapon } from "@/lib/types";
 import { suggestWeapons, weaponTypesFor } from "@/lib/weapon-suggest";
-import { pressable } from "@/styles/set-builder";
+import { cn } from "@/lib/cn";
+import { pressable, resultRow } from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
 import Sheet from "./Sheet";
-
-const typeLabel = titleCase;
 
 export default function WeaponSuggestions({
   open,
@@ -42,14 +42,14 @@ export default function WeaponSuggestions({
   type: WeaponType;
   onType: (type: WeaponType) => void;
   hunterType: string;
-  /** The search's weapon slots, rank and quest progress. */
+  /** The slots the result's weapon jewels take, and the search's rank and quest progress. */
   slots: number;
   rank: ArmorRank;
   progress: Tier | null;
 }) {
   const choices: IconChoice<WeaponType>[] = weaponTypesFor(hunterType).map((t) => ({
     value: t,
-    label: typeLabel(t),
+    label: titleCase(t),
     icon: (checked) => <Icon type={t} size="mini" nav active={checked} className="mr-0" />,
   }));
   return (
@@ -60,7 +60,7 @@ export default function WeaponSuggestions({
       title={
         <span className="flex items-center gap-[0.8rem]">
           <Icon type={type} size="mini" className="mr-0" />
-          <span className="truncate">{typeLabel(type)}</span>
+          <span className="truncate">{titleCase(type)}</span>
         </span>
       }
     >
@@ -91,25 +91,22 @@ function WeaponList({
 }) {
   const { item: weapons, loading } = useWeaponList(type);
   const hunter = useHunterProgress();
+  const found = useMemo(
+    () => (weapons ? suggestWeapons(weapons, { slots, rank, progress }) : []),
+    [weapons, slots, rank, progress],
+  );
   if (loading || !weapons) return <Loading>Loading weapons…</Loading>;
-  const found = suggestWeapons(weapons, { slots, rank, progress });
   if (found.length === 0) {
     return <p className={ui.note}>None of these fit. Try another class, or fewer weapon slots.</p>;
   }
   return (
     <ul className="m-0 flex list-none flex-col p-0">
       {found.map((w) => {
-        const href = `/blacksmith/${type}/${w.slug}/`;
+        const href = weaponHref(type, w.slug);
         const owned = hunter.active && hunter.isOwned(href);
         return (
           <li key={w.slug}>
-            <Link
-              href={href}
-              className={cn(
-                pressable,
-                "grid min-h-[5.2rem] grid-cols-[3.2rem_minmax(0,1fr)_auto] items-center gap-x-[1rem] border-b border-white/10 px-[0.6rem] py-[0.6rem]",
-              )}
-            >
+            <Link href={href} className={cn(pressable, resultRow)}>
               <Icon type={type} size="mini" rarity={w.rarity} color={w.color} className="mr-0" />
               <span className="flex min-w-0 flex-col gap-[0.2rem]">
                 <span className={cn("truncate text-sub", owned ? "text-gold" : "text-white")}>

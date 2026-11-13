@@ -160,11 +160,19 @@ export function useWeapon(type: string, slug: string): DetailState<Weapon> {
   });
 }
 
+/** A weapon bundle's weapons, decoded once per bundle. */
+const decodedWeapons = new WeakMap<WeaponBundle, Weapon[]>();
+
 /** Every weapon of a class, decoded (the set builder's weapon suggestions). */
 export function useWeaponList(type: string): DetailState<Weapon[]> {
   return useBundle<Weapon[]>(`weapon-${type}`, (bundle, dict) => {
     const b = bundle as WeaponBundle;
-    return { item: b.items.map((w) => decodeWeapon(dict, w, b.type)), tree: null };
+    let item = decodedWeapons.get(b);
+    if (!item) {
+      item = b.items.map((w) => decodeWeapon(dict, w, b.type));
+      decodedWeapons.set(b, item);
+    }
+    return { item, tree: null };
   });
 }
 

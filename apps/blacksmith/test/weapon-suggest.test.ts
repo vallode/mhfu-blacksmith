@@ -64,6 +64,14 @@ describe("suggestWeapons", () => {
     );
   });
 
+  it("counts sharpness: white 1248 beats green 1296", () => {
+    const ws = [
+      weapon("Green", 1296, { sharpness: [5, 5, 5, 10] }),
+      weapon("White", 1248, { sharpness: [5, 5, 5, 5, 5, 5] }),
+    ];
+    assert.deepEqual(names(suggestWeapons(ws, { slots: 0, rank: "g-rank" })), ["White", "Green"]);
+  });
+
   it("breaks attack ties on affinity, then more slots", () => {
     const tied = [
       weapon("Plain", 500, { slots: 1 }),
