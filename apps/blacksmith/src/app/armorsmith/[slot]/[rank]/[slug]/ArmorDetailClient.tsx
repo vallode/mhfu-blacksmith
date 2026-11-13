@@ -24,6 +24,7 @@ import ArmorModelViewer from "@/components/ArmorModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useArmorModel } from "@/lib/models";
 import Loading from "@/components/Loading";
+import WishlistButton from "@/components/WishlistButton";
 
 interface Props {
   slot: ArmorSlot;
@@ -58,6 +59,11 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
               className="ml-[0.4rem]"
             />
           )}
+          <WishlistButton
+            gear={{ kind: "armor", slot, rank, slug }}
+            name={piece.name}
+            className={modelKey ? undefined : "ml-[0.4rem]"}
+          />
           {(piece.sex || piece.hunter_type) && (
             <div className="ml-[1.6rem] flex flex-wrap gap-x-[1.6rem] mobile:ml-0">
               {piece.sex && <span>{piece.sex}</span>}

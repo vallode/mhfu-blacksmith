@@ -72,10 +72,16 @@ export function getBundle(file: string): Promise<Bundle> {
   if (cached) return Promise.resolve(cached);
   let p = bundlePromises.get(file);
   if (!p) {
-    p = fetchJson<Bundle>(`/data/${file}.json`).then((b) => {
-      bundleCache.set(file, b);
-      return b;
-    });
+    p = fetchJson<Bundle>(`/data/${file}.json`).then(
+      (b) => {
+        bundleCache.set(file, b);
+        return b;
+      },
+      (e) => {
+        bundlePromises.delete(file); // allow a retry on the next call
+        throw e;
+      },
+    );
     bundlePromises.set(file, p);
   }
   return p;
@@ -163,17 +169,22 @@ export function useWeapon(type: string, slug: string): DetailState<Weapon> {
 /** A weapon bundle's weapons, decoded once per bundle. */
 const decodedWeapons = new WeakMap<WeaponBundle, Weapon[]>();
 
+/** A weapon bundle's weapons, decoded (once per bundle; shared, so don't change them). */
+export function decodeWeaponBundle(b: WeaponBundle, dict: Dictionaries): Weapon[] {
+  let item = decodedWeapons.get(b);
+  if (!item) {
+    item = b.items.map((w) => decodeWeapon(dict, w, b.type));
+    decodedWeapons.set(b, item);
+  }
+  return item;
+}
+
 /** Every weapon of a class, decoded (the set builder's weapon suggestions). */
 export function useWeaponList(type: string): DetailState<Weapon[]> {
-  return useBundle<Weapon[]>(`weapon-${type}`, (bundle, dict) => {
-    const b = bundle as WeaponBundle;
-    let item = decodedWeapons.get(b);
-    if (!item) {
-      item = b.items.map((w) => decodeWeapon(dict, w, b.type));
-      decodedWeapons.set(b, item);
-    }
-    return { item, tree: null };
-  });
+  return useBundle<Weapon[]>(`weapon-${type}`, (bundle, dict) => ({
+    item: decodeWeaponBundle(bundle as WeaponBundle, dict),
+    tree: null,
+  }));
 }
 
 export function useArmorPiece(slot: string, rank: string, slug: string): DetailState<ArmorPiece> {
