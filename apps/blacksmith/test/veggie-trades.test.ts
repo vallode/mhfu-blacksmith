@@ -7,6 +7,7 @@ import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/l
 import { DATA_DIR } from "../src/lib/paths";
 import {
   encodeVeggieTrades,
+  groupTrades,
   indexVeggieTrades,
   tradeMapsLabel,
   type VeggieTradesFile,
@@ -70,6 +71,26 @@ describe("Veggie Elder trades", () => {
     ]);
     assert.deepEqual(trades.get(1)!.takes, [
       { maps: FH, row: 2, item: 2, chance: 100, rare: false },
+    ]);
+  });
+
+  test("the same trade on several grounds is one group, in order of its first trade", () => {
+    const a = { maps: FH, row: 1, item: 2, chance: 80, rare: false };
+    const b = { maps: ["Old Swamp"], row: 3, item: 2, chance: 80, rare: false };
+    const c = { maps: FH, row: 2, item: 1, chance: 100, rare: false };
+    const d = { maps: FH, row: 4, item: 2, chance: 20, rare: true };
+    assert.deepEqual(groupTrades([a, c, b, d]), [
+      {
+        item: 2,
+        chance: 80,
+        rare: false,
+        places: [
+          { maps: FH, row: 1 },
+          { maps: ["Old Swamp"], row: 3 },
+        ],
+      },
+      { item: 1, chance: 100, rare: false, places: [{ maps: FH, row: 2 }] },
+      { item: 2, chance: 20, rare: true, places: [{ maps: FH, row: 4 }] },
     ]);
   });
 

@@ -54,7 +54,7 @@ import {
   questStarLevel,
   rewardTableHeading,
 } from "@/lib/quests";
-import { tradeMapsLabel, type ItemTrades, type Trade } from "@/lib/veggie-trades";
+import { groupTrades, tradeMapsLabel, type ItemTrades, type Trade } from "@/lib/veggie-trades";
 
 interface Props {
   slug: string;
@@ -354,39 +354,44 @@ function ShopPlaces({ places }: { places: ShopPlace[] }) {
 
 /**
  * The Veggie Elder trades that give the item and the ones that take it, a
- * row per trade, with the list number that decides which one he makes.
+ * row per distinct trade with the grounds that make it and the list number
+ * there, which decides which one he makes.
  */
 function VeggieTrades({ trades, items }: { trades: ItemTrades; items: ItemLookup }) {
-  const link = (id: number): LinkedName => {
-    const it = items.get(id);
-    return it.known ? { name: it.name, href: itemHref(it.name) } : { name: it.name };
-  };
-  const row = (p: Trade): SourceRow => ({
-    name: tradeMapsLabel(p.maps),
-    map: p.maps[0],
-    detail: (
-      <>
-        {"for "}
-        <NameLink {...link(p.item)} />
-        {` · ${p.rare ? "Rare trade · " : ""}List No. ${p.row}`}
-      </>
-    ),
-    value: `${p.chance}%`,
-    strong: p.chance >= 100,
-  });
+  // One row per distinct trade, with every ground that makes it, not a row per ground.
+  const rows = (list: Trade[]): SourceRow[] =>
+    groupTrades(list).map((g) => {
+      const it = items.get(g.item);
+      return {
+        name: it.name,
+        href: it.known ? itemHref(it.name) : undefined,
+        icon: { type: it.type, color: it.color },
+        detail: [
+          g.rare && "Rare trade",
+          // The list place only where it's one ground: on several it is a different one on each.
+          g.places.length === 1
+            ? `${tradeMapsLabel(g.places[0]!.maps)} No. ${g.places[0]!.row}`
+            : g.places.map((p) => tradeMapsLabel(p.maps)).join(", "),
+        ]
+          .filter(Boolean)
+          .join(" · "),
+        value: `${g.chance}%`,
+        strong: g.chance >= 100,
+      };
+    });
   return (
     <div className="flex flex-col gap-[1.6rem]">
       <DropGrid>
         {trades.gives.length > 0 && (
-          <SourceList title="Veggie Elder gives it" rows={trades.gives.map(row)} />
+          <SourceList title="Veggie Elder gives it for" rows={rows(trades.gives)} />
         )}
         {trades.takes.length > 0 && (
-          <SourceList title="Trade it to the Veggie Elder" rows={trades.takes.map(row)} />
+          <SourceList title="Trade it to the Veggie Elder for" rows={rows(trades.takes)} />
         )}
       </DropGrid>
       <p className="m-0 text-fine whitespace-normal text-white/60">
-        He takes the first item on his list that you carry. The Felyne Negotiations kitchen skill
-        makes every trade a rare one.
+        He takes the first item on his list that you carry, and each ground has its own list (the
+        No. is the place on it). The Felyne Negotiations kitchen skill makes every trade a rare one.
       </p>
     </div>
   );
@@ -497,6 +502,8 @@ interface SourceRow {
   prefix?: string;
   /** Before the name: the map's icon (gathering points) */
   map?: string;
+  /** Before the name: an item's icon */
+  icon?: { type: string; color: string };
   /** How it's obtained, on the line below */
   detail: ReactNode;
   /** The loaded hunter has cleared this quest */
@@ -529,6 +536,7 @@ function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
           <li key={i} className="flex min-w-0 gap-[0.8rem] leading-[1.25]">
             {r.prefix && <span className="w-cells-4 flex-none text-stat">{r.prefix}</span>}
             {r.map && <MapIcon map={r.map} />}
+            {r.icon && <Icon type={r.icon.type} color={r.icon.color} />}
             <div className="flex min-w-0 flex-1 flex-col gap-[0.2rem]">
               <div className="flex min-w-0 items-baseline gap-[0.8rem]">
                 {typeof r.name !== "string" ? (

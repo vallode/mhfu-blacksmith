@@ -636,24 +636,49 @@ export function useCombinations(): { combinations: CombinationIndex | null; erro
 // ---------------------------------------------------------------------------
 // Veggie Elder trades, by item ID
 // ---------------------------------------------------------------------------
-let tradesPromise: Promise<Map<number, ItemTrades>> | null = null;
+let tradeBundlePromise: Promise<VeggieTradesBundle> | null = null;
+let tradeBundleCache: VeggieTradesBundle | null = null;
 let tradesCache: Map<number, ItemTrades> | null = null;
 
-/** The Veggie Elder's trades by item, from veggie-trades.json. */
-export function getItemTrades(): Promise<Map<number, ItemTrades>> {
-  if (tradesCache) return Promise.resolve(tradesCache);
-  if (!tradesPromise) {
-    tradesPromise = fetchJson<VeggieTradesBundle>("/data/veggie-trades.json")
+/** The Veggie Elder's trades as the build wrote them, from veggie-trades.json. */
+export function getVeggieTrades(): Promise<VeggieTradesBundle> {
+  if (tradeBundleCache) return Promise.resolve(tradeBundleCache);
+  if (!tradeBundlePromise) {
+    tradeBundlePromise = fetchJson<VeggieTradesBundle>("/data/veggie-trades.json")
       .then((bundle) => {
-        tradesCache = indexVeggieTrades(bundle);
-        return tradesCache;
+        tradeBundleCache = bundle;
+        return bundle;
       })
       .catch((e) => {
-        tradesPromise = null; // allow a retry on the next call
+        tradeBundlePromise = null; // allow a retry on the next call
         throw e;
       });
   }
-  return tradesPromise;
+  return tradeBundlePromise;
+}
+
+/** The Veggie Elder's trades by item. */
+export function getItemTrades(): Promise<Map<number, ItemTrades>> {
+  if (tradesCache) return Promise.resolve(tradesCache);
+  return getVeggieTrades().then((bundle) => (tradesCache ??= indexVeggieTrades(bundle)));
+}
+
+/** `getVeggieTrades` as a hook: null while loading or on error (`error` set). */
+export function useVeggieTrades(): { bundle: VeggieTradesBundle | null; error: boolean } {
+  const [bundle, setBundle] = useState(tradeBundleCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (tradeBundleCache) return;
+    let cancelled = false;
+    getVeggieTrades().then(
+      (b) => !cancelled && setBundle(b),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { bundle, error };
 }
 
 /** `getItemTrades` as a hook: null while loading or on error (`error` set). */
