@@ -227,12 +227,12 @@ describe("language guesses", () => {
 });
 
 describe("locale files", () => {
-  test("merge keeps sections this run didn't produce and sorts keys", async () => {
+  test("merge keeps entries this run didn't produce, replaces the ones it did, and sorts keys", async () => {
     const existing: LocaleFile = {
       $comment: "kept",
       source: null,
       item: { Potion: "Poción" },
-      monster: { Rathian: "Rathian (old)" },
+      monster: { Rathian: "Rathian (old)", Kelbi: "Kelbi (old)" },
       quest: { "5": { title: "old" } },
     };
     const merged = mergeLocale(
@@ -246,8 +246,12 @@ describe("locale files", () => {
     );
     assert.equal(merged.$comment, "kept");
     assert.deepEqual(merged.item, { Potion: "Poción" });
-    assert.deepEqual(Object.keys(merged.monster!), ["Kelbi", "Rathalos"]);
-    assert.deepEqual(Object.keys(merged.quest!), ["2", "10001"]);
+    assert.deepEqual(merged.monster, {
+      Kelbi: "Kelbi",
+      Rathalos: "Rathalos",
+      Rathian: "Rathian (old)",
+    });
+    assert.deepEqual(Object.keys(merged.quest!), ["2", "5", "10001"]);
     assert.deepEqual(Object.keys(merged.quest!["10001"]!), ["title", "goal"]);
     assert.deepEqual(Object.keys(merged), [
       "$comment",

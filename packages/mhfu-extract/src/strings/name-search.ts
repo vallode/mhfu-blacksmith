@@ -828,9 +828,14 @@ export function messageFileLanguages(results: readonly NameTableResult[]): Map<s
   const votes = new Map<string, Map<Language, number>>();
   const tables = new Map<string, number>();
   for (const r of results) {
+    // Only tables that line up with a well-matched English table vote: the
+    // monster table (English 0.7, its text nearly all English) guesses its
+    // French and Italian copies as Spanish.
+    const best = r.english[0];
+    if (!best || best.matchRatio < CONFIDENT.englishMatch) continue;
     for (const t of r.languages) {
       const { language, confidence } = t.guess;
-      if (!fromMessageFile(t) || language === null) continue;
+      if (!fromMessageFile(t) || language === null || structuralProblem(best, t)) continue;
       const byLang = votes.get(t.file) ?? new Map<Language, number>();
       byLang.set(language, (byLang.get(language) ?? 0) + confidence);
       votes.set(t.file, byLang);

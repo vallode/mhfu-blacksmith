@@ -109,11 +109,12 @@ export function mergeLocale(
     $comment: base.$comment ?? defaultComment(code),
     source,
   };
+  // Entry by entry: this run's entries replace the same keys, and the rest
+  // (a table this run wasn't confident about, hand-checked names) stay.
   for (const kind of NAME_KINDS) {
-    const section = produced.names[kind] ?? base[kind] ?? {};
-    out[kind] = sortedNames(section);
+    out[kind] = sortedNames({ ...base[kind], ...produced.names[kind] });
   }
-  out.quest = sortedQuests(produced.quest ?? base.quest ?? {});
+  out.quest = sortedQuests({ ...base.quest, ...produced.quest });
   return out;
 }
 

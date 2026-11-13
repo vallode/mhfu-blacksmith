@@ -51,8 +51,9 @@ export default function PreferencesSettings() {
     />
   );
 
+  // Reset leaves the language alone, so it doesn't count here either.
   const isDefault = (Object.keys(DEFAULT_PREFERENCES) as (keyof Preferences)[]).every(
-    (key) => prefs[key] === DEFAULT_PREFERENCES[key],
+    (key) => key === "language" || prefs[key] === DEFAULT_PREFERENCES[key],
   );
 
   return (

@@ -59,9 +59,13 @@ export function PreferencesProvider({ children }: { children: React.ReactNode })
     });
   }, []);
 
+  // The language isn't a display preference: resetting keeps it.
   const reset = useCallback(() => {
-    writePreferences(DEFAULT_PREFERENCES);
-    setPrefs(DEFAULT_PREFERENCES);
+    setPrefs((prev) => {
+      const next = { ...DEFAULT_PREFERENCES, language: prev.language };
+      writePreferences(next);
+      return next;
+    });
   }, []);
 
   const value = useMemo(() => ({ prefs, set, reset }), [prefs, set, reset]);

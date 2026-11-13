@@ -1415,9 +1415,10 @@ pnpm --filter mhfu-extract find-names --unpacked .cache/mhfu [--out <path>] [--t
 ```
 
 `locales` writes one file per language it found, with `source` set to the
-disc and date (`"EU disc ULES01213, extracted 2026-11-09"`). It replaces only
-the sections it produced and keeps the rest of an existing file (hand-checked
-names survive a run that finds only quest text). Keys are sorted, quest IDs
+disc and date (`"EU disc ULES01213, extracted 2026-11-09"`). It merges entry
+by entry: names and quests it produced replace the same keys, and every other
+entry of an existing file stays (hand-checked names, and those from a table a
+later run isn't confident about, survive). Keys are sorted, quest IDs
 numerically, so reruns diff cleanly. Each file is checked against the schema
 before it is written (`src/locales/file.ts`; `pnpm validate-schema` checks
 it again). `--skip-names` skips the name search, `--dry-run` writes nothing.

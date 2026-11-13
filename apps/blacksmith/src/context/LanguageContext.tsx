@@ -40,7 +40,12 @@ function loadGameLocale(locale: Locale): Promise<GameLocale | null> {
   if (!promise) {
     promise = fetch(`/data/locale-${locale}.json`)
       .then((res) => (res.ok ? (res.json() as Promise<GameLocale>) : null))
-      .catch(() => null);
+      .catch(() => {
+        // A network failure (offline, a timeout): forget it, so the next
+        // switch to this language tries again.
+        gameLocales.delete(locale);
+        return null;
+      });
     gameLocales.set(locale, promise);
   }
   return promise;
@@ -52,7 +57,8 @@ export function LanguageProvider({ children }: { children: React.ReactNode }) {
   const [game, setGame] = useState<{ locale: Locale; text: GameText } | null>(null);
 
   useEffect(() => {
-    setBrowserLocale(detectLocale(navigator.languages ?? [navigator.language]));
+    const languages = navigator.languages?.length ? navigator.languages : [navigator.language];
+    setBrowserLocale(detectLocale(languages));
   }, []);
 
   const locale = prefs.language === "auto" ? browserLocale : prefs.language;

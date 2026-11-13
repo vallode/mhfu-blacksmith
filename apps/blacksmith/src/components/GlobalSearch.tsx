@@ -7,6 +7,7 @@ import { useRouter } from "next/navigation";
 import Card from "@/components/Card";
 import { cn } from "@/lib/cn";
 import { useGameText, useT } from "@/context/LanguageContext";
+import type { GameText } from "@/lib/i18n/game-text";
 import { isRank } from "@/lib/i18n/labels";
 import { iconImgClass, iconStyle } from "@/lib/icon-style";
 
@@ -22,6 +23,35 @@ interface SearchEntry {
   rarity: number;
   elements: string;
   skills: string;
+  /** `name` in the site's language, added on the client (not in search-data.json). */
+  localName?: string;
+}
+
+/** An entry's name in the site's language (its English name where there's none). */
+const localName = (game: GameText, entry: SearchEntry): string =>
+  entry.category === "quest"
+    ? game.quest(entry.slug, "title", entry.name)
+    : game.name(entry.category, entry.name);
+
+/** The index over `data`: English names, and the same names in the site's language. */
+function buildIndex(data: SearchEntry[], game: GameText): Fuse<SearchEntry> {
+  return new Fuse<SearchEntry>(
+    data.map((entry) => ({ ...entry, localName: localName(game, entry) })),
+    {
+      keys: [
+        { name: "name", weight: 1.0 },
+        { name: "localName", weight: 1.0 },
+        { name: "skills", weight: 0.5 },
+        { name: "elements", weight: 0.3 },
+        { name: "type", weight: 0.3 },
+      ],
+      threshold: 0.35,
+      minMatchCharLength: 2,
+      // "pocion" finds "Poción", as the item and decoration filters do.
+      ignoreDiacritics: true,
+      includeScore: true,
+    },
+  );
 }
 
 // A result row with a highlight strip (::before) that fills the row; it glows on hover/focus and for the keyboard-selected row.
@@ -88,6 +118,8 @@ export default function GlobalSearch() {
   const [results, setResults] = useState<{ item: SearchEntry; score?: number }[]>([]);
   const [selectedIndex, setSelectedIndex] = useState(-1);
   const fuseRef = useRef<Fuse<SearchEntry> | null>(null);
+  const dataRef = useRef<SearchEntry[] | null>(null);
+  const gameRef = useRef(game);
   const inputRef = useRef<HTMLInputElement>(null);
 
   const loadIndex = useCallback(async () => {
@@ -95,21 +127,19 @@ export default function GlobalSearch() {
     try {
       const res = await fetch("/search-data.json");
       const data: SearchEntry[] = await res.json();
-      fuseRef.current = new Fuse(data, {
-        keys: [
-          { name: "name", weight: 1.0 },
-          { name: "skills", weight: 0.5 },
-          { name: "elements", weight: 0.3 },
-          { name: "type", weight: 0.3 },
-        ],
-        threshold: 0.35,
-        minMatchCharLength: 2,
-        includeScore: true,
-      });
+      dataRef.current = data;
+      fuseRef.current = buildIndex(data, gameRef.current);
     } catch (e) {
       console.warn("Failed to load search index", e);
     }
   }, []);
+
+  // The game text arrives after the page (and changes with the language):
+  // re-index the translated names when it does.
+  useEffect(() => {
+    gameRef.current = game;
+    if (dataRef.current) fuseRef.current = buildIndex(dataRef.current, game);
+  }, [game]);
 
   const open = useCallback(async () => {
     await loadIndex();
@@ -266,11 +296,7 @@ export default function GlobalSearch() {
                       }}
                     />
                   </div>
-                  <p className="m-0 min-w-0 flex-1 truncate">
-                    {item.category === "quest"
-                      ? game.quest(item.slug, "title", item.name)
-                      : game.name(item.category, item.name)}
-                  </p>
+                  <p className="m-0 min-w-0 flex-1 truncate">{localName(game, item)}</p>
                   {item.rank && (
                     <span className="shrink-0 text-fine text-white/50 capitalize">
                       {rankLabel(item.rank)}

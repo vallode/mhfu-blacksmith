@@ -10,6 +10,7 @@ import {
   SHEATHED_TARGET,
   WEAPON_MOUNTS,
   type HunterClip,
+  type HunterMotion,
   type WeaponMount,
 } from "@/lib/hunter";
 import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
@@ -102,8 +103,8 @@ interface MotionState {
   count: number;
   index: number;
   playing: boolean;
-  /** Each clip's name, when they have them (the hunter's). */
-  labels?: string[];
+  /** What each clip is, when the clips are the hunter's (named by `motionLabel`). */
+  motions?: HunterMotion[];
 }
 
 /** Drives the loaded motions from React; set while a model with motions shows. */
@@ -114,17 +115,19 @@ interface MotionPlayer {
 
 const panelButton = cn(modelPanelButton, "text-parchment");
 
-/**
- * A hunter motion's name in the site's language. lib/hunter names them in
- * English ("Sheathed idle", "Drawn idle", "Move 3", "Attack 12").
- */
-function motionLabel(t: Messages, english: string): string {
+/** A hunter motion's name in the site's language ("Sheathed idle", "Move 3", "Attack 12"). */
+function motionLabel(t: Messages, motion: HunterMotion): string {
   const m = t.equipment.model;
-  if (english === "Sheathed idle") return m.sheathedIdle;
-  if (english === "Drawn idle") return m.drawnIdle;
-  const numbered = /^(Move|Attack) (\d+)$/.exec(english);
-  if (numbered) return (numbered[1] === "Move" ? m.moveN : m.attackN)(Number(numbered[2]));
-  return english;
+  switch (motion.kind) {
+    case "sheathed-idle":
+      return m.sheathedIdle;
+    case "drawn-idle":
+      return m.drawnIdle;
+    case "move":
+      return m.moveN(motion.n);
+    case "attack":
+      return m.attackN(motion.n);
+  }
 }
 
 /**
@@ -607,8 +610,8 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
               count: actions.length,
               index: state.index,
               playing: state.playing,
-              labels: sources.some((clip) => (clip as HunterClip).label)
-                ? sources.map((clip) => (clip as HunterClip).label)
+              motions: sources.some((clip) => (clip as HunterClip).motion)
+                ? sources.map((clip) => (clip as HunterClip).motion)
                 : undefined,
             });
           };
@@ -762,16 +765,16 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
           >
             ‹
           </button>
-          {motion.labels ? (
+          {motion.motions ? (
             <select
               aria-label={t.equipment.model.motion}
               className="cursor-pointer bg-transparent tracking-game"
               value={motion.index}
               onChange={(event) => playerRef.current?.select(Number(event.target.value))}
             >
-              {motion.labels.map((name, index) => (
+              {motion.motions.map((m, index) => (
                 <option key={index} value={index} className="bg-black">
-                  {motionLabel(t, name)}
+                  {motionLabel(t, m)}
                 </option>
               ))}
             </select>

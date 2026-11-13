@@ -14,14 +14,8 @@ import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { getItemSources, useItems } from "@/lib/client-data";
 import { ITEM_CATEGORIES, itemCategory, type ItemCategorySlug } from "@/lib/item-categories";
-import { normalizeItemName } from "@/lib/items";
+import { searchKey } from "@/lib/items";
 import { searchInput } from "@/styles/settings";
-
-/**
- * A name as the filter compares it: `normalizeItemName`, without accents, so
- * "pocion" finds "Poción".
- */
-const searchKey = (name: string) => normalizeItemName(name).normalize("NFD").replace(/\p{M}/gu, "");
 
 /** The item slug in /items/<slug>/, where present. */
 function activeItemSlug(pathname: string): string | undefined {

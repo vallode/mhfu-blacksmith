@@ -4,7 +4,7 @@
  * filters, and a search box that matches a jewel's name or the name of a
  * skill it gives points to.
  */
-import { normalizeItemName } from "./items";
+import { searchKey } from "./items";
 import { matchesTreeFilter, type RowStatus } from "./tree-filter";
 import type { Decoration } from "./types";
 
@@ -44,9 +44,6 @@ export function cycleDecorationFilter(
 /** "Attack +1" → "Attack". */
 export const skillName = (skill: string) => skill.slice(0, skill.lastIndexOf(" "));
 
-/** A name for matching: no case, spacing runs or accents ("Dragón" → "dragon"). */
-const fold = (s: string) => normalizeItemName(s).normalize("NFD").replace(/\p{M}/gu, "");
-
 /**
  * Whether a jewel passes the selector's filter and the search box. `query`
  * matches anywhere in its name or a skill's name, ignoring case, spacing and
@@ -67,12 +64,12 @@ export function matchesDecoration(
   if (filter && "hunter" in filter && !(status && matchesTreeFilter(filter.id, status))) {
     return false;
   }
-  const q = fold(query);
+  const q = searchKey(query);
   if (!q) return true;
   const skills = (deco.skills ?? []).map(skillName);
   const names = [deco.name, ...skills];
   if (localName) {
     names.push(localName("decoration", deco.name), ...skills.map((s) => localName("skill", s)));
   }
-  return names.some((s) => fold(s).includes(q));
+  return names.some((s) => searchKey(s).includes(q));
 }
