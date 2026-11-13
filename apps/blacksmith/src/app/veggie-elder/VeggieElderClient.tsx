@@ -17,7 +17,7 @@ import * as ui from "@/styles/settings";
 function ItemName({ id, items }: { id: number; items: ItemLookup }) {
   const item = items.get(id);
   return (
-    <span className="flex min-w-0 items-center">
+    <span className="flex min-w-0 items-center whitespace-nowrap">
       <Icon type={item.type} color={item.color} />
       {item.known ? (
         <Link href={itemHref(item.name)} className="underline-offset-4 hover:underline">
@@ -39,11 +39,11 @@ function TradeList({ rows, items }: { rows: readonly TradeRow[]; items: ItemLook
           className="flex items-center gap-[0.8rem] border-b border-line py-[0.2rem] mobile:flex-wrap"
         >
           <span className="w-cells-3 flex-none text-right text-fine text-muted">{row}</span>
-          <div className="flex min-w-0 flex-1 basis-[22rem] items-center gap-[0.8rem] mobile:basis-0">
+          <div className="flex min-w-0 flex-1 basis-[18rem] items-center mobile:basis-0">
             <ItemName id={give} items={items} />
           </div>
           <span className="flex-none text-hr mobile:hidden">→</span>
-          <div className="flex min-w-0 flex-[1.4] basis-[28rem] flex-wrap items-center gap-x-[1.2rem] mobile:basis-full mobile:pl-[4rem]">
+          <div className="flex min-w-0 flex-1 basis-[18rem] flex-col justify-center mobile:basis-full mobile:pl-[4rem]">
             <ItemName id={common} items={items} />
             {common !== rare && (
               <span className="flex items-center text-warm">
@@ -57,6 +57,20 @@ function TradeList({ rows, items }: { rows: readonly TradeRow[]; items: ItemLook
   );
 }
 
+/** An Elder's list in two cards side by side (stacked on a phone), the first half of the rows, then the rest. */
+function TradeCards({ rows, items }: { rows: readonly TradeRow[]; items: ItemLookup }) {
+  const half = Math.ceil(rows.length / 2);
+  return (
+    <div className="grid grid-cols-2 items-start gap-[1.3rem] mobile:grid-cols-1">
+      {[rows.slice(0, half), rows.slice(half)].map((part, i) => (
+        <Card key={i} className="flex-none text-small">
+          <TradeList rows={part} items={items} />
+        </Card>
+      ))}
+    </div>
+  );
+}
+
 export default function VeggieElderClient() {
   const { bundle, error } = useVeggieTrades();
   const { items } = useItems();
@@ -65,23 +79,21 @@ export default function VeggieElderClient() {
   if (!bundle || !items) return <Loading>Loading trades…</Loading>;
 
   return (
-    <div className="flex w-full max-w-[72rem] flex-col gap-[1.3rem]">
-      <Card className={ui.section} bodyClassName={ui.sectionBody}>
-        <p className={ui.note}>
-          The Veggie Elder takes the first item on his list that you carry. Each hunting ground has
-          its own list. He gives the first item for it, or the{" "}
-          <span className="text-warm">orange one</span> {bundle.rareChance}% of the time, and always
-          with Felyne Negotiations.
-        </p>
-        <Tabs
-          label="Hunting ground"
-          tabs={bundle.elders.map((e) => ({
-            id: tradeMapsLabel(e.maps),
-            label: tradeMapsLabel(e.maps),
-            content: <TradeList rows={e.rows} items={items} />,
-          }))}
-        />
-      </Card>
+    <div className="flex w-full flex-col gap-[1.3rem]">
+      <p className={ui.note}>
+        The Veggie Elder takes the first item on his list that you carry. Each hunting ground has
+        its own list. He gives the first item for it, or the{" "}
+        <span className="text-warm">orange one</span> {bundle.rareChance}% of the time, and always
+        with Felyne Negotiations.
+      </p>
+      <Tabs
+        label="Hunting ground"
+        tabs={bundle.elders.map((e) => ({
+          id: tradeMapsLabel(e.maps),
+          label: tradeMapsLabel(e.maps),
+          content: <TradeCards rows={e.rows} items={items} />,
+        }))}
+      />
     </div>
   );
 }
