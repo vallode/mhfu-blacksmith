@@ -47,6 +47,7 @@ const NAV_GROUPS: NavItem[][] = [
     { label: "Decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
     { label: "Quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
     { label: "Items", icon: "fluid", match: "/items/", href: "/items/" },
+    { label: "Veggie Elder", icon: "mushroom", match: "/veggie-elder/", href: "/veggie-elder/" },
   ],
   [
     { label: "Sets", icon: "plate", match: "/set-builder/", href: "/set-builder/" },

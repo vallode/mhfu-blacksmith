@@ -110,3 +110,17 @@ export function indexVeggieTrades(bundle: VeggieTradesBundle): Map<number, ItemT
 export function tradeMapsLabel(maps: readonly string[]): string {
   return [...new Set(maps.map((m) => m.replace(/ \((?:Day|Night)\)$/, "")))].join(" / ");
 }
+
+/** One row of an Elder's list in the bundle: [row, give, common, rare]. */
+export type TradeRow = VeggieTradesBundle["elders"][number]["rows"][number];
+
+/**
+ * The row the Elder trades on: the first one, in his list's order, whose item
+ * the hunter carries. Undefined when none is on the list.
+ */
+export function pickTrade(
+  rows: readonly TradeRow[],
+  carried: ReadonlySet<number>,
+): TradeRow | undefined {
+  return rows.find(([, give]) => carried.has(give));
+}
