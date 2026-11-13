@@ -2,6 +2,7 @@
 
 import { Fragment, useMemo, type ReactNode } from "react";
 import Link from "next/link";
+import { ItemAreaMap } from "@/components/AreaMap";
 import {
   DetailBody,
   DetailCard,
@@ -111,6 +112,19 @@ export default function ItemDetailClient({ slug }: Props) {
       id: "gathering",
       label: "Gathering",
       content: <GatherPlaces places={placed.gathering} quests={quests} cleared={cleared} />,
+    });
+  }
+  if (placed?.gathering.some((p) => p.mapQuest !== undefined)) {
+    tabs.push({
+      id: "map",
+      label: "Map",
+      content: (
+        <ItemAreaMap
+          places={placed.gathering}
+          quests={new Map(quests?.map((q) => [q.id, q]))}
+          gives={(name) => items.idOf(name) === item.id}
+        />
+      ),
     });
   }
   if (placed?.shops.length) {
