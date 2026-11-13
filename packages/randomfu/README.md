@@ -198,7 +198,7 @@ bookshelf guides (EU disc only).
 | Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills, shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                                                         |
 | Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon stats, new armor skills |
 | Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled, difficulty within its rank                                                                                                                        |
-| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills, any item in shops, gathering and supply boxes, any crown spread and difficulty, wide spreads                                                                                        |
+| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering and supply boxes, any crown spread and difficulty, wide spreads                                                           |
 
 ## Shuffles
 

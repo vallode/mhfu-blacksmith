@@ -1193,7 +1193,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Chaos",
-    help: "Full with the limits off. Logic is at Anywhere, so recipes may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills, shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
+    help: "Full with the limits off. Logic is at Anywhere, so recipes may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
     changes: {
       "logic.tiers": "none",
       "recipes.materials": true,
@@ -1206,6 +1206,7 @@ export const PRESETS: readonly Preset[] = [
       "armor.enabled": true,
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
+      "armorSkills.keepArmorOnly": false,
       "shops.enabled": true,
       "shops.pool": "any",
       "shops.mix": "all",
