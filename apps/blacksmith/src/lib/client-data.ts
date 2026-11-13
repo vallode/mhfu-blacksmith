@@ -160,6 +160,14 @@ export function useWeapon(type: string, slug: string): DetailState<Weapon> {
   });
 }
 
+/** Every weapon of a class, decoded (the set builder's weapon suggestions). */
+export function useWeaponList(type: string): DetailState<Weapon[]> {
+  return useBundle<Weapon[]>(`weapon-${type}`, (bundle, dict) => {
+    const b = bundle as WeaponBundle;
+    return { item: b.items.map((w) => decodeWeapon(dict, w, b.type)), tree: null };
+  });
+}
+
 export function useArmorPiece(slot: string, rank: string, slug: string): DetailState<ArmorPiece> {
   return useBundle<ArmorPiece>(`armor-${slot}-${rank}`, (bundle, dict) => {
     const b = bundle as ArmorBundle;

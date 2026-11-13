@@ -579,6 +579,8 @@ export default function SetBuilderClient() {
                         onStep={step}
                         weaponSlots={searched?.weaponSlots ?? 0}
                         hunterType={searched?.hunterType ?? form.hunterType}
+                        rank={searched?.rank ?? form.rank}
+                        progress={searched ? (searched.progress ?? null) : questLimit}
                         sort={searched?.sort}
                         wanted={searched?.skills ?? []}
                         actions={pieceActions}
