@@ -295,15 +295,15 @@ export default function SetBuilderClient() {
     setOpenWarnings([]);
   };
 
-  /** Open a share code (a link or a saved set) in the editor. */
+  /** Open a share code (a link or a saved set) in the editor; the decoded code, if it opened. */
   const openCode = useCallback(
     (code: string, from: { savedId?: string; origin?: Origin } = {}) => {
-      if (!tables) return;
+      if (!tables) return null;
       const r = decodeSet(code, tables);
       if (!r.ok) {
         setOpenWarnings([describeDecodeError(r.error)]);
         setView("editor");
-        return;
+        return null;
       }
       const warnings =
         r.dropped.length > 0
@@ -312,11 +312,12 @@ export default function SetBuilderClient() {
             ]
           : [];
       openInEditor(r.set, { ...from, name: r.name, warnings });
+      return r;
     },
     [tables, openInEditor],
   );
 
-  // On load: a share link (/s/<code>/, or the older ?s=) wins over
+  // On load: a share link (/sets/<code>/, or the older ?s=) wins over
   // everything stored; otherwise the set left in the editor this session.
   // Saved sets are only read here.
   const opened = useRef(false);
@@ -337,9 +338,12 @@ export default function SetBuilderClient() {
     if (!tables) return;
     opened.current = true;
     if (code !== null) {
-      openCode(code, { origin: "link" });
+      const r = openCode(code, { origin: "link" });
       // From here the editor's set is kept as the draft, so a reload doesn't
-      // bring the link's set back over the player's edits.
+      // bring the link's set back over the player's edits. It's kept before
+      // the address changes: in the offline page (src/app/offline) the change
+      // makes Next load the cached set builder, which opens the draft.
+      if (r) writeDraft({ code: r.canonical, origin: "link", name: r.name });
       const url = new URL(window.location.href);
       url.pathname = "/set-builder/";
       url.searchParams.delete(SHARE_PARAM);
