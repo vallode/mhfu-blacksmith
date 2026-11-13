@@ -1,5 +1,5 @@
 /**
- * Share codes for armor sets, the `<code>` in a share link: `/s/<code>/<slug>/`
+ * Share codes for armor sets, the `<code>` in a share link: `/sets/<code>/<slug>/`
  * (set-link.ts), or the older `/set-builder/?s=<code>`.
  *
  * A code holds the game's own IDs, never positions in the search data

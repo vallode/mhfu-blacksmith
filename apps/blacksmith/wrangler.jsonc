@@ -16,8 +16,9 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page",
     // Everything else is a free static asset request that never runs the
-    // script; these count as Worker requests.
-    "run_worker_first": ["/set-builder/*", "/s/*"],
+    // script; these count as Worker requests. The second is share links
+    // (SHARE_PATH in src/lib/set-link.ts).
+    "run_worker_first": ["/set-builder/*", "/sets/*"],
   },
   // Production at mhfu-blacksmith.<account>.workers.dev, and a preview URL
   // per branch (see the workflow).

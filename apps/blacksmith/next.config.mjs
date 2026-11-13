@@ -36,11 +36,12 @@ const nextConfig = {
   trailingSlash: true,
   experimental: { viewTransition: true },
   generateBuildId: () => BUILD_ID,
-  // Share links (/s/<code>/<slug>/) are the set builder's page, served there
-  // by the Worker (src/cloudflare/worker.ts). `next dev` has no Worker, so it
-  // does the same here. An export can't rewrite, so only in development.
+  // Share links (/sets/<code>/<slug>/, SHARE_PATH in src/lib/set-link.ts) are
+  // the set builder's page, served there by the Worker
+  // (src/cloudflare/worker.ts). `next dev` has no Worker, so it does the same
+  // here. An export can't rewrite, so only in development.
   ...(process.env.NODE_ENV === "development" && {
-    rewrites: async () => [{ source: "/s/:path*", destination: "/set-builder/" }],
+    rewrites: async () => [{ source: "/sets/:path*", destination: "/set-builder/" }],
   }),
 };
 

@@ -3,7 +3,7 @@
  * from out/ as assets; only the set builder and share links run this script
  * first (`run_worker_first`), so every other request stays a static one.
  *
- * It serves share links (`/s/<code>/<slug>/`, src/lib/set-link.ts) the set
+ * It serves share links (`/sets/<code>/<slug>/`, src/lib/set-link.ts) the set
  * builder's page, and gives them, and the older `/set-builder/?s=<code>`,
  * their own link embeds. The page is one static file for every set, so this
  * decodes the code and rewrites the page's meta tags (src/lib/set-embed.ts):

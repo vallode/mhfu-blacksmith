@@ -39,24 +39,24 @@ describe("setSlug", () => {
 
 describe("sharePath", () => {
   it("ends with the name's slug", () => {
-    assert.equal(sharePath("AQID", "Rathalos Gunner"), "/s/AQID/rathalos-gunner/");
+    assert.equal(sharePath("AQID", "Rathalos Gunner"), "/sets/AQID/rathalos-gunner/");
   });
 
   it("has no slug without a name, or one with nothing to show", () => {
-    assert.equal(sharePath("AQID"), "/s/AQID/");
-    assert.equal(sharePath("AQID", null), "/s/AQID/");
-    assert.equal(sharePath("AQID", "麒麟"), "/s/AQID/");
+    assert.equal(sharePath("AQID"), "/sets/AQID/");
+    assert.equal(sharePath("AQID", null), "/sets/AQID/");
+    assert.equal(sharePath("AQID", "麒麟"), "/sets/AQID/");
   });
 });
 
 describe("codeFromPath", () => {
   it("reads the code with or without a slug or trailing slash", () => {
     for (const path of [
-      "/s/AQ-_z9/",
-      "/s/AQ-_z9",
-      "/s/AQ-_z9/rathalos-gunner/",
-      "/s/AQ-_z9/rathalos-gunner",
-      "/s/AQ-_z9/%E9%BA%92%E9%BA%9F/",
+      "/sets/AQ-_z9/",
+      "/sets/AQ-_z9",
+      "/sets/AQ-_z9/rathalos-gunner/",
+      "/sets/AQ-_z9/rathalos-gunner",
+      "/sets/AQ-_z9/%E9%BA%92%E9%BA%9F/",
     ]) {
       assert.equal(codeFromPath(path), "AQ-_z9", path);
     }
@@ -69,12 +69,12 @@ describe("codeFromPath", () => {
 
   it("is null for anything else", () => {
     for (const path of [
-      "/s/",
-      "/s",
+      "/sets/",
+      "/sets",
       "/set-builder/",
-      "/s/AQ=D/",
-      "/s/AQID/name/more/",
-      "/x/s/AQID/",
+      "/sets/AQ=D/",
+      "/sets/AQID/name/more/",
+      "/x/sets/AQID/",
     ]) {
       assert.equal(codeFromPath(path), null, path);
     }
