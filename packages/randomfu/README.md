@@ -178,6 +178,8 @@ pages and `pnpm settings` show as a tag):
 | `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                 |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                              |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                        |
+| `hints.bookshelf`                 | off         | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                    |
+| `hints.almanac`                   | off         | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                   |
 
 ### Presets
 
@@ -185,7 +187,7 @@ Each preset replaces every option and keeps the seed. They're built on
 the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
 them to what's described here. Options not yet tried in game are in no
 preset: crown spread, monster difficulty, small monster counts, base HP, base size, status
-resistance, weaknesses and weapon stats. Turn those on yourself once you've tried them on
+resistance, weaknesses, weapon stats and the bookshelf guides. Turn those on yourself once you've tried them on
 your disc.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                          |
@@ -552,6 +554,107 @@ hitzone tables they share.
   filler; small monsters (one row) don't change. Breaks and flinch
   thresholds belong to the body part, not the row, so they don't move.
   Variants that share their base species' tables change with it.
+
+**The bookshelf guides** rewrite runs of the house bookshelf's articles
+(Open Bookshelf, Info Magazine) and make them readable from the start
+(`src/hints/bookshelf.ts`; the Text, Style and Unlocking notes below cover
+both). `src/hints/guides.ts` writes whichever are on in one go, after every
+shuffle, reading the seed back from the edited files.
+
+**The Bestiary** (`hints.bookshelf`, `src/hints/bestiary.ts`)
+turns the house bookshelf's thirteen Practical Hunting monster articles
+(Fallen Objects, About Wyverns 1-3, the Pelagus, Carapaceon and Elder
+Dragon info, and the Tigrex, Lao-Shan Lung, Akantor, Nargacuga, Yama
+Tsukami and Ukanlos pages; 107 pages) into the RandomFU Bestiary, titled
+by the letters each covers ("RandomFU Bestiary A-C"): an intro, then one
+page per large monster, by name. Pages rate rather than give numbers:
+
+- **Health**: Frail, Sturdy, Tough, Mighty or Colossal, by fifths of base
+  HP among the guide's monsters. It says where a monster stands among the
+  others, not how this seed changed it: it isn't compared with the
+  monster's unrandomized HP, so a Velocidrome is Frail and Lao-Shan Lung
+  Colossal whatever the seed. Base HP is before each quest's own
+  multiplier.
+- **Weak to**: elements by their best part, ★★★ from 25, ★★ from 15, ★
+  from 10, each in its colour; weaker ones aren't listed.
+- **Parts**: the four softest, Cut, Blunt and Shot each ★★★ from 45, ★★
+  from 30, ★ from 20, else -. Left white: coloured too, the page was
+  busy.
+- **Status**: poison, sleep, paralysis and KO by thirds of the first dose
+  among the guide's monsters (★★★ the quickest), - when immune.
+- **Quests**: the earliest star level per rank at which the monster is a
+  large monster in a quest the player can take ("LR★2 HR★6", as the game
+  shows tiers), or that it's in none. What it drops is in the Almanac (a
+  per-rank drop line was tried and made the page too busy).
+
+Lines are checked against the page (8 lines of 46 characters, symbols
+counting double); a line that would run long leaves out its last items.
+Monsters are spread evenly over the articles, so each has some, and spare
+pages are blank; a monster that doesn't fit is named in the spoiler (none
+on the EU disc, which has 60). The Bestiary's size hardly changes by seed,
+so it doesn't shrink; the Almanac makes room.
+
+**The Almanac** (`hints.almanac`, `src/hints/almanac.ts`) turns the fifteen
+Lay of the Land articles (strings 107-230, 109 pages) into the RandomFU
+Almanac: an intro, then a line per crafting material, A to Z, eight a page,
+spread evenly over the articles and titled by letter like the Bestiary.
+Materials are the items any crafting or upgrade recipe uses, read from the
+EBOOT as the recipe shuffles left it (so the option needs the EBOOT; about
+640 of 796 items). Each material's sources (`src/hints/sources.ts`, shared
+with the Bestiary), each kind in its colour:
+
+- **Shops**: the Village and Guild stores and the Peddler, from
+  `lobby_task.ovl`'s shop lists (not the Point Exchange).
+- **Gathering**: the maps of quests the player can take (`questTier`),
+  without day and night ("Forest", "Snowy Mtns").
+- **Monsters**: carve, tail, shiny, capture and break lists of monsters that
+  appear in those quests, at the rank and lowest star level they appear.
+- **Rewards**: quest reward boxes.
+
+Each source is kept once, at its earliest tier, and listed shops first, then
+earliest first. Within a tier, maps share a label and so do a monster's
+ways ("Desert/Jungle LR★1", "Rathalos carve/break LR★2"), past two of
+either with a "+". Tiers read as the game shows them: LR★1-5, HR★6-9,
+G★1-3 (stored as 9-11). A line shows as many labels as fit; when the books
+won't fit their bytes, lines drop their latest label, the fullest lines
+first, and the spoiler says how many.
+
+- **Text**: table 3 of the EU message files 4781-4785 (English, French,
+  German, Italian, Spanish). An article is a title string and its pages,
+  each up to 8 lines of 46 characters, UTF-8 (★ is 3 bytes). The whole
+  table is one contiguous run of strings, so both books (strings 107-230
+  and 679-798) are repacked together, with the original strings between
+  them copied back as they were: the books share the bytes their articles
+  used (about 63 KB in English, the tightest language; vanilla needs about
+  57). The Bestiary takes what it needs first, leaving the Almanac at
+  least its smallest, then the Almanac the rest (`writeShelf`,
+  `writeGuides`). The guides are English in every language. If any file
+  has no room, nothing is written. A run written before also gets back the
+  zeros it left, so it can be rewritten.
+- **Style**: the colour codes, symbols and button icons that render on the
+  shelf (seen in PPSSPP with a probe article), and what each colour means in
+  the guides, are in `src/hints/style.ts`: build pages from its `STYLE`
+  roles and `paint`, then `compact` each page so it carries no code it
+  doesn't need. In short: `~Cnn` colours what follows until the next code,
+  `~C00` back to white. `~C01` and `~C25` black, `02` soft red, `03`
+  green, `04` cyan, `05` yellow (the game's highlight), `06` peach, `07`
+  light pink, `08` salmon, `09` light grey, `10` grey, `11` orange, `12`
+  taupe, `13` crimson, `14` periwinkle, `15` pink, `16` magenta, `17`
+  blue, `18` yellow, `19` red, `20` green, `21` beige, `22` light blue,
+  `23` lavender, `24` amber; `~C30` is black on a white box, a box per
+  word. Symbols all render two columns wide: the game's own (♪ → ★ ◇ ◆ ●
+  ○ ∞ ※ ①-⑤) and ☆ ■ □ ▲ ▼ △ ▽ ◎ ← ↑ ↓ × ÷ ♂ ♀ ♦ ♥ ± √ ∴. `~B00`-`~B09`
+  are button icons (○ × △ □ L R START SELECT, analog stick, d-pad); a
+  page drew only the first ten icons, so `~B10`-`~B12` and any after were
+  blank. `~A00`/`~A01` stand for numbers. Whether a colour carries over a
+  line break isn't known, so `compact` restates it on the next line.
+- **Unlocking**: `lobby_task.ovl` lists the articles as 16-byte records
+  (title row pointer, page rows pointer, u16 issue, u16 ID, u32 page count
+  << 8 plus a low bit), over rows of four u16 string IDs. Articles a new
+  game can read have issue 0 and the low bit clear; the guides' records
+  get the same. Seen working in PPSSPP: the articles show on the shelf.
+- The JP disc's bookshelf text hasn't been located, so there the guides
+  are skipped and the spoiler says so.
 
 `supplies` changes what each quest's supply box holds. The box is a list
 of `{ u16 item, u16 amount }` at the header's `SuppliesPTR`, ending at item

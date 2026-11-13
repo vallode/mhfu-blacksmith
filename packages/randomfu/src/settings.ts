@@ -74,6 +74,8 @@ export interface Settings {
   "monsterStats.statusSpread": number;
   "weaknesses.elements": boolean;
   "weaknesses.parts": boolean;
+  "hints.bookshelf": boolean;
+  "hints.almanac": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -874,6 +876,23 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
+  },
+  {
+    key: "hints.bookshelf",
+    section: "Hints",
+    label: "Monster guide on the bookshelf",
+    help: "The house bookshelf's Practical Hunting monster articles (Open Bookshelf, Info Magazine) become the RandomFU Bestiary: one page per large monster rating its elemental weaknesses, softest parts, status resistance and health in stars, as the shuffles left them, readable from the start. In English in every language. EU disc only; seen on the shelf in PPSSPP.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "hints.almanac",
+    section: "Hints",
+    label: "Item almanac on the bookshelf",
+    help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
+    type: { kind: "boolean" },
+    default: false,
+    eboot: true,
   },
 ];
 

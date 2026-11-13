@@ -87,7 +87,7 @@ const OPTION_STEPS: Step[] = [
     title: "Monsters",
     icon: "part",
     tint: "var(--color-gem-orange)",
-    sections: ["Quest monsters", "Monster stats", "Weaknesses"],
+    sections: ["Quest monsters", "Monster stats", "Weaknesses", "Hints"],
     intro:
       "Which monsters quests have and how tough they are. Swaps, quest sizes and quest text have been tried in game, and the presets use them. The rest is untested and in no preset, so try a quest before a long run.",
   },
