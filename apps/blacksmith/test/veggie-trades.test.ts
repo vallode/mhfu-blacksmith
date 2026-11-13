@@ -8,7 +8,6 @@ import { DATA_DIR } from "../src/lib/paths";
 import {
   encodeVeggieTrades,
   indexVeggieTrades,
-  pickTrade,
   tradeMapsLabel,
   type VeggieTradesFile,
 } from "../src/lib/veggie-trades";
@@ -72,16 +71,6 @@ describe("Veggie Elder trades", () => {
     assert.deepEqual(trades.get(1)!.takes, [
       { maps: FH, row: 2, item: 2, chance: 100, rare: false },
     ]);
-  });
-
-  test("he trades on the first row in his list that the hunter carries", () => {
-    const rows = bundle.elders[0]!.rows;
-    // Iron Ore (row 2) comes before Mega Potion (row 4), whatever the order carried.
-    assert.equal(pickTrade(rows, new Set([5, 1]))![0], 2);
-    assert.equal(pickTrade(rows, new Set([5]))![0], 4);
-    // Items that aren't on his list, and an empty pouch, give no trade.
-    assert.equal(pickTrade(rows, new Set([2, 99])), undefined);
-    assert.equal(pickTrade(rows, new Set()), undefined);
   });
 
   test("an Elder's maps are named once, without the time of day", () => {

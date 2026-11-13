@@ -7,7 +7,7 @@ import VeggieElderClient from "./VeggieElderClient";
 export const metadata: Metadata = pageMetadata({
   title: "Veggie Elder",
   description:
-    "Pick what you're carrying and see what the Monster Hunter Freedom Unite Veggie Elder will trade you on each hunting ground.",
+    "Every trade the Monster Hunter Freedom Unite Veggie Elder makes, by hunting ground.",
   path: "/veggie-elder/",
 });
 
