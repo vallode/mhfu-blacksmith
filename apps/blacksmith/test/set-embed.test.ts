@@ -17,7 +17,6 @@ import {
   buildSetEmbed,
   embedCodecTables,
   setEmbedData,
-  SET_EMBED_ACTION,
   setReader,
   type SetEmbedData,
 } from "../src/lib/set-embed";
@@ -144,17 +143,31 @@ describe("set embeds", () => {
     assert.equal(e.details.split("\n")[0], "Rath farming");
   });
 
-  it("describes the set's skill points and invites people to open it", () => {
+  it("describes the set's points in each tree that activates a skill", () => {
     const set = rathalosSet();
     const stats = evaluateBuild(data, set);
     const e = buildSetEmbed(set, data.trees);
     assert.ok(e);
-    const [points, action] = e.description.split("\n");
     assert.equal(
-      points,
-      `Skill points: ${stats.skills.map((s) => `${s.tree} ${s.points > 0 ? "+" : "−"}${Math.abs(s.points)}`).join(" · ")}`,
+      e.description,
+      stats.skills
+        .map((s) => `${s.tree} ${s.points > 0 ? "+" : "−"}${Math.abs(s.points)}`)
+        .join(" · "),
     );
-    assert.equal(action, SET_EMBED_ACTION);
+  });
+
+  it("says a set with no skills has none, once", () => {
+    const helm = data.pieces.find((p) => p.slot === "helmet" && Object.keys(p.points).length === 0);
+    assert.ok(helm, "a helmet with no skill points");
+    const set = withPiece(emptyBuild(), "helmet", helm);
+    const named = buildSetEmbed(set, data.trees, "Fashion");
+    assert.ok(named);
+    assert.equal(named.title, "Fashion");
+    assert.equal(named.description, "No skills");
+    const unnamed = buildSetEmbed(set, data.trees);
+    assert.ok(unnamed);
+    assert.equal(unnamed.title, "No skills");
+    assert.equal(unnamed.description, "");
   });
 
   it("lists bad skills on their own line of the alt text", () => {

@@ -1,13 +1,14 @@
 /**
  * The site's Cloudflare Worker (wrangler.jsonc). The site is static, served
- * from out/ as assets; only the set builder runs this script first
- * (`run_worker_first`), so every other request stays a static one.
+ * from out/ as assets; only the set builder and share links run this script
+ * first (`run_worker_first`), so every other request stays a static one.
  *
- * It gives shared sets (`/set-builder/?s=<code>`) their own link embeds. The
- * page is one static file for every set, so this decodes the code and
- * rewrites the page's meta tags (src/lib/set-embed.ts): the set's name (or
- * its skills) as the title, its skill points and an invitation to open it as
- * the description, and its card as the image. It also serves:
+ * It serves share links (`/sets/<code>/<slug>/`, src/lib/set-link.ts) the set
+ * builder's page, and gives them, and the older `/set-builder/?s=<code>`,
+ * their own link embeds. The page is one static file for every set, so this
+ * decodes the code and rewrites the page's meta tags (src/lib/set-embed.ts):
+ * the set's name (or its skills) as the title, its skill points as the
+ * description, and its card as the image. It also serves:
  *
  * - `/set-builder/card.png?s=<code>&v=<version>`: the card, drawn with
  *   satori and resvg (src/lib/set-card.ts), and kept in Cloudflare's cache.
@@ -16,7 +17,8 @@
  *   Discord the line above the title ("G-Rank Blademaster Set"), like the
  *   detail pages' static ones.
  *
- * Anything else, or a code that doesn't open, gets the page as it is.
+ * Anything else, or a code that doesn't open, gets the page as it is. Which
+ * of these a request gets is decided in routes.ts.
  */
 import { initWasm as initResvg, Resvg } from "@resvg/resvg-wasm";
 import resvgWasm from "@resvg/resvg-wasm/index_bg.wasm";
@@ -34,6 +36,7 @@ import {
   type CardAssets,
 } from "../lib/set-card";
 import { SHARE_PARAM } from "../lib/set-codec";
+import { sharePath } from "../lib/set-link";
 import {
   buildSetEmbed,
   SET_EMBED_DATA_PATH,
@@ -41,6 +44,7 @@ import {
   type SetEmbed,
   type SetEmbedData,
 } from "../lib/set-embed";
+import { builderPage, CARD_PATH, OEMBED_PATH, route } from "./routes";
 import type { ReactNode } from "react";
 import type { BuildSet } from "../lib/set-build";
 import type { SkillTreeData } from "../lib/set-search";
@@ -65,9 +69,6 @@ declare class HTMLRewriter {
 }
 /** Cloudflare's cache for this zone. */
 declare const caches: { default: Cache };
-
-const OEMBED_PATH = "/set-builder/oembed.json";
-const CARD_PATH = "/set-builder/card.png";
 
 /**
  * Load something once per isolate, with the first call's arguments; a failure
@@ -239,10 +240,9 @@ function rewritePage(
   embed: SetEmbed,
   url: URL,
   code: string,
-  shared: { canonical: string; version: string },
+  shared: { canonical: string; version: string; name?: string },
 ): Response {
-  const shareUrl = new URL("/set-builder/", url.origin);
-  shareUrl.searchParams.set(SHARE_PARAM, code);
+  const shareUrl = new URL(sharePath(code, shared.name), url.origin);
   // The card doesn't show the name, so every name for a set shares one image URL.
   const image = cardUrl(url.origin, shared.canonical, shared.version).href;
   const content: Record<string, string> = {
@@ -298,14 +298,13 @@ function rewritePage(
 const worker = {
   async fetch(request: Request, env: Env, ctx: ExecutionContext): Promise<Response> {
     const url = new URL(request.url);
-    const code = url.searchParams.get(SHARE_PARAM);
-    if (!code || (request.method !== "GET" && request.method !== "HEAD")) {
-      return env.ASSETS.fetch(request);
-    }
+    const target = route(url, request.method);
+    if (target.kind === "asset") return env.ASSETS.fetch(request);
+    const { code } = target;
 
-    if (url.pathname === CARD_PATH) return cardResponse(env, ctx, url, code);
+    if (target.kind === "card") return cardResponse(env, ctx, url, code);
 
-    if (url.pathname === OEMBED_PATH) {
+    if (target.kind === "oembed") {
       let r;
       try {
         r = await readCode(env, url.origin, code);
@@ -316,7 +315,7 @@ const worker = {
       return embed ? oembedResponse(embed, url.origin) : new Response("Not found", { status: 404 });
     }
 
-    const page = await env.ASSETS.fetch(request);
+    const page = await env.ASSETS.fetch(target.shareLink ? builderPage(request) : request);
     if (!page.ok || !page.headers.get("Content-Type")?.startsWith("text/html")) return page;
     let r;
     try {

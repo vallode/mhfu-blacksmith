@@ -136,6 +136,19 @@ describe("set card contents", () => {
     assert.ok(text.includes(`and ${good.length - shownGood} more`));
   });
 
+  it('draws a line under every piece, "-" for one without jewels', () => {
+    // Five three-slot pieces and a slotted weapon, with one jewel in the helmet.
+    let set: BuildSet = { ...fullSet("Blademaster"), decorations: [] };
+    set = withDecoration(
+      set,
+      "helmet",
+      data.decorations.find((d) => d.slots === 1)!,
+    );
+    const text = cardText(set);
+    assert.ok(text.includes(jewelLabel(set.decorations[0].deco.name)));
+    assert.equal(text.filter((t) => t === "-").length, ARMOR_SLOTS.length);
+  });
+
   it("leaves out jewels in a slot with no piece, as the stats do", () => {
     let set = withPiece(emptyBuild(), "gauntlets", fullSet("Blademaster").pieces[2]!);
     set = withDecoration(

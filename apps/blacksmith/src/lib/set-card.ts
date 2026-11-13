@@ -1,8 +1,8 @@
 /**
  * The image in a shared set's link embed (`/set-builder/card.png?s=<code>`):
  * the set as a card, laid out after the set builder's editor. A row per
- * piece (weapon first) with its decorations under it, then the activated
- * skills and the Status panel beside them.
+ * piece (weapon first) with its decorations (or "-") under it, then the
+ * activated skills and the Status panel beside them.
  *
  * This builds the card as a satori element tree; the Cloudflare Worker
  * (src/cloudflare/worker.ts) renders it to a PNG. The frame and the tinted
@@ -15,7 +15,7 @@ import { binSlots, evaluateBuild, type BuildSet } from "./set-build";
 import type { DecoBin, Piece, SkillTreeData } from "./set-search";
 
 /** Bump when the card's look changes, so caches and link previews pick it up. */
-export const SET_CARD_VERSION = 3;
+export const SET_CARD_VERSION = 4;
 
 /**
  * The image: the site's card frame (the card-frame art, at the game's 4×,
@@ -117,17 +117,20 @@ const img = (sprites: CardSprites, name: string, size = SPRITE_SIZE) =>
 export const jewelLabel = (name: string) => name.replace(/ ?(?:Jewel|Jwl)(?=\+|$)/, "");
 
 /**
- * Decorations in a bin, as "Attack ×2" beside the jewel's icon. Decorations in
- * a bin with no slots (a shared set's missing piece) count for nothing, as in
- * evaluateBuild, so they aren't drawn.
+ * The line under a piece: its decorations, as "Attack ×2" beside the jewel's
+ * icon, or "-" when it has none. Every piece has the line, so rows are the
+ * same height on every card. Decorations in a bin with no slots (a shared
+ * set's missing piece) count for nothing, as in evaluateBuild, so they
+ * aren't drawn.
  */
-function decoLine(set: BuildSet, bin: DecoBin, sprites: CardSprites): CardNode | null {
-  if (binSlots(set, bin) === 0) return null;
-  const counts = tally(
-    set.decorations.filter((d) => d.bin === bin),
-    (d) => d.deco.name,
-  );
-  if (counts.length === 0) return null;
+function decoLine(set: BuildSet, bin: DecoBin, sprites: CardSprites): CardNode {
+  const counts =
+    binSlots(set, bin) === 0
+      ? []
+      : tally(
+          set.decorations.filter((d) => d.bin === bin),
+          (d) => d.deco.name,
+        );
   return h(
     "div",
     // 18px fits the longest three different jewels a bin can hold
@@ -136,30 +139,29 @@ function decoLine(set: BuildSet, bin: DecoBin, sprites: CardSprites): CardNode |
     {
       style: {
         display: "flex",
+        alignItems: "center",
         gap: 12,
+        height: SPRITE_SIZE,
         marginLeft: 68,
         fontSize: 18,
-        color: COLOR.white,
+        color: counts.length > 0 ? COLOR.white : COLOR.faint,
         overflow: "hidden",
       },
     },
-    ...counts.map(([{ deco }, n]) =>
-      h(
-        "div",
-        { style: { display: "flex", alignItems: "center", gap: 4, whiteSpace: "nowrap" } },
-        img(sprites, spriteName(ICONS.decoration, null, deco.color)),
-        `${jewelLabel(deco.name)}${n > 1 ? ` ×${n}` : ""}`,
-      ),
-    ),
+    ...(counts.length > 0
+      ? counts.map(([{ deco }, n]) =>
+          h(
+            "div",
+            { style: { display: "flex", alignItems: "center", gap: 4, whiteSpace: "nowrap" } },
+            img(sprites, spriteName(ICONS.decoration, null, deco.color)),
+            `${jewelLabel(deco.name)}${n > 1 ? ` ×${n}` : ""}`,
+          ),
+        )
+      : ["-"]),
   );
 }
 
-function equipRow(
-  icon: CardNode | null,
-  name: CardNode,
-  slots: number,
-  decos: CardNode | null,
-): CardNode {
+function equipRow(icon: CardNode | null, name: CardNode, slots: number, decos: CardNode): CardNode {
   return h(
     "div",
     { style: { display: "flex", flexDirection: "column", gap: 2 } },

@@ -1,5 +1,6 @@
 /**
- * Share codes for armor sets: `/set-builder/?s=<code>`.
+ * Share codes for armor sets, the `<code>` in a share link: `/sets/<code>/<slug>/`
+ * (set-link.ts), or the older `/set-builder/?s=<code>`.
  *
  * A code holds the game's own IDs, never positions in the search data
  * (Piece.id / Deco.id change whenever the data is regenerated):
@@ -44,7 +45,8 @@ import type { DecoBin, Deco, Piece, PlacedDeco, SearchData } from "./set-search"
 
 export const CODEC_VERSION = 1;
 
-/** The share link's query parameter: /set-builder/?s=<code>. */
+/** The older share links' query parameter: /set-builder/?s=<code>. The
+ * Worker's card and oEmbed URLs still use it. */
 export const SHARE_PARAM = "s";
 
 export const FIELD = {
