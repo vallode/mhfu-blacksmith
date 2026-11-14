@@ -54,24 +54,78 @@ function directColor(
 }
 
 /**
- * Undo the GE's texture swizzle: the image is stored as 16-byte x 8-row
- * blocks, left to right then top to bottom.
+ * Moves an image between row-major and the GE's swizzled order: 16-byte x
+ * 8-row blocks, left to right then top to bottom.
  */
-export function unswizzle(data: Buffer, rowBytes: number, height: number): Buffer {
+function reorderBlocks(data: Buffer, rowBytes: number, height: number, swizzling: boolean): Buffer {
   if (rowBytes % 16 !== 0 || height % 8 !== 0) return data; // too small to be swizzled in blocks
   const out = Buffer.alloc(rowBytes * height);
   const blocksPerRow = rowBytes / 16;
-  let src = 0;
+  let block = 0;
   for (let by = 0; by < height / 8; by++) {
     for (let bx = 0; bx < blocksPerRow; bx++) {
-      for (let row = 0; row < 8; row++) {
-        const dst = (by * 8 + row) * rowBytes + bx * 16;
-        data.copy(out, dst, src, src + 16);
-        src += 16;
+      for (let row = 0; row < 8; row++, block += 16) {
+        const flat = (by * 8 + row) * rowBytes + bx * 16;
+        if (swizzling) data.copy(out, block, flat, flat + 16);
+        else data.copy(out, flat, block, block + 16);
       }
     }
   }
   return out;
+}
+
+/** Undo the GE's texture swizzle: the image is stored as 16-byte x 8-row blocks. */
+export function unswizzle(data: Buffer, rowBytes: number, height: number): Buffer {
+  return reorderBlocks(data, rowBytes, height, false);
+}
+
+/** The inverse of `unswizzle`. */
+export function swizzle(data: Buffer, rowBytes: number, height: number): Buffer {
+  return reorderBlocks(data, rowBytes, height, true);
+}
+
+export interface IndexedImageLocation {
+  width: number;
+  height: number;
+  swizzled: boolean;
+  /** File offset of the pixel data, one palette index per pixel. */
+  pixels: number;
+  /** File offset of the palette's first entry (RGBA8888 or 16-bit, by `paletteFormat`). */
+  palette: number;
+  paletteFormat: number;
+}
+
+/**
+ * Where the first image of a texture set keeps its 8-bit pixels and palette,
+ * or null if it isn't a palettized 8-bit image. For editing a texture in
+ * place; `readTmh` decodes the same layout.
+ */
+export function locateIndexedImage(buf: Buffer): IndexedImageLocation | null {
+  if (!isTmh(buf) || buf.length < 64 || buf.readUInt32LE(28) !== 1) return null;
+  const pixelHeader = 32;
+  const pixelSize = buf.readUInt32LE(pixelHeader);
+  const paletteHeader = pixelHeader + pixelSize;
+  if (buf.readUInt32LE(pixelHeader + 8) !== 5 || paletteHeader + 16 > buf.length) return null;
+  const width = buf.readUInt16LE(pixelHeader + 12);
+  const height = buf.readUInt16LE(pixelHeader + 14);
+  const paletteFormat = buf.readUInt32LE(paletteHeader + 8);
+  const palette = paletteHeader + 16;
+  const entryBytes = paletteFormat === 3 ? 4 : 2;
+  if (
+    pixelSize !== 16 + width * height ||
+    buf.readUInt32LE(paletteHeader + 12) !== 256 ||
+    palette + 256 * entryBytes > buf.length
+  ) {
+    return null;
+  }
+  return {
+    width,
+    height,
+    swizzled: buf.readUInt32LE(pixelHeader + 4) === 1,
+    pixels: pixelHeader + 16,
+    palette,
+    paletteFormat,
+  };
 }
 
 function decodePalette(
