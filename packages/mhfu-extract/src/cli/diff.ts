@@ -21,6 +21,7 @@
 import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { canonicalDecorationSkill, canonicalSkillName } from "../overlay/skill-name-aliases.js";
+import { readData } from "game-data";
 
 export interface DiffOptions {
   extracted: string;
@@ -184,7 +185,7 @@ export async function runDiff(options: DiffOptions): Promise<DiffReport> {
   const files: FileDiff[] = [];
   for (const file of shared) {
     const extracted = JSON.parse(await readFile(path.join(options.extracted, file), "utf-8"));
-    const committed = JSON.parse(await readFile(path.join(options.data, file), "utf-8"));
+    const committed = readData(options.data, file);
     files.push(diffFile(file, extracted, committed));
   }
 

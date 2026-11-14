@@ -6,6 +6,7 @@ import { describe, test } from "node:test";
 import type { ItemPlaces } from "../src/lib/item-places";
 import type { ItemSources } from "../src/lib/item-sources";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 /** The site's own content: the weapon trees the bundles are built from. */
 const CONTENT_DIR = path.resolve(__dirname, "../content");
@@ -381,7 +382,7 @@ describe("game data", () => {
     // One lookup over every type: Dual Blades upgrade from Sword and Shield.
     const dir = path.join(DATA_DIR, "weapons");
     const list = fs.readdirSync(dir).flatMap((file) => {
-      const { weapons } = JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8")) as {
+      const { weapons } = readData(DATA_DIR, "weapons", file) as {
         weapons: Weapon[];
       };
       return weapons.map((w) => ({ ...w, slug: slugify(w.name) }));

@@ -22,6 +22,7 @@
     "typecheck": "tsc --noEmit -p ."
   },
   "dependencies": {
+    "game-data": "workspace:*",
     "meshoptimizer": "0.21.0",
     "sharp": "0.34.5",
     "tsx": "^4.22.4"

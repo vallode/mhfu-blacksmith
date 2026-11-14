@@ -14,6 +14,7 @@ import type { CharacterResult, WorkerResult } from "../src/hooks/useSaveWorker";
 import type { ItemRecord } from "../src/lib/items";
 import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const root = path.resolve(__dirname, "..");
 const SAVE = path.join(root, "test/fixtures/MHP2NDG.BIN");
@@ -54,9 +55,7 @@ function ok(m: Message): WorkerResult {
 }
 
 const items = new Map(
-  (
-    JSON.parse(fs.readFileSync(path.join(DATA_DIR, "items.json"), "utf-8")).items as ItemRecord[]
-  ).map((i) => [i.id, i]),
+  (readData(DATA_DIR, "items.json").items as ItemRecord[]).map((i) => [i.id, i]),
 );
 const name = (id: number) => items.get(id)?.name;
 
@@ -187,9 +186,10 @@ test("a file no region can decrypt says so", async () => {
 });
 
 // Equipment box slots resolve through data/equipment-ids.json (by equip type code).
-const equipmentIds = JSON.parse(
-  fs.readFileSync(path.join(DATA_DIR, "equipment-ids.json"), "utf-8"),
-) as Record<string, ({ name: string; type?: string } | null)[]>;
+const equipmentIds = readData(DATA_DIR, "equipment-ids.json") as Record<
+  string,
+  ({ name: string; type?: string } | null)[]
+>;
 const EQUIP_SLOTS = ["leggings", "helmet", "plate", "gauntlets", "waist", "melee", "ranged"];
 const equipName = (s: { type: number; id: number }) =>
   equipmentIds[EQUIP_SLOTS[s.type]]?.[s.id]?.name;
@@ -256,7 +256,7 @@ test("equipment IDs line up: a starter kit, and whole armor sets across all five
 // Decorations: bytes 6–11 of each equipment slot hold up to three jewel item IDs.
 const decorationSlots = new Map(
   (
-    JSON.parse(fs.readFileSync(path.join(DATA_DIR, "decorations.json"), "utf-8")).decorations as {
+    readData(DATA_DIR, "decorations.json").decorations as {
       name: string;
       slots: number;
     }[]
@@ -271,15 +271,12 @@ const pieceSlots = (() => {
     bySlot.set(key, m);
   };
   for (const f of fs.readdirSync(path.join(DATA_DIR, "weapons"))) {
-    const weapons = JSON.parse(fs.readFileSync(path.join(DATA_DIR, "weapons", f), "utf-8")).weapons;
+    const weapons = readData(DATA_DIR, "weapons", f).weapons;
     add("melee", weapons);
     add("ranged", weapons);
   }
   for (const slot of ["leggings", "helmet", "plate", "gauntlets", "waist"]) {
-    add(
-      slot,
-      JSON.parse(fs.readFileSync(path.join(DATA_DIR, "armor", `${slot}.json`), "utf-8")).armor,
-    );
+    add(slot, readData(DATA_DIR, "armor", `${slot}.json`).armor);
   }
   return (s: { type: number; id: number }) => bySlot.get(EQUIP_SLOTS[s.type])?.get(equipName(s)!);
 })();
@@ -333,7 +330,7 @@ test("every decoration is a known jewel and the jewels fit the piece's slots", a
 const siteQuestIds = new Set(
   ["village", "guild", "training-school", "treasure-hunting"].flatMap((hub) =>
     (
-      JSON.parse(fs.readFileSync(path.join(DATA_DIR, "quests", `${hub}.json`), "utf-8")).quests as {
+      readData(DATA_DIR, "quests", `${hub}.json`).quests as {
         id: number;
       }[]
     ).map((q) => q.id),

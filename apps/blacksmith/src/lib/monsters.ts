@@ -5,6 +5,7 @@ import { slugify } from "./slug";
 import type { Monster } from "./types";
 import { DATA_DIR } from "./paths";
 import { cached } from "./data-cache";
+import { readData } from "game-data";
 
 const dataDir = DATA_DIR;
 
@@ -22,7 +23,7 @@ function loadMonsters(category: MonsterCategory): Monster[] {
   const filePath = path.join(dataDir, "monsters", `${category}.json`);
   if (!fs.existsSync(filePath)) return [];
 
-  const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { monsters: Monster[] };
+  const raw = readData<{ monsters: Monster[] }>(dataDir, "monsters", `${category}.json`);
 
   return raw.monsters.map((m) => ({
     ...m,

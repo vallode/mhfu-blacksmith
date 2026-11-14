@@ -6,6 +6,7 @@ import fs from "fs";
 import path from "path";
 import { isHiddenQuest, questHubSlug, type QuestHubSlug } from "./quests";
 import { DATA_DIR } from "./paths";
+import { readData } from "game-data";
 
 export interface QuestSummary {
   id: number;
@@ -22,7 +23,7 @@ export function getQuestSummaries(): QuestSummary[] {
   if (cache) return cache;
   const out: QuestSummary[] = [];
   for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) {
-    const { quests } = JSON.parse(fs.readFileSync(path.join(questDir, file), "utf-8")) as {
+    const { quests } = readData(DATA_DIR, "quests", file) as {
       quests: {
         id: number;
         hub: string;

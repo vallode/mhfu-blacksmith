@@ -13,6 +13,7 @@ import {
 } from "../src/lib/items";
 import { parseDecorationSkill, treeNameIndex, type SkillTreeData } from "../src/lib/set-search";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
@@ -52,7 +53,7 @@ const allWeaponSlugs = new Map<string, Set<string>>(); // type → slugs
 for (const type of weaponTypes) {
   const craftingFile = path.join(weaponDataDir, `${type}.json`);
   if (!fs.existsSync(craftingFile)) continue;
-  const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
+  const data = readData(dataDir, "weapons", `${type}.json`) as {
     weapons: Record<string, unknown>[];
   };
   const slugs = new Set<string>();
@@ -73,7 +74,7 @@ for (const type of weaponTypes) {
     continue;
   }
 
-  const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
+  const data = readData(dataDir, "weapons", `${type}.json`) as {
     weapons: Record<string, unknown>[];
   };
 
@@ -168,7 +169,7 @@ for (const file of fs
   const slot = file.replace(/\.json$/, "");
   const craftingFile = path.join(armorDataDir, file);
 
-  const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
+  const data = readData(dataDir, "armor", file) as {
     armor: Record<string, unknown>[];
   };
 
@@ -222,7 +223,7 @@ const decoFile = path.join(dataDir, "decorations.json");
 if (!fs.existsSync(decoFile)) {
   error("Missing data/decorations.json");
 } else {
-  const data = JSON.parse(fs.readFileSync(decoFile, "utf-8")) as {
+  const data = readData(dataDir, "decorations.json") as {
     decorations: Record<string, unknown>[];
   };
   const slugs = new Set<string>();
@@ -260,7 +261,7 @@ section("Validating skills…");
 
 {
   const trees = (
-    JSON.parse(fs.readFileSync(path.join(dataDir, "skills.json"), "utf-8")) as {
+    readData(dataDir, "skills.json") as {
       skills: SkillTreeData[];
     }
   ).skills;
@@ -270,16 +271,16 @@ section("Validating skills…");
   }
   const unknown = new Map<string, string>();
   for (const file of fs.readdirSync(path.join(dataDir, "armor"))) {
-    const { armor } = JSON.parse(fs.readFileSync(path.join(dataDir, "armor", file), "utf-8")) as {
+    const { armor } = readData(dataDir, "armor", file) as {
       armor: { name: string; skills?: { name: string }[] }[];
     };
     for (const p of armor) {
       for (const s of p.skills ?? []) if (!names.has(s.name)) unknown.set(s.name, p.name);
     }
   }
-  const { decorations } = JSON.parse(
-    fs.readFileSync(path.join(dataDir, "decorations.json"), "utf-8"),
-  ) as { decorations: { name: string; skills?: string[] }[] };
+  const { decorations } = readData(dataDir, "decorations.json") as {
+    decorations: { name: string; skills?: string[] }[];
+  };
   for (const d of decorations) {
     let positive = 0;
     for (const s of d.skills ?? []) {
@@ -313,7 +314,7 @@ for (const file of fs
   const category = file.replace(/\.json$/, "");
   const jsonFile = path.join(monsterDataDir, file);
 
-  const data = JSON.parse(fs.readFileSync(jsonFile, "utf-8")) as {
+  const data = readData(dataDir, "monsters", file) as {
     monsters: Record<string, unknown>[];
   };
   const slugs = new Set<string>();
@@ -344,16 +345,11 @@ if (!fs.existsSync(equipmentIdsFile)) {
   error("Missing data/equipment-ids.json (run `pnpm generate-equipment-ids`)");
 } else {
   type IdEntry = { name: string; type?: string; sex?: string } | null;
-  const ids = JSON.parse(fs.readFileSync(equipmentIdsFile, "utf-8")) as Record<string, IdEntry[]>;
+  const ids = readData(dataDir, "equipment-ids.json") as Record<string, IdEntry[]>;
 
   const readNames = (file: string, key: string) =>
     new Set(
-      (
-        JSON.parse(fs.readFileSync(path.join(dataDir, file), "utf-8"))[key] as Record<
-          string,
-          unknown
-        >[]
-      ).map((i) => i.name as string),
+      (readData(dataDir, file)[key] as Record<string, unknown>[]).map((i) => i.name as string),
     );
   const weaponNames = new Map(
     weaponTypes.map((t) => [t, readNames(`weapons/${t}.json`, "weapons")]),
@@ -385,7 +381,7 @@ const itemsFile = path.join(dataDir, "items.json");
 if (!fs.existsSync(itemsFile)) {
   error("Missing data/items.json");
 } else {
-  const data = JSON.parse(fs.readFileSync(itemsFile, "utf-8")) as {
+  const data = readData(dataDir, "items.json") as {
     colors?: string[];
     items: ItemRecord[];
   };
@@ -500,9 +496,8 @@ if (!fs.existsSync(itemsFile)) {
     set.add(where);
     unresolved.set(name, set);
   };
-  const walk = (file: string) => {
-    const doc = JSON.parse(fs.readFileSync(file, "utf-8")) as Record<string, unknown>;
-    const rel = path.relative(dataDir, file);
+  const walk = (rel: string) => {
+    const doc = readData<Record<string, unknown>>(dataDir, rel);
     for (const list of Object.values(doc)) {
       if (!Array.isArray(list)) continue;
       for (const entry of list as Record<string, unknown>[]) {
@@ -526,14 +521,13 @@ if (!fs.existsSync(itemsFile)) {
     }
   };
   for (const sub of ["weapons", "armor", "monsters"]) {
-    const dir = path.join(dataDir, sub);
     for (const f of fs
-      .readdirSync(dir)
+      .readdirSync(path.join(dataDir, sub))
       .filter((e) => e.endsWith(".json"))
       .sort())
-      walk(path.join(dir, f));
+      walk(`${sub}/${f}`);
   }
-  walk(path.join(dataDir, "decorations.json"));
+  walk("decorations.json");
 
   // Quest supply boxes and reward tables.
   const questDir = path.join(dataDir, "quests");
@@ -541,7 +535,7 @@ if (!fs.existsSync(itemsFile)) {
     .readdirSync(questDir)
     .filter((e) => e.endsWith(".json"))
     .sort()) {
-    const { quests } = JSON.parse(fs.readFileSync(path.join(questDir, f), "utf-8")) as {
+    const { quests } = readData(dataDir, "quests", f) as {
       quests: {
         id: number;
         supplies?: { item?: unknown }[];

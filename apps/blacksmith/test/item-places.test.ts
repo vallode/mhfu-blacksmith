@@ -16,6 +16,7 @@ import {
 import { buildAreaMaps } from "../src/lib/area-maps";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const ITEM_IDS: Record<string, number> = { "Iron Ore": 1, Potion: 2, "Mountain Herbs": 3 };
 const itemId = (name: string) => ITEM_IDS[name];
@@ -195,8 +196,7 @@ describe("item places", () => {
   });
 
   test("every gathered or sold item in data/ resolves to an item", () => {
-    const read = <T>(file: string) =>
-      JSON.parse(fs.readFileSync(path.join(DATA_DIR, file), "utf-8")) as T;
+    const read = <T>(file: string) => readData(DATA_DIR, file) as T;
     const { index } = buildItemNameIndex(read<{ items: ItemRecord[] }>("items.json").items);
     const missing = new Set<string>();
     const resolve = (name: string) => {

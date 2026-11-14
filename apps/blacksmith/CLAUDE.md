@@ -5,7 +5,8 @@ styled to look like the game's UI.
 
 Lives in `apps/blacksmith` (see the root `CLAUDE.md` for the repository
 layout); paths below are relative to it. It reads its game data from the root
-`data/` through `DATA_DIR` (`src/lib/paths.ts`).
+`data/` (`DATA_DIR`, `src/lib/paths.ts`) with `readData` from
+`packages/game-data`, never by parsing the files itself.
 
 Checks (from `apps/blacksmith`): `pnpm lint`, `pnpm typecheck`, `pnpm test`;
 and `pnpm format:check` from the repository root.

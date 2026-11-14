@@ -71,6 +71,7 @@ import { loadEnums, lookupName } from "../strings/enums.js";
 import { armorModelPath, readArmorModelIds, type SiteArmorSlot } from "../tables/armor-models.js";
 import { readBlademasterWeapons, readGunnerWeapons } from "../tables/weapons.js";
 import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
+import { readData } from "game-data";
 
 export interface ExportSiteOptions {
   /** An `unpack` output directory (containing `data-bin/`, and `eboot.bin` for weapons/armor). */
@@ -345,9 +346,7 @@ async function siteMonsterNames(dataDir: string): Promise<Set<string>> {
   const names = new Set<string>();
   const dir = path.join(dataDir, "monsters");
   for (const file of (await readdir(dir)).filter((f) => f.endsWith(".json"))) {
-    const { monsters } = JSON.parse(await readFile(path.join(dir, file), "utf-8")) as {
-      monsters: { name: string }[];
-    };
+    const { monsters } = readData<{ monsters: { name: string }[] }>(dataDir, "monsters", file);
     for (const monster of monsters) names.add(monster.name);
   }
   return names;
@@ -611,9 +610,7 @@ export async function runExportSite(options: ExportSiteOptions): Promise<SiteMod
   const ebootPath = path.join(options.unpacked, "eboot.bin");
   if (await exists(ebootPath)) {
     const reader = new BinaryReader(await readFile(ebootPath));
-    const ids = JSON.parse(
-      await readFile(path.join(options.data, "equipment-ids.json"), "utf-8"),
-    ) as EquipmentIds;
+    const ids = readData<EquipmentIds>(options.data, "equipment-ids.json");
     if (await exists(path.join(options.unpacked, "data-bin", "weapon"))) {
       manifest.weapons = await exportWeapons(reader, unpackManifest.region, ids, converter);
     }

@@ -5,6 +5,7 @@ import { armorSlugs } from "./slug";
 import type { ArmorPiece, WeaponTree } from "./types";
 import { DATA_DIR } from "./paths";
 import { cached } from "./data-cache";
+import { readData } from "game-data";
 
 const contentDir = path.join(process.cwd(), "content");
 const dataDir = DATA_DIR;
@@ -22,7 +23,7 @@ function loadArmorPieces(slot: ArmorSlot): ArmorPiece[] {
   const filePath = path.join(dataDir, "armor", `${slot}.json`);
   if (!fs.existsSync(filePath)) return [];
 
-  const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { armor: ArmorPiece[] };
+  const raw = readData<{ armor: ArmorPiece[] }>(dataDir, "armor", `${slot}.json`);
 
   return raw.armor;
 }
