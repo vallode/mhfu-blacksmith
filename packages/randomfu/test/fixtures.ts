@@ -69,8 +69,15 @@ function both32(buf: Buffer, offset: number, value: number): void {
   buf.writeUInt32BE(value, offset + 4);
 }
 
-function dirRecord(name: Buffer, lba: number, size: number, isDir: boolean): Buffer {
-  const length = 33 + name.length + (name.length % 2 === 0 ? 1 : 0);
+function dirRecord(
+  name: Buffer,
+  lba: number,
+  size: number,
+  isDir: boolean,
+  systemUse = Buffer.alloc(0),
+): Buffer {
+  const nameEnd = 33 + name.length + (name.length % 2 === 0 ? 1 : 0);
+  const length = nameEnd + systemUse.length;
   const rec = Buffer.alloc(length);
   rec[0] = length;
   both32(rec, 2, lba);
@@ -80,11 +87,18 @@ function dirRecord(name: Buffer, lba: number, size: number, isDir: boolean): Buf
   rec.writeUInt16BE(1, 30);
   rec[32] = name.length;
   name.copy(rec, 33);
+  systemUse.copy(rec, nameEnd);
   return rec;
 }
 
-/** Builds an image with one directory sector per directory and each file sector-aligned. */
-export function buildIso(files: IsoFile[]): Buffer {
+/** The XA system-use field UMD images give each file. */
+export const UMD_FILE_XA = Buffer.from("00000000" + "0d555841" + "000000000000", "hex");
+
+/**
+ * Builds an image with one directory sector per directory and each file
+ * sector-aligned. `umd` names files as UMD images do: no ";1", and an XA field.
+ */
+export function buildIso(files: IsoFile[], { umd = false } = {}): Buffer {
   const dirs = new Map<string, { lba: number; children: string[] }>();
   const dirOf = (p: string) => p.split("/").slice(0, -1).join("/");
   const ensureDir = (d: string): void => {
@@ -131,10 +145,11 @@ export function buildIso(files: IsoFile[]): Buffer {
         const file = fileByPath.get(child);
         return file
           ? dirRecord(
-              Buffer.from(`${name};1`, "latin1"),
+              Buffer.from(umd ? name : `${name};1`, "latin1"),
               fileLba.get(child)!,
               file.data.length,
               false,
+              umd ? UMD_FILE_XA : undefined,
             )
           : dirRecord(Buffer.from(name, "latin1"), dirs.get(child)!.lba, SECTOR, true);
       }),

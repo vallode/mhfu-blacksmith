@@ -11,6 +11,8 @@ import { DATA_BIN_PATH, EBOOT_PATH, type GameData } from "./game/load.js";
 export interface WriteSummary {
   quests: number;
   files: number;
+  /** Files written outside DATA.BIN. */
+  discFiles: number;
   eboot: "unchanged" | "in place" | "moved to the end of the image";
 }
 
@@ -46,8 +48,10 @@ export function writeEdits(image: PatchableImage, game: GameData, edits: Edits):
       : "in place";
   }
 
+  for (const [path, data] of edits.discFiles) image.writeFile(path, data);
+
   verify(image, game, edits);
-  return { quests, files, eboot };
+  return { quests, files, discFiles: edits.discFiles.size, eboot };
 }
 
 /** Re-reads the output image from scratch and compares every edited file. */
@@ -71,6 +75,10 @@ function verify(image: PatchableImage, game: GameData, edits: Edits): void {
   const changedEboot = edits.changedEboot();
   if (changedEboot && !image.iso.readFile(EBOOT_PATH).equals(changedEboot)) {
     throw new Error("Read-back check failed for EBOOT.BIN");
+  }
+  for (const [path, data] of edits.discFiles) {
+    if (!image.iso.readFile(path).equals(data))
+      throw new Error(`Read-back check failed for ${path}`);
   }
 }
 

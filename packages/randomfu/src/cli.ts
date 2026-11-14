@@ -23,7 +23,7 @@ import {
 import { LOGIC_VERSION } from "./version.js";
 import { roundTrip } from "./write.js";
 
-const BOOLEAN_FLAGS = new Set(["dry-run", "force", "no-open", "poogie-test"]);
+const BOOLEAN_FLAGS = new Set(["dry-run", "force", "no-open", "poogie-test", "loader-demo"]);
 
 export function parseFlags(argv: string[]): Record<string, string> {
   const flags: Record<string, string> = {};
@@ -124,7 +124,7 @@ export function settingsFromFlags(flags: Record<string, string>): Settings {
 
 const USAGE = `Usage:
   randomize --iso <in.iso|in.cso> --out <out.iso> [settings] [--spoiler <path>]
-            [--pspdecrypt-bin <name>] [--force] [--poogie-test]
+            [--pspdecrypt-bin <name>] [--force] [--poogie-test] [--loader-demo]
   randomize --iso <in> --dry-run [settings]         print the spoiler log, write nothing
   roundtrip --iso <in>                              check files re-encrypt to the disc's bytes
   gui [--port <n>] [--no-open]                      open the settings page in a browser
@@ -143,7 +143,9 @@ Settings (later ones win):
   --seed <seed>
 
 Testing:
-  --poogie-test                a happy Poogie always gives the rarest reward (not for play)`;
+  --poogie-test                a happy Poogie always gives the rarest reward (not for play)
+  --loader-demo                prototype: the code loader with a demo blob that adds 1000z on
+                               every save load (Guild Cards capped at 3; not for play)`;
 
 function printSettings(): void {
   console.log(
@@ -205,6 +207,7 @@ export async function main(argv: string[]): Promise<void> {
           spoiler: flags.spoiler,
           force: flags.force === "true",
           poogieTest: flags["poogie-test"] === "true",
+          loaderDemo: flags["loader-demo"] === "true",
         },
         (line) => console.log(line),
       );

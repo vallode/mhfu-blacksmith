@@ -10,6 +10,8 @@ export class Edits {
   readonly quests = new Map<number, { quest: LoadedQuest; payload: Buffer }>();
   /** Other DATA.BIN files (overlays) by index, plaintext. */
   readonly files = new Map<number, Buffer>();
+  /** Files added to the disc, or replacing ones on it, by ISO path. */
+  readonly discFiles = new Map<string, Buffer>();
   private ebootCopy: Buffer | null = null;
 
   constructor(private readonly game: GameData) {}
@@ -60,6 +62,11 @@ export class Edits {
   /** A data file as the shuffles so far left it, without marking it edited. Don't write to it. */
   dataFileNow(index: number): Buffer {
     return this.files.get(index) ?? this.game.dataBin.read(index);
+  }
+
+  /** Adds a file to the disc, or replaces one, outside DATA.BIN (an ISO path). */
+  discFile(path: string, data: Buffer): void {
+    this.discFiles.set(path, data);
   }
 
   eboot(): Buffer {
