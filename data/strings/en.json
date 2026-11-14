@@ -5372,6 +5372,24 @@
     "30": "Great Forest (Day)",
     "31": "Great Forest (Night)"
   },
+  "farm": {
+    "0": "Mining Point",
+    "1": "Mining Point +1",
+    "2": "Mining Point +2",
+    "3": "Mining Point +3",
+    "4": "Mining Point +4",
+    "5": "Insect Thicket",
+    "6": "Insect Thicket +1",
+    "7": "Insect Thicket +2",
+    "8": "Insect Thicket +3",
+    "9": "Insect Thicket +4",
+    "10": "Mushroom Tree",
+    "11": "Mushroom Tree +1",
+    "12": "Mushroom Tree +2",
+    "13": "Prototype Bee Hive",
+    "14": "Production Bee Hive",
+    "15": "Modified Bee Hive"
+  },
   "quest": {
     "1": "A True Foe - The Giadrome!",
     "2": "Reckless Bulldrome Hunter",

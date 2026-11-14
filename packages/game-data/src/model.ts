@@ -56,6 +56,7 @@ export type FileKind =
   | { kind: "shops" }
   | { kind: "veggie-trades" }
   | { kind: "combinations" }
+  | { kind: "farm" }
   /** Not a file: built from the weapon and armor records (`equipmentIds`). */
   | { kind: "equipment-ids" };
 
@@ -77,6 +78,7 @@ export function fileKind(rel: string): FileKind | null {
     "shops.json": { kind: "shops" },
     "veggie-trades.json": { kind: "veggie-trades" },
     "combinations.json": { kind: "combinations" },
+    "farm.json": { kind: "farm" },
     "equipment-ids.json": { kind: "equipment-ids" },
   };
   return top[p] ?? null;
@@ -326,6 +328,15 @@ export function hydrate(kind: FileKind, raw: Doc, s: HydrateStrings): Doc {
         })),
       };
     }
+    case "farm":
+      return {
+        ...raw,
+        points: raw.points.map((p: Obj, i: number) => ({
+          name: en.name("farm", i),
+          ...p,
+          items: p.items.map((x: Obj) => renameKey(x, "item", "item", item)),
+        })),
+      };
     case "equipment-ids":
       throw new Error("equipment-ids.json is built from the records; use equipmentIds()");
   }
@@ -689,6 +700,19 @@ export function dehydrate(
         strings,
       };
     }
+    case "farm":
+      return {
+        raw: {
+          ...named,
+          points: named.points.map((p: Obj, i: number) => {
+            setString(en, "farm", i, p.name);
+            const out = omit(p, ["name"]);
+            out.items = p.items.map((x: Obj) => renameKey(x, "item", "item", itemId));
+            return out;
+          }),
+        },
+        strings,
+      };
     case "equipment-ids":
       throw new Error("equipment-ids.json is built from the records; it can't be written");
   }

@@ -508,6 +508,34 @@ test("a full build skips Veggie Elder trades that extract didn't find; named, th
   }
 });
 
+test("Pokke Farm's points are copied when extract found them, and skipped otherwise", async () => {
+  const { root, data, extracted } = await fixture();
+  try {
+    const skipped = await copyTargets(["farm"], { extracted, data });
+    assert.deepEqual(skipped, { copied: [], skipped: ["farm.json"] });
+
+    const point = {
+      name: "Mining Point",
+      spot: "mining",
+      gathers: 3,
+      most_gathers: 4,
+      items: [{ item: "Iron Ore", chance: 100 }],
+    };
+    await writeFile(path.join(extracted, "farm.json"), JSON.stringify({ points: [point] }));
+    const report = await runBuildData({ extracted, data, only: ["farm"] });
+    assert.deepEqual(report.copiedFiles, ["farm.json"]);
+    // On disk: items by ID, the point's name in the strings by its index.
+    const written = JSON.parse(await readFile(path.join(data, "farm.json"), "utf-8"));
+    assert.deepEqual(written.points, [
+      { spot: "mining", gathers: 3, most_gathers: 4, items: [{ item: IRON_ORE, chance: 100 }] },
+    ]);
+    assert.equal(readStringsDoc(data).farm?.["0"], "Mining Point");
+    assert.deepEqual(readData(data, "farm.json").points, [point]);
+  } finally {
+    await rm(root, { recursive: true, force: true });
+  }
+});
+
 test("runBuildData restyles material fields it doesn't take, by item ID", async () => {
   const { root, data, extracted } = await fixture();
   try {

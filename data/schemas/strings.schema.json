@@ -158,6 +158,16 @@
         "type": "string"
       }
     },
+    "farm": {
+      "type": "object",
+      "description": "Pokke Farm's points, by their index in data/farm.json",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
     "quest": {
       "type": "object",
       "description": "Quest titles, by quest ID",

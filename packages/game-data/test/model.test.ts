@@ -25,7 +25,7 @@ const DATA = fileURLToPath(new URL("../../../data", import.meta.url));
 /** Every data file in the repository's data/, as paths inside it. */
 function dataFiles(): string[] {
   const top = ["items.json", "decorations.json", "skills.json", "gathering.json", "shops.json"];
-  top.push("veggie-trades.json", "combinations.json");
+  top.push("veggie-trades.json", "combinations.json", "farm.json");
   const dirs = ["weapons", "armor", "monsters", "quests"].flatMap((dir) =>
     readdirSync(path.join(DATA, dir))
       .filter((f) => f.endsWith(".json"))

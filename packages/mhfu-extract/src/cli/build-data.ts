@@ -35,20 +35,22 @@ import { mergeItemStats, type ItemStatChange } from "../build/items.js";
 import type { EmittedItem } from "../emit/items.js";
 
 /** Targets copied from the disc whole, rather than merged with committed files. */
-export type CopiedTarget = "quests" | "gathering" | "shops" | "combinations" | "veggie-trades";
+export type CopiedTarget =
+  "quests" | "gathering" | "shops" | "combinations" | "veggie-trades" | "farm";
 const COPIED_TARGETS: CopiedTarget[] = [
   "quests",
   "gathering",
   "shops",
   "combinations",
   "veggie-trades",
+  "farm",
 ];
 /**
  * Copied targets `extract` skips with a warning when it can't find them: a
  * run that doesn't name them in `only` leaves them as they are instead of
  * failing.
  */
-const OPTIONAL_TARGETS: CopiedTarget[] = ["veggie-trades"];
+const OPTIONAL_TARGETS: CopiedTarget[] = ["veggie-trades", "farm"];
 export type BuildTarget = CategoryName | "items" | CopiedTarget;
 export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "items", ...COPIED_TARGETS];
 
@@ -205,6 +207,17 @@ export function nameVeggieTradeItems(content: unknown, site: SiteIndex): unknown
   };
 }
 
+/** Writes each Pokke Farm point's items under their game names. */
+export function nameFarmItems(content: unknown, site: SiteIndex): unknown {
+  const rename = itemRenamer(site);
+  const doc = content as { points?: { items: QuestItem[] }[] };
+  if (!Array.isArray(doc?.points)) return content;
+  return {
+    ...doc,
+    points: doc.points.map((point) => ({ ...point, items: point.items.map(rename) })),
+  };
+}
+
 interface ItemRef {
   id: number;
   name: string;
@@ -241,6 +254,7 @@ async function copiedFiles(
   if (target === "shops") return { files: ["shops.json"], name: nameShopItems };
   if (target === "veggie-trades")
     return { files: ["veggie-trades.json"], name: nameVeggieTradeItems };
+  if (target === "farm") return { files: ["farm.json"], name: nameFarmItems };
   if (target === "combinations")
     return { files: ["combinations.json"], name: nameCombinationItems };
   const from = path.join(extractedDir, "quests");
@@ -587,7 +601,7 @@ export function formatBuildReport(report: BuildDataReport): string {
     out.push(
       "## Copied from the disc",
       "",
-      `${report.copiedFiles.length} file(s): quests, gathering points, shops, combinations and Veggie Elder trades.`,
+      `${report.copiedFiles.length} file(s): quests, gathering points, shops, combinations, Veggie Elder trades and Pokke Farm.`,
       "",
       ...report.copiedFiles.map((f) => `- ${f}`),
       "",
