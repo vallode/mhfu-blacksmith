@@ -23,15 +23,7 @@
     }
   },
   "definitions": {
-    "itemRef": {
-      "type": "object",
-      "required": ["id", "name"],
-      "additionalProperties": false,
-      "properties": {
-        "id": { "type": "integer", "minimum": 1, "description": "In-game item ID (data/items.json)" },
-        "name": { "type": "string", "minLength": 1 }
-      }
-    },
+    "itemRef": { "type": "integer", "minimum": 1, "description": "In-game item ID (data/items.json)" },
     "combination": {
       "type": "object",
       "required": ["number", "result", "ingredients", "success_rate", "quantity"],

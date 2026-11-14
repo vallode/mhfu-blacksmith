@@ -1,5 +1,6 @@
 /**
- * Validates the content JSON data files for common issues.
+ * Validates the content JSON data files for common issues: the files as
+ * the site reads them (readData), and their IDs and string tables.
  * Exits with code 1 if any errors are found.
  */
 import fs from "fs";
@@ -13,7 +14,14 @@ import {
 } from "../src/lib/items";
 import { parseDecorationSkill, treeNameIndex, type SkillTreeData } from "../src/lib/set-search";
 import { DATA_DIR } from "../src/lib/paths";
-import { readData } from "game-data";
+import {
+  ARMOR_SLOTS,
+  EQUIPMENT_TABLES,
+  readData,
+  readRawData,
+  readStringsDoc,
+  weaponTable,
+} from "game-data";
 
 const root = process.cwd();
 const contentDir = path.join(root, "content");
@@ -34,6 +42,132 @@ function warn(msg: string) {
 
 function section(title: string) {
   console.log(`\n${title}`);
+}
+
+// ─── IDs and strings ──────────────────────────────────────────────────────────
+// Records carry game IDs and refer to each other by ID; names are in
+// data/strings/ (see packages/game-data). Every record needs an English name,
+// IDs are unique per table, every reference resolves, and the string tables
+// name nothing that isn't there.
+
+section("Validating IDs and strings…");
+
+{
+  const weaponTypes = fs
+    .readdirSync(path.join(dataDir, "weapons"))
+    .filter((f) => f.endsWith(".json"))
+    .sort()
+    .map((f) => f.slice(0, -".json".length));
+  type Raw = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
+  const en = readStringsDoc(dataDir) as Record<string, Record<string, unknown> | undefined>;
+  const ja = readStringsDoc(dataDir, "ja") as Record<string, Record<string, unknown> | undefined>;
+  const owned = new Map<string, Set<string>>();
+  const own = (kind: string, key: number | string, where: string, named = true) => {
+    const keys = owned.get(kind) ?? new Set<string>();
+    owned.set(kind, keys);
+    if (keys.has(String(key))) error(`${where}: ${kind} ID ${key} is used twice`);
+    keys.add(String(key));
+    if (named && en[kind]?.[String(key)] === undefined)
+      error(`${where}: ${kind} ${key} has no name in data/strings/en.json`);
+  };
+
+  for (const item of readRawData<{ items: Raw[] }>(dataDir, "items.json").items)
+    own("item", item.id, "items.json");
+  for (const type of weaponTypes)
+    for (const w of readRawData<{ weapons: Raw[] }>(dataDir, "weapons", `${type}.json`).weapons)
+      own(weaponTable(type), w.id, `weapons/${type}.json`);
+  for (const slot of ARMOR_SLOTS)
+    for (const a of readRawData<{ armor: Raw[] }>(dataDir, "armor", `${slot}.json`).armor)
+      own(slot, a.id, `armor/${slot}.json`);
+  for (const t of readRawData<{ skills: Raw[] }>(dataDir, "skills.json").skills) {
+    own("skill", t.id, "skills.json");
+    for (const a of t.skills) own("skill_activation", `${t.id}:${a.points}`, "skills.json");
+  }
+  const decorationIds = new Set<string>();
+  for (const d of readRawData<{ decorations: Raw[] }>(dataDir, "decorations.json").decorations) {
+    if (!owned.get("item")?.has(String(d.id))) error(`decorations.json: ${d.id} is not an item`);
+    if (decorationIds.has(String(d.id))) error(`decorations.json: item ${d.id} is listed twice`);
+    decorationIds.add(String(d.id));
+  }
+  const monsterFiles = fs
+    .readdirSync(path.join(dataDir, "monsters"))
+    .filter((f) => f.endsWith(".json"));
+  for (const f of monsterFiles)
+    for (const m of readRawData<{ monsters: Raw[] }>(dataDir, "monsters", f).monsters)
+      own("monster", m.id, `monsters/${f}`);
+  const questFiles = fs
+    .readdirSync(path.join(dataDir, "quests"))
+    .filter((f) => f.endsWith(".json"));
+  const questMonsters = new Set<string>();
+  for (const f of questFiles)
+    for (const q of readRawData<{ quests: Raw[] }>(dataDir, "quests", f).quests) {
+      own("quest", q.id, `quests/${f}`, false);
+      for (const m of [q.target, ...q.large_monsters, ...q.small_monsters])
+        if (m) questMonsters.add(String(m.monster));
+    }
+
+  // References resolve: reading each file's named view looks every one up
+  // (items, weapons, skills and their aliases, monsters, maps).
+  const files = [
+    "items.json",
+    "skills.json",
+    "decorations.json",
+    "gathering.json",
+    "shops.json",
+    "veggie-trades.json",
+    "combinations.json",
+    "farm.json",
+    ...weaponTypes.map((t) => `weapons/${t}.json`),
+    ...ARMOR_SLOTS.map((s) => `armor/${s}.json`),
+    ...monsterFiles.map((f) => `monsters/${f}`),
+    ...questFiles.map((f) => `quests/${f}`),
+  ];
+  for (const rel of files) {
+    try {
+      readData(dataDir, rel);
+    } catch (e) {
+      error(`${rel}: ${(e as Error).message}`);
+    }
+  }
+  for (const type of weaponTypes)
+    for (const w of readRawData<{ weapons: Raw[] }>(dataDir, "weapons", `${type}.json`).weapons) {
+      const refs = [w.improve_from ?? [], w.improve_to ?? []].flat() as number[];
+      for (const id of refs)
+        if (!owned.get(weaponTable(type))?.has(String(id)))
+          error(
+            `weapons/${type}.json: ${w.id} upgrades from or to ${id}, which isn't a ${weaponTable(type)} weapon`,
+          );
+    }
+
+  // Nothing in the string tables that no record has.
+  const stale = (lang: string, doc: typeof en, kind: string, keys: Set<string> | undefined) => {
+    for (const key of Object.keys(doc[kind] ?? {}))
+      if (!keys?.has(key)) error(`strings/${lang}.json: ${kind} ${key} names nothing in data/`);
+  };
+  for (const kind of [...EQUIPMENT_TABLES, "item", "skill", "skill_activation"])
+    stale("en", en, kind, owned.get(kind));
+  stale("en", en, "decoration", decorationIds);
+  stale("en", en, "monster_description", owned.get("monster"));
+  stale("en", en, "monster", new Set([...(owned.get("monster") ?? []), ...questMonsters]));
+  for (const kind of ["quest", "quest_goal", "quest_details", "quest_fail", "quest_client"])
+    stale("en", en, kind, owned.get("quest"));
+  stale("ja", ja, "item", owned.get("item"));
+  const farmPoints = readRawData<{ points: unknown[] }>(dataDir, "farm.json").points;
+  stale("en", en, "farm", new Set(farmPoints.map((_, i) => String(i))));
+  farmPoints.forEach((_, i) => {
+    if (en.farm?.[String(i)] === undefined)
+      error(`farm.json: point ${i} has no name in data/strings/en.json`);
+  });
+
+  console.log(
+    `  ${[...owned].map(([kind, keys]) => `${kind} ${keys.size}`).join(", ")}; ${Object.keys(en.map ?? {}).length} maps`,
+  );
+}
+
+// The checks below read the named view; a broken reference above would stop them.
+if (errors > 0) {
+  console.error(`\n✗ Validation stopped — ${errors} error(s) in the IDs and strings`);
+  process.exit(1);
 }
 
 // ─── Weapons ──────────────────────────────────────────────────────────────────
@@ -334,43 +468,6 @@ for (const file of fs
   }
 
   console.log(`  ${category}: ${count} monsters`);
-}
-
-// ─── Equipment IDs ────────────────────────────────────────────────────────────
-
-section("Validating equipment IDs…");
-
-const equipmentIdsFile = path.join(dataDir, "equipment-ids.json");
-if (!fs.existsSync(equipmentIdsFile)) {
-  error("Missing data/equipment-ids.json (run `pnpm generate-equipment-ids`)");
-} else {
-  type IdEntry = { name: string; type?: string; sex?: string } | null;
-  const ids = readData(dataDir, "equipment-ids.json") as Record<string, IdEntry[]>;
-
-  const readNames = (file: string, key: string) =>
-    new Set(
-      (readData(dataDir, file)[key] as Record<string, unknown>[]).map((i) => i.name as string),
-    );
-  const weaponNames = new Map(
-    weaponTypes.map((t) => [t, readNames(`weapons/${t}.json`, "weapons")]),
-  );
-
-  for (const [slot, entries] of Object.entries(ids)) {
-    const armorNames =
-      slot === "melee" || slot === "ranged" ? null : readNames(`armor/${slot}.json`, "armor");
-    let mapped = 0;
-    entries.forEach((entry, id) => {
-      if (!entry) return;
-      mapped++;
-      const names = armorNames ?? weaponNames.get(entry.type ?? "");
-      if (!names?.has(entry.name)) {
-        error(
-          `equipment-ids ${slot}[${id}]: "${entry.name}"${entry.type ? ` (${entry.type})` : ""} not found in data/ (rerun \`pnpm generate-equipment-ids\`)`,
-        );
-      }
-    });
-    console.log(`  ${slot}: ${mapped} IDs mapped`);
-  }
 }
 
 // ─── Items (in-game item IDs) ─────────────────────────────────────────────────

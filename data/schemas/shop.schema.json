@@ -17,7 +17,7 @@
       "required": ["item", "price", "stages"],
       "additionalProperties": false,
       "properties": {
-        "item":   { "type": "string", "minLength": 1, "description": "Game name, as in data/items.json" },
+        "item":   { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json)" },
         "price":  { "type": ["integer", "null"], "minimum": 0, "description": "In the shop's currency; null where it isn't known" },
         "stages": {
           "type": "array",

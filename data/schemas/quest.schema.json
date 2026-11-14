@@ -16,7 +16,7 @@
       "required": ["item", "amount"],
       "additionalProperties": false,
       "properties": {
-        "item":   { "type": "string", "minLength": 1 },
+        "item":   { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json)" },
         "amount": { "type": "integer", "minimum": 1 }
       }
     },
@@ -26,7 +26,7 @@
       "additionalProperties": false,
       "properties": {
         "chance": { "type": "integer", "minimum": 0, "maximum": 100 },
-        "item":   { "type": "string", "minLength": 1 },
+        "item":   { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json)" },
         "amount": { "type": "integer", "minimum": 1 }
       }
     },
@@ -71,7 +71,8 @@
       "required": ["monster", "quantity", "power"],
       "additionalProperties": false,
       "properties": {
-        "monster":  { "type": "string", "minLength": 1 },
+        "monster":  { "type": "integer", "minimum": 0, "description": "Monster ID (emID); its name is in data/strings" },
+        "alias":    { "type": "integer", "minimum": 0, "description": "Named by the monster's n-th English alias (the game's own spelling), as the site showed it" },
         "quantity": { "type": "integer", "minimum": 0 },
         "power":    { "type": "integer", "minimum": 0 },
         "crown_chances": {
@@ -104,7 +105,8 @@
       "required": ["monster", "max_quantity", "total_quantity"],
       "additionalProperties": false,
       "properties": {
-        "monster":        { "type": "string", "minLength": 1 },
+        "monster":  { "type": "integer", "minimum": 0, "description": "Monster ID (emID); its name is in data/strings" },
+        "alias":    { "type": "integer", "minimum": 0, "description": "Named by the monster's n-th English alias (the game's own spelling), as the site showed it" },
         "max_quantity":   { "type": "integer", "minimum": 0, "$comment": "The most of this species in any single zone." },
         "total_quantity": { "type": "integer", "minimum": 0, "$comment": "All of this species across the quest's zones; zone tables that share an address are counted once." },
         "endless":        { "const": true, "$comment": "A spawn of this species is marked 99, the game's value for one that keeps coming; those spawns are not in the counts." }
@@ -115,7 +117,8 @@
       "required": ["monster", "amount"],
       "additionalProperties": false,
       "properties": {
-        "monster": { "type": "string", "minLength": 1 },
+        "monster":  { "type": "integer", "minimum": 0, "description": "Monster ID (emID); its name is in data/strings" },
+        "alias":    { "type": "integer", "minimum": 0, "description": "Named by the monster's n-th English alias (the game's own spelling), as the site showed it" },
         "amount":  { "type": "integer", "minimum": 1 }
       }
     },
@@ -123,6 +126,7 @@
       "type": "object",
       "required": ["id", "hub", "stars", "fee", "reward", "penalty", "time_limit_minutes"],
       "additionalProperties": true,
+      "$comment": "The quest's text (title, goal, details, fail, client) is in data/strings, keyed by quest ID: extracted verbatim from the disc, English on the EU disc. See mhfu-extract's README.",
       "properties": {
         "id": { "type": "integer" },
         "hub": {
@@ -134,7 +138,7 @@
           "enum": ["low-rank", "high-rank", "g-rank", null]
         },
         "stars":               { "type": "integer", "minimum": 1 },
-        "map":                 { "type": ["string", "null"] },
+        "map":                 { "type": ["integer", "null"], "description": "Map ID, as in the quest header; its name is in data/strings" },
         "fee":                 { "type": "integer", "minimum": 0 },
         "reward":              { "type": "integer", "minimum": 0 },
         "penalty":             { "type": "integer", "minimum": 0 },
@@ -150,11 +154,7 @@
           "oneOf": [{ "$ref": "#/definitions/monster_size" }, { "type": "null" }],
           "$comment": "null when the quest has no large monsters."
         },
-        "title":   { "type": ["string", "null"], "$comment": "Extracted verbatim from the disc: English on the EU disc. See mhfu-extract's README." },
-        "goal":    { "type": ["string", "null"], "$comment": "See 'title'." },
-        "details": { "type": ["string", "null"], "$comment": "See 'title'." },
-        "fail":    { "type": ["string", "null"], "$comment": "See 'title'." },
-        "client":  { "type": ["string", "null"], "$comment": "See 'title'." },
+
         "requires": {
           "type": ["integer", "null"],
           "$comment": "ID of the quest that must be cleared before this one appears. Not on the disc: hand-entered in mhfu-extract's src/tables/quest-prerequisites.ts. Null when there is none or none is known."

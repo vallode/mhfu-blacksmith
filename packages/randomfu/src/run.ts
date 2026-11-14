@@ -30,6 +30,8 @@ export interface RunOptions {
   poogieTest?: boolean;
   /** Prototype: the code loader with its demo blob (see `docs/code-loader.md`). */
   loaderDemo?: boolean;
+  /** Adds research detail to the spoiler log. */
+  debug?: boolean;
 }
 
 export interface RunResult {
@@ -75,6 +77,7 @@ export async function runRandomizer(options: RunOptions, log: Log): Promise<RunR
     const result = randomize(game, settings, {
       poogieTest: options.poogieTest,
       loaderDemo: options.loaderDemo,
+      debug: options.debug,
     });
     for (const report of result.reports) log(reportLogLine(report));
     if (result.problems.length > 0) {

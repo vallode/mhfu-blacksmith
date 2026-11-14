@@ -169,8 +169,10 @@ export function diffFile(file: string, extracted: unknown, committed: unknown): 
 
 export async function runDiff(options: DiffOptions): Promise<DiffReport> {
   const extractedFiles = await listJsonFiles(options.extracted);
+  // Schemas and string tables have no extracted counterpart; records are
+  // compared in their named view (readData), as extract writes them.
   const committedFiles = (await listJsonFiles(options.data)).filter(
-    (f) => !f.startsWith(`schemas${path.sep}`),
+    (f) => !f.startsWith(`schemas${path.sep}`) && !f.startsWith(`strings${path.sep}`),
   );
 
   const extractedSet = new Set(extractedFiles);

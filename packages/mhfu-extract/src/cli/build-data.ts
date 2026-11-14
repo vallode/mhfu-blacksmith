@@ -3,19 +3,25 @@
  * output. Equipment categories are merged field by field
  * (`build/merge.ts`); item stats are written into `data/items.json` by ID
  * (`build/items.ts`); quests, gathering points and shops have no committed
- * counterpart and are copied through, with each item under its game name. Prints, and optionally writes, a report of every value the disc
+ * counterpart and are copied through, with each item under its game name.
+ * Prints, and optionally writes, a report of every value the disc
  * changed, every reviewed disagreement kept as committed, and every item
  * only one side has.
+ *
+ * Everything here works on the named view of `data/` (game-data's
+ * `readData`). `writeData` writes it back: records with game IDs, names and
+ * quest text into `data/strings/en.json`. A second run writes nothing.
  */
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { readData, writeData } from "game-data";
 import { CATEGORIES, CATEGORY_NAMES, type CategoryName } from "../build/categories.js";
 import { loadInputs, type Unpaired } from "../build/compare.js";
 import { discMaterialId, loadSiteIndex, type SiteIndex } from "../build/ids.js";
 import {
   loadKeepSiteValues,
   mergeCategory,
-  serializeDataFile,
   type Change,
   type KeptDisagreement,
 } from "../build/merge.js";
@@ -262,16 +268,11 @@ async function copiedFiles(
 async function buildItems(options: BuildDataOptions): Promise<ItemsBuildReport> {
   const source = await readJsonOrNull(path.join(options.extracted, "items.json"));
   if (!source) throw new Error(`items.json is missing from ${options.extracted}; rerun extract`);
-  const file = path.join(options.data, "items.json");
-  const previous = await readFile(file, "utf-8");
   const { items, colors } = source as { items: EmittedItem[]; colors?: string[] };
-  const merged = mergeItemStats(JSON.parse(previous), items, colors);
-  const next = `${JSON.stringify(merged.content, null, 2)}\n`;
-  const filesWritten: string[] = [];
-  if (next !== previous) {
-    if (!options.dryRun) await writeFile(file, next, "utf-8");
-    filesWritten.push("items.json");
-  }
+  const merged = mergeItemStats(readData(options.data, "items.json"), items, colors);
+  const filesWritten = writeData(options.data, "items.json", merged.content, {
+    dryRun: options.dryRun,
+  });
   return { changes: merged.changes, missing: merged.missing, filesWritten };
 }
 
@@ -291,11 +292,7 @@ async function copyTarget(
       continue;
     }
     if (!source) throw new Error(`${rel} is missing from ${options.extracted}; rerun extract`);
-    const content = name(source, site);
-    if (!options.dryRun) {
-      await mkdir(path.dirname(path.join(options.data, rel)), { recursive: true });
-      await writeFile(path.join(options.data, rel), JSON.stringify(content, null, 2), "utf-8");
-    }
+    writeData(options.data, rel, name(source, site), { dryRun: options.dryRun });
     written.push(rel);
   }
   return written;
@@ -349,14 +346,16 @@ async function buildCategories(
     }
     const filesWritten: string[] = [];
     for (const [file, items] of result.files) {
-      const absPath = path.join(options.data, file);
-      const original = await readJsonOrNull(absPath);
-      if (!original) continue; // build-data rewrites committed files; it doesn't create new ones
-      const next = serializeDataFile(category.arrayKey, original, items);
-      const previous = original ? await readFile(absPath, "utf-8") : null;
-      if (next === previous) continue;
-      if (!options.dryRun) await writeFile(absPath, next, "utf-8");
-      filesWritten.push(file);
+      // build-data rewrites committed files; it doesn't create new ones.
+      if (!existsSync(path.join(options.data, file))) continue;
+      const original = readData<Record<string, unknown>>(options.data, file);
+      const written = writeData(
+        options.data,
+        file,
+        { ...original, [category.arrayKey]: items },
+        { dryRun: options.dryRun },
+      );
+      filesWritten.push(...written.filter((f) => !filesWritten.includes(f)));
     }
     categories.push({
       category: name,

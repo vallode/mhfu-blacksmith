@@ -1,30 +1,29 @@
 {
   "monsters": [
     {
-      "name": "Kirin",
+      "id": 33,
       "type": "elder-dragon",
-      "description": "The Kirin is said to glow a faint blue, but so few have seen it that details are scarce. It is apparently capable of calling forth lightning at will. Kirin material is very valuable.",
       "drops": {
         "low rank": {
           "body carves (x2)": [
             {
-              "name": "Kirin Mane",
+              "item": 686,
               "chance": "39%"
             },
             {
-              "name": "Kirin Thndr Tail",
+              "item": 688,
               "chance": "24%"
             },
             {
-              "name": "Lightcrystal",
+              "item": 215,
               "chance": "15%"
             },
             {
-              "name": "Kirin Horn",
+              "item": 682,
               "chance": "12%"
             },
             {
-              "name": "Kirin Hide",
+              "item": 683,
               "chance": "10%"
             }
           ]
@@ -32,31 +31,31 @@
         "high rank": {
           "body carves (x2)": [
             {
-              "name": "Kirin Thndr Tail",
+              "item": 688,
               "chance": "20%"
             },
             {
-              "name": "Kirin Hide+",
+              "item": 684,
               "chance": "18%"
             },
             {
-              "name": "Kirin Azure Horn",
+              "item": 690,
               "chance": "15%"
             },
             {
-              "name": "Novacrystal",
+              "item": 216,
               "chance": "15%"
             },
             {
-              "name": "Kirin Hide",
+              "item": 683,
               "chance": "12%"
             },
             {
-              "name": "Kirin Horn",
+              "item": 682,
               "chance": "12%"
             },
             {
-              "name": "Kirin Mane",
+              "item": 686,
               "chance": "8%"
             }
           ]
@@ -64,27 +63,27 @@
         "g rank": {
           "body carves (x2)": [
             {
-              "name": "Platinum Mane",
+              "item": 687,
               "chance": "34%"
             },
             {
-              "name": "LthrKirinThndrTl",
+              "item": 689,
               "chance": "24%"
             },
             {
-              "name": "SpecialKirinHide",
+              "item": 685,
               "chance": "18%"
             },
             {
-              "name": "Purecrystal",
+              "item": 217,
               "chance": "10%"
             },
             {
-              "name": "Kirin Hide+",
+              "item": 684,
               "chance": "4%"
             },
             {
-              "name": "Kirin Azure Horn",
+              "item": 690,
               "chance": "10%"
             }
           ]
@@ -157,9 +156,8 @@
       }
     },
     {
-      "name": "Kushala Daora",
+      "id": 54,
       "type": "elder-dragon",
-      "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {},
       "hitzones": {
         "head": {
@@ -292,10 +290,9 @@
       }
     },
     {
-      "name": "Rusted Kushala Daora",
+      "id": 60,
       "type": "elder-dragon",
       "icon": "kushala-daora",
-      "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {},
       "hitzones": {
         "head": {
@@ -428,64 +425,65 @@
       }
     },
     {
-      "name": "Chameleos",
+      "id": 59,
       "type": "elder-dragon",
-      "description": "Eyewitness sightings of this Elder Dragon are extremely rare due to its ability to literally vanish; however, details of this are unclear. It is thought that shocking it may make it reappear, but this is unproven.",
       "drops": {
         "low rank": {
           "body carves (x4)": [
             {
-              "name": "Chameleos Hide",
+              "item": 729,
               "chance": "39%"
             },
             {
-              "name": "ChameleosWebbing",
+              "item": 736,
               "chance": "24%"
             },
             {
-              "name": "Chameleos Claw",
+              "item": 735,
               "chance": "19%"
             },
             {
-              "name": "Dragonite Ore",
+              "item": 205,
               "chance": "13%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Chameleos Tail",
+              "item": 738,
               "chance": "60%"
             },
             {
-              "name": "Dragonite Ore",
+              "item": 205,
               "chance": "22%"
             },
             {
-              "name": "Eldr Dragon Bone",
+              "item": 287,
               "chance": "18%"
             }
           ],
           "break horn": [
             {
-              "name": "Chameleos Horn x1",
+              "item": 732,
+              "amount": 1,
               "chance": "90%"
             },
             {
-              "name": "Dragonite Ore x1",
+              "item": 205,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "shiny drop : sonic during its attacks": [
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "75%"
             },
             {
-              "name": "Dragonite Ore",
+              "item": 205,
               "chance": "25%"
             }
           ]
@@ -493,73 +491,76 @@
         "high rank": {
           "body carves (x4)": [
             {
-              "name": "Chameleos Hide",
+              "item": 729,
               "chance": "35%"
             },
             {
-              "name": "ChameleosWebbing",
+              "item": 736,
               "chance": "24%"
             },
             {
-              "name": "Chameleos Hide+",
+              "item": 730,
               "chance": "20%"
             },
             {
-              "name": "Union Ore",
+              "item": 208,
               "chance": "10%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "6%"
             },
             {
-              "name": "Chameleos Jewel",
+              "item": 740,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Chameleos Tail",
+              "item": 738,
               "chance": "60%"
             },
             {
-              "name": "Union Ore",
+              "item": 208,
               "chance": "17%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "15%"
             },
             {
-              "name": "Chameleos Jewel",
+              "item": 740,
               "chance": "8%"
             }
           ],
           "break horn": [
             {
-              "name": "Chameleos Horn x1",
+              "item": 732,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Chameleos Spike x1",
+              "item": 733,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "Union Ore x1",
+              "item": 208,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "shiny drop : sonic during its attacks": [
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "43%"
             },
             {
-              "name": "Anc Drgn Treasre",
+              "item": 316,
               "chance": "42%"
             },
             {
-              "name": "Union Ore",
+              "item": 208,
               "chance": "15%"
             }
           ]
@@ -567,89 +568,92 @@
         "g rank": {
           "body carves (x4)": [
             {
-              "name": "SpecChameleHide+",
+              "item": 731,
               "chance": "35%"
             },
             {
-              "name": "StrChameleosWing",
+              "item": 737,
               "chance": "28%"
             },
             {
-              "name": "Mellanje Ore",
+              "item": 209,
               "chance": "13%"
             },
             {
-              "name": "Chameleos Hide+",
+              "item": 730,
               "chance": "10%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "6%"
             },
             {
-              "name": "Chameleos Jewel",
+              "item": 740,
               "chance": "6%"
             },
             {
-              "name": "BigEDragonJewel",
+              "item": 302,
               "chance": "2%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "LthrChameleoTail",
+              "item": 739,
               "chance": "60%"
             },
             {
-              "name": "Mellanje Ore",
+              "item": 209,
               "chance": "17%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "12%"
             },
             {
-              "name": "Chameleos Jewel",
+              "item": 740,
               "chance": "8%"
             },
             {
-              "name": "BigEDragonJewel",
+              "item": 302,
               "chance": "3%"
             }
           ],
           "break horn": [
             {
-              "name": "HrdChameleosHorn x1",
+              "item": 734,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "Chameleos Spike x1",
+              "item": 733,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Mellanje Ore x1",
+              "item": 209,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "shiny drop : sonic during its attacks": [
             {
-              "name": "Anc Drgn Treasre",
+              "item": 316,
               "chance": "50%"
             },
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "24%"
             },
             {
-              "name": "Mellanje Ore",
+              "item": 209,
               "chance": "18%"
             },
             {
-              "name": "Chameleos Jewel",
+              "item": 740,
               "chance": "7%"
             },
             {
-              "name": "BigEDragonJewel",
+              "item": 302,
               "chance": "1%"
             }
           ]
@@ -796,78 +800,80 @@
       }
     },
     {
-      "name": "Lunastra",
+      "id": 64,
       "type": "elder-dragon",
-      "description": "A brutal female Elder Dragon with breath of flame and expert control over fire. It is said that this control comes from the crown-like horns on its head, but this has not been confirmed.",
       "drops": {
         "low rank": {
           "body carves (x4)": [
             {
-              "name": "Lunastra Shell",
+              "item": 750,
               "chance": "28%"
             },
             {
-              "name": "Fire Dragon Scl",
+              "item": 741,
               "chance": "24%"
             },
             {
-              "name": "Fire Dragon Claw",
+              "item": 744,
               "chance": "21%"
             },
             {
-              "name": "Lunastra Mane",
+              "item": 752,
               "chance": "12%"
             },
             {
-              "name": "Fire Drgn Webbng",
+              "item": 746,
               "chance": "10%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Lunastra Tail",
+              "item": 753,
               "chance": "59%"
             },
             {
-              "name": "Eldr Dragon Bone",
+              "item": 287,
               "chance": "23%"
             },
             {
-              "name": "Lunastra Shell",
+              "item": 750,
               "chance": "18%"
             }
           ],
           "break horn": [
             {
-              "name": "Lunastra Horn x1",
+              "item": 754,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break wings": [
             {
-              "name": "Fire Drgn Webbng x1",
+              "item": 746,
+              "amount": 1,
               "chance": "72%"
             },
             {
-              "name": "Fire Dragon Claw x1",
+              "item": 744,
+              "amount": 1,
               "chance": "28%"
             }
           ],
           "shiny drop : force it into rage mode or reactivating fire aura": [
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "75%"
             },
             {
-              "name": "Fire Dragon Scl",
+              "item": 741,
               "chance": "15%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "10%"
             }
           ]
@@ -875,99 +881,105 @@
         "high rank": {
           "body carves (x4)": [
             {
-              "name": "LunastraCarapace",
+              "item": 751,
               "chance": "28%"
             },
             {
-              "name": "Fire Dragon Claw",
+              "item": 744,
               "chance": "21%"
             },
             {
-              "name": "Lunastra Mane",
+              "item": 752,
               "chance": "12%"
             },
             {
-              "name": "Fire Drgn Jwl",
+              "item": 748,
               "chance": "10%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "5%"
             },
             {
-              "name": "Fire Drgn Scl+",
+              "item": 742,
               "chance": "24%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Lunastra Tail",
+              "item": 753,
               "chance": "34%"
             },
             {
-              "name": "Eldr Dragon Bone",
+              "item": 287,
               "chance": "32%"
             },
             {
-              "name": "Lunastra Shell",
+              "item": 750,
               "chance": "20%"
             },
             {
-              "name": "LunastraCarapace",
+              "item": 751,
               "chance": "12%"
             },
             {
-              "name": "Fire Drgn Jwl",
+              "item": 748,
               "chance": "2%"
             }
           ],
           "break horn": [
             {
-              "name": "Lunastra Spike x1",
+              "item": 755,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Lunastra Horn x1",
+              "item": 754,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break wings": [
             {
-              "name": "Fire Dragon Pwdr x1",
+              "item": 747,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Fire Drgn Webbng x1",
+              "item": 746,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Fire Dragon Claw x1",
+              "item": 744,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Fire Drgn Webbng x2",
+              "item": 746,
+              "amount": 2,
               "chance": "10%"
             }
           ],
           "shiny drop : force it into rage mode or reactivating fire aura": [
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "38%"
             },
             {
-              "name": "Anc Drgn Treasre",
+              "item": 316,
               "chance": "37%"
             },
             {
-              "name": "Fire Drgn Scl+",
+              "item": 742,
               "chance": "12%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "10%"
             },
             {
-              "name": "Fire Drgn Jwl",
+              "item": 748,
               "chance": "3%"
             }
           ]
@@ -1122,78 +1134,80 @@
       }
     },
     {
-      "name": "Teostra",
+      "id": 65,
       "type": "elder-dragon",
-      "description": "A brutal male Elder Dragon with breath of flame and expert control over fire. Its vile temperament means anyone who approaches is subject to fire and brimstone. Known to attack towns, the Guild keeps tabs on its movements.",
       "drops": {
         "low rank": {
           "body carves (x4)": [
             {
-              "name": "Teostra Shell",
+              "item": 756,
               "chance": "30%"
             },
             {
-              "name": "Fire Dragon Claw",
+              "item": 744,
               "chance": "24%"
             },
             {
-              "name": "Fire Dragon Scl",
+              "item": 741,
               "chance": "20%"
             },
             {
-              "name": "Teostra Mane",
+              "item": 759,
               "chance": "10%"
             },
             {
-              "name": "Fire Drgn Webbng",
+              "item": 746,
               "chance": "10%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "6%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Teostra Tail",
+              "item": 760,
               "chance": "59%"
             },
             {
-              "name": "Eldr Dragon Bone",
+              "item": 287,
               "chance": "23%"
             },
             {
-              "name": "Teostra Shell",
+              "item": 756,
               "chance": "18%"
             }
           ],
           "break horn": [
             {
-              "name": "Teostra Horn x1",
+              "item": 762,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break wings": [
             {
-              "name": "Fire Drgn Webbng x1",
+              "item": 746,
+              "amount": 1,
               "chance": "77%"
             },
             {
-              "name": "Fire Dragon Claw x1",
+              "item": 744,
+              "amount": 1,
               "chance": "23%"
             }
           ],
           "shiny drop : force it into rage mode or reactivating fire aura": [
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "75%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "15%"
             },
             {
-              "name": "Fire Dragon Scl",
+              "item": 741,
               "chance": "10%"
             }
           ]
@@ -1201,103 +1215,109 @@
         "high rank": {
           "body carves (x4)": [
             {
-              "name": "Fire Drgn Scl+",
+              "item": 742,
               "chance": "30%"
             },
             {
-              "name": "Fire Dragon Claw",
+              "item": 744,
               "chance": "22%"
             },
             {
-              "name": "Teostra Carapace",
+              "item": 757,
               "chance": "18%"
             },
             {
-              "name": "Teostra Mane",
+              "item": 759,
               "chance": "14%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "6%"
             },
             {
-              "name": "Teostra Shell",
+              "item": 756,
               "chance": "5%"
             },
             {
-              "name": "Fire Drgn Jwl",
+              "item": 748,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Teostra Tail",
+              "item": 760,
               "chance": "34%"
             },
             {
-              "name": "Eldr Dragon Bone",
+              "item": 287,
               "chance": "32%"
             },
             {
-              "name": "Teostra Shell",
+              "item": 756,
               "chance": "20%"
             },
             {
-              "name": "Teostra Carapace",
+              "item": 757,
               "chance": "12%"
             },
             {
-              "name": "Fire Drgn Jwl",
+              "item": 748,
               "chance": "2%"
             }
           ],
           "break horn": [
             {
-              "name": "Teostra Horn+ x1",
+              "item": 763,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Teostra Horn x1",
+              "item": 762,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break wings": [
             {
-              "name": "Fire Dragon Pwdr x1",
+              "item": 747,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Fire Drgn Webbng x1",
+              "item": 746,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Fire Dragon Claw x1",
+              "item": 744,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Fire Drgn Webbng x2",
+              "item": 746,
+              "amount": 2,
               "chance": "10%"
             }
           ],
           "shiny drop : force it into rage mode or reactivating fire aura": [
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "38%"
             },
             {
-              "name": "Anc Drgn Treasre",
+              "item": 316,
               "chance": "37%"
             },
             {
-              "name": "Fire Drgn Scl+",
+              "item": 742,
               "chance": "12%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "10%"
             },
             {
-              "name": "Fire Drgn Jwl",
+              "item": 748,
               "chance": "3%"
             }
           ]
@@ -1305,111 +1325,117 @@
         "g rank": {
           "body carves (x4)": [
             {
-              "name": "ThckFireDrgnScl",
+              "item": 743,
               "chance": "33%"
             },
             {
-              "name": "HrdFireDrgnClaw",
+              "item": 745,
               "chance": "24%"
             },
             {
-              "name": "HvyTeostraShell",
+              "item": 758,
               "chance": "20%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "10%"
             },
             {
-              "name": "Fire Drgn Jwl",
+              "item": 748,
               "chance": "6%"
             },
             {
-              "name": "Teostra Carapace",
+              "item": 757,
               "chance": "5%"
             },
             {
-              "name": "BigEDragonJewel",
+              "item": 302,
               "chance": "2%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "LthrTeostraTail",
+              "item": 761,
               "chance": "59%"
             },
             {
-              "name": "BigEDragonBone",
+              "item": 288,
               "chance": "18%"
             },
             {
-              "name": "HvyTeostraShell",
+              "item": 758,
               "chance": "12%"
             },
             {
-              "name": "Teostra Carapace",
+              "item": 757,
               "chance": "7%"
             },
             {
-              "name": "Fire Drgn Jwl",
+              "item": 748,
               "chance": "3%"
             },
             {
-              "name": "BigEDragonJewel",
+              "item": 302,
               "chance": "1%"
             }
           ],
           "break horn": [
             {
-              "name": "HardTeostraHorn x1",
+              "item": 764,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Teostra Horn+ x1",
+              "item": 763,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break wings": [
             {
-              "name": "Fire Dragon Pwdr x1",
+              "item": 747,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Fire Drgn Webbng x2",
+              "item": 746,
+              "amount": 2,
               "chance": "25%"
             },
             {
-              "name": "HrdFireDrgnClaw x1",
+              "item": 745,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Fire Dragon Pwdr x2",
+              "item": 747,
+              "amount": 2,
               "chance": "20%"
             }
           ],
           "shiny drop : force it into rage mode or reactivating fire aura": [
             {
-              "name": "Anc Drgn Treasre",
+              "item": 316,
               "chance": "48%"
             },
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "23%"
             },
             {
-              "name": "ThckFireDrgnScl",
+              "item": 743,
               "chance": "12%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "10%"
             },
             {
-              "name": "Fire Drgn Jwl",
+              "item": 748,
               "chance": "5%"
             },
             {
-              "name": "BigEDragonJewel",
+              "item": 302,
               "chance": "2%"
             }
           ]
@@ -1564,118 +1590,134 @@
       }
     },
     {
-      "name": "Lao-Shan Lung",
+      "id": 7,
       "type": "elder-dragon",
-      "description": "A giant dragon few have seen and lived to tell the tale. When on the rampage it wreaks havoc on all in its path. The guild has built a fortress to repel the beast, but will it hold?",
       "drops": {
         "low rank": {
           "body carves (x9)": [
             {
-              "name": "Lao-Shan's Scale",
+              "item": 693,
               "chance": "58%"
             },
             {
-              "name": "Lao-Shan's Shell",
+              "item": 698,
               "chance": "37%"
             },
             {
-              "name": "Lao-Shan's Claw",
+              "item": 691,
               "chance": "5%"
             }
           ],
           "live carving : jump to its back (x3)": [
             {
-              "name": "Eldr Dragon Bone",
+              "item": 287,
               "chance": "35%"
             },
             {
-              "name": "Lao-Shan's Scale",
+              "item": 693,
               "chance": "28%"
             },
             {
-              "name": "Dragon Herb",
+              "item": 318,
               "chance": "25%"
             },
             {
-              "name": "Lao-Shan's Shell",
+              "item": 698,
               "chance": "12%"
             }
           ],
           "break horn": [
             {
-              "name": "Lao-Shan's Horn x1",
+              "item": 692,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break head": [
             {
-              "name": "Lao-Shan's Shell x1",
+              "item": 698,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "Flat Ruststone x1",
+              "item": 820,
+              "amount": 1,
               "chance": "7%"
             },
             {
-              "name": "Large Ruststone x1",
+              "item": 821,
+              "amount": 1,
               "chance": "7%"
             },
             {
-              "name": "Small Ruststone x1",
+              "item": 822,
+              "amount": 1,
               "chance": "7%"
             },
             {
-              "name": "Ruststone Rod x1",
+              "item": 823,
+              "amount": 1,
               "chance": "7%"
             },
             {
-              "name": "Ruststone x1",
+              "item": 819,
+              "amount": 1,
               "chance": "7%"
             }
           ],
           "break back": [
             {
-              "name": "Lao-Shan's Shell x1",
+              "item": 698,
+              "amount": 1,
               "chance": "75%"
             },
             {
-              "name": "Flat Ruststone x1",
+              "item": 820,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Large Ruststone x1",
+              "item": 821,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Small Ruststone x1",
+              "item": 822,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Ruststone Rod x1",
+              "item": 823,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Ruststone x1",
+              "item": 819,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "break left shoulder": [
             {
-              "name": "Lao-Shan's Scale x1",
+              "item": 693,
+              "amount": 1,
               "chance": "58%"
             },
             {
-              "name": "Lao-Shan's Shell x1",
+              "item": 698,
+              "amount": 1,
               "chance": "42%"
             }
           ],
           "break right shoulder": [
             {
-              "name": "Lao-Shan's Scale x1",
+              "item": 693,
+              "amount": 1,
               "chance": "58%"
             },
             {
-              "name": "Lao-Shan's Shell x1",
+              "item": 698,
+              "amount": 1,
               "chance": "42%"
             }
           ]
@@ -1820,10 +1862,9 @@
       }
     },
     {
-      "name": "Ashen Lao-Shan Lung",
+      "id": 50,
       "type": "elder-dragon",
       "icon": "lao-shan-lung",
-      "description": "A giant dragon few have seen and lived to tell the tale. When on the rampage it wreaks havoc on all in its path. The guild has built a fortress to repel the beast, but will it hold?",
       "drops": {},
       "hitzones": {
         "head": {
@@ -1934,88 +1975,89 @@
       }
     },
     {
-      "name": "Yama Tsukami",
+      "id": 58,
       "type": "elder-dragon",
-      "description": "An Elder Dragon that floats through the sky. A bite of earth, a drink of forest, it’s a veritable god of the sky made of the richest soil. Ancient trees grow thick on its back like on a mountain. It’s rumored to live near a forlorn, remote tower.",
       "drops": {
         "g rank": {
           "body carves (x5)": [
             {
-              "name": "YamaTsukamiFluid",
+              "item": 773,
               "chance": "34%"
             },
             {
-              "name": "AncientDrgnwood",
+              "item": 770,
               "chance": "27%"
             },
             {
-              "name": "YamaTsukamiHide",
+              "item": 771,
               "chance": "20%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "11%"
             },
             {
-              "name": "AncientDrgnmoss",
+              "item": 767,
               "chance": "8%"
             }
           ],
           "live carving : when falling down w/ enough damage": [
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "30%"
             },
             {
-              "name": "AncientDrgnwood",
+              "item": 770,
               "chance": "20%"
             },
             {
-              "name": "Dragonmoss",
+              "item": 765,
               "chance": "10%"
             },
             {
-              "name": "Dragonmoss+",
+              "item": 766,
               "chance": "10%"
             },
             {
-              "name": "AncientDrgnmoss",
+              "item": 767,
               "chance": "10%"
             },
             {
-              "name": "Dragon Toadstool",
+              "item": 182,
               "chance": "9%"
             },
             {
-              "name": "Dragonwood+",
+              "item": 769,
               "chance": "5%"
             }
           ],
           "break tentacles": [
             {
-              "name": "YamaTsukaFillet x1",
+              "item": 772,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "YamaTsukamiHide x1",
+              "item": 771,
+              "amount": 1,
               "chance": "30%"
             }
           ],
           "shiny drop : throw 2/3 tranqs while it does the succ": [
             {
-              "name": "Anc Drgn Treasre",
+              "item": 316,
               "chance": "45%"
             },
             {
-              "name": "Dragon Treasure",
+              "item": 315,
               "chance": "25%"
             },
             {
-              "name": "YamaTsukamiFluid",
+              "item": 773,
               "chance": "22%"
             },
             {
-              "name": "ElderDragonBlood",
+              "item": 749,
               "chance": "8%"
             }
           ]
@@ -2128,56 +2170,61 @@
       }
     },
     {
-      "name": "Fatalis",
+      "id": 2,
       "type": "elder-dragon",
-      "description": "A legendary black dragon said to have prowled these lands from the days of old. Many skilled hunters have sought to challenge it, but none ever return. A monster shrouded in mystery...",
       "drops": {
         "high rank": {
           "body carves (x9)": [
             {
-              "name": "Fatalis Scale",
+              "item": 778,
               "chance": "42%"
             },
             {
-              "name": "Fatalis Shell",
+              "item": 780,
               "chance": "50%"
             },
             {
-              "name": "Fatalis Horn",
+              "item": 776,
               "chance": "8%"
             }
           ],
           "break 1st horn": [
             {
-              "name": "Fatalis Horn x1",
+              "item": 776,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break 2nd horn": [
             {
-              "name": "Fatalis Horn x1",
+              "item": 776,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break eye": [
             {
-              "name": "Fatalis Eye x1",
+              "item": 782,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break wing": [
             {
-              "name": "Fatalis Webbing x1",
+              "item": 784,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break chest": [
             {
-              "name": "Fatalis Shell x1",
+              "item": 780,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Fatalis Scale x1",
+              "item": 778,
+              "amount": 1,
               "chance": "85%"
             }
           ]
@@ -2185,65 +2232,74 @@
         "g rank": {
           "body carves (x9)": [
             {
-              "name": "Hvy Fatalis Shl",
+              "item": 781,
               "chance": "44%"
             },
             {
-              "name": "ThckFatalisScale",
+              "item": 779,
               "chance": "38%"
             },
             {
-              "name": "Fatalis Shell",
+              "item": 780,
               "chance": "10%"
             },
             {
-              "name": "HardFatalisHorn",
+              "item": 777,
               "chance": "8%"
             }
           ],
           "break 1st horn": [
             {
-              "name": "HardFatalisHorn x1",
+              "item": 777,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Fatalis Horn x1",
+              "item": 776,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break 2nd horn": [
             {
-              "name": "HardFatalisHorn x1",
+              "item": 777,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Fatalis Horn x1",
+              "item": 776,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break eye": [
             {
-              "name": "Fatalis Evil Eye x1",
+              "item": 783,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Fatalis Eye x1",
+              "item": 782,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break wing": [
             {
-              "name": "Str Fatalis Wng x1",
+              "item": 785,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break chest": [
             {
-              "name": "ThckFatalisScale x1",
+              "item": 779,
+              "amount": 1,
               "chance": "85%"
             },
             {
-              "name": "Hvy Fatalis Shl x1",
+              "item": 781,
+              "amount": 1,
               "chance": "15%"
             }
           ]
@@ -2404,68 +2460,74 @@
       }
     },
     {
-      "name": "Crimson Fatalis",
+      "id": 36,
       "type": "elder-dragon",
       "icon": "fatalis",
       "drops": {
         "high rank": {
           "body carves (x9)": [
             {
-              "name": "Fatalis CrmsnScl",
+              "item": 788,
               "chance": "34%"
             },
             {
-              "name": "Fatalis CrmsnShl",
+              "item": 790,
               "chance": "23%"
             },
             {
-              "name": "Fatalis CrmsnHrn",
+              "item": 786,
               "chance": "6%"
             },
             {
-              "name": "Fatalis Scale",
+              "item": 778,
               "chance": "19%"
             },
             {
-              "name": "Fatalis Shell",
+              "item": 780,
               "chance": "15%"
             },
             {
-              "name": "Fatalis Horn",
+              "item": 776,
               "chance": "3%"
             }
           ],
           "break 1st horn": [
             {
-              "name": "Fatalis CrmsnHrn x1",
+              "item": 786,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break 2nd horn": [
             {
-              "name": "Fatalis Horn x1",
+              "item": 776,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break eye": [
             {
-              "name": "Fatalis DevilEye x1",
+              "item": 792,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break wing": [
             {
-              "name": "Fatalis CrmsnWng x1",
+              "item": 793,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break chest": [
             {
-              "name": "Fatalis CrmsnScl x1",
+              "item": 788,
+              "amount": 1,
               "chance": "85%"
             },
             {
-              "name": "Fatalis CrmsnShl x1",
+              "item": 790,
+              "amount": 1,
               "chance": "15%"
             }
           ]
@@ -2473,73 +2535,82 @@
         "g rank": {
           "body carves (x9)": [
             {
-              "name": "ThckFatlisCrmScl",
+              "item": 789,
               "chance": "34%"
             },
             {
-              "name": "HvyFatalisCrmShl",
+              "item": 791,
               "chance": "23%"
             },
             {
-              "name": "ThckFatalisScale",
+              "item": 779,
               "chance": "19%"
             },
             {
-              "name": "Hvy Fatalis Shl",
+              "item": 781,
               "chance": "15%"
             },
             {
-              "name": "Fatalis CrmsnHrn",
+              "item": 786,
               "chance": "6%"
             },
             {
-              "name": "HardFatalisHorn",
+              "item": 777,
               "chance": "3%"
             }
           ],
           "break 1st horn": [
             {
-              "name": "HrdFatlisCrmHorn x1",
+              "item": 787,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Fatalis CrmsnHrn x1",
+              "item": 786,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break 2nd horn": [
             {
-              "name": "HardFatalisHorn x1",
+              "item": 777,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Fatalis Horn x1",
+              "item": 776,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break eye": [
             {
-              "name": "Fatalis Evil Eye x1",
+              "item": 783,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Fatalis DevilEye x1",
+              "item": 792,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break wing": [
             {
-              "name": "StrFatlisCrmWing x1",
+              "item": 794,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break chest": [
             {
-              "name": "ThckFatlisCrmScl x1",
+              "item": 789,
+              "amount": 1,
               "chance": "85%"
             },
             {
-              "name": "HvyFatalisCrmShl x1",
+              "item": 791,
+              "amount": 1,
               "chance": "15%"
             }
           ]
@@ -2700,68 +2771,74 @@
       }
     },
     {
-      "name": "White Fatalis",
+      "id": 71,
       "type": "elder-dragon",
       "icon": "fatalis",
       "drops": {
         "high rank": {
           "body carves (x9)": [
             {
-              "name": "Wht Fatalis Scl",
+              "item": 795,
               "chance": "31%"
             },
             {
-              "name": "Wht Fatalis Shl",
+              "item": 797,
               "chance": "24%"
             },
             {
-              "name": "Fatalis Scale",
+              "item": 778,
               "chance": "20%"
             },
             {
-              "name": "Fatalis Shell",
+              "item": 780,
               "chance": "17%"
             },
             {
-              "name": "Fatalis Horn",
+              "item": 776,
               "chance": "5%"
             },
             {
-              "name": "Wht Fatalis Horn",
+              "item": 801,
               "chance": "3%"
             }
           ],
           "break 1st horn": [
             {
-              "name": "Wht Fatalis Horn x1",
+              "item": 801,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break 2nd horn": [
             {
-              "name": "Fatalis Horn x1",
+              "item": 776,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break eye": [
             {
-              "name": "Fatalis DevilEye x1",
+              "item": 792,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break wing": [
             {
-              "name": "Wht Fatalis Wbng x1",
+              "item": 799,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break chest": [
             {
-              "name": "Wht Fatalis Scl x1",
+              "item": 795,
+              "amount": 1,
               "chance": "75%"
             },
             {
-              "name": "Wht Fatalis Shl x1",
+              "item": 797,
+              "amount": 1,
               "chance": "25%"
             }
           ]
@@ -2769,73 +2846,82 @@
         "g rank": {
           "body carves (x9)": [
             {
-              "name": "ThckWhtFatlisScl",
+              "item": 796,
               "chance": "31%"
             },
             {
-              "name": "HvyWhtFatalisShl",
+              "item": 798,
               "chance": "24%"
             },
             {
-              "name": "ThckFatalisScale",
+              "item": 779,
               "chance": "20%"
             },
             {
-              "name": "Hvy Fatalis Shl",
+              "item": 781,
               "chance": "17%"
             },
             {
-              "name": "HardFatalisHorn",
+              "item": 777,
               "chance": "5%"
             },
             {
-              "name": "HrdWhtFatlisHorn",
+              "item": 802,
               "chance": "3%"
             }
           ],
           "break 1st horn": [
             {
-              "name": "HrdWhtFatlisHorn x1",
+              "item": 802,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Wht Fatalis Horn x1",
+              "item": 801,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break 2nd horn": [
             {
-              "name": "HardFatalisHorn x1",
+              "item": 777,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Fatalis Horn x1",
+              "item": 776,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break eye": [
             {
-              "name": "Fatalis Evil Eye x1",
+              "item": 783,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Fatalis DevilEye x1",
+              "item": 792,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break wing": [
             {
-              "name": "StrWhtFatalisWng x1",
+              "item": 800,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break chest": [
             {
-              "name": "ThckWhtFatlisScl x1",
+              "item": 796,
+              "amount": 1,
               "chance": "75%"
             },
             {
-              "name": "HvyWhtFatalisShl x1",
+              "item": 798,
+              "amount": 1,
               "chance": "25%"
             }
           ]

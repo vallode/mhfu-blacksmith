@@ -12,8 +12,11 @@ workspace:
 - `packages/randomfu`: the randomizer (library, CLI, local settings page).
   Its own `CLAUDE.md` covers styling text written into the game.
 - `packages/game-data`: the one way into `data/`. Everything that reads the
-  game data does so with its `readData`.
-- `data/`: the game data, shared by the site and the extractor.
+  game data does so with its `readData`, and `build-data` writes with its
+  `writeData`.
+- `data/`: the game data, shared by the site and the extractor. Records
+  carry game IDs and refer to each other by ID; names are in
+  `data/strings/<lang>.json`. See `packages/game-data/README.md`.
 
 Packages import each other by package name, never by a relative path out of
 their own directory (`mhfu-extract/src/container/image.js`, not

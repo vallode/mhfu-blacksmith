@@ -60,6 +60,7 @@
             aria-controls="steps"
           >
             <span class="step-count" id="step-count"></span>
+            <span class="icon" id="step-icon" aria-hidden="true"></span>
             <span id="step-title"></span>
             <span class="caret" aria-hidden="true"></span>
           </button>
@@ -183,8 +184,14 @@
         <p class="status" id="copy-status" role="status"></p>
 
         <div class="go">
-          <button type="button" class="button" id="dry-run">Preview spoiler</button>
-          <button type="button" class="button primary" id="run">Randomize!</button>
+          <button type="button" class="button" id="dry-run">
+            <span class="icon" style="--icon: url(images/binoculars.png)" aria-hidden="true"></span>
+            Preview spoiler
+          </button>
+          <button type="button" class="button primary" id="run">
+            <span class="icon" style="--icon: url(images/max.png)" aria-hidden="true"></span>
+            Randomize!
+          </button>
         </div>
       </section>
 

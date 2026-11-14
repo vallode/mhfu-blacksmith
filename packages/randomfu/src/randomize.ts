@@ -129,6 +129,8 @@ export interface RandomizeOptions {
   poogieTest?: boolean;
   /** Prototype: the code loader with its demo blob (see `docs/code-loader.md`). */
   loaderDemo?: boolean;
+  /** Adds research detail to the spoiler log. */
+  debug?: boolean;
 }
 
 export function randomize(
@@ -161,7 +163,7 @@ export function randomize(
     reports.push(result.report);
     questsAfter = result.questsAfter;
     if (settings["questMonsters.text"]) {
-      reports.push(renameQuestText(result.swaps, game.quests, edits, game.boards));
+      reports.push(renameQuestText(result.swaps, game.quests, edits, game.boards, options.debug));
     }
   }
   if (settings["questMonsters.difficulty"]) {

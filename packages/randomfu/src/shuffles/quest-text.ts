@@ -307,6 +307,7 @@ export function renameQuestText(
   quests: readonly LoadedQuest[],
   edits: Edits,
   boards: readonly BoardFile[] = [],
+  debug = false,
 ): ShuffleReport {
   const { slots, texts } = learnNames(quests);
   const lines: ShuffleReport["lines"] = [];
@@ -366,15 +367,18 @@ export function renameQuestText(
   }
 
   // What was learned, to check against the game: each monster's name and article per language.
-  slots.forEach((slot, i) => {
-    for (const [id, name] of [...slot.names].sort((a, b) => a[0] - b[0])) {
-      const words = [...(slot.before.get(id) ?? [])];
-      lines.push({
-        where: `Names learned (${SLOT_LANGUAGES[i]})`,
-        text: `${monsterName(id)}: "${name}" (${words.length > 0 ? words.join(", ") : "no article"})`,
-      });
-    }
-  });
+  // Research detail, so only with `debug`.
+  if (debug) {
+    slots.forEach((slot, i) => {
+      for (const [id, name] of [...slot.names].sort((a, b) => a[0] - b[0])) {
+        const words = [...(slot.before.get(id) ?? [])];
+        lines.push({
+          where: `Names learned (${SLOT_LANGUAGES[i]})`,
+          text: `${monsterName(id)}: "${name}" (${words.length > 0 ? words.join(", ") : "no article"})`,
+        });
+      }
+    });
+  }
 
   const boardRecords = boards.reduce((n, b) => n + b.records.length, 0);
   const boardNote =
