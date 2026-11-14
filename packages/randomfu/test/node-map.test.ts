@@ -3,7 +3,7 @@ import { test } from "node:test";
 import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { readTmh, swizzle, unswizzle } from "mhfu-extract/src/models/tmh.js";
+import { locateIndexedImage, readTmh, swizzle, unswizzle } from "mhfu-extract/src/models/tmh.js";
 import { mapTextureName, type MapGeometry } from "mhfu-extract/src/tables/map-layout.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { questTier } from "../src/game/tiers.js";
@@ -24,7 +24,7 @@ async function withFixture(run: (game: GameData) => void): Promise<void> {
 }
 
 /** A 160x160 8-bit swizzled map texture with a palette, every pixel using entry 0 or 1. */
-function texture(): Buffer {
+function texture(alpha = 255): Buffer {
   const pixels = Buffer.alloc(160 * 160);
   for (let i = 0; i < pixels.length; i++) pixels[i] = i % 2;
   const header = Buffer.alloc(48);
@@ -41,7 +41,7 @@ function texture(): Buffer {
   palette.writeUInt32LE(16 + 1024, 0);
   palette.writeUInt32LE(3, 8);
   palette.writeUInt32LE(256, 12);
-  palette.set([10, 20, 30, 255, 40, 50, 60, 255], 16);
+  palette.set([10, 20, 30, alpha, 40, 50, 60, alpha], 16);
   return Buffer.concat([header, swizzle(pixels, 160, 160), palette]);
 }
 
@@ -71,13 +71,30 @@ test("nodes are drawn in unused palette entries and nothing else changes", () =>
   assert.deepEqual(out.subarray(0, 48), file.subarray(0, 48));
 });
 
+test("a later point covers an earlier one, and a set of several images is left alone", () => {
+  const file = texture();
+  const out = drawNodes(file, [
+    { kind: "gather", x: 50, y: 60 },
+    { kind: "mine", x: 51, y: 60 },
+  ])!;
+  const px = (x: number) => [
+    ...readTmh(out)[0]!.rgba.subarray((60 * 160 + x) * 4, (60 * 160 + x) * 4 + 3),
+  ];
+  assert.deepEqual(px(50), MARKER_COLORS.mine);
+  assert.deepEqual(px(49), MARKER_COLORS.gather);
+  const two = Buffer.from(file);
+  two.writeUInt32LE(2, 8);
+  assert.equal(locateIndexedImage(file) !== null, true);
+  assert.equal(locateIndexedImage(two), null);
+});
+
 test("a texture that isn't the expected layout is left alone", () => {
   assert.equal(drawNodes(Buffer.alloc(100), []), null);
 });
 
 test("randomize leaves a non-EU disc's maps alone and says why", async () => {
   await withFixture((game) => {
-    const result = randomize(game, settingsWith("MAP", [], { "hints.nodeMap": true }));
+    const result = randomize(game, settingsWith("MAP", [], { "mods.nodeMap": true }));
     const report = result.reports.find((r) => r.title === "Gathering nodes on the map");
     assert.ok(report);
     assert.match(report.notes[0]!, /Not written: .*EU disc/);
@@ -103,7 +120,7 @@ test("one set of nodes per texture, only on the art, from quests a player can ta
         },
       ],
     ]);
-    const points = collectNodePoints(game, geometry, new Map([[name, texture()]]));
+    const points = collectNodePoints(game, geometry, (n) => (n === name ? texture() : undefined));
     const list = points.get(name) ?? [];
     assert.ok(list.length > 0, "the fixture quests have nodes");
     const keys = list.map((p) => `${p.kind}|${Math.round(p.x)}|${Math.round(p.y)}`);
@@ -111,7 +128,29 @@ test("one set of nodes per texture, only on the art, from quests a player can ta
     for (const { x, y } of list) {
       assert.ok(x >= 0 && y >= 0 && x < 160 && y < 160);
     }
+    // Bugs are drawn first and mines last, so a mine covers what it overlaps.
+    const order = ["bug", "gather", "mine"];
+    const ranks = list.map((p) => order.indexOf(p.kind));
+    assert.deepEqual(
+      ranks,
+      [...ranks].sort((a, b) => a - b),
+    );
     // No texture, no points.
-    assert.equal(collectNodePoints(game, geometry, new Map()).size, 0);
+    assert.equal(collectNodePoints(game, geometry, () => undefined).size, 0);
+    // Nothing is kept where the art is transparent.
+    const clear = collectNodePoints(game, geometry, (n) => (n === name ? texture(0) : undefined));
+    assert.equal(clear.get(name)?.length ?? 0, 0);
+    // Nodes off the map are dropped.
+    const away = new Map([
+      [
+        mapId,
+        {
+          ...geometry.get(mapId)!,
+          origins: geometry.get(mapId)!.origins.map(() => [1e9, 1e9] as [number, number]),
+        },
+      ],
+    ]);
+    const off = collectNodePoints(game, away, (n) => (n === name ? texture() : undefined));
+    assert.equal(off.get(name)?.length ?? 0, 0);
   });
 });

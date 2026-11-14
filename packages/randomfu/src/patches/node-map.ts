@@ -39,6 +39,8 @@ const SIZE = 160;
 /** Marker width and height in pixels, odd so it has a centre. */
 const MARKER = 3;
 const TITLE = "Gathering nodes on the map";
+/** Draw order: later kinds cover earlier ones where markers overlap. */
+const DRAW_ORDER: readonly NodeKind[] = ["bug", "gather", "mine"];
 
 export interface NodePoint {
   kind: NodeKind;
@@ -52,6 +54,8 @@ interface MapArt {
   pixelsAt: number;
   paletteAt: number;
   pixels: Buffer;
+  /** The alpha of each palette entry. */
+  alphas: number[];
 }
 
 /** The 160x160, 8-bit, swizzled, RGBA8888-palette texture this patch draws on, or null. */
@@ -60,7 +64,13 @@ function readArt(file: Buffer): MapArt | null {
   if (!found?.swizzled || found.paletteFormat !== 3) return null;
   if (found.width !== SIZE || found.height !== SIZE) return null;
   const raw = file.subarray(found.pixels, found.pixels + SIZE * SIZE);
-  return { pixelsAt: found.pixels, paletteAt: found.palette, pixels: unswizzle(raw, SIZE, SIZE) };
+  const pixels = unswizzle(raw, SIZE, SIZE);
+  return {
+    pixelsAt: found.pixels,
+    paletteAt: found.palette,
+    pixels,
+    alphas: Array.from({ length: 256 }, (_, i) => file[found.palette + i * 4 + 3]!),
+  };
 }
 
 /**
@@ -105,7 +115,7 @@ export function drawNodes(file: Buffer, points: readonly NodePoint[]): Buffer | 
 export function collectNodePoints(
   game: GameData,
   geometry: ReadonlyMap<number, MapGeometry>,
-  textures: ReadonlyMap<string, Buffer>,
+  texture: (name: string) => Buffer | undefined,
 ): Map<string, NodePoint[]> {
   const byTexture = new Map<string, Map<string, NodePoint>>();
   const arts = new Map<string, MapArt | null>();
@@ -113,12 +123,17 @@ export function collectNodePoints(
     if (!questTier(parsed)) continue;
     const map = geometry.get(parsed.header.map);
     const name = mapTextureName(parsed.header.map);
-    const texture = name && textures.get(name);
-    if (!map || !name || !texture) continue;
-    if (!arts.has(name)) arts.set(name, readArt(texture));
+    if (!map || !name) continue;
+    if (!arts.has(name)) {
+      const file = texture(name);
+      arts.set(name, file ? readArt(file) : null);
+    }
     const art = arts.get(name);
+    if (!art) continue;
+    // Quests on one map share their nodes, so this mostly re-finds the same
+    // points; taking every quest's keeps a node only some quests have.
     const result = readGatheringItems(file.payload, parsed);
-    if (!art || result.problem) continue;
+    if (result.problem) continue;
 
     const points = byTexture.get(name) ?? new Map<string, NodePoint>();
     byTexture.set(name, points);
@@ -126,19 +141,19 @@ export function collectNodePoints(
       const kind = NODE_KINDS[node.type];
       const pixel = projectToMap(map, node.area, node.x, node.z);
       if (!kind || !pixel) continue;
-      const [x, y] = pixel;
-      const opaque =
-        texture[art.paletteAt + (art.pixels[Math.floor(y) * SIZE + Math.floor(x)] ?? 0) * 4 + 3]! >
-        128;
-      if (x >= 0 && y >= 0 && x < SIZE && y < SIZE && opaque) {
-        points.set(`${kind}|${Math.round(x)}|${Math.round(y)}`, { kind, x, y });
-      }
+      const x = Math.round(pixel[0]);
+      const y = Math.round(pixel[1]);
+      if (x < 0 || y < 0 || x >= SIZE || y >= SIZE) continue;
+      if (art.alphas[art.pixels[y * SIZE + x]!]! > 128)
+        points.set(`${kind}|${x}|${y}`, { kind, x, y });
     }
   }
   return new Map(
     [...byTexture].map(([name, points]) => [
       name,
-      [...points.values()].sort((a, b) => a.y - b.y || a.x - b.x),
+      [...points.values()].sort(
+        (a, b) => DRAW_ORDER.indexOf(a.kind) - DRAW_ORDER.indexOf(b.kind) || a.y - b.y || a.x - b.x,
+      ),
     ]),
   );
 }
@@ -161,20 +176,24 @@ export function addNodeMap(game: GameData, edits: Edits): ShuffleReport {
   }
 
   const files = new Map<string, number>();
-  const textures = new Map<string, Buffer>();
   for (const [index, path] of loadFileList(game.region)) {
     const name = /^cockpit\/(map\d+)\.tmh$/.exec(path)?.[1];
-    if (!name || index >= game.dataBin.fileCount) continue;
-    files.set(name, index);
-    textures.set(name, game.dataBin.read(index));
+    if (name && index < game.dataBin.fileCount) files.set(name, index);
   }
-  const points = collectNodePoints(game, geometry, textures);
+  const cache = new Map<string, Buffer>();
+  const read = (name: string) => {
+    const index = files.get(name);
+    if (index === undefined) return undefined;
+    if (!cache.has(name)) cache.set(name, game.dataBin.read(index));
+    return cache.get(name);
+  };
+  const points = collectNodePoints(game, geometry, read);
 
   let maps = 0;
   let nodes = 0;
   const left: string[] = [];
   for (const [name, list] of points) {
-    const drawn = drawNodes(textures.get(name)!, list);
+    const drawn = drawNodes(read(name)!, list);
     if (!drawn) {
       left.push(name);
       continue;

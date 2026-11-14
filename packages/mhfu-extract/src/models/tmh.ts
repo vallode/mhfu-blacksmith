@@ -84,6 +84,29 @@ export function swizzle(data: Buffer, rowBytes: number, height: number): Buffer 
   return reorderBlocks(data, rowBytes, height, true);
 }
 
+/** Where an image's pixel header is, given where the image starts. */
+const pixelHeaderAt = (imageAt: number) => imageAt + 16;
+interface PixelHeader {
+  size: number;
+  swizzled: boolean;
+  format: number;
+  width: number;
+  height: number;
+}
+
+function readPixelHeader(reader: BinaryReader, at: number): PixelHeader {
+  return {
+    size: reader.u32(at),
+    swizzled: reader.u32(at + 4) === 1,
+    format: reader.u32(at + 8),
+    width: reader.u16(at + 12),
+    height: reader.u16(at + 14),
+  };
+}
+
+/** Where a palette header is, given the pixel header and its size. */
+const paletteHeaderAt = (pixelHeader: number, pixelSize: number) => pixelHeader + pixelSize;
+
 export interface IndexedImageLocation {
   width: number;
   height: number;
@@ -101,13 +124,19 @@ export interface IndexedImageLocation {
  * place; `readTmh` decodes the same layout.
  */
 export function locateIndexedImage(buf: Buffer): IndexedImageLocation | null {
-  if (!isTmh(buf) || buf.length < 64 || buf.readUInt32LE(28) !== 1) return null;
-  const pixelHeader = 32;
-  const pixelSize = buf.readUInt32LE(pixelHeader);
-  const paletteHeader = pixelHeader + pixelSize;
-  if (buf.readUInt32LE(pixelHeader + 8) !== 5 || paletteHeader + 16 > buf.length) return null;
-  const width = buf.readUInt16LE(pixelHeader + 12);
-  const height = buf.readUInt16LE(pixelHeader + 14);
+  const imageAt = 16;
+  if (!isTmh(buf) || buf.length < 64 || buf.readUInt32LE(8) !== 1) return null;
+  if (buf.readUInt32LE(imageAt + 12) !== 1) return null; // no palette
+  const pixelHeader = pixelHeaderAt(imageAt);
+  const {
+    size: pixelSize,
+    swizzled,
+    format,
+    width,
+    height,
+  } = readPixelHeader(new BinaryReader(buf), pixelHeader);
+  const paletteHeader = paletteHeaderAt(pixelHeader, pixelSize);
+  if (format !== 5 || paletteHeader + 16 > buf.length) return null;
   const paletteFormat = buf.readUInt32LE(paletteHeader + 8);
   const palette = paletteHeader + 16;
   const entryBytes = paletteFormat === 3 ? 4 : 2;
@@ -121,7 +150,7 @@ export function locateIndexedImage(buf: Buffer): IndexedImageLocation | null {
   return {
     width,
     height,
-    swizzled: buf.readUInt32LE(pixelHeader + 4) === 1,
+    swizzled,
     pixels: pixelHeader + 16,
     palette,
     paletteFormat,
@@ -204,12 +233,8 @@ function decodeDxt1(data: Buffer, width: number, height: number): Buffer {
 function decodeImage(reader: BinaryReader, offset: number): { image: TmhImage; size: number } {
   const totalSize = reader.u32(offset);
   const hasPalette = reader.u32(offset + 12) === 1;
-  const pixelAt = offset + 16;
-  const pixelSize = reader.u32(pixelAt);
-  const swizzled = reader.u32(pixelAt + 4) === 1;
-  const format = reader.u32(pixelAt + 8);
-  const width = reader.u16(pixelAt + 12);
-  const height = reader.u16(pixelAt + 14);
+  const pixelAt = pixelHeaderAt(offset);
+  const { size: pixelSize, swizzled, format, width, height } = readPixelHeader(reader, pixelAt);
   let data = reader.bytes(pixelAt + 16, pixelSize - 16);
 
   let rgba: Buffer;
@@ -225,7 +250,7 @@ function decodeImage(reader: BinaryReader, offset: number): { image: TmhImage; s
         rgba.set(directColor(pixels, (i * bpp) / 8, format), i * 4);
     } else {
       if (!hasPalette) throw new Error(`Indexed texture format ${format} without a palette`);
-      const { colors } = decodePalette(reader, pixelAt + pixelSize);
+      const { colors } = decodePalette(reader, paletteHeaderAt(pixelAt, pixelSize));
       for (let i = 0; i < width * height; i++) {
         let index: number;
         if (format === 4) index = (pixels.u8(i >> 1) >> ((i & 1) * 4)) & 15;

@@ -524,7 +524,7 @@ export function randomize(
     }),
   );
 
-  if (settings["hints.nodeMap"]) reports.push(addNodeMap(game, edits));
+  if (settings["mods.nodeMap"]) reports.push(addNodeMap(game, edits));
 
   return {
     edits,

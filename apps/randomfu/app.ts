@@ -106,6 +106,13 @@ const OPTION_STEPS: Step[] = [
     sections: ["Shop stock", "Shop prices"],
     intro: "What the village, Guild Hall and peddling granny sell, and for how much.",
   },
+  {
+    id: "modifications",
+    title: "Modifications",
+    icon: "deco",
+    sections: ["Modifications"],
+    intro: "Changes to how the game looks and what it shows you, rather than what it hands out.",
+  },
 ];
 
 // A section no step claims still gets a step, so a new option always shows up.

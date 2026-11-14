@@ -78,7 +78,7 @@ export interface Settings {
   "weaknesses.parts": boolean;
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
-  "hints.nodeMap": boolean;
+  "mods.nodeMap": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -930,10 +930,10 @@ export const OPTIONS: readonly OptionDef[] = [
     eboot: true,
   },
   {
-    key: "hints.nodeMap",
-    section: "Hints",
+    key: "mods.nodeMap",
+    section: "Modifications",
     label: "Gathering nodes on the area map",
-    help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only; not yet seen in game.",
+    help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only.",
     type: { kind: "boolean" },
     default: false,
     eboot: true,
