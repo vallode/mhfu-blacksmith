@@ -39,8 +39,10 @@ import {
 import { ownedItemCounts } from "@/lib/hunter-progress";
 import { itemCategory, itemCategoryLabel } from "@/lib/item-categories";
 import {
+  farmPlaceLabel,
   gatherPointsLabel,
   shopStagesLabel,
+  type FarmPlace,
   type GatherPlace,
   type ShopPlace,
 } from "@/lib/item-places";
@@ -110,11 +112,18 @@ export default function ItemDetailClient({ slug }: Props) {
       content: <QuestSources sources={found.quests} cleared={cleared} />,
     });
   }
-  if (placed?.gathering.length) {
+  if (placed?.gathering.length || placed?.farm.length) {
     tabs.push({
       id: "gathering",
       label: "Gathering",
-      content: <GatherPlaces places={placed.gathering} quests={quests} cleared={cleared} />,
+      content: (
+        <GatherPlaces
+          places={placed.gathering}
+          farm={placed.farm}
+          quests={quests}
+          cleared={cleared}
+        />
+      ),
     });
   }
   if (placed?.gathering.some((p) => p.mapQuest !== undefined)) {
@@ -294,19 +303,22 @@ function QuestSources({
 
 /**
  * The item's gathering points, one list per rank or quest board: a row per
- * map, or per quest where only that quest's points give it.
+ * map, or per quest where only that quest's points give it. Then Pokke
+ * Farm's points, a row per upgrade.
  */
 function GatherPlaces({
   places,
+  farm,
   quests,
   cleared,
 }: {
   places: GatherPlace[];
+  farm: FarmPlace[];
   quests: Quest[] | null;
   cleared: ReadonlySet<number> | null;
 }) {
   const byId = new Map(quests?.map((q) => [q.id, q]));
-  return (
+  const grid = (
     <DropGrid>
       {groupBy(places, (p) => p.group).map(([group, rows]) => (
         <SourceList
@@ -330,7 +342,27 @@ function GatherPlaces({
           })}
         />
       ))}
+      {farm.length > 0 && (
+        <SourceList
+          title="Pokke Farm"
+          rows={farm.map((p) => ({
+            name: p.point,
+            detail: farmPlaceLabel(p),
+            value: `${p.chance}%`,
+          }))}
+        />
+      )}
     </DropGrid>
+  );
+  if (farm.length === 0) return grid;
+  return (
+    <div className="flex flex-col gap-[1.6rem]">
+      {grid}
+      <p className="m-0 text-fine whitespace-normal text-white/60">
+        The farm restocks after every quest. Each Mining Point and Insect Thicket upgrade adds a
+        point of its own, so the earlier ones stay.
+      </p>
+    </div>
   );
 }
 

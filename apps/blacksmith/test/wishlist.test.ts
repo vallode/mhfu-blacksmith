@@ -243,6 +243,7 @@ describe("ways and destinations", () => {
         chance: 30,
       },
     ],
+    farm: [],
     shops: [],
   };
 
@@ -267,6 +268,7 @@ describe("ways and destinations", () => {
       sources,
       {
         gathering: [],
+        farm: [],
         shops: [
           { shop: "General Store", currency: "zenny", price: 50, stages: [1], stageCount: 3 },
         ],
@@ -282,6 +284,7 @@ describe("ways and destinations", () => {
       sources,
       {
         gathering: [],
+        farm: [],
         shops: [
           { shop: "Late Store", currency: "zenny", price: 50, stages: [3], stageCount: 3 },
           { shop: "Pokke", currency: "pokke-points", price: null, stages: [1], stageCount: 1 },
@@ -303,6 +306,7 @@ describe("ways and destinations", () => {
           { group: "Village", map: "Jungle (Day)", points: [point], chance: 50, quests: [7] },
           { group: "Village", map: "Jungle (Night)", points: [point], chance: 10 },
         ],
+        farm: [],
         shops: [],
       },
       undefined,

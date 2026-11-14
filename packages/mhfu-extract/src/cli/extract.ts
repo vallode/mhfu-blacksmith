@@ -16,6 +16,7 @@ import { loadMapLayouts } from "../tables/map-layout.js";
 import { emitQuestsFile, type MultiplierLookup } from "../emit/quests.js";
 import { emitShops } from "../emit/shops.js";
 import { emitVeggieTrades } from "../emit/veggie-trades.js";
+import { emitFarm } from "../emit/farm.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
@@ -45,6 +46,7 @@ import {
 } from "../tables/offsets.js";
 import { readCombinations } from "../tables/combinations.js";
 import { readVeggieTrades } from "../tables/veggie-trades.js";
+import { readFarmTables } from "../tables/farm.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -306,6 +308,16 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.warn(
       "Warning: the Veggie Elder's trade tables weren't found; skipping veggie-trades.json.",
     );
+  }
+
+  const farm = readFarmTables(reader);
+  if (farm) {
+    console.log(
+      `Pokke Farm tables at 0x${farm.offset.toString(16)}: ${farm.tables.length} points.`,
+    );
+    output["farm.json"] = emitFarm(farm);
+  } else {
+    console.warn("Warning: Pokke Farm's gathering tables weren't found; skipping farm.json.");
   }
 
   if (options.raw) {
