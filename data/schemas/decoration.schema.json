@@ -40,7 +40,6 @@
             "additionalProperties": false,
             "properties": {
               "skill":  { "type": "integer", "minimum": 1, "description": "Skill tree ID (SkillID; data/skills.json)" },
-              "alias":  { "type": "integer", "minimum": 0, "description": "Spelled as the tree's n-th English alias (data/strings/en.json aliases.skill), as the site showed it" },
               "points": { "type": "integer", "not": { "const": 0 } }
             }
           },

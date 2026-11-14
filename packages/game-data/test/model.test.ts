@@ -73,18 +73,30 @@ describe("the committed data", () => {
       );
   });
 
-  test("armor and decorations keep the site's skill spellings through aliases", () => {
+  test("armor and decorations name every skill tree by its name, not an alias", () => {
+    const en = readStringsDoc(DATA);
+    const trees = new Set(Object.values(en.skill ?? {}));
+    for (const slot of ["helmet", "plate", "gauntlets", "waist", "leggings"]) {
+      for (const a of readRawData(DATA, "armor", `${slot}.json`).armor as {
+        skills: Record<string, unknown>[] | null;
+      }[])
+        for (const s of a.skills ?? []) assert.ok(!("alias" in s), `${slot}: ${JSON.stringify(s)}`);
+      for (const a of readData(DATA, "armor", `${slot}.json`).armor as {
+        skills: { name: string }[] | null;
+      }[])
+        for (const s of a.skills ?? []) assert.ok(trees.has(s.name), s.name);
+    }
     const hunter = readData(DATA, "armor/helmet.json").armor.find(
       (a: { name: string }) => a.name === "Hunter's Helm",
     );
     assert.deepEqual(hunter.skills[0], { name: "PsychicVis", amount: 3 });
-    const raw = readRawData(DATA, "armor/plate.json").armor as { skills: { alias?: number }[] }[];
-    assert.ok(raw.some((a) => a.skills?.some((s) => s.alias !== undefined)));
     const decorations = readData(DATA, "decorations.json").decorations as {
       name: string;
       skills: string[];
     }[];
-    assert.ok(decorations.some((d) => d.skills.includes("NormalS up +4")));
+    assert.ok(decorations.some((d) => d.skills.includes("NormalS Up +4")));
+    assert.ok(!decorations.some((d) => d.skills.includes("NormalS up +4")));
+    // Decoration names are untouched.
     assert.ok(decorations.some((d) => d.name === "Constitutn Jewel"));
   });
 
