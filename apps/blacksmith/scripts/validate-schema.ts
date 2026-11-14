@@ -1,6 +1,7 @@
 /**
- * Checks every file under data/ against its JSON Schema in data/schemas/.
- * Exits with code 1 if any file fails.
+ * Checks every file under data/ against its JSON Schema in data/schemas/,
+ * as it is on disk (records with IDs; names in data/strings/). Exits with
+ * code 1 if any file fails.
  */
 import fs from "fs";
 import path from "path";
@@ -31,7 +32,7 @@ const checks: [label: string, schema: string, files: string[]][] = [
   ["Veggie Elder trades", "veggie-trade", ["veggie-trades.json"]],
   ["Pokke Farm", "farm", ["farm.json"]],
   ["skills", "skill", ["skills.json"]],
-  ["equipment IDs", "equipment-ids", ["equipment-ids.json"]],
+  ["string tables", "strings", jsonFiles("strings")],
 ];
 
 let failed = false;

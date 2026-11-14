@@ -1,6 +1,6 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
-  "title": "Items file (in-game item ID -> name and stats)",
+  "title": "Items file (in-game item ID -> stats)",
   "type": "object",
   "required": ["items"],
   "additionalProperties": false,
@@ -21,18 +21,11 @@
   "definitions": {
     "item": {
       "type": "object",
-      "required": ["id", "name", "name_jp"],
+      "required": ["id"],
       "additionalProperties": false,
+      "$comment": "Names are in data/strings, keyed by this ID: the NA (ULUS-10391) English name in en.json 'item', other English spellings (EU, MHP2G fan patch, FUComplete, datamine enum, and old spellings of this repo's recipe data) in en.json 'aliases.item', the JP (ULJM-05500) name in ja.json 'item'.",
       "properties": {
         "id":      { "type": "integer", "minimum": 1, "maximum": 65534, "description": "u16 item ID as stored in the save's item box / pouch" },
-        "name":    { "type": "string", "minLength": 1, "description": "NA (ULUS-10391) English name" },
-        "name_jp": { "type": "string", "minLength": 1, "description": "JP (ULJM-05500) name" },
-        "aliases": {
-          "type": "array",
-          "description": "Other English spellings of the same item (EU, MHP2G fan patch, FUComplete, datamine enum, and spellings used in this repo's recipe data)",
-          "items": { "type": "string", "minLength": 1 },
-          "uniqueItems": true
-        },
         "rarity":  { "type": "integer", "minimum": 1, "maximum": 10, "description": "From the disc's item table (mhfu-extract build-data). Omitted on placeholders" },
         "carry":   { "type": "integer", "minimum": 1, "maximum": 255, "description": "Carry limit, from the disc's item table. 255 on Normal S Lv1, which is unlimited. Omitted on placeholders" },
         "price":   { "type": "integer", "minimum": 0, "description": "Price in zenny, from the disc's item table: the shops' buy price for items they sell. Omitted on placeholders" },

@@ -319,7 +319,7 @@ const REPO_DATA_DIR = path.resolve(
 
 /**
  * Each disc horn's `NoteGLType` paired with its committed notes, joined by
- * game ID through `data/equipment-ids.json` (the same identity `compare`
+ * game ID through game-data's `equipment-ids.json` view (the same identity `compare`
  * uses). Horns without committed notes are skipped.
  */
 export function hornNotesFromCommitted(

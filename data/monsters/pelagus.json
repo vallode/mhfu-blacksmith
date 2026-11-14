@@ -1,26 +1,25 @@
 {
   "monsters": [
     {
-      "name": "Bullfango",
+      "id": 5,
       "type": "pelagus",
-      "description": "A large wild boar. Foul tempered, they will charge hunters on sight. They are aggressive and powerful, so beware! They are often hunted for their meat, which many hunters find delicious.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Bullfango Pelt",
+              "item": 321,
               "chance": "59%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "26%"
             },
             {
-              "name": "Bullfango Head",
+              "item": 323,
               "chance": "5%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "10%"
             }
           ]
@@ -28,23 +27,23 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "30%"
             },
             {
-              "name": "Bullfango Pelt",
+              "item": 321,
               "chance": "30%"
             },
             {
-              "name": "Bullfango Head",
+              "item": 323,
               "chance": "15%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "15%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "10%"
             }
           ]
@@ -52,23 +51,23 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "ThkBullfangoPelt",
+              "item": 322,
               "chance": "30%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "25%"
             },
             {
-              "name": "Bullfango Head",
+              "item": 323,
               "chance": "20%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "15%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "10%"
             }
           ]
@@ -125,33 +124,34 @@
       }
     },
     {
-      "name": "Bulldrome",
+      "id": 68,
       "type": "pelagus",
       "icon": "bullfango",
-      "description": "The powerful leader of the wild boars known for its enormous tusks. More aggressive than a Bullfango, it is known to rush into a fight, and is extremely proficient at locating a foe.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "10%"
             },
             {
-              "name": "Bulldrome Hide",
+              "item": 325,
               "chance": "50%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "40%"
             }
           ],
           "capture": [
             {
-              "name": "Bulldrome Hide x1",
+              "item": 325,
+              "amount": 1,
               "chance": "68%"
             },
             {
-              "name": "Brute Bone x2",
+              "item": 294,
+              "amount": 2,
               "chance": "32%"
             }
           ]
@@ -159,37 +159,41 @@
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Bulldrome Hide",
+              "item": 325,
               "chance": "50%"
             },
             {
-              "name": "Bulldrome Tusk",
+              "item": 324,
               "chance": "15%"
             },
             {
-              "name": "Bullfango Head",
+              "item": 323,
               "chance": "5%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "30%"
             }
           ],
           "capture": [
             {
-              "name": "Bulldrome Hide x1",
+              "item": 325,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Bullfango Head x1",
+              "item": 323,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "Bulldrome Tusk x1",
+              "item": 324,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Giant Bone x2",
+              "item": 295,
+              "amount": 2,
               "chance": "25%"
             }
           ]
@@ -197,45 +201,50 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Bulldrome Hide+",
+              "item": 326,
               "chance": "30%"
             },
             {
-              "name": "Bulldrome Hide",
+              "item": 325,
               "chance": "20%"
             },
             {
-              "name": "Bulldrome Tusk",
+              "item": 324,
               "chance": "20%"
             },
             {
-              "name": "Bullfango Head",
+              "item": 323,
               "chance": "5%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "25%"
             }
           ],
           "capture": [
             {
-              "name": "Bulldrome Hide x1",
+              "item": 325,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Bulldrome Hide+ x1",
+              "item": 326,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Giant Bone x3",
+              "item": 295,
+              "amount": 3,
               "chance": "20%"
             },
             {
-              "name": "Bulldrome Tusk x1",
+              "item": 324,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Stout Bone x2",
+              "item": 296,
+              "amount": 2,
               "chance": "15%"
             }
           ]
@@ -243,45 +252,50 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "Bulldrome Hide+",
+              "item": 326,
               "chance": "30%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "25%"
             },
             {
-              "name": "Bulldrome Hide",
+              "item": 325,
               "chance": "20%"
             },
             {
-              "name": "Bulldrome Tusk",
+              "item": 324,
               "chance": "20%"
             },
             {
-              "name": "Bullfango Head",
+              "item": 323,
               "chance": "5%"
             }
           ],
           "capture": [
             {
-              "name": "Bulldrome Hide x1",
+              "item": 325,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Bulldrome Hide+ x1",
+              "item": 326,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Giant Bone x3",
+              "item": 295,
+              "amount": 3,
               "chance": "20%"
             },
             {
-              "name": "Stout Bone x2",
+              "item": 296,
+              "amount": 2,
               "chance": "15%"
             },
             {
-              "name": "Bulldrome Tusk x1",
+              "item": 324,
+              "amount": 1,
               "chance": "5%"
             }
           ]
@@ -344,22 +358,21 @@
       }
     },
     {
-      "name": "Conga",
+      "id": 62,
       "type": "pelagus",
-      "description": "Fanged, ape-like Primatius with pink fur. Prefers to live in small groups as opposed to large packs, and particularly enjoys mushroom snacks. If stumbled upon, it will be hostile, so beware of areas like the swamp or jungle.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Conga Pelt",
+              "item": 442,
               "chance": "50%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "28%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "22%"
             }
           ]
@@ -367,19 +380,19 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Conga Pelt+",
+              "item": 443,
               "chance": "50%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "23%"
             },
             {
-              "name": "Conga Pelt",
+              "item": 442,
               "chance": "5%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "22%"
             }
           ]
@@ -387,19 +400,19 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "Piercing Claw",
+              "item": 428,
               "chance": "45%"
             },
             {
-              "name": "Conga Pelt+",
+              "item": 443,
               "chance": "43%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "7%"
             },
             {
-              "name": "Conga Pelt",
+              "item": 442,
               "chance": "5%"
             }
           ]
@@ -474,94 +487,99 @@
       }
     },
     {
-      "name": "Congalala",
+      "id": 52,
       "type": "pelagus",
-      "description": "A large pelagus sporting pink fur often spotted in the jungle and swamp zones. Fond of mushrooms, its diet affects its breath, which may be poisonous or flaming. One can predict these traits via the food in its local habitat.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
             {
-              "name": "Congalala Pelt",
+              "item": 444,
               "chance": "50%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "12%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "38%"
             }
           ],
           "break head": [
             {
-              "name": "Congalala Pelt x1",
+              "item": 444,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break claw": [
             {
-              "name": "Sharp Claw x2",
+              "item": 427,
+              "amount": 2,
               "chance": "50%"
             },
             {
-              "name": "Brute Bone x2",
+              "item": 294,
+              "amount": 2,
               "chance": "50%"
             }
           ],
           "shiny drop : stagger the tail [bone]": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "75%"
             },
             {
-              "name": "Sm Monster Bone",
+              "item": 281,
               "chance": "15%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "10%"
             }
           ],
           "shiny drop : stagger the tail [mushroom]": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "75%"
             },
             {
-              "name": "Blue Mushroom",
+              "item": 177,
               "chance": "20%"
             },
             {
-              "name": "Exciteshroom",
+              "item": 181,
               "chance": "5%"
             }
           ],
           "shiny drop : stagger the tail [mineral stone]": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "60%"
             },
             {
-              "name": "Machalite Ore",
+              "item": 204,
               "chance": "39%"
             },
             {
-              "name": "Lightcrystal",
+              "item": 215,
               "chance": "1%"
             }
           ],
           "capture": [
             {
-              "name": "Congalala Pelt x1",
+              "item": 444,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Sharp Claw x1",
+              "item": 427,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Brute Bone x4",
+              "item": 294,
+              "amount": 4,
               "chance": "20%"
             }
           ]
@@ -569,91 +587,98 @@
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Congalala Pelt",
+              "item": 444,
               "chance": "63%"
             },
             {
-              "name": "Congalala Fang",
+              "item": 451,
               "chance": "29%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "8%"
             }
           ],
           "break head": [
             {
-              "name": "Congalala Pelt x1",
+              "item": 444,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Vibrant Pelt x1",
+              "item": 447,
+              "amount": 1,
               "chance": "40%"
             }
           ],
           "break claw": [
             {
-              "name": "Congalala Claw x1",
+              "item": 448,
+              "amount": 1,
               "chance": "92%"
             },
             {
-              "name": "Sharp Claw x2",
+              "item": 427,
+              "amount": 2,
               "chance": "8%"
             }
           ],
           "shiny drop : stagger the tail [bone]": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "75%"
             },
             {
-              "name": "Sm Monster Bone",
+              "item": 281,
               "chance": "15%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "10%"
             }
           ],
           "shiny drop : stagger the tail [mushroom]": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "75%"
             },
             {
-              "name": "Blue Mushroom",
+              "item": 177,
               "chance": "20%"
             },
             {
-              "name": "Exciteshroom",
+              "item": 181,
               "chance": "5%"
             }
           ],
           "shiny drop : stagger the tail [mineral stone]": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "60%"
             },
             {
-              "name": "Machalite Ore",
+              "item": 204,
               "chance": "39%"
             },
             {
-              "name": "Lightcrystal",
+              "item": 215,
               "chance": "1%"
             }
           ],
           "capture": [
             {
-              "name": "Congalala Pelt x1",
+              "item": 444,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Congalala Fang x1",
+              "item": 451,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Brute Bone x4",
+              "item": 294,
+              "amount": 4,
               "chance": "20%"
             }
           ]
@@ -661,107 +686,114 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Congalala Pelt+",
+              "item": 445,
               "chance": "60%"
             },
             {
-              "name": "Congalala Fang",
+              "item": 451,
               "chance": "20%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "15%"
             },
             {
-              "name": "Congalala Pelt",
+              "item": 444,
               "chance": "5%"
             }
           ],
           "break head": [
             {
-              "name": "Congalala Pelt+ x1",
+              "item": 445,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Vibrant Pelt x1",
+              "item": 447,
+              "amount": 1,
               "chance": "50%"
             }
           ],
           "break claw": [
             {
-              "name": "Congalala Claw+ x1",
+              "item": 449,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Congalala Claw x2",
+              "item": 448,
+              "amount": 2,
               "chance": "20%"
             }
           ],
           "shiny drop : stagger the tail [bone]": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "35%"
             },
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "35%"
             },
             {
-              "name": "Monster Bone+",
+              "item": 284,
               "chance": "20%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "10%"
             }
           ],
           "shiny drop : stagger the tail [mushroom]": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "35%"
             },
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "35%"
             },
             {
-              "name": "Blue Mushroom",
+              "item": 177,
               "chance": "20%"
             },
             {
-              "name": "Nitroshroom",
+              "item": 178,
               "chance": "10%"
             }
           ],
           "shiny drop : stagger the tail [mineral stone]": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "35%"
             },
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "35%"
             },
             {
-              "name": "Dragonite Ore",
+              "item": 205,
               "chance": "29%"
             },
             {
-              "name": "Novacrystal",
+              "item": 216,
               "chance": "1%"
             }
           ],
           "capture": [
             {
-              "name": "Congalala Pelt+ x1",
+              "item": 445,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Congalala Fang x2",
+              "item": 451,
+              "amount": 2,
               "chance": "35%"
             },
             {
-              "name": "Stout Bone x4",
+              "item": 296,
+              "amount": 4,
               "chance": "25%"
             }
           ]
@@ -769,111 +801,119 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "HrdCongalalaPlt+",
+              "item": 446,
               "chance": "50%"
             },
             {
-              "name": "Lg Pelagus Fang",
+              "item": 452,
               "chance": "30%"
             },
             {
-              "name": "Massive Bone",
+              "item": 297,
               "chance": "15%"
             },
             {
-              "name": "Congalala Pelt+",
+              "item": 445,
               "chance": "5%"
             }
           ],
           "break head": [
             {
-              "name": "HrdCongalalaPlt+ x1",
+              "item": 446,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Vibrant Pelt x1",
+              "item": 447,
+              "amount": 1,
               "chance": "40%"
             }
           ],
           "break claw": [
             {
-              "name": "HrdCongalalaClw+ x1",
+              "item": 450,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Congalala Claw+ x2",
+              "item": 449,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "HrdCongalalaClw+ x2",
+              "item": 450,
+              "amount": 2,
               "chance": "20%"
             }
           ],
           "shiny drop : stagger the tail [bone]": [
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "48%"
             },
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "22%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "20%"
             },
             {
-              "name": "Hvy Monster Bone",
+              "item": 286,
               "chance": "10%"
             }
           ],
           "shiny drop : stagger the tail [mushroom]": [
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "48%"
             },
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "22%"
             },
             {
-              "name": "Nitroshroom",
+              "item": 178,
               "chance": "20%"
             },
             {
-              "name": "Dragon Toadstool",
+              "item": 182,
               "chance": "10%"
             }
           ],
           "shiny drop : stagger the tail [mineral stone]": [
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "48%"
             },
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "22%"
             },
             {
-              "name": "Union Ore",
+              "item": 208,
               "chance": "29%"
             },
             {
-              "name": "Purecrystal",
+              "item": 217,
               "chance": "1%"
             }
           ],
           "capture": [
             {
-              "name": "HrdCongalalaPlt+ x1",
+              "item": 446,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Lg Pelagus Fang x2",
+              "item": 452,
+              "amount": 2,
               "chance": "35%"
             },
             {
-              "name": "Massive Bone x4",
+              "item": 297,
+              "amount": 4,
               "chance": "25%"
             }
           ]
@@ -1004,114 +1044,122 @@
       }
     },
     {
-      "name": "Emerald Congalala",
+      "id": 85,
       "type": "pelagus",
       "icon": "congalala",
       "drops": {
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "E.CongalalaPelt+",
+              "item": 453,
               "chance": "50%"
             },
             {
-              "name": "Lg Pelagus Fang",
+              "item": 452,
               "chance": "30%"
             },
             {
-              "name": "Massive Bone",
+              "item": 297,
               "chance": "15%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "5%"
             }
           ],
           "break head": [
             {
-              "name": "E.CongalalaPelt+ x1",
+              "item": 453,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Vibrant Comb x1",
+              "item": 455,
+              "amount": 1,
               "chance": "40%"
             }
           ],
           "break claw": [
             {
-              "name": "HrdE.CongaClaw x1",
+              "item": 454,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "E.CongalalaPelt+ x1",
+              "item": 453,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "HrdE.CongaClaw x2",
+              "item": 454,
+              "amount": 2,
               "chance": "20%"
             }
           ],
           "shiny drop : stagger the tail": [
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "48%"
             },
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "22%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "20%"
             },
             {
-              "name": "Hvy Monster Bone",
+              "item": 286,
               "chance": "10%"
             },
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "48%"
             },
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "22%"
             },
             {
-              "name": "Nitroshroom",
+              "item": 178,
               "chance": "20%"
             },
             {
-              "name": "Dragon Toadstool",
+              "item": 182,
               "chance": "10%"
             },
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "48%"
             },
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "22%"
             },
             {
-              "name": "Union Ore",
+              "item": 208,
               "chance": "29%"
             },
             {
-              "name": "Purecrystal",
+              "item": 217,
               "chance": "1%"
             }
           ],
           "capture": [
             {
-              "name": "E.CongalalaPelt+ x1",
+              "item": 453,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Lg Pelagus Fang x2",
+              "item": 452,
+              "amount": 2,
               "chance": "35%"
             },
             {
-              "name": "Massive Bone x4",
+              "item": 297,
+              "amount": 4,
               "chance": "25%"
             }
           ]
@@ -1242,22 +1290,21 @@
       }
     },
     {
-      "name": "Blango",
+      "id": 61,
       "type": "pelagus",
-      "description": "A Primatius covered entirely in white fur. Known to move in packs and led by a Blangonga. The Blangonga exerts tight control over the group, and any call to gather will be met immediately by the rank and file Blangos.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Blango Pelt",
+              "item": 425,
               "chance": "50%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "28%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "22%"
             }
           ]
@@ -1265,19 +1312,19 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Blango Pelt+",
+              "item": 426,
               "chance": "50%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "23%"
             },
             {
-              "name": "Blango Pelt",
+              "item": 425,
               "chance": "5%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "22%"
             }
           ]
@@ -1285,19 +1332,19 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "Piercing Claw",
+              "item": 428,
               "chance": "45%"
             },
             {
-              "name": "Blango Pelt+",
+              "item": 426,
               "chance": "43%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "7%"
             },
             {
-              "name": "Blango Pelt",
+              "item": 425,
               "chance": "5%"
             }
           ]
@@ -1372,66 +1419,71 @@
       }
     },
     {
-      "name": "Blangonga",
+      "id": 51,
       "type": "pelagus",
-      "description": "Leader of a Blango pack, it is twice as large and recognized by its giant fangs, whiskers, and head-crown. It sends its pack to attack any trespassers. Its jumping power allows it great mobility in its home range of the snowy mountains.",
       "drops": {
         "1-2 star rank": {
           "body carves (x3)": [
             {
-              "name": "Blangonga Pelt",
+              "item": 432,
               "chance": "50%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "12%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "38%"
             }
           ],
           "break fang": [
             {
-              "name": "Giant Bone x2",
+              "item": 295,
+              "amount": 2,
               "chance": "75%"
             },
             {
-              "name": "Bone x2",
+              "item": 292,
+              "amount": 2,
               "chance": "25%"
             }
           ],
           "break tail": [
             {
-              "name": "Blangonga Pelt x1",
+              "item": 432,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "80%"
             },
             {
-              "name": "Dung",
+              "item": 67,
               "chance": "5%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "15%"
             }
           ],
           "capture": [
             {
-              "name": "Blangonga Pelt x1",
+              "item": 432,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Sharp Claw x1",
+              "item": 427,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Brute Bone x4",
+              "item": 294,
+              "amount": 4,
               "chance": "20%"
             }
           ]
@@ -1439,67 +1491,74 @@
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Blangonga Pelt",
+              "item": 432,
               "chance": "63%"
             },
             {
-              "name": "Blangonga Whiskr",
+              "item": 435,
               "chance": "21%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "8%"
             },
             {
-              "name": "Blangonga Fang",
+              "item": 429,
               "chance": "8%"
             }
           ],
           "break fang": [
             {
-              "name": "Blangonga Fang x1",
+              "item": 429,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break tail": [
             {
-              "name": "Blangonga Tail x1",
+              "item": 437,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "Blangonga Pelt x1",
+              "item": 432,
+              "amount": 1,
               "chance": "35%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "75%"
             },
             {
-              "name": "Blangonga Pelt",
+              "item": 432,
               "chance": "20%"
             },
             {
-              "name": "Dung",
+              "item": 67,
               "chance": "5%"
             }
           ],
           "capture": [
             {
-              "name": "Blangonga Whiskr x1",
+              "item": 435,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Blangonga Pelt x1",
+              "item": 432,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Giant Bone x2",
+              "item": 295,
+              "amount": 2,
               "chance": "15%"
             },
             {
-              "name": "Blangonga Tail x1",
+              "item": 437,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -1507,83 +1566,92 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Blangonga Pelt+",
+              "item": 433,
               "chance": "60%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "15%"
             },
             {
-              "name": "Blangonga Whiskr",
+              "item": 435,
               "chance": "10%"
             },
             {
-              "name": "Blangonga Fang",
+              "item": 429,
               "chance": "10%"
             },
             {
-              "name": "Blangonga Pelt",
+              "item": 432,
               "chance": "5%"
             }
           ],
           "break fang": [
             {
-              "name": "Blangonga Fang+ x1",
+              "item": 430,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Blangonga Fang x2",
+              "item": 429,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Blangonga Fang+ x2",
+              "item": 430,
+              "amount": 2,
               "chance": "20%"
             }
           ],
           "break tail": [
             {
-              "name": "Blangonga Tail x1",
+              "item": 437,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "Blangonga Pelt+ x1",
+              "item": 433,
+              "amount": 1,
               "chance": "35%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "38%"
             },
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "37%"
             },
             {
-              "name": "Blangonga Pelt+",
+              "item": 433,
               "chance": "20%"
             },
             {
-              "name": "Dung",
+              "item": 67,
               "chance": "5%"
             }
           ],
           "capture": [
             {
-              "name": "Blangonga Pelt+ x1",
+              "item": 433,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Blangonga Whiskr x2",
+              "item": 435,
+              "amount": 2,
               "chance": "30%"
             },
             {
-              "name": "Stout Bone x4",
+              "item": 296,
+              "amount": 4,
               "chance": "25%"
             },
             {
-              "name": "Blangonga Tail x1",
+              "item": 437,
+              "amount": 1,
               "chance": "5%"
             }
           ]
@@ -1591,87 +1659,97 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "HrdBlangongaPlt+",
+              "item": 434,
               "chance": "60%"
             },
             {
-              "name": "Massive Bone",
+              "item": 297,
               "chance": "15%"
             },
             {
-              "name": "Lthr Pelagus Plt",
+              "item": 436,
               "chance": "10%"
             },
             {
-              "name": "HvyBlangongaFang",
+              "item": 431,
               "chance": "10%"
             },
             {
-              "name": "Blangonga Pelt+",
+              "item": 433,
               "chance": "5%"
             }
           ],
           "break fang": [
             {
-              "name": "HvyBlangongaFang x1",
+              "item": 431,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "HvyBlangongaFang x2",
+              "item": 431,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Blangonga Fang+ x2",
+              "item": 430,
+              "amount": 2,
               "chance": "20%"
             }
           ],
           "break tail": [
             {
-              "name": "LeathrBlangoTail x1",
+              "item": 438,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "HrdBlangongaPlt+ x1",
+              "item": 434,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Blangonga Tail x1",
+              "item": 437,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "50%"
             },
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "25%"
             },
             {
-              "name": "HrdBlangongaPlt+",
+              "item": 434,
               "chance": "20%"
             },
             {
-              "name": "Dung",
+              "item": 67,
               "chance": "5%"
             }
           ],
           "capture": [
             {
-              "name": "HrdBlangongaPlt+ x1",
+              "item": 434,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Lthr Pelagus Plt x2",
+              "item": 436,
+              "amount": 2,
               "chance": "30%"
             },
             {
-              "name": "Massive Bone x4",
+              "item": 297,
+              "amount": 4,
               "chance": "25%"
             },
             {
-              "name": "LeathrBlangoTail x1",
+              "item": 438,
+              "amount": 1,
               "chance": "5%"
             }
           ]
@@ -1803,86 +1881,95 @@
       }
     },
     {
-      "name": "Copper Blangonga",
+      "id": 84,
       "type": "pelagus",
       "icon": "blangonga",
       "drops": {
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "C.BlangongaPelt+",
+              "item": 439,
               "chance": "60%"
             },
             {
-              "name": "Lthr Pelagus Plt",
+              "item": 436,
               "chance": "15%"
             },
             {
-              "name": "Massive Bone",
+              "item": 297,
               "chance": "15%"
             },
             {
-              "name": "HvyC.BlangoFang",
+              "item": 440,
               "chance": "10%"
             }
           ],
           "break fang": [
             {
-              "name": "HvyC.BlangoFang x1",
+              "item": 440,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "HvyC.BlangoFang x2",
+              "item": 440,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Lthr Pelagus Plt x1",
+              "item": 436,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break tail": [
             {
-              "name": "LthrC.BlangoTail x1",
+              "item": 441,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "C.BlangongaPelt+ x1",
+              "item": 439,
+              "amount": 1,
               "chance": "35%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "TerritorialDung+",
+              "item": 312,
               "chance": "50%"
             },
             {
-              "name": "Territorial Dung",
+              "item": 311,
               "chance": "25%"
             },
             {
-              "name": "C.BlangongaPelt+",
+              "item": 439,
               "chance": "20%"
             },
             {
-              "name": "Dung",
+              "item": 67,
               "chance": "5%"
             }
           ],
           "capture": [
             {
-              "name": "C.BlangongaPelt+ x1",
+              "item": 439,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Massive Bone x4",
+              "item": 297,
+              "amount": 4,
               "chance": "25%"
             },
             {
-              "name": "LthrC.BlangoTail x1",
+              "item": 441,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Lthr Pelagus Plt x2",
+              "item": 436,
+              "amount": 2,
               "chance": "30%"
             }
           ]
@@ -2014,60 +2101,66 @@
       }
     },
     {
-      "name": "Rajang",
+      "id": 53,
       "type": "pelagus",
-      "description": "Ultra-aggressive creature that is rarely sighted and seldom survived. Survivors report it exhibits a strange attack. The Rajang is said to be a loner, and this isolated life has made it difficult to pin down its territorial leanings.",
       "drops": {
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Blk Rajang Pelt",
+              "item": 460,
               "chance": "27%"
             },
             {
-              "name": "Rajang Fang",
+              "item": 458,
               "chance": "46%"
             },
             {
-              "name": "Rajang Claw",
+              "item": 462,
               "chance": "21%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "6%"
             }
           ],
           "break horn": [
             {
-              "name": "Rajang Horn x1",
+              "item": 456,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break tail": [
             {
-              "name": "Rajang Tail x1",
+              "item": 464,
+              "amount": 1,
               "chance": "91%"
             },
             {
-              "name": "Gold Rajang Pelt x1",
+              "item": 466,
+              "amount": 1,
               "chance": "9%"
             }
           ],
           "capture": [
             {
-              "name": "Blk Rajang Pelt x1",
+              "item": 460,
+              "amount": 1,
               "chance": "44%"
             },
             {
-              "name": "Rajang Fang x1",
+              "item": 458,
+              "amount": 1,
               "chance": "28%"
             },
             {
-              "name": "Rajang Claw x1",
+              "item": 462,
+              "amount": 1,
               "chance": "16%"
             },
             {
-              "name": "Gold Rajang Pelt x1",
+              "item": 466,
+              "amount": 1,
               "chance": "12%"
             }
           ]
@@ -2075,53 +2168,60 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Rajang Fang",
+              "item": 458,
               "chance": "46%"
             },
             {
-              "name": "Blk Rajang Pelt",
+              "item": 460,
               "chance": "27%"
             },
             {
-              "name": "Rajang Claw",
+              "item": 462,
               "chance": "21%"
             },
             {
-              "name": "Gold Rajang Pelt",
+              "item": 466,
               "chance": "6%"
             }
           ],
           "break horn": [
             {
-              "name": "Rajang Horn x1",
+              "item": 456,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break tail": [
             {
-              "name": "Rajang Tail x1",
+              "item": 464,
+              "amount": 1,
               "chance": "91%"
             },
             {
-              "name": "Gold Rajang Pelt x1",
+              "item": 466,
+              "amount": 1,
               "chance": "9%"
             }
           ],
           "capture": [
             {
-              "name": "Blk Rajang Pelt x1",
+              "item": 460,
+              "amount": 1,
               "chance": "44%"
             },
             {
-              "name": "Rajang Fang x1",
+              "item": 458,
+              "amount": 1,
               "chance": "28%"
             },
             {
-              "name": "Rajang Claw x1",
+              "item": 462,
+              "amount": 1,
               "chance": "16%"
             },
             {
-              "name": "Gold Rajang Pelt x1",
+              "item": 466,
+              "amount": 1,
               "chance": "12%"
             }
           ]
@@ -2129,81 +2229,93 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "Blk Rajang Pelt+",
+              "item": 461,
               "chance": "28%"
             },
             {
-              "name": "Hvy Rajang Fang",
+              "item": 459,
               "chance": "24%"
             },
             {
-              "name": "Blk Rajang Pelt",
+              "item": 460,
               "chance": "20%"
             },
             {
-              "name": "Hard Rajang Claw",
+              "item": 463,
               "chance": "15%"
             },
             {
-              "name": "Rajang Fang",
+              "item": 458,
               "chance": "10%"
             },
             {
-              "name": "GoldRajangPelt+",
+              "item": 467,
               "chance": "3%"
             }
           ],
           "break horn": [
             {
-              "name": "Hard Rajang Horn x1",
+              "item": 457,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Rajang Horn x1",
+              "item": 456,
+              "amount": 1,
               "chance": "40%"
             }
           ],
           "break tail": [
             {
-              "name": "Rajang Tail x1",
+              "item": 464,
+              "amount": 1,
               "chance": "82%"
             },
             {
-              "name": "Gold Rajang Pelt x1",
+              "item": 466,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "GoldRajangPelt+ x1",
+              "item": 467,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "capture": [
             {
-              "name": "Blk Rajang Pelt+ x1",
+              "item": 461,
+              "amount": 1,
               "chance": "36%"
             },
             {
-              "name": "Blk Rajang Pelt x2",
+              "item": 460,
+              "amount": 2,
               "chance": "18%"
             },
             {
-              "name": "Hvy Rajang Fang x1",
+              "item": 459,
+              "amount": 1,
               "chance": "17%"
             },
             {
-              "name": "Hard Rajang Claw x1",
+              "item": 463,
+              "amount": 1,
               "chance": "12%"
             },
             {
-              "name": "Rajang Claw x2",
+              "item": 462,
+              "amount": 2,
               "chance": "10%"
             },
             {
-              "name": "Gold Rajang Pelt x1",
+              "item": 466,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "GoldRajangPelt+ x1",
+              "item": 467,
+              "amount": 1,
               "chance": "2%"
             }
           ]
@@ -2334,10 +2446,9 @@
       }
     },
     {
-      "name": "Furious Rajang",
+      "id": 89,
       "type": "pelagus",
       "icon": "rajang",
-      "description": "Ultra-aggressive creature that is rarely sighted and seldom survived. Survivors report it exhibits a strange attack. The Rajang is said to be a loner, and this isolated life has made it difficult to pin down its territorial leanings.",
       "drops": {},
       "hitzones": {
         "head": {

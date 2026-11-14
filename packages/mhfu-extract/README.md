@@ -686,7 +686,7 @@ file paths:
   `overlay/game_task.ovl` and the `emNN.ovl` files in the unpacked
   directory; the log names any monster without one, and why.
 - **Weapons** need `eboot.bin`: each blademaster/gunner table entry, indexed
-  by the equipment ID that `data/equipment-ids.json` names, holds the model
+  by the game ID the site's weapon record carries, holds the model
   ID of its `weapon/weNNN.pac`. Verified on an EU EBOOT: all 1,500 weapons
   with a page get a model whose `modelToWeaponType` matches the page's type,
   and renders match the site's weapon images.
@@ -1463,10 +1463,26 @@ the rarity, carry limit and price in `data/items.json`, `data/quests/*.json`, `d
 are generated from an EU (ULES01213) disc with `build-data`. The disc is the source of truth for every field it holds.
 Every field it doesn't hold is kept from the committed files.
 
+**The files' shape.** Records in `data/` carry their game IDs and refer to
+each other by ID; names and quest text are in `data/strings/en.json` (see
+`packages/game-data`). `build-data` works on the named view game-data's
+`readData` gives, which spells every reference out in English as the
+files did before, and writes with `writeData`, which turns the names back
+into IDs and puts new text (a quest's title, goal, ...) into the string
+table. So the steps below talk about names; on disk they are IDs.
+`writeData` only writes a file whose content changed, and a reference to
+a name the string tables don't have is an error. `src/build/legacy-data.ts`
+holds the IDs the old named layout lacked (skill trees from `SkillID`
+through `overlay/skill-name-aliases.json`, monsters from
+`overlay/monsters.json` and `emID`, maps from `MAP_NAMES`): game-data's
+`importLegacy` moved `data/` to IDs with them, and the tests write their
+fixtures from named data with `writeNamedData`.
+
 **Matching (`src/build/ids.ts`).** Items are paired by game ID, not by
 name: an extracted item's ID is its position in the enum table its name
-came from, and a site item's ID comes from `data/equipment-ids.json`
-(armor, weapons) or `data/items.json` (decorations, materials). Renames
+came from, and a site item's ID is on its record (armor, weapons, listed
+per slot by game-data's `equipment-ids.json` view) or comes from
+`data/items.json` (decorations, materials). Renames
 like "Hornet Helm" vs "Hornetaur Helm" therefore still pair. On the EU
 disc every committed armor piece, weapon and decoration pairs.
 
@@ -1486,12 +1502,13 @@ already agree as a set; a scalar that agrees is left byte-identical. Item
 order, key order and file layout don't change, and a second run is a no-op. Disc items the site doesn't list (the 10 unused
 Piercings, Pink Metal Boots, Rookie Knife, Swordfish Bow G) aren't added.
 `overlay/keep-site-values.json` lists reviewed disagreements where the site
-is right, currently the 10 Ruststone weapons, which have no `EquipCreate`
+is right, by file, game ID and field (with the record's name beside it,
+checked), currently the 10 Ruststone weapons, which have no `EquipCreate`
 recipe on the disc. Quests, gathering points and shops are copied
 through (see "Material names").
 
 **Material names.** Materials, drops and quest supply and reward items are
-always written with the game's own item name (`data/items.json` `name`, the same string as the
+item IDs on disk, so they always show the game's own item name (`data/items.json` `name`, the same string as the
 `ItemID` enum), never the spelling the committed files used: "Fire Stone"
 is written "Firestone", "Elder Drgn Bone" "Eldr Dragon Bone". The game
 caps item names at 16 characters, so many are abbreviated, and the site
@@ -1499,10 +1516,9 @@ pads them to that width when it renders them. `build-data` renames every
 material in the files it writes, including fields it doesn't take (weapon
 `alternative_create_mats`) and items with no disc match. Quests, gathering
 points and shops are copied through with each item under its game name (the `ItemID` enum
-differs from `items.json` only on a few Japanese promo tickets). `pnpm
-validate` fails on a recipe material, drop or quest item that isn't spelled
-like its item. Old site spellings stay in `data/items.json` as `aliases`, so they
-still resolve to an item. This replaced an earlier table that respelled
+differs from `items.json` only on a few Japanese promo tickets), then
+written as item IDs. Old site spellings stay in `data/strings/en.json` as
+item `aliases`, so they still resolve to an item. This replaced an earlier table that respelled
 the disc's names to match the committed files, which spelled about 240
 items differently in armor and weapon recipes.
 
@@ -1604,8 +1620,9 @@ row, `-2` vs `-3`, a recipe amount, `Commendation G` vs `S`), which is what
 site transcription errors look like, rather than a pattern that points at
 a wrong offset or derivation. Two exceptions were fixed elsewhere instead:
 skill spellings missing from the alias overlay, and the Guild Knight
-Coat/Kilt waist IDs, which the MHP2G enum swaps
-(`scripts/equipment-id-aliases.json`).
+Coat/Kilt waist IDs, which the MHP2G enum swaps (once a hand-checked
+alias for the old `generate-equipment-ids` script; the IDs are on the
+records now).
 
 Monsters were added later (#35). `compare` counts them per monster: of
 83, hitzones agreed on 73 and drops on 30 of the 75 with mapped drops.
@@ -1623,8 +1640,8 @@ committed entry order and spellings; new items are appended.
 
 To refresh after an extractor fix: rerun `extract`, `compare`, then
 `build-data`, and review its `--markdown` change list. Add a field to
-`take` only after reviewing its disagreements. Rerun
-`pnpm generate-equipment-ids` if item names change.
+`take` only after reviewing its disagreements. Weapon and armor IDs are
+on the records, so renaming one doesn't change its ID.
 
 ## Overlay data
 

@@ -15,10 +15,10 @@
   "definitions": {
     "point": {
       "type": "object",
-      "required": ["name", "spot", "gathers", "most_gathers", "items"],
+      "required": ["spot", "gathers", "most_gathers", "items"],
       "additionalProperties": false,
+      "$comment": "The farm upgrade's name, as the game names it (\"Mining Point +2\", \"Production Bee Hive\"), is in data/strings under 'farm', keyed by the point's index in this list.",
       "properties": {
-        "name": { "type": "string", "minLength": 1, "description": "The farm upgrade, as the game names it: \"Mining Point +2\", \"Production Bee Hive\"" },
         "spot": { "enum": ["mining", "insects", "mushrooms", "honey"] },
         "gathers": { "type": "integer", "minimum": 1, "description": "How many items the restock draws from it, at least" },
         "most_gathers": { "type": "integer", "minimum": 1, "description": "How many items the restock draws from it, at most" },
@@ -31,7 +31,7 @@
             "required": ["item", "chance"],
             "additionalProperties": false,
             "properties": {
-              "item": { "type": "string", "minLength": 1, "description": "Game name, as in data/items.json" },
+              "item": { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json)" },
               "chance": { "type": "integer", "minimum": 0, "maximum": 100, "description": "In percent, per draw" }
             }
           }

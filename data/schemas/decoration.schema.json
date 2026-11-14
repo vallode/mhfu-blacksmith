@@ -13,10 +13,10 @@
   "definitions": {
     "material": {
       "type": "object",
-      "required": ["name", "amount", "type", "color"],
+      "required": ["item", "amount", "type", "color"],
       "additionalProperties": false,
       "properties": {
-        "name":   { "type": "string", "minLength": 1 },
+        "item":   { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json); its name is in data/strings" },
         "amount": { "type": "integer", "minimum": 1 },
         "type":   { "type": "string", "minLength": 1 },
         "color":  { "type": "string", "minLength": 1 }
@@ -24,17 +24,26 @@
     },
     "decoration": {
       "type": "object",
-      "required": ["name", "type", "rarity", "slots", "skills"],
+      "required": ["id", "type", "rarity", "slots", "skills"],
       "additionalProperties": false,
       "properties": {
-        "name":     { "type": "string", "minLength": 1 },
+        "id":       { "type": "integer", "minimum": 1, "description": "The decoration's item ID (data/items.json). Its name is the item's, or data/strings' 'decoration' entry where the site names it otherwise" },
         "type":     { "type": "string" },
         "rarity":   { "type": "integer", "minimum": 1, "maximum": 10 },
         "slots":    { "type": "integer", "minimum": 0, "maximum": 3 },
         "color":    { "type": "string" },
         "skills": {
           "type": "array",
-          "items": { "type": "string", "minLength": 1 },
+          "items": {
+            "type": "object",
+            "required": ["skill", "points"],
+            "additionalProperties": false,
+            "properties": {
+              "skill":  { "type": "integer", "minimum": 1, "description": "Skill tree ID (SkillID; data/skills.json)" },
+              "alias":  { "type": "integer", "minimum": 0, "description": "Spelled as the tree's n-th English alias (data/strings/en.json aliases.skill), as the site showed it" },
+              "points": { "type": "integer", "not": { "const": 0 } }
+            }
+          },
           "minItems": 1
         },
         "create_cost": { "type": "integer", "minimum": 0 },
