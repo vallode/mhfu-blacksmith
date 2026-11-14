@@ -1,6 +1,7 @@
 /**
- * Where an item can be gathered or bought: data/gathering.json's points and
- * data/shops.json's stock, indexed by in-game item ID. Pure, so
+ * Where an item can be gathered or bought: data/gathering.json's points,
+ * data/farm.json's Pokke Farm points and data/shops.json's stock, indexed
+ * by in-game item ID. Pure, so
  * scripts/generate-data.ts writes it into public/data/item-places.json and
  * the tests build it from data/.
  */
@@ -35,6 +36,19 @@ export interface ShopsFile {
     name: string;
     currency: "zenny" | "pokke-points";
     items: { item: string; price: number | null; stages: number[] }[];
+  }[];
+}
+
+export type FarmSpot = "mining" | "insects" | "mushrooms" | "honey";
+
+/** data/farm.json (data/schemas/farm.schema.json). */
+export interface FarmFile {
+  points: {
+    name: string;
+    spot: FarmSpot;
+    gathers: number;
+    most_gathers: number;
+    items: { item: string; chance: number }[];
   }[];
 }
 
@@ -75,8 +89,22 @@ export interface ShopPlace {
   stageCount: number;
 }
 
+/** A Pokke Farm point that gives the item. */
+export interface FarmPlace {
+  /** The farm upgrade: "Mining Point +2", "Production Bee Hive" */
+  point: string;
+  spot: FarmSpot;
+  /** Chance per gather, in percent */
+  chance: number;
+  /** How many times it can be gathered after each quest, at least and at most */
+  gathers: number;
+  mostGathers: number;
+}
+
 export interface ItemPlaces {
   gathering: GatherPlace[];
+  /** In data/farm.json's order */
+  farm: FarmPlace[];
   shops: ShopPlace[];
 }
 
@@ -131,6 +159,7 @@ function pointsIn(layout: Layout, itemId: (name: string) => number | undefined) 
 export function buildItemPlaces(
   gathering: GatheringFile,
   shops: ShopsFile,
+  farm: FarmFile,
   quests: PlaceQuest[],
   itemId: (name: string) => number | undefined,
 ): Map<number, ItemPlaces> {
@@ -138,7 +167,7 @@ export function buildItemPlaces(
   const entry = (id: number) => {
     let e = out.get(id);
     if (!e) {
-      e = { gathering: [], shops: [] };
+      e = { gathering: [], farm: [], shops: [] };
       out.set(id, e);
     }
     return e;
@@ -183,6 +212,20 @@ export function buildItemPlaces(
         });
       }
     });
+  }
+
+  for (const point of farm.points) {
+    for (const { item, chance } of point.items) {
+      const id = itemId(item);
+      if (id === undefined || chance <= 0) continue;
+      entry(id).farm.push({
+        point: point.name,
+        spot: point.spot,
+        chance,
+        gathers: point.gathers,
+        mostGathers: point.most_gathers,
+      });
+    }
   }
 
   for (const shop of shops.shops) {
@@ -232,6 +275,19 @@ const KIND_LABELS: Record<GatherKind, string> = {
   bug: "Bugs",
 };
 
+const FARM_SPOT_LABELS: Record<FarmSpot, string> = {
+  mining: "Mining",
+  insects: "Bugs",
+  mushrooms: "Mushrooms",
+  honey: "Honey",
+};
+
+/** "Mining · 3-4 per quest" */
+export function farmPlaceLabel({ spot, gathers, mostGathers }: FarmPlace): string {
+  const count = gathers === mostGathers ? `${gathers}` : `${gathers}-${mostGathers}`;
+  return `${FARM_SPOT_LABELS[spot]} · ${count} per quest`;
+}
+
 /** "Mining: areas 2, 5 · Gathering: Base Camp, area 3" */
 export function gatherPointsLabel(points: GatherPlace["points"]): string {
   return points
@@ -256,14 +312,18 @@ export function gatherPointsLabel(points: GatherPlace["points"]): string {
 type GatherTuple = [number, number, number, string, number[]?];
 /** [shop, price, stages] */
 type ShopTuple = [number, number | null, number[]];
+/** [farm point, chance] */
+type FarmTuple = [number, number];
 
 export interface ItemPlacesBundle {
   kind: "item-places";
   groups: string[];
   maps: string[];
   shops: { name: string; currency: ShopPlace["currency"]; stages: number }[];
-  /** item ID -> [gathering, shops] */
-  items: Record<string, [GatherTuple[], ShopTuple[]]>;
+  /** Pokke Farm's points: [name, spot, gathers, most gathers] */
+  farm: [string, FarmSpot, number, number][];
+  /** item ID -> [gathering, shops, farm (where it has any)] */
+  items: Record<string, [GatherTuple[], ShopTuple[], FarmTuple[]?]>;
   /**
    * Each place's `mapQuest`, kept off the rows: a quest's own points use
    * their first quest, and a map's usual points the quest here, by
@@ -294,9 +354,13 @@ export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBun
   const groupIndex = new Map<string, number>();
   const mapIndex = new Map<string, number>();
   const shopIndex = new Map<string, number>();
+  const farm: ItemPlacesBundle["farm"] = [];
+  const farmIndex = new Map<string, number>();
   const items: ItemPlacesBundle["items"] = {};
   const mapQuests: ItemPlacesBundle["mapQuests"] = {};
-  for (const [id, { gathering, shops: sold }] of [...places].sort((a, b) => a[0] - b[0])) {
+  for (const [id, { gathering, farm: farmed, shops: sold }] of [...places].sort(
+    (a, b) => a[0] - b[0],
+  )) {
     const g = gathering.map((p): GatherTuple => {
       const points = p.points.map((pt) => KIND_LETTERS[pt.kind] + pt.areas.join(",")).join("|");
       const t: GatherTuple = [
@@ -325,7 +389,15 @@ export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBun
       }
       return [i, p.price, p.stages];
     });
-    items[id] = [g, s];
+    const f = farmed.map((p): FarmTuple => {
+      let i = farmIndex.get(p.point);
+      if (i === undefined) {
+        i = farm.push([p.point, p.spot, p.gathers, p.mostGathers]) - 1;
+        farmIndex.set(p.point, i);
+      }
+      return [i, p.chance];
+    });
+    items[id] = f.length > 0 ? [g, s, f] : [g, s];
   }
   // Only once every usual map is known: the places their quest doesn't draw.
   const unmapped = [...places].flatMap(([id, { gathering }]) =>
@@ -334,13 +406,13 @@ export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBun
       return derived !== undefined && p.mapQuest === undefined ? [`${id}:${row}`] : [];
     }),
   );
-  return { kind: "item-places", groups, maps, shops, items, mapQuests, unmapped };
+  return { kind: "item-places", groups, maps, shops, farm, items, mapQuests, unmapped };
 }
 
 export function decodeItemPlaces(bundle: ItemPlacesBundle): Map<number, ItemPlaces> {
   const unmapped = new Set(bundle.unmapped);
   const out = new Map<number, ItemPlaces>();
-  for (const [id, [g, s]] of Object.entries(bundle.items)) {
+  for (const [id, [g, s, f = []]] of Object.entries(bundle.items)) {
     out.set(Number(id), {
       gathering: g.map(([group, map, chance, points, quests], row) => {
         const mapQuest = unmapped.has(`${id}:${row}`)
@@ -357,6 +429,10 @@ export function decodeItemPlaces(bundle: ItemPlacesBundle): Map<number, ItemPlac
           ...(quests && { quests }),
           ...(mapQuest !== undefined && { mapQuest }),
         };
+      }),
+      farm: f.map(([point, chance]) => {
+        const [name, spot, gathers, mostGathers] = bundle.farm[point]!;
+        return { point: name, spot, chance, gathers, mostGathers };
       }),
       shops: s.map(([shop, price, stages]) => ({
         shop: bundle.shops[shop]!.name,

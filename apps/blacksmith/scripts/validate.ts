@@ -116,6 +116,7 @@ section("Validating IDs and strings…");
     "shops.json",
     "veggie-trades.json",
     "combinations.json",
+    "farm.json",
     ...weaponTypes.map((t) => `weapons/${t}.json`),
     ...ARMOR_SLOTS.map((s) => `armor/${s}.json`),
     ...monsterFiles.map((f) => `monsters/${f}`),
@@ -151,6 +152,12 @@ section("Validating IDs and strings…");
   for (const kind of ["quest", "quest_goal", "quest_details", "quest_fail", "quest_client"])
     stale("en", en, kind, owned.get("quest"));
   stale("ja", ja, "item", owned.get("item"));
+  const farmPoints = readRawData<{ points: unknown[] }>(dataDir, "farm.json").points;
+  stale("en", en, "farm", new Set(farmPoints.map((_, i) => String(i))));
+  farmPoints.forEach((_, i) => {
+    if (en.farm?.[String(i)] === undefined)
+      error(`farm.json: point ${i} has no name in data/strings/en.json`);
+  });
 
   console.log(
     `  ${[...owned].map(([kind, keys]) => `${kind} ${keys.size}`).join(", ")}; ${Object.keys(en.map ?? {}).length} maps`,

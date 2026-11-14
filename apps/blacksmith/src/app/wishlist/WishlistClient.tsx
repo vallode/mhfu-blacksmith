@@ -684,6 +684,7 @@ const KIND_LABELS: Record<Way["kind"], string> = {
   shop: "Buy",
   monster: "Hunt",
   gather: "Gather",
+  farm: "Farm",
   quest: "Quest",
   combine: "Combine",
 };

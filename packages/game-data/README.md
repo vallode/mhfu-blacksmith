@@ -32,6 +32,7 @@ per-language string tables.
 | monsters                      | `emID`                                          | `monsters/*.json`          |
 | maps                          | the quest header's map ID                       | named by quests, gathering |
 | quests                        | quest ID                                        | `quests/*.json`            |
+| Pokke Farm points             | the point's index in the game's farm table      | `farm.json`, in that order |
 
 The weapon and armor IDs are the ones a save's equipment box and the set
 builder's share codes use. They used to be listed in
@@ -49,8 +50,9 @@ References:
 - **Skills** on armor (`{ "skill": 36, "amount": 3 }`) and decorations
   (`{ "skill": 36, "points": 1 }`).
 - **Quests:** `map: 11`, items by ID, `{ "monster": 87, "quantity": 1 }`.
-- **Gathering, shops, Veggie Elder trades, combinations:** items and maps
-  by ID.
+- **Gathering, shops, Veggie Elder trades, combinations, Pokke Farm:**
+  items and maps by ID. A farm point's name ("Mining Point +2") is under
+  `farm`, by its index.
 
 **Names are in `data/strings/<lang>.json`**, by kind and ID:
 

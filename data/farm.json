@@ -1,0 +1,636 @@
+{
+  "points": [
+    {
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 153,
+          "chance": 12
+        },
+        {
+          "item": 200,
+          "chance": 13
+        },
+        {
+          "item": 201,
+          "chance": 13
+        },
+        {
+          "item": 202,
+          "chance": 24
+        },
+        {
+          "item": 203,
+          "chance": 16
+        },
+        {
+          "item": 204,
+          "chance": 7
+        },
+        {
+          "item": 219,
+          "chance": 3
+        },
+        {
+          "item": 222,
+          "chance": 1
+        },
+        {
+          "item": 223,
+          "chance": 8
+        },
+        {
+          "item": 944,
+          "chance": 3
+        }
+      ]
+    },
+    {
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 201,
+          "chance": 8
+        },
+        {
+          "item": 202,
+          "chance": 15
+        },
+        {
+          "item": 203,
+          "chance": 22
+        },
+        {
+          "item": 204,
+          "chance": 14
+        },
+        {
+          "item": 205,
+          "chance": 9
+        },
+        {
+          "item": 215,
+          "chance": 2
+        },
+        {
+          "item": 219,
+          "chance": 3
+        },
+        {
+          "item": 223,
+          "chance": 10
+        },
+        {
+          "item": 224,
+          "chance": 8
+        },
+        {
+          "item": 944,
+          "chance": 5
+        },
+        {
+          "item": 945,
+          "chance": 3
+        },
+        {
+          "item": 946,
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 203,
+          "chance": 18
+        },
+        {
+          "item": 204,
+          "chance": 23
+        },
+        {
+          "item": 205,
+          "chance": 17
+        },
+        {
+          "item": 215,
+          "chance": 4
+        },
+        {
+          "item": 206,
+          "chance": 7
+        },
+        {
+          "item": 220,
+          "chance": 5
+        },
+        {
+          "item": 224,
+          "chance": 10
+        },
+        {
+          "item": 225,
+          "chance": 8
+        },
+        {
+          "item": 945,
+          "chance": 5
+        },
+        {
+          "item": 946,
+          "chance": 3
+        }
+      ]
+    },
+    {
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 204,
+          "chance": 18
+        },
+        {
+          "item": 205,
+          "chance": 26
+        },
+        {
+          "item": 206,
+          "chance": 15
+        },
+        {
+          "item": 208,
+          "chance": 7
+        },
+        {
+          "item": 216,
+          "chance": 3
+        },
+        {
+          "item": 220,
+          "chance": 14
+        },
+        {
+          "item": 225,
+          "chance": 10
+        },
+        {
+          "item": 946,
+          "chance": 5
+        },
+        {
+          "item": 947,
+          "chance": 2
+        }
+      ]
+    },
+    {
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 206,
+          "chance": 24
+        },
+        {
+          "item": 208,
+          "chance": 13
+        },
+        {
+          "item": 207,
+          "chance": 15
+        },
+        {
+          "item": 209,
+          "chance": 3
+        },
+        {
+          "item": 216,
+          "chance": 8
+        },
+        {
+          "item": 217,
+          "chance": 4
+        },
+        {
+          "item": 225,
+          "chance": 13
+        },
+        {
+          "item": 226,
+          "chance": 5
+        },
+        {
+          "item": 227,
+          "chance": 11
+        },
+        {
+          "item": 947,
+          "chance": 4
+        }
+      ]
+    },
+    {
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 75,
+          "chance": 15
+        },
+        {
+          "item": 136,
+          "chance": 4
+        },
+        {
+          "item": 137,
+          "chance": 12
+        },
+        {
+          "item": 138,
+          "chance": 4
+        },
+        {
+          "item": 246,
+          "chance": 4
+        },
+        {
+          "item": 247,
+          "chance": 8
+        },
+        {
+          "item": 248,
+          "chance": 8
+        },
+        {
+          "item": 251,
+          "chance": 20
+        },
+        {
+          "item": 252,
+          "chance": 5
+        },
+        {
+          "item": 254,
+          "chance": 20
+        }
+      ]
+    },
+    {
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 137,
+          "chance": 7
+        },
+        {
+          "item": 250,
+          "chance": 14
+        },
+        {
+          "item": 251,
+          "chance": 15
+        },
+        {
+          "item": 252,
+          "chance": 12
+        },
+        {
+          "item": 253,
+          "chance": 4
+        },
+        {
+          "item": 254,
+          "chance": 24
+        },
+        {
+          "item": 257,
+          "chance": 12
+        },
+        {
+          "item": 264,
+          "chance": 2
+        },
+        {
+          "item": 265,
+          "chance": 2
+        },
+        {
+          "item": 660,
+          "chance": 4
+        },
+        {
+          "item": 666,
+          "chance": 4
+        }
+      ]
+    },
+    {
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 143,
+          "chance": 10
+        },
+        {
+          "item": 250,
+          "chance": 17
+        },
+        {
+          "item": 253,
+          "chance": 10
+        },
+        {
+          "item": 257,
+          "chance": 25
+        },
+        {
+          "item": 258,
+          "chance": 15
+        },
+        {
+          "item": 255,
+          "chance": 7
+        },
+        {
+          "item": 264,
+          "chance": 4
+        },
+        {
+          "item": 265,
+          "chance": 4
+        },
+        {
+          "item": 658,
+          "chance": 4
+        },
+        {
+          "item": 663,
+          "chance": 4
+        }
+      ]
+    },
+    {
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 75,
+          "chance": 10
+        },
+        {
+          "item": 143,
+          "chance": 15
+        },
+        {
+          "item": 250,
+          "chance": 6
+        },
+        {
+          "item": 251,
+          "chance": 4
+        },
+        {
+          "item": 252,
+          "chance": 7
+        },
+        {
+          "item": 258,
+          "chance": 25
+        },
+        {
+          "item": 255,
+          "chance": 15
+        },
+        {
+          "item": 259,
+          "chance": 5
+        },
+        {
+          "item": 263,
+          "chance": 5
+        },
+        {
+          "item": 661,
+          "chance": 4
+        },
+        {
+          "item": 667,
+          "chance": 4
+        }
+      ]
+    },
+    {
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 75,
+          "chance": 10
+        },
+        {
+          "item": 250,
+          "chance": 10
+        },
+        {
+          "item": 252,
+          "chance": 7
+        },
+        {
+          "item": 255,
+          "chance": 25
+        },
+        {
+          "item": 259,
+          "chance": 10
+        },
+        {
+          "item": 256,
+          "chance": 15
+        },
+        {
+          "item": 260,
+          "chance": 3
+        },
+        {
+          "item": 659,
+          "chance": 5
+        },
+        {
+          "item": 662,
+          "chance": 5
+        },
+        {
+          "item": 664,
+          "chance": 5
+        },
+        {
+          "item": 668,
+          "chance": 5
+        }
+      ]
+    },
+    {
+      "spot": "mushrooms",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 177,
+          "chance": 40
+        },
+        {
+          "item": 179,
+          "chance": 26
+        },
+        {
+          "item": 180,
+          "chance": 32
+        },
+        {
+          "item": 184,
+          "chance": 2
+        }
+      ]
+    },
+    {
+      "spot": "mushrooms",
+      "gathers": 5,
+      "most_gathers": 6,
+      "items": [
+        {
+          "item": 177,
+          "chance": 30
+        },
+        {
+          "item": 178,
+          "chance": 28
+        },
+        {
+          "item": 179,
+          "chance": 12
+        },
+        {
+          "item": 180,
+          "chance": 18
+        },
+        {
+          "item": 181,
+          "chance": 10
+        },
+        {
+          "item": 184,
+          "chance": 2
+        }
+      ]
+    },
+    {
+      "spot": "mushrooms",
+      "gathers": 7,
+      "most_gathers": 8,
+      "items": [
+        {
+          "item": 177,
+          "chance": 28
+        },
+        {
+          "item": 178,
+          "chance": 27
+        },
+        {
+          "item": 179,
+          "chance": 11
+        },
+        {
+          "item": 180,
+          "chance": 15
+        },
+        {
+          "item": 181,
+          "chance": 10
+        },
+        {
+          "item": 182,
+          "chance": 6
+        },
+        {
+          "item": 184,
+          "chance": 3
+        }
+      ]
+    },
+    {
+      "spot": "honey",
+      "gathers": 2,
+      "most_gathers": 3,
+      "items": [
+        {
+          "item": 246,
+          "chance": 10
+        },
+        {
+          "item": 161,
+          "chance": 88
+        },
+        {
+          "item": 249,
+          "chance": 2
+        }
+      ]
+    },
+    {
+      "spot": "honey",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": 246,
+          "chance": 5
+        },
+        {
+          "item": 161,
+          "chance": 90
+        },
+        {
+          "item": 249,
+          "chance": 5
+        }
+      ]
+    },
+    {
+      "spot": "honey",
+      "gathers": 5,
+      "most_gathers": 6,
+      "items": [
+        {
+          "item": 246,
+          "chance": 0
+        },
+        {
+          "item": 161,
+          "chance": 95
+        },
+        {
+          "item": 249,
+          "chance": 5
+        }
+      ]
+    }
+  ]
+}

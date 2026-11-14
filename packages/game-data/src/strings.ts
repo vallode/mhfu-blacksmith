@@ -40,6 +40,8 @@ export const STRING_KINDS = {
   monster_description: "emID",
   /** Maps: the quest header's map ID. */
   map: "map ID",
+  /** Pokke Farm's gathering points ("Mining Point +2"): the point's index in the game's farm table, the order of data/farm.json. */
+  farm: "farm point index",
   /** Quest text, from the disc: the quest ID. */
   quest: "quest ID",
   quest_goal: "quest ID",
