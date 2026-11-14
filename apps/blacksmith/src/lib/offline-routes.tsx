@@ -18,11 +18,12 @@ import { ArmorShell } from "@/app/armorsmith/ArmorShell";
 import { DecorationShell } from "@/app/decorations/DecorationShell";
 import MonsterRedirect from "@/app/monsters/MonsterRedirect";
 import { MonsterShell } from "@/app/monsters/MonsterShell";
-import QuestBoardsContent from "@/app/quests/QuestBoardsContent";
-import QuestHubShell from "@/app/quests/[hub]/QuestHubShell";
+import QuestHubShell, { QuestBoardsShell } from "@/app/quests/[hub]/QuestHubShell";
 import QuestListClient from "@/app/quests/[hub]/QuestListClient";
 import QuestDetailClient from "@/app/quests/[hub]/[id]/QuestDetailClient";
+import SetBuilderClient from "@/app/set-builder/SetBuilderClient";
 import { QUEST_HUB_SLUGS, type QuestHubSlug } from "./quests";
+import { codeFromPath } from "./set-link";
 import {
   WEAPON_TYPES,
   ARMOR_SLOTS,
@@ -52,17 +53,23 @@ export type RouteMatch =
   | { kind: "quest-detail"; hub: QuestHubSlug; id: number }
   | { kind: "item-list" }
   | { kind: "item-detail"; slug: string }
+  | { kind: "set-builder" }
   | { kind: "unknown" };
 
 /**
  * Matches a pathname against every route this app can fully render from
  * client-side cached data (see src/lib/client-data.ts) — i.e. everything
  * except the hunter/options pages, which aren't worth
- * reconstructing this way. Shared by the offline click-interceptor
+ * reconstructing this way. Share links (src/lib/set-link.ts) are the set
+ * builder, which opens their code from the address. Shared by the offline click-interceptor
  * (src/components/OfflineNavGuard.tsx) and the SW navigation-fallback shell
  * (src/app/offline).
  */
 export function matchOfflineRoute(pathname: string): RouteMatch {
+  // A share link opens in the set builder, which reads the code from the
+  // address itself.
+  if (codeFromPath(pathname)) return { kind: "set-builder" };
+
   const parts = pathname.split("/").filter(Boolean);
 
   if (parts.length === 0) return { kind: "home" };
@@ -119,6 +126,8 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
     if (parts.length === 1) return { kind: "item-list" };
     if (parts.length === 2) return { kind: "item-detail", slug: parts[1] };
   }
+
+  if (parts[0] === "set-builder" && parts.length === 1) return { kind: "set-builder" };
 
   return { kind: "unknown" };
 }
@@ -191,16 +200,20 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
         </DecorationShell>
       );
     case "quest-list":
-      return <QuestBoardsContent />;
+      return (
+        <QuestBoardsShell>
+          <QuestListClient boards />
+        </QuestBoardsShell>
+      );
     case "quest-hub":
       return (
-        <QuestHubShell hub={match.hub}>
-          <QuestListClient hub={match.hub} />
+        <QuestHubShell key={match.hub} hub={match.hub}>
+          <QuestListClient />
         </QuestHubShell>
       );
     case "quest-detail":
       return (
-        <QuestHubShell hub={match.hub}>
+        <QuestHubShell key={match.hub} hub={match.hub}>
           <QuestDetailClient hub={match.hub} id={match.id} />
         </QuestHubShell>
       );
@@ -216,6 +229,8 @@ export function renderOfflineRoute(match: RouteMatch): React.ReactNode {
           <ItemDetailClient slug={match.slug} />
         </ItemShell>
       );
+    case "set-builder":
+      return <SetBuilderClient />;
     case "unknown":
       return null;
   }

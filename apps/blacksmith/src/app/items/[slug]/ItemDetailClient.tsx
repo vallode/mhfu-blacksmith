@@ -2,6 +2,7 @@
 
 import { Fragment, useMemo, type ReactNode } from "react";
 import Link from "next/link";
+import { ItemAreaMap } from "@/components/AreaMap";
 import {
   DetailBody,
   DetailCard,
@@ -26,6 +27,7 @@ import {
   useItemPlaces,
   useItems,
   useItemSources,
+  useItemTrades,
   useQuests,
   type ItemLookup,
 } from "@/lib/client-data";
@@ -37,19 +39,18 @@ import {
 } from "@/lib/combinations";
 import { ownedItemCounts } from "@/lib/hunter-progress";
 import type { Messages } from "@/lib/i18n/messages";
-import { isRank } from "@/lib/i18n/labels";
 import { itemCategory } from "@/lib/item-categories";
 import type { GatherPlace, ShopPlace } from "@/lib/item-places";
 import { groupBy, itemHref, type MonsterSource, type QuestSource } from "@/lib/item-sources";
-import type { DropSource } from "@/lib/monster-drops";
 import {
   clearedQuestIds,
-  QUEST_HUBS,
   type Quest,
   questHref,
   questStarLevel,
   rewardTableHeading,
 } from "@/lib/quests";
+import { groupTrades, tradeMapsLabel, type ItemTrades, type Trade } from "@/lib/veggie-trades";
+import { dropSourceLabel, groundName, groupLabel } from "../source-labels";
 
 interface Props {
   slug: string;
@@ -60,6 +61,7 @@ export default function ItemDetailClient({ slug }: Props) {
   const { sources, error: sourcesError } = useItemSources();
   const { places, error: placesError } = useItemPlaces();
   const { combinations, error: combinationsError } = useCombinations();
+  const { trades, error: tradesError } = useItemTrades();
   const { quests } = useQuests();
   const { save } = useSave();
   const t = useT();
@@ -114,11 +116,32 @@ export default function ItemDetailClient({ slug }: Props) {
       content: <GatherPlaces places={placed.gathering} quests={quests} cleared={cleared} />,
     });
   }
+  if (placed?.gathering.some((p) => p.mapQuest !== undefined)) {
+    tabs.push({
+      id: "map",
+      label: t.items.detail.tabs.map,
+      content: (
+        <ItemAreaMap
+          places={placed.gathering}
+          quests={new Map(quests?.map((q) => [q.id, q]))}
+          gives={(name) => items.idOf(name) === item.id}
+        />
+      ),
+    });
+  }
   if (placed?.shops.length) {
     tabs.push({
       id: "shops",
       label: t.items.detail.tabs.shops,
       content: <ShopPlaces places={placed.shops} />,
+    });
+  }
+  const traded = trades?.get(item.id);
+  if (traded) {
+    tabs.push({
+      id: "trades",
+      label: t.items.detail.tabs.trades,
+      content: <VeggieTrades trades={traded} items={items} />,
     });
   }
   const combos = combinations?.byItem.get(item.id);
@@ -139,8 +162,11 @@ export default function ItemDetailClient({ slug }: Props) {
   // The tabs wait for every bundle to load or fail, so they don't reorder
   // under the reader; one that fails leaves the others' tabs and a note.
   const settled =
-    (sources || sourcesError) && (places || placesError) && (combinations || combinationsError);
-  const failed = sourcesError || placesError || combinationsError;
+    (sources || sourcesError) &&
+    (places || placesError) &&
+    (combinations || combinationsError) &&
+    (trades || tradesError);
+  const failed = sourcesError || placesError || combinationsError || tradesError;
 
   return (
     <DetailCard>
@@ -195,29 +221,6 @@ export default function ItemDetailClient({ slug }: Props) {
 
 /** "×3", or nothing for one */
 const amountLabel = (n: number) => (n > 1 ? `×${n}` : undefined);
-
-/**
- * A drop table rank or a gathering group, as lib/ names them in English
- * ("Low Rank", "1-2 Star Guild", "Training School"), in the site's language.
- */
-function groupLabel(t: Messages, group: string): string {
-  const hub = QUEST_HUBS.find((h) => h.label === group);
-  if (hub) return t.quests.hubs[hub.slug];
-  const id = group.trim().toLowerCase().replace(/\s+/g, "-");
-  if (isRank(id)) return t.common.ranks[id];
-  return t.monsters.drops.ranks[id] ?? group;
-}
-
-/** "Body carves ×3 · fished out, using frog as bait", in the site's language. */
-function dropSourceLabel(t: Messages, { title, count, note }: DropSource): string {
-  const name = t.monsters.drops.sources[title] ?? title;
-  return [
-    count !== undefined ? `${name} ×${count}` : name,
-    note && (t.monsters.drops.notes[note] ?? note),
-  ]
-    .filter(Boolean)
-    .join(" · ");
-}
 
 /** The item's monster drops, one list per rank, best chance first. */
 function MonsterSources({ sources }: { sources: MonsterSource[] }) {
@@ -381,6 +384,49 @@ function ShopPlaces({ places }: { places: ShopPlace[] }) {
   );
 }
 
+/**
+ * The Veggie Elder trades that give the item and the ones that take it, a
+ * row per distinct trade with the grounds that make it and the list number
+ * there, which decides which one he makes.
+ */
+function VeggieTrades({ trades, items }: { trades: ItemTrades; items: ItemLookup }) {
+  const t = useT();
+  const tv = t.items.veggieElder;
+  const game = useGameText();
+  const { formatNumber } = useLocale();
+  const grounds = (maps: string[]) => tradeMapsLabel(maps, (m) => groundName(game, m));
+  // One row per distinct trade, with every ground that makes it, not a row per ground.
+  const rows = (list: Trade[]): SourceRow[] =>
+    groupTrades(list).map((g) => {
+      const it = items.get(g.item);
+      return {
+        name: it.known ? game.name("item", it.name) : t.quests.rewards.unknownItem(g.item),
+        href: it.known ? itemHref(it.name) : undefined,
+        icon: { type: it.type, color: it.color },
+        detail: [
+          g.rare && tv.rareTrade,
+          // The list place only where it's one ground: on several it is a different one on each.
+          g.places.length === 1
+            ? tv.listPlace(grounds(g.places[0]!.maps), g.places[0]!.row)
+            : g.places.map((p) => grounds(p.maps)).join(", "),
+        ]
+          .filter(Boolean)
+          .join(" · "),
+        value: `${formatNumber(g.chance)}%`,
+        strong: g.chance >= 100,
+      };
+    });
+  return (
+    <div className="flex flex-col gap-[1.6rem]">
+      <DropGrid>
+        {trades.gives.length > 0 && <SourceList title={tv.gives} rows={rows(trades.gives)} />}
+        {trades.takes.length > 0 && <SourceList title={tv.takes} rows={rows(trades.takes)} />}
+      </DropGrid>
+      <p className="m-0 text-fine whitespace-normal text-white/60">{tv.itemNote}</p>
+    </div>
+  );
+}
+
 const sourceName = "min-w-0 flex-1 truncate text-white underline-offset-4 mobile:whitespace-normal";
 
 /**
@@ -502,6 +548,8 @@ interface SourceRow {
   prefix?: string;
   /** Before the name: the map's icon (gathering points) */
   map?: string;
+  /** Before the name: an item's icon */
+  icon?: { type: string; color: string };
   /** How it's obtained, on the line below */
   detail: ReactNode;
   /** The loaded hunter has cleared this quest */
@@ -535,6 +583,7 @@ function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
           <li key={i} className="flex min-w-0 gap-[0.8rem] leading-[1.25]">
             {r.prefix && <span className="w-cells-4 flex-none text-stat">{r.prefix}</span>}
             {r.map && <MapIcon map={r.map} />}
+            {r.icon && <Icon type={r.icon.type} color={r.icon.color} />}
             <div className="flex min-w-0 flex-1 flex-col gap-[0.2rem]">
               <div className="flex min-w-0 items-baseline gap-[0.8rem]">
                 {typeof r.name !== "string" ? (

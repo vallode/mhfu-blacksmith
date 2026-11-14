@@ -2,9 +2,12 @@
 # to Cloudflare > Run workflow, picking the branch in "Use workflow from" and
 # the site.
 #
-# Each site is a Cloudflare Worker with only static assets, configured by its
+# Each site is a Cloudflare Worker serving static assets, configured by its
 # app's wrangler.jsonc (apps/blacksmith, apps/randomfu). Static asset
-# requests are free and unmetered, and deploys cost nothing.
+# requests are free and unmetered, and deploys cost nothing. The blacksmith
+# site also has a script for the set builder's pages and share links only
+# (shared sets' link embeds, src/cloudflare/worker.ts); those requests count
+# as Worker requests.
 #
 # - main deploys to production: <worker>.<subdomain>.workers.dev, plus any
 #   custom domain added to the Worker in the Cloudflare dashboard.

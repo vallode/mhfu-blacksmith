@@ -1,3 +1,5 @@
+import { createElement, Fragment, type ReactNode } from "react";
+
 /** Quest boards, quest pages and their rewards. */
 export const quests = {
   /** The quest boards, by QuestHubSlug. */
@@ -9,19 +11,22 @@ export const quests = {
     "training-school": "Training School",
     "treasure-hunting": "Treasure Hunting",
   },
-  /** The quest pages' top bar. */
-  search: "Search",
   /** A quest the loaded hunter has cleared, like the game's quest sheet. */
   cleared: "CLEAR!!",
   loadError: "Couldn't load quests.",
   notFound: "Not found.",
   board: {
+    /** Read after an urgent quest's title, which only its red colour marks on screen. */
+    urgent: " (urgent quest)",
     /** The board's screen-reader heading: "Guild High Rank quests". */
     title: (hub: string) => `${hub} quests`,
-    /** A board's page before a quest is picked. */
+    /** A board's page before a quest is picked, and /quests/ before a board is. */
     selectQuest: "Select a quest.",
-    /** An Urgent Quest in the board's list. */
-    urgent: "Urgent",
+    selectBoard: "Select a quest board.",
+    /** The list of boards' accessible name, on /quests/. */
+    boards: "Quest boards",
+    /** The row atop a board's list that leads back to the boards, read out. */
+    backToBoards: (hub: string) => `${hub}: back to quest boards`,
     /** The star level tabs' accessible name. */
     starLevels: "Star levels",
     /** A star level tab, read out: "3 stars", "G 1 star". */
@@ -50,8 +55,6 @@ export const quests = {
     treasure: "Treasure Quest",
   },
   detail: {
-    /** An Urgent Quest, in the corner of its page. */
-    urgent: "URGENT!!!",
     /** The tab row's accessible name. */
     tabsLabel: (quest: string) => `${quest} data`,
     tabs: {
@@ -71,6 +74,9 @@ export const quests = {
     fee: "Contract fee:",
     requires: "Requires:",
     monsters: "Monsters:",
+    /** The crowns the quest's monsters can be, and a note when they can't at first. */
+    crowns: "Crowns:",
+    crownsAfterFirstClear: "(likely after the first clear)",
     smallMonsters: "Small monsters:",
     client: "Client:",
   },
@@ -86,11 +92,41 @@ export const quests = {
     /** Added to the note for Furious Rajang. */
     changesDuringHunt: (monster: string) =>
       `${monster}'s attack and defense change again during the hunt.`,
+    /** The size a crowned monster rolls, in percent of its normal size: "90–127%". */
+    size: "Size:",
+    sizePercent: (n: string) => `${n}%`,
+    sizeRange: (min: string, max: string) => `${min}–${max}%`,
+    /** A monster's crown chances, when it can't be any crown in the quest. */
+    noCrowns: "None",
+    /** Added to the note when a monster has crowns. */
+    sizeNote:
+      "Size is a percent of the monster's normal size, rolled for each monster; crown chances are per monster.",
+    /** Added after `sizeNote` when sizes are held until a story flag. */
+    fixedFirstNote:
+      "Until a story flag is set (likely the quest's first clear), every monster here is its normal size.",
   },
   /** The Map tab: the quest's gathering points on the game's area map. */
   areaMap: {
     loading: "Loading map…",
     loadError: "Couldn't load the map.",
+    /** An item's Map tab: its selectors of rank (or board) and map. */
+    rank: "Rank",
+    previousRank: "Previous rank",
+    nextRank: "Next rank",
+    map: "Map",
+    previousMap: "Previous map",
+    nextMap: "Next map",
+    /** Read for a selector's "2/3" count. */
+    position: (n: number, total: number) => `${n} of ${total}`,
+    /** A map entry for quests with their own points: "Pokke Farm Tour +2". */
+    andMore: (first: string, more: number) => `${first} +${more}`,
+    /** Under the selectors, for such an entry: "Snowy Mountains (Day) · only in <quests>". */
+    onlyIn: (map: string, quests: ReactNode): ReactNode =>
+      createElement(Fragment, null, `${map} · only in `, quests),
+    /** The best chance of the item at one of the map's points: "up to 35% a gather". */
+    upTo: (percent: string) => `up to ${percent}% a gather`,
+    /** Before `hint` on an item's map. */
+    litHint: "Lit points give this item.",
     /** Gathering point kinds (lib/item-places GatherKind). */
     kinds: {
       gather: "Gathering",

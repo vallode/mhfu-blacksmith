@@ -24,6 +24,7 @@ import ArmorModelViewer from "@/components/ArmorModelViewer";
 import ModelPopover, { ModelButton } from "@/components/ModelPopover";
 import { useArmorModel } from "@/lib/models";
 import Loading from "@/components/Loading";
+import WishlistButton from "@/components/WishlistButton";
 import { useGameText, useT } from "@/context/LanguageContext";
 
 interface Props {
@@ -69,6 +70,11 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
               className="ml-[0.4rem]"
             />
           )}
+          <WishlistButton
+            gear={{ kind: "armor", slot, rank, slug }}
+            name={name}
+            className={modelKey ? undefined : "ml-[0.4rem]"}
+          />
           {(piece.sex || piece.hunter_type) && (
             <div className="ml-[1.6rem] flex flex-wrap gap-x-[1.6rem] mobile:ml-0">
               {piece.sex && <span>{ta.sex[piece.sex] ?? piece.sex}</span>}
@@ -90,7 +96,7 @@ export default function ArmorDetailClient({ slot, rank, slug }: Props) {
                 piece.max_defence_pre_ukanlos !== piece.max_defence ? (
                   <>
                     <StatValue>{piece.max_defence_pre_ukanlos}</StatValue>
-                    <StatValue className="opacity-20">[ {piece.max_defence} ]</StatValue>
+                    <StatValue className="ml-(--cell) opacity-20">[{piece.max_defence}]</StatValue>
                   </>
                 ) : (
                   <StatValue>{piece.max_defence}</StatValue>

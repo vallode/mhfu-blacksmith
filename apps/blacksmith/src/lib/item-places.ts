@@ -56,6 +56,11 @@ export interface GatherPlace {
   chance: number;
   /** Set when only these quests' points on the map give it, not the map's usual points */
   quests?: number[];
+  /**
+   * A quest whose area map (area-maps.json) shows these points, when the
+   * map draws at least one of the points that give the item.
+   */
+  mapQuest?: number;
 }
 
 /** A shop that sells the item. */
@@ -90,19 +95,26 @@ const KIND_ORDER: GatherKind[] = ["gather", "mine", "bug"];
 
 type Layout = GatheringFile["layouts"][number];
 
-/** One item's points in a layout: kind -> areas, and the best chance. */
+/**
+ * One item's points in a layout: kind -> areas, the best chance, and
+ * whether the layout's map draws any of them.
+ */
 function pointsIn(layout: Layout, itemId: (name: string) => number | undefined) {
-  const out = new Map<number, { kinds: Map<GatherKind, Set<number>>; chance: number }>();
+  const out = new Map<
+    number,
+    { kinds: Map<GatherKind, Set<number>>; chance: number; drawn: boolean }
+  >();
   for (const { area, nodes } of layout.areas) {
     for (const node of nodes) {
       for (const { item, chance } of node.items) {
         const id = itemId(item);
         if (id === undefined || chance <= 0) continue;
-        const e = out.get(id) ?? { kinds: new Map(), chance: 0 };
+        const e = out.get(id) ?? { kinds: new Map(), chance: 0, drawn: false };
         out.set(id, e);
         const areas = e.kinds.get(node.kind) ?? new Set<number>();
         e.kinds.set(node.kind, areas.add(area));
         e.chance = Math.max(e.chance, chance);
+        e.drawn ||= !!layout.texture && (node.positions?.length ?? 0) > 0;
       }
     }
   }
@@ -156,7 +168,7 @@ export function buildItemPlaces(
     const usual = pointsIn(uses[0]![0], itemId);
     uses.forEach(([layout, ids], i) => {
       const found = i === 0 ? usual : pointsIn(layout, itemId);
-      for (const [id, { kinds, chance }] of found) {
+      for (const [id, { kinds, chance, drawn }] of found) {
         if (i > 0 && usual.has(id)) continue;
         entry(id).gathering.push({
           group,
@@ -167,6 +179,7 @@ export function buildItemPlaces(
           })),
           chance,
           ...(i > 0 && { quests: [...ids].sort((a, b) => a - b) }),
+          ...(drawn && { mapQuest: Math.min(...ids) }),
         });
       }
     });
@@ -251,6 +264,14 @@ export interface ItemPlacesBundle {
   shops: { name: string; currency: ShopPlace["currency"]; stages: number }[];
   /** item ID -> [gathering, shops] */
   items: Record<string, [GatherTuple[], ShopTuple[]]>;
+  /**
+   * Each place's `mapQuest`, kept off the rows: a quest's own points use
+   * their first quest, and a map's usual points the quest here, by
+   * "group,map" (their indices), when the map draws them...
+   */
+  mapQuests: Record<string, number>;
+  /** ...except these places, "itemId:row", whose points that map doesn't draw. */
+  unmapped: string[];
 }
 
 const KIND_LETTERS: Record<GatherKind, string> = { gather: "g", mine: "m", bug: "b" };
@@ -274,6 +295,7 @@ export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBun
   const mapIndex = new Map<string, number>();
   const shopIndex = new Map<string, number>();
   const items: ItemPlacesBundle["items"] = {};
+  const mapQuests: ItemPlacesBundle["mapQuests"] = {};
   for (const [id, { gathering, shops: sold }] of [...places].sort((a, b) => a[0] - b[0])) {
     const g = gathering.map((p): GatherTuple => {
       const points = p.points.map((pt) => KIND_LETTERS[pt.kind] + pt.areas.join(",")).join("|");
@@ -284,6 +306,15 @@ export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBun
         points,
       ];
       if (p.quests) t.push(p.quests);
+      if (!p.quests && p.mapQuest !== undefined) {
+        const key = `${t[0]},${t[1]}`;
+        if ((mapQuests[key] ??= p.mapQuest) !== p.mapQuest) {
+          throw new Error(`item-places: ${p.group} ${p.map} has two usual maps`);
+        }
+      }
+      if (p.quests && p.mapQuest !== undefined && p.mapQuest !== p.quests[0]) {
+        throw new Error(`item-places: quest ${p.quests[0]}'s points use another quest's map`);
+      }
       return t;
     });
     const s = sold.map((p): ShopTuple => {
@@ -296,23 +327,37 @@ export function encodeItemPlaces(places: Map<number, ItemPlaces>): ItemPlacesBun
     });
     items[id] = [g, s];
   }
-  return { kind: "item-places", groups, maps, shops, items };
+  // Only once every usual map is known: the places their quest doesn't draw.
+  const unmapped = [...places].flatMap(([id, { gathering }]) =>
+    gathering.flatMap((p, row) => {
+      const derived = p.quests ?? mapQuests[`${groupIndex.get(p.group)},${mapIndex.get(p.map)}`];
+      return derived !== undefined && p.mapQuest === undefined ? [`${id}:${row}`] : [];
+    }),
+  );
+  return { kind: "item-places", groups, maps, shops, items, mapQuests, unmapped };
 }
 
 export function decodeItemPlaces(bundle: ItemPlacesBundle): Map<number, ItemPlaces> {
+  const unmapped = new Set(bundle.unmapped);
   const out = new Map<number, ItemPlaces>();
   for (const [id, [g, s]] of Object.entries(bundle.items)) {
     out.set(Number(id), {
-      gathering: g.map(([group, map, chance, points, quests]) => ({
-        group: bundle.groups[group]!,
-        map: bundle.maps[map]!,
-        points: points.split("|").map((pt) => ({
-          kind: LETTER_KINDS[pt[0]!]!,
-          areas: pt.slice(1).split(",").map(Number),
-        })),
-        chance,
-        ...(quests && { quests }),
-      })),
+      gathering: g.map(([group, map, chance, points, quests], row) => {
+        const mapQuest = unmapped.has(`${id}:${row}`)
+          ? undefined
+          : (quests?.[0] ?? bundle.mapQuests[`${group},${map}`]);
+        return {
+          group: bundle.groups[group]!,
+          map: bundle.maps[map]!,
+          points: points.split("|").map((pt) => ({
+            kind: LETTER_KINDS[pt[0]!]!,
+            areas: pt.slice(1).split(",").map(Number),
+          })),
+          chance,
+          ...(quests && { quests }),
+          ...(mapQuest !== undefined && { mapQuest }),
+        };
+      }),
       shops: s.map(([shop, price, stages]) => ({
         shop: bundle.shops[shop]!.name,
         currency: bundle.shops[shop]!.currency,

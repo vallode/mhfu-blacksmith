@@ -475,10 +475,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 450.45,
-        "max": 1451.2
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -608,6 +604,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1044,
+      "crowns": {
+        "mini": 88,
+        "silver": 110,
+        "gold": 123
       }
     },
     {
@@ -704,10 +706,6 @@
             }
           ]
         }
-      },
-      "sizes": {
-        "min": 247.5,
-        "max": 1346.8
       },
       "hitzones": {
         "head": {
@@ -838,6 +836,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1044,
+      "crowns": {
+        "mini": 88,
+        "silver": 110,
+        "gold": 123
       }
     },
     {
@@ -1371,10 +1375,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 586.03,
-        "max": 1294.5
-      },
       "hitzones": {
         "head": {
           "cut": "45",
@@ -1516,6 +1516,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 863,
+      "crowns": {
+        "mini": 94,
+        "silver": 114,
+        "gold": 120
       }
     },
     {
@@ -1608,10 +1614,6 @@
             }
           ]
         }
-      },
-      "sizes": {
-        "min": 742.2,
-        "max": 1294.5
       },
       "hitzones": {
         "head": {
@@ -1733,6 +1735,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 863,
+      "crowns": {
+        "mini": 94,
+        "silver": 114,
+        "gold": 120
       }
     },
     {
@@ -1835,7 +1843,8 @@
         "sleep": null,
         "ko": null,
         "poison": null
-      }
+      },
+      "base_size": 1000
     }
   ]
 }

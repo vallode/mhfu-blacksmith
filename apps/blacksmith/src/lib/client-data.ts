@@ -31,6 +31,7 @@ import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
 import { decodeCombinations, type CombinationIndex, type CombinationsBundle } from "./combinations";
+import { indexVeggieTrades, type ItemTrades, type VeggieTradesBundle } from "./veggie-trades";
 import { normalizeItemName } from "./items";
 import { slugify } from "./slug";
 import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
@@ -72,10 +73,16 @@ export function getBundle(file: string): Promise<Bundle> {
   if (cached) return Promise.resolve(cached);
   let p = bundlePromises.get(file);
   if (!p) {
-    p = fetchJson<Bundle>(`/data/${file}.json`).then((b) => {
-      bundleCache.set(file, b);
-      return b;
-    });
+    p = fetchJson<Bundle>(`/data/${file}.json`).then(
+      (b) => {
+        bundleCache.set(file, b);
+        return b;
+      },
+      (e) => {
+        bundlePromises.delete(file); // allow a retry on the next call
+        throw e;
+      },
+    );
     bundlePromises.set(file, p);
   }
   return p;
@@ -158,6 +165,27 @@ export function useWeapon(type: string, slug: string): DetailState<Weapon> {
       tree: decodeTree(b.tree, b.type),
     };
   });
+}
+
+/** A weapon bundle's weapons, decoded once per bundle. */
+const decodedWeapons = new WeakMap<WeaponBundle, Weapon[]>();
+
+/** A weapon bundle's weapons, decoded (once per bundle; shared, so don't change them). */
+export function decodeWeaponBundle(b: WeaponBundle, dict: Dictionaries): Weapon[] {
+  let item = decodedWeapons.get(b);
+  if (!item) {
+    item = b.items.map((w) => decodeWeapon(dict, w, b.type));
+    decodedWeapons.set(b, item);
+  }
+  return item;
+}
+
+/** Every weapon of a class, decoded (the set builder's weapon suggestions). */
+export function useWeaponList(type: string): DetailState<Weapon[]> {
+  return useBundle<Weapon[]>(`weapon-${type}`, (bundle, dict) => ({
+    item: decodeWeaponBundle(bundle as WeaponBundle, dict),
+    tree: null,
+  }));
 }
 
 export function useArmorPiece(slot: string, rank: string, slug: string): DetailState<ArmorPiece> {
@@ -603,6 +631,72 @@ export function useCombinations(): { combinations: CombinationIndex | null; erro
     };
   }, []);
   return { combinations, error };
+}
+
+// ---------------------------------------------------------------------------
+// Veggie Elder trades, by item ID
+// ---------------------------------------------------------------------------
+let tradeBundlePromise: Promise<VeggieTradesBundle> | null = null;
+let tradeBundleCache: VeggieTradesBundle | null = null;
+let tradesCache: Map<number, ItemTrades> | null = null;
+
+/** The Veggie Elder's trades as the build wrote them, from veggie-trades.json. */
+export function getVeggieTrades(): Promise<VeggieTradesBundle> {
+  if (tradeBundleCache) return Promise.resolve(tradeBundleCache);
+  if (!tradeBundlePromise) {
+    tradeBundlePromise = fetchJson<VeggieTradesBundle>("/data/veggie-trades.json")
+      .then((bundle) => {
+        tradeBundleCache = bundle;
+        return bundle;
+      })
+      .catch((e) => {
+        tradeBundlePromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return tradeBundlePromise;
+}
+
+/** The Veggie Elder's trades by item. */
+export function getItemTrades(): Promise<Map<number, ItemTrades>> {
+  if (tradesCache) return Promise.resolve(tradesCache);
+  return getVeggieTrades().then((bundle) => (tradesCache ??= indexVeggieTrades(bundle)));
+}
+
+/** `getVeggieTrades` as a hook: null while loading or on error (`error` set). */
+export function useVeggieTrades(): { bundle: VeggieTradesBundle | null; error: boolean } {
+  const [bundle, setBundle] = useState(tradeBundleCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (tradeBundleCache) return;
+    let cancelled = false;
+    getVeggieTrades().then(
+      (b) => !cancelled && setBundle(b),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { bundle, error };
+}
+
+/** `getItemTrades` as a hook: null while loading or on error (`error` set). */
+export function useItemTrades(): { trades: Map<number, ItemTrades> | null; error: boolean } {
+  const [trades, setTrades] = useState(tradesCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (tradesCache) return;
+    let cancelled = false;
+    getItemTrades().then(
+      (t) => !cancelled && setTrades(t),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { trades, error };
 }
 
 // ---------------------------------------------------------------------------

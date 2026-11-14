@@ -19,5 +19,5 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 export default async function QuestHubPage({ params }: Props) {
   const { hub } = await params;
   if (!QUEST_HUB_SLUGS.includes(hub as QuestHubSlug)) notFound();
-  return <QuestListClient hub={hub as QuestHubSlug} />;
+  return <QuestListClient />;
 }

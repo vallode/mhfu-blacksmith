@@ -32,6 +32,13 @@ below.
   [svanheulen/mhff](https://github.com/svanheulen/mhff) (`psp/package.py`,
   `psp/pmo.py`, `psp/tmh.py`, GPL-3.0), reimplemented in TypeScript with
   corrections for multi-mesh files (see README, "3D models").
+- **`vendor/mhfu-monster-viewer/spawn-hide.json`** — from
+  [ArmoredRaven17/mhfu-monster-viewer](https://github.com/ArmoredRaven17/mhfu-monster-viewer)
+  (MIT, `vendor/mhfu-monster-viewer/LICENSE`): each monster's `spawnHide`
+  list from its `docs/monsters.json`, the (mesh, material) pairs of the
+  monster's PMO the game doesn't draw at spawn, which that project found by
+  running each monster's material pass under emulation. Used by
+  `src/models/spawn-parts.ts`.
 - **Region rebase constants** (`US = JP + 0x2C24`, `EU = JP + 0x2B04`) were
   cross-derived against [GReinoso96/MHEdit](https://github.com/GReinoso96/MHEdit)
   and independently verified against the structural invariants in
@@ -40,5 +47,6 @@ below.
   [SiD3W4y/mhfu-re](https://github.com/SiD3W4y/mhfu-re).
 
 None of the above vendors game assets, copyrighted Capcom text, or ROM data —
-only third-party reverse-engineering documentation and code. The game disc
+only third-party reverse-engineering documentation and code, and (in
+`spawn-hide.json`) mesh and material indices worked out from the game. The game disc
 itself is never committed to this repository; see `README.md`.

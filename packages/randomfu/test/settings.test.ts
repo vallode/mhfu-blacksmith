@@ -46,18 +46,7 @@ test("every option has a default its own checks accept", () => {
 });
 
 /** Options no preset turns on until they're tried in game (see the README's status). */
-const UNTRIED: readonly OptionKey[] = [
-  "questMonsters.difficulty",
-  "questMonsters.smallCounts",
-  "monsterStats.hp",
-  "monsterStats.size",
-  "monsterStats.status",
-  "weaknesses.elements",
-  "weaknesses.parts",
-  "weapons.attack",
-  "weapons.affinity",
-  "weapons.element",
-];
+const UNTRIED: readonly OptionKey[] = ["trades.enabled"];
 
 test("presets do what their help says", () => {
   const preset = (name: string) =>
@@ -118,6 +107,13 @@ test("presets do what their help says", () => {
     assert.ok(actionsOf(full).has(key), `Full has ${key}`);
   }
   for (const key of keys(full)) assert.ok(actionsOf(chaos).has(key), `Chaos has ${key}`);
+
+  // Every preset but Rewards only writes the bookshelf guides.
+  for (const { name } of PRESETS) {
+    for (const key of ["hints.bookshelf", "hints.almanac"] as const) {
+      assert.equal(preset(name)[key], name !== "Rewards only", `${name}: ${key}`);
+    }
+  }
 
   // Nothing untried is in a preset.
   for (const { name } of PRESETS) {

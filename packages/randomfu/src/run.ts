@@ -10,7 +10,8 @@ import { detectRegion, parseSfo } from "mhfu-extract/src/container/sfo.js";
 import { copyAsIso, openPatchableImage } from "./disc/node-file.js";
 import { loadGame } from "./game/load.js";
 import { randomize } from "./randomize.js";
-import { describeSettings, encodeSettings, needsEboot, type Settings } from "./settings.js";
+import { describeSettings, encodeSettings, type Settings } from "./settings.js";
+import { reportLogLine } from "./shuffles/shuffle.js";
 import { formatSpoiler } from "./spoiler.js";
 import { writeEdits } from "./write.js";
 
@@ -25,6 +26,8 @@ export interface RunOptions {
   /** Spoiler log path. Defaults to next to the output; a dry run returns it only. */
   spoiler?: string;
   force?: boolean;
+  /** For testing in game: a happy Poogie always gives the rarest reward. */
+  poogieTest?: boolean;
 }
 
 export interface RunResult {
@@ -39,7 +42,8 @@ export function defaultSpoilerPath(out: string): string {
 
 export async function runRandomizer(options: RunOptions, log: Log): Promise<RunResult> {
   const { iso: input, out: output, settings } = options;
-  const eboot = needsEboot(settings) ? { pspdecryptBin: options.pspdecryptBin } : null;
+  // Always loaded: Poogie's luck patches it whatever the settings.
+  const eboot = { pspdecryptBin: options.pspdecryptBin };
 
   if (output) {
     if (path.resolve(output) === path.resolve(input)) {
@@ -66,8 +70,8 @@ export async function runRandomizer(options: RunOptions, log: Log): Promise<RunR
     log(`Seed ${settings.seed}. Settings string: ${encodeSettings(settings)}`);
     for (const line of describeSettings(settings)) log(`  ${line}`);
 
-    const result = randomize(game, settings);
-    for (const report of result.reports) log(`${report.title}: ${report.lines.length} slots`);
+    const result = randomize(game, settings, { poogieTest: options.poogieTest });
+    for (const report of result.reports) log(reportLogLine(report));
     if (result.problems.length > 0) {
       log(
         `Warning: ${result.problems.length} recipe materials can't be found as early as before; see the spoiler log.`,

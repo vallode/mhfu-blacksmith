@@ -1,7 +1,28 @@
 /** The drop-table text helpers (lib/monster-drops.ts) on the shapes found in data/monsters. */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
-import { formatRank, parseDropSource, splitDropQuantity } from "../src/lib/monster-drops";
+import {
+  canCapture,
+  formatRank,
+  parseDropSource,
+  splitDropQuantity,
+} from "../src/lib/monster-drops";
+
+describe("canCapture", () => {
+  test("takes either capture source name, at any rank", () => {
+    assert.equal(canCapture({ drops: { "g rank": { capture: [] } } }), true);
+    assert.equal(
+      canCapture({ drops: { "low rank": {}, "high rank": { "capture rewards": [] } } }),
+      true,
+    );
+  });
+
+  test("is false without capture rewards", () => {
+    // Kushala Daora: carves and breaks, but the game can't capture it.
+    assert.equal(canCapture({ drops: { "high rank": { "body carves (x4)": [] } } }), false);
+    assert.equal(canCapture({}), false);
+  });
+});
 
 describe("formatRank", () => {
   test("title-cases and joins hyphenated ranks", () => {

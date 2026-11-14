@@ -12,7 +12,9 @@ import { randomize } from "../src/randomize.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import {
   buildFixtureDisc,
+  buildLobbyTask,
   FIXTURE_ARMOR,
+  FIXTURE_STORE_LISTS,
   FIXTURE_ARMOR_CREATE,
   FIXTURE_RECIPES,
   tempDir,
@@ -134,8 +136,9 @@ test("armor: the spoiler lists places by slot and rarity; output is deterministi
   assert.ok(a.edits.eboot().equals(b.edits.eboot()));
 
   const report = a.reports.find((r) => r.title === "Armor progression")!;
+  const places = report.lines;
   const order = ["Head", "Chest", "Arms", "Waist", "Legs"];
-  const keys = report.lines.map((l) => {
+  const keys = places.map((l) => {
     const [slot, rarity] = l.where.split(", rarity ");
     return order.indexOf(slot!) * 100 + Number(rarity);
   });
@@ -144,8 +147,8 @@ test("armor: the spoiler lists places by slot and rarity; output is deterministi
     [...keys].sort((x, y) => x - y),
     "grouped by slot, then rarity",
   );
-  assert.ok(report.lines.length > 0);
-  assert.ok(report.lines.every((l) => / -> /.test(l.text)));
+  assert.ok(places.length > 0);
+  assert.ok(places.every((l) => / -> /.test(l.text)));
   close();
 });
 
@@ -165,5 +168,44 @@ test("armor draws its own random stream: other shuffles give the same result wit
     assert.deepEqual(lines(all, "Armor progression"), lines(alone, "Armor progression"));
     assert.deepEqual(all.problems, []);
   }
+  close();
+});
+
+test("armor: the smithy's store sells the piece now in each sold piece's places", async () => {
+  const { game, close } = await load();
+  const { storeAt } = buildLobbyTask();
+  const slotOf: Record<number, ArmorSlot> = {
+    0: "leg",
+    1: "head",
+    2: "chest",
+    3: "arm",
+    4: "waist",
+  };
+  const storeIn = (buf: Buffer, name: string) =>
+    FIXTURE_STORE_LISTS[name]!.map((_, k) => [
+      buf.readUInt16LE(storeAt[name]! + k * 4),
+      buf.readUInt16LE(storeAt[name]! + k * 4 + 2),
+    ]);
+  let movedAny = false;
+  for (const seed of ["a", "b", "c", "d", "e", "f"]) {
+    const result = randomize(game, settingsWith(seed, ["armor"]));
+    const sigma = substitution(game.eboot!, result.edits.eboot());
+    const lobby = result.edits.overlay(game.lobbyTask);
+    const expected = FIXTURE_STORE_LISTS.armor!.map(([category, id]) => [
+      category,
+      sigma.get(`${slotOf[category]}:${id}`) ?? id,
+    ]);
+    assert.deepEqual(storeIn(lobby, "armor"), expected, seed);
+    assert.equal(storeIn(lobby, "armor")[2]![1], 9, "a piece the smithy doesn't make stays");
+    assert.deepEqual(storeIn(lobby, "weapons2"), FIXTURE_STORE_LISTS.weapons2, "weapons untouched");
+    if (expected.some(([, id], k) => id !== FIXTURE_STORE_LISTS.armor![k]![1])) movedAny = true;
+    const lines = result.reports.find((r) => r.title === "Smithy store")!.lines;
+    assert.deepEqual(
+      lines.map((l) => l.where),
+      ["Armor: Head", "Armor: Head", "Armor: Legs"],
+      "one line per piece on sale, under its slot",
+    );
+  }
+  assert.ok(movedAny, "some seed changes what the store sells");
   close();
 });

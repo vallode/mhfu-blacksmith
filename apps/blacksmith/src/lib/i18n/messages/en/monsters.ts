@@ -16,6 +16,11 @@ export const monsters = {
     /** The loaded hunter's Guild Card counts. */
     hunted: "Hunted:",
     captured: "Captured:",
+    /** The loaded hunter's Guild Card size records. */
+    largest: "Largest:",
+    smallest: "Smallest:",
+    /** A size in centimetres: "1,629 cm". */
+    cm: (n: string) => `${n} cm`,
     /** The tab row's accessible name. */
     tabsLabel: (monster: string) => `${monster} data`,
     tabs: {
@@ -24,6 +29,22 @@ export const monsters = {
       /** A small monster's tab: the quests with the most of it. */
       spawns: "Most plentiful",
     },
+  },
+  /** Guild Card crowns: the size records the game marks with a crown. */
+  crowns: {
+    /** The crown cutoffs table's row names. */
+    names: { gold: "Gold", silver: "Silver", mini: "Mini" },
+    /** A crown icon's name. */
+    crown: { gold: "Gold crown", silver: "Silver crown", mini: "Mini crown" },
+    /** The cutoffs table's last column: the best chance any quest gives, or none. */
+    best: (chance: string) => `Best ${chance}`,
+    noQuest: "No quest",
+    /** A crown by a quest in the Quests tab: "Best chance of a gold crown: 8.2%". */
+    bestChance: (crown: string, chance: string) =>
+      `Best chance of a ${crown.toLowerCase()}: ${chance}`,
+    /** A chance: "8.2%", "<0.1%". */
+    chance: (percent: string) => `${percent}%`,
+    below: (percent: string) => `<${percent}%`,
   },
   /** A small monster's "Most plentiful" tab. */
   spawns: {

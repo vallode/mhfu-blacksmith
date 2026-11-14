@@ -57,11 +57,13 @@ export const items = {
       monsters: "Monsters",
       quests: "Quests",
       gathering: "Gathering",
+      map: "Map",
       shops: "Shops",
+      trades: "Trades",
       combining: "Combining",
     },
     noSources:
-      "No monster drop, quest reward, gathering point, shop or combination gives this item.",
+      "No monster drop, quest reward, gathering point, shop, trade or combination gives this item.",
     /** Some of the sources failed to load; `partial` when others are shown. */
     loadError: (partial: boolean): string =>
       partial
@@ -115,5 +117,87 @@ export const items = {
     /** `bonuses` is "+5%, +10%, …". */
     booksNote: (last: number, bonuses: string) =>
       `Rates are before Books of Combos 1–${last} (${bonuses} for owning them in order from 1) and the Combination skill.`,
+  },
+  /** The Veggie Elder's trades: the item pages' Trades tab and /veggie-elder/. */
+  veggieElder: {
+    /** The Trades tab's lists. */
+    gives: "Veggie Elder gives it for",
+    takes: "Trade it to the Veggie Elder for",
+    rareTrade: "Rare trade",
+    /** A trade's hunting ground and its place in his list there: "Desert No. 3". */
+    listPlace: (ground: string, row: number) => `${ground} No. ${row}`,
+    itemNote:
+      "He takes the first item on his list that you carry, and each ground has its own list (the No. is the place on it). The Felyne Negotiations kitchen skill makes every trade a rare one.",
+    /** The Veggie Elder page. */
+    loadError: "The Veggie Elder's trades didn't load.",
+    loading: "Loading trades…",
+    groundGroup: "Hunting ground",
+    previousGround: "Previous hunting ground",
+    nextGround: "Next hunting ground",
+    groundOf: (n: number, total: number) => `Hunting ground ${n} of ${total}`,
+    listNumber: "List No.:",
+    heGives: "He gives:",
+    pageNote:
+      "He takes the first item on his list that you carry, so a higher one wins. The Felyne Negotiations kitchen skill makes every trade a rare one.",
+    pickItem:
+      "Pick an item to see what the Veggie Elder gives for it. Each hunting ground has its own list.",
+  },
+  /** /wishlist/: the gear the player starred and the materials it needs. */
+  wishlist: {
+    /** Card titles. */
+    title: "Wishlist",
+    materials: "Materials",
+    whereToGo: "Where to go",
+    empty:
+      "Nothing on your wishlist yet. Press the star beside a weapon or armor piece's name to add it, and its materials add up here with where to get them. The wishlist is kept in this browser.",
+    loadError: "Couldn't load the wishlist's gear.",
+    retry: "Try again",
+    whereToGoNote: "The monsters and maps that give the most of the materials you still need.",
+    /** The badge on gear the loaded hunter has. */
+    owned: "OWNED",
+    remove: "Remove",
+    removeLabel: (name: string) => `Remove ${name} from the wishlist`,
+    missingGear: "Not in this version's data any more.",
+    ownedNote: "Your hunter has this already, so its materials are left out.",
+    noRecipe: "No recipe makes this.",
+    recipe: "Recipe",
+    /** By lib/wishlist Recipe. */
+    recipes: { create: "Create", alt: "Alt. recipe", improve: "Upgrade" },
+    /** After a weapon in an upgrade path that's made another way: "(create)". */
+    stepRecipes: { create: "(create)", alt: "(alt. recipe)", improve: "(upgrade)" },
+    /** The weapon an upgrade path starts from. */
+    from: "From",
+    ownedOption: (name: string) => `${name} (owned)`,
+    wholePath: "Nothing (whole path)",
+    cost: "Cost:",
+    /** The loaded hunter's zenny, after the cost. */
+    youHave: (amount: string) => `(you have ${amount})`,
+    materialsCount: "Materials:",
+    stillToGet: (_n: number, missing: string, total: string) =>
+      `${missing} of ${total} still to get`,
+    nothingLeft: "Nothing left to make.",
+    loadSave: "Load a save on the Hunter page to count what you already have.",
+    /** A material's tooltip: the gear it's for. */
+    forGear: (names: string) => `For ${names}`,
+    /** The ways to get a material that aren't shown, linking to its page. */
+    more: (_n: number, count: string) => `${count} more…`,
+    noSource: "No known source.",
+    /** The ways to get a material. */
+    ways: {
+      /** What to do. Short: the column fits eight characters. */
+      kinds: { shop: "Buy", monster: "Hunt", gather: "Gather", quest: "Quest", combine: "Combine" },
+      shop: "Shop",
+      stageStock: (stage: number) => `Stage ${stage} stock`,
+      /** By lib/item-places GatherKind. */
+      gatherKinds: { gather: "Gathering", mine: "Mining", bug: "Bug catching" },
+      onlyOnQuests: (n: number, count: string) =>
+        `only on ${count} ${n === 1 ? "quest" : "quests"}`,
+      /** `stars` is "G3★". */
+      questReward: (stars: string) => `${stars} reward`,
+      pokkePoints: (amount: string) => `${amount}pts`,
+    },
+    /** Where to go: a gathering map's rank or board. */
+    gatheringIn: (group: string) => `Gathering · ${group}`,
+    materialCount: (n: number, count: string) => `${count} ${n === 1 ? "material" : "materials"}`,
   },
 };

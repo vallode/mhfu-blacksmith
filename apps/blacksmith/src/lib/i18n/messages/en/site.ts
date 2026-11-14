@@ -14,7 +14,9 @@ export const site = {
     decorations: "Decorations",
     quests: "Quests",
     items: "Items",
+    veggieElder: "Veggie Elder",
     sets: "Sets",
+    wishlist: "Wishlist",
     hunter: "Hunter",
     options: "Options",
     home: "Home",
@@ -178,6 +180,16 @@ export const site = {
     placeholder: "Search weapons, armor, monsters…",
     noResults: "No results found",
     /** Quest board prefixes in the search index's "Low 3★" labels. */
+    /** A result's kind, beside results without a rank (shown capitalised). */
+    categories: {
+      weapon: "weapon",
+      armor: "armor",
+      decoration: "decoration",
+      monster: "monster",
+      quest: "quest",
+      item: "item",
+      page: "page",
+    },
     boards: {
       Low: "Low",
       High: "High",

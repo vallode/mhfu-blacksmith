@@ -4,12 +4,18 @@ import Link from "next/link";
 import { useState } from "react";
 import { Stat, StatList } from "@/components/DetailPanel";
 import Loading from "@/components/Loading";
+import MapIcon from "@/components/MapIcon";
+import StepSelector from "@/components/StepSelector";
 import { useLocale, useT } from "@/context/LanguageContext";
 import { AREA_MAP_SIZE, areaMapSrc, nextSelection, type AreaMap as Data } from "@/lib/area-maps";
 import { useAreaMap } from "@/lib/client-data";
 import { cn } from "@/lib/cn";
-import type { GatherKind } from "@/lib/item-places";
-import { itemHref } from "@/lib/item-sources";
+import type { GatherKind, GatherPlace } from "@/lib/item-places";
+import { gatherPointsLabel, groupLabel } from "@/lib/i18n/place-labels";
+import type { GameText } from "@/lib/i18n/game-text";
+import type { Messages } from "@/lib/i18n/messages";
+import { groupBy, itemHref } from "@/lib/item-sources";
+import { type Quest, questHref } from "@/lib/quests";
 
 /** Each kind of point's marker colour; its name is `t.quests.areaMap.kinds[kind]`. */
 const KINDS: { kind: GatherKind; marker: string }[] = [
@@ -24,19 +30,147 @@ const percent = (pixels: number) => `${(pixels / AREA_MAP_SIZE) * 100}%`;
 
 /** A quest's Map tab; its data loads when the tab opens. */
 export default function QuestAreaMap({ questId }: { questId: number }) {
+  return <LoadedAreaMap questId={questId} />;
+}
+
+function LoadedAreaMap({ questId, gives }: { questId: number; gives?: (item: string) => boolean }) {
   const t = useT().quests.areaMap;
   const { map, loading } = useAreaMap(questId);
-  if (map) return <AreaMap map={map} />;
+  if (map) return <AreaMap key={questId} map={map} gives={gives} />;
   if (loading) return <Loading>{t.loading}</Loading>;
   return <p className="text-negative">{t.loadError}</p>;
 }
 
-/** The game's map of a quest, with its gathering points on it. */
-function AreaMap({ map }: { map: Data }) {
+/** A quest's title in the site's language, or "Quest 123" for one the list doesn't have. */
+function questTitle(t: Messages, game: GameText, quests: ReadonlyMap<number, Quest>, id: number) {
+  const quest = quests.get(id);
+  return quest ? game.quest(id, "title", quest.title) : t.items.detail.unknownQuest(id);
+}
+
+/** "Snowy Mountains (Day)", or the quest whose own points these are ("Pokke Farm Tour +2"). */
+function placeName(
+  t: Messages,
+  game: GameText,
+  place: GatherPlace,
+  quests: ReadonlyMap<number, Quest>,
+): string {
+  if (!place.quests) return game.name("map", place.map);
+  const [first, ...rest] = place.quests.map((id) => questTitle(t, game, quests, id));
+  return rest.length > 0 ? t.quests.areaMap.andMore(first!, rest.length) : first!;
+}
+
+/**
+ * An item's Map tab: a rank (or quest board) and a map where its points are,
+ * then that map with the points that give it lit. The rank's usual points
+ * come first; a quest with its own points has its own entry. Changing the
+ * rank keeps the map when the new rank has it.
+ */
+export function ItemAreaMap({
+  places,
+  quests,
+  gives,
+}: {
+  /** The item's gathering places; those without a `mapQuest` are left out. */
+  places: GatherPlace[];
+  quests: ReadonlyMap<number, Quest>;
+  /** Whether an item name on a point is this item. */
+  gives: (item: string) => boolean;
+}) {
+  const { t: messages, game, formatNumber } = useLocale();
+  const t = messages.quests.areaMap;
+  const groups = groupBy(
+    places.filter((p) => p.mapQuest !== undefined),
+    (p) => p.group,
+  );
+  const [choice, setChoice] = useState({ group: 0, place: 0 });
+  const groupIndex = Math.min(choice.group, groups.length - 1);
+  const [group, rows] = groups[groupIndex] ?? [];
+  if (!group || !rows) return null;
+  const placeIndex = Math.min(choice.place, rows.length - 1);
+  const place = rows[placeIndex]!;
+
+  const pickGroup = (next: number) => {
+    const nextRows = groups[next]![1];
+    const same = nextRows.findIndex((p) => p.map === place.map && !p.quests);
+    setChoice({ group: next, place: Math.max(0, same) });
+  };
+
+  return (
+    <div className="flex flex-col gap-4">
+      <div className="mx-auto flex w-full max-w-[48rem] flex-col gap-2">
+        <StepSelector
+          groupLabel={t.rank}
+          previousLabel={t.previousRank}
+          nextLabel={t.nextRank}
+          label={<span className="truncate">{groupLabel(messages, group)}</span>}
+          index={groupIndex}
+          count={groups.length}
+          countLabel={t.position(groupIndex + 1, groups.length)}
+          onChange={pickGroup}
+        />
+        <StepSelector
+          groupLabel={t.map}
+          previousLabel={t.previousMap}
+          nextLabel={t.nextMap}
+          label={
+            <>
+              <MapIcon map={place.map} className="size-[2.4rem]" />
+              <span className="truncate">{placeName(messages, game, place, quests)}</span>
+            </>
+          }
+          index={placeIndex}
+          count={rows.length}
+          countLabel={t.position(placeIndex + 1, rows.length)}
+          onChange={(next) => setChoice({ group: groupIndex, place: next })}
+        />
+        <p className="m-0 text-fine whitespace-normal text-white/60">
+          {place.quests && (
+            <>
+              {t.onlyIn(
+                game.name("map", place.map),
+                place.quests.map((id, i) => {
+                  const quest = quests.get(id);
+                  const title = questTitle(messages, game, quests, id);
+                  return (
+                    <span key={id}>
+                      {i > 0 && ", "}
+                      {quest ? (
+                        <Link
+                          href={questHref(quest)}
+                          className="underline-offset-4 hover:underline"
+                        >
+                          {title}
+                        </Link>
+                      ) : (
+                        title
+                      )}
+                    </span>
+                  );
+                }),
+              )}{" "}
+              ·{" "}
+            </>
+          )}
+          {gatherPointsLabel(messages.items.gathering, place.points)} ·{" "}
+          {t.upTo(formatNumber(place.chance))}
+        </p>
+      </div>
+      <LoadedAreaMap questId={place.mapQuest!} gives={gives} />
+    </div>
+  );
+}
+
+/**
+ * The game's map of a quest, with its gathering points on it. With `gives`,
+ * the points that give that item are lit and the rest dimmed.
+ */
+function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean }) {
   const { t: messages, game, formatNumber } = useLocale();
   const t = messages.quests.areaMap;
   const [hidden, setHidden] = useState<ReadonlySet<GatherKind>>(new Set());
   const [selected, setSelected] = useState<number | null>(null);
+  const lit = (p: Data["points"][number]) =>
+    !gives || p.items.some(({ item, chance }) => chance > 0 && gives(item));
   const point = selected === null ? undefined : map.points[selected];
   const shown = point && !hidden.has(point.kind) ? point : undefined;
   const label = (kind: GatherKind) => t.kinds[kind];
@@ -91,6 +225,7 @@ function AreaMap({ map }: { map: Data }) {
               style={{ left: percent(p.x), top: percent(p.y) }}
               className={cn(
                 "absolute grid size-[2rem] -translate-1/2 cursor-pointer place-items-center border-0 bg-transparent p-0",
+                gives && lit(p) && "z-1",
                 selected === i && "z-10",
               )}
             >
@@ -98,7 +233,8 @@ function AreaMap({ map }: { map: Data }) {
                 className={cn(
                   diamond,
                   KINDS.find((k) => k.kind === p.kind)!.marker,
-                  selected === i && "outline-2 outline-white",
+                  !lit(p) && "opacity-35",
+                  selected === i && "opacity-100 outline-2 outline-white",
                 )}
               />
             </button>
@@ -133,21 +269,33 @@ function AreaMap({ map }: { map: Data }) {
               {gatherCount(shown.gathers, shown.mostGathers)}
             </span>
           </Stat>
-          {shown.items.map(({ item, chance }) => (
-            <Stat
-              key={item}
-              label={
-                <Link href={itemHref(item)} className="underline-offset-4 hover:underline">
-                  {game.name("item", item)}
-                </Link>
-              }
-            >
-              <span className="text-white tabular-nums">{t.chance(formatNumber(chance))}</span>
-            </Stat>
-          ))}
+          {shown.items.map(({ item, chance }) => {
+            // The item whose page this is, in the item list's selected green.
+            const own = gives?.(item);
+            return (
+              <Stat
+                key={item}
+                label={
+                  <Link
+                    href={itemHref(item)}
+                    className={cn("underline-offset-4 hover:underline", own && "text-positive")}
+                  >
+                    {game.name("item", item)}
+                  </Link>
+                }
+              >
+                <span className={cn("text-white tabular-nums", own && "text-positive")}>
+                  {t.chance(formatNumber(chance))}
+                </span>
+              </Stat>
+            );
+          })}
         </StatList>
       ) : (
-        <p className="text-center text-fine text-white/60">{t.hint}</p>
+        <p className="text-center text-fine whitespace-normal text-white/60">
+          {gives && `${t.litHint} `}
+          {t.hint}
+        </p>
       )}
     </div>
   );

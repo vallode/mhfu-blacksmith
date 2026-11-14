@@ -4,9 +4,6 @@ import type { Messages } from "../en";
 const s = (n: number, one: string, many: string) => (n === 1 ? one : many);
 
 export const setBuilder: Messages["setBuilder"] = {
-  nav: {
-    search: "Buscar",
-  },
   hunterTypes: {
     Blademaster: "Espadachín",
     Gunner: "Artillero",
@@ -15,25 +12,47 @@ export const setBuilder: Messages["setBuilder"] = {
     Male: "Hombre",
     Female: "Mujer",
   },
-  tier: (rank: string, stars: number) => `${rank} ★${stars}`,
 
   form: {
     title: "Habilidades",
+    clear: "Borrar",
+    // Short: the chip has to fit a phone's card on one line.
+    addFirst: "+ Añadir habilidades",
+    addMore: "+ Habilidad",
+    skillsTitle: (n: number) => (n > 0 ? `Habilidades (${n})` : "Habilidades"),
+    options: "Opciones",
+    optionsLabel: "Opciones: cazador, rango, ranuras del arma, orden",
     hunter: "Cazador",
+    hunterSummary: (hunterType: string, sex: string) => `${hunterType}, ${sex.toLowerCase()}`,
+    weaponClass: "Tipo de arma",
     sex: "Sexo",
-    rank: "Rango",
+    rank: "Armadura hasta",
+    rankShort: {
+      "low-rank": "RB",
+      "high-rank": "RA",
+      "g-rank": "G",
+    },
     weaponSlots: "Ranuras del arma",
-    noWeaponSlots: "Ninguna",
+    slotCount: (n: number) => (n === 0 ? "Sin ranuras" : n === 1 ? "1 ranura" : `${n} ranuras`),
     sortBy: "Ordenar por",
     sortNote: "En caso de empate, va primero la defensa más alta.",
     sorts: {
       defence: "Defensa",
-      fire: "Res. Fuego",
-      water: "Res. Agua",
-      thunder: "Res. Trueno",
-      ice: "Res. Hielo",
-      dragon: "Res. Dragón",
+      fire: "Fuego",
+      water: "Agua",
+      thunder: "Trueno",
+      ice: "Hielo",
+      dragon: "Dragón",
       slots: "Ranuras libres",
+    },
+    summary: {
+      rank: "Rango",
+      weapon: "Arma",
+      badSkills: "habilidades negativas permitidas",
+      allQuests: "todas las misiones",
+      ownedArmor: "armadura obtenida",
+      alwaysUsed: (n: number) => `${n} ${s(n, "siempre usada", "siempre usadas")}`,
+      neverUsed: (n: number) => `${n} ${s(n, "nunca usada", "nunca usadas")}`,
     },
     allowBadSkills: "Permitir habilidades negativas",
     allowBadSkillsNote:
@@ -50,17 +69,23 @@ export const setBuilder: Messages["setBuilder"] = {
     ownedOnly: "Solo armadura obtenida",
     ownedOnlyNote: "Usar solo la armadura de la caja de equipo de tu cazador.",
     locked: {
-      title: "Piezas fijadas",
-      note: "Todos los conjuntos las usan, sea cual sea el rango o el progreso de misiones.",
-      remove: (name: string) => `Quitar ${name} de las piezas fijadas`,
+      title: "Siempre usadas",
+      note: "Todos los conjuntos las usan, sea cual sea el rango o el progreso de misiones, si el cazador puede llevarlas.",
+      remove: (name: string) => `Quitar ${name} de las piezas que siempre se usan`,
     },
     excluded: {
-      title: "Piezas excluidas",
+      title: "Nunca usadas",
       note: "La búsqueda nunca las usa.",
-      remove: (name: string) => `Quitar ${name} de las piezas excluidas`,
+      remove: (name: string) => `Quitar ${name} de las piezas que nunca se usan`,
     },
     search: "Buscar",
     cancel: "Cancelar",
+  },
+
+  searchBar: {
+    searching: (found: ReactNode) => createElement(Fragment, null, "Buscando… ", found),
+    update: "Actualizar resultados",
+    search: (n: number) => `Buscar ${n} ${s(n, "habilidad", "habilidades")}`,
   },
 
   tabs: {
@@ -74,14 +99,16 @@ export const setBuilder: Messages["setBuilder"] = {
     loading: "Cargando armaduras…",
     searching: (found: string) => (found ? `Buscando… ${found}` : "Buscando…"),
     intro:
-      "Añade las habilidades que quieras y busca. Los mejores conjuntos aparecen primero: por defensa o por el orden que elijas.",
-    noSets: (progress: boolean, locked: boolean) => {
+      "Añade las habilidades que quieras y busca: todos los conjuntos de armadura con adornos que las activan. Los mejores conjuntos aparecen primero: por defensa o por el orden que elijas.",
+    addSkills: "Añadir habilidades",
+    noSets: (progress: boolean, locked: boolean, excluded: boolean) => {
       const tips = [
         "menos habilidades",
         "un rango más alto",
         "más ranuras de arma",
         "permitir habilidades negativas",
-        ...(locked ? ["quitar piezas fijadas"] : []),
+        ...(locked ? ["liberar piezas que siempre se usan"] : []),
+        ...(excluded ? ["quitar piezas excluidas"] : []),
         ...(progress ? ["ignorar tu progreso de misiones"] : []),
       ];
       const last = tips.pop();
@@ -116,6 +143,7 @@ export const setBuilder: Messages["setBuilder"] = {
     saveFailed:
       "El almacenamiento del navegador está lleno o bloqueado. Los conjuntos se conservan hasta que salgas de la página.",
     linkCopied: "Enlace copiado",
+    linkCopiedNote: "Pégalo donde quieras para compartir este conjunto.",
     copyLink: "Copia este enlace",
     deleted: (name: string) => `Eliminado: ${name}.`,
     undo: "Deshacer",
@@ -167,11 +195,39 @@ export const setBuilder: Messages["setBuilder"] = {
         : `Otras ${n} piezas dan los mismos puntos en tus habilidades`,
     alternativesNote:
       "Sus otras habilidades son distintas, así que un cambio puede añadir o quitar una habilidad.",
-    lock: "Fijar",
-    locked: "Fijada",
-    exclude: "Excluir",
-    lockLabel: (name: string) => `Fijar ${name}: usarla en todos los conjuntos`,
-    excludeLabel: (name: string) => `Excluir ${name}: no usarla nunca`,
+  },
+
+  result: {
+    def: "DEF",
+    defValue: (defence: string) => `DEF ${defence}`,
+    resistances: "Resistencias",
+    free: "Libres",
+    weaponRow: "Arma: sugerir armas para este conjunto.",
+    pieceLabel: (slot: string, name: string, locked: boolean) =>
+      `${slot}: ${name}${locked ? ", siempre usada" : ""}. Opciones`,
+    swaps: "Alternativas",
+    alwaysUsed: "Siempre usada",
+    defense: "Defensa",
+    slots: "Ranuras",
+    skills: "Habilidades",
+    jewels: "Adornos",
+    swapsTitle: "Alternativas que mantienen tus habilidades",
+    openPage: (name: string) => `Abrir la página de ${name}`,
+    // Short: both buttons share one line on a phone.
+    alwaysUse: "Usar siempre",
+    alwaysUseLabel: (name: string) => `Usar siempre ${name}: fijarla en todos los conjuntos`,
+    unlock: "Liberar",
+    unlockLabel: (name: string) => `Dejar de usar siempre ${name}`,
+    neverUse: "Nunca usar",
+    neverUseLabel: (name: string) => `No usar nunca ${name}: excluirla de la búsqueda`,
+  },
+
+  weapons: {
+    note: (slots: number, rank: string, progress: string | null) =>
+      `Los más fuertes primero${slots > 0 ? `, con ${slots === 1 ? "una ranura" : `${slots} ranuras`} o más para los adornos` : ""}, hasta ${rank}${progress ? ` y tu progreso de misiones (${progress})` : ""}.`,
+    loading: "Cargando armas…",
+    none: "Ninguna encaja. Prueba con otro tipo de arma o con menos ranuras.",
+    attack: (attack: string) => `ATQ ${attack}`,
   },
 
   status: {
@@ -240,8 +296,11 @@ export const setBuilder: Messages["setBuilder"] = {
 
   skillPicker: {
     remove: (name: string) => `Quitar ${name}`,
-    add: "Añadir una habilidad",
-    placeholder: "Habilidad, p. ej. Ataque",
-    placeholderMore: "Añadir otra habilidad…",
+    filter: "Filtrar habilidades",
+    filterPlaceholder: "Filtrar, p. ej. ataque, evasión",
+    nothingChosen: "Aún no has elegido ninguna.",
+    chosen: (list: ReactNode) => createElement(Fragment, null, "Elegidas: ", list),
+    noMatch: (query: string) => `Ninguna habilidad coincide con «${query}».`,
+    points: (n: number) => `${n} pts`,
   },
 };

@@ -23,7 +23,7 @@ import {
 import { LOGIC_VERSION } from "./version.js";
 import { roundTrip } from "./write.js";
 
-const BOOLEAN_FLAGS = new Set(["dry-run", "force", "no-open"]);
+const BOOLEAN_FLAGS = new Set(["dry-run", "force", "no-open", "poogie-test"]);
 
 export function parseFlags(argv: string[]): Record<string, string> {
   const flags: Record<string, string> = {};
@@ -69,6 +69,7 @@ const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   "quest-money": "terms.money",
   "time-limits": "terms.time",
   deliveries: "deliveries.enabled",
+  "veggie-trades": "trades.enabled",
 };
 
 /** Shorthand flags for single settings. */
@@ -123,7 +124,7 @@ export function settingsFromFlags(flags: Record<string, string>): Settings {
 
 const USAGE = `Usage:
   randomize --iso <in.iso|in.cso> --out <out.iso> [settings] [--spoiler <path>]
-            [--pspdecrypt-bin <name>] [--force]
+            [--pspdecrypt-bin <name>] [--force] [--poogie-test]
   randomize --iso <in> --dry-run [settings]         print the spoiler log, write nothing
   roundtrip --iso <in>                              check files re-encrypt to the disc's bytes
   gui [--port <n>] [--no-open]                      open the settings page in a browser
@@ -139,7 +140,10 @@ Settings (later ones win):
   --tiers star|rank|none       --amount-spread <0-0.95>   --cost-spread <0-0.95>
   --weapon-mix same-type|any-type
   --set key=value,key=value    any setting by name
-  --seed <seed>`;
+  --seed <seed>
+
+Testing:
+  --poogie-test                a happy Poogie always gives the rarest reward (not for play)`;
 
 function printSettings(): void {
   console.log(
@@ -200,6 +204,7 @@ export async function main(argv: string[]): Promise<void> {
           pspdecryptBin: flags["pspdecrypt-bin"],
           spoiler: flags.spoiler,
           force: flags.force === "true",
+          poogieTest: flags["poogie-test"] === "true",
         },
         (line) => console.log(line),
       );

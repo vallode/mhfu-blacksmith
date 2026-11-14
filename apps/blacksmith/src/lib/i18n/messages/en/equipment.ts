@@ -237,6 +237,16 @@ export const equipment = {
     attached: (count: string) => `+${count} attached`,
     recipesLabel: (name: string) => `${name} recipes`,
   },
+  /** The star beside a weapon's or armor piece's name, and its toasts. */
+  wishlist: {
+    add: "Add to wishlist",
+    remove: "Remove from wishlist",
+    added: (name: string) => `${name} added to your wishlist.`,
+    removed: (name: string) => `${name} taken off your wishlist.`,
+    /** The toast's button to the wishlist page. */
+    view: "View",
+    saveFailed: "Couldn't save the wishlist in this browser.",
+  },
   /** The 3D model button and popover. */
   model: {
     view: "View 3D model",

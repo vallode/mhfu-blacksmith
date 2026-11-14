@@ -49,11 +49,13 @@ export const items: Messages["items"] = {
       monsters: "Monstruos",
       quests: "Misiones",
       gathering: "Recolección",
+      map: "Mapa",
       shops: "Tiendas",
+      trades: "Trueques",
       combining: "Combinar",
     },
     noSources:
-      "Ningún monstruo, recompensa de misión, punto de recolección, tienda ni combinación da este objeto.",
+      "Ningún monstruo, recompensa de misión, punto de recolección, tienda, trueque ni combinación da este objeto.",
     loadError: (partial: boolean) =>
       partial
         ? "No se pudo cargar todo lo que da este objeto."
@@ -94,5 +96,76 @@ export const items: Messages["items"] = {
     makes: (odds: string) => `Da ${odds}`,
     booksNote: (last: number, bonuses: string) =>
       `Tasas sin los Libros combos 1–${last} (${bonuses} por tenerlos en orden desde el 1) ni la habilidad Combinación.`,
+  },
+  veggieElder: {
+    gives: "El Anciano Vegetal lo da por",
+    takes: "Cámbialo al Anciano Vegetal por",
+    rareTrade: "Trueque raro",
+    listPlace: (ground: string, row: number) => `${ground} n.º ${row}`,
+    itemNote:
+      "Toma el primer objeto de su lista que lleves, y cada zona de caza tiene su propia lista (el n.º es el puesto en ella). La habilidad de cocina Negociador Felyne hace raros todos los trueques.",
+    loadError: "No se pudieron cargar los trueques del Anciano Vegetal.",
+    loading: "Cargando trueques…",
+    groundGroup: "Zona de caza",
+    previousGround: "Zona de caza anterior",
+    nextGround: "Zona de caza siguiente",
+    groundOf: (n: number, total: number) => `Zona de caza ${n} de ${total}`,
+    listNumber: "N.º en lista:",
+    heGives: "Te da:",
+    pageNote:
+      "Toma el primer objeto de su lista que lleves, así que gana el que esté más arriba. La habilidad de cocina Negociador Felyne hace raros todos los trueques.",
+    pickItem:
+      "Elige un objeto para ver qué da el Anciano Vegetal por él. Cada zona de caza tiene su propia lista.",
+  },
+  wishlist: {
+    title: "Lista de deseos",
+    materials: "Materiales",
+    whereToGo: "Adónde ir",
+    empty:
+      "Tu lista de deseos está vacía. Pulsa la estrella junto al nombre de un arma o pieza de armadura para añadirla, y aquí se sumarán sus materiales y dónde conseguirlos. La lista se guarda en este navegador.",
+    loadError: "No se pudo cargar el equipo de la lista de deseos.",
+    retry: "Reintentar",
+    whereToGoNote: "Los monstruos y mapas que dan más de los materiales que aún te faltan.",
+    owned: "OBTENIDO",
+    remove: "Quitar",
+    removeLabel: (name: string) => `Quitar ${name} de la lista de deseos`,
+    missingGear: "Ya no está en los datos de esta versión.",
+    ownedNote: "Tu cazador ya lo tiene, así que sus materiales no se cuentan.",
+    noRecipe: "Ninguna receta lo crea.",
+    recipe: "Receta",
+    recipes: { create: "Crear", alt: "Receta alt.", improve: "Mejorar" },
+    stepRecipes: { create: "(crear)", alt: "(receta alt.)", improve: "(mejorar)" },
+    from: "Desde",
+    ownedOption: (name: string) => `${name} (obtenido)`,
+    wholePath: "Nada (toda la ruta)",
+    cost: "Precio:",
+    youHave: (amount: string) => `(tienes ${amount})`,
+    materialsCount: "Materiales:",
+    stillToGet: (n: number, missing: string, total: string) =>
+      n === 1 ? `falta ${missing} de ${total}` : `faltan ${missing} de ${total}`,
+    nothingLeft: "No queda nada por crear.",
+    loadSave: "Carga una partida en el Perfil de cazador para contar lo que ya tienes.",
+    forGear: (names: string) => `Para ${names}`,
+    more: (_n: number, count: string) => `${count} más…`,
+    noSource: "Sin fuente conocida.",
+    ways: {
+      kinds: {
+        shop: "Comprar",
+        monster: "Cazar",
+        gather: "Recoger",
+        quest: "Misión",
+        combine: "Combinar",
+      },
+      shop: "Tienda",
+      stageStock: (stage: number) => `En la fase ${stage}`,
+      gatherKinds: { gather: "Recolección", mine: "Minería", bug: "Bichos" },
+      onlyOnQuests: (n: number, count: string) =>
+        n === 1 ? `solo en ${count} misión` : `solo en ${count} misiones`,
+      questReward: (stars: string) => `recompensa ${stars}`,
+      pokkePoints: (amount: string) => `${amount} ptos.`,
+    },
+    gatheringIn: (group: string) => `Recolección · ${group}`,
+    materialCount: (n: number, count: string) =>
+      n === 1 ? `${count} material` : `${count} materiales`,
   },
 };

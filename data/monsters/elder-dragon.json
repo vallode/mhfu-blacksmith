@@ -90,10 +90,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 371.4,
-        "max": 989.64
-      },
       "hitzones": {
         "head": {
           "cut": "45",
@@ -152,6 +148,12 @@
           "damage_interval": 150,
           "total_time": 900
         }
+      },
+      "base_size": 464.3,
+      "crowns": {
+        "mini": 97,
+        "silver": 130,
+        "gold": 177
       }
     },
     {
@@ -159,10 +161,6 @@
       "type": "elder-dragon",
       "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {},
-      "sizes": {
-        "min": 1261.6,
-        "max": 2391.41
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -285,6 +283,12 @@
           "damage_interval": 150,
           "total_time": 3600
         }
+      },
+      "base_size": 1577,
+      "crowns": {
+        "mini": 91,
+        "silver": 110,
+        "gold": 120
       }
     },
     {
@@ -293,10 +297,6 @@
       "icon": "kushala-daora",
       "description": "A metal plated dragon known as the tempest of wind. Eyewitnesses report violent storms alongside the dragon, and its wide range means towns may be attacked.",
       "drops": {},
-      "sizes": {
-        "min": 1261.6,
-        "max": 2129
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -419,6 +419,12 @@
           "damage_interval": 150,
           "total_time": 3600
         }
+      },
+      "base_size": 1577,
+      "crowns": {
+        "mini": 91,
+        "silver": 110,
+        "gold": 120
       }
     },
     {
@@ -649,10 +655,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1395.2,
-        "max": 2811.32
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -785,6 +787,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1744,
+      "crowns": {
+        "mini": 96,
+        "silver": 120,
+        "gold": 141
       }
     },
     {
@@ -965,10 +973,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1444.2,
-        "max": 2575.2
-      },
       "hitzones": {
         "head": {
           "cut": "40",
@@ -1109,6 +1113,12 @@
           "damage_interval": 150,
           "total_time": 900
         }
+      },
+      "base_size": 1740,
+      "crowns": {
+        "mini": 91,
+        "silver": 115,
+        "gold": 121
       }
     },
     {
@@ -1405,10 +1415,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1479,
-        "max": 2610
-      },
       "hitzones": {
         "head": {
           "cut": "40",
@@ -1549,6 +1555,12 @@
           "damage_interval": 150,
           "total_time": 600
         }
+      },
+      "base_size": 1740,
+      "crowns": {
+        "mini": 88,
+        "silver": 110,
+        "gold": 125
       }
     },
     {
@@ -2236,10 +2248,6 @@
             }
           ]
         }
-      },
-      "sizes": {
-        "min": 4110.6,
-        "max": 4137.17
       },
       "hitzones": {
         "face": {

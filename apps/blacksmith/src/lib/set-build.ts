@@ -49,8 +49,11 @@ export function buildFromResult(
   };
 }
 
-/** English slot names, for validateBuild's messages. The page shows translated ones. */
-const BIN_LABELS: Record<DecoBin, string> = {
+/**
+ * English slot names, for validateBuild's messages and the link previews
+ * (set-embed.ts), which stay English. The page shows translated ones.
+ */
+export const BIN_LABELS: Record<DecoBin, string> = {
   weapon: "Weapon",
   helmet: "Head",
   plate: "Chest",
@@ -68,7 +71,7 @@ export function binSlots(set: BuildSet, bin: DecoBin): number {
   return bin === "weapon" ? set.weaponSlots : (pieceIn(set, bin)?.slots ?? 0);
 }
 
-export function usedSlots(set: BuildSet, bin: DecoBin): number {
+export function usedSlots(set: Pick<BuildSet, "decorations">, bin: DecoBin): number {
   return set.decorations.reduce((n, d) => (d.bin === bin ? n + d.deco.slots : n), 0);
 }
 

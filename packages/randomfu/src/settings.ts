@@ -26,6 +26,8 @@ export interface Settings {
   "terms.time": boolean;
   "terms.timeSpread": number;
   "deliveries.enabled": boolean;
+  "trades.enabled": boolean;
+  "trades.mix": "elder" | "all";
   "recipes.materials": boolean;
   "recipes.amounts": boolean;
   "recipes.amountSpread": number;
@@ -62,6 +64,8 @@ export interface Settings {
   "questMonsters.difficultyRange": "rank" | "any";
   "questMonsters.size": boolean;
   "questMonsters.sizeSpread": number;
+  "questMonsters.crowns": boolean;
+  "questMonsters.crownSpread": "random" | "wide" | "none";
   "questMonsters.smallCounts": boolean;
   "questMonsters.smallCountSpread": number;
   "monsterStats.hp": boolean;
@@ -72,6 +76,8 @@ export interface Settings {
   "monsterStats.statusSpread": number;
   "weaknesses.elements": boolean;
   "weaknesses.parts": boolean;
+  "hints.bookshelf": boolean;
+  "hints.almanac": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -311,6 +317,38 @@ export const OPTIONS: readonly OptionDef[] = [
     action: "randomize",
   },
   {
+    key: "trades.enabled",
+    section: "Veggie Elder",
+    label: "Shuffle the Veggie Elder's trades",
+    help: "What each of his trades gives, the common and rare item together, moves to another trade. Each trade keeps the item he takes and its place in his list, so he still takes the first item on it that you carry.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
+  },
+  {
+    key: "trades.mix",
+    section: "Veggie Elder",
+    label: "Which trades",
+    help: "Where a trade's items can move to.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "elder",
+          label: "Same Elder",
+          help: "Each hunting ground's Elder gives the same items as before, for other things.",
+        },
+        {
+          value: "all",
+          label: "Any Elder",
+          help: "Items move between the Elders of every hunting ground.",
+        },
+      ],
+    },
+    default: "elder",
+    enabledBy: "trades.enabled",
+  },
+  {
     key: "recipes.materials",
     section: "Crafting",
     label: "Shuffle recipe materials",
@@ -371,7 +409,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.enabled",
     section: "Weapons",
     label: "Shuffle which weapons the smithy makes",
-    help: "Each spot in the smithy's weapon trees makes a different weapon of the same rarity. Spots keep their materials and upgrade paths; weapons keep their stats and cost wherever they go.",
+    help: "Each spot in the smithy's weapon trees makes a different weapon of the same rarity. Spots keep their materials and upgrade paths; weapons keep their stats and cost wherever they go. The smithy's store follows: it sells the weapons now in the spots of the ones it sold.",
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
@@ -461,7 +499,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "armor.enabled",
     section: "Armor",
     label: "Shuffle which armor the smithy makes",
-    help: "Each spot in the smithy makes a different armor piece for the same slot and rarity, wearable by the same hunters (Blademaster, Gunner or both; male, female or both). Spots keep their materials; pieces keep their stats, skills and cost.",
+    help: "Each spot in the smithy makes a different armor piece for the same slot and rarity, wearable by the same hunters (Blademaster, Gunner or both; male, female or both). Spots keep their materials; pieces keep their stats, skills and cost. The smithy's store follows: it sells the pieces now in the spots of the ones it sold.",
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
@@ -732,7 +770,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "questMonsters.size",
     section: "Quest monsters",
     label: "Randomize each quest's monster size",
-    help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, up to 120% in others). Seen working in game (a tiny Giadrome); whether hitboxes follow the size is untested.",
+    help: "Each Village and Guild quest gets its own monster size: its header's size percentage (100% in half the quests on the disc, 50-174% in the rest). Seen working in game (a tiny Giadrome); whether hitboxes follow the size is untested.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
@@ -745,6 +783,43 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "number", min: 0.05, max: 0.5, step: 0.05, percent: true },
     default: 0.2,
     enabledBy: "questMonsters.size",
+  },
+  {
+    key: "questMonsters.crowns",
+    section: "Quest monsters",
+    label: "Change each quest's crown spread",
+    help: "Each large monster's size is rolled around its quest's size, and the quest picks one of five spreads that limit the roll: none, 100-105%, 100-115%, 95-114% or 85-125%. The spread decides which crowns a quest can give. Story quests that hold their monsters at 100% until first cleared still do. Worked out from the game's code and tried in game.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "questMonsters.crownSpread",
+    section: "Quest monsters",
+    label: "Crown spread",
+    help: "Which spread each quest gets.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "random",
+          label: "Random",
+          help: "Each quest gets one of the four spreads that vary size, at random.",
+        },
+        {
+          value: "wide",
+          label: "Widest everywhere",
+          help: "Every quest rolls 85-125%, so mini and gold crowns can turn up in any quest.",
+        },
+        {
+          value: "none",
+          label: "None",
+          help: "Every monster is exactly its quest's size: no crowns unless the quest's size is itself a crown size.",
+        },
+      ],
+    },
+    default: "random",
+    enabledBy: "questMonsters.crowns",
   },
   {
     key: "questMonsters.smallCounts",
@@ -786,7 +861,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "monsterStats.size",
     section: "Monster stats",
     label: "Randomize each monster's base size",
-    help: "Each monster's base size changes, in every quest it appears in, on top of the quest's own size. Untested on a real disc: big changes may look or play oddly.",
+    help: "Each monster's base size changes, in every quest it appears in, on top of the quest's own size. Tried on a real disc; big changes may look or play oddly.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
@@ -835,6 +910,23 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
+  },
+  {
+    key: "hints.bookshelf",
+    section: "Hints",
+    label: "Monster guide on the bookshelf",
+    help: "The house bookshelf's Practical Hunting monster articles (Open Bookshelf, Info Magazine) become the RandomFU Bestiary: one page per large monster rating its elemental weaknesses, softest parts, status resistance and health in stars, as the shuffles left them, readable from the start. In English in every language. EU disc only; seen on the shelf in PPSSPP.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "hints.almanac",
+    section: "Hints",
+    label: "Item almanac on the bookshelf",
+    help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
+    type: { kind: "boolean" },
+    default: false,
+    eboot: true,
   },
 ];
 
@@ -1012,6 +1104,22 @@ export interface Preset {
   changes: Partial<Record<OptionKey, boolean | number | string>>;
 }
 
+/** The bookshelf guides, written by every preset but Rewards only. */
+const HINTS = { "hints.bookshelf": true, "hints.almanac": true } as const;
+
+/** The monster and weapon randomizers that Randomized, Full and Chaos all turn on. */
+const STAT_RANDOMIZERS = {
+  "questMonsters.crowns": true,
+  "questMonsters.difficulty": true,
+  "questMonsters.smallCounts": true,
+  "monsterStats.hp": true,
+  "monsterStats.size": true,
+  "monsterStats.status": true,
+  "weapons.attack": true,
+  "weapons.affinity": true,
+  "weapons.element": true,
+} as const;
+
 export const PRESETS: readonly Preset[] = [
   {
     name: "Rewards only",
@@ -1020,7 +1128,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Shuffled",
-    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock and large monsters (into their own variants) all trade places, at the same star level. Every amount, cost and stat stays as it was.",
+    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Every amount, cost and stat stays as it was. The bookshelf guides are written.",
     changes: {
       "gathering.enabled": true,
       "supplies.enabled": true,
@@ -1030,11 +1138,14 @@ export const PRESETS: readonly Preset[] = [
       "armorSkills.enabled": true,
       "shops.enabled": true,
       "questMonsters.species": true,
+      "weaknesses.elements": true,
+      "weaknesses.parts": true,
+      ...HINTS,
     },
   },
   {
     name: "Randomized",
-    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets and each quest's monster size are rolled anew, and armor gets new skills.",
+    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills. The bookshelf guides are written.",
     changes: {
       "questRewards.enabled": false,
       "monsterRewards.enabled": false,
@@ -1048,11 +1159,13 @@ export const PRESETS: readonly Preset[] = [
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
       "questMonsters.size": true,
+      ...STAT_RANDOMIZERS,
+      ...HINTS,
     },
   },
   {
     name: "Full",
-    help: "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before. Gathering points draw from the whole rank, shops add Low Rank items and prices change; armor skills are shuffled.",
+    help: "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before. Gathering points draw from the whole rank, shops add Low Rank items and prices change; armor skills are shuffled, and monster difficulty stays within its rank.",
     changes: {
       "recipes.materials": true,
       "recipes.amounts": true,
@@ -1072,11 +1185,15 @@ export const PRESETS: readonly Preset[] = [
       "deliveries.enabled": true,
       "questMonsters.species": true,
       "questMonsters.size": true,
+      ...STAT_RANDOMIZERS,
+      "weaknesses.elements": true,
+      "weaknesses.parts": true,
+      ...HINTS,
     },
   },
   {
     name: "Chaos",
-    help: "Full with the limits off. Logic is at Anywhere, so recipes may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills, shops and gathering points can give anything, and every number varies widely.",
+    help: "Full with the limits off. Logic is at Anywhere, so recipes may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
     changes: {
       "logic.tiers": "none",
       "recipes.materials": true,
@@ -1089,6 +1206,7 @@ export const PRESETS: readonly Preset[] = [
       "armor.enabled": true,
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
+      "armorSkills.keepArmorOnly": false,
       "shops.enabled": true,
       "shops.pool": "any",
       "shops.mix": "all",
@@ -1113,6 +1231,20 @@ export const PRESETS: readonly Preset[] = [
       "questMonsters.speciesPool": "any",
       "questMonsters.size": true,
       "questMonsters.sizeSpread": 0.5,
+      ...STAT_RANDOMIZERS,
+      "questMonsters.crownSpread": "wide",
+      "questMonsters.difficultySpread": 12,
+      "questMonsters.difficultyRange": "any",
+      "questMonsters.smallCountSpread": 0.9,
+      "monsterStats.hpSpread": 0.5,
+      "monsterStats.sizeSpread": 0.4,
+      "monsterStats.statusSpread": 0.9,
+      "weaknesses.elements": true,
+      "weaknesses.parts": true,
+      "weapons.attackSpread": 0.5,
+      "weapons.affinitySpread": 30,
+      "weapons.elementSpread": 0.6,
+      ...HINTS,
     },
   },
 ];

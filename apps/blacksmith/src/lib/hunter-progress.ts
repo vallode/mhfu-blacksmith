@@ -14,7 +14,7 @@
  * and those attached to equipment in their equipment box. A jewel with two
  * recipes can be made with either.
  */
-import { resolveEquip } from "./equipment";
+import { resolveEquip } from "./equipment-ref";
 import type {
   CompactDecoration,
   CompactWeapon,

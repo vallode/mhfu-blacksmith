@@ -21,7 +21,6 @@
         "description": { "type": "string" },
         "icon":        { "type": "string" },
         "habitats":    { "type": "array" },
-        "sizes":       { "type": "object" },
         "base_hp":     { "type": "integer", "minimum": 0 },
         "drops":       { "type": "object" },
         "hitzones":    { "type": "object" },
@@ -31,7 +30,23 @@
           "maxItems": 9,
           "items": { "type": ["integer", "null"], "minimum": 1 }
         },
-        "tolerances":  { "$ref": "#/definitions/tolerances" }
+        "tolerances":  { "$ref": "#/definitions/tolerances" },
+        "base_size": {
+          "description": "Centimetres at size 100 percent, as the Guild Card shows sizes (EBOOT, EU disc).",
+          "type": "number",
+          "exclusiveMinimum": 0
+        },
+        "crowns": {
+          "description": "Guild Card crown thresholds, in percent of base_size: a record at most 'mini' is a mini crown, at least 'gold' a gold crown, at least 'silver' a silver one. Subspecies share their base monster's thresholds and records.",
+          "type": "object",
+          "required": ["mini", "silver", "gold"],
+          "additionalProperties": false,
+          "properties": {
+            "mini":   { "type": "integer", "minimum": 1 },
+            "silver": { "type": "integer", "minimum": 1 },
+            "gold":   { "type": "integer", "minimum": 1 }
+          }
+        }
       }
     },
     "tolerances": {

@@ -1,5 +1,6 @@
 /**
- * Share codes for armor sets: `/set-builder/?s=<code>`.
+ * Share codes for armor sets, the `<code>` in a share link: `/sets/<code>/<slug>/`
+ * (set-link.ts), or the older `/set-builder/?s=<code>`.
  *
  * A code holds the game's own IDs, never positions in the search data
  * (Piece.id / Deco.id change whenever the data is regenerated):
@@ -25,9 +26,11 @@
  *   5 hunterType   wire 0: 0 Blademaster, 1 Gunner
  *   6 sex          wire 0: 0 Male, 1 Female
  *   7 query        reserved: the search's skills and options
+ *   8 name         wire 1: the set's name, UTF-8, at most MAX_NAME characters
+ *                  (share links of saved sets; saved codes leave it out)
  *
- * Fields at their default (no armor, 0 weapon slots, Blademaster, Male) are
- * left out. A decoder skips tags it doesn't know (the wire type says how), so builds
+ * Fields at their default (no armor, 0 weapon slots, Blademaster, Male, no
+ * name) are left out. A decoder skips tags it doesn't know (the wire type says how), so builds
  * that predate a field still open codes that carry it. A field that appears
  * twice keeps its last value. Equipment ID 0 is unused in every table, which
  * is why it can mean "empty".
@@ -35,12 +38,16 @@
  * Decoding never throws: it returns a set, or a typed error.
  */
 import { ARMOR_SLOTS, type ArmorSlot } from "./constants";
-import { resolveEquip } from "./equipment";
+import { resolveEquip } from "./equipment-ref";
 import { EQUIP_TYPE_SLOTS, type EquipmentIds } from "./schema";
 import { emptyBuild, type BuildSet } from "./set-build";
 import type { DecoBin, Deco, Piece, PlacedDeco, SearchData } from "./set-search";
 
 export const CODEC_VERSION = 1;
+
+/** The older share links' query parameter: /set-builder/?s=<code>. The
+ * Worker's card and oEmbed URLs still use it. */
+export const SHARE_PARAM = "s";
 
 export const FIELD = {
   armor: 1,
@@ -50,7 +57,24 @@ export const FIELD = {
   hunterType: 5,
   sex: 6,
   query: 7,
+  name: 8,
 } as const;
+
+/** The longest set name a code carries (My sets' rename field allows as many). */
+export const MAX_NAME = 40;
+
+/**
+ * A name as a code carries it: one line, trimmed, at most MAX_NAME characters;
+ * "" for none. Control characters, line breaks and bidirectional overrides
+ * become spaces; other format characters stay, so emoji joined with U+200D
+ * keep their joiners.
+ */
+export function cleanName(name: string | undefined): string {
+  return [...(name ?? "").replace(/[\p{Cc}\u2028\u2029\u202A-\u202E\u2066-\u2069]+/gu, " ").trim()]
+    .slice(0, MAX_NAME)
+    .join("")
+    .trim();
+}
 
 const WIRE_VARINT = 0;
 const WIRE_BYTES = 1;
@@ -77,6 +101,8 @@ export interface RawSet {
   hunterType?: number;
   /** Index into SEXES. */
   sex?: number;
+  /** The set's name, if the code has one. */
+  name?: string;
 }
 
 export type DecodeError =
@@ -104,8 +130,8 @@ function writeVarint(out: number[], n: number) {
 class Reader {
   pos = 0;
   constructor(
-    private bytes: Uint8Array,
-    private end = bytes.length,
+    private source: Uint8Array,
+    readonly end = source.length,
   ) {}
   get done() {
     return this.pos >= this.end;
@@ -114,16 +140,20 @@ class Reader {
     let n = 0;
     for (let i = 0; i < MAX_VARINT_BYTES; i++) {
       if (this.pos >= this.end) throw new Malformed("ends in the middle of a number");
-      const b = this.bytes[this.pos++];
+      const b = this.source[this.pos++];
       n += (b & 0x7f) * 2 ** (7 * i);
       if ((b & 0x80) === 0) return n;
     }
     throw new Malformed("number too large");
   }
+  bytes(): Uint8Array {
+    const r = this.sub();
+    return this.source.subarray(r.pos, r.end);
+  }
   sub(): Reader {
     const len = this.varint();
     if (this.pos + len > this.end) throw new Malformed("field runs past the end");
-    const r = new Reader(this.bytes, this.pos + len);
+    const r = new Reader(this.source, this.pos + len);
     r.pos = this.pos;
     this.pos += len;
     return r;
@@ -164,6 +194,13 @@ export function encodeRaw(raw: RawSet): Uint8Array {
   if (raw.sex) {
     key(FIELD.sex, WIRE_VARINT);
     writeVarint(out, raw.sex);
+  }
+  const name = cleanName(raw.name);
+  if (name) {
+    const bytes = new TextEncoder().encode(name);
+    key(FIELD.name, WIRE_BYTES);
+    writeVarint(out, bytes.length);
+    out.push(...bytes);
   }
   return Uint8Array.from(out);
 }
@@ -209,6 +246,13 @@ export function decodeRaw(
           expect(WIRE_VARINT);
           raw.sex = r.varint();
           break;
+        case FIELD.name: {
+          expect(WIRE_BYTES);
+          // Bad UTF-8 becomes U+FFFD rather than failing the set.
+          const name = cleanName(new TextDecoder().decode(r.bytes()));
+          raw.name = name || undefined;
+          break;
+        }
         default:
           // Unknown (or reserved) tag: skip it.
           if (wire === WIRE_VARINT) r.varint();
@@ -314,8 +358,9 @@ export function buildCodecTables(
 }
 
 /** Pieces or decorations without a game ID are left out. */
-export function toRaw(set: BuildSet, tables: CodecTables): RawSet {
+export function toRaw(set: BuildSet, tables: CodecTables, name?: string): RawSet {
   return {
+    name,
     armor: set.pieces.map((p) => (p ? (tables.pieceGameId.get(p.id) ?? 0) : 0)),
     weaponSlots: set.weaponSlots,
     decorations: set.decorations.flatMap((d) =>
@@ -326,12 +371,24 @@ export function toRaw(set: BuildSet, tables: CodecTables): RawSet {
   };
 }
 
-export function encodeSet(set: BuildSet, tables: CodecTables): string {
-  return toBase64Url(encodeRaw(toRaw(set, tables)));
+/** A set's share code; `name` is for share links of saved sets. */
+export function encodeSet(set: BuildSet, tables: CodecTables, name?: string): string {
+  return toBase64Url(encodeRaw(toRaw(set, tables, name)));
 }
 
 export type DecodeResult =
-  { ok: true; set: BuildSet; dropped: DroppedRef[] } | { ok: false; error: DecodeError };
+  | {
+      ok: true;
+      set: BuildSet;
+      dropped: DroppedRef[];
+      name?: string;
+      /**
+       * The same code without its name (or fields this build doesn't know):
+       * one code per set, whatever it was shared as.
+       */
+      canonical: string;
+    }
+  | { ok: false; error: DecodeError };
 
 /**
  * Look up a raw set's IDs. IDs that aren't known are dropped and listed;
@@ -368,7 +425,8 @@ export function fromRaw(raw: RawSet, tables: CodecTables): DecodeResult {
   if (refs > 0 && dropped.length === refs) {
     return { ok: false, error: { kind: "unknown-ids", dropped } };
   }
-  return { ok: true, set, dropped };
+  const canonical = toBase64Url(encodeRaw({ ...raw, name: undefined }));
+  return { ok: true, set, dropped, canonical, ...(raw.name ? { name: raw.name } : {}) };
 }
 
 /** A share code to a set. Never throws. */

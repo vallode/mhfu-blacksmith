@@ -1,16 +1,14 @@
 /**
- * The set builder (/set-builder/): the skills form, results, the set editor
- * and its pickers, "My sets", and share links. Game names (armor,
- * decorations, skills) come from useGameText(), not from here.
+ * The set builder (/set-builder/): the skills and options, the search bar,
+ * results and weapon suggestions, the set editor and its pickers, "My sets",
+ * and share links. Game names (armor, decorations, skills, weapons) come from
+ * useGameText(), not from here.
  */
 import { createElement, Fragment, type ReactNode } from "react";
 
 const s = (n: number, one: string, many: string) => (n === 1 ? one : many);
 
 export const setBuilder = {
-  nav: {
-    search: "Search",
-  },
   hunterTypes: {
     Blademaster: "Blademaster",
     Gunner: "Gunner",
@@ -19,28 +17,56 @@ export const setBuilder = {
     Male: "Male",
     Female: "Female",
   },
-  /** "High Rank ★7": `rank` is already translated. */
-  tier: (rank: string, stars: number) => `${rank} ★${stars}`,
 
-  /** The skills form (left card). */
+  /** The skills card, and the options sheet (SearchOptions). */
   form: {
     title: "Skills",
+    /** Takes every wanted skill off. */
+    clear: "Clear",
+    /** The chip that opens the skills sheet: with no skills yet, and with some. */
+    addFirst: "+ Add the skills you want",
+    addMore: "+ Skill",
+    /** The skills sheet's title; `n` is how many are chosen. */
+    skillsTitle: (n: number) => (n > 0 ? `Skills (${n})` : "Skills"),
+    /** The options line's button ("Options ›") and the options sheet's title. */
+    options: "Options",
+    optionsLabel: "Options: hunter, rank, weapon slots, sort",
     hunter: "Hunter",
-    sex: "Gender",
-    rank: "Rank",
+    /** The hunter row's value: `hunterType` and `sex` are translated. */
+    hunterSummary: (hunterType: string, sex: string) => `${hunterType}, ${sex.toLowerCase()}`,
+    weaponClass: "Weapon class",
+    sex: "Sex",
+    rank: "Armor up to",
+    /** The rank buttons' text, and the options line's. */
+    rankShort: {
+      "low-rank": "LR",
+      "high-rank": "HR",
+      "g-rank": "G",
+    },
     weaponSlots: "Weapon slots",
-    noWeaponSlots: "None",
-    sortBy: "Sort by",
+    slotCount: (n: number) => (n === 0 ? "No slots" : n === 1 ? "1 slot" : `${n} slots`),
+    sortBy: "Best first by",
     sortNote: "Ties go to the higher defence.",
     /** The sorts (lib/set-search.ts SortKey). */
     sorts: {
       defence: "Defence",
-      fire: "Fire Res",
-      water: "Water Res",
-      thunder: "Thundr Res",
-      ice: "Ice Res",
-      dragon: "Dragon Res",
+      fire: "Fire",
+      water: "Water",
+      thunder: "Thunder",
+      ice: "Ice",
+      dragon: "Dragon",
       slots: "Free slots",
+    },
+    /** The options in one line, under the skills. */
+    summary: {
+      rank: "Rank",
+      /** Beside the weapon's slots ("OO-"). */
+      weapon: "Wpn",
+      badSkills: "bad skills allowed",
+      allQuests: "all quests",
+      ownedArmor: "owned armor",
+      alwaysUsed: (n: number) => `${n} always used`,
+      neverUsed: (n: number) => `${n} never used`,
     },
     allowBadSkills: "Allow bad skills",
     allowBadSkillsNote: "Keep sets that also activate a negative skill, such as Defense -20.",
@@ -56,19 +82,27 @@ export const setBuilder = {
       ),
     ownedOnly: "Owned armor only",
     ownedOnlyNote: "Only use armor in your hunter's equipment box.",
-    /** The locked pieces, under the form; `remove` labels each one's ×. */
+    /** The locked pieces, in the options; `remove` labels each one's chip. */
     locked: {
-      title: "Locked",
-      note: "Every set uses these, whatever the rank or quest progress.",
-      remove: (name: string) => `Take ${name} off the locked pieces`,
+      title: "Always used",
+      note: "Every set uses these, whatever the rank or quest progress, if the hunter can wear them.",
+      remove: (name: string) => `Take ${name} off the always used pieces`,
     },
     excluded: {
-      title: "Excluded",
+      title: "Never used",
       note: "The search never uses these.",
-      remove: (name: string) => `Take ${name} off the excluded pieces`,
+      remove: (name: string) => `Take ${name} off the never used pieces`,
     },
     search: "Search",
     cancel: "Cancel",
+  },
+
+  /** The search button's bar (SearchBar). */
+  searchBar: {
+    /** `found` is the number of sets found so far, formatted, or null before any. */
+    searching: (found: ReactNode) => createElement(Fragment, null, "Searching… ", found),
+    update: "Update results",
+    search: (n: number) => `Search ${n} ${s(n, "skill", "skills")}`,
   },
 
   tabs: {
@@ -84,15 +118,20 @@ export const setBuilder = {
     /** `found` is the number of sets found so far, formatted; "" before any. */
     searching: (found: string) => (found ? `Searching… ${found}` : "Searching…"),
     intro:
-      "Add the skills you want, then search. The best sets come first: by defence, or by what you sort by.",
-    /** `progress`: the search was limited by quest progress; `locked`: it had locked pieces. */
-    noSets: (progress: boolean, locked: boolean): string => {
+      "Add the skills you want, then search: every armor set with decorations that activates them. The best sets come first: by defence, or by what you sort by.",
+    addSkills: "Add skills",
+    /**
+     * `progress`: the search was limited by quest progress; `locked` and
+     * `excluded`: it had always used or never used pieces.
+     */
+    noSets: (progress: boolean, locked: boolean, excluded: boolean): string => {
       const tips = [
         "fewer skills",
         "a higher rank",
         "more weapon slots",
         "allowing bad skills",
         ...(locked ? ["unlocking pieces"] : []),
+        ...(excluded ? ["removing excluded pieces"] : []),
         ...(progress ? ["ignoring your quest progress"] : []),
       ];
       const last = tips.pop();
@@ -129,6 +168,7 @@ export const setBuilder = {
     saveFailed:
       "Your browser's storage is full or blocked. Sets are kept until you leave the page.",
     linkCopied: "Link copied",
+    linkCopiedNote: "Paste it anywhere to share this set.",
     copyLink: "Copy this link",
     deleted: (name: string) => `Deleted ${name}.`,
     undo: "Undo",
@@ -177,12 +217,48 @@ export const setBuilder = {
     alternatives: (n: number) =>
       `${n} other ${s(n, "piece gives", "pieces give")} the same points in your skills`,
     alternativesNote: "Their other skills differ, so a swap can add or remove a skill.",
-    /** The buttons on a result's piece: lock it into every set, or leave it out. */
-    lock: "Lock",
-    locked: "Locked",
-    exclude: "Exclude",
-    lockLabel: (name: string) => `Lock ${name}: use it in every set`,
-    excludeLabel: (name: string) => `Exclude ${name}: never use it`,
+  },
+
+  /** A search result (ResultView) and its piece sheet. */
+  result: {
+    /** Defence, over its value in the status strip and beside an alternative's. */
+    def: "DEF",
+    defValue: (defence: string) => `DEF ${defence}`,
+    resistances: "Resistances",
+    /** Free slots, over their number in the status strip. */
+    free: "Free",
+    /** The weapon row, for screen readers (it shows "Weapon"). */
+    weaponRow: "Weapon: suggest weapons for this set.",
+    /** `slot` is the translated slot name. */
+    pieceLabel: (slot: string, name: string, locked: boolean) =>
+      `${slot}: ${name}${locked ? ", always used" : ""}. Options`,
+    /** The "+2" beside a piece with swaps. */
+    swaps: "Swaps",
+    alwaysUsed: "Always used",
+    /** The piece sheet. */
+    defense: "Defense",
+    slots: "Slots",
+    skills: "Skills",
+    jewels: "Jewels",
+    swapsTitle: "Swaps that keep your skills",
+    openPage: (name: string) => `Open ${name}'s page`,
+    alwaysUse: "Always use",
+    alwaysUseLabel: (name: string) => `Always use ${name}: lock it in every set`,
+    unlock: "Unlock",
+    unlockLabel: (name: string) => `Unlock ${name}`,
+    neverUse: "Never use",
+    neverUseLabel: (name: string) => `Never use ${name}: exclude it from the search`,
+  },
+
+  /** Weapons for a result's slots (WeaponSuggestions). */
+  weapons: {
+    /** `rank` and `progress` are translated ("High Rank", "G Rank ★2"). */
+    note: (slots: number, rank: string, progress: string | null) =>
+      `Strongest first${slots > 0 ? `, with ${slots === 1 ? "a slot" : `${slots} slots`} or more for the jewels` : ""}, up to ${rank}${progress ? ` and your quest progress (${progress})` : ""}.`,
+    loading: "Loading weapons…",
+    none: "None of these fit. Try another class, or fewer weapon slots.",
+    /** `attack` is formatted, or "-". */
+    attack: (attack: string) => `ATK ${attack}`,
   },
 
   /** The Status panel. */
@@ -259,11 +335,15 @@ export const setBuilder = {
     summary: (hunterType: string, defense: string) => `${hunterType}, Defense ${defense}`,
   },
 
-  /** The wanted-skills list. */
+  /** The wanted skills' chips and the skills sheet (SkillPicker). */
   skillPicker: {
     remove: (name: string) => `Remove ${name}`,
-    add: "Add a skill",
-    placeholder: "Add a skill, e.g. Attack Up",
-    placeholderMore: "Add another skill…",
+    filter: "Filter skills",
+    filterPlaceholder: "Filter, e.g. attack, evade",
+    nothingChosen: "Nothing chosen yet.",
+    /** `list` is the chosen skills, joined. */
+    chosen: (list: ReactNode) => createElement(Fragment, null, "Chosen: ", list),
+    noMatch: (query: string) => `No skill matches “${query}”.`,
+    points: (n: number) => `${n} pts`,
   },
 };

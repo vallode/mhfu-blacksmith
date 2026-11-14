@@ -571,10 +571,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1151.9,
-        "max": 2303.8
-      },
       "hitzones": {
         "head": {
           "cut": "80",
@@ -714,6 +710,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1645.6,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 129
       }
     },
     {
@@ -1076,10 +1078,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1151.9,
-        "max": 2303.8
-      },
       "hitzones": {
         "head": {
           "cut": "80",
@@ -1219,6 +1217,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1645.6,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 129
       }
     },
     {
@@ -1467,10 +1471,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1151.9,
-        "max": 2303.8
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -1610,6 +1610,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1645.6,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 129
       }
     },
     {
@@ -2050,10 +2056,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1140.6,
-        "max": 2248.6
-      },
       "hitzones": {
         "head": {
           "cut": "80",
@@ -2193,6 +2195,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1629.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 127
       }
     },
     {
@@ -2552,10 +2560,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1140.6,
-        "max": 2248.6
-      },
       "hitzones": {
         "head": {
           "cut": "80",
@@ -2695,6 +2699,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1629.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 127
       }
     },
     {
@@ -2940,10 +2950,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1140.6,
-        "max": 2248.6
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -3083,6 +3089,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1629.4,
+      "crowns": {
+        "mini": 90,
+        "silver": 114,
+        "gold": 127
       }
     },
     {
@@ -3367,10 +3379,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 436.6,
-        "max": 1225.5
-      },
       "hitzones": {
         "head": {
           "cut": "45",
@@ -3501,6 +3509,12 @@
           "damage_interval": 150,
           "total_time": 900
         }
+      },
+      "base_size": 873.2,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 135
       }
     },
     {
@@ -3732,10 +3746,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 436.6,
-        "max": 1205
-      },
       "hitzones": {
         "head": {
           "cut": "45",
@@ -3866,6 +3876,12 @@
           "damage_interval": 150,
           "total_time": 900
         }
+      },
+      "base_size": 873.2,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 135
       }
     },
     {
@@ -4134,10 +4150,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1154.9,
-        "max": 1754.6
-      },
       "hitzones": {
         "head": {
           "cut": "20",
@@ -4280,6 +4292,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1297.6,
+      "crowns": {
+        "mini": 93,
+        "silver": 118,
+        "gold": 129
       }
     },
     {
@@ -4552,10 +4570,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1049.35,
-        "max": 3065.9
-      },
       "hitzones": {
         "head": {
           "cut": "20",
@@ -4698,6 +4712,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 2099.9,
+      "crowns": {
+        "mini": 97,
+        "silver": 123,
+        "gold": 135
       }
     },
     {
@@ -4971,10 +4991,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1946.3,
-        "max": 3065.9
-      },
       "hitzones": {
         "head": {
           "cut": "20",
@@ -5117,6 +5133,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 2099.9,
+      "crowns": {
+        "mini": 97,
+        "silver": 123,
+        "gold": 135
       }
     },
     {
@@ -5261,10 +5283,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1683.5,
-        "max": 2918.8
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -5396,6 +5414,12 @@
           "damage_interval": 150,
           "total_time": 3600
         }
+      },
+      "base_size": 2004.2,
+      "crowns": {
+        "mini": 94,
+        "silver": 116,
+        "gold": 127
       }
     },
     {
@@ -5541,10 +5565,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1849.2,
-        "max": 2810.7
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -5676,6 +5696,12 @@
           "damage_interval": 150,
           "total_time": 2700
         }
+      },
+      "base_size": 2004.2,
+      "crowns": {
+        "mini": 94,
+        "silver": 116,
+        "gold": 127
       }
     },
     {
@@ -5908,10 +5934,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1796.26,
-        "max": 3030
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -6054,6 +6076,12 @@
           "damage_interval": 150,
           "total_time": 3600
         }
+      },
+      "base_size": 1993.4,
+      "crowns": {
+        "mini": 97,
+        "silver": 123,
+        "gold": 139
       }
     },
     {
@@ -6302,10 +6330,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1865.66,
-        "max": 2930.3
-      },
       "hitzones": {
         "head": {
           "cut": "25",
@@ -6448,6 +6472,12 @@
           "damage_interval": 150,
           "total_time": 2700
         }
+      },
+      "base_size": 1993.4,
+      "crowns": {
+        "mini": 97,
+        "silver": 123,
+        "gold": 139
       }
     },
     {
@@ -6820,10 +6850,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1388.2,
-        "max": 2914.8
-      },
       "hitzones": {
         "head": {
           "cut": "75",
@@ -6963,6 +6989,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1735.31,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
       }
     },
     {
@@ -7231,10 +7263,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 1602.19,
-        "max": 2355.13
-      },
       "hitzones": {
         "head": {
           "cut": "50",
@@ -7392,6 +7420,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 1602.18,
+      "crowns": {
+        "mini": 90,
+        "silver": 119,
+        "gold": 123
       }
     },
     {
@@ -7648,7 +7682,8 @@
           "damage_interval": 150,
           "total_time": 1800
         }
-      }
+      },
+      "base_size": 3049.97
     },
     {
       "name": "Ukanlos",
@@ -7898,7 +7933,8 @@
           "damage_interval": 150,
           "total_time": 1800
         }
-      }
+      },
+      "base_size": 3049.97
     }
   ]
 }

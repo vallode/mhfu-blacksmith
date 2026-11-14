@@ -1,4 +1,5 @@
 import type { Tier } from "./min-rank";
+import type { Crowns } from "./crowns";
 
 export interface Material {
   name: string;
@@ -191,10 +192,18 @@ export interface Monster {
   habitats?: string[];
   hitzones?: Record<string, HitzoneValues>;
   drops?: Record<string, Record<string, MonsterDrop[]>>;
-  /** Smallest and largest size, in cm */
-  sizes?: { min: number; max: number };
   /** HP before a quest's multiplier, from the disc */
   base_hp?: number;
+  /** Centimetres at size 100 percent, as the Guild Card shows sizes (from the disc) */
+  base_size?: number;
+  /** Guild Card crown thresholds, in percent of `base_size` (src/lib/crowns.ts) */
+  crowns?: Crowns;
+  /**
+   * The smallest and largest size, in percent of `base_size`, the monster
+   * rolls across its quests (scripts/lib/quest-bundle.ts monsterSizeRanges);
+   * absent for monsters that are always 100.
+   */
+  size_range?: { min: number; max: number };
   /** Breakable parts, one entry per break reward */
   breaks?: MonsterBreak[];
   /**

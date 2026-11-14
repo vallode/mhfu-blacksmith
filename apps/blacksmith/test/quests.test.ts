@@ -1,8 +1,13 @@
 /** The quests bundle (scripts/lib/quest-bundle.ts) round-tripped through its decoder (lib/quests.ts). */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
-import { encodeQuestBundle, type QuestRecord } from "../scripts/lib/quest-bundle";
 import {
+  encodeQuestBundle,
+  monsterSizeRanges,
+  type QuestRecord,
+} from "../scripts/lib/quest-bundle";
+import {
+  bestCrownQuests,
   decodeQuests,
   questHp,
   questHref,
@@ -63,6 +68,40 @@ describe("questHubSlug", () => {
     assert.equal(questHubSlug("guild", "g-rank"), "g-rank");
     assert.equal(questHubSlug("training-school", null), "training-school");
     assert.equal(questHubSlug("guild", null), null);
+  });
+});
+
+describe("monsterSizeRanges", () => {
+  const giadrome = (size: QuestRecord["monster_size"]) =>
+    quest({
+      large_monsters: [
+        { monster: "Giadrome", crown_chances: { mini: 0, silver: 0, gold: 0 } },
+        // No crowns: always 100, so no range.
+        { monster: "Kirin" },
+      ],
+      monster_size: size,
+    });
+
+  test("spans every quest a crowned monster rolls in", () => {
+    const ranges = monsterSizeRanges([
+      giadrome({ modifier: 100, min: 85, max: 125 }),
+      giadrome({ modifier: 130, min: 130, max: 149 }),
+      giadrome(null),
+    ]);
+    assert.deepEqual([...ranges], [["Giadrome", { min: 85, max: 149 }]]);
+  });
+
+  test("counts 100 for a quest that holds its monsters there until a flag", () => {
+    // Rolls above 100 once the flag is set: 100 is the smallest.
+    assert.deepEqual(
+      monsterSizeRanges([giadrome({ modifier: 130, min: 130, max: 130, fixed_until_flag: 322 })]),
+      new Map([["Giadrome", { min: 100, max: 130 }]]),
+    );
+    // Rolls below 100 once the flag is set: 100 is the largest.
+    assert.deepEqual(
+      monsterSizeRanges([giadrome({ modifier: 80, min: 76, max: 92, fixed_until_flag: 322 })]),
+      new Map([["Giadrome", { min: 76, max: 100 }]]),
+    );
   });
 });
 
@@ -202,6 +241,66 @@ describe("encodeQuestBundle / decodeQuests", () => {
       ],
     );
     assert.deepEqual(b!.monsterStats, []);
+  });
+
+  test("keeps the monster size range and each crowned monster's crown chances", () => {
+    const { bundle } = encode([
+      quest({
+        large_monsters: [
+          { monster: "Giadrome", crown_chances: { mini: 84 / 1024, silver: 31 / 1024, gold: 0 } },
+          { monster: "Giadrome", crown_chances: { mini: 84 / 1024, silver: 31 / 1024, gold: 0 } },
+          // No crowns: always 100.
+          { monster: "Kirin" },
+        ],
+        monster_size: { modifier: 100, min: 85, max: 125 },
+      }),
+      quest({
+        id: 2,
+        large_monsters: [{ monster: "Giadrome", crown_chances: { mini: 0, silver: 0, gold: 1 } }],
+        monster_size: { modifier: 130, min: 130, max: 130, fixed_until_flag: 322 },
+      }),
+      quest({ id: 3, large_monsters: [], monster_size: null }),
+    ]);
+    const [a, b, c] = decodeQuests(bundle);
+    assert.deepEqual(
+      {
+        ...a!.monsterSize,
+        crowns: a!.monsterSize!.crowns.map((x) => ({ ...x, monster: x.monster.name })),
+      },
+      {
+        modifier: 100,
+        min: 85,
+        max: 125,
+        fixedFirst: false,
+        crowns: [{ monster: "Giadrome", mini: 84 / 1024, silver: 31 / 1024, gold: 0 }],
+      },
+    );
+    assert.equal(b!.monsterSize!.fixedFirst, true);
+    assert.equal(c!.monsterSize, null);
+    // Quest 2 is the only one with gold, quest 1 the best for silver and
+    // mini; a copy of quest 1 ties it, and is marked too.
+    const tie = { ...a!, id: 4 };
+    assert.deepEqual(
+      [...bestCrownQuests([a!, b!, tie], "Giadrome")],
+      [
+        [2, [{ crown: "gold", chance: 1 }]],
+        [
+          1,
+          [
+            { crown: "silver", chance: 31 / 1024 },
+            { crown: "mini", chance: 84 / 1024 },
+          ],
+        ],
+        [
+          4,
+          [
+            { crown: "silver", chance: 31 / 1024 },
+            { crown: "mini", chance: 84 / 1024 },
+          ],
+        ],
+      ],
+    );
+    assert.equal(bestCrownQuests([a!, b!], "Kirin").size, 0);
   });
 
   test("keeps the urgent flag", () => {

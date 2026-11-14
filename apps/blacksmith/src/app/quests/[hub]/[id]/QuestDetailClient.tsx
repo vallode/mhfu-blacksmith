@@ -4,7 +4,7 @@ import Link from "next/link";
 import { DetailBody, DetailCard, DetailRule, Stat, StatList } from "@/components/DetailPanel";
 import { QuestRewards, QuestSupplies } from "@/components/QuestRewards";
 import Tabs, { type Tab } from "@/components/Tabs";
-import { useLocale } from "@/context/LanguageContext";
+import { useLocale, useT } from "@/context/LanguageContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useQuests } from "@/lib/client-data";
@@ -14,13 +14,17 @@ import {
   questsOnHub,
   questStarLevel,
   type QuestHubSlug,
+  type QuestCrownChances,
   type QuestMonster,
+  type QuestMonsterSize,
   type QuestMonsterStats,
 } from "@/lib/quests";
 import QuestAreaMap from "@/components/AreaMap";
 import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
 import { cn } from "@/lib/cn";
+import { possibleCrowns } from "@/lib/crowns";
+import CrownIcon, { useFormatChance } from "@/components/CrownIcon";
 import StarMarks from "@/components/StarMarks";
 
 interface Props {
@@ -51,8 +55,32 @@ function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
 /** The monster whose attack and defense change mid-hunt, as the note says. */
 const FURIOUS_RAJANG = "Furious Rajang";
 
-/** Each large monster's HP and multipliers in this quest. */
-function MonsterStats({ stats }: { stats: QuestMonsterStats[] }) {
+/** A monster's crown chances, gold first, leaving out crowns it can't get. */
+function CrownChances({ chances }: { chances: QuestCrownChances }) {
+  const t = useT().quests.monsterStats;
+  const formatChance = useFormatChance();
+  const crowns = possibleCrowns([chances]);
+  if (crowns.length === 0) return <span className="text-white">{t.noCrowns}</span>;
+  return (
+    <span className="inline-flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.4rem] text-white tabular-nums">
+      {crowns.map((crown) => (
+        <span key={crown} className="inline-flex items-center gap-[0.4rem] whitespace-nowrap">
+          <CrownIcon crown={crown} />
+          {formatChance(chances[crown])}
+        </span>
+      ))}
+    </span>
+  );
+}
+
+/** Each large monster's HP and multipliers in this quest, and its size and crown chances. */
+function MonsterStats({
+  stats,
+  size,
+}: {
+  stats: QuestMonsterStats[];
+  size: QuestMonsterSize | null;
+}) {
   const { t, game, formatNumber } = useLocale();
   const m = t.quests.monsterStats;
   const times = (n: number) => m.times(formatNumber(n));
@@ -84,6 +112,7 @@ function MonsterStats({ stats }: { stats: QuestMonsterStats[] }) {
             <Stat label={m.stagger}>
               <span className="text-white tabular-nums">{times(s.stagger)}</span>
             </Stat>
+            {size && <MonsterSizeStats size={size} monster={s.monster.name} />}
           </StatList>
         </section>
       ))}
@@ -91,8 +120,32 @@ function MonsterStats({ stats }: { stats: QuestMonsterStats[] }) {
         {m.note}
         {stats.some((s) => s.monster.name === FURIOUS_RAJANG) &&
           ` ${m.changesDuringHunt(game.name("monster", FURIOUS_RAJANG))}`}
+        {size && size.crowns.length > 0 && ` ${m.sizeNote}`}
+        {size && size.crowns.length > 0 && size.fixedFirst && ` ${m.fixedFirstNote}`}
       </p>
     </div>
+  );
+}
+
+/** A crowned monster's size range and crown chances; nothing for a monster without crowns. */
+function MonsterSizeStats({ size, monster }: { size: QuestMonsterSize; monster: string }) {
+  const { t, formatNumber } = useLocale();
+  const m = t.quests.monsterStats;
+  const chances = size.crowns.find((c) => c.monster.name === monster);
+  if (!chances) return null;
+  return (
+    <>
+      <Stat label={m.size}>
+        <span className="text-white tabular-nums">
+          {size.min === size.max
+            ? m.sizePercent(formatNumber(size.min))
+            : m.sizeRange(formatNumber(size.min), formatNumber(size.max))}
+        </span>
+      </Stat>
+      <Stat label={t.quests.detail.crowns}>
+        <CrownChances chances={chances} />
+      </Stat>
+    </>
   );
 }
 
@@ -127,6 +180,8 @@ export default function QuestDetailClient({ hub, id }: Props) {
   const text = (field: "title" | "goal" | "fail" | "details" | "client", english: string) =>
     game.quest(quest.id, field, english);
   const title = text("title", quest.title);
+  // The crowns any of the quest's monsters can roll here.
+  const crowns = possibleCrowns(quest.monsterSize?.crowns ?? []);
 
   const tabs: Tab[] = [
     {
@@ -176,6 +231,16 @@ export default function QuestDetailClient({ hub, id }: Props) {
               <MonsterLinks monsters={quest.largeMonsters} />
             </Stat>
           )}
+          {crowns.length > 0 && (
+            <Stat label={d.crowns}>
+              <span className="inline-flex flex-wrap items-center gap-[0.6rem] whitespace-normal text-white">
+                {crowns.map((c) => (
+                  <CrownIcon key={c} crown={c} />
+                ))}
+                {quest.monsterSize?.fixedFirst && <span>{d.crownsAfterFirstClear}</span>}
+              </span>
+            </Stat>
+          )}
           {quest.smallMonsters.length > 0 && (
             <Stat label={d.smallMonsters}>
               <MonsterLinks monsters={quest.smallMonsters} />
@@ -194,7 +259,7 @@ export default function QuestDetailClient({ hub, id }: Props) {
     tabs.push({
       id: "monsters",
       label: d.tabs.monsters,
-      content: <MonsterStats stats={quest.monsterStats} />,
+      content: <MonsterStats stats={quest.monsterStats} size={quest.monsterSize} />,
     });
   }
   if (quest.rewardTables.length > 0) {
@@ -232,26 +297,25 @@ export default function QuestDetailClient({ hub, id }: Props) {
       {/* Type, title, board and description, like the quest scroll: the
           type and title centred in white, the details in white with the
           game's roomy lines. CLEAR!! (a quest the loaded hunter has cleared)
-          and URGENT!!! sit in the top corners, level with the type, which
-          keeps clear of them; on a phone they take their own line. */}
+          sits in the top corner, level with the type, which keeps clear of
+          it; on a phone it takes its own line. */}
       <div className="relative flex flex-col gap-2 text-main text-white">
-        {(cleared || quest.urgent) && (
+        {cleared && (
           <div className="pointer-events-none absolute inset-x-0 top-0 flex text-small leading-[2.75rem] mobile:static mobile:leading-[1.25]">
-            {cleared && <p className="text-stat">{t.quests.cleared}</p>}
-            {quest.urgent && <p className="ml-auto text-negative">{d.urgent}</p>}
+            <p className="text-stat">{t.quests.cleared}</p>
           </div>
         )}
         <p
           className={cn(
             "text-center leading-[1.25] whitespace-normal",
-            (cleared || quest.urgent) && "px-[9.6rem] mobile:px-0",
+            cleared && "px-[9.6rem] mobile:px-0",
           )}
         >
           {t.quests.typeHeadings[quest.type]}
         </p>
         <p className="text-center leading-[1.25] whitespace-normal">{title}</p>
         <p className="text-center text-small leading-[1.25] whitespace-normal text-stat">
-          {t.quests.hubs[hub]} · <StarMarks {...questStarLevel(hub, quest.stars)} />
+          <StarMarks {...questStarLevel(hub, quest.stars)} />
         </p>
         {quest.details && (
           <p className="mt-2 text-small leading-[1.4] whitespace-normal">

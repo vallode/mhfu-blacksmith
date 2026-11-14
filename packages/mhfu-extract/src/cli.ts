@@ -73,7 +73,7 @@ const USAGE = `Usage:
   tsx src/cli.ts item-icons --unpacked <dir> [--out <dir>]
   tsx src/cli.ts area-maps --unpacked <dir> [--data <dir>] [--out <dir>]
   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
-  tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations] [--report <path>] [--markdown <path>] [--dry-run]
+  tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations,veggie-trades] [--report <path>] [--markdown <path>] [--dry-run]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
   tsx src/cli.ts find-names --unpacked <dir> [--out <path>] [--tables ItemID,emID,...] [--all]
   tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots spa=es,...] [--report <path>] [--dry-run]

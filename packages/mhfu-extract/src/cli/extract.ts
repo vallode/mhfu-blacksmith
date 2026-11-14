@@ -15,6 +15,7 @@ import { emitGathering, type GatheringQuestInput } from "../emit/gathering.js";
 import { loadMapLayouts } from "../tables/map-layout.js";
 import { emitQuestsFile, type MultiplierLookup } from "../emit/quests.js";
 import { emitShops } from "../emit/shops.js";
+import { emitVeggieTrades } from "../emit/veggie-trades.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
@@ -32,6 +33,7 @@ import { parseOvl } from "../container/ovl.js";
 import { loadMonsterOverlays, OVERLAY_DIR } from "../monsters/overlays.js";
 import { multiplierRow } from "../monsters/multipliers.js";
 import { readMonsterTables } from "../monsters/read.js";
+import { readSizeTables, type SizeTables } from "../monsters/sizes.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
@@ -42,6 +44,7 @@ import {
   type OffsetVerificationResult,
 } from "../tables/offsets.js";
 import { readCombinations } from "../tables/combinations.js";
+import { readVeggieTrades } from "../tables/veggie-trades.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -251,7 +254,24 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
         return chunk ? multiplierRow(multipliers, chunk.multiplierSet, statTable, power) : null;
       }
     : undefined;
-  Object.assign(output, emitQuestsFile(quests, multiplierLookup));
+  // Only the EU disc's size tables are known; elsewhere there are no sizes or crowns.
+  let sizes: SizeTables | null = null;
+  if (manifest.region === "eu") {
+    try {
+      sizes = readSizeTables(reader, JP_BASE_ADDRESS);
+      console.log(
+        `Size tables: ${sizes.crowns.length} crown entries, ${sizes.fixedSizeQuests.size} fixed-size quests.`,
+      );
+    } catch (error) {
+      console.warn(
+        `Warning: no monster sizes or crowns. ${error instanceof Error ? error.message : String(error)}`,
+      );
+    }
+  } else {
+    console.warn(`Warning: region "${manifest.region}" has no size tables, so no sizes or crowns.`);
+  }
+  monsters.sizes = sizes;
+  Object.assign(output, emitQuestsFile(quests, multiplierLookup, sizes ?? undefined));
 
   // Only the EU disc's map tables are known; elsewhere points get no positions.
   const maps =
@@ -276,10 +296,26 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   console.log(`Shops: ${shops.map((s) => `${s.name} (${s.items.length} items)`).join(", ")}.`);
   output["shops.json"] = { shops };
 
+  const trades = readVeggieTrades(overlays.gameTask);
+  if (trades) {
+    console.log(
+      `Veggie Elder trades at 0x${trades.offset.toString(16)}: ${trades.tables.map((t) => t.length).join(", ")} rows.`,
+    );
+    output["veggie-trades.json"] = emitVeggieTrades(trades);
+  } else {
+    console.warn(
+      "Warning: the Veggie Elder's trade tables weren't found; skipping veggie-trades.json.",
+    );
+  }
+
   if (options.raw) {
     const rawPath = path.join(options.out, "raw", "monsters.json");
     await mkdir(path.dirname(rawPath), { recursive: true });
-    await writeFile(rawPath, `${JSON.stringify(monsters)}\n`, "utf-8");
+    // Maps (the size tables' fixed-size quests) would serialize as `{}`.
+    const json = JSON.stringify(monsters, (_, v: unknown) =>
+      v instanceof Map ? Object.fromEntries(v) : v,
+    );
+    await writeFile(rawPath, `${json}\n`, "utf-8");
     console.log(`Wrote ${rawPath}`);
 
     // Hunting horn note-set/melody table candidates (#14): searched in the

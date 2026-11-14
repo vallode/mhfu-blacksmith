@@ -23,12 +23,26 @@ export const POWER_OFFSET = 5;
 export const TARGET_ID_OFFSET = 112;
 /**
  * `questHeader.MonSizeModifier` (u32 @ 0x38): the quest's large monster
- * size, in percent. Read from the EU disc's values (mhfu-extract
- * `quest-probe`): only the low byte is ever set, 100 in half the quests and
- * 98-120 in the rest, higher at High and G Rank. Editing it changes the
- * monsters' size in game (a Giadrome quest at a low value had a tiny one).
+ * size, in percent: the centre of each monster's size roll (mhfu-extract
+ * `monsters/sizes.ts`). Only the low byte is ever set on the EU disc: 100 in
+ * half the quests and 50-174 in the rest. Editing it changes the monsters'
+ * size in game (a Giadrome quest at a low value had a tiny one).
  */
 export const SIZE_PERCENT_OFFSET = 0x38;
+/**
+ * The header's u8 at 0x4a (the hexpat's `Unkn7`, mhfu-extract's
+ * `sizeVariation`): which of the game's five clamps limits each large
+ * monster's size roll, and so which crowns the quest can give.
+ */
+export const SIZE_VARIATION_OFFSET = 0x4a;
+/** The roll's range (percent of `MonSizeModifier`) under each size variation, from the EBOOT. */
+export const SIZE_VARIATIONS = [
+  [100, 100],
+  [100, 105],
+  [100, 115],
+  [95, 114],
+  [85, 125],
+] as const;
 /**
  * The header's two objective slots, `{ u32 kind, u16 id, u8 count, u8 slot }`.
  * The hexpat leaves these unnamed (`UnknPTR3` to `Unkn3`); the layout comes

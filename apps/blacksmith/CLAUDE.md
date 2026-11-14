@@ -22,7 +22,7 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
   component (see `src/components/DetailPanel.tsx`: `Stat`, `MaterialList`, …).
   For a class string shared by a few elements, use a named constant, either in
   the component file or in `src/styles/*.ts` (`tables.ts`, `settings.ts`,
-  `progress.ts`).
+  `progress.ts`, `set-builder.ts`).
 - **`globals.css` holds only what utilities can't express:** design tokens
   (`@theme`), custom utilities (`@utility`), element resets, and the few
   global layout classes (`.split-page`, `.list-row`, `.blacksmith__title`).
@@ -87,7 +87,7 @@ Effects that are awkward as class strings are `@utility` rules in
 | `w-cells-N`               | Width of N character cells (`--cell`), e.g. `w-cells-12` for a 12-character label                      |
 | `pixelated`               | Crisp pixel-art image rendering                                                                        |
 | `hover-glow`              | Pulsing green highlight (with `animate-hover-glow` / `--gradient-hover-glow`)                          |
-| `card-frame`              | The in-game 9-slice frame (`Card`, toasts); with `frame-cover`, drawn again over the content           |
+| `card-frame`              | The in-game 9-slice frame; `frame-cover` draws it over the content, `card-body` masks content under it |
 | `divider-tile`            | Tiled page-header divider (`BorderRule`)                                                               |
 | `icon-mask`, `icon-badge` | Icon tint mask and corner badge, driven by CSS variables from `iconStyle()` in `src/lib/icon-style.ts` |
 

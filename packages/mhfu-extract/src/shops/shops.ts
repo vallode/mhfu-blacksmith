@@ -15,7 +15,8 @@
  */
 import type { OvlFile } from "../container/ovl.js";
 
-const ITEM_COUNT = 1262;
+/** Item IDs run below this (the `ItemID` enum), past the item records' 1117. */
+export const ITEM_COUNT = 1262;
 export const LIST_END = 0xffff;
 const MAX_LIST = 200;
 const MAX_TABLE = 32;

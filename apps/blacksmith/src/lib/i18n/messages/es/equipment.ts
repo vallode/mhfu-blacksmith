@@ -197,6 +197,14 @@ export const equipment: Messages["equipment"] = {
     attached: (count: string) => `+${count} en equipo`,
     recipesLabel: (name: string) => `Recetas de ${name}`,
   },
+  wishlist: {
+    add: "Añadir a la lista de deseos",
+    remove: "Quitar de la lista de deseos",
+    added: (name: string) => `Has añadido ${name} a tu lista de deseos.`,
+    removed: (name: string) => `Has quitado ${name} de tu lista de deseos.`,
+    view: "Ver",
+    saveFailed: "No se pudo guardar la lista de deseos en este navegador.",
+  },
   model: {
     view: "Ver modelo 3D",
     hide: "Ocultar modelo 3D",

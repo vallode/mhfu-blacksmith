@@ -6,15 +6,18 @@ import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import PageBar, { PageTabs } from "@/components/PageBar";
+import Icon from "@/components/Icon";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useGameText, useT } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
+import { writeLastQuestHub } from "@/lib/last-quest-hub";
 import { useQuests } from "@/lib/client-data";
 import {
   clearedQuestIds,
   questHref,
+  QUEST_HUBS,
   questsOnHub,
   questStarLevel,
   questStarLevels,
@@ -75,8 +78,49 @@ function StarTab({
 }
 
 /**
+ * The top row of a board's quest list: a back arrow and the board's name,
+ * leading to the list of boards (/quests/), the way into another board.
+ */
+function BoardBackRow({ hub }: { hub: QuestHubSlug }) {
+  const t = useT().quests;
+  return (
+    <Link href="/quests/" className="list-row" aria-label={t.board.backToBoards(t.hubs[hub])}>
+      <Icon type="arrow" alt="" />
+      <p className="truncate text-stat">{t.hubs[hub]}</p>
+    </Link>
+  );
+}
+
+/**
+ * /quests/: the same frame as a board's page (without its bar of star
+ * levels), with the quest boards in the list card and a prompt on the right. The sidebar's Quests entry skips it,
+ * opening the board last viewed; a board's back row leads here.
+ */
+export function QuestBoardsShell({ children }: { children: React.ReactNode }) {
+  const t = useT().quests;
+  return (
+    <div className="split-page">
+      <CardBox data-tree-panel>
+        <Card variant="weapon-tree">
+          {/* Inset 13px, like the lists in TreeScroll (items, decorations). */}
+          <nav aria-label={t.board.boards} className="flex flex-col pl-[13px]">
+            {QUEST_HUBS.map((h) => (
+              <Link key={h.slug} href={`/quests/${h.slug}/`} className="list-row">
+                <Icon type="ticket" alt="" />
+                <p className="truncate">{t.hubs[h.slug]}</p>
+              </Link>
+            ))}
+          </nav>
+        </Card>
+      </CardBox>
+      {children}
+    </div>
+  );
+}
+
+/**
  * A quest board: the board's star levels as tabs in the page bar, the
- * selected level's quests down the left, with a selector at the bottom of
+ * selected level's quests down the left (under a row back to the boards), with a selector at the bottom of
  * the card (like the weapon tree's filter bar) that filters them by type,
  * and the selected quest (or a prompt to pick one) on the right. With a
  * hunter loaded, the quests they have cleared are marked CLEAR!!, like the
@@ -102,6 +146,9 @@ export default function QuestHubShell({
   const { markCleared } = usePreferences().prefs;
   const cleared = useMemo(() => (markCleared ? clearedQuestIds(save) : null), [markCleared, save]);
   const revealed = useRef(false);
+
+  // Remember the board so the main menu's "Quests" entry reopens it.
+  useEffect(() => writeLastQuestHub(hub), [hub]);
 
   // The star level and type shown (null: every type). Opening a quest
   // switches to its level, and off a type that would hide it; the tabs and
@@ -173,7 +220,9 @@ export default function QuestHubShell({
         {/* Above the card (z-1) so the bar and its arrows draw over the frame. */}
         <CardBox data-tree-panel>
           <Card variant="weapon-tree">
-            <div ref={listRef} className="flex flex-col">
+            {/* Inset 13px, like the lists in TreeScroll (items, decorations). */}
+            <div ref={listRef} className="flex flex-col pl-[13px]">
+              <BoardBackRow hub={hub} />
               {error && <p className="px-[16px] text-negative">{t.loadError}</p>}
               {shown.map((q) => (
                 <Link
@@ -183,12 +232,12 @@ export default function QuestHubShell({
                   aria-current={q.id === id ? "page" : undefined}
                   className={cn("list-row", q.id === id && "bg-white/10")}
                 >
-                  <p className="truncate">{game.quest(q.id, "title", q.title)}</p>
-                  {(cleared?.has(q.id) || q.urgent) && (
-                    <span className="ml-auto flex flex-none gap-[1rem]">
-                      {cleared?.has(q.id) && <span className="text-stat">{t.cleared}</span>}
-                      {q.urgent && <span className="text-negative">{t.board.urgent}</span>}
-                    </span>
+                  <p className={cn("truncate", q.urgent && "text-negative")}>
+                    {game.quest(q.id, "title", q.title)}
+                    {q.urgent && <span className="sr-only">{t.board.urgent}</span>}
+                  </p>
+                  {cleared?.has(q.id) && (
+                    <span className="ml-auto flex-none text-stat">{t.cleared}</span>
                   )}
                 </Link>
               ))}

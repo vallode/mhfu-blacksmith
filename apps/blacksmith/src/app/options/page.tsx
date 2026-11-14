@@ -1,9 +1,7 @@
 import SiteTitle from "@/components/SiteTitle";
 import BorderRule from "@/components/BorderRule";
 import type { Metadata } from "next";
-import OfflineSettings from "@/components/OfflineSettings";
-import PreferencesSettings from "@/components/PreferencesSettings";
-import SaveSyncSettings from "@/components/SaveSyncSettings";
+import OptionsTabs from "@/components/OptionsTabs";
 import { pageMetadata } from "@/lib/seo";
 
 export const metadata: Metadata = pageMetadata({
@@ -12,18 +10,19 @@ export const metadata: Metadata = pageMetadata({
   path: "/options/",
 });
 
+/**
+ * On desktop the page header and the tabs stay put and the selected card
+ * scrolls beneath them, in the pane beside the sidebar. On phones and
+ * portrait tablets the document scrolls, as on the other pages.
+ */
 export default function OptionsPage() {
   return (
-    <div className="flex flex-col items-center px-[1.3rem] pb-[4rem]">
+    <div className="flex min-h-0 flex-1 flex-col items-center px-[1.3rem] mobile:flex-none">
       <SiteTitle />
 
       <BorderRule />
 
-      <div className="flex w-full max-w-[72rem] flex-col gap-[1.3rem]">
-        <PreferencesSettings />
-        <SaveSyncSettings />
-        <OfflineSettings />
-      </div>
+      <OptionsTabs />
     </div>
   );
 }

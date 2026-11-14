@@ -1,3 +1,4 @@
+import { createElement, Fragment, type ReactNode } from "react";
 import type { Messages } from "../en";
 
 export const quests: Messages["quests"] = {
@@ -10,15 +11,17 @@ export const quests: Messages["quests"] = {
     "training-school": "Entrenamiento",
     "treasure-hunting": "Búsqueda de tesoros",
   },
-  search: "Buscar",
   // Short enough for the corner of the quest page, like "CLEAR!!".
   cleared: "SUPERADA",
   loadError: "No se pudieron cargar las misiones.",
   notFound: "No encontrada.",
   board: {
+    urgent: " (misión urgente)",
     title: (hub: string) => `Misiones: ${hub}`,
     selectQuest: "Elige una misión.",
-    urgent: "Urgente",
+    selectBoard: "Elige un tablón de misiones.",
+    boards: "Tablones de misiones",
+    backToBoards: (hub: string) => `${hub}: volver a los tablones de misiones`,
     starLevels: "Niveles de estrellas",
     starLevel: (stars: number, g: boolean) =>
       `${g ? "G " : ""}${stars} ${stars === 1 ? "estrella" : "estrellas"}`,
@@ -42,7 +45,6 @@ export const quests: Messages["quests"] = {
     treasure: "Misión de tesoros",
   },
   detail: {
-    urgent: "¡URGENTE!",
     tabsLabel: (quest: string) => `Datos de ${quest}`,
     tabs: {
       details: "Detalles",
@@ -60,6 +62,8 @@ export const quests: Messages["quests"] = {
     fee: "Tarifa:",
     requires: "Requiere:",
     monsters: "Monstruos:",
+    crowns: "Coronas:",
+    crownsAfterFirstClear: "(seguramente tras superarla una vez)",
     smallMonsters: "Monstruos pequeños:",
     client: "Cliente:",
   },
@@ -72,10 +76,30 @@ export const quests: Messages["quests"] = {
     note: "El ataque y la defensa multiplican el daño que el monstruo causa y recibe, así que una defensa más baja significa que recibe menos. El retroceso multiplica el daño que una parte aguanta antes de hacerlo retroceder.",
     changesDuringHunt: (monster: string) =>
       `El ataque y la defensa del ${monster} vuelven a cambiar durante la cacería.`,
+    size: "Tamaño:",
+    sizePercent: (n: string) => `${n}%`,
+    sizeRange: (min: string, max: string) => `${min}–${max}%`,
+    noCrowns: "Ninguna",
+    sizeNote:
+      "El tamaño es un porcentaje del tamaño normal del monstruo, sorteado para cada uno; las probabilidades de corona son por monstruo.",
+    fixedFirstNote:
+      "Hasta que se activa un evento de la historia (seguramente al superar la misión por primera vez), todos los monstruos tienen su tamaño normal.",
   },
   areaMap: {
     loading: "Cargando mapa…",
     loadError: "No se pudo cargar el mapa.",
+    rank: "Rango",
+    previousRank: "Rango anterior",
+    nextRank: "Rango siguiente",
+    map: "Mapa",
+    previousMap: "Mapa anterior",
+    nextMap: "Mapa siguiente",
+    position: (n: number, total: number) => `${n} de ${total}`,
+    andMore: (first: string, more: number) => `${first} +${more}`,
+    onlyIn: (map: string, quests: ReactNode): ReactNode =>
+      createElement(Fragment, null, `${map} · solo en `, quests),
+    upTo: (percent: string) => `hasta un ${percent}% por recolección`,
+    litHint: "Los puntos iluminados dan este objeto.",
     kinds: {
       gather: "Recolección",
       mine: "Minería",

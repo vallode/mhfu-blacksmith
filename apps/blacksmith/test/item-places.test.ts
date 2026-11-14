@@ -13,6 +13,7 @@ import {
   type ShopPlace,
   type ShopsFile,
 } from "../src/lib/item-places";
+import { buildAreaMaps } from "../src/lib/area-maps";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
 import { DATA_DIR } from "../src/lib/paths";
 
@@ -47,8 +48,16 @@ const gathering: GatheringFile = {
     },
     {
       map: "Old Desert",
+      texture: "map27",
       quests: [3001, 20001],
-      areas: [{ area: 3, nodes: [node("mine", [["Iron Ore", 30]])] }],
+      areas: [
+        {
+          area: 3,
+          nodes: [{ ...node("mine", [["Iron Ore", 30]]), positions: [[40, 50]] }],
+        },
+        // An area the map doesn't draw.
+        { area: 11, nodes: [node("gather", [["Potion", 50]])] },
+      ],
     },
   ],
 };
@@ -104,12 +113,14 @@ describe("item places", () => {
         map: "Old Desert",
         points: [{ kind: "mine", areas: [3] }],
         chance: 30,
+        mapQuest: 3001,
       },
       {
         group: "Training School",
         map: "Old Desert",
         points: [{ kind: "mine", areas: [3] }],
         chance: 30,
+        mapQuest: 20001,
       },
     ]);
   });
@@ -139,8 +150,25 @@ describe("item places", () => {
     ]);
   });
 
+  test("names a map quest only where the map draws a point that gives the item", () => {
+    const g = (id: number) => places.get(id)!.gathering.map((p) => [p.group, p.mapQuest]);
+    assert.deepEqual(g(1), [
+      ["Low Rank", undefined],
+      ["G Rank", 3001],
+      ["Training School", 20001],
+    ]);
+    assert.deepEqual(g(2), [
+      ["Low Rank", undefined],
+      ["G Rank", undefined],
+      ["Training School", undefined],
+    ]);
+  });
+
   test("the bundle decodes to the same places", () => {
-    const bundle = JSON.parse(JSON.stringify(encodeItemPlaces(places)));
+    const encoded = encodeItemPlaces(places);
+    assert.deepEqual(encoded.mapQuests, { "1,1": 3001, "2,1": 20001 });
+    assert.deepEqual(encoded.unmapped, ["2:1", "2:2", "3:0"]);
+    const bundle = JSON.parse(JSON.stringify(encoded));
     assert.deepEqual(decodeItemPlaces(bundle), places);
   });
 
@@ -186,6 +214,13 @@ describe("item places", () => {
       resolve,
     );
     assert.deepEqual([...missing], []);
+    // Each place's map quest has an area map, and most of the places have one.
+    const areaMaps = buildAreaMaps(read<GatheringFile>("gathering.json"));
+    const rows = [...real.values()].flatMap((p) => p.gathering);
+    for (const row of rows) {
+      if (row.mapQuest) assert.ok(row.mapQuest in areaMaps.quests, `quest ${row.mapQuest}`);
+    }
+    assert.ok(rows.filter((r) => r.mapQuest).length > rows.length / 2);
     // Iron Ore is mined on many maps, and the general store sells Potions from the start.
     assert.ok(real.get(index.get(normalizeItemName("Iron Ore"))!)!.gathering.length > 10);
     assert.equal(

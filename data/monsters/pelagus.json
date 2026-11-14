@@ -287,10 +287,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 509.26,
-        "max": 1188.6
-      },
       "hitzones": {
         "all": {
           "cut": "80",
@@ -339,6 +335,12 @@
           "damage_interval": 150,
           "total_time": 2700
         }
+      },
+      "base_size": 566,
+      "crowns": {
+        "mini": 98,
+        "silver": 113,
+        "gold": 130
       }
     },
     {
@@ -877,10 +879,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 491.4,
-        "max": 1670.76
-      },
       "hitzones": {
         "head": {
           "cut": "65",
@@ -997,6 +995,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 984,
+      "crowns": {
+        "mini": 97,
+        "silver": 115,
+        "gold": 125
       }
     },
     {
@@ -1112,10 +1116,6 @@
             }
           ]
         }
-      },
-      "sizes": {
-        "min": 491.4,
-        "max": 1670.76
       },
       "hitzones": {
         "head": {
@@ -1233,6 +1233,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 984,
+      "crowns": {
+        "mini": 97,
+        "silver": 115,
+        "gold": 125
       }
     },
     {
@@ -1671,10 +1677,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 791.12,
-        "max": 1221.2
-      },
       "hitzones": {
         "head": {
           "cut": "70",
@@ -1792,6 +1794,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 860,
+      "crowns": {
+        "mini": 99,
+        "silver": 125,
+        "gold": 138
       }
     },
     {
@@ -1879,10 +1887,6 @@
             }
           ]
         }
-      },
-      "sizes": {
-        "min": 799.8,
-        "max": 1221.2
       },
       "hitzones": {
         "head": {
@@ -2001,6 +2005,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 860,
+      "crowns": {
+        "mini": 99,
+        "silver": 125,
+        "gold": 138
       }
     },
     {
@@ -2199,10 +2209,6 @@
           ]
         }
       },
-      "sizes": {
-        "min": 729.62,
-        "max": 1631.2
-      },
       "hitzones": {
         "head": {
           "cut": "60",
@@ -2319,6 +2325,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 960,
+      "crowns": {
+        "mini": 105,
+        "silver": 125,
+        "gold": 140
       }
     },
     {
@@ -2327,10 +2339,6 @@
       "icon": "rajang",
       "description": "Ultra-aggressive creature that is rarely sighted and seldom survived. Survivors report it exhibits a strange attack. The Rajang is said to be a loner, and this isolated life has made it difficult to pin down its territorial leanings.",
       "drops": {},
-      "sizes": {
-        "min": 869.4,
-        "max": 1188.18
-      },
       "hitzones": {
         "head": {
           "cut": "60",
@@ -2431,6 +2439,12 @@
           "damage_interval": 150,
           "total_time": 1800
         }
+      },
+      "base_size": 960,
+      "crowns": {
+        "mini": 105,
+        "silver": 125,
+        "gold": 140
       }
     }
   ]

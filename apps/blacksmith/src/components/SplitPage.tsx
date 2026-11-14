@@ -90,7 +90,7 @@ export default function SplitPage({ list, closeHref, children }: Props) {
               split's right-hand pane. Phones: the sheet, leaving the list's
               top rows in view, with its cards filled (Card's --card-fill) so
               the list doesn't show through them. */}
-          <div className="contents mobile:absolute mobile:inset-x-0 mobile:top-[9rem] mobile:bottom-0 mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:#1b1f17] mobile:motion-safe:animate-sheet-in">
+          <div className="contents mobile:absolute mobile:inset-x-0 mobile:top-[9rem] mobile:bottom-0 mobile:z-10 mobile:flex mobile:flex-col mobile:[--card-fill:var(--color-sheet)] mobile:motion-safe:animate-sheet-in">
             {children}
           </div>
         </>

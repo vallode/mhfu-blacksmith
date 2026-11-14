@@ -12,12 +12,25 @@ export const monsters: Messages["monsters"] = {
     baseHp: "Vida base:",
     hunted: "Cazados:",
     captured: "Capturados:",
+    largest: "Mayor:",
+    smallest: "Menor:",
+    cm: (n: string) => `${n} cm`,
     tabsLabel: (monster: string) => `Datos de ${monster}`,
     tabs: {
       hitzones: "Zonas débiles",
       quests: "Misiones",
       spawns: "Dónde abunda",
     },
+  },
+  crowns: {
+    names: { gold: "Oro", silver: "Plata", mini: "Mini" },
+    crown: { gold: "Corona de oro", silver: "Corona de plata", mini: "Corona mini" },
+    best: (chance: string) => `Máx. ${chance}`,
+    noQuest: "Sin misión",
+    bestChance: (crown: string, chance: string) =>
+      `Mejor probabilidad de ${crown.toLowerCase()}: ${chance}`,
+    chance: (percent: string) => `${percent}%`,
+    below: (percent: string) => `<${percent}%`,
   },
   spawns: {
     count: (total: string) => `×${total}`,

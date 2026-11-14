@@ -2,15 +2,16 @@
 
 import { DetailCard } from "@/components/DetailPanel";
 import { useT } from "@/context/LanguageContext";
-import type { QuestHubSlug } from "@/lib/quests";
 
-/** /quests/<hub>/: the board's list is in the layout; this is the empty detail pane. */
-export default function QuestListClient({ hub }: { hub: QuestHubSlug }) {
+/**
+ * The empty detail pane beside a list in the quest frame: on /quests/ (the
+ * boards) and on /quests/<hub>/ (a board's quests).
+ */
+export default function QuestListClient({ boards = false }: { boards?: boolean }) {
   const t = useT().quests;
   return (
     <DetailCard>
-      <p className="text-gold">{t.hubs[hub]}</p>
-      <p className="text-stat">{t.board.selectQuest}</p>
+      <p className="text-stat">{boards ? t.board.selectBoard : t.board.selectQuest}</p>
     </DetailCard>
   );
 }

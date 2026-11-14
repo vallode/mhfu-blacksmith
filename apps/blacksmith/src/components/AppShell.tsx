@@ -25,20 +25,38 @@ interface NavItem {
   section?: MenuSection;
   /** Shown in the phone tab bar (the rest are in its menu drawer). */
   tab?: boolean;
+  /** Tab bar uses the 16px /images/<icon>-mini.png sprite. */
+  tabMini?: boolean;
 }
 
 /** The sidebar's entries, in groups with a divider between them: the game's data, then your own. */
 const NAV_GROUPS: NavItem[][] = [
   [
-    { label: "weapons", icon: "great-sword", match: "/blacksmith/", section: "weapons", tab: true },
-    { label: "armor", icon: "helmet", match: "/armorsmith/", section: "armor", tab: true },
+    {
+      label: "weapons",
+      icon: "great-sword",
+      match: "/blacksmith/",
+      section: "weapons",
+      tab: true,
+      tabMini: true,
+    },
+    {
+      label: "armor",
+      icon: "helmet",
+      match: "/armorsmith/",
+      section: "armor",
+      tab: true,
+      tabMini: true,
+    },
     { label: "monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
     { label: "decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
-    { label: "quests", icon: "ticket", match: "/quests/", href: "/quests/", tab: true },
+    { label: "quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
     { label: "items", icon: "fluid", match: "/items/", href: "/items/" },
+    { label: "veggieElder", icon: "mushroom", match: "/veggie-elder/", href: "/veggie-elder/" },
   ],
   [
     { label: "sets", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
+    { label: "wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/" },
     { label: "hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
     { label: "options", icon: "part", match: "/options/", href: "/options/" },
   ],
@@ -69,6 +87,7 @@ function useNavHrefs(pathname: string): (item: NavItem) => string {
     weapons: useSectionHref("weapons", pathname),
     armor: useSectionHref("armor", pathname),
     monsters: useSectionHref("monsters", pathname),
+    quests: useSectionHref("quests", pathname),
   };
   return (item) => item.href ?? sections[item.section!];
 }
@@ -240,7 +259,13 @@ function TabBar({
               aria-current={active ? "page" : undefined}
               className={cn(tab, active && tabActive)}
             >
-              <Icon type={item.icon} nav active={active} className={rowIcon} />
+              <Icon
+                type={item.icon}
+                size={item.tabMini ? "mini" : undefined}
+                nav
+                active={active}
+                className={rowIcon}
+              />
               <span className={label}>{t.nav[item.label]}</span>
             </Link>
           );

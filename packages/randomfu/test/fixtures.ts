@@ -29,6 +29,12 @@ import {
   TOLERANCE_OFFSET,
 } from "mhfu-extract/src/monsters/hitzones.js";
 import { encryptQuestBlock, questHash, QUEST_MAGIC } from "mhfu-extract/src/quests/mib.js";
+import {
+  TRADE_END,
+  TRADE_ROW_SIZE,
+  TRADE_TABLE_COUNT,
+  VEGGIE_TRADES_JP,
+} from "mhfu-extract/src/tables/veggie-trades.js";
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { equipmentCreateLayout, equipmentUpgradeLayout } from "mhfu-extract/src/tables/recipes.js";
 import { WEAPON_TYPE_NAMES } from "mhfu-extract/src/tables/weapons.js";
@@ -471,7 +477,20 @@ export const fixtureHp = (emId: number) => 100 + emId;
 /** Tolerance fields (+0x110) set on every monster: paralysis initial/increase, poison initial/increase. */
 export const FIXTURE_TOLERANCES = { paralysis: [150, 100], poison: [180, 75] } as const;
 
-/** `game_task.ovl` with `MonChunk[90]` at JP's file offset. */
+/**
+ * The Veggie Elders' trades, [give, common, rare] item IDs: four rows each,
+ * the first a sure trade (common and rare the same).
+ */
+export const FIXTURE_TRADES: [number, number, number][][] = Array.from(
+  { length: TRADE_TABLE_COUNT },
+  (_, elder) =>
+    Array.from({ length: 4 }, (_, row): [number, number, number] => {
+      const n = elder * 4 + row;
+      return [10 + n, 100 + n, row === 0 ? 100 + n : 200 + n];
+    }),
+);
+
+/** `game_task.ovl` with `MonChunk[90]` and the Veggie Elders' trades at JP's file offsets. */
 export function buildGameTask(): Buffer {
   const chunks = GAME_TASK_JP.monsterChunks - GAME_TASK_JP.loadBase;
   let at = chunks + MONSTER_CHUNK_COUNT * MONSTER_CHUNK_SIZE;
@@ -481,7 +500,19 @@ export function buildGameTask(): Buffer {
     // count pointers + terminator, then count tables of 7 rows + a zero u16.
     at += (Number(count) + 1) * 4 + Number(count) * (7 * HITZONE_ROW_SIZE + 4);
   }
-  const buf = ovlHeader("game_task.ovl", TASK_LOAD, at - 0x80);
+  const trades = VEGGIE_TRADES_JP - TASK_LOAD;
+  const tradesEnd =
+    trades + FIXTURE_TRADES.reduce((n, rows) => n + rows.length * TRADE_ROW_SIZE + 2, 0);
+  const buf = ovlHeader("game_task.ovl", TASK_LOAD, Math.max(at, tradesEnd) - 0x80);
+  let row = trades;
+  for (const rows of FIXTURE_TRADES) {
+    for (const ids of rows) {
+      ids.forEach((id, i) => buf.writeUInt16LE(id, row + i * 2));
+      row += TRADE_ROW_SIZE;
+    }
+    buf.writeUInt16LE(TRADE_END, row);
+    row += 2;
+  }
   const vaddr = (offset: number) => TASK_LOAD + offset;
   const listOf = new Map<number, number>();
   for (const { emId, at: list, count } of tables) {
@@ -647,6 +678,11 @@ export const FIXTURE_WEAPONS: FixtureWeapon[] = [
   { index: 7, type: "great-sword", rarity: 0, attack: 90, affinity: 5, element: [3, 25] },
   { index: 8, type: "long-sword", rarity: 1, attack: 90, affinity: 15, status: [3, 30] },
   { index: 9, type: "great-sword", rarity: 0, attack: 75, affinity: 0 },
+  // Weapon 7 (from a shard) polished: stays with it.
+  { index: 10, type: "great-sword", rarity: 0, attack: 85, affinity: 0 },
+  // A shard weapon as the disc has them: no create entry, only polished into 12.
+  { index: 11, type: "great-sword", rarity: 0, attack: 65, affinity: 0 },
+  { index: 12, type: "great-sword", rarity: 0, attack: 95, affinity: 0 },
 ];
 
 /** Gunner weapons outside the smithy trees: bows, model ID 20 + index. */
@@ -676,6 +712,9 @@ export const FIXTURE_UPGRADES: { index: number; craft: Materials; targets: numbe
   { index: 4, craft: [{ itemId: 102, quantity: 1 }], targets: [] },
   { index: 5, craft: [{ itemId: 103, quantity: 2 }], targets: [] },
   { index: 8, craft: [{ itemId: 103, quantity: 1 }], targets: [] },
+  { index: 7, craft: [], targets: [10] },
+  { index: 10, craft: [], targets: [] },
+  { index: 11, craft: [], targets: [12] },
 ];
 
 function writeMaterials(buf: Buffer, at: number, materials: Materials): void {
@@ -843,11 +882,38 @@ export const FIXTURE_SHOP_TABLES: string[][] = [
   ["special1", "special2"],
 ];
 
-/** `lobby_task.ovl` with the shop lists (0xFFFF-ended) and their pointer tables. */
+/**
+ * The smithy's store: (category, ID) lists, by stage, then an armor list
+ * (category 5 is a Blademaster weapon, 6 a Gunner one, 0-4 armor). Its table
+ * repeats a list and ends in a word that isn't a pointer, as on the EU disc.
+ */
+export const FIXTURE_STORE_LISTS: Record<string, [number, number][]> = {
+  weapons1: [
+    [5, 1],
+    [5, 6],
+    [6, 1],
+  ],
+  weapons2: [
+    [5, 1],
+    [5, 6],
+    [5, 9],
+    [6, 1],
+  ],
+  // Leg 2, head 3, and head 9, which no create entry makes.
+  armor: [
+    [0, 2],
+    [1, 3],
+    [1, 9],
+  ],
+};
+export const FIXTURE_STORE_TABLE = ["weapons1", "weapons1", "weapons2", "armor"];
+
+/** `lobby_task.ovl` with the shop lists (0xFFFF-ended) and their pointer tables, then the smithy's store. */
 export function buildLobbyTask(): {
   buf: Buffer;
   listAt: Record<string, number>;
   tablesAt: number;
+  storeAt: Record<string, number>;
 } {
   const buf = ovlHeader("lobby_task.ovl", LOBBY_LOAD, 0x1000);
   buf.fill(0x77, 0x80); // not items, not pointers
@@ -873,7 +939,25 @@ export function buildLobbyTask(): {
     buf.writeUInt32LE(0, p);
     p += 4;
   }
-  return { buf, listAt, tablesAt };
+
+  const storeAt: Record<string, number> = {};
+  at = 0x700;
+  for (const [name, entries] of Object.entries(FIXTURE_STORE_LISTS)) {
+    storeAt[name] = at;
+    for (const [category, id] of entries) {
+      buf.writeUInt16LE(category, at);
+      buf.writeUInt16LE(id, at + 2);
+      at += 4;
+    }
+    buf.writeUInt32LE(0xffff, at);
+    at += 4;
+  }
+  p = 0x780;
+  for (const name of FIXTURE_STORE_TABLE) {
+    buf.writeUInt32LE(LOBBY_LOAD + storeAt[name]!, p);
+    p += 4;
+  }
+  return { buf, listAt, tablesAt, storeAt };
 }
 
 // ---------------------------------------------------------------- quest board

@@ -15,13 +15,21 @@ import MonsterQuests from "@/components/MonsterQuests";
 import SmallMonsterQuests from "@/components/SmallMonsterQuests";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { breakIndex, breakKey } from "@/lib/monster-breaks";
-import { formatRank } from "@/lib/monster-drops";
+import { canCapture, formatRank } from "@/lib/monster-drops";
 import { monsterRecordFor } from "@/lib/monster-ids";
-import { clearedQuestIds, questsWithMonster, smallMonsterStages } from "@/lib/quests";
+import {
+  bestCrownQuests,
+  clearedQuestIds,
+  questsWithMonster,
+  smallMonsterStages,
+} from "@/lib/quests";
+import { crownFor, sizeInCm, type Crown } from "@/lib/crowns";
+import CrownIcon from "@/components/CrownIcon";
+import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useMonsterHitboxes, useMonsterModel, type HitboxCapsule } from "@/lib/models";
-import type { MonsterBreak } from "@/lib/types";
+import type { Monster, MonsterBreak } from "@/lib/types";
 import { useLocale } from "@/context/LanguageContext";
 import type { Messages } from "@/lib/i18n/messages";
 import { breakLabel, partLabel } from "@/lib/i18n/monster-labels";
@@ -71,6 +79,18 @@ const NO_BREAKS: MonsterBreak[] = [];
 const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
   e.currentTarget.style.visibility = "hidden";
 };
+
+/** A Guild Card size record (percent) in centimetres, with the crown it earns. */
+function SizeRecord({ size, monster }: { size: number; monster: Monster }) {
+  const { t, formatNumber } = useLocale();
+  const crown = monster.crowns ? crownFor(size, monster.crowns) : null;
+  return (
+    <span className="text-white tabular-nums">
+      {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
+      {crown && <CrownIcon crown={crown} className="ml-[0.4rem] align-middle" />}
+    </span>
+  );
+}
 
 export default function MonsterDetailClient({ category, slug }: Props) {
   const { t, game, formatNumber } = useLocale();
@@ -255,7 +275,29 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     label: rankLabel(t, rank),
     content: <MonsterDrops sources={sources} />,
   }));
+  // Crown cutoffs in centimetres.
+  const crowns =
+    monster.crowns && monster.base_size !== undefined
+      ? {
+          mini: sizeInCm(monster.crowns.mini, monster.base_size),
+          silver: sizeInCm(monster.crowns.silver, monster.base_size),
+          gold: sizeInCm(monster.crowns.gold, monster.base_size),
+        }
+      : null;
   const monsterQuests = quests ? questsWithMonster(quests, monster.name) : [];
+  // The quests with the best chance of each crown, and that chance.
+  const bestCrowns = bestCrownQuests(monsterQuests, monster.name);
+  // The sizes its quests can roll, in centimetres.
+  const sizeRange =
+    monster.size_range && monster.base_size !== undefined
+      ? {
+          min: sizeInCm(monster.size_range.min, monster.base_size),
+          max: sizeInCm(monster.size_range.max, monster.base_size),
+        }
+      : null;
+  const bestChance: Partial<Record<Crown, number>> = {};
+  for (const list of bestCrowns.values())
+    for (const { crown, chance } of list) bestChance[crown] = chance;
   const cleared = markCleared ? clearedQuestIds(save) : null;
   const questTab: Tab[] =
     monsterQuests.length > 0
@@ -263,7 +305,16 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           {
             id: "quests",
             label: t.monsters.detail.tabs.quests,
-            content: <MonsterQuests quests={monsterQuests} cleared={cleared} />,
+            content: (
+              <MonsterQuests
+                quests={monsterQuests}
+                cleared={cleared}
+                bestCrowns={bestCrowns}
+                // The crown cutoffs, as the key to the crowns marking the
+                // best quest for each.
+                legend={crowns && <CrownCutoffs cutoffs={crowns} best={bestChance} />}
+              />
+            ),
           },
         ]
       : [];
@@ -278,8 +329,8 @@ export default function MonsterDetailClient({ category, slug }: Props) {
           },
         ]
       : [];
-  // The loaded hunter's Guild Card counts. Only large monsters (the ones with
-  // sizes) can be captured.
+  // The loaded hunter's Guild Card counts. Captures only for monsters the
+  // game gives capture rewards for.
   const record = showHuntRecords ? monsterRecordFor(save?.monsters, monster.name) : null;
   const tabs = [...hitzoneTab, ...dropTabs, ...questTab, ...spawnTab];
 
@@ -310,13 +361,13 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 {monster.description}
               </p>
             )}
-            {monster.sizes && (
+            {sizeRange && (
               <p className="text-small text-stat">
                 {t.monsters.detail.size}{" "}
                 <span className="text-white tabular-nums">
                   {t.monsters.detail.sizeRange(
-                    formatSize(monster.sizes.min),
-                    formatSize(monster.sizes.max),
+                    formatSize(sizeRange.min),
+                    formatSize(sizeRange.max),
                   )}
                 </span>
               </p>
@@ -331,7 +382,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               <p className="text-small whitespace-normal text-stat">
                 {t.monsters.detail.hunted}{" "}
                 <span className="text-white tabular-nums">{formatNumber(record.kills)}</span>
-                {monster.sizes && (
+                {canCapture(monster) && (
                   <>
                     {" · "}
                     {t.monsters.detail.captured}{" "}
@@ -340,6 +391,26 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 )}
               </p>
             )}
+            {record &&
+              monster.base_size !== undefined &&
+              (record.largest > 0 || record.smallest > 0) && (
+                // A record the hunter hasn't set is 0; leave it out.
+                <p className="text-small whitespace-normal text-stat">
+                  {record.largest > 0 && (
+                    <>
+                      {t.monsters.detail.largest}{" "}
+                      <SizeRecord size={record.largest} monster={monster} />
+                    </>
+                  )}
+                  {record.largest > 0 && record.smallest > 0 && " · "}
+                  {record.smallest > 0 && (
+                    <>
+                      {t.monsters.detail.smallest}{" "}
+                      <SizeRecord size={record.smallest} monster={monster} />
+                    </>
+                  )}
+                </p>
+              )}
           </div>
           <div className="flex h-[11.2rem] w-[16.8rem] shrink-0 items-center justify-center bg-[url(/images/scroll.png)] bg-contain bg-center bg-no-repeat pixelated mobile:mx-auto">
             <img

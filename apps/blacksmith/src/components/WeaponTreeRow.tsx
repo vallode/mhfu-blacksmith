@@ -158,6 +158,12 @@ function RowButton({
   );
 }
 
+function hasDescendant(node: WeaponTreeNode, slug: string): boolean {
+  return (node.children ?? []).some(
+    (child) => (child.slug === slug && !child.alias) || hasDescendant(child, slug),
+  );
+}
+
 export default function WeaponTreeRow({
   node,
   sectionType,
@@ -169,7 +175,16 @@ export default function WeaponTreeRow({
   hasNextSibling = false,
   scroll = true,
 }: WeaponTreeRowProps) {
-  const [collapsed, setCollapsed] = useState(() => isNodeCollapsed(treeKey, node.slug));
+  // A branch holding the active row opens, so arriving at a weapon (from the
+  // global search, say) shows it even if its branch was collapsed earlier.
+  const [collapsed, setCollapsed] = useState(() => {
+    if (!isNodeCollapsed(treeKey, node.slug)) return false;
+    if (activeSlug && hasDescendant(node, activeSlug)) {
+      setNodeCollapsed(treeKey, node.slug, false);
+      return false;
+    }
+    return true;
+  });
   // Another row (an alias revealing its weapon) can open this branch.
   useEffect(() => onNodeCollapsed(treeKey, node.slug, setCollapsed), [treeKey, node.slug]);
   const tree = useWeaponTree();

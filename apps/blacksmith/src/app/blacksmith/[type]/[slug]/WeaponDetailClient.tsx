@@ -35,6 +35,7 @@ import { useWeaponModel } from "@/lib/models";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useGameText, useT } from "@/context/LanguageContext";
 import Loading from "@/components/Loading";
+import WishlistButton from "@/components/WishlistButton";
 
 interface Props {
   type: WeaponType;
@@ -119,6 +120,12 @@ export default function WeaponDetailClient({ type, slug }: Props) {
             />
           )}
 
+          <WishlistButton
+            gear={{ kind: "weapon", type, slug }}
+            name={name}
+            className={modelUrl ? undefined : "ml-[0.4rem]"}
+          />
+
           {(weapon.sharpness || weapon.sharpness_plus) && (
             <div className="relative ml-auto flex flex-col gap-[0.5rem] mobile:mt-[1rem] mobile:mr-auto mobile:ml-0">
               {weapon.sharpness && <SharpnessBar values={weapon.sharpness} />}
@@ -134,7 +141,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
               <Stat label={tw.attack}>
                 <StatValue>{weapon.attack}</StatValue>
                 {showRawValues && weapon.raw_attack && (
-                  <StatValue className="opacity-20">[ {weapon.raw_attack} ]</StatValue>
+                  <StatValue className="ml-(--cell) opacity-20">[{weapon.raw_attack}]</StatValue>
                 )}
                 {weapon.shelling && (
                   <StatValue>
@@ -198,7 +205,7 @@ export default function WeaponDetailClient({ type, slug }: Props) {
                   <>
                     {" "}
                     <StatValue className="whitespace-nowrap opacity-20">
-                      [ {el.attack / 10} ]
+                      [{el.attack / 10}]
                     </StatValue>
                   </>
                 )}

@@ -16,6 +16,7 @@ export const SHUFFLE_KEYS = {
   "quest-money": "terms.money",
   "time-limits": "terms.time",
   deliveries: "deliveries.enabled",
+  "veggie-trades": "trades.enabled",
 } as const satisfies Record<string, OptionKey>;
 export type ShuffleName = keyof typeof SHUFFLE_KEYS;
 
