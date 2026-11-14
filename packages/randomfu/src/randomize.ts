@@ -52,6 +52,7 @@ import {
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
 import { writeGuides } from "./hints/guides.js";
+import { addNodeMap } from "./patches/node-map.js";
 import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -522,6 +523,8 @@ export function randomize(
       almanac: settings["hints.almanac"],
     }),
   );
+
+  if (settings["hints.nodeMap"]) reports.push(addNodeMap(game, edits));
 
   return {
     edits,

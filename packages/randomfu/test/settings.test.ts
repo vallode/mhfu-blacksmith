@@ -46,7 +46,7 @@ test("every option has a default its own checks accept", () => {
 });
 
 /** Options no preset turns on until they're tried in game (see the README's status). */
-const UNTRIED: readonly OptionKey[] = ["trades.enabled"];
+const UNTRIED: readonly OptionKey[] = ["trades.enabled", "hints.nodeMap"];
 
 test("presets do what their help says", () => {
   const preset = (name: string) =>

@@ -182,6 +182,7 @@ pages and `pnpm settings` show as a tag):
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                        |
 | `hints.bookshelf`                 | off         | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                    |
 | `hints.almanac`                   | off         | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                   |
+| `hints.nodeMap`                   | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only, untried)    |
 
 ### Presets
 
@@ -679,6 +680,17 @@ first, and the spoiler says how many.
   get the same. Seen working in PPSSPP: the articles show on the shelf.
 - The JP disc's bookshelf text hasn't been located, so there the guides
   are skipped and the spoiler says so.
+
+**Nodes on the map** (`hints.nodeMap`, `src/patches/node-map.ts`) draws a
+3x3 marker for every gathering (green), mining (orange) and bug catching
+(yellow) node onto the map screen's textures (`cockpit/map<N>.tmh`, 160x160,
+8-bit swizzled, RGBA8888 palette). Positions come from the quests' node
+tables through the map screen's own formula (mhfu-extract README, "Area
+maps"), so they are EU-only and need the EBOOT. A texture is shared by every
+quest on the map, and nodes sit in the same places in all of them, so a
+texture gets the union. The markers use palette entries the art leaves
+unused (every map has over 200), so nothing else recolours and file sizes
+are unchanged. Not yet seen in PPSSPP.
 
 `supplies` changes what each quest's supply box holds. The box is a list
 of `{ u16 item, u16 amount }` at the header's `SuppliesPTR`, ending at item

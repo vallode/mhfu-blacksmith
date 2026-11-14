@@ -78,6 +78,7 @@ export interface Settings {
   "weaknesses.parts": boolean;
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
+  "hints.nodeMap": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -924,6 +925,15 @@ export const OPTIONS: readonly OptionDef[] = [
     section: "Hints",
     label: "Item almanac on the bookshelf",
     help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
+    type: { kind: "boolean" },
+    default: false,
+    eboot: true,
+  },
+  {
+    key: "hints.nodeMap",
+    section: "Hints",
+    label: "Gathering nodes on the area map",
+    help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only; not yet seen in game.",
     type: { kind: "boolean" },
     default: false,
     eboot: true,
