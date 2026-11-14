@@ -1,7 +1,7 @@
 {
   "$schema": "http://json-schema.org/draft-07/schema#",
   "title": "Skills file",
-  "description": "Skill trees and the skills they activate at each points threshold. Names are in data/strings: a tree's in 'skill' (the game's SkillID spelling) and 'aliases.skill' (other spellings, which armor and decorations refer to by index), a skill's in 'skill_activation' under '<tree ID>:<points>'.",
+  "description": "Skill trees and the skills they activate at each points threshold. Names are in data/strings: a tree's in 'skill' (the game's SkillID spelling) and 'aliases.skill' (other spellings, which search and the set builder still match), a skill's in 'skill_activation' under '<tree ID>:<points>'.",
   "type": "object",
   "required": ["skills"],
   "additionalProperties": false,

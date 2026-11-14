@@ -1626,7 +1626,6 @@
       "skills": [
         {
           "skill": 15,
-          "alias": 0,
           "points": 2
         }
       ],
@@ -1946,7 +1945,6 @@
       "skills": [
         {
           "skill": 20,
-          "alias": 0,
           "points": 1
         },
         {
@@ -1986,7 +1984,6 @@
       "skills": [
         {
           "skill": 20,
-          "alias": 0,
           "points": 3
         },
         {
@@ -2051,7 +2048,6 @@
       "skills": [
         {
           "skill": 99,
-          "alias": 0,
           "points": 1
         },
         {
@@ -2104,7 +2100,6 @@
       "skills": [
         {
           "skill": 99,
-          "alias": 0,
           "points": 4
         },
         {
@@ -2154,7 +2149,6 @@
         },
         {
           "skill": 20,
-          "alias": 0,
           "points": -1
         }
       ],
@@ -2213,7 +2207,6 @@
         },
         {
           "skill": 20,
-          "alias": 0,
           "points": -2
         }
       ],
@@ -2259,7 +2252,6 @@
         },
         {
           "skill": 20,
-          "alias": 0,
           "points": -1
         }
       ],
@@ -2295,7 +2287,6 @@
       "skills": [
         {
           "skill": 22,
-          "alias": 0,
           "points": 4
         },
         {
@@ -2345,7 +2336,6 @@
         },
         {
           "skill": 20,
-          "alias": 0,
           "points": -1
         }
       ],
@@ -2381,7 +2371,6 @@
       "skills": [
         {
           "skill": 23,
-          "alias": 0,
           "points": 4
         },
         {
@@ -2651,7 +2640,6 @@
       "skills": [
         {
           "skill": 29,
-          "alias": 0,
           "points": 2
         }
       ],
@@ -2863,7 +2851,6 @@
         },
         {
           "skill": 98,
-          "alias": 1,
           "points": -1
         }
       ],
@@ -2909,7 +2896,6 @@
         },
         {
           "skill": 98,
-          "alias": 1,
           "points": -1
         }
       ],
@@ -3099,7 +3085,6 @@
         },
         {
           "skill": 99,
-          "alias": 0,
           "points": -1
         }
       ],
@@ -4020,7 +4005,6 @@
       "skills": [
         {
           "skill": 38,
-          "alias": 0,
           "points": 1
         },
         {
@@ -4073,7 +4057,6 @@
       "skills": [
         {
           "skill": 38,
-          "alias": 0,
           "points": 4
         },
         {
@@ -4818,7 +4801,6 @@
       "skills": [
         {
           "skill": 64,
-          "alias": 0,
           "points": 1
         },
         {
@@ -4858,7 +4840,6 @@
       "skills": [
         {
           "skill": 64,
-          "alias": 0,
           "points": 2
         },
         {
@@ -4898,7 +4879,6 @@
       "skills": [
         {
           "skill": 64,
-          "alias": 0,
           "points": 3
         },
         {
@@ -5073,7 +5053,6 @@
       "skills": [
         {
           "skill": 41,
-          "alias": 0,
           "points": 2
         }
       ],
@@ -5113,7 +5092,6 @@
         },
         {
           "skill": 64,
-          "alias": 0,
           "points": -1
         }
       ],
@@ -5147,7 +5125,6 @@
         },
         {
           "skill": 64,
-          "alias": 0,
           "points": -1
         }
       ],
@@ -5187,7 +5164,6 @@
         },
         {
           "skill": 64,
-          "alias": 0,
           "points": -1
         }
       ],

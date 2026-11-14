@@ -78,11 +78,13 @@ descriptions. Another language lists what it has and falls back to
 English (`StringTable`). `ja.json` holds the Japanese item names so far.
 `stringsPath(dataDir, lang)` is the one place the path is spelled out.
 
-**Spellings.** Where the site spelled a skill tree or monster otherwise
-than its English name, a reference carries `alias: n`: the n-th English
-alias of it. Armor shows "Defence" for the Defense tree, and a quest names
-"Terra Shogun Ceanatur", the game's own spelling. Other languages ignore
-`alias`. A decoration whose name isn't its item's ("Constitutn Jewel" vs
+**Spellings.** Where a reference should show another English spelling
+than the name, it carries `alias: n`: the n-th English alias. Quests name
+"Terra Shogun Ceanatur", the game's own spelling, that way. Skill
+references on armor and decorations carry none: they show the tree's name
+from `skill`, as the set builder does. The old spellings ("Defence",
+"Load") stay as aliases, which search and the set builder still match.
+Other languages ignore `alias`. A decoration whose name isn't its item's ("Constitutn Jewel" vs
 "ConstitutnJewel") has it under `decoration`.
 
 ## The named view

@@ -1495,8 +1495,9 @@ disagreement as JSON.
 **Merging (`src/build/merge.ts`).** For each paired item, `build-data`
 writes the disc value of each field in that category's `take` list
 (`src/build/categories.ts`), in the site's vocabulary: site equipment
-names, the site's skill spelling (`Defence`, `Load`) and the site's icon
-style for each material. Lists (skills, materials, elements,
+names, the site's skill spelling (the tree's `SkillID` name, which is
+what `data/` now uses everywhere; armor used to spell 26 trees otherwise,
+`Defence`, `Load`) and the site's icon style for each material. Lists (skills, materials, elements,
 upgrade-tree references) are written in the disc's order, even when they
 already agree as a set; a scalar that agrees is left byte-identical. Item
 order, key order and file layout don't change, and a second run is a no-op. Disc items the site doesn't list (the 10 unused
@@ -1653,11 +1654,13 @@ e.g. "Attack Jewel" -> "Attack up"), both generated once from the committed
 `data/` files (see git history) and consumed by `src/emit/*.ts`.
 
 `skill-name-aliases.json` is the one overlay that goes the other way: it
-maps the committed site's skill spellings (`"Defence"`, `"Load"`,
+maps the site's old skill spellings (`"Defence"`, `"Load"`,
 `"Fast Chrge"`, ...) to the extractor's `SkillID` names. `diff` and
 `compare` use it so the same skill under a different spelling isn't
 reported as a mismatch, and `build-data` uses it to write disc skills back
-in the site's spelling. `extract` output is unchanged. See the module doc
+in the site's spelling. `data/` now names every skill tree by its
+`SkillID` name, so on committed data it changes nothing; the old
+spellings stay as skill aliases in `data/strings/en.json`. `extract` output is unchanged. See the module doc
 comment for how each entry was chosen.
 
 `material-styles.json` holds hand-picked material icon styles by item ID
