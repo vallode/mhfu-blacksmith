@@ -67,8 +67,10 @@ export interface GlbOptions {
   textureQuality?: number;
   /**
    * Which piece of a model a primitive belongs to (see `GlbPartOf`). More than
-   * one piece: each gets its own mesh and node, `part_0`, `part_1`, ..., in
-   * the model's space, so a viewer can move them apart. Unskinned models only.
+   * one piece, unskinned: each gets its own mesh and node, `part_0`, `part_1`,
+   * ..., in the model's space, so a viewer can move them apart. Skinned, the
+   * model stays one mesh on its skin and each primitive names its piece in
+   * `extras.part` (three.js: the geometry's `userData.part`).
    */
   partOf?: GlbPartOf;
   /**
@@ -440,8 +442,6 @@ export async function buildGlb(
   const layout = skinned ? skinnedLayout(exact ? EXACT : FLOATS) : exact ? EXACT : FLOATS;
   const targets = options.targets ?? [];
   if (targets.length && skinned) throw new Error("morph targets on a skinned model");
-  // Each piece's node would need the skin, and its joints the pieces' places.
-  if (options.partOf && skinned) throw new Error("pieces of a skinned model");
   for (const target of targets)
     if (target.pmo.scale.some((s, k) => s !== pmo.scale[k]))
       throw new Error(`morph target ${target.name} has another scale`);
@@ -848,19 +848,29 @@ export async function buildGlb(
     ...(compress ? ["EXT_meshopt_compression"] : []),
     ...(usesWebp ? ["EXT_texture_webp"] : []),
   ];
-  // One mesh per piece, unless the model is whole (the usual case).
+  // One mesh per piece, unless the model is whole (the usual case). A
+  // skinned model's pieces share its skin, so they stay one mesh, each
+  // primitive naming its piece.
   const parts = [...new Set(gltfPrimitives.map((primitive) => primitive.part))].sort(
     (a, b) => a - b,
   );
   const meshPrimitives = (part: number) =>
     gltfPrimitives.filter((p) => p.part === part).map(({ part: _, ...primitive }) => primitive);
-  const whole = parts.length <= 1;
+  const whole = parts.length <= 1 || skinned;
+  const tagged = parts.length > 1 && skinned;
   // A mesh's morph targets, named (three.js reads `extras.targetNames`) and off.
   const morph = targets.length
     ? { weights: targets.map(() => 0), extras: { targetNames: targets.map((t) => t.name) } }
     : {};
   const meshes = whole
-    ? [{ primitives: gltfPrimitives.map(({ part: _, ...primitive }) => primitive), ...morph }]
+    ? [
+        {
+          primitives: gltfPrimitives.map(({ part, ...primitive }) =>
+            tagged ? { ...primitive, extras: { part } } : primitive,
+          ),
+          ...morph,
+        },
+      ]
     : parts.map((part) => ({ primitives: meshPrimitives(part), ...morph }));
   // Positions are in source units (normalized s16); unskinned, the model's
   // scale goes on the node.

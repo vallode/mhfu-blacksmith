@@ -1,5 +1,6 @@
 /**
- * The hunter shown holding a weapon in the 3D viewer: the rigged model and
+ * The hunter shown holding a weapon (or wearing an armor piece,
+ * `hunter-armor.ts`) in the 3D viewer: the rigged model and
  * per-weapon-class motions `export-site` writes (see mhfu-extract's README,
  * "Hunter"), which of those to offer, and where a weapon rides on the
  * skeleton.
@@ -8,6 +9,8 @@ import { fetchMotions, type MotionClip } from "@/lib/motions";
 
 const HUNTER_DIR = "/models/hunter";
 export const HUNTER_MODEL = `${HUNTER_DIR}/hunter.glb`;
+/** The female hunter, for female armor; only in exports made since it was added. */
+export const HUNTER_FEMALE_MODEL = `${HUNTER_DIR}/hunter-female.glb`;
 
 /** The player's joints (mhfu-extract's `src/models/hunter.ts`). */
 export const JOINT = { CHEST: 10, LEFT_HAND: 14, RIGHT_HAND: 18 } as const;
@@ -41,17 +44,22 @@ const DRAWN_IDLE_SLOT = 1;
 /** The common standing motion, weapon put away. */
 const SHEATHED_IDLE_SLOT = 1;
 
+/** The common standing motion, with `label`: what the hunter does with nothing in hand. */
+export async function fetchHunterIdle(label: string, signal?: AbortSignal): Promise<HunterClip[]> {
+  const common = await fetchMotions(`${HUNTER_DIR}/common.motions.bin`, signal);
+  return common
+    .filter((clip) => clip.slot === SHEATHED_IDLE_SLOT)
+    .map((clip): HunterClip => ({ ...clip, label, sheathed: true }));
+}
+
 /** The clips the viewer offers for a weapon type: sheathed idle, the drawn stance, then the rest of its file. */
 export async function fetchHunterClips(type: string, signal?: AbortSignal): Promise<HunterClip[]> {
   const weaponClass = WEAPON_CLASS[type];
   if (weaponClass === undefined) return [];
-  const [weapon, common] = await Promise.all([
+  const [weapon, sheathed] = await Promise.all([
     fetchMotions(`${HUNTER_DIR}/w${String(weaponClass).padStart(2, "0")}.motions.bin`, signal),
-    fetchMotions(`${HUNTER_DIR}/common.motions.bin`, signal),
+    fetchHunterIdle("Sheathed idle", signal),
   ]);
-  const sheathed = common
-    .filter((clip) => clip.slot === SHEATHED_IDLE_SLOT)
-    .map((clip): HunterClip => ({ ...clip, label: "Sheathed idle", sheathed: true }));
   // Weapon clips by file group: 0 movement and stance, 1 a lone action,
   // 2 on attacks. No other naming is on the disc.
   const count = new Map<string, number>();

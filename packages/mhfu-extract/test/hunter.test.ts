@@ -82,8 +82,9 @@ test("composeHunter moves a piece's vertices onto the player skeleton and joints
     Array.from({ length: 10 }, (_, i) => bone(i, i - 1, [0, 0, 0])),
     [1],
   );
-  const { pmo, textures, bones } = composeHunter([legs, arms]);
+  const { pmo, textures, bones, meshSlots } = composeHunter([legs, arms]);
   assert.equal(bones.length, PLAYER_BONE_COUNT);
+  assert.deepEqual(meshSlots, ["leggings", "gauntlets"]);
   assert.equal(textures.length, 2);
   assert.equal(pmo.meshes[1]!.primitives[0]!.materialIndex, 1);
   // Bone 1 maps to the chest, and its vertices rise by the chest's height.
@@ -172,4 +173,59 @@ test("buildGlb writes one named node per piece when a model has several", async 
     ["part_0", "part_1"],
   );
   assert.equal(json.meshes.length, 2);
+});
+
+test("buildGlb keeps a skinned model's pieces on one mesh, each primitive naming its piece", async () => {
+  const legs = piece("leggings", playerSkeleton(), [JOINT.HIPS]);
+  const head = piece(
+    "helmet",
+    [0, 1, 2, 3].map((i) => bone(i, i - 1, [0, 0, 0])),
+    [3],
+  );
+  const hunter = composeHunter([head, legs]);
+  const { glb } = await buildGlb(
+    hunter.pmo,
+    [],
+    "hunter",
+    {
+      compress: false,
+      webp: false,
+      partOf: (mesh) => (hunter.meshSlots[mesh] === "helmet" ? 0 : 4),
+    },
+    { bones: hunter.bones },
+  );
+  const json = JSON.parse(glb.subarray(20, 20 + glb.readUInt32LE(12)).toString("utf-8")) as {
+    nodes: { mesh?: number; skin?: number }[];
+    meshes: { primitives: { extras?: { part: number } }[] }[];
+  };
+  assert.equal(json.meshes.length, 1);
+  assert.deepEqual(json.nodes[0], { mesh: 0, skin: 0 });
+  assert.deepEqual(
+    json.meshes[0]!.primitives.map((primitive) => primitive.extras?.part),
+    [0, 4],
+  );
+});
+
+test("composeHunter keeps a texture index past a piece's own off the next piece's textures", () => {
+  const skin = { width: 1, height: 1, rgba: Buffer.alloc(4), hasAlpha: false };
+  const legs = piece("leggings", playerSkeleton(), [JOINT.HIPS]);
+  const arms = piece(
+    "gauntlets",
+    Array.from({ length: 10 }, (_, i) => bone(i, i - 1, [0, 0, 0])),
+    [1],
+  );
+  // The leggings' material points one past their own texture: the skin's slot.
+  legs.pmo.materials[0] = { ...legs.pmo.materials[0]!, textureIndex: 1 };
+  const bare = composeHunter([legs, arms]);
+  // Without a skin, it is no texture at all, not the gauntlets'.
+  assert.ok(bare.pmo.materials[0]!.textureIndex >= bare.textures.length);
+  assert.equal(bare.pmo.materials[1]!.textureIndex, 1);
+
+  // With the skin after each piece's own textures, both pieces share one image.
+  legs.textures = [...legs.textures, skin];
+  arms.textures = [...arms.textures, skin];
+  const dressed = composeHunter([legs, arms]);
+  assert.equal(dressed.textures.length, 3);
+  assert.equal(dressed.textures[dressed.pmo.materials[0]!.textureIndex], skin);
+  assert.equal(dressed.pmo.materials[1]!.textureIndex, 2);
 });
