@@ -66,8 +66,8 @@ export function questHub(questId: number): QuestHub | null {
  * are 1 (one ★6 is 2), `11xxx` 2 (one ★9 is 5). 0 (the Training School's
  * Basic/Mastery quests, the Village's two Tigrex quests and the Guild's ★1
  * and ★2), 3 (Treasure Hunting) and 4 (Subjugation Training) have no tier.
- * The Guild's ★1/★2 quests are still on its Low Rank board, so they are
- * emitted as low rank (`questRank`).
+ * The Guild's ★1/★2 quests and the Village's two Tigrex quests (★1 and ★2)
+ * are still Low Rank, so they are emitted as low rank (`questRank`).
  */
 const RANK_TIER: Record<number, Rank> = {
   1: "low-rank",
@@ -82,9 +82,9 @@ const RANK_TIER: Record<number, Rank> = {
  * and `m40001`-`m40008` (0 zenny fee, real monsters and rewards, but no
  * text in any language, so never shown on a quest board).
  */
-/** The emitted rank: the header's tier, or Low Rank for the Guild's rank-0 ★1/★2 quests. */
+/** The emitted rank: the header's tier, or Low Rank for the Guild's and Village's rank-0 quests. */
 function questRank(hub: QuestHub, headerRank: number): Rank | null {
-  return RANK_TIER[headerRank] ?? (hub === "guild" ? "low-rank" : null);
+  return RANK_TIER[headerRank] ?? (hub === "guild" || hub === "village" ? "low-rank" : null);
 }
 
 const PLACEHOLDER_TITLES = new Set(["**********", "none"]);
