@@ -15,7 +15,15 @@ import {
   type OptionKey,
   type Settings,
 } from "../src/settings.js";
-import { collectWeaponStats, type WeaponStats } from "../src/shuffles/weapon-stats.js";
+import { Edits } from "../src/edits.js";
+import { Rng } from "../src/rng.js";
+import {
+  collectWeaponStats,
+  randomizeWeaponStats,
+  STAT_RANGES,
+  type StatRange,
+  type WeaponStats,
+} from "../src/shuffles/weapon-stats.js";
 import { settingsWith } from "./settings-helper.js";
 import { buildFixtureDisc, FIXTURE_GUNNER_WEAPONS, FIXTURE_WEAPONS, tempDir } from "./fixtures.js";
 
@@ -46,9 +54,10 @@ function bounds(
   all: WeaponStats[],
   w: WeaponStats,
   value: (o: WeaponStats) => number | null,
+  range = 1,
 ): [number, number] {
   const values = all
-    .filter((o) => o.type === w.type && Math.abs(o.rarity - w.rarity) <= 1)
+    .filter((o) => o.type === w.type && Math.abs(o.rarity - w.rarity) <= range)
     .map(value)
     .filter((v): v is number => v !== null);
   return values.length > 1 ? [Math.min(...values), Math.max(...values)] : [-Infinity, Infinity];
@@ -268,5 +277,193 @@ test("spoiler groups sort by rarity as a number", async () => {
     rarities,
     [...rarities].sort((a, b) => a - b),
   );
+  close();
+});
+
+test("the stat range widens bounds to more rarities, or all of them", async () => {
+  const { game, close } = await load();
+  const before = collectWeaponStats(game.eboot!, game.resolver);
+  for (const [range, rarities] of [
+    ["wide", 3],
+    ["any", Infinity],
+  ] as const) {
+    for (const seed of ["a", "b", "c", "d", "e", "f", "g", "h"]) {
+      const settings = statsWith(seed, {
+        "weapons.attackSpread": 0.9,
+        "weapons.statRange": range,
+      });
+      const after = byKey(
+        collectWeaponStats(randomize(game, settings).edits.eboot(), game.resolver),
+      );
+      for (const w of before) {
+        const now = after.get(key(w))!;
+        const [lo, hi] = bounds(before, w, (o) => o.attack, rarities);
+        assert.ok(now.attack >= lo && now.attack <= hi, `${range}: ${w.name} attack ${now.attack}`);
+      }
+    }
+  }
+  // (The fixture's rarities are all within one of each other, so the window
+  // can't be seen to widen here; the disc runs show it.)
+  const report = randomize(game, statsWith("n", { "weapons.statRange": "any" })).reports.find(
+    (r) => r.title === "Weapon stats",
+  )!;
+  assert.ok(report.notes.some((n) => n.includes("at any rarity")));
+  close();
+});
+
+test("the stat range's window: one rarity either side, three, or any", () => {
+  // Two Great Swords at each of rarities 0, 3 and 8, far enough apart that
+  // each window holds different ones.
+  const weapons: WeaponStats[] = [100, 110, 300, 310, 800, 810].map((attack, k) => ({
+    family: "Blademaster",
+    index: k + 1,
+    name: `Sword ${k + 1}`,
+    type: "great-sword",
+    rarity: [0, 3, 8][Math.floor(k / 2)]!,
+    offset: k * 24,
+    attackField: { at: 10, size: "u16" },
+    attack,
+    affinity: 0,
+    sharpnessAmount: 0,
+    element: null,
+    attributes: null,
+    slotsAt: 18,
+    slots: 0,
+    classMod: 0,
+  }));
+  const spreads = { attack: 0.9, affinity: null, element: null, slots: null };
+  const leaves = { near: false, wide: false, any: false };
+  for (const range of Object.keys(STAT_RANGES) as StatRange[]) {
+    for (let seed = 0; seed < 40; seed++) {
+      const edits = new Edits({ eboot: Buffer.alloc(weapons.length * 24) } as unknown as GameData);
+      const rng = new Rng(`range-${seed}`);
+      randomizeWeaponStats(
+        weapons,
+        { ...spreads, elementGain: 0, elementKind: false, range },
+        {
+          attack: rng.fork("attack"),
+          affinity: rng.fork("affinity"),
+          element: rng.fork("element"),
+          elementKind: rng.fork("kind"),
+          slots: rng.fork("slots"),
+        },
+        edits,
+      );
+      for (const w of weapons) {
+        const attack = edits.eboot().readUInt16LE(w.offset + 10);
+        const [lo, hi] = bounds(weapons, w, (o) => o.attack, STAT_RANGES[range]);
+        assert.ok(attack >= lo && attack <= hi, `${range}: ${w.name} attack ${attack}`);
+        // Out of the next narrower window: near's is the weapon's own rarity.
+        const narrower = { near: 0, wide: STAT_RANGES.near, any: STAT_RANGES.wide }[range];
+        const [nlo, nhi] = bounds(weapons, w, (o) => o.attack, narrower);
+        if (attack < nlo || attack > nhi) leaves[range] = true;
+      }
+    }
+  }
+  assert.deepEqual(leaves, { near: false, wide: true, any: true });
+});
+
+test("new elements: weapons without one gain one at a value their type has; bowguns never", async () => {
+  const { game, close } = await load();
+  const before = collectWeaponStats(game.eboot!, game.resolver);
+  const values = (kind: "element" | "status", type: string) =>
+    before.filter((o) => o.type === type && o.element?.kind === kind).map((o) => o.element!.value);
+  let statuses = 0;
+  for (const seed of ["a", "b", "c", "d"]) {
+    const result = randomize(game, statsWith(seed, { "weapons.elementGain": 1 }));
+    const after = byKey(collectWeaponStats(result.edits.eboot(), game.resolver));
+    for (const w of before) {
+      const now = after.get(key(w))!;
+      if (w.element) {
+        assert.equal(now.element?.name, w.element.name, "keeps its own");
+        continue;
+      }
+      assert.ok(now.element, `${w.name} gains one`);
+      const kinds = values(now.element.kind, w.type);
+      assert.ok(kinds.length > 0, `${w.name}: its type has ${now.element.name}`);
+      assert.ok(
+        now.element.value >= Math.min(...kinds) && now.element.value <= Math.max(...kinds),
+        `${w.name} ${now.element.name} ${now.element.value}`,
+      );
+      if (now.element.kind === "status") statuses++;
+    }
+    const lines = result.reports.find((r) => r.title === "Weapon stats")!.lines;
+    assert.ok(lines.some((l) => / gains \w+ \d+/.test(l.text)));
+  }
+  assert.ok(statuses > 0, "statuses too");
+  // At 0, nothing gains one.
+  const off = byKey(
+    collectWeaponStats(randomize(game, statsWith("a")).edits.eboot(), game.resolver),
+  );
+  for (const w of before) if (!w.element) assert.equal(off.get(key(w))!.element, null);
+  close();
+});
+
+test("changing elements: any element or status, bows only elements, the other kind cleared", async () => {
+  const { game, close } = await load();
+  const before = collectWeaponStats(game.eboot!, game.resolver);
+  const seen = new Set<string>();
+  for (const seed of ["a", "b", "c", "d", "e", "f", "g", "h"]) {
+    const edited = randomize(game, statsWith(seed, { "weapons.elementKind": true })).edits.eboot();
+    const after = byKey(collectWeaponStats(edited, game.resolver));
+    for (const w of before) {
+      const now = after.get(key(w))!;
+      assert.equal(!!now.element, !!w.element, `${w.name} has one only if it had one`);
+      if (!w.element) continue;
+      if (w.family === "Gunner") assert.equal(now.element!.kind, "element", "a bow");
+      // A weapon never has both.
+      if (w.family === "Blademaster") {
+        assert.ok(edited[w.offset + 14] === 0 || edited[w.offset + 16] === 0, w.name);
+      }
+      if (now.element!.name !== w.element.name) seen.add(`${w.element.kind}>${now.element!.kind}`);
+    }
+  }
+  assert.ok(seen.has("element>element") && seen.has("element>status"), [...seen].join());
+  close();
+});
+
+test("slots move by up to the spread, from 0 to 3, and only the slot byte", async () => {
+  const { game, close } = await load();
+  const before = collectWeaponStats(game.eboot!, game.resolver);
+  const slotsOnly = settingsWith("slots", []);
+  let moved = 0;
+  for (const spread of [1, 3]) {
+    const edited = randomize(
+      game,
+      applySettings(slotsOnly, { "weapons.slots": true, "weapons.slotSpread": spread }),
+    ).edits.eboot();
+    const after = byKey(collectWeaponStats(edited, game.resolver));
+    const slotBytes = new Set(before.map((w) => w.offset + w.slotsAt));
+    for (const w of before) {
+      const now = after.get(key(w))!;
+      assert.ok(now.slots >= 0 && now.slots <= 3);
+      assert.ok(Math.abs(now.slots - w.slots) <= spread);
+      if (now.slots !== w.slots) moved++;
+    }
+    for (let i = 0; i < edited.length; i++) {
+      if (edited[i] !== game.eboot![i]) assert.ok(slotBytes.has(i), `byte 0x${i.toString(16)}`);
+    }
+  }
+  assert.ok(moved > 0);
+  close();
+});
+
+test("the new options draw from their own streams: attack, affinity and element values stay", async () => {
+  const { game, close } = await load();
+  const stats = (s: Settings) =>
+    byKey(collectWeaponStats(randomize(game, s).edits.eboot(), game.resolver));
+  const plain = stats(statsWith("own"));
+  const more = stats(
+    statsWith("own", {
+      "weapons.slots": true,
+      "weapons.slotSpread": 3,
+      "weapons.elementGain": 0.5,
+    }),
+  );
+  for (const [k, w] of plain) {
+    const now = more.get(k)!;
+    assert.deepEqual([now.attack, now.affinity], [w.attack, w.affinity], k);
+    if (w.element) assert.deepEqual(now.element, w.element, k);
+  }
   close();
 });

@@ -101,7 +101,8 @@ export function roundTrip(
       mismatches.push(quest.path);
     }
   }
-  for (const { index } of [game.gameSub, game.gameTask, game.lobbyTask]) {
+  const overlays = [game.gameSub, game.gameTask, game.lobbyTask, game.editTask];
+  for (const { index } of overlays.filter((o) => o !== null)) {
     checked++;
     if (!game.dataBin.encode(index, game.dataBin.read(index)).equals(onDisc(index))) {
       mismatches.push(`DATA.BIN file ${index}`);

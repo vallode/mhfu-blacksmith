@@ -30,6 +30,7 @@ import {
   FIXTURE_RECIPES,
   GAME_SUB_INDEX,
   LOBBY_TASK_INDEX,
+  EDIT_TASK_INDEX,
   QUEST_INDICES,
   tempDir,
 } from "./fixtures.js";
@@ -99,7 +100,7 @@ test("roundtrip finds every file re-encrypts to the disc's bytes", async () => {
   const game = await loadGame(source, iso, { eboot: null });
   const result = roundTrip(game, (o, l) => source.read(o, l));
   source.close();
-  assert.deepEqual(result, { checked: 8, mismatches: [] });
+  assert.deepEqual(result, { checked: 9, mismatches: [] });
 });
 
 test("items get the earliest star level of a reward, monster or used gathering point", async () => {
@@ -334,6 +335,7 @@ test("written output reads back with the shuffled data, and nothing else changes
     ...QUEST_INDICES.filter((i) => i !== training),
     GAME_SUB_INDEX,
     LOBBY_TASK_INDEX,
+    EDIT_TASK_INDEX,
   ]);
   const changed: number[] = [];
   for (let i = 0; i < bin.fileCount; i++) {

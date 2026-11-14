@@ -5,12 +5,17 @@ import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseOvl } from "mhfu-extract/src/container/ovl.js";
 import { findEquipmentStore } from "mhfu-extract/src/shops/equipment.js";
+import { findStarterGear } from "mhfu-extract/src/shops/starter.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { loadGame } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import {
+  ADD_TO_BOX,
+  buildEditTask,
   buildFixtureDisc,
   buildLobbyTask,
+  FIXTURE_STARTER,
+  FIXTURE_STARTER_WORN,
   FIXTURE_STORE_LISTS,
   FIXTURE_STORE_TABLE,
   tempDir,
@@ -68,5 +73,76 @@ test("without a store on the disc, the shuffles leave the overlay alone and say 
     const end = at + FIXTURE_STORE_LISTS[name]!.length * 4;
     assert.ok(after.subarray(at, end).equals(lobby.buf.subarray(at, end)), name);
   }
+  source.close();
+});
+
+test("findStarterGear reads the add-to-box calls with constant arguments", () => {
+  const edit = buildEditTask();
+  const gear = findStarterGear(parseOvl(edit.buf))!;
+  assert.equal(gear.routine, ADD_TO_BOX, "not the routine called once with a weapon");
+  assert.deepEqual(
+    gear.entries.map((e) => [e.category, e.id]),
+    FIXTURE_STARTER,
+    "every constant call, and none whose arguments a register, another call or a branch decides",
+  );
+  assert.deepEqual(
+    gear.entries.map((e) => e.worn),
+    FIXTURE_STARTER_WORN,
+  );
+  assert.deepEqual(
+    gear.entries.map((e) => e.at),
+    edit.idAt,
+  );
+  for (const e of gear.entries) assert.equal(edit.buf.readUInt16LE(e.at), e.id);
+  // Without a weapon there's nothing to take.
+  const none = Buffer.from(edit.buf);
+  for (let at = 0x80; at < none.length; at += 4) {
+    const word = none.readUInt32LE(at);
+    if (word === 0x24050005 || word === 0x24050006) none.writeUInt32LE(0x24050001, at); // a weapon -> head armor
+  }
+  assert.equal(findStarterGear(parseOvl(none)), null);
+});
+
+test("a new hunter's equipment box follows the weapons and armor shuffles, as the store does", async () => {
+  const file = path.join(tempDir(), "disc.iso");
+  writeFileSync(file, buildFixtureDisc());
+  const { source, iso } = openDiscImage(file);
+  const game = await loadGame(source, iso, { eboot: {} });
+  const { storeAt } = buildLobbyTask();
+  const { idAt } = buildEditTask();
+  // The store's new ID for each (category, old ID) it sold.
+  const storeNow = (lobby: Buffer) => {
+    const now = new Map<string, number>();
+    for (const [name, entries] of Object.entries(FIXTURE_STORE_LISTS)) {
+      entries.forEach(([category, id], k) =>
+        now.set(`${category}:${id}`, lobby.readUInt16LE(storeAt[name]! + k * 4 + 2)),
+      );
+    }
+    return now;
+  };
+  let movedAny = false;
+  for (const seed of ["a", "b", "c", "d"]) {
+    const result = randomize(game, settingsWith(seed, ["weapons", "armor"]));
+    const store = storeNow(result.edits.overlay(game.lobbyTask));
+    const box = result.edits.overlay(game.editTask!);
+    FIXTURE_STARTER.forEach(([category, id], k) => {
+      const now = box.readUInt16LE(idAt[k]!);
+      assert.equal(now, store.get(`${category}:${id}`), `${seed}: ${category}:${id}`);
+      if (now !== id) movedAny = true;
+    });
+    const report = result.reports.find((r) => r.title === "Starting equipment")!;
+    assert.equal(report.lines.length, FIXTURE_STARTER.length, "one line per piece");
+    assert.equal(
+      report.lines.filter((l) => l.text.endsWith(" (worn)")).length,
+      FIXTURE_STARTER_WORN.filter(Boolean).length,
+      "worn pieces say so",
+    );
+  }
+  assert.ok(movedAny, "some seed changes the starting equipment");
+
+  // Without the weapons and armor shuffles, the box is left alone.
+  const other = randomize(game, settingsWith("a", ["recipes"]));
+  assert.ok(!other.reports.some((r) => r.title === "Starting equipment"));
+  assert.ok(!other.edits.files.has(game.editTask!.index), "not even copied");
   source.close();
 });

@@ -25,7 +25,8 @@
  * `lobby_task.ovl`) follows the shuffle, as it does for weapons: where it
  * sold a piece, it sells the piece now in that piece's places (the same
  * slot, rarity and wearers). Pieces it sells that the shuffle leaves alone
- * (no create entry makes them) stay.
+ * (no create entry makes them) stay. A new hunter's Mafumofu set
+ * (`edit_task.ovl`) follows it the same way.
  *
  * Mixing Blademaster and Gunner pieces isn't offered: nothing on a disc has
  * shown how the smithy lists a place whose piece is for the other type.
@@ -47,7 +48,7 @@ import type { Edits } from "../edits.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
 import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
-import { followStore, type SmithyStore } from "./store.js";
+import { followGear, type GearList } from "./store.js";
 
 const HUNTER_TYPE_AT = 4;
 const RARITY_AT = 5;
@@ -82,8 +83,8 @@ export function shuffleArmor(
   resolver: TableAddressResolver | undefined,
   rng: Rng,
   edits: Edits,
-  /** The smithy's store, or null to leave it (none found on the disc). */
-  store: SmithyStore | null,
+  /** Equipment outside the create entries that follows the shuffle (the store, the starting box). */
+  gear: GearList[],
 ): ShuffleReport {
   const reader = new BinaryReader(eboot);
   const create = equipmentCreateLayout(reader, resolver);
@@ -122,17 +123,15 @@ export function shuffleArmor(
       out.writeUInt16LE(sigma.get(piece) ?? piece, at + 2);
     }
 
-    // The store sells whatever is now in the places of what it sold.
-    if (store) {
-      followStore(
-        store,
-        ARMOR_CATEGORY[slot],
-        (i) => sigma.get(i) ?? i,
-        name,
-        `Armor: ${label}`,
-        edits,
-      );
-    }
+    // The store and the starting box have whatever is now in the places of what they had.
+    followGear(
+      gear,
+      ARMOR_CATEGORY[slot],
+      (i) => sigma.get(i) ?? i,
+      name,
+      `Armor: ${label}`,
+      edits,
+    );
 
     for (const piece of shuffled) {
       const now = sigma.get(piece)!;

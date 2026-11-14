@@ -31,6 +31,15 @@
  * `lobby_task.ovl`) follows the shuffle: where it sold `w` it now sells
  * `σ(w)`, the weapon now in `w`'s place, so what's for sale is the same
  * rarity (and type, unless `any-type`) and starts the same tree as before.
+ * So does a new hunter's equipment box (`mhfu-extract/src/shops/starter.ts`,
+ * in `edit_task.ovl`), whose weapons are the ones the first create entries
+ * make: it now has what those entries make.
+ *
+ * The smithy lists a weapon under its own type's tab, whichever section
+ * its create entry is in: in PPSSPP on the JP disc, an `any-type` image's
+ * Great Sword / Long Sword tab showed weapons from the Lance and Sword and
+ * Shield sections. That a Great Sword entry making a Hammer shows under
+ * Hammers follows, but that tab hasn't been checked.
  *
  * The game already upgrades across types within a family (Great Sword to
  * Long Sword, Lance to Gunlance, ...), so `any-type` should work for
@@ -59,7 +68,7 @@ import type { Edits } from "../edits.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
 import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
-import { followStore, type SmithyStore } from "./store.js";
+import { followGear, type GearList } from "./store.js";
 
 export const WEAPON_MIXES = ["same-type", "any-type"] as const;
 export type WeaponMix = (typeof WEAPON_MIXES)[number];
@@ -126,8 +135,8 @@ export function shuffleWeapons(
   mix: WeaponMix,
   rng: Rng,
   edits: Edits,
-  /** The smithy's store, or null to leave it (none found on the disc). */
-  store: SmithyStore | null,
+  /** Equipment outside the create entries that follows the shuffle (the store, the starting box). */
+  gear: GearList[],
 ): ShuffleReport {
   const reader = new BinaryReader(eboot);
   const create = equipmentCreateLayout(reader, resolver);
@@ -210,8 +219,8 @@ export function shuffleWeapons(
       entry.copy(out, entryAt(map(i)));
     }
 
-    // The store sells whatever is now in the places of what it sold.
-    if (store) followStore(store, family.storeCategory, map, name, "Weapons", edits);
+    // The store and the starting box have whatever is now in the places of what they had.
+    followGear(gear, family.storeCategory, map, name, "Weapons", edits);
 
     for (const w of shuffled) {
       const now = map(w);
