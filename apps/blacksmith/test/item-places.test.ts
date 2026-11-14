@@ -101,7 +101,6 @@ const farm: FarmFile = {
     {
       name: "Mining Point",
       spot: "mining",
-      level: 0,
       gathers: 3,
       most_gathers: 4,
       items: [
@@ -112,7 +111,6 @@ const farm: FarmFile = {
     {
       name: "Modified Bee Hive",
       spot: "honey",
-      level: 2,
       gathers: 5,
       most_gathers: 6,
       // A 0% row never comes up.
@@ -175,7 +173,7 @@ describe("item places", () => {
       { point: "Modified Bee Hive", spot: "honey", chance: 100, gathers: 5, mostGathers: 6 },
     ]);
     assert.deepEqual(places.get(3)!.farm, []);
-    assert.equal(farmPlaceLabel(places.get(1)!.farm[0]!), "Mining · 3–4 per quest");
+    assert.equal(farmPlaceLabel(places.get(1)!.farm[0]!), "Mining · 3-4 per quest");
   });
 
   test("numbers shop stages over the lists with items", () => {

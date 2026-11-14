@@ -359,8 +359,9 @@ function GatherPlaces({
     <div className="flex flex-col gap-[1.6rem]">
       {grid}
       <p className="m-0 text-fine whitespace-normal text-white/60">
-        The farm restocks after every quest. Each Mining Point and Insect Thicket upgrade adds a
-        point of its own, so the earlier ones stay.
+        The farm restocks after every quest.
+        {farm.some((p) => p.spot === "mining" || p.spot === "insects") &&
+          " Each Mining Point and Insect Thicket upgrade adds a point of its own, so the earlier ones stay."}
       </p>
     </div>
   );

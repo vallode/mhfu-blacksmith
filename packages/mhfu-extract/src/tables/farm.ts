@@ -13,8 +13,11 @@
  *
  * - each Mining Point and Insect Thicket: `3 + rand() % 2`, so 3 or 4;
  * - each Mushroom Tree: 3-4, 5-6 and 7-8 (`3 + 2 * level`, plus 0 or 1);
- * - each Bee Hive: 2-3, 3-4 and 5-6 (counts 2, 3 and 5 at `0x0899CBFC`,
- *   plus 0 or 1).
+ * - each Bee Hive: its base count plus 0 or 1, the base counts being
+ *   three u32s `HONEY_COUNTS_AFTER` bytes past the first table (2, 3 and 5
+ *   at EU `0x0899CBFC`), read with the tables.
+ *
+ * The other counts are constants in the routine's code.
  *
  * The upgrades' names and what they do come from the farm's text (EU
  * DATA.BIN 4781): Mining Point +1 to +4 "expand the number of Mining
@@ -28,6 +31,10 @@ import { ITEM_COUNT } from "../shops/shops.js";
 /** EU file offset of the first mining table. */
 export const FARM_TABLES_EU = 0x19aad0;
 export const FARM_ROW_SIZE = 4;
+/** The Bee Hives' base counts, from the first table. */
+export const HONEY_COUNTS_AFTER = 0x6e0;
+/** No count should come near this; a bigger one isn't the counts. */
+const MAX_HONEY_COUNT = 20;
 
 export type FarmSpot = "mining" | "insects" | "mushrooms" | "honey";
 
@@ -58,10 +65,11 @@ export const FARM_LAYOUT: readonly FarmSpotLayout[] = [
   {
     spot: "honey",
     rows: 3,
+    // Counts read from the EBOOT: `HONEY_COUNTS_AFTER`.
     levels: [
-      { name: "Prototype Bee Hive", gathers: 2, mostGathers: 3 },
-      { name: "Production Bee Hive", gathers: 3, mostGathers: 4 },
-      { name: "Modified Bee Hive", gathers: 5, mostGathers: 6 },
+      { name: "Prototype Bee Hive", gathers: 0, mostGathers: 0 },
+      { name: "Production Bee Hive", gathers: 0, mostGathers: 0 },
+      { name: "Modified Bee Hive", gathers: 0, mostGathers: 0 },
     ],
   },
 ];
@@ -110,14 +118,26 @@ function readTable(reader: BinaryReader, offset: number, rows: number): FarmTabl
   return sum === 100 ? items : null;
 }
 
+/** The Bee Hives' base counts at `offset`, or null unless each is a small count, rising. */
+function readHoneyCounts(reader: BinaryReader, offset: number): number[] | null {
+  if (offset + 12 > reader.length) return null;
+  const counts = [0, 1, 2].map((i) => reader.u32(offset + i * 4));
+  const ok = counts.every((c, i) => c > 0 && c <= MAX_HONEY_COUNT && c >= (counts[i - 1] ?? 0));
+  return ok ? counts : null;
+}
+
 function readTablesAt(reader: BinaryReader, offset: number): FarmTable[] | null {
   if (offset < 0 || offset + FARM_TABLES_SIZE > reader.length) return null;
+  const honey = readHoneyCounts(reader, offset + HONEY_COUNTS_AFTER);
+  if (!honey) return null;
   const tables: FarmTable[] = [];
   let at = offset;
   for (const { spot, rows, levels } of FARM_LAYOUT) {
-    for (const [level, { name, gathers, mostGathers }] of levels.entries()) {
+    for (const [level, { name, ...counts }] of levels.entries()) {
       const items = readTable(reader, at, rows);
       if (!items) return null;
+      const { gathers, mostGathers } =
+        spot === "honey" ? { gathers: honey[level]!, mostGathers: honey[level]! + 1 } : counts;
       tables.push({ spot, level, name, offset: at, gathers, mostGathers, items });
       at += rows * FARM_ROW_SIZE;
     }

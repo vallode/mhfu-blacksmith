@@ -310,8 +310,11 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     );
   }
 
-  const farm = readFarmTables(reader);
-  if (farm) {
+  // Only the EU disc's farm tables are known; elsewhere there's no farm.json.
+  const farm = manifest.region === "eu" ? readFarmTables(reader) : null;
+  if (manifest.region !== "eu") {
+    console.warn(`Warning: region "${manifest.region}" has no farm tables, so no farm.json.`);
+  } else if (farm) {
     console.log(
       `Pokke Farm tables at 0x${farm.offset.toString(16)}: ${farm.tables.length} points.`,
     );

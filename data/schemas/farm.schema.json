@@ -15,12 +15,11 @@
   "definitions": {
     "point": {
       "type": "object",
-      "required": ["name", "spot", "level", "gathers", "most_gathers", "items"],
+      "required": ["name", "spot", "gathers", "most_gathers", "items"],
       "additionalProperties": false,
       "properties": {
         "name": { "type": "string", "minLength": 1, "description": "The farm upgrade, as the game names it: \"Mining Point +2\", \"Production Bee Hive\"" },
         "spot": { "enum": ["mining", "insects", "mushrooms", "honey"] },
-        "level": { "type": "integer", "minimum": 0, "description": "0 for the spot's first table, then each upgrade's" },
         "gathers": { "type": "integer", "minimum": 1, "description": "How many items the restock draws from it, at least" },
         "most_gathers": { "type": "integer", "minimum": 1, "description": "How many items the restock draws from it, at most" },
         "items": {

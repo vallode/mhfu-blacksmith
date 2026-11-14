@@ -458,7 +458,6 @@ test("Pokke Farm's points are copied when extract found them, and skipped otherw
     const point = {
       name: "Mining Point",
       spot: "mining",
-      level: 0,
       gathers: 3,
       most_gathers: 4,
       items: [{ item: "Iron Ore", chance: 100 }],

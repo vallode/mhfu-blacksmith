@@ -7,7 +7,7 @@
 import type { ArmorRank, ArmorSlot, WeaponType } from "./constants";
 import { weaponHref } from "./equipment-ref";
 import { normalizeItemName } from "./items";
-import type { ItemPlaces } from "./item-places";
+import { farmPlaceLabel, type ItemPlaces } from "./item-places";
 import { itemHref, type ItemSources } from "./item-sources";
 import type { DropSource } from "./monster-drops";
 import { questHref, questHubLabel, questStarLevel, type QuestHubSlug } from "./quests";
@@ -282,17 +282,17 @@ export function totalCost(crafts: { steps: CraftStep[] }[]): number {
 // Where to get a material
 // ---------------------------------------------------------------------------
 
-export type WayKind = "shop" | "monster" | "gather" | "quest" | "combine";
+export type WayKind = "shop" | "monster" | "gather" | "farm" | "quest" | "combine";
 
 /** One way to get a material. */
 export interface Way {
   kind: WayKind;
-  /** The monster, map, quest or shop */
+  /** The monster, map, quest or shop, or Pokke Farm */
   name: string;
   href?: string;
   /** The map, for a gathering point's icon */
   map?: string;
-  /** "Low Rank", "Guild High Rank", "Training School" … ("" for shops and combinations) */
+  /** "Low Rank", "Guild High Rank", "Training School" … ("" for shops, the farm and combinations) */
   group: string;
   /** How: "Body carves ×3", "Mining · Areas 2, 5", "Reward", "Stage 2 stock" … */
   detail: string;
@@ -307,7 +307,7 @@ export interface Way {
   /**
    * How far into the game it opens: 0 Village and Low Rank, 1 High Rank,
    * 2 G Rank, 3 the side boards. A shop's opening stock with a zenny price
-   * is -1: it's always there; later stock and Pokke Points are 3.
+   * is -1: it's always there; later stock, Pokke Points and the farm are 3.
    */
   tier: number;
   /** About how many each try gives: chance × amount × attempts. */
@@ -437,6 +437,18 @@ export function itemWays(
       chance: p.chance,
       ...(p.quests ? { quests: p.quests } : {}),
       tier: tiers.length ? Math.min(...tiers) : groupTier(p.group),
+      yield: p.chance / 100,
+    });
+  }
+  for (const p of places?.farm ?? []) {
+    // Bought with Pokke Points, like the Pokke shop; when each upgrade opens isn't known.
+    ways.push({
+      kind: "farm",
+      name: "Pokke Farm",
+      group: "",
+      detail: `${p.point} · ${farmPlaceLabel(p)}`,
+      chance: p.chance,
+      tier: 3,
       yield: p.chance / 100,
     });
   }

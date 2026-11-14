@@ -11,8 +11,6 @@ import type { FarmSpot, FarmTables } from "../tables/farm.js";
 export interface EmittedFarmPoint {
   name: string;
   spot: FarmSpot;
-  /** 0 for the spot's first table. */
-  level: number;
   gathers: number;
   most_gathers: number;
   items: { item: string; chance: number }[];
@@ -25,7 +23,6 @@ export function emitFarm(farm: FarmTables): { points: EmittedFarmPoint[] } {
     points: farm.tables.map((t) => ({
       name: t.name,
       spot: t.spot,
-      level: t.level,
       gathers: t.gathers,
       most_gathers: t.mostGathers,
       items: t.items.map((i) => ({ item: item(i.item), chance: i.chance })),

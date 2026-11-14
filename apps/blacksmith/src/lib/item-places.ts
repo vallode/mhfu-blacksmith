@@ -46,7 +46,6 @@ export interface FarmFile {
   points: {
     name: string;
     spot: FarmSpot;
-    level: number;
     gathers: number;
     most_gathers: number;
     items: { item: string; chance: number }[];
@@ -283,9 +282,9 @@ const FARM_SPOT_LABELS: Record<FarmSpot, string> = {
   honey: "Honey",
 };
 
-/** "Mining · 3–4 per quest" */
+/** "Mining · 3-4 per quest" */
 export function farmPlaceLabel({ spot, gathers, mostGathers }: FarmPlace): string {
-  const count = gathers === mostGathers ? `${gathers}` : `${gathers}–${mostGathers}`;
+  const count = gathers === mostGathers ? `${gathers}` : `${gathers}-${mostGathers}`;
   return `${FARM_SPOT_LABELS[spot]} · ${count} per quest`;
 }
 

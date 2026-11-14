@@ -7,6 +7,7 @@ import {
   FARM_ROW_SIZE,
   FARM_TABLES_EU,
   FARM_TABLES_SIZE,
+  HONEY_COUNTS_AFTER,
   readFarmTables,
 } from "../src/tables/farm.js";
 
@@ -20,9 +21,14 @@ const TABLES: Rows[] = FARM_LAYOUT.flatMap((s, si) =>
   ]),
 );
 
-/** An EBOOT-sized buffer with the tables `shift` bytes past the EU offset. */
-function eboot(tables: Rows[], shift: number): BinaryReader {
-  const buf = Buffer.alloc(FARM_TABLES_EU + 0x200 + FARM_TABLES_SIZE);
+/** An EBOOT-sized buffer with the tables `shift` bytes past the EU offset, and the honey counts after them. */
+function eboot(tables: Rows[], shift: number, honey = [2, 3, 5]): BinaryReader {
+  const buf = Buffer.alloc(
+    FARM_TABLES_EU + 0x200 + Math.max(FARM_TABLES_SIZE, HONEY_COUNTS_AFTER + 12),
+  );
+  honey.forEach((c, i) =>
+    buf.writeUInt32LE(c, FARM_TABLES_EU + shift + HONEY_COUNTS_AFTER + i * 4),
+  );
   // Junk before them that reads like rows, but whose chances don't add up.
   for (let o = FARM_TABLES_EU - 0x100; o < FARM_TABLES_EU + shift; o += 4) {
     buf.writeUInt16LE(200 + (o % 13), o);
@@ -80,7 +86,6 @@ test("each table is named by its upgrade, with the restock's gather counts", () 
     ],
   );
   assert.deepEqual([pick("Mining Point +4").gathers, pick("Mining Point +4").mostGathers], [3, 4]);
-  assert.equal(pick("Mining Point +4").level, 4);
   assert.deepEqual(
     [pick("Mushroom Tree +2").gathers, pick("Mushroom Tree +2").mostGathers],
     [7, 8],
@@ -107,6 +112,20 @@ test("tables whose chances don't add up to 100, or with gaps, aren't the farm's"
       : rows,
   );
   assert.equal(readFarmTables(eboot(gap, 0), 0x40), null);
+});
+
+test("the Bee Hives' counts come from the EBOOT, and odd ones aren't the farm's", () => {
+  const found = readFarmTables(eboot(TABLES, 0, [1, 4, 6]))!;
+  assert.deepEqual(
+    found.tables.filter((t) => t.spot === "honey").map((t) => [t.gathers, t.mostGathers]),
+    [
+      [1, 2],
+      [4, 5],
+      [6, 7],
+    ],
+  );
+  assert.equal(readFarmTables(eboot(TABLES, 0, [0, 3, 5]), 0x40), null);
+  assert.equal(readFarmTables(eboot(TABLES, 0, [5, 3, 2]), 0x40), null);
 });
 
 test("a row with a 0% chance is kept, as the Modified Bee Hive's Insect Husk is", () => {
@@ -141,7 +160,6 @@ test("emitted with item names", () => {
   assert.deepEqual(out.points[4], {
     name: "Mining Point +4",
     spot: "mining",
-    level: 4,
     gathers: 3,
     most_gathers: 4,
     items: [

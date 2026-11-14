@@ -3,7 +3,6 @@
     {
       "name": "Mining Point",
       "spot": "mining",
-      "level": 0,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -52,7 +51,6 @@
     {
       "name": "Mining Point +1",
       "spot": "mining",
-      "level": 1,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -109,7 +107,6 @@
     {
       "name": "Mining Point +2",
       "spot": "mining",
-      "level": 2,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -158,7 +155,6 @@
     {
       "name": "Mining Point +3",
       "spot": "mining",
-      "level": 3,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -203,7 +199,6 @@
     {
       "name": "Mining Point +4",
       "spot": "mining",
-      "level": 4,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -252,7 +247,6 @@
     {
       "name": "Insect Thicket",
       "spot": "insects",
-      "level": 0,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -301,7 +295,6 @@
     {
       "name": "Insect Thicket +1",
       "spot": "insects",
-      "level": 1,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -354,7 +347,6 @@
     {
       "name": "Insect Thicket +2",
       "spot": "insects",
-      "level": 2,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -403,7 +395,6 @@
     {
       "name": "Insect Thicket +3",
       "spot": "insects",
-      "level": 3,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -456,7 +447,6 @@
     {
       "name": "Insect Thicket +4",
       "spot": "insects",
-      "level": 4,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -509,7 +499,6 @@
     {
       "name": "Mushroom Tree",
       "spot": "mushrooms",
-      "level": 0,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -534,7 +523,6 @@
     {
       "name": "Mushroom Tree +1",
       "spot": "mushrooms",
-      "level": 1,
       "gathers": 5,
       "most_gathers": 6,
       "items": [
@@ -567,7 +555,6 @@
     {
       "name": "Mushroom Tree +2",
       "spot": "mushrooms",
-      "level": 2,
       "gathers": 7,
       "most_gathers": 8,
       "items": [
@@ -604,7 +591,6 @@
     {
       "name": "Prototype Bee Hive",
       "spot": "honey",
-      "level": 0,
       "gathers": 2,
       "most_gathers": 3,
       "items": [
@@ -625,7 +611,6 @@
     {
       "name": "Production Bee Hive",
       "spot": "honey",
-      "level": 1,
       "gathers": 3,
       "most_gathers": 4,
       "items": [
@@ -646,7 +631,6 @@
     {
       "name": "Modified Bee Hive",
       "spot": "honey",
-      "level": 2,
       "gathers": 5,
       "most_gathers": 6,
       "items": [
