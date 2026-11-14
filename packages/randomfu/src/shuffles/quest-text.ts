@@ -37,7 +37,7 @@ import {
 } from "../game/quest-text.js";
 import type { Edits } from "../edits.js";
 import { monsterName, questLabel } from "../names.js";
-import type { ShuffleReport } from "./shuffle.js";
+import { getOrInsert, type ShuffleReport } from "./shuffle.js";
 
 const MONSTERS = STRING_FIELDS.indexOf("monsters");
 const GOAL = STRING_FIELDS.indexOf("goal");
@@ -327,7 +327,7 @@ export function renameQuestText(
     const noter =
       (problems: Map<string, Set<string>>): Note =>
       (lang, problem) =>
-        (problems.get(problem) ?? problems.set(problem, new Set()).get(problem)!).add(lang);
+        getOrInsert(problems, problem, () => new Set()).add(lang);
 
     const fileProblems = new Map<string, Set<string>>();
     const fileCount = renameText(

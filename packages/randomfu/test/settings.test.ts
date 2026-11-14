@@ -46,7 +46,13 @@ test("every option has a default its own checks accept", () => {
 });
 
 /** Options no preset turns on until they're tried in game (see the README's status). */
-const UNTRIED: readonly OptionKey[] = ["trades.enabled", "mods.nodeMap"];
+const UNTRIED: readonly OptionKey[] = [
+  "questMaps.enabled",
+  "questMaps.starts",
+  "questMonsters.smallSpecies",
+  "trades.enabled",
+  "mods.nodeMap",
+];
 
 test("presets do what their help says", () => {
   const preset = (name: string) =>
