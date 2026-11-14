@@ -23,7 +23,7 @@ import {
 import { LOGIC_VERSION } from "./version.js";
 import { roundTrip } from "./write.js";
 
-const BOOLEAN_FLAGS = new Set(["dry-run", "force", "no-open", "poogie-test"]);
+const BOOLEAN_FLAGS = new Set(["dry-run", "force", "no-open", "poogie-test", "debug"]);
 
 export function parseFlags(argv: string[]): Record<string, string> {
   const flags: Record<string, string> = {};
@@ -124,7 +124,7 @@ export function settingsFromFlags(flags: Record<string, string>): Settings {
 
 const USAGE = `Usage:
   randomize --iso <in.iso|in.cso> --out <out.iso> [settings] [--spoiler <path>]
-            [--pspdecrypt-bin <name>] [--force] [--poogie-test]
+            [--pspdecrypt-bin <name>] [--force] [--poogie-test] [--debug]
   randomize --iso <in> --dry-run [settings]         print the spoiler log, write nothing
   roundtrip --iso <in>                              check files re-encrypt to the disc's bytes
   gui [--port <n>] [--no-open]                      open the settings page in a browser
@@ -143,7 +143,8 @@ Settings (later ones win):
   --seed <seed>
 
 Testing:
-  --poogie-test                a happy Poogie always gives the rarest reward (not for play)`;
+  --poogie-test                a happy Poogie always gives the rarest reward (not for play)
+  --debug                      add research detail to the spoiler log (e.g. the monster names learned from quest text)`;
 
 function printSettings(): void {
   console.log(
@@ -205,6 +206,7 @@ export async function main(argv: string[]): Promise<void> {
           spoiler: flags.spoiler,
           force: flags.force === "true",
           poogieTest: flags["poogie-test"] === "true",
+          debug: flags.debug === "true",
         },
         (line) => console.log(line),
       );
