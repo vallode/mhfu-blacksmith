@@ -282,6 +282,31 @@ export class GuildCardSpace {
 
 const spaces = new WeakMap<Edits, GuildCardSpace>();
 
+/**
+ * Whether an instruction may write `$s0`: R-type, I-type ALU ops and loads,
+ * and (conservatively) Allegrex's SPECIAL2/SPECIAL3 ops by either field.
+ */
+function writesS0(w: number): boolean {
+  const op = w >>> 26;
+  if (op === 0) return ((w >>> 11) & 31) === 16;
+  if (op === 0x1c || op === 0x1f) return ((w >>> 11) & 31) === 16 || ((w >>> 16) & 31) === 16;
+  return ((op >= 0x08 && op <= 0x0f) || (op >= 0x20 && op <= 0x26)) && ((w >>> 16) & 31) === 16;
+}
+
+/**
+ * The arena `$s0` holds at `from`: the nearest `lui s0, hi; addiu s0, s0, lo`
+ * walking back to `limit`, or null if `$s0` is written otherwise first.
+ */
+function arenaBefore(elf: Buffer, from: number, limit: number): number | null {
+  for (let back = from; back - 4 >= limit; back -= 4) {
+    const w = word(elf, back);
+    const before = word(elf, back - 4);
+    if (w >>> 16 === 0x2610 && before >>> 16 === 0x3c10) return hiLo(before, w);
+    if (writesS0(w)) return null;
+  }
+  return null;
+}
+
 function find(vanillaEboot: Buffer, gameSub: Buffer): Found | string {
   const segment = codeSegment(vanillaEboot);
   if (!segment) return "the EBOOT isn't an ELF";
@@ -301,25 +326,22 @@ function find(vanillaEboot: Buffer, gameSub: Buffer): Found | string {
   const save = hiLo(at(saveInit + 16), at(saveInit + 20));
 
   // The save struct's address: `lui at, hi; ori at, lo; jal saveInit; addu a0, s0, at`,
-  // with `s0` the arena, set once by `lui s0, hi; addiu s0, s0, lo`.
-  let saveStruct: number | null = null;
+  // with `s0` the arena, set by the nearest `lui s0, hi; addiu s0, s0, lo` before
+  // it and not written in between. Every call must agree on one address.
+  const structs = new Set<number>();
   const end = segment.offset + segment.size;
   for (let off = segment.offset + 8; off + 8 <= end; off += 4) {
     if (word(vanillaEboot, off) !== jalTo(saveInit)) continue;
     const lui = word(vanillaEboot, off - 8);
     const ori = word(vanillaEboot, off - 4);
-    if (lui >>> 26 !== LUI || ori >>> 26 !== ORI) continue;
+    if (lui >>> 26 !== LUI || ori >>> 26 !== ORI) return "this EBOOT's code doesn't match";
     const inArena = ((lui & 0xffff) * 0x10000 + (ori & 0xffff)) >>> 0;
-    for (let back = off - 12; back >= Math.max(segment.offset, off - 0x400); back -= 4) {
-      const w = word(vanillaEboot, back);
-      const next = word(vanillaEboot, back + 4);
-      if (w === 0x3c100000 + (w & 0xffff) && next >>> 16 === 0x2610) {
-        saveStruct = (hiLo(w, next) + inArena) >>> 0;
-        break;
-      }
-    }
+    const arena = arenaBefore(vanillaEboot, off - 12, Math.max(segment.offset, off - 0x400));
+    if (arena === null) return "this EBOOT's code doesn't match";
+    structs.add((arena + inArena) >>> 0);
   }
-  if (saveStruct === null) return "this EBOOT's code doesn't match";
+  if (structs.size !== 1) return "this EBOOT's code doesn't match";
+  const saveStruct = [...structs][0]!;
 
   const code = vanillaEboot.subarray(0, end);
   const ebootBounds = findCardBounds(code, offsetOf(compact), offsetOf(compactEnd));
@@ -349,7 +371,8 @@ export function guildCardSpace(
     }
     return existing;
   }
-  if (!Number.isInteger(kept) || kept < 0 || kept >= GAME_CARDS) {
+  // At least one: the compaction checks its count after each slot.
+  if (!Number.isInteger(kept) || kept < 1 || kept >= GAME_CARDS) {
     throw new Error(`Can't keep ${kept} Guild Cards`);
   }
   if (!vanillaEboot) return "the EBOOT wasn't loaded";

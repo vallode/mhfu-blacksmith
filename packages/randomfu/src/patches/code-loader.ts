@@ -30,7 +30,7 @@
  * Everything is found by code signatures, which match the EU and JP (FUC)
  * EBOOTs, and nothing is patched if one doesn't match.
  */
-import { BLOB_MAGIC, HEADER, linkBlob, type LinkedBlob } from "../blob/link.js";
+import { BLOB_MAGIC, HEADER, linkBlob } from "../blob/link.js";
 import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
 import type { ShuffleReport } from "../shuffles/shuffle.js";
@@ -212,13 +212,19 @@ export function assembleLoader(
   }
 
   // load(reason): read the file over the blob's room, check it, run rf_init.
+  // Its frame leaves sp+0..15 free: blob code is O32, whose callees may store
+  // their arguments in the caller's frame there.
+  const frame = { read: 16, s3: 20, s2: 24, s1: 28, s0: 32, ra: 36, size: 40 } as const;
+  const saved = [
+    [RA, frame.ra],
+    [s0, frame.s0],
+    [s1, frame.s1],
+    [s2, frame.s2],
+    [s3, frame.s3],
+  ] as const;
   a.label("load");
-  a.i(ADDIU, SP, SP, -32);
-  a.i(SW, SP, RA, 28);
-  a.i(SW, SP, s0, 24);
-  a.i(SW, SP, s1, 20);
-  a.i(SW, SP, s2, 16);
-  a.i(SW, SP, s3, 12);
+  a.i(ADDIU, SP, SP, -frame.size);
+  for (const [reg, offset] of saved) a.i(SW, SP, reg, offset);
   move(s2, a0);
   la(t0, status);
   a.i(LW, t0, t1, STATUS.runs);
@@ -244,11 +250,11 @@ export function assembleLoader(
   nop();
   la(t0, status);
   a.i(SW, t0, v0, STATUS.read);
-  a.i(SW, SP, v0, 8);
+  a.i(SW, SP, v0, frame.read);
   a.jal(imports.sceIoClose);
   move(a0, s3);
   // The whole file, and a header that matches: magic, size and build.
-  a.i(LW, SP, t0, 8);
+  a.i(LW, SP, t0, frame.read);
   a.i(LW, s1, t1, HEADER.size);
   a.branch(BNE, t0, t1, "missing");
   a.i(LW, s1, t0, HEADER.magic);
@@ -273,13 +279,9 @@ export function assembleLoader(
   a.label("missing");
   a.i(SW, s1, zero, HEADER.magic);
   a.label("done");
-  a.i(LW, SP, RA, 28);
-  a.i(LW, SP, s0, 24);
-  a.i(LW, SP, s1, 20);
-  a.i(LW, SP, s2, 16);
-  a.i(LW, SP, s3, 12);
+  for (const [reg, offset] of saved) a.i(LW, SP, reg, offset);
   a.r(RA, zero, zero, 0, JR);
-  a.i(ADDIU, SP, SP, 32);
+  a.i(ADDIU, SP, SP, frame.size);
 
   return {
     code: a.link(at),
@@ -308,7 +310,7 @@ export function addCodeLoader(
   gameSub: LoadedOverlay,
   edits: Edits,
   options: CodeLoaderOptions,
-): ShuffleReport & { blob?: LinkedBlob } {
+): ShuffleReport {
   const skipped = (why: string): ShuffleReport => ({
     title: TITLE,
     notes: [`The code loader isn't in this image: ${why}.`],
@@ -381,6 +383,5 @@ export function addCodeLoader(
     ],
     lines: [],
     summary: `${TITLE}: on (blob ${blob.image.length} of ${room.end - room.start} bytes at ${hex(blobAddress)}, loader ${hex(at)}, status ${hex(loader.status)}, build ${hex(blob.build)})`,
-    blob,
   };
 }

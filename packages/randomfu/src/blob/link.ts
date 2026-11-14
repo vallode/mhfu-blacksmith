@@ -166,11 +166,19 @@ export function linkBlob(
     file.placed.set(index, cursor);
     cursor += section.size;
   }
-  // Common symbols (uninitialised globals without -fno-common) go last.
+  // Common symbols (uninitialised globals without -fno-common) go last,
+  // unless an object defines the name; then they're that definition.
+  const definedNames = new Set(
+    files.flatMap((file) =>
+      file.symbols
+        .filter((sym) => sym.bind !== 0 && sym.shndx !== SHN_UNDEF && sym.shndx !== SHN_COMMON)
+        .map((sym) => sym.name),
+    ),
+  );
   const commons = new Map<string, number>();
   for (const file of files) {
     for (const sym of file.symbols) {
-      if (sym.shndx !== SHN_COMMON || commons.has(sym.name)) continue;
+      if (sym.shndx !== SHN_COMMON || commons.has(sym.name) || definedNames.has(sym.name)) continue;
       const align = Math.max(1, sym.value);
       cursor = Math.ceil(cursor / align) * align;
       commons.set(sym.name, cursor);
@@ -194,6 +202,7 @@ export function linkBlob(
   }
 
   const globals = new Map<string, number>(commons);
+  const defined = new Set<string>();
   const valueOf = (file: ObjectFile, sym: Sym): number | null => {
     if (sym.shndx === SHN_ABS) return sym.value;
     if (sym.shndx === SHN_COMMON) return commons.get(sym.name) ?? null;
@@ -203,11 +212,11 @@ export function linkBlob(
   for (const file of files) {
     for (const sym of file.symbols) {
       if (sym.bind === 0 || sym.shndx === SHN_UNDEF || !sym.name) continue;
+      if (sym.shndx === SHN_COMMON) continue; // already in globals, or defined elsewhere
       const value = valueOf(file, sym);
       if (value === null) continue;
-      if (globals.has(sym.name) && sym.shndx !== SHN_COMMON) {
-        throw new Error(`${sym.name} is defined twice`);
-      }
+      if (defined.has(sym.name)) throw new Error(`${sym.name} is defined twice`);
+      defined.add(sym.name);
       globals.set(sym.name, value);
     }
   }
@@ -259,9 +268,11 @@ export function linkBlob(
           }
           case R_MIPS_HI16: {
             // The addend's low half is in the next LO16 against the same symbol.
-            const lo = entries
-              .slice(k + 1)
-              .find((e) => e.type === R_MIPS_LO16 && e.sym === entry.sym);
+            let lo: (typeof entries)[number] | undefined;
+            for (let j = k + 1; j < entries.length && !lo; j++) {
+              const e = entries[j]!;
+              if (e.type === R_MIPS_LO16 && e.sym === entry.sym) lo = e;
+            }
             if (!lo) throw new Error(`${file.name}: HI16 against ${sym.name} without a LO16`);
             const loInstr = image.readUInt32LE(target - base + lo.offset);
             const addend = ((instr & 0xffff) << 16) + ((loInstr << 16) >> 16);

@@ -227,12 +227,6 @@ export class PatchableImage {
     if (!/^[A-Z0-9_]{1,8}\.[A-Z0-9_]{0,3}$/.test(name)) {
       throw new Error(`${name} isn't an 8.3 name`);
     }
-    try {
-      this.stat(path);
-      return this.replaceFile(path, data);
-    } catch (error) {
-      if (!String(error).includes("Path not found")) throw error;
-    }
     const dir = dirPath === "/" ? this.rootDirectory() : this.stat(dirPath);
     if (!dir.isDirectory) throw new Error(`${dirPath} isn't a directory`);
 
@@ -246,6 +240,10 @@ export class PatchableImage {
         records.push(Buffer.from(extent.subarray(at, at + extent[at]!)));
         at += extent[at]!;
       }
+    }
+    const nameOf = (r: Buffer) => r.toString("latin1", 33, 33 + r[32]!);
+    if (records.some((r) => nameOf(r).replace(/;1$/, "").toUpperCase() === name)) {
+      return this.replaceFile(path, data);
     }
     const fileRecord = records.find((r) => (r[25]! & 0x02) === 0);
     if (!fileRecord) throw new Error(`${dirPath} has no file to copy a record from`);
@@ -277,7 +275,6 @@ export class PatchableImage {
     systemUse.copy(record, nameEnd(identifier.length));
 
     // "." and ".." first, then by name.
-    const nameOf = (r: Buffer) => r.toString("latin1", 33, 33 + r[32]!);
     const [self, parent, ...rest] = records;
     rest.push(record);
     rest.sort((x, y) => (nameOf(x) < nameOf(y) ? -1 : nameOf(x) > nameOf(y) ? 1 : 0));

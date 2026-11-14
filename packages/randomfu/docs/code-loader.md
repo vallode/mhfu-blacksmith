@@ -134,6 +134,14 @@ Two routes were weighed:
   Allegrex-specific instructions (`ext`, `ins`, `min`, `max`, VFPU) aren't
   needed yet.
 
+**Calling convention.** clang's MIPS targets are O32, N32 and N64; it has no
+EABI, which PSP code uses (arguments 5–8 in `$t0`–`$t3`, no argument area
+on the stack). The two agree for up to four 32-bit integer or pointer
+arguments and a 32-bit result, so calls between blob and game code must
+stay within that (`blob/rf.h` says so). An O32 callee may also store its
+arguments in its caller's frame (`sp+0..15`), so the loader's frame leaves
+that space free when it calls `rf_init`. psp-gcc would lift the limit.
+
 **Prebuilt objects are committed** (`node blob/build.mjs` writes them as
 base64 into `src/blob/*-object.ts`). randomfu runs in the browser
 (`apps/randomfu`), and players shouldn't need a compiler. The objects are

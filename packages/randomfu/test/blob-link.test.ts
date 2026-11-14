@@ -8,6 +8,7 @@ import {
   linkBlob,
   type LinkedBlob,
 } from "../src/blob/link.js";
+import { COMMON_TEST_OBJECTS } from "./common-test-object.js";
 import { LINK_TEST_OBJECTS } from "./link-test-object.js";
 import { Cpu } from "./mips-cpu.js";
 
@@ -83,4 +84,16 @@ test("the demo adds 1000 zenny after a save load and nothing for a new game", ()
 test("undefined symbols and blobs too big for their room are errors", () => {
   assert.throws(() => linkBlob(objects(LINK_TEST_OBJECTS), BASE), /sceIoClose is undefined/);
   assert.throws(() => linkBlob(objects(DEMO_OBJECTS), BASE, {}, BLOB_HEADER_BYTES), /room for 64/);
+});
+
+test("a common symbol is the same object as a definition of its name, or of another common", () => {
+  const blob = linkBlob(objects(COMMON_TEST_OBJECTS), BASE);
+  const shared = blob.symbols.get("shared")!;
+  const alsoCommon = blob.symbols.get("also_common")!;
+  assert.equal(blob.image.readUInt32LE(shared - BASE), 7, "the definition, not a fresh common");
+  assert.ok(alsoCommon >= BASE + BLOB_HEADER_BYTES && alsoCommon < BASE + blob.image.length);
+  const cpu = run(blob);
+  assert.equal(cpu.call(blob.symbols.get("rf_init")!), 7);
+  cpu.setU32(alsoCommon, 5);
+  assert.equal(cpu.call(blob.symbols.get("rf_init")!), 12, "both files' also_common are one");
 });

@@ -12,6 +12,7 @@ import {
   GuildCardSpace,
   assembleCompaction,
   findCardBounds,
+  guildCardSpace,
 } from "../src/patches/guild-card-space.js";
 import { Cpu } from "./mips-cpu.js";
 
@@ -123,4 +124,11 @@ test("the cave and the freed slots are handed out in order, and never twice", ()
     end: CARDS + GAME_CARDS * CARD_BYTES,
   });
   assert.throws(() => space.allocateSlots(1));
+});
+
+test("a cap outside 1..95 cards is refused", () => {
+  const edits = {} as Edits;
+  for (const kept of [0, -1, 1.5, GAME_CARDS]) {
+    assert.throws(() => guildCardSpace(Buffer.alloc(0), {} as never, edits, kept), /Can't keep/);
+  }
 });

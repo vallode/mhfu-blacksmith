@@ -32,21 +32,23 @@ const FLAGS = [
   "-Werror",
 ];
 
-// name: [sources, where the object's TS goes]
+// name: [sources, where the object's TS goes, extra flags]
 const BLOBS = {
   demo: [["demo.c"], "src/blob"],
   linkTest: [["link-test.c"], "test"],
+  commonTest: [["test/common-a.c", "test/common-b.c"], "test", ["-fcommon"]],
 };
 
 const work = mkdtempSync(path.join(tmpdir(), "randomfu-blob-"));
 try {
-  for (const [name, [sources, dir]] of Object.entries(BLOBS)) {
+  for (const [name, [sources, dir, extra = []]] of Object.entries(BLOBS)) {
     const objects = sources.map((source) => {
-      const out = path.join(work, source.replace(/\.c$/, ".o"));
-      execFileSync(clang, [...FLAGS, "-c", path.join(here, source), "-o", out], {
+      const object = path.basename(source).replace(/\.c$/, ".o");
+      const out = path.join(work, object);
+      execFileSync(clang, [...FLAGS, ...extra, "-c", path.join(here, source), "-o", out], {
         stdio: "inherit",
       });
-      return { name: source.replace(/\.c$/, ".o"), base64: readFileSync(out).toString("base64") };
+      return { name: object, base64: readFileSync(out).toString("base64") };
     });
     const file = name.replace(/[A-Z]/g, (c) => `-${c.toLowerCase()}`);
     const target = path.join(here, "..", dir, `${file}-object.ts`);

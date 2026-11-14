@@ -2,17 +2,28 @@ import assert from "node:assert/strict";
 import { test } from "node:test";
 import { DEMO_OBJECTS } from "../src/blob/demo-object.js";
 import { BLOB_MAGIC, HEADER, linkBlob } from "../src/blob/link.js";
+import { Edits } from "../src/edits.js";
+import type { GameData, LoadedOverlay } from "../src/game/load.js";
 import {
   BLOB_DEVICE_PATH,
+  BLOB_ISO_PATH,
   NIDS,
   REASON,
   STATUS,
+  addCodeLoader,
   assembleLoader,
   findImports,
   findSites,
   type Imports,
 } from "../src/patches/code-loader.js";
-import { CARD_BYTES, CARDS, GAME_CARDS } from "../src/patches/guild-card-space.js";
+import {
+  CARD_BYTES,
+  CARDS,
+  COMPACT_SIGNATURE,
+  COMPACT_WORDS,
+  GAME_CARDS,
+  SAVE_INIT_SIGNATURE,
+} from "../src/patches/guild-card-space.js";
 import { Cpu } from "./mips-cpu.js";
 
 const SAVE = 0x09999c60;
@@ -30,13 +41,9 @@ const IMPORTS: Imports = {
   sceKernelIcacheInvalidateAll: 0x0890e080,
 };
 
-const demo = () =>
-  linkBlob(
-    DEMO_OBJECTS.map((o) => ({ name: o.name, data: Buffer.from(o.base64, "base64") })),
-    BLOB,
-    {},
-    ROOM,
-  );
+const demoObjects = () =>
+  DEMO_OBJECTS.map((o) => ({ name: o.name, data: Buffer.from(o.base64, "base64") }));
+const demo = () => linkBlob(demoObjects(), BLOB, {}, ROOM);
 
 /** The loader in a CPU whose disc holds `file` (null: no file) and whose memcpy and memset work. */
 function machine(file: Buffer | null, build = demo().build) {
@@ -134,6 +141,26 @@ test("callee-saved registers and the stack survive the loader", () => {
   assert.equal(cpu.reg[29], 0x09fff000);
 });
 
+test("rf_init may use the O32 argument area in the loader's frame", () => {
+  const blob = demo();
+  const { cpu, loader } = machine(blob.image);
+  const buffer = saveFile(cpu, 0);
+  let ran = false;
+  // An O32 callee may store $a0-$a3 at its caller's sp+0..15.
+  cpu.native.set(blob.image.readUInt32LE(HEADER.init), (c) => {
+    const sp = c.reg[29]! >>> 0;
+    for (let k = 0; k < 16; k += 4) c.setU32(sp + k, 0xdeadbeef);
+    ran = true;
+    return 0;
+  });
+  for (const r of [16, 17, 18, 19]) cpu.reg[r] = 0x2000 + r;
+  cpu.reg[29] = 0x09fff000;
+  cpu.call(loader.afterLoad, [SAVE + 0x4a0, buffer, 0x6a938]);
+  assert.ok(ran);
+  for (const r of [16, 17, 18, 19]) assert.equal(cpu.reg[r], 0x2000 + r);
+  assert.equal(cpu.reg[2]! >>> 0, SAVE + 0x4a0, "memcpy's result is still passed through");
+});
+
 test("a new game clears the cards, then loads the blob with its own reason", () => {
   const blob = demo();
   const { cpu, loader } = machine(blob.image);
@@ -207,4 +234,168 @@ test("imports are found by NID through the module info", () => {
   assert.equal(stubs.get(NIDS.sceIoRead), 0x0890de60);
   assert.equal(stubs.get(NIDS.sceIoOpen), 0x0890de68);
   assert.equal(stubs.get(NIDS.sceKernelIcacheInvalidateAll), 0x0890e080);
+});
+
+/**
+ * A small EBOOT with everything the patch looks for, laid out as the game's:
+ * the compaction, the save's setup and its one caller, seven card loops (one
+ * with the free count), the two save loads, the new character's clear, and
+ * the imports. `arenas` gives each caller of the save setup its arena.
+ */
+function syntheticGame(arenas: number[] = [0x08a8c500], s0Between = false) {
+  const VADDR = 0x08804000;
+  const OFFSET = 0x100;
+  const elf = Buffer.alloc(OFFSET + 0x1000);
+  elf.writeUInt32LE(0x464c457f, 0);
+  elf.writeUInt32LE(0x34, 0x1c);
+  elf.writeUInt16LE(1, 0x2c);
+  elf.writeUInt32LE(1, 0x34); // PT_LOAD
+  elf.writeUInt32LE(OFFSET, 0x34 + 4);
+  elf.writeUInt32LE(VADDR, 0x34 + 8);
+  elf.writeUInt32LE(OFFSET + 0x100, 0x34 + 12); // p_paddr: the module info
+  elf.writeUInt32LE(0x1000, 0x34 + 16);
+  const put = (at: number, words: readonly number[]) =>
+    words.forEach((w, k) => elf.writeUInt32LE(w >>> 0, OFFSET + at + k * 4));
+  const vaddr = (at: number) => VADDR + at;
+  const jal = (target: number) => (0x0c000000 | ((target >>> 2) & 0x03ffffff)) >>> 0;
+  const memcpy = vaddr(0x0);
+  const memset = vaddr(0x10);
+
+  // Imports: one library with the loader's five NIDs.
+  const nids = Object.values(NIDS);
+  put(0x100 + 0x2c, [vaddr(0x140), vaddr(0x154)]);
+  elf[OFFSET + 0x140 + 8] = 5;
+  elf.writeUInt16LE(nids.length, OFFSET + 0x140 + 10);
+  put(0x140 + 12, [vaddr(0x160), vaddr(0x180)]);
+  put(0x160, nids);
+  const stubs = Object.fromEntries(
+    Object.keys(NIDS).map((name, k) => [name, vaddr(0x180 + k * 8)]),
+  ) as Imports;
+
+  // The save setup stores its argument in the save pointer global.
+  const savePointer = 0x089cc438;
+  const saveInit = vaddr(0x200);
+  const init = [...SAVE_INIT_SIGNATURE];
+  init[4] = 0x3c020000 | ((savePointer + 0x8000) >>> 16);
+  init[5] = 0xac500000 | (savePointer & 0xffff);
+  put(0x200, init);
+  arenas.forEach((arena, k) => {
+    const inArena = SAVE - 0x08a8c500;
+    put(0x240 + k * 0x20, [
+      0x3c100000 | ((arena + 0x8000) >>> 16), // lui s0
+      0x26100000 | (arena & 0xffff), // addiu s0, s0
+      s0Between ? 0x02208021 : 0, // move s0, s1
+      0x3c010000 | (inArena >>> 16), // lui at
+      0x34210000 | (inArena & 0xffff), // ori at, at
+      jal(saveInit),
+      0x02012021, // addu a0, s0, at
+    ]);
+  });
+
+  // Seven card loops; the first has the free count after it.
+  for (let k = 0; k < 7; k++) {
+    put(0x300 + k * 0x20, [0x2a020060, 0x26731078]); // slti v0, s0, 96; addiu s3, s3, 4216
+  }
+  put(0x308, [0x24020060]); // addiu v0, zero, 96
+
+  // The sites, each in a function of its own that keeps $ra on the stack.
+  const fn = (at: number, site: number[]) =>
+    put(at, [
+      0x27bdfff8, // addiu sp, sp, -8
+      0xafbf0004, // sw ra, 4(sp)
+      ...site,
+      0x8fbf0004, // lw ra, 4(sp)
+      0x03e00008, // jr ra
+      0x27bd0008, // addiu sp, sp, 8
+    ]);
+  const loadSites = [0x400, 0x440];
+  for (const at of loadSites) fn(at, [0x24451000, 0x3c020006, jal(memcpy), 0x3446a938]);
+  fn(0x480, [0x26044a58, 0x00002821, jal(memset), 0x34462d00]);
+
+  // The compaction: its signature, then its last two words.
+  put(0x800, COMPACT_SIGNATURE);
+  put(0x800 + (COMPACT_WORDS - 2) * 4, [0x03e00008, 0x27bd0040]);
+
+  const gameSub = Buffer.alloc(0x40);
+  gameSub.writeUInt32LE(0x2a020060, 0x10);
+  gameSub.writeUInt32LE(0x26731078, 0x14);
+  const sub: LoadedOverlay = { index: 7, ovl: {} as LoadedOverlay["ovl"] };
+  const game = { eboot: elf, dataBin: { read: () => gameSub } } as unknown as GameData;
+  return {
+    elf,
+    edits: new Edits(game),
+    sub,
+    VADDR,
+    OFFSET,
+    memcpy,
+    memset,
+    stubs,
+    loadSites: loadSites.map(vaddr),
+    newGameSite: vaddr(0x480),
+  };
+}
+
+test("addCodeLoader patches the sites to load the blob it adds to the disc", () => {
+  const g = syntheticGame();
+  const report = addCodeLoader(g.elf, g.sub, g.edits, { objects: demoObjects() });
+  assert.match(report.summary ?? "", /: on /, report.summary);
+  const file = g.edits.discFiles.get(BLOB_ISO_PATH)!;
+  assert.ok(file, "the blob is added to the disc");
+
+  // The patched EBOOT and game_sub: three cards kept everywhere.
+  const eboot = g.edits.eboot();
+  for (let k = 0; k < 7; k++) {
+    assert.equal(eboot.readUInt32LE(g.OFFSET + 0x300 + k * 0x20) & 0xffff, 3);
+  }
+  assert.equal(eboot.readUInt32LE(g.OFFSET + 0x308) & 0xffff, 3, "the free count");
+  assert.equal(g.edits.files.get(7)!.readUInt32LE(0x10) & 0xffff, 3, "game_sub's loop");
+
+  // Run the patched code: each site makes the game's call, then loads the blob.
+  const cpu = new Cpu();
+  cpu.write(g.VADDR, eboot.subarray(g.OFFSET, g.OFFSET + 0x1000));
+  const arg = (k: number) => cpu.reg[4 + k]! >>> 0;
+  cpu.native.set(g.memcpy, (c) => (c.write(arg(0), c.bytes(arg(1), arg(2))), arg(0)));
+  cpu.native.set(g.memset, (c) => (c.fill(arg(0), arg(2), arg(1)), arg(0)));
+  cpu.native.set(g.stubs.sceIoOpen, (c) => (c.string(arg(0)) === BLOB_DEVICE_PATH ? 3 : -1));
+  cpu.native.set(g.stubs.sceIoRead, (c) => {
+    const n = Math.min(file.length, arg(2));
+    c.write(arg(1), file.subarray(0, n));
+    return n;
+  });
+  for (const name of [
+    "sceIoClose",
+    "sceKernelDcacheWritebackAll",
+    "sceKernelIcacheInvalidateAll",
+  ]) {
+    cpu.native.set(g.stubs[name as keyof Imports], () => 0);
+  }
+
+  for (const site of g.loadSites) {
+    const buffer = 0x08b00000;
+    cpu.fill(buffer, 0x100, 0);
+    cpu.setU32(buffer + 0x1000 + ZENNY - 0x4a0, 500);
+    cpu.reg[2] = buffer; // the site adds 0x1000
+    cpu.call(site, [SAVE + 0x4a0]);
+    assert.equal(cpu.u32(SAVE + ZENNY), 1500, `site 0x${site.toString(16)}`);
+    assert.equal(cpu.u32(BLOB + HEADER.magic), BLOB_MAGIC);
+  }
+
+  cpu.fill(BLOB, 0x40, 0xff);
+  cpu.reg[2] = 0x00060000; // the clear's size comes from v0 | 0x2D00
+  cpu.reg[16] = SAVE; // the site's s0
+  cpu.call(g.newGameSite);
+  assert.equal(cpu.u32(SAVE + CARDS), 0, "the cards were cleared");
+  assert.equal(cpu.u32(BLOB + HEADER.magic), BLOB_MAGIC, "then the blob loaded");
+});
+
+test("addCodeLoader patches nothing unless every save setup call agrees on the arena", () => {
+  for (const [why, g] of [
+    ["two arenas", syntheticGame([0x08a8c500, 0x08a90000])],
+    ["s0 written in between", syntheticGame([0x08a8c500], true)],
+  ] as const) {
+    const report = addCodeLoader(g.elf, g.sub, g.edits, { objects: demoObjects() });
+    assert.match(report.summary ?? "", /not applied/, why);
+    assert.equal(g.edits.discFiles.size, 0, why);
+    assert.ok(g.edits.eboot().equals(g.elf), why);
+  }
 });

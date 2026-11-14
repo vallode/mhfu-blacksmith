@@ -523,8 +523,7 @@ export function randomize(
       name: o.name,
       data: Buffer.from(o.base64, "base64"),
     }));
-    const { blob: _blob, ...report } = addCodeLoader(game.eboot, game.gameSub, edits, { objects });
-    reports.push(report);
+    reports.push(addCodeLoader(game.eboot, game.gameSub, edits, { objects }));
   }
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.

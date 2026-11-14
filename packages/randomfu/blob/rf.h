@@ -26,8 +26,13 @@ typedef signed int s32;
 void rf_init(u32 reason, u8 *save, u8 *blob);
 
 /*
- * Game functions the linker provides (src/patches/code-loader.ts). Call
- * them like any function.
+ * Game functions the linker provides (src/patches/code-loader.ts).
+ *
+ * Calling convention: blob code is compiled as O32 (clang has no MIPS EABI),
+ * while PSP code passes arguments 5-8 in $t0-$t3 and aligns 64-bit ones
+ * differently. Calls between the two agree only for up to four 32-bit
+ * integer or pointer arguments and a 32-bit result: keep every game function
+ * a blob calls, and every entry the game calls in a blob, to that.
  */
 s32 sceIoOpen(const char *path, s32 flags, s32 mode);
 s32 sceIoRead(s32 fd, void *data, u32 size);
