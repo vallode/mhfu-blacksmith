@@ -57,8 +57,11 @@ const COUNTS = {
  * `accent` marks a non-English file.
  */
 function fixtureMessages(accent = ""): Buffer {
-  const pair = (kind: string, n: number, namesFirst: boolean) => {
-    const names = Array.from({ length: n }, (_, i) => `${kind}${accent} ${i}`);
+  // Entry 0 and unused slots at the end are "Nothing equipped.", as on the disc.
+  const pair = (kind: string, n: number, namesFirst: boolean, unusedAtEnd = 0) => {
+    const names = Array.from({ length: n }, (_, i) =>
+      i === 0 || i >= n - unusedAtEnd ? "Nothing equipped." : `${kind}${accent} ${i}`,
+    );
     const descriptions = Array.from(
       { length: n },
       (_, i) => `A longer description of ${kind} ${i}.`,
@@ -74,7 +77,7 @@ function fixtureMessages(accent = ""): Buffer {
     ...pair("Mail", 311, true),
     ...pair("Vambraces", 305, true),
     ...pair("Coil", 303, true),
-    ...pair("Greaves", 312, true),
+    ...pair("Greaves", 312, true, 2),
   ]);
 }
 
@@ -215,10 +218,14 @@ test("runExtractMhp2 writes each table and the checks", async () => {
     try {
       const result = await runExtractMhp2({ unpacked, out });
       assert.equal(result.counts["armor-leg.json"], 311);
-      // Every check passes but the legs' one extra name, as on the real disc.
+      // Legs' one extra name is a placeholder, as on the real disc, so it passes.
       assert.deepEqual(
         result.checks.filter((c) => !c.ok).map((c) => c.name),
-        ["leg names: one per entry"],
+        [],
+      );
+      assert.match(
+        result.checks.find((c) => c.name === "leg names: one per entry")!.detail,
+        /the 1 extra all entry 0's placeholder; 2 entries named like entry 0/,
       );
     } finally {
       console.log = log;
@@ -231,6 +238,7 @@ test("runExtractMhp2 writes each table and the checks", async () => {
     assert.equal(decorations[2].name, "Item 715");
     const head = JSON.parse(readFileSync(path.join(out, "armor-head.json"), "utf-8"));
     assert.equal(head[2].name, "Helm 2");
+    assert.deepEqual([head[0].placeholder, head[2].placeholder], [true, false]);
 
     writeFileSync(
       path.join(unpacked, "manifest.json"),
@@ -264,4 +272,12 @@ test("readMhp2Text picks the English file and the names table of each pair", () 
   assert.equal(result.text.gunner.names[3], "Gun 3");
   assert.equal(result.text.blademaster.nameTable, 3);
   assert.equal(result.text.items.names.length, 960);
+});
+
+test("readMhp2Text fails a name table whose extra names aren't placeholders", () => {
+  const files = MHP2_EU_MESSAGE_FILES.map(() => fixtureMessages());
+  const result = readMhp2Text(files, { ...COUNTS, leg: 309 });
+  const leg = result.checks.find((c) => c.name === "leg names: one per entry")!;
+  assert.equal(leg.ok, false);
+  assert.match(leg.detail, /312 names \(table 15\) for 309 entries, the 3 extra not placeholders/);
 });

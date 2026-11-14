@@ -107,11 +107,20 @@ export function readMhp2Text(
     const empty = names.flatMap((n, i) => (n.length === 0 ? [i] : []));
     const expected = entryCounts[kind];
     const shown = empty.slice(0, 8).map((i) => `#${i}`);
+    // Entry 0 is a placeholder ("Nothing equipped." on the EU disc), and unused
+    // slots at the end of a table repeat it. Legs have one such name more than
+    // entries: harmless, so it passes.
+    const extraArePlaceholders = names.slice(expected).every((n) => n === names[0]);
+    const placeholders = names.slice(0, expected).filter((n) => n === names[0]).length;
     checks.push({
       name: `${kind} names: one per entry`,
-      ok: names.length === expected,
+      ok: names.length >= expected && extraArePlaceholders,
       detail:
-        `${names.length} names (table ${text[kind].nameTable}) for ${expected} entries; ` +
+        `${names.length} names (table ${text[kind].nameTable}) for ${expected} entries` +
+        (names.length > expected
+          ? `, the ${names.length - expected} extra ${extraArePlaceholders ? "all entry 0's placeholder" : "not placeholders"}`
+          : "") +
+        `; ${placeholders} entries named like entry 0; ` +
         (empty.length
           ? `${empty.length} empty: ${shown.join(" ")}${empty.length > 8 ? " …" : ""}`
           : "none empty"),

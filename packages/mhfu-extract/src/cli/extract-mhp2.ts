@@ -72,12 +72,17 @@ export async function runExtractMhp2(options: {
   });
   checks.push(...textChecks);
   for (const c of checks) console.log(`  ${c.ok ? "ok  " : "FAIL"} ${c.name}: ${c.detail}`);
+  // `placeholder`: named like entry 0 ("Nothing equipped."), as unused slots are.
   const named = <T extends { index: number }>(rows: T[], kind: keyof typeof text, offset = 0) =>
-    rows.map((row) => ({
-      name: text[kind].names[offset + row.index] ?? null,
-      description: text[kind].descriptions[offset + row.index] ?? null,
-      ...row,
-    }));
+    rows.map((row) => {
+      const name = text[kind].names[offset + row.index] ?? null;
+      return {
+        name,
+        description: text[kind].descriptions[offset + row.index] ?? null,
+        placeholder: name === text[kind].names[0],
+        ...row,
+      };
+    });
 
   await mkdir(options.out, { recursive: true });
   const files: Record<string, unknown> = {
