@@ -3,7 +3,7 @@ import { mkdtempSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSyn
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { after, describe, test } from "node:test";
+import { describe, test, type TestContext } from "node:test";
 import {
   dehydrate,
   fileKind,
@@ -276,14 +276,9 @@ describe("importLegacy", () => {
 });
 
 describe("writeData", () => {
-  const dirs: string[] = [];
-  after(() => {
-    for (const dir of dirs) rmSync(dir, { recursive: true, force: true });
-  });
-
-  function fixture(): string {
+  function fixture(t: TestContext): string {
     const dir = mkdtempSync(path.join(tmpdir(), "game-data-write-"));
-    dirs.push(dir);
+    t.after(() => rmSync(dir, { recursive: true, force: true }));
     const { files, en, ja } = importLegacy(legacy(), sources);
     for (const [rel, raw] of files) {
       mkdirSync(path.dirname(path.join(dir, rel)), { recursive: true });
@@ -295,16 +290,16 @@ describe("writeData", () => {
     return dir;
   }
 
-  test("writes nothing for an unchanged view", () => {
-    const dir = fixture();
+  test("writes nothing for an unchanged view", (t) => {
+    const dir = fixture(t);
     for (const rel of legacy().keys()) {
       if (rel === "equipment-ids.json") continue;
       assert.deepEqual(writeData(dir, rel, readData(dir, rel)), [], rel);
     }
   });
 
-  test("writes new values to the record and new text to the strings", () => {
-    const dir = fixture();
+  test("writes new values to the record and new text to the strings", (t) => {
+    const dir = fixture(t);
     const quests = readData(dir, "quests/village.json");
     quests.quests[0].title = "The Queen";
     quests.quests[0].supplies.push({ item: "ConstitutnJewel", amount: 1 });
@@ -320,8 +315,8 @@ describe("writeData", () => {
     assert.deepEqual(readData(dir, "quests/village.json"), quests);
   });
 
-  test("dry runs write nothing, and unknown names are errors", () => {
-    const dir = fixture();
+  test("dry runs write nothing, and unknown names are errors", (t) => {
+    const dir = fixture(t);
     const before = readFileSync(path.join(dir, "armor", "helmet.json"), "utf-8");
     const armor = readData(dir, "armor/helmet.json");
     armor.armor[0].defence = 9;

@@ -5,9 +5,6 @@
  * `game_sub.ovl` with reward tables.
  * No game data: every value is made up.
  */
-import { mkdtempSync, rmSync } from "node:fs";
-import { tmpdir } from "node:os";
-import path from "node:path";
 import { GAME_TAG_KEYS, TYPE01_TAG_KEYS } from "mhfu-extract/src/container/prx.js";
 import { encryptGameEboot } from "mhfu-extract/test/prx-fixture.js";
 import { encryptDataBinBlock } from "mhfu-extract/src/container/databin.js";
@@ -53,20 +50,7 @@ import { ARMOR_POINTER_INDEX, ARMOR_SLOTS, type ArmorSlot } from "mhfu-extract/s
 
 export const SECTOR = 2048;
 
-const tempDirs: string[] = [];
-
-// Each test file runs in its own process, so its discs go when it exits,
-// passed or failed: a run writes a few hundred megabytes of them.
-process.on("exit", () => {
-  for (const dir of tempDirs) rmSync(dir, { recursive: true, force: true });
-});
-
-/** A new directory under the system's temp folder, removed when the process exits. */
-export function tempDir(): string {
-  const dir = mkdtempSync(path.join(tmpdir(), "randomfu-test-"));
-  tempDirs.push(dir);
-  return dir;
-}
+export { tempDir } from "./temp.js";
 
 // ---------------------------------------------------------------- ISO 9660
 

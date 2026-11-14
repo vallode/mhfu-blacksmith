@@ -3,7 +3,7 @@ import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { settingsFromFlags } from "../src/cli.js";
-import { tempDir } from "./fixtures.js";
+import { tempDir } from "./temp.js";
 import {
   OPTIONS,
   actionsOf,
