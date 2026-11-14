@@ -14,6 +14,8 @@ import {
 } from "../src/lib/items";
 import { parseDecorationSkill, treeNameIndex, type SkillTreeData } from "../src/lib/set-search";
 import { DATA_DIR } from "../src/lib/paths";
+import { buildArmorTree, buildWeaponTree } from "../src/lib/trees";
+import type { ArmorRank, ArmorSlot } from "../src/lib/constants";
 import {
   ARMOR_SLOTS,
   EQUIPMENT_TABLES,
@@ -24,7 +26,6 @@ import {
 } from "game-data";
 
 const root = process.cwd();
-const contentDir = path.join(root, "content");
 const dataDir = DATA_DIR;
 
 let errors = 0;
@@ -175,7 +176,6 @@ if (errors > 0) {
 section("Validating weapons…");
 
 const weaponDataDir = path.join(dataDir, "weapons");
-const weaponContentDir = path.join(contentDir, "blacksmith");
 const weaponTypes = fs
   .readdirSync(weaponDataDir)
   .filter((e) => e.endsWith(".json"))
@@ -201,7 +201,6 @@ for (const type of weaponTypes) {
 // Second pass: validate each type
 for (const type of weaponTypes) {
   const craftingFile = path.join(weaponDataDir, `${type}.json`);
-  const mapFile = path.join(weaponContentDir, type, "map.json");
 
   if (!fs.existsSync(craftingFile)) {
     error(`${type}: missing data/weapons/${type}.json`);
@@ -254,38 +253,21 @@ for (const type of weaponTypes) {
     }
   }
 
-  // Validate map.json references — map nodes can reference other weapon types
-  if (fs.existsSync(mapFile)) {
-    const map = JSON.parse(fs.readFileSync(mapFile, "utf-8")) as {
-      map: { slug: string; name: string; type?: string; children?: unknown[] }[];
-    };
-
-    function validateNode(node: {
-      slug: string;
-      name: string;
-      type?: string;
-      children?: unknown[];
-    }) {
+  // Validate the crafting tree's references — nodes can reference other weapon types
+  {
+    type TreeNode = { slug: string; name: string; type?: string; children?: TreeNode[] };
+    const validateNode = (node: TreeNode) => {
       const nodeType = node.type || type;
       const nodeTypeSlugs = allWeaponSlugs.get(nodeType) ?? slugs;
       if (!nodeTypeSlugs.has(node.slug)) {
         // Data inconsistency in source content — warn rather than error
         warn(
-          `${type}/map.json: node "${node.name}" (slug: ${node.slug}, type: ${nodeType}) not found in crafting data`,
+          `${type} tree: node "${node.name}" (slug: ${node.slug}, type: ${nodeType}) not found in crafting data`,
         );
       }
-      if (Array.isArray(node.children)) {
-        for (const child of node.children as (typeof node)[]) {
-          validateNode(child);
-        }
-      }
-    }
-
-    for (const node of map.map ?? []) {
-      validateNode(node);
-    }
-  } else {
-    warn(`${type}: missing map.json`);
+      node.children?.forEach(validateNode);
+    };
+    buildWeaponTree(type).forEach(validateNode);
   }
 
   console.log(`  ${type}: ${count} weapons`);
@@ -331,19 +313,14 @@ for (const file of fs
     }
 
     // Every linked node in the crafting tree must point at a real piece.
-    const mapFile = path.join(contentDir, "armorsmith", slot, rank, "map.json");
-    if (fs.existsSync(mapFile)) {
-      type Node = { slug: string; name: string; rarity?: unknown; children?: Node[] };
-      const visit = (node: Node) => {
-        if (node.rarity && !slugs.has(node.slug)) {
-          error(
-            `${slot}/${rank}/map.json: node "${node.name}" (slug: ${node.slug}) not found in armor data`,
-          );
-        }
-        node.children?.forEach(visit);
-      };
-      (JSON.parse(fs.readFileSync(mapFile, "utf-8")) as { map?: Node[] }).map?.forEach(visit);
-    }
+    const visit = (node: { slug: string; name: string; rarity?: unknown }) => {
+      if (node.rarity && !slugs.has(node.slug)) {
+        error(
+          `${slot}/${rank} tree: node "${node.name}" (slug: ${node.slug}) not found in armor data`,
+        );
+      }
+    };
+    buildArmorTree(slot as ArmorSlot, rank as ArmorRank).forEach(visit);
 
     console.log(`  ${slot}/${rank}: ${pieces.length} pieces`);
   }
