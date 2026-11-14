@@ -28,3 +28,11 @@ Checks, from the root: `pnpm lint`, `pnpm typecheck`, `pnpm test`,
 `pnpm --filter <name> <script>` (`blacksmith`, `randomfu-web`,
 `mhfu-extract`, `randomfu`, `game-data`). Never commit a disc image or an unpacked dump
 of one (see `.gitignore`).
+
+Each disc image is close to 1 GB, and nothing clears temp folders or
+session scratchpads for you. Delete every disc you write (randomized
+output, probe and test discs) once you no longer need it, before you end the
+task. `pnpm clean:discs` deletes the discs left in Claude Code scratchpads
+(`--dry-run` lists them). Tests that write files do so under `tmpdir()` and
+remove them afterwards: randomfu's `tempDir()` (`test/temp.ts`) does this
+when the process ends, unless `KEEP_TEST_DISCS=1`.
