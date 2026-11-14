@@ -1,0 +1,652 @@
+{
+  "points": [
+    {
+      "name": "Mining Point",
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Whetstone",
+          "chance": 12
+        },
+        {
+          "item": "Stone",
+          "chance": 13
+        },
+        {
+          "item": "Disk Stone",
+          "chance": 13
+        },
+        {
+          "item": "Iron Ore",
+          "chance": 24
+        },
+        {
+          "item": "Earth Crystal",
+          "chance": 16
+        },
+        {
+          "item": "Machalite Ore",
+          "chance": 7
+        },
+        {
+          "item": "Ice Crystal",
+          "chance": 3
+        },
+        {
+          "item": "Armor Stone",
+          "chance": 1
+        },
+        {
+          "item": "Armor Sphere",
+          "chance": 8
+        },
+        {
+          "item": "Suiko Jewel",
+          "chance": 3
+        }
+      ]
+    },
+    {
+      "name": "Mining Point +1",
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Disk Stone",
+          "chance": 8
+        },
+        {
+          "item": "Iron Ore",
+          "chance": 15
+        },
+        {
+          "item": "Earth Crystal",
+          "chance": 22
+        },
+        {
+          "item": "Machalite Ore",
+          "chance": 14
+        },
+        {
+          "item": "Dragonite Ore",
+          "chance": 9
+        },
+        {
+          "item": "Lightcrystal",
+          "chance": 2
+        },
+        {
+          "item": "Ice Crystal",
+          "chance": 3
+        },
+        {
+          "item": "Armor Sphere",
+          "chance": 10
+        },
+        {
+          "item": "Armor Sphere+",
+          "chance": 8
+        },
+        {
+          "item": "Suiko Jewel",
+          "chance": 5
+        },
+        {
+          "item": "Akito Jewel",
+          "chance": 3
+        },
+        {
+          "item": "BattlefieldJewel",
+          "chance": 1
+        }
+      ]
+    },
+    {
+      "name": "Mining Point +2",
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Earth Crystal",
+          "chance": 18
+        },
+        {
+          "item": "Machalite Ore",
+          "chance": 23
+        },
+        {
+          "item": "Dragonite Ore",
+          "chance": 17
+        },
+        {
+          "item": "Lightcrystal",
+          "chance": 4
+        },
+        {
+          "item": "Carbalite Ore",
+          "chance": 7
+        },
+        {
+          "item": "Rainbow Ore",
+          "chance": 5
+        },
+        {
+          "item": "Armor Sphere+",
+          "chance": 10
+        },
+        {
+          "item": "Hrd Armor Sphere",
+          "chance": 8
+        },
+        {
+          "item": "Akito Jewel",
+          "chance": 5
+        },
+        {
+          "item": "BattlefieldJewel",
+          "chance": 3
+        }
+      ]
+    },
+    {
+      "name": "Mining Point +3",
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Machalite Ore",
+          "chance": 18
+        },
+        {
+          "item": "Dragonite Ore",
+          "chance": 26
+        },
+        {
+          "item": "Carbalite Ore",
+          "chance": 15
+        },
+        {
+          "item": "Union Ore",
+          "chance": 7
+        },
+        {
+          "item": "Novacrystal",
+          "chance": 3
+        },
+        {
+          "item": "Rainbow Ore",
+          "chance": 14
+        },
+        {
+          "item": "Hrd Armor Sphere",
+          "chance": 10
+        },
+        {
+          "item": "BattlefieldJewel",
+          "chance": 5
+        },
+        {
+          "item": "LapisLazuliJewel",
+          "chance": 2
+        }
+      ]
+    },
+    {
+      "name": "Mining Point +4",
+      "spot": "mining",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Carbalite Ore",
+          "chance": 24
+        },
+        {
+          "item": "Union Ore",
+          "chance": 13
+        },
+        {
+          "item": "Eltalite Ore",
+          "chance": 15
+        },
+        {
+          "item": "Mellanje Ore",
+          "chance": 3
+        },
+        {
+          "item": "Novacrystal",
+          "chance": 8
+        },
+        {
+          "item": "Purecrystal",
+          "chance": 4
+        },
+        {
+          "item": "Hrd Armor Sphere",
+          "chance": 13
+        },
+        {
+          "item": "Hvy Armor Sphere",
+          "chance": 5
+        },
+        {
+          "item": "Ryl Armor Sphere",
+          "chance": 11
+        },
+        {
+          "item": "LapisLazuliJewel",
+          "chance": 4
+        }
+      ]
+    },
+    {
+      "name": "Insect Thicket",
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Spiderweb",
+          "chance": 15
+        },
+        {
+          "item": "Cricket",
+          "chance": 4
+        },
+        {
+          "item": "Worm",
+          "chance": 12
+        },
+        {
+          "item": "Firefly",
+          "chance": 4
+        },
+        {
+          "item": "Insect Husk",
+          "chance": 4
+        },
+        {
+          "item": "Yambug",
+          "chance": 8
+        },
+        {
+          "item": "Bughopper",
+          "chance": 8
+        },
+        {
+          "item": "Bitterbug",
+          "chance": 20
+        },
+        {
+          "item": "Flashbug",
+          "chance": 5
+        },
+        {
+          "item": "Carpenterbug",
+          "chance": 20
+        }
+      ]
+    },
+    {
+      "name": "Insect Thicket +1",
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Worm",
+          "chance": 7
+        },
+        {
+          "item": "Godbug",
+          "chance": 14
+        },
+        {
+          "item": "Bitterbug",
+          "chance": 15
+        },
+        {
+          "item": "Flashbug",
+          "chance": 12
+        },
+        {
+          "item": "Thunderbug",
+          "chance": 4
+        },
+        {
+          "item": "Carpenterbug",
+          "chance": 24
+        },
+        {
+          "item": "Killer Beetle",
+          "chance": 12
+        },
+        {
+          "item": "Great Hornfly",
+          "chance": 2
+        },
+        {
+          "item": "Great Ladybug",
+          "chance": 2
+        },
+        {
+          "item": "Vespoid Wing",
+          "chance": 4
+        },
+        {
+          "item": "Hornetaur Wing",
+          "chance": 4
+        }
+      ]
+    },
+    {
+      "name": "Insect Thicket +2",
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Mega Fishing Fly",
+          "chance": 10
+        },
+        {
+          "item": "Godbug",
+          "chance": 17
+        },
+        {
+          "item": "Thunderbug",
+          "chance": 10
+        },
+        {
+          "item": "Killer Beetle",
+          "chance": 25
+        },
+        {
+          "item": "Hercudrome",
+          "chance": 15
+        },
+        {
+          "item": "King Scarab",
+          "chance": 7
+        },
+        {
+          "item": "Great Hornfly",
+          "chance": 4
+        },
+        {
+          "item": "Great Ladybug",
+          "chance": 4
+        },
+        {
+          "item": "Vespoid Shell",
+          "chance": 4
+        },
+        {
+          "item": "Hornetaur Shell",
+          "chance": 4
+        }
+      ]
+    },
+    {
+      "name": "Insect Thicket +3",
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Spiderweb",
+          "chance": 10
+        },
+        {
+          "item": "Mega Fishing Fly",
+          "chance": 15
+        },
+        {
+          "item": "Godbug",
+          "chance": 6
+        },
+        {
+          "item": "Bitterbug",
+          "chance": 4
+        },
+        {
+          "item": "Flashbug",
+          "chance": 7
+        },
+        {
+          "item": "Hercudrome",
+          "chance": 25
+        },
+        {
+          "item": "King Scarab",
+          "chance": 15
+        },
+        {
+          "item": "Rare Scarab",
+          "chance": 5
+        },
+        {
+          "item": "Rainbow Insect",
+          "chance": 5
+        },
+        {
+          "item": "Vespoid InnrWng",
+          "chance": 4
+        },
+        {
+          "item": "HornetaurInnrWng",
+          "chance": 4
+        }
+      ]
+    },
+    {
+      "name": "Insect Thicket +4",
+      "spot": "insects",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Spiderweb",
+          "chance": 10
+        },
+        {
+          "item": "Godbug",
+          "chance": 10
+        },
+        {
+          "item": "Flashbug",
+          "chance": 7
+        },
+        {
+          "item": "King Scarab",
+          "chance": 25
+        },
+        {
+          "item": "Rare Scarab",
+          "chance": 10
+        },
+        {
+          "item": "Emperor Cricket",
+          "chance": 15
+        },
+        {
+          "item": "PhantomButterfly",
+          "chance": 3
+        },
+        {
+          "item": "Vespoid Carapace",
+          "chance": 5
+        },
+        {
+          "item": "Vspoid Razorwing",
+          "chance": 5
+        },
+        {
+          "item": "Hornetaur Crapce",
+          "chance": 5
+        },
+        {
+          "item": "Hornet Razorwing",
+          "chance": 5
+        }
+      ]
+    },
+    {
+      "name": "Mushroom Tree",
+      "spot": "mushrooms",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Blue Mushroom",
+          "chance": 40
+        },
+        {
+          "item": "Parashroom",
+          "chance": 26
+        },
+        {
+          "item": "Toadstool",
+          "chance": 32
+        },
+        {
+          "item": "Chaos Mushroom",
+          "chance": 2
+        }
+      ]
+    },
+    {
+      "name": "Mushroom Tree +1",
+      "spot": "mushrooms",
+      "gathers": 5,
+      "most_gathers": 6,
+      "items": [
+        {
+          "item": "Blue Mushroom",
+          "chance": 30
+        },
+        {
+          "item": "Nitroshroom",
+          "chance": 28
+        },
+        {
+          "item": "Parashroom",
+          "chance": 12
+        },
+        {
+          "item": "Toadstool",
+          "chance": 18
+        },
+        {
+          "item": "Exciteshroom",
+          "chance": 10
+        },
+        {
+          "item": "Chaos Mushroom",
+          "chance": 2
+        }
+      ]
+    },
+    {
+      "name": "Mushroom Tree +2",
+      "spot": "mushrooms",
+      "gathers": 7,
+      "most_gathers": 8,
+      "items": [
+        {
+          "item": "Blue Mushroom",
+          "chance": 28
+        },
+        {
+          "item": "Nitroshroom",
+          "chance": 27
+        },
+        {
+          "item": "Parashroom",
+          "chance": 11
+        },
+        {
+          "item": "Toadstool",
+          "chance": 15
+        },
+        {
+          "item": "Exciteshroom",
+          "chance": 10
+        },
+        {
+          "item": "Dragon Toadstool",
+          "chance": 6
+        },
+        {
+          "item": "Chaos Mushroom",
+          "chance": 3
+        }
+      ]
+    },
+    {
+      "name": "Prototype Bee Hive",
+      "spot": "honey",
+      "gathers": 2,
+      "most_gathers": 3,
+      "items": [
+        {
+          "item": "Insect Husk",
+          "chance": 10
+        },
+        {
+          "item": "Honey",
+          "chance": 88
+        },
+        {
+          "item": "Snakebee Larva",
+          "chance": 2
+        }
+      ]
+    },
+    {
+      "name": "Production Bee Hive",
+      "spot": "honey",
+      "gathers": 3,
+      "most_gathers": 4,
+      "items": [
+        {
+          "item": "Insect Husk",
+          "chance": 5
+        },
+        {
+          "item": "Honey",
+          "chance": 90
+        },
+        {
+          "item": "Snakebee Larva",
+          "chance": 5
+        }
+      ]
+    },
+    {
+      "name": "Modified Bee Hive",
+      "spot": "honey",
+      "gathers": 5,
+      "most_gathers": 6,
+      "items": [
+        {
+          "item": "Insect Husk",
+          "chance": 0
+        },
+        {
+          "item": "Honey",
+          "chance": 95
+        },
+        {
+          "item": "Snakebee Larva",
+          "chance": 5
+        }
+      ]
+    }
+  ]
+}
