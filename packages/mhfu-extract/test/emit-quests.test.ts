@@ -114,7 +114,7 @@ test("emitQuest reproduces the real 'Hunt 1 Giadrome' quest end-to-end", () => {
   assert.ok(emitted);
   assert.equal(emitted.id, 10006);
   assert.equal(emitted.hub, "village");
-  assert.equal(emitted.rank, null);
+  assert.equal(emitted.rank, "low-rank");
   assert.equal(emitted.stars, 1);
   assert.equal(emitted.map, "Snowy Mountains (Day)");
   assert.equal(emitted.fee, 100);
@@ -196,7 +196,7 @@ test("emitQuest puts the Village's quests on the Village board, whatever their r
   const tigrex = withHeader(10004, 0);
   assert.deepEqual([elder?.hub, elder?.rank], ["village", "low-rank"]);
   assert.deepEqual([high?.hub, high?.rank], ["village", "high-rank"]);
-  assert.deepEqual([tigrex?.hub, tigrex?.rank], ["village", null]);
+  assert.deepEqual([tigrex?.hub, tigrex?.rank], ["village", "low-rank"]);
 });
 
 test("questHub reads the board from the quest ID block", () => {
