@@ -1,7 +1,5 @@
 /** Item combinations (lib/combinations.ts) and data/combinations.json. */
 import assert from "node:assert/strict";
-import fs from "node:fs";
-import path from "node:path";
 import { describe, test } from "node:test";
 import {
   combinationNotes,
@@ -16,6 +14,7 @@ import {
 } from "../src/lib/combinations";
 import type { ItemRecord } from "../src/lib/items";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const ref = (id: number, name: string) => ({ id, name });
 
@@ -126,10 +125,8 @@ describe("combinations", () => {
 });
 
 describe("data/combinations.json", () => {
-  const file = JSON.parse(
-    fs.readFileSync(path.join(DATA_DIR, "combinations.json"), "utf-8"),
-  ) as CombinationsFile;
-  const { items } = JSON.parse(fs.readFileSync(path.join(DATA_DIR, "items.json"), "utf-8")) as {
+  const file = readData(DATA_DIR, "combinations.json") as CombinationsFile;
+  const { items } = readData(DATA_DIR, "items.json") as {
     items: ItemRecord[];
   };
   const byId = new Map(items.map((i) => [i.id, i]));

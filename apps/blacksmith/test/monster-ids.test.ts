@@ -4,10 +4,11 @@ import path from "node:path";
 import { test } from "node:test";
 import { MONSTER_GAME_IDS, monsterRecordFor } from "../src/lib/monster-ids";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const siteMonsters = fs.readdirSync(path.join(DATA_DIR, "monsters")).flatMap((f) =>
   (
-    JSON.parse(fs.readFileSync(path.join(DATA_DIR, "monsters", f), "utf-8")).monsters as {
+    readData(DATA_DIR, "monsters", f).monsters as {
       name: string;
     }[]
   ).map((m) => m.name),

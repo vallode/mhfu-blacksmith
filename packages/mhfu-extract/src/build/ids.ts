@@ -18,10 +18,9 @@
  *   materials resolve through `data/items.json`'s `name`/`aliases`, with
  *   the same normalization as the site's own `src/lib/items.ts`.
  */
-import { readFileSync } from "node:fs";
-import path from "node:path";
 import { isPlaceholderName, loadEnums } from "../strings/enums.js";
 import type { NameTable } from "../strings/names.js";
+import { readData } from "game-data";
 
 /** Keys of `data/equipment-ids.json`. */
 export type EquipmentSlot =
@@ -126,12 +125,8 @@ function equipmentKey(slot: EquipmentSlot, name: string, typeOrSex: string | und
 }
 
 export function loadSiteIndex(dataDir: string): SiteIndex {
-  const equipment = JSON.parse(
-    readFileSync(path.join(dataDir, "equipment-ids.json"), "utf-8"),
-  ) as SiteIndex["equipment"];
-  const itemsFile = JSON.parse(readFileSync(path.join(dataDir, "items.json"), "utf-8")) as {
-    items: ItemRecord[];
-  };
+  const equipment = readData<SiteIndex["equipment"]>(dataDir, "equipment-ids.json");
+  const itemsFile = readData<{ items: ItemRecord[] }>(dataDir, "items.json");
 
   const items = new Map(itemsFile.items.map((i) => [i.id, i]));
   const owners = new Map<string, Set<number>>();

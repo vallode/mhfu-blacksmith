@@ -4,8 +4,6 @@
  * every returned set actually activates what was asked for.
  */
 import assert from "node:assert/strict";
-import fs from "node:fs";
-import path from "node:path";
 import { describe, test } from "node:test";
 import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "../src/lib/constants";
 import { armorSlugs, slugify } from "../src/lib/slug";
@@ -31,10 +29,10 @@ import {
 } from "../src/lib/set-search";
 import { DATA_DIR } from "../src/lib/paths";
 import { loadShippedSetData } from "./helpers/set-data";
+import { readData } from "game-data";
 
 const dataDir = DATA_DIR;
-const readJson = <T>(file: string): T =>
-  JSON.parse(fs.readFileSync(path.join(dataDir, file), "utf-8")) as T;
+const readJson = <T>(file: string): T => readData(dataDir, file) as T;
 
 const trees = readJson<{ skills: SkillTreeData[] }>("skills.json").skills;
 

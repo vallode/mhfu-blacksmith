@@ -48,6 +48,7 @@ import fs from "fs";
 import path from "path";
 import { isPlaceholder, loose, readEnumFile } from "./lib/mhp2g-enum";
 import { DATA_DIR, REPO_ROOT } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const root = process.cwd();
 const ALIAS_FILE = path.join(root, "scripts/equipment-id-aliases.json");
@@ -104,7 +105,7 @@ function fail(msg: string) {
 }
 
 function readItems(file: string, key: "weapons" | "armor"): Record<string, unknown>[] {
-  const data = JSON.parse(fs.readFileSync(path.join(DATA_DIR, file), "utf-8"));
+  const data = readData(DATA_DIR, file);
   return (data[key] as Record<string, unknown>[]).filter((i) => i.name);
 }
 

@@ -7,6 +7,7 @@ import path from "node:path";
 import { encodePng } from "../models/png.js";
 import { readTmh } from "../models/tmh.js";
 import { mapTextureFile } from "../tables/map-layout.js";
+import { readData } from "game-data";
 
 export interface AreaMapsOptions {
   /** An `unpack` output directory. */
@@ -18,9 +19,7 @@ export interface AreaMapsOptions {
 }
 
 export async function runAreaMaps(options: AreaMapsOptions): Promise<number> {
-  const { layouts } = JSON.parse(
-    await readFile(path.join(options.data, "gathering.json"), "utf-8"),
-  ) as { layouts: { texture?: string }[] };
+  const { layouts } = readData<{ layouts: { texture?: string }[] }>(options.data, "gathering.json");
   const textures = new Set(layouts.flatMap((layout) => layout.texture ?? []));
   const out = path.join(options.out, "area-maps");
   await mkdir(out, { recursive: true });

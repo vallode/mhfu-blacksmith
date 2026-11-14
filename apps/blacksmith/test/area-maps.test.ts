@@ -12,6 +12,7 @@ import {
 } from "../src/lib/area-maps";
 import type { GatheringFile } from "../src/lib/item-places";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const items = [{ item: "Herb", chance: 100 }];
 
@@ -61,9 +62,7 @@ test("buildAreaMaps gives each position its own point, and skips layouts with no
 });
 
 test("every committed position is inside its texture, and the texture exists", () => {
-  const file = JSON.parse(
-    readFileSync(path.join(DATA_DIR, "gathering.json"), "utf-8"),
-  ) as GatheringFile;
+  const file = readData(DATA_DIR, "gathering.json") as GatheringFile;
   const bundle = buildAreaMaps(file);
   assert.ok(bundle.maps.length > 50);
   for (const [texture, points] of bundle.maps) {

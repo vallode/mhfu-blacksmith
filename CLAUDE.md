@@ -11,6 +11,8 @@ workspace:
   and the site's `public/models/`.
 - `packages/randomfu`: the randomizer (library, CLI, local settings page).
   Its own `CLAUDE.md` covers styling text written into the game.
+- `packages/game-data`: the one way into `data/`. Everything that reads the
+  game data does so with its `readData`.
 - `data/`: the game data, shared by the site and the extractor.
 
 Packages import each other by package name, never by a relative path out of
@@ -21,5 +23,5 @@ dependencies.
 Checks, from the root: `pnpm lint`, `pnpm typecheck`, `pnpm test`,
 `pnpm format:check`. Run one package's scripts with
 `pnpm --filter <name> <script>` (`blacksmith`, `randomfu-web`,
-`mhfu-extract`, `randomfu`). Never commit a disc image or an unpacked dump
+`mhfu-extract`, `randomfu`, `game-data`). Never commit a disc image or an unpacked dump
 of one (see `.gitignore`).

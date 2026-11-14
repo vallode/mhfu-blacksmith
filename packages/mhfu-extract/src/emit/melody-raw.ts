@@ -10,12 +10,12 @@
  * around it (where a melody table is likely to sit), go to
  * `raw/melodies.json` for offline correlation.
  */
-import { readFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import type { BinaryReader } from "../binary/reader.js";
 import { readBlademasterWeapons, readModelToWeaponType } from "../tables/weapons.js";
 import type { TableAddressResolver } from "../tables/resolver.js";
+import { readData } from "game-data";
 
 /** One horn's raw `NoteGLType` and its committed notes, e.g. `["w","a","b"]`. */
 export interface HornNotes {
@@ -327,12 +327,14 @@ export function hornNotesFromCommitted(
   resolver?: TableAddressResolver,
   dataDir = REPO_DATA_DIR,
 ): HornNotes[] {
-  const ids = JSON.parse(readFileSync(path.join(dataDir, "equipment-ids.json"), "utf-8")) as {
-    melee: ({ name: string; type?: string } | null)[];
-  };
-  const committed = JSON.parse(
-    readFileSync(path.join(dataDir, "weapons", "hunting-horn.json"), "utf-8"),
-  ) as { weapons: { name: string; notes?: string[] | null }[] };
+  const ids = readData<{ melee: ({ name: string; type?: string } | null)[] }>(
+    dataDir,
+    "equipment-ids.json",
+  );
+  const committed = readData<{ weapons: { name: string; notes?: string[] | null }[] }>(
+    dataDir,
+    "weapons/hunting-horn.json",
+  );
   const notesByName = new Map(committed.weapons.map((w) => [w.name, w.notes ?? null]));
   const modelToType = readModelToWeaponType(reader, resolver);
 
@@ -348,9 +350,10 @@ export function hornNotesFromCommitted(
 
 /** Every committed horn melody's note sequence, for `findComboBlocks`. */
 export function committedMelodyCombos(dataDir = REPO_DATA_DIR): string[][] {
-  const committed = JSON.parse(
-    readFileSync(path.join(dataDir, "weapons", "hunting-horn.json"), "utf-8"),
-  ) as { weapons: { melodies?: { combo: string[] }[] }[] };
+  const committed = readData<{ weapons: { melodies?: { combo: string[] }[] }[] }>(
+    dataDir,
+    "weapons/hunting-horn.json",
+  );
   const seen = new Map<string, string[]>();
   for (const horn of committed.weapons) {
     for (const m of horn.melodies ?? []) seen.set(m.combo.join(""), m.combo);

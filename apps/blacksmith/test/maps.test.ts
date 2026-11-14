@@ -5,8 +5,9 @@ import path from "node:path";
 import { test } from "node:test";
 import { mapIconSrc } from "../src/lib/maps";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
-const readJson = (file: string) => JSON.parse(fs.readFileSync(path.join(DATA_DIR, file), "utf8"));
+const readJson = (file: string) => readData(DATA_DIR, file);
 
 test("day, night, size and floor variants share their map's icon", () => {
   assert.equal(mapIconSrc("Jungle (Night)"), "/images/maps/jungle.png");

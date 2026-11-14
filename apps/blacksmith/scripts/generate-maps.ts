@@ -10,6 +10,7 @@ import fs from "fs";
 import path from "path";
 import { slugify, armorSlugs } from "../src/lib/slug";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const root = process.cwd();
 const dataDir = DATA_DIR;
@@ -116,9 +117,9 @@ function weaponNode(
 }
 
 for (const [type, siblingType] of WEAPON_PAIRS) {
-  const weapons = readJson<{ weapons: Weapon[] }>(dataDir, "weapons", `${type}.json`).weapons;
+  const weapons = readData<{ weapons: Weapon[] }>(dataDir, "weapons", `${type}.json`).weapons;
   const sibling = siblingType
-    ? readJson<{ weapons: Weapon[] }>(dataDir, "weapons", `${siblingType}.json`).weapons
+    ? readData<{ weapons: Weapon[] }>(dataDir, "weapons", `${siblingType}.json`).weapons
     : [];
 
   let roots = weapons.filter((w) => !w.improve_from);
@@ -160,7 +161,7 @@ for (const slot of ARMOR_SLOTS) {
   }
 }
 
-const decorations = readJson<{ decorations: Weapon[] }>(dataDir, "decorations.json").decorations;
+const decorations = readData<{ decorations: Weapon[] }>(dataDir, "decorations.json").decorations;
 writeMap(
   path.join(contentDir, "decorations", "map.json"),
   decorations.map((d) => ({
