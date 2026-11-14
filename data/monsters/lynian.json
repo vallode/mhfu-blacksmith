@@ -1,9 +1,8 @@
 {
   "monsters": [
     {
-      "name": "Felyne",
+      "id": 9,
       "type": "lynian",
-      "description": "Cat-like humanoids called Lynians that are noted for their white fur. Felynes are quiet and peaceful until angered, in which case they may attack. Capable of speech, they are sometimes found in the employ of human masters.",
       "drops": {},
       "hitzones": {
         "all": {
@@ -56,22 +55,21 @@
       }
     },
     {
-      "name": "Melynx",
+      "id": 23,
       "type": "lynian",
-      "description": "Cat-like humanoids called Lynians with black fur. Their sticky-fingers never miss a chance to steal things and take them back to their den, forcing victims to seek out their lost items. Distracted by the sight of Felvine.",
       "drops": {
         "1-2 star guild": {
           "shiny drop": [
             {
-              "name": "Secret Pouch",
+              "item": 305,
               "chance": "72%"
             },
             {
-              "name": "Glutton Tuna",
+              "item": 237,
               "chance": "18%"
             },
             {
-              "name": "Felvine",
+              "item": 169,
               "chance": "10%"
             }
           ]
@@ -79,19 +77,19 @@
         "low-rank": {
           "shiny drop": [
             {
-              "name": "Secret Pouch",
+              "item": 305,
               "chance": "72%"
             },
             {
-              "name": "Glutton Tuna",
+              "item": 237,
               "chance": "15%"
             },
             {
-              "name": "Felvine",
+              "item": 169,
               "chance": "8%"
             },
             {
-              "name": "Pawprint Stamp",
+              "item": 906,
               "chance": "5%"
             }
           ]
@@ -99,19 +97,19 @@
         "high-rank": {
           "shiny drop": [
             {
-              "name": "Secret Pouch",
+              "item": 305,
               "chance": "64%"
             },
             {
-              "name": "Felvine",
+              "item": 169,
               "chance": "16%"
             },
             {
-              "name": "Gastronome Tuna",
+              "item": 238,
               "chance": "12%"
             },
             {
-              "name": "Pawprint Stamp",
+              "item": 906,
               "chance": "8%"
             }
           ]
@@ -119,23 +117,23 @@
         "g-rank": {
           "shiny drop": [
             {
-              "name": "Secret Pouch",
+              "item": 305,
               "chance": "60%"
             },
             {
-              "name": "Felvine",
+              "item": 169,
               "chance": "13%"
             },
             {
-              "name": "Gastronome Tuna",
+              "item": 238,
               "chance": "12%"
             },
             {
-              "name": "Pawprint Stamp",
+              "item": 906,
               "chance": "10%"
             },
             {
-              "name": "Felyne Fur Ruby",
+              "item": 319,
               "chance": "5%"
             }
           ]
@@ -192,80 +190,79 @@
       }
     },
     {
-      "name": "Shakalaka",
+      "id": 57,
       "type": "lynian",
-      "description": "A small, four-limbed monster known for always wearing a mask. Their camouflage-like qualities make them difficult to spot, but if you do, you're in trouble! Their leader, the King Shakalaka, is known to wear a crown like object.",
       "drops": {
         "low rank": {
           "body carves (x1)": [
             {
-              "name": "ShakalakaTreasre",
+              "item": 337,
               "chance": "50%"
             },
             {
-              "name": "Red Seed",
+              "item": 194,
               "chance": "14%"
             },
             {
-              "name": "Green Seed",
+              "item": 195,
               "chance": "14%"
             },
             {
-              "name": "Armor Sphere",
+              "item": 223,
               "chance": "10%"
             },
             {
-              "name": "Suiko Jewel",
+              "item": 944,
               "chance": "10%"
             },
             {
-              "name": "BattlefieldJewel",
+              "item": 946,
               "chance": "2%"
             }
           ],
           "shiny drop": [
             {
-              "name": "ShakalakaTreasre",
+              "item": 337,
               "chance": "26%"
             },
             {
-              "name": "Armor Sphere",
+              "item": 223,
               "chance": "25%"
             },
             {
-              "name": "Suiko Jewel",
+              "item": 944,
               "chance": "20%"
             },
             {
-              "name": "Armor Stone",
+              "item": 222,
               "chance": "10%"
             },
             {
-              "name": "Armor Sphere+",
+              "item": 224,
               "chance": "7%"
             },
             {
-              "name": "Gourmet BBQ Spit",
+              "item": 152,
               "chance": "2%"
             },
             {
-              "name": "Silver Egg",
+              "item": 861,
               "chance": "2%"
             },
             {
-              "name": "Firestone",
+              "item": 210,
               "chance": "2%"
             },
             {
-              "name": "BattlefieldJewel",
+              "item": 946,
               "chance": "2%"
             },
             {
-              "name": "Expand Pickaxe",
+              "item": 147,
               "chance": "2%"
             },
             {
-              "name": "Commendation",
+              "item": 903,
               "chance": "2%"
             }
           ]
@@ -273,73 +270,73 @@
         "high rank": {
           "body carves (x1)": [
             {
-              "name": "ShakalakaTreasre",
+              "item": 337,
               "chance": "50%"
             },
             {
-              "name": "Select Mushroom",
+              "item": 176,
               "chance": "18%"
             },
             {
-              "name": "Armor Sphere",
+              "item": 223,
               "chance": "12%"
             },
             {
-              "name": "Armor Sphere+",
+              "item": 224,
               "chance": "8%"
             },
             {
-              "name": "Akito Jewel",
+              "item": 945,
               "chance": "8%"
             },
             {
-              "name": "BattlefieldJewel",
+              "item": 946,
               "chance": "4%"
             }
           ],
           "shiny drop": [
             {
-              "name": "ShakalakaTreasre",
+              "item": 337,
               "chance": "25%"
             },
             {
-              "name": "Armor Sphere+",
+              "item": 224,
               "chance": "25%"
             },
             {
-              "name": "Akito Jewel",
+              "item": 945,
               "chance": "20%"
             },
             {
-              "name": "Armor Stone",
+              "item": 222,
               "chance": "10%"
             },
             {
-              "name": "Firestone",
+              "item": 210,
               "chance": "4%"
             },
             {
-              "name": "Expand Pickaxe",
+              "item": 147,
               "chance": "4%"
             },
             {
-              "name": "Commendation",
+              "item": 903,
               "chance": "4%"
             },
             {
-              "name": "Golden Egg",
+              "item": 862,
               "chance": "2%"
             },
             {
-              "name": "Hrd Armor Sphere",
+              "item": 225,
               "chance": "2%"
             },
             {
-              "name": "Gourmet BBQ Spit",
+              "item": 152,
               "chance": "2%"
             },
             {
-              "name": "LapisLazuliJewel",
+              "item": 947,
               "chance": "2%"
             }
           ]
@@ -347,89 +344,89 @@
         "g rank": {
           "body carves (x1)": [
             {
-              "name": "ShakalakaTreasre",
+              "item": 337,
               "chance": "37%"
             },
             {
-              "name": "Select Mushroom",
+              "item": 176,
               "chance": "25%"
             },
             {
-              "name": "Armor Sphere+",
+              "item": 224,
               "chance": "12%"
             },
             {
-              "name": "Hrd Armor Sphere",
+              "item": 225,
               "chance": "8%"
             },
             {
-              "name": "BattlefieldJewel",
+              "item": 946,
               "chance": "8%"
             },
             {
-              "name": "ShakalakaTreasr+",
+              "item": 338,
               "chance": "5%"
             },
             {
-              "name": "LapisLazuliJewel",
+              "item": 947,
               "chance": "4%"
             },
             {
-              "name": "Hvy Armor Sphere",
+              "item": 226,
               "chance": "1%"
             }
           ],
           "shiny drop": [
             {
-              "name": "ShakalakaTreasre",
+              "item": 337,
               "chance": "20%"
             },
             {
-              "name": "BattlefieldJewel",
+              "item": 946,
               "chance": "18%"
             },
             {
-              "name": "Armor Stone",
+              "item": 222,
               "chance": "12%"
             },
             {
-              "name": "Hrd Armor Sphere",
+              "item": 225,
               "chance": "12%"
             },
             {
-              "name": "ShakalakaTreasr+",
+              "item": 338,
               "chance": "7%"
             },
             {
-              "name": "Master's Skull",
+              "item": 291,
               "chance": "7%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "4%"
             },
             {
-              "name": "Expand Pickaxe",
+              "item": 147,
               "chance": "4%"
             },
             {
-              "name": "Commendation G",
+              "item": 904,
               "chance": "4%"
             },
             {
-              "name": "Golden Egg",
+              "item": 862,
               "chance": "3%"
             },
             {
-              "name": "Gourmet BBQ Spit",
+              "item": 152,
               "chance": "2%"
             },
             {
-              "name": "Hvy Armor Sphere",
+              "item": 226,
               "chance": "2%"
             },
             {
-              "name": "LapisLazuliJewel",
+              "item": 947,
               "chance": "5%"
             }
           ]
@@ -486,77 +483,76 @@
       }
     },
     {
-      "name": "King Shakalaka",
+      "id": 79,
       "type": "lynian",
       "icon": "shakalaka",
-      "description": "This Shakalaka chieftain pulls together the Shakalaka's as one, in order to act. Extremely quick to anger when approached, this hot-head can invoke his fiery wrath with emotion alone. Feared by even the most skilled hunters.",
       "drops": {
         "high rank": {
           "body carves (x2)": [
             {
-              "name": "ShakalakaTreasre",
+              "item": 337,
               "chance": "38%"
             },
             {
-              "name": "ShakaInheritance",
+              "item": 339,
               "chance": "20%"
             },
             {
-              "name": "Armor Sphere+",
+              "item": 224,
               "chance": "14%"
             },
             {
-              "name": "Armor Sphere",
+              "item": 223,
               "chance": "10%"
             },
             {
-              "name": "BattlefieldJewel",
+              "item": 946,
               "chance": "10%"
             },
             {
-              "name": "LapisLazuliJewel",
+              "item": 947,
               "chance": "8%"
             }
           ],
           "shiny drop : stagger during taunt": [
             {
-              "name": "ShakaInheritance",
+              "item": 339,
               "chance": "25%"
             },
             {
-              "name": "ShakalakaTreasre",
+              "item": 337,
               "chance": "15%"
             },
             {
-              "name": "Armor Stone",
+              "item": 222,
               "chance": "15%"
             },
             {
-              "name": "BattlefieldJewel",
+              "item": 946,
               "chance": "15%"
             },
             {
-              "name": "Silver Egg",
+              "item": 861,
               "chance": "8%"
             },
             {
-              "name": "Hrd Armor Sphere",
+              "item": 225,
               "chance": "6%"
             },
             {
-              "name": "LapisLazuliJewel",
+              "item": 947,
               "chance": "6%"
             },
             {
-              "name": "Golden Egg",
+              "item": 862,
               "chance": "4%"
             },
             {
-              "name": "Hvy Armor Sphere",
+              "item": 226,
               "chance": "2%"
             },
             {
-              "name": "Commendation",
+              "item": 903,
               "chance": "4%"
             }
           ]
@@ -564,85 +560,85 @@
         "g rank": {
           "body carves (x2)": [
             {
-              "name": "ShakaInheritance",
+              "item": 339,
               "chance": "25%"
             },
             {
-              "name": "ShakalakaTreasre",
+              "item": 337,
               "chance": "20%"
             },
             {
-              "name": "ShakalakaTreasr+",
+              "item": 338,
               "chance": "18%"
             },
             {
-              "name": "BattlefieldJewel",
+              "item": 946,
               "chance": "12%"
             },
             {
-              "name": "LapisLazuliJewel",
+              "item": 947,
               "chance": "10%"
             },
             {
-              "name": "Hrd Armor Sphere",
+              "item": 225,
               "chance": "10%"
             },
             {
-              "name": "Hvy Armor Sphere",
+              "item": 226,
               "chance": "3%"
             },
             {
-              "name": "Ryl Armor Sphere",
+              "item": 227,
               "chance": "2%"
             }
           ],
           "shiny drop : stagger during taunt": [
             {
-              "name": "ShakalakaTreasr+",
+              "item": 338,
               "chance": "20%"
             },
             {
-              "name": "ShakaInheritance",
+              "item": 339,
               "chance": "16%"
             },
             {
-              "name": "Armor Stone",
+              "item": 222,
               "chance": "15%"
             },
             {
-              "name": "BattlefieldJewel",
+              "item": 946,
               "chance": "10%"
             },
             {
-              "name": "Golden Egg",
+              "item": 862,
               "chance": "8%"
             },
             {
-              "name": "Hrd Armor Sphere",
+              "item": 225,
               "chance": "8%"
             },
             {
-              "name": "LapisLazuliJewel",
+              "item": 947,
               "chance": "6%"
             },
             {
-              "name": "Hvy Armor Sphere",
+              "item": 226,
               "chance": "4%"
             },
             {
-              "name": "Silver Egg",
+              "item": 861,
               "chance": "4%"
             },
             {
-              "name": "Ryl Armor Sphere",
+              "item": 227,
               "chance": "3%"
             },
             {
-              "name": "Tru Armor Sphere",
+              "item": 228,
               "chance": "2%"
             },
             {
-              "name": "Commendation G",
+              "item": 904,
               "chance": "4%"
             }
           ]

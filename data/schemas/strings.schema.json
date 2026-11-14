@@ -1,0 +1,261 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "String table (data/strings/<lang>.json)",
+  "description": "Every name and piece of text the records in data/ show, for one language, by kind and game ID. en.json is complete; another language lists what it has and falls back to English. Written by packages/game-data.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$comment": {
+      "oneOf": [
+        {
+          "type": "string"
+        },
+        {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      ]
+    },
+    "item": {
+      "type": "object",
+      "description": "Item names, by item ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "decoration": {
+      "type": "object",
+      "description": "Decorations the site names otherwise than their item, by item ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "melee": {
+      "type": "object",
+      "description": "Blademaster weapons, by melee weapon ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "ranged": {
+      "type": "object",
+      "description": "Bows and bowguns, by ranged weapon ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "helmet": {
+      "type": "object",
+      "description": "Helmets, by helmet ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "plate": {
+      "type": "object",
+      "description": "Plates, by plate ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "gauntlets": {
+      "type": "object",
+      "description": "Gauntlets, by gauntlets ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "waist": {
+      "type": "object",
+      "description": "Waist armor, by waist ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "leggings": {
+      "type": "object",
+      "description": "Leggings, by leggings ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "skill": {
+      "type": "object",
+      "description": "Skill trees, by skill ID (SkillID)",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "skill_activation": {
+      "type": "object",
+      "description": "Skills, by '<skill ID>:<points>'",
+      "propertyNames": {
+        "pattern": "^-?[0-9]+:-?[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "monster": {
+      "type": "object",
+      "description": "Monsters, by emID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "monster_description": {
+      "type": "object",
+      "description": "The site's description of each monster, by emID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "map": {
+      "type": "object",
+      "description": "Maps, by map ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "quest": {
+      "type": "object",
+      "description": "Quest titles, by quest ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "quest_goal": {
+      "type": "object",
+      "description": "Quest goals, by quest ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "quest_details": {
+      "type": "object",
+      "description": "Quest details, by quest ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "quest_fail": {
+      "type": "object",
+      "description": "Quest failure conditions, by quest ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "quest_client": {
+      "type": "object",
+      "description": "Quest clients, by quest ID",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "aliases": {
+      "type": "object",
+      "description": "Other spellings, by kind and ID. A record's 'alias': n names the n-th; search matches them too.",
+      "additionalProperties": false,
+      "properties": {
+        "item": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[0-9]+$"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "skill": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[0-9]+$"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        },
+        "monster": {
+          "type": "object",
+          "propertyNames": {
+            "pattern": "^[0-9]+$"
+          },
+          "additionalProperties": {
+            "type": "array",
+            "items": {
+              "type": "string",
+              "minLength": 1
+            },
+            "uniqueItems": true
+          }
+        }
+      }
+    }
+  }
+}

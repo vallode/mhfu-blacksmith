@@ -17,7 +17,7 @@
  * Monsters map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the vendored
  * monster.enum, matched to `data/monsters/*.json` by name. Weapons and armor
  * map through the EBOOT: each weapon/armor table entry (indexed by the game's
- * equipment ID, named in data/equipment-ids.json) holds the model ID of its
+ * equipment ID, named in game-data's equipment-ids.json view) holds the model ID of its
  * `weapon/weNNN.pac` or `player/<m|f>/<folder>/...pac`. That needs a
  * decrypted `eboot.bin` in the unpacked directory; without one, only
  * monsters are exported.

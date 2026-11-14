@@ -1,25 +1,28 @@
 {
   "decorations": [
     {
-      "name": "Attack Jewel",
+      "id": 989,
       "skills": [
-        "Attack +1"
+        {
+          "skill": 35,
+          "points": 1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Power Seed",
+          "item": 186,
           "amount": 1,
           "type": "seed",
           "color": "red"
         },
         {
-          "name": "Kut-Ku Scale",
+          "item": 382,
           "amount": 1,
           "type": "scale",
           "color": "pink"
@@ -33,26 +36,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fierce Jewel",
+      "id": 1069,
       "skills": [
-        "Attack +3",
-        "Defense -1"
+        {
+          "skill": 35,
+          "points": 3
+        },
+        {
+          "skill": 36,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Fire Wyvern Claw",
+          "item": 543,
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Demondrug",
+          "item": 15,
           "amount": 2,
           "type": "fluid",
           "color": "red"
@@ -66,32 +75,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Strongest Jewel",
+      "id": 1103,
       "skills": [
-        "Attack +5",
-        "Defense -1"
+        {
+          "skill": 35,
+          "points": 5
+        },
+        {
+          "skill": 36,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "HrdFireWyvernClw",
+          "item": 544,
           "amount": 4,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Mega Demondrug",
+          "item": 16,
           "amount": 3,
           "type": "fluid",
           "color": "red"
         },
         {
-          "name": "Lthr Pelagus Plt",
+          "item": 436,
           "amount": 2,
           "type": "part",
           "color": "yellow"
@@ -105,19 +120,22 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Defense Jewel",
+      "id": 990,
       "skills": [
-        "Defense +1"
+        {
+          "skill": 36,
+          "points": 1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Sm Hermitaur Shl",
+          "item": 494,
           "amount": 2,
           "type": "shell",
           "color": "red"
@@ -131,26 +149,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Turtle Jewel",
+      "id": 1070,
       "skills": [
-        "Defense +3",
-        "All Resist -1"
+        {
+          "skill": 36,
+          "points": 3
+        },
+        {
+          "skill": 42,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Blk Gravios Shl",
+          "item": 629,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Hermitaur Claw",
+          "item": 498,
           "amount": 1,
           "type": "claw",
           "color": "red"
@@ -158,13 +182,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "HrdHermitaurClaw",
+          "item": 500,
           "amount": 1,
           "type": "claw",
           "color": "red"
@@ -177,20 +201,26 @@
       "type": "decoration"
     },
     {
-      "name": "Steadfast Jewel",
+      "id": 952,
       "skills": [
-        "Faint +1",
-        "Paralysis -1"
+        {
+          "skill": 4,
+          "points": 1
+        },
+        {
+          "skill": 2,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Velociprey Fang",
+          "item": 348,
           "amount": 2,
           "type": "claw",
           "color": "blue"
@@ -204,26 +234,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Anti-Faint Jewel",
+      "id": 1059,
       "skills": [
-        "Faint +3",
-        "Paralysis -1"
+        {
+          "skill": 4,
+          "points": 3
+        },
+        {
+          "skill": 2,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Velocidrome Claw",
+          "item": 354,
           "amount": 2,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Pur Rubbery Hide",
+          "item": 406,
           "amount": 1,
           "type": "pelt",
           "color": "slate"
@@ -237,25 +273,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Steadfast Jewel+",
+      "id": 953,
       "skills": [
-        "Faint +2"
+        {
+          "skill": 4,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "LthrC.BlangoTail",
+          "item": 441,
           "amount": 1,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "ThkBullfangoPelt",
+          "item": 322,
           "amount": 2,
           "type": "pelt",
           "color": "orange"
@@ -269,20 +308,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Paralysis Jewel",
+      "id": 948,
       "skills": [
-        "Paralysis +1",
-        "Poison -1"
+        {
+          "skill": 2,
+          "points": 1
+        },
+        {
+          "skill": 5,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Genprey Fang",
+          "item": 357,
           "amount": 1,
           "type": "claw",
           "color": "green"
@@ -296,20 +341,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "AntiParalyzJewel",
+      "id": 1058,
       "skills": [
-        "Paralysis +3",
-        "Poison -1"
+        {
+          "skill": 2,
+          "points": 3
+        },
+        {
+          "skill": 5,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Paralysis Sac",
+          "item": 270,
           "amount": 1,
           "type": "sac",
           "color": "yellow"
@@ -323,25 +374,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Paralysis Jewel+",
+      "id": 949,
       "skills": [
-        "Paralysis +2"
+        {
+          "skill": 2,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "VespoidQn'sCrown",
+          "item": 657,
           "amount": 1,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Thunderbug Jelly",
+          "item": 29,
           "amount": 2,
           "type": "fluid",
           "color": "yellow"
@@ -355,20 +409,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Pep Jewel",
+      "id": 950,
       "skills": [
-        "Sleep +1",
-        "Water Res -1"
+        {
+          "skill": 3,
+          "points": 1
+        },
+        {
+          "skill": 44,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Sleep Herb",
+          "item": 167,
           "amount": 2,
           "type": "herb",
           "color": "cyan"
@@ -382,25 +442,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Jolt Jewel",
+      "id": 951,
       "skills": [
-        "Sleep +2"
+        {
+          "skill": 3,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Sleep Sac",
+          "item": 271,
           "amount": 1,
           "type": "sac",
           "color": "blue"
         },
         {
-          "name": "Sleepyfish",
+          "item": 231,
           "amount": 2,
           "type": "fish",
           "color": "cyan"
@@ -414,20 +477,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Antidote Jewel",
+      "id": 954,
       "skills": [
-        "Poison +1",
-        "Faint -1"
+        {
+          "skill": 5,
+          "points": 1
+        },
+        {
+          "skill": 4,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Ioprey Fang",
+          "item": 365,
           "amount": 2,
           "type": "claw",
           "color": "red"
@@ -441,26 +510,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Antivenin Jewel",
+      "id": 1060,
       "skills": [
-        "Poison +3",
-        "Faint -1"
+        {
+          "skill": 5,
+          "points": 3
+        },
+        {
+          "skill": 4,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Poison Sac",
+          "item": 267,
           "amount": 2,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Herbal Medicine",
+          "item": 30,
           "amount": 2,
           "type": "sac",
           "color": "white"
@@ -474,25 +549,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Antidote Jewel+",
+      "id": 955,
       "skills": [
-        "Poison +2"
+        {
+          "skill": 5,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "DeadlyPoisonSac",
+          "item": 269,
           "amount": 1,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "SpecRemobraSkin+",
+          "item": 334,
           "amount": 2,
           "type": "pelt",
           "color": "gray"
@@ -506,26 +584,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Retroviral Jewel",
+      "id": 956,
       "skills": [
-        "Antiseptic +1",
-        "Sneak -1"
+        {
+          "skill": 6,
+          "points": 1
+        },
+        {
+          "skill": 8,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Conga Pelt",
+          "item": 442,
           "amount": 2,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Bitterbug",
+          "item": 251,
           "amount": 1,
           "type": "insect",
           "color": "blue"
@@ -539,25 +623,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Antiviral Jewel",
+      "id": 957,
       "skills": [
-        "Antiseptic +2"
+        {
+          "skill": 6,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Congalala Pelt",
+          "item": 444,
           "amount": 2,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Antiseptic Stone",
+          "item": 218,
           "amount": 2,
           "type": "ore",
           "color": "yellow"
@@ -565,13 +652,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "HrdCongalalaPlt+",
+          "item": 446,
           "amount": 1,
           "type": "pelt",
           "color": "pink"
@@ -584,25 +671,28 @@
       "type": "decoration"
     },
     {
-      "name": "Tireless Jewel",
+      "id": 1040,
       "skills": [
-        "Fatigue +2"
+        {
+          "skill": 75,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Fire Drgn Webbng",
+          "item": 746,
           "amount": 1,
           "type": "webbing",
           "color": "red"
         },
         {
-          "name": "Sunset Herb",
+          "item": 162,
           "amount": 3,
           "type": "herb",
           "color": "slate"
@@ -610,19 +700,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "ThckFireDrgnScl",
+          "item": 743,
           "amount": 2,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Energy Drink",
+          "item": 34,
           "amount": 1,
           "type": "fluid",
           "color": "yellow"
@@ -635,26 +725,32 @@
       "type": "decoration"
     },
     {
-      "name": "Anchor Jewel",
+      "id": 1035,
       "skills": [
-        "Quake Res +1",
-        "Sleep -1"
+        {
+          "skill": 71,
+          "points": 1
+        },
+        {
+          "skill": 3,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Blangonga Pelt",
+          "item": 432,
           "amount": 1,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Power Pill",
+          "item": 17,
           "amount": 1,
           "type": "sac",
           "color": "red"
@@ -668,26 +764,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tectonic Jewel",
+      "id": 1086,
       "skills": [
-        "Quake Res +3",
-        "Sleep -1"
+        {
+          "skill": 71,
+          "points": 3
+        },
+        {
+          "skill": 3,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Gaoren Pincer",
+          "item": 711,
           "amount": 1,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Blangonga Tail",
+          "item": 437,
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -695,13 +797,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Hard Gaoren Claw",
+          "item": 713,
           "amount": 1,
           "type": "claw",
           "color": "gray"
@@ -714,20 +816,26 @@
       "type": "decoration"
     },
     {
-      "name": "Snowblower Jewel",
+      "id": 958,
       "skills": [
-        "Snow Res +1",
-        "Terrain -1"
+        {
+          "skill": 7,
+          "points": 1
+        },
+        {
+          "skill": 70,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Giaprey Scale",
+          "item": 340,
           "amount": 2,
           "type": "scale",
           "color": "white"
@@ -741,20 +849,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Snowplow Jewel",
+      "id": 1061,
       "skills": [
-        "Snow Res +3",
-        "Terrain -1"
+        {
+          "skill": 7,
+          "points": 3
+        },
+        {
+          "skill": 70,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Blangonga Fang",
+          "item": 429,
           "amount": 1,
           "type": "claw",
           "color": "white"
@@ -768,25 +882,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "SnowblowerJewel+",
+      "id": 959,
       "skills": [
-        "Snow Res +2"
+        {
+          "skill": 7,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "LeathrBlangoTail",
+          "item": 438,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Giaprey Scale+",
+          "item": 341,
           "amount": 3,
           "type": "scale",
           "color": "white"
@@ -800,26 +917,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tip Toe Jewel",
+      "id": 960,
       "skills": [
-        "Sneak +1",
-        "Map -1"
+        {
+          "skill": 8,
+          "points": 1
+        },
+        {
+          "skill": 51,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Sharp Claw",
+          "item": 427,
           "amount": 1,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Ivy",
+          "item": 166,
           "amount": 2,
           "type": "herb",
           "color": "green"
@@ -833,19 +956,22 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ninja Jewel",
+      "id": 961,
       "skills": [
-        "Sneak +2"
+        {
+          "skill": 8,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Chameleos Hide",
+          "item": 729,
           "amount": 1,
           "type": "pelt",
           "color": "slate"
@@ -859,19 +985,22 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Strength Jewel",
+      "id": 962,
       "skills": [
-        "Health +2"
+        {
+          "skill": 9,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Bulldrome Hide",
+          "item": 325,
           "amount": 1,
           "type": "pelt",
           "color": "white"
@@ -885,20 +1014,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Artisan Jewel",
+      "id": 965,
       "skills": [
-        "Artisan +1",
-        "Potential -1"
+        {
+          "skill": 12,
+          "points": 1
+        },
+        {
+          "skill": 63,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Monoblos Heart",
+          "item": 675,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -906,19 +1041,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Ceanataur Claw+",
+          "item": 511,
           "amount": 1,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Lao-ShanCarapace",
+          "item": 699,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -931,32 +1066,38 @@
       "type": "decoration"
     },
     {
-      "name": "Master Jewel",
+      "id": 1094,
       "skills": [
-        "Artisan +4",
-        "Potential -2"
+        {
+          "skill": 12,
+          "points": 4
+        },
+        {
+          "skill": 63,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Akantor Claw",
+          "item": 806,
           "amount": 1,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Daora Sharp Claw",
+          "item": 727,
           "amount": 2,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Basarios Wing",
+          "item": 590,
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -970,20 +1111,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fencer Jewel",
+      "id": 966,
       "skills": [
-        "Fencing +1",
-        "Recovery -1"
+        {
+          "skill": 13,
+          "points": 1
+        },
+        {
+          "skill": 58,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Rathalos Plate",
+          "item": 551,
           "amount": 1,
           "type": "scale",
           "color": "red"
@@ -991,19 +1138,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Azure LaoS Shell",
+          "item": 702,
           "amount": 2,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Slvr Rthlos Tail",
+          "item": 575,
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -1016,32 +1163,38 @@
       "type": "decoration"
     },
     {
-      "name": "Swordsman Jewel",
+      "id": 1095,
       "skills": [
-        "Fencing +4",
-        "Recovery -2"
+        {
+          "skill": 13,
+          "points": 4
+        },
+        {
+          "skill": 58,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Fatalis Eye",
+          "item": 782,
           "amount": 1,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Slvr Rthlos Wing",
+          "item": 577,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Majestic Horn",
+          "item": 635,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
@@ -1055,26 +1208,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Razor Jewel",
+      "id": 964,
       "skills": [
-        "Sharpness +1",
-        "Defense -1"
+        {
+          "skill": 11,
+          "points": 1
+        },
+        {
+          "skill": 36,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Ceanataur Pincer",
+          "item": 509,
           "amount": 1,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Sharpened Beak",
+          "item": 417,
           "amount": 1,
           "type": "bone",
           "color": "slate"
@@ -1088,32 +1247,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Cutter Jewel",
+      "id": 1093,
       "skills": [
-        "Sharpness +4",
-        "Defense -2"
+        {
+          "skill": 11,
+          "points": 4
+        },
+        {
+          "skill": 36,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Gravios BrainStm",
+          "item": 628,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Black Blos Tail",
+          "item": 654,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Garuga Wing",
+          "item": 419,
           "amount": 2,
           "type": "part",
           "color": "slate"
@@ -1127,26 +1292,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sword Draw Jewel",
+      "id": 1042,
       "skills": [
-        "Sword Draw +1",
-        "Expert -1"
+        {
+          "skill": 77,
+          "points": 1
+        },
+        {
+          "skill": 14,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "MonoblosCarapace",
+          "item": 672,
           "amount": 2,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Rathalos Wing",
+          "item": 560,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -1154,13 +1325,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "StrRathalosWing",
+          "item": 561,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -1173,26 +1344,32 @@
       "type": "decoration"
     },
     {
-      "name": "UnsheathingJewel",
+      "id": 1087,
       "skills": [
-        "Sword Draw +3",
-        "Expert -1"
+        {
+          "skill": 77,
+          "points": 3
+        },
+        {
+          "skill": 14,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "HrdCeanataurClaw",
+          "item": 512,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Rathalos Ruby",
+          "item": 552,
           "amount": 1,
           "type": "stone",
           "color": "red"
@@ -1206,26 +1383,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "ShortChargeJewel",
+      "id": 1056,
       "skills": [
-        "ShortCharg +1",
-        "Constitutn -1"
+        {
+          "skill": 98,
+          "points": 1
+        },
+        {
+          "skill": 88,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Daora Horn",
+          "item": 722,
           "amount": 1,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "ElderDragonBlood",
+          "item": 749,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -1233,19 +1416,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Rajang Horn",
+          "item": 456,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "DaoraDragonScal+",
+          "item": 718,
           "amount": 1,
           "type": "scale",
           "color": "gray"
@@ -1258,32 +1441,38 @@
       "type": "decoration"
     },
     {
-      "name": "RapidChargeJewel",
+      "id": 1114,
       "skills": [
-        "ShortCharg +4",
-        "Constitutn -2"
+        {
+          "skill": 98,
+          "points": 4
+        },
+        {
+          "skill": 88,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "GoldRajangPelt+",
+          "item": 467,
           "amount": 2,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "ThckDaoraDrgnScl",
+          "item": 719,
           "amount": 3,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "HvyLavasiothFang",
+          "item": 490,
           "amount": 4,
           "type": "claw",
           "color": "gray"
@@ -1297,26 +1486,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Expert Jewel",
+      "id": 967,
       "skills": [
-        "Expert +1",
-        "Health -1"
+        {
+          "skill": 14,
+          "points": 1
+        },
+        {
+          "skill": 9,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Blue Kut-Ku Shl",
+          "item": 398,
           "amount": 1,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Anteka Antlers",
+          "item": 329,
           "amount": 1,
           "type": "claw",
           "color": "orange"
@@ -1330,26 +1525,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Celebrity Jewel",
+      "id": 1063,
       "skills": [
-        "Expert +3",
-        "Health -1"
+        {
+          "skill": 14,
+          "points": 3
+        },
+        {
+          "skill": 9,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Teostra Shell",
+          "item": 756,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Twisted Horn",
+          "item": 634,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
@@ -1357,13 +1558,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Teostra Horn+",
+          "item": 763,
           "amount": 1,
           "type": "claw",
           "color": "red"
@@ -1376,32 +1577,38 @@
       "type": "decoration"
     },
     {
-      "name": "Hermit Jewel",
+      "id": 1096,
       "skills": [
-        "Expert +5",
-        "Health -1"
+        {
+          "skill": 14,
+          "points": 5
+        },
+        {
+          "skill": 9,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Fire Dragon Pwdr",
+          "item": 747,
           "amount": 2,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Splendid Beak",
+          "item": 392,
           "amount": 1,
           "type": "bone",
           "color": "pink"
         },
         {
-          "name": "Giadrome Skull",
+          "item": 347,
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -1415,25 +1622,29 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Grinder Jewel",
+      "id": 968,
       "skills": [
-        "SwrShrpner +2"
+        {
+          "skill": 15,
+          "alias": 0,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Earth Crystal",
+          "item": 203,
           "amount": 1,
           "type": "ore",
           "color": "white"
         },
         {
-          "name": "Giadrome Claw",
+          "item": 345,
           "amount": 1,
           "type": "claw",
           "color": "white"
@@ -1447,26 +1658,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Stone Wall Jewel",
+      "id": 969,
       "skills": [
-        "Guard +1",
-        "Stamina -1"
+        {
+          "skill": 16,
+          "points": 1
+        },
+        {
+          "skill": 65,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Hermitaur Shell",
+          "item": 495,
           "amount": 1,
           "type": "shell",
           "color": "red"
@@ -1480,26 +1697,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "IronCurtainJewel",
+      "id": 1064,
       "skills": [
-        "Guard +3",
-        "Stamina -1"
+        {
+          "skill": 16,
+          "points": 3
+        },
+        {
+          "skill": 65,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Gaoren Spine",
+          "item": 708,
           "amount": 1,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Gravios Skl Shl",
+          "item": 627,
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -1507,19 +1730,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Gravios Carapace",
+          "item": 624,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Gaoren Claw",
+          "item": 712,
           "amount": 1,
           "type": "claw",
           "color": "gray"
@@ -1532,20 +1755,26 @@
       "type": "decoration"
     },
     {
-      "name": "Hard Wall Jewel",
+      "id": 970,
       "skills": [
-        "Guard Up +1",
-        "Stamina -1"
+        {
+          "skill": 17,
+          "points": 1
+        },
+        {
+          "skill": 65,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Blk Gravios Shl",
+          "item": 629,
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -1559,32 +1788,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "StrongWall Jewel",
+      "id": 1097,
       "skills": [
-        "Guard Up +4",
-        "Stamina -2"
+        {
+          "skill": 17,
+          "points": 4
+        },
+        {
+          "skill": 65,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Blk Gravios Cpc",
+          "item": 630,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Hermitaur Claw+",
+          "item": 499,
           "amount": 4,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Lunastra Shell",
+          "item": 750,
           "amount": 2,
           "type": "part",
           "color": "blue"
@@ -1598,26 +1833,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Wall Jewel",
+      "id": 1065,
       "skills": [
-        "Guard Up +3",
-        "Stamina -1"
+        {
+          "skill": 17,
+          "points": 3
+        },
+        {
+          "skill": 65,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "PlumD.HermitrClw",
+          "item": 502,
           "amount": 2,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "HvyGraviosShell",
+          "item": 625,
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -1631,25 +1872,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "HvnlyShieldJewel",
+      "id": 971,
       "skills": [
-        "Auto-Guard +2"
+        {
+          "skill": 18,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Bullfango Pelt",
+          "item": 321,
           "amount": 1,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Sm Hermitaur Shl",
+          "item": 494,
           "amount": 2,
           "type": "shell",
           "color": "red"
@@ -1663,25 +1907,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hardball Jewel",
+      "id": 972,
       "skills": [
-        "Throw +2"
+        {
+          "skill": 19,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Blango Pelt",
+          "item": 425,
           "amount": 2,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Conga Pelt",
+          "item": 442,
           "amount": 1,
           "type": "pelt",
           "color": "pink"
@@ -1695,26 +1942,33 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Early Bird Jewel",
+      "id": 973,
       "skills": [
-        "Load +1",
-        "Hunger -1"
+        {
+          "skill": 20,
+          "alias": 0,
+          "points": 1
+        },
+        {
+          "skill": 33,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Sm Ceanataur Shl",
+          "item": 503,
           "amount": 1,
           "type": "shell",
           "color": "blue"
         },
         {
-          "name": "Kelbi Hide",
+          "item": 328,
           "amount": 2,
           "type": "pelt",
           "color": "blue"
@@ -1728,32 +1982,39 @@
       "alternative_create_mats": null
     },
     {
-      "name": "High Speed Jewel",
+      "id": 1066,
       "skills": [
-        "Load +3",
-        "Hunger -1"
+        {
+          "skill": 20,
+          "alias": 0,
+          "points": 3
+        },
+        {
+          "skill": 33,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Kirin Hide",
+          "item": 683,
           "amount": 1,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Lao-Shan's Horn",
+          "item": 692,
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "TwstBlkBlosHrn",
+          "item": 646,
           "amount": 2,
           "type": "claw",
           "color": "gray"
@@ -1766,19 +2027,19 @@
       "type": "decoration",
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Azure LaoS Horn",
+          "item": 701,
           "amount": 1,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Black Blos Cpc",
+          "item": 649,
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -1786,20 +2047,27 @@
       ]
     },
     {
-      "name": "Cont. Fire Jewel",
+      "id": 1057,
       "skills": [
-        "Autoreload +1",
-        "Protection -1"
+        {
+          "skill": 99,
+          "alias": 0,
+          "points": 1
+        },
+        {
+          "skill": 37,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Rathian Plate",
+          "item": 523,
           "amount": 1,
           "type": "scale",
           "color": "green"
@@ -1807,19 +2075,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Fatalis Scale",
+          "item": 778,
           "amount": 1,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Sinister Cloth",
+          "item": 817,
           "amount": 2,
           "type": "ukwn",
           "color": "gray"
@@ -1832,32 +2100,39 @@
       "type": "decoration"
     },
     {
-      "name": "Barrage Jewel",
+      "id": 1115,
       "skills": [
-        "Autoreload +4",
-        "Protection -2"
+        {
+          "skill": 99,
+          "alias": 0,
+          "points": 4
+        },
+        {
+          "skill": 37,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Akantor Spike",
+          "item": 808,
           "amount": 1,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "FireWyvrn BrnStm",
+          "item": 547,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Gendrome Skull",
+          "item": 364,
           "amount": 1,
           "type": "part",
           "color": "green"
@@ -1871,26 +2146,33 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Recoilless Jewel",
+      "id": 974,
       "skills": [
-        "Recoil +1",
-        "Load -1"
+        {
+          "skill": 21,
+          "points": 1
+        },
+        {
+          "skill": 20,
+          "alias": 0,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Gaoren Shell",
+          "item": 704,
           "amount": 1,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Blk Gravios Skl",
+          "item": 633,
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -1898,19 +2180,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "PlumD.HermitrClw",
+          "item": 502,
           "amount": 1,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "Gaoren Carapace",
+          "item": 705,
           "amount": 1,
           "type": "shell",
           "color": "gray"
@@ -1923,32 +2205,39 @@
       "type": "decoration"
     },
     {
-      "name": "Shockless Jewel",
+      "id": 1098,
       "skills": [
-        "Recoil +4",
-        "Load -2"
+        {
+          "skill": 21,
+          "points": 4
+        },
+        {
+          "skill": 20,
+          "alias": 0,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Gaoren Thoracic",
+          "item": 709,
           "amount": 2,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 1,
           "type": "stone",
           "color": "cyan"
         },
         {
-          "name": "Lao-Shan's Claw",
+          "item": 691,
           "amount": 2,
           "type": "claw",
           "color": "red"
@@ -1962,26 +2251,33 @@
       "alternative_create_mats": null
     },
     {
-      "name": "StrongShot Jewel",
+      "id": 975,
       "skills": [
-        "NormalS Up +1",
-        "Load -1"
+        {
+          "skill": 22,
+          "points": 1
+        },
+        {
+          "skill": 20,
+          "alias": 0,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Congalala Claw",
+          "item": 448,
           "amount": 1,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "Rumblefish",
+          "item": 233,
           "amount": 5,
           "type": "fish",
           "color": "gray"
@@ -1995,32 +2291,39 @@
       "alternative_create_mats": null
     },
     {
-      "name": "StrongShot Jewel+",
+      "id": 1099,
       "skills": [
-        "NormalS up +4",
-        "Reload -2"
+        {
+          "skill": 22,
+          "alias": 0,
+          "points": 4
+        },
+        {
+          "skill": 20,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "HvyC.BlangoFang",
+          "item": 440,
           "amount": 3,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Blk Rajang Pelt+",
+          "item": 461,
           "amount": 4,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Fire Drgn Jwl",
+          "item": 748,
           "amount": 1,
           "type": "stone",
           "color": "red"
@@ -2034,26 +2337,33 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Pierce Jewel",
+      "id": 976,
       "skills": [
-        "PierceS Up +1",
-        "Load -1"
+        {
+          "skill": 23,
+          "points": 1
+        },
+        {
+          "skill": 20,
+          "alias": 0,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Ceanataur Claw",
+          "item": 510,
           "amount": 1,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Pin Tuna",
+          "item": 232,
           "amount": 3,
           "type": "fish",
           "color": "gray"
@@ -2067,32 +2377,39 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Pierce Jewel+",
+      "id": 1100,
       "skills": [
-        "PierceS up +4",
-        "Reload -2"
+        {
+          "skill": 23,
+          "alias": 0,
+          "points": 4
+        },
+        {
+          "skill": 20,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "TerraCeanatrClaw",
+          "item": 514,
           "amount": 3,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "LthrSlvrRthlsTal",
+          "item": 576,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Daora Jewel",
+          "item": 728,
           "amount": 1,
           "type": "stone",
           "color": "gray"
@@ -2106,26 +2423,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Pellet Jewel",
+      "id": 977,
       "skills": [
-        "PelletS Up +1",
-        "Reload -1"
+        {
+          "skill": 24,
+          "points": 1
+        },
+        {
+          "skill": 20,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Piscine Fang",
+          "item": 468,
           "amount": 3,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Wyvern Fang",
+          "item": 298,
           "amount": 2,
           "type": "claw",
           "color": "white"
@@ -2139,32 +2462,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Pellet Jewel+",
+      "id": 1101,
       "skills": [
-        "PelletS Up +4",
-        "Reload -2"
+        {
+          "skill": 24,
+          "points": 4
+        },
+        {
+          "skill": 20,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "HrdE.CongaClaw",
+          "item": 454,
           "amount": 3,
           "type": "claw",
           "color": "green"
         },
         {
-          "name": "Azure LaoS Claw",
+          "item": 703,
           "amount": 3,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Chameleos Jewel",
+          "item": 740,
           "amount": 1,
           "type": "stone",
           "color": "slate"
@@ -2178,25 +2507,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Shot Bonus Jewel",
+      "id": 978,
       "skills": [
-        "NormalSAdd +2"
+        {
+          "skill": 25,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Lao-Shan's Scale",
+          "item": 693,
           "amount": 1,
           "type": "scale",
           "color": "red"
         },
         {
-          "name": "Normal S Lv3",
+          "item": 98,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -2210,25 +2542,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "PierceBonusJewel",
+      "id": 979,
       "skills": [
-        "PierceSAdd +2"
+        {
+          "skill": 26,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Garuga Scale",
+          "item": 409,
           "amount": 1,
           "type": "scale",
           "color": "slate"
         },
         {
-          "name": "Pierce S Lv3",
+          "item": 101,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -2242,25 +2577,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "PelletBonusJewel",
+      "id": 980,
       "skills": [
-        "PelletSAdd +2"
+        {
+          "skill": 27,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Cephalos Fin",
+          "item": 484,
           "amount": 1,
           "type": "part",
           "color": "cyan"
         },
         {
-          "name": "Pellet S Lv3",
+          "item": 104,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -2274,25 +2612,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crag Bonus Jewel",
+      "id": 981,
       "skills": [
-        "Crag S Add +2"
+        {
+          "skill": 28,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Crag S Lv3",
+          "item": 107,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -2306,25 +2647,29 @@
       "alternative_create_mats": null
     },
     {
-      "name": "ScattrBonusJewel",
+      "id": 982,
       "skills": [
-        "ClustSAdd +2"
+        {
+          "skill": 29,
+          "alias": 0,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Gravios Shell",
+          "item": 623,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Clust S Lv3",
+          "item": 110,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -2338,32 +2683,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Power Coat Jewel",
+      "id": 1050,
       "skills": [
-        "PowerCAdd +1",
-        "ShortCharg -1"
+        {
+          "skill": 85,
+          "points": 1
+        },
+        {
+          "skill": 98,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Congalala Pelt+",
+          "item": 445,
           "amount": 1,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Dark Piece",
+          "item": 774,
           "amount": 1,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Power Coating",
+          "item": 130,
           "amount": 1,
           "type": "fluid",
           "color": "red"
@@ -2377,32 +2728,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "PowerCAddJewel",
+      "id": 1089,
       "skills": [
-        "PowerCAdd +3",
-        "ShortCharg -1"
+        {
+          "skill": 85,
+          "points": 3
+        },
+        {
+          "skill": 98,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "E.CongalalaPelt+",
+          "item": 453,
           "amount": 3,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "Dark Stone",
+          "item": 775,
           "amount": 2,
           "type": "egg",
           "color": "gray"
         },
         {
-          "name": "Power Coating",
+          "item": 130,
           "amount": 50,
           "type": "fluid",
           "color": "red"
@@ -2416,31 +2773,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Combo Coat Jewel",
+      "id": 1051,
       "skills": [
-        "ClsRngCAdd +2"
+        {
+          "skill": 86,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "DaoraDragonScale",
+          "item": 717,
           "amount": 1,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Garuga Mane",
+          "item": 423,
           "amount": 1,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "CloseRngCoating",
+          "item": 134,
           "amount": 1,
           "type": "fluid",
           "color": "white"
@@ -2454,31 +2814,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "PoisonCoatJewel",
+      "id": 1047,
       "skills": [
-        "PoisonCAdd +2"
+        {
+          "skill": 82,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Rubbery Hide",
+          "item": 401,
           "amount": 1,
           "type": "hide",
           "color": "blue"
         },
         {
-          "name": "Poison Sac",
+          "item": 267,
           "amount": 1,
           "type": "sac",
           "color": "slate"
         },
         {
-          "name": "Poison Coating",
+          "item": 131,
           "amount": 1,
           "type": "fluid",
           "color": "slate"
@@ -2492,32 +2855,39 @@
       "alternative_create_mats": null
     },
     {
-      "name": "ParalysCoatJewel",
+      "id": 1048,
       "skills": [
-        "ParalyCAdd +1",
-        "ShortCharge -1"
+        {
+          "skill": 83,
+          "points": 1
+        },
+        {
+          "skill": 98,
+          "alias": 1,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Gendrome Hide",
+          "item": 362,
           "amount": 1,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "Vespoid Wing",
+          "item": 660,
           "amount": 1,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "ParalysisCoating",
+          "item": 132,
           "amount": 1,
           "type": "fluid",
           "color": "yellow"
@@ -2531,32 +2901,39 @@
       "alternative_create_mats": null
     },
     {
-      "name": "ParalysisCAddJwl",
+      "id": 1088,
       "skills": [
-        "ParalyCAdd +3",
-        "ShortCharge -1"
+        {
+          "skill": 83,
+          "points": 3
+        },
+        {
+          "skill": 98,
+          "alias": 1,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Gendrome Tail",
+          "item": 363,
           "amount": 2,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "Vespoid Abdomen",
+          "item": 656,
           "amount": 1,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "ParalysisCoating",
+          "item": 132,
           "amount": 20,
           "type": "fluid",
           "color": "yellow"
@@ -2570,31 +2947,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sleep Coat Jewel",
+      "id": 1049,
       "skills": [
-        "SleepCAdd +2"
+        {
+          "skill": 84,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Plesioth Fin",
+          "item": 473,
           "amount": 1,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Sleep Sac",
+          "item": 271,
           "amount": 1,
           "type": "sac",
           "color": "blue"
         },
         {
-          "name": "Sleep Coating",
+          "item": 133,
           "amount": 1,
           "type": "fluid",
           "color": "cyan"
@@ -2608,26 +2988,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Ammo Box Jewel",
+      "id": 1029,
       "skills": [
-        "Capacity +1",
-        "Reload -1"
+        {
+          "skill": 66,
+          "points": 1
+        },
+        {
+          "skill": 20,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Rathian Spike",
+          "item": 529,
           "amount": 1,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Remobra Skull",
+          "item": 336,
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -2635,19 +3021,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Akantor Scale",
+          "item": 803,
           "amount": 1,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Dragonwood+",
+          "item": 769,
           "amount": 1,
           "type": "part",
           "color": "green"
@@ -2660,32 +3046,38 @@
       "type": "decoration"
     },
     {
-      "name": "Magazine Jewel",
+      "id": 1110,
       "skills": [
-        "Capacity +4",
-        "Reload -2"
+        {
+          "skill": 66,
+          "points": 4
+        },
+        {
+          "skill": 20,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Fatalis Horn",
+          "item": 776,
           "amount": 1,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Rathian Spike+",
+          "item": 530,
           "amount": 1,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Thunderbug Juice",
+          "item": 28,
           "amount": 5,
           "type": "fluid",
           "color": "yellow"
@@ -2699,26 +3091,33 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sniper Jewel",
+      "id": 1030,
       "skills": [
-        "Precision +1",
-        "Autoreload -1"
+        {
+          "skill": 67,
+          "points": 1
+        },
+        {
+          "skill": 99,
+          "alias": 0,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Anteka Antlers",
+          "item": 329,
           "amount": 1,
           "type": "claw",
           "color": "orange"
         },
         {
-          "name": "Sharp Claw",
+          "item": 427,
           "amount": 1,
           "type": "claw",
           "color": "gray"
@@ -2732,31 +3131,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "SharpshootrJewel",
+      "id": 1031,
       "skills": [
-        "Precision +2"
+        {
+          "skill": 67,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Kelbi Horn",
+          "item": 327,
           "amount": 1,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 1,
           "type": "insect",
           "color": "green"
         },
         {
-          "name": "Pin Tuna",
+          "item": 232,
           "amount": 2,
           "type": "fish",
           "color": "gray"
@@ -2770,26 +3172,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "SpecialAtk Jewel",
+      "id": 983,
       "skills": [
-        "Spc Attack +1",
-        "Rec Speed -1"
+        {
+          "skill": 30,
+          "points": 1
+        },
+        {
+          "skill": 10,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Chameleos Claw",
+          "item": 735,
           "amount": 1,
           "type": "claw",
           "color": "slate"
         },
         {
-          "name": "Chaos Mushroom",
+          "item": 184,
           "amount": 2,
           "type": "mushroom",
           "color": "slate"
@@ -2803,26 +3211,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "SpecialAtkJewel+",
+      "id": 1067,
       "skills": [
-        "Spc Attack +3",
-        "Rec Speed -1"
+        {
+          "skill": 30,
+          "points": 3
+        },
+        {
+          "skill": 10,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Lg Pelagus Fang",
+          "item": 452,
           "amount": 3,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "LethrGarugaTail",
+          "item": 422,
           "amount": 1,
           "type": "part",
           "color": "slate"
@@ -2836,32 +3250,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Element Jewel",
+      "id": 984,
       "skills": [
-        "ElementAtk +1",
-        "Rec Speed -1"
+        {
+          "skill": 31,
+          "points": 1
+        },
+        {
+          "skill": 10,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Kirin Horn",
+          "item": 682,
           "amount": 1,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 1,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 1,
           "type": "ore",
           "color": "cyan"
@@ -2875,32 +3295,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Element Jewel+",
+      "id": 1102,
       "skills": [
-        "ElementAtk +4",
-        "Rec Speed -2"
+        {
+          "skill": 31,
+          "points": 4
+        },
+        {
+          "skill": 10,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "LthrKirinThndrTl",
+          "item": 689,
           "amount": 2,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "HvyBlangongaFang",
+          "item": 431,
           "amount": 4,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 1,
           "type": "stone",
           "color": "blue"
@@ -2914,25 +3340,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Bombardier Jewel",
+      "id": 985,
       "skills": [
-        "BombStrUp +2"
+        {
+          "skill": 32,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 1,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "FlynMealPassReg",
+          "item": 916,
           "amount": 1,
           "type": "ticket",
           "color": "pink"
@@ -2946,25 +3375,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "TrapMasterJewel",
+      "id": 1046,
       "skills": [
-        "SpeedSetup +2"
+        {
+          "skill": 81,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "ShakalakaTreasre",
+          "item": 337,
           "amount": 1,
           "type": "sac",
           "color": "orange"
         },
         {
-          "name": "Shock Trap",
+          "item": 79,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -2978,26 +3410,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "PickyEater Jewel",
+      "id": 986,
       "skills": [
-        "Hunger +1",
-        "Cooking -1"
+        {
+          "skill": 33,
+          "points": 1
+        },
+        {
+          "skill": 68,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Cephalos Scale",
+          "item": 482,
           "amount": 1,
           "type": "scale",
           "color": "cyan"
         },
         {
-          "name": "Well-Done Steak",
+          "item": 48,
           "amount": 2,
           "type": "meat",
           "color": "orange"
@@ -3011,32 +3449,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fasting Jewel",
+      "id": 1068,
       "skills": [
-        "Hunger +3",
-        "Cooking -1"
+        {
+          "skill": 33,
+          "points": 3
+        },
+        {
+          "skill": 68,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Grn Plesioth Fin",
+          "item": 479,
           "amount": 1,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Cephalos Scale",
+          "item": 482,
           "amount": 1,
           "type": "scale",
           "color": "cyan"
         },
         {
-          "name": "Gourmet Steak",
+          "item": 49,
           "amount": 1,
           "type": "meat",
           "color": "orange"
@@ -3050,31 +3494,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "No Food Jewel",
+      "id": 987,
       "skills": [
-        "Hunger +2"
+        {
+          "skill": 33,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "ThckGrnPlesioScl",
+          "item": 478,
           "amount": 1,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Coral Cphlos Fin",
+          "item": 487,
           "amount": 1,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Power Juice",
+          "item": 13,
           "amount": 1,
           "type": "fluid",
           "color": "yellow"
@@ -3088,25 +3535,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fatso Jewel",
+      "id": 988,
       "skills": [
-        "Gluttony +2"
+        {
+          "skill": 34,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Congalala Fang",
+          "item": 451,
           "amount": 1,
           "type": "claw",
           "color": "pink"
         },
         {
-          "name": "Glutton Tuna",
+          "item": 237,
           "amount": 1,
           "type": "fish",
           "color": "orange"
@@ -3120,26 +3570,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "QuickEaterJewel",
+      "id": 1032,
       "skills": [
-        "Cooking +1",
-        "Recovery -1"
+        {
+          "skill": 68,
+          "points": 1
+        },
+        {
+          "skill": 58,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Tigrex Fang",
+          "item": 605,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Mosswine Hide",
+          "item": 320,
           "amount": 1,
           "type": "pelt",
           "color": "pink"
@@ -3153,32 +3609,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fast Food Jewel",
+      "id": 1084,
       "skills": [
-        "Cooking +2",
-        "Recovery -1"
+        {
+          "skill": 68,
+          "points": 2
+        },
+        {
+          "skill": 58,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Tigrex Fang+",
+          "item": 606,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Conga Pelt+",
+          "item": 443,
           "amount": 2,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Iodrome Skull",
+          "item": 371,
           "amount": 1,
           "type": "part",
           "color": "red"
@@ -3192,32 +3654,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Scarfing Jewel",
+      "id": 1111,
       "skills": [
-        "Cooking +4",
-        "Recovery -2"
+        {
+          "skill": 68,
+          "points": 4
+        },
+        {
+          "skill": 58,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "YamaTsukamiHide",
+          "item": 771,
           "amount": 3,
           "type": "pelt",
           "color": "green"
         },
         {
-          "name": "Vibrant Comb",
+          "item": 455,
           "amount": 2,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Tigrex Skull Shl",
+          "item": 608,
           "amount": 1,
           "type": "part",
           "color": "yellow"
@@ -3231,25 +3699,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "BBQ Jewel",
+      "id": 1036,
       "skills": [
-        "BBQ +2"
+        {
+          "skill": 72,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "FlynMealPassReg",
+          "item": 916,
           "amount": 1,
           "type": "ticket",
           "color": "pink"
         },
         {
-          "name": "Burnt Meat",
+          "item": 50,
           "amount": 1,
           "type": "meat",
           "color": "gray"
@@ -3263,32 +3734,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Marathon Jewel",
+      "id": 1028,
       "skills": [
-        "Stamina +1",
-        "Hunger -1"
+        {
+          "skill": 65,
+          "points": 1
+        },
+        {
+          "skill": 33,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 1,
           "type": "ore",
           "color": "red"
         },
         {
-          "name": "Mega Juice",
+          "item": 14,
           "amount": 1,
           "type": "fluid",
           "color": "yellow"
         },
         {
-          "name": "Gourmet Steak",
+          "item": 49,
           "amount": 1,
           "type": "meat",
           "color": "orange"
@@ -3302,32 +3779,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Sprinter Jewel",
+      "id": 1109,
       "skills": [
-        "Stamina +4",
-        "Hunger -2"
+        {
+          "skill": 65,
+          "points": 4
+        },
+        {
+          "skill": 33,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Firecell Stone",
+          "item": 211,
           "amount": 3,
           "type": "ore",
           "color": "orange"
         },
         {
-          "name": "Plesioth Fin+",
+          "item": 474,
           "amount": 1,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Gypceros Head",
+          "item": 404,
           "amount": 1,
           "type": "part",
           "color": "blue"
@@ -3340,19 +3823,19 @@
       "type": "decoration",
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "SpecPlesiothFin+",
+          "item": 475,
           "amount": 1,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "HardGypcerosHead",
+          "item": 405,
           "amount": 1,
           "type": "part",
           "color": "blue"
@@ -3360,26 +3843,32 @@
       ]
     },
     {
-      "name": "Constitutn Jewel",
+      "id": 1053,
       "skills": [
-        "Constitutn +1",
-        "Stamina -1"
+        {
+          "skill": 88,
+          "points": 1
+        },
+        {
+          "skill": 65,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "FlynMealPassPlus",
+          "item": 917,
           "amount": 1,
           "type": "ticket",
           "color": "pink"
         },
         {
-          "name": "Sharpened Beak",
+          "item": 417,
           "amount": 1,
           "type": "bone",
           "color": "slate"
@@ -3393,32 +3882,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Health Jewel",
+      "id": 1091,
       "skills": [
-        "Constitutn +3",
-        "Stamina -1"
+        {
+          "skill": 88,
+          "points": 3
+        },
+        {
+          "skill": 65,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Black Narga Pelt",
+          "item": 612,
           "amount": 3,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Hypno Beak",
+          "item": 378,
           "amount": 1,
           "type": "bone",
           "color": "orange"
         },
         {
-          "name": "Pawprint Stamp",
+          "item": 906,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -3426,19 +3921,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "BlackNargaPelt+",
+          "item": 613,
           "amount": 1,
           "type": "pelt",
           "color": "gray"
         },
         {
-          "name": "Hypno Fang",
+          "item": 379,
           "amount": 1,
           "type": "bone",
           "color": "orange"
@@ -3451,25 +3946,28 @@
       "type": "decoration"
     },
     {
-      "name": "Protection Jewel",
+      "id": 991,
       "skills": [
-        "Protection +1"
+        {
+          "skill": 37,
+          "points": 1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Commendation",
+          "item": 903,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Black Pearl",
+          "item": 198,
           "amount": 1,
           "type": "scale",
           "color": "gray"
@@ -3483,25 +3981,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "DivineProtectJwl",
+      "id": 992,
       "skills": [
-        "Protection +2"
+        {
+          "skill": 37,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "UkanlosUnderscl",
+          "item": 810,
           "amount": 1,
           "type": "scale",
           "color": "white"
         },
         {
-          "name": "Commendation S",
+          "item": 905,
           "amount": 1,
           "type": "ticket",
           "color": "white"
@@ -3515,26 +4016,33 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Earplug Jewel",
+      "id": 993,
       "skills": [
-        "HearProtect +1",
-        "Protection -1"
+        {
+          "skill": 38,
+          "alias": 0,
+          "points": 1
+        },
+        {
+          "skill": 37,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Garuga Ear",
+          "item": 415,
           "amount": 1,
           "type": "part",
           "color": "slate"
         },
         {
-          "name": "Hornetaur Head",
+          "item": 665,
           "amount": 1,
           "type": "insect",
           "color": "gray"
@@ -3542,13 +4050,13 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Long Garuga Ear",
+          "item": 416,
           "amount": 1,
           "type": "part",
           "color": "slate"
@@ -3561,32 +4069,39 @@
       "type": "decoration"
     },
     {
-      "name": "Silencer Jewel",
+      "id": 1104,
       "skills": [
-        "HearProtect +4",
-        "Protection -2"
+        {
+          "skill": 38,
+          "alias": 0,
+          "points": 4
+        },
+        {
+          "skill": 37,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Azure Rthlos Cpc",
+          "item": 566,
           "amount": 1,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Tigrex Skull Shl",
+          "item": 608,
           "amount": 1,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Monster Broth",
+          "item": 26,
           "amount": 2,
           "type": "fluid",
           "color": "blue"
@@ -3594,19 +4109,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "HvyAzurRthlsShl",
+          "item": 567,
           "amount": 1,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "LthrChameleoTail",
+          "item": 739,
           "amount": 1,
           "type": "part",
           "color": "slate"
@@ -3619,26 +4134,32 @@
       "type": "decoration"
     },
     {
-      "name": "PaperweightJewel",
+      "id": 1012,
       "skills": [
-        "WindPress +1",
-        "Fate -1"
+        {
+          "skill": 50,
+          "points": 1
+        },
+        {
+          "skill": 55,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Diablos Shell",
+          "item": 637,
           "amount": 1,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Iron Ore",
+          "item": 202,
           "amount": 2,
           "type": "ore",
           "color": "gray"
@@ -3652,26 +4173,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "HeavyMetal Jewel",
+      "id": 1076,
       "skills": [
-        "WindPress +3",
-        "Fate -1"
+        {
+          "skill": 50,
+          "points": 3
+        },
+        {
+          "skill": 55,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Chameleos Hide+",
+          "item": 730,
           "amount": 1,
           "type": "pelt",
           "color": "slate"
         },
         {
-          "name": "Diablos Carapace",
+          "item": 638,
           "amount": 1,
           "type": "part",
           "color": "yellow"
@@ -3685,32 +4212,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Solid Rock Jewel",
+      "id": 1107,
       "skills": [
-        "WindPress +5",
-        "Fate -1"
+        {
+          "skill": 50,
+          "points": 5
+        },
+        {
+          "skill": 55,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "SpecChameleHide+",
+          "item": 731,
           "amount": 2,
           "type": "pelt",
           "color": "slate"
         },
         {
-          "name": "HvyDiablosSpine",
+          "item": 642,
           "amount": 1,
           "type": "part",
           "color": "yellow"
         },
         {
-          "name": "Purecrystal",
+          "item": 217,
           "amount": 1,
           "type": "ore",
           "color": "cyan"
@@ -3724,26 +4257,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Melt-Proof Jewel",
+      "id": 1034,
       "skills": [
-        "Terrain +1",
-        "Faint -1"
+        {
+          "skill": 70,
+          "points": 1
+        },
+        {
+          "skill": 4,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Basarios Shell",
+          "item": 587,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Armor Pill",
+          "item": 20,
           "amount": 1,
           "type": "sac",
           "color": "orange"
@@ -3757,32 +4296,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Anti-Thaw Jewel",
+      "id": 1085,
       "skills": [
-        "Terrain +3",
-        "Faint -1"
+        {
+          "skill": 70,
+          "points": 3
+        },
+        {
+          "skill": 4,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "DaoraDragonScale",
+          "item": 717,
           "amount": 3,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Daora Tail",
+          "item": 724,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Gourmet Fish+",
+          "item": 55,
           "amount": 2,
           "type": "fish",
           "color": "orange"
@@ -3790,25 +4335,25 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Daora Carapace",
+          "item": 715,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Basarios Carpace",
+          "item": 588,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Immunizer",
+          "item": 12,
           "amount": 1,
           "type": "fluid",
           "color": "yellow"
@@ -3821,26 +4366,32 @@
       "type": "decoration"
     },
     {
-      "name": "Evade Jewel",
+      "id": 1025,
       "skills": [
-        "Evade +1",
-        "Cold Res -1"
+        {
+          "skill": 62,
+          "points": 1
+        },
+        {
+          "skill": 49,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Sm Lobstershell",
+          "item": 515,
           "amount": 1,
           "type": "shell",
           "color": "pink"
         },
         {
-          "name": "Hercudrome",
+          "item": 258,
           "amount": 1,
           "type": "insect",
           "color": "red"
@@ -3848,19 +4399,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Narga Scale+",
+          "item": 609,
           "amount": 1,
           "type": "scale",
           "color": "gray"
         },
         {
-          "name": "Great Hornfly",
+          "item": 264,
           "amount": 1,
           "type": "insect",
           "color": "yellow"
@@ -3873,26 +4424,32 @@
       "type": "decoration"
     },
     {
-      "name": "Dodge Jewel",
+      "id": 1080,
       "skills": [
-        "Evade +3",
-        "Cold Res -1"
+        {
+          "skill": 62,
+          "points": 3
+        },
+        {
+          "skill": 49,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Lg Lobstershell",
+          "item": 516,
           "amount": 1,
           "type": "shell",
           "color": "pink"
         },
         {
-          "name": "Gendrome Tail",
+          "item": 363,
           "amount": 1,
           "type": "pelt",
           "color": "green"
@@ -3906,26 +4463,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Jumping Jewel",
+      "id": 1041,
       "skills": [
-        "Evade Dist +1",
-        "Attack -1"
+        {
+          "skill": 76,
+          "points": 1
+        },
+        {
+          "skill": 35,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "NargaCuttingWing",
+          "item": 618,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Lunastra Spike",
+          "item": 755,
           "amount": 1,
           "type": "claw",
           "color": "blue"
@@ -3933,19 +4496,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "StrNargaCttngWng",
+          "item": 619,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Emperor Cricket",
+          "item": 256,
           "amount": 5,
           "type": "insect",
           "color": "orange"
@@ -3958,32 +4521,38 @@
       "type": "decoration"
     },
     {
-      "name": "Flying Jewel",
+      "id": 1113,
       "skills": [
-        "Evade Dist +4",
-        "Attack -2"
+        {
+          "skill": 76,
+          "points": 4
+        },
+        {
+          "skill": 35,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Str Fatalis Wng",
+          "item": 785,
           "amount": 2,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Narga Brain Stem",
+          "item": 622,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "SilverGarugaPelt",
+          "item": 424,
           "amount": 3,
           "type": "part",
           "color": "white"
@@ -3997,26 +4566,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Danger Jewel",
+      "id": 1026,
       "skills": [
-        "Potential +1",
-        "Protection -1"
+        {
+          "skill": 63,
+          "points": 1
+        },
+        {
+          "skill": 37,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Monoblos Spine",
+          "item": 673,
           "amount": 1,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Wyvern Skull Shl",
+          "item": 493,
           "amount": 1,
           "type": "part",
           "color": "gray"
@@ -4030,32 +4605,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crisis Jewel",
+      "id": 1108,
       "skills": [
-        "Potential +4",
-        "Protection -2"
+        {
+          "skill": 63,
+          "points": 4
+        },
+        {
+          "skill": 37,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Gold Rajang Pelt",
+          "item": 466,
           "amount": 1,
           "type": "pelt",
           "color": "yellow"
         },
         {
-          "name": "Blood Red Horn",
+          "item": 669,
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Wht Monoblos Hrn",
+          "item": 676,
           "amount": 1,
           "type": "claw",
           "color": "white"
@@ -4069,32 +4650,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Pinch Jewel",
+      "id": 1081,
       "skills": [
-        "Potential +3",
-        "Protection -1"
+        {
+          "skill": 63,
+          "points": 3
+        },
+        {
+          "skill": 37,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Akantor Shell",
+          "item": 804,
           "amount": 1,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Top-GrdRedHorn",
+          "item": 670,
           "amount": 1,
           "type": "claw",
           "color": "red"
         },
         {
-          "name": "Blk Rajang Pelt",
+          "item": 460,
           "amount": 3,
           "type": "pelt",
           "color": "gray"
@@ -4108,26 +4695,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Guts Jewel",
+      "id": 1052,
       "skills": [
-        "Guts +1",
-        "MixSucRate -1"
+        {
+          "skill": 87,
+          "points": 1
+        },
+        {
+          "skill": 59,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "PlumD.HermitrShl",
+          "item": 501,
           "amount": 1,
           "type": "shell",
           "color": "slate"
         },
         {
-          "name": "RobustWyvernBone",
+          "item": 293,
           "amount": 2,
           "type": "bone",
           "color": "cyan"
@@ -4141,32 +4734,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "More Guts Jewel",
+      "id": 1090,
       "skills": [
-        "Guts +3",
-        "MixSucRate -1"
+        {
+          "skill": 87,
+          "points": 3
+        },
+        {
+          "skill": 59,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "HvyLavasiothShl",
+          "item": 489,
           "amount": 3,
           "type": "part",
           "color": "gray"
         },
         {
-          "name": "Hvy Gaoren Spine",
+          "item": 710,
           "amount": 1,
           "type": "shell",
           "color": "gray"
         },
         {
-          "name": "Tailed Frog",
+          "item": 245,
           "amount": 2,
           "type": "pelt",
           "color": "cyan"
@@ -4180,25 +4779,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Alarm Jewel",
+      "id": 994,
       "skills": [
-        "Anti-Theft +2"
+        {
+          "skill": 39,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Felvine",
+          "item": 169,
           "amount": 2,
           "type": "herb",
           "color": "yellow"
         },
         {
-          "name": "Unknown Skull",
+          "item": 290,
           "amount": 1,
           "type": "bone",
           "color": "yellow"
@@ -4212,26 +4814,33 @@
       "alternative_create_mats": null
     },
     {
-      "name": "StayingPwr Jewel",
+      "id": 1027,
       "skills": [
-        "Everlasting +1",
-        "Poison -1"
+        {
+          "skill": 64,
+          "alias": 0,
+          "points": 1
+        },
+        {
+          "skill": 5,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Grn Plesioth Scl",
+          "item": 476,
           "amount": 1,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Vespoid Shell",
+          "item": 658,
           "amount": 2,
           "type": "insect",
           "color": "yellow"
@@ -4245,26 +4854,33 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Permanence Jewel",
+      "id": 1082,
       "skills": [
-        "Everlasting +2",
-        "Poison -1"
+        {
+          "skill": 64,
+          "alias": 0,
+          "points": 2
+        },
+        {
+          "skill": 5,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Grn Plsioth Scl+",
+          "item": 477,
           "amount": 1,
           "type": "scale",
           "color": "green"
         },
         {
-          "name": "Vespoid InnrWng",
+          "item": 661,
           "amount": 1,
           "type": "webbing",
           "color": "yellow"
@@ -4278,32 +4894,39 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Eternal Jewel",
+      "id": 1083,
       "skills": [
-        "Everlasting +3",
-        "Poison -1"
+        {
+          "skill": 64,
+          "alias": 0,
+          "points": 3
+        },
+        {
+          "skill": 5,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "SpecGrnPlesioFn+",
+          "item": 481,
           "amount": 1,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "Vspoid Razorwing",
+          "item": 662,
           "amount": 1,
           "type": "webbing",
           "color": "yellow"
         },
         {
-          "name": "Catalyst",
+          "item": 33,
           "amount": 3,
           "type": "sac",
           "color": "gray"
@@ -4317,26 +4940,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Friendship Jewel",
+      "id": 995,
       "skills": [
-        "Wide Area +1",
-        "Sneak -1"
+        {
+          "skill": 40,
+          "points": 1
+        },
+        {
+          "skill": 8,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Alluring Hide",
+          "item": 584,
           "amount": 1,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Cactus Flower",
+          "item": 170,
           "amount": 2,
           "type": "herb",
           "color": "pink"
@@ -4350,32 +4979,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Beloved Jewel",
+      "id": 1071,
       "skills": [
-        "Wide Area +3",
-        "Sneak -1"
+        {
+          "skill": 40,
+          "points": 3
+        },
+        {
+          "skill": 8,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Alluring Webbing",
+          "item": 585,
           "amount": 1,
           "type": "webbing",
           "color": "pink"
         },
         {
-          "name": "Lifepowder",
+          "item": 37,
           "amount": 1,
           "type": "sac",
           "color": "white"
         },
         {
-          "name": "Dosbiscus",
+          "item": 172,
           "amount": 4,
           "type": "herb",
           "color": "red"
@@ -4389,32 +5024,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tenderness Jewel",
+      "id": 1105,
       "skills": [
-        "Wide Area +5",
-        "Sneak -1"
+        {
+          "skill": 40,
+          "points": 5
+        },
+        {
+          "skill": 8,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "StrAlluringWing",
+          "item": 586,
           "amount": 3,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "ThckPnkRathnScl",
+          "item": 534,
           "amount": 4,
           "type": "scale",
           "color": "pink"
         },
         {
-          "name": "Wyvern Stone",
+          "item": 300,
           "amount": 1,
           "type": "stone",
           "color": "cyan"
@@ -4428,25 +5069,29 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Backpacker Jewel",
+      "id": 996,
       "skills": [
-        "Backpacking +2"
+        {
+          "skill": 41,
+          "alias": 0,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Power Extract",
+          "item": 279,
           "amount": 1,
           "type": "fluid",
           "color": "blue"
         },
         {
-          "name": "Giant Bone",
+          "item": 295,
           "amount": 1,
           "type": "bone",
           "color": "white"
@@ -4460,20 +5105,27 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Impervious Jewel",
+      "id": 997,
       "skills": [
-        "All Resist +1",
-        "Everlasting -1"
+        {
+          "skill": 42,
+          "points": 1
+        },
+        {
+          "skill": 64,
+          "alias": 0,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Kirin Mane",
+          "item": 686,
           "amount": 1,
           "type": "part",
           "color": "white"
@@ -4487,26 +5139,33 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Omnipotent Jewel",
+      "id": 1072,
       "skills": [
-        "All Resist +3",
-        "Everlasting -1"
+        {
+          "skill": 42,
+          "points": 3
+        },
+        {
+          "skill": 64,
+          "alias": 0,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Kirin Azure Horn",
+          "item": 690,
           "amount": 1,
           "type": "claw",
           "color": "blue"
         },
         {
-          "name": "Dragonmoss",
+          "item": 765,
           "amount": 1,
           "type": "part",
           "color": "green"
@@ -4520,32 +5179,39 @@
       "alternative_create_mats": null
     },
     {
-      "name": "TrueResistJewel",
+      "id": 1106,
       "skills": [
-        "All Resist +5",
-        "Everlasting -1"
+        {
+          "skill": 42,
+          "points": 5
+        },
+        {
+          "skill": 64,
+          "alias": 0,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "SpecialKirinHide",
+          "item": 685,
           "amount": 2,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "AncientDrgnmoss",
+          "item": 767,
           "amount": 1,
           "type": "part",
           "color": "green"
         },
         {
-          "name": "BlackBeltCoinG",
+          "item": 899,
           "amount": 3,
           "type": "coin",
           "color": "gray"
@@ -4559,20 +5225,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Inferno Jewel",
+      "id": 998,
       "skills": [
-        "Fire Res +1",
-        "Water Res -1"
+        {
+          "skill": 43,
+          "points": 1
+        },
+        {
+          "skill": 44,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Fire Herb",
+          "item": 165,
           "amount": 2,
           "type": "herb",
           "color": "red"
@@ -4586,19 +5258,22 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Crimson Jewel",
+      "id": 999,
       "skills": [
-        "Fire Res +2"
+        {
+          "skill": 43,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Flame Sac",
+          "item": 273,
           "amount": 1,
           "type": "sac",
           "color": "red"
@@ -4612,20 +5287,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Stream Jewel",
+      "id": 1000,
       "skills": [
-        "Water Res +1",
-        "ThunderRes -1"
+        {
+          "skill": 44,
+          "points": 1
+        },
+        {
+          "skill": 46,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Knife Mackerel",
+          "item": 229,
           "amount": 2,
           "type": "fish",
           "color": "yellow"
@@ -4639,19 +5320,22 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Torrent Jewel",
+      "id": 1001,
       "skills": [
-        "Water Res +2"
+        {
+          "skill": 44,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Plesioth Scale",
+          "item": 470,
           "amount": 1,
           "type": "scale",
           "color": "blue"
@@ -4665,20 +5349,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Freeze Jewel",
+      "id": 1002,
       "skills": [
-        "Ice Res +1",
-        "Fire Res -1"
+        {
+          "skill": 45,
+          "points": 1
+        },
+        {
+          "skill": 43,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 2,
           "type": "ore",
           "color": "cyan"
@@ -4692,19 +5382,22 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Glacier Jewel",
+      "id": 1003,
       "skills": [
-        "Ice Res +2"
+        {
+          "skill": 45,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Giadrome Hide",
+          "item": 344,
           "amount": 2,
           "type": "pelt",
           "color": "white"
@@ -4718,20 +5411,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Lightning Jewel",
+      "id": 1004,
       "skills": [
-        "ThunderRes +1",
-        "Ice Res -1"
+        {
+          "skill": 46,
+          "points": 1
+        },
+        {
+          "skill": 45,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Thunderbug",
+          "item": 253,
           "amount": 2,
           "type": "insect",
           "color": "yellow"
@@ -4745,19 +5444,22 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Thunder Jewel",
+      "id": 1005,
       "skills": [
-        "ThunderRes +2"
+        {
+          "skill": 46,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Electro Sac",
+          "item": 276,
           "amount": 1,
           "type": "sac",
           "color": "yellow"
@@ -4771,26 +5473,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Slayer Jewel",
+      "id": 1006,
       "skills": [
-        "Dragon Res +1",
-        "Poison -1"
+        {
+          "skill": 47,
+          "points": 1
+        },
+        {
+          "skill": 5,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Hornetaur Head",
+          "item": 665,
           "amount": 1,
           "type": "insect",
           "color": "gray"
         },
         {
-          "name": "Dragon Seed",
+          "item": 188,
           "amount": 1,
           "type": "seed",
           "color": "red"
@@ -4804,26 +5512,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Extinction Jewel",
+      "id": 1073,
       "skills": [
-        "Dragon Res +3",
-        "Poison -1"
+        {
+          "skill": 47,
+          "points": 3
+        },
+        {
+          "skill": 5,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "HornetaurInnrWng",
+          "item": 667,
           "amount": 2,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Dragon S",
+          "item": 115,
           "amount": 3,
           "type": "ukwn",
           "color": "white"
@@ -4837,25 +5551,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "DragonslyrJewel",
+      "id": 1007,
       "skills": [
-        "Dragon Res +2"
+        {
+          "skill": 47,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Hornet Razorwing",
+          "item": 668,
           "amount": 3,
           "type": "webbing",
           "color": "gray"
         },
         {
-          "name": "Rajang Tail",
+          "item": 464,
           "amount": 1,
           "type": "part",
           "color": "yellow"
@@ -4869,20 +5586,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "CoolBreeze Jewel",
+      "id": 1008,
       "skills": [
-        "Heat Res +1",
-        "Cold Res -1"
+        {
+          "skill": 48,
+          "points": 1
+        },
+        {
+          "skill": 49,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Blango Pelt",
+          "item": 425,
           "amount": 2,
           "type": "pelt",
           "color": "white"
@@ -4896,26 +5619,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Cold Wind Jewel",
+      "id": 1074,
       "skills": [
-        "Heat Res +3",
-        "Cold Res -1"
+        {
+          "skill": 48,
+          "points": 3
+        },
+        {
+          "skill": 49,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Blangonga Whiskr",
+          "item": 435,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Ice Crystal",
+          "item": 219,
           "amount": 4,
           "type": "ore",
           "color": "cyan"
@@ -4929,25 +5658,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "ColdBreezeJewel",
+      "id": 1009,
       "skills": [
-        "Heat Res +2"
+        {
+          "skill": 48,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "HrdBlangongaPlt+",
+          "item": 434,
           "amount": 2,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Giaprey Hide+",
+          "item": 343,
           "amount": 1,
           "type": "pelt",
           "color": "white"
@@ -4961,20 +5693,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "WarmBreeze Jewel",
+      "id": 1010,
       "skills": [
-        "Cold Res +1",
-        "Heat Res -1"
+        {
+          "skill": 49,
+          "points": 1
+        },
+        {
+          "skill": 48,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Cephalos Scale",
+          "item": 482,
           "amount": 2,
           "type": "scale",
           "color": "cyan"
@@ -4988,26 +5726,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Hot Wind Jewel",
+      "id": 1075,
       "skills": [
-        "Cold Res +3",
-        "Heat Res -1"
+        {
+          "skill": 49,
+          "points": 3
+        },
+        {
+          "skill": 48,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Cephalos Fin",
+          "item": 484,
           "amount": 1,
           "type": "part",
           "color": "cyan"
         },
         {
-          "name": "Nitroshroom",
+          "item": 178,
           "amount": 4,
           "type": "mushroom",
           "color": "red"
@@ -5021,25 +5765,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "HotBreezeJewel",
+      "id": 1011,
       "skills": [
-        "Cold Res +2"
+        {
+          "skill": 49,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "C.BlangongaPelt+",
+          "item": 439,
           "amount": 2,
           "type": "pelt",
           "color": "orange"
         },
         {
-          "name": "Genprey Hide+",
+          "item": 361,
           "amount": 1,
           "type": "pelt",
           "color": "green"
@@ -5053,25 +5800,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Map Jewel",
+      "id": 1013,
       "skills": [
-        "Map +2"
+        {
+          "skill": 51,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 1,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Rainbow Ore",
+          "item": 220,
           "amount": 2,
           "type": "ore",
           "color": "pink"
@@ -5085,25 +5835,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Gathering Jewel",
+      "id": 1014,
       "skills": [
-        "Gathering +2"
+        {
+          "skill": 52,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Dosbiscus",
+          "item": 172,
           "amount": 1,
           "type": "herb",
           "color": "red"
         },
         {
-          "name": "Bughopper",
+          "item": 248,
           "amount": 2,
           "type": "insect",
           "color": "white"
@@ -5117,25 +5870,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Grab'n'DashJewel",
+      "id": 1015,
       "skills": [
-        "HiSpdGathr +2"
+        {
+          "skill": 53,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Great Hornfly",
+          "item": 264,
           "amount": 1,
           "type": "insect",
           "color": "yellow"
         },
         {
-          "name": "Power Extract",
+          "item": 279,
           "amount": 1,
           "type": "fluid",
           "color": "blue"
@@ -5149,31 +5905,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Good Luck Jewel",
+      "id": 1016,
       "skills": [
-        "Whim +1"
+        {
+          "skill": 54,
+          "points": 1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Exciteshroom",
+          "item": 181,
           "amount": 2,
           "type": "mushroom",
           "color": "slate"
         },
         {
-          "name": "Boomerang",
+          "item": 57,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
         },
         {
-          "name": "Flute",
+          "item": 156,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -5187,31 +5946,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Blessing Jewel",
+      "id": 1017,
       "skills": [
-        "Whim +2"
+        {
+          "skill": 54,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Pnk Rathian Shl",
+          "item": 535,
           "amount": 1,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Mega Pickaxe",
+          "item": 146,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
         },
         {
-          "name": "Mega Bugnet",
+          "item": 150,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -5225,26 +5987,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "HideCutter Jewel",
+      "id": 1033,
       "skills": [
-        "Carving +1",
-        "Fate -1"
+        {
+          "skill": 69,
+          "points": 1
+        },
+        {
+          "skill": 55,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Daora Claw",
+          "item": 726,
           "amount": 1,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "ShakalakaTreasre",
+          "item": 337,
           "amount": 1,
           "type": "sac",
           "color": "orange"
@@ -5252,19 +6020,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Rubbery Hide+",
+          "item": 402,
           "amount": 1,
           "type": "pelt",
           "color": "blue"
         },
         {
-          "name": "ShakaInheritance",
+          "item": 339,
           "amount": 1,
           "type": "sac",
           "color": "orange"
@@ -5277,32 +6045,38 @@
       "type": "decoration"
     },
     {
-      "name": "Carving Jewel",
+      "id": 1112,
       "skills": [
-        "Carving +4",
-        "Fate -2"
+        {
+          "skill": 69,
+          "points": 4
+        },
+        {
+          "skill": 55,
+          "points": -2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "UkanlosDiggngClw",
+          "item": 812,
           "amount": 3,
           "type": "claw",
           "color": "white"
         },
         {
-          "name": "ShakalakaTreasr+",
+          "item": 338,
           "amount": 1,
           "type": "sac",
           "color": "orange"
         },
         {
-          "name": "Big Wyvern Stone",
+          "item": 301,
           "amount": 1,
           "type": "stone",
           "color": "blue"
@@ -5316,32 +6090,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Tranq Jewel",
+      "id": 1054,
       "skills": [
-        "Tranquilzr +1",
-        "Fate -1"
+        {
+          "skill": 89,
+          "points": 1
+        },
+        {
+          "skill": 55,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "OrangeHypnoPelt",
+          "item": 372,
           "amount": 1,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "Piscine Fang",
+          "item": 468,
           "amount": 1,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Net",
+          "item": 76,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -5355,32 +6135,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Knockout Jewel",
+      "id": 1092,
       "skills": [
-        "Tranquilzr +3",
-        "Fate -1"
+        {
+          "skill": 89,
+          "points": 3
+        },
+        {
+          "skill": 55,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "OrangeHypnoPelt+",
+          "item": 373,
           "amount": 3,
           "type": "part",
           "color": "orange"
         },
         {
-          "name": "HvyPiscineFang",
+          "item": 469,
           "amount": 3,
           "type": "claw",
           "color": "yellow"
         },
         {
-          "name": "Trap Tool",
+          "item": 77,
           "amount": 2,
           "type": "ukwn",
           "color": "white"
@@ -5394,20 +6180,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fate Jewel",
+      "id": 1018,
       "skills": [
-        "Fate +1",
-        "Whim -1"
+        {
+          "skill": 55,
+          "points": 1
+        },
+        {
+          "skill": 54,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Steel Egg",
+          "item": 860,
           "amount": 1,
           "type": "egg",
           "color": "gray"
@@ -5421,20 +6213,26 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Destiny Jewel",
+      "id": 1077,
       "skills": [
-        "Fate +3",
-        "Whim -1"
+        {
+          "skill": 55,
+          "points": 3
+        },
+        {
+          "skill": 54,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Golden Egg",
+          "item": 862,
           "amount": 1,
           "type": "egg",
           "color": "yellow"
@@ -5448,25 +6246,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fisher Jewel",
+      "id": 1019,
       "skills": [
-        "Fishing +2"
+        {
+          "skill": 56,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Cricket",
+          "item": 136,
           "amount": 1,
           "type": "bait",
           "color": "green"
         },
         {
-          "name": "Yambug",
+          "item": 247,
           "amount": 1,
           "type": "insect",
           "color": "blue"
@@ -5480,25 +6281,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Psychic Jewel",
+      "id": 1020,
       "skills": [
-        "PsychicVis +2"
+        {
+          "skill": 57,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Kut-Ku Ear",
+          "item": 388,
           "amount": 1,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Psychoserum",
+          "item": 24,
           "amount": 1,
           "type": "fluid",
           "color": "orange"
@@ -5512,25 +6316,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Perceive Jewel",
+      "id": 1055,
       "skills": [
-        "Perceive +2"
+        {
+          "skill": 90,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "RainbowTailFeath",
+          "item": 380,
           "amount": 1,
           "type": "scale",
           "color": "orange"
         },
         {
-          "name": "Binoculars",
+          "item": 154,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -5544,26 +6351,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Feel Good Jewel",
+      "id": 963,
       "skills": [
-        "Rec Speed +1",
-        "Faint -1"
+        {
+          "skill": 10,
+          "points": 1
+        },
+        {
+          "skill": 4,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Pale Extract",
+          "item": 280,
           "amount": 1,
           "type": "fluid",
           "color": "blue"
         },
         {
-          "name": "Killer Beetle",
+          "item": 257,
           "amount": 1,
           "type": "insect",
           "color": "green"
@@ -5577,32 +6390,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "SpeedyRecvrJewel",
+      "id": 1062,
       "skills": [
-        "Rec Speed +3",
-        "Faint -1"
+        {
+          "skill": 10,
+          "points": 3
+        },
+        {
+          "skill": 4,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Pale Bone",
+          "item": 581,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Lao-Shan's Shell",
+          "item": 698,
           "amount": 3,
           "type": "part",
           "color": "red"
         },
         {
-          "name": "Lifecrystals",
+          "item": 36,
           "amount": 10,
           "type": "sac",
           "color": "white"
@@ -5610,19 +6429,19 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Pale Khezu Steak",
+          "item": 582,
           "amount": 1,
           "type": "part",
           "color": "white"
         },
         {
-          "name": "Lifepowder",
+          "item": 37,
           "amount": 2,
           "type": "sac",
           "color": "white"
@@ -5635,26 +6454,32 @@
       "type": "decoration"
     },
     {
-      "name": "Curing Jewel",
+      "id": 1021,
       "skills": [
-        "Recovery +1",
-        "Health -1"
+        {
+          "skill": 58,
+          "points": 1
+        },
+        {
+          "skill": 9,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Flabby Hide",
+          "item": 578,
           "amount": 1,
           "type": "hide",
           "color": "white"
         },
         {
-          "name": "Kelbi Horn",
+          "item": 327,
           "amount": 2,
           "type": "claw",
           "color": "blue"
@@ -5668,26 +6493,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Cure All Jewel",
+      "id": 1078,
       "skills": [
-        "Recovery +2",
-        "Health -1"
+        {
+          "skill": 58,
+          "points": 2
+        },
+        {
+          "skill": 9,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Khezu Hide - Tan",
+          "item": 579,
           "amount": 1,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "Ancient Potion",
+          "item": 32,
           "amount": 1,
           "type": "sac",
           "color": "red"
@@ -5701,32 +6532,38 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Cure All Jewel+",
+      "id": 1079,
       "skills": [
-        "Recovery +3",
-        "Health -1"
+        {
+          "skill": 58,
+          "points": 3
+        },
+        {
+          "skill": 9,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "KhezuHide-Cream",
+          "item": 580,
           "amount": 3,
           "type": "pelt",
           "color": "white"
         },
         {
-          "name": "LunastraCarapace",
+          "item": 751,
           "amount": 2,
           "type": "part",
           "color": "blue"
         },
         {
-          "name": "Honey",
+          "item": 161,
           "amount": 10,
           "type": "webbing",
           "color": "orange"
@@ -5740,25 +6577,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Professor Jewel",
+      "id": 1022,
       "skills": [
-        "MixSucRate +2"
+        {
+          "skill": 59,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Book of Combos 1",
+          "item": 1,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
         },
         {
-          "name": "Springnight Carp",
+          "item": 244,
           "amount": 1,
           "type": "fish",
           "color": "pink"
@@ -5772,31 +6612,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Armory Jewel",
+      "id": 1023,
       "skills": [
-        "Shot Mix +2"
+        {
+          "skill": 60,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Normal S Lv3",
+          "item": 98,
           "amount": 3,
           "type": "ukwn",
           "color": "white"
         },
         {
-          "name": "Pellet S Lv3",
+          "item": 104,
           "amount": 2,
           "type": "ukwn",
           "color": "white"
         },
         {
-          "name": "Clust S Lv3",
+          "item": 110,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -5810,31 +6653,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "SecretArts Jewel",
+      "id": 1024,
       "skills": [
-        "Alchemy +2"
+        {
+          "skill": 61,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Health Flute",
+          "item": 157,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
         },
         {
-          "name": "Ancient Potion",
+          "item": 32,
           "amount": 1,
           "type": "sac",
           "color": "red"
         },
         {
-          "name": "Antiseptic Stone",
+          "item": 218,
           "amount": 2,
           "type": "ore",
           "color": "yellow"
@@ -5848,26 +6694,32 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Small Arms Jewel",
+      "id": 1037,
       "skills": [
-        "Gunnery +1",
-        "Stamina -1"
+        {
+          "skill": 73,
+          "points": 1
+        },
+        {
+          "skill": 65,
+          "points": -1
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Machalite Ore",
+          "item": 204,
           "amount": 1,
           "type": "ore",
           "color": "blue"
         },
         {
-          "name": "Gunpowder",
+          "item": 35,
           "amount": 2,
           "type": "sac",
           "color": "red"
@@ -5881,25 +6733,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Howitzer Jewel",
+      "id": 1038,
       "skills": [
-        "Gunnery +2"
+        {
+          "skill": 73,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Dragonite Ore",
+          "item": 205,
           "amount": 2,
           "type": "ore",
           "color": "green"
         },
         {
-          "name": "Firestone",
+          "item": 210,
           "amount": 1,
           "type": "ore",
           "color": "red"
@@ -5913,25 +6768,28 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Fife Jewel",
+      "id": 1039,
       "skills": [
-        "Horn +2"
+        {
+          "skill": 74,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Akito Jewel",
+          "item": 945,
           "amount": 1,
           "type": "deco",
           "color": "white"
         },
         {
-          "name": "Congalala Pelt",
+          "item": 444,
           "amount": 2,
           "type": "pelt",
           "color": "pink"
         },
         {
-          "name": "Flute",
+          "item": 156,
           "amount": 1,
           "type": "ukwn",
           "color": "white"
@@ -5945,19 +6803,22 @@
       "alternative_create_mats": null
     },
     {
-      "name": "Cat Guide Jewel",
+      "id": 1043,
       "skills": [
-        "ComrdGuide +2"
+        {
+          "skill": 78,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "Suiko Jewel",
+          "item": 944,
           "amount": 1,
           "type": "deco",
           "color": "cyan"
         },
         {
-          "name": "Comrade Ticket",
+          "item": 918,
           "amount": 1,
           "type": "ticket",
           "color": "blue"
@@ -5965,25 +6826,25 @@
       ],
       "alternative_create_mats": [
         {
-          "name": "BattlefieldJewel",
+          "item": 946,
           "amount": 1,
           "type": "deco",
           "color": "slate"
         },
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Gastronome Tuna",
+          "item": 238,
           "amount": 1,
           "type": "fish",
           "color": "orange"
         },
         {
-          "name": "Felvine",
+          "item": 169,
           "amount": 10,
           "type": "herb",
           "color": "yellow"
@@ -5996,31 +6857,34 @@
       "type": "decoration"
     },
     {
-      "name": "Cat Attack Jewel",
+      "id": 1044,
       "skills": [
-        "ComradeAtk +2"
+        {
+          "skill": 79,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Piercing Claw",
+          "item": 428,
           "amount": 1,
           "type": "claw",
           "color": "gray"
         },
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Mega Demondrug",
+          "item": 16,
           "amount": 1,
           "type": "fluid",
           "color": "red"
@@ -6034,31 +6898,34 @@
       "alternative_create_mats": null
     },
     {
-      "name": "CatDefenseJewel",
+      "id": 1045,
       "skills": [
-        "ComradeDef +2"
+        {
+          "skill": 80,
+          "points": 2
+        }
       ],
       "create_mats": [
         {
-          "name": "LapisLazuliJewel",
+          "item": 947,
           "amount": 1,
           "type": "deco",
           "color": "yellow"
         },
         {
-          "name": "Hvy Kut-Ku Shell",
+          "item": 387,
           "amount": 1,
           "type": "part",
           "color": "pink"
         },
         {
-          "name": "Commendation G",
+          "item": 904,
           "amount": 1,
           "type": "ticket",
           "color": "white"
         },
         {
-          "name": "Mega Armorskin",
+          "item": 19,
           "amount": 1,
           "type": "fluid",
           "color": "orange"

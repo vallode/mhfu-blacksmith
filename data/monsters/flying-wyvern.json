@@ -1,22 +1,21 @@
 {
   "monsters": [
     {
-      "name": "Remobra",
+      "id": 63,
       "type": "flying-wyvern",
-      "description": "Small wyverns with outstanding flying abilities, they loiter in the skies waiting to prey upon weakened animals. Known to attack alongside Elder Dragons, they are known as an omen to disaster.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Remobra Skin",
+              "item": 332,
               "chance": "56%"
             },
             {
-              "name": "Striped Skin",
+              "item": 335,
               "chance": "40%"
             },
             {
-              "name": "Remobra Skull",
+              "item": 336,
               "chance": "4%"
             }
           ]
@@ -24,19 +23,19 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Remobra Skin",
+              "item": 332,
               "chance": "50%"
             },
             {
-              "name": "Remobra Skin+",
+              "item": 333,
               "chance": "22%"
             },
             {
-              "name": "Striped Skin",
+              "item": 335,
               "chance": "18%"
             },
             {
-              "name": "Remobra Skull",
+              "item": 336,
               "chance": "10%"
             }
           ]
@@ -44,19 +43,19 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "SpecRemobraSkin+",
+              "item": 334,
               "chance": "50%"
             },
             {
-              "name": "Remobra Skull",
+              "item": 336,
               "chance": "20%"
             },
             {
-              "name": "Striped Skin",
+              "item": 335,
               "chance": "20%"
             },
             {
-              "name": "Remobra Skin+",
+              "item": 333,
               "chance": "10%"
             }
           ]
@@ -130,88 +129,94 @@
       }
     },
     {
-      "name": "Rathian",
+      "id": 1,
       "type": "flying-wyvern",
-      "description": "Female version of the Rathalos wyvern. Unlike its male counterpart, it usually patrols its territory from the ground. Its tail spikes are filled with poison.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "50%"
             },
             {
-              "name": "Rathian Scale",
+              "item": 520,
               "chance": "25%"
             },
             {
-              "name": "Rathian Shell",
+              "item": 526,
               "chance": "20%"
             },
             {
-              "name": "Flame Sac",
+              "item": 273,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "30%"
             },
             {
-              "name": "Rathian Scale",
+              "item": 520,
               "chance": "40%"
             },
             {
-              "name": "Rathian Shell",
+              "item": 526,
               "chance": "30%"
             }
           ],
           "break head": [
             {
-              "name": "Rathian Shell x1",
+              "item": 526,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "Rathian Scale x1",
+              "item": 520,
+              "amount": 1,
               "chance": "35%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw  x1",
+              "item": 543,
+              "amount": 1,
               "chance": "83%"
             },
             {
-              "name": "Wyvern Claw x4",
+              "item": 299,
+              "amount": 4,
               "chance": "17%"
             }
           ],
           "shiny drop : awoken from sleep or got trapped": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "74%"
             },
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "20%"
             },
             {
-              "name": "Rathian Scale",
+              "item": 520,
               "chance": "6%"
             }
           ],
           "capture": [
             {
-              "name": "FireWyvern Fluid x2",
+              "item": 545,
+              "amount": 2,
               "chance": "25%"
             },
             {
-              "name": "Rathian Shell x1",
+              "item": 526,
+              "amount": 1,
               "chance": "55%"
             },
             {
-              "name": "Flame Sac x1",
+              "item": 273,
+              "amount": 1,
               "chance": "20%"
             }
           ]
@@ -219,109 +224,118 @@
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Rathian Scale",
+              "item": 520,
               "chance": "49%"
             },
             {
-              "name": "Rathian Shell",
+              "item": 526,
               "chance": "30%"
             },
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "10%"
             },
             {
-              "name": "Flame Sac",
+              "item": 273,
               "chance": "8%"
             },
             {
-              "name": "Rathian Spike",
+              "item": 529,
               "chance": "2%"
             },
             {
-              "name": "FireWyvrn Marrow",
+              "item": 546,
               "chance": "1%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Rathian Scale",
+              "item": 520,
               "chance": "59%"
             },
             {
-              "name": "Rathian Shell",
+              "item": 526,
               "chance": "22%"
             },
             {
-              "name": "Rathian Spike",
+              "item": 529,
               "chance": "8%"
             },
             {
-              "name": "Monster Bone+",
+              "item": 284,
               "chance": "6%"
             },
             {
-              "name": "Rathian Plate",
+              "item": 523,
               "chance": "3%"
             },
             {
-              "name": "FireWyvrn Marrow",
+              "item": 546,
               "chance": "2%"
             }
           ],
           "break head": [
             {
-              "name": "Rathian Shell x1",
+              "item": 526,
+              "amount": 1,
               "chance": "71%"
             },
             {
-              "name": "Rathian Scale x1",
+              "item": 520,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Rathian Plate x1",
+              "item": 523,
+              "amount": 1,
               "chance": "4%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x1",
+              "item": 543,
+              "amount": 1,
               "chance": "75%"
             },
             {
-              "name": "Wyvern Claw x4",
+              "item": 299,
+              "amount": 4,
               "chance": "25%"
             }
           ],
           "shiny drop : awoken from sleep or got trapped": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "74%"
             },
             {
-              "name": "Rathian Scale",
+              "item": 520,
               "chance": "25%"
             },
             {
-              "name": "Rathian Plate",
+              "item": 523,
               "chance": "1%"
             }
           ],
           "capture": [
             {
-              "name": "Rathian Scale x2",
+              "item": 520,
+              "amount": 2,
               "chance": "52%"
             },
             {
-              "name": "Rathian Shell x1",
+              "item": 526,
+              "amount": 1,
               "chance": "36%"
             },
             {
-              "name": "FireWyvrn Marrow x1",
+              "item": 546,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "Rathian Plate x1",
+              "item": 523,
+              "amount": 1,
               "chance": "2%"
             }
           ]
@@ -329,121 +343,132 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Rathian Scale+",
+              "item": 521,
               "chance": "45%"
             },
             {
-              "name": "Rathian Carapace",
+              "item": 527,
               "chance": "26%"
             },
             {
-              "name": "Inferno Sac",
+              "item": 274,
               "chance": "15%"
             },
             {
-              "name": "Rathian Spike",
+              "item": 529,
               "chance": "8%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             },
             {
-              "name": "Rathian Spike+",
+              "item": 530,
               "chance": "2%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Rathian Scale+",
+              "item": 521,
               "chance": "48%"
             },
             {
-              "name": "Rathian Carapace",
+              "item": 527,
               "chance": "26%"
             },
             {
-              "name": "Rathian Plate",
+              "item": 523,
               "chance": "12%"
             },
             {
-              "name": "Rathian Spike+",
+              "item": 530,
               "chance": "8%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             },
             {
-              "name": "Rathian Ruby",
+              "item": 524,
               "chance": "2%"
             }
           ],
           "break head": [
             {
-              "name": "Rathian Scale+ x1",
+              "item": 521,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Rathian Carapace x1",
+              "item": 527,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "4%"
             },
             {
-              "name": "Rathian Plate x1",
+              "item": 523,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x2",
+              "item": 543,
+              "amount": 2,
               "chance": "75%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "25%"
             }
           ],
           "shiny drop : awoken from sleep or got trapped": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "38%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "37%"
             },
             {
-              "name": "Rathian Scale+",
+              "item": 521,
               "chance": "23%"
             },
             {
-              "name": "Rathian Ruby",
+              "item": 524,
               "chance": "2%"
             }
           ],
           "capture": [
             {
-              "name": "Rathian Carapace x1",
+              "item": 527,
+              "amount": 1,
               "chance": "58%"
             },
             {
-              "name": "Rathian Scale+ x2",
+              "item": 521,
+              "amount": 2,
               "chance": "30%"
             },
             {
-              "name": "Rathian Plate x1",
+              "item": 523,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "FireWyvrn BrnStm x1",
+              "item": 547,
+              "amount": 1,
               "chance": "3%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "3%"
             }
           ]
@@ -451,121 +476,132 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "ThckRathianScl",
+              "item": 522,
               "chance": "45%"
             },
             {
-              "name": "HvyRathianShell",
+              "item": 528,
               "chance": "26%"
             },
             {
-              "name": "Blazing Fire Sac",
+              "item": 275,
               "chance": "15%"
             },
             {
-              "name": "Rathian Spike+",
+              "item": 530,
               "chance": "8%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             },
             {
-              "name": "Rathian Thorn",
+              "item": 531,
               "chance": "2%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "ThckRathianScl",
+              "item": 522,
               "chance": "48%"
             },
             {
-              "name": "HvyRathianShell",
+              "item": 528,
               "chance": "32%"
             },
             {
-              "name": "Rathian Thorn",
+              "item": 531,
               "chance": "8%"
             },
             {
-              "name": "Rathian Ruby",
+              "item": 524,
               "chance": "6%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             },
             {
-              "name": "HvnlyRathianScl",
+              "item": 525,
               "chance": "2%"
             }
           ],
           "break head": [
             {
-              "name": "ThckRathianScl x1",
+              "item": 522,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "HvyRathianShell x1",
+              "item": 528,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "HvnlyRathianScl x1",
+              "item": 525,
+              "amount": 1,
               "chance": "4%"
             }
           ],
           "break wing": [
             {
-              "name": "HrdFireWyvernClw x2",
+              "item": 544,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "20%"
             }
           ],
           "shiny drop : awoken from sleep or got trapped": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "25%"
             },
             {
-              "name": "ThckRathianScl",
+              "item": 522,
               "chance": "23%"
             },
             {
-              "name": "HvnlyRathianScl",
+              "item": 525,
               "chance": "2%"
             }
           ],
           "capture": [
             {
-              "name": "HvyRathianShell x1",
+              "item": 528,
+              "amount": 1,
               "chance": "58%"
             },
             {
-              "name": "ThckRathianScl x2",
+              "item": 522,
+              "amount": 2,
               "chance": "30%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "FireWyvrn BrnStm x1",
+              "item": 547,
+              "amount": 1,
               "chance": "3%"
             },
             {
-              "name": "HvnlyRathianScl x1",
+              "item": 525,
+              "amount": 1,
               "chance": "3%"
             }
           ]
@@ -719,116 +755,124 @@
       }
     },
     {
-      "name": "Pink Rathian",
+      "id": 37,
       "type": "flying-wyvern",
-      "description": "A subspecies of Rathian with vibrant pink scales. Pink Rathian wield their toxic tails more skillfully than normal Rathian, using a wide variety of attacks to weaken their prey before eventually moving in for the kill.",
       "drops": {
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Pnk Rathian Scl",
+              "item": 532,
               "chance": "49%"
             },
             {
-              "name": "Pnk Rathian Shl",
+              "item": 535,
               "chance": "30%"
             },
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "10%"
             },
             {
-              "name": "Flame Sac",
+              "item": 273,
               "chance": "6%"
             },
             {
-              "name": "FireWyvrn Marrow",
+              "item": 546,
               "chance": "3%"
             },
             {
-              "name": "Rathian Spike",
+              "item": 529,
               "chance": "2%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Pnk Rathian Scl",
+              "item": 532,
               "chance": "56%"
             },
             {
-              "name": "Pnk Rathian Shl",
+              "item": 535,
               "chance": "22%"
             },
             {
-              "name": "Rathian Spike",
+              "item": 529,
               "chance": "8%"
             },
             {
-              "name": "FireWyvrn Marrow",
+              "item": 546,
               "chance": "7%"
             },
             {
-              "name": "Monster Bone+",
+              "item": 284,
               "chance": "6%"
             },
             {
-              "name": "Rathian Plate",
+              "item": 523,
               "chance": "1%"
             }
           ],
           "break head": [
             {
-              "name": "Pnk Rathian Shl x1",
+              "item": 535,
+              "amount": 1,
               "chance": "73%"
             },
             {
-              "name": "Pnk Rathian Scl x1",
+              "item": 532,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Rathian Plate x1",
+              "item": 523,
+              "amount": 1,
               "chance": "2%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x1",
+              "item": 543,
+              "amount": 1,
               "chance": "75%"
             },
             {
-              "name": "Wyvern Claw x4",
+              "item": 299,
+              "amount": 4,
               "chance": "25%"
             }
           ],
           "shiny drop : awoken from sleep or got trapped": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "74%"
             },
             {
-              "name": "Pnk Rathian Scl",
+              "item": 532,
               "chance": "25%"
             },
             {
-              "name": "Rathian Plate",
+              "item": 523,
               "chance": "1%"
             }
           ],
           "capture": [
             {
-              "name": "Pnk Rathian Scl x2",
+              "item": 532,
+              "amount": 2,
               "chance": "50%"
             },
             {
-              "name": "Pnk Rathian Shl x1",
+              "item": 535,
+              "amount": 1,
               "chance": "36%"
             },
             {
-              "name": "FireWyvrn Marrow x1",
+              "item": 546,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "Rathian Plate x1",
+              "item": 523,
+              "amount": 1,
               "chance": "4%"
             }
           ]
@@ -836,121 +880,132 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Pnk Rathian Scl+",
+              "item": 533,
               "chance": "45%"
             },
             {
-              "name": "Pnk Rathian Cpc",
+              "item": 536,
               "chance": "26%"
             },
             {
-              "name": "Inferno Sac",
+              "item": 274,
               "chance": "11%"
             },
             {
-              "name": "Rathian Spike",
+              "item": 529,
               "chance": "8%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "8%"
             },
             {
-              "name": "Rathian Spike+",
+              "item": 530,
               "chance": "2%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Pnk Rathian Scl+",
+              "item": 533,
               "chance": "42%"
             },
             {
-              "name": "Pnk Rathian Cpc",
+              "item": 536,
               "chance": "28%"
             },
             {
-              "name": "Rathian Spike+",
+              "item": 530,
               "chance": "12%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "10%"
             },
             {
-              "name": "Rathian Plate",
+              "item": 523,
               "chance": "7%"
             },
             {
-              "name": "Rathian Ruby",
+              "item": 524,
               "chance": "1%"
             }
           ],
           "break head": [
             {
-              "name": "Pnk Rathian Scl+ x1",
+              "item": 533,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Pnk Rathian Cpc x1",
+              "item": 536,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "2%"
             },
             {
-              "name": "Rathian Plate x1",
+              "item": 523,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x2",
+              "item": 543,
+              "amount": 2,
               "chance": "75%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "25%"
             }
           ],
           "shiny drop : awoken from sleep or got trapped": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "37%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "37%"
             },
             {
-              "name": "Pnk Rathian Scl+",
+              "item": 533,
               "chance": "25%"
             },
             {
-              "name": "Rathian Ruby",
+              "item": 524,
               "chance": "1%"
             }
           ],
           "capture": [
             {
-              "name": "Pnk Rathian Cpc x1",
+              "item": 536,
+              "amount": 1,
               "chance": "52%"
             },
             {
-              "name": "Pnk Rathian Scl+ x2",
+              "item": 533,
+              "amount": 2,
               "chance": "24%"
             },
             {
-              "name": "FireWyvrn Marrow x2",
+              "item": 546,
+              "amount": 2,
               "chance": "15%"
             },
             {
-              "name": "Rathian Spike+ x1",
+              "item": 530,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "1%"
             }
           ]
@@ -958,121 +1013,132 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "ThckPnkRathnScl",
+              "item": 534,
               "chance": "45%"
             },
             {
-              "name": "HvyPnkRathianShl",
+              "item": 537,
               "chance": "26%"
             },
             {
-              "name": "Blazing Fire Sac",
+              "item": 275,
               "chance": "11%"
             },
             {
-              "name": "Rathian Spike+",
+              "item": 530,
               "chance": "8%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "8%"
             },
             {
-              "name": "Rathian Thorn",
+              "item": 531,
               "chance": "2%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "ThckPnkRathnScl",
+              "item": 534,
               "chance": "42%"
             },
             {
-              "name": "HvyPnkRathianShl",
+              "item": 537,
               "chance": "32%"
             },
             {
-              "name": "Rathian Thorn",
+              "item": 531,
               "chance": "12%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "7%"
             },
             {
-              "name": "Rathian Ruby",
+              "item": 524,
               "chance": "6%"
             },
             {
-              "name": "HvnlyRathianScl",
+              "item": 525,
               "chance": "1%"
             }
           ],
           "break head": [
             {
-              "name": "ThckPnkRathnScl x1",
+              "item": 534,
+              "amount": 1,
               "chance": "56%"
             },
             {
-              "name": "HvnlyRathianScl x1",
+              "item": 525,
+              "amount": 1,
               "chance": "2%"
             },
             {
-              "name": "HvyPnkRathianShl x1",
+              "item": 537,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Rathian Plate x1",
+              "item": 523,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "break wing": [
             {
-              "name": "HrdFireWyvernClw x2",
+              "item": 544,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "20%"
             }
           ],
           "shiny drop : awoken from sleep or got trapped": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "49%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "25%"
             },
             {
-              "name": "ThckPnkRathnScl",
+              "item": 534,
               "chance": "25%"
             },
             {
-              "name": "HvnlyRathianScl",
+              "item": 525,
               "chance": "1%"
             }
           ],
           "capture": [
             {
-              "name": "HvyPnkRathianShl x1",
+              "item": 537,
+              "amount": 1,
               "chance": "52%"
             },
             {
-              "name": "ThckPnkRathnScl x2",
+              "item": 534,
+              "amount": 2,
               "chance": "24%"
             },
             {
-              "name": "FireWyvrn BrnStm x1",
+              "item": 547,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Rathian Thorn x1",
+              "item": 531,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "HvnlyRathianScl x1",
+              "item": 525,
+              "amount": 1,
               "chance": "1%"
             }
           ]
@@ -1226,124 +1292,134 @@
       }
     },
     {
-      "name": "Gold Rathian",
+      "id": 42,
       "type": "flying-wyvern",
-      "description": "A rare variant of Rathian with a beautiful golden body reminiscent of the moon. Little is known about their behavior or physiology--including the source of their rich golden sheen.",
       "drops": {
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Gld Rathian Scl+",
+              "item": 538,
               "chance": "43%"
             },
             {
-              "name": "Gld Rathian Cpc",
+              "item": 540,
               "chance": "29%"
             },
             {
-              "name": "Rathian Spike",
+              "item": 529,
               "chance": "10%"
             },
             {
-              "name": "Rathian Spike+",
+              "item": 530,
               "chance": "10%"
             },
             {
-              "name": "Inferno Sac",
+              "item": 274,
               "chance": "5%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "3%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Gld Rathian Scl+",
+              "item": 538,
               "chance": "45%"
             },
             {
-              "name": "Gld Rathian Cpc",
+              "item": 540,
               "chance": "30%"
             },
             {
-              "name": "Rathian Spike+",
+              "item": 530,
               "chance": "10%"
             },
             {
-              "name": "Rathian Plate",
+              "item": 523,
               "chance": "10%"
             },
             {
-              "name": "Rathian Ruby",
+              "item": 524,
               "chance": "5%"
             }
           ],
           "break head": [
             {
-              "name": "Gld Rathian Cpc x1",
+              "item": 540,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Gld Rathian Scl+ x1",
+              "item": 538,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "4%"
             },
             {
-              "name": "Rathian Plate x1",
+              "item": 523,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x2",
+              "item": 543,
+              "amount": 2,
               "chance": "75%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "25%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "36%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "35%"
             },
             {
-              "name": "Gld Rathian Scl+",
+              "item": 538,
               "chance": "25%"
             },
             {
-              "name": "Rathian Ruby",
+              "item": 524,
               "chance": "4%"
             }
           ],
           "capture": [
             {
-              "name": "Gld Rathian Cpc x1",
+              "item": 540,
+              "amount": 1,
               "chance": "48%"
             },
             {
-              "name": "Gld Rathian Scl+ x2",
+              "item": 538,
+              "amount": 2,
               "chance": "30%"
             },
             {
-              "name": "FireWyvrn Marrow x3",
+              "item": 546,
+              "amount": 3,
               "chance": "8%"
             },
             {
-              "name": "FireWyvrn BrnStm x2",
+              "item": 547,
+              "amount": 2,
               "chance": "7%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "7%"
             }
           ]
@@ -1351,121 +1427,132 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "ThckGldRathnScl",
+              "item": 539,
               "chance": "44%"
             },
             {
-              "name": "HvyGldRathianShl",
+              "item": 541,
               "chance": "26%"
             },
             {
-              "name": "Blazing Fire Sac",
+              "item": 275,
               "chance": "13%"
             },
             {
-              "name": "Rathian Spike+",
+              "item": 530,
               "chance": "8%"
             },
             {
-              "name": "GoldRathianThorn",
+              "item": 542,
               "chance": "5%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "ThckGldRathnScl",
+              "item": 539,
               "chance": "48%"
             },
             {
-              "name": "HvyGldRathianShl",
+              "item": 541,
               "chance": "32%"
             },
             {
-              "name": "GoldRathianThorn",
+              "item": 542,
               "chance": "8%"
             },
             {
-              "name": "Rathian Ruby",
+              "item": 524,
               "chance": "6%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             },
             {
-              "name": "HvnlyRathianScl",
+              "item": 525,
               "chance": "2%"
             }
           ],
           "break head": [
             {
-              "name": "ThckGldRathnScl x1",
+              "item": 539,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "HvyGldRathianShl x1",
+              "item": 541,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "HvnlyRathianScl x1",
+              "item": 525,
+              "amount": 1,
               "chance": "4%"
             }
           ],
           "break wing": [
             {
-              "name": "HrdFireWyvernClw x2",
+              "item": 544,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "20%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "25%"
             },
             {
-              "name": "ThckGldRathnScl",
+              "item": 539,
               "chance": "23%"
             },
             {
-              "name": "HvnlyRathianScl",
+              "item": 525,
               "chance": "2%"
             }
           ],
           "capture": [
             {
-              "name": "HvyGldRathianShl x1",
+              "item": 541,
+              "amount": 1,
               "chance": "58%"
             },
             {
-              "name": "ThckGldRathnScl x2",
+              "item": 539,
+              "amount": 2,
               "chance": "30%"
             },
             {
-              "name": "Rathian Ruby x1",
+              "item": 524,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "FireWyvrn BrnStm x2",
+              "item": 547,
+              "amount": 2,
               "chance": "3%"
             },
             {
-              "name": "HvnlyRathianScl x1",
+              "item": 525,
+              "amount": 1,
               "chance": "3%"
             }
           ]
@@ -1619,88 +1706,94 @@
       }
     },
     {
-      "name": "Rathalos",
+      "id": 11,
       "type": "flying-wyvern",
-      "description": "Male wyvern that keeps a nest and patrols its patch of territory from the air in search of prey. Its claws are filled with a poison that weakens its quarry.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "50%"
             },
             {
-              "name": "Rathalos Scale",
+              "item": 548,
               "chance": "25%"
             },
             {
-              "name": "Rathalos Shell",
+              "item": 554,
               "chance": "20%"
             },
             {
-              "name": "Flame Sac",
+              "item": 273,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "30%"
             },
             {
-              "name": "Rathalos Scale",
+              "item": 548,
               "chance": "40%"
             },
             {
-              "name": "Rathalos Shell",
+              "item": 554,
               "chance": "30%"
             }
           ],
           "break head": [
             {
-              "name": "Rathalos Scale x1",
+              "item": 548,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "Rathalos Shell x1",
+              "item": 554,
+              "amount": 1,
               "chance": "35%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x1",
+              "item": 543,
+              "amount": 1,
               "chance": "83%"
             },
             {
-              "name": "Wyvern Claw x4",
+              "item": 299,
+              "amount": 4,
               "chance": "17%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "74%"
             },
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "20%"
             },
             {
-              "name": "Rathalos Scale",
+              "item": 548,
               "chance": "6%"
             }
           ],
           "capture": [
             {
-              "name": "FireWyvern Fluid x2",
+              "item": 545,
+              "amount": 2,
               "chance": "25%"
             },
             {
-              "name": "Rathalos Shell x1",
+              "item": 554,
+              "amount": 1,
               "chance": "55%"
             },
             {
-              "name": "Flame Sac x1",
+              "item": 273,
+              "amount": 1,
               "chance": "20%"
             }
           ]
@@ -1708,109 +1801,119 @@
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Rathalos Scale",
+              "item": 548,
               "chance": "30%"
             },
             {
-              "name": "Rathalos Shell",
+              "item": 554,
               "chance": "24%"
             },
             {
-              "name": "Rathalos Webbing",
+              "item": 559,
               "chance": "24%"
             },
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "10%"
             },
             {
-              "name": "Flame Sac",
+              "item": 273,
               "chance": "8%"
             },
             {
-              "name": "FireWyvrn Marrow",
+              "item": 546,
               "chance": "4%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Rathalos Tail",
+              "item": 557,
               "chance": "38%"
             },
             {
-              "name": "Rathalos Scale",
+              "item": 548,
               "chance": "35%"
             },
             {
-              "name": "Rathalos Shell",
+              "item": 554,
               "chance": "22%"
             },
             {
-              "name": "Rathalos Plate",
+              "item": 551,
               "chance": "3%"
             },
             {
-              "name": "FireWyvrn Marrow",
+              "item": 546,
               "chance": "2%"
             }
           ],
           "break head": [
             {
-              "name": "Rathalos Scale x1",
+              "item": 548,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "Rathalos Shell x1",
+              "item": 554,
+              "amount": 1,
               "chance": "31%"
             },
             {
-              "name": "Rathalos Plate x1",
+              "item": 551,
+              "amount": 1,
               "chance": "4%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x1",
+              "item": 543,
+              "amount": 1,
               "chance": "83%"
             },
             {
-              "name": "Wyvern Claw x4",
+              "item": 299,
+              "amount": 4,
               "chance": "17%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "74%"
             },
             {
-              "name": "Rathalos Scale",
+              "item": 548,
               "chance": "24%"
             },
             {
-              "name": "Rathalos Plate",
+              "item": 551,
               "chance": "2%"
             }
           ],
           "capture": [
             {
-              "name": "Rathalos Shell x1",
+              "item": 554,
+              "amount": 1,
               "chance": "52%"
             },
             {
-              "name": "Rathalos Webbing x1",
+              "item": 559,
+              "amount": 1,
               "chance": "33%"
             },
             {
-              "name": "Rathalos Wing x1",
+              "item": 560,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Rathalos Tail x1",
+              "item": 557,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Rathalos Plate x1",
+              "item": 551,
+              "amount": 1,
               "chance": "2%"
             }
           ]
@@ -1818,121 +1921,132 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Rathalos Scale+",
+              "item": 549,
               "chance": "38%"
             },
             {
-              "name": "Rathalos Carpace",
+              "item": 555,
               "chance": "24%"
             },
             {
-              "name": "Inferno Sac",
+              "item": 274,
               "chance": "15%"
             },
             {
-              "name": "Rathalos Webbing",
+              "item": 559,
               "chance": "14%"
             },
             {
-              "name": "Rathalos Wing",
+              "item": 560,
               "chance": "5%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Rathalos Scale+",
+              "item": 549,
               "chance": "35%"
             },
             {
-              "name": "Rathalos Tail",
+              "item": 557,
               "chance": "25%"
             },
             {
-              "name": "Rathalos Carpace",
+              "item": 555,
               "chance": "22%"
             },
             {
-              "name": "Rathalos Plate",
+              "item": 551,
               "chance": "12%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             },
             {
-              "name": "Rathalos Ruby",
+              "item": 552,
               "chance": "2%"
             }
           ],
           "break head": [
             {
-              "name": "Rathalos Scale+ x1",
+              "item": 549,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Rathalos Carpace x1",
+              "item": 555,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "4%"
             },
             {
-              "name": "Rathalos Plate x1",
+              "item": 551,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x2",
+              "item": 543,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "20%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "37%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "37%"
             },
             {
-              "name": "Rathalos Scale+",
+              "item": 549,
               "chance": "24%"
             },
             {
-              "name": "Rathalos Ruby",
+              "item": 552,
               "chance": "2%"
             }
           ],
           "capture": [
             {
-              "name": "Rathalos Carpace x1",
+              "item": 555,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Rathalos Scale+ x2",
+              "item": 549,
+              "amount": 2,
               "chance": "24%"
             },
             {
-              "name": "Rathalos Wing x2",
+              "item": 560,
+              "amount": 2,
               "chance": "8%"
             },
             {
-              "name": "Rathalos Plate x1",
+              "item": 551,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "2%"
             }
           ]
@@ -1940,117 +2054,128 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "Hrd Rathalos Scl",
+              "item": 550,
               "chance": "37%"
             },
             {
-              "name": "HvyRathalosShl",
+              "item": 556,
               "chance": "24%"
             },
             {
-              "name": "StrRathalosWing",
+              "item": 561,
               "chance": "20%"
             },
             {
-              "name": "Blazing Fire Sac",
+              "item": 275,
               "chance": "15%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "LthrRathalosTail",
+              "item": 558,
               "chance": "38%"
             },
             {
-              "name": "Hrd Rathalos Scl",
+              "item": 550,
               "chance": "30%"
             },
             {
-              "name": "HvyRathalosShl",
+              "item": 556,
               "chance": "20%"
             },
             {
-              "name": "Rathalos Ruby",
+              "item": 552,
               "chance": "6%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             },
             {
-              "name": "HvnlyRathalosScl",
+              "item": 553,
               "chance": "2%"
             }
           ],
           "break head": [
             {
-              "name": "Hrd Rathalos Scl x1",
+              "item": 550,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "HvyRathalosShl x1",
+              "item": 556,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "HvnlyRathalosScl x1",
+              "item": 553,
+              "amount": 1,
               "chance": "4%"
             }
           ],
           "break wing": [
             {
-              "name": "HrdFireWyvernClw x2",
+              "item": 544,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "20%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "24%"
             },
             {
-              "name": "Hrd Rathalos Scl",
+              "item": 550,
               "chance": "24%"
             },
             {
-              "name": "HvnlyRathalosScl",
+              "item": 553,
               "chance": "2%"
             }
           ],
           "capture": [
             {
-              "name": "HvyRathalosShl x1",
+              "item": 556,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Hrd Rathalos Scl x2",
+              "item": 550,
+              "amount": 2,
               "chance": "24%"
             },
             {
-              "name": "StrRathalosWing x2",
+              "item": 561,
+              "amount": 2,
               "chance": "8%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "HvnlyRathalosScl x1",
+              "item": 553,
+              "amount": 1,
               "chance": "2%"
             }
           ]
@@ -2204,117 +2329,126 @@
       }
     },
     {
-      "name": "Azure Rathalos",
+      "id": 49,
       "type": "flying-wyvern",
-      "description": "An azure-colored subspecies of Rathalos. More mobile than their standard cousin, they locate prey from the air and quickly swoop in for the kill. Once these master hunters select a target, there is little hope of escape.",
       "icon": "rathalos",
       "drops": {
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Azure Rthlos Scl",
+              "item": 562,
               "chance": "30%"
             },
             {
-              "name": "Azure Rthlos Shl",
+              "item": 565,
               "chance": "24%"
             },
             {
-              "name": "Rathalos Webbing",
+              "item": 559,
               "chance": "19%"
             },
             {
-              "name": "FireWyvern Fluid",
+              "item": 545,
               "chance": "10%"
             },
             {
-              "name": "Flame Sac",
+              "item": 273,
               "chance": "10%"
             },
             {
-              "name": "FireWyvrn Marrow",
+              "item": 546,
               "chance": "7%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Azur Rthlos Tail",
+              "item": 568,
               "chance": "38%"
             },
             {
-              "name": "Azure Rthlos Scl",
+              "item": 562,
               "chance": "35%"
             },
             {
-              "name": "Azure Rthlos Shl",
+              "item": 565,
               "chance": "18%"
             },
             {
-              "name": "FireWyvrn Marrow",
+              "item": 546,
               "chance": "8%"
             },
             {
-              "name": "Rathalos Plate",
+              "item": 551,
               "chance": "1%"
             }
           ],
           "break head": [
             {
-              "name": "Azure Rthlos Scl x1",
+              "item": 562,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "Azure Rthlos Shl x1",
+              "item": 565,
+              "amount": 1,
               "chance": "34%"
             },
             {
-              "name": "Rathalos Plate x1",
+              "item": 551,
+              "amount": 1,
               "chance": "1%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x1",
+              "item": 543,
+              "amount": 1,
               "chance": "75%"
             },
             {
-              "name": "Wyvern Claw x4",
+              "item": 299,
+              "amount": 4,
               "chance": "25%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "74%"
             },
             {
-              "name": "Azure Rthlos Scl",
+              "item": 562,
               "chance": "24%"
             },
             {
-              "name": "Rathalos Plate",
+              "item": 551,
               "chance": "2%"
             }
           ],
           "capture": [
             {
-              "name": "Azure Rthlos Shl x1",
+              "item": 565,
+              "amount": 1,
               "chance": "52%"
             },
             {
-              "name": "Rathalos Webbing x1",
+              "item": 559,
+              "amount": 1,
               "chance": "33%"
             },
             {
-              "name": "Azur Rthlos Wing x1",
+              "item": 570,
+              "amount": 1,
               "chance": "9%"
             },
             {
-              "name": "Azur Rthlos Tail x1",
+              "item": 568,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Rathalos Plate x1",
+              "item": 551,
+              "amount": 1,
               "chance": "1%"
             }
           ]
@@ -2322,121 +2456,132 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Azre Rthlos Scl+",
+              "item": 563,
               "chance": "38%"
             },
             {
-              "name": "Azure Rthlos Cpc",
+              "item": 566,
               "chance": "24%"
             },
             {
-              "name": "Rathalos Webbing",
+              "item": 559,
               "chance": "14%"
             },
             {
-              "name": "Inferno Sac",
+              "item": 274,
               "chance": "11%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "8%"
             },
             {
-              "name": "Azur Rthlos Wing",
+              "item": 570,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Azre Rthlos Scl+",
+              "item": 563,
               "chance": "35%"
             },
             {
-              "name": "Azur Rthlos Tail",
+              "item": 568,
               "chance": "25%"
             },
             {
-              "name": "Azure Rthlos Cpc",
+              "item": 566,
               "chance": "22%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "10%"
             },
             {
-              "name": "Rathalos Plate",
+              "item": 551,
               "chance": "7%"
             },
             {
-              "name": "Rathalos Ruby",
+              "item": 552,
               "chance": "1%"
             }
           ],
           "break head": [
             {
-              "name": "Azre Rthlos Scl+ x1",
+              "item": 563,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Azure Rthlos Cpc x1",
+              "item": 566,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "2%"
             },
             {
-              "name": "Rathalos Plate x1",
+              "item": 551,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x2",
+              "item": 543,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "20%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "37%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "37%"
             },
             {
-              "name": "Azre Rthlos Scl+",
+              "item": 563,
               "chance": "24%"
             },
             {
-              "name": "Rathalos Ruby",
+              "item": 552,
               "chance": "2%"
             }
           ],
           "capture": [
             {
-              "name": "Azure Rthlos Cpc x1",
+              "item": 566,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Azur Rthlos Wing x2",
+              "item": 570,
+              "amount": 2,
               "chance": "8%"
             },
             {
-              "name": "FireWyvrn Marrow x2",
+              "item": 546,
+              "amount": 2,
               "chance": "6%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "2%"
             },
             {
-              "name": "Azre Rthlos Scl+ x2",
+              "item": 563,
+              "amount": 2,
               "chance": "24%"
             }
           ]
@@ -2444,117 +2589,128 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "ThckAzurRthlsScl",
+              "item": 564,
               "chance": "37%"
             },
             {
-              "name": "HvyAzurRthlsShl",
+              "item": 567,
               "chance": "24%"
             },
             {
-              "name": "StrRathalosWing",
+              "item": 561,
               "chance": "20%"
             },
             {
-              "name": "Blazing Fire Sac",
+              "item": 275,
               "chance": "11%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "8%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "LthrAzrRthlsTail",
+              "item": 569,
               "chance": "38%"
             },
             {
-              "name": "ThckAzurRthlsScl",
+              "item": 564,
               "chance": "30%"
             },
             {
-              "name": "HvyAzurRthlsShl",
+              "item": 567,
               "chance": "20%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "7%"
             },
             {
-              "name": "Rathalos Ruby",
+              "item": 552,
               "chance": "4%"
             },
             {
-              "name": "HvnlyRathalosScl",
+              "item": 553,
               "chance": "1%"
             }
           ],
           "break head": [
             {
-              "name": "ThckAzurRthlsScl x1",
+              "item": 564,
+              "amount": 1,
               "chance": "56%"
             },
             {
-              "name": "HvyAzurRthlsShl x1",
+              "item": 567,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Rathalos Plate x1",
+              "item": 551,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "HvnlyRathalosScl x1",
+              "item": 553,
+              "amount": 1,
               "chance": "2%"
             }
           ],
           "break wing": [
             {
-              "name": "HrdFireWyvernClw x2",
+              "item": 544,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "20%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "24%"
             },
             {
-              "name": "ThckAzurRthlsScl",
+              "item": 564,
               "chance": "24%"
             },
             {
-              "name": "HvnlyRathalosScl",
+              "item": 553,
               "chance": "2%"
             }
           ],
           "capture": [
             {
-              "name": "HvyAzurRthlsShl x1",
+              "item": 567,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "ThckAzurRthlsScl x2",
+              "item": 564,
+              "amount": 2,
               "chance": "24%"
             },
             {
-              "name": "StrRathalosWing x2",
+              "item": 561,
+              "amount": 2,
               "chance": "8%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "HvnlyRathalosScl x1",
+              "item": 553,
+              "amount": 1,
               "chance": "2%"
             }
           ]
@@ -2708,125 +2864,135 @@
       }
     },
     {
-      "name": "Silver Rathalos",
+      "id": 41,
       "type": "flying-wyvern",
-      "description": "A rare variant of Rathalos with a beautiful silver body reminiscent of the sun. Little is known about their behavior or physiology--including the source of their rich silver sheen.",
       "icon": "rathalos",
       "drops": {
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Slvr Rthlos Scl+",
+              "item": 571,
               "chance": "43%"
             },
             {
-              "name": "Slvr Rthlos Cpc",
+              "item": 573,
               "chance": "29%"
             },
             {
-              "name": "Inferno Sac",
+              "item": 274,
               "chance": "10%"
             },
             {
-              "name": "Slvr Rthlos Wing",
+              "item": 577,
               "chance": "10%"
             },
             {
-              "name": "Rathalos Webbing",
+              "item": 559,
               "chance": "5%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "3%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Slvr Rthlos Tail",
+              "item": 575,
               "chance": "50%"
             },
             {
-              "name": "Slvr Rthlos Scl+",
+              "item": 571,
               "chance": "24%"
             },
             {
-              "name": "Slvr Rthlos Cpc",
+              "item": 573,
               "chance": "11%"
             },
             {
-              "name": "Rathalos Plate",
+              "item": 551,
               "chance": "10%"
             },
             {
-              "name": "Rathalos Ruby",
+              "item": 552,
               "chance": "5%"
             }
           ],
           "break head": [
             {
-              "name": "Slvr Rthlos Scl+ x1",
+              "item": 571,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Slvr Rthlos Cpc x1",
+              "item": 573,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "4%"
             },
             {
-              "name": "Rathalos Plate x1",
+              "item": 551,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "break wing": [
             {
-              "name": "Fire Wyvern Claw x2",
+              "item": 543,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "20%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "36%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "35%"
             },
             {
-              "name": "Slvr Rthlos Scl+",
+              "item": 571,
               "chance": "26%"
             },
             {
-              "name": "Rathalos Ruby",
+              "item": 552,
               "chance": "3%"
             }
           ],
           "capture": [
             {
-              "name": "Slvr Rthlos Cpc x1",
+              "item": 573,
+              "amount": 1,
               "chance": "48%"
             },
             {
-              "name": "Slvr Rthlos Scl+ x2",
+              "item": 571,
+              "amount": 2,
               "chance": "30%"
             },
             {
-              "name": "Slvr Rthlos Wing x1",
+              "item": 577,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "7%"
             },
             {
-              "name": "Slvr Rthlos Tail x1",
+              "item": 575,
+              "amount": 1,
               "chance": "5%"
             }
           ]
@@ -2834,117 +3000,128 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "ThckSlvrRthlsScl",
+              "item": 572,
               "chance": "37%"
             },
             {
-              "name": "HvySlvrRthlsShl",
+              "item": 574,
               "chance": "24%"
             },
             {
-              "name": "StrRathalosWing",
+              "item": 561,
               "chance": "20%"
             },
             {
-              "name": "Blazing Fire Sac",
+              "item": 275,
               "chance": "15%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "LthrSlvrRthlsTal",
+              "item": 576,
               "chance": "38%"
             },
             {
-              "name": "ThckSlvrRthlsScl",
+              "item": 572,
               "chance": "30%"
             },
             {
-              "name": "HvySlvrRthlsShl",
+              "item": 574,
               "chance": "20%"
             },
             {
-              "name": "Rathalos Ruby",
+              "item": 552,
               "chance": "6%"
             },
             {
-              "name": "FireWyvrn BrnStm",
+              "item": 547,
               "chance": "4%"
             },
             {
-              "name": "HvnlyRathalosScl",
+              "item": 553,
               "chance": "2%"
             }
           ],
           "break head": [
             {
-              "name": "ThckSlvrRthlsScl x1",
+              "item": 572,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "HvySlvrRthlsShl x1",
+              "item": 574,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "HvnlyRathalosScl x1",
+              "item": 553,
+              "amount": 1,
               "chance": "4%"
             }
           ],
           "break wing": [
             {
-              "name": "HrdFireWyvernClw x2",
+              "item": 544,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Wyvern Claw x5",
+              "item": 299,
+              "amount": 5,
               "chance": "20%"
             }
           ],
           "shiny drop : awoken from sleep or flashed while flying": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "24%"
             },
             {
-              "name": "ThckSlvrRthlsScl",
+              "item": 572,
               "chance": "23%"
             },
             {
-              "name": "HvnlyRathalosScl",
+              "item": 553,
               "chance": "3%"
             }
           ],
           "capture": [
             {
-              "name": "HvySlvrRthlsShl x1",
+              "item": 574,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "ThckSlvrRthlsScl x2",
+              "item": 572,
+              "amount": 2,
               "chance": "24%"
             },
             {
-              "name": "StrRathalosWing x2",
+              "item": 561,
+              "amount": 2,
               "chance": "8%"
             },
             {
-              "name": "Rathalos Ruby x1",
+              "item": 552,
+              "amount": 1,
               "chance": "6%"
             },
             {
-              "name": "HvnlyRathalosScl x1",
+              "item": 553,
+              "amount": 1,
               "chance": "2%"
             }
           ]
@@ -3098,60 +3275,64 @@
       }
     },
     {
-      "name": "Khezu",
+      "id": 15,
       "type": "flying-wyvern",
-      "description": "Loathsome wyverns that live inside caves. Near blind, they detect their prey by smell. They are capable of generating electric shocks, which they use to paralyze their prey.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
             {
-              "name": "Flabby Hide",
+              "item": 578,
               "chance": "40%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "35%"
             },
             {
-              "name": "Electro Sac",
+              "item": 276,
               "chance": "5%"
             },
             {
-              "name": "Med Monster Bone",
+              "item": 282,
               "chance": "20%"
             }
           ],
           "break head/back": [
             {
-              "name": "Pale Extract x1",
+              "item": 280,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "shiny drop : drip acid from ceiling": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "80%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "20%"
             }
           ],
           "capture": [
             {
-              "name": "Flabby Hide x1",
+              "item": 578,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Pale Extract x1",
+              "item": 280,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Med Monster Bone x1",
+              "item": 282,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Electro Sac x1",
+              "item": 276,
+              "amount": 1,
               "chance": "15%"
             }
           ]
@@ -3159,57 +3340,63 @@
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Flabby Hide",
+              "item": 578,
               "chance": "50%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "35%"
             },
             {
-              "name": "Electro Sac",
+              "item": 276,
               "chance": "15%"
             }
           ],
           "break head/back": [
             {
-              "name": "Pale Extract x1",
+              "item": 280,
+              "amount": 1,
               "chance": "92%"
             },
             {
-              "name": "Pale Bone x1",
+              "item": 581,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "shiny drop : drip acid from ceiling": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "75%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "20%"
             },
             {
-              "name": "Pale Bone",
+              "item": 581,
               "chance": "5%"
             }
           ],
           "capture": [
             {
-              "name": "Pale Extract x2",
+              "item": 280,
+              "amount": 2,
               "chance": "40%"
             },
             {
-              "name": "Flabby Hide x1",
+              "item": 578,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Electro Sac x2",
+              "item": 276,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Pale Bone x1",
+              "item": 581,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -3217,73 +3404,80 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Khezu Hide - Tan",
+              "item": 579,
               "chance": "50%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "27%"
             },
             {
-              "name": "Thunder Sac",
+              "item": 277,
               "chance": "15%"
             },
             {
-              "name": "Flabby Hide",
+              "item": 578,
               "chance": "4%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "4%"
             }
           ],
           "break head/back": [
             {
-              "name": "Pale Extract x1",
+              "item": 280,
+              "amount": 1,
               "chance": "77%"
             },
             {
-              "name": "Pale Bone x1",
+              "item": 581,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Pale Khezu Steak x1",
+              "item": 582,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "shiny drop : drip acid from ceiling": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "38%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "37%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "20%"
             },
             {
-              "name": "Pale Khezu Steak",
+              "item": 582,
               "chance": "5%"
             }
           ],
           "capture": [
             {
-              "name": "Pale Extract x2",
+              "item": 280,
+              "amount": 2,
               "chance": "40%"
             },
             {
-              "name": "Khezu Hide - Tan x1",
+              "item": 579,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Thunder Sac x2",
+              "item": 277,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Pale Khezu Steak x1",
+              "item": 582,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -3291,89 +3485,98 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "KhezuHide-Cream",
+              "item": 580,
               "chance": "50%"
             },
             {
-              "name": "Lightning Sac",
+              "item": 278,
               "chance": "20%"
             },
             {
-              "name": "Thunder Sac",
+              "item": 277,
               "chance": "14%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "8%"
             },
             {
-              "name": "Khezu Hide - Tan",
+              "item": 579,
               "chance": "4%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "4%"
             }
           ],
           "break head/back": [
             {
-              "name": "KhezuHide-Cream x1",
+              "item": 580,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Pale Extract x1",
+              "item": 280,
+              "amount": 1,
               "chance": "27%"
             },
             {
-              "name": "Pale Khezu Steak x1",
+              "item": 582,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "KhezuSpecialCut x1",
+              "item": 583,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "shiny drop : drip acid from ceiling": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "25%"
             },
             {
-              "name": "Pale Khezu Steak",
+              "item": 582,
               "chance": "10%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "8%"
             },
             {
-              "name": "KhezuSpecialCut",
+              "item": 583,
               "chance": "7%"
             }
           ],
           "capture": [
             {
-              "name": "KhezuHide-Cream x1",
+              "item": 580,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Thunder Sac x2",
+              "item": 277,
+              "amount": 2,
               "chance": "25%"
             },
             {
-              "name": "Lightning Sac x2",
+              "item": 278,
+              "amount": 2,
               "chance": "17%"
             },
             {
-              "name": "Pale Khezu Steak x1",
+              "item": 582,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "KhezuSpecialCut x1",
+              "item": 583,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -3518,65 +3721,70 @@
       }
     },
     {
-      "name": "Red Khezu",
+      "id": 45,
       "type": "flying-wyvern",
       "icon": "khezu",
-      "description": "Loathsome wyverns that live inside caves. Near blind, they detect their prey by smell. They are capable of generating electric shocks, which they use to paralyze their prey.",
       "drops": {
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Alluring Hide",
+              "item": 584,
               "chance": "50%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "35%"
             },
             {
-              "name": "Electro Sac",
+              "item": 276,
               "chance": "15%"
             }
           ],
           "break head/back": [
             {
-              "name": "Pale Extract x1",
+              "item": 280,
+              "amount": 1,
               "chance": "92%"
             },
             {
-              "name": "Pale Bone x1",
+              "item": 581,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "shiny drop : drip acid from ceiling": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "75%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "20%"
             },
             {
-              "name": "Pale Bone",
+              "item": 581,
               "chance": "5%"
             }
           ],
           "capture": [
             {
-              "name": "Pale Extract x2",
+              "item": 280,
+              "amount": 2,
               "chance": "40%"
             },
             {
-              "name": "Alluring Hide x1",
+              "item": 584,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Electro Sac x2",
+              "item": 276,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Pale Bone x1",
+              "item": 581,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -3584,73 +3792,80 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Alluring Webbing",
+              "item": 585,
               "chance": "50%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "27%"
             },
             {
-              "name": "Thunder Sac",
+              "item": 277,
               "chance": "15%"
             },
             {
-              "name": "Alluring Hide",
+              "item": 584,
               "chance": "4%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "4%"
             }
           ],
           "break head/back": [
             {
-              "name": "Pale Extract x1",
+              "item": 280,
+              "amount": 1,
               "chance": "77%"
             },
             {
-              "name": "Pale Bone x1",
+              "item": 581,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Pale Khezu Steak x1",
+              "item": 582,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "shiny drop : drip acid from ceiling": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "38%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "37%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "20%"
             },
             {
-              "name": "Pale Khezu Steak",
+              "item": 582,
               "chance": "5%"
             }
           ],
           "capture": [
             {
-              "name": "Pale Extract x2",
+              "item": 280,
+              "amount": 2,
               "chance": "40%"
             },
             {
-              "name": "Alluring Webbing x1",
+              "item": 585,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Thunder Sac x2",
+              "item": 277,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Pale Khezu Steak x1",
+              "item": 582,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -3658,89 +3873,98 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "StrAlluringWing",
+              "item": 586,
               "chance": "50%"
             },
             {
-              "name": "Lightning Sac",
+              "item": 278,
               "chance": "20%"
             },
             {
-              "name": "Thunder Sac",
+              "item": 277,
               "chance": "14%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "8%"
             },
             {
-              "name": "Alluring Webbing",
+              "item": 585,
               "chance": "4%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "4%"
             }
           ],
           "break head/back": [
             {
-              "name": "StrAlluringWing x1",
+              "item": 586,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Pale Extract x1",
+              "item": 280,
+              "amount": 1,
               "chance": "27%"
             },
             {
-              "name": "Pale Khezu Steak x1",
+              "item": 582,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "KhezuSpecialCut x1",
+              "item": 583,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "shiny drop : drip acid from ceiling": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "25%"
             },
             {
-              "name": "Pale Khezu Steak",
+              "item": 582,
               "chance": "10%"
             },
             {
-              "name": "Pale Extract",
+              "item": 280,
               "chance": "8%"
             },
             {
-              "name": "KhezuSpecialCut",
+              "item": 583,
               "chance": "7%"
             }
           ],
           "capture": [
             {
-              "name": "StrAlluringWing x1",
+              "item": 586,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Thunder Sac x2",
+              "item": 277,
+              "amount": 2,
               "chance": "25%"
             },
             {
-              "name": "Lightning Sac x2",
+              "item": 278,
+              "amount": 2,
               "chance": "17%"
             },
             {
-              "name": "Pale Khezu Steak x1",
+              "item": 582,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "KhezuSpecialCut x1",
+              "item": 583,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -3885,74 +4109,78 @@
       }
     },
     {
-      "name": "Basarios",
+      "id": 22,
       "type": "flying-wyvern",
-      "description": "A large wyvern found in volcanic zones. They are the juvenile form of the Gravios. They have a steel-like carapace that requires powerful items to crack. Emits poison gas.",
       "drops": {
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Basarios Shell",
+              "item": 587,
               "chance": "37%"
             },
             {
-              "name": "Machalite Ore",
+              "item": 204,
               "chance": "34%"
             },
             {
-              "name": "Poison Sac",
+              "item": 267,
               "chance": "18%"
             },
             {
-              "name": "Lg Monster Bone",
+              "item": 283,
               "chance": "8%"
             },
             {
-              "name": "Basarios Wing",
+              "item": 590,
               "chance": "3%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Machalite Ore",
+              "item": 204,
               "chance": "55%"
             },
             {
-              "name": "Basarios Shell",
+              "item": 587,
               "chance": "45%"
             }
           ],
           "break stomach": [
             {
-              "name": "Machalite Ore x1",
+              "item": 204,
+              "amount": 1,
               "chance": "55%"
             },
             {
-              "name": "Poison Sac x1",
+              "item": 267,
+              "amount": 1,
               "chance": "45%"
             }
           ],
           "shiny drop : awoken from rock mimic or awoken from sleep": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "80%"
             },
             {
-              "name": "Machalite Ore",
+              "item": 204,
               "chance": "20%"
             }
           ],
           "capture": [
             {
-              "name": "Machalite Ore x2",
+              "item": 204,
+              "amount": 2,
               "chance": "59%"
             },
             {
-              "name": "Basarios Shell x1",
+              "item": 587,
+              "amount": 1,
               "chance": "36%"
             },
             {
-              "name": "Basarios Wing x1",
+              "item": 590,
+              "amount": 1,
               "chance": "5%"
             }
           ]
@@ -3960,95 +4188,103 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Basarios Carpace",
+              "item": 588,
               "chance": "33%"
             },
             {
-              "name": "Carbalite Ore",
+              "item": 206,
               "chance": "25%"
             },
             {
-              "name": "Toxin Sac",
+              "item": 268,
               "chance": "15%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "12%"
             },
             {
-              "name": "Basarios Wing",
+              "item": 590,
               "chance": "7%"
             },
             {
-              "name": "Basarios Tears",
+              "item": 592,
               "chance": "5%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "3%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Basarios Carpace",
+              "item": 588,
               "chance": "40%"
             },
             {
-              "name": "Carbalite Ore",
+              "item": 206,
               "chance": "40%"
             },
             {
-              "name": "Dragonite Ore",
+              "item": 205,
               "chance": "20%"
             }
           ],
           "break stomach": [
             {
-              "name": "Toxin Sac x1",
+              "item": 268,
+              "amount": 1,
               "chance": "45%"
             },
             {
-              "name": "Dragonite Ore x1",
+              "item": 205,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Carbalite Ore x1",
+              "item": 206,
+              "amount": 1,
               "chance": "25%"
             }
           ],
           "shiny drop : awoken from rock mimic or awoken from sleep": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "40%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "40%"
             },
             {
-              "name": "Carbalite Ore",
+              "item": 206,
               "chance": "20%"
             }
           ],
           "capture": [
             {
-              "name": "Carbalite Ore x1",
+              "item": 206,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Basarios Carpace x1",
+              "item": 588,
+              "amount": 1,
               "chance": "34%"
             },
             {
-              "name": "Dragonite Ore x1",
+              "item": 205,
+              "amount": 1,
               "chance": "16%"
             },
             {
-              "name": "Basarios Wing x1",
+              "item": 590,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "Basarios Tears x1",
+              "item": 592,
+              "amount": 1,
               "chance": "5%"
             }
           ]
@@ -4056,95 +4292,103 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "HvyBasariosShell",
+              "item": 589,
               "chance": "33%"
             },
             {
-              "name": "Eltalite Ore",
+              "item": 207,
               "chance": "25%"
             },
             {
-              "name": "DeadlyPoisonSac",
+              "item": 269,
               "chance": "15%"
             },
             {
-              "name": "Hvy Monster Bone",
+              "item": 286,
               "chance": "12%"
             },
             {
-              "name": "Basarios Tears",
+              "item": 592,
               "chance": "7%"
             },
             {
-              "name": "StrBasariosWing",
+              "item": 591,
               "chance": "5%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "3%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "HvyBasariosShell",
+              "item": 589,
               "chance": "40%"
             },
             {
-              "name": "Eltalite Ore",
+              "item": 207,
               "chance": "40%"
             },
             {
-              "name": "Union Ore",
+              "item": 208,
               "chance": "20%"
             }
           ],
           "break stomach": [
             {
-              "name": "DeadlyPoisonSac x1",
+              "item": 269,
+              "amount": 1,
               "chance": "45%"
             },
             {
-              "name": "Union Ore x1",
+              "item": 208,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Eltalite Ore x1",
+              "item": 207,
+              "amount": 1,
               "chance": "25%"
             }
           ],
           "shiny drop : awoken from rock mimic or awoken from sleep": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "55%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "25%"
             },
             {
-              "name": "Eltalite Ore",
+              "item": 207,
               "chance": "20%"
             }
           ],
           "capture": [
             {
-              "name": "Eltalite Ore x1",
+              "item": 207,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "HvyBasariosShell x1",
+              "item": 589,
+              "amount": 1,
               "chance": "34%"
             },
             {
-              "name": "Union Ore x1",
+              "item": 208,
+              "amount": 1,
               "chance": "16%"
             },
             {
-              "name": "Basarios Tears x1",
+              "item": 592,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "StrBasariosWing x1",
+              "item": 591,
+              "amount": 1,
               "chance": "5%"
             }
           ]
@@ -4301,78 +4545,83 @@
       }
     },
     {
-      "name": "Gravios",
+      "id": 17,
       "type": "flying-wyvern",
-      "description": "A large wyvern found in volcanic zones. They possess a fiery breath attack and the ability to emit a sleeping gas. They also have extremely hard scales that deflect most weapon attacks.",
       "drops": {
         "low-rank": {
           "body carves (x4)": [
             {
-              "name": "Gravios Shell",
+              "item": 623,
               "chance": "63%"
             },
             {
-              "name": "Sleep Sac",
+              "item": 271,
               "chance": "20%"
             },
             {
-              "name": "Flame Sac",
+              "item": 273,
               "chance": "12%"
             },
             {
-              "name": "Gravios Skl Shl",
+              "item": 627,
               "chance": "5%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "Gravios Shell",
+              "item": 623,
               "chance": "73%"
             },
             {
-              "name": "Lg Monster Bone",
+              "item": 283,
               "chance": "23%"
             },
             {
-              "name": "Firestone",
+              "item": 210,
               "chance": "4%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Gravios Shell x1",
+              "item": 623,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Sleep Sac x1",
+              "item": 271,
+              "amount": 1,
               "chance": "21%"
             },
             {
-              "name": "Flame Sac x2",
+              "item": 273,
+              "amount": 2,
               "chance": "41%"
             },
             {
-              "name": "Firestone x1",
+              "item": 210,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "94%"
             },
             {
-              "name": "Firestone",
+              "item": 210,
               "chance": "6%"
             }
           ],
           "break stomach": [
             {
-              "name": "Gravios Shell x1",
+              "item": 623,
+              "amount": 1,
               "chance": "90%"
             },
             {
-              "name": "Sleep Sac x2",
+              "item": 271,
+              "amount": 2,
               "chance": "10%"
             }
           ]
@@ -4380,95 +4629,103 @@
         "high-rank": {
           "body carves (x4)": [
             {
-              "name": "Gravios Shell",
+              "item": 623,
               "chance": "18%"
             },
             {
-              "name": "Gravios Carapace",
+              "item": 624,
               "chance": "50%"
             },
             {
-              "name": "Sleep Sac",
+              "item": 271,
               "chance": "10%"
             },
             {
-              "name": "Inferno Sac",
+              "item": 274,
               "chance": "10%"
             },
             {
-              "name": "Gravios Skl Shl",
+              "item": 627,
               "chance": "5%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "7%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "Gravios Carapace",
+              "item": 624,
               "chance": "66%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "20%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "2%"
             },
             {
-              "name": "Gravios BrainStm",
+              "item": 628,
               "chance": "12%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Gravios Carapace x1",
+              "item": 624,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Sleep Sac x1",
+              "item": 271,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Inferno Sac x1",
+              "item": 274,
+              "amount": 1,
               "chance": "34%"
             },
             {
-              "name": "Firestone x1",
+              "item": 210,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Firecell Stone x1",
+              "item": 211,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "47%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "47%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "6%"
             }
           ],
           "break stomach": [
             {
-              "name": "Gravios Shell x1",
+              "item": 623,
+              "amount": 1,
               "chance": "33%"
             },
             {
-              "name": "Gravios Carapace x1",
+              "item": 624,
+              "amount": 1,
               "chance": "57%"
             },
             {
-              "name": "Sleep Sac x2",
+              "item": 271,
+              "amount": 2,
               "chance": "10%"
             }
           ]
@@ -4476,95 +4733,103 @@
         "g-rank": {
           "body carves (x4)": [
             {
-              "name": "HvyGraviosShell",
+              "item": 625,
               "chance": "50%"
             },
             {
-              "name": "Coma Sac",
+              "item": 272,
               "chance": "17%"
             },
             {
-              "name": "Gravios Carapace",
+              "item": 624,
               "chance": "10%"
             },
             {
-              "name": "Blazing Fire Sac",
+              "item": 275,
               "chance": "10%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "7%"
             },
             {
-              "name": "HvnlyGraviosShl",
+              "item": 626,
               "chance": "6%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "HvyGraviosShell",
+              "item": 625,
               "chance": "66%"
             },
             {
-              "name": "Hvy Monster Bone",
+              "item": 286,
               "chance": "20%"
             },
             {
-              "name": "Gravios BrainStm",
+              "item": 628,
               "chance": "12%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "2%"
             }
           ],
           "capture rewards": [
             {
-              "name": "HvyGraviosShell x1",
+              "item": 625,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Coma Sac x1",
+              "item": 272,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Blazing Fire Sac x1",
+              "item": 275,
+              "amount": 1,
               "chance": "16%"
             },
             {
-              "name": "Firecell Stone x1",
+              "item": 211,
+              "amount": 1,
               "chance": "14%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "60%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "30%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "10%"
             }
           ],
           "break stomach": [
             {
-              "name": "HvyGraviosShell x1",
+              "item": 625,
+              "amount": 1,
               "chance": "57%"
             },
             {
-              "name": "Gravios Carapace x1",
+              "item": 624,
+              "amount": 1,
               "chance": "18%"
             },
             {
-              "name": "Coma Sac x2",
+              "item": 272,
+              "amount": 2,
               "chance": "15%"
             },
             {
-              "name": "HvnlyGraviosShl x1",
+              "item": 626,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -4721,79 +4986,84 @@
       }
     },
     {
-      "name": "Black Gravios",
+      "id": 47,
       "type": "flying-wyvern",
       "icon": "gravios",
-      "description": "A large wyvern found in volcanic zones. They possess a fiery breath attack and the ability to emit a sleeping gas. They also have extremely hard scales that deflect most weapon attacks.",
       "drops": {
         "low-rank": {
           "body carves (x4)": [
             {
-              "name": "Blk Gravios Shl",
+              "item": 629,
               "chance": "58%"
             },
             {
-              "name": "Sleep Sac",
+              "item": 271,
               "chance": "20%"
             },
             {
-              "name": "Flame Sac",
+              "item": 273,
               "chance": "12%"
             },
             {
-              "name": "Blk Gravios Skl",
+              "item": 633,
               "chance": "10%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "Blk Gravios Shl",
+              "item": 629,
               "chance": "72%"
             },
             {
-              "name": "Lg Monster Bone",
+              "item": 283,
               "chance": "25%"
             },
             {
-              "name": "Firestone",
+              "item": 210,
               "chance": "3%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Blk Gravios Shl x1",
+              "item": 629,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Sleep Sac x1",
+              "item": 271,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Flame Sac x3",
+              "item": 273,
+              "amount": 3,
               "chance": "41%"
             },
             {
-              "name": "Firestone x1",
+              "item": 210,
+              "amount": 1,
               "chance": "7%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "94%"
             },
             {
-              "name": "Firestone",
+              "item": 210,
               "chance": "6%"
             }
           ],
           "break stomach": [
             {
-              "name": "Blk Gravios Shl x1",
+              "item": 629,
+              "amount": 1,
               "chance": "90%"
             },
             {
-              "name": "Sleep Sac x2",
+              "item": 271,
+              "amount": 2,
               "chance": "10%"
             }
           ]
@@ -4801,95 +5071,103 @@
         "high-rank": {
           "body carves (x4)": [
             {
-              "name": "Blk Gravios Shl",
+              "item": 629,
               "chance": "13%"
             },
             {
-              "name": "Blk Gravios Cpc",
+              "item": 630,
               "chance": "50%"
             },
             {
-              "name": "Sleep Sac",
+              "item": 271,
               "chance": "10%"
             },
             {
-              "name": "Inferno Sac",
+              "item": 274,
               "chance": "10%"
             },
             {
-              "name": "Blk Gravios Skl",
+              "item": 633,
               "chance": "10%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "7%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "Blk Gravios Cpc",
+              "item": 630,
               "chance": "58%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "25%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "9%"
             },
             {
-              "name": "Gravios BrainStm",
+              "item": 628,
               "chance": "8%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Blk Gravios Cpc x1",
+              "item": 630,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "Sleep Sac x1",
+              "item": 271,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Inferno Sac x1",
+              "item": 274,
+              "amount": 1,
               "chance": "34%"
             },
             {
-              "name": "Firestone x1",
+              "item": 210,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Firecell Stone x1",
+              "item": 211,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "47%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "47%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "6%"
             }
           ],
           "break stomach": [
             {
-              "name": "Blk Gravios Shl x1",
+              "item": 629,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Blk Gravios Cpc x1",
+              "item": 630,
+              "amount": 1,
               "chance": "57%"
             },
             {
-              "name": "Firecell Stone x1",
+              "item": 211,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -4897,95 +5175,103 @@
         "g-rank": {
           "body carves (x4)": [
             {
-              "name": "HvyBlkGraviosShl",
+              "item": 631,
               "chance": "50%"
             },
             {
-              "name": "Coma Sac",
+              "item": 272,
               "chance": "17%"
             },
             {
-              "name": "Blk Gravios Cpc",
+              "item": 630,
               "chance": "10%"
             },
             {
-              "name": "Blazing Fire Sac",
+              "item": 275,
               "chance": "10%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "7%"
             },
             {
-              "name": "HvnlyBlkGraviShl",
+              "item": 632,
               "chance": "6%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "HvyBlkGraviosShl",
+              "item": 631,
               "chance": "66%"
             },
             {
-              "name": "Hvy Monster Bone",
+              "item": 286,
               "chance": "20%"
             },
             {
-              "name": "Gravios BrainStm",
+              "item": 628,
               "chance": "8%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "6%"
             }
           ],
           "capture rewards": [
             {
-              "name": "HvyBlkGraviosShl x1",
+              "item": 631,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Coma Sac x1",
+              "item": 272,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Blazing Fire Sac x1",
+              "item": 275,
+              "amount": 1,
               "chance": "16%"
             },
             {
-              "name": "Firecell Stone x1",
+              "item": 211,
+              "amount": 1,
               "chance": "14%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "60%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "30%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "10%"
             }
           ],
           "break stomach": [
             {
-              "name": "HvyBlkGraviosShl x1",
+              "item": 631,
+              "amount": 1,
               "chance": "57%"
             },
             {
-              "name": "Blk Gravios Cpc x1",
+              "item": 630,
+              "amount": 1,
               "chance": "18%"
             },
             {
-              "name": "Firecell Stone x2",
+              "item": 211,
+              "amount": 2,
               "chance": "15%"
             },
             {
-              "name": "HvnlyBlkGraviShl x1",
+              "item": 632,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -5142,66 +5428,68 @@
       }
     },
     {
-      "name": "Monoblos",
+      "id": 26,
       "type": "flying-wyvern",
-      "description": "A large-horned wyvern found in desert zones. Their giant horn makes their attacks very dangerous. While they have no breath attack, their ear-splitting roar is the bane of hunters.",
       "drops": {
         "low-rank": {
           "body carves (x4)": [
             {
-              "name": "Monoblos Shell",
+              "item": 671,
               "chance": "55%"
             },
             {
-              "name": "Monoblos Spine",
+              "item": 673,
               "chance": "23%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "20%"
             },
             {
-              "name": "Monoblos Heart",
+              "item": 675,
               "chance": "2%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "Monoblos Shell",
+              "item": 671,
               "chance": "80%"
             },
             {
-              "name": "Lg Monster Bone",
+              "item": 283,
               "chance": "20%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Monoblos Shell x1",
+              "item": 671,
+              "amount": 1,
               "chance": "67%"
             },
             {
-              "name": "Monoblos Spine x1",
+              "item": 673,
+              "amount": 1,
               "chance": "29%"
             },
             {
-              "name": "Monoblos Heart x1",
+              "item": 675,
+              "amount": 1,
               "chance": "4%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "98%"
             },
             {
-              "name": "Monoblos Heart",
+              "item": 675,
               "chance": "2%"
             }
           ],
           "break horn": [
             {
-              "name": "Blood Red Horn",
+              "item": 669,
               "chance": "100%"
             }
           ]
@@ -5209,75 +5497,80 @@
         "high-rank": {
           "body carves (x4)": [
             {
-              "name": "MonoblosCarapace",
+              "item": 672,
               "chance": "55%"
             },
             {
-              "name": "MonoblosThoracic",
+              "item": 674,
               "chance": "20%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "16%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "5%"
             },
             {
-              "name": "Monoblos Heart",
+              "item": 675,
               "chance": "4%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "MonoblosCarapace",
+              "item": 672,
               "chance": "70%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "20%"
             },
             {
-              "name": "Monoblos Shell",
+              "item": 671,
               "chance": "10%"
             }
           ],
           "capture rewards": [
             {
-              "name": "MonoblosCarapace x1",
+              "item": 672,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "MonoblosThoracic x1",
+              "item": 674,
+              "amount": 1,
               "chance": "29%"
             },
             {
-              "name": "Monoblos Heart x1",
+              "item": 675,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "48%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "48%"
             },
             {
-              "name": "Monoblos Heart",
+              "item": 675,
               "chance": "4%"
             }
           ],
           "break horn": [
             {
-              "name": "Top-GrdRedHorn x1",
+              "item": 670,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Blood Red Horn x1",
+              "item": 669,
+              "amount": 1,
               "chance": "40%"
             }
           ]
@@ -5423,67 +5716,69 @@
       }
     },
     {
-      "name": "White Monoblos",
+      "id": 44,
       "type": "flying-wyvern",
       "icon": "monoblos",
-      "description": "A large-horned wyvern found in desert zones. Their giant horn makes their attacks very dangerous. While they have no breath attack, their ear-splitting roar is the bane of hunters.",
       "drops": {
         "low-rank": {
           "body carves (x4)": [
             {
-              "name": "Wht Monoblos Shl",
+              "item": 678,
               "chance": "55%"
             },
             {
-              "name": "Wht Monoblos Spn",
+              "item": 680,
               "chance": "23%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "20%"
             },
             {
-              "name": "Monoblos Heart",
+              "item": 675,
               "chance": "2%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "Wht Monoblos Shl",
+              "item": 678,
               "chance": "80%"
             },
             {
-              "name": "Lg Monster Bone",
+              "item": 283,
               "chance": "20%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Wht Monoblos Shl x1",
+              "item": 678,
+              "amount": 1,
               "chance": "67%"
             },
             {
-              "name": "Wht Monoblos Spn x1",
+              "item": 680,
+              "amount": 1,
               "chance": "29%"
             },
             {
-              "name": "Monoblos Heart x1",
+              "item": 675,
+              "amount": 1,
               "chance": "4%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "98%"
             },
             {
-              "name": "Monoblos Heart",
+              "item": 675,
               "chance": "2%"
             }
           ],
           "break horn": [
             {
-              "name": "Wht Monoblos Hrn",
+              "item": 676,
               "chance": "100%"
             }
           ]
@@ -5491,75 +5786,80 @@
         "high-rank": {
           "body carves (x4)": [
             {
-              "name": "Wht Monoblos Cpc",
+              "item": 679,
               "chance": "55%"
             },
             {
-              "name": "WhtMonoblosThora",
+              "item": 681,
               "chance": "20%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "16%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "5%"
             },
             {
-              "name": "Monoblos Heart",
+              "item": 675,
               "chance": "4%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "Wht Monoblos Cpc",
+              "item": 679,
               "chance": "70%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "20%"
             },
             {
-              "name": "Wht Monoblos Shl",
+              "item": 678,
               "chance": "10%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Wht Monoblos Cpc x1",
+              "item": 679,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "WhtMonoblosThora x1",
+              "item": 681,
+              "amount": 1,
               "chance": "29%"
             },
             {
-              "name": "Monoblos Heart x1",
+              "item": 675,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "48%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "48%"
             },
             {
-              "name": "Monoblos Heart",
+              "item": 675,
               "chance": "4%"
             }
           ],
           "break horn": [
             {
-              "name": "Top-GrdPlatHorn x1",
+              "item": 677,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Wht Monoblos Hrn x1",
+              "item": 676,
+              "amount": 1,
               "chance": "40%"
             }
           ]
@@ -5705,70 +6005,75 @@
       }
     },
     {
-      "name": "Diablos",
+      "id": 14,
       "type": "flying-wyvern",
-      "description": "Two-horned wyverns found in desert zones. They are capable of burrowing into sand to attack prey from below. Incredibly violent and proud, they are known to unleash terrible wrath when accosted.",
       "drops": {
         "low-rank": {
           "body carves (x3)": [
             {
-              "name": "Diablos Shell",
+              "item": 637,
               "chance": "63%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "30%"
             },
             {
-              "name": "Diablos Spine",
+              "item": 640,
               "chance": "7%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Diablos Shell",
+              "item": 637,
               "chance": "60%"
             },
             {
-              "name": "Diablos Tail",
+              "item": 643,
               "chance": "40%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Diablos Shell x1",
+              "item": 637,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Blos Fang x3",
+              "item": 645,
+              "amount": 3,
               "chance": "39%"
             },
             {
-              "name": "Diablos Spine x1",
+              "item": 640,
+              "amount": 1,
               "chance": "11%"
             },
             {
-              "name": "Diablos Tail x1",
+              "item": 643,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "95%"
             },
             {
-              "name": "Diablos Spine",
+              "item": 640,
               "chance": "5%"
             }
           ],
           "break horns": [
             {
-              "name": "Twisted Horn x1",
+              "item": 634,
+              "amount": 1,
               "chance": "92%"
             },
             {
-              "name": "Majestic Horn x1",
+              "item": 635,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -5776,79 +6081,85 @@
         "high-rank": {
           "body carves (x3)": [
             {
-              "name": "Diablos Carapace",
+              "item": 638,
               "chance": "56%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "22%"
             },
             {
-              "name": "Diablos Shell",
+              "item": 637,
               "chance": "10%"
             },
             {
-              "name": "Diablos Thoracic",
+              "item": 641,
               "chance": "7%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Diablos Tail",
+              "item": 643,
               "chance": "64%"
             },
             {
-              "name": "Diablos Carapace",
+              "item": 638,
               "chance": "26%"
             },
             {
-              "name": "Diablos Shell",
+              "item": 637,
               "chance": "10%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Diablos Carapace x1",
+              "item": 638,
+              "amount": 1,
               "chance": "57%"
             },
             {
-              "name": "Blos Fang x3",
+              "item": 645,
+              "amount": 3,
               "chance": "27%"
             },
             {
-              "name": "Diablos Thoracic x1",
+              "item": 641,
+              "amount": 1,
               "chance": "11%"
             },
             {
-              "name": "Diablos Tail x1",
+              "item": 643,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "48%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "47%"
             },
             {
-              "name": "Diablos Thoracic",
+              "item": 641,
               "chance": "5%"
             }
           ],
           "break horns": [
             {
-              "name": "Twisted Horn x1",
+              "item": 634,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Majestic Horn x1",
+              "item": 635,
+              "amount": 1,
               "chance": "20%"
             }
           ]
@@ -5856,79 +6167,84 @@
         "g-rank": {
           "body carves (x3)": [
             {
-              "name": "HvyDiablosShell",
+              "item": 639,
               "chance": "63%"
             },
             {
-              "name": "HvyDiablosSpine",
+              "item": 642,
               "chance": "17%"
             },
             {
-              "name": "Diablos Carapace",
+              "item": 638,
               "chance": "10%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "5%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "LthrDiablosTail",
+              "item": 644,
               "chance": "64%"
             },
             {
-              "name": "HvyDiablosShell",
+              "item": 639,
               "chance": "26%"
             },
             {
-              "name": "Diablos Carapace",
+              "item": 638,
               "chance": "10%"
             }
           ],
           "capture rewards": [
             {
-              "name": "HvyDiablosShell x1",
+              "item": 639,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "HvyDiablosSpine x1",
+              "item": 642,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Blos Fang x4",
+              "item": 645,
+              "amount": 4,
               "chance": "15%"
             },
             {
-              "name": "LthrDiablosTail",
+              "item": 644,
               "chance": "10%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "60%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "35%"
             },
             {
-              "name": "HvyDiablosSpine",
+              "item": 642,
               "chance": "5%"
             }
           ],
           "break horns": [
             {
-              "name": "Majestic Horn x1",
+              "item": 635,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "StoutWarpedHorn x1",
+              "item": 636,
+              "amount": 1,
               "chance": "40%"
             }
           ]
@@ -6085,74 +6401,81 @@
       }
     },
     {
-      "name": "Black Diablos",
+      "id": 43,
       "type": "flying-wyvern",
       "icon": "diablos",
       "drops": {
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Black Blos Shell",
+              "item": 648,
               "chance": "63%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "30%"
             },
             {
-              "name": "Black Blos Spine",
+              "item": 651,
               "chance": "7%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Black Blos Shell",
+              "item": 648,
               "chance": "40%"
             },
             {
-              "name": "Black Blos Tail",
+              "item": 654,
               "chance": "60%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Black Blos Shell x1",
+              "item": 648,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Blos Fang x3",
+              "item": 645,
+              "amount": 3,
               "chance": "39%"
             },
             {
-              "name": "Black Blos Spine x1",
+              "item": 651,
+              "amount": 1,
               "chance": "11%"
             },
             {
-              "name": "Black Blos Tail x1",
+              "item": 654,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "95%"
             },
             {
-              "name": "Black Blos Spine",
+              "item": 651,
               "chance": "5%"
             }
           ],
           "break horns": [
             {
-              "name": "TwstBlkBlosHrn x1",
+              "item": 646,
+              "amount": 1,
               "chance": "69%"
             },
             {
-              "name": "Twisted Horn x2",
+              "item": 634,
+              "amount": 2,
               "chance": "16%"
             },
             {
-              "name": "Majestic Horn x1",
+              "item": 635,
+              "amount": 1,
               "chance": "15%"
             }
           ]
@@ -6160,83 +6483,90 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Black Blos Shell",
+              "item": 648,
               "chance": "10%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "20%"
             },
             {
-              "name": "Black Blos Cpc",
+              "item": 649,
               "chance": "56%"
             },
             {
-              "name": "Blk Blos Thracic",
+              "item": 652,
               "chance": "7%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "7%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Black Blos Tail",
+              "item": 654,
               "chance": "64%"
             },
             {
-              "name": "Black Blos Cpc",
+              "item": 649,
               "chance": "30%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "6%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Blos Fang x3",
+              "item": 645,
+              "amount": 3,
               "chance": "27%"
             },
             {
-              "name": "Black Blos Tail x1",
+              "item": 654,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Blk Blos Thracic x1",
+              "item": 652,
+              "amount": 1,
               "chance": "11%"
             },
             {
-              "name": "Black Blos Cpc x1",
+              "item": 649,
+              "amount": 1,
               "chance": "57%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "48%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "47%"
             },
             {
-              "name": "Blk Blos Thracic",
+              "item": 652,
               "chance": "5%"
             }
           ],
           "break horns": [
             {
-              "name": "TwstBlkBlosHrn x1",
+              "item": 646,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Majestic Horn x1",
+              "item": 635,
+              "amount": 1,
               "chance": "18%"
             },
             {
-              "name": "Majestic Horn x2",
+              "item": 635,
+              "amount": 2,
               "chance": "32%"
             }
           ]
@@ -6244,87 +6574,93 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "HvyBlkBlosShell",
+              "item": 650,
               "chance": "63%"
             },
             {
-              "name": "HvyBlkBlosSpine",
+              "item": 653,
               "chance": "17%"
             },
             {
-              "name": "Black Blos Cpc",
+              "item": 649,
               "chance": "8%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "7%"
             },
             {
-              "name": "Blos Fang",
+              "item": 645,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "LthrBlkBlosTail",
+              "item": 655,
               "chance": "64%"
             },
             {
-              "name": "HvyBlkBlosShell",
+              "item": 650,
               "chance": "26%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "6%"
             },
             {
-              "name": "Black Blos Cpc",
+              "item": 649,
               "chance": "4%"
             }
           ],
           "capture rewards": [
             {
-              "name": "HvyBlkBlosShell x1",
+              "item": 650,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "HvyBlkBlosSpine x1",
+              "item": 653,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Blos Fang x4",
+              "item": 645,
+              "amount": 4,
               "chance": "15%"
             },
             {
-              "name": "LthrBlkBlosTail",
+              "item": 655,
               "chance": "10%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "60%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "35%"
             },
             {
-              "name": "HvyBlkBlosSpine",
+              "item": 653,
               "chance": "5%"
             }
           ],
           "break horns": [
             {
-              "name": "StoutBlkTwstdHrn x1",
+              "item": 647,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Majestic Horn x1",
+              "item": 635,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "TwstBlkBlosHrn x2",
+              "item": 646,
+              "amount": 2,
               "chance": "40%"
             }
           ]
@@ -6481,60 +6817,63 @@
       }
     },
     {
-      "name": "Tigrex",
+      "id": 75,
       "type": "flying-wyvern",
-      "description": "A flying wyvern that maintains its primitive origins. Prone to violence, it possesses incredible ferocity thanks to its four limbs, claws, and jaw. Inhabits a wide area, it has even been spotted hunting Popo in the mountains.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
             {
-              "name": "Tigrex Scale",
+              "item": 593,
               "chance": "60%"
             },
             {
-              "name": "Tigrex Shell",
+              "item": 597,
               "chance": "40%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Tigrex Scale",
+              "item": 593,
               "chance": "100%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Tigrex Shell x1",
+              "item": 597,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "Tigrex Scale x1",
+              "item": 593,
+              "amount": 1,
               "chance": "30%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "75%"
             },
             {
-              "name": "Tigrex Scale",
+              "item": 593,
               "chance": "20%"
             },
             {
-              "name": "Tigrex Claw",
+              "item": 602,
               "chance": "5%"
             }
           ],
           "break head": [
             {
-              "name": "Tigrex Shell x1",
+              "item": 597,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "break claw": [
             {
-              "name": "Tigrex Claw x1",
+              "item": 602,
+              "amount": 1,
               "chance": "100%"
             }
           ]
@@ -6542,89 +6881,99 @@
         "low-rank": {
           "body carves (x3)": [
             {
-              "name": "Tigrex Scale",
+              "item": 593,
               "chance": "40%"
             },
             {
-              "name": "Tigrex Claw",
+              "item": 602,
               "chance": "37%"
             },
             {
-              "name": "Tigrex Shell",
+              "item": 597,
               "chance": "20%"
             },
             {
-              "name": "Tigrex Skull Shl",
+              "item": 608,
               "chance": "3%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Tigrex Tail",
+              "item": 600,
               "chance": "80%"
             },
             {
-              "name": "Tigrex Scale",
+              "item": 593,
               "chance": "20%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Tigrex Shell x1",
+              "item": 597,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Tigrex Fang x2",
+              "item": 605,
+              "amount": 2,
               "chance": "30%"
             },
             {
-              "name": "Tigrex Scale x2",
+              "item": 593,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Tigrex Tail x1",
+              "item": 600,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "Tigrex Skull Shl x1",
+              "item": 608,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "75%"
             },
             {
-              "name": "Tigrex Scale",
+              "item": 593,
               "chance": "20%"
             },
             {
-              "name": "Tigrex Claw",
+              "item": 602,
               "chance": "5%"
             }
           ],
           "break head": [
             {
-              "name": "Tigrex Fang x2",
+              "item": 605,
+              "amount": 2,
               "chance": "50%"
             },
             {
-              "name": "Tigrex Shell x1",
+              "item": 597,
+              "amount": 1,
               "chance": "42%"
             },
             {
-              "name": "Tigrex Skull Shl x1",
+              "item": 608,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "break claw": [
             {
-              "name": "Tigrex Claw x2",
+              "item": 602,
+              "amount": 2,
               "chance": "80%"
             },
             {
-              "name": "Tigrex Claw x1",
+              "item": 602,
+              "amount": 1,
               "chance": "20%"
             }
           ]
@@ -6632,105 +6981,117 @@
         "high-rank": {
           "body carves (x3)": [
             {
-              "name": "Tigrex Scale+",
+              "item": 594,
               "chance": "38%"
             },
             {
-              "name": "Tigrex Claw+",
+              "item": 603,
               "chance": "30%"
             },
             {
-              "name": "Tigrex Carapace",
+              "item": 598,
               "chance": "17%"
             },
             {
-              "name": "Tigrex Scale",
+              "item": 593,
               "chance": "10%"
             },
             {
-              "name": "Tigrex Skull Shl",
+              "item": 608,
               "chance": "5%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "Tigrex Tail",
+              "item": 600,
               "chance": "60%"
             },
             {
-              "name": "Tigrex Scale+",
+              "item": 594,
               "chance": "40%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Tigrex Carapace x1",
+              "item": 598,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Tigrex Fang+ x1",
+              "item": 606,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Tigrex Scale+ x2",
+              "item": 594,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Tigrex Shell x1",
+              "item": 597,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "Tigrex Tail x1",
+              "item": 600,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Tigrex Skull Shl x1",
+              "item": 608,
+              "amount": 1,
               "chance": "7%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "38%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "37%"
             },
             {
-              "name": "Tigrex Scale+",
+              "item": 594,
               "chance": "20%"
             },
             {
-              "name": "Tigrex Claw+",
+              "item": 603,
               "chance": "5%"
             }
           ],
           "break head": [
             {
-              "name": "Tigrex Fang+ x1",
+              "item": 606,
+              "amount": 1,
               "chance": "45%"
             },
             {
-              "name": "Tigrex Carapace x1",
+              "item": 598,
+              "amount": 1,
               "chance": "28%"
             },
             {
-              "name": "Tigrex Fang x3",
+              "item": 605,
+              "amount": 3,
               "chance": "15%"
             },
             {
-              "name": "Tigrex Skull Shl x1",
+              "item": 608,
+              "amount": 1,
               "chance": "12%"
             }
           ],
           "break claw": [
             {
-              "name": "Tigrex Claw+ x1",
+              "item": 603,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Tigrex Claw x3",
+              "item": 602,
+              "amount": 3,
               "chance": "20%"
             }
           ]
@@ -6738,113 +7099,127 @@
         "g-rank": {
           "body carves (x3)": [
             {
-              "name": "ThickTigrexScale",
+              "item": 595,
               "chance": "38%"
             },
             {
-              "name": "Hard Tigrex Claw",
+              "item": 604,
               "chance": "30%"
             },
             {
-              "name": "Hvy Tigrex Shell",
+              "item": 599,
               "chance": "19%"
             },
             {
-              "name": "Tigrex Scale+",
+              "item": 594,
               "chance": "10%"
             },
             {
-              "name": "HvnlyTigrexScale",
+              "item": 596,
               "chance": "3%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "LeathrTigrexTail",
+              "item": 601,
               "chance": "80%"
             },
             {
-              "name": "ThickTigrexScale",
+              "item": 595,
               "chance": "20%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Hvy Tigrex Shell x1",
+              "item": 599,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Hvy Tigrex Fang x1",
+              "item": 607,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "ThickTigrexScale x2",
+              "item": 595,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "LeathrTigrexTail x1",
+              "item": 601,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "HvnlyTigrexScale x1",
+              "item": 596,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Tigrex Carapace x1",
+              "item": 598,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "25%"
             },
             {
-              "name": "ThickTigrexScale",
+              "item": 595,
               "chance": "20%"
             },
             {
-              "name": "Hard Tigrex Claw",
+              "item": 604,
               "chance": "5%"
             }
           ],
           "break head": [
             {
-              "name": "Hvy Tigrex Fang x1",
+              "item": 607,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Hvy Tigrex Fang x2",
+              "item": 607,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Hvy Tigrex Shell x1",
+              "item": 599,
+              "amount": 1,
               "chance": "17%"
             },
             {
-              "name": "Tigrex Fang+ x3",
+              "item": 606,
+              "amount": 3,
               "chance": "15%"
             },
             {
-              "name": "Tigrex Skull Shl x1",
+              "item": 608,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "HvnlyTigrexScale x1",
+              "item": 596,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "break claw": [
             {
-              "name": "Hard Tigrex Claw x1",
+              "item": 604,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Tigrex Claw+ x3",
+              "item": 603,
+              "amount": 3,
               "chance": "20%"
             }
           ]
@@ -6998,118 +7373,130 @@
       }
     },
     {
-      "name": "Nargacuga",
+      "id": 81,
       "type": "flying-wyvern",
-      "description": "A uniquely-evolved wyvern that calls the forest its home. It hides itself in the shadows and slyly stalks its prey with terrifying speed and tenacity. Its unique tail can take down a medium-sized monster in a single swish.",
       "drops": {
         "high-rank": {
           "body carves (x3)": [
             {
-              "name": "Narga Scale+",
+              "item": 609,
               "chance": "45%"
             },
             {
-              "name": "Black Narga Pelt",
+              "item": 612,
               "chance": "25%"
             },
             {
-              "name": "Nargacuga Fang+",
+              "item": 620,
               "chance": "15%"
             },
             {
-              "name": "NargaCuttingWing",
+              "item": 618,
               "chance": "10%"
             },
             {
-              "name": "Nargacuga Tail",
+              "item": 614,
               "chance": "5%"
             }
           ],
           "body carves (x1)": [
             {
-              "name": "Nargacuga Tail",
+              "item": 614,
               "chance": "82%"
             },
             {
-              "name": "Narga Tail Spike",
+              "item": 616,
               "chance": "10%"
             },
             {
-              "name": "Narga Brain Stem",
+              "item": 622,
               "chance": "8%"
             }
           ],
           "capture rewards": [
             {
-              "name": "Black Narga Pelt x1",
+              "item": 612,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Nargacuga Fang+ x2",
+              "item": 620,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Nargacuga Tail x1",
+              "item": 614,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Narga Scale+ x2",
+              "item": 609,
+              "amount": 2,
               "chance": "16%"
             },
             {
-              "name": "Narga Brain Stem x1",
+              "item": 622,
+              "amount": 1,
               "chance": "4%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "37%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "38%"
             },
             {
-              "name": "Narga Scale+",
+              "item": 609,
               "chance": "25%"
             }
           ],
           "break head": [
             {
-              "name": "Nargacuga Fang+ x2",
+              "item": 620,
+              "amount": 2,
               "chance": "70%"
             },
             {
-              "name": "Narga Scale+ x2",
+              "item": 609,
+              "amount": 2,
               "chance": "30%"
             }
           ],
           "break wings": [
             {
-              "name": "NargaCuttingWing x2",
+              "item": 618,
+              "amount": 2,
               "chance": "60%"
             },
             {
-              "name": "NargaCuttingWing x1",
+              "item": 618,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Black Narga Pelt x2",
+              "item": 612,
+              "amount": 2,
               "chance": "15%"
             }
           ],
           "break tail": [
             {
-              "name": "Narga Tail Spike x2",
+              "item": 616,
+              "amount": 2,
               "chance": "75%"
             },
             {
-              "name": "Black Narga Pelt x1",
+              "item": 612,
+              "amount": 1,
               "chance": "17%"
             },
             {
-              "name": "Narga Brain Stem x1",
+              "item": 622,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -7117,147 +7504,165 @@
         "g-rank": {
           "body carves (x3)": [
             {
-              "name": "ThickNargaScale",
+              "item": 610,
               "chance": "40%"
             },
             {
-              "name": "BlackNargaPelt+",
+              "item": 613,
               "chance": "20%"
             },
             {
-              "name": "Narga Scale+",
+              "item": 609,
               "chance": "13%"
             },
             {
-              "name": "HvyNargacugaFang",
+              "item": 621,
               "chance": "12%"
             },
             {
-              "name": "StrNargaCttngWng",
+              "item": 619,
               "chance": "8%"
             },
             {
-              "name": "LeatherNargaTail",
+              "item": 615,
               "chance": "5%"
             },
             {
-              "name": "HvnlyNargaScale",
+              "item": 611,
               "chance": "2%"
             }
           ],
           "tail carves (x1)": [
             {
-              "name": "LeatherNargaTail",
+              "item": 615,
               "chance": "75%"
             },
             {
-              "name": "Narga Brain Stem",
+              "item": 622,
               "chance": "10%"
             },
             {
-              "name": "HvyNargaTailSpik",
+              "item": 617,
               "chance": "8%"
             },
             {
-              "name": "Nargacuga Tail",
+              "item": 614,
               "chance": "7%"
             }
           ],
           "capture rewards": [
             {
-              "name": "BlackNargaPelt+ x1",
+              "item": 613,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "HvyNargacugaFang x2",
+              "item": 621,
+              "amount": 2,
               "chance": "18%"
             },
             {
-              "name": "ThickNargaScale x2",
+              "item": 610,
+              "amount": 2,
               "chance": "16%"
             },
             {
-              "name": "LeatherNargaTail x1",
+              "item": 615,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Black Narga Pelt x2",
+              "item": 612,
+              "amount": 2,
               "chance": "10%"
             },
             {
-              "name": "Narga Brain Stem x1",
+              "item": 622,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "25%"
             },
             {
-              "name": "ThickNargaScale",
+              "item": 610,
               "chance": "21%"
             },
             {
-              "name": "HvnlyNargaScale",
+              "item": 611,
               "chance": "4%"
             }
           ],
           "break head": [
             {
-              "name": "HvyNargacugaFang x2",
+              "item": 621,
+              "amount": 2,
               "chance": "65%"
             },
             {
-              "name": "ThickNargaScale x2",
+              "item": 610,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "HvnlyNargaScale x1",
+              "item": 611,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Nargacuga Fang+ x4",
+              "item": 620,
+              "amount": 4,
               "chance": "7%"
             }
           ],
           "break wings": [
             {
-              "name": "StrNargaCttngWng x2",
+              "item": 619,
+              "amount": 2,
               "chance": "60%"
             },
             {
-              "name": "StrNargaCttngWng x1",
+              "item": 619,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "BlackNargaPelt+ x2",
+              "item": 613,
+              "amount": 2,
               "chance": "12%"
             },
             {
-              "name": "NargaCuttingWing x3",
+              "item": 618,
+              "amount": 3,
               "chance": "8%"
             }
           ],
           "break tail": [
             {
-              "name": "HvyNargaTailSpik x2",
+              "item": 617,
+              "amount": 2,
               "chance": "70%"
             },
             {
-              "name": "Narga Tail Spike x4",
+              "item": 616,
+              "amount": 4,
               "chance": "12%"
             },
             {
-              "name": "Narga Brain Stem x1",
+              "item": 622,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "BlackNargaPelt+ x1",
+              "item": 613,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -7429,107 +7834,116 @@
       }
     },
     {
-      "name": "Akantor",
+      "id": 76,
       "type": "flying-wyvern",
       "icon": "fatalis",
-      "description": "A wyvern truly wrapped in mystery. Known to some as the black god and to others as the tyrant of fire, this large and brutal creature is known to the Guild simply as Akantor...",
       "drops": {
         "high rank": {
           "body carves (x4)": [
             {
-              "name": "Akantor Scale",
+              "item": 803,
               "chance": "40%"
             },
             {
-              "name": "Akantor Shell",
+              "item": 804,
               "chance": "35%"
             },
             {
-              "name": "Akantor Claw",
+              "item": 806,
               "chance": "10%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "10%"
             },
             {
-              "name": "Akantor Fang",
+              "item": 807,
               "chance": "5%"
             }
           ],
           "tail carves (x2)": [
             {
-              "name": "Akantor Tail",
+              "item": 805,
               "chance": "80%"
             },
             {
-              "name": "Akantor Scale",
+              "item": 803,
               "chance": "20%"
             }
           ],
           "shiny drops": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "50%"
             },
             {
-              "name": "Akantor Shell",
+              "item": 804,
               "chance": "20%"
             },
             {
-              "name": "Akantor Spike",
+              "item": 808,
               "chance": "15%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "15%"
             }
           ],
           "break fangs": [
             {
-              "name": "Akantor Fang x1",
+              "item": 807,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Akantor Scale x1",
+              "item": 803,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break claws": [
             {
-              "name": "Akantor Claw x1",
+              "item": 806,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Akantor Claw x2",
+              "item": 806,
+              "amount": 2,
               "chance": "10%"
             },
             {
-              "name": "Akantor Shell x1",
+              "item": 804,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "break chest": [
             {
-              "name": "Akantor Scale x1",
+              "item": 803,
+              "amount": 1,
               "chance": "60%"
             },
             {
-              "name": "Akantor Shell x1",
+              "item": 804,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Firecell Stone x1",
+              "item": 211,
+              "amount": 1,
               "chance": "10%"
             }
           ],
           "break spikes - back": [
             {
-              "name": "Akantor Spike x1",
+              "item": 808,
+              "amount": 1,
               "chance": "80%"
             },
             {
-              "name": "Akantor Shell x1",
+              "item": 804,
+              "amount": 1,
               "chance": "20%"
             }
           ]
@@ -7686,101 +8100,103 @@
       "base_size": 3049.97
     },
     {
-      "name": "Ukanlos",
+      "id": 88,
       "type": "flying-wyvern",
       "icon": "fatalis",
-      "description": "A mysterious wyvern said to only appear after large avalanches deep in the snowy mountains. Often seen crushing ice balls and rock into powder in its stride, it’s known to the Guild as Ukanlos, although there are whisperings that it may be the white god...",
       "drops": {
         "g rank": {
           "body carves (x4)": [
             {
-              "name": "HvyUkanlosShell",
+              "item": 809,
               "chance": "40%"
             },
             {
-              "name": "UkanlosUnderscl",
+              "item": 810,
               "chance": "28%"
             },
             {
-              "name": "StrongUkanlosFin",
+              "item": 814,
               "chance": "12%"
             },
             {
-              "name": "UkanlosShovelJaw",
+              "item": 813,
               "chance": "8%"
             },
             {
-              "name": "Ukanlos Stone",
+              "item": 815,
               "chance": "2%"
             },
             {
-              "name": "Hvy Ukanlos Tail",
+              "item": 811,
               "chance": "10%"
             }
           ],
           "tail carves (x2) - cut when hp < 25%": [
             {
-              "name": "Hvy Ukanlos Tail",
+              "item": 811,
               "chance": "90%"
             },
             {
-              "name": "HvyUkanlosShell",
+              "item": 809,
               "chance": "10%"
             }
           ],
           "break head": [
             {
-              "name": "UkanlosShovelJaw",
+              "item": 813,
               "chance": "85%"
             },
             {
-              "name": "UkanlosUnderscl",
+              "item": 810,
               "chance": "11%"
             },
             {
-              "name": "Ukanlos Stone",
+              "item": 815,
               "chance": "4%"
             }
           ],
           "break dorsal fin": [
             {
-              "name": "StrongUkanlosFin x2",
+              "item": 814,
+              "amount": 2,
               "chance": "50%"
             },
             {
-              "name": "StrongUkanlosFin x1",
+              "item": 814,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "HvyUkanlosShell x1",
+              "item": 809,
+              "amount": 1,
               "chance": "15%"
             }
           ],
           "break chest - requires fire element": [
             {
-              "name": "UkanlosUnderscl",
+              "item": 810,
               "chance": "70%"
             },
             {
-              "name": "HvyUkanlosShell",
+              "item": 809,
               "chance": "24%"
             },
             {
-              "name": "Ukanlos Stone",
+              "item": 815,
               "chance": "6%"
             }
           ],
           "break claws": [
             {
-              "name": "UkanlosDiggngClw",
+              "item": 812,
               "chance": "80%"
             },
             {
-              "name": "UkanlosDiggngClw",
+              "item": 812,
               "chance": "10%"
             },
             {
-              "name": "HvyUkanlosShell",
+              "item": 809,
               "chance": "10%"
             }
           ]

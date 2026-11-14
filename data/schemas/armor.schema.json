@@ -13,10 +13,10 @@
   "definitions": {
     "material": {
       "type": "object",
-      "required": ["name", "amount", "type", "color"],
+      "required": ["item", "amount", "type", "color"],
       "additionalProperties": false,
       "properties": {
-        "name":   { "type": "string", "minLength": 1 },
+        "item":   { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json); its name is in data/strings" },
         "amount": { "type": "integer", "minimum": 1 },
         "type":   { "type": "string", "minLength": 1 },
         "color":  { "type": "string", "minLength": 1 }
@@ -24,19 +24,20 @@
     },
     "skill": {
       "type": "object",
-      "required": ["name", "amount"],
+      "required": ["skill", "amount"],
       "additionalProperties": false,
       "properties": {
-        "name":   { "type": "string", "minLength": 1 },
+        "skill":  { "type": "integer", "minimum": 1, "description": "Skill tree ID (SkillID; data/skills.json)" },
+        "alias":  { "type": "integer", "minimum": 0, "description": "Spelled as the tree's n-th English alias (data/strings/en.json aliases.skill), as the site showed it" },
         "amount": { "type": "integer" }
       }
     },
     "armor_piece": {
       "type": "object",
-      "required": ["name", "type", "rank", "rarity", "defence", "slots"],
+      "required": ["id", "type", "rank", "rarity", "defence", "slots"],
       "additionalProperties": false,
       "properties": {
-        "name":         { "type": "string", "minLength": 1 },
+        "id":           { "type": "integer", "minimum": 0, "description": "The slot's game armor ID (as in a save's equipment box); the name is in data/strings, under the slot" },
         "type": {
           "type": "string",
           "enum": ["helmet", "plate", "gauntlets", "waist", "leggings"]

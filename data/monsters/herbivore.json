@@ -1,26 +1,25 @@
 {
   "monsters": [
     {
-      "name": "Anteka",
+      "id": 69,
       "type": "herbivore",
-      "description": "Herbivorous monsters living in the snowy mountains. Normally docile, but when provoked it will attack with its giant antlers. Its high quality pelt has many uses and its antlers are highly valued by the Guild.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Anteka Antlers",
+              "item": 329,
               "chance": "45%"
             },
             {
-              "name": "Anteka Pelt",
+              "item": 330,
               "chance": "30%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "18%"
             },
             {
-              "name": "White Liver",
+              "item": 303,
               "chance": "7%"
             }
           ]
@@ -28,23 +27,23 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Anteka Antlers",
+              "item": 329,
               "chance": "20%"
             },
             {
-              "name": "High Qualty Pelt",
+              "item": 331,
               "chance": "40%"
             },
             {
-              "name": "Anteka Pelt",
+              "item": 330,
               "chance": "20%"
             },
             {
-              "name": "White Liver",
+              "item": 303,
               "chance": "10%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "10%"
             }
           ]
@@ -52,23 +51,23 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "High Qualty Pelt",
+              "item": 331,
               "chance": "50%"
             },
             {
-              "name": "Anteka Pelt",
+              "item": 330,
               "chance": "23%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "10%"
             },
             {
-              "name": "White Liver",
+              "item": 303,
               "chance": "10%"
             },
             {
-              "name": "Anteka Antlers",
+              "item": 329,
               "chance": "7%"
             }
           ]
@@ -119,9 +118,8 @@
       }
     },
     {
-      "name": "Popo",
+      "id": 70,
       "type": "herbivore",
-      "description": "A herbivorous monster known for its giant, bent fangs. Living in herds, it is particularly bold when defending its offspring. Popo meat is quite nutritious, and its tongue is widely admired as a delicacy.",
       "habitats": [
         "SnwyMntains"
       ],
@@ -129,15 +127,15 @@
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Popo Tongue",
+              "item": 304,
               "chance": "42%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "38%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "20%"
             }
           ]
@@ -145,19 +143,19 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Popo Tongue",
+              "item": 304,
               "chance": "35%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "30%"
             },
             {
-              "name": "Brute Bone",
+              "item": 294,
               "chance": "25%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "10%"
             }
           ]
@@ -165,19 +163,19 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "Popo Tongue",
+              "item": 304,
               "chance": "35%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "30%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "25%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "10%"
             }
           ]
@@ -228,26 +226,25 @@
       }
     },
     {
-      "name": "Kelbi",
+      "id": 3,
       "type": "herbivore",
-      "description": "Herbivorous, deer-like monsters. Valued for their horns, they tend to run away at the first hint of danger. They are also hunted for their meat, which is chewy but flavorful.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Kelbi Horn",
+              "item": 327,
               "chance": "50%"
             },
             {
-              "name": "Kelbi Hide",
+              "item": 328,
               "chance": "32%"
             },
             {
-              "name": "White Liver",
+              "item": 303,
               "chance": "15%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "3%"
             }
           ]
@@ -255,23 +252,23 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Kelbi Horn",
+              "item": 327,
               "chance": "35%"
             },
             {
-              "name": "High Qualty Pelt",
+              "item": 331,
               "chance": "25%"
             },
             {
-              "name": "Kelbi Hide",
+              "item": 328,
               "chance": "22%"
             },
             {
-              "name": "White Liver",
+              "item": 303,
               "chance": "15%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "3%"
             }
           ]
@@ -279,23 +276,23 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "Kelbi Horn",
+              "item": 327,
               "chance": "35%"
             },
             {
-              "name": "High Qualty Pelt",
+              "item": 331,
               "chance": "35%"
             },
             {
-              "name": "Kelbi Hide",
+              "item": 328,
               "chance": "17%"
             },
             {
-              "name": "White Liver",
+              "item": 303,
               "chance": "10%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "3%"
             }
           ]
@@ -346,26 +343,25 @@
       }
     },
     {
-      "name": "Mosswine",
+      "id": 4,
       "type": "herbivore",
-      "description": "Wild pigs covered in moss and fungus. Sometimes you will even find mushrooms growing on them. Their meat is known as a delicacy. Though normally docile, they will charge you if angered!",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Blue Mushroom",
+              "item": 177,
               "chance": "45%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "30%"
             },
             {
-              "name": "Special Mushroom",
+              "item": 175,
               "chance": "20%"
             },
             {
-              "name": "Mosswine Hide",
+              "item": 320,
               "chance": "5%"
             }
           ]
@@ -373,23 +369,23 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Blue Mushroom",
+              "item": 177,
               "chance": "42%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "20%"
             },
             {
-              "name": "Special Mushroom",
+              "item": 175,
               "chance": "20%"
             },
             {
-              "name": "Select Mushroom",
+              "item": 176,
               "chance": "10%"
             },
             {
-              "name": "Mosswine Hide",
+              "item": 320,
               "chance": "8%"
             }
           ]
@@ -397,23 +393,23 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "Blue Mushroom",
+              "item": 177,
               "chance": "33%"
             },
             {
-              "name": "Special Mushroom",
+              "item": 175,
               "chance": "20%"
             },
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "20%"
             },
             {
-              "name": "Select Mushroom",
+              "item": 176,
               "chance": "15%"
             },
             {
-              "name": "Mosswine Hide",
+              "item": 320,
               "chance": "12%"
             }
           ]
@@ -464,18 +460,17 @@
       }
     },
     {
-      "name": "Aptonoth",
+      "id": 12,
       "type": "herbivore",
-      "description": "Hunted as a food source, these creatures are preyed upon by both hunter and monster alike. Usually timid, in packs they will defend themselves with surprising strength.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "75%"
             },
             {
-              "name": "Sm Monster Bone",
+              "item": 281,
               "chance": "25%"
             }
           ]
@@ -483,11 +478,11 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "75%"
             },
             {
-              "name": "Sm Monster Bone",
+              "item": 281,
               "chance": "25%"
             }
           ]
@@ -495,11 +490,11 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "75%"
             },
             {
-              "name": "Med Monster Bone",
+              "item": 282,
               "chance": "25%"
             }
           ]
@@ -550,22 +545,21 @@
       }
     },
     {
-      "name": "Apceros",
+      "id": 25,
       "type": "herbivore",
-      "description": "Hunted for their meat, which is buried under a thick, armored hide. Aggressive compared to the Aptonoth, hunting them can be a challenge. Apceros eggs are a valuable guild commodity.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "47%"
             },
             {
-              "name": "Sm Monster Bone",
+              "item": 281,
               "chance": "45%"
             },
             {
-              "name": "Med Monster Bone",
+              "item": 282,
               "chance": "8%"
             }
           ]
@@ -573,19 +567,19 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "43%"
             },
             {
-              "name": "Sm Monster Bone",
+              "item": 281,
               "chance": "40%"
             },
             {
-              "name": "Med Monster Bone",
+              "item": 282,
               "chance": "15%"
             },
             {
-              "name": "Monster Bone+",
+              "item": 284,
               "chance": "2%"
             }
           ]
@@ -593,19 +587,19 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "Raw Meat",
+              "item": 43,
               "chance": "43%"
             },
             {
-              "name": "Sm Monster Bone",
+              "item": 281,
               "chance": "40%"
             },
             {
-              "name": "Med Monster Bone",
+              "item": 282,
               "chance": "15%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "2%"
             }
           ]

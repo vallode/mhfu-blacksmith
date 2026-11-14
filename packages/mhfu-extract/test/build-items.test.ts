@@ -3,6 +3,8 @@ import { mkdir, mkdtemp, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { test } from "node:test";
+import { readData } from "game-data";
+import { writeNamedData } from "../src/build/legacy-data.js";
 import { mergeItemStats } from "../src/build/items.js";
 import { runBuildData } from "../src/cli/build-data.js";
 
@@ -98,14 +100,17 @@ test("runBuildData writes item stats into data/items.json, and a second run is a
     const extracted = path.join(root, "extracted");
     await mkdir(data);
     await mkdir(extracted);
-    await writeFile(path.join(data, "items.json"), `${JSON.stringify(committed, null, 2)}\n`);
+    writeNamedData(data, { "items.json": committed });
     await writeFile(path.join(extracted, "items.json"), JSON.stringify({ items: disc }));
 
     const report = await runBuildData({ extracted, data, only: ["items"] });
     assert.deepEqual(report.items!.filesWritten, ["items.json"]);
     const written = await readFile(path.join(data, "items.json"), "utf-8");
     assert.ok(written.endsWith("}\n"));
+    // Stats on the record, its names in the string tables.
     assert.equal(JSON.parse(written).items[1].price, 66);
+    assert.ok(!("name" in JSON.parse(written).items[1]));
+    assert.equal(readData(data, "items.json").items[1].name, "Potion");
 
     const again = await runBuildData({ extracted, data, only: ["items"] });
     assert.deepEqual(again.items!.filesWritten, []);

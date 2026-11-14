@@ -1,6 +1,7 @@
 import assert from "node:assert/strict";
-import { readFileSync } from "node:fs";
+import { fileURLToPath } from "node:url";
 import { test } from "node:test";
+import { readData } from "game-data";
 import {
   ARMOR_MODEL_LAYOUT,
   armorModelPath,
@@ -12,9 +13,10 @@ import { ARMOR_SLOT_TABLE_NAMES_EU } from "../src/tables/eu-signatures.js";
 import { loadFileList } from "../src/container/filelist.js";
 
 test("armor model layout counts match the site's equipment ID lists", () => {
-  const ids = JSON.parse(
-    readFileSync(new URL("../../../data/equipment-ids.json", import.meta.url), "utf-8"),
-  ) as Record<string, unknown[]>;
+  const ids = readData<Record<string, unknown[]>>(
+    fileURLToPath(new URL("../../../data", import.meta.url)),
+    "equipment-ids.json",
+  );
   for (const [slot, layout] of Object.entries(ARMOR_MODEL_LAYOUT)) {
     assert.equal(layout.count, ids[slot]!.length, slot);
   }
