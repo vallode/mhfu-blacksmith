@@ -46,6 +46,7 @@ This is a [pnpm workspace](https://pnpm.io/workspaces):
 | `apps/randomfu`         | `randomfu-web` | The randomizer as a static web app that runs in the browser, at randomfu.vallode.com            |
 | `packages/mhfu-extract` | `mhfu-extract` | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models              |
 | `packages/randomfu`     | `randomfu`     | Seeded randomizer: library, command line and local settings page                                |
+| `packages/game-data`    | `game-data`    | The one way into `data/`: `readData` for everything that reads it, `writeData` for writing      |
 | `data`                  |                | The game data the site is built from (JSON, validated by `data/schemas/`), shared by everything |
 
 Packages import each other by name (`import … from "mhfu-extract/src/container/image.js"`),
@@ -57,7 +58,6 @@ Dependencies:
 
 - [Node.js](https://nodejs.org/) 22+
 - [pnpm](https://pnpm.io/) (version pinned in `package.json`; `corepack enable` will pick it up)
-- [ImageMagick](https://imagemagick.org/) (optional, for `apps/blacksmith/scripts/crop-images.sh`)
 
 From the repository root:
 
@@ -70,6 +70,8 @@ pnpm lint           # ESLint
 pnpm typecheck      # tsc in every package
 pnpm test           # every package's tests
 pnpm format         # Prettier, for the whole repository
+pnpm format:check   # Prettier, check only
+pnpm clean:discs    # delete disc images left in Claude Code scratchpads (--dry-run lists them)
 ```
 
 Run any package's own scripts with `pnpm --filter <package> <script>`, or
