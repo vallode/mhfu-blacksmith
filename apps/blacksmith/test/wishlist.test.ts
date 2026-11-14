@@ -8,9 +8,9 @@ import type { ItemSources } from "../src/lib/item-sources";
 import { DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 
-/** The site's own content: the weapon trees the bundles are built from. */
-const CONTENT_DIR = path.resolve(__dirname, "../content");
 import { slugify } from "../src/lib/slug";
+import { WEAPON_TYPES } from "../src/lib/constants";
+import { buildWeaponTree } from "../src/lib/trees";
 import type { Material, Weapon, WeaponTreeNode } from "../src/lib/types";
 import {
   bestDestinations,
@@ -418,14 +418,7 @@ describe("game data", () => {
     );
 
     // Parents as the page finds them: from the trees, not improve_from.
-    const trees = fs
-      .readdirSync(path.join(CONTENT_DIR, "blacksmith"))
-      .map(
-        (type) =>
-          JSON.parse(
-            fs.readFileSync(path.join(CONTENT_DIR, "blacksmith", type, "map.json"), "utf-8"),
-          ).map as WeaponTreeNode[],
-      );
+    const trees = WEAPON_TYPES.map((type) => buildWeaponTree(type));
     const parents = treeParents(trees);
     for (const w of list) {
       const from = [w.improve_from ?? []].flat();

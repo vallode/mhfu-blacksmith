@@ -261,6 +261,12 @@ describe("item places", () => {
       if (row.mapQuest) assert.ok(row.mapQuest in areaMaps.quests, `quest ${row.mapQuest}`);
     }
     assert.ok(rows.filter((r) => r.mapQuest).length > rows.length / 2);
+    // Every Village quest has a rank, so none sit apart under a "Village" list
+    // that would look like the Village's only maps.
+    assert.deepEqual(
+      rows.filter((r) => r.group === "Village").map((r) => r.map),
+      [],
+    );
     // Iron Ore is mined on many maps, and the general store sells Potions from the start.
     assert.ok(real.get(index.get(normalizeItemName("Iron Ore"))!)!.gathering.length > 10);
     assert.equal(

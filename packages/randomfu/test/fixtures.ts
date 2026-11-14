@@ -5,9 +5,6 @@
  * `game_sub.ovl` with reward tables.
  * No game data: every value is made up.
  */
-import { mkdtempSync } from "node:fs";
-import { tmpdir } from "node:os";
-import path from "node:path";
 import { GAME_TAG_KEYS, TYPE01_TAG_KEYS } from "mhfu-extract/src/container/prx.js";
 import { encryptGameEboot } from "mhfu-extract/test/prx-fixture.js";
 import { encryptDataBinBlock } from "mhfu-extract/src/container/databin.js";
@@ -53,9 +50,7 @@ import { ARMOR_POINTER_INDEX, ARMOR_SLOTS, type ArmorSlot } from "mhfu-extract/s
 
 export const SECTOR = 2048;
 
-export function tempDir(): string {
-  return mkdtempSync(path.join(tmpdir(), "randomfu-test-"));
-}
+export { tempDir } from "./temp.js";
 
 // ---------------------------------------------------------------- ISO 9660
 

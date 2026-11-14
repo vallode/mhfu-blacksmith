@@ -24,6 +24,12 @@ const HEADER_SIZE = 24; // u32 size + 20-byte SHA1
 export interface QuestFile {
   /** The plaintext `.mib`. Edit a copy and pass it to `seal`. */
   payload: Buffer;
+  /**
+   * The payload as it is on the disc. The same as `payload` unless the quest
+   * was rebuilt (`game/rebuild.ts`), whose `payload` is then the base later
+   * shuffles edit and this what tells an edited quest from an unedited one.
+   */
+  disc: Buffer;
   /** The longest payload the entry's sectors hold. */
   capacity: number;
   /** The DATA.BIN entry with `payload` in place of the original contents. */
@@ -37,6 +43,7 @@ export function openQuestFile(entry: Buffer, region: Region): QuestFile {
   const capacity = body.length - HEADER_SIZE;
   return {
     payload,
+    disc: payload,
     capacity,
     seal(next: Buffer): Buffer {
       if (next.length < payload.length || next.length > capacity) {

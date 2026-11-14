@@ -297,6 +297,14 @@ text). Two things worth flagging for anyone extending it:
   cross-validates against the same quest's monster/reward/supply data (all
   about hunting a Giadrome and its Giaprey pack).
 
+`src/quests/document.ts` reads a quest a second way, for editing: every
+byte into a document with no offsets in it (`parseQuest`), and back
+(`serializeQuest`), laid out again from nothing in the disc's order and
+padding so lists can grow and shrink. All 551 EU quests rebuild byte for
+byte (`checkQuest`). It's shared by the quest editor and randomfu, which
+rebuilds quests it moves to another map; `parser.ts` stays the read-only
+view the emitters use.
+
 Gathering points are read too (see "Gathering points" below). Not
 implemented (out of scope for now): `QuestScript` (opcodes are marked
 "TBD" even in the upstream pattern; see "Quest script" below) and arena

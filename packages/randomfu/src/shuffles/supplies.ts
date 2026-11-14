@@ -21,6 +21,7 @@
  * them, and the wider pools stay within the quest's rank.
  */
 import type { LoadedQuest } from "../game/load.js";
+import { largestQuest } from "../game/rebuild.js";
 import { isQuestItem, readSupplySlots, SUPPLIES_PTR } from "../game/quest-fields.js";
 import { questTier, tierKey, type Band, type Tier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
@@ -210,8 +211,8 @@ export function addSupplies(
   edits: Edits,
 ): ShuffleReport {
   // Sizes the game is known to handle: the largest quest and the largest box.
-  const largestQuest = Math.max(...quests.map((q) => q.file.payload.length));
-  const largestBox = Math.max(...quests.map((q) => readSupplySlots(q.file.payload).length));
+  const largest = largestQuest(quests);
+  const largestBox = Math.max(...quests.map((q) => readSupplySlots(q.file.disc).length));
   const items = context.allItems.filter((i) => !isQuestItem(i));
   const lines: { where: string; text: string }[] = [];
   let added = 0;
@@ -222,7 +223,7 @@ export function addSupplies(
     const box = readSupplySlots(now);
     const end = now.readUInt32LE(SUPPLIES_PTR) + box.length * 4;
     const at = (now.length + 3) & ~3;
-    const limit = Math.min(quest.file.capacity, largestQuest);
+    const limit = Math.min(quest.file.capacity, largest);
     const fits = Math.floor((limit - at) / 4) - box.length - 1;
     const count = Math.min(ADDED_STACKS, largestBox - box.length, fits);
     if (count <= 0) {
@@ -261,7 +262,7 @@ export function addSupplies(
     title: "Supply boxes",
     notes: [
       `Every Village and Guild quest's supply box keeps what it had and gets up to ${ADDED_STACKS} more stacks of random items (any item but quest-only ones), in their usual amount.`,
-      `The box moves to the end of the quest, into its sector padding. No quest grows past ${largestQuest} bytes and no box past ${largestBox} stacks (the largest on the disc), so some boxes get fewer.`,
+      `The box moves to the end of the quest, into its sector padding. No quest grows past ${largest} bytes and no box past ${largestBox} stacks (the largest on the disc), so some boxes get fewer.`,
       "No delivery quest's box gets the item it asks for. Training School, Treasure Hunting and unused quests are unchanged.",
       `${added} stacks added; ${full} boxes had no room.`,
     ],

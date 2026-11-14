@@ -26,7 +26,7 @@ export function writeEdits(image: PatchableImage, game: GameData, edits: Edits):
 
   let quests = 0;
   for (const [index, { quest, payload }] of edits.quests) {
-    if (payload.equals(quest.file.payload)) continue;
+    if (payload.equals(quest.file.disc)) continue;
     writeFile(index, quest.file.seal(payload));
     quests++;
   }

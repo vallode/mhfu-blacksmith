@@ -17,10 +17,11 @@ import {
   collectMonsterRewardSlots,
   collectRewardLists,
   shuffleMonsterRewards,
+  type RewardList,
 } from "./shuffles/monster-rewards.js";
 import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
-import { median, type ShuffleReport } from "./shuffles/shuffle.js";
+import { getOrInsert, median, type ShuffleReport } from "./shuffles/shuffle.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
 import {
   itemsOnSale,
@@ -28,7 +29,7 @@ import {
   randomizeShopPrices,
   randomizeShops,
 } from "./shuffles/shops.js";
-import { tableName } from "./names.js";
+import { itemName, questLabel, tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
@@ -48,11 +49,22 @@ import {
 } from "./shuffles/quest-monsters.js";
 import { renameQuestText } from "./shuffles/quest-text.js";
 import {
+  collectDocQuests,
+  moveQuests,
+  randomizeStarts,
+  updateBoardMaps,
+  type DocQuest,
+} from "./shuffles/quest-maps.js";
+import { swapSmallSpecies } from "./shuffles/small-monsters.js";
+import { largestQuest, questPayload, rebuildQuest } from "./game/rebuild.js";
+import { itemSources, lostSources } from "./game/first-tiers.js";
+import {
   collectMonsterChunks,
   randomizeMonsterStats,
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
 import { writeGuides } from "./hints/guides.js";
+import { addNodeMap } from "./patches/node-map.js";
 import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -98,28 +110,23 @@ function sellableItems(): number[] {
 }
 
 /**
- * How many of an item a supply stack gets when a wider pool puts it there:
- * the usual amount supply boxes give of it, else quest rewards, else 1.
+ * How many of an item a stack gets when a wider pool puts it there: the
+ * lower middle of what the first of `sources` that has the item gives of
+ * it (so an even split rounds down to an amount the game uses), else 1.
  */
 function usualAmounts(
-  game: GameData,
-  rewards: readonly { itemId: number; amount: number }[],
+  ...sources: readonly (readonly { itemId: number; amount: number }[])[]
 ): (itemId: number) => number {
-  const collect = (entries: Iterable<{ itemId: number; amount: number }>) => {
+  const amounts = sources.map((entries) => {
     const out = new Map<number, number[]>();
     for (const { itemId, amount } of entries) {
-      const list = out.get(itemId);
-      if (list) list.push(amount);
-      else out.set(itemId, [amount]);
+      getOrInsert(out, itemId, () => []).push(amount);
     }
     return out;
-  };
-  const supplied = collect(game.quests.flatMap((q) => readSupplySlots(q.file.payload)));
-  const rewarded = collect(rewards);
+  });
   return (itemId) => {
-    const amounts = supplied.get(itemId) ?? rewarded.get(itemId);
-    // The lower middle, so an even split rounds down to an amount the game uses.
-    return amounts ? Math.max(1, median(amounts, "lower")) : 1;
+    const found = amounts.find((m) => m.has(itemId))?.get(itemId);
+    return found ? Math.max(1, median(found, "lower")) : 1;
   };
 }
 
@@ -130,14 +137,118 @@ export interface RandomizeOptions {
   debug?: boolean;
 }
 
-export function randomize(
+/**
+ * The shuffles that rebuild quests: map moves, monster starts and small
+ * monster species, on quest documents. Returns the quests with every
+ * rebuilt one in place of its original, for every later shuffle to work on,
+ * and items found later than before that no quest could be blamed for.
+ *
+ * A quest whose changes took away an item's earliest source (`first-tiers.ts`)
+ * is put back as on the disc, so items are first found where they were.
+ */
+function reshapeQuests(
   game: GameData,
+  settings: Settings,
+  lists: readonly RewardList[],
+  rng: Rng,
+  edits: Edits,
+  reports: ShuffleReport[],
+): { quests: LoadedQuest[]; lost: number[] } {
+  const maps = settings["questMaps.enabled"];
+  const starts = settings["questMaps.starts"];
+  const small = settings["questMonsters.smallSpecies"];
+  if (!maps && !starts && !small) return { quests: game.quests, lost: [] };
+
+  const maxLength = largestQuest(game.quests);
+  const { list, locked } = collectDocQuests(game.quests);
+  const before = new Map(list.map((e) => [e, e.doc]));
+  const own: ShuffleReport[] = [];
+  let moved = new Set<DocQuest>();
+  let mapReport: ShuffleReport | null = null;
+  if (maps) {
+    const result = moveQuests(
+      list,
+      settings["questMaps.pool"],
+      rng.fork("quest-maps"),
+      (entry, doc) => questPayload(entry.quest, doc, maxLength) !== null,
+    );
+    moved = result.moved;
+    mapReport = result.report;
+    own.push(result.report);
+  }
+  if (starts) own.push(randomizeStarts(list, moved, rng.fork("monster-starts")));
+  if (small) own.push(swapSmallSpecies(list, rng.fork("small-species")));
+
+  const rebuilt = new Map<number, { entry: DocQuest; quest: LoadedQuest }>();
+  for (const entry of list) {
+    if (entry.doc === before.get(entry)) continue;
+    const quest = rebuildQuest(entry.quest, entry.doc, maxLength);
+    // Starts and species swaps keep a quest's size, and moves were checked to fit.
+    if (!quest) throw new Error(`${entry.quest.path} no longer fits its sectors`);
+    rebuilt.set(quest.index, { entry, quest });
+  }
+
+  const sources = itemSources(game.quests, lists);
+  const putBack: DocQuest[] = [];
+  let lost: number[] = [];
+  for (;;) {
+    const now = game.quests.map((q) => rebuilt.get(q.index)?.quest ?? q);
+    const check = lostSources(
+      game.quests,
+      sources,
+      itemSources(now, lists),
+      new Set(rebuilt.keys()),
+      lists,
+      settings["logic.tiers"],
+    );
+    lost = check.lost;
+    if (check.blame.size === 0) break;
+    for (const index of check.blame) {
+      putBack.push(rebuilt.get(index)!.entry);
+      rebuilt.delete(index);
+    }
+  }
+  for (const entry of putBack) moved.delete(entry);
+  // Each report loses the quests put back, then counts the ones left.
+  const putBackLabels = new Set(putBack.map((e) => questLabel(e.quest)));
+  for (const report of own) {
+    const back = new Set(report.lines.map((l) => l.where).filter((w) => putBackLabels.has(w)));
+    report.lines = report.lines.filter((l) => !back.has(l.where));
+    const count = new Set(report.lines.map((l) => l.where)).size;
+    report.notes.push(`${count} quests ${report === mapReport ? "moved" : "changed"}.`);
+    if (back.size > 0) {
+      report.notes.push(
+        `${back.size} quests were put back as on the disc: their changes took away where an item is first found (${[...back].join(", ")}).`,
+      );
+    }
+    if (locked.length > 0) {
+      report.notes.push(
+        `${locked.length} quests can't be rebuilt and were left alone: ${locked.join(", ")}.`,
+      );
+    }
+  }
+  reports.push(...own);
+
+  for (const { quest } of rebuilt.values()) edits.quest(quest);
+  updateBoardMaps(moved, game.boards, edits);
+  return { quests: game.quests.map((q) => rebuilt.get(q.index)?.quest ?? q), lost };
+}
+
+export function randomize(
+  input: GameData,
   settings: Settings,
   options: RandomizeOptions = {},
 ): RandomizeResult {
   const rng = new Rng(`randomfu/${LOGIC_VERSION}/${settings.seed}`);
-  const edits = new Edits(game);
+  const edits = new Edits(input);
   const reports: ShuffleReport[] = [];
+  const problems: string[] = [];
+  const rewardLists = collectRewardLists(input.gameSub.ovl);
+  // Map moves first: every other shuffle works on the quests as they'll be.
+  const reshaped = reshapeQuests(input, settings, rewardLists, rng, edits, reports);
+  for (const item of reshaped.lost)
+    problems.push(`${itemName(item)}: found later after quest changes`);
+  const game: GameData = { ...input, quests: reshaped.quests };
   const mode = settings["logic.tiers"];
   // Shuffles group by these tiers; the spoiler's item list keeps the real ones.
   const grouped = <T extends { tier: Tier }>(slots: T[]): T[] =>
@@ -249,10 +360,7 @@ export function randomize(
   }
 
   const questSlots = collectQuestRewardSlots(game.quests);
-  const monsterSlots = collectMonsterRewardSlots(
-    collectRewardLists(game.gameSub.ovl),
-    monsterStars(questsAfter),
-  );
+  const monsterSlots = collectMonsterRewardSlots(rewardLists, monsterStars(questsAfter));
   const gathering = collectGatheringSlots(game.quests);
   // A delivery quest's own item stays at its gathering points, so the
   // quest can still be finished whether or not its target changes.
@@ -263,7 +371,22 @@ export function randomize(
 
   let questAfter: { itemId: number; tier: Tier }[] = grouped(questSlots);
   if (settings["questRewards.enabled"]) {
-    const result = shuffleQuestRewards(grouped(questSlots), rng.fork("quest-rewards"), edits);
+    const result = shuffleQuestRewards(
+      grouped(questSlots),
+      rng.fork("quest-rewards"),
+      edits,
+      { pool: settings["questRewards.pool"], keepItems: settings["questRewards.keepItems"] },
+      // No new quest-only items (`isQuestItem`): supply tools and carried objects vanish after the quest.
+      {
+        bands: new Map(
+          [...realTiers]
+            .filter(([item]) => !isQuestItem(item))
+            .map(([item, tier]) => [item, tier.band]),
+        ),
+        allItems: sellableItems().filter((item) => !isQuestItem(item)),
+        usualAmount: usualAmounts(questSlots),
+      },
+    );
     reports.push(result.report);
     questAfter = result.after;
   }
@@ -307,7 +430,10 @@ export function randomize(
     const context = {
       bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
       allItems: sellableItems(),
-      usualAmount: usualAmounts(game, questSlots),
+      usualAmount: usualAmounts(
+        game.quests.flatMap((q) => readSupplySlots(q.file.payload)),
+        questSlots,
+      ),
       deliveryItem: (quest: LoadedQuest) => deliveries.get(quest.index)?.itemId,
     };
     reports.push(
@@ -365,7 +491,6 @@ export function randomize(
     );
   }
 
-  const problems: string[] = [];
   if (needsEboot(settings) && !game.eboot) {
     throw new Error("These settings need the decrypted EBOOT");
   }
@@ -549,6 +674,8 @@ export function randomize(
       almanac: settings["hints.almanac"],
     }),
   );
+
+  if (settings["mods.nodeMap"]) reports.push(addNodeMap(game, edits));
 
   return {
     edits,

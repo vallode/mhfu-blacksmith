@@ -12,11 +12,16 @@
  */
 import type { LoadedQuest } from "../game/load.js";
 import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
-import { questTier, tierKey, type Band, type Tier } from "../game/tiers.js";
+import { questTier, tierKey, type Tier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import { itemName, questLabel } from "../names.js";
 import type { Rng } from "../rng.js";
-import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
+import {
+  fillFromPool,
+  permuteWithinGroups,
+  type PoolContext,
+  type ShuffleReport,
+} from "./shuffle.js";
 
 export interface GatheringSlotRef {
   quest: LoadedQuest;
@@ -62,67 +67,7 @@ export interface GatheringOptions {
   keepItems: boolean;
 }
 
-export interface GatheringContext {
-  /** Each item's earliest rank, for the same-rank pool. */
-  bands: ReadonlyMap<number, Band>;
-  /** Every item in the game, for the any-item pool. */
-  allItems: readonly number[];
-}
-
-/**
- * New items for a group of slots (one tier) from a wider pool. With
- * `keepItems`, each item the group's slots held is put back in one random
- * slot first, so it's still found at that point in the game; the other
- * slots get random pool items, avoiding repeats within one table.
- */
-function fillFromPool(
-  slots: readonly GatheringSlotRef[],
-  options: GatheringOptions,
-  context: GatheringContext,
-  rng: Rng,
-): number[] {
-  const out = slots.map((s) => s.itemId);
-  const order = rng.shuffle(slots.map((_, i) => i));
-  const required = options.keepItems
-    ? [...new Set(slots.map((s) => s.itemId))].sort((a, b) => a - b)
-    : [];
-  required.forEach((item, k) => (out[order[k]!] = item));
-
-  const pools = new Map<Band | "any", number[]>();
-  const poolFor = (slot: GatheringSlotRef): number[] => {
-    const band =
-      options.pool === "rank" ? (questTier(slot.quest.parsed)?.band ?? slot.tier.band) : "any";
-    let pool = pools.get(band);
-    if (!pool) {
-      pool =
-        band === "any"
-          ? [...context.allItems]
-          : [...context.bands]
-              .filter(([, b]) => b === band)
-              .map(([item]) => item)
-              .sort((a, b) => a - b);
-      if (pool.length === 0) pool = [...context.allItems];
-      pools.set(band, pool);
-    }
-    return pool;
-  };
-  const tableKey = (s: GatheringSlotRef) => `${s.quest.index}:${s.table}`;
-  const inTable = new Map<string, Set<number>>();
-  for (const k of order.slice(0, required.length)) {
-    const key = tableKey(slots[k]!);
-    inTable.set(key, (inTable.get(key) ?? new Set()).add(out[k]!));
-  }
-  for (const k of order.slice(required.length)) {
-    const slot = slots[k]!;
-    const pool = poolFor(slot);
-    const seen = inTable.get(tableKey(slot)) ?? new Set<number>();
-    let pick = pool[rng.int(pool.length)]!;
-    for (let tries = 0; tries < 8 && seen.has(pick); tries++) pick = pool[rng.int(pool.length)]!;
-    out[k] = pick;
-    inTable.set(tableKey(slot), seen.add(pick));
-  }
-  return out;
-}
+export type GatheringContext = PoolContext;
 
 export function shuffleGathering(
   slots: readonly GatheringSlotRef[],
@@ -149,8 +94,9 @@ export function shuffleGathering(
     for (const indices of groups.values()) {
       const filled = fillFromPool(
         indices.map((i) => slots[i]!),
-        options,
+        { pool: options.pool, keepItems: options.keepItems },
         context,
+        (s) => `${s.quest.index}:${s.table}`,
         rng,
       );
       indices.forEach((slotIndex, k) => (next[slotIndex] = filled[k]!));
