@@ -28,6 +28,8 @@ export interface RunOptions {
   force?: boolean;
   /** For testing in game: a happy Poogie always gives the rarest reward. */
   poogieTest?: boolean;
+  /** Adds research detail to the spoiler log. */
+  debug?: boolean;
 }
 
 export interface RunResult {
@@ -70,7 +72,10 @@ export async function runRandomizer(options: RunOptions, log: Log): Promise<RunR
     log(`Seed ${settings.seed}. Settings string: ${encodeSettings(settings)}`);
     for (const line of describeSettings(settings)) log(`  ${line}`);
 
-    const result = randomize(game, settings, { poogieTest: options.poogieTest });
+    const result = randomize(game, settings, {
+      poogieTest: options.poogieTest,
+      debug: options.debug,
+    });
     for (const report of result.reports) log(reportLogLine(report));
     if (result.problems.length > 0) {
       log(

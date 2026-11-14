@@ -125,6 +125,8 @@ function usualAmounts(
 export interface RandomizeOptions {
   /** For testing in game: a happy Poogie always gives the rarest reward. */
   poogieTest?: boolean;
+  /** Adds research detail to the spoiler log. */
+  debug?: boolean;
 }
 
 export function randomize(
@@ -157,7 +159,7 @@ export function randomize(
     reports.push(result.report);
     questsAfter = result.questsAfter;
     if (settings["questMonsters.text"]) {
-      reports.push(renameQuestText(result.swaps, game.quests, edits, game.boards));
+      reports.push(renameQuestText(result.swaps, game.quests, edits, game.boards, options.debug));
     }
   }
   if (settings["questMonsters.difficulty"]) {
