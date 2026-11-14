@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, readFileSync, writeFileSync } from "node:fs";
-import { tmpdir } from "node:os";
+import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { settingsFromFlags } from "../src/cli.js";
+import { tempDir } from "./fixtures.js";
 import {
   OPTIONS,
   actionsOf,
@@ -170,7 +170,7 @@ test("describeSettings hides options whose switch is off", () => {
 });
 
 test("CLI flags layer: file < string < --shuffles < shorthand < --set < --seed", () => {
-  const dir = mkdtempSync(path.join(tmpdir(), "randomfu-settings-"));
+  const dir = tempDir();
   const file = path.join(dir, "s.json");
   writeFileSync(
     file,

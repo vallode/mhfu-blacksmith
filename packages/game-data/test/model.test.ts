@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { describe, test } from "node:test";
+import { after, describe, test } from "node:test";
 import {
   dehydrate,
   fileKind,
@@ -276,8 +276,14 @@ describe("importLegacy", () => {
 });
 
 describe("writeData", () => {
+  const dirs: string[] = [];
+  after(() => {
+    for (const dir of dirs) rmSync(dir, { recursive: true, force: true });
+  });
+
   function fixture(): string {
     const dir = mkdtempSync(path.join(tmpdir(), "game-data-write-"));
+    dirs.push(dir);
     const { files, en, ja } = importLegacy(legacy(), sources);
     for (const [rel, raw] of files) {
       mkdirSync(path.dirname(path.join(dir, rel)), { recursive: true });
