@@ -243,6 +243,7 @@ describe("ways and destinations", () => {
         chance: 30,
       },
     ],
+    farm: [],
     shops: [],
   };
 
@@ -267,6 +268,7 @@ describe("ways and destinations", () => {
       sources,
       {
         gathering: [],
+        farm: [],
         shops: [
           { shop: "General Store", currency: "zenny", price: 50, stages: [1], stageCount: 3 },
         ],
@@ -282,6 +284,7 @@ describe("ways and destinations", () => {
       sources,
       {
         gathering: [],
+        farm: [],
         shops: [
           { shop: "Late Store", currency: "zenny", price: 50, stages: [3], stageCount: 3 },
           { shop: "Pokke", currency: "pokke-points", price: null, stages: [1], stageCount: 1 },
@@ -294,6 +297,26 @@ describe("ways and destinations", () => {
     assert.ok(ways.filter((w) => w.kind === "shop").every((w) => w.tier === 3));
   });
 
+  test("Pokke Farm is one way, its best point", () => {
+    const ways = itemWays(
+      undefined,
+      {
+        gathering: [],
+        farm: [
+          { point: "Mining Point", spot: "mining", chance: 7, gathers: 3, mostGathers: 4 },
+          { point: "Mining Point +2", spot: "mining", chance: 23, gathers: 3, mostGathers: 4 },
+        ],
+        shops: [],
+      },
+      undefined,
+      null,
+    );
+    assert.deepEqual(
+      ways.map((w) => [w.kind, w.name, w.detail, w.chance]),
+      [["farm", "Pokke Farm", "Mining Point +2 · Mining · 3-4 per quest", 23]],
+    );
+  });
+
   test("quest-only gathering stays apart, ranked by its quests", () => {
     const point = { kind: "mine" as const, areas: [1] };
     const ways = itemWays(
@@ -303,6 +326,7 @@ describe("ways and destinations", () => {
           { group: "Village", map: "Jungle (Day)", points: [point], chance: 50, quests: [7] },
           { group: "Village", map: "Jungle (Night)", points: [point], chance: 10 },
         ],
+        farm: [],
         shops: [],
       },
       undefined,

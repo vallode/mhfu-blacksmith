@@ -10,7 +10,7 @@
  *   - skills.json                (skill trees and activations, for the set builder)
  *   - equipment-ids.json         (save-file equipment IDs -> item pages)
  *   - items.json                 (in-game item ID -> name, linked to materials)
- *   - item-places.json           (where each item is gathered or sold, see src/lib/item-places.ts)
+ *   - item-places.json           (where each item is gathered, farmed or sold, see src/lib/item-places.ts)
  *   - area-maps.json             (each quest's gathering points on the map, see src/lib/area-maps.ts)
  *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - veggie-trades.json         (the Veggie Elder's trades, see src/lib/veggie-trades.ts)
@@ -73,6 +73,7 @@ import { encodeVeggieTrades, type VeggieTradesFile } from "../src/lib/veggie-tra
 import {
   buildItemPlaces,
   encodeItemPlaces,
+  type FarmFile,
   type GatheringFile,
   type ShopsFile,
 } from "../src/lib/item-places";
@@ -558,11 +559,12 @@ for (const category of MONSTER_CATEGORIES) {
   totalItems += bundle.items.length;
   push("quests.json", bundle);
 
-  // Where each item is gathered (data/gathering.json) or sold (data/shops.json).
+  // Where each item is gathered (data/gathering.json, data/farm.json) or sold (data/shops.json).
   push("area-maps.json", areaMaps);
   const places = buildItemPlaces(
     gathering,
     readJson<ShopsFile>(path.join(dataDir, "shops.json")),
+    readJson<FarmFile>(path.join(dataDir, "farm.json")),
     quests,
     (name) => index.get(normalizeItemName(name)),
   );
