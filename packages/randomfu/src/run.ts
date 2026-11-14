@@ -28,6 +28,8 @@ export interface RunOptions {
   force?: boolean;
   /** For testing in game: a happy Poogie always gives the rarest reward. */
   poogieTest?: boolean;
+  /** Prototype: the code loader with its demo blob (see `docs/code-loader.md`). */
+  loaderDemo?: boolean;
   /** Adds research detail to the spoiler log. */
   debug?: boolean;
 }
@@ -74,6 +76,7 @@ export async function runRandomizer(options: RunOptions, log: Log): Promise<RunR
 
     const result = randomize(game, settings, {
       poogieTest: options.poogieTest,
+      loaderDemo: options.loaderDemo,
       debug: options.debug,
     });
     for (const report of result.reports) log(reportLogLine(report));
@@ -86,7 +89,7 @@ export async function runRandomizer(options: RunOptions, log: Log): Promise<RunR
     if (image) {
       const summary = writeEdits(image, game, result.edits);
       log(
-        `Wrote ${summary.quests} quests and ${summary.files} other DATA.BIN files; EBOOT ${summary.eboot}. Read-back check passed.`,
+        `Wrote ${summary.quests} quests and ${summary.files} other DATA.BIN files${summary.discFiles ? ` and ${summary.discFiles} new disc files` : ""}; EBOOT ${summary.eboot}. Read-back check passed.`,
       );
     }
 

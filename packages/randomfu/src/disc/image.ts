@@ -214,6 +214,97 @@ export class PatchableImage {
     return { path, moved, lba, size: data.length };
   }
 
+  /**
+   * Writes a file at `path`: replaces it if it's there, otherwise appends
+   * its data to the end of the image and adds a record for it to its
+   * directory, which must have room in the sectors it already has. Records
+   * stay sorted by name, as ISO 9660 wants.
+   */
+  writeFile(path: string, data: Buffer): ReplaceResult {
+    const slash = path.lastIndexOf("/");
+    const dirPath = path.slice(0, slash) || "/";
+    const name = path.slice(slash + 1).toUpperCase();
+    if (!/^[A-Z0-9_]{1,8}\.[A-Z0-9_]{0,3}$/.test(name)) {
+      throw new Error(`${name} isn't an 8.3 name`);
+    }
+    try {
+      this.stat(path);
+      return this.replaceFile(path, data);
+    } catch (error) {
+      if (!String(error).includes("Path not found")) throw error;
+    }
+    const dir = dirPath === "/" ? this.rootDirectory() : this.stat(dirPath);
+    if (!dir.isDirectory) throw new Error(`${dirPath} isn't a directory`);
+
+    // Read every record of the directory, sector by sector.
+    const sectors = Math.ceil(dir.size / SECTOR_SIZE);
+    const extent = this.file.read(dir.lba * SECTOR_SIZE, sectors * SECTOR_SIZE);
+    const records: Buffer[] = [];
+    for (let s = 0; s < sectors; s++) {
+      let at = s * SECTOR_SIZE;
+      while (at < (s + 1) * SECTOR_SIZE && extent[at]! > 0) {
+        records.push(Buffer.from(extent.subarray(at, at + extent[at]!)));
+        at += extent[at]!;
+      }
+    }
+    const fileRecord = records.find((r) => (r[25]! & 0x02) === 0);
+    if (!fileRecord) throw new Error(`${dirPath} has no file to copy a record from`);
+
+    const end = Math.ceil(this.file.totalBytes / SECTOR_SIZE) * SECTOR_SIZE;
+    const lba = end / SECTOR_SIZE;
+    const padded = Buffer.alloc(Math.ceil(data.length / SECTOR_SIZE) * SECTOR_SIZE);
+    data.copy(padded);
+    this.file.write(end, padded);
+    this.setVolumeSize((end + padded.length) / SECTOR_SIZE);
+
+    // Shaped like the directory's other files: UMD images name files without
+    // the ";1" version (and PPSSPP matches names exactly), and give each an
+    // XA system-use field after the name, both copied here.
+    const copyName = fileRecord.toString("latin1", 33, 33 + fileRecord[32]!);
+    const identifier = Buffer.from(copyName.includes(";") ? `${name};1` : name, "latin1");
+    const nameEnd = (n: number) => 33 + n + ((33 + n) % 2);
+    const systemUse = fileRecord.subarray(nameEnd(fileRecord[32]!), fileRecord[0]!);
+    const length = nameEnd(identifier.length) + systemUse.length;
+    const record = Buffer.alloc(length);
+    record[0] = length;
+    writeBothEndian32(record, RECORD_LBA, lba);
+    writeBothEndian32(record, RECORD_SIZE, data.length);
+    fileRecord.copy(record, 18, 18, 25); // recording date
+    record.writeUInt16LE(1, 28); // volume sequence number, both-endian
+    record.writeUInt16BE(1, 30);
+    record[32] = identifier.length;
+    identifier.copy(record, 33);
+    systemUse.copy(record, nameEnd(identifier.length));
+
+    // "." and ".." first, then by name.
+    const nameOf = (r: Buffer) => r.toString("latin1", 33, 33 + r[32]!);
+    const [self, parent, ...rest] = records;
+    rest.push(record);
+    rest.sort((x, y) => (nameOf(x) < nameOf(y) ? -1 : nameOf(x) > nameOf(y) ? 1 : 0));
+    const packed = Buffer.alloc(sectors * SECTOR_SIZE);
+    let at = 0;
+    for (const r of [self!, parent!, ...rest]) {
+      const sectorEnd = Math.floor(at / SECTOR_SIZE) * SECTOR_SIZE + SECTOR_SIZE;
+      if (at + r.length > sectorEnd) at = sectorEnd; // records don't cross sectors
+      if (at + r.length > packed.length) throw new Error(`${dirPath} has no room for ${name}`);
+      r.copy(packed, at);
+      at += r.length;
+    }
+    this.file.write(dir.lba * SECTOR_SIZE, packed);
+    return { path, moved: true, lba, size: data.length };
+  }
+
+  private rootDirectory(): DirEntry {
+    const pvd = this.file.read(PVD_OFFSET, SECTOR_SIZE);
+    return {
+      name: "",
+      isDirectory: true,
+      lba: pvd.readUInt32LE(156 + RECORD_LBA),
+      size: pvd.readUInt32LE(156 + RECORD_SIZE),
+      recordOffset: PVD_OFFSET + 156,
+    };
+  }
+
   private setVolumeSize(sectors: number): void {
     const field = Buffer.alloc(8);
     writeBothEndian32(field, 0, sectors);
