@@ -74,16 +74,7 @@ pnpm format:check   # Prettier, check only
 pnpm clean:discs    # delete disc images left in Claude Code scratchpads (--dry-run lists them)
 ```
 
-Run any package's own scripts with `pnpm --filter <package> <script>`, or
-from its directory. The site's own workflow (generating its data, crafting
-trees and 3D models) is in `apps/blacksmith/README.md`.
-
-Records in `data/` carry the game's own IDs and refer to each other by ID, with
-names in per-language string tables. Everything reads `data/` through
-`packages/game-data`; see its README.
-
-## Deployment
-
-The site is served at [mhfu.vallode.com](https://mhfu.vallode.com) and randomfu's
-web app at [randomfu.vallode.com](https://randomfu.vallode.com), both as
-Cloudflare Workers deployed from this repository. See `docs/deploying.md`.
+Run any package's own scripts with `pnpm --filter <package> <script>`.
+More: [the site's workflow](apps/blacksmith/README.md) (data, crafting trees,
+3D models), [the game data format](packages/game-data/README.md) and
+[deployment](docs/deploying.md) (Cloudflare).
