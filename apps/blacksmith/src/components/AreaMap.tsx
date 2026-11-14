@@ -6,33 +6,27 @@ import { Stat, StatList } from "@/components/DetailPanel";
 import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
 import StepSelector from "@/components/StepSelector";
-import {
-  AREA_MAP_SIZE,
-  areaLabel,
-  areaMapSrc,
-  nextSelection,
-  type AreaMap as Data,
-} from "@/lib/area-maps";
+import { useLocale, useT } from "@/context/LanguageContext";
+import { AREA_MAP_SIZE, areaMapSrc, nextSelection, type AreaMap as Data } from "@/lib/area-maps";
 import { useAreaMap } from "@/lib/client-data";
 import { cn } from "@/lib/cn";
-import { gatherPointsLabel, type GatherKind, type GatherPlace } from "@/lib/item-places";
+import type { GatherKind, GatherPlace } from "@/lib/item-places";
+import { gatherPointsLabel, groupLabel } from "@/lib/i18n/place-labels";
+import type { GameText } from "@/lib/i18n/game-text";
+import type { Messages } from "@/lib/i18n/messages";
 import { groupBy, itemHref } from "@/lib/item-sources";
 import { type Quest, questHref } from "@/lib/quests";
 
-const KINDS: { kind: GatherKind; label: string; marker: string }[] = [
-  { kind: "gather", label: "Gathering", marker: "bg-gem-green" },
-  { kind: "mine", label: "Mining", marker: "bg-gem-orange" },
-  { kind: "bug", label: "Bug catching", marker: "bg-gem-yellow" },
+/** Each kind of point's marker colour; its name is `t.quests.areaMap.kinds[kind]`. */
+const KINDS: { kind: GatherKind; marker: string }[] = [
+  { kind: "gather", marker: "bg-gem-green" },
+  { kind: "mine", marker: "bg-gem-orange" },
+  { kind: "bug", marker: "bg-gem-yellow" },
 ];
 
 const diamond = "block size-[1.1rem] rotate-45 border border-black";
 
 const percent = (pixels: number) => `${(pixels / AREA_MAP_SIZE) * 100}%`;
-
-function gatherCount(fewest: number | null, most: number | null): string {
-  if (fewest === null || most === null) return "Never runs out";
-  return fewest === most ? `${fewest}` : `${fewest}–${most}`;
-}
 
 /** A quest's Map tab; its data loads when the tab opens. */
 export default function QuestAreaMap({ questId }: { questId: number }) {
@@ -40,17 +34,29 @@ export default function QuestAreaMap({ questId }: { questId: number }) {
 }
 
 function LoadedAreaMap({ questId, gives }: { questId: number; gives?: (item: string) => boolean }) {
+  const t = useT().quests.areaMap;
   const { map, loading } = useAreaMap(questId);
   if (map) return <AreaMap key={questId} map={map} gives={gives} />;
-  if (loading) return <Loading>Loading map…</Loading>;
-  return <p className="text-negative">Couldn&apos;t load the map.</p>;
+  if (loading) return <Loading>{t.loading}</Loading>;
+  return <p className="text-negative">{t.loadError}</p>;
+}
+
+/** A quest's title in the site's language, or "Quest 123" for one the list doesn't have. */
+function questTitle(t: Messages, game: GameText, quests: ReadonlyMap<number, Quest>, id: number) {
+  const quest = quests.get(id);
+  return quest ? game.quest(id, "title", quest.title) : t.items.detail.unknownQuest(id);
 }
 
 /** "Snowy Mountains (Day)", or the quest whose own points these are ("Pokke Farm Tour +2"). */
-function placeName(place: GatherPlace, quests: ReadonlyMap<number, Quest>): string {
-  if (!place.quests) return place.map;
-  const [first, ...rest] = place.quests.map((id) => quests.get(id)?.title ?? `Quest ${id}`);
-  return rest.length > 0 ? `${first} +${rest.length}` : first!;
+function placeName(
+  t: Messages,
+  game: GameText,
+  place: GatherPlace,
+  quests: ReadonlyMap<number, Quest>,
+): string {
+  if (!place.quests) return game.name("map", place.map);
+  const [first, ...rest] = place.quests.map((id) => questTitle(t, game, quests, id));
+  return rest.length > 0 ? t.quests.areaMap.andMore(first!, rest.length) : first!;
 }
 
 /**
@@ -70,6 +76,8 @@ export function ItemAreaMap({
   /** Whether an item name on a point is this item. */
   gives: (item: string) => boolean;
 }) {
+  const { t: messages, game, formatNumber } = useLocale();
+  const t = messages.quests.areaMap;
   const groups = groupBy(
     places.filter((p) => p.mapQuest !== undefined),
     (p) => p.group,
@@ -91,51 +99,60 @@ export function ItemAreaMap({
     <div className="flex flex-col gap-4">
       <div className="mx-auto flex w-full max-w-[48rem] flex-col gap-2">
         <StepSelector
-          groupLabel="Rank"
-          previousLabel="Previous rank"
-          nextLabel="Next rank"
-          label={<span className="truncate">{group}</span>}
+          groupLabel={t.rank}
+          previousLabel={t.previousRank}
+          nextLabel={t.nextRank}
+          label={<span className="truncate">{groupLabel(messages, group)}</span>}
           index={groupIndex}
           count={groups.length}
+          countLabel={t.position(groupIndex + 1, groups.length)}
           onChange={pickGroup}
         />
         <StepSelector
-          groupLabel="Map"
-          previousLabel="Previous map"
-          nextLabel="Next map"
+          groupLabel={t.map}
+          previousLabel={t.previousMap}
+          nextLabel={t.nextMap}
           label={
             <>
               <MapIcon map={place.map} className="size-[2.4rem]" />
-              <span className="truncate">{placeName(place, quests)}</span>
+              <span className="truncate">{placeName(messages, game, place, quests)}</span>
             </>
           }
           index={placeIndex}
           count={rows.length}
+          countLabel={t.position(placeIndex + 1, rows.length)}
           onChange={(next) => setChoice({ group: groupIndex, place: next })}
         />
         <p className="m-0 text-fine whitespace-normal text-white/60">
-          {place.quests ? (
+          {place.quests && (
             <>
-              {place.map} · only in{" "}
-              {place.quests.map((id, i) => {
-                const quest = quests.get(id);
-                return (
-                  <span key={id}>
-                    {i > 0 && ", "}
-                    {quest ? (
-                      <Link href={questHref(quest)} className="underline-offset-4 hover:underline">
-                        {quest.title}
-                      </Link>
-                    ) : (
-                      `Quest ${id}`
-                    )}
-                  </span>
-                );
-              })}{" "}
+              {t.onlyIn(
+                game.name("map", place.map),
+                place.quests.map((id, i) => {
+                  const quest = quests.get(id);
+                  const title = questTitle(messages, game, quests, id);
+                  return (
+                    <span key={id}>
+                      {i > 0 && ", "}
+                      {quest ? (
+                        <Link
+                          href={questHref(quest)}
+                          className="underline-offset-4 hover:underline"
+                        >
+                          {title}
+                        </Link>
+                      ) : (
+                        title
+                      )}
+                    </span>
+                  );
+                }),
+              )}{" "}
               ·{" "}
             </>
-          ) : null}
-          {gatherPointsLabel(place.points)} · up to {place.chance}% a gather
+          )}
+          {gatherPointsLabel(messages.items.gathering, place.points)} ·{" "}
+          {t.upTo(formatNumber(place.chance))}
         </p>
       </div>
       <LoadedAreaMap questId={place.mapQuest!} gives={gives} />
@@ -148,13 +165,21 @@ export function ItemAreaMap({
  * the points that give that item are lit and the rest dimmed.
  */
 function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean }) {
+  const { t: messages, game, formatNumber } = useLocale();
+  const t = messages.quests.areaMap;
   const [hidden, setHidden] = useState<ReadonlySet<GatherKind>>(new Set());
   const [selected, setSelected] = useState<number | null>(null);
   const lit = (p: Data["points"][number]) =>
     !gives || p.items.some(({ item, chance }) => chance > 0 && gives(item));
   const point = selected === null ? undefined : map.points[selected];
   const shown = point && !hidden.has(point.kind) ? point : undefined;
-  const label = (kind: GatherKind) => KINDS.find((k) => k.kind === kind)!.label;
+  const label = (kind: GatherKind) => t.kinds[kind];
+  const gatherCount = (fewest: number | null, most: number | null) => {
+    if (fewest === null || most === null) return t.neverRunsOut;
+    return fewest === most
+      ? formatNumber(fewest)
+      : t.gatherRange(formatNumber(fewest), formatNumber(most));
+  };
 
   const toggle = (kind: GatherKind) => {
     const next = new Set(hidden);
@@ -194,7 +219,7 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
             <button
               key={i}
               type="button"
-              aria-label={`${areaLabel(p.area)}, ${label(p.kind)}`}
+              aria-label={t.pointLabel(t.area(p.area), label(p.kind))}
               aria-pressed={selected === i}
               onClick={(event) => pick(event, i)}
               style={{ left: percent(p.x), top: percent(p.y) }}
@@ -219,7 +244,7 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
 
       <div className="flex flex-wrap justify-center gap-x-6 gap-y-2">
         {KINDS.filter(({ kind }) => map.points.some((p) => p.kind === kind)).map(
-          ({ kind, label: name, marker }) => (
+          ({ kind, marker }) => (
             <button
               key={kind}
               type="button"
@@ -228,7 +253,7 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
               className="flex cursor-pointer items-center gap-2 border-0 bg-transparent p-0 font-[inherit] text-small tracking-game text-white aria-[pressed=false]:opacity-40"
             >
               <span className={cn(diamond, marker)} />
-              {name}
+              {label(kind)}
             </button>
           ),
         )}
@@ -236,10 +261,10 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
 
       {shown ? (
         <StatList>
-          <Stat label={`${areaLabel(shown.area)}:`}>
+          <Stat label={t.areaHeading(t.area(shown.area))}>
             <span className="whitespace-normal text-white">{label(shown.kind)}</span>
           </Stat>
-          <Stat label="Gathers:">
+          <Stat label={t.gathers}>
             <span className="text-white tabular-nums">
               {gatherCount(shown.gathers, shown.mostGathers)}
             </span>
@@ -255,12 +280,12 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
                     href={itemHref(item)}
                     className={cn("underline-offset-4 hover:underline", own && "text-positive")}
                   >
-                    {item}
+                    {game.name("item", item)}
                   </Link>
                 }
               >
                 <span className={cn("text-white tabular-nums", own && "text-positive")}>
-                  {chance}%
+                  {t.chance(formatNumber(chance))}
                 </span>
               </Stat>
             );
@@ -268,8 +293,8 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
         </StatList>
       ) : (
         <p className="text-center text-fine whitespace-normal text-white/60">
-          {gives && "Lit points give this item. "}
-          Select a point to see what it gives, and again to step through any that overlap.
+          {gives && `${t.litHint} `}
+          {t.hint}
         </p>
       )}
     </div>

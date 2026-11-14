@@ -15,6 +15,9 @@
  *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - veggie-trades.json         (the Veggie Elder's trades, see src/lib/veggie-trades.ts)
  *   - data-manifest.json         ({ files, version })
+ *   - locale-<code>.json         (game text in other languages, from data/locales;
+ *                                 fetched only in that language, so outside the
+ *                                 manifest, the precache and the budget)
  *
  * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
@@ -68,6 +71,7 @@ import {
   type ItemRecord,
 } from "../src/lib/items";
 import { encodeQuestBundle, monsterSizeRanges, type QuestRecord } from "./lib/quest-bundle";
+import { buildLocaleBundles } from "./lib/locales";
 import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
 import { encodeVeggieTrades, type VeggieTradesFile } from "../src/lib/veggie-trades";
 import {
@@ -783,6 +787,13 @@ const walkImages = (dir: string) => {
 walkImages(imagesDir);
 imageUrls.sort();
 fs.writeFileSync(path.join(outDir, "image-manifest.json"), JSON.stringify(imageUrls));
+
+// Game text in other languages (scripts/lib/locales.ts).
+for (const locale of buildLocaleBundles(dataDir)) {
+  fs.writeFileSync(path.join(outDir, `locale-${locale.code}.json`), locale.json);
+  for (const warning of locale.warnings) console.warn(`generate-data: ${warning}`);
+  console.log(`generate-data: locale-${locale.code}.json, ${locale.entries} entries`);
+}
 
 const fmt = (n: number) =>
   n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(2)} MB` : `${(n / 1024).toFixed(1)} KB`;

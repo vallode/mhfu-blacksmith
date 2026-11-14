@@ -147,3 +147,48 @@ For refactors that shouldn't change the look, compare against the previous
 version: screenshots, or `getComputedStyle` of the affected elements. Some
 UI only renders with a hunter save loaded. Drop
 `test/fixtures/MHP2NDG.BIN` onto the upload card on `/hunter/` to load one.
+
+## Languages
+
+The site's language is a preference (Options → Language; "auto" follows the
+browser). URLs, metadata and the search index stay English. Like the other
+preferences, English renders first and the chosen language applies after
+mount. Languages live in `src/lib/i18n/locales.ts`. Add one there once it has
+a full dictionary.
+
+### Interface text
+
+- **No hard-coded English in components.** Text a visitor sees, including
+  `aria-label`, `title`, `alt` and `placeholder`, comes from
+  `src/lib/i18n/messages/<locale>/<area>.ts` through `useT()`
+  (`src/context/LanguageContext.tsx`): `const t = useT(); t.common.sections.weapons`.
+- **English is the source.** `messages/en/*.ts` are plain objects; every other
+  language is typed `Messages["<area>"]`, so a missing key fails `tsc`, and
+  `test/i18n.test.ts` checks the shapes match.
+- **Text with values in it is a function:** `forgeNow: (cost: string) => …`.
+  Build whole sentences, since word order differs between languages. Don't
+  glue fragments together. For a link inside a sentence, take it as a
+  `React.ReactNode` argument.
+- **Server components** can't call hooks: render `<Msg k="common.sections.weapons" />`
+  (`src/components/Msg.tsx`), or move the text into a client component.
+- **`lib/` stays language-free.** Pure helpers return ids or English, and the
+  component translates (`t.common.ranks[rank]`), so scripts and tests keep
+  working.
+- **Numbers:** `useLocale().formatNumber(n)`, not `toLocaleString("en-US")`.
+- **Spanish uses the series' Spanish terms:** _Gran espada_, _Ballesta
+  ligera_, _Rango alto_, _Afinidad_, _Filo_, _Ranuras_, _Adornos_,
+  _Misiones_, _Aldea_, _Gremio_. `messages/es/common.ts` has the base
+  vocabulary, so reuse it rather than coin new terms. Longer translations
+  must still fit their layout at phone width.
+
+### Game text
+
+Names of weapons, armor, items, monsters, skills, decorations and maps, and
+quest board text, come from the root `data/locales/<code>.json`. That file is keyed by
+English name or quest ID and extracted from the game disc
+(`packages/mhfu-extract`, its `locales` command), not hand-translated. `pnpm generate-data` copies it
+to `public/data/locale-<code>.json`. Display such names through
+`useGameText()`: `game.name("weapon", weapon.name)`,
+`game.quest(quest.id, "title", quest.title)`. Missing entries fall back to
+English. Keep using the English name for keys, slugs, lookups and sorting
+that must be stable.

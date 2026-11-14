@@ -7,7 +7,7 @@
 import type { ArmorRank, ArmorSlot, WeaponType } from "./constants";
 import { weaponHref } from "./equipment-ref";
 import { normalizeItemName } from "./items";
-import type { ItemPlaces } from "./item-places";
+import type { GatherKind, ItemPlaces } from "./item-places";
 import { itemHref, type ItemSources } from "./item-sources";
 import type { DropSource } from "./monster-drops";
 import { questHref, questHubLabel, questStarLevel, type QuestHubSlug } from "./quests";
@@ -71,6 +71,7 @@ export function entryHref(ref: GearRef): string {
 // Recipes
 // ---------------------------------------------------------------------------
 
+/** In English; the site's pages take theirs from the messages (`items.wishlist.recipes`). */
 export const RECIPE_LABELS: Record<Recipe, string> = {
   create: "Create",
   alt: "Alt. recipe",
@@ -294,8 +295,23 @@ export interface Way {
   map?: string;
   /** "Low Rank", "Guild High Rank", "Training School" … ("" for shops and combinations) */
   group: string;
-  /** How: "Body carves ×3", "Mining · Areas 2, 5", "Reward", "Stage 2 stock" … */
+  /**
+   * How, in English: "Body carves ×3", "Mining · only on 2 quests", "G3★ reward",
+   * "Shop · Stage 2 stock". The fields below say the same as data, for pages
+   * that put it in another language.
+   */
   detail: string;
+  /** Monsters: the drop table it comes from */
+  source?: DropSource;
+  /** Gathering: the kinds of point that give it */
+  gatherKinds?: GatherKind[];
+  /** Quests: the quest's ID and star level ("G3★") */
+  questId?: number;
+  stars?: string;
+  /** Shops: the first stage of stock that has it, when the opening stock doesn't */
+  stage?: number;
+  /** Combinations: the ingredients' item IDs */
+  ingredients?: number[];
   /** Percent per attempt, or null where it's certain (a shop) */
   chance: number | null;
   /** Shops: price in `currency`, null where it isn't known */
@@ -400,6 +416,7 @@ export function itemWays(
       ]
         .filter(Boolean)
         .join(" · "),
+      ...(!p.stages.includes(1) && { stage: p.stages[0] }),
       chance: null,
       price: p.price,
       currency: p.currency,
@@ -414,13 +431,15 @@ export function itemWays(
       href: s.monster.href,
       group: s.rank,
       detail: dropDetail(s.source),
+      source: s.source,
       chance: s.chance,
       tier: groupTier(s.rank),
       yield: (s.chance / 100) * s.quantity * (s.source.count ?? 1),
     });
   }
   for (const p of places?.gathering ?? []) {
-    const verbs = p.points.map((pt) => GATHER_VERBS[pt.kind]).join(", ");
+    const kinds = p.points.map((pt) => pt.kind);
+    const verbs = kinds.map((k) => GATHER_VERBS[k]).join(", ");
     // Only some quests' points give it: as early as the earliest of them.
     const tiers = (p.quests ?? []).flatMap((id) => {
       const q = quests?.get(id);
@@ -434,6 +453,7 @@ export function itemWays(
       detail: p.quests
         ? `${verbs} · only on ${p.quests.length} ${p.quests.length === 1 ? "quest" : "quests"}`
         : verbs,
+      gatherKinds: kinds,
       chance: p.chance,
       ...(p.quests ? { quests: p.quests } : {}),
       tier: tiers.length ? Math.min(...tiers) : groupTier(p.group),
@@ -442,12 +462,15 @@ export function itemWays(
   }
   for (const s of sources?.quests ?? []) {
     const { g, stars } = questStarLevel(s.quest.hub, s.quest.stars);
+    const level = `${g ? "G" : ""}${stars}★`;
     ways.push({
       kind: "quest",
       name: s.quest.title,
       href: questHref(s.quest),
       group: questHubLabel(s.quest.hub),
-      detail: `${g ? "G" : ""}${stars}★ reward`,
+      detail: `${level} reward`,
+      questId: s.quest.id,
+      stars: level,
       chance: s.chance,
       tier: questTier(s.quest.hub, s.quest.stars),
       yield: (s.chance / 100) * s.amount,
@@ -460,6 +483,7 @@ export function itemWays(
       name: names.join(" + "),
       group: "",
       detail: "Combine",
+      ingredients: c.ingredients,
       chance: c.successRate,
       tier: 4,
       yield: c.successRate / 100,

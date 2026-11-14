@@ -7,6 +7,7 @@ import { cn } from "@/lib/cn";
 import { itemHref } from "@/lib/item-sources";
 import { useOwnedMaterials } from "@/hooks/useOwnedMaterials";
 import type { Material } from "@/lib/types";
+import { useLocale } from "@/context/LanguageContext";
 
 interface MaterialRowProps {
   material: Material;
@@ -29,6 +30,8 @@ const amountClass = "flex-none text-right whitespace-pre";
  */
 export default function MaterialRow({ material }: MaterialRowProps) {
   const ownedOf = useOwnedMaterials();
+  const { t, game } = useLocale();
+  const name = game.name("item", material.name);
   const owned = ownedOf(material.name);
   const required = Number(material.amount);
 
@@ -37,7 +40,7 @@ export default function MaterialRow({ material }: MaterialRowProps) {
       <div className="flex items-center">
         <Icon type={material.type} color={material.color} />
         <Link href={itemHref(material.name)} className={cn(nameClass, itemLink)}>
-          {material.name}
+          {name}
         </Link>
         <p className={amountClass}>:{pad(material.amount)}</p>
       </div>
@@ -48,10 +51,10 @@ export default function MaterialRow({ material }: MaterialRowProps) {
   const shown = owned === Infinity ? "∞" : owned;
 
   return (
-    <div className="flex items-center" title={`You have ${shown} in your item box and pouch`}>
+    <div className="flex items-center" title={t.equipment.detail.haveTitle(String(shown))}>
       <Icon type={material.type} color={material.color} />
       <Link href={itemHref(material.name)} className={cn(nameClass, itemLink)}>
-        {material.name}
+        {name}
       </Link>
       <p className={amountClass}>
         :{short ? <span className="text-negative">{pad(shown)}</span> : pad(shown)}/{pad(required)}

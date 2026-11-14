@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useGameText, useLocale } from "@/context/LanguageContext";
 import {
   QUEST_HUBS,
   questHref,
@@ -11,12 +14,13 @@ import {
 const SHOWN = 3;
 
 function QuestLink({ quest }: { quest: Quest }) {
+  const game = useGameText();
   return (
     <Link
       href={questHref(quest)}
       className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
     >
-      {quest.title}
+      {game.quest(quest.id, "title", quest.title)}
     </Link>
   );
 }
@@ -26,6 +30,8 @@ function QuestLink({ quest }: { quest: Quest }) {
  * the biggest total at each star level. Quests where it keeps spawning follow.
  */
 export default function SmallMonsterQuests({ stages }: { stages: SmallMonsterStage[] }) {
+  const { t, formatNumber } = useLocale();
+  const s = t.monsters.spawns;
   return (
     <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1 compact:grid-cols-1">
       {QUEST_HUBS.map((hub) => {
@@ -33,11 +39,13 @@ export default function SmallMonsterQuests({ stages }: { stages: SmallMonsterSta
         if (onHub.length === 0) return null;
         return (
           <section key={hub.slug} className="flex min-w-0 flex-col gap-[0.6rem]">
-            <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">{hub.label}</h3>
+            <h3 className="m-0 text-small leading-[1.25] font-normal text-gold">
+              {t.quests.hubs[hub.slug]}
+            </h3>
             <ul className="m-0 flex list-none flex-col gap-[0.6rem] p-0">
               {onHub.map((stage) => {
                 const level = questStarLevel(stage.hub, stage.stars);
-                const total = stage.best[0]?.total;
+                const total = formatNumber(stage.best[0]?.total ?? 0);
                 const shown = stage.best.slice(0, SHOWN);
                 return (
                   <li key={stage.stars} className="flex min-w-0 items-baseline gap-[0.8rem]">
@@ -49,18 +57,18 @@ export default function SmallMonsterQuests({ stages }: { stages: SmallMonsterSta
                       {shown.map(({ quest }) => (
                         <div key={quest.id} className="flex min-w-0 items-baseline gap-[0.8rem]">
                           <QuestLink quest={quest} />
-                          <span className="ml-auto flex-none text-stat">×{total}</span>
+                          <span className="ml-auto flex-none text-stat">{s.count(total)}</span>
                         </div>
                       ))}
                       {stage.best.length > shown.length && (
                         <span className="text-muted">
-                          +{stage.best.length - shown.length} more with ×{total}
+                          {s.more(formatNumber(stage.best.length - shown.length), total)}
                         </span>
                       )}
                       {stage.endless.map((quest) => (
                         <div key={quest.id} className="flex min-w-0 items-baseline gap-[0.8rem]">
                           <QuestLink quest={quest} />
-                          <span className="ml-auto flex-none text-muted">keeps spawning</span>
+                          <span className="ml-auto flex-none text-muted">{s.keepsSpawning}</span>
                         </div>
                       ))}
                     </div>

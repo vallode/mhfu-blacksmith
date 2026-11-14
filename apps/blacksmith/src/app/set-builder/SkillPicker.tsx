@@ -7,7 +7,9 @@
  * ("Attack Up (Small)" -> "Attack Up (Large)").
  */
 import { useMemo, useState } from "react";
+import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
+import { LOCALE_TAGS } from "@/lib/i18n/locales";
 import type { SkillActivation } from "@/lib/set-search";
 import { chip, chipOff, chipOn, pressable } from "@/styles/set-builder";
 import * as ui from "@/styles/settings";
@@ -34,14 +36,16 @@ export function SkillChips({
   onAdd: () => void;
   addLabel: string;
 }) {
+  const text = useT().setBuilder.skillPicker;
+  const game = useGameText();
   return (
     <ul className="m-0 flex list-none flex-wrap gap-[0.8rem] p-0">
       {value.map((name) => (
         <li key={name} className={cn(chip, chipOn, "cursor-default pr-0")}>
-          <span>{name}</span>
+          <span>{game.name("skill", name)}</span>
           <button
             type="button"
-            aria-label={`Remove ${name}`}
+            aria-label={text.remove(game.name("skill", name))}
             className="flex size-[3.2rem] cursor-pointer items-center justify-center border-none bg-transparent p-0 text-sub leading-none text-stat/70 hover:text-negative focus-visible:text-negative"
             onClick={() => onRemove(name)}
           >
@@ -75,16 +79,27 @@ export function SkillBrowser({
   value: string[];
   onChange: (value: string[]) => void;
 }) {
+  const text = useT().setBuilder.skillPicker;
+  const game = useGameText();
+  const { locale } = useLocale();
+  const skillName = (english: string) => game.name("skill", english);
   const [query, setQuery] = useState("");
   const groups = useMemo(() => {
     const q = query.trim().toLowerCase();
+    // English or translated skill and tree names.
+    const has = (english: string) =>
+      english.toLowerCase().includes(q) || game.name("skill", english).toLowerCase().includes(q);
     const byTree = new Map<string, SkillOption[]>();
     for (const s of skills) {
-      if (q && !s.name.toLowerCase().includes(q) && !s.tree.toLowerCase().includes(q)) continue;
+      if (q && !has(s.name) && !has(s.tree)) continue;
       byTree.set(s.tree, [...(byTree.get(s.tree) ?? []), s]);
     }
-    return [...byTree.entries()].sort(([a], [b]) => a.localeCompare(b));
-  }, [skills, query]);
+    // In the order of the names shown; the trees stay keyed by English name.
+    const collator = new Intl.Collator(LOCALE_TAGS[locale]);
+    return [...byTree.entries()].sort(([a], [b]) =>
+      collator.compare(game.name("skill", a), game.name("skill", b)),
+    );
+  }, [skills, query, game, locale]);
 
   return (
     <div className="flex flex-col gap-[1.6rem]">
@@ -92,35 +107,31 @@ export function SkillBrowser({
         <input
           className={cn(ui.searchInput, "min-h-[4.4rem] text-sub")}
           type="search"
-          aria-label="Filter skills"
-          placeholder="Filter, e.g. attack, evade"
+          aria-label={text.filter}
+          placeholder={text.filterPlaceholder}
           value={query}
           autoComplete="off"
           spellCheck={false}
           onChange={(e) => setQuery(e.target.value)}
         />
         <p className="m-0 truncate text-fine text-white/60">
-          {value.length === 0 ? (
-            "Nothing chosen yet."
-          ) : (
-            <>
-              Chosen: <span className="text-stat">{value.join(", ")}</span>
-            </>
-          )}
+          {value.length === 0
+            ? text.nothingChosen
+            : text.chosen(<span className="text-stat">{value.map(skillName).join(", ")}</span>)}
         </p>
       </div>
-      {groups.length === 0 && <p className={ui.note}>No skill matches “{query}”.</p>}
+      {groups.length === 0 && <p className={ui.note}>{text.noMatch(query)}</p>}
       {groups.map(([tree, list]) => {
         const chosen = list.some((s) => value.includes(s.name));
         return (
-          <section key={tree} className="flex flex-col" aria-label={tree}>
+          <section key={tree} className="flex flex-col" aria-label={skillName(tree)}>
             <h3
               className={cn(
                 "m-0 border-b-[3px] bg-selector px-[1rem] py-[0.6rem] text-small font-normal text-shadow-[0.15rem_0.15rem_black]",
                 chosen ? "border-stat text-stat" : "border-white/30 text-parchment",
               )}
             >
-              {tree}
+              {skillName(tree)}
             </h3>
             <ul className="m-0 list-none bg-black/25 p-0">
               {list.map((s) => {
@@ -144,9 +155,9 @@ export function SkillBrowser({
                         )}
                       />
                       <span className={cn("truncate text-sub", on ? "text-stat" : "text-white")}>
-                        {s.name}
+                        {skillName(s.name)}
                       </span>
-                      <span className="text-fine text-white/45">{s.points} pts</span>
+                      <span className="text-fine text-white/45">{text.points(s.points)}</span>
                     </button>
                   </li>
                 );

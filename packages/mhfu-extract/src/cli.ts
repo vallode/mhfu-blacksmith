@@ -12,6 +12,8 @@
  *   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only <categories>] [--out <path>] [--markdown <path>]
  *   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only <targets>] [--report <path>] [--markdown <path>] [--dry-run]
  *   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
+ *   tsx src/cli.ts find-names --unpacked <dir> [--out <path>] [--tables <list>] [--all]
+ *   tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots <map>] [--report <path>] [--dry-run]
  */
 import { fileURLToPath } from "node:url";
 import { parseTargets, printBuildSummary, runBuildData } from "./cli/build-data.js";
@@ -21,6 +23,8 @@ import { runExportSite } from "./cli/export-site.js";
 import { runAreaMaps } from "./cli/area-maps.js";
 import { runItemIcons } from "./cli/item-icons.js";
 import { runExtract } from "./cli/extract.js";
+import { runFindNames } from "./cli/find-names.js";
+import { runLocales } from "./cli/locales.js";
 import { runModels } from "./cli/models.js";
 import { runQuestFlags } from "./cli/quest-flags.js";
 import { runQuestTextScan } from "./cli/quest-text-scan.js";
@@ -31,7 +35,7 @@ import { probeQuests, sizeTsv } from "./emit/quest-probe.js";
 import type { QuestRawEntry } from "./emit/quests-raw.js";
 
 /** Flags that take no value; present means `"true"`. */
-const BOOLEAN_FLAGS = new Set(["skip-eboot", "lossless", "dry-run", "raw"]);
+const BOOLEAN_FLAGS = new Set(["skip-eboot", "lossless", "dry-run", "raw", "skip-names", "all"]);
 
 /** Minimal `--flag value` parser — no `=` form; flags in BOOLEAN_FLAGS take no value. */
 export function parseFlags(argv: string[]): Record<string, string> {
@@ -71,6 +75,8 @@ const USAGE = `Usage:
   tsx src/cli.ts compare --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters] [--out <path>] [--markdown <path>]
   tsx src/cli.ts build-data --extracted <dir> --data <dir> [--only armor,weapons,decorations,monsters,items,quests,gathering,shops,combinations,veggie-trades] [--report <path>] [--markdown <path>] [--dry-run]
   tsx src/cli.ts quest-flags --unpacked <dir> [--out <path>]
+  tsx src/cli.ts find-names --unpacked <dir> [--out <path>] [--tables ItemID,emID,...] [--all]
+  tsx src/cli.ts locales --unpacked <dir> [--data <dir>] [--out <dir>] [--skip-names] [--all] [--slots spa=es,...] [--report <path>] [--dry-run]
   tsx src/cli.ts quest-probe --quests <raw/quests.json> [--tsv <path>]
   tsx src/cli.ts quest-text-scan --unpacked <dir> --quest <id> [--out <path>]
   tsx src/cli.ts messages --unpacked <dir> --file <index> [--grep <word>] [--table <n> [--from <i>] [--count <n>]]`;
@@ -212,6 +218,28 @@ export async function main(argv: string[]): Promise<void> {
     }
     case "quest-flags": {
       await runQuestFlags({ unpacked: requireFlag(flags, "unpacked"), out: flags.out });
+      return;
+    }
+    case "find-names": {
+      await runFindNames({
+        unpacked: requireFlag(flags, "unpacked"),
+        out: flags.out,
+        all: flags.all === "true",
+        tables: flags.tables,
+      });
+      return;
+    }
+    case "locales": {
+      await runLocales({
+        unpacked: requireFlag(flags, "unpacked"),
+        data: flags.data ?? "../../data",
+        out: flags.out,
+        skipNames: flags["skip-names"] === "true",
+        all: flags.all === "true",
+        slots: flags.slots,
+        report: flags.report,
+        dryRun: flags["dry-run"] === "true",
+      });
       return;
     }
     default:

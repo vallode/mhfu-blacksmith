@@ -1,0 +1,127 @@
+import { createElement, Fragment, type ReactNode } from "react";
+import type { Messages } from "../en";
+
+export const quests: Messages["quests"] = {
+  hubs: {
+    village: "Aldea",
+    "low-rank": "Gremio, rango bajo",
+    "high-rank": "Gremio, rango alto",
+    "g-rank": "Gremio, rango G",
+    // "Escuela de entrenamiento" overflows the board list at phone width.
+    "training-school": "Entrenamiento",
+    "treasure-hunting": "Búsqueda de tesoros",
+  },
+  // Short enough for the corner of the quest page, like "CLEAR!!".
+  cleared: "SUPERADA",
+  loadError: "No se pudieron cargar las misiones.",
+  notFound: "No encontrada.",
+  board: {
+    urgent: " (misión urgente)",
+    title: (hub: string) => `Misiones: ${hub}`,
+    selectQuest: "Elige una misión.",
+    selectBoard: "Elige un tablón de misiones.",
+    boards: "Tablones de misiones",
+    backToBoards: (hub: string) => `${hub}: volver a los tablones de misiones`,
+    starLevels: "Niveles de estrellas",
+    starLevel: (stars: number, g: boolean) =>
+      `${g ? "G " : ""}${stars} ${stars === 1 ? "estrella" : "estrellas"}`,
+    // Short, for the selector bar at the foot of the list at phone width.
+    allTypes: "Todas",
+    typeFilter: "Tipo de misión",
+    previousType: "Tipo de misión anterior",
+    nextType: "Tipo de misión siguiente",
+    typeOf: (n: number, total: number) => `Tipo de misión ${n} de ${total}`,
+  },
+  types: {
+    hunting: "Caza",
+    slaying: "Matanza",
+    gathering: "Recolección",
+    treasure: "Tesoros",
+  },
+  typeHeadings: {
+    hunting: "Misión de caza",
+    slaying: "Misión de matanza",
+    gathering: "Misión de recolección",
+    treasure: "Misión de tesoros",
+  },
+  detail: {
+    tabsLabel: (quest: string) => `Datos de ${quest}`,
+    tabs: {
+      details: "Detalles",
+      monsters: "Monstruos",
+      rewards: "Recompensas",
+      supplies: "Suministros",
+      map: "Mapa",
+    },
+    goal: "Objetivo:",
+    failure: "Fracaso:",
+    location: "Lugar:",
+    timeLimit: "Tiempo límite:",
+    minutes: (n: string) => `${n} min`,
+    reward: "Recompensa:",
+    fee: "Tarifa:",
+    requires: "Requiere:",
+    monsters: "Monstruos:",
+    crowns: "Coronas:",
+    crownsAfterFirstClear: "(seguramente tras superarla una vez)",
+    smallMonsters: "Monstruos pequeños:",
+    client: "Cliente:",
+  },
+  monsterStats: {
+    hp: "Vida:",
+    attack: "Ataque:",
+    defense: "Defensa:",
+    stagger: "Retroceso:",
+    times: (n: string) => `×${n}`,
+    note: "El ataque y la defensa multiplican el daño que el monstruo causa y recibe, así que una defensa más baja significa que recibe menos. El retroceso multiplica el daño que una parte aguanta antes de hacerlo retroceder.",
+    changesDuringHunt: (monster: string) =>
+      `El ataque y la defensa del ${monster} vuelven a cambiar durante la cacería.`,
+    size: "Tamaño:",
+    sizePercent: (n: string) => `${n}%`,
+    sizeRange: (min: string, max: string) => `${min}–${max}%`,
+    noCrowns: "Ninguna",
+    sizeNote:
+      "El tamaño es un porcentaje del tamaño normal del monstruo, sorteado para cada uno; las probabilidades de corona son por monstruo.",
+    fixedFirstNote:
+      "Hasta que se activa un evento de la historia (seguramente al superar la misión por primera vez), todos los monstruos tienen su tamaño normal.",
+  },
+  areaMap: {
+    loading: "Cargando mapa…",
+    loadError: "No se pudo cargar el mapa.",
+    rank: "Rango",
+    previousRank: "Rango anterior",
+    nextRank: "Rango siguiente",
+    map: "Mapa",
+    previousMap: "Mapa anterior",
+    nextMap: "Mapa siguiente",
+    position: (n: number, total: number) => `${n} de ${total}`,
+    andMore: (first: string, more: number) => `${first} +${more}`,
+    onlyIn: (map: string, quests: ReactNode): ReactNode =>
+      createElement(Fragment, null, `${map} · solo en `, quests),
+    upTo: (percent: string) => `hasta un ${percent}% por recolección`,
+    litHint: "Los puntos iluminados dan este objeto.",
+    kinds: {
+      gather: "Recolección",
+      mine: "Minería",
+      bug: "Insectos",
+    },
+    area: (area: number) => (area === 0 ? "Campamento base" : `Zona ${area}`),
+    pointLabel: (area: string, kind: string) => `${area}, ${kind}`,
+    areaHeading: (area: string) => `${area}:`,
+    gathers: "Recolecciones:",
+    gatherRange: (fewest: string, most: string) => `${fewest}–${most}`,
+    neverRunsOut: "No se agota",
+    chance: (percent: string) => `${percent}%`,
+    hint: "Elige un punto para ver lo que da, y vuelve a elegirlo para recorrer los que se solapan.",
+  },
+  rewards: {
+    kinds: {
+      main: "Recompensa principal",
+      extra: "Recompensa extra",
+      conditional: "Recompensa condicional",
+    },
+    condition: (n: number) => `condición ${n}`,
+    unknownItem: (id: number) => `Objeto n.º ${id}`,
+    stacks: (n: number) => `${n} lotes`,
+  },
+};

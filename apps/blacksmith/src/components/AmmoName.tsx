@@ -1,4 +1,7 @@
+"use client";
+
 import Icon from "./Icon";
+import { useT } from "@/context/LanguageContext";
 
 /**
  * Shot sprite (item-26) and tint (an index into `--color-item-*`) per ammo, as
@@ -27,12 +30,13 @@ const AMMO_TINT: Record<string, number> = {
 
 /** An ammo table's name cell: the shot icon, then the name. */
 export default function AmmoName({ name }: { name: string }) {
+  const t = useT();
   const tint = AMMO_TINT[name];
   return (
     <td>
       <div className="flex items-center">
         {tint !== undefined && <Icon type="item-26" color={`item-${tint}`} />}
-        {name}
+        {t.equipment.weapon.ammo[name] ?? name}
       </div>
     </td>
   );

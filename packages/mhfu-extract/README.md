@@ -42,6 +42,8 @@ pnpm --filter mhfu-extract build-data --extracted .cache/mhfu/extracted --data .
 pnpm --filter mhfu-extract item-icons --unpacked .cache/mhfu
 pnpm --filter mhfu-extract area-maps --unpacked .cache/mhfu
 pnpm --filter mhfu-extract quest-flags --unpacked .cache/mhfu
+pnpm --filter mhfu-extract find-names --unpacked .cache/mhfu
+pnpm --filter mhfu-extract locales --unpacked .cache/mhfu --data ../../data
 pnpm --filter mhfu-extract quest-probe --quests .cache/mhfu/extracted/raw/quests.json --tsv .cache/mhfu/quest-size.tsv
 pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
 pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Velocidrome
@@ -94,6 +96,10 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
 - `quest-flags` searches the unpacked EBOOT and overlays for the table
   that maps quest IDs to their "cleared" bit in a save, and writes
   `quest-flags.json` (or `--out`). See "Save quest flags".
+- `find-names` searches the unpacked files for the game's name string
+  tables in every language and reports each candidate, and `locales` writes
+  `data/locales/<code>.json` (quest text in every language, and names where
+  the search is confident). See "Localized text".
 
 ### Region support: JP and EU equipment both fully wired into `extract`
 
@@ -1455,6 +1461,187 @@ overlay (`src/quests/flag-scan.ts`) for it:
 Neither search reads MIPS code, so a mapping computed only in code
 (e.g. `base + id - first` with immediates) wouldn't be found.
 
+## Localized text
+
+The site shows game text in other languages from `data/locales/<code>.json`
+(schema `data/schemas/locale.schema.json`, read by the site's
+`src/lib/i18n/game-text.ts`): names keyed by the site's English name per
+kind (`weapon`, `armor`, `item`, `monster`, `skill`, `decoration`, `map`),
+and quest board text (`title`, `goal`, `fail`, `details`, `client`) keyed by
+quest ID. `pnpm generate-data` drops entries whose English key isn't in
+`data/`. The EU disc (ULES01213) has German, French, Spanish and Italian
+besides English; the JP disc (ULJM05500) has Japanese.
+
+```bash
+pnpm --filter mhfu-extract locales --unpacked .cache/mhfu --data ../../data [--report <path>] [--dry-run]
+pnpm --filter mhfu-extract find-names --unpacked .cache/mhfu [--out <path>] [--tables ItemID,emID] [--all]
+```
+
+`locales` writes one file per language it found, with `source` set to the
+disc and date (`"EU disc ULES01213, extracted 2026-11-09"`). It merges entry
+by entry: names and quests it produced replace the same keys, and every other
+entry of an existing file stays (hand-checked names, and those from a table a
+later run isn't confident about, survive). Keys are sorted, quest IDs
+numerically, so reruns diff cleanly. Each file is checked against the schema
+before it is written (`src/locales/file.ts`; `pnpm validate-schema` checks
+it again). `--skip-names` skips the name search, `--dry-run` writes nothing.
+
+### Quest text
+
+Every quest's `LangPTRs` has 7 slots, which quest.hexpat names `Eng1`,
+`Eng2`, `Ger`, `Fre`, `Spa`, `Ita`, `Eng3`. The parser now keeps all of them
+(`ParsedQuest.languages`); `extract` still uses the first. `locales`
+(`src/locales/quests.ts`) writes `ger` as `de`, `fre` as `fr`, `spa` as `es`
+and `ita` as `it`, for the quests `extract` emits. A field is left out (so
+the site falls back to English) when it equals the English text, is a
+placeholder (`none`, `**********`, empty), or isn't valid UTF-8. On the JP
+disc every slot points at the same Japanese text, which becomes `ja`.
+
+What's confirmed and what isn't:
+
+- Confirmed: the first slot is English on the EU disc (it is the committed
+  `data/quests/` text), all slots alias one Japanese text on the JP disc,
+  and quest text is UTF-8 on both.
+- Confirmed by the first EU run (2026-11-10): the slots hold English,
+  English, German, French, Spanish, Italian and English, as quest.hexpat
+  names them. Each of the four translated slots read as its language
+  (confidence 0.34 for Italian to 0.80 for French), with all 540 emitted
+  quests translated.
+- `locales` still guesses each slot's language from all
+  its text (`src/strings/language.ts`: letters such as `ñ`/`¿` for Spanish,
+  `ä`/`ö`/`ü`/`ß` for German, `ç`/`œ` for French, `ì`/`ò` for Italian, common
+  short words, and typical letter sequences) and prints it per slot. A slot
+  that reads clearly as another language (confidence 0.3 or more) is skipped
+  with a message; if the guesses show the slots in another order, map them
+  by hand with `--slots ger=de,fre=fr,spa=es,ita=it` (slot=locale). A slot
+  that reads as another language with low confidence is written with a
+  warning.
+
+### Names
+
+#### Message files (EU)
+
+The first EU run showed where the names are: the string tables in the
+message files described under "EU message files" above (layout in
+`src/strings/messages.ts`). DATA.BIN 19-23 hold them in English, French,
+German, Italian and Spanish, 23 tables each, unpacked as `_unindexed/19.bin`
+to `22.bin` and, for 23, under the JP file list's name
+`message_jpn/str_tbl.pac`. The same table and entry holds the same string in
+every language, but tables sit at different offsets in each file, since the
+strings' lengths differ. Tables are packed with no padding, so most start at
+an odd offset.
+
+`src/strings/string-pack.ts` reads those tables through the header, so every
+table is found in every language, whatever its alignment. The search below
+tries it first: for an enum, the table and starting entry that most names
+vote for becomes an English candidate, and each other message file's same
+table and entry becomes a language candidate (`via` says "message file
+block N, entry M"). The pointer-table search, which reads only aligned
+words, had found just the head, chest and leg armor tables (the aligned
+ones) and the start of table 0 (skill trees and monsters).
+
+Each message file is one language throughout, so once every table is
+searched, `settleByFileLanguage` (`src/strings/name-search.ts`) takes each
+file's language from the guesses for all its tables (three tables and 60%
+of the weight at least) and uses it for that file's tables, in place of
+each table's own guess. On the EU disc, that guess was too weak for French
+waist armor (0.24) and read Italian leg armor as German.
+
+The 2026-11-12 run wrote items, Blademaster and Gunner weapons, decorations,
+skill trees, and head, chest and arm armor in all four languages, with each
+English table matching the enum on 97-99% (the rest are the disc's `dummy`
+entries). Monsters aren't written: the disc's monster table shows variants
+by their base name ("Rathian" for Pink Rathian) and has `dummy` slots, so
+its English matches the enum on only 70%.
+
+#### Pointer-table search
+
+Names are the harder half: the equipment structs carry no name pointer,
+and nothing vendored says where the name tables are (see
+`src/strings/names.ts`). `src/strings/name-search.ts` looks for them. It was
+written without a disc and is tested only on synthetic files, so treat its
+output as a report to check, not as data.
+
+It searches `eboot.bin` and every `DATA.BIN` file outside the model, sound,
+movie, stage and quest folders (`--all` scans those too): the overlays,
+`message_jpn/` (the JP disc's `str_tbl.pac` is a likely home), and the EU-only
+`_unindexed/` entries, which hold localized text. For each `NameTable`
+(`ItemID`, `WepBMID`, `WepGunID`, the five armor tables, `SkillID`, `emID`):
+
+1. **English.** It finds the enum's names as NUL-terminated strings, then
+   votes on the pointer base: under the right base, many distinctive names
+   are pointed to by some u32 word. That covers RAM addresses (base = the
+   vaddr of file offset 0), file offsets (base 0) and offsets relative to a
+   table (negative base) without knowing the load address. The pointers to
+   found names then vote on a table start and stride (4-64 bytes, for a name
+   pointer inside a struct), and the best starts are scored against the
+   enum: entry `i` should lead to `enum[i]`, exactly or within one or two
+   letters (the enums are hand-transcribed).
+2. **Other languages.** Same-length tables where the common layouts put
+   them: back to back with the English array (`[table][lang]`), pointed to
+   from next to a pointer at the English array (lists of table pointers,
+   `[lang][table]` or `[table][lang]`, including MH2-style main tables of
+   file offsets), at the same offset in sibling files or `.pac` entries (one
+   per language), and in any run of string pointers. A candidate lines up
+   when its string lengths correlate with the English ones and trailing
+   markers (`+`, ` G`, ` II`) agree.
+3. **Language and encoding.** Each candidate gets the same language guess
+   as the quest slots, and an encoding (`src/strings/encoding.ts`): `ascii`,
+   `utf-8`, `shift-jis`, `latin1` (single high bytes in the Latin-1 letter
+   range inside words), or `unknown-8bit` (e.g. a custom font table, listed
+   byte by byte with samples so it can be mapped by hand).
+
+`locales` writes a language's names only when the English table matches
+the enum on 95% or more, and that language's table leads to a string on
+95% of entries, lines up (alignment 0.5 or more), is under 80% identical to
+English, decodes (not `unknown-8bit`) and reads as one language (guess
+confidence 0.25 or more, and no second candidate for it that lines up as
+well). Game IDs map to the site's names through the repo's own tables
+(`src/locales/names.ts`): `data/equipment-ids.json` for weapons and armor,
+`data/items.json` (name and aliases) for items, decorations through their
+item ID, `overlay/monsters.json` for monsters (the pairs the site's
+`src/lib/monster-ids.ts` comes from), and `data/skills.json` plus
+`overlay/skill-name-aliases.json` for skills. Map names have no disc table
+yet, so `map` stays as committed.
+
+### Running it on a disc
+
+On an EU disc already unpacked with `unpack` (unpack again if it predates
+region-aware file names; `find-names` refuses a stale one):
+
+```bash
+pnpm --filter mhfu-extract find-names --unpacked .cache/mhfu --out .cache/mhfu/find-names.json
+pnpm --filter mhfu-extract locales --unpacked .cache/mhfu --data ../../data --report .cache/mhfu/locales-report.json
+```
+
+`find-names` prints, per table: where the English names were found as
+strings, the English table (file, offset, address, stride, base, match
+ratio and the first mismatches), up to five other-language candidates (how
+each was found, language guess, encoding, alignment, and why it isn't
+written if it isn't) and sample entries side by side. `locales` prints each
+quest slot's language guess and counts, then the same name summary, then
+what it wrote. Its `--report` has the slot checks and the name search as
+JSON.
+
+To pin the tables, paste back:
+
+- the whole console output of both commands;
+- `.cache/mhfu/find-names.json` (samples only, no full tables), or at least
+  its `tables` entries with an `english` table;
+- if a table's English names were found as strings but no pointer table
+  was (`no pointer table leads to them`), or not found at all, the output
+  of `find-names --all` too;
+- `git diff --stat data/locales` after `locales`.
+
+The follow-up then pins each confirmed table the way `eu-signatures.ts`
+pins table offsets: a `name-tables` module with each language's file,
+offset, stride and base per `NameTable`, checked by the samples, so
+`locales` reads the names directly instead of searching, and a
+disc-extracted `NameResolver` (`strings/names.ts`) could replace the enum
+bootstrap. On the JP disc there are no English names to anchor the search;
+its tables would be pinned by their position relative to the EU ones (or
+by `str_tbl.pac`'s layout) once the EU layout is known.
+
 ## Building `data/` from the disc
 
 `data/armor/*.json`, `data/weapons/*.json`, `data/decorations.json`,
@@ -1693,6 +1880,13 @@ not automated in CI) — see git history for the specific findings, notably:
   just an isolated one-off) — `src/strings/enums.ts` trusts the parsed count,
   which matches real stat-table lengths exactly, including `ChestArmorID`
   (420 names, 420 stat entries) once you stop trusting its header's claimed 435.
+
+`test/name-search.test.ts` runs the name table search on synthetic files
+laid out each way it looks for (`[table][lang]` arrays in an EBOOT-like ELF,
+`[lang][table]` pointer lists, MH2-style relative tables, one file per
+language) with Latin-1 and custom encodings, and `test/locales.test.ts` runs
+`locales` end to end on a synthetic unpacked EU disc (encrypted quest files
+with all 7 slots, an EBOOT with monster name tables, an existing `es.json`).
 
 `test/resolver.test.ts` and `test/game-profile.test.ts` cover the table
 address resolution architecture (see "Region support" above):

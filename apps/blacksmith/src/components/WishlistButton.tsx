@@ -1,6 +1,7 @@
 "use client";
 
 import { useRouter } from "next/navigation";
+import { useT } from "@/context/LanguageContext";
 import { useToast } from "@/context/ToastContext";
 import { cn } from "@/lib/cn";
 import type { GearRef } from "@/lib/wishlist";
@@ -17,28 +18,29 @@ export default function WishlistButton({
   className,
 }: {
   gear: GearRef;
-  /** The gear's name, for the toast */
+  /** The gear's name in the site's language, for the toast */
   name: string;
   className?: string;
 }) {
   const wishlist = useWishlist();
   const { toast } = useToast();
   const router = useRouter();
+  const tw = useT().equipment.wishlist;
   // Nothing to show until storage has been read (not while prerendering).
   if (!wishlist.entries) return null;
   const listed = wishlist.has(gear);
-  const label = listed ? "Remove from wishlist" : "Add to wishlist";
+  const label = listed ? tw.remove : tw.add;
 
   const onClick = () => {
     if (!wishlist.toggle(gear)) {
-      toast({ id: "wishlist", message: "Couldn't save the wishlist in this browser." });
+      toast({ id: "wishlist", message: tw.saveFailed });
       return;
     }
     toast({
       id: "wishlist",
-      message: listed ? `${name} taken off your wishlist.` : `${name} added to your wishlist.`,
+      message: listed ? tw.removed(name) : tw.added(name),
       duration: 3000,
-      actions: listed ? undefined : [{ label: "View", onClick: () => router.push("/wishlist/") }],
+      actions: listed ? undefined : [{ label: tw.view, onClick: () => router.push("/wishlist/") }],
     });
   };
 

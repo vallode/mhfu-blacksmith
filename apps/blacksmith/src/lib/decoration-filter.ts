@@ -4,7 +4,7 @@
  * filters, and a search box that matches a jewel's name or the name of a
  * skill it gives points to.
  */
-import { normalizeItemName } from "./items";
+import { searchKey } from "./items";
 import { matchesTreeFilter, type RowStatus } from "./tree-filter";
 import type { Decoration } from "./types";
 
@@ -46,24 +46,30 @@ export const skillName = (skill: string) => skill.slice(0, skill.lastIndexOf(" "
 
 /**
  * Whether a jewel passes the selector's filter and the search box. `query`
- * matches anywhere in its name or a skill's name, ignoring case and spacing
- * ("attack" finds Attack Jewel and every jewel with Attack points). `status`
- * is the jewel's row status for the loaded hunter (null without one).
+ * matches anywhere in its name or a skill's name, ignoring case, spacing and
+ * accents ("attack" finds Attack Jewel and every jewel with Attack points).
+ * `status` is the jewel's row status for the loaded hunter (null without
+ * one). `localName`, if given, names the jewel and its skills in the site's
+ * language too (lib/i18n/game-text), so the query matches either.
  */
 export function matchesDecoration(
   deco: Pick<Decoration, "name" | "slots" | "skills">,
   filterId: DecorationFilterId,
   query: string,
   status: RowStatus | null,
+  localName?: (kind: "decoration" | "skill", english: string) => string,
 ): boolean {
   const filter = DECORATION_FILTERS.find((f) => f.id === filterId);
   if (filter && "slots" in filter && deco.slots !== filter.slots) return false;
   if (filter && "hunter" in filter && !(status && matchesTreeFilter(filter.id, status))) {
     return false;
   }
-  const q = normalizeItemName(query);
+  const q = searchKey(query);
   if (!q) return true;
-  return [deco.name, ...(deco.skills ?? []).map(skillName)].some((s) =>
-    normalizeItemName(s).includes(q),
-  );
+  const skills = (deco.skills ?? []).map(skillName);
+  const names = [deco.name, ...skills];
+  if (localName) {
+    names.push(localName("decoration", deco.name), ...skills.map((s) => localName("skill", s)));
+  }
+  return names.some((s) => searchKey(s).includes(q));
 }

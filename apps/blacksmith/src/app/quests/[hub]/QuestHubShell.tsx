@@ -9,6 +9,7 @@ import PageBar, { PageTabs } from "@/components/PageBar";
 import Icon from "@/components/Icon";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import { usePreferences } from "@/context/PreferencesContext";
+import { useGameText, useT } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
 import { writeLastQuestHub } from "@/lib/last-quest-hub";
@@ -17,11 +18,9 @@ import {
   clearedQuestIds,
   questHref,
   QUEST_HUBS,
-  questHubLabel,
   questsOnHub,
   questStarLevel,
   questStarLevels,
-  questTypeLabel,
   questTypesIn,
   type QuestHubSlug,
   type QuestType,
@@ -47,8 +46,9 @@ function StarTab({
   active: boolean;
   onSelect: () => void;
 }) {
+  const t = useT().quests;
   const level = questStarLevel(hub, stars);
-  const label = `${level.g ? "G " : ""}${level.stars} ${level.stars === 1 ? "star" : "stars"}`;
+  const label = t.board.starLevel(level.stars, level.g);
   return (
     <button
       type="button"
@@ -82,14 +82,11 @@ function StarTab({
  * leading to the list of boards (/quests/), the way into another board.
  */
 function BoardBackRow({ hub }: { hub: QuestHubSlug }) {
+  const t = useT().quests;
   return (
-    <Link
-      href="/quests/"
-      className="list-row"
-      aria-label={`${questHubLabel(hub)}: back to quest boards`}
-    >
+    <Link href="/quests/" className="list-row" aria-label={t.board.backToBoards(t.hubs[hub])}>
       <Icon type="arrow" alt="" />
-      <p className="truncate text-stat">{questHubLabel(hub)}</p>
+      <p className="truncate text-stat">{t.hubs[hub]}</p>
     </Link>
   );
 }
@@ -100,16 +97,17 @@ function BoardBackRow({ hub }: { hub: QuestHubSlug }) {
  * opening the board last viewed; a board's back row leads here.
  */
 export function QuestBoardsShell({ children }: { children: React.ReactNode }) {
+  const t = useT().quests;
   return (
     <div className="split-page">
       <CardBox data-tree-panel>
         <Card variant="weapon-tree">
           {/* Inset 13px, like the lists in TreeScroll (items, decorations). */}
-          <nav aria-label="Quest boards" className="flex flex-col pl-[13px]">
+          <nav aria-label={t.board.boards} className="flex flex-col pl-[13px]">
             {QUEST_HUBS.map((h) => (
               <Link key={h.slug} href={`/quests/${h.slug}/`} className="list-row">
                 <Icon type="ticket" alt="" />
-                <p className="truncate">{h.label}</p>
+                <p className="truncate">{t.hubs[h.slug]}</p>
               </Link>
             ))}
           </nav>
@@ -119,10 +117,6 @@ export function QuestBoardsShell({ children }: { children: React.ReactNode }) {
     </div>
   );
 }
-
-/** The footer filter's label for a quest type, or for every type (null). */
-const typeFilterLabel = (type: QuestType | null) =>
-  type ? questTypeLabel(type).replace(/ Quest$/, "") : "All quests";
 
 /**
  * A quest board: the board's star levels as tabs in the page bar, the
@@ -140,6 +134,8 @@ export default function QuestHubShell({
   hub: QuestHubSlug;
   children: React.ReactNode;
 }) {
+  const t = useT().quests;
+  const game = useGameText();
   const { quests, error } = useQuests();
   const onHub = quests ? questsOnHub(quests, hub) : [];
   const levels = questStarLevels(onHub);
@@ -199,10 +195,10 @@ export default function QuestHubShell({
   return (
     <>
       <PageBar
-        title={`${questHubLabel(hub)} quests`}
+        title={t.board.title(t.hubs[hub])}
         tabs={
           levels.length > 0 && (
-            <PageTabs label="Star levels">
+            <PageTabs label={t.board.starLevels}>
               {levels.map((s) => (
                 <StarTab
                   key={s}
@@ -227,7 +223,7 @@ export default function QuestHubShell({
             {/* Inset 13px, like the lists in TreeScroll (items, decorations). */}
             <div ref={listRef} className="flex flex-col pl-[13px]">
               <BoardBackRow hub={hub} />
-              {error && <p className="px-[16px] text-negative">Couldn&apos;t load quests.</p>}
+              {error && <p className="px-[16px] text-negative">{t.loadError}</p>}
               {shown.map((q) => (
                 <Link
                   key={q.id}
@@ -236,9 +232,12 @@ export default function QuestHubShell({
                   aria-current={q.id === id ? "page" : undefined}
                   className={cn("list-row", q.id === id && "bg-white/10")}
                 >
-                  <p className={cn("truncate", q.urgent && "text-negative")}>{q.title}</p>
+                  <p className={cn("truncate", q.urgent && "text-negative")}>
+                    {game.quest(q.id, "title", q.title)}
+                    {q.urgent && <span className="sr-only">{t.board.urgent}</span>}
+                  </p>
                   {cleared?.has(q.id) && (
-                    <span className="ml-auto flex-none text-stat">CLEAR!!</span>
+                    <span className="ml-auto flex-none text-stat">{t.cleared}</span>
                   )}
                 </Link>
               ))}
@@ -254,13 +253,13 @@ export default function QuestHubShell({
           </Card>
           {filters.length > 1 && (
             <SelectorBar
-              label={typeFilterLabel(filter)}
-              groupLabel="Quest type"
-              previousLabel="Previous quest type"
-              nextLabel="Next quest type"
+              label={filter ? t.types[filter] : t.board.allTypes}
+              groupLabel={t.board.typeFilter}
+              previousLabel={t.board.previousType}
+              nextLabel={t.board.nextType}
               onStep={step}
               count={`${index + 1}/${filters.length}`}
-              countLabel={`Quest type ${index + 1} of ${filters.length}`}
+              countLabel={t.board.typeOf(index + 1, filters.length)}
             />
           )}
         </CardBox>

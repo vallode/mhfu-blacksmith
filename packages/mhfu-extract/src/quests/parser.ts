@@ -306,6 +306,12 @@ function readQuestStringsAt(reader: BinaryReader, ptr: number): QuestStrings {
  * UTF-8 strings). Slots with a null pointer are omitted. On the one real JP
  * quest sample checked, every slot aliased the same pointer (Japanese
  * text) — this disc apparently never populated distinct EU-locale text.
+ *
+ * The slot names (`LANG_SLOTS`) are quest.hexpat's field names. On the EU
+ * disc the first slot is confirmed English (the committed `data/quests/`
+ * text); which of the other four holds German, French, Spanish and Italian
+ * is only the hexpat's word, so `locales` checks each with a language guess
+ * (locales/quests.ts).
  */
 export function readQuestStrings(
   reader: BinaryReader,
@@ -319,6 +325,17 @@ export function readQuestStrings(
     if (ptr !== 0) out[slot] = readQuestStringsAt(reader, ptr);
   });
   return out;
+}
+
+/** The first populated slot of `languages` (from `readQuestStrings`), or null if none are set. */
+export function primaryQuestStrings(
+  languages: Partial<Record<LangSlot, QuestStrings>>,
+): QuestStrings | null {
+  for (const slot of LANG_SLOTS) {
+    const strings = languages[slot];
+    if (strings) return strings;
+  }
+  return null;
 }
 
 /**
@@ -389,12 +406,7 @@ export function readPrimaryQuestStrings(
   reader: BinaryReader,
   header: QuestHeader,
 ): QuestStrings | null {
-  const all = readQuestStrings(reader, header);
-  for (const slot of LANG_SLOTS) {
-    const strings = all[slot];
-    if (strings) return strings;
-  }
-  return null;
+  return primaryQuestStrings(readQuestStrings(reader, header));
 }
 
 export interface ParsedQuest {
@@ -403,19 +415,24 @@ export interface ParsedQuest {
   rewards: RewardTable[];
   largeMonsters: (MonsterSpawn & { stage: number })[];
   smallMonsters: SmallMonsterTable[];
+  /** The first populated language slot (English on the EU disc, Japanese on JP), or null. */
   strings: QuestStrings | null;
+  /** Every populated language slot, for `locales`. */
+  languages: Partial<Record<LangSlot, QuestStrings>>;
 }
 
 /** Parses every struct this module knows about from a decrypted `.mib` payload. */
 export function parseQuest(payload: Buffer): ParsedQuest {
   const reader = new BinaryReader(payload);
   const header = readQuestHeader(reader);
+  const languages = readQuestStrings(reader, header);
   return {
     header,
     supplies: readSupplies(reader, header),
     rewards: readRewards(reader, header),
     largeMonsters: readLargeMonsters(reader, header),
     smallMonsters: readSmallMonsters(reader, header),
-    strings: readPrimaryQuestStrings(reader, header),
+    strings: primaryQuestStrings(languages),
+    languages,
   };
 }

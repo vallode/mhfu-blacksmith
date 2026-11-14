@@ -17,11 +17,13 @@ import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
 import Tabs from "@/components/Tabs";
 import { useHunterProgress } from "@/context/HunterProgressContext";
+import { useLocale, useT } from "@/context/LanguageContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useToast } from "@/context/ToastContext";
-import { useSetSearch } from "@/hooks/useSetSearch";
+import { useSetSearch, type SetSearchError } from "@/hooks/useSetSearch";
 import { useEquipmentIds } from "@/lib/equipment";
+import type { Messages } from "@/lib/i18n/messages";
 import {
   addSet,
   deleteSet,
@@ -38,10 +40,10 @@ import { buildFromResult, emptyBuild, type BuildSet } from "@/lib/set-build";
 import {
   buildCodecTables,
   decodeSet,
-  describeDecodeError,
-  describeDropped,
   encodeSet,
   SHARE_PARAM,
+  type DecodeError,
+  type DroppedRef,
 } from "@/lib/set-codec";
 import { codeFromPath, sharePath } from "@/lib/set-link";
 import {
@@ -67,11 +69,40 @@ const STORAGE_KEY = "set-builder";
 type View = "results" | "editor" | "sets";
 
 type Origin = "new" | "result" | "link";
-const ORIGIN_TITLES: Record<Origin, string> = {
-  new: "New set",
-  result: "Search result",
-  link: "Shared set",
-};
+
+/** A problem opening a set (a share link or a saved set), shown above it in the editor. */
+type OpenWarning =
+  | { kind: "decode"; error: DecodeError }
+  | { kind: "dropped"; dropped: DroppedRef[] }
+  | { kind: "ids-unavailable" };
+
+function openWarningText(t: Messages, w: OpenWarning): string {
+  const text = t.setBuilder.open;
+  if (w.kind === "ids-unavailable") return text.idsUnavailable;
+  if (w.kind === "dropped") {
+    const list = w.dropped.map((d) =>
+      d.kind === "piece"
+        ? text.droppedPiece(t.common.armorSlots[d.slot], d.gameId)
+        : text.droppedDecoration(d.itemId, !d.bin),
+    );
+    return text.dropped(list.join(", "), list.length);
+  }
+  switch (w.error.kind) {
+    case "version":
+      return text.newerVersion(w.error.version);
+    case "malformed":
+      return text.malformed;
+    case "unknown-ids":
+      return text.unknownIds;
+  }
+}
+
+function searchErrorText(t: Messages, e: SetSearchError): string {
+  const text = t.setBuilder.results.errors;
+  if (e.kind === "not-loaded") return text.notLoaded;
+  if (e.kind === "failed") return text.failed(e.detail);
+  return text.crashed;
+}
 
 /** The query fields a search's results depend on, to tell whether the form has changed since. */
 const QUERY_KEYS = [
@@ -104,6 +135,9 @@ function readForm(): Form {
 }
 
 export default function SetBuilderClient() {
+  const t = useT();
+  const text = t.setBuilder;
+  const { formatNumber } = useLocale();
   const {
     data,
     loadError,
@@ -244,7 +278,7 @@ export default function SetBuilderClient() {
   // them in the form changes the set's, and opening a set sets the form's.
   const [view, setView] = useState<View>("results");
   const [build, setBuild] = useState<BuildSet>(() => emptyBuild());
-  const [openWarnings, setOpenWarnings] = useState<string[]>([]);
+  const [openWarnings, setOpenWarnings] = useState<OpenWarning[]>([]);
   useEffect(() => {
     setBuild((b) =>
       b.hunterType === form.hunterType && b.sex === form.sex
@@ -277,7 +311,7 @@ export default function SetBuilderClient() {
   const openInEditor = useCallback(
     (
       next: BuildSet,
-      from: { savedId?: string; origin?: Origin; name?: string; warnings?: string[] } = {},
+      from: { savedId?: string; origin?: Origin; name?: string; warnings?: OpenWarning[] } = {},
     ) => {
       setBuild(next);
       setForm((f) => ({ ...f, hunterType: next.hunterType, sex: next.sex }));
@@ -301,16 +335,12 @@ export default function SetBuilderClient() {
       if (!tables) return null;
       const r = decodeSet(code, tables);
       if (!r.ok) {
-        setOpenWarnings([describeDecodeError(r.error)]);
+        setOpenWarnings([{ kind: "decode", error: r.error }]);
         setView("editor");
         return null;
       }
-      const warnings =
-        r.dropped.length > 0
-          ? [
-              `Left out ${r.dropped.map(describeDropped).join(", ")}: not in this version of the site.`,
-            ]
-          : [];
+      const warnings: OpenWarning[] =
+        r.dropped.length > 0 ? [{ kind: "dropped", dropped: r.dropped }] : [];
       openInEditor(r.set, { ...from, name: r.name, warnings });
       return r;
     },
@@ -331,7 +361,7 @@ export default function SetBuilderClient() {
       new URLSearchParams(window.location.search).get(SHARE_PARAM);
     if (code !== null && idsError) {
       opened.current = true;
-      setOpenWarnings(["Couldn't load the equipment IDs to open this link. Try again online."]);
+      setOpenWarnings([{ kind: "ids-unavailable" }]);
       setView("editor");
       return;
     }
@@ -377,9 +407,8 @@ export default function SetBuilderClient() {
     } else {
       toast({
         id: "set-builder-saved",
-        title: "Couldn't save",
-        message:
-          "Your browser's storage is full or blocked. Sets are kept until you leave the page.",
+        title: text.editor.saveFailedTitle,
+        message: text.editor.saveFailed,
         duration: null,
       });
     }
@@ -389,16 +418,16 @@ export default function SetBuilderClient() {
   const saveBuild = (asNew: boolean) => {
     if (!code) return;
     if (savedSet && !asNew) {
-      storeSets(updateSet(savedSets, savedSet.id, { code }), `Saved ${savedSet.name}.`);
+      storeSets(updateSet(savedSets, savedSet.id, { code }), text.editor.saved(savedSet.name));
       return;
     }
     // A shared set keeps the name it was shared with.
-    const name = !savedSet && linkName ? linkName : nextSetName(savedSets);
+    const name = !savedSet && linkName ? linkName : nextSetName(savedSets, text.editor.setName);
     const [next, added] = addSet(savedSets, name, code);
     setSavedId(added.id);
     // From here the saved set's name is the one shown and shared.
     setLinkName(null);
-    storeSets(next, `Saved as ${added.name}. Rename it in My sets.`);
+    storeSets(next, text.editor.savedAs(added.name));
   };
 
   const share = async () => {
@@ -411,13 +440,13 @@ export default function SetBuilderClient() {
       await navigator.clipboard.writeText(url.href);
       toast({
         id: "set-builder-share",
-        title: "Link copied",
-        message: "Paste it anywhere to share this set.",
+        title: text.editor.linkCopied,
+        message: text.editor.linkCopiedNote,
       });
     } catch {
       toast({
         id: "set-builder-share",
-        title: "Copy this link",
+        title: text.editor.copyLink,
         message: url.href,
         duration: null,
       });
@@ -432,8 +461,8 @@ export default function SetBuilderClient() {
     if (gone) {
       toast({
         id: "set-builder-deleted",
-        message: `Deleted ${gone.name}.`,
-        actions: [{ label: "Undo", onClick: () => storeSets(before) }],
+        message: text.editor.deleted(gone.name),
+        actions: [{ label: text.editor.undo, onClick: () => storeSets(before) }],
       });
     }
   };
@@ -441,7 +470,9 @@ export default function SetBuilderClient() {
   const editorTitle = (
     <div className="flex flex-wrap items-center gap-[0.8rem]">
       <span className="min-w-0 flex-[1_1_20rem] truncate">
-        <PanelTitle>{savedSet ? savedSet.name : (linkName ?? ORIGIN_TITLES[origin])}</PanelTitle>
+        <PanelTitle>
+          {savedSet ? savedSet.name : (linkName ?? text.editor.origins[origin])}
+        </PanelTitle>
       </span>
       <div className={ui.actions}>
         <button
@@ -450,7 +481,7 @@ export default function SetBuilderClient() {
           disabled={!code}
           onClick={() => saveBuild(false)}
         >
-          Save
+          {text.editor.save}
         </button>
         {savedSet && (
           <button
@@ -459,18 +490,18 @@ export default function SetBuilderClient() {
             disabled={!code}
             onClick={() => saveBuild(true)}
           >
-            Save as new
+            {text.editor.saveAsNew}
           </button>
         )}
         <button type="button" className={ui.button} disabled={!code} onClick={share}>
-          Share
+          {text.editor.share}
         </button>
         <button
           type="button"
           className={ui.buttonSecondary}
           onClick={() => openInEditor(emptyBuild(form.hunterType, form.sex, build.weaponSlots))}
         >
-          New
+          {text.editor.new}
         </button>
       </div>
     </div>
@@ -486,21 +517,22 @@ export default function SetBuilderClient() {
     runSearch();
   };
 
+  const r = text.results;
   let message: React.ReactNode = null;
-  if (loadError) message = <p className={ui.error}>Couldn&apos;t load the armor data.</p>;
-  else if (!data) message = <Loading className={ui.note}>Loading armor…</Loading>;
-  else if (error) message = <p className={ui.error}>{error}</p>;
-  else if (searching) message = <Loading className={ui.note}>Searching… {found || ""}</Loading>;
+  if (loadError) message = <p className={ui.error}>{r.loadError}</p>;
+  else if (!data) message = <Loading className={ui.note}>{r.loading}</Loading>;
+  else if (error) message = <p className={ui.error}>{searchErrorText(t, error)}</p>;
+  else if (searching)
+    message = (
+      <Loading className={ui.note}>{r.searching(found ? formatNumber(found) : "")}</Loading>
+    );
   else if (!result)
     message = (
       <>
-        <p className={ui.note}>
-          Add the skills you want, then search: every armor set with decorations that activates
-          them. The best sets come first: by defence, or by what you sort by.
-        </p>
+        <p className={ui.note}>{r.intro}</p>
         {form.skills.length === 0 && (
           <button type="button" className={primaryButton} onClick={() => setSheet("skills")}>
-            Add skills
+            {r.addSkills}
           </button>
         )}
       </>
@@ -508,11 +540,11 @@ export default function SetBuilderClient() {
   else if (sets.length === 0)
     message = (
       <p className={ui.note}>
-        No set activates all of these skills. Try fewer skills, a higher rank, more weapon slots,
-        allowing bad skills
-        {searched?.lockPieces?.length ? ", unlocking pieces" : ""}
-        {searched?.excludePieces?.length ? ", removing excluded pieces" : ""}
-        {searched?.progress ? ", or ignoring your quest progress" : ""}.
+        {r.noSets(
+          !!searched?.progress,
+          !!searched?.lockPieces?.length,
+          !!searched?.excludePieces?.length,
+        )}
       </p>
     );
 
@@ -523,7 +555,7 @@ export default function SetBuilderClient() {
       disabled={!data || form.skills.length === 0}
       onClick={searchFromSheet}
     >
-      Search
+      {text.form.search}
     </button>
   );
 
@@ -535,14 +567,14 @@ export default function SetBuilderClient() {
         <CardBox className="flex-none min-[900px]:col-start-1 min-[900px]:row-start-1">
           <Card className="text-small" bodyClassName="card-py-7 gap-[1.2rem]">
             <div className="flex items-baseline justify-between">
-              <PanelTitle>Skills</PanelTitle>
+              <PanelTitle>{text.form.title}</PanelTitle>
               {form.skills.length > 0 && (
                 <button
                   type="button"
                   className="cursor-pointer border-none bg-transparent p-0 font-[inherit] text-fine text-white/50 hover:text-white focus-visible:text-white"
                   onClick={() => update("skills", [])}
                 >
-                  Clear
+                  {text.form.clear}
                 </button>
               )}
             </div>
@@ -555,17 +587,17 @@ export default function SetBuilderClient() {
                 )
               }
               onAdd={() => setSheet("skills")}
-              addLabel={form.skills.length ? "+ Skill" : "+ Add the skills you want"}
+              addLabel={form.skills.length ? text.form.addMore : text.form.addFirst}
             />
             <button
               type="button"
               className={`${pressable} flex min-h-[4.8rem] w-full items-center justify-between gap-[1rem] border-t border-white/15 pt-[0.8rem] text-small`}
-              aria-label="Options: hunter, rank, weapon slots, sort"
+              aria-label={text.form.optionsLabel}
               onClick={() => setSheet("options")}
             >
               <OptionsSummary form={form} ownedOnly={ownedOnly} />
               <span className="flex-none text-white/50" aria-hidden="true">
-                Options ›
+                {text.form.options} ›
               </span>
             </button>
           </Card>
@@ -574,13 +606,13 @@ export default function SetBuilderClient() {
         <CardBox className="flex-none min-[900px]:col-start-2 min-[900px]:row-span-3 min-[900px]:row-start-1">
           <Card className="text-small" bodyClassName="card-py-7 gap-[1.3rem]">
             <Tabs
-              label="Set builder"
+              label={t.common.sections.setBuilder}
               active={view}
               onChange={(id) => setView(id as View)}
               tabs={[
                 {
                   id: "results",
-                  label: "Results",
+                  label: text.tabs.results,
                   content: set ? (
                     <div className="flex flex-col gap-[1.3rem]">
                       <ResultView
@@ -601,8 +633,8 @@ export default function SetBuilderClient() {
                           <button
                             type="button"
                             className="m-0 flex size-[3.4rem] cursor-pointer items-center justify-center border-0 bg-transparent p-0 transition-[filter] duration-100 ease-[ease] hover:brightness-125 focus-visible:outline-2 focus-visible:outline-offset-0 focus-visible:outline-white focus-visible:brightness-125 focus-visible:outline-solid"
-                            aria-label="Edit this set"
-                            title="Edit this set"
+                            aria-label={r.editThis}
+                            title={r.editThis}
                             onClick={() =>
                               searched &&
                               openInEditor(buildFromResult(set, searched), { origin: "result" })
@@ -612,11 +644,7 @@ export default function SetBuilderClient() {
                           </button>
                         }
                       >
-                        {result?.timedOut && (
-                          <p className={ui.note}>
-                            The search stopped early: better sets may exist.
-                          </p>
-                        )}
+                        {result?.timedOut && <p className={ui.note}>{r.timedOut}</p>}
                       </ResultView>
                       {searching && message}
                     </div>
@@ -626,7 +654,7 @@ export default function SetBuilderClient() {
                 },
                 {
                   id: "editor",
-                  label: "Editor",
+                  label: text.tabs.editor,
                   content: (
                     <>
                       {data ? (
@@ -640,7 +668,7 @@ export default function SetBuilderClient() {
                           ownedOnly={ownedOnly}
                           isOwned={isOwned}
                           weaponIcon={editorWeaponIcon}
-                          extraWarnings={openWarnings}
+                          extraWarnings={openWarnings.map((w) => openWarningText(t, w))}
                           title={editorTitle}
                         />
                       ) : (
@@ -651,7 +679,7 @@ export default function SetBuilderClient() {
                 },
                 {
                   id: "sets",
-                  label: "My sets",
+                  label: text.tabs.sets,
                   content: (
                     <MySets
                       sets={savedSets}
@@ -660,7 +688,9 @@ export default function SetBuilderClient() {
                       openId={savedId}
                       onOpen={(saved) => openCode(saved.code, { savedId: saved.id })}
                       onRename={(id, name) => storeSets(updateSet(savedSets, id, { name }))}
-                      onDuplicate={(id) => storeSets(duplicateSet(savedSets, id))}
+                      onDuplicate={(id) =>
+                        storeSets(duplicateSet(savedSets, id, text.editor.copyName))
+                      }
                       onDelete={deleteSaved}
                     />
                   ),
@@ -685,14 +715,19 @@ export default function SetBuilderClient() {
       <Sheet
         open={sheet === "skills"}
         onClose={closeSheet}
-        title={`Skills${form.skills.length ? ` (${form.skills.length})` : ""}`}
+        title={text.form.skillsTitle(form.skills.length)}
         tall
         footer={searchFooter}
       >
         <SkillBrowser skills={skills} value={form.skills} onChange={(v) => update("skills", v)} />
       </Sheet>
 
-      <Sheet open={sheet === "options"} onClose={closeSheet} title="Options" footer={searchFooter}>
+      <Sheet
+        open={sheet === "options"}
+        onClose={closeSheet}
+        title={text.form.options}
+        footer={searchFooter}
+      >
         <SearchOptions
           form={form}
           update={update}

@@ -19,6 +19,7 @@ import {
 } from "@/lib/file-handle-store";
 import { parseSaveBuffer, type Region, type WorkerResult } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
+import { useT } from "@/context/LanguageContext";
 import { saveFromCharacter } from "@/lib/save-store";
 
 export interface FileSyncState {
@@ -28,8 +29,17 @@ export interface FileSyncState {
   syncing: boolean;
   lastSynced: number | null;
   fileName: string | null;
-  error: string | null;
+  error: FileSyncError | null;
 }
+
+/** What went wrong (translated by the page), and the browser's own message if it gave one. */
+export interface FileSyncError {
+  code: "hunterMissing" | "syncFailed" | "openFailed" | "permissionFailed";
+  message?: string;
+}
+
+const errorFrom = (code: FileSyncError["code"], err: unknown): FileSyncError =>
+  err instanceof Error && err.message ? { code, message: err.message } : { code };
 
 export interface FilePickResult {
   file: File;
@@ -80,6 +90,7 @@ const FileSyncContext = createContext<FileSyncContextValue>({
  * (SaveSyncSettings) — so all three always agree on sync status.
  */
 export function FileSyncProvider({ children }: { children: React.ReactNode }) {
+  const pickerDescription = useT().site.saveSync.filePickerDescription;
   const { load } = useSave();
   const [state, setState] = useState<FileSyncState>(DEFAULT_STATE);
   const inFlightRef = useRef<Promise<void> | null>(null);
@@ -103,7 +114,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
       if (!character) {
         setState((s) => ({
           ...s,
-          error: "Previously selected hunter is no longer in this save.",
+          error: { code: "hunterMissing" },
         }));
         return;
       }
@@ -148,7 +159,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
       setState((s) => ({
         ...s,
         syncing: false,
-        error: err instanceof Error ? err.message : "Sync failed",
+        error: errorFrom("syncFailed", err),
       }));
     }
   }, [applyResult, patchState]);
@@ -182,52 +193,55 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
     return run;
   }, [syncOnce]);
 
-  const pickFile = useCallback(async (region: Region): Promise<FilePickResult | null> => {
-    if (typeof window === "undefined" || !window.showOpenFilePicker) return null;
-    setState((s) => ({ ...s, error: null }));
-    pickingRef.current = true;
-    try {
-      // Call the picker first, while the click's user activation is fresh.
-      const [handle] = await window.showOpenFilePicker({
-        types: [
-          {
-            description: "MHFU save file",
-            accept: { "application/octet-stream": [".bin", ".BIN"] },
-          },
-        ],
-        excludeAcceptAllOption: false,
-        multiple: false,
-      });
-      const file = await handle.getFile();
-      // A sync that started before the click is still working on the old
-      // record; let it finish before the record is replaced.
-      await inFlightRef.current;
-      await setHandleRecord({
-        handle,
-        region,
-        lastModified: file.lastModified,
-        characterIndex: null,
-      });
-      setState((s) => ({
-        ...s,
-        hasHandle: true,
-        permission: "granted",
-        fileName: handle.name,
-        lastSynced: Date.now(),
-        error: null,
-      }));
-      return { file, handle };
-    } catch (err) {
-      if (err instanceof DOMException && err.name === "AbortError") return null;
-      setState((s) => ({
-        ...s,
-        error: err instanceof Error ? err.message : "Could not open file",
-      }));
-      return null;
-    } finally {
-      pickingRef.current = false;
-    }
-  }, []);
+  const pickFile = useCallback(
+    async (region: Region): Promise<FilePickResult | null> => {
+      if (typeof window === "undefined" || !window.showOpenFilePicker) return null;
+      setState((s) => ({ ...s, error: null }));
+      pickingRef.current = true;
+      try {
+        // Call the picker first, while the click's user activation is fresh.
+        const [handle] = await window.showOpenFilePicker({
+          types: [
+            {
+              description: pickerDescription,
+              accept: { "application/octet-stream": [".bin", ".BIN"] },
+            },
+          ],
+          excludeAcceptAllOption: false,
+          multiple: false,
+        });
+        const file = await handle.getFile();
+        // A sync that started before the click is still working on the old
+        // record; let it finish before the record is replaced.
+        await inFlightRef.current;
+        await setHandleRecord({
+          handle,
+          region,
+          lastModified: file.lastModified,
+          characterIndex: null,
+        });
+        setState((s) => ({
+          ...s,
+          hasHandle: true,
+          permission: "granted",
+          fileName: handle.name,
+          lastSynced: Date.now(),
+          error: null,
+        }));
+        return { file, handle };
+      } catch (err) {
+        if (err instanceof DOMException && err.name === "AbortError") return null;
+        setState((s) => ({
+          ...s,
+          error: errorFrom("openFailed", err),
+        }));
+        return null;
+      } finally {
+        pickingRef.current = false;
+      }
+    },
+    [pickerDescription],
+  );
 
   const confirmSelection = useCallback(async (characterIndex: number, region: Region) => {
     // Store the region the hunter was actually loaded with: the select may
@@ -245,7 +259,7 @@ export function FileSyncProvider({ children }: { children: React.ReactNode }) {
     } catch (err) {
       setState((s) => ({
         ...s,
-        error: err instanceof Error ? err.message : "Permission request failed",
+        error: errorFrom("permissionFailed", err),
       }));
     }
   }, [runSync]);

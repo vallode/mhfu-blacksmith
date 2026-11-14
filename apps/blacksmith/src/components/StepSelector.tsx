@@ -13,6 +13,8 @@ interface Props {
   /** Which option shows, from 0, and how many there are. */
   index: number;
   count: number;
+  /** Screen-reader version of the "2/3" count, in the site's language ("2 of 3"). */
+  countLabel?: string;
   /** Called with the new index; wraps around at either end. */
   onChange: (index: number) => void;
 }
@@ -29,6 +31,7 @@ export default function StepSelector({
   nextLabel,
   index,
   count,
+  countLabel,
   onChange,
 }: Props) {
   const many = count > 1;
@@ -63,12 +66,10 @@ export default function StepSelector({
       {many && (
         <>
           <span className="flex-none text-sub text-white tabular-nums">
-            <span aria-hidden="true">
+            <span aria-hidden={countLabel ? true : undefined}>
               {index + 1}/{count}
             </span>
-            <span className="sr-only">
-              {index + 1} of {count}
-            </span>
+            {countLabel && <span className="sr-only">{countLabel}</span>}
           </span>
           <SelectorArrow
             next

@@ -7,6 +7,7 @@
  */
 import { useId } from "react";
 import SelectorArrow from "@/components/SelectorArrow";
+import { useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import * as ui from "@/styles/settings";
 
@@ -99,6 +100,7 @@ export function SelectorRow<T>({
   onChange: (value: T) => void;
 }) {
   const id = useId();
+  const t = useT();
   const index = Math.max(
     0,
     choices.findIndex((c) => c.value === value),
@@ -123,7 +125,7 @@ export function SelectorRow<T>({
       >
         <SelectorArrow
           className={ui.selectorArrow}
-          label={`Previous ${name}`}
+          label={t.site.selector.previous(name)}
           onClick={() => step(-1)}
         />
         <span className={ui.selectorValue} aria-live="polite">
@@ -132,7 +134,7 @@ export function SelectorRow<T>({
         <SelectorArrow
           next
           className={ui.selectorArrow}
-          label={`Next ${name}`}
+          label={t.site.selector.next(name)}
           onClick={() => step(1)}
         />
       </div>

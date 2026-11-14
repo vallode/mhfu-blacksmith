@@ -4,13 +4,16 @@ import { useState } from "react";
 import OfflineSettings from "@/components/OfflineSettings";
 import PreferencesSettings from "@/components/PreferencesSettings";
 import SaveSyncSettings from "@/components/SaveSyncSettings";
+import { useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
+import type { Messages } from "@/lib/i18n/messages";
 import * as ui from "@/styles/settings";
 
-const SECTIONS = [
-  { id: "preferences", label: "Preferences", card: <PreferencesSettings /> },
-  { id: "save-sync", label: "Save Sync", card: <SaveSyncSettings /> },
-  { id: "offline", label: "Offline Data", card: <OfflineSettings /> },
+/** Each tab's card; its label is the card's own title (`site.<id>.title`). */
+const SECTIONS: { id: string; label: (t: Messages["site"]) => string; card: React.ReactNode }[] = [
+  { id: "preferences", label: (t) => t.preferences.title, card: <PreferencesSettings /> },
+  { id: "save-sync", label: (t) => t.saveSync.title, card: <SaveSyncSettings /> },
+  { id: "offline", label: (t) => t.offline.title, card: <OfflineSettings /> },
 ];
 
 /**
@@ -22,12 +25,13 @@ const SECTIONS = [
  */
 export default function OptionsTabs() {
   const [selected, setSelected] = useState(SECTIONS[0].id);
+  const t = useT();
 
   return (
     <>
       <div
         role="tablist"
-        aria-label="Options"
+        aria-label={t.common.sections.options}
         className="mt-[1.3rem] flex flex-none justify-center gap-[0.6rem] mobile:hidden"
       >
         {SECTIONS.map(({ id, label }) => (
@@ -41,7 +45,7 @@ export default function OptionsTabs() {
             className={cn(ui.tab, selected === id && ui.tabOn)}
             onClick={() => setSelected(id)}
           >
-            {label}
+            {label(t.site)}
           </button>
         ))}
       </div>

@@ -2,6 +2,7 @@
 
 import { useEffect, useState } from "react";
 import Link from "next/link";
+import { useT } from "@/context/LanguageContext";
 import { matchOfflineRoute, renderOfflineRoute, type RouteMatch } from "@/lib/offline-routes";
 
 /**
@@ -14,6 +15,7 @@ import { matchOfflineRoute, renderOfflineRoute, type RouteMatch } from "@/lib/of
  */
 export default function OfflineFallback() {
   const [match, setMatch] = useState<RouteMatch | null>(null);
+  const text = useT().site.offline.fallback;
 
   useEffect(() => {
     setMatch(matchOfflineRoute(window.location.pathname));
@@ -26,10 +28,10 @@ export default function OfflineFallback() {
 
   return (
     <div style={{ padding: "2rem", textAlign: "center" }}>
-      <p>This page hasn&apos;t been saved for offline use.</p>
-      <p>Reconnect and open it once, and it&apos;ll be available offline from then on.</p>
+      <p>{text.notSaved}</p>
+      <p>{text.reconnect}</p>
       <p>
-        <Link href="/">Back to home</Link>
+        <Link href="/">{text.home}</Link>
       </p>
     </div>
   );

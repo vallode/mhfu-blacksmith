@@ -8,10 +8,11 @@ import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import TreeScroll from "@/components/TreeScroll";
+import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { getItemSources, useItems } from "@/lib/client-data";
 import { ITEM_CATEGORIES, itemCategory, type ItemCategorySlug } from "@/lib/item-categories";
-import { normalizeItemName } from "@/lib/items";
+import { searchKey } from "@/lib/items";
 import { searchInput } from "@/styles/settings";
 
 /** The item slug in /items/<slug>/, where present. */
@@ -29,8 +30,12 @@ function activeItemSlug(pathname: string): string | undefined {
  */
 export function ItemShell({ slug, children }: { slug?: string; children: React.ReactNode }) {
   const { items, error } = useItems();
+  const t = useT().items.list;
+  const categories = useT().items.categories;
+  const game = useGameText();
+  const { formatNumber } = useLocale();
   const [query, setQuery] = useState("");
-  const filter = normalizeItemName(useDeferredValue(query));
+  const filter = searchKey(useDeferredValue(query));
   const listRef = useRef<HTMLDivElement>(null);
 
   // The category shown. Opening an item switches to its category; the
@@ -44,8 +49,12 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
     if (c !== "other") setCategory(c);
   }
 
+  // The filter matches the English name and the name in the site's language.
   const shown = items?.list.filter((it) =>
-    filter ? normalizeItemName(it.name).includes(filter) : itemCategory(it.id) === category,
+    filter
+      ? searchKey(it.name).includes(filter) ||
+        searchKey(game.name("item", it.name)).includes(filter)
+      : itemCategory(it.id) === category,
   );
 
   // Warm the drop and reward index, so the first item opened fills in at once.
@@ -54,6 +63,7 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
   }, []);
 
   const index = ITEM_CATEGORIES.findIndex((c) => c.slug === category);
+  const matches = shown?.length ?? 0;
   const step = (by: 1 | -1) => {
     const n = ITEM_CATEGORIES.length;
     setCategory(ITEM_CATEGORIES[(index + by + n) % n]!.slug);
@@ -76,8 +86,8 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
         <input
           className={searchInput}
           type="search"
-          aria-label="Filter every item by name"
-          placeholder="Filter all items, e.g. Rathalos"
+          aria-label={t.filterLabel}
+          placeholder={t.filterPlaceholder}
           value={query}
           autoComplete="off"
           spellCheck={false}
@@ -86,8 +96,8 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
         <Card variant="weapon-tree">
           <TreeScroll treeKey={filter ? "items-filter" : `items-${category}`} activeSlug={slug}>
             <div ref={listRef} className="flex flex-col">
-              {error && <p className="px-[16px] text-negative">Couldn&apos;t load items.</p>}
-              {shown?.length === 0 && <p className="px-[16px] text-muted">No items match.</p>}
+              {error && <p className="px-[16px] text-negative">{t.loadError}</p>}
+              {shown?.length === 0 && <p className="px-[16px] text-muted">{t.noMatch}</p>}
               {shown?.map((it) => (
                 <Link
                   key={it.id}
@@ -99,7 +109,7 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
                   className={cn("list-row", it.slug === slug && "bg-(image:--gradient-hover-glow)")}
                 >
                   <Icon type={it.type} color={it.color} />
-                  <p className="truncate">{it.name}</p>
+                  <p className="truncate">{game.name("item", it.name)}</p>
                 </Link>
               ))}
             </div>
@@ -108,16 +118,16 @@ export function ItemShell({ slug, children }: { slug?: string; children: React.R
           <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
         </Card>
         <SelectorBar
-          label={filter ? "All categories" : ITEM_CATEGORIES[index]!.label}
-          groupLabel="Item category"
-          previousLabel="Previous category"
-          nextLabel="Next category"
+          label={filter ? t.allCategories : categories[category]}
+          groupLabel={t.categoryGroup}
+          previousLabel={t.previousCategory}
+          nextLabel={t.nextCategory}
           onStep={step}
-          count={filter ? `${shown?.length ?? 0}` : `${index + 1}/${ITEM_CATEGORIES.length}`}
+          count={filter ? formatNumber(matches) : `${index + 1}/${ITEM_CATEGORIES.length}`}
           countLabel={
             filter
-              ? `${shown?.length ?? 0} items match`
-              : `Category ${index + 1} of ${ITEM_CATEGORIES.length}`
+              ? t.matchCount(matches, formatNumber(matches))
+              : t.categoryOf(index + 1, ITEM_CATEGORIES.length)
           }
         />
       </CardBox>

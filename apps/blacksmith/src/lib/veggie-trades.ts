@@ -106,9 +106,16 @@ export function indexVeggieTrades(bundle: VeggieTradesBundle): Map<number, ItemT
   return out;
 }
 
-/** An Elder's maps, each once: ["Desert (Day)", "Desert (Night)"] -> "Desert" */
-export function tradeMapsLabel(maps: readonly string[]): string {
-  return [...new Set(maps.map((m) => m.replace(/ \((?:Day|Night)\)$/, "")))].join(" / ");
+/**
+ * An Elder's maps, each once: ["Desert (Day)", "Desert (Night)"] -> "Desert".
+ * `ground` names a map without its time of day; pages pass one that puts
+ * it in the site's language.
+ */
+export function tradeMapsLabel(
+  maps: readonly string[],
+  ground: (map: string) => string = (m) => m.replace(/ \((?:Day|Night)\)$/, ""),
+): string {
+  return [...new Set(maps.map(ground))].join(" / ");
 }
 
 /** One row of an Elder's list in the bundle: [row, give, common, rare]. */
