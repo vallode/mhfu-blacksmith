@@ -718,15 +718,6 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "questMonsters.species",
   },
   {
-    key: "questMonsters.text",
-    section: "Quest monsters",
-    label: "Rename monsters in quest text",
-    help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Seen working on the EU disc's Quest Details screen.",
-    type: { kind: "boolean" },
-    default: true,
-    enabledBy: "questMonsters.species",
-  },
-  {
     key: "questMonsters.difficulty",
     section: "Quest monsters",
     label: "Randomize monster difficulty",
@@ -914,7 +905,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "hints.bookshelf",
-    section: "Hints",
+    section: "Extras",
     label: "Monster guide on the bookshelf",
     help: "The house bookshelf's Practical Hunting monster articles (Open Bookshelf, Info Magazine) become the RandomFU Bestiary: one page per large monster rating its elemental weaknesses, softest parts, status resistance and health in stars, as the shuffles left them, readable from the start. In English in every language. EU disc only; seen on the shelf in PPSSPP.",
     type: { kind: "boolean" },
@@ -922,7 +913,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "hints.almanac",
-    section: "Hints",
+    section: "Extras",
     label: "Item almanac on the bookshelf",
     help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
     type: { kind: "boolean" },
@@ -931,12 +922,21 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "mods.nodeMap",
-    section: "Modifications",
+    section: "Extras",
     label: "Gathering nodes on the area map",
     help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only.",
     type: { kind: "boolean" },
     default: false,
     eboot: true,
+  },
+  {
+    key: "questMonsters.text",
+    section: "Extras",
+    label: "Rename monsters in quest text",
+    help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Seen working on the EU disc's Quest Details screen.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "questMonsters.species",
   },
 ];
 
