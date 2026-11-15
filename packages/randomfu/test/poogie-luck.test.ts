@@ -140,7 +140,6 @@ test("nothing is patched when a signature is missing or ambiguous, and the repor
   const noRewards = fakeEboot();
   noRewards.fill(0, CODE + QUEST_REWARDS - VADDR, CODE + QUEST_REWARDS - VADDR + 8);
   assert.match(addPoogieLuck(noRewards, editsFor(noRewards).edits).summary!, /not applied/);
-  assert.match(addPoogieLuck(null, edits).notes[0]!, /isn't in this image/);
 });
 
 /*

@@ -10,7 +10,6 @@ import {
   MONSTER_CHUNK_SIZE,
   TOLERANCE_OFFSET,
 } from "mhfu-extract/src/monsters/hitzones.js";
-import { openPatchableImage } from "../src/disc/node-file.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
 import {
   readSpawns,
@@ -26,10 +25,12 @@ import { formatSpoiler } from "../src/spoiler.js";
 import { writeEdits } from "../src/write.js";
 import {
   buildFixtureDisc,
+  finish,
   FIXTURE_TOLERANCES,
   fixtureHitzone,
   fixtureHp,
   GAME_TASK_INDEX,
+  patchInMemory,
   tempDir,
 } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
@@ -50,7 +51,7 @@ const FILE = fixtureFile();
 
 async function load(file = FILE): Promise<{ game: GameData; close: () => void }> {
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: null });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -330,9 +331,9 @@ test("weak spots trade rows, the same way in every state", async () => {
 
 test("monster edits are written and read back; other options don't change", async () => {
   const output = path.join(tempDir(), "out.iso");
-  writeFileSync(output, readFileSync(FILE));
-  const image = openPatchableImage(output);
-  const game = await loadGame(image.source, image.iso, { eboot: null });
+  const original = readFileSync(FILE);
+  const image = patchInMemory(original);
+  const game = await loadGame(image.source, image.iso);
   const all = only("all", {
     "questMonsters.species": true,
     "questMonsters.difficulty": true,
@@ -345,7 +346,7 @@ test("monster edits are written and read back; other options don't change", asyn
   });
   const result = randomize(game, all);
   writeEdits(image, game, result.edits); // checks every file reads back
-  image.close();
+  writeFileSync(output, finish(image, original));
 
   const after = await load(output);
   assert.ok(

@@ -158,7 +158,7 @@ export function collectNodePoints(
   );
 }
 
-/** Draws the nodes onto the map textures. Needs the EU disc and its EBOOT. */
+/** Draws the nodes onto the map textures. Needs the EU disc. */
 export function addNodeMap(game: GameData, edits: Edits): ShuffleReport {
   const notWritten = (problem: string): ShuffleReport => ({
     title: TITLE,
@@ -166,7 +166,6 @@ export function addNodeMap(game: GameData, edits: Edits): ShuffleReport {
     lines: [],
   });
   if (game.region !== "eu") return notWritten("the map tables are only known on the EU disc");
-  if (!game.eboot) return notWritten("the EBOOT wasn't loaded");
 
   let geometry: Map<number, MapGeometry>;
   try {

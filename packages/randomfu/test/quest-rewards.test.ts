@@ -3,21 +3,21 @@ import { readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { openPatchableImage } from "../src/disc/node-file.js";
 import { loadGame, type GameData } from "../src/game/load.js";
-import type { Tier } from "../src/game/tiers.js";
+import { isQuestItem } from "../src/game/quest-fields.js";
+import { tierKey, type Tier } from "../src/game/tiers.js";
 import { randomize } from "../src/randomize.js";
 import { Rng } from "../src/rng.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
 import { collectQuestRewardSlots } from "../src/shuffles/quest-rewards.js";
 import { permuteWithinScope, reconcile } from "../src/shuffles/shuffle.js";
 import { writeEdits } from "../src/write.js";
-import { buildFixtureDisc, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, finish, patchInMemory, tempDir } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function load(file: string): Promise<{ game: GameData; close: () => void }> {
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -159,9 +159,9 @@ test("randomizing rewards rolls slots, items, amounts and chances within the rul
 test("a randomized quest with more slots writes to disc and reads back", async () => {
   const input = fixtureFile();
   const output = path.join(tempDir(), "out.iso");
-  writeFileSync(output, readFileSync(input));
-  const image = openPatchableImage(output);
-  const game = await loadGame(image.source, image.iso, { eboot: {} });
+  const original = readFileSync(input);
+  const image = patchInMemory(original);
+  const game = await loadGame(image.source, image.iso);
   // Some seeds grow a list (which moves to the end of its quest); take the first that does.
   const moved = (r: ReturnType<typeof randomize>) =>
     !r.reports
@@ -181,7 +181,7 @@ test("a randomized quest with more slots writes to disc and reads back", async (
   assert.ok(moved(result), "a list outgrew its place and moved");
   assert.deepEqual(result.problems, []);
   writeEdits(image, game, result.edits);
-  image.close();
+  writeFileSync(output, finish(image, original));
 
   const after = await load(output);
   const written = lists(after.game);
@@ -210,9 +210,9 @@ test("monster rewards shuffle and randomize keep every list's length and chance 
   ] as const) {
     for (const scope of ["star", "adjacent", "any"] as const) {
       const output = path.join(tempDir(), "out.iso");
-      writeFileSync(output, readFileSync(input));
-      const image = openPatchableImage(output);
-      const game = await loadGame(image.source, image.iso, { eboot: {} });
+      const original = readFileSync(input);
+      const image = patchInMemory(original);
+      const game = await loadGame(image.source, image.iso);
       const result = randomize(
         game,
         settingsWith("monsters", [], {
@@ -223,7 +223,7 @@ test("monster rewards shuffle and randomize keep every list's length and chance 
       );
       assert.deepEqual(result.problems, []);
       writeEdits(image, game, result.edits);
-      image.close();
+      writeFileSync(output, finish(image, original));
       const after = await monsterLists(output);
       assert.equal(after.length, before.length);
       let changed = false;
@@ -238,4 +238,33 @@ test("monster rewards shuffle and randomize keep every list's length and chance 
       if (mode === "randomize") assert.ok(changed, `${scope}: randomize changed something`);
     }
   }
+});
+
+test("keeping reward items: every item stays a reward at its star level, and none is quest-only", async () => {
+  const file = fixtureFile();
+  const { game, close } = await load(file);
+  const vanilla = collectQuestRewardSlots(game.quests);
+  for (const seed of ["a", "b", "c", "d"]) {
+    const result = randomize(
+      game,
+      settingsWith(seed, [], {
+        "questRewards.mode": "randomize",
+        "questRewards.scope": "any",
+        "questRewards.slots": 0,
+      }),
+    );
+    const after = collectQuestRewardSlots(game.quests, (q) => result.edits.questNow(q));
+    const byTier = new Map<string, Set<number>>();
+    for (const slot of after) {
+      const key = tierKey(slot.tier);
+      byTier.set(key, (byTier.get(key) ?? new Set()).add(slot.itemId));
+      if (!vanilla.some((v) => v.itemId === slot.itemId)) {
+        assert.ok(!isQuestItem(slot.itemId), `${slot.itemId} is quest-only`);
+      }
+    }
+    for (const slot of vanilla) {
+      assert.ok(byTier.get(tierKey(slot.tier))!.has(slot.itemId), `seed ${seed}: ${slot.itemId}`);
+    }
+  }
+  close();
 });

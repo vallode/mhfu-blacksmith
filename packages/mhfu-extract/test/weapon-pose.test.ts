@@ -3,7 +3,7 @@ import { test } from "node:test";
 import type { Bone } from "../src/models/ahi.js";
 import type { DecodedVertex } from "../src/models/ge.js";
 import type { Pmo } from "../src/models/pmo.js";
-import { poseWeapon, WEAPON_POSES } from "../src/models/weapon-pose.js";
+import { poseWeapon, weaponPoses } from "../src/models/weapon-pose.js";
 
 type Vec3 = [number, number, number];
 
@@ -53,7 +53,7 @@ test("a great sword's claw bone is scaled about its pivot, by each vertex's weig
   const { pmo: posed } = poseWeapon(
     model(scale, [1, 3], [claw]),
     GREAT_SWORD,
-    WEAPON_POSES["great-sword"]!,
+    weaponPoses("great-sword", 12)!,
   );
   const v = posed.meshes[0]!.primitives[0]!.geometry.vertices[0]!;
   // x: 130.5 + 0.125 * (-10) * (2.6 - 1) = 128.5
@@ -64,7 +64,7 @@ test("a great sword's claw bone is scaled about its pivot, by each vertex's weig
 
 test("a model with nothing on a posed bone comes back as it was, without a sheathed copy", () => {
   const blade = model([100, 10, 300], [0, 1], [vertex([0.5, 0, 0.9], [0.5, 0.5])]);
-  const posed = poseWeapon(blade, GREAT_SWORD, WEAPON_POSES["great-sword"]!);
+  const posed = poseWeapon(blade, GREAT_SWORD, weaponPoses("great-sword", 12)!);
   assert.equal(posed.pmo, blade);
   assert.equal(posed.sheathed, undefined);
 });
@@ -77,7 +77,7 @@ test("the sheathed copy has the claw at rest and the end bone's z scaled, at the
   const { pmo, sheathed } = poseWeapon(
     model(scale, [1, 3, 2], [claw, { ...end, weights: [0, 0, 1] }]),
     GREAT_SWORD,
-    WEAPON_POSES["great-sword"]!,
+    weaponPoses("great-sword", 12)!,
   );
   assert.ok(sheathed);
   assert.deepEqual(sheathed.scale, pmo.scale);
@@ -96,7 +96,7 @@ test("normals take the inverse scale", () => {
   const { pmo: posed } = poseWeapon(
     model(scale, [1, 3], [tip]),
     GREAT_SWORD,
-    WEAPON_POSES["great-sword"]!,
+    weaponPoses("great-sword", 12)!,
   );
   const n = posed.meshes[0]!.primitives[0]!.geometry.vertices[0]!.normal!;
   const direction = n.map((c, k) => c * posed.scale[k]!);
@@ -105,8 +105,73 @@ test("normals take the inverse scale", () => {
   assert.ok(Math.abs(ratio - 2.5 / 2.6) < 1e-6, String(ratio));
 });
 
-test("a bone the skeleton turns is left alone", () => {
-  const turned = GREAT_SWORD.map((b) => (b.id === 3 ? { ...b, rotation: [0, 1, 0] as Vec3 } : b));
-  const claw = model([200, 10, 200], [3], [vertex([0.5, 0, 0.1], [1])]);
-  assert.equal(poseWeapon(claw, turned, WEAPON_POSES["great-sword"]!).pmo, claw);
+test("a posed bone's own turn in the skeleton is replaced, not kept", () => {
+  // The game sets the whole bind: the drawn diag(2.6, 1, 2.5) drops this half turn about y.
+  const turned = GREAT_SWORD.map((b) =>
+    b.id === 3 ? { ...b, rotation: [0, Math.PI, 0] as Vec3 } : b,
+  );
+  // 10 in front of bone 3 in the skeleton's turned frame is 10 behind it in model space.
+  const claw = model([200, 10, 200], [3], [vertex([140.5 / 200, 0, 9.3 / 200], [1])]);
+  const { pmo } = poseWeapon(claw, turned, weaponPoses("great-sword", 12)!);
+  const v = pmo.meshes[0]!.primitives[0]!.geometry.vertices[0]!;
+  // Local (0, 0, 10) under diag(2.6, 1, 2.5), unturned: 19.3 + 25.
+  assert.ok(near(world(pmo, v), [140.5, 0, 44.3]), String(world(pmo, v)));
+});
+
+/** A heavy bowgun's rig, like `we013`: stock 1, barrel 2 (pivot at the stock's front), bone 3 under it. */
+const HEAVY_BOWGUN = [
+  bone(0, -1, [0, 0, 0]),
+  bone(1, 0, [0, 0, 0]),
+  bone(2, 1, [0, -31.2, 10.9]),
+  bone(3, 2, [0, -10.2, -87.3]),
+];
+
+test("a heavy bowgun's barrel swings out in front when drawn and stays folded when sheathed", () => {
+  // A muzzle 100 behind the barrel's pivot, folded back along the stock.
+  const muzzle = vertex([0, -31.2 / 200, -89.1 / 200], [1]);
+  const { pmo, sheathed } = poseWeapon(
+    model([200, 200, 200], [2], [muzzle]),
+    HEAVY_BOWGUN,
+    weaponPoses("heavy-bowgun", 13)!,
+  );
+  assert.ok(sheathed);
+  const drawn = world(pmo, pmo.meshes[0]!.primitives[0]!.geometry.vertices[0]!);
+  const folded = world(sheathed, sheathed.meshes[0]!.primitives[0]!.geometry.vertices[0]!);
+  assert.ok(near(drawn, [0, -31.2, 110.9]), String(drawn));
+  assert.ok(near(folded, [0, -31.2, -89.1]), String(folded));
+});
+
+test("a heavy bowgun modelled drawn folds when sheathed, and a bone under the barrel goes with it", () => {
+  const drawnRig = HEAVY_BOWGUN.map((b) =>
+    b.id === 2 ? { ...b, rotation: [-Math.PI, 0, 0] as Vec3 } : b,
+  );
+  // A sight on bone 3, under the barrel, 100 out in front of the barrel's pivot.
+  const sight = vertex([0, -31.2 / 200, 110.9 / 200], [1]);
+  const { pmo, sheathed } = poseWeapon(
+    model([200, 200, 200], [3], [sight]),
+    drawnRig,
+    weaponPoses("heavy-bowgun", 13)!,
+  );
+  assert.ok(sheathed);
+  const out = (p: typeof pmo) => world(p, p.meshes[0]!.primitives[0]!.geometry.vertices[0]!);
+  assert.ok(near(out(pmo), [0, -31.2, 110.9]), String(out(pmo)));
+  // Folded back, bone 3 sits at z -76.4 and the sight 12.7 behind it; bone 3's
+  // sheathed diag(-0.5, 1, 3) triples that: -76.4 - 38.1.
+  assert.ok(near(out(sheathed), [0, -31.2, -114.5]), String(out(sheathed)));
+});
+
+test("a bow opens by its fold type's angle when drawn", () => {
+  const BOW = [bone(0, -1, [0, 0, 0]), bone(1, 0, [0, 0, 0]), bone(2, 1, [0, 30, 0])];
+  // A limb tip 50 below bone 2.
+  const tip = vertex([0, -20 / 100, 0], [1]);
+  const angle = (id: number) => {
+    const { pmo } = poseWeapon(model([100, 100, 100], [2], [tip]), BOW, weaponPoses("bow", id)!);
+    const [, y, z] = world(pmo, pmo.meshes[0]!.primitives[0]!.geometry.vertices[0]!);
+    return (Math.abs(Math.atan2(z!, 30 - y!)) * 180) / Math.PI;
+  };
+  assert.ok(Math.abs(angle(339) - 155) < 1e-6, String(angle(339)));
+  assert.ok(Math.abs(angle(465) - 80) < 1e-6, String(angle(465)));
+  // Fold type 3 doesn't open: nothing moves either way.
+  const still = model([100, 100, 100], [2], [tip]);
+  assert.equal(poseWeapon(still, BOW, weaponPoses("bow", 457)!).pmo, still);
 });

@@ -1,6 +1,6 @@
 import { applySettings, defaultSettings, type OptionKey, type Settings } from "../src/settings.js";
 
-/** Shuffle names as the tests (and the CLI's --shuffles) use them. */
+/** Short names for the shuffles, as the tests use them. */
 export const SHUFFLE_KEYS = {
   "quest-rewards": "questRewards.mode",
   "monster-rewards": "monsterRewards.mode",
@@ -32,5 +32,7 @@ export function settingsWith(
     // A mode rather than a switch: on means shuffle.
     on[key] = key.endsWith(".mode") ? (enabled ? "shuffle" : "off") : enabled;
   }
-  return applySettings(defaultSettings(seed), { ...on, ...changes });
+  // The bookshelf guides are on by default; a test asks for them by name.
+  const hints = { "hints.bookshelf": false, "hints.almanac": false };
+  return applySettings(defaultSettings(seed), { ...on, ...hints, ...changes });
 }

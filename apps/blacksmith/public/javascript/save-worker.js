@@ -5,7 +5,7 @@ const CHAR_BASES = [0x001000, 0x06c100, 0x0d7200];
 
 const OFFSETS = {
   HUNTER_NAME: 0x000000, // 24 bytes, UTF-16LE, null-padded (max 12 chars)
-  SEX:         0x000012, // uint8: 0 = Male, 1 = Female
+  SEX:         0x000013, // uint8: 0 = Male, 1 = Female (0x12 is always 1)
   PLAY_TIME:   0x003fc8, // uint32 LE, total seconds
   ZENNY:       0x069250, // uint32 LE
   HUNTER_RANK: 0x0672d8, // uint16 LE, in the guild card block after the name copy

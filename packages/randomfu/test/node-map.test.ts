@@ -17,7 +17,7 @@ async function withFixture(run: (game: GameData) => void): Promise<void> {
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
   try {
-    run(await loadGame(source, iso, { eboot: {} }));
+    run(await loadGame(source, iso));
   } finally {
     source.close();
   }

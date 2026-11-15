@@ -14,7 +14,6 @@
     "bench-set-search": "tsx scripts/bench-set-search.ts",
     "test": "tsx --test test/**/*.test.ts",
     "validate-schema": "tsx scripts/validate-schema.ts",
-    "generate-maps": "tsx scripts/generate-maps.ts",
     "generate-embeds": "tsx scripts/generate-embeds.ts",
     "release-json": "tsx scripts/release-json.ts && zip -m -9 -r mhfu_weapon_information.zip mhfu_weapon_information"
   },

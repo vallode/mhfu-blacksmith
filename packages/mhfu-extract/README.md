@@ -11,7 +11,7 @@ code from GPL-3.0 prior art. It never ships in the website build; it is a
 dev-time tool run manually (or in a data-refresh CI job) against a disc image
 you supply yourself.
 
-**Never commit a game ISO/CSO to this repository.** `.gitignore` at the repo
+**Never commit a game ISO to this repository.** `.gitignore` at the repo
 root excludes common disc image extensions; double check before committing.
 
 ## Why this works
@@ -47,7 +47,7 @@ pnpm --filter mhfu-extract quest-text-scan --unpacked .cache/mhfu --quest 10109
 pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Velocidrome
 ```
 
-- `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
+- `unpack` reads the ISO, decrypts `EBOOT.BIN` and `DATA.BIN`,
   and writes plain files to `--out` (an EBOOT dump, `data-bin/<index>` files
   named via `vendor/fuctool/filelist.csv`, and detected region info).
 - `extract` reads the unpacked directory and produces `data/*.json`-shaped
@@ -217,7 +217,9 @@ Open:
 
 ### EBOOT decryption
 
-`EBOOT.BIN` on the disc is KIRK-encrypted. `unpack` tries, in order:
+`EBOOT.BIN` on the disc is KIRK-encrypted. `unpack` tries, in order
+(`src/cli/eboot.ts`; steps 2 and 3 are the shared `decryptEboot` in
+`src/container/eboot.ts`, which randomfu uses too):
 
 1. A `--eboot <path>` flag pointing at a pre-decrypted dump (e.g. from
    PPSSPP's `Debug → Dump Decrypted EBOOT.BIN`).
@@ -296,6 +298,14 @@ text). Two things worth flagging for anyone extending it:
   goal "Hunt 1 Giadrome", client "An energetic young boy"), which also
   cross-validates against the same quest's monster/reward/supply data (all
   about hunting a Giadrome and its Giaprey pack).
+
+`src/quests/document.ts` reads a quest a second way, for editing: every
+byte into a document with no offsets in it (`parseQuest`), and back
+(`serializeQuest`), laid out again from nothing in the disc's order and
+padding so lists can grow and shrink. All 551 EU quests rebuild byte for
+byte (`checkQuest`). It's shared by the quest editor and randomfu, which
+rebuilds quests it moves to another map; `parser.ts` stays the read-only
+view the emitters use.
 
 Gathering points are read too (see "Gathering points" below). Not
 implemented (out of scope for now): `QuestScript` (opcodes are marked
@@ -1132,9 +1142,8 @@ and `build-data` writes them into `data/items.json` by ID
 
 `src/shops/shops.ts` finds the shops' stock in `overlay/lobby_task.ovl`,
 and `src/emit/shops.ts` writes it to `data/shops.json` (schema:
-`data/schemas/shop.schema.json`). randomfu's `shop-scan` and
-`shop-lists` research commands found the layout, and its `shops` shuffle
-edits it.
+`data/schemas/shop.schema.json`). Research scans in randomfu
+(since removed) found the layout, and its `shops` shuffle edits it.
 
 - **Layout**: each shop has a table of u32 pointers (ending in a 0 word),
   one per stage of the game, each to a list of u16 item IDs ending in

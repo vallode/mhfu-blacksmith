@@ -1,6 +1,6 @@
 /**
- * The randomfu web app's page: a step-by-step builder over the same
- * `OPTIONS` and `PRESETS` the CLI uses. The steps are the disc, the seed and
+ * The randomfu web app's page: a step-by-step builder over the
+ * `OPTIONS` and `PRESETS` in randomfu's settings. The steps are the disc, the seed and
  * a preset, one step per group of option sections, a review, and the run.
  *
  * Runs happen in a worker. The finished ISO is assembled as a Blob from
@@ -730,6 +730,14 @@ function droppable(): void {
 
 // ---------------------------------------------------------------- runs
 
+/**
+ * For testing in game, from the address: `?poogie-test` makes a happy Poogie
+ * always give the rarest reward (not for play), and `?debug` adds research
+ * detail to the spoiler log.
+ */
+const params = new URLSearchParams(location.search);
+const testing = { poogieTest: params.has("poogie-test"), debug: params.has("debug") };
+
 function outputName(file: File, seed: string): string {
   return `${file.name.replace(/\.iso$/i, "")} (RandomFU ${seed}).iso`;
 }
@@ -757,7 +765,12 @@ async function run(dryRun: boolean): Promise<void> {
     log.scrollTop = log.scrollHeight;
   };
   try {
-    const r = await ask({ type: "run", iso: file, settings, dryRun });
+    const r = await ask({
+      type: "run",
+      iso: file,
+      settings,
+      options: { ...testing, dryRun },
+    });
     if (r.type === "error") throw new Error(r.message);
     if (r.type !== "done") throw new Error("The run stopped without finishing.");
     showSpoiler(r.spoiler);

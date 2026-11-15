@@ -16,7 +16,7 @@ import { classifyRewardTable } from "mhfu-extract/src/emit/quests.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { isQuestItem } from "../game/quest-fields.js";
 import type { LoadedQuest } from "../game/load.js";
-import { questTier, type Scope, type Tier } from "../game/tiers.js";
+import { questTier, tierKey, type Scope, type Tier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import type { Rng } from "../rng.js";
 import { itemName, questLabel } from "../names.js";
@@ -195,6 +195,8 @@ export interface RandomizeRewardsOptions {
    * scaled by 0.5 to 2. Any: 1 to 100. Always scaled back to the list's total.
    */
   chances: ChanceRange;
+  /** Still put every item the star level's lists held somewhere in it. */
+  keepItems: boolean;
 }
 
 export interface RewardContext {
@@ -230,13 +232,20 @@ export function randomizeQuestRewards(
   let relocated = 0;
   let capped = 0;
 
+  // Pass 1: how many slots each list gets.
+  interface Plan {
+    list: QuestRewardList;
+    n: number;
+    m: number;
+  }
+  const plans: Plan[] = [];
+  const appended = new Map<LoadedQuest, number>(); // bytes the lists moved to a quest's end take
   for (const list of lists) {
     if (list.hasEmpty) {
       after.push(...list.slots.map((s) => ({ itemId: s.itemId, tier: s.tier })));
       continue;
     }
     const n = list.slots.length;
-    const now = edits.questNow(list.quest);
     let m = n;
     if (list.kind === "main") {
       const low = Math.max(1, Math.round(n * (1 - options.slotSpread)));
@@ -244,28 +253,69 @@ export function randomizeQuestRewards(
       m = high >= low ? low + rng.int(high - low + 1) : n;
     }
     if (m > n) {
-      const at = (now.length + 3) & ~3;
+      const at = ((edits.questNow(list.quest).length + 3) & ~3) + (appended.get(list.quest) ?? 0);
       const limit = Math.min(list.quest.file.capacity, context.largestQuest);
       const fits = Math.floor((limit - at - 2) / REWARD_ITEM_SIZE);
       if (fits < m) capped++;
       m = fits > n ? Math.min(m, fits) : n;
+      if (m > n) {
+        appended.set(
+          list.quest,
+          (appended.get(list.quest) ?? 0) + ((m * REWARD_ITEM_SIZE + 2 + 3) & ~3),
+        );
+      }
     }
+    plans.push({ list, n, m });
+  }
 
-    const pool = poolFor(list.tier, m);
-    const items: number[] = [];
-    while (items.length < m) {
-      const pick = pool[rng.int(pool.length)]!;
-      if (!items.includes(pick)) items.push(pick);
+  // Pass 2: which item each new slot gives. With keepItems, each item a star level's lists
+  // held is first put back in one random slot of that star level, so it's still a reward at
+  // the same point in the game; the other slots draw from the pool (no repeats in a list).
+  const items = new Map<QuestRewardList, number[]>(plans.map((p) => [p.list, []]));
+  const groups = new Map<string, { list: QuestRewardList; k: number }[]>();
+  for (const { list, m } of plans) {
+    const key = tierKey(list.tier);
+    const group = groups.get(key) ?? [];
+    groups.set(key, group);
+    for (let k = 0; k < m; k++) group.push({ list, k });
+  }
+  for (const group of groups.values()) {
+    const order = rng.shuffle([...group]);
+    const required = options.keepItems
+      ? [
+          ...new Set(
+            group.flatMap(({ list, k }) => (k === 0 ? list.slots.map((s) => s.itemId) : [])),
+          ),
+        ].sort((a, b) => a - b)
+      : [];
+    const chosen = new Map<{ list: QuestRewardList; k: number }, number>();
+    const held = new Map<QuestRewardList, Set<number>>();
+    const note = (list: QuestRewardList, item: number) =>
+      held.set(list, (held.get(list) ?? new Set()).add(item));
+    required.slice(0, order.length).forEach((item, k) => {
+      chosen.set(order[k]!, item);
+      note(order[k]!.list, item);
+    });
+    for (const position of order.slice(required.length)) {
+      const pool = poolFor(position.list.tier, 1);
+      const have = held.get(position.list) ?? new Set<number>();
+      let pick = pool[rng.int(pool.length)]!;
+      for (let tries = 0; tries < 16 && have.has(pick); tries++) pick = pool[rng.int(pool.length)]!;
+      chosen.set(position, pick);
+      note(position.list, pick);
     }
+    for (const position of group) items.get(position.list)![position.k] = chosen.get(position)!;
+  }
 
+  // Pass 3: chances and amounts, and the writes.
+  for (const { list, n, m } of plans) {
     const chances = rollChances(
       list.slots.map((x) => x.chance),
       m,
       options.chances,
       rng,
     );
-
-    const entries = items.map((itemId, k) => {
+    const entries = items.get(list)!.map((itemId, k) => {
       const amounts = context.amounts(itemId);
       return {
         chance: chances[k]!,
@@ -317,6 +367,9 @@ export function randomizeQuestRewards(
             ? "Chances are the list's own, scaled by 0.5 to 2."
             : "Chances are rolled from 1 to 100.",
         "A list's chances always add up to 100: after the roll they're scaled to fit.",
+        options.keepItems
+          ? "Every item quests rewarded is still a reward at the same star level (see Logic), where the new slots leave room."
+          : "Items quests rewarded may now be rewarded nowhere; recipes that need them may not be craftable.",
         "Other reward lists (extras and conditional ones) keep their number of slots.",
         NOTE_UNCHANGED,
         `${changedLists} lists rolled; ${relocated} moved to the end of their quest for more slots; ${capped} wanted more room than they had.`,

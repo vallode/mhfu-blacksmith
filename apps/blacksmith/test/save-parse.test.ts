@@ -79,8 +79,8 @@ test("decrypts both layers and finds the two hunters", async () => {
         ],
     ),
     [
-      ["Gideon", "Female", 1223209, 19087, 9, 79, 914, 15],
-      ["MEARO", "Female", 9999999, 2840, 2, 16, 999, 14],
+      ["Gideon", "Male", 1223209, 19087, 9, 79, 914, 15],
+      ["MEARO", "Male", 9999999, 2840, 2, 16, 999, 14],
     ],
   );
 });

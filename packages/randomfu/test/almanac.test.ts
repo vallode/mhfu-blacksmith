@@ -45,12 +45,12 @@ const item = (name: string, sources: ItemSource[], itemId = 1): AlmanacItem => (
   sources: earliest(sources),
 });
 
-async function withFixture(run: (game: GameData) => void, eboot = false): Promise<void> {
+async function withFixture(run: (game: GameData) => void): Promise<void> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
   try {
-    run(await loadGame(source, iso, { eboot: eboot ? {} : null }));
+    run(await loadGame(source, iso));
   } finally {
     source.close();
   }
@@ -235,14 +235,13 @@ test("only recipe materials, as the EBOOT now has them", async () => {
   await withFixture((game) => {
     const edits = new Edits(game);
     const materials = recipeMaterials(game, edits);
-    assert.ok(materials && materials.size > 0);
+    assert.ok(materials.size > 0);
     const quests = game.quests.map((q) => q.parsed);
     const listed = collectItemSources(game, quests, edits, materials);
     assert.ok(listed.length > 0);
     assert.ok(listed.every((i) => materials.has(i.itemId)));
     assert.ok(listed.length < collectItemSources(game, quests, edits).length);
-  }, true);
-  await withFixture((game) => assert.equal(recipeMaterials(game, new Edits(game)), null));
+  });
 });
 
 test("large monsters' earliest tier per rank, earliest rank first", async () => {
@@ -273,5 +272,5 @@ test("randomize leaves a non-EU disc's bookshelf alone and says why", async () =
       assert.match(report.notes[0]!, /Not written: .*EU disc/);
     }
     assert.equal(result.edits.files.size, 0);
-  }, true);
+  });
 });

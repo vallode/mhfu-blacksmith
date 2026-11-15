@@ -6,7 +6,6 @@ import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseOvl } from "mhfu-extract/src/container/ovl.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
-import { needsEboot } from "../src/settings.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
 import { ESSENTIALS, locateItemTable } from "../src/shuffles/shops.js";
 import {
@@ -26,7 +25,7 @@ async function load(): Promise<{ game: GameData; close: () => void }> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: null });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -232,8 +231,8 @@ test("prices and carry limits: the price field is found on the disc and only sho
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
-  const table = locateItemTable(game.eboot!, undefined);
+  const game = await loadGame(source, iso);
+  const table = locateItemTable(game.eboot, undefined);
   assert.equal(table.priceField, 12);
 
   const s = settingsWith("p", ["shops"], {
@@ -265,7 +264,7 @@ test("prices and carry limits: the price field is found on the disc and only sho
     assert.ok(now >= 1 && now <= Math.round(stack * 1.5) + 1, `${id}: ${stack} -> ${now}`);
   }
   // Not sold anywhere in the fixture: untouched.
-  assert.equal(eboot.readUInt32LE(at(999) + 12), game.eboot!.readUInt32LE(at(999) + 12));
+  assert.equal(eboot.readUInt32LE(at(999) + 12), game.eboot.readUInt32LE(at(999) + 12));
 
   // Item 300 (sold in the village store's second stage) had no price: it gets one from its
   // rarity (0 here, so 100z), before the variation.
@@ -275,7 +274,7 @@ test("prices and carry limits: the price field is found on the disc and only sho
   assert.match(pricing!.notes.join(" "), /\d+ items had no price/);
 
   // A disc whose prices don't match is refused, not edited.
-  const wrong = Buffer.from(game.eboot!);
+  const wrong = Buffer.from(game.eboot);
   wrong.writeUInt32LE(65, at(7) + 12);
   assert.throws(
     () => locateItemTable(wrong, undefined),
@@ -288,10 +287,10 @@ test("prices and carry limits change without the stock shuffle, and the stock st
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
-  const table = locateItemTable(game.eboot!, undefined);
+  const game = await loadGame(source, iso);
+  const table = locateItemTable(game.eboot, undefined);
   const at = (id: number) => table.base + id * 24;
-  const vanilla = game.eboot!;
+  const vanilla = game.eboot;
 
   const s = settingsWith("q", [], {
     "shops.prices": true,
@@ -336,8 +335,8 @@ test("with the stock shuffle, prices follow what shops sell now", async () => {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
-  const table = locateItemTable(game.eboot!, undefined);
+  const game = await loadGame(source, iso);
+  const table = locateItemTable(game.eboot, undefined);
   const at = (id: number) => table.base + id * 24;
   for (const seed of ["a", "b", "c", "d"]) {
     const s = settingsWith(seed, ["shops"], {
@@ -364,17 +363,9 @@ test("with the stock shuffle, prices follow what shops sell now", async () => {
     // What no shop sells any more keeps its price and carry limit.
     for (const [id] of FIXTURE_ITEM_PRICES) {
       if (sold.has(id)) continue;
-      assert.equal(eboot.readUInt32LE(at(id) + 12), game.eboot!.readUInt32LE(at(id) + 12));
-      assert.equal(eboot[at(id) + 3], game.eboot![at(id) + 3]);
+      assert.equal(eboot.readUInt32LE(at(id) + 12), game.eboot.readUInt32LE(at(id) + 12));
+      assert.equal(eboot[at(id) + 3], game.eboot[at(id) + 3]);
     }
   }
   source.close();
-});
-
-test("price and carry limit settings need the EBOOT, with or without the stock shuffle", () => {
-  assert.equal(needsEboot(settingsWith("n", [], { "shops.prices": true })), true);
-  assert.equal(needsEboot(settingsWith("n", [], { "shops.stacks": true })), true);
-  assert.equal(needsEboot(settingsWith("n", ["shops"], { "shops.prices": true })), true);
-  assert.equal(needsEboot(settingsWith("n", ["shops"])), false);
-  assert.equal(needsEboot(settingsWith("n", [])), false);
 });

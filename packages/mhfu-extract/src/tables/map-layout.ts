@@ -12,7 +12,7 @@
  * 150 and 76 are constants in that code (`lui 0x4316`, and half of 152).
  * Addresses are virtual; only the EU disc's have been worked out.
  */
-import { readFile } from "node:fs/promises";
+import { readFileSync } from "node:fs";
 import path from "node:path";
 import type { BinaryReader } from "../binary/reader.js";
 import type { OvlFile } from "../container/ovl.js";
@@ -134,7 +134,7 @@ export async function loadMapLayouts(
     if (!texture) continue;
     let bytes: Buffer;
     try {
-      bytes = await readFile(path.join(unpackedDir, mapTextureFile(texture)));
+      bytes = readFileSync(path.join(unpackedDir, mapTextureFile(texture)));
     } catch (error) {
       // No texture for this map (the map menu's own pictures).
       if ((error as NodeJS.ErrnoException).code === "ENOENT") continue;
