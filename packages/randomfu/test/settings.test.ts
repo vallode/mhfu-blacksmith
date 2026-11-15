@@ -34,7 +34,9 @@ test("every option has a default its own checks accept", () => {
       option.default,
     );
   }
-  assert.equal(needsEboot(defaults), false, "the defaults run without the EBOOT");
+  // The only default that needs the EBOOT is the almanac's.
+  assert.equal(needsEboot(defaults), true, "the defaults need the EBOOT");
+  assert.equal(needsEboot({ ...defaults, "hints.almanac": false }), false, "only the almanac does");
   for (const preset of PRESETS) applySettings(defaults, preset.changes);
   for (const name of ["Full", "Chaos"]) {
     const preset = PRESETS.find((p) => p.name === name)!;
@@ -114,10 +116,10 @@ test("presets do what their help says", () => {
   }
   for (const key of keys(full)) assert.ok(actionsOf(chaos).has(key), `Chaos has ${key}`);
 
-  // Every preset but Rewards only writes the bookshelf guides.
+  // Every preset writes the bookshelf guides, as the defaults do.
   for (const { name } of PRESETS) {
     for (const key of ["hints.bookshelf", "hints.almanac"] as const) {
-      assert.equal(preset(name)[key], name !== "Rewards only", `${name}: ${key}`);
+      assert.equal(preset(name)[key], true, `${name}: ${key}`);
     }
   }
 

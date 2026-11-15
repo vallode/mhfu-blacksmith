@@ -29,5 +29,7 @@ export function settingsWith(
   const on: Record<string, boolean> = {};
   for (const [name, key] of Object.entries(SHUFFLE_KEYS))
     on[key] = shuffles.includes(name as ShuffleName);
-  return applySettings(defaultSettings(seed), { ...on, ...changes });
+  // The bookshelf guides are on by default; a test asks for them by name.
+  const hints = { "hints.bookshelf": false, "hints.almanac": false };
+  return applySettings(defaultSettings(seed), { ...on, ...hints, ...changes });
 }
