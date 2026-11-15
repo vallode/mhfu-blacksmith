@@ -248,7 +248,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "questRewards.draws",
     section: "Quest rewards",
     label: "Reward draws variation",
-    help: "How far the number of times a quest's main reward list is drawn can move, up or down (at least 1 either way). Never more than the most any quest has on the disc. Works on its own, whatever the mode above.",
+    help: "How far the number of times a quest's main reward list is drawn can move, up or down (rounded, so a small spread leaves small counts alone). Never fewer than 1 or more than the most any quest has on the disc. Works on its own, whatever the mode above.",
     type: SPREAD,
     default: 0,
   },

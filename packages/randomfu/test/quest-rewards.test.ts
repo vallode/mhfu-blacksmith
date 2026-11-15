@@ -303,3 +303,31 @@ test("reward draws move a main table's draw count and keep the low byte", async 
   assert.ok(moved, "some draw count moved");
   close();
 });
+
+test("reward draws survive a disc write alongside randomized rewards", async () => {
+  const input = fixtureFile();
+  const output = path.join(tempDir(), "draws.iso");
+  const original = readFileSync(input);
+  const image = patchInMemory(original);
+  const game = await loadGame(image.source, image.iso);
+  const result = randomize(
+    game,
+    settingsWith("draws-disc", [], {
+      "questRewards.mode": "randomize",
+      "questRewards.slots": 0.95,
+      "questRewards.draws": 0.95,
+    }),
+  );
+  assert.deepEqual(result.problems, []);
+  writeEdits(image, game, result.edits);
+  writeFileSync(output, finish(image, original));
+
+  const after = await load(output);
+  const params = (g: GameData, payloadOf: (q: GameData["quests"][number]) => Buffer) =>
+    g.quests.map((q) => parseQuest(payloadOf(q)).rewards.map((t) => t.unkn2));
+  assert.deepEqual(
+    params(after.game, (q) => q.file.payload),
+    params(game, (q) => result.edits.questNow(q)),
+  );
+  after.close();
+});

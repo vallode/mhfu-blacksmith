@@ -393,17 +393,19 @@ function scopeFound(scope: Scope): string {
   }
 }
 
-/** A main reward table's draw count: `RewardTBL.Unkn2 >> 8`, the low byte left alone. */
-function mainTables(quest: LoadedQuest, payload: Buffer): number[] {
-  const tables = parseQuest(payload).rewards;
-  return tables.flatMap((t, i) => (classifyRewardTable(t).kind === "main" ? [i] : []));
+/** Indexes of a quest's main reward tables, read from `payload`. */
+function mainTables(payload: Buffer): { index: number; unkn2: number }[] {
+  return parseQuest(payload).rewards.flatMap((t, index) =>
+    classifyRewardTable(t).kind === "main" ? [{ index, unkn2: t.unkn2 }] : [],
+  );
 }
 
 /**
  * Reward draws: how many times a quest's main reward list is drawn (the high
  * byte of the main table's `Unkn2`). Each count moves up or down by up to
- * `spread` of itself (at least 1 either way, never below 1), and never past
- * the most any quest has on the disc. Village and Guild quests only.
+ * `spread` of itself, rounded (so a small spread leaves small counts alone),
+ * never below 1 and never past the most any quest has on the disc. Village
+ * and Guild quests only.
  */
 export function randomizeRewardDraws(
   quests: readonly LoadedQuest[],
@@ -411,32 +413,31 @@ export function randomizeRewardDraws(
   rng: Rng,
   edits: Edits,
 ): ShuffleReport {
-  const taken = quests.filter((q) => questTier(q.parsed));
+  const taken = quests
+    .filter((q) => questTier(q.parsed))
+    .map((quest) => ({ quest, tables: mainTables(edits.questNow(quest)) }));
   let most = 1;
-  for (const quest of taken) {
-    for (const i of mainTables(quest, quest.file.payload)) {
-      most = Math.max(most, quest.parsed.rewards[i]!.unkn2 >> 8);
-    }
+  for (const { tables } of taken) {
+    for (const t of tables) most = Math.max(most, t.unkn2 >> 8);
   }
   const lines: { where: string; text: string }[] = [];
-  for (const quest of taken) {
+  for (const { quest, tables } of taken) {
     const payload = edits.quest(quest);
-    for (const i of mainTables(quest, quest.file.payload)) {
-      const at = quest.parsed.header.rewardsPtr + i * REWARD_TABLE_SIZE + 2;
-      const was = quest.parsed.rewards[i]!.unkn2;
-      const n = was >> 8;
-      const reach = Math.max(1, Math.round(n * spread));
+    for (const { index, unkn2 } of tables) {
+      const at = quest.parsed.header.rewardsPtr + index * REWARD_TABLE_SIZE + 2;
+      const n = unkn2 >> 8;
+      const reach = Math.round(n * spread);
       const low = Math.max(1, n - reach);
       const high = Math.min(Math.max(most, n), n + reach);
-      const draws = low + rng.int(high - low + 1);
-      payload.writeUInt16LE((draws << 8) | (was & 0xff), at);
+      const draws = low + rng.int(Math.max(high - low, 0) + 1);
+      payload.writeUInt16LE((draws << 8) | (unkn2 & 0xff), at);
       lines.push({ where: questLabel(quest), text: `${draws} draws (was ${n})` });
     }
   }
   return {
     title: "Quest reward draws",
     notes: [
-      `Each Village and Guild quest's main reward list is drawn a new number of times (up to ±${Math.round(spread * 100)}%, at least 1 either way, never more than the ${most} the most-drawn list on the disc has).`,
+      `Each Village and Guild quest's main reward list is drawn a new number of times (up to ±${Math.round(spread * 100)}%, never fewer than 1 or more than the ${most} the most-drawn list on the disc has).`,
       NOTE_UNCHANGED,
     ],
     lines,

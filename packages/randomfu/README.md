@@ -220,7 +220,7 @@ take part (see Tiers). `questRewards.scope` is how far they reach: `star` (the d
 - Lists with empty (item 0) entries are shuffled but not randomized.
 - **Draws** (`questRewards.draws`, independent of the mode) moves each main
   table's draw count, the high byte of `Unkn2`, up or down by that fraction
-  of itself (at least 1), never below 1 or above the most any quest has.
+  of itself (rounded), never below 1 or above the most any quest has.
 
 ### Monster rewards
 
