@@ -48,6 +48,23 @@ interface Props {
 
 type Three = typeof import("three");
 
+/**
+ * Draws an effect layer as the game does: a material whose `extras.blend`
+ * (mhfu-extract's gltf.ts) is `add` adds its colour to what is behind it,
+ * `revsub` takes it away. Both scale by the texture's alpha and leave the
+ * depth buffer alone. Other materials are left as they are.
+ */
+function effectBlend(THREE: typeof import("three"), material: import("three").Material) {
+  const blend = material.userData.blend;
+  if (blend !== "add" && blend !== "revsub") return;
+  material.transparent = true;
+  material.depthWrite = false;
+  material.blending = THREE.CustomBlending;
+  material.blendEquation = blend === "add" ? THREE.AddEquation : THREE.ReverseSubtractEquation;
+  material.blendSrc = THREE.SrcAlphaFactor;
+  material.blendDst = THREE.OneFactor;
+}
+
 /** Resolves a `var(--name)` colour against `element`; other colours pass through. */
 function resolveColor(element: Element, color: string): string {
   const match = /^var\((--[\w-]+)\)$/.exec(color);
@@ -343,6 +360,9 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
         // three.js's culling bounds cover.
         model.traverse((object) => {
           if ((object as import("three").SkinnedMesh).isSkinnedMesh) object.frustumCulled = false;
+          const mesh = object as import("three").Mesh;
+          if (mesh.isMesh)
+            for (const material of [mesh.material].flat()) effectBlend(THREE, material);
         });
 
         // Capsules are placed on the bind pose: each rides the bone that
