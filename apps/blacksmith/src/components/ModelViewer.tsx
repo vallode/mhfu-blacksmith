@@ -255,8 +255,8 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
             mount: WeaponMount & { hold: NonNullable<WeaponMount["hold"]> };
           };
           let held: Held[] = [];
-          // A great sword's or long sword's bones in the sheathed pose, as a
-          // morph target on the drawn mesh (mhfu-extract's weapon-pose.ts).
+          // A posed weapon's bones in the sheathed pose (a bowgun or bow folded),
+          // as a morph target on the drawn mesh (mhfu-extract's weapon-pose.ts).
           const poses: { influences: number[]; sheathed: number }[] = [];
           weapon.traverse((node) => {
             const mesh = node as import("three").Mesh;

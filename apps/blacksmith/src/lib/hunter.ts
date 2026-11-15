@@ -159,11 +159,11 @@ const twoHanded = (
  * A bowgun is in the left fist. In nearly every frame of both classes' motions
  * the right fist is at the same place in the left fist's frame, (22, -19, 39):
  * on the stock, behind and below. Aiming level, up or down, the left fist's -Z
- * is the aim. A heavy bowgun's barrel runs along -Z, so it's held unturned; a
- * light bowgun's runs along +Z (its stock at -Z), so it's turned half round Y.
+ * is the aim. Drawn, a bowgun's barrel runs along +Z (a heavy one's swung
+ * out of its fold, see weapon-pose.ts) and its stock along -Z, so it's turned
+ * half round Y.
  */
-const heavyBowgun = leftHand;
-const lightBowgun: WeaponMount = { ...leftHand, rotation: [0, Math.PI, 0] };
+const bowgun: WeaponMount = { ...leftHand, rotation: [0, Math.PI, 0] };
 
 /**
  * Sheathed places, relative to the chest (Y up, Z forward) and placed by eye:
@@ -176,9 +176,9 @@ const back = (
 ): WeaponMount => ({ joint: JOINT.CHEST, position, rotation });
 
 /**
- * The morph target a great sword's or long sword's model carries for its
- * bones' sheathed pose; the mesh itself is drawn (mhfu-extract's
- * weapon-pose.ts).
+ * The morph target a posed weapon's model (a great sword, long sword, bowgun
+ * or bow) carries for its bones' sheathed pose; the mesh itself is drawn
+ * (mhfu-extract's weapon-pose.ts).
  */
 export const SHEATHED_TARGET = "sheathed";
 
@@ -269,25 +269,25 @@ export const WEAPON_MOUNTS: Record<string, WeaponMounts> = {
     drawn: [{ ...rightHand, rotation: [0, 0, Math.PI] }, leftHand],
     sheathed: [back([-8, 14, -11], tipDown(20, Math.PI)), back([8, 14, -11], tipDown(-20))],
   },
-  // Bowguns from screenshots of the game, gun body out from the back. The game
-  // folds them on the back, which isn't applied, so these are placed by their
-  // middle (light z 17, heavy z -45 over the models). A light bowgun stands
+  // Bowguns from screenshots of the game, gun body out from the back, folded
+  // (the models' sheathed pose) and placed by their middle (light z 17, heavy
+  // z -45 over the folded models). A light bowgun stands
   // straight down the spine, barrel up, its middle at the small of the back. A
   // heavy one lies across the back from the right hip, where the drawing hand
   // reaches, its barrel up toward the left shoulder 40 degrees from upright.
   "light-bowgun": {
-    drawn: [lightBowgun],
+    drawn: [bowgun],
     sheathed: [back([-6, -23, -8], [-1.675, -0.086, 3.133])],
   },
   "heavy-bowgun": {
-    drawn: [heavyBowgun],
+    drawn: [bowgun],
     sheathed: [back([-20, -37, -4], [1.441, -0.694, -0.083])],
   },
-  // From screenshots of the game. A bow lies in its YZ plane, its length along
-  // (0, 0.72, 0.69) over the models, 70 above the grip and 110 below. On the
-  // back it lies flat, from behind the right of the neck down past the left
-  // hip, 25 degrees from upright, its middle where the game's is (the game
-  // folds it shorter). A quiver runs along X with its arrows at -X, its middle
+  // From screenshots of the game. A bow is modelled folded, in its YZ plane,
+  // its length along (0, 0.72, 0.69), 70 above the grip and 110 below; drawn,
+  // its upper limb opens (weapon-pose.ts). On the back it lies flat and
+  // folded, from behind the right of the neck down past the left hip, 25
+  // degrees from upright. A quiver runs along X with its arrows at -X, its middle
   // at x -17: across the small of the back, arrows to the right, outside the
   // body and under the bow.
   bow: {
