@@ -49,6 +49,10 @@ export function buildFromResult(
   };
 }
 
+/**
+ * English slot names, for validateBuild's messages and the link previews
+ * (set-embed.ts), which stay English. The page shows translated ones.
+ */
 export const BIN_LABELS: Record<DecoBin, string> = {
   weapon: "Weapon",
   helmet: "Head",
@@ -132,10 +136,46 @@ export function suitsHunter(
   );
 }
 
+/**
+ * A problem with a set, as data, so the page can say it in the site's
+ * language. Piece names are English (the data's names).
+ */
+export type SetProblem =
+  | { kind: "weapon-slots"; max: number; slots: number }
+  | { kind: "wrong-slot"; piece: string; is: ArmorSlot; slot: ArmorSlot }
+  | { kind: "hunter-type"; piece: string; hunterType: BuildSet["hunterType"] }
+  | { kind: "sex"; piece: string; sex: BuildSet["sex"] }
+  | { kind: "torso-up"; piece: string }
+  | { kind: "empty-slot"; bin: DecoBin }
+  /** `piece` is null for the weapon. */
+  | { kind: "too-many-decorations"; piece: string | null; used: number; has: number };
+
 export interface SetWarning {
   /** The part of the set it's about, if any. */
   bin?: DecoBin;
+  problem: SetProblem;
+  /** The problem in English. */
   message: string;
+}
+
+/** A SetProblem in English. */
+function describeProblem(p: SetProblem): string {
+  switch (p.kind) {
+    case "weapon-slots":
+      return `A weapon has at most ${p.max} slots, not ${p.slots}.`;
+    case "wrong-slot":
+      return `${p.piece} is ${BIN_LABELS[p.is].toLowerCase()} armor, not ${BIN_LABELS[p.slot].toLowerCase()}.`;
+    case "hunter-type":
+      return `${p.piece} is ${p.hunterType} armor.`;
+    case "sex":
+      return `${p.piece} is only for ${p.sex.toLowerCase()} hunters.`;
+    case "torso-up":
+      return `${p.piece} has Torso Up, which copies the chest piece's skills: there is none.`;
+    case "empty-slot":
+      return `There are decorations in the ${BIN_LABELS[p.bin].toLowerCase()} slot, which is empty. They don't count.`;
+    case "too-many-decorations":
+      return `The decorations in ${p.piece ?? "the weapon"} need ${p.used} slots; it has ${p.has}.`;
+  }
 }
 
 /**
@@ -145,35 +185,29 @@ export interface SetWarning {
  */
 export function validateBuild(set: BuildSet): SetWarning[] {
   const warnings: SetWarning[] = [];
+  const warn = (bin: DecoBin, problem: SetProblem) =>
+    warnings.push({ bin, problem, message: describeProblem(problem) });
   if (set.weaponSlots < 0 || set.weaponSlots > MAX_WEAPON_SLOTS) {
-    warnings.push({
-      bin: "weapon",
-      message: `A weapon has at most ${MAX_WEAPON_SLOTS} slots, not ${set.weaponSlots}.`,
-    });
+    warn("weapon", { kind: "weapon-slots", max: MAX_WEAPON_SLOTS, slots: set.weaponSlots });
   }
   ARMOR_SLOTS.forEach((slot, i) => {
     const p = set.pieces[i];
     if (!p) return;
     if (p.slot !== slot) {
-      warnings.push({
-        bin: slot,
-        message: `${p.name} is ${BIN_LABELS[p.slot].toLowerCase()} armor, not ${BIN_LABELS[slot].toLowerCase()}.`,
-      });
+      warn(slot, { kind: "wrong-slot", piece: p.name, is: p.slot, slot });
     }
     if (p.hunterType !== "Both" && p.hunterType !== set.hunterType) {
-      warnings.push({ bin: slot, message: `${p.name} is ${p.hunterType} armor.` });
+      warn(slot, {
+        kind: "hunter-type",
+        piece: p.name,
+        hunterType: p.hunterType as BuildSet["hunterType"],
+      });
     }
     if (p.sex !== "Both" && p.sex !== set.sex) {
-      warnings.push({
-        bin: slot,
-        message: `${p.name} is only for ${p.sex.toLowerCase()} hunters.`,
-      });
+      warn(slot, { kind: "sex", piece: p.name, sex: p.sex as BuildSet["sex"] });
     }
     if (p.torsoUp && slot !== "plate" && !pieceIn(set, "plate")) {
-      warnings.push({
-        bin: slot,
-        message: `${p.name} has Torso Up, which copies the chest piece's skills: there is none.`,
-      });
+      warn(slot, { kind: "torso-up", piece: p.name });
     }
   });
   const bins: DecoBin[] = ["weapon", ...ARMOR_SLOTS];
@@ -181,17 +215,11 @@ export function validateBuild(set: BuildSet): SetWarning[] {
     const used = usedSlots(set, bin);
     if (used === 0) continue;
     const has = binSlots(set, bin);
-    const where = bin === "weapon" ? "the weapon" : (pieceIn(set, bin)?.name ?? null);
-    if (where === null) {
-      warnings.push({
-        bin,
-        message: `There are decorations in the ${BIN_LABELS[bin].toLowerCase()} slot, which is empty. They don't count.`,
-      });
+    const piece = bin === "weapon" ? null : pieceIn(set, bin);
+    if (bin !== "weapon" && !piece) {
+      warn(bin, { kind: "empty-slot", bin });
     } else if (used > has) {
-      warnings.push({
-        bin,
-        message: `The decorations in ${where} need ${used} slots; it has ${has}.`,
-      });
+      warn(bin, { kind: "too-many-decorations", piece: piece?.name ?? null, used, has });
     }
   }
   return warnings;

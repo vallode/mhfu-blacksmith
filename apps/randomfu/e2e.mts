@@ -32,7 +32,7 @@ writeFileSync(isoPath, disc);
 const chaos = PRESETS.find((p) => p.name === "Chaos")!;
 const settings = applySettings(defaultSettings("WEB-E2E"), {
   ...chaos.changes,
-  "logic.tiers": "star",
+  "recipes.scope": "star",
   // Not in a preset until they're tried on a real disc.
   "questMonsters.difficulty": true,
   "questMonsters.smallCounts": true,
@@ -82,7 +82,7 @@ try {
     if (m.type() === "error") errors.push(m.text());
   });
   await page.goto(url);
-  await page.waitForSelector("[data-key='shops.pool']", { state: "attached" });
+  await page.waitForSelector("[data-key='shops.scope']", { state: "attached" });
   const title = () => page.textContent("#step-title");
 
   // Step 1: the disc. Next waits for one.
@@ -124,7 +124,7 @@ try {
   }
   assert.equal(await title(), "Review", `stuck after ${seen.join(", ")}`);
   assert.deepEqual(seen, optionSteps, "Next goes through every option step in order");
-  assert.deepEqual(seen.slice(0, 4), ["Logic", "Rewards", "Gathering", "Quests"]);
+  assert.deepEqual(seen.slice(0, 4), ["Rewards", "Gathering", "Quests", "Monsters"]);
   assert.equal(
     await page.inputValue("#share"),
     settingsString,

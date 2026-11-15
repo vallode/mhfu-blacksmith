@@ -57,7 +57,7 @@ import {
   TARGET_ID_OFFSET,
   type QuestSpawns,
 } from "../game/spawns.js";
-import { BAND_NAMES, questTier, type Band, type Tier } from "../game/tiers.js";
+import { BAND_NAMES, inScope, questTier, type Band, type Tier } from "../game/tiers.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
 import { monsterName, questLabel } from "../names.js";
@@ -133,7 +133,7 @@ export function collectQuestMonsters(quests: readonly LoadedQuest[]): QuestMonst
   return out;
 }
 
-export type SpeciesPool = "variants" | "rank" | "any";
+export type SpeciesPool = "variants" | "rank" | "adjacent" | "any";
 
 const unique = (ids: number[]) => [...new Set(ids)];
 
@@ -212,7 +212,13 @@ export function swapSpecies(
       const options =
         pool === "variants"
           ? (FAMILY.get(old) ?? [old]).filter((id) => id === old || here.has(id))
-          : [...here].filter((id) => pool === "any" || bands.get(id)?.has(tier.band));
+          : [...here].filter(
+              (id) =>
+                pool === "any" ||
+                [...(bands.get(id) ?? [])].some((band) =>
+                  inScope(pool, { band: tier.band, stars: 0 }, { band, stars: 0 }),
+                ),
+            );
       // Never empty: every monster of the quest is on its map, so its family
       // has as many options as the quest has members of it.
       const free = options.filter((id) => !taken.has(id)).sort((a, b) => a - b);
@@ -281,7 +287,7 @@ export function swapSpecies(
   const notes = [
     pool === "variants"
       ? "Each large monster became one of its variants, on maps where that variant is found."
-      : `Each large monster became any large monster found on the quest's map${pool === "rank" ? " at the quest's rank" : ""}.`,
+      : `Each large monster became any large monster found on the quest's map${pool === "rank" ? " at the quest's rank" : pool === "adjacent" ? " at the quest's rank or the next" : ""}.`,
   ];
   if (mixed > 0)
     notes.push(`${mixed} quests with more than one kind of large monster were left alone.`);

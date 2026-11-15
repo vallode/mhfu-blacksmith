@@ -22,7 +22,7 @@ export interface Tier {
   stars: number;
 }
 
-/** How strictly shuffles keep items in place: see the `logic.tiers` setting. */
+/** How strictly item sources are compared: by star level, by rank only, or not at all. */
 export type TierMode = "star" | "rank" | "none";
 
 /** The tier shuffles group by under `mode`: star level, rank only, or one pool. */
@@ -30,6 +30,21 @@ export function coarsen(tier: Tier, mode: TierMode): Tier {
   if (mode === "rank") return { band: tier.band, stars: 0 };
   if (mode === "none") return { band: "low", stars: 0 };
   return tier;
+}
+
+/**
+ * How far a shuffle or randomizer may reach from a slot's own tier: its
+ * star level, its rank, the ranks next to it (Low and High, High and G) or
+ * the whole game.
+ */
+export type Scope = "star" | "rank" | "adjacent" | "any";
+
+/** True if something first found at `to` may be used at `from` under `scope`. */
+export function inScope(scope: Scope, from: Tier, to: Tier): boolean {
+  if (scope === "any") return true;
+  if (scope === "star") return from.band === to.band && from.stars === to.stars;
+  const gap = Math.abs(BANDS.indexOf(from.band) - BANDS.indexOf(to.band));
+  return scope === "rank" ? gap === 0 : gap <= 1;
 }
 
 export function tierKey(tier: Tier): string {

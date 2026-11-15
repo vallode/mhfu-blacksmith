@@ -97,6 +97,12 @@ export const NODE_KINDS: Record<number, "gather" | "mine" | "bug"> = {
   4: "bug",
 };
 
+/** Offsets within a node of its two gather counts. */
+export const NODE_MOST_GATHERS = 18;
+export const NODE_GATHERS = 22;
+/** A count of 255 means the node never runs out. */
+export const ENDLESS = 0xff;
+
 /** One mining, gathering or bug catching node. */
 export interface GatheringNode {
   /** Index into the map's area list: 0 is the Base Camp, then the numbered areas. */
@@ -109,6 +115,8 @@ export interface GatheringNode {
   gathers: number;
   /** How many times it can be gathered, at most (+18); 255 means it doesn't run out. */
   mostGathers: number;
+  /** Payload offset of the node's 24 bytes. */
+  offset: number;
   /** Position in its stage's coordinates (+0 and +8; +4 is the height). */
   x: number;
   z: number;
@@ -148,7 +156,7 @@ export function gatheringYields(payload: Buffer, quest: ParsedQuest): Map<number
   const out = new Map<number, number>();
   if (result.problem) return out;
   for (const node of result.nodes) {
-    const gathers = node.gathers === 0xff ? ENDLESS_GATHERS : node.gathers;
+    const gathers = node.gathers === ENDLESS ? ENDLESS_GATHERS : node.gathers;
     for (const at of result.tables.get(node.table) ?? []) {
       const item = payload.readUInt16LE(at + 2);
       if (item === 0) continue;
@@ -183,6 +191,7 @@ export function readGatheringItems(payload: Buffer, quest: ParsedQuest): Gatheri
       used.add(table);
       nodeList.push({
         area,
+        offset: at,
         type: payload.readUInt16LE(at + 20),
         table,
         gathers: payload.readUInt16LE(at + 22),

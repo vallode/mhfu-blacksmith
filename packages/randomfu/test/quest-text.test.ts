@@ -212,7 +212,7 @@ test("swaps rename the monster in quest text where it's safe, and list the rest"
   const { game, close } = await load();
   let renamed = 0;
   for (let seed = 0; seed < 30; seed++) {
-    const settings = only(`t${seed}`, { "questMonsters.species": true });
+    const settings = only(`t${seed}`, { "questMonsters.mode": "shuffle" });
     const result = randomize(game, settings);
     const spoiler = formatSpoiler(game, settings, result);
     for (const id of [1001, 2001]) {
@@ -256,7 +256,7 @@ test("with renaming off, swaps leave the text alone", async () => {
   for (let seed = 0; seed < 10; seed++) {
     const result = randomize(
       game,
-      only(`t${seed}`, { "questMonsters.species": true, "questMonsters.text": false }),
+      only(`t${seed}`, { "questMonsters.mode": "shuffle", "questMonsters.text": false }),
     );
     const quest = byId(game, 1001);
     const after = result.edits.quests.get(quest.index)?.payload ?? quest.file.payload;
@@ -362,7 +362,7 @@ test("swaps update the board's TargetID and rename its text, on every board the 
   const { game, close } = await load();
   let checked = 0;
   for (let seed = 0; seed < 30; seed++) {
-    const settings = only(`b${seed}`, { "questMonsters.species": true });
+    const settings = only(`b${seed}`, { "questMonsters.mode": "shuffle" });
     const result = randomize(game, settings);
     const spoiler = formatSpoiler(game, settings, result);
     const quest = byId(game, 2001);

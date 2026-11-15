@@ -83,7 +83,7 @@ const ALL = (mode: string) => ({
   "armorStats.rarity": mode,
 });
 
-test("armor stats, keep: nothing changes and there's no report", async () => {
+test("armor stats, off: nothing changes and there's no report", async () => {
   const { game, close } = await load();
   const result = randomize(game, statsWith("a", {}));
   assert.ok(!result.reports.some((r) => r.title === "Armor stats"));

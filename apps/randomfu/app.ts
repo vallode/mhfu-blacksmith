@@ -53,14 +53,6 @@ interface Step extends Sprite {
 
 const OPTION_STEPS: Step[] = [
   {
-    id: "logic",
-    title: "Logic",
-    icon: "star",
-    sections: ["Logic"],
-    intro:
-      "Logic applies to every item shuffle: quest rewards, carves, gathering points, supply boxes and recipe materials. At Same star level, every recipe stays craftable as early in the game as before.",
-  },
-  {
     id: "rewards",
     title: "Rewards",
     icon: "claw",
@@ -90,7 +82,7 @@ const OPTION_STEPS: Step[] = [
     title: "Monsters",
     icon: "part",
     tint: "var(--color-gem-orange)",
-    sections: ["Quest monsters", "Monster stats", "Weaknesses", "Hints"],
+    sections: ["Quest monsters", "Monster stats", "Weaknesses"],
     intro:
       "Which monsters quests have and how tough they are. All of it has been tried in game, and the presets use it.",
   },
@@ -110,11 +102,12 @@ const OPTION_STEPS: Step[] = [
     intro: "What the village, Guild Hall and peddling granny sell, and for how much.",
   },
   {
-    id: "modifications",
-    title: "Modifications",
+    id: "extras",
+    title: "Extras",
     icon: "deco",
-    sections: ["Modifications"],
-    intro: "Changes to how the game looks and what it shows you, rather than what it hands out.",
+    sections: ["Extras"],
+    intro:
+      "Neither a shuffle nor a randomizer: text, bookshelf guides and map changes that show you what the other steps did.",
   },
 ];
 

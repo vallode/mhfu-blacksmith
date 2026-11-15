@@ -9,6 +9,7 @@ import CardBox from "@/components/CardBox";
 import MonsterNav from "@/components/MonsterNav";
 import SplitPage from "@/components/SplitPage";
 import TreeScroll from "@/components/TreeScroll";
+import { useGameText } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { getQuests, useMonsterList } from "@/lib/client-data";
 import { prefetchManifest } from "@/lib/models";
@@ -30,6 +31,7 @@ function parseMonsterPath(pathname: string): { category?: MonsterCategory; slug?
 /** The monsters of one type, down the left of the type's pages. */
 function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: string }) {
   const { items: siblings } = useMonsterList(category);
+  const game = useGameText();
   // Portraits are small sprites; fetch the type's ahead of a click so the
   // detail card's scroll isn't empty for a frame while one loads.
   for (const m of siblings ?? []) {
@@ -59,7 +61,7 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
                 decoding="sync"
                 onError={hideBroken}
               />
-              <p>{m.name}</p>
+              <p>{game.name("monster", m.name)}</p>
             </Link>
           ))}
         </TreeScroll>

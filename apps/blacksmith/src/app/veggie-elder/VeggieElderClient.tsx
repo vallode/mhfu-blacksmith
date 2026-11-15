@@ -24,10 +24,12 @@ import Icon from "@/components/Icon";
 import Loading from "@/components/Loading";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import TreeScroll from "@/components/TreeScroll";
+import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { useItems, useVeggieTrades, type ItemLookup } from "@/lib/client-data";
 import { itemHref } from "@/lib/item-sources";
 import { tradeMapsLabel } from "@/lib/veggie-trades";
+import { groundName } from "../items/source-labels";
 
 const note = "whitespace-normal text-white leading-[1.25]";
 
@@ -43,7 +45,11 @@ function RewardRow({
   chance: number;
   rare?: boolean;
 }) {
+  const t = useT();
+  const game = useGameText();
+  const { formatNumber } = useLocale();
   const item = items.get(id);
+  const name = item.known ? game.name("item", item.name) : t.quests.rewards.unknownItem(id);
   return (
     <div className="flex items-center">
       <Icon type={item.type} color={item.color} />
@@ -55,12 +61,14 @@ function RewardRow({
             rare && "text-warm",
           )}
         >
-          {item.name}
+          {name}
         </Link>
       ) : (
-        <p className="w-cells-16 min-w-0">{item.name}</p>
+        <p className="w-cells-16 min-w-0">{name}</p>
       )}
-      <p className={cn("flex-none text-right whitespace-pre", rare && "text-warm")}>{chance}%</p>
+      <p className={cn("flex-none text-right whitespace-pre", rare && "text-warm")}>
+        {formatNumber(chance)}%
+      </p>
     </div>
   );
 }
@@ -68,17 +76,24 @@ function RewardRow({
 export default function VeggieElderClient() {
   const { bundle, error } = useVeggieTrades();
   const { items } = useItems();
+  const t = useT();
+  const tv = t.items.veggieElder;
+  const game = useGameText();
   const [elder, setElder] = useState(0);
   // The item picked, by ID, so it stays picked as you step to another ground.
   const [picked, setPicked] = useState<number | null>(null);
   const listRef = useRef<HTMLDivElement>(null);
 
-  if (error) return <p className="text-negative">{"The Veggie Elder's trades didn't load."}</p>;
-  if (!bundle || !items) return <Loading>Loading trades…</Loading>;
+  if (error) return <p className="text-negative">{tv.loadError}</p>;
+  if (!bundle || !items) return <Loading>{tv.loading}</Loading>;
 
   const count = bundle.elders.length;
   const { maps, rows } = bundle.elders[elder]!;
   const trade = rows.find(([, give]) => give === picked);
+  const itemName = (id: number) => {
+    const item = items.get(id);
+    return item.known ? game.name("item", item.name) : t.quests.rewards.unknownItem(id);
+  };
 
   const step = (by: 1 | -1) => {
     setElder((elder + by + count) % count);
@@ -112,7 +127,7 @@ export default function VeggieElderClient() {
                     )}
                   >
                     <Icon type={item.type} color={item.color} />
-                    <p className="truncate">{item.name}</p>
+                    <p className="truncate">{itemName(give)}</p>
                   </button>
                 );
               })}
@@ -122,13 +137,13 @@ export default function VeggieElderClient() {
           <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
         </Card>
         <SelectorBar
-          label={tradeMapsLabel(maps)}
-          groupLabel="Hunting ground"
-          previousLabel="Previous hunting ground"
-          nextLabel="Next hunting ground"
+          label={tradeMapsLabel(maps, (m) => groundName(game, m))}
+          groupLabel={tv.groundGroup}
+          previousLabel={tv.previousGround}
+          nextLabel={tv.nextGround}
           onStep={step}
           count={`${elder + 1}/${count}`}
-          countLabel={`Hunting ground ${elder + 1} of ${count}`}
+          countLabel={tv.groundOf(elder + 1, count)}
         />
       </CardBox>
 
@@ -141,16 +156,16 @@ export default function VeggieElderClient() {
               size="large"
               alt=""
             />
-            <DetailName>{items.get(trade[1]).name}</DetailName>
+            <DetailName>{itemName(trade[1])}</DetailName>
           </DetailHeader>
           <DetailBody>
             <StatList>
-              <Stat label="List No.:">
+              <Stat label={tv.listNumber}>
                 <StatValue>{trade[0]}</StatValue>
               </Stat>
             </StatList>
             <div className="flex flex-col gap-y-[13px] text-white">
-              <p className="whitespace-normal text-stat">He gives:</p>
+              <p className="whitespace-normal text-stat">{tv.heGives}</p>
               {trade[2] === trade[3] ? (
                 <RewardRow id={trade[2]} items={items} chance={100} />
               ) : (
@@ -160,18 +175,12 @@ export default function VeggieElderClient() {
                 </>
               )}
             </div>
-            <p className={note}>
-              He takes the first item on his list that you carry, so a higher one wins. The Felyne
-              Negotiations kitchen skill makes every trade a rare one.
-            </p>
+            <p className={note}>{tv.pageNote}</p>
           </DetailBody>
         </DetailCard>
       ) : (
         <NoDataCard>
-          <p className={note}>
-            Pick an item to see what the Veggie Elder gives for it. Each hunting ground has its own
-            list.
-          </p>
+          <p className={note}>{tv.pickItem}</p>
         </NoDataCard>
       )}
     </div>

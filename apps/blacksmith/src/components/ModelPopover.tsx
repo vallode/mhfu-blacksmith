@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect, useRef } from "react";
 import Card from "@/components/Card";
 import { cn } from "@/lib/cn";
 import { PHONE } from "@/lib/media";
+import { useT } from "@/context/LanguageContext";
 
 /**
  * Desktop: absolutely positioned in the .split-page (position: relative); the
@@ -81,13 +82,15 @@ function CubeSprite() {
  * pulses green on hover like a list row and stays lit while the model is open.
  */
 export function ModelButton({ open, onClick, className }: ButtonProps) {
+  const t = useT();
+  const label = open ? t.equipment.model.hide : t.equipment.model.view;
   return (
     <button
       type="button"
       onClick={onClick}
       aria-expanded={open}
-      aria-label={open ? "Hide 3D model" : "View 3D model"}
-      title={open ? "Hide 3D model" : "View 3D model"}
+      aria-label={label}
+      title={label}
       className={cn(
         "flex flex-none cursor-pointer items-center px-[0.8rem] py-[0.4rem] hover:hover-glow focus-visible:hover-glow",
         open && "bg-(image:--gradient-hover-glow)",
@@ -113,6 +116,7 @@ const INSET = 14;
  * the surrounding .split-page. Closes with Escape or its close button.
  */
 export default function ModelPopover({ title, onClose, children }: PopoverProps) {
+  const t = useT();
   const closeRef = useRef<HTMLButtonElement>(null);
   const popoverRef = useRef<HTMLDivElement>(null);
 
@@ -169,7 +173,7 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
       ref={popoverRef}
       className={POPOVER_CLASSES}
       role="dialog"
-      aria-label={`3D model of ${title}`}
+      aria-label={t.equipment.model.label(title)}
     >
       {/* Padding exactly as thick as the blue frame's visible band (4 source
           px at 3x), so the render ends at the frame. */}
@@ -181,7 +185,7 @@ export default function ModelPopover({ title, onClose, children }: PopoverProps)
         ref={closeRef}
         type="button"
         onClick={onClose}
-        aria-label="Close 3D model"
+        aria-label={t.equipment.model.close}
         className="absolute top-1 right-2 z-20 cursor-pointer px-2 text-[4.4rem] leading-none text-stat hover:opacity-75 focus-visible:opacity-75 mobile:text-[3.4rem]"
       >
         ×

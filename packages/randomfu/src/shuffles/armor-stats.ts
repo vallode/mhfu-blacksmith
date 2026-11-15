@@ -2,7 +2,7 @@
  * Armor stats: defense, elemental resistances, decoration slots and rarity
  * of each piece the smithy makes, in its own `ArmorValue` (mhfu-extract's
  * `tables/armor.ts`), so they go with the piece wherever the armor shuffle
- * puts it. Each stat is kept, shuffled or randomized on its own:
+ * puts it. Each stat is left alone, shuffled or randomized on its own:
  *
  * - defense: u8 at +12, the piece's level 1 defense. Every level adds 2
  *   (`defenceAtLevel`) up to the last of the seven sphere caps (u8, +20 to
@@ -43,7 +43,7 @@ import { displayRarity, rankFromRarity } from "mhfu-extract/src/emit/common.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import type { Edits } from "../edits.js";
 import type { Rng } from "../rng.js";
-import type { ArmorStatMode } from "../settings.js";
+import type { Mode } from "../settings.js";
 import { RARITY_AT, pieceName, readArmorPieces, spoilerPlace, type ArmorPiece } from "./armor.js";
 import {
   RarityBounds,
@@ -66,14 +66,14 @@ export type ArmorStat = "defense" | "resistances" | "slots" | "rarity";
 export const ARMOR_STATS: readonly ArmorStat[] = ["defense", "resistances", "slots", "rarity"];
 
 export interface ArmorStatOptions {
-  defense: ArmorStatMode;
+  defense: Mode;
   /** Defense factor spread (0.2 = 80% to 120%), when randomized. */
   defenseSpread: number;
-  resistances: ArmorStatMode;
+  resistances: Mode;
   /** Points each resistance can move, when randomized. */
   resistanceSpread: number;
-  slots: ArmorStatMode;
-  rarity: ArmorStatMode;
+  slots: Mode;
+  rarity: Mode;
   /** Levels rarity can move, when randomized. */
   raritySpread: number;
 }
@@ -250,7 +250,7 @@ export function randomizeArmorStats(
     });
     notes.push(`Rarity moves by up to ${spread}, staying within its rank (Low, High or G).`);
   }
-  if (options.rarity !== "keep") {
+  if (options.rarity !== "off") {
     notes.push(
       "This spoiler and the armor skills one list pieces by their new rarity. The armor shuffle's lists smithy places by the rarity on the disc, and every armor shuffle still groups pieces by that rarity. What the game uses armor rarity for hasn't been checked in game.",
     );

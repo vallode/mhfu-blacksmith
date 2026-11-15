@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useToast } from "@/context/ToastContext";
 import { useOffline } from "@/context/OfflineContext";
+import { useT } from "@/context/LanguageContext";
 
 const TOAST_ID = "offline-download";
 const STORAGE_KEY = "mhfu_offline_prompt";
@@ -34,6 +35,7 @@ function remembered(): string | null {
 export default function OfflineDownload() {
   const { toast, update, dismiss } = useToast();
   const offline = useOffline();
+  const text = useT().site.offline.toast;
   const shown = useRef(false);
 
   // Decide whether to show the initial prompt once the first cache check settles.
@@ -51,16 +53,13 @@ export default function OfflineDownload() {
     shown.current = true;
     toast({
       id: TOAST_ID,
-      title: "Download for offline",
-      message:
-        offline.cached > 0
-          ? `Partially cached (${offline.cached}/${offline.total}). Finish downloading so the smithy works without a connection.`
-          : "Save weapon, armor, and monster data so search and browsing work without a connection.",
+      title: text.title,
+      message: offline.cached > 0 ? text.partial(offline.cached, offline.total) : text.prompt,
       duration: null,
       actions: [
-        { label: "Download", onClick: () => offline.download() },
+        { label: text.download, onClick: () => offline.download() },
         {
-          label: "Not now",
+          label: text.notNow,
           onClick: () => {
             remember("dismissed");
             dismiss(TOAST_ID);
@@ -82,7 +81,7 @@ export default function OfflineDownload() {
 
     if (offline.status === "downloading") {
       update(TOAST_ID, {
-        message: `Downloading… ${offline.cached}/${offline.total} (${offline.progress}%)`,
+        message: text.progress(offline.cached, offline.total, offline.progress),
         progress: offline.progress,
         actions: [],
         duration: null,
@@ -90,21 +89,21 @@ export default function OfflineDownload() {
     } else if (offline.status === "complete") {
       remember("complete");
       update(TOAST_ID, {
-        title: "Ready offline",
-        message: `${offline.cached} of ${offline.total} files cached — the smithy works without a connection.`,
+        title: text.readyTitle,
+        message: text.ready(offline.cached, offline.total),
         progress: 100,
         actions: [],
         duration: 4500,
       });
     } else if (offline.status === "error") {
       update(TOAST_ID, {
-        title: "Download failed",
-        message: "Check your connection and try again.",
+        title: text.failedTitle,
+        message: text.failed,
         progress: undefined,
         actions: [
-          { label: "Retry", onClick: () => offline.download() },
+          { label: text.retry, onClick: () => offline.download() },
           {
-            label: "Not now",
+            label: text.notNow,
             onClick: () => {
               remember("dismissed");
               dismiss(TOAST_ID);

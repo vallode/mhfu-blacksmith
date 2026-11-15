@@ -1,5 +1,8 @@
+"use client";
+
+import { useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
-import { CROWN_LABELS, type Crown } from "@/lib/crowns";
+import { chancePercent, type Crown } from "@/lib/crowns";
 
 /**
  * The Guild Card's crown sprites, from its award sheet (`cockpit/guild.tmh`
@@ -14,6 +17,15 @@ const SPRITES: Record<Crown, { src: string; size: string }> = {
   mini: { src: "/images/crown-mini.png", size: "h-[13px] w-[13px]" },
 };
 
+/** A crown chance (0-1) as a short percent in the site's language: "8.2%", "<0.1%". */
+export function useFormatChance(): (chance: number) => string {
+  const { t, formatNumber } = useLocale();
+  return (chance) => {
+    const { percent, below } = chancePercent(chance);
+    return (below ? t.monsters.crowns.below : t.monsters.crowns.chance)(formatNumber(percent));
+  };
+}
+
 export default function CrownIcon({
   crown,
   title,
@@ -24,8 +36,9 @@ export default function CrownIcon({
   title?: string;
   className?: string;
 }) {
+  const t = useT().monsters.crowns;
   const { src, size } = SPRITES[crown];
-  const label = title ?? `${CROWN_LABELS[crown]} crown`;
+  const label = title ?? t.crown[crown];
   return (
     <img
       src={src}

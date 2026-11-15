@@ -436,21 +436,3 @@ export function decodeSet(code: string, tables: CodecTables): DecodeResult {
   const raw = decodeRaw(bytes);
   return raw.ok ? fromRaw(raw.raw, tables) : raw;
 }
-
-/** For the page: what went wrong opening a code, in words. */
-export function describeDecodeError(error: DecodeError): string {
-  switch (error.kind) {
-    case "version":
-      return `This link is from a newer or unknown version of the set builder (format ${error.version}).`;
-    case "malformed":
-      return "This link's set code is damaged or incomplete.";
-    case "unknown-ids":
-      return "None of the armor or decorations in this link exist in this version of the site.";
-  }
-}
-
-export function describeDropped(d: DroppedRef): string {
-  return d.kind === "piece"
-    ? `an unknown ${d.slot} piece (ID ${d.gameId})`
-    : `an unknown decoration (item ${d.itemId})${d.bin ? "" : " in an unknown slot"}`;
-}

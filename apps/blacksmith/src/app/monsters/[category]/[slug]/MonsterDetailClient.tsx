@@ -23,13 +23,16 @@ import {
   questsWithMonster,
   smallMonsterStages,
 } from "@/lib/quests";
-import { crownFor, formatCm, sizeInCm, type Crown } from "@/lib/crowns";
+import { crownFor, sizeInCm, type Crown } from "@/lib/crowns";
 import CrownIcon from "@/components/CrownIcon";
 import CrownCutoffs from "@/components/CrownCutoffs";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useMonsterHitboxes, useMonsterModel, type HitboxCapsule } from "@/lib/models";
 import type { Monster, MonsterBreak } from "@/lib/types";
+import { useLocale } from "@/context/LanguageContext";
+import type { Messages } from "@/lib/i18n/messages";
+import { breakLabel, partLabel } from "@/lib/i18n/monster-labels";
 import Loading from "@/components/Loading";
 
 interface Props {
@@ -38,18 +41,16 @@ interface Props {
 }
 
 const HITZONE_COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
-// The game's abbreviated column headers.
-const HITZONE_LABELS: Record<string, string> = {
-  cut: "Cut",
-  bash: "Bsh",
-  shot: "Sht",
-  fir: "Fir",
-  wtr: "Wtr",
-  thn: "Thn",
-  ice: "Ice",
-  drg: "Drg",
-  ko: "KO",
-};
+
+/**
+ * A drop table rank's tab label: one of the common ranks ("low rank",
+ * "g-rank"), else the bestiary's own ("1-2 star guild"), else as the data has it.
+ */
+function rankLabel(t: Messages, rank: string): string {
+  const id = rank.trim().toLowerCase().replace(/\s+/g, "-");
+  if (id in t.common.ranks) return t.common.ranks[id as keyof Messages["common"]["ranks"]];
+  return t.monsters.drops.ranks[id] ?? formatRank(rank);
+}
 
 /** A hitzone part's colour on the model, by its place in the hitzone table. */
 const hitboxColor = (index: number) => `var(--color-hitbox-${(index % 8) + 1})`;
@@ -81,16 +82,18 @@ const hideBroken: React.ReactEventHandler<HTMLImageElement> = (e) => {
 
 /** A Guild Card size record (percent) in centimetres, with the crown it earns. */
 function SizeRecord({ size, monster }: { size: number; monster: Monster }) {
+  const { t, formatNumber } = useLocale();
   const crown = monster.crowns ? crownFor(size, monster.crowns) : null;
   return (
     <span className="text-white tabular-nums">
-      {formatCm(sizeInCm(size, monster.base_size ?? 0))} cm
+      {t.monsters.detail.cm(formatNumber(Math.round(sizeInCm(size, monster.base_size ?? 0))))}
       {crown && <CrownIcon crown={crown} className="ml-[0.4rem] align-middle" />}
     </span>
   );
 }
 
 export default function MonsterDetailClient({ category, slug }: Props) {
+  const { t, game, formatNumber } = useLocale();
   const { item: monster, loading } = useMonster(category, slug);
   const modelUrl = useMonsterModel(monster?.name);
   const { quests } = useQuests();
@@ -114,9 +117,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   const hitboxParts = useMemo<HitzonePart[]>(() => {
     if (!hitboxes || !monster?.hitzones) return [];
     return Object.keys(monster.hitzones)
-      .map((name, i) => ({ name, color: hitboxColor(i) }))
+      .map((name, i) => ({ name, label: partLabel(t, name), color: hitboxColor(i) }))
       .filter(({ name }) => hitboxes.some((capsule) => capsule.parts.includes(name)));
-  }, [hitboxes, monster?.hitzones]);
+  }, [hitboxes, monster?.hitzones, t]);
 
   const capsules = useMemo<ModelCapsule[]>(() => {
     if (!hitboxes || (!showHitzones && !highlight)) return [];
@@ -147,8 +150,16 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // The nav and the list of monsters on the left come from the monsters
   // layout (MonsterShell), which stays mounted; this is only the detail panel.
   if (loading || !monster) {
-    return <DetailCard>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</DetailCard>;
+    return (
+      <DetailCard>
+        {loading ? <Loading>{t.common.loading}</Loading> : <p>{t.monsters.detail.notFound}</p>}
+      </DetailCard>
+    );
   }
+
+  const name = game.name("monster", monster.name);
+  /** Sizes are stored to two decimals; whole centimetres are enough here. */
+  const formatSize = (cm: number) => formatNumber(Math.round(cm));
 
   const hitzoneEntries = monster.hitzones ? Object.entries(monster.hitzones) : [];
   // Each hitzone row's flinch threshold, worked out by the data build; no
@@ -174,20 +185,24 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       ? [
           {
             id: "hitzones",
-            label: "Hitzones",
+            label: t.monsters.detail.tabs.hitzones,
             content: (
               <>
                 <table className={hitzoneTable}>
                   <thead>
                     <tr>
                       <th>
-                        Part
-                        {flinchByRow && <span className={flinchBelow}>Fln</span>}
+                        {t.monsters.hitzones.part}
+                        {flinchByRow && (
+                          <span className={flinchBelow}>{t.monsters.hitzones.flinch}</span>
+                        )}
                       </th>
                       {HITZONE_COLS.map((col) => (
-                        <th key={col}>{HITZONE_LABELS[col]}</th>
+                        <th key={col}>{t.monsters.hitzones.columns[col]}</th>
                       ))}
-                      {flinchByRow && <th className={flinchColumn}>Fln</th>}
+                      {flinchByRow && (
+                        <th className={flinchColumn}>{t.monsters.hitzones.flinch}</th>
+                      )}
                     </tr>
                   </thead>
                   <tbody>
@@ -202,10 +217,15 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                         className={cn(modelOpen && hoveredPart === part && "bg-white/10")}
                       >
                         <td style={{ color: partColor(part) }}>
-                          {part}
+                          {/* The table capitalises each word of a part id; the
+                              label is already cased as the language writes it. */}
+                          <span className="normal-case">{partLabel(t, part)}</span>
                           {breakable.has(part) && (
-                            <span className="ml-[0.4rem] text-fine text-gold" title="Breakable">
-                              ◆<span className="sr-only"> (breakable)</span>
+                            <span
+                              className="ml-[0.4rem] text-fine text-gold"
+                              title={t.monsters.breaks.breakable}
+                            >
+                              ◆<span className="sr-only">{t.monsters.breaks.breakableSr}</span>
                             </span>
                           )}
                           {flinchByRow?.[part] && (
@@ -252,7 +272,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
   // One tab per rank's drop tables
   const dropTabs: Tab[] = Object.entries(monster.drops ?? {}).map(([rank, sources]) => ({
     id: rank,
-    label: formatRank(rank),
+    label: rankLabel(t, rank),
     content: <MonsterDrops sources={sources} />,
   }));
   // Crown cutoffs in centimetres.
@@ -284,7 +304,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       ? [
           {
             id: "quests",
-            label: "Quests",
+            label: t.monsters.detail.tabs.quests,
             content: (
               <MonsterQuests
                 quests={monsterQuests}
@@ -304,7 +324,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
       ? [
           {
             id: "spawns",
-            label: "Most plentiful",
+            label: t.monsters.detail.tabs.spawns,
             content: <SmallMonsterQuests stages={stages} />,
           },
         ]
@@ -322,7 +342,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
         <div className="flex flex-row items-start gap-4 mobile:flex-col-reverse mobile:items-stretch">
           <div className="flex min-w-0 flex-1 flex-col gap-2 text-main text-gold">
             <div className="flex items-center">
-              <p className="min-w-0 leading-[1.25] whitespace-normal">{monster.name}</p>
+              <p className="min-w-0 leading-[1.25] whitespace-normal">{name}</p>
               {modelUrl && (
                 <ModelButton
                   open={modelOpen}
@@ -332,7 +352,9 @@ export default function MonsterDetailClient({ category, slug }: Props) {
               )}
             </div>
             {monster.habitats && (
-              <p className="leading-[1.25] whitespace-normal">{monster.habitats.join(", ")}</p>
+              <p className="leading-[1.25] whitespace-normal">
+                {monster.habitats.map((map) => game.name("map", map)).join(", ")}
+              </p>
             )}
             {monster.description && (
               <p className="text-small leading-[1.4] whitespace-normal text-white">
@@ -341,27 +363,30 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             )}
             {sizeRange && (
               <p className="text-small text-stat">
-                Size:{" "}
+                {t.monsters.detail.size}{" "}
                 <span className="text-white tabular-nums">
-                  {formatCm(sizeRange.min)}–{formatCm(sizeRange.max)} cm
+                  {t.monsters.detail.sizeRange(
+                    formatSize(sizeRange.min),
+                    formatSize(sizeRange.max),
+                  )}
                 </span>
               </p>
             )}
             {monster.base_hp !== undefined && (
               <p className="text-small text-stat">
-                Base HP:{" "}
-                <span className="text-white tabular-nums">
-                  {monster.base_hp.toLocaleString("en-US")}
-                </span>
+                {t.monsters.detail.baseHp}{" "}
+                <span className="text-white tabular-nums">{formatNumber(monster.base_hp)}</span>
               </p>
             )}
             {record && (
               <p className="text-small whitespace-normal text-stat">
-                Hunted: <span className="text-white tabular-nums">{record.kills}</span>
+                {t.monsters.detail.hunted}{" "}
+                <span className="text-white tabular-nums">{formatNumber(record.kills)}</span>
                 {canCapture(monster) && (
                   <>
-                    {" · "}Captured:{" "}
-                    <span className="text-white tabular-nums">{record.captures}</span>
+                    {" · "}
+                    {t.monsters.detail.captured}{" "}
+                    <span className="text-white tabular-nums">{formatNumber(record.captures)}</span>
                   </>
                 )}
               </p>
@@ -373,13 +398,15 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 <p className="text-small whitespace-normal text-stat">
                   {record.largest > 0 && (
                     <>
-                      Largest: <SizeRecord size={record.largest} monster={monster} />
+                      {t.monsters.detail.largest}{" "}
+                      <SizeRecord size={record.largest} monster={monster} />
                     </>
                   )}
                   {record.largest > 0 && record.smallest > 0 && " · "}
                   {record.smallest > 0 && (
                     <>
-                      Smallest: <SizeRecord size={record.smallest} monster={monster} />
+                      {t.monsters.detail.smallest}{" "}
+                      <SizeRecord size={record.smallest} monster={monster} />
                     </>
                   )}
                 </p>
@@ -389,7 +416,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
             <img
               className="h-[9rem] w-[9rem] object-contain pixelated"
               src={`/images/monsters/${slug}.png`}
-              alt={monster.name}
+              alt={name}
               decoding="sync"
               onError={hideBroken}
             />
@@ -399,18 +426,20 @@ export default function MonsterDetailClient({ category, slug }: Props) {
         <DetailBody>
           <DetailRule />
           {/* Keyed on the monster so the selected tab resets when navigating */}
-          {tabs.length > 0 && <Tabs key={slug} label={`${monster.name} data`} tabs={tabs} />}
+          {tabs.length > 0 && (
+            <Tabs key={slug} label={t.monsters.detail.tabsLabel(name)} tabs={tabs} />
+          )}
         </DetailBody>
       </DetailCard>
       {modelOpen && (
-        <ModelPopover title={monster.name} onClose={() => setOpenModel(null)}>
+        <ModelPopover title={name} onClose={() => setOpenModel(null)}>
           <div className="relative h-full w-full">
-            <ModelViewer src={modelUrl} label={monster.name} capsules={capsules} />
+            <ModelViewer src={modelUrl} label={name} capsules={capsules} />
             {hitboxParts.length > 0 && (
               <HitzoneControls
                 parts={hitboxParts}
                 breaks={breaks
-                  .map((b, i) => ({ key: breakKey(i), name: b.name }))
+                  .map((b, i) => ({ key: breakKey(i), name: breakLabel(t, b.name) }))
                   .filter((_, i) => (breakHitzones[i]?.length ?? 0) > 0)}
                 show={showHitzones}
                 onShowChange={setShowHitzones}

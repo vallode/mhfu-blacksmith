@@ -7,6 +7,7 @@
  * picker for that bin's free slots.
  */
 import { useMemo, useState } from "react";
+import { useT } from "@/context/LanguageContext";
 import type { ArmorRank, ArmorSlot } from "@/lib/constants";
 import type { Tier } from "@/lib/min-rank";
 import {
@@ -54,6 +55,7 @@ export default function SetEditor({
   /** Problems found opening the set (e.g. a shared link's unknown IDs). */
   extraWarnings?: string[];
 }) {
+  const t = useT();
   const [picking, setPicking] = useState<Picking>(null);
   const evaluated = useMemo(() => evaluateBuild(data, set, wanted), [data, set, wanted]);
   const warnings = useMemo(() => validateBuild(set), [set]);
@@ -112,7 +114,7 @@ export default function SetEditor({
         weaponIcon={weaponIcon}
         status={
           <>
-            <PanelTitle>Status</PanelTitle>
+            <PanelTitle>{t.setBuilder.results.status}</PanelTitle>
             <SetStatus set={evaluated} />
           </>
         }

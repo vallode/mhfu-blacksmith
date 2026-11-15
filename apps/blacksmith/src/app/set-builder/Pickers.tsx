@@ -9,12 +9,16 @@ import { useMemo, useState } from "react";
 import Icon from "@/components/Icon";
 import { Slots } from "@/components/DetailPanel";
 import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
+import { useGameText, useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { ARMOR_RANKS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
+import type { GameText } from "@/lib/i18n/game-text";
+import { LOCALE_TAGS } from "@/lib/i18n/locales";
 import { isAvailable, type Tier } from "@/lib/min-rank";
-import { BIN_LABELS, suitsHunter, type BuildSet } from "@/lib/set-build";
+import { suitsHunter, type BuildSet } from "@/lib/set-build";
 import { TORSO_UP_TREE, type DecoBin, type Deco, type Piece } from "@/lib/set-search";
 import * as ui from "@/styles/settings";
+import { binLabel } from "./ArmorSetView";
 
 /** Rows shown at once; the search narrows the rest. */
 const MAX_ROWS = 150;
@@ -31,6 +35,7 @@ function PickerFrame({
   onClose: () => void;
   children: React.ReactNode;
 }) {
+  const t = useT();
   return (
     <div
       className="flex flex-col gap-[1.3rem]"
@@ -43,7 +48,7 @@ function PickerFrame({
           {title}
         </h3>
         <button type="button" className={ui.button} onClick={onClose}>
-          Back
+          {t.common.back}
         </button>
       </div>
       {children}
@@ -53,6 +58,7 @@ function PickerFrame({
 
 /** "Attack +3  Expert +2" with the wanted trees first and brighter. */
 function PointsList({ points, wanted }: { points: Record<string, number>; wanted: string[] }) {
+  const game = useGameText();
   const entries = Object.entries(points)
     .filter(([t, v]) => v !== 0 && t !== TORSO_UP_TREE)
     .sort((a, b) => Number(wanted.includes(b[0])) - Number(wanted.includes(a[0])));
@@ -66,7 +72,7 @@ function PointsList({ points, wanted }: { points: Record<string, number>; wanted
             v < 0 ? "text-negative" : wanted.includes(t) ? "text-positive" : "text-white/50",
           )}
         >
-          {t} {v > 0 ? `+${v}` : v}
+          {game.name("skill", t)} {v > 0 ? `+${v}` : v}
         </span>
       ))}
     </span>
@@ -76,19 +82,27 @@ function PointsList({ points, wanted }: { points: Record<string, number>; wanted
 const wantedScore = (points: Record<string, number>, wanted: string[]) =>
   wanted.reduce((n, t) => n + Math.max(0, points[t] ?? 0), 0);
 
+/**
+ * Does a piece or decoration match the search box? Its name and skill trees
+ * match in English and in the site's language.
+ */
+function matches(
+  game: GameText,
+  kind: "armor" | "decoration",
+  item: { name: string; points: Record<string, number> },
+  q: string,
+): boolean {
+  const has = (english: string, translated: string) =>
+    english.toLowerCase().includes(q) || translated.toLowerCase().includes(q);
+  return (
+    has(item.name, game.name(kind, item.name)) ||
+    Object.keys(item.points).some((t) => has(t, game.name("skill", t)))
+  );
+}
+
 type RankFilter = ArmorRank | "all";
-const RANK_CHOICES: Choice<RankFilter>[] = [
-  { value: "low-rank", label: "Low Rank" },
-  { value: "high-rank", label: "High Rank" },
-  { value: "g-rank", label: "G Rank" },
-  { value: "all", label: "All ranks" },
-];
 type PieceSort = "skills" | "defence" | "name";
-const PIECE_SORTS: Choice<PieceSort>[] = [
-  { value: "skills", label: "Your skills" },
-  { value: "defence", label: "Defense" },
-  { value: "name", label: "Name" },
-];
+const PIECE_SORTS: PieceSort[] = ["skills", "defence", "name"];
 
 export function PiecePicker({
   slot,
@@ -123,9 +137,22 @@ export function PiecePicker({
   const [rankFilter, setRankFilter] = useState<RankFilter>(rank);
   const [sort, setSort] = useState<PieceSort>(wanted.length > 0 ? "skills" : "defence");
   const [ownedOnly, setOwnedOnly] = useState(ownedOnlyDefault && !!isOwned);
+  const t = useT();
+  const text = t.setBuilder.pickers;
+  const game = useGameText();
+  const { locale } = useLocale();
+  const rankChoices: Choice<RankFilter>[] = [
+    ...ARMOR_RANKS.map((r) => ({ value: r, label: t.common.ranks[r] })),
+    { value: "all", label: text.allRanks },
+  ];
+  const sortChoices: Choice<PieceSort>[] = PIECE_SORTS.map((s) => ({
+    value: s,
+    label: text.sorts[s],
+  }));
 
   const list = useMemo(() => {
     const q = query.trim().toLowerCase();
+    const collator = new Intl.Collator(LOCALE_TAGS[locale]);
     const shown = pieces.filter(
       (p) =>
         p.slot === slot &&
@@ -133,9 +160,7 @@ export function PiecePicker({
         suitsHunter(p, hunter.hunterType, hunter.sex) &&
         isAvailable(p.minRank, questLimit) &&
         (!ownedOnly || isOwned?.(p)) &&
-        (!q ||
-          p.name.toLowerCase().includes(q) ||
-          Object.keys(p.points).some((t) => t.toLowerCase().includes(q))),
+        (!q || matches(game, "armor", p, q)),
     );
     const by: Record<PieceSort, (a: Piece, b: Piece) => number> = {
       skills: (a, b) =>
@@ -143,21 +168,34 @@ export function PiecePicker({
         b.slots - a.slots ||
         b.defence - a.defence,
       defence: (a, b) => b.defence - a.defence,
-      name: (a, b) => a.name.localeCompare(b.name),
+      name: (a, b) => collator.compare(game.name("armor", a.name), game.name("armor", b.name)),
     };
     return shown.sort(
       (a, b) =>
         by[sort](a, b) || ARMOR_RANKS.indexOf(a.rank) - ARMOR_RANKS.indexOf(b.rank) || a.id - b.id,
     );
-  }, [pieces, slot, rankFilter, hunter, questLimit, ownedOnly, isOwned, query, sort, wanted]);
+  }, [
+    pieces,
+    slot,
+    rankFilter,
+    hunter,
+    questLimit,
+    ownedOnly,
+    isOwned,
+    query,
+    sort,
+    wanted,
+    game,
+    locale,
+  ]);
 
   return (
-    <PickerFrame title={`${BIN_LABELS[slot]} armor`} onClose={onClose}>
+    <PickerFrame title={text.pieceTitle(binLabel(t, slot))} onClose={onClose}>
       <input
         className={ui.searchInput}
         type="search"
-        aria-label="Search armor by name or skill"
-        placeholder="Search by name or skill"
+        aria-label={text.searchArmor}
+        placeholder={text.searchPlaceholder}
         value={query}
         autoComplete="off"
         spellCheck={false}
@@ -165,25 +203,32 @@ export function PiecePicker({
         onChange={(e) => setQuery(e.target.value)}
       />
       <SelectorRow
-        label="Rank"
-        choices={RANK_CHOICES}
+        label={text.rank}
+        choices={rankChoices}
         value={rankFilter}
         onChange={setRankFilter}
       />
-      <SelectorRow label="Sort by" choices={PIECE_SORTS} value={sort} onChange={setSort} />
-      {isOwned && <ToggleRow label="Owned armor only" value={ownedOnly} onChange={setOwnedOnly} />}
+      <SelectorRow label={text.sortBy} choices={sortChoices} value={sort} onChange={setSort} />
+      {isOwned && (
+        <ToggleRow label={t.setBuilder.form.ownedOnly} value={ownedOnly} onChange={setOwnedOnly} />
+      )}
       <p className={ui.note}>
-        {hunter.hunterType}, {hunter.sex.toLowerCase()}
-        {questLimit ? ", up to your quest progress" : ""}: {list.length}{" "}
-        {list.length === 1 ? "piece" : "pieces"}
-        {list.length > MAX_ROWS ? ` (first ${MAX_ROWS} shown; search to narrow)` : ""}.
+        {text.pieceCount(
+          t.setBuilder.hunterTypes[hunter.hunterType],
+          t.setBuilder.sexes[hunter.sex],
+          !!questLimit,
+          list.length,
+          list.length > MAX_ROWS ? MAX_ROWS : null,
+        )}
       </p>
       <ul className="m-0 list-none p-0">
         {current && (
           <li>
             <button type="button" className={rowButton} onClick={() => onPick(null)}>
               <span />
-              <span className="text-white/60">Remove {current.name}</span>
+              <span className="text-white/60">
+                {t.setBuilder.setView.remove(game.name("armor", current.name))}
+              </span>
               <span />
             </button>
           </li>
@@ -199,12 +244,16 @@ export function PiecePicker({
               <Icon type={p.slot} size="mini" rarity={p.rarity} alt="" />
               <span className="flex min-w-0 flex-col">
                 <span className="truncate mobile:whitespace-normal">
-                  {p.name}
+                  {game.name("armor", p.name)}
                   {isOwned?.(p) && (
-                    <span className="ml-[0.8rem] text-fine text-positive">Owned</span>
+                    <span className="ml-[0.8rem] text-fine text-positive">
+                      {t.setBuilder.setView.owned}
+                    </span>
                   )}
                   {p.torsoUp && (
-                    <span className="ml-[0.8rem] text-fine text-white/50">Torso Up</span>
+                    <span className="ml-[0.8rem] text-fine text-white/50">
+                      {t.setBuilder.setView.torsoUp}
+                    </span>
                   )}
                 </span>
                 <PointsList points={p.points} wanted={wanted} />
@@ -240,51 +289,50 @@ export function DecorationPicker({
   onClose: () => void;
 }) {
   const [query, setQuery] = useState("");
+  const t = useT();
+  const text = t.setBuilder.pickers;
+  const game = useGameText();
+  const { locale } = useLocale();
   const list = useMemo(() => {
     const q = query.trim().toLowerCase();
+    const collator = new Intl.Collator(LOCALE_TAGS[locale]);
     return decorations
       .filter(
         (d) =>
           d.slots <= free &&
           isAvailable(d.minRank, questLimit) &&
-          (!q ||
-            d.name.toLowerCase().includes(q) ||
-            Object.keys(d.points).some((t) => t.toLowerCase().includes(q))),
+          (!q || matches(game, "decoration", d, q)),
       )
       .sort(
         (a, b) =>
           wantedScore(b.points, wanted) / b.slots - wantedScore(a.points, wanted) / a.slots ||
-          a.name.localeCompare(b.name),
+          collator.compare(game.name("decoration", a.name), game.name("decoration", b.name)),
       );
-  }, [decorations, free, questLimit, query, wanted]);
+  }, [decorations, free, questLimit, query, wanted, game, locale]);
 
   return (
-    <PickerFrame
-      title={`${BIN_LABELS[bin]} jewel (${free} ${free === 1 ? "slot" : "slots"} free)`}
-      onClose={onClose}
-    >
+    <PickerFrame title={text.decorationTitle(binLabel(t, bin), free)} onClose={onClose}>
       <input
         className={ui.searchInput}
         type="search"
-        aria-label="Search decorations by name or skill"
-        placeholder="Search by name or skill"
+        aria-label={text.searchDecorations}
+        placeholder={text.searchPlaceholder}
         value={query}
         autoComplete="off"
         spellCheck={false}
         autoFocus
         onChange={(e) => setQuery(e.target.value)}
       />
-      <p className={ui.note}>
-        {list.length} {list.length === 1 ? "decoration fits" : "decorations fit"}
-        {questLimit ? ", up to your quest progress" : ""}.
-      </p>
+      <p className={ui.note}>{text.decorationCount(list.length, !!questLimit)}</p>
       <ul className="m-0 list-none p-0">
         {list.map((d) => (
           <li key={d.id}>
             <button type="button" className={rowButton} onClick={() => onPick(d)}>
               <Icon type="decoration" size="mini" color={d.color} alt="" />
               <span className="flex min-w-0 flex-col">
-                <span className="truncate mobile:whitespace-normal">{d.name}</span>
+                <span className="truncate mobile:whitespace-normal">
+                  {game.name("decoration", d.name)}
+                </span>
                 <PointsList points={d.points} wanted={wanted} />
               </span>
               <span className="text-fine">

@@ -27,9 +27,16 @@ export const WEAPON_CLASS: Record<string, number> = {
   bow: 10,
 };
 
+/**
+ * What a hunter clip is, for its name in the viewer: the two idles, or the
+ * weapon file's Nth movement or attack (the disc names none of them).
+ */
+export type HunterMotion =
+  { kind: "sheathed-idle" | "drawn-idle" } | { kind: "move" | "attack"; n: number };
+
 /** A hunter's clip, as the viewer lists it. */
 export interface HunterClip extends MotionClip {
-  label: string;
+  motion: HunterMotion;
   /** Whether the weapon is on the back (a common motion) instead of in hand. */
   sheathed: boolean;
 }
@@ -51,28 +58,21 @@ export async function fetchHunterClips(type: string, signal?: AbortSignal): Prom
   ]);
   const sheathed = common
     .filter((clip) => clip.slot === SHEATHED_IDLE_SLOT)
-    .map((clip): HunterClip => ({ ...clip, label: "Sheathed idle", sheathed: true }));
+    .map((clip): HunterClip => ({ ...clip, motion: { kind: "sheathed-idle" }, sheathed: true }));
   // Weapon clips by file group: 0 movement and stance, 1 a lone action,
   // 2 on attacks. No other naming is on the disc.
-  const count = new Map<string, number>();
-  const named = (kind: string) => {
-    const n = (count.get(kind) ?? 0) + 1;
-    count.set(kind, n);
-    return `${kind} ${n}`;
-  };
+  const count = { move: 0, attack: 0 };
+  const numbered = (kind: "move" | "attack"): HunterMotion => ({ kind, n: ++count[kind] });
   const drawn = weapon.map((clip): HunterClip => {
     const group = Math.floor(clip.slot / GROUP_SLOTS);
-    const label =
+    const motion: HunterMotion =
       group === 0 && clip.slot === DRAWN_IDLE_SLOT
-        ? "Drawn idle"
-        : named(group >= 2 ? "Attack" : "Move");
-    return { ...clip, label, sheathed: false };
+        ? { kind: "drawn-idle" }
+        : numbered(group >= 2 ? "attack" : "move");
+    return { ...clip, motion, sheathed: false };
   });
-  return [
-    ...sheathed,
-    ...drawn.filter((clip) => clip.label === "Drawn idle"),
-    ...drawn.filter((clip) => clip.label !== "Drawn idle"),
-  ];
+  const isDrawnIdle = (clip: HunterClip) => clip.motion.kind === "drawn-idle";
+  return [...sheathed, ...drawn.filter(isDrawnIdle), ...drawn.filter((clip) => !isDrawnIdle(clip))];
 }
 
 type Vec3 = [number, number, number];
