@@ -44,6 +44,8 @@ import {
   eulerToQuat,
   invertAffine,
   multiplyMatrices,
+  normalMatrix,
+  transform,
   type Mat4,
 } from "./animation.js";
 import type { Pmo } from "./pmo.js";
@@ -188,21 +190,6 @@ const determinant = (m: Mat4): number =>
   m[0]! * (m[5]! * m[10]! - m[6]! * m[9]!) -
   m[4]! * (m[1]! * m[10]! - m[2]! * m[9]!) +
   m[8]! * (m[1]! * m[6]! - m[2]! * m[5]!);
-
-const transform = (m: Mat4, [x, y, z]: Vec3, w: number): Vec3 => [
-  m[0]! * x + m[4]! * y + m[8]! * z + m[12]! * w,
-  m[1]! * x + m[5]! * y + m[9]! * z + m[13]! * w,
-  m[2]! * x + m[6]! * y + m[10]! * z + m[14]! * w,
-];
-
-/** The matrix normals take: the inverse transpose of `m`'s linear part. */
-function normalMatrix(m: Mat4): Mat4 {
-  const inverse = invertAffine(m);
-  const out = new Array<number>(16).fill(0);
-  for (let col = 0; col < 3; col++)
-    for (let row = 0; row < 3; row++) out[col * 4 + row] = inverse[row * 4 + col]!;
-  return out;
-}
 
 interface Posed {
   /** Per mesh, primitive and vertex: position and normal in model units. */

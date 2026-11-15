@@ -52,6 +52,7 @@ import { packMotions } from "../models/motion-pack.js";
 import { readMotionBank } from "../models/motion.js";
 import { packageModel } from "../models/rig.js";
 import { spawnHidden, withoutHidden } from "../models/spawn-parts.js";
+import { wearProps } from "../models/worn-props.js";
 import { isPac, readPac, type PacEntry } from "../models/pac.js";
 import { isPmo, type Pmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
@@ -148,18 +149,37 @@ async function packageToGlb(
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
   const model = packageModel(entries, pmoEntry.index, clipOptions);
   const { rig } = model;
-  // A monster is shown as it spawns: no broken parts, stump caps or rage
-  // layers. A table that doesn't fit the model leaves every part drawn.
-  if (name.startsWith("emmodel/"))
+  let textures = tmhEntry ? readTmh(tmhEntry.data) : [];
+  if (name.startsWith("emmodel/")) {
+    const pac = path.basename(name, ".pac");
+    // A monster is shown as it spawns: no broken parts, stump caps or rage
+    // layers. A table that doesn't fit the model leaves every part drawn.
     try {
-      model.pmo = withoutHidden(model.pmo, spawnHidden(path.basename(name, ".pac")));
+      model.pmo = withoutHidden(model.pmo, spawnHidden(pac));
     } catch (err) {
       console.log(`${name}: ${err instanceof Error ? err.message : String(err)}, drawing them all`);
     }
+    // And with what it wears from its props (King Shakalaka's crown). A
+    // package without them is drawn bare.
+    if (rig)
+      try {
+        ({ pmo: model.pmo, textures } = wearProps(
+          pac,
+          entries,
+          pmoEntry.index,
+          model.pmo,
+          rig.bones,
+          textures,
+        ));
+      } catch (err) {
+        console.log(
+          `${name}: ${err instanceof Error ? err.message : String(err)}, drawing it bare`,
+        );
+      }
+  }
   // An unrigged model's skeleton still splits it into pieces and poses it.
   const bones = rig ? undefined : weaponSkeleton(entries, pmoEntry.index);
   const { pmo, sheathed } = pose && bones ? poseWeapon(model.pmo, bones, pose) : { pmo: model.pmo };
-  const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
   const motions = rig?.clips?.length ? packMotions(rig.clips) : undefined;
   const { glb } = await buildGlb(
     pmo,
