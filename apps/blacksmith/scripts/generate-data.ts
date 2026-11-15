@@ -1,5 +1,5 @@
 /**
- * Transforms data/*.json (raw items) and the crafting trees built by
+ * Transforms data/mhfu/*.json (raw items) and the crafting trees built by
  * src/lib/trees.ts into
  * compact per-category bundles in public/data:
  *   - dictionaries.json          (shared materials/enums/strings/melodies)
@@ -421,9 +421,9 @@ const armorRefs = new Map<string, EquipRef>(); // "<slot>|<name>|<sex>" and "<sl
 
 // Weapons
 // Horn melodies, shared per note set: every horn with the same notes has
-// the same list (data/weapons/hunting-horn.json, from the disc).
+// the same list (data/mhfu/weapons/hunting-horn.json, from the disc).
 const melodies: Record<string, Melody[]> = {};
-for (const horn of readData<{ weapons: Weapon[] }>(dataDir, "weapons", "hunting-horn.json")
+for (const horn of readData<{ weapons: Weapon[] }>(dataDir, GAME, "weapons", "hunting-horn.json")
   .weapons) {
   if (!horn.notes || !horn.melodies) continue;
   const key = horn.notes.join("-");
@@ -437,14 +437,14 @@ for (const horn of readData<{ weapons: Weapon[] }>(dataDir, "weapons", "hunting-
 // minimum rank is known before any tree is written.
 const weaponMinRanks = new Map<string, MinRankTuple | undefined>();
 for (const type of WEAPON_TYPES) {
-  const { weapons } = readData<{ weapons: Weapon[] }>(dataDir, "weapons", `${type}.json`);
+  const { weapons } = readData<{ weapons: Weapon[] }>(dataDir, GAME, "weapons", `${type}.json`);
   for (const w of weapons)
     weaponMinRanks.set(`${type}|${slugify(w.name)}`, encodeMinRank(minRanks.weapon(type, w.name)));
 }
 const weaponMinRank: MinRankLookup = (type, slug) => weaponMinRanks.get(`${type}|${slug}`);
 
 for (const type of WEAPON_TYPES) {
-  const crafting = readData<{ weapons: Weapon[] }>(dataDir, "weapons", `${type}.json`);
+  const crafting = readData<{ weapons: Weapon[] }>(dataDir, GAME, "weapons", `${type}.json`);
   const tree = buildWeaponTree(type);
   const items = crafting.weapons.map((w) =>
     encodeWeapon({ ...w, slug: slugify(w.name) }, minRanks.weapon(type, w.name)),
@@ -461,11 +461,11 @@ for (const type of WEAPON_TYPES) {
   });
 }
 
-// Armor — data/armor/<slot>.json holds every rank in one file (each piece
+// Armor — data/mhfu/armor/<slot>.json holds every rank in one file (each piece
 // carries its own "rank"), while the crafting tree is still split per rank
 // (see buildArmorTree).
 for (const slot of ARMOR_SLOTS) {
-  const allPieces = readData<{ armor: ArmorPiece[] }>(dataDir, "armor", `${slot}.json`).armor;
+  const allPieces = readData<{ armor: ArmorPiece[] }>(dataDir, GAME, "armor", `${slot}.json`).armor;
   for (const rank of ARMOR_RANKS) {
     const pieces = allPieces.filter((p) => p.rank === rank);
     if (pieces.length === 0) continue;
@@ -499,19 +499,19 @@ for (const slot of ARMOR_SLOTS) {
 }
 
 // Every quest, for the monsters' size ranges and the quests bundle.
-const questDir = path.join(dataDir, "quests");
+const questDir = path.join(GAME_DATA_DIR, "quests");
 const quests = fs
   .readdirSync(questDir)
   .filter((f) => f.endsWith(".json"))
   .sort()
-  .flatMap((f) => readData<{ quests: QuestRecord[] }>(dataDir, "quests", f).quests);
+  .flatMap((f) => readData<{ quests: QuestRecord[] }>(dataDir, GAME, "quests", f).quests);
 const sizeRanges = monsterSizeRanges(quests);
 
 // Monsters
 for (const category of MONSTER_CATEGORIES) {
-  const p = path.join(dataDir, "monsters", `${category}.json`);
+  const p = path.join(GAME_DATA_DIR, "monsters", `${category}.json`);
   if (!fs.existsSync(p)) continue;
-  const data = readData<{ monsters: Monster[] }>(dataDir, "monsters", `${category}.json`);
+  const data = readData<{ monsters: Monster[] }>(dataDir, GAME, "monsters", `${category}.json`);
   const items = data.monsters.map((m) =>
     encodeMonster({ ...m, slug: slugify(m.name) }, sizeRanges.get(m.name)),
   );
@@ -526,18 +526,18 @@ for (const category of MONSTER_CATEGORIES) {
   const monsterPages = new Map<string, { category: string; slug: string }>();
   const baseHp = new Map<string, number>();
   for (const category of MONSTER_CATEGORIES) {
-    const p = path.join(dataDir, "monsters", `${category}.json`);
+    const p = path.join(GAME_DATA_DIR, "monsters", `${category}.json`);
     if (!fs.existsSync(p)) continue;
-    for (const m of readData<{ monsters: Monster[] }>(dataDir, "monsters", `${category}.json`)
+    for (const m of readData<{ monsters: Monster[] }>(dataDir, GAME, "monsters", `${category}.json`)
       .monsters) {
       monsterPages.set(m.name, { category, slug: slugify(m.name) });
       if (typeof m.base_hp === "number") baseHp.set(m.name, m.base_hp);
     }
   }
   const { index } = buildItemNameIndex(
-    readData<{ items: ItemRecord[] }>(dataDir, "items.json").items,
+    readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json").items,
   );
-  const gathering = readData<GatheringFile>(dataDir, "gathering.json");
+  const gathering = readData<GatheringFile>(dataDir, GAME, "gathering.json");
   const areaMaps = buildAreaMaps(gathering);
   const { bundle, unresolvedItems } = encodeQuestBundle({
     quests,
@@ -552,22 +552,22 @@ for (const category of MONSTER_CATEGORIES) {
   totalItems += bundle.items.length;
   push("quests.json", bundle);
 
-  // Where each item is gathered (data/gathering.json, data/farm.json) or sold (data/shops.json).
+  // Where each item is gathered (data/mhfu/gathering.json, data/mhfu/farm.json) or sold (data/mhfu/shops.json).
   push("area-maps.json", areaMaps);
   const places = buildItemPlaces(
     gathering,
-    readData<ShopsFile>(dataDir, "shops.json"),
-    readData<FarmFile>(dataDir, "farm.json"),
+    readData<ShopsFile>(dataDir, GAME, "shops.json"),
+    readData<FarmFile>(dataDir, GAME, "farm.json"),
     quests,
     (name) => index.get(normalizeItemName(name)),
   );
   push("item-places.json", encodeItemPlaces(places));
   push(
     "combinations.json",
-    encodeCombinations(readData<CombinationsFile>(dataDir, "combinations.json")),
+    encodeCombinations(readData<CombinationsFile>(dataDir, GAME, "combinations.json")),
   );
   const trades = encodeVeggieTrades(
-    readData<VeggieTradesFile>(dataDir, "veggie-trades.json"),
+    readData<VeggieTradesFile>(dataDir, GAME, "veggie-trades.json"),
     (name) => index.get(normalizeItemName(name)),
   );
   if (trades.unresolved.length > 0) {
@@ -578,11 +578,11 @@ for (const category of MONSTER_CATEGORIES) {
 
 // Decorations
 {
-  const crafting = readData<{ decorations: Decoration[] }>(dataDir, "decorations.json");
+  const crafting = readData<{ decorations: Decoration[] }>(dataDir, GAME, "decorations.json");
   const tree = buildDecorationTree();
   // The game's item IDs, for set share links (src/lib/set-codec.ts).
   const { index: itemIndex } = buildItemNameIndex(
-    readData<{ items: ItemRecord[] }>(dataDir, "items.json").items,
+    readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json").items,
   );
   const unmatched = crafting.decorations.filter(
     (d) => decorationItemId(d.name, itemIndex) === undefined,
@@ -611,15 +611,15 @@ for (const category of MONSTER_CATEGORIES) {
   });
 }
 
-// Skills: data/skills.json as is (skill trees and their activations), for the
+// Skills: data/mhfu/skills.json as is (skill trees and their activations), for the
 // set builder.
-push("skills.json", readData<{ skills: unknown[] }>(dataDir, "skills.json"));
+push("skills.json", readData<{ skills: unknown[] }>(dataDir, GAME, "skills.json"));
 
 // Equipment IDs: the weapons' and armor's game IDs (readData's
 // "equipment-ids.json" view, by slot name) resolved to page refs, by type code.
 {
   type IdEntry = { name: string; type?: string; sex?: string } | null;
-  const ids = readData<Record<string, IdEntry[]>>(dataDir, "equipment-ids.json");
+  const ids = readData<Record<string, IdEntry[]>>(dataDir, GAME, "equipment-ids.json");
   const out: EquipmentIds = EQUIP_TYPE_SLOTS.map((slot) =>
     (ids[slot] ?? []).map((e) => {
       if (!e) return null;
@@ -641,7 +641,7 @@ function itemIcon(record: ItemRecord | undefined): [string, string] | null {
 // Items (in-game item ID -> name). Runs after every bundle above so that all
 // recipe/drop material names are interned and can be linked to an item ID.
 {
-  const { items: records } = readData<{ items: ItemRecord[] }>(dataDir, "items.json");
+  const { items: records } = readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json");
   const { index } = buildItemNameIndex(records);
 
   // material name -> item ID, for every interned material that resolves.
@@ -729,7 +729,7 @@ push("dictionaries.json", dictionaries);
 
 // Write all files, compute sizes + content-hash manifest.
 import { createHash } from "crypto";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 
 fs.mkdirSync(outDir, { recursive: true });
 const hash = createHash("sha256");

@@ -8,6 +8,8 @@ import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import { useSectionHref, type MenuSection } from "@/app/MenuLink";
 import { cn } from "@/lib/cn";
+import { SITE_GAME } from "@/lib/constants";
+import type { GameSections } from "game-data/games";
 
 interface NavItem {
   label: string;
@@ -22,16 +24,19 @@ interface NavItem {
   tab?: boolean;
   /** Tab bar uses the 16px /images/<icon>-mini.png sprite. */
   tabMini?: boolean;
+  /** The game's section (its config's `sections`) the entry needs; the entry is left out without it. */
+  needs?: keyof GameSections;
 }
 
 /** The sidebar's entries, in groups with a divider between them: the game's data, then your own. */
-const NAV_GROUPS: NavItem[][] = [
+const ALL_NAV_GROUPS: NavItem[][] = [
   [
     {
       label: "Weapons",
       icon: "great-sword",
       match: "/blacksmith/",
       section: "weapons",
+      needs: "blacksmith",
       tab: true,
       tabMini: true,
     },
@@ -40,22 +45,59 @@ const NAV_GROUPS: NavItem[][] = [
       icon: "helmet",
       match: "/armorsmith/",
       section: "armor",
+      needs: "armorsmith",
       tab: true,
       tabMini: true,
     },
-    { label: "Monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
-    { label: "Decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
-    { label: "Quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
-    { label: "Items", icon: "fluid", match: "/items/", href: "/items/" },
-    { label: "Veggie Elder", icon: "mushroom", match: "/veggie-elder/", href: "/veggie-elder/" },
+    {
+      label: "Monsters",
+      icon: "claw",
+      match: "/monsters/",
+      section: "monsters",
+      tab: true,
+      needs: "monsters",
+    },
+    {
+      label: "Decorations",
+      icon: "decoration",
+      match: "/decorations/",
+      href: "/decorations/",
+      needs: "decorations",
+    },
+    {
+      label: "Quests",
+      icon: "ticket",
+      match: "/quests/",
+      section: "quests",
+      tab: true,
+      needs: "quests",
+    },
+    { label: "Items", icon: "fluid", match: "/items/", href: "/items/", needs: "items" },
+    {
+      label: "Veggie Elder",
+      icon: "mushroom",
+      match: "/veggie-elder/",
+      href: "/veggie-elder/",
+      needs: "veggieElder",
+    },
   ],
   [
-    { label: "Sets", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
-    { label: "Wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/" },
-    { label: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
+    {
+      label: "Sets",
+      icon: "plate",
+      match: "/set-builder/",
+      href: "/set-builder/",
+      needs: "setBuilder",
+    },
+    { label: "Wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/", needs: "wishlist" },
+    { label: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/", needs: "hunterImport" },
     { label: "Options", icon: "part", match: "/options/", href: "/options/" },
   ],
 ];
+/** The entries the game has sections for. */
+const NAV_GROUPS = ALL_NAV_GROUPS.map((group) =>
+  group.filter((item) => !item.needs || SITE_GAME.sections[item.needs]),
+);
 const NAV = NAV_GROUPS.flat();
 
 const COLLAPSED_KEY = "sidebar-collapsed";

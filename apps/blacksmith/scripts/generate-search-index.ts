@@ -2,7 +2,7 @@ import fs from "fs";
 import path from "path";
 import { armorSlugs } from "../src/lib/slug";
 import { questHubSlug, type QuestHubSlug } from "../src/lib/quests";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { slugify as itemSlug } from "../src/lib/slug";
 import { buildItemNameIndex, decorationItemId, type ItemRecord } from "../src/lib/items";
 import type { Dictionaries, ItemsBundle } from "../src/lib/schema";
@@ -36,12 +36,12 @@ interface SearchEntry {
 const entries: SearchEntry[] = [];
 
 // Weapons
-const weaponDir = path.join(dataDir, "weapons");
+const weaponDir = path.join(GAME_DATA_DIR, "weapons");
 for (const file of fs.readdirSync(weaponDir)) {
   const type = file.replace(/\.json$/, "");
   const craftingFile = path.join(weaponDir, file);
 
-  const data = readData(dataDir, "weapons", file) as {
+  const data = readData(dataDir, GAME, "weapons", file) as {
     weapons: Record<string, unknown>[];
   };
 
@@ -72,14 +72,14 @@ for (const file of fs.readdirSync(weaponDir)) {
   }
 }
 
-// Armor — data/armor/<slot>.json holds every rank in one file; each piece
+// Armor — data/mhfu/armor/<slot>.json holds every rank in one file; each piece
 // carries its own "rank" field.
-const armorDir = path.join(dataDir, "armor");
+const armorDir = path.join(GAME_DATA_DIR, "armor");
 for (const file of fs.readdirSync(armorDir)) {
   const slot = file.replace(/\.json$/, "");
   const craftingFile = path.join(armorDir, file);
 
-  const data = readData(dataDir, "armor", file) as {
+  const data = readData(dataDir, GAME, "armor", file) as {
     armor: Record<string, unknown>[];
   };
 
@@ -119,9 +119,9 @@ for (const file of fs.readdirSync(armorDir)) {
 }
 
 // Decorations
-const decoFile = path.join(dataDir, "decorations.json");
+const decoFile = path.join(GAME_DATA_DIR, "decorations.json");
 if (fs.existsSync(decoFile)) {
-  const data = readData(dataDir, "decorations.json") as {
+  const data = readData(dataDir, GAME, "decorations.json") as {
     decorations: Record<string, unknown>[];
   };
 
@@ -147,12 +147,12 @@ if (fs.existsSync(decoFile)) {
 }
 
 // Monsters
-const monsterDir = path.join(dataDir, "monsters");
+const monsterDir = path.join(GAME_DATA_DIR, "monsters");
 for (const file of fs.readdirSync(monsterDir)) {
   const category = file.replace(/\.json$/, "");
   const jsonFile = path.join(monsterDir, file);
 
-  const data = readData(dataDir, "monsters", file) as {
+  const data = readData(dataDir, GAME, "monsters", file) as {
     monsters: Record<string, unknown>[];
   };
 
@@ -186,9 +186,9 @@ const QUEST_BOARD_SHORT: Record<QuestHubSlug, string> = {
   "training-school": "Training",
   "treasure-hunting": "Treasure",
 };
-const questDir = path.join(dataDir, "quests");
+const questDir = path.join(GAME_DATA_DIR, "quests");
 for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) {
-  const data = readData(dataDir, "quests", file) as {
+  const data = readData(dataDir, GAME, "quests", file) as {
     quests: { id: number; hub: string; rank: string | null; stars: number; title: string | null }[];
   };
   for (const q of data.quests) {
@@ -212,7 +212,7 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
 // the build writes first). Decorations are items too; they're searched as
 // decorations above.
 {
-  const { items } = readData(dataDir, "items.json") as {
+  const { items } = readData(dataDir, GAME, "items.json") as {
     items: ItemRecord[];
   };
   const bundlePath = path.join(root, "public", "data", "items.json");
@@ -226,9 +226,11 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
   if (!bundle || !dict) console.warn("generate-search: no public/data yet; items get no icons");
   const { index } = buildItemNameIndex(items);
   const decorations = new Set(
-    readData<{ decorations: { name: string }[] }>(dataDir, "decorations.json").decorations.map(
-      (d) => decorationItemId(d.name, index),
-    ),
+    readData<{ decorations: { name: string }[] }>(
+      dataDir,
+      GAME,
+      "decorations.json",
+    ).decorations.map((d) => decorationItemId(d.name, index)),
   );
   for (const item of items) {
     if (item.placeholder || decorations.has(item.id)) continue;

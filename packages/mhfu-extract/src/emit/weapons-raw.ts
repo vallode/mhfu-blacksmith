@@ -1,6 +1,6 @@
 /**
  * `extract --raw`: a numbers-only dump of every weapon value struct, for
- * correlating raw fields against committed `data/weapons/*.json` without
+ * correlating raw fields against committed `data/mhfu/weapons/*.json` without
  * shipping disc bytes (vallode/mhfu-blacksmith#33, affinity).
  *
  * Per weapon: its table (`bm` = `WepBMValues`, `gun` = `WepGunValues`),

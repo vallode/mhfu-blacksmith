@@ -3,12 +3,12 @@ import fs from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { MONSTER_GAME_IDS, monsterRecordFor } from "../src/lib/monster-ids";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { readData } from "game-data";
 
-const siteMonsters = fs.readdirSync(path.join(DATA_DIR, "monsters")).flatMap((f) =>
+const siteMonsters = fs.readdirSync(path.join(GAME_DATA_DIR, "monsters")).flatMap((f) =>
   (
-    readData(DATA_DIR, "monsters", f).monsters as {
+    readData(DATA_DIR, GAME, "monsters", f).monsters as {
       name: string;
     }[]
   ).map((m) => m.name),

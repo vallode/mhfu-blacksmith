@@ -32,6 +32,10 @@ come from hand-authored files under `src/overlay/` — see "Overlay data".
 
 ## Usage
 
+`--data` is the repository's `data/` directory. The pipeline reads MHFU
+(`src/game.ts`), and works on that game's part of it, `data/mhfu/`; the
+JSON schemas stay shared in `data/schemas/`.
+
 ```bash
 # from the repo root
 pnpm --filter mhfu-extract unpack  --iso /path/to/mhfu.iso --out .cache/mhfu
@@ -50,7 +54,7 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
 - `unpack` reads the ISO (or `.cso`), decrypts `EBOOT.BIN` and `DATA.BIN`,
   and writes plain files to `--out` (an EBOOT dump, `data-bin/<index>` files
   named via `vendor/fuctool/filelist.csv`, and detected region info).
-- `extract` reads the unpacked directory and produces `data/*.json`-shaped
+- `extract` reads the unpacked directory and produces `data/mhfu/*.json`-shaped
   output plus `EXTRACTION.json` provenance manifest. `--raw` also writes
   numbers-only dumps to `raw/` (sharpness, weapons, gunner, armor, and
   `quests.json`: each quest's header words, raw `RewardTBL` entries,
@@ -69,7 +73,7 @@ pnpm --filter mhfu-extract messages --unpacked .cache/mhfu --file 4781 --grep Ve
   "Building `data/` from the disc".
 - `item-icons` slices the item icons out of the UI atlas into the site's
   `public/images/`. See "Items".
-- `area-maps` writes the area map textures `data/gathering.json` uses to
+- `area-maps` writes the area map textures `data/mhfu/gathering.json` uses to
   the site's `public/images/area-maps/`. See "Area maps".
 - `quest-probe` summarises `extract --raw`'s `raw/quests.json` for the
   open quest questions (`src/emit/quest-probe.ts`): the values the monster
@@ -368,7 +372,7 @@ the module comments:
 
   HP is `trunc(base HP * hp)`. Furious Rajang's attack and defense are
   multiplied again by a value set at run time. `extract` writes each
-  large monster's row to `data/quests` as `multipliers`, and with `--raw`
+  large monster's row to `data/mhfu/quests` as `multipliers`, and with `--raw`
   the tables to `raw/monsters.json`.
 
 The per-monster `emXX.ovl` files aren't needed: every chunk's hitzones are
@@ -399,8 +403,8 @@ matching the committed data against the EU disc, then reviewed:
 
 Monsters pair with the site by emID through the same overlay (the enum
 spells two differently: "One-Ear Yian Garuga", "Terra Shogun Ceanatur").
-`base_hp` is written to `data/monsters` and shown on the monster page.
-`tolerances` is written to `data/monsters` too (`siteTolerances`):
+`base_hp` is written to `data/mhfu/monsters` and shown on the monster page.
+`tolerances` is written to `data/mhfu/monsters` too (`siteTolerances`):
 paralysis, sleep, KO and poison in snake_case keys, `null` where `initial`
 is 0xFFFF (immune). The fourth status is left out until it is identified
 (`initial` 100 or 160 or immune, the rest the same on every monster), and
@@ -489,7 +493,7 @@ the extracted output.
 
 ### Monster breaks
 
-Each monster's `breaks` (`data/monsters/*.json`) lists the body parts
+Each monster's `breaks` (`data/mhfu/monsters/*.json`) lists the body parts
 behind each of its break rewards. A body part is a hitbox capsule's `part`
 number, and each has a flinch counter (`monster + 0x582 + part * 8`).
 Worked out on the EU disc (vallode/mhfu-blacksmith#121) from the code that
@@ -556,8 +560,8 @@ skill numbers are the `Skills 2` list in `equip.enum`: 69 Bomber,
 153-158 Combine Success, 159 Bullet Limit, 160 Alchemy, 194 Trap Master.
 
 `extract` writes `combinations.json` in list order, and `build-data`
-(target `combinations`) writes `data/combinations.json` with each item
-under its `data/items.json` name. `success_rate` is the rate class's,
+(target `combinations`) writes `data/mhfu/combinations.json` with each item
+under its `data/mhfu/items.json` name. `success_rate` is the rate class's,
 before books and skills.
 
 ## 3D models (experimental)
@@ -687,7 +691,7 @@ own names; values are model IDs, from which `src/lib/models.ts` rebuilds the
 file paths:
 
 - **Monsters** map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the
-  vendored `monster.enum`, matched to `data/monsters/*.json` by name (with
+  vendored `monster.enum`, matched to `data/mhfu/monsters/*.json` by name (with
   aliases for the two names that differ). IDs without a monster page
   (Veggie Elder, Poogie, ...) are skipped. Each monster also gets
   `monsters/emNN.hitboxes.json` (see "Monster hitboxes"), which needs
@@ -791,7 +795,7 @@ unpacked directory; the log says `no hunter: ...` if it can't.
 ## Emit layer
 
 `src/emit/*.ts` maps the raw structs from `src/tables/` onto the exact
-`data/*.json` schema shapes (`data/schemas/*.json`). `emit/index.ts`'s
+`data/mhfu/*.json` schema shapes (`data/schemas/*.json`). `emit/index.ts`'s
 `emitAll(reader)` runs every module and returns a `{ "<path relative to
 data/>": <schema-shaped content> }` map; `writeEmitOutput(outDir, output)`
 persists that to disk. `src/cli.ts`'s `extract` subcommand runs this (plus
@@ -917,7 +921,7 @@ and parses every real quest file (`listQuestFiles()` filters `DATA.BIN`'s
 564 `mission_jpn/*.mib` entries down to the 551 real `m#####.mib` quests,
 excluding the 13 `level*.mib` files, which are the quest board, not
 quests: see "Quest text"). `src/emit/quests.ts`'s `emitQuestsFile(parsedQuests)` then maps
-them onto `data/quests/{village,guild,training-school,treasure-hunting}.json`
+them onto `data/mhfu/quests/{village,guild,training-school,treasure-hunting}.json`
 (schema: `data/schemas/quest.schema.json`) — the first `data/` category this
 pipeline designed from scratch, since (unlike weapons/armor/monsters/
 decorations) no such schema existed before this. All 551 real quests parse
@@ -964,7 +968,7 @@ comments — the only place any vendored source names these IDs.
 
 **Quest board text follows the disc.** The JP disc points every language
 slot at the Japanese text, so a JP run gives Japanese `title`/`goal`/
-`fail`/`details`/`client`. The committed `data/quests/` comes from the EU
+`fail`/`details`/`client`. The committed `data/mhfu/quests/` comes from the EU
 disc, whose text is English. Every other quest field is in English,
 resolved through the same enums as equipment.
 
@@ -1026,7 +1030,7 @@ see "Quests (.mib)" above): `QuestScript` and arena sets.
 
 `src/quests/gathering.ts` reads a quest's mining, gathering and bug
 catching points, and `src/emit/gathering.ts` writes them to
-`data/gathering.json` (schema: `data/schemas/gathering.schema.json`).
+`data/mhfu/gathering.json` (schema: `data/schemas/gathering.schema.json`).
 randomfu's `gathering` shuffle edits the same tables.
 
 - **Layout** (`quest.hexpat`): the header's `GatheringLocTblPTR` (`+28`)
@@ -1050,7 +1054,7 @@ u16 table, u16 most gathers, u16 type, u16 fewest gathers`), ending at
   (Forest and Hills has 12, its list 13). Some lists have a spare slot
   after the last area (Snowy Mountains, Desert).
 - **Shared sets**: quests on one map and rank almost always have the same
-  points, so `data/gathering.json` holds each distinct set once with the
+  points, so `data/mhfu/gathering.json` holds each distinct set once with the
   quests that use it: 87 sets for the 540 emitted EU quests. Most maps
   have one per rank, plus one for each Treasure Hunting or Training School
   quest there and a few gathering quests' own (Great Ore Discovery, A
@@ -1079,7 +1083,7 @@ pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
   list, so index 0 is the Base Camp. Stage IDs aren't in area order.
 - **Textures**: `data-bin/cockpit/map<N>.tmh`, 160x160, named by quest map
   ID. Night maps reuse the day map's (16 uses 2, 18 uses 4, 21 uses 11, 31
-  uses 30). `area-maps` writes the ones `data/gathering.json` uses to
+  uses 30). `area-maps` writes the ones `data/mhfu/gathering.json` uses to
   `public/images/area-maps/`, so run it after `build-data`.
 - **Not placed**: the Tower's maps (14 and 15) draw their floors on separate
   pages this formula doesn't reach. A few areas aren't drawn on their map
@@ -1094,7 +1098,7 @@ pixel = (local + stageOrigin) * zoom / size * 150 + (1 - zoom) * 76
 
 `src/emit/items.ts` writes each item's rarity, carry limit, price, icon and
 colour from the EBOOT's item table (`src/tables/items.ts`) to `items.json`,
-and `build-data` writes them into `data/items.json` by ID
+and `build-data` writes them into `data/mhfu/items.json` by ID
 (`src/build/items.ts`), keeping the names, aliases and regions as committed.
 `item-icons` writes the icons themselves (see below).
 
@@ -1103,9 +1107,9 @@ and `build-data` writes them into `data/items.json` by ID
   the last ItemID, 1260 (treasure, Felyne and arena items); entry 1261 is
   unrelated data.
 - **Rarity** (`+2`, u8) is 0-based like the equipment tables'. Before the
-  disc, `data/items.json` had rarity from community lists on 1017 items: the
+  disc, `data/mhfu/items.json` had rarity from community lists on 1017 items: the
   disc agrees on 1016. The other is DragonslyrJewel (lists 5, disc 4, as in
-  `data/decorations.json`).
+  `data/mhfu/decorations.json`).
 - **Carry limit** (`+3`, u8): Potion 10, Whetstone 20, Pierce S Lv1 60, most
   materials 99. Normal S Lv1, which is unlimited, has 255.
 - **Price** (`+12`, u32): the shops' buy price (see "Shops"). The u32 at
@@ -1120,7 +1124,7 @@ and `build-data` writes them into `data/items.json` by ID
   not this palette, so equipment keeps the site's own icons.
 - **Palette**: 11 u32s (R, G, B, 1) by colour index: white, red, green, blue,
   yellow, purple, cyan, orange, pink, an empty slot no item uses, gray.
-  Written as `colors` in `data/items.json`, and kept as the site's
+  Written as `colors` in `data/mhfu/items.json`, and kept as the site's
   `--color-item-*` tokens (`scripts/validate.ts` checks they match).
 - **Sprites**: the game looks an icon up in two u16 lists of 56 (24x24, then
   16x16; game code at vaddr `0x088303b8`), which index the UI sprite table
@@ -1133,13 +1137,13 @@ and `build-data` writes them into `data/items.json` by ID
   `apps/blacksmith/public/images/item-<icon>.png`, skipping the shapes that
   fall back to the "?". The site draws them like its other sprites, tinted
   with the item's colour.
-- The three placeholder IDs (`placeholder` in `data/items.json`) get no
+- The three placeholder IDs (`placeholder` in `data/mhfu/items.json`) get no
   stats.
 
 ### Shops
 
 `src/shops/shops.ts` finds the shops' stock in `overlay/lobby_task.ovl`,
-and `src/emit/shops.ts` writes it to `data/shops.json` (schema:
+and `src/emit/shops.ts` writes it to `data/mhfu/shops.json` (schema:
 `data/schemas/shop.schema.json`). randomfu's `shop-scan` and
 `shop-lists` research commands found the layout, and its `shops` shuffle
 edits it.
@@ -1180,7 +1184,7 @@ edits it.
   the order of the EBOOT's armor arrays (leg, head, chest, arm, waist,
   `ARMOR_CATEGORY`): every list opens with the Mafumofu set, one piece of
   each. randomfu's `weapons` and `armor` shuffles edit the entries; the
-  store isn't in `data/shops.json` yet.
+  store isn't in `data/mhfu/shops.json` yet.
 
 ### Monster size
 
@@ -1255,7 +1259,7 @@ thresholds; the rest are zero.
 - Records are u16 percents in the save, at the character's `+0x40e0`
   (largest) and `+0x4194` (smallest).
 
-`extract` writes `base_size` and `crowns` into `data/monsters/`, each
+`extract` writes `base_size` and `crowns` into `data/mhfu/monsters/`, each
 quest's roll range as `monster_size` (`modifier`, `min`, `max`, and
 `fixed_until_flag` for the story quests above), and each crowned large
 monster's chance of a mini, silver or gold crown size in that quest as its
@@ -1465,14 +1469,14 @@ Neither search reads MIPS code, so a mapping computed only in code
 
 ## Building `data/` from the disc
 
-`data/armor/*.json`, `data/weapons/*.json`, `data/decorations.json`,
-the rarity, carry limit and price in `data/items.json`, `data/quests/*.json`, `data/gathering.json`, `data/shops.json`,
-`data/combinations.json` and the hitzones and drops in `data/monsters/*.json`
+`data/mhfu/armor/*.json`, `data/mhfu/weapons/*.json`, `data/mhfu/decorations.json`,
+the rarity, carry limit and price in `data/mhfu/items.json`, `data/mhfu/quests/*.json`, `data/mhfu/gathering.json`, `data/mhfu/shops.json`,
+`data/mhfu/combinations.json` and the hitzones and drops in `data/mhfu/monsters/*.json`
 are generated from an EU (ULES01213) disc with `build-data`. The disc is the source of truth for every field it holds.
 Every field it doesn't hold is kept from the committed files.
 
-**The files' shape.** Records in `data/` carry their game IDs and refer to
-each other by ID; names and quest text are in `data/strings/en.json` (see
+**The files' shape.** Records in `data/mhfu/` carry their game IDs and refer to
+each other by ID; names and quest text are in `data/mhfu/strings/en.json` (see
 `packages/game-data`). `build-data` works on the named view game-data's
 `readData` gives, which spells every reference out in English as the
 files did before, and writes with `writeData`, which turns the names back
@@ -1490,7 +1494,7 @@ fixtures from named data with `writeNamedData`.
 name: an extracted item's ID is its position in the enum table its name
 came from, and a site item's ID is on its record (armor, weapons, listed
 per slot by game-data's `equipment-ids.json` view) or comes from
-`data/items.json` (decorations, materials). Renames
+`data/mhfu/items.json` (decorations, materials). Renames
 like "Hornet Helm" vs "Hornetaur Helm" therefore still pair. On the EU
 disc every committed armor piece, weapon and decoration pairs.
 
@@ -1517,7 +1521,7 @@ recipe on the disc. Quests, gathering points and shops are copied
 through (see "Material names").
 
 **Material names.** Materials, drops and quest supply and reward items are
-item IDs on disk, so they always show the game's own item name (`data/items.json` `name`, the same string as the
+item IDs on disk, so they always show the game's own item name (`data/mhfu/items.json` `name`, the same string as the
 `ItemID` enum), never the spelling the committed files used: "Fire Stone"
 is written "Firestone", "Elder Drgn Bone" "Eldr Dragon Bone". The game
 caps item names at 16 characters, so many are abbreviated, and the site
@@ -1526,7 +1530,7 @@ material in the files it writes, including fields it doesn't take (weapon
 `alternative_create_mats`) and items with no disc match. Quests, gathering
 points and shops are copied through with each item under its game name (the `ItemID` enum
 differs from `items.json` only on a few Japanese promo tickets), then
-written as item IDs. Old site spellings stay in `data/strings/en.json` as
+written as item IDs. Old site spellings stay in `data/mhfu/strings/en.json` as
 item `aliases`, so they still resolve to an item. This replaced an earlier table that respelled
 the disc's names to match the committed files, which spelled about 240
 items differently in armor and weapon recipes.
@@ -1668,7 +1672,7 @@ maps the site's old skill spellings (`"Defence"`, `"Load"`,
 reported as a mismatch, and `build-data` uses it to write disc skills back
 in the site's spelling. `data/` now names every skill tree by its
 `SkillID` name, so on committed data it changes nothing; the old
-spellings stay as skill aliases in `data/strings/en.json`. `extract` output is unchanged. See the module doc
+spellings stay as skill aliases in `data/mhfu/strings/en.json`. `extract` output is unchanged. See the module doc
 comment for how each entry was chosen.
 
 `material-styles.json` holds hand-picked material icon styles by item ID
@@ -1695,7 +1699,7 @@ buffers (no game files needed/included) — the `emit/*.test.ts` fixtures in
 particular reproduce exact real byte values from a decrypted JP EBOOT
 (e.g. the real "Carbalite Sword"/"Leather Helm"/"Paralysis Jewel" entries;
 `test/emit-armor.test.ts` checks the first real piece of every armor slot
-against `data/armor/` through both the JP and EU paths),
+against `data/mhfu/armor/` through both the JP and EU paths),
 so they double as a regression check that those disc values keep producing
 the same output. Every table reader's byte offsets have additionally been
 validated by hand against a real decrypted JP EBOOT (not part of this repo,

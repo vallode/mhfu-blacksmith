@@ -415,7 +415,7 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
     assert.deepEqual(report.copiedFiles, [path.join("quests", "village.json")]);
 
     // Read back, the file is the merge.
-    assert.deepEqual(readData(data, "armor/helmet.json"), {
+    assert.deepEqual(readData(data, "mhfu", "armor/helmet.json"), {
       armor: [
         mergedChainHelm,
         { ...committedHelmets.armor[1], slots: 1 },
@@ -424,7 +424,7 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
     });
     // On disk: game IDs, skills by tree ID with the site's spelling as an
     // alias, materials by item ID; names stay in strings/en.json.
-    const written = await readFile(path.join(data, "armor", "helmet.json"), "utf-8");
+    const written = await readFile(path.join(data, "mhfu", "armor", "helmet.json"), "utf-8");
     assert.ok(written.endsWith("\n"));
     const raw = JSON.parse(written) as { armor: Record<string, unknown>[] };
     assert.deepEqual(
@@ -432,7 +432,7 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
       [CHAIN_HELM, LEATHER_HELM, 3],
     );
     assert.ok(raw.armor.every((a) => !("name" in a)));
-    const en = readStringsDoc(data);
+    const en = readStringsDoc(data, "mhfu");
     const defense = Number(Object.keys(en.skill!).find((k) => en.skill![k] === "Defense"));
     const reload = Number(Object.keys(en.skill!).find((k) => en.skill![k] === "Reload"));
     assert.deepEqual(raw.armor[0]!.skills, [
@@ -445,20 +445,23 @@ test("runBuildData rewrites data/ in the committed layout and copies quests", as
     assert.equal(en.helmet![String(CHAIN_HELM)], "Chain Helm (site name)");
 
     // The quest: its map and items by ID, its text in the strings.
-    const quest = readRawData<{ quests: Record<string, unknown>[] }>(data, "quests/village.json")
-      .quests[0]!;
+    const quest = readRawData<{ quests: Record<string, unknown>[] }>(
+      data,
+      "mhfu",
+      "quests/village.json",
+    ).quests[0]!;
     assert.equal(quest.map, 28);
     assert.deepEqual(quest.supplies, [{ item: IRON_ORE, amount: 1 }]);
     assert.ok(!("title" in quest));
-    assert.equal(readStringsDoc(data).quest!["1"], "A Test Quest");
-    assert.deepEqual(readData(data, "quests/village.json"), { quests: [extractedQuest] });
+    assert.equal(readStringsDoc(data, "mhfu").quest!["1"], "A Test Quest");
+    assert.deepEqual(readData(data, "mhfu", "quests/village.json"), { quests: [extractedQuest] });
 
     // A second run is a no-op.
-    const before = await readFile(path.join(data, "strings", "en.json"), "utf-8");
+    const before = await readFile(path.join(data, "mhfu", "strings", "en.json"), "utf-8");
     const again = await runBuildData({ extracted, data, only: ["armor", "quests"] });
     assert.deepEqual(again.categories[0]!.filesWritten, []);
-    assert.equal(await readFile(path.join(data, "armor", "helmet.json"), "utf-8"), written);
-    assert.equal(await readFile(path.join(data, "strings", "en.json"), "utf-8"), before);
+    assert.equal(await readFile(path.join(data, "mhfu", "armor", "helmet.json"), "utf-8"), written);
+    assert.equal(await readFile(path.join(data, "mhfu", "strings", "en.json"), "utf-8"), before);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -494,13 +497,15 @@ test("a full build skips Veggie Elder trades that extract didn't find; named, th
     const report = await runBuildData({ extracted, data, only: ["veggie-trades"] });
     assert.deepEqual(report.copiedFiles, ["veggie-trades.json"]);
     assert.deepEqual(report.skippedFiles, []);
-    const written = JSON.parse(await readFile(path.join(data, "veggie-trades.json"), "utf-8"));
+    const written = JSON.parse(
+      await readFile(path.join(data, "mhfu", "veggie-trades.json"), "utf-8"),
+    );
     assert.deepEqual(written.elders[0], {
       maps: [28],
       trades: [{ give: IRON_ORE, common: KELBI_HIDE, rare: IRON_ORE }],
     });
     assert.equal(written.rare_chance, 20);
-    assert.deepEqual(readData(data, "veggie-trades.json").elders[0].trades, [
+    assert.deepEqual(readData(data, "mhfu", "veggie-trades.json").elders[0].trades, [
       { give: "Iron Ore", common: "Kelbi Hide", rare: "Iron Ore" },
     ]);
   } finally {
@@ -525,12 +530,12 @@ test("Pokke Farm's points are copied when extract found them, and skipped otherw
     const report = await runBuildData({ extracted, data, only: ["farm"] });
     assert.deepEqual(report.copiedFiles, ["farm.json"]);
     // On disk: items by ID, the point's name in the strings by its index.
-    const written = JSON.parse(await readFile(path.join(data, "farm.json"), "utf-8"));
+    const written = JSON.parse(await readFile(path.join(data, "mhfu", "farm.json"), "utf-8"));
     assert.deepEqual(written.points, [
       { spot: "mining", gathers: 3, most_gathers: 4, items: [{ item: IRON_ORE, chance: 100 }] },
     ]);
-    assert.equal(readStringsDoc(data).farm?.["0"], "Mining Point");
-    assert.deepEqual(readData(data, "farm.json").points, [point]);
+    assert.equal(readStringsDoc(data, "mhfu").farm?.["0"], "Mining Point");
+    assert.deepEqual(readData(data, "mhfu", "farm.json").points, [point]);
   } finally {
     await rm(root, { recursive: true, force: true });
   }
@@ -552,7 +557,7 @@ test("runBuildData restyles material fields it doesn't take, by item ID", async 
     ];
     writeNamedData(data, namedData(committed));
     const report = await runBuildData({ extracted, data, only: ["armor"] });
-    const written = readData(data, "armor/helmet.json");
+    const written = readData(data, "mhfu", "armor/helmet.json");
     assert.deepEqual(written.armor[1].alternative_create_mats, [
       { name: "Iron Ore", amount: 3, type: "ore", color: "gray" },
     ]);

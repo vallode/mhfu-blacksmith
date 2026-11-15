@@ -1,5 +1,5 @@
 /**
- * Where a quest's gathering points are on the game's map: data/gathering.json's
+ * Where a quest's gathering points are on the game's map: data/mhfu/gathering.json's
  * positions, by quest ID. Pure, so scripts/generate-data.ts writes it into
  * public/data/area-maps.json and the tests build it from data/.
  */

@@ -1,4 +1,4 @@
-/** The drop-table text helpers (lib/monster-drops.ts) on the shapes found in data/monsters. */
+/** The drop-table text helpers (lib/monster-drops.ts) on the shapes found in data/mhfu/monsters. */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 import {

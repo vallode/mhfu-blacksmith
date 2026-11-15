@@ -1,4 +1,4 @@
-/** Item combinations (lib/combinations.ts) and data/combinations.json. */
+/** Item combinations (lib/combinations.ts) and data/mhfu/combinations.json. */
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 import {
@@ -13,7 +13,7 @@ import {
   type CombinationsFile,
 } from "../src/lib/combinations";
 import type { ItemRecord } from "../src/lib/items";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import { readData } from "game-data";
 
 const ref = (id: number, name: string) => ({ id, name });
@@ -124,9 +124,9 @@ describe("combinations", () => {
   });
 });
 
-describe("data/combinations.json", () => {
-  const file = readData(DATA_DIR, "combinations.json") as CombinationsFile;
-  const { items } = readData(DATA_DIR, "items.json") as {
+describe("data/mhfu/combinations.json", () => {
+  const file = readData(DATA_DIR, GAME, "combinations.json") as CombinationsFile;
+  const { items } = readData(DATA_DIR, GAME, "items.json") as {
     items: ItemRecord[];
   };
   const byId = new Map(items.map((i) => [i.id, i]));
@@ -140,7 +140,7 @@ describe("data/combinations.json", () => {
     assert.equal(file.combinations[0].result.name, "Potion");
   });
 
-  test("names every item as data/items.json does", () => {
+  test("names every item as data/mhfu/items.json does", () => {
     const refs = [...file.books, ...file.combinations.flatMap((c) => [c.result, ...c.ingredients])];
     for (const r of refs) {
       const item = byId.get(r.id);

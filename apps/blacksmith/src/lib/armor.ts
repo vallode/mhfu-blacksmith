@@ -3,13 +3,13 @@ import path from "path";
 import { ARMOR_SLOTS, ARMOR_RANKS, type ArmorSlot, type ArmorRank } from "./constants";
 import { armorSlugs } from "./slug";
 import type { ArmorPiece } from "./types";
-import { DATA_DIR } from "./paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "./paths";
 import { cached } from "./data-cache";
 import { readData } from "game-data";
 
 const dataDir = DATA_DIR;
 
-// data/armor/<slot>.json holds every rank in one file; each piece carries
+// data/mhfu/armor/<slot>.json holds every rank in one file; each piece carries
 // its own "rank" field.
 const allCache = new Map<ArmorSlot, ArmorPiece[]>();
 const rankCache = new Map<string, ArmorPiece[]>();
@@ -19,10 +19,10 @@ function getAllArmorPieces(slot: ArmorSlot): ArmorPiece[] {
 }
 
 function loadArmorPieces(slot: ArmorSlot): ArmorPiece[] {
-  const filePath = path.join(dataDir, "armor", `${slot}.json`);
+  const filePath = path.join(GAME_DATA_DIR, "armor", `${slot}.json`);
   if (!fs.existsSync(filePath)) return [];
 
-  const raw = readData<{ armor: ArmorPiece[] }>(dataDir, "armor", `${slot}.json`);
+  const raw = readData<{ armor: ArmorPiece[] }>(dataDir, GAME, "armor", `${slot}.json`);
 
   return raw.armor;
 }

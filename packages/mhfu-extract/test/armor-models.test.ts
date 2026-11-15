@@ -15,6 +15,7 @@ import { loadFileList } from "../src/container/filelist.js";
 test("armor model layout counts match the site's equipment ID lists", () => {
   const ids = readData<Record<string, unknown[]>>(
     fileURLToPath(new URL("../../../data", import.meta.url)),
+    "mhfu",
     "equipment-ids.json",
   );
   for (const [slot, layout] of Object.entries(ARMOR_MODEL_LAYOUT)) {

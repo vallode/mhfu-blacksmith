@@ -79,7 +79,7 @@ export interface WeaponLike {
  * The rank an ore can first be mined at, by item name. Ore armor repeats its
  * materials from low to high rank (Hi-Metal vs Chain), so without this the
  * recipe graph can't tell the ranks apart. Hand-entered, not in the game data:
- * checked against the armor ranks in data/armor, but worth confirming in game.
+ * checked against the armor ranks in data/mhfu/armor, but worth confirming in game.
  * Ores left out (Firestone, Antiseptic Stone, ...) are ungated, which hides
  * too little rather than too much.
  */

@@ -4,22 +4,33 @@
  * the generator, the pages and the client.
  */
 
+import { SITE_GAME } from "./constants";
 import { CROWN_ORDER, type Crown } from "./crowns";
 
-/** A quest board: Village, the three Guild ranks, Training School, Treasure Hunting. */
-export const QUEST_HUBS = [
-  { slug: "village", label: "Village", hub: "village", rank: null },
-  { slug: "low-rank", label: "Guild Low Rank", hub: "guild", rank: "low-rank" },
-  { slug: "high-rank", label: "Guild High Rank", hub: "guild", rank: "high-rank" },
-  { slug: "g-rank", label: "Guild G Rank", hub: "guild", rank: "g-rank" },
-  { slug: "training-school", label: "Training School", hub: "training-school", rank: null },
-  { slug: "treasure-hunting", label: "Treasure Hunting", hub: "treasure-hunting", rank: null },
-] as const;
+/** Each quest board's name, by slug. */
+const QUEST_HUB_LABELS = {
+  village: "Village",
+  "low-rank": "Guild Low Rank",
+  "high-rank": "Guild High Rank",
+  "g-rank": "Guild G Rank",
+  "training-school": "Training School",
+  "treasure-hunting": "Treasure Hunting",
+} as const satisfies Record<(typeof SITE_GAME.questHubs)[number]["slug"], string>;
 
-export type QuestHubSlug = (typeof QUEST_HUBS)[number]["slug"];
+/**
+ * A quest board: Village, the three Guild ranks, Training School, Treasure
+ * Hunting. The boards are the game's (its config's `questHubs`); the labels
+ * are the site's.
+ */
+export const QUEST_HUBS = SITE_GAME.questHubs.map((h) => ({
+  ...h,
+  label: QUEST_HUB_LABELS[h.slug],
+}));
+
+export type QuestHubSlug = (typeof SITE_GAME.questHubs)[number]["slug"];
 export const QUEST_HUB_SLUGS: readonly QuestHubSlug[] = QUEST_HUBS.map((h) => h.slug);
 
-/** The hub page a data/quests record belongs on, from its `hub` and `rank`. */
+/** The hub page a data/mhfu/quests record belongs on, from its `hub` and `rank`. */
 export function questHubSlug(hub: string, rank: string | null): QuestHubSlug | null {
   const match = QUEST_HUBS.find((h) => h.hub === hub && (h.rank === null || h.rank === rank));
   return match?.slug ?? null;

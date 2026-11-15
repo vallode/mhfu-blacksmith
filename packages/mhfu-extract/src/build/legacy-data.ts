@@ -9,6 +9,7 @@ import { mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
 import path from "node:path";
 import {
+  gameDataDir,
   importLegacy,
   serializeData,
   serializeStrings,
@@ -18,6 +19,7 @@ import {
 } from "game-data";
 import { canonicalSkillName } from "../overlay/skill-name-aliases.js";
 import { loadEnums } from "../strings/enums.js";
+import { GAME } from "../game.js";
 import { MAP_NAMES } from "../tables/quest-maps.js";
 
 const OVERLAY_MONSTERS = path.join(
@@ -57,18 +59,20 @@ export function legacyIdSources(): LegacyIdSources {
 }
 
 /**
- * Writes named data files (path inside `data/` -> content, in the layout
- * before IDs, with `equipment-ids.json` for weapon and armor IDs) into
- * `dataDir` as game-data writes them: records with IDs, plus
- * `strings/en.json` and `strings/ja.json`.
+ * Writes named data files (path inside the game's data directory ->
+ * content, in the layout before IDs, with `equipment-ids.json` for weapon
+ * and armor IDs) into `dataDir` (a `data/` directory) as game-data writes
+ * them: records with IDs under `<game>/`, plus `<game>/strings/en.json`
+ * and `<game>/strings/ja.json`.
  */
 export function writeNamedData(dataDir: string, files: Record<string, DataDoc>): void {
   const { files: raw, en, ja } = importLegacy(new Map(Object.entries(files)), legacyIdSources());
+  const gameDir = gameDataDir(dataDir, GAME);
   for (const [rel, doc] of raw) {
-    mkdirSync(path.dirname(path.join(dataDir, rel)), { recursive: true });
-    writeFileSync(path.join(dataDir, rel), serializeData(doc));
+    mkdirSync(path.dirname(path.join(gameDir, rel)), { recursive: true });
+    writeFileSync(path.join(gameDir, rel), serializeData(doc));
   }
-  mkdirSync(path.dirname(stringsPath(dataDir)), { recursive: true });
-  writeFileSync(stringsPath(dataDir, "en"), serializeStrings(en));
-  writeFileSync(stringsPath(dataDir, "ja"), serializeStrings(ja));
+  mkdirSync(path.dirname(stringsPath(dataDir, GAME)), { recursive: true });
+  writeFileSync(stringsPath(dataDir, GAME, "en"), serializeStrings(en));
+  writeFileSync(stringsPath(dataDir, GAME, "ja"), serializeStrings(ja));
 }

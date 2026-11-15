@@ -1,6 +1,6 @@
 /**
  * Maps the Veggie Elder's trade tables (`tables/veggie-trades.ts`) onto
- * `data/veggie-trades.json` (schema: `data/schemas/veggie-trade.schema.json`):
+ * `data/mhfu/veggie-trades.json` (schema: `data/schemas/veggie-trade.schema.json`):
  * one Elder per table, with the maps he trades on and his rows in the
  * game's order (he takes the first row whose item the hunter carries).
  */

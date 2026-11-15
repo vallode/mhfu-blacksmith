@@ -16,6 +16,10 @@ import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import type { SaveData } from "@/lib/save-store";
 import Loading from "@/components/Loading";
+import { SITE_GAME } from "@/lib/constants";
+
+/** The save file the game writes. */
+const SAVE_FILE = SITE_GAME.save.fileName;
 
 const SLOTS = [0, 1, 2];
 
@@ -240,7 +244,7 @@ export default function SaveUpload() {
         >
           {fileSync.isSupported ? (
             <button type="button" className={loaderCta} onClick={handlePick}>
-              Drop MHP2NDG.BIN here or click to browse
+              {`Drop ${SAVE_FILE} here or click to browse`}
             </button>
           ) : (
             <label className={loaderCta}>
@@ -250,7 +254,7 @@ export default function SaveUpload() {
                 className="absolute h-0 w-0 opacity-0"
                 onChange={handleFileChange}
               />
-              Drop MHP2NDG.BIN here or click to browse
+              {`Drop ${SAVE_FILE} here or click to browse`}
             </label>
           )}
         </Card>

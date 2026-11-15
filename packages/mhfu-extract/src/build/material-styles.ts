@@ -2,7 +2,7 @@
  * One name and one icon style (`type`/`color`) per item, applied by
  * `build-data` to every material in the files it writes.
  *
- * The name is the game's own item name (`data/items.json`), exactly as the
+ * The name is the game's own item name (`data/mhfu/items.json`), exactly as the
  * game spells it, whatever spelling the committed recipe used ("Fire Stone"
  * becomes "Firestone", "Elder Drgn Bone" becomes "Eldr Dragon Bone"). The
  * game caps item names at 16 characters; the site pads them to that width

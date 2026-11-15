@@ -6,7 +6,8 @@
   "license": "MIT",
   "type": "module",
   "exports": {
-    ".": "./src/index.ts"
+    ".": "./src/index.ts",
+    "./games": "./src/games.ts"
   },
   "scripts": {
     "test": "tsx --test test/**/*.test.ts",

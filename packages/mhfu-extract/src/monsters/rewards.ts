@@ -2,7 +2,7 @@
  * Monster carve, capture and break rewards in `game_sub.ovl`, as the
  * vendored `game_sub.hexpat` lays them out (`bodytailshiny`,
  * `capbreakindex`). Confirmed on the EU disc against the committed
- * `data/monsters` drops (vallode/mhfu-blacksmith#35).
+ * `data/mhfu/monsters` drops (vallode/mhfu-blacksmith#35).
  *
  * - `bodytailshiny[89]` (52 bytes, entry `i` is emID `i + 1`): body carve,
  *   tail carve and shiny drop, each seven u16 indexes, one per rank slot

@@ -7,7 +7,7 @@
  * spelling, `null` vs `[]`), and how to turn a disc value into the site's
  * vocabulary (`toSite`) for writing to `data/`. Item names are not part of
  * that vocabulary: materials and drops are always written with the game's
- * own item name (`data/items.json`), never an older site spelling. `toSite`
+ * own item name (`data/mhfu/items.json`), never an older site spelling. `toSite`
  * keeps the committed value whenever its canonical form already equals the
  * disc's, so an unchanged field stays byte-identical.
  */
@@ -520,7 +520,7 @@ function hitzonesToSite(disc: unknown, committed: unknown): unknown {
 /**
  * The committed drops with each group the disc has rewritten from it when it
  * differs, keeping the committed entry order. Items take their game name
- * (`data/items.json`); amounts are written as an ` xN` suffix in groups
+ * (`data/mhfu/items.json`); amounts are written as an ` xN` suffix in groups
  * whose committed entries have one.
  * Groups the disc lacks stay as they are, and no group is added.
  */

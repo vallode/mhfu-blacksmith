@@ -1,6 +1,6 @@
 /**
  * `extract` subcommand — reads an `unpack`-produced directory and writes
- * the full `data/*.json`-shaped output plus an `EXTRACTION.json` provenance
+ * the full `data/mhfu/*.json`-shaped output plus an `EXTRACTION.json` provenance
  * manifest. See README's "Usage" section.
  */
 import { mkdir, readFile, writeFile } from "node:fs/promises";

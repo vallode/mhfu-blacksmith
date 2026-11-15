@@ -5,8 +5,11 @@ styled to look like the game's UI.
 
 Lives in `apps/blacksmith` (see the root `CLAUDE.md` for the repository
 layout); paths below are relative to it. It reads its game data from the root
-`data/` (`DATA_DIR`, `src/lib/paths.ts`) with `readData` from
-`packages/game-data`, never by parsing the files itself.
+`data/` (`DATA_DIR`; MHFU's is `data/mhfu/`, `GAME_DATA_DIR`, both in
+`src/lib/paths.ts`) with `readData` from `packages/game-data`, never by
+parsing the files itself. Game facts (weapon types, ranks, quest boards,
+which sections a game has) come from `game-data/games`, through
+`src/lib/constants.ts`.
 
 Checks (from `apps/blacksmith`): `pnpm lint`, `pnpm typecheck`, `pnpm test`;
 and `pnpm format:check` from the repository root.

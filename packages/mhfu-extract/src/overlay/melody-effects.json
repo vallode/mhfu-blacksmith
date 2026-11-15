@@ -1,5 +1,5 @@
 {
-  "_comment": "Hunting horn melody effects by the disc's effect ID (game_task.ovl melody table, src/tables/horn.ts). The disc gives each song's notes and effect ID only. The names, descriptions and durations here are not from the disc: they were carried over from the old site's hand-made content/blacksmith/hunting-horn/hunting-horn-melodies.json (source not recorded; removed when melodies moved into data/weapons/hunting-horn.json), matched to effect IDs by note sequence. Every effect ID matched exactly one site effect name.",
+  "_comment": "Hunting horn melody effects by the disc's effect ID (game_task.ovl melody table, src/tables/horn.ts). The disc gives each song's notes and effect ID only. The names, descriptions and durations here are not from the disc: they were carried over from the old site's hand-made content/blacksmith/hunting-horn/hunting-horn-melodies.json (source not recorded; removed when melodies moved into data/mhfu/weapons/hunting-horn.json), matched to effect IDs by note sequence. Every effect ID matched exactly one site effect name.",
   "effects": [
     {
       "id": 0,

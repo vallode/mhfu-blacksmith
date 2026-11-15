@@ -146,7 +146,7 @@ test("decodeShotCoat maps every declared bit independently", () => {
  * Victory II` (raw 64 = only bit 6 set) confirms the `paint` bit in
  * isolation; `Exterminator Bow II` (raw 66 = bits 1+6) confirms `power` and
  * `paint` combine correctly and every other flag stays false, matching
- * their real committed `data/weapons/bow.json` coating lists exactly.
+ * their real committed `data/mhfu/weapons/bow.json` coating lists exactly.
  */
 test("decodeBowCoatings decodes real single-coating bow bytes (paint only)", () => {
   const flags = decodeBowCoatings(64);

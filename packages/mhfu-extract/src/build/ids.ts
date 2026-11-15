@@ -15,12 +15,13 @@
  * - **Site side.** Each weapon and armor record carries its game ID;
  *   game-data's `"equipment-ids.json"` view (`readData`) lists them per
  *   slot, ID -> site item. Decorations and materials resolve through
- *   `data/items.json`'s `name`/`aliases`, with the same normalization as
+ *   `data/mhfu/items.json`'s `name`/`aliases`, with the same normalization as
  *   the site's own `src/lib/items.ts`.
  */
 import { isPlaceholderName, loadEnums } from "../strings/enums.js";
 import type { NameTable } from "../strings/names.js";
 import { readData } from "game-data";
+import { GAME } from "../game.js";
 
 /** Keys of game-data's `equipment-ids.json` view. */
 export type EquipmentSlot =
@@ -106,7 +107,7 @@ export interface ItemRecord {
 export interface SiteIndex {
   /** game-data's `equipment-ids.json` view: slot -> ID -> site item (null for IDs the site doesn't list). */
   equipment: Record<EquipmentSlot, (EquipmentIdEntry | null)[]>;
-  /** `data/items.json` by ID. */
+  /** `data/mhfu/items.json` by ID. */
   items: Map<number, ItemRecord>;
   /** Item ID of a site material/decoration name (`name` or alias), or null if unknown/ambiguous. */
   itemIdOf(name: string): number | null;
@@ -125,8 +126,8 @@ function equipmentKey(slot: EquipmentSlot, name: string, typeOrSex: string | und
 }
 
 export function loadSiteIndex(dataDir: string): SiteIndex {
-  const equipment = readData<SiteIndex["equipment"]>(dataDir, "equipment-ids.json");
-  const itemsFile = readData<{ items: ItemRecord[] }>(dataDir, "items.json");
+  const equipment = readData<SiteIndex["equipment"]>(dataDir, GAME, "equipment-ids.json");
+  const itemsFile = readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json");
 
   const items = new Map(itemsFile.items.map((i) => [i.id, i]));
   const owners = new Map<string, Set<number>>();

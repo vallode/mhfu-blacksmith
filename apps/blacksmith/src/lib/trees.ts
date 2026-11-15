@@ -5,12 +5,12 @@
  * Weapons: one tree per type, following improve_to; a weapon with several
  * parents has its branch under the first and an alias row under the rest.
  * Armor: a flat list per slot and rank. Decorations: one flat list, in the
- * game's crafting order (data/decorations.json's order).
+ * game's crafting order (data/mhfu/decorations.json's order).
  */
 import { readData } from "game-data";
 import { type ArmorRank, type ArmorSlot, type WeaponType } from "./constants";
 import { cached } from "./data-cache";
-import { DATA_DIR } from "./paths";
+import { DATA_DIR, GAME } from "./paths";
 import { armorSlugs, slugify } from "./slug";
 import type { WeaponTreeNode } from "./types";
 
@@ -48,7 +48,7 @@ const readWeapons = (type: string) =>
   cached(
     weaponCache,
     type,
-    () => readData<{ weapons: Row[] }>(DATA_DIR, "weapons", `${type}.json`).weapons,
+    () => readData<{ weapons: Row[] }>(DATA_DIR, GAME, "weapons", `${type}.json`).weapons,
   );
 
 /** `parseInt` semantics of Ruby's `to_i`: non-numeric rarity sorts as 0. */
@@ -122,7 +122,7 @@ export function buildArmorTree(slot: ArmorSlot, rank: ArmorRank): WeaponTreeNode
   const armor = cached(
     armorCache,
     slot,
-    () => readData<{ armor: ArmorRow[] }>(DATA_DIR, "armor", `${slot}.json`).armor,
+    () => readData<{ armor: ArmorRow[] }>(DATA_DIR, GAME, "armor", `${slot}.json`).armor,
   );
   const pieces = armor.filter((a) => a.rank === rank).toSorted((a, b) => rarityOf(a) - rarityOf(b));
   // Pieces that exist as separate Male and Female entries get a sex suffix.
@@ -136,7 +136,7 @@ export function buildArmorTree(slot: ArmorSlot, rank: ArmorRank): WeaponTreeNode
 }
 
 export function buildDecorationTree(): WeaponTreeNode[] {
-  const { decorations } = readData<{ decorations: Row[] }>(DATA_DIR, "decorations.json");
+  const { decorations } = readData<{ decorations: Row[] }>(DATA_DIR, GAME, "decorations.json");
   return decorations.map((d) => ({
     slug: slugify(d.name),
     type: d.type,

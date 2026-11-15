@@ -13,7 +13,7 @@ import {
   type ItemRecord,
 } from "../src/lib/items";
 import { parseDecorationSkill, treeNameIndex, type SkillTreeData } from "../src/lib/set-search";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { buildArmorTree, buildWeaponTree } from "../src/lib/trees";
 import type { ArmorRank, ArmorSlot } from "../src/lib/constants";
 import {
@@ -47,7 +47,7 @@ function section(title: string) {
 
 // ─── IDs and strings ──────────────────────────────────────────────────────────
 // Records carry game IDs and refer to each other by ID; names are in
-// data/strings/ (see packages/game-data). Every record needs an English name,
+// data/mhfu/strings/ (see packages/game-data). Every record needs an English name,
 // IDs are unique per table, every reference resolves, and the string tables
 // name nothing that isn't there.
 
@@ -55,13 +55,16 @@ section("Validating IDs and strings…");
 
 {
   const weaponTypes = fs
-    .readdirSync(path.join(dataDir, "weapons"))
+    .readdirSync(path.join(GAME_DATA_DIR, "weapons"))
     .filter((f) => f.endsWith(".json"))
     .sort()
     .map((f) => f.slice(0, -".json".length));
   type Raw = Record<string, any>; // eslint-disable-line @typescript-eslint/no-explicit-any
-  const en = readStringsDoc(dataDir) as Record<string, Record<string, unknown> | undefined>;
-  const ja = readStringsDoc(dataDir, "ja") as Record<string, Record<string, unknown> | undefined>;
+  const en = readStringsDoc(dataDir, GAME) as Record<string, Record<string, unknown> | undefined>;
+  const ja = readStringsDoc(dataDir, GAME, "ja") as Record<
+    string,
+    Record<string, unknown> | undefined
+  >;
   const owned = new Map<string, Set<string>>();
   const own = (kind: string, key: number | string, where: string, named = true) => {
     const keys = owned.get(kind) ?? new Set<string>();
@@ -69,39 +72,41 @@ section("Validating IDs and strings…");
     if (keys.has(String(key))) error(`${where}: ${kind} ID ${key} is used twice`);
     keys.add(String(key));
     if (named && en[kind]?.[String(key)] === undefined)
-      error(`${where}: ${kind} ${key} has no name in data/strings/en.json`);
+      error(`${where}: ${kind} ${key} has no name in data/mhfu/strings/en.json`);
   };
 
-  for (const item of readRawData<{ items: Raw[] }>(dataDir, "items.json").items)
+  for (const item of readRawData<{ items: Raw[] }>(dataDir, GAME, "items.json").items)
     own("item", item.id, "items.json");
   for (const type of weaponTypes)
-    for (const w of readRawData<{ weapons: Raw[] }>(dataDir, "weapons", `${type}.json`).weapons)
+    for (const w of readRawData<{ weapons: Raw[] }>(dataDir, GAME, "weapons", `${type}.json`)
+      .weapons)
       own(weaponTable(type), w.id, `weapons/${type}.json`);
   for (const slot of ARMOR_SLOTS)
-    for (const a of readRawData<{ armor: Raw[] }>(dataDir, "armor", `${slot}.json`).armor)
+    for (const a of readRawData<{ armor: Raw[] }>(dataDir, GAME, "armor", `${slot}.json`).armor)
       own(slot, a.id, `armor/${slot}.json`);
-  for (const t of readRawData<{ skills: Raw[] }>(dataDir, "skills.json").skills) {
+  for (const t of readRawData<{ skills: Raw[] }>(dataDir, GAME, "skills.json").skills) {
     own("skill", t.id, "skills.json");
     for (const a of t.skills) own("skill_activation", `${t.id}:${a.points}`, "skills.json");
   }
   const decorationIds = new Set<string>();
-  for (const d of readRawData<{ decorations: Raw[] }>(dataDir, "decorations.json").decorations) {
+  for (const d of readRawData<{ decorations: Raw[] }>(dataDir, GAME, "decorations.json")
+    .decorations) {
     if (!owned.get("item")?.has(String(d.id))) error(`decorations.json: ${d.id} is not an item`);
     if (decorationIds.has(String(d.id))) error(`decorations.json: item ${d.id} is listed twice`);
     decorationIds.add(String(d.id));
   }
   const monsterFiles = fs
-    .readdirSync(path.join(dataDir, "monsters"))
+    .readdirSync(path.join(GAME_DATA_DIR, "monsters"))
     .filter((f) => f.endsWith(".json"));
   for (const f of monsterFiles)
-    for (const m of readRawData<{ monsters: Raw[] }>(dataDir, "monsters", f).monsters)
+    for (const m of readRawData<{ monsters: Raw[] }>(dataDir, GAME, "monsters", f).monsters)
       own("monster", m.id, `monsters/${f}`);
   const questFiles = fs
-    .readdirSync(path.join(dataDir, "quests"))
+    .readdirSync(path.join(GAME_DATA_DIR, "quests"))
     .filter((f) => f.endsWith(".json"));
   const questMonsters = new Set<string>();
   for (const f of questFiles)
-    for (const q of readRawData<{ quests: Raw[] }>(dataDir, "quests", f).quests) {
+    for (const q of readRawData<{ quests: Raw[] }>(dataDir, GAME, "quests", f).quests) {
       own("quest", q.id, `quests/${f}`, false);
       for (const m of [q.target, ...q.large_monsters, ...q.small_monsters])
         if (m) questMonsters.add(String(m.monster));
@@ -125,13 +130,14 @@ section("Validating IDs and strings…");
   ];
   for (const rel of files) {
     try {
-      readData(dataDir, rel);
+      readData(dataDir, GAME, rel);
     } catch (e) {
       error(`${rel}: ${(e as Error).message}`);
     }
   }
   for (const type of weaponTypes)
-    for (const w of readRawData<{ weapons: Raw[] }>(dataDir, "weapons", `${type}.json`).weapons) {
+    for (const w of readRawData<{ weapons: Raw[] }>(dataDir, GAME, "weapons", `${type}.json`)
+      .weapons) {
       const refs = [w.improve_from ?? [], w.improve_to ?? []].flat() as number[];
       for (const id of refs)
         if (!owned.get(weaponTable(type))?.has(String(id)))
@@ -153,11 +159,11 @@ section("Validating IDs and strings…");
   for (const kind of ["quest", "quest_goal", "quest_details", "quest_fail", "quest_client"])
     stale("en", en, kind, owned.get("quest"));
   stale("ja", ja, "item", owned.get("item"));
-  const farmPoints = readRawData<{ points: unknown[] }>(dataDir, "farm.json").points;
+  const farmPoints = readRawData<{ points: unknown[] }>(dataDir, GAME, "farm.json").points;
   stale("en", en, "farm", new Set(farmPoints.map((_, i) => String(i))));
   farmPoints.forEach((_, i) => {
     if (en.farm?.[String(i)] === undefined)
-      error(`farm.json: point ${i} has no name in data/strings/en.json`);
+      error(`farm.json: point ${i} has no name in data/mhfu/strings/en.json`);
   });
 
   console.log(
@@ -175,7 +181,7 @@ if (errors > 0) {
 
 section("Validating weapons…");
 
-const weaponDataDir = path.join(dataDir, "weapons");
+const weaponDataDir = path.join(GAME_DATA_DIR, "weapons");
 const weaponTypes = fs
   .readdirSync(weaponDataDir)
   .filter((e) => e.endsWith(".json"))
@@ -187,7 +193,7 @@ const allWeaponSlugs = new Map<string, Set<string>>(); // type → slugs
 for (const type of weaponTypes) {
   const craftingFile = path.join(weaponDataDir, `${type}.json`);
   if (!fs.existsSync(craftingFile)) continue;
-  const data = readData(dataDir, "weapons", `${type}.json`) as {
+  const data = readData(dataDir, GAME, "weapons", `${type}.json`) as {
     weapons: Record<string, unknown>[];
   };
   const slugs = new Set<string>();
@@ -203,11 +209,11 @@ for (const type of weaponTypes) {
   const craftingFile = path.join(weaponDataDir, `${type}.json`);
 
   if (!fs.existsSync(craftingFile)) {
-    error(`${type}: missing data/weapons/${type}.json`);
+    error(`${type}: missing data/mhfu/weapons/${type}.json`);
     continue;
   }
 
-  const data = readData(dataDir, "weapons", `${type}.json`) as {
+  const data = readData(dataDir, GAME, "weapons", `${type}.json`) as {
     weapons: Record<string, unknown>[];
   };
 
@@ -277,7 +283,7 @@ for (const type of weaponTypes) {
 
 section("Validating armor…");
 
-const armorDataDir = path.join(dataDir, "armor");
+const armorDataDir = path.join(GAME_DATA_DIR, "armor");
 for (const file of fs
   .readdirSync(armorDataDir)
   .sort()
@@ -285,7 +291,7 @@ for (const file of fs
   const slot = file.replace(/\.json$/, "");
   const craftingFile = path.join(armorDataDir, file);
 
-  const data = readData(dataDir, "armor", file) as {
+  const data = readData(dataDir, GAME, "armor", file) as {
     armor: Record<string, unknown>[];
   };
 
@@ -330,11 +336,11 @@ for (const file of fs
 
 section("Validating decorations…");
 
-const decoFile = path.join(dataDir, "decorations.json");
+const decoFile = path.join(GAME_DATA_DIR, "decorations.json");
 if (!fs.existsSync(decoFile)) {
-  error("Missing data/decorations.json");
+  error("Missing data/mhfu/decorations.json");
 } else {
-  const data = readData(dataDir, "decorations.json") as {
+  const data = readData(dataDir, GAME, "decorations.json") as {
     decorations: Record<string, unknown>[];
   };
   const slugs = new Set<string>();
@@ -365,14 +371,14 @@ if (!fs.existsSync(decoFile)) {
 }
 
 // ─── Skills ───────────────────────────────────────────────────────────────────
-// Every skill tree named on armor or a decoration must be in data/skills.json
+// Every skill tree named on armor or a decoration must be in data/mhfu/skills.json
 // (by name or alias), or the set builder can't search for it.
 
 section("Validating skills…");
 
 {
   const trees = (
-    readData(dataDir, "skills.json") as {
+    readData(dataDir, GAME, "skills.json") as {
       skills: SkillTreeData[];
     }
   ).skills;
@@ -381,15 +387,15 @@ section("Validating skills…");
     error("skills: a tree name or alias appears twice");
   }
   const unknown = new Map<string, string>();
-  for (const file of fs.readdirSync(path.join(dataDir, "armor"))) {
-    const { armor } = readData(dataDir, "armor", file) as {
+  for (const file of fs.readdirSync(path.join(GAME_DATA_DIR, "armor"))) {
+    const { armor } = readData(dataDir, GAME, "armor", file) as {
       armor: { name: string; skills?: { name: string }[] }[];
     };
     for (const p of armor) {
       for (const s of p.skills ?? []) if (!names.has(s.name)) unknown.set(s.name, p.name);
     }
   }
-  const { decorations } = readData(dataDir, "decorations.json") as {
+  const { decorations } = readData(dataDir, GAME, "decorations.json") as {
     decorations: { name: string; skills?: string[] }[];
   };
   for (const d of decorations) {
@@ -408,7 +414,7 @@ section("Validating skills…");
     if (positive > 1) error(`decoration ${d.name}: adds to more than one skill tree`);
   }
   for (const [tree, item] of unknown) {
-    error(`skills: "${tree}" (on ${item}) is not a tree or alias in data/skills.json`);
+    error(`skills: "${tree}" (on ${item}) is not a tree or alias in data/mhfu/skills.json`);
   }
   console.log(`  skills: ${trees.length} trees`);
 }
@@ -417,7 +423,7 @@ section("Validating skills…");
 
 section("Validating monsters…");
 
-const monsterDataDir = path.join(dataDir, "monsters");
+const monsterDataDir = path.join(GAME_DATA_DIR, "monsters");
 for (const file of fs
   .readdirSync(monsterDataDir)
   .sort()
@@ -425,7 +431,7 @@ for (const file of fs
   const category = file.replace(/\.json$/, "");
   const jsonFile = path.join(monsterDataDir, file);
 
-  const data = readData(dataDir, "monsters", file) as {
+  const data = readData(dataDir, GAME, "monsters", file) as {
     monsters: Record<string, unknown>[];
   };
   const slugs = new Set<string>();
@@ -451,11 +457,11 @@ for (const file of fs
 
 section("Validating items…");
 
-const itemsFile = path.join(dataDir, "items.json");
+const itemsFile = path.join(GAME_DATA_DIR, "items.json");
 if (!fs.existsSync(itemsFile)) {
-  error("Missing data/items.json");
+  error("Missing data/mhfu/items.json");
 } else {
-  const data = readData(dataDir, "items.json") as {
+  const data = readData(dataDir, GAME, "items.json") as {
     colors?: string[];
     items: ItemRecord[];
   };
@@ -571,7 +577,7 @@ if (!fs.existsSync(itemsFile)) {
     unresolved.set(name, set);
   };
   const walk = (rel: string) => {
-    const doc = readData<Record<string, unknown>>(dataDir, rel);
+    const doc = readData<Record<string, unknown>>(dataDir, GAME, rel);
     for (const list of Object.values(doc)) {
       if (!Array.isArray(list)) continue;
       for (const entry of list as Record<string, unknown>[]) {
@@ -596,7 +602,7 @@ if (!fs.existsSync(itemsFile)) {
   };
   for (const sub of ["weapons", "armor", "monsters"]) {
     for (const f of fs
-      .readdirSync(path.join(dataDir, sub))
+      .readdirSync(path.join(GAME_DATA_DIR, sub))
       .filter((e) => e.endsWith(".json"))
       .sort())
       walk(`${sub}/${f}`);
@@ -604,12 +610,12 @@ if (!fs.existsSync(itemsFile)) {
   walk("decorations.json");
 
   // Quest supply boxes and reward tables.
-  const questDir = path.join(dataDir, "quests");
+  const questDir = path.join(GAME_DATA_DIR, "quests");
   for (const f of fs
     .readdirSync(questDir)
     .filter((e) => e.endsWith(".json"))
     .sort()) {
-    const { quests } = readData(dataDir, "quests", f) as {
+    const { quests } = readData(dataDir, GAME, "quests", f) as {
       quests: {
         id: number;
         supplies?: { item?: unknown }[];

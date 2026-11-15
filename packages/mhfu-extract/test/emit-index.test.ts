@@ -46,7 +46,7 @@ function buildOrchestratorFixture() {
   return reader;
 }
 
-test("emitAll produces every data/*.json-shaped file with the right top-level key", () => {
+test("emitAll produces every data/mhfu/*.json-shaped file with the right top-level key", () => {
   const reader = buildOrchestratorFixture();
   const output = emitAll(reader);
 

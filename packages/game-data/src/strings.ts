@@ -1,5 +1,5 @@
 /**
- * Per-language string tables: `data/strings/<lang>.json`.
+ * Per-language string tables: `data/<game>/strings/<lang>.json`.
  *
  * Records in `data/` hold no display text. Each name lives here, keyed by
  * the kind of thing it names and that thing's game ID:
@@ -40,7 +40,7 @@ export const STRING_KINDS = {
   monster_description: "emID",
   /** Maps: the quest header's map ID. */
   map: "map ID",
-  /** Pokke Farm's gathering points ("Mining Point +2"): the point's index in the game's farm table, the order of data/farm.json. */
+  /** Pokke Farm's gathering points ("Mining Point +2"): the point's index in the game's farm table, the order of data/mhfu/farm.json. */
   farm: "farm point index",
   /** Quest text, from the disc: the quest ID. */
   quest: "quest ID",
@@ -57,7 +57,7 @@ export const KINDS = Object.keys(STRING_KINDS) as StringKind[];
 export const ALIAS_KINDS = ["item", "skill", "monster"] as const satisfies readonly StringKind[];
 export type AliasKind = (typeof ALIAS_KINDS)[number];
 
-/** The content of one `data/strings/<lang>.json`. */
+/** The content of one `data/<game>/strings/<lang>.json`. */
 export type StringsDoc = { $comment?: string | string[] } & {
   [K in StringKind]?: Record<string, string>;
 } & {
@@ -72,16 +72,33 @@ export type StringsDoc = { $comment?: string | string[] } & {
 /** The languages the site has strings for. English must be complete. */
 export const DEFAULT_LANG = "en";
 
-/** Where a language's strings live. The one place the path is spelled out. */
-export function stringsPath(dataDir: string, lang: string = DEFAULT_LANG): string {
-  return path.join(dataDir, "strings", `${lang}.json`);
+/**
+ * A game's data: `data/<game>/`, records and strings both. The one place
+ * the path is spelled out. `data/schemas/` is shared by every game.
+ */
+export function gameDataDir(dataDir: string, game: string): string {
+  return path.join(dataDir, game);
+}
+
+/** The JSON schemas, shared by every game: `data/schemas/`. */
+export function schemasDir(dataDir: string): string {
+  return path.join(dataDir, "schemas");
+}
+
+/** Where a game's strings in a language live. The one place the path is spelled out. */
+export function stringsPath(dataDir: string, game: string, lang: string = DEFAULT_LANG): string {
+  return path.join(gameDataDir(dataDir, game), "strings", `${lang}.json`);
 }
 
 const fileCache = new Map<string, { mtimeMs: number; size: number; doc: StringsDoc }>();
 
-/** Reads a language's strings, or `{}` if it has none. Re-read when the file changes. */
-export function readStringsDoc(dataDir: string, lang: string = DEFAULT_LANG): StringsDoc {
-  const file = stringsPath(dataDir, lang);
+/** Reads a game's strings in a language, or `{}` if it has none. Re-read when the file changes. */
+export function readStringsDoc(
+  dataDir: string,
+  game: string,
+  lang: string = DEFAULT_LANG,
+): StringsDoc {
+  const file = stringsPath(dataDir, game, lang);
   let stat;
   try {
     stat = statSync(file);
@@ -109,11 +126,12 @@ export class StringTable {
     readonly fallback?: StringsDoc,
   ) {}
 
-  static read(dataDir: string, lang: string = DEFAULT_LANG): StringTable {
-    const en = readStringsDoc(dataDir, DEFAULT_LANG);
+  /** A game's strings in a language, falling back to its English. */
+  static read(dataDir: string, game: string, lang: string = DEFAULT_LANG): StringTable {
+    const en = readStringsDoc(dataDir, game, DEFAULT_LANG);
     return lang === DEFAULT_LANG
       ? new StringTable(en)
-      : new StringTable(readStringsDoc(dataDir, lang), en);
+      : new StringTable(readStringsDoc(dataDir, game, lang), en);
   }
 
   /** The name of `kind` `key`, or undefined if no language has one. */

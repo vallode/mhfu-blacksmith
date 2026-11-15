@@ -1,4 +1,4 @@
-/** emit/gathering.ts and emit/shops.ts: data/gathering.json and data/shops.json. */
+/** emit/gathering.ts and emit/shops.ts: data/mhfu/gathering.json and data/mhfu/shops.json. */
 import assert from "node:assert/strict";
 import { mkdir, mkdtemp, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";

@@ -18,6 +18,7 @@ import { assignDiscIds, loadSiteIndex, type SiteIndex } from "./ids.js";
 import type { MaterialContext } from "./categories.js";
 import { monsterIdOf } from "../overlay/monsters.js";
 import { readData } from "game-data";
+import { GAME } from "../game.js";
 
 export type Item = Record<string, unknown>;
 
@@ -282,7 +283,9 @@ export async function loadInputs(extractedDir: string, dataDir: string, names: C
   // new to armor is spelled the way weapons/decorations already spell it.
   const byContext = new Map<MaterialContext, Item[]>();
   for (const name of Object.keys(CATEGORIES) as CategoryName[]) {
-    const items = await readCategoryItems(dataDir, CATEGORIES[name], readData);
+    const items = await readCategoryItems(dataDir, CATEGORIES[name], (dir, file) =>
+      readData(dir, GAME, file),
+    );
     committed.set(name, items);
     const context = CATEGORIES[name].materialContext;
     byContext.set(context, [...(byContext.get(context) ?? []), ...[...items.values()].flat()]);

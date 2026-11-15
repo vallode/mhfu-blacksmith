@@ -2,7 +2,7 @@
  * Per-monster `emChunk` records in `game_task.ovl` (`MonChunk[90]`, indexed
  * by emID) and their hitzone tables, as the vendored `game_task.hexpat`
  * describes them, with corrections confirmed on the EU disc against the
- * committed `data/monsters` hitzones (vallode/mhfu-blacksmith#35):
+ * committed `data/mhfu/monsters` hitzones (vallode/mhfu-blacksmith#35):
  *
  *   chunk (0x1D0 bytes, the `tclamb/mhp2g-decomp` `EnemyData` stride)
  *   +0x040  f32 BaseScale

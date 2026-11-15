@@ -2,7 +2,7 @@
 import assert from "node:assert/strict";
 import { describe, test } from "node:test";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
-import { DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import {
   encodeVeggieTrades,
   groupTrades,
@@ -98,8 +98,8 @@ describe("Veggie Elder trades", () => {
     assert.equal(tradeMapsLabel(["Old Swamp"]), "Old Swamp");
   });
 
-  test("data/veggie-trades.json: every item resolves, and the first trade is the disc's", () => {
-    const read = <T>(f: string) => readData(DATA_DIR, f) as T;
+  test("data/mhfu/veggie-trades.json: every item resolves, and the first trade is the disc's", () => {
+    const read = <T>(f: string) => readData(DATA_DIR, GAME, f) as T;
     const { index } = buildItemNameIndex(read<{ items: ItemRecord[] }>("items.json").items);
     const id = (name: string) => index.get(normalizeItemName(name));
     const real = encodeVeggieTrades(read<VeggieTradesFile>("veggie-trades.json"), id);

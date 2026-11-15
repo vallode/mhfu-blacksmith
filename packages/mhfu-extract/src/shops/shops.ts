@@ -5,7 +5,7 @@
  * `shop-lists` on the EU disc, where the tables are at 0xa7da8 and the
  * village store's first lists at 0xa7210 and 0xa7280. Tables can share
  * lists. randomfu's `shops` shuffle rewrites them; `emit/shops.ts` writes
- * them to `data/shops.json`.
+ * them to `data/mhfu/shops.json`.
  *
  * The disc doesn't name the shops: each table is named from what it sells
  * (`nameTable`). The four tables, in disc order, are the village general

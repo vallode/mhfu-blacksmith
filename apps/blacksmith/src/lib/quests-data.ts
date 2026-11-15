@@ -1,11 +1,11 @@
 /**
  * Build-time quest lookups for static params and page metadata, read from
- * data/quests/*.json. Pages render from public/data/quests.json on the client.
+ * data/mhfu/quests/*.json. Pages render from public/data/quests.json on the client.
  */
 import fs from "fs";
 import path from "path";
 import { isHiddenQuest, questHubSlug, type QuestHubSlug } from "./quests";
-import { DATA_DIR } from "./paths";
+import { DATA_DIR, GAME, GAME_DATA_DIR } from "./paths";
 import { readData } from "game-data";
 
 export interface QuestSummary {
@@ -15,7 +15,7 @@ export interface QuestSummary {
   goal: string | null;
 }
 
-const questDir = path.join(DATA_DIR, "quests");
+const questDir = path.join(GAME_DATA_DIR, "quests");
 
 let cache: QuestSummary[] | null = null;
 
@@ -23,7 +23,7 @@ export function getQuestSummaries(): QuestSummary[] {
   if (cache) return cache;
   const out: QuestSummary[] = [];
   for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) {
-    const { quests } = readData(DATA_DIR, "quests", file) as {
+    const { quests } = readData(DATA_DIR, GAME, "quests", file) as {
       quests: {
         id: number;
         hub: string;

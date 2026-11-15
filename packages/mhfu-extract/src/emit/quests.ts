@@ -1,5 +1,5 @@
 /**
- * Maps `ParsedQuest` (src/quests/parser.ts) onto the data/quests/*.json
+ * Maps `ParsedQuest` (src/quests/parser.ts) onto the data/mhfu/quests/*.json
  * schema shape (data/schemas/quest.schema.json).
  *
  * Every numeric/structured field below is either a raw disc value or
@@ -361,7 +361,7 @@ function resolveTarget(targetId: number, targetNum: number): EmittedQuestTarget 
 }
 
 /**
- * Maps one parsed `.mib` quest to the `data/quests/*.json` shape, or null for
+ * Maps one parsed `.mib` quest to the `data/mhfu/quests/*.json` shape, or null for
  * an unused/disabled quest slot or a quest on no board (see `questHub`).
  * Large monsters get their stat multipliers from `multipliers`, and the
  * quest its `monster_size` from `sizes`, if given.
@@ -411,7 +411,7 @@ export const QUEST_HUB_TO_FILE: Record<QuestHub, string> = {
   "treasure-hunting": "quests/treasure-hunting.json",
 };
 
-/** Maps every parsed quest into the `data/quests/*.json`-shaped output, grouped by hub, dropping unused slots. */
+/** Maps every parsed quest into the `data/mhfu/quests/*.json`-shaped output, grouped by hub, dropping unused slots. */
 export function emitQuestsFile(
   parsedQuests: ParsedQuest[],
   multipliers?: MultiplierLookup,

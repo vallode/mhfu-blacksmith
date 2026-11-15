@@ -6,7 +6,7 @@
  * (Piece.id / Deco.id change whenever the data is regenerated):
  * - armor: the equipment ID, i.e. the index into its slot's table in
  *   equipment-ids.json (the same IDs a save file's equipment box uses);
- * - decorations: the item ID from data/items.json.
+ * - decorations: the item ID from data/mhfu/items.json.
  *
  * Format (all integers are unsigned LEB128 varints):
  *

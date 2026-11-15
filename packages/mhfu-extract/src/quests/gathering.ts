@@ -2,7 +2,7 @@
  * Gathering points in a quest: which items its mining, gathering and bug
  * catching nodes can give, and where each of those table slots is. randomfu's
  * `gathering` shuffle edits the slots; `emit/gathering.ts` writes the nodes
- * to `data/gathering.json`.
+ * to `data/mhfu/gathering.json`.
  *
  * Layout from `quest.hexpat` (vendor/mhp2g-patterns, MIT):
  *
