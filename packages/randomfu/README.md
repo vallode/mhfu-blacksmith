@@ -76,6 +76,8 @@ web app shows as a tag):
 | `monsterRewards.scope`            | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`    |
 | `monsterRewards.chances`          | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`     |
 | `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                          |
+| `carveCounts.mode`                | `off`       | `off`, `shuffle` body and tail carve counts between monsters, or `randomize` them          |
+| `carveCounts.max`                 | 4           | With `randomize`: the largest count rolled                                                 |
 | `gathering.mode`                  | `off`       | `off`, `shuffle` gathering point pairs between quests, or `randomize` them                 |
 | `gathering.scope`                 | `star`      | How far pairs trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`    |
 | `gathering.chances`               | `rarity`    | With `randomize`: odds `rarity` (the table's own), `reasonable` (×0.5 to 2) or `any`       |
@@ -235,6 +237,16 @@ whether capture and break lists take part with carves.
   `monsterRewards.chances` says (the same choices as quest rewards) scaled to
   the list's total, and, for captures and breaks, an amount quests give of
   that item.
+
+### Carve counts
+
+How many times a monster can be carved ("body carves (x3)") is two bytes
+per monster in `game_sub.ovl`'s carve index (body, then tail), separate from
+the item lists above. Zeros (no tail, the elder dragons' body carves, live
+carving) are never touched. **Shuffle** moves counts between the monsters
+that have one of that kind; **randomize** rolls each from 1 to
+`carveCounts.max`. Capture rewards have no count on the disc's reward
+tables, so none is changed.
 
 ### Tiers
 

@@ -21,6 +21,8 @@ export interface Settings {
   "monsterRewards.scope": Scope;
   "monsterRewards.chances": "rarity" | "reasonable" | "any";
   "monsterRewards.captureAndBreaks": boolean;
+  "carveCounts.mode": Mode;
+  "carveCounts.max": number;
   "gathering.mode": Mode;
   "gathering.scope": Scope;
   "gathering.chances": "rarity" | "reasonable" | "any";
@@ -328,6 +330,45 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
     enabledBy: "monsterRewards.mode",
     enabledWhen: ["shuffle", "randomize"],
+  },
+  {
+    key: "carveCounts.mode",
+    section: "Monster rewards",
+    label: "Carve counts",
+    help: 'How many times a monster can be carved, body and tail, separate from the items in its lists ("body carves (x3)"). A monster with no tail, and carves done another way (elder dragons, live carving), are left alone.',
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "off",
+          label: "Unchanged",
+          help: "Monsters can be carved as often as they always could.",
+        },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Counts trade places between the monsters that have one.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Every count is rolled from 1 to the largest below.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "carveCounts.max",
+    section: "Monster rewards",
+    label: "Most carves",
+    help: "The largest body or tail carve count a monster can roll.",
+    type: { kind: "number", min: 1, max: 9, step: 1 },
+    default: 4,
+    enabledBy: "carveCounts.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "gathering.mode",

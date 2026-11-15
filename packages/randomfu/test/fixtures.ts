@@ -13,6 +13,7 @@ import { encryptDataBinBlock } from "mhfu-extract/src/container/databin.js";
 import {
   CAP_BREAK_POINTER_COUNT,
   CAPTURE_TYPE,
+  CARVE_COUNT_OFFSET,
   CARVE_INDEX_COUNT,
   CARVE_INDEX_SIZE,
   CARVE_POINTER_COUNT,
@@ -581,6 +582,13 @@ export function buildGameSub(carves: CarveListSpec[], captures: CaptureListSpec[
     const slot = carveIndex + (spec.emId - 1) * CARVE_INDEX_SIZE + spec.kind * 14 + spec.rank * 2;
     buf.writeUInt16LE(pointer, slot);
   });
+  // Carve counts: monsters with a body list carve it 3 times, with a tail list once.
+  for (let i = 0; i < CARVE_INDEX_COUNT; i++) {
+    const at = carveIndex + i * CARVE_INDEX_SIZE + CARVE_COUNT_OFFSET;
+    const kinds = new Set(carves.filter((c) => c.emId === i + 1).map((c) => c.kind));
+    buf.writeUInt8(kinds.has(0) ? 3 : 0, at);
+    buf.writeUInt8(kinds.has(1) ? 1 : 0, at + 1);
+  }
   buf.fill(0xff, carveIndex + CARVE_INDEX_COUNT * CARVE_INDEX_SIZE, capPointers);
 
   for (let i = 0; i < CAP_BREAK_POINTER_COUNT; i++)
