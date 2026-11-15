@@ -748,7 +748,13 @@ turns the house bookshelf's thirteen Practical Hunting monster articles
 Dragon info, and the Tigrex, Lao-Shan Lung, Akantor, Nargacuga, Yama
 Tsukami and Ukanlos pages; 107 pages) into the RandomFU Bestiary, titled
 by the letters each covers ("RandomFU Bestiary A-C"): an intro, then one
-page per large monster, by name. Pages rate rather than give numbers:
+page per large monster, by name. Monster names, here, in the Almanac and
+in the spoiler log, are the game's own from the EU disc (English message
+file 19's table 0, read as mhfu-extract's `strings/monster-names.ts` does,
+"Plum D.Hermitaur" included), with its overlay's names for the subspecies
+the game calls by their base monster's name (Crimson and White Fatalis);
+a JP disc, or one whose name table doesn't read, names them from
+`monster.enum`. Pages rate rather than give numbers:
 
 - **Health**: Frail, Sturdy, Tough, Mighty or Colossal, by fifths of base
   HP among the guide's monsters. It says where a monster stands among the

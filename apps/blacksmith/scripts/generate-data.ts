@@ -342,9 +342,6 @@ function encodeMonster(
   const out: CompactMonster = { n: m.name, s: m.slug };
   const d = internString(m.description);
   if (d !== undefined) out.d = d;
-  if (Array.isArray(m.habitats) && m.habitats.length > 0) {
-    out.hb = m.habitats.map((h) => intern(stringIndex, h));
-  }
   if (m.hitzones && Object.keys(m.hitzones).length > 0) {
     const COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
     out.hz = Object.entries(m.hitzones).map(([part, vals]) => [

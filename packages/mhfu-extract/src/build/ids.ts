@@ -20,7 +20,7 @@
  */
 import { isPlaceholderName, loadEnums } from "../strings/enums.js";
 import type { NameTable } from "../strings/names.js";
-import { readData } from "game-data";
+import { readData, readStringsDoc } from "game-data";
 
 /** Keys of game-data's `equipment-ids.json` view. */
 export type EquipmentSlot =
@@ -117,6 +117,8 @@ export interface SiteIndex {
   ): number | null;
   /** Every game ID in `slot` whose site name is `name` (any weapon type / sex). */
   equipmentIdsByName(slot: EquipmentSlot, name: string): number[];
+  /** emID of a site monster name (`data/strings`), or null if no monster has it. */
+  monsterIdOf(name: string): number | null;
 }
 
 /** Key used to find a site item's ID: weapons share an ID space per slot, so the weapon type disambiguates; Guild Guard pieces need `sex`. */
@@ -129,6 +131,11 @@ export function loadSiteIndex(dataDir: string): SiteIndex {
   const itemsFile = readData<{ items: ItemRecord[] }>(dataDir, "items.json");
 
   const items = new Map(itemsFile.items.map((i) => [i.id, i]));
+  const monsterIds = new Map(
+    Object.entries((readStringsDoc(dataDir).monster ?? {}) as Record<string, string>).map(
+      ([id, name]) => [name, Number(id)],
+    ),
+  );
   const owners = new Map<string, Set<number>>();
   const looseOwners = new Map<string, Set<number>>();
   for (const item of itemsFile.items) {
@@ -176,6 +183,9 @@ export function loadSiteIndex(dataDir: string): SiteIndex {
     },
     equipmentIdsByName(slot, name) {
       return byName.get(equipmentKey(slot, name, undefined)) ?? [];
+    },
+    monsterIdOf(name) {
+      return monsterIds.get(name) ?? null;
     },
   };
 }

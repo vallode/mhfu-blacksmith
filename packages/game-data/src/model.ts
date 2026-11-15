@@ -237,8 +237,7 @@ export function hydrate(kind: FileKind, raw: Doc, s: HydrateStrings): Doc {
         monsters: raw.monsters.map((m: Obj) => {
           let out = renameKey(m, "id", "name", (id) => en.name("monster", id));
           const description = en.find("monster_description", m.id);
-          if (description !== undefined)
-            out = insertBefore(out, ["habitats", "drops"], { description });
+          if (description !== undefined) out = insertBefore(out, ["drops"], { description });
           if (out.drops)
             out.drops = Object.fromEntries(
               Object.entries(out.drops as Obj).map(([rank, groups]) => [

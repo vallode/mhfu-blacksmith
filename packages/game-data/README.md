@@ -79,8 +79,10 @@ English (`StringTable`). `ja.json` holds the Japanese item names so far.
 `stringsPath(dataDir, lang)` is the one place the path is spelled out.
 
 **Spellings.** Where a reference should show another English spelling
-than the name, it carries `alias: n`: the n-th English alias. Quests name
-"Terra Shogun Ceanatur", the game's own spelling, that way. Skill
+than the name, it carries `alias: n`: the n-th English alias. Monsters'
+aliases are `monster.enum`'s spellings ("One-Ear Yian Garuga", "Terra
+Shogun Ceanatur"), which an extract of a disc whose names aren't read
+(JP) still uses; the EU disc's names are the names. Skill
 references on armor and decorations carry none: they show the tree's name
 from `skill`, as the set builder does. The old spellings ("Defence",
 "Load") stay as aliases, which search and the set builder still match.

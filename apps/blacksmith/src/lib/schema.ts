@@ -136,7 +136,6 @@ export interface CompactMonster {
   n: string;
   s: string;
   d?: number; // description stringIdx
-  hb?: number[]; // habitats stringIdx[]
   /** hitzones: [partStringIdx, [cut,bash,shot,fir,wtr,thn,ice,drg,ko]] */
   hz?: [number, (number | null)[]][];
   /** drops: [rankStringIdx, [sourceStringIdx, [materialId, chanceStringIdx][]][]][] */
@@ -423,7 +422,6 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     slug: m.s,
     type: category,
     description: m.d !== undefined ? str(d, m.d) : undefined,
-    habitats: m.hb ? m.hb.map((hi) => str(d, hi)) : undefined,
     hitzones: m.hz ? hitzones : undefined,
     drops: m.dr ? drops : undefined,
     base_hp: m.hp,

@@ -60,7 +60,7 @@ import {
 import { BAND_NAMES, inScope, questTier, type Band, type Tier } from "../game/tiers.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
-import { monsterName, questLabel } from "../names.js";
+import { questLabel, type MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
 import { getOrInsert, median, type ShuffleReport } from "./shuffle.js";
 
@@ -71,7 +71,7 @@ export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
   [2, 36, 71], // Fatalis, Crimson, White
   [6, 38], // Yian Kut-Ku, Blue
   [20, 39], // Gypceros, Purple
-  [78, 40], // Yian Garuga, One-Ear
+  [78, 40], // Yian Garuga, Scarred
   [14, 43], // Diablos, Black
   [26, 44], // Monoblos, White
   [15, 45], // Khezu, Red
@@ -79,7 +79,7 @@ export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
   [17, 47], // Gravios, Black
   [48, 86], // Daimyo Hermitaur, Plum
   [67, 87], // Shogun Ceanataur, Terra
-  [7, 50], // Lao-Shan Lung, Ashen
+  [7, 50], // Lao-Shan Lung, Ash
   [51, 84], // Blangonga, Copper
   [52, 85], // Congalala, Emerald
   [53, 89], // Rajang, Furious
@@ -148,6 +148,8 @@ export function swapSpecies(
   edits: Edits,
   allQuests: readonly LoadedQuest[],
   setOf: MultiplierSetOf,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
   boards: readonly BoardFile[] = [],
 ): {
   report: ShuffleReport;
@@ -333,6 +335,8 @@ export function randomizeDifficulty(
   rng: Rng,
   edits: Edits,
   setOf: MultiplierSetOf,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   // A level is a row of one table: the monster's set, the quest's table.
   const key = (q: QuestMonsters, emId: number) =>
@@ -399,6 +403,8 @@ export function randomizeSmallCounts(
   spread: number,
   rng: Rng,
   edits: Edits,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   let cap = 1;
   for (const q of list) {

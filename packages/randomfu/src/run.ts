@@ -55,6 +55,7 @@ export async function runRandomizer(
   log(
     `${game.discId} (${game.region}): ${game.quests.length} quests, ${game.skippedQuests.length} skipped.`,
   );
+  if (game.monsterNamesProblem) log(`Warning: ${game.monsterNamesProblem}`);
   log(`Seed ${settings.seed}. Settings string: ${encodeSettings(settings)}`);
   for (const line of describeSettings(settings)) log(`  ${line}`);
 
