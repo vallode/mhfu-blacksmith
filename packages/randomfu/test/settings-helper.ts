@@ -1,6 +1,6 @@
 import { applySettings, defaultSettings, type OptionKey, type Settings } from "../src/settings.js";
 
-/** Shuffle names as the tests (and the CLI's --shuffles) use them. */
+/** Short names for the shuffles, as the tests use them. */
 export const SHUFFLE_KEYS = {
   "quest-rewards": "questRewards.enabled",
   "monster-rewards": "monsterRewards.enabled",

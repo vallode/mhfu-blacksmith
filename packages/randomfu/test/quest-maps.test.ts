@@ -10,7 +10,6 @@ import {
 } from "mhfu-extract/src/quests/document.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { sampleDoc, spawn } from "mhfu-extract/test/quest-document-sample.js";
-import { openPatchableImage } from "../src/disc/node-file.js";
 import { Edits } from "../src/edits.js";
 import type { BoardFile } from "../src/game/board.js";
 import { itemSources, lostSources } from "../src/game/first-tiers.js";
@@ -28,7 +27,7 @@ import { randomize } from "../src/randomize.js";
 import type { RewardList } from "../src/shuffles/monster-rewards.js";
 import { swapSmallSpecies } from "../src/shuffles/small-monsters.js";
 import { writeEdits } from "../src/write.js";
-import { buildFixtureDisc, tempDir } from "./fixtures.js";
+import { buildFixtureDisc, finish, patchInMemory, tempDir } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 // emIDs: large Rathian 1, Yian Kut-Ku 6, Pink Rathian 37, Diablos 14; small
@@ -497,9 +496,9 @@ test("a rebuilt quest is padded to its disc length, and refused past its sectors
 
 test("on a disc: a rebuilt quest is written and read back; quests that can't be rebuilt are named", async () => {
   const output = path.join(tempDir(), "out.iso");
-  writeFileSync(output, buildFixtureDisc());
-  const image = openPatchableImage(output);
-  const game = await loadGame(image.source, image.iso, { eboot: null });
+  const original = buildFixtureDisc();
+  const image = patchInMemory(original);
+  const game = await loadGame(image.source, image.iso);
 
   // The fixture's small monster tables aren't laid out like the disc's, so most of its quests are locked.
   const result = randomize(
@@ -522,10 +521,10 @@ test("on a disc: a rebuilt quest is written and read back; quests that can't be 
   const edits = new Edits(game);
   edits.quest(rebuilt);
   assert.equal(writeEdits(image, game, edits).quests, 1); // and reads it back
-  image.close();
+  writeFileSync(output, finish(image, original));
 
   const { source, iso } = openDiscImage(output);
-  const after = await loadGame(source, iso, { eboot: null });
+  const after = await loadGame(source, iso);
   const written = after.quests.find((q) => q.parsed.header.questId === 10102)!;
   assert.equal(parseDoc(written.file.payload).large[0]!.spawns[0]!.stage, 151);
   source.close();

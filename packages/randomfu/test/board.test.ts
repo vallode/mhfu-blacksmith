@@ -36,7 +36,7 @@ writeFileSync(FILE, buildFixtureDisc({ text: true }));
 
 async function load(): Promise<{ game: GameData; close: () => void }> {
   const { source, iso } = openDiscImage(FILE);
-  const game = await loadGame(source, iso, { eboot: null });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 

@@ -54,7 +54,7 @@ test("without a store on the disc, the shuffles leave the overlay alone and say 
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   const lobby = buildLobbyTask();
   game.lobbyTask = { ...game.lobbyTask, ovl: parseOvl(withoutStore(lobby.buf)) };
 

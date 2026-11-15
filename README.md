@@ -45,7 +45,7 @@ This is a [pnpm workspace](https://pnpm.io/workspaces):
 | `apps/blacksmith`       | `blacksmith`   | The MHFU Blacksmith website, a statically exported [Next.js](https://nextjs.org/) app           |
 | `apps/randomfu`         | `randomfu-web` | The randomizer as a static web app that runs in the browser, at randomfu.vallode.com            |
 | `packages/mhfu-extract` | `mhfu-extract` | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models              |
-| `packages/randomfu`     | `randomfu`     | Seeded randomizer: library, command line and local settings page                                |
+| `packages/randomfu`     | `randomfu`     | The seeded randomizer behind `apps/randomfu`: options, shuffles, disc patching, spoiler log     |
 | `packages/game-data`    | `game-data`    | The one way into `data/`: `readData` for everything that reads it, `writeData` for writing      |
 | `data`                  |                | The game data the site is built from (JSON, validated by `data/schemas/`), shared by everything |
 

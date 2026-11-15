@@ -1,6 +1,6 @@
 /**
- * Every randomizer option, described once. The CLI, settings files, the
- * shareable settings string and the GUI all work from `OPTIONS`.
+ * Every randomizer option, described once. The web app's pages, settings
+ * files and the shareable settings string all work from `OPTIONS`.
  *
  * Settings are a flat object keyed by option (`"recipes.amountSpread"`), so
  * they serialize as they are. A settings string is "RF" plus base64url JSON
@@ -123,8 +123,6 @@ export interface OptionDef {
   default: boolean | number | string;
   /** Shuffle or randomize: left out for options that only tune another (and for Logic). */
   action?: Action;
-  /** Needs the decrypted EBOOT when on (or, for non-booleans, when `enabledBy` is on). */
-  eboot?: boolean;
   /** A boolean option that must be on for this one to matter. */
   enabledBy?: OptionKey;
 }
@@ -402,7 +400,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
-    eboot: true,
   },
   {
     key: "recipes.amounts",
@@ -412,7 +409,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "recipes.amountSpread",
@@ -440,7 +436,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "costs.spread",
@@ -459,7 +454,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
-    eboot: true,
   },
   {
     key: "weapons.mix",
@@ -492,7 +486,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "weapons.attackSpread",
@@ -511,7 +504,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "weapons.affinitySpread",
@@ -530,7 +522,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "weapons.elementSpread",
@@ -549,7 +540,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
-    eboot: true,
   },
   {
     key: "armorSkills.enabled",
@@ -558,7 +548,6 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The skill points on armor pieces change. Each piece keeps how many skills it has and which are negative; Torso Up and decorations stay as they are.",
     type: { kind: "boolean" },
     default: false,
-    eboot: true,
   },
   {
     key: "armorSkills.mode",
@@ -695,7 +684,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "shops.priceSpread",
@@ -714,7 +702,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "shops.stackSpread",
@@ -1022,7 +1009,6 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
     type: { kind: "boolean" },
     default: true,
-    eboot: true,
   },
   {
     key: "mods.nodeMap",
@@ -1031,7 +1017,6 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only.",
     type: { kind: "boolean" },
     default: false,
-    eboot: true,
   },
 ];
 
@@ -1045,8 +1030,8 @@ export function defaultSettings(seed: string): Settings {
 
 export class SettingsError extends Error {}
 
-/** Checks one value against its option, converting CLI strings ("true", "0.5"). */
-export function coerceOption(key: string, value: unknown): Settings[OptionKey] {
+/** Checks one value against its option, converting strings ("true", "0.5"). */
+function coerceOption(key: string, value: unknown): Settings[OptionKey] {
   const option = BY_KEY.get(key as OptionKey);
   if (!option) throw new SettingsError(`Unknown setting "${key}"`);
   const type = option.type;
@@ -1082,23 +1067,6 @@ export function applySettings(base: Settings, changes: Record<string, unknown>):
     }
   }
   return out as unknown as Settings;
-}
-
-/** Parses `key=value,key=value` (the CLI's `--set`). */
-export function parseAssignments(value: string): Record<string, string> {
-  const out: Record<string, string> = {};
-  for (const part of value.split(",")) {
-    if (!part.trim()) continue;
-    const eq = part.indexOf("=");
-    if (eq === -1) throw new SettingsError(`Expected key=value, got "${part}"`);
-    out[part.slice(0, eq).trim()] = part.slice(eq + 1).trim();
-  }
-  return out;
-}
-
-/** True if any option that needs the decrypted EBOOT is on. */
-export function needsEboot(settings: Settings): boolean {
-  return OPTIONS.some((o) => o.eboot && settings[o.key] === true && isActive(settings, o));
 }
 
 /** True if the option is in effect: its `enabledBy` switch, and that switch's, are on. */
