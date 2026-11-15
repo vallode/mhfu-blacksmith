@@ -404,16 +404,20 @@ test("a written disc reads back with the new supplies, terms and target", async 
 
 async function writeAndReadBack(mode: string): Promise<void> {
   const { game, close } = await load();
-  const s = settingsWith("w", ["supplies", "quest-money", "time-limits", "deliveries"], {
-    "supplies.mode": mode,
-    "supplies.slots": 0.95,
-  });
-  const result = randomize(game, s);
-  if (mode === "randomize") {
-    assert.ok(
-      [...result.edits.quests.values()].some((e) => e.payload.length > e.quest.file.payload.length),
+  const run = (seed: string) =>
+    randomize(
+      game,
+      settingsWith(seed, ["supplies", "quest-money", "time-limits", "deliveries"], {
+        "supplies.mode": mode,
+        "supplies.slots": 0.95,
+      }),
     );
-  }
+  const grew = (r: ReturnType<typeof run>) =>
+    [...r.edits.quests.values()].some((e) => e.payload.length > e.quest.file.payload.length);
+  // Randomize should grow a quest, so the write moves it; find a seed that does.
+  let result = run("w");
+  for (let n = 0; mode === "randomize" && !grew(result) && n < 20; n++) result = run(`w${n}`);
+  if (mode === "randomize") assert.ok(grew(result));
   const out = path.join(tempDir(), "out.iso");
   const original = buildFixtureDisc();
   const { writeEdits } = await import("../src/write.js");

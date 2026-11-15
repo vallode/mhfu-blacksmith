@@ -36,7 +36,7 @@ export function mapLabel(map: number): string {
 
 /** A monster reward list's source as the guides name it: "carve", "tail", "capture" ... */
 export function rewardKind(source: string): string {
-  if (source === "body") return "carve";
+  if (source === "body" || source.endsWith(" carve")) return "carve";
   if (source.startsWith("break")) return "break";
   return source;
 }

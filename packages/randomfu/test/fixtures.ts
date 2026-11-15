@@ -542,8 +542,21 @@ export interface CaptureListSpec {
   entries: { chance: number; itemId: number; amount: number }[];
 }
 
-/** `game_sub.ovl` with the two pointer tables, their index tables and the given lists. */
-export function buildGameSub(carves: CarveListSpec[], captures: CaptureListSpec[]): Buffer {
+/** A carve list only code picks: one no index reaches, at carve pointer `pointer`. */
+export interface CodeCarveListSpec {
+  pointer: number;
+  entries: { chance: number; itemId: number }[];
+}
+
+/**
+ * `game_sub.ovl` with the two pointer tables, their index tables and the
+ * given lists, plus `codeCarves` at their own carve pointers.
+ */
+export function buildGameSub(
+  carves: CarveListSpec[],
+  captures: CaptureListSpec[],
+  codeCarves: CodeCarveListSpec[] = [],
+): Buffer {
   const carvePointers = 0x80;
   const carveIndex = carvePointers + CARVE_POINTER_COUNT * 4;
   const capPointers = carveIndex + CARVE_INDEX_COUNT * CARVE_INDEX_SIZE + 4;
@@ -581,6 +594,8 @@ export function buildGameSub(carves: CarveListSpec[], captures: CaptureListSpec[
     const slot = carveIndex + (spec.emId - 1) * CARVE_INDEX_SIZE + spec.kind * 14 + spec.rank * 2;
     buf.writeUInt16LE(pointer, slot);
   });
+  for (const spec of codeCarves)
+    buf.writeUInt32LE(vaddr(placeList(spec.entries, 4)), carvePointers + spec.pointer * 4);
   buf.fill(0xff, carveIndex + CARVE_INDEX_COUNT * CARVE_INDEX_SIZE, capPointers);
 
   for (let i = 0; i < CAP_BREAK_POINTER_COUNT; i++)

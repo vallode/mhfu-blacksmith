@@ -1,8 +1,10 @@
 /**
  * Monster carves, capture rewards and break rewards, from `game_sub.ovl`
  * (laid out in mhfu-extract's `monsters/rewards.ts`). Monsters point at
- * shared lists through index and pointer tables; this collects each list
- * once, with every monster and rank slot that uses it.
+ * shared lists through index and pointer tables, and code picks a few more
+ * (`CODE_CARVES`: the elder dragons' carves, live carves, Congalala's
+ * tail-stagger drops); this collects each list once, with every monster and
+ * rank slot that uses it.
  *
  * A list's tier is its rank slot and the lowest star level at which any
  * monster using it appears in a quest. No list changes length, so the
@@ -22,6 +24,7 @@ import {
   CARVE_INDEX_SIZE,
   CARVE_KINDS,
   CARVE_POINTER_COUNT,
+  CODE_CARVES,
   REWARD_RANKS,
   locateRewardTables,
   readRewardList,
@@ -48,7 +51,7 @@ const NONE = 0xffff;
 
 export interface RewardRef {
   emId: number;
-  /** "body", "tail", "shiny", "capture" or "break N". */
+  /** "body", "tail", "shiny", "capture", "break N", or a code-picked carve's (`CODE_CARVES`). */
   source: string;
   rank: RewardRank;
 }
@@ -62,13 +65,36 @@ export interface RewardList {
   refs: RewardRef[];
 }
 
-/** Every reward list reachable from the carve and cap/break index tables. */
+/**
+ * Every reward list reachable from the carve and cap/break index tables,
+ * and the carve lists code picks (`CODE_CARVES`), each with every rank slot
+ * that reads it.
+ */
 export function collectRewardLists(ovl: OvlFile): RewardList[] {
   const location = locateRewardTables(ovl);
   if (!location) throw new Error("game_sub.ovl: carve and cap/break tables not found");
   const lists = new Map<string, RewardList>();
   const r = ovl.reader;
 
+  const addPointer = (
+    table: TablePair,
+    pointerCount: number,
+    pointer: number,
+    withAmount: boolean,
+    ref: RewardRef,
+    skipEmpty = false,
+  ): void => {
+    if (pointer >= pointerCount) return;
+    const vaddr = r.u32(table.pointers + pointer * 4);
+    const entries = readRewardList(ovl, vaddr, withAmount);
+    if (!entries || (skipEmpty && entries.length === 0)) return;
+    const offset = ovl.vaddrToOffset(vaddr);
+    const stride = withAmount ? 6 : 4;
+    const key = `${stride}:${offset}`;
+    const list = lists.get(key);
+    if (list) list.refs.push(ref);
+    else lists.set(key, { offset, stride, entries, refs: [ref] });
+  };
   const add = (
     table: TablePair,
     pointerCount: number,
@@ -77,16 +103,7 @@ export function collectRewardLists(ovl: OvlFile): RewardList[] {
     ref: RewardRef,
   ): void => {
     const index = r.u16(indexOffset);
-    if (index === NONE || index >= pointerCount) return;
-    const vaddr = r.u32(table.pointers + index * 4);
-    const entries = readRewardList(ovl, vaddr, withAmount);
-    if (!entries) return;
-    const offset = ovl.vaddrToOffset(vaddr);
-    const stride = withAmount ? 6 : 4;
-    const key = `${stride}:${offset}`;
-    const list = lists.get(key);
-    if (list) list.refs.push(ref);
-    else lists.set(key, { offset, stride, entries, refs: [ref] });
+    if (index !== NONE) addPointer(table, pointerCount, index, withAmount, ref);
   };
 
   for (let i = 0; i < CARVE_INDEX_COUNT; i++) {
@@ -115,6 +132,20 @@ export function collectRewardLists(ovl: OvlFile): RewardList[] {
       });
     }
     at += CAP_BREAK_ENTRY_SIZE;
+  }
+
+  for (const { emId, source, pointers } of CODE_CARVES) {
+    pointers.forEach((pointer, ri) => {
+      // A disc without these lists (a test fixture) leaves them empty.
+      addPointer(
+        location.carves,
+        CARVE_POINTER_COUNT,
+        pointer,
+        false,
+        { emId, source, rank: REWARD_RANKS[ri]! },
+        true,
+      );
+    });
   }
 
   return [...lists.values()].sort((a, b) => a.offset - b.offset);
