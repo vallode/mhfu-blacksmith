@@ -210,7 +210,6 @@ export const monsters: Messages["monsters"] = {
       "requires fire element": "requiere elemento fuego",
       "stagger during taunt": "hacerlo retroceder durante su provocación",
       killed: "al matarlo",
-      "stagger the tail": "hacer retroceder la cola",
       "stagger the tail [bone]": "hacer retroceder la cola [hueso]",
       "stagger the tail [mushroom]": "hacer retroceder la cola [seta]",
       "stagger the tail [mineral stone]": "hacer retroceder la cola [piedra mineral]",
