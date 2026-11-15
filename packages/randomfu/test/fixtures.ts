@@ -13,6 +13,7 @@ import { encryptDataBinBlock } from "mhfu-extract/src/container/databin.js";
 import {
   CAP_BREAK_POINTER_COUNT,
   CAPTURE_TYPE,
+  CARVE_COUNT_OFFSET,
   CARVE_INDEX_COUNT,
   CARVE_INDEX_SIZE,
   CARVE_POINTER_COUNT,
@@ -542,8 +543,21 @@ export interface CaptureListSpec {
   entries: { chance: number; itemId: number; amount: number }[];
 }
 
-/** `game_sub.ovl` with the two pointer tables, their index tables and the given lists. */
-export function buildGameSub(carves: CarveListSpec[], captures: CaptureListSpec[]): Buffer {
+/** A carve list only code picks: one no index reaches, at carve pointer `pointer`. */
+export interface CodeCarveListSpec {
+  pointer: number;
+  entries: { chance: number; itemId: number }[];
+}
+
+/**
+ * `game_sub.ovl` with the two pointer tables, their index tables and the
+ * given lists, plus `codeCarves` at their own carve pointers.
+ */
+export function buildGameSub(
+  carves: CarveListSpec[],
+  captures: CaptureListSpec[],
+  codeCarves: CodeCarveListSpec[] = [],
+): Buffer {
   const carvePointers = 0x80;
   const carveIndex = carvePointers + CARVE_POINTER_COUNT * 4;
   const capPointers = carveIndex + CARVE_INDEX_COUNT * CARVE_INDEX_SIZE + 4;
@@ -581,6 +595,15 @@ export function buildGameSub(carves: CarveListSpec[], captures: CaptureListSpec[
     const slot = carveIndex + (spec.emId - 1) * CARVE_INDEX_SIZE + spec.kind * 14 + spec.rank * 2;
     buf.writeUInt16LE(pointer, slot);
   });
+  for (const spec of codeCarves)
+    buf.writeUInt32LE(vaddr(placeList(spec.entries, 4)), carvePointers + spec.pointer * 4);
+  // Carve counts: monsters with a body list carve it 3 times, with a tail list once.
+  for (let i = 0; i < CARVE_INDEX_COUNT; i++) {
+    const at = carveIndex + i * CARVE_INDEX_SIZE + CARVE_COUNT_OFFSET;
+    const kinds = new Set(carves.filter((c) => c.emId === i + 1).map((c) => c.kind));
+    buf.writeUInt8(kinds.has(0) ? 3 : 0, at);
+    buf.writeUInt8(kinds.has(1) ? 1 : 0, at + 1);
+  }
   buf.fill(0xff, carveIndex + CARVE_INDEX_COUNT * CARVE_INDEX_SIZE, capPointers);
 
   for (let i = 0; i < CAP_BREAK_POINTER_COUNT; i++)
@@ -809,6 +832,11 @@ export function buildEboot(
     buf.writeUInt16LE(a.hunterType & 2 ? a.index : 0, at + 2); // female model
     buf[at + 4] = a.hunterType;
     buf[at + 5] = a.rarity;
+    const stats = fixtureArmorStats(a);
+    buf.writeUInt8(stats.defense, at + 12);
+    stats.resistances.forEach((r, k) => buf.writeInt8(r, at + 13 + k));
+    buf[at + 18] = stats.slots;
+    stats.caps.forEach((cap, k) => (buf[at + 20 + k] = cap));
     (FIXTURE_ARMOR_SKILLS[`${a.slot}:${a.index}`] ?? []).forEach(([tree, points], k) => {
       buf[at + 30 + k * 2] = tree;
       buf.writeInt8(points, at + 31 + k * 2);
@@ -1478,6 +1506,20 @@ export const FIXTURE_ARMOR: FixtureArmor[] = [
 ];
 
 /**
+ * A piece's defense, resistances (fire, water, thunder, dragon, ice),
+ * slots and seven sphere caps, made up from its index and rarity so that
+ * pieces of a group differ.
+ */
+export function fixtureArmorStats({ index, rarity }: FixtureArmor) {
+  return {
+    defense: 10 + 10 * rarity + index,
+    resistances: [(index % 3) - 1, ((index * 2) % 5) - 2, rarity, -rarity, index % 2],
+    slots: index % 4,
+    caps: [2, 4, 6, 8, 10, 12, 12 + index],
+  };
+}
+
+/**
  * Armor create entries besides `FIXTURE_RECIPES` (head entries 1-4, which
  * make pieces 1-4), by slot: [entry, piece, materials]. Head piece 5 and
  * chest piece 3 have a second recipe.
@@ -1701,4 +1743,27 @@ export function patchInMemory(original: Buffer): PatchableImage {
 /** The image `patchInMemory` made of `original`, with every write in it. */
 export function finish(image: PatchableImage, original: Buffer): Buffer {
   return assemble(image.source.segments(), original);
+}
+
+/** A message file: u32 count, u32 8, table offsets, then each table's offsets (0xFFFFFFFF-ended) and strings. */
+export function messageFile(tables: string[][]): Buffer {
+  const parts: Buffer[] = [];
+  let at = 8 + 4 * tables.length;
+  const header = Buffer.alloc(at);
+  header.writeUInt32LE(tables.length, 0);
+  header.writeUInt32LE(8, 4);
+  tables.forEach((strings, t) => {
+    header.writeUInt32LE(at, 8 + 4 * t);
+    const list = Buffer.alloc(4 * (strings.length + 1));
+    let rel = list.length;
+    const bytes = strings.map((s) => Buffer.from(`${s}\0`, "utf8"));
+    bytes.forEach((b, i) => {
+      list.writeUInt32LE(rel, 4 * i);
+      rel += b.length;
+    });
+    list.writeUInt32LE(0xffffffff, 4 * strings.length);
+    parts.push(list, ...bytes);
+    at += rel;
+  });
+  return Buffer.concat([header, ...parts, Buffer.alloc(64)]);
 }

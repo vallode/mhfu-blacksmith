@@ -11,6 +11,7 @@ import { useSaveWorker, type CharacterResult } from "@/hooks/useSaveWorker";
 import { useSave } from "@/context/SaveContext";
 import { saveFromCharacter } from "@/lib/save-store";
 import { useFileSync } from "@/context/FileSyncContext";
+import { useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
@@ -78,6 +79,8 @@ interface SlotCardProps {
 }
 
 function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
+  const text = useT().site.hunter;
+  const { formatNumber } = useLocale();
   if (!hunter) {
     return (
       <CardBox className="flex-none">
@@ -85,7 +88,7 @@ function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
           <div className={slotBase}>
             <span className={slotName}>
               <span>{slot + 1}</span>
-              <span className="uppercase">No data</span>
+              <span className="uppercase">{text.noData}</span>
             </span>
           </div>
         </Card>
@@ -106,7 +109,7 @@ function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
           )}
           onClick={onToggle}
           aria-pressed={active}
-          title={active ? "Deselect this hunter" : undefined}
+          title={active ? text.deselect : undefined}
         >
           <span className={slotName}>
             <span>{slot + 1}</span>
@@ -116,26 +119,28 @@ function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
             <span className={slotRow}>
               {hunter.playTime !== undefined && (
                 <>
-                  <span className={slotLabel}>Time</span>
+                  <span className={slotLabel}>{text.time}</span>
                   <span>{formatPlayTime(hunter.playTime)}</span>
                 </>
               )}
-              {hunter.sex && <span className="uppercase">{hunter.sex}</span>}
+              {hunter.sex && (
+                <span className="uppercase">{text.sex[hunter.sex] ?? hunter.sex}</span>
+              )}
             </span>
           )}
           {hunter.hunterRank !== undefined && (
             <span className={slotRow}>
-              <span className={slotLabel}>HR</span>
+              <span className={slotLabel}>{text.rank}</span>
               <span>{hunter.hunterRank}</span>
             </span>
           )}
           {hunter.zenny !== undefined && (
             <span className={slotRow}>
-              <span className={slotLabel}>Money</span>
-              <span>{hunter.zenny.toLocaleString()}z</span>
+              <span className={slotLabel}>{text.money}</span>
+              <span>{formatNumber(hunter.zenny)}z</span>
             </span>
           )}
-          {active && <span className="sr-only"> (selected)</span>}
+          {active && <span className="sr-only">{text.selected}</span>}
         </button>
       </Card>
     </CardBox>
@@ -143,6 +148,7 @@ function SlotCard({ slot, hunter, active, onToggle }: SlotCardProps) {
 }
 
 export default function SaveUpload() {
+  const text = useT().site.hunter;
   const { parse, result, error, loading } = useSaveWorker();
   const { save, load, clear } = useSave();
   const fileSync = useFileSync();
@@ -225,7 +231,7 @@ export default function SaveUpload() {
           );
         })}
 
-        {loading && <Loading className={cn(notice, "justify-center")}>Reading save file…</Loading>}
+        {loading && <Loading className={cn(notice, "justify-center")}>{text.reading}</Loading>}
         {error && <div className={cn(notice, "text-negative")}>{error}</div>}
       </div>
 
@@ -240,7 +246,7 @@ export default function SaveUpload() {
         >
           {fileSync.isSupported ? (
             <button type="button" className={loaderCta} onClick={handlePick}>
-              Drop MHP2NDG.BIN here or click to browse
+              {text.drop}
             </button>
           ) : (
             <label className={loaderCta}>
@@ -250,7 +256,7 @@ export default function SaveUpload() {
                 className="absolute h-0 w-0 opacity-0"
                 onChange={handleFileChange}
               />
-              Drop MHP2NDG.BIN here or click to browse
+              {text.drop}
             </label>
           )}
         </Card>

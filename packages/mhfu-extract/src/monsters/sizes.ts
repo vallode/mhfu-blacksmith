@@ -43,11 +43,11 @@ const VARIATION_COUNT = 5;
  * emID, then `s16` silver, gold and mini thresholds (percent). Entries
  * without crowns are all zero.
  */
-const CROWNS = 0x08930bdc;
-const CROWN_COUNT = 62;
-const CROWN_SIZE = 14;
+export const CROWNS = 0x08930bdc;
+export const CROWN_COUNT = 62;
+export const CROWN_SIZE = 14;
 /** `u8*` by emID: the emIDs (ending 0xff) whose records a crown entry takes. */
-const CROWN_GROUPS = 0x0899bf40;
+export const CROWN_GROUPS = 0x0899bf40;
 /** `f32` by emID: the size in centimetres at 100 percent. */
 const BASE_SIZES = 0x0899c760;
 /**
@@ -59,7 +59,7 @@ const FIXED_SIZE_TABLE = 0x089a8624;
 const FIXED_SIZE_COUNT = 38;
 const ALWAYS_ROLLS_FLAG = 356;
 
-const MONSTER_COUNT = 90;
+export const MONSTER_COUNT = 90;
 
 export interface Crowns {
   /** A record at most this percent gets a mini crown. */

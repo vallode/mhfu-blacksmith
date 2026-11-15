@@ -75,7 +75,7 @@ test("the reader gives each used pair once, with its offset and value", () => {
   assert.match(readGatheringItems(past, parseQuest(past)).problem!, /item table 600, past/);
 });
 
-test("gathering: items move within their tier; values, tables and other quests stay", async () => {
+test("gathering: pairs move within their tier; tables keep their length and value total", async () => {
   const { game, close } = await load();
   const before = gathering(game, (i) => game.quests.find((q) => q.index === i)!.file.payload);
   let crossed = false;
@@ -88,10 +88,15 @@ test("gathering: items move within their tier; values, tables and other quests s
     for (const [questId, slots] of before) {
       const now = after.get(questId)!;
       assert.deepEqual(
-        now.map((s) => [s.table, s.offset, s.value]),
-        slots.map((s) => [s.table, s.offset, s.value]),
-        `quest ${questId}: same pairs, same values`,
+        now.map((s) => [s.table, s.offset]),
+        slots.map((s) => [s.table, s.offset]),
+        `quest ${questId}: same pairs`,
       );
+      const total = (list: typeof slots, table: number) =>
+        list.filter((s) => s.table === table).reduce((sum, s) => sum + s.value, 0);
+      for (const table of new Set(slots.map((s) => s.table))) {
+        assert.equal(total(now, table), total(slots, table), `quest ${questId} table ${table}`);
+      }
     }
     for (const [tier, { quests, items }] of Object.entries(TIERS)) {
       const now = quests.flatMap((id) => after.get(id)!.map((s) => s.itemId));
@@ -103,10 +108,11 @@ test("gathering: items move within their tier; values, tables and other quests s
     for (const quest of game.quests) {
       const was = quest.file.payload;
       const now = payloadOf(quest.index);
-      const pairs = new Set(before.get(quest.parsed.header.questId)!.map((s) => s.offset + 2));
+      const pairs = new Set(before.get(quest.parsed.header.questId)!.map((s) => s.offset));
       for (let i = 0; i < was.length; i++) {
         if (was[i] !== now[i]) {
-          assert.ok(pairs.has(i) || pairs.has(i - 1), `quest ${quest.path}: byte ${i}`);
+          const inPair = [0, 1, 2, 3].some((k) => pairs.has(i - k));
+          assert.ok(inPair, `quest ${quest.path}: byte ${i}`);
         }
       }
     }
@@ -123,10 +129,10 @@ test("gathering: the recipe check uses the shuffled gathering points and still p
     const result = randomize(game, settingsWith(seed, ["gathering", "recipes"]));
     assert.deepEqual(result.problems, [], `seed ${seed}`);
   }
-  // Coarser tiers: rank-wide pools still keep each rank's items in that rank.
+  // Rank-wide recipes still keep each rank's items in that rank.
   for (const seed of ["a", "b", "c", "d"]) {
     const s = settingsWith(seed, ["gathering", "recipes", "quest-rewards"], {
-      "logic.tiers": "rank",
+      "recipes.scope": "rank",
     });
     assert.deepEqual(randomize(game, s).problems, []);
   }
@@ -164,19 +170,24 @@ test("gathering never moves a delivery quest's own item away from its points", a
   const before = readGatheringItems(quest.file.payload, quest.parsed).slots;
   const target = before.find((s) => s.itemId === 126)!;
   for (const seed of ["a", "b", "c", "d", "e", "f"]) {
-    for (const pool of ["gathered", "rank", "any"]) {
+    for (const [mode, scope] of [
+      ["shuffle", "star"],
+      ["randomize", "rank"],
+      ["randomize", "any"],
+    ]) {
       const s = settingsWith(seed, ["gathering"], {
-        "gathering.pool": pool,
+        "gathering.mode": mode,
+        "gathering.scope": scope,
         "gathering.keepItems": false,
       });
       const payload = randomize(game, s).edits.questNow(quest);
-      assert.equal(payload.readUInt16LE(target.offset + 2), 126, `${seed} ${pool}`);
+      assert.equal(payload.readUInt16LE(target.offset + 2), 126, `${seed} ${mode} ${scope}`);
     }
   }
   close();
 });
 
-test("gathering pools: same rank keeps every gatherable item and fills the rest from that rank", async () => {
+test("gathering randomize: same rank keeps every gatherable item and fills the rest from that rank", async () => {
   const { game, close } = await load();
   let fromElsewhere = false;
   // Kept: every gatherable item is still in its tier. (The fixture's tiers have no spare
@@ -185,7 +196,8 @@ test("gathering pools: same rank keeps every gatherable item and fills the rest 
   for (const keepItems of [true, false]) {
     for (const seed of ["a", "b", "c", "d", "e", "f"]) {
       const s = settingsWith(seed, ["gathering"], {
-        "gathering.pool": "rank",
+        "gathering.mode": "randomize",
+        "gathering.scope": "rank",
         "gathering.keepItems": keepItems,
       });
       const result = randomize(game, s);
@@ -215,13 +227,14 @@ test("gathering pools: same rank keeps every gatherable item and fills the rest 
   close();
 });
 
-test("gathering pools: with any item and nothing kept, spots can give anything", async () => {
+test("gathering randomize: with any item and nothing kept, spots can give anything", async () => {
   const { game, close } = await load();
   const gatherable = new Set(Object.values(TIERS).flatMap((t) => t.items));
   let outside = 0;
   for (const seed of ["a", "b", "c"]) {
     const s = settingsWith(seed, ["gathering"], {
-      "gathering.pool": "any",
+      "gathering.mode": "randomize",
+      "gathering.scope": "any",
       "gathering.keepItems": false,
     });
     const result = randomize(game, s);
@@ -243,8 +256,78 @@ test("gathering pools: with any item and nothing kept, spots can give anything",
 
   // With the same-rank pool and items kept, recipes stay craftable.
   for (const seed of ["a", "b", "c", "d"]) {
-    const s = settingsWith(seed, ["gathering", "recipes"], { "gathering.pool": "rank" });
+    const s = settingsWith(seed, ["gathering", "recipes"], {
+      "gathering.mode": "randomize",
+      "gathering.scope": "rank",
+    });
     assert.deepEqual(randomize(game, s).problems, [], `seed ${seed}`);
   }
+  close();
+});
+
+test("gather counts: finite points get new counts, never zero or fewest above most, delivery items kept", async () => {
+  const { game, close } = await load();
+  const delivery = game.quests.find((q) => q.parsed.header.questId === 10102)!;
+  let changed = false;
+  for (const seed of ["a", "b", "c", "d"]) {
+    const s = settingsWith(seed, [], { "gathering.counts": true, "gathering.countSpread": 0.9 });
+    const result = randomize(game, s);
+    for (const q of game.quests) {
+      const before = readGatheringItems(q.file.payload, q.parsed).nodes;
+      const payload = result.edits.quests.get(q.index)?.payload ?? q.file.payload;
+      const after = readGatheringItems(payload, q.parsed).nodes;
+      assert.equal(after.length, before.length);
+      before.forEach((b, i) => {
+        const a = after[i]!;
+        assert.ok(
+          a.gathers >= 1 && a.gathers <= a.mostGathers,
+          `${seed}: ${a.gathers}-${a.mostGathers}`,
+        );
+        if (a.gathers !== b.gathers || a.mostGathers !== b.mostGathers) {
+          changed = true;
+          assert.notEqual(q.index, delivery.index, "delivery quest's points stay");
+        }
+      });
+    }
+  }
+  assert.ok(changed, "some points changed");
+  close();
+});
+
+test("gather counts: endless and zero counts stay, spread 0 changes nothing, delivery points stay", async () => {
+  const { game, close } = await load();
+  const delivery = game.quests.find((q) => q.parsed.header.questId === 10102)!;
+  const other = game.quests.find((q) => q.parsed.header.questId === 1001)!;
+  const nodes = readGatheringItems(other.file.payload, other.parsed).nodes;
+  assert.ok(nodes.length >= 3);
+  // One endless point and one with no gathers; the rest stay ordinary.
+  other.file.payload.writeUInt16LE(255, nodes[0]!.offset + 18);
+  other.file.payload.writeUInt16LE(255, nodes[0]!.offset + 22);
+  other.file.payload.writeUInt16LE(0, nodes[1]!.offset + 22);
+  const read = (q: typeof other, payload: Buffer) => readGatheringItems(payload, q.parsed).nodes;
+  const counts = (q: typeof other, payload: Buffer) =>
+    read(q, payload).map((n) => [n.gathers, n.mostGathers]);
+
+  const zero = randomize(
+    game,
+    settingsWith("z", [], { "gathering.counts": true, "gathering.countSpread": 0 }),
+  );
+  assert.equal(zero.edits.quests.size, 0, "spread 0 edits no quest");
+
+  const deliveryBefore = counts(delivery, delivery.file.payload);
+  let changed = false;
+  for (const seed of ["a", "b", "c", "d"]) {
+    const result = randomize(
+      game,
+      settingsWith(seed, [], { "gathering.counts": true, "gathering.countSpread": 0.9 }),
+    );
+    const payloadOf = (q: typeof other) => result.edits.questNow(q);
+    assert.deepEqual(counts(delivery, payloadOf(delivery)), deliveryBefore, "delivery points stay");
+    const after = read(other, payloadOf(other));
+    assert.deepEqual([after[0]!.gathers, after[0]!.mostGathers], [255, 255]);
+    assert.equal(after[1]!.gathers, 0);
+    if (after.slice(2).some((n, i) => n.gathers !== nodes[i + 2]!.gathers)) changed = true;
+  }
+  assert.ok(changed, "ordinary points changed");
   close();
 });

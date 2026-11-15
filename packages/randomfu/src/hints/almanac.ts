@@ -14,7 +14,7 @@ import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
 import type { GameData } from "../game/load.js";
 import { monsterKey, monsterStars, tierOrder, type Tier } from "../game/tiers.js";
-import { monsterName, tableName } from "../names.js";
+import { monsterNames, tableName } from "../names.js";
 import { collectGatheringSlots } from "../shuffles/gathering.js";
 import { collectQuestRewardSlots } from "../shuffles/quest-rewards.js";
 import {
@@ -135,6 +135,7 @@ export function collectItemSources(
   edits: Edits,
   only: ReadonlySet<number> | null = null,
 ): AlmanacItem[] {
+  const monsterName = monsterNames(game);
   const sources = new Map<number, ItemSource[]>();
   const add = (itemId: number, source: ItemSource) => {
     if (itemId === 0 || tableName("ItemID", itemId) === null) return;
@@ -175,9 +176,8 @@ export function collectItemSources(
     });
   }
 
-  for (const slot of collectQuestRewardSlots(game.quests)) {
-    const itemId = edits.questNow(slot.quest).readUInt16LE(slot.offset + 2);
-    add(itemId, { type: "reward", place: "Reward", tier: slot.tier });
+  for (const slot of collectQuestRewardSlots(game.quests, (q) => edits.questNow(q))) {
+    add(slot.itemId, { type: "reward", place: "Reward", tier: slot.tier });
   }
 
   return [...sources]

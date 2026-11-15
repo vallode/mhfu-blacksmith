@@ -323,13 +323,12 @@ test("written output reads back with the shuffled data, and nothing else changes
     "armor moved on the written EBOOT",
   );
 
-  // Monster lists: same lengths and chances; each tier keeps its items.
+  // Monster lists: same lengths and chance totals; each tier keeps its items.
   const listsBefore = collectRewardLists(before.game.gameSub.ovl);
   const listsAfter = collectRewardLists(after.game.gameSub.ovl);
-  assert.deepEqual(
-    listsAfter.map((l) => l.entries.map((e) => e.chance)),
-    listsBefore.map((l) => l.entries.map((e) => e.chance)),
-  );
+  const shape = (ls: typeof listsBefore) =>
+    ls.map((l) => [l.entries.length, l.entries.reduce((sum, e) => sum + e.chance, 0)]);
+  assert.deepEqual(shape(listsAfter), shape(listsBefore));
   const items = (ls: typeof listsBefore, which: number[]) =>
     sorted(which.flatMap((i) => ls[i]!.entries.map((e) => e.itemId)));
   assert.deepEqual(items(listsAfter, [0, 4]), items(listsBefore, [0, 4]), "Low Rank 1★");

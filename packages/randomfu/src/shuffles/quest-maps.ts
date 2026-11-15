@@ -37,7 +37,7 @@ import { DELIVERY_TYPE } from "../game/quest-fields.js";
 import { questDoc } from "../game/rebuild.js";
 import { OBJECTIVE_KIND_MONSTER } from "../game/spawns.js";
 import { questTier, type Tier } from "../game/tiers.js";
-import { monsterName, questLabel } from "../names.js";
+import { questLabel, type MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
 import { familyOf, habitat } from "./quest-monsters.js";
 import { getOrInsert, groupBy, type ShuffleReport } from "./shuffle.js";
@@ -194,6 +194,8 @@ export function moveQuests(
   pool: MapPool,
   rng: Rng,
   fits: (entry: DocQuest, doc: QuestDoc) => boolean,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): { report: ShuffleReport; moved: Set<DocQuest> } {
   const donors = groupBy(list, (e) => e.vanilla.header.map);
   const starts = collectStarts(list);
@@ -300,6 +302,8 @@ export function randomizeStarts(
   list: readonly DocQuest[],
   skip: ReadonlySet<DocQuest>,
   rng: Rng,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   const starts = collectStarts(list);
   const lines: ShuffleReport["lines"] = [];

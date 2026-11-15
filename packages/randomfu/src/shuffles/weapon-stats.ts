@@ -23,7 +23,7 @@
  * Attack and element values are multiplied by a random factor within the
  * spread; affinity moves by up to the spread in points, in steps of 5. Each
  * is then kept within what weapons of the same type have from `range`
- * rarities below to as many above (`Bounds`), on this disc, so a weapon
+ * rarities below to as many above (`RarityBounds`), on this disc, so a weapon
  * stays plausible for where it is in the game. A weapon with no other of
  * its type (and, for elements, of its kind) in that window is held only by
  * the spread. A new element or status, or a switch between the two, takes
@@ -52,7 +52,7 @@ import { blademasterAffinity } from "mhfu-extract/src/emit/weapons.js";
 import type { Edits } from "../edits.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport, SpoilerLine } from "./shuffle.js";
+import { RarityBounds, clamp, type ShuffleReport, type SpoilerLine } from "./shuffle.js";
 import { TYPE_NAMES } from "./weapons.js";
 
 /** A stat field in a weapon record: its offset in the record and how it's stored. */
@@ -282,52 +282,6 @@ export function collectWeaponStats(
   return out;
 }
 
-/**
- * The lowest and highest `value` among weapons of each type and rarity,
- * built once; `of(w)` merges `w`'s rarity with the `range` ones either
- * side. It's null when fewer than `least` weapons in that window have a
- * value, so by default a lone weapon is held only by the spread.
- */
-class Bounds {
-  /** Type, then rarity. */
-  private readonly groups = new Map<string, Map<number, { lo: number; hi: number; n: number }>>();
-
-  constructor(
-    weapons: readonly WeaponStats[],
-    value: (w: WeaponStats) => number | null,
-    private readonly range: number,
-  ) {
-    for (const w of weapons) {
-      const v = value(w);
-      if (v === null) continue;
-      const byRarity = this.groups.get(w.type) ?? new Map();
-      this.groups.set(w.type, byRarity);
-      const g = byRarity.get(w.rarity);
-      if (g) {
-        g.lo = Math.min(g.lo, v);
-        g.hi = Math.max(g.hi, v);
-        g.n++;
-      } else byRarity.set(w.rarity, { lo: v, hi: v, n: 1 });
-    }
-  }
-
-  of(w: WeaponStats, range = this.range, least = 2): [number, number] | null {
-    let lo = Infinity;
-    let hi = -Infinity;
-    let n = 0;
-    for (const [rarity, g] of this.groups.get(w.type) ?? []) {
-      if (Math.abs(rarity - w.rarity) > range) continue;
-      lo = Math.min(lo, g.lo);
-      hi = Math.max(hi, g.hi);
-      n += g.n;
-    }
-    return n >= least ? [lo, hi] : null;
-  }
-}
-
-const clamp = (v: number, bounds: [number, number] | null) =>
-  bounds ? Math.min(bounds[1], Math.max(bounds[0], v)) : v;
-
 /** The affinity a weapon shows: base plus the Blademaster sharpness bonus. */
 const shownAffinity = (w: WeaponStats, affinity: number) =>
   w.sharpnessAmount === null ? affinity : blademasterAffinity(affinity, w.sharpnessAmount);
@@ -341,7 +295,7 @@ function newAttribute(
   w: WeaponStats,
   spreads: WeaponStatSpreads,
   [whether, which, value]: number[],
-  bounds: Record<AttributeKind, Bounds>,
+  bounds: Record<AttributeKind, RarityBounds<WeaponStats>>,
 ): { attribute: Attribute; value: number } | null {
   if (!w.attributes) return null;
   if (w.element ? !spreads.elementKind : whether! >= spreads.elementGain) return null;
@@ -392,10 +346,18 @@ export function randomizeWeaponStats(
 ): ShuffleReport {
   const buf = edits.eboot();
   const range = STAT_RANGES[spreads.range];
-  const attackBounds = new Bounds(weapons, (o) => o.attack, range);
-  const affinityBounds = new Bounds(weapons, (o) => shownAffinity(o, o.affinity), range);
+  const typeBounds = (value: (w: WeaponStats) => number | null) =>
+    new RarityBounds(
+      weapons,
+      (w) => w.type,
+      (w) => w.rarity,
+      value,
+      range,
+    );
+  const attackBounds = typeBounds((o) => o.attack);
+  const affinityBounds = typeBounds((o) => shownAffinity(o, o.affinity));
   const kindBounds = (kind: AttributeKind) =>
-    new Bounds(weapons, (o) => (o.element?.kind === kind ? o.element.value : null), range);
+    typeBounds((o) => (o.element?.kind === kind ? o.element.value : null));
   const elementBounds = { element: kindBounds("element"), status: kindBounds("status") };
   const changesKind = spreads.elementGain > 0 || spreads.elementKind;
   const shown = (w: WeaponStats, attack: number) =>

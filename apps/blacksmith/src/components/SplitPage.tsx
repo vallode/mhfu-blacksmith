@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { usePathname, useRouter } from "next/navigation";
+import { useT } from "@/context/LanguageContext";
 import { PHONE } from "@/lib/media";
 
 interface Props {
@@ -26,6 +27,7 @@ interface Props {
  * the list's page, where the list is still scrolled to where you left it.
  */
 export default function SplitPage({ list, closeHref, children }: Props) {
+  const closeLabel = useT().common.close;
   const router = useRouter();
   const pathname = usePathname();
   const pageRef = useRef<HTMLDivElement>(null);
@@ -73,7 +75,7 @@ export default function SplitPage({ list, closeHref, children }: Props) {
             href={closeHref}
             replace
             scroll={false}
-            aria-label="Close"
+            aria-label={closeLabel}
             onClick={close}
             className="absolute inset-0 z-9 hidden bg-black/60 mobile:block"
           >

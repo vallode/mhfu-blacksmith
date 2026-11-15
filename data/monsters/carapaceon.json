@@ -1653,7 +1653,7 @@
           ],
           "break shell": [
             {
-              "item": 627,
+              "item": 633,
               "amount": 1,
               "chance": "70%"
             },

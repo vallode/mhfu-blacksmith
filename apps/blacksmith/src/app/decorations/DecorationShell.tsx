@@ -8,6 +8,7 @@ import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import TreeScroll from "@/components/TreeScroll";
 import WeaponTreeRow from "@/components/WeaponTreeRow";
 import { useHunterProgress } from "@/context/HunterProgressContext";
+import { useLocale } from "@/context/LanguageContext";
 import { useDecorationList } from "@/lib/client-data";
 import {
   cycleDecorationFilter,
@@ -36,6 +37,9 @@ export function DecorationShell({ slug, children }: { slug?: string; children: R
   const deferredQuery = useDeferredValue(query);
   const listRef = useRef<HTMLUListElement>(null);
   const progress = useHunterProgress();
+  const { t, game } = useLocale();
+  const tt = t.equipment.tree;
+  const tdeco = t.equipment.decoration;
 
   // The selector's filter; the hunter ones fall back to All once the save is
   // cleared.
@@ -69,7 +73,7 @@ export function DecorationShell({ slug, children }: { slug?: string; children: R
   const matching = decorations
     ? new Set(
         decorations
-          .filter((d) => matchesDecoration(d, filter, deferredQuery, statusOf(d)))
+          .filter((d) => matchesDecoration(d, filter, deferredQuery, statusOf(d), game.name))
           .map((d) => d.slug),
       )
     : null;
@@ -95,8 +99,8 @@ export function DecorationShell({ slug, children }: { slug?: string; children: R
         <input
           className={searchInput}
           type="search"
-          aria-label="Filter decorations by name or skill"
-          placeholder="Filter by name or skill, e.g. Attack"
+          aria-label={tdeco.searchLabel}
+          placeholder={tdeco.searchPlaceholder}
           value={query}
           autoComplete="off"
           spellCheck={false}
@@ -117,19 +121,19 @@ export function DecorationShell({ slug, children }: { slug?: string; children: R
                 />
               ))}
             </ul>
-            {shown?.length === 0 && <p className="px-[16px] text-muted">No decorations match.</p>}
+            {shown?.length === 0 && <p className="px-[16px] text-muted">{tdeco.noMatch}</p>}
           </TreeScroll>
           {/* Room to scroll the last rows clear of the filter bar. */}
           <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
         </Card>
         <SelectorBar
-          label={filters.find((f) => f.id === filter)!.label}
-          groupLabel="Decoration filter"
-          previousLabel="Previous filter"
-          nextLabel="Next filter"
+          label={tdeco.filters[filter]}
+          groupLabel={tdeco.filterGroup}
+          previousLabel={tt.previousFilter}
+          nextLabel={tt.nextFilter}
           onStep={step}
           count={shown && tree ? `${shown.length}/${tree.length}` : undefined}
-          countLabel={shown && tree ? `${shown.length} of ${tree.length} decorations` : undefined}
+          countLabel={shown && tree ? tdeco.filterCount(shown.length, tree.length) : undefined}
         />
       </CardBox>
       {children}

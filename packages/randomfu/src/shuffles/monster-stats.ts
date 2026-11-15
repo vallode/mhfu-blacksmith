@@ -31,7 +31,7 @@ import { MONSTER_OVERLAY } from "mhfu-extract/src/overlay/monsters.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
-import { monsterName } from "../names.js";
+import type { MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
 import type { ShuffleReport } from "./shuffle.js";
 
@@ -101,6 +101,8 @@ export function randomizeMonsterStats(
   rngs: { hp: Rng; size: Rng; status: Rng },
   edits: Edits,
   gameTask: LoadedOverlay,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   const buf = edits.overlay(gameTask);
   const lines: ShuffleReport["lines"] = [];
@@ -192,6 +194,8 @@ export function shuffleWeaknesses(
   rngs: { elements: Rng; parts: Rng },
   edits: Edits,
   gameTask: LoadedOverlay,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   const ovl = gameTask.ovl;
   const buf = edits.overlay(gameTask);

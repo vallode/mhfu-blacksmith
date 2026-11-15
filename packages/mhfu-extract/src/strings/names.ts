@@ -4,7 +4,8 @@
  * The equipment structs in EBOOT.BIN carry no name pointer of their own —
  * names live in separate string/pointer tables the vendored patterns don't
  * document (`amaillo/MH-Pointers-Tool` edits exactly these tables and is
- * the lead to follow for locating them). Until that pointer table's address
+ * the lead to follow for locating them; `find-names`, strings/name-search.ts,
+ * searches a real disc for them). Until that pointer table's address
  * is confirmed against a real EBOOT dump, this module bootstraps names from
  * the MIT-licensed `.enum` files in mhp2g-patterns, which is itself
  * hand-transcribed (third-party, not extracted) data.
@@ -12,7 +13,9 @@
  * This is intentionally the *only* place in the pipeline that resolves a
  * numeric ID to a display name, so swapping the bootstrap source for a real
  * disc-extracted string table later is a one-function change — everything
- * else in tables/ works with raw IDs and calls into this module.
+ * else in tables/ works with raw IDs and calls into this module. Monster
+ * names already come from the disc when `extract` reads an EU disc
+ * (`useMonsterNames`, `monster-names.ts`).
  *
  * Every enum table's *declared* `str Name[N]` header count disagrees with
  * its actual entry count (an authoring quirk in the vendored file, not a
@@ -51,9 +54,32 @@ class EnumBootstrapResolver implements NameResolver {
   }
 }
 
+/** Monster names from the disc (`monster-names.ts`); every other table from the enums. */
+class DiscMonsterNameResolver implements NameResolver {
+  readonly source = "disc-extracted" as const;
+  constructor(
+    private readonly monsters: readonly (string | null)[],
+    private readonly rest: NameResolver,
+  ) {}
+
+  resolve(table: NameTable, index: number): string | null {
+    return table === "emID" ? (this.monsters[index] ?? null) : this.rest.resolve(table, index);
+  }
+}
+
 let defaultResolver: NameResolver | null = null;
 
 export function getNameResolver(): NameResolver {
   if (!defaultResolver) defaultResolver = new EnumBootstrapResolver();
   return defaultResolver;
+}
+
+/**
+ * Names monsters from the disc from now on (`siteMonsterNames` in
+ * `monster-names.ts`), for `extract` once it has read them; other tables
+ * keep the enums. `null` goes back to the enums.
+ */
+export function useMonsterNames(names: readonly (string | null)[] | null): void {
+  const enums = new EnumBootstrapResolver();
+  defaultResolver = names ? new DiscMonsterNameResolver(names, enums) : enums;
 }
