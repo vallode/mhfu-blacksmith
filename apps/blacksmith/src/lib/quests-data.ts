@@ -1,12 +1,10 @@
 /**
  * Build-time quest lookups for static params and page metadata, read from
- * data/mhfu/quests/*.json. Pages render from public/data/<game>/quests.json on the client.
+ * data/<game>/quests/*.json by ID (game-records.ts), with each quest's text
+ * from the page's language's strings. Pages render from public/data/<game>/quests.json on the client.
  */
-import fs from "fs";
-import path from "path";
 import { isHiddenQuest, questHubSlug, type QuestHubSlug } from "./quests";
-import { DATA_DIR, GAME, GAME_DATA_DIR } from "./paths";
-import { readData } from "game-data";
+import { gameRecords } from "./game-records";
 
 export interface QuestSummary {
   id: number;
@@ -15,27 +13,22 @@ export interface QuestSummary {
   goal: string | null;
 }
 
-const questDir = path.join(GAME_DATA_DIR, "quests");
-
 let cache: QuestSummary[] | null = null;
 
 export function getQuestSummaries(): QuestSummary[] {
   if (cache) return cache;
   const out: QuestSummary[] = [];
-  for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) {
-    const { quests } = readData(DATA_DIR, GAME, "quests", file) as {
-      quests: {
-        id: number;
-        hub: string;
-        rank: string | null;
-        title: string | null;
-        goal: string | null;
-      }[];
-    };
+  const records = gameRecords();
+  for (const file of records.list("quests")) {
+    const { quests } = records.raw<{ quests: { id: number; hub: string; rank: string | null }[] }>(
+      file,
+    );
     for (const q of quests) {
       const hub = questHubSlug(q.hub, q.rank);
-      if (hub && !isHiddenQuest(q.id))
-        out.push({ id: q.id, hub, title: q.title ?? `Quest ${q.id}`, goal: q.goal });
+      if (!hub || isHiddenQuest(q.id)) continue;
+      const title = records.strings.find("quest", q.id) ?? null;
+      const goal = records.strings.find("quest_goal", q.id) ?? null;
+      out.push({ id: q.id, hub, title: title ?? `Quest ${q.id}`, goal });
     }
   }
   cache = out;

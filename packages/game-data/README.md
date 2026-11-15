@@ -123,6 +123,9 @@ English names wherever the file holds IDs, and the names and text put
 back on the records. The site renders, slugs and bundles from that view,
 so it looks exactly as it did. Slugs still come from the English names,
 whatever language a page is in. `readRawData` returns the file as stored.
+The site's pages and bundles read that way (`readRawData`, then `hydrate`
+with a language's `StringTable`; `apps/blacksmith/src/lib/game-records.ts`),
+so another language is only another string table there.
 
 `writeData(dataDir, rel, named)` is the inverse. It looks every reference
 up by name in the English strings (names, then aliases). A file's own

@@ -1,10 +1,7 @@
 import { slugify } from "./slug";
 import type { Decoration } from "./types";
-import { DATA_DIR, GAME } from "./paths";
 import { cached } from "./data-cache";
-import { readData } from "game-data";
-
-const dataDir = DATA_DIR;
+import { gameRecords } from "./game-records";
 
 const cache = new Map<"all", Decoration[]>();
 
@@ -12,10 +9,13 @@ export function getDecorations(): Decoration[] {
   return cached(cache, "all", loadDecorations);
 }
 
+/** The decorations, named in the page's language; slugs from their English names. */
 function loadDecorations(): Decoration[] {
-  const raw = readData<{ decorations: Decoration[] }>(dataDir, GAME, "decorations.json");
-
-  return raw.decorations.map((d) => ({ ...d, slug: slugify(d.name) }));
+  const records = gameRecords();
+  const english = records.english<{ decorations: Decoration[] }>("decorations.json").decorations;
+  return records
+    .named<{ decorations: Decoration[] }>("decorations.json")
+    .decorations.map((d, i) => ({ ...d, slug: slugify(english[i]!.name) }));
 }
 
 export function getDecoration(slug: string): Decoration | undefined {

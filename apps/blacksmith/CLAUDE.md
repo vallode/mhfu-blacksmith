@@ -6,8 +6,12 @@ styled to look like the game's UI.
 Lives in `apps/blacksmith` (see the root `CLAUDE.md` for the repository
 layout); paths below are relative to it. It reads its game data from the root
 `data/` (`DATA_DIR`; MHFU's is `data/mhfu/`, `GAME_DATA_DIR`, both in
-`src/lib/paths.ts`) with `readData` from `packages/game-data`, never by
-parsing the files itself. Game facts (weapon types, ranks, quest boards,
+`src/lib/paths.ts`) through `packages/game-data`, never by parsing the
+files itself. Pages and the bundle scripts read it by ID with
+`src/lib/game-records.ts` (game-data's `readRawData` and a language's
+`StringTable`): `named(file)` for what they show, `english(file)` for slugs,
+which are English in every language. Data tools (`validate`) keep game-data's
+English `readData`. Game facts (weapon types, ranks, quest boards,
 which sections a game has) come from `game-data/games`, through
 `src/lib/constants.ts`.
 

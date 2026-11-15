@@ -82,7 +82,7 @@ import { buildArmorTree, buildDecorationTree, buildWeaponTree } from "../src/lib
 import { buildAreaMaps } from "../src/lib/area-maps";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import type { HitboxCapsule } from "../src/lib/models";
-import { readData } from "game-data";
+import { gameRecords } from "../src/lib/game-records";
 
 const root = process.cwd();
 const dataDir = DATA_DIR;
@@ -93,6 +93,8 @@ const outDir = path.join(root, "public", dataPath(GAME, ""));
 
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
+/** The game's records by ID, named in the bundles' language (src/lib/game-records.ts). */
+const records = gameRecords();
 
 const BUDGET_BYTES = 1.85 * 1024 * 1024;
 
@@ -319,10 +321,10 @@ function monsterHitboxes(name: string): HitboxCapsule[] | null {
  * hitboxes: the site needs the hitboxes to tell which `flinch_thresholds`
  * belong to a row, so the build works it out rather than the page.
  */
-function hitzoneFlinch(m: Monster): (string | null)[] | null {
+function hitzoneFlinch(m: Monster, englishName: string): (string | null)[] | null {
   const thresholds = m.flinch_thresholds;
   if (!m.hitzones || !thresholds) return null;
-  const hitboxes = monsterHitboxes(m.name);
+  const hitboxes = monsterHitboxes(englishName);
   if (!hitboxes) return null;
   // Rows without a threshold stay null: the page shows "—" for them, even
   // when no row has one.
@@ -337,6 +339,8 @@ function hitzoneFlinch(m: Monster): (string | null)[] | null {
 function encodeMonster(
   m: Monster,
   sizeRange: { min: number; max: number } | undefined,
+  /** Its English name: its hitboxes (public/models) are by that. */
+  englishName: string = m.name,
 ): CompactMonster {
   const out: CompactMonster = { n: m.name, s: m.slug };
   const d = internString(m.description);
@@ -359,7 +363,7 @@ function encodeMonster(
   if (m.crowns) out.cr = [m.crowns.mini, m.crowns.silver, m.crowns.gold];
   if (sizeRange) out.sz = [sizeRange.min, sizeRange.max];
   if (Array.isArray(m.breaks) && m.breaks.length > 0) out.bk = m.breaks;
-  const flinch = out.hz && hitzoneFlinch(m);
+  const flinch = out.hz && hitzoneFlinch(m, englishName);
   if (flinch) out.hf = flinch.map((v) => (v === null ? null : intern(stringIndex, v)));
   if (m.drops && Object.keys(m.drops).length > 0) {
     out.dr = Object.entries(m.drops).map(([rankName, sources]) => [
@@ -426,8 +430,7 @@ const armorRefs = new Map<string, EquipRef>(); // "<slot>|<name>|<sex>" and "<sl
 // Horn melodies, shared per note set: every horn with the same notes has
 // the same list (data/mhfu/weapons/hunting-horn.json, from the disc).
 const melodies: Record<string, Melody[]> = {};
-for (const horn of readData<{ weapons: Weapon[] }>(dataDir, GAME, "weapons", "hunting-horn.json")
-  .weapons) {
+for (const horn of records.named<{ weapons: Weapon[] }>("weapons/hunting-horn.json").weapons) {
   if (!horn.notes || !horn.melodies) continue;
   const key = horn.notes.join("-");
   if (key in melodies && JSON.stringify(melodies[key]) !== JSON.stringify(horn.melodies)) {
@@ -440,20 +443,27 @@ for (const horn of readData<{ weapons: Weapon[] }>(dataDir, GAME, "weapons", "hu
 // minimum rank is known before any tree is written.
 const weaponMinRanks = new Map<string, MinRankTuple | undefined>();
 for (const type of WEAPON_TYPES) {
-  const { weapons } = readData<{ weapons: Weapon[] }>(dataDir, GAME, "weapons", `${type}.json`);
-  for (const w of weapons)
+  // Minimum ranks are worked out from the English data (scripts/lib/min-rank-data.ts).
+  for (const w of records.english<{ weapons: Weapon[] }>(`weapons/${type}.json`).weapons)
     weaponMinRanks.set(`${type}|${slugify(w.name)}`, encodeMinRank(minRanks.weapon(type, w.name)));
 }
 const weaponMinRank: MinRankLookup = (type, slug) => weaponMinRanks.get(`${type}|${slug}`);
 
 for (const type of WEAPON_TYPES) {
-  const crafting = readData<{ weapons: Weapon[] }>(dataDir, GAME, "weapons", `${type}.json`);
+  const crafting = records.named<{ weapons: Weapon[] }>(`weapons/${type}.json`);
+  const english = records.english<{ weapons: Weapon[] }>(`weapons/${type}.json`).weapons;
   const tree = buildWeaponTree(type);
-  const items = crafting.weapons.map((w) =>
-    encodeWeapon({ ...w, slug: slugify(w.name) }, minRanks.weapon(type, w.name)),
+  const items = crafting.weapons.map((w, i) =>
+    encodeWeapon(
+      { ...w, slug: slugify(english[i]!.name) },
+      minRanks.weapon(type, english[i]!.name),
+    ),
   );
   for (const w of items) {
-    weaponRefs.set(`${type}|${w.n}`, [WEAPON_TYPES.indexOf(type), w.n, w.r ?? null]);
+    const ref: EquipRef = [WEAPON_TYPES.indexOf(type), w.n, w.r ?? null];
+    // The page's slug, where it isn't the shown name's (another language's names).
+    if (w.s !== slugify(w.n)) ref.push(w.s);
+    weaponRefs.set(`${type}|${w.n}`, ref);
   }
   totalItems += items.length;
   push(`weapon-${type}.json`, {
@@ -468,14 +478,18 @@ for (const type of WEAPON_TYPES) {
 // carries its own "rank"), while the crafting tree is still split per rank
 // (see buildArmorTree).
 for (const slot of ARMOR_SLOTS) {
-  const allPieces = readData<{ armor: ArmorPiece[] }>(dataDir, GAME, "armor", `${slot}.json`).armor;
+  const allPieces = records.named<{ armor: ArmorPiece[] }>(`armor/${slot}.json`).armor;
+  const allEnglish = records.english<{ armor: ArmorPiece[] }>(`armor/${slot}.json`).armor;
   for (const rank of ARMOR_RANKS) {
-    const pieces = allPieces.filter((p) => p.rank === rank);
+    const atRank = allPieces.flatMap((p, i) => (p.rank === rank ? [i] : []));
+    const pieces = atRank.map((i) => allPieces[i]!);
+    const english = atRank.map((i) => allEnglish[i]!);
     if (pieces.length === 0) continue;
     const tree = buildArmorTree(slot, rank);
-    const slugs = armorSlugs(pieces);
+    // Slugs and minimum ranks from the English names.
+    const slugs = armorSlugs(english);
     const items = pieces.map((p, i) =>
-      encodeArmor({ ...p, slug: slugs[i], rank }, minRanks.armor(p)),
+      encodeArmor({ ...p, slug: slugs[i], rank }, minRanks.armor(english[i]!)),
     );
     pieces.forEach((p, i) => {
       const ref: EquipRef = [ARMOR_RANKS.indexOf(rank), p.name, items[i].r ?? null];
@@ -502,21 +516,23 @@ for (const slot of ARMOR_SLOTS) {
 }
 
 // Every quest, for the monsters' size ranges and the quests bundle.
-const questDir = path.join(GAME_DATA_DIR, "quests");
-const quests = fs
-  .readdirSync(questDir)
-  .filter((f) => f.endsWith(".json"))
-  .sort()
-  .flatMap((f) => readData<{ quests: QuestRecord[] }>(dataDir, GAME, "quests", f).quests);
+const quests = records
+  .list("quests")
+  .flatMap((f) => records.named<{ quests: QuestRecord[] }>(f).quests);
 const sizeRanges = monsterSizeRanges(quests);
 
 // Monsters
 for (const category of MONSTER_CATEGORIES) {
-  const p = path.join(GAME_DATA_DIR, "monsters", `${category}.json`);
-  if (!fs.existsSync(p)) continue;
-  const data = readData<{ monsters: Monster[] }>(dataDir, GAME, "monsters", `${category}.json`);
-  const items = data.monsters.map((m) =>
-    encodeMonster({ ...m, slug: slugify(m.name) }, sizeRanges.get(m.name)),
+  const file = `monsters/${category}.json`;
+  if (!records.has(file)) continue;
+  const data = records.named<{ monsters: Monster[] }>(file);
+  const english = records.english<{ monsters: Monster[] }>(file).monsters;
+  const items = data.monsters.map((m, i) =>
+    encodeMonster(
+      { ...m, slug: slugify(english[i]!.name) },
+      sizeRanges.get(m.name),
+      english[i]!.name,
+    ),
   );
   totalItems += items.length;
   push(`monster-${category}.json`, { kind: "monster", category, items });
@@ -529,18 +545,16 @@ for (const category of MONSTER_CATEGORIES) {
   const monsterPages = new Map<string, { category: string; slug: string }>();
   const baseHp = new Map<string, number>();
   for (const category of MONSTER_CATEGORIES) {
-    const p = path.join(GAME_DATA_DIR, "monsters", `${category}.json`);
-    if (!fs.existsSync(p)) continue;
-    for (const m of readData<{ monsters: Monster[] }>(dataDir, GAME, "monsters", `${category}.json`)
-      .monsters) {
-      monsterPages.set(m.name, { category, slug: slugify(m.name) });
+    const file = `monsters/${category}.json`;
+    if (!records.has(file)) continue;
+    const english = records.english<{ monsters: Monster[] }>(file).monsters;
+    records.named<{ monsters: Monster[] }>(file).monsters.forEach((m, i) => {
+      monsterPages.set(m.name, { category, slug: slugify(english[i]!.name) });
       if (typeof m.base_hp === "number") baseHp.set(m.name, m.base_hp);
-    }
+    });
   }
-  const { index } = buildItemNameIndex(
-    readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json").items,
-  );
-  const gathering = readData<GatheringFile>(dataDir, GAME, "gathering.json");
+  const { index } = buildItemNameIndex(records.named<{ items: ItemRecord[] }>("items.json").items);
+  const gathering = records.named<GatheringFile>("gathering.json");
   const areaMaps = buildAreaMaps(gathering);
   const { bundle, unresolvedItems } = encodeQuestBundle({
     quests,
@@ -559,19 +573,18 @@ for (const category of MONSTER_CATEGORIES) {
   push("area-maps.json", areaMaps);
   const places = buildItemPlaces(
     gathering,
-    readData<ShopsFile>(dataDir, GAME, "shops.json"),
-    readData<FarmFile>(dataDir, GAME, "farm.json"),
+    records.named<ShopsFile>("shops.json"),
+    records.named<FarmFile>("farm.json"),
     quests,
     (name) => index.get(normalizeItemName(name)),
   );
   push("item-places.json", encodeItemPlaces(places));
   push(
     "combinations.json",
-    encodeCombinations(readData<CombinationsFile>(dataDir, GAME, "combinations.json")),
+    encodeCombinations(records.named<CombinationsFile>("combinations.json")),
   );
-  const trades = encodeVeggieTrades(
-    readData<VeggieTradesFile>(dataDir, GAME, "veggie-trades.json"),
-    (name) => index.get(normalizeItemName(name)),
+  const trades = encodeVeggieTrades(records.named<VeggieTradesFile>("veggie-trades.json"), (name) =>
+    index.get(normalizeItemName(name)),
   );
   if (trades.unresolved.length > 0) {
     console.warn(`generate-data: trade items not in items.json: ${trades.unresolved.join(", ")}`);
@@ -581,11 +594,12 @@ for (const category of MONSTER_CATEGORIES) {
 
 // Decorations
 {
-  const crafting = readData<{ decorations: Decoration[] }>(dataDir, GAME, "decorations.json");
+  const crafting = records.named<{ decorations: Decoration[] }>("decorations.json");
+  const english = records.english<{ decorations: Decoration[] }>("decorations.json").decorations;
   const tree = buildDecorationTree();
   // The game's item IDs, for set share links (src/lib/set-codec.ts).
   const { index: itemIndex } = buildItemNameIndex(
-    readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json").items,
+    records.named<{ items: ItemRecord[] }>("items.json").items,
   );
   const unmatched = crafting.decorations.filter(
     (d) => decorationItemId(d.name, itemIndex) === undefined,
@@ -599,10 +613,10 @@ for (const category of MONSTER_CATEGORIES) {
   for (const d of crafting.decorations) {
     decorationIcons.set(decorationItemId(d.name, itemIndex)!, d.color ?? "");
   }
-  const items = crafting.decorations.map((d) =>
+  const items = crafting.decorations.map((d, i) =>
     encodeDecoration(
-      { ...d, slug: slugify(d.name) },
-      minRanks.decoration(d),
+      { ...d, slug: slugify(english[i]!.name) },
+      minRanks.decoration(english[i]!),
       decorationItemId(d.name, itemIndex),
     ),
   );
@@ -616,13 +630,13 @@ for (const category of MONSTER_CATEGORIES) {
 
 // Skills: data/mhfu/skills.json as is (skill trees and their activations), for the
 // set builder.
-push("skills.json", readData<{ skills: unknown[] }>(dataDir, GAME, "skills.json"));
+push("skills.json", records.named<{ skills: unknown[] }>("skills.json"));
 
 // Equipment IDs: the weapons' and armor's game IDs (readData's
 // "equipment-ids.json" view, by slot name) resolved to page refs, by type code.
 {
   type IdEntry = { name: string; type?: string; sex?: string } | null;
-  const ids = readData<Record<string, IdEntry[]>>(dataDir, GAME, "equipment-ids.json");
+  const ids = records.named<Record<string, IdEntry[]>>("equipment-ids.json");
   const out: EquipmentIds = EQUIP_TYPE_SLOTS.map((slot) =>
     (ids[slot] ?? []).map((e) => {
       if (!e) return null;
@@ -644,8 +658,8 @@ function itemIcon(record: ItemRecord | undefined): [string, string] | null {
 // Items (in-game item ID -> name). Runs after every bundle above so that all
 // recipe/drop material names are interned and can be linked to an item ID.
 {
-  const { items: records } = readData<{ items: ItemRecord[] }>(dataDir, GAME, "items.json");
-  const { index } = buildItemNameIndex(records);
+  const { items: itemRecords } = records.named<{ items: ItemRecord[] }>("items.json");
+  const { index } = buildItemNameIndex(itemRecords);
 
   // material name -> item ID, for every interned material that resolves.
   const materials: Record<string, number> = {};
@@ -656,7 +670,7 @@ function itemIcon(record: ItemRecord | undefined): [string, string] | null {
 
   // The disc gives items their own icon and tint (see `itemIcon` above).
   // Materials use that too, wherever one names an item that has one.
-  const recordById = new Map(records.map((r) => [r.id, r]));
+  const recordById = new Map(itemRecords.map((r) => [r.id, r]));
   for (const [name, id] of Object.entries(materials)) {
     const icon = itemIcon(recordById.get(id));
     if (!icon) continue;
@@ -668,7 +682,7 @@ function itemIcon(record: ItemRecord | undefined): [string, string] | null {
   // Pick an icon for each item from its linked materials: prefer the material
   // spelled exactly like the item, then any linked material with a known type.
   const iconFor = new Map<number, [string, string]>();
-  const byName = new Map(records.map((r) => [r.id, r.name]));
+  const byName = new Map(itemRecords.map((r) => [r.id, r.name]));
   for (const [name, id] of Object.entries(materials)) {
     const [type, color] = materialTC.get(name) ?? ["", ""];
     if (!type) continue;
@@ -678,9 +692,9 @@ function itemIcon(record: ItemRecord | undefined): [string, string] | null {
     if (!iconFor.has(id)) iconFor.set(id, ["decoration", color]);
   }
 
-  const maxId = Math.max(...records.map((r) => r.id));
+  const maxId = Math.max(...itemRecords.map((r) => r.id));
   const items: (CompactItem | null)[] = new Array(maxId + 1).fill(null);
-  for (const r of records) {
+  for (const r of itemRecords) {
     const out: CompactItem = { n: r.name };
     if (r.rarity !== undefined) out.r = r.rarity;
     if (r.carry !== undefined) out.l = r.carry;
@@ -693,7 +707,7 @@ function itemIcon(record: ItemRecord | undefined): [string, string] | null {
     if (r.placeholder) out.p = 1;
     items[r.id] = out;
   }
-  totalItems += records.length;
+  totalItems += itemRecords.length;
   const bundle: ItemsBundle = { kind: "items", items, materials };
   push("items.json", bundle);
 }
@@ -732,7 +746,7 @@ push("dictionaries.json", dictionaries);
 
 // Write all files, compute sizes + content-hash manifest.
 import { createHash } from "crypto";
-import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
+import { DATA_DIR, GAME } from "../src/lib/paths";
 import { dataPath } from "../src/lib/site";
 
 // Bundles that moved or are gone (the bundles were in public/data itself

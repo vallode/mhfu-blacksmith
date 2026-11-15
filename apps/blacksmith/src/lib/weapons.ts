@@ -1,11 +1,8 @@
 import { WEAPON_TYPES, type WeaponType, WEAPON_CLASS_MULTIPLIER } from "./constants";
 import { slugify } from "./slug";
 import type { Weapon } from "./types";
-import { DATA_DIR, GAME } from "./paths";
 import { cached } from "./data-cache";
-import { readData } from "game-data";
-
-const dataDir = DATA_DIR;
+import { gameRecords } from "./game-records";
 
 export function getWeaponTypes(): WeaponType[] {
   return [...WEAPON_TYPES];
@@ -17,14 +14,16 @@ export function getWeapons(type: WeaponType): Weapon[] {
   return cached(cache, type, () => loadWeapons(type));
 }
 
+/** A type's weapons, named in the page's language; slugs from their English names. */
 function loadWeapons(type: WeaponType): Weapon[] {
-  const raw = readData<{ weapons: Weapon[] }>(dataDir, GAME, "weapons", `${type}.json`);
-
-  return raw.weapons.map((w) => {
+  const records = gameRecords();
+  const file = `weapons/${type}.json`;
+  const english = records.english<{ weapons: Weapon[] }>(file).weapons;
+  return records.named<{ weapons: Weapon[] }>(file).weapons.map((w, i) => {
     const multiplier = WEAPON_CLASS_MULTIPLIER[w.type];
     return {
       ...w,
-      slug: slugify(w.name),
+      slug: slugify(english[i]!.name),
       raw_attack: multiplier && w.attack ? Math.floor(Number(w.attack) / multiplier) : undefined,
     };
   });
