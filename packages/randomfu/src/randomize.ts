@@ -6,7 +6,7 @@ import { Edits } from "./edits.js";
 import type { GameData, LoadedQuest } from "./game/load.js";
 import { coarsen, itemTiers, monsterStars, type Tier } from "./game/tiers.js";
 import { Rng } from "./rng.js";
-import { needsEboot, type Settings } from "./settings.js";
+import type { Settings } from "./settings.js";
 import { shuffleArmor } from "./shuffles/armor.js";
 import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
@@ -87,12 +87,11 @@ export interface RandomizeResult {
 
 /**
  * The item table for shop prices: required when prices or carry limits
- * change; otherwise used when the EBOOT happens to be loaded, to price items
- * that are never normally sold.
+ * change; otherwise used when it's found, to price items that are never
+ * normally sold.
  */
 function shopItemTable(game: GameData, required: boolean) {
-  if (required) return locateItemTable(game.eboot!, game.resolver);
-  if (!game.eboot) return null;
+  if (required) return locateItemTable(game.eboot, game.resolver);
   try {
     return locateItemTable(game.eboot, game.resolver);
   } catch {
@@ -491,10 +490,6 @@ export function randomize(
     );
   }
 
-  if (needsEboot(settings) && !game.eboot) {
-    throw new Error("These settings need the decrypted EBOOT");
-  }
-
   // The smithy's store and a new hunter's equipment follow the weapons and
   // armor shuffles: found once, for both.
   const followsGear = settings["weapons.enabled"] || settings["armor.enabled"];
@@ -507,7 +502,7 @@ export function randomize(
   if (settings["weapons.enabled"]) {
     reports.push(
       shuffleWeapons(
-        game.eboot!,
+        game.eboot,
         game.resolver,
         settings["weapons.mix"],
         rng.fork("weapons"),
@@ -524,7 +519,7 @@ export function randomize(
   if (settings["weapons.sharpness"]) {
     reports.push(
       randomizeSharpness(
-        game.eboot!,
+        game.eboot,
         game.resolver,
         settings["weapons.sharpnessMode"],
         rng.fork("weapon-sharpness"),
@@ -565,7 +560,7 @@ export function randomize(
   // Armor only changes which piece each create entry makes, so the recipe
   // shuffles' spoiler names the new pieces.
   if (settings["armor.enabled"]) {
-    reports.push(shuffleArmor(game.eboot!, game.resolver, rng.fork("armor"), edits, gear));
+    reports.push(shuffleArmor(game.eboot, game.resolver, rng.fork("armor"), edits, gear));
   }
   if (followsGear) {
     reports.push(gearReport("Smithy store", store), gearReport("Starting equipment", starter));
@@ -575,7 +570,7 @@ export function randomize(
   if (settings["armorSkills.enabled"]) {
     reports.push(
       randomizeArmorSkills(
-        game.eboot!,
+        game.eboot,
         game.resolver,
         {
           mode: settings["armorSkills.mode"],
@@ -657,7 +652,7 @@ export function randomize(
   if (settings["costs.enabled"]) {
     reports.push(
       randomizeCosts(
-        collectPriceSlots(game.eboot!, game.resolver),
+        collectPriceSlots(game.eboot, game.resolver),
         settings["costs.spread"],
         rng.fork("costs"),
         edits,

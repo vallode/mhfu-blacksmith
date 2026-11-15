@@ -1,13 +1,13 @@
 /**
- * Running the randomizer end to end, for the CLI and the GUI: copy the
- * image, load, randomize, write, check, write the spoiler log. Progress
- * goes to `log`.
+ * Running the randomizer end to end over a disc image: load, randomize,
+ * write, check, and format the spoiler log. Every write is kept in memory
+ * over the user's image (`OverlaySource`), and the finished image comes back
+ * as ranges of the original plus the changed bytes, so nothing is copied
+ * and the original is never touched. The web app's worker runs this.
+ * Progress goes to `log`.
  */
-import { existsSync, rmSync, writeFileSync } from "node:fs";
-import path from "node:path";
-import { openDiscImage } from "mhfu-extract/src/container/image.js";
-import { detectRegion, parseSfo } from "mhfu-extract/src/container/sfo.js";
-import { copyAsIso, openPatchableImage } from "./disc/node-file.js";
+import type { RandomAccessSource } from "mhfu-extract/src/container/source.js";
+import { OverlaySource, PatchableImage, type ImageSegment } from "./disc/image.js";
 import { loadGame } from "./game/load.js";
 import { randomize } from "./randomize.js";
 import { describeSettings, encodeSettings, type Settings } from "./settings.js";
@@ -18,14 +18,8 @@ import { writeEdits } from "./write.js";
 export type Log = (line: string) => void;
 
 export interface RunOptions {
-  iso: string;
-  /** Output image; null for a dry run (spoiler only, nothing written). */
-  out: string | null;
-  settings: Settings;
-  pspdecryptBin?: string;
-  /** Spoiler log path. Defaults to next to the output; a dry run returns it only. */
-  spoiler?: string;
-  force?: boolean;
+  /** The spoiler log only: nothing is written. */
+  dryRun?: boolean;
   /** For testing in game: a happy Poogie always gives the rarest reward. */
   poogieTest?: boolean;
   /** Adds research detail to the spoiler log. */
@@ -34,94 +28,55 @@ export interface RunOptions {
 
 export interface RunResult {
   spoiler: string;
-  spoilerPath: string | null;
   problems: string[];
+  /** The finished image; null for a dry run. */
+  segments: ImageSegment[] | null;
 }
 
-export function defaultSpoilerPath(out: string): string {
-  return `${out.replace(/\.iso$/i, "")}.spoiler.txt`;
-}
+export async function runRandomizer(
+  source: RandomAccessSource,
+  settings: Settings,
+  options: RunOptions,
+  log: Log,
+): Promise<RunResult> {
+  // Testing options aren't in the settings string, so the log and spoiler say so.
+  const testing = [
+    options.poogieTest &&
+      "Poogie test: a happy Poogie always gives the rarest reward. This disc is not for play.",
+    options.debug && "Debug: the spoiler log has research detail.",
+  ].filter((line): line is string => typeof line === "string");
+  for (const line of testing) log(line);
 
-export async function runRandomizer(options: RunOptions, log: Log): Promise<RunResult> {
-  const { iso: input, out: output, settings } = options;
+  const overlay = new OverlaySource(source);
+  const image = new PatchableImage(overlay);
+  log("Reading the disc...");
   // Always loaded: Poogie's luck patches it whatever the settings.
-  const eboot = { pspdecryptBin: options.pspdecryptBin };
+  const game = await loadGame(overlay, image.iso);
+  log(
+    `${game.discId} (${game.region}): ${game.quests.length} quests, ${game.skippedQuests.length} skipped.`,
+  );
+  log(`Seed ${settings.seed}. Settings string: ${encodeSettings(settings)}`);
+  for (const line of describeSettings(settings)) log(`  ${line}`);
 
-  if (output) {
-    if (path.resolve(output) === path.resolve(input)) {
-      throw new Error("The output must be a different file from the input disc");
-    }
-    if (existsSync(output) && !options.force) {
-      throw new Error(`${output} already exists (allow overwriting to replace it)`);
-    }
-    log(`Copying ${input} to ${output}...`);
-    copyAsIso(input, output);
-  }
-
-  // Read from the copy when there is one, so the same file is read and patched.
-  const image = output ? openPatchableImage(output) : null;
-  const opened = image ? null : openDiscImage(input);
-  let finished = false;
-  try {
-    const source = image?.source ?? opened!.source;
-    const iso = image?.iso ?? opened!.iso;
-    const game = await loadGame(source, iso, { eboot });
+  const result = randomize(game, settings, {
+    poogieTest: options.poogieTest,
+    debug: options.debug,
+  });
+  for (const report of result.reports) log(reportLogLine(report));
+  if (result.problems.length > 0) {
     log(
-      `${game.discId} (${game.region}): ${game.quests.length} quests, ${game.skippedQuests.length} skipped.`,
+      `Warning: ${result.problems.length} recipe materials can't be found as early as before; see the spoiler log.`,
     );
-    log(`Seed ${settings.seed}. Settings string: ${encodeSettings(settings)}`);
-    for (const line of describeSettings(settings)) log(`  ${line}`);
-
-    const result = randomize(game, settings, {
-      poogieTest: options.poogieTest,
-      debug: options.debug,
-    });
-    for (const report of result.reports) log(reportLogLine(report));
-    if (result.problems.length > 0) {
-      log(
-        `Warning: ${result.problems.length} recipe materials can't be found as early as before; see the spoiler log.`,
-      );
-    }
-
-    if (image) {
-      const summary = writeEdits(image, game, result.edits);
-      log(
-        `Wrote ${summary.quests} quests and ${summary.files} other DATA.BIN files; EBOOT ${summary.eboot}. Read-back check passed.`,
-      );
-    }
-
-    const spoiler = formatSpoiler(game, settings, result);
-    const spoilerPath = options.spoiler ?? (output ? defaultSpoilerPath(output) : null);
-    if (spoilerPath) {
-      writeFileSync(spoilerPath, spoiler, "utf-8");
-      log(`Wrote ${spoilerPath}`);
-    }
-    if (output) log(`Done: ${output}`);
-    finished = true;
-    return { spoiler, spoilerPath, problems: result.problems };
-  } finally {
-    image?.close();
-    opened?.source.close();
-    // Don't leave a half-patched image behind.
-    if (output && !finished) rmSync(output, { force: true });
   }
-}
 
-export interface DiscCheck {
-  discId: string | null;
-  region: string | null;
-  supported: boolean;
-}
-
-/** Quick checks for the GUI: is this a supported disc. */
-export function checkDisc(isoPath: string): DiscCheck {
-  const { source, iso } = openDiscImage(isoPath);
-  let result: DiscCheck;
-  try {
-    const { region, discId } = detectRegion(parseSfo(iso.readFile("/PSP_GAME/PARAM.SFO")));
-    result = { discId, region, supported: region === "jp" || region === "eu" };
-  } finally {
-    source.close();
+  let segments: ImageSegment[] | null = null;
+  if (!options.dryRun) {
+    const summary = writeEdits(image, game, result.edits);
+    log(
+      `Changed ${summary.quests} quests and ${summary.files} other DATA.BIN files; EBOOT ${summary.eboot}. Read-back check passed.`,
+    );
+    segments = overlay.segments();
   }
-  return result;
+  const spoiler = [...testing, formatSpoiler(game, settings, result)].join("\n");
+  return { spoiler, problems: result.problems, segments };
 }

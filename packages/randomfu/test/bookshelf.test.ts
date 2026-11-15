@@ -389,7 +389,7 @@ test("randomize leaves a non-EU disc alone and says why", async () => {
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
   try {
-    const game = await loadGame(source, iso, { eboot: null });
+    const game = await loadGame(source, iso);
     const result = randomize(game, settingsWith("BOOK", [], { "hints.bookshelf": true }));
     const report = result.reports.find((r) => r.title === "Bookshelf monster guide");
     assert.ok(report);

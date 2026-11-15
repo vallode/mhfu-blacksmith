@@ -59,7 +59,7 @@ test("without a store on the disc, the shuffles leave the overlay alone and say 
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   const lobby = buildLobbyTask();
   game.lobbyTask = { ...game.lobbyTask, ovl: parseOvl(withoutStore(lobby.buf)) };
 
@@ -107,7 +107,7 @@ test("a new hunter's equipment box follows the weapons and armor shuffles, as th
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   const { storeAt } = buildLobbyTask();
   const { idAt } = buildEditTask();
   // The store's new ID for each (category, old ID) it sold.

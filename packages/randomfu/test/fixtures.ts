@@ -6,6 +6,8 @@
  * No game data: every value is made up.
  */
 import { GAME_TAG_KEYS, TYPE01_TAG_KEYS } from "mhfu-extract/src/container/prx.js";
+import type { RandomAccessSource } from "mhfu-extract/src/container/source.js";
+import { OverlaySource, PatchableImage, type ImageSegment } from "../src/disc/image.js";
 import { encryptGameEboot } from "mhfu-extract/test/prx-fixture.js";
 import { encryptDataBinBlock } from "mhfu-extract/src/container/databin.js";
 import {
@@ -138,21 +140,6 @@ export function buildIso(files: IsoFile[]): Buffer {
   }
   for (const f of files) f.data.copy(image, fileLba.get(f.path)! * SECTOR);
   return image;
-}
-
-/** Wraps an image as an uncompressed-block CSO. */
-export function buildCso(iso: Buffer): Buffer {
-  const blocks = Math.ceil(iso.length / SECTOR);
-  const header = Buffer.alloc(0x18 + (blocks + 1) * 4);
-  header.write("CISO", 0, "latin1");
-  header.writeUInt32LE(0x18, 4);
-  header.writeBigUInt64LE(BigInt(iso.length), 8);
-  header.writeUInt32LE(SECTOR, 16);
-  header[20] = 1;
-  for (let i = 0; i <= blocks; i++) {
-    header.writeUInt32LE(((header.length + i * SECTOR) | 0x80000000) >>> 0, 0x18 + i * 4);
-  }
-  return Buffer.concat([header, iso]);
 }
 
 // ---------------------------------------------------------------- PARAM.SFO
@@ -1686,4 +1673,32 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
     { path: "PSP_GAME/SYSDIR/EBOOT.BIN", data: fixtureEboot(options) },
     { path: "PSP_GAME/USRDIR/DATA.BIN", data: dataBin },
   ]);
+}
+
+// ---------------------------------------------------------------- images in memory
+
+/** A disc image held in memory, as a read-only source. */
+export function memorySource(image: Buffer): RandomAccessSource {
+  return {
+    totalBytes: image.length,
+    read: (offset, length) => image.subarray(offset, offset + length),
+    close: () => {},
+  };
+}
+
+/** The finished image a run's segments describe over the original. */
+export function assemble(segments: ImageSegment[], original: Buffer): Buffer {
+  return Buffer.concat(
+    segments.map((s) => (s.kind === "original" ? original.subarray(s.start, s.end) : s.data)),
+  );
+}
+
+/** A disc image to patch in memory, as the web app does; `finish` gives the result. */
+export function patchInMemory(original: Buffer): PatchableImage {
+  return new PatchableImage(new OverlaySource(memorySource(original)));
+}
+
+/** The image `patchInMemory` made of `original`, with every write in it. */
+export function finish(image: PatchableImage, original: Buffer): Buffer {
+  return assemble(image.source.segments(), original);
 }

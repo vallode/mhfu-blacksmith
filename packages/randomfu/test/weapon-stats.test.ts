@@ -10,7 +10,6 @@ import {
   defaultSettings,
   encodeSettings,
   decodeSettings,
-  needsEboot,
   OPTIONS,
   type OptionKey,
   type Settings,
@@ -33,7 +32,7 @@ async function load(): Promise<{ game: GameData; close: () => void }> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -65,7 +64,7 @@ function bounds(
 
 test("reads the fixture's weapons: attack, affinity, element and status, both families", async () => {
   const { game, close } = await load();
-  const stats = byKey(collectWeaponStats(game.eboot!, game.resolver));
+  const stats = byKey(collectWeaponStats(game.eboot, game.resolver));
   for (const f of FIXTURE_WEAPONS) {
     const w = stats.get(`Blademaster:${f.index}`)!;
     assert.equal(w.attack, f.attack);
@@ -94,7 +93,6 @@ test("weapon stats: off by default, need the EBOOT", () => {
     assert.equal(option.default, false, k);
     assert.equal(option.action, "randomize", k);
     assert.equal(option.section, "Weapons", k);
-    assert.ok(needsEboot(applySettings(defaults, { [k]: true })), k);
   }
   // A new option at its default leaves existing settings strings as they were.
   assert.equal(
@@ -107,7 +105,7 @@ test("weapon stats: off by default, need the EBOOT", () => {
 
 test("weapon stats are deterministic, stay in bounds and change something", async () => {
   const { game, close } = await load();
-  const before = collectWeaponStats(game.eboot!, game.resolver);
+  const before = collectWeaponStats(game.eboot, game.resolver);
   let changed = 0;
   let gunnerElement = false;
   let loneStatus = false;
@@ -169,7 +167,7 @@ test("weapon stats are deterministic, stay in bounds and change something", asyn
 
 test("weapon stats only touch attack, affinity and element bytes", async () => {
   const { game, close } = await load();
-  const original = game.eboot!;
+  const original = game.eboot;
   const edited = randomize(game, statsWith("bytes", { "weapons.attackSpread": 0.9 })).edits.eboot();
   const stats = collectWeaponStats(original, game.resolver);
   const allowed = new Set<number>();
@@ -208,7 +206,7 @@ test("each stat draws from its own stream, and none moves another shuffle's outp
   const plain = randomize(game, base).edits.eboot();
   const withStats = randomize(game, statsWith("own", { ...shufflesOn(base) })).edits.eboot();
   const statBytes = new Set(
-    collectWeaponStats(game.eboot!, game.resolver).flatMap((w) =>
+    collectWeaponStats(game.eboot, game.resolver).flatMap((w) =>
       (w.family === "Blademaster" ? [10, 11, 13, 15, 17] : [8, 9, 13, 18]).map(
         (at) => w.offset + at,
       ),
@@ -252,7 +250,7 @@ test("stats go with the weapon: the weapons shuffle doesn't change them, in eith
 test("weapon stats off: the EBOOT's weapon records are untouched", async () => {
   const { game, close } = await load();
   const result = randomize(game, settingsWith("off", ["weapons", "costs"]));
-  const before = collectWeaponStats(game.eboot!, game.resolver);
+  const before = collectWeaponStats(game.eboot, game.resolver);
   const after = byKey(collectWeaponStats(result.edits.eboot(), game.resolver));
   for (const w of before) {
     const now = after.get(key(w))!;
@@ -282,7 +280,7 @@ test("spoiler groups sort by rarity as a number", async () => {
 
 test("the stat range widens bounds to more rarities, or all of them", async () => {
   const { game, close } = await load();
-  const before = collectWeaponStats(game.eboot!, game.resolver);
+  const before = collectWeaponStats(game.eboot, game.resolver);
   for (const [range, rarities] of [
     ["wide", 3],
     ["any", Infinity],
@@ -365,7 +363,7 @@ test("the stat range's window: one rarity either side, three, or any", () => {
 
 test("new elements: weapons without one gain one at a value their type has; bowguns never", async () => {
   const { game, close } = await load();
-  const before = collectWeaponStats(game.eboot!, game.resolver);
+  const before = collectWeaponStats(game.eboot, game.resolver);
   const values = (kind: "element" | "status", type: string) =>
     before.filter((o) => o.type === type && o.element?.kind === kind).map((o) => o.element!.value);
   let statuses = 0;
@@ -401,7 +399,7 @@ test("new elements: weapons without one gain one at a value their type has; bowg
 
 test("changing elements: any element or status, bows only elements, the other kind cleared", async () => {
   const { game, close } = await load();
-  const before = collectWeaponStats(game.eboot!, game.resolver);
+  const before = collectWeaponStats(game.eboot, game.resolver);
   const seen = new Set<string>();
   for (const seed of ["a", "b", "c", "d", "e", "f", "g", "h"]) {
     const edited = randomize(game, statsWith(seed, { "weapons.elementKind": true })).edits.eboot();
@@ -424,7 +422,7 @@ test("changing elements: any element or status, bows only elements, the other ki
 
 test("slots move by up to the spread, from 0 to 3, and only the slot byte", async () => {
   const { game, close } = await load();
-  const before = collectWeaponStats(game.eboot!, game.resolver);
+  const before = collectWeaponStats(game.eboot, game.resolver);
   const slotsOnly = settingsWith("slots", []);
   let moved = 0;
   for (const spread of [1, 3]) {
@@ -441,7 +439,7 @@ test("slots move by up to the spread, from 0 to 3, and only the slot byte", asyn
       if (now.slots !== w.slots) moved++;
     }
     for (let i = 0; i < edited.length; i++) {
-      if (edited[i] !== game.eboot![i]) assert.ok(slotBytes.has(i), `byte 0x${i.toString(16)}`);
+      if (edited[i] !== game.eboot[i]) assert.ok(slotBytes.has(i), `byte 0x${i.toString(16)}`);
     }
   }
   assert.ok(moved > 0);

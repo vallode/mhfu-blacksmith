@@ -25,7 +25,6 @@ const web = path.dirname(fileURLToPath(import.meta.url));
 const site = path.resolve(web, "..", "blacksmith");
 const dist = path.join(web, "dist");
 const shim = (name) => path.join(web, "shims", name);
-const unavailable = shim("unavailable.ts");
 
 mkdirSync(dist, { recursive: true });
 await build({
@@ -47,11 +46,6 @@ await build({
     "node:fs": shim("fs.ts"),
     "node:path": shim("path.ts"),
     "node:url": shim("url.ts"),
-    "node:fs/promises": unavailable,
-    "node:child_process": unavailable,
-    "node:os": unavailable,
-    "node:util": unavailable,
-    "node:zlib": unavailable,
   },
   loader: { ".csv": "text", ".enum": "text" },
   logLevel: "warning",

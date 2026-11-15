@@ -11,7 +11,7 @@ import {
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
-import { applySettings, needsEboot, OPTIONS } from "../src/settings.js";
+import { applySettings, OPTIONS } from "../src/settings.js";
 import { settingsWith } from "./settings-helper.js";
 import { buildFixtureDisc, FIXTURE_WEAPONS, tempDir } from "./fixtures.js";
 
@@ -31,8 +31,8 @@ async function load(): Promise<{ game: GameData; close: () => void }> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
-  const eboot = game.eboot!;
+  const game = await loadGame(source, iso);
+  const eboot = game.eboot;
   const reader = new BinaryReader(eboot);
   const table = resolveTableOffset("sharpnessTable", reader, game.resolver);
   CURVES.forEach((curve, id) =>
@@ -63,24 +63,23 @@ const sharpness = (seed: string, mode: "shuffle" | "new") =>
     "weapons.sharpnessMode": mode,
   });
 
-test("sharpness: off by default, needs the EBOOT", () => {
+test("sharpness: off by default, a shuffle", () => {
   const option = OPTIONS.find((o) => o.key === "weapons.sharpness")!;
   assert.equal(option.default, false);
   assert.equal(option.action, "shuffle");
-  assert.ok(needsEboot(sharpness("S", "shuffle")));
 });
 
 test("shuffle: weapons of a type and rarity trade (ID, amount) pairs; curves stay", async () => {
   const { game, close } = await load();
-  const reader = new BinaryReader(game.eboot!);
+  const reader = new BinaryReader(game.eboot);
   const table = resolveTableOffset("sharpnessTable", reader, game.resolver);
   const curves = (b: Buffer) => b.subarray(table, table + 40 * SHARPNESS_ENTRY_SIZE);
   let moved = 0;
   for (const seed of ["a", "b", "c", "d"]) {
     const result = randomize(game, sharpness(seed, "shuffle"));
     const edited = result.edits.eboot();
-    assert.deepEqual(pairs(game, edited), pairs(game, game.eboot!), seed);
-    assert.ok(curves(edited).equals(curves(game.eboot!)), "curves untouched");
+    assert.deepEqual(pairs(game, edited), pairs(game, game.eboot), seed);
+    assert.ok(curves(edited).equals(curves(game.eboot)), "curves untouched");
     const report = result.reports.find((r) => r.title === "Weapon sharpness")!;
     moved += report.lines.length;
     for (const line of report.lines) assert.match(line.text, /^.+: (R\d+ ?)?.* -> .+$/);
@@ -91,11 +90,11 @@ test("shuffle: weapons of a type and rarity trade (ID, amount) pairs; curves sta
 
 test("new: the curves weapons use are rewritten, monotone, in steps of 10, to their length", async () => {
   const { game, close } = await load();
-  const reader = new BinaryReader(game.eboot!);
+  const reader = new BinaryReader(game.eboot);
   const table = resolveTableOffset("sharpnessTable", reader, game.resolver);
   const result = randomize(game, sharpness("new", "new"));
   const edited = result.edits.eboot();
-  assert.deepEqual(pairs(game, edited), pairs(game, game.eboot!));
+  assert.deepEqual(pairs(game, edited), pairs(game, game.eboot));
   let changed = 0;
   for (let id = 0; id < CURVES.length; id++) {
     const curve = Array.from({ length: 7 }, (_, c) =>
@@ -115,7 +114,7 @@ test("new: the curves weapons use are rewritten, monotone, in steps of 10, to th
   assert.ok(
     edited
       .subarray(unused, unused + SHARPNESS_ENTRY_SIZE)
-      .equals(game.eboot!.subarray(unused, unused + SHARPNESS_ENTRY_SIZE)),
+      .equals(game.eboot.subarray(unused, unused + SHARPNESS_ENTRY_SIZE)),
   );
   assert.ok(randomize(game, sharpness("new", "new")).edits.eboot().equals(edited), "deterministic");
   close();

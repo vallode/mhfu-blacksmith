@@ -43,7 +43,7 @@ async function load(): Promise<{ game: GameData; close: () => void }> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -117,7 +117,7 @@ function checkIsomorphic(before: Tables, after: Tables): Map<number, number> {
 
 test("same-type: places get weapons of the same type and rarity, trees keep their shape", async () => {
   const { game, close } = await load();
-  const before = tables(game.eboot!);
+  const before = tables(game.eboot);
   let movedAny = false;
   for (const seed of ["a", "b", "c", "d"]) {
     const result = randomize(game, settings(seed));
@@ -139,7 +139,7 @@ test("same-type: places get weapons of the same type and rarity, trees keep thei
 
 test("any-type: places keep their rarity but can change type", async () => {
   const { game, close } = await load();
-  const before = tables(game.eboot!);
+  const before = tables(game.eboot);
   let crossed = false;
   for (const seed of ["a", "b", "c", "d", "e", "f", "g", "h"]) {
     const result = randomize(game, settings(seed, "any-type"));
@@ -156,7 +156,7 @@ test("any-type: places keep their rarity but can change type", async () => {
 test("the smithy's store sells the weapon now in each sold weapon's place", async () => {
   const { game, close } = await load();
   const { storeAt } = buildLobbyTask();
-  const before = tables(game.eboot!);
+  const before = tables(game.eboot);
   const storeIn = (buf: Buffer) =>
     Object.fromEntries(
       Object.entries(FIXTURE_STORE_LISTS).map(([name, entries]) => [
@@ -237,7 +237,7 @@ function signatureLike(original: Buffer): TableAddressResolver {
 
 test("tables found by signature stay found once weapons, armor and armor skills edit them", async () => {
   const { game, close } = await load();
-  const original = Buffer.from(game.eboot!);
+  const original = Buffer.from(game.eboot);
   const all = settingsWith("z", ["weapons", "armor", "armor-skills", "recipes", "costs"]);
 
   // The bug this guards against: searching the edited EBOOT loses the tables.

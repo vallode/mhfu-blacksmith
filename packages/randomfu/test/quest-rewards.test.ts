@@ -15,7 +15,7 @@ async function fixtureGame(): Promise<GameData> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  return loadGame(source, iso, { eboot: null });
+  return loadGame(source, iso);
 }
 
 /** Each reward slot's item and amount after `randomize`. */

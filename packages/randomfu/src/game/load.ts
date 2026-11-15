@@ -38,12 +38,6 @@ export interface LoadedOverlay {
   ovl: OvlFile;
 }
 
-export interface EbootOptions {
-  pspdecryptBin?: string;
-  /** False to only decrypt in-process, never with pspdecrypt (the browser). */
-  external?: boolean;
-}
-
 export interface GameData {
   region: Region;
   discId: string;
@@ -62,8 +56,8 @@ export interface GameData {
   editTask: LoadedOverlay | null;
   /** The quest board files (`level*.mib`) that are on the disc and read as boards. */
   boards: BoardFile[];
-  /** The decrypted EBOOT, when loaded. */
-  eboot: Buffer | null;
+  /** The decrypted EBOOT. */
+  eboot: Buffer;
   /** How EBOOT tables are found: undefined means JP's static addresses. */
   resolver: TableAddressResolver | undefined;
 }
@@ -86,14 +80,25 @@ function readBoards(region: Region, dataBin: DataBin): BoardFile[] {
   return boards;
 }
 
-export async function loadGame(
-  source: RandomAccessSource,
-  iso: Iso9660Reader,
-  options: { eboot: EbootOptions | null },
-): Promise<GameData> {
+export interface DiscCheck {
+  discId: string | null;
+  region: Region | null;
+  /** MHP2G (JP) or MHFU (EU): the discs randomfu knows. */
+  supported: boolean;
+}
+
+/** Which game a disc is, from its PARAM.SFO, and whether randomfu supports it. */
+export function checkDisc(iso: Iso9660Reader): DiscCheck {
   const { region, discId } = detectRegion(parseSfo(iso.readFile("/PSP_GAME/PARAM.SFO")));
-  if (!region || !discId) {
-    throw new Error(`Unrecognized disc (DISC_ID "${discId ?? "?"}"): expected an MHP2G/MHFU disc`);
+  return { region, discId, supported: region === "jp" || region === "eu" };
+}
+
+export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): Promise<GameData> {
+  const { region, discId, supported } = checkDisc(iso);
+  if (!supported || !region || !discId) {
+    throw new Error(
+      `Unsupported disc (DISC_ID "${discId ?? "?"}"): expected MHP2G (JP) or MHFU (EU)`,
+    );
   }
 
   const dataBinEntry = iso.stat(DATA_BIN_PATH);
@@ -127,17 +132,14 @@ export async function loadGame(
     }
   };
 
-  let eboot: Buffer | null = null;
+  const eboot = await decryptEboot(iso.readFile(EBOOT_PATH));
   let resolver: TableAddressResolver | undefined;
-  if (options.eboot) {
-    eboot = await decryptEboot(iso.readFile(EBOOT_PATH), options.eboot);
-    if (region !== "jp") {
-      const found = MHP2G_PROFILE.resolverForRegion(region);
-      if (!found) throw new Error(`No EBOOT table addresses for region ${region} yet`);
-      // Signatures are found in the unedited EBOOT: shuffles that run first
-      // (weapons, armor) change the tables later ones (recipes) look up.
-      resolver = new PinnedResolver(found, Buffer.from(eboot));
-    }
+  if (region !== "jp") {
+    const found = MHP2G_PROFILE.resolverForRegion(region);
+    if (!found) throw new Error(`No EBOOT table addresses for region ${region} yet`);
+    // Signatures are found in the unedited EBOOT: shuffles that run first
+    // (weapons, armor) change the tables later ones (recipes) look up.
+    resolver = new PinnedResolver(found, Buffer.from(eboot));
   }
 
   return {

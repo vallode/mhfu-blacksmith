@@ -365,11 +365,10 @@ const TITLE = "Poogie";
 
 /**
  * Patches the reward picker and the quest rewards' walk. The report says
- * whether it was applied: it isn't when the EBOOT wasn't loaded or its code
- * doesn't match.
+ * whether it was applied: it isn't when the EBOOT's code doesn't match.
  */
 export function addPoogieLuck(
-  vanillaEboot: Buffer | null,
+  vanillaEboot: Buffer,
   edits: Edits,
   options: PoogieLuckOptions = {},
 ): ShuffleReport {
@@ -379,7 +378,6 @@ export function addPoogieLuck(
     lines: [],
     summary: `${TITLE}: not applied (${why})`,
   });
-  if (!vanillaEboot) return skipped("the EBOOT wasn't loaded");
   const segment = codeSegment(vanillaEboot);
   if (!segment) return skipped("the EBOOT isn't an ELF");
   const [picker, flagTest, savePointer, questRewards] = findUnique(vanillaEboot, segment, [
