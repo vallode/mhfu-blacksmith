@@ -25,6 +25,8 @@ export interface Settings {
   "gathering.scope": Scope;
   "gathering.chances": "rarity" | "reasonable" | "any";
   "gathering.keepItems": boolean;
+  "gathering.counts": boolean;
+  "gathering.countSpread": number;
   "supplies.mode": Mode;
   "supplies.scope": Scope;
   "supplies.slots": number;
@@ -414,6 +416,24 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
     enabledBy: "gathering.mode",
     enabledWhen: ["randomize"],
+  },
+  {
+    key: "gathering.counts",
+    section: "Gathering",
+    label: "Randomize how often points can be gathered",
+    help: "Each mining, gathering and bug catching point in Village and Guild quests gets a new fewest and most number of gathers before it runs out. Points that never run out, and points that give a delivery quest's item, stay as they are.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "gathering.countSpread",
+    section: "Gathering",
+    label: "Gather count variation",
+    help: "How far a point's gathers can move from their usual value, up or down. Every point can still be gathered at least once.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "gathering.counts",
   },
   {
     key: "supplies.mode",
@@ -1513,6 +1533,7 @@ export const PRESETS: readonly Preset[] = [
       "questRewards.mode": "off",
       "monsterRewards.mode": "off",
       "recipes.amounts": true,
+      "gathering.counts": true,
       "costs.enabled": true,
       "shops.prices": true,
       "shops.stacks": true,
@@ -1531,6 +1552,7 @@ export const PRESETS: readonly Preset[] = [
     changes: {
       "recipes.mode": "shuffle",
       "recipes.amounts": true,
+      "gathering.counts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
       "armor.enabled": true,
@@ -1562,6 +1584,8 @@ export const PRESETS: readonly Preset[] = [
       "recipes.scope": "any",
       "recipes.amounts": true,
       "recipes.amountSpread": 0.9,
+      "gathering.counts": true,
+      "gathering.countSpread": 0.9,
       "costs.enabled": true,
       "costs.spread": 0.9,
       "weapons.enabled": true,

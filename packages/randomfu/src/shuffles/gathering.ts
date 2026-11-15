@@ -8,9 +8,17 @@
  * total they had. Randomize gives every pair a new item (first found within
  * the scope) and a new value. Tables keep their length, so every quest keeps
  * its size. Gathering points are item sources for the tier logic.
+ *
+ * `randomizeGatherCounts` is separate: it rescales each node's gather counts
+ * and works whether or not the items above are changed.
  */
 import type { LoadedQuest } from "../game/load.js";
-import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
+import {
+  ENDLESS,
+  NODE_GATHERS,
+  NODE_MOST_GATHERS,
+  readGatheringItems,
+} from "mhfu-extract/src/quests/gathering.js";
 import { questTier, tierKey, type Scope, type Tier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import { itemName, questLabel } from "../names.js";
@@ -254,4 +262,71 @@ function scopeFound(scope: Scope): string {
     case "any":
       return "anywhere";
   }
+}
+
+/** Highest count a finite node gets; 255 is "never runs out". */
+const MAX_COUNT = ENDLESS - 1;
+
+/**
+ * Each finite node's fewest and most gathers, scaled by a random factor
+ * within the spread (a nonzero fewest stays at least 1, the most never below
+ * the fewest). Nodes that never run out, nodes with no gathers to begin
+ * with, and nodes whose table gives `pinnedItem(quest)` (a delivery quest's
+ * own item) stay as they are; spread 0 changes nothing.
+ */
+export function randomizeGatherCounts(
+  quests: readonly LoadedQuest[],
+  spread: number,
+  pinnedItem: (quest: LoadedQuest) => number | undefined,
+  rng: Rng,
+  edits: Edits,
+): ShuffleReport {
+  const lines: { where: string; text: string }[] = [];
+  let nodes = 0;
+  for (const quest of quests) {
+    if (!questTier(quest.parsed)) continue;
+    const read = readGatheringItems(quest.file.payload, quest.parsed);
+    if (read.problem) continue;
+    const pinned = pinnedItem(quest);
+    // Tables giving the delivery item, found once.
+    const pinnedTables = new Set<number>();
+    if (pinned !== undefined) {
+      for (const [table, pairs] of read.tables) {
+        if (pairs.some((at) => quest.file.payload.readUInt16LE(at + 2) === pinned)) {
+          pinnedTables.add(table);
+        }
+      }
+    }
+    const done = new Set<number>(); // two areas may share one node list
+    for (const node of read.nodes) {
+      if (done.has(node.offset)) continue;
+      done.add(node.offset);
+      if (node.gathers === ENDLESS || node.mostGathers === ENDLESS) continue;
+      if (node.mostGathers === 0 || pinnedTables.has(node.table)) continue;
+      const factor = 1 - spread + rng.float() * 2 * spread;
+      const gathers =
+        node.gathers === 0
+          ? 0
+          : Math.min(MAX_COUNT, Math.max(1, Math.round(node.gathers * factor)));
+      const most = Math.min(MAX_COUNT, Math.max(gathers, Math.round(node.mostGathers * factor)));
+      if (gathers === node.gathers && most === node.mostGathers) continue;
+      const payload = edits.quest(quest);
+      payload.writeUInt16LE(gathers, node.offset + NODE_GATHERS);
+      payload.writeUInt16LE(most, node.offset + NODE_MOST_GATHERS);
+      nodes++;
+      lines.push({
+        where: questLabel(quest),
+        text: `Area ${node.area} point at table ${node.table}: ${gathers} to ${most} gathers (was ${node.gathers} to ${node.mostGathers})`,
+      });
+    }
+  }
+  return {
+    title: "Gather counts",
+    notes: [
+      `Each point's fewest and most gathers become ${Math.round((1 - spread) * 100)}% to ${Math.round((1 + spread) * 100)}% of what they were, at least 1, and the most is never below the fewest.`,
+      "Points that never run out and points giving a delivery quest's item are unchanged. Training School, Treasure Hunting and unused quests are unchanged.",
+      `${nodes} points changed.`,
+    ],
+    lines,
+  };
 }

@@ -80,6 +80,8 @@ web app shows as a tag):
 | `gathering.scope`                 | `star`      | How far pairs trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`    |
 | `gathering.chances`               | `rarity`    | With `randomize`: odds `rarity` (the table's own), `reasonable` (×0.5 to 2) or `any`       |
 | `gathering.keepItems`             | on          | With `randomize`, every gatherable item stays findable at its star level                   |
+| `gathering.counts`                | off         | Randomize each point's `gathers` and `most_gathers` (see below)                            |
+| `gathering.countSpread`           | 50%         | With `counts`: how far a point's counts move from their value, up or down                  |
 | `supplies.mode`                   | `off`       | `off`, `shuffle` supply box stacks between quests, or `randomize` them                     |
 | `supplies.scope`                  | `star`      | How far stacks trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`   |
 | `supplies.slots`                  | ±30%        | With `randomize`: how far a box's number of stacks can move                                |
@@ -356,6 +358,14 @@ quest's own item stays where it is.
   craftable; the other spots get pool items. Off, items you could gather
   may be found nowhere, and the recipe check reports any recipe that can't
   be made as early as before.
+
+`gathering.counts` rewrites each node's two gather counts (the fewest, +22,
+and the most, +18; see `src/quests/gathering.ts` in mhfu-extract), scaling both
+by one random factor within `gathering.countSpread`. Counts stay at least 1 and
+the most never falls below the fewest. Nodes that never run out (255), nodes
+whose table gives a delivery quest's item, and quests the player can't take are
+unchanged. It is independent of `gathering.mode`; `deliveries` reads the
+counts as they end up.
 
 `armor` gives each armor place in the smithy (a create entry) a different
 piece of the same slot and rarity, wearable by the same hunters. A piece's
