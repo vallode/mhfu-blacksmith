@@ -58,7 +58,7 @@ import { isTmh, readTmh } from "../models/tmh.js";
 import {
   poseWeapon,
   SHEATHED_TARGET,
-  WEAPON_POSES,
+  weaponPoses,
   type WeaponPoses,
 } from "../models/weapon-pose.js";
 import { parseOvl, type OvlFile } from "../container/ovl.js";
@@ -69,7 +69,11 @@ import { OVERLAY_DIR } from "../monsters/overlays.js";
 import { MONSTER_OVERLAY } from "../overlay/monsters.js";
 import { loadEnums, lookupName } from "../strings/enums.js";
 import { armorModelPath, readArmorModelIds, type SiteArmorSlot } from "../tables/armor-models.js";
-import { readBlademasterWeapons, readGunnerWeapons } from "../tables/weapons.js";
+import {
+  readBlademasterWeapons,
+  readGunnerWeapons,
+  type WeaponTypeName,
+} from "../tables/weapons.js";
 import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
 import { readData } from "game-data";
 
@@ -494,7 +498,7 @@ async function exportWeapons(
       const relative = await converter.convert(
         `weapon/we${id}.pac`,
         `weapons/we${id}.glb`,
-        WEAPON_POSES[page.type as keyof typeof WEAPON_POSES],
+        weaponPoses(page.type as WeaponTypeName, entry.modelId),
       );
       if (relative) {
         (weapons[page.type] ??= {})[page.name] = entry.modelId;
