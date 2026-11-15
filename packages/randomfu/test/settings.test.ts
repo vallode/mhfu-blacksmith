@@ -44,10 +44,6 @@ const UNTRIED: readonly OptionKey[] = [
   "questMonsters.smallSpecies",
   "trades.mode",
   "mods.nodeMap",
-  "armorStats.defense",
-  "armorStats.resistances",
-  "armorStats.slots",
-  "armorStats.rarity",
 ];
 
 test("presets do what their help says", () => {
@@ -79,9 +75,11 @@ test("presets do what their help says", () => {
       .map((o) => o.key)
       .sort(),
   );
-  for (const option of OPTIONS.filter((o) => o.type.kind === "choice")) {
-    // The modes are what the presets set, so they differ from the defaults.
-    if (option.key.endsWith(".mode")) continue;
+  for (const option of OPTIONS) {
+    if (option.type.kind !== "choice") continue;
+    // The modes (choices that shuffle or randomize) are what the presets set,
+    // so they differ from the defaults.
+    if (option.type.choices.some((c) => c.action)) continue;
     assert.equal(shuffled[option.key], option.default, `Shuffled keeps ${option.key}'s pool`);
   }
 
