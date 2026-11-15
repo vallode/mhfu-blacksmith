@@ -307,6 +307,22 @@ export function multiplyMatrices(a: Mat4, b: Mat4): Mat4 {
   return out;
 }
 
+/** `m` applied to `v`, a point (w = 1) or a direction (w = 0). */
+export const transform = (m: Mat4, [x, y, z]: Vec3, w: number): Vec3 => [
+  m[0]! * x + m[4]! * y + m[8]! * z + m[12]! * w,
+  m[1]! * x + m[5]! * y + m[9]! * z + m[13]! * w,
+  m[2]! * x + m[6]! * y + m[10]! * z + m[14]! * w,
+];
+
+/** The matrix normals take: the inverse transpose of `m`'s linear part. */
+export function normalMatrix(m: Mat4): Mat4 {
+  const inverse = invertAffine(m);
+  const out = new Array<number>(16).fill(0);
+  for (let col = 0; col < 3; col++)
+    for (let row = 0; row < 3; row++) out[col * 4 + row] = inverse[row * 4 + col]!;
+  return out;
+}
+
 /** Inverse of an affine matrix (last row 0 0 0 1). */
 export function invertAffine(m: Mat4): Mat4 {
   const [a, b, c, , d, e, f, , g, h, i] = m as [
