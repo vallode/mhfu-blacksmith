@@ -3,7 +3,7 @@ import { applySettings, defaultSettings, type OptionKey, type Settings } from ".
 /** Shuffle names as the tests (and the CLI's --shuffles) use them. */
 export const SHUFFLE_KEYS = {
   "quest-rewards": "questRewards.mode",
-  "monster-rewards": "monsterRewards.enabled",
+  "monster-rewards": "monsterRewards.mode",
   recipes: "recipes.materials",
   "recipe-amounts": "recipes.amounts",
   costs: "costs.enabled",
@@ -11,7 +11,7 @@ export const SHUFFLE_KEYS = {
   armor: "armor.enabled",
   "armor-skills": "armorSkills.enabled",
   shops: "shops.enabled",
-  gathering: "gathering.enabled",
+  gathering: "gathering.mode",
   supplies: "supplies.enabled",
   "quest-money": "terms.money",
   "time-limits": "terms.time",

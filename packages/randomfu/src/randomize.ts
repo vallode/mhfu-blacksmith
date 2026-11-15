@@ -12,10 +12,15 @@ import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
 import { deliveryTargets, isQuestItem, readSupplySlots } from "./game/quest-fields.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
-import { collectGatheringSlots, shuffleGathering } from "./shuffles/gathering.js";
+import {
+  collectGatheringSlots,
+  randomizeGathering,
+  shuffleGathering,
+} from "./shuffles/gathering.js";
 import {
   collectMonsterRewardSlots,
   collectRewardLists,
+  randomizeMonsterRewards,
   shuffleMonsterRewards,
 } from "./shuffles/monster-rewards.js";
 import {
@@ -312,36 +317,54 @@ export function randomize(
   }
 
   let monsterAfter: { itemId: number; tier: Tier }[] = grouped(monsterSlots);
-  if (settings["monsterRewards.enabled"]) {
+  const monsterMode = settings["monsterRewards.mode"];
+  if (monsterMode !== "off") {
     const withCaptures = settings["monsterRewards.captureAndBreaks"];
-    const shuffled = grouped(monsterSlots.filter((s) => withCaptures || s.list.stride === 4));
+    const changed = monsterSlots.filter((s) => withCaptures || s.list.stride === 4);
     const kept = grouped(monsterSlots.filter((s) => !withCaptures && s.list.stride !== 4));
-    const result = shuffleMonsterRewards(
-      shuffled,
-      rng.fork("monster-rewards"),
-      edits,
-      game.gameSub,
-    );
+    const scope = settings["monsterRewards.scope"];
+    const result =
+      monsterMode === "shuffle"
+        ? shuffleMonsterRewards(changed, scope, rng.fork("monster-rewards"), edits, game.gameSub)
+        : randomizeMonsterRewards(
+            changed,
+            { scope, chances: settings["monsterRewards.chances"] },
+            {
+              tiers: realTiers,
+              allItems: sellableItems(),
+              amounts: observedAmounts(game, questSlots),
+            },
+            rng.fork("monster-rewards"),
+            edits,
+            game.gameSub,
+          );
     reports.push(result.report);
-    monsterAfter = [...result.after, ...kept];
+    monsterAfter = [...grouped(result.after), ...kept];
   }
 
   // Gathering points are item sources too: the recipe check below uses them as shuffled.
   let gatheringAfter: { itemId: number; tier: Tier }[] = grouped(gathering.slots);
-  if (settings["gathering.enabled"]) {
+  const gatheringMode = settings["gathering.mode"];
+  if (gatheringMode !== "off") {
     const pinned = grouped(gathering.slots.filter(isDeliveryItem));
-    const result = shuffleGathering(
-      grouped(gathering.slots.filter((s) => !isDeliveryItem(s))),
-      { pool: settings["gathering.pool"], keepItems: settings["gathering.keepItems"] },
-      {
-        bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
-        allItems: sellableItems(),
-      },
-      rng.fork("gathering"),
-      edits,
-    );
+    const changed = gathering.slots.filter((s) => !isDeliveryItem(s));
+    const scope = settings["gathering.scope"];
+    const result =
+      gatheringMode === "shuffle"
+        ? shuffleGathering(changed, scope, rng.fork("gathering"), edits)
+        : randomizeGathering(
+            changed,
+            {
+              scope,
+              chances: settings["gathering.chances"],
+              keepItems: settings["gathering.keepItems"],
+            },
+            { tiers: realTiers, allItems: sellableItems() },
+            rng.fork("gathering"),
+            edits,
+          );
     reports.push(result.report);
-    gatheringAfter = [...result.after, ...pinned];
+    gatheringAfter = [...grouped(result.after), ...pinned];
   }
 
   if (settings["supplies.enabled"]) {

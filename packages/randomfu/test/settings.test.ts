@@ -39,10 +39,10 @@ test("every option has a default its own checks accept", () => {
   for (const name of ["Full", "Chaos"]) {
     const preset = PRESETS.find((p) => p.name === name)!;
     assert.equal(preset.changes["armor.enabled"], true, `${name} shuffles armor`);
-    assert.equal(preset.changes["gathering.enabled"], true, `${name} shuffles gathering`);
+    assert.ok(preset.changes["gathering.mode"] !== undefined, `${name} changes gathering`);
   }
   assert.equal(OPTIONS.find((o) => o.key === "armor.enabled")!.eboot, true);
-  assert.ok(!OPTIONS.find((o) => o.key === "gathering.enabled")!.eboot);
+  assert.ok(!OPTIONS.find((o) => o.key === "gathering.mode")!.eboot);
 });
 
 /** Options no preset turns on until they're tried in game (see the README's status). */
@@ -58,15 +58,18 @@ test("presets do what their help says", () => {
     OPTIONS.filter(
       (o) =>
         !UNTRIED.includes(o.key) &&
-        // Quest rewards can do either: Randomized leaves them off (every reward stays put).
-        !(action === "randomize" && o.key === "questRewards.mode") &&
+        // Reward modes can do either: Randomized leaves them off (every reward stays put).
+        !(
+          action === "randomize" &&
+          ["questRewards.mode", "monsterRewards.mode", "gathering.mode"].includes(o.key)
+        ) &&
         (o.action === action ||
           (o.type.kind === "choice" && o.type.choices.some((c) => c.action === action))),
     );
 
   // "The defaults: quest rewards and carves are shuffled."
   assert.deepEqual(preset("Rewards only"), defaultSettings("S"));
-  assert.deepEqual(keys(preset("Rewards only")), ["monsterRewards.enabled", "questRewards.mode"]);
+  assert.deepEqual(keys(preset("Rewards only")), ["monsterRewards.mode", "questRewards.mode"]);
 
   // Shuffled: every shuffle that's been tried, and no randomizer.
   const shuffled = preset("Shuffled");
@@ -78,7 +81,8 @@ test("presets do what their help says", () => {
       .sort(),
   );
   for (const option of OPTIONS.filter((o) => o.type.kind === "choice")) {
-    if (option.key === "armorSkills.mode") continue;
+    if (option.key === "armorSkills.mode" || option.key.endsWith("Rewards.mode")) continue;
+    if (option.key === "gathering.mode") continue;
     assert.equal(shuffled[option.key], option.default, `Shuffled keeps ${option.key}'s pool`);
   }
 
@@ -197,7 +201,7 @@ test("CLI flags layer: file < string < --shuffles < shorthand < --set < --seed",
   assert.throws(() => settingsFromFlags({ shuffles: "everything" }), /Unknown shuffle/);
   const named = settingsFromFlags({ shuffles: "armor,gathering" });
   assert.equal(named["armor.enabled"], true);
-  assert.equal(named["gathering.enabled"], true);
+  assert.equal(named["gathering.mode"], "shuffle");
   assert.equal(named["weapons.enabled"], false);
   assert.ok(readFileSync(file, "utf-8").includes("FROMFILE"));
 });

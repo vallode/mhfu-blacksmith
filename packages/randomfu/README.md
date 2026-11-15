@@ -120,11 +120,14 @@ pages and `pnpm settings` show as a tag):
 | `questRewards.scope`              | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`  |
 | `questRewards.slots`              | ±30%        | With `randomize`: how far a main reward list's number of slots can move                  |
 | `questRewards.chances`            | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`   |
-| `monsterRewards.enabled`          | on          | Shuffle carves and shiny drops                                                           |
+| `monsterRewards.mode`             | `shuffle`   | `off`, `shuffle` carves and shiny drops between monsters, or `randomize` them            |
+| `monsterRewards.scope`            | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`  |
+| `monsterRewards.chances`          | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`   |
 | `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                        |
-| `gathering.enabled`               | off         | Shuffle gathering points                                                                 |
-| `gathering.pool`                  | `gathered`  | What spots give: gathering point items, any item of the same `rank`, or `any`            |
-| `gathering.keepItems`             | on          | With a wider pool, every gatherable item stays findable at its point in the game         |
+| `gathering.mode`                  | `off`       | `off`, `shuffle` gathering point pairs between quests, or `randomize` them               |
+| `gathering.scope`                 | `star`      | How far pairs trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`  |
+| `gathering.chances`               | `rarity`    | With `randomize`: odds `rarity` (the table's own), `reasonable` (×0.5 to 2) or `any`     |
+| `gathering.keepItems`             | on          | With `randomize`, every gatherable item stays findable at its star level                 |
 | `supplies.enabled`                | off         | Shuffle supply boxes                                                                     |
 | `supplies.pool`                   | `supplies`  | Supply box items, any item of the same `rank`, or `add` random stacks to each box        |
 | `supplies.keepEssentials`         | on          | Keep maps, ballista and cannon ammo and the other quest-only supplies                    |
@@ -213,8 +216,8 @@ except `supplies.pool add`, which grows quests into their sector padding
 | Shuffle           | Data                                                                                   | What changes                                                  |
 | ----------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
 | `quest-rewards`   | `RewardTBL` items in each quest `.mib`                                                 | Item, amount and chance move together (see below)             |
-| `monster-rewards` | Carve, capture and break lists in `game_sub.ovl`                                       | Item moves; chance and amount stay with the slot              |
-| `gathering`       | Gathering item tables in each quest `.mib`                                             | Item moves; the value (weight) stays with the slot            |
+| `monster-rewards` | Carve, capture and break lists in `game_sub.ovl`                                       | Item, chance and amount move together (see below)             |
+| `gathering`       | Gathering item tables in each quest `.mib`                                             | Item and value (weight) move together (see below)             |
 | `recipes`         | `EquipmentCreate` / `EquipmentUpgrade` in the EBOOT                                    | Material moves; quantity stays with the slot                  |
 | `recipe-amounts`  | The same recipe tables                                                                 | Quantities, rescaled and varied (see below)                   |
 | `costs`           | Weapon, armor and decoration prices in the EBOOT                                       | Crafting and upgrade costs, varied in steps of 10z            |
@@ -257,6 +260,24 @@ its own setting rather than `logic.tiers`: `star` (the default), `rank`,
   to the list's total. Extra and conditional lists keep their length.
 - Lists with empty (item 0) entries are shuffled but not randomized.
 
+### Monster rewards
+
+Carve, capture and break lists in `game_sub.ovl` are fixed in size and
+shared between monsters, so unlike quest rewards no list changes length. A
+list's tier is its rank and the earliest star level of a quest its monster
+is in. `monsterRewards.scope` works as `questRewards.scope` does (`star`,
+`rank`, `adjacent`, `any`), and `monsterRewards.captureAndBreaks` decides
+whether capture and break lists take part with carves.
+
+- **Shuffle** moves whole slots (item, chance and amount) between lists
+  within the scope; carves only trade with carves. A list's chances are
+  scaled back to the total it had.
+- **Randomize** gives every slot an item first found within the scope
+  (never a quest-only item, never one twice in a list), a chance as
+  `monsterRewards.chances` says (the same choices as quest rewards) scaled to
+  the list's total, and, for captures and breaks, an amount quests give of
+  that item.
+
 ### Logic
 
 Items only move within a **tier**: a rank (Low, High or G) and a star level.
@@ -279,7 +300,7 @@ the recipe check below no longer means anything).
   rewards, monster rewards and gathering points. A recipe slot is shuffled
   with other slots whose items have the same tier.
 
-The gathering shuffle (and quest rewards at `star` scope) keep every tier's items within that
+The shuffles at `star` scope (and gathering with `keepItems`) keep every tier's items within that
 tier, so every recipe material is still found at or before the star level
 it was before. `checkRecipes` confirms this against the shuffled rewards
 and gathering points; any failure is printed and listed at the top of the
@@ -352,22 +373,26 @@ for long sharpness, so a weapon crossing to positive affinity can't jump
 further than the spread. Weapon
 stats are so far tested only against the synthetic disc.
 
-`gathering` moves item IDs between the gathering item tables of Village
-and Guild quests of the same tier, like the quest reward shuffle. A pair's
-first field (taken to be the item's weight) stays with the pair, so a
-node keeps its odds; tables keep their length and the quest file its
-size. Only pairs in tables a node uses move: an unused table keeps its
+`gathering` changes the pairs (value, item) in the gathering item tables of
+Village and Guild quests. Tables keep their length and the quest file its
+size. Only pairs in tables a node uses change: an unused table keeps its
 items, and so do Training School, Treasure Hunting and the unused
-gathering copies. A pair with item 0 is left as it is.
+gathering copies. A pair with item 0 is left as it is, and a delivery
+quest's own item stays where it is.
 
-`gathering.pool` widens what spots give. `rank`: any item first found at
-the quest's rank (Low, High or G), monster parts included; `any`: any item
-in the game. With `gathering.keepItems` (on by default), each item the
-spots of a tier gave is first put back in one random spot of that tier,
-so it's still found at the same point in the game and recipes stay
-craftable; the other spots get random pool items (avoiding repeats within
-a table). Off, items you could gather may be found nowhere, and the recipe
-check reports any recipe that can't be made as early as before.
+- **Shuffle** moves whole pairs (item and value, taken to be the item's
+  weight) between quests within `gathering.scope` (`star`, `rank`,
+  `adjacent` or `any`). A table's values are scaled back to the total it
+  had.
+- **Randomize** gives every pair an item first found within the scope
+  (monster parts included, avoiding repeats within a table) and a value as
+  `gathering.chances` says, scaled to the table's total. With
+  `gathering.keepItems` (on by default), each item the spots of a star
+  level gave is first put back in one random spot of that star level, so
+  it's still found at the same point in the game and recipes stay
+  craftable; the other spots get pool items. Off, items you could gather
+  may be found nowhere, and the recipe check reports any recipe that can't
+  be made as early as before.
 
 `armor` gives each armor place in the smithy (a create entry) a different
 piece of the same slot and rarity, wearable by the same hunters. A piece's

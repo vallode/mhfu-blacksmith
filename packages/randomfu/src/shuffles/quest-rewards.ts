@@ -16,11 +16,18 @@ import { classifyRewardTable } from "mhfu-extract/src/emit/quests.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { isQuestItem } from "../game/quest-fields.js";
 import type { LoadedQuest } from "../game/load.js";
-import { inScope, questTier, tierKey, type Scope, type Tier } from "../game/tiers.js";
+import { questTier, type Scope, type Tier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import type { Rng } from "../rng.js";
 import { itemName, questLabel } from "../names.js";
-import { permuteWithinScope, reconcile, type ShuffleReport } from "./shuffle.js";
+import {
+  permuteWithinScope,
+  reconcile,
+  rollChances,
+  scopedPool,
+  type ChanceRange,
+  type ShuffleReport,
+} from "./shuffle.js";
 
 const REWARD_ITEM_SIZE = 6;
 const REWARD_TABLE_SIZE = 8;
@@ -179,8 +186,6 @@ function scopeNote(scope: Scope): string {
   }
 }
 
-export type ChanceRange = "rarity" | "reasonable" | "any";
-
 export interface RandomizeRewardsOptions {
   scope: Scope;
   /** How far a main list's slot count can move, as a fraction of its own. */
@@ -215,23 +220,8 @@ export function randomizeQuestRewards(
   const largest: Record<RewardKind, number> = { main: 1, extra: 1, conditional: 1 };
   for (const list of lists) largest[list.kind] = Math.max(largest[list.kind], list.slots.length);
 
-  const pools = new Map<string, number[]>();
   const everything = context.allItems.filter((i) => !isQuestItem(i));
-  const poolFor = (tier: Tier, wanted: number): number[] => {
-    const key = options.scope === "any" ? "any" : tierKey(tier);
-    let pool = pools.get(key);
-    if (!pool) {
-      pool =
-        options.scope === "any"
-          ? everything
-          : everything.filter((i) => {
-              const found = context.tiers.get(i);
-              return found !== undefined && inScope(options.scope, tier, found);
-            });
-      pools.set(key, pool);
-    }
-    return pool.length >= wanted ? pool : everything;
-  };
+  const poolFor = scopedPool(everything, context.tiers, options.scope);
 
   const lines: { where: string; text: string }[] = [];
   // Every item a quest can give once rolled, for the recipe check.
@@ -268,23 +258,12 @@ export function randomizeQuestRewards(
       if (!items.includes(pick)) items.push(pick);
     }
 
-    // The chances the new slots start from: the list's own, a random m of them or all plus repeats.
-    const original = list.slots.map((s) => s.chance);
-    const total = original.reduce((a, b) => a + b, 0);
-    let base: number[];
-    if (m <= n) {
-      const keep = new Set(rng.shuffle(original.map((_, i) => i)).slice(0, m));
-      base = original.filter((_, i) => keep.has(i));
-    } else {
-      base = [...original];
-      while (base.length < m) base.push(original[rng.int(n)]!);
-    }
-    if (options.chances === "reasonable") {
-      base = base.map((c) => c * (0.5 + 1.5 * rng.float()));
-    } else if (options.chances === "any") {
-      base = base.map(() => 1 + rng.int(100));
-    }
-    const chances = total >= m ? reconcile(base, total) : base.map((c) => Math.round(c));
+    const chances = rollChances(
+      list.slots.map((x) => x.chance),
+      m,
+      options.chances,
+      rng,
+    );
 
     const entries = items.map((itemId, k) => {
       const amounts = context.amounts(itemId);

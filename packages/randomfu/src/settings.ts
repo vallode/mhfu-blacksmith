@@ -17,10 +17,13 @@ export interface Settings {
   "questRewards.scope": Scope;
   "questRewards.slots": number;
   "questRewards.chances": "rarity" | "reasonable" | "any";
-  "monsterRewards.enabled": boolean;
+  "monsterRewards.mode": Mode;
+  "monsterRewards.scope": Scope;
+  "monsterRewards.chances": "rarity" | "reasonable" | "any";
   "monsterRewards.captureAndBreaks": boolean;
-  "gathering.enabled": boolean;
-  "gathering.pool": "gathered" | "rank" | "any";
+  "gathering.mode": Mode;
+  "gathering.scope": Scope;
+  "gathering.chances": "rarity" | "reasonable" | "any";
   "gathering.keepItems": boolean;
   "supplies.enabled": boolean;
   "supplies.pool": "supplies" | "rank" | "add";
@@ -253,68 +256,176 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledWhen: ["randomize"],
   },
   {
-    key: "monsterRewards.enabled",
+    key: "monsterRewards.mode",
     section: "Monster rewards",
-    label: "Shuffle carves and shiny drops",
-    help: "Body carves, tail carves and shiny drops move between monsters at the same point in the game (see Logic); each slot keeps its chance.",
-    type: { kind: "boolean" },
-    default: true,
-    action: "shuffle",
+    label: "Carves and shiny drops",
+    help: "What happens to the reward lists of monsters: body carves, tail carves and shiny drops, and with the option below, captures and part breaks. A list never changes length.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Monsters give what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Whole slots (item, chance and amount) trade places between lists, as far as the scope allows. A list's chances are scaled back to add up to what they did.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Every slot gets a new item drawn from the scope, a new chance and, for captures and breaks, a new amount.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "shuffle",
+  },
+  {
+    key: "monsterRewards.scope",
+    section: "Monster rewards",
+    label: "How far monster rewards can reach",
+    help: "Which lists slots trade between when shuffled, and which items a list's slots can be drawn from when randomized (by where each item is first found). A list's point in the game is its rank and the earliest star level of a quest its monster is in.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "star",
+          label: "Same star level",
+          help: "Slots stay at their own rank and star level; randomized slots get items found there.",
+        },
+        { value: "rank", label: "Same rank", help: "Anywhere within Low, High or G Rank." },
+        {
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
+        },
+        { value: "any", label: "Anywhere (chaos)", help: "Any list, any item in the game." },
+      ],
+    },
+    default: "star",
+    enabledBy: "monsterRewards.mode",
+    enabledWhen: ["shuffle", "randomize"],
+  },
+  {
+    key: "monsterRewards.chances",
+    section: "Monster rewards",
+    label: "Monster reward chances",
+    help: "How slots' chances are rolled. A list's chances always add up to what they did, so whatever is rolled is scaled to fit.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rarity",
+          label: "Same rarity",
+          help: "The chances the list had, dealt to the new slots.",
+        },
+        {
+          value: "reasonable",
+          label: "Within reason",
+          help: "Each of the list's chances scaled by 0.5 to 2.",
+        },
+        { value: "any", label: "Anything (chaos)", help: "Each slot rolls 1 to 100." },
+      ],
+    },
+    default: "rarity",
+    enabledBy: "monsterRewards.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "monsterRewards.captureAndBreaks",
     section: "Monster rewards",
     label: "Include capture and break rewards",
-    help: "Capture rewards and part-break rewards are shuffled along with carves.",
+    help: "Capture rewards and part-break rewards are changed along with carves.",
     type: { kind: "boolean" },
     default: true,
-    enabledBy: "monsterRewards.enabled",
+    enabledBy: "monsterRewards.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
-    key: "gathering.enabled",
+    key: "gathering.mode",
     section: "Gathering",
-    label: "Shuffle gathering points",
-    help: "Items from mining, gathering and bug catching points move between Village and Guild quests at the same point in the game (see Logic); each spot keeps its odds. Training School and Treasure Hunting quests are left alone.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
+    label: "Gathering points",
+    help: "What happens to the items of mining, gathering and bug catching points in Village and Guild quests. Training School and Treasure Hunting quests are left alone, and a delivery quest keeps the item it asks for.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Points give what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Pairs (item and how likely it is) trade places between quests, as far as the scope allows. A table's odds are scaled back to add up to what they did.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Every pair gets a new item drawn from the scope and new odds. Tables keep their length.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
   },
   {
-    key: "gathering.pool",
+    key: "gathering.scope",
     section: "Gathering",
-    label: "What gathering points give",
-    help: "Where gathering points' items come from.",
+    label: "How far gathering points can reach",
+    help: "Which quests pairs trade between when shuffled, and which items a point can give when randomized (by where each item is first found).",
     type: {
       kind: "choice",
       choices: [
         {
-          value: "gathered",
-          label: "Gathering point items",
-          help: "Only items gathering points give anyway, moved between spots.",
+          value: "star",
+          label: "Same star level",
+          help: "Pairs stay at their own rank and star level; randomized points give items found there.",
         },
+        { value: "rank", label: "Same rank", help: "Anywhere within Low, High or G Rank." },
         {
-          value: "rank",
-          label: "Any item from the same rank",
-          help: "Anything first found at the quest's rank, monster parts included: a Low Rank quest's spots give Low Rank items, and likewise High and G Rank.",
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
         },
-        {
-          value: "any",
-          label: "Any item (chaos)",
-          help: "Any item in the game, at any rank.",
-        },
+        { value: "any", label: "Anywhere (chaos)", help: "Any quest, any item in the game." },
       ],
     },
-    default: "gathered",
-    enabledBy: "gathering.enabled",
+    default: "star",
+    enabledBy: "gathering.mode",
+    enabledWhen: ["shuffle", "randomize"],
+  },
+  {
+    key: "gathering.chances",
+    section: "Gathering",
+    label: "Gathering odds",
+    help: "How points' odds are rolled. A table's odds always add up to what they did, so whatever is rolled is scaled to fit.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rarity",
+          label: "Same rarity",
+          help: "The odds the table had, dealt to the new items.",
+        },
+        {
+          value: "reasonable",
+          label: "Within reason",
+          help: "Each of the table's odds scaled by 0.5 to 2.",
+        },
+        { value: "any", label: "Anything (chaos)", help: "Each pair rolls 1 to 100." },
+      ],
+    },
+    default: "rarity",
+    enabledBy: "gathering.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "gathering.keepItems",
     section: "Gathering",
     label: "Keep every gatherable item findable",
-    help: "With a wider pool, each item gathering points give is still at one or more spots at the same point in the game, so recipes stay craftable. The other spots get random items.",
+    help: "When randomizing, each item gathering points give is still at one or more spots at the same star level, so recipes stay craftable. The other spots get random items.",
     type: { kind: "boolean" },
     default: true,
-    enabledBy: "gathering.enabled",
+    enabledBy: "gathering.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "supplies.enabled",
@@ -1232,7 +1343,7 @@ export const PRESETS: readonly Preset[] = [
     name: "Shuffled",
     help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Every amount, cost and stat stays as it was. The bookshelf guides are written.",
     changes: {
-      "gathering.enabled": true,
+      "gathering.mode": "shuffle",
       "supplies.enabled": true,
       "recipes.materials": true,
       "weapons.enabled": true,
@@ -1250,7 +1361,7 @@ export const PRESETS: readonly Preset[] = [
     help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills. The bookshelf guides are written.",
     changes: {
       "questRewards.mode": "off",
-      "monsterRewards.enabled": false,
+      "monsterRewards.mode": "off",
       "recipes.amounts": true,
       "costs.enabled": true,
       "shops.prices": true,
@@ -1279,8 +1390,8 @@ export const PRESETS: readonly Preset[] = [
       "shops.pool": "low",
       "shops.prices": true,
       "shops.stacks": true,
-      "gathering.enabled": true,
-      "gathering.pool": "rank",
+      "gathering.mode": "randomize",
+      "gathering.scope": "rank",
       "supplies.enabled": true,
       "terms.money": true,
       "terms.time": true,
@@ -1299,6 +1410,7 @@ export const PRESETS: readonly Preset[] = [
     changes: {
       "logic.tiers": "none",
       "questRewards.scope": "any",
+      "monsterRewards.scope": "any",
       "recipes.materials": true,
       "recipes.amounts": true,
       "recipes.amountSpread": 0.9,
@@ -1320,8 +1432,8 @@ export const PRESETS: readonly Preset[] = [
       "shops.priceSpread": 0.9,
       "shops.stacks": true,
       "shops.stackSpread": 0.9,
-      "gathering.enabled": true,
-      "gathering.pool": "any",
+      "gathering.mode": "randomize",
+      "gathering.scope": "any",
       "gathering.keepItems": false,
       "supplies.enabled": true,
       "supplies.pool": "add",

@@ -54,7 +54,7 @@ function requireFlag(flags: Record<string, string>, name: string): string {
 /** `--shuffles` names, kept from before settings files existed. */
 const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   "quest-rewards": "questRewards.mode",
-  "monster-rewards": "monsterRewards.enabled",
+  "monster-rewards": "monsterRewards.mode",
   recipes: "recipes.materials",
   "recipe-amounts": "recipes.amounts",
   costs: "costs.enabled",
@@ -64,7 +64,7 @@ const SHUFFLE_FLAGS: Record<string, OptionKey> = {
   shops: "shops.enabled",
   "shop-prices": "shops.prices",
   "carry-limits": "shops.stacks",
-  gathering: "gathering.enabled",
+  gathering: "gathering.mode",
   supplies: "supplies.enabled",
   "quest-money": "terms.money",
   "time-limits": "terms.time",

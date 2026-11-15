@@ -118,6 +118,63 @@ export function reconcile(weights: readonly number[], total: number): number[] {
 }
 
 /**
+ * Items a randomizer may draw for a slot at `tier` under `scope`: those
+ * first found within it (`tiers`), from `items`. Falls back to all of
+ * `items` where the scope holds fewer than `wanted`.
+ */
+export function scopedPool(
+  items: readonly number[],
+  tiers: ReadonlyMap<number, Tier>,
+  scope: Scope,
+): (tier: Tier, wanted: number) => readonly number[] {
+  const pools = new Map<string, number[]>();
+  return (tier, wanted) => {
+    const key = scope === "any" ? "any" : tierKey(tier);
+    let pool = pools.get(key);
+    if (!pool) {
+      pool =
+        scope === "any"
+          ? [...items]
+          : items.filter((i) => {
+              const found = tiers.get(i);
+              return found !== undefined && inScope(scope, tier, found);
+            });
+      pools.set(key, pool);
+    }
+    return pool.length >= wanted ? pool : items;
+  };
+}
+
+export type ChanceRange = "rarity" | "reasonable" | "any";
+
+/**
+ * New chances for a reward list of `count` slots that added up to `total`.
+ * Rarity: the list's own chances, a random `count` of them (or all of them
+ * and repeats). Reasonable: each scaled by 0.5 to 2. Any: 1 to 100. The
+ * result is scaled to add up to `total` again.
+ */
+export function rollChances(
+  original: readonly number[],
+  count: number,
+  range: ChanceRange,
+  rng: Rng,
+): number[] {
+  const total = original.reduce((a, b) => a + b, 0);
+  const n = original.length;
+  let base: number[];
+  if (count <= n) {
+    const keep = new Set(rng.shuffle(original.map((_, i) => i)).slice(0, count));
+    base = original.filter((_, i) => keep.has(i));
+  } else {
+    base = [...original];
+    while (base.length < count) base.push(original[rng.int(n)]!);
+  }
+  if (range === "reasonable") base = base.map((c) => c * (0.5 + 1.5 * rng.float()));
+  else if (range === "any") base = base.map(() => 1 + rng.int(100));
+  return total >= count ? reconcile(base, total) : base.map((c) => Math.round(c));
+}
+
+/**
  * The median of a non-empty list. With an even count, "mean" averages the
  * two middle values; "lower" takes the smaller one, so the result is always
  * a value from the list.

@@ -8,6 +8,7 @@ import { loadGame, type GameData } from "../src/game/load.js";
 import type { Tier } from "../src/game/tiers.js";
 import { randomize } from "../src/randomize.js";
 import { Rng } from "../src/rng.js";
+import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
 import { collectQuestRewardSlots } from "../src/shuffles/quest-rewards.js";
 import { permuteWithinScope, reconcile } from "../src/shuffles/shuffle.js";
 import { writeEdits } from "../src/write.js";
@@ -187,4 +188,54 @@ test("a randomized quest with more slots writes to disc and reads back", async (
   const expected = lists(game, (q) => result.edits.questNow(q));
   assert.deepEqual([...written], [...expected]);
   after.close();
+});
+
+/** Each monster reward list as `[chance, item][]`, read from a written disc. */
+async function monsterLists(file: string): Promise<[number, number][][]> {
+  const { game, close } = await load(file);
+  const out = collectRewardLists(game.gameSub.ovl).map((l) =>
+    l.entries.map((e): [number, number] => [e.chance, e.itemId]),
+  );
+  close();
+  return out;
+}
+
+test("monster rewards shuffle and randomize keep every list's length and chance total", async () => {
+  const input = fixtureFile();
+  const before = await monsterLists(input);
+  for (const [mode, extra] of [
+    ["shuffle", {}],
+    ["randomize", { "monsterRewards.chances": "any" }],
+    ["randomize", { "monsterRewards.chances": "reasonable" }],
+  ] as const) {
+    for (const scope of ["star", "adjacent", "any"] as const) {
+      const output = path.join(tempDir(), "out.iso");
+      writeFileSync(output, readFileSync(input));
+      const image = openPatchableImage(output);
+      const game = await loadGame(image.source, image.iso, { eboot: {} });
+      const result = randomize(
+        game,
+        settingsWith("monsters", [], {
+          "monsterRewards.mode": mode,
+          "monsterRewards.scope": scope,
+          ...extra,
+        }),
+      );
+      assert.deepEqual(result.problems, []);
+      writeEdits(image, game, result.edits);
+      image.close();
+      const after = await monsterLists(output);
+      assert.equal(after.length, before.length);
+      let changed = false;
+      before.forEach((list, i) => {
+        const now = after[i]!;
+        assert.equal(now.length, list.length, `${mode}/${scope}: list ${i} keeps its length`);
+        const sum = (l: [number, number][]) => l.reduce((a, [c]) => a + c, 0);
+        assert.equal(sum(now), sum(list), `${mode}/${scope}: list ${i} keeps its total`);
+        assert.equal(new Set(now.map(([, item]) => item)).size, now.length);
+        if (JSON.stringify(now) !== JSON.stringify(list)) changed = true;
+      });
+      if (mode === "randomize") assert.ok(changed, `${scope}: randomize changed something`);
+    }
+  }
 });
