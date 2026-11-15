@@ -61,6 +61,13 @@ export interface Settings {
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
   "armorSkills.keepArmorOnly": boolean;
+  "armorStats.defense": Mode;
+  "armorStats.defenseSpread": number;
+  "armorStats.resistances": Mode;
+  "armorStats.resistanceSpread": number;
+  "armorStats.slots": Mode;
+  "armorStats.rarity": Mode;
+  "armorStats.raritySpread": number;
   "shops.mode": Mode;
   "shops.scope": "low" | "high" | "any";
   "shops.mix": "each" | "all";
@@ -913,6 +920,136 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "armorSkills.enabled",
   },
   {
+    key: "armorStats.defense",
+    section: "Armor",
+    label: "Armor defense",
+    help: "Each piece's defense, which goes with the piece wherever the smithy makes it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          action: "shuffle",
+          help: "Pieces of the same rarity and hunter type trade their defense, along with how far armor spheres upgrade it.",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          action: "randomize",
+          help: "Each piece's defense varies, staying within what pieces of its hunter type have from one rarity below to one above. Armor spheres upgrade it as many levels as before.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "armorStats.defenseSpread",
+    section: "Armor",
+    label: "Defense variation",
+    help: "How far defense can move from its usual value, up or down.",
+    type: SPREAD,
+    default: 0.2,
+    enabledBy: "armorStats.defense",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "armorStats.resistances",
+    section: "Armor",
+    label: "Armor resistances",
+    help: "Each piece's fire, water, thunder, dragon and ice resistance.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          action: "shuffle",
+          help: "Pieces of the same rarity and hunter type trade all five resistances together.",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          action: "randomize",
+          help: "Each resistance moves up or down, staying within what pieces of its hunter type have from one rarity below to one above.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "armorStats.resistanceSpread",
+    section: "Armor",
+    label: "Resistance variation",
+    help: "How many points each resistance can move, up or down.",
+    type: { kind: "number", min: 1, max: 10, step: 1, unit: "points" },
+    default: 2,
+    enabledBy: "armorStats.resistances",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "armorStats.slots",
+    section: "Armor",
+    label: "Armor decoration slots",
+    help: "How many decoration slots each piece has.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          action: "shuffle",
+          help: "Pieces of the same rarity and hunter type trade their slots.",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          action: "randomize",
+          help: "Each piece gets a slot count drawn from the counts pieces of its rarity have, so a rarity keeps about as many slots.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "armorStats.rarity",
+    section: "Armor",
+    label: "Armor rarity",
+    help: "Each piece's rarity. What the game uses armor rarity for hasn't been checked in game.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          action: "shuffle",
+          help: "Pieces of the same rank (Low, High or G) and hunter type trade their rarity.",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          action: "randomize",
+          help: "Each piece's rarity moves up or down, staying within its rank.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "armorStats.raritySpread",
+    section: "Armor",
+    label: "Rarity variation",
+    help: "How many levels rarity can move, up or down.",
+    type: { kind: "number", min: 1, max: 4, step: 1, unit: "levels" },
+    default: 1,
+    enabledBy: "armorStats.rarity",
+    enabledWhen: ["randomize"],
+  },
+  {
     key: "shops.mode",
     section: "Shop stock",
     label: "Shop stock",
@@ -1431,7 +1568,10 @@ export function applySettings(base: Settings, changes: Record<string, unknown>):
   return out as unknown as Settings;
 }
 
-/** True if the option is in effect: its `enabledBy` switch, and that switch's, are on. */
+/**
+ * True if the option is in effect: its `enabledBy` switch is on (or its
+ * choice is at `enabledWhen`), and that option is in effect too.
+ */
 export function isActive(settings: Settings, option: OptionDef): boolean {
   if (!option.enabledBy) return true;
   const parent = BY_KEY.get(option.enabledBy)!;

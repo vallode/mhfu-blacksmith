@@ -49,6 +49,55 @@ export function permuteWithinGroups<S, V>(
 }
 
 /**
+ * The lowest and highest `value` among items of each kind and rarity,
+ * built once; `of(t)` merges `t`'s rarity with the ones either side. It's
+ * null when no other item in that window has a value, so a lone item is
+ * held only by its spread.
+ */
+export class RarityBounds<T> {
+  private readonly groups = new Map<string, { lo: number; hi: number; n: number }>();
+
+  constructor(
+    items: readonly T[],
+    private readonly kind: (t: T) => string,
+    private readonly rarity: (t: T) => number,
+    value: (t: T) => number | null,
+  ) {
+    for (const t of items) {
+      const v = value(t);
+      if (v === null) continue;
+      const g = getOrInsert(this.groups, `${kind(t)}:${rarity(t)}`, () => ({
+        lo: v,
+        hi: v,
+        n: 0,
+      }));
+      g.lo = Math.min(g.lo, v);
+      g.hi = Math.max(g.hi, v);
+      g.n++;
+    }
+  }
+
+  of(t: T): [number, number] | null {
+    let lo = Infinity;
+    let hi = -Infinity;
+    let n = 0;
+    const r = this.rarity(t);
+    for (const rarity of [r - 1, r, r + 1]) {
+      const g = this.groups.get(`${this.kind(t)}:${rarity}`);
+      if (!g) continue;
+      lo = Math.min(lo, g.lo);
+      hi = Math.max(hi, g.hi);
+      n += g.n;
+    }
+    return n > 1 ? [lo, hi] : null;
+  }
+}
+
+/** `v` within `bounds`, or `v` when there are none. */
+export const clamp = (v: number, bounds: readonly [number, number] | null) =>
+  bounds ? Math.min(bounds[1], Math.max(bounds[0], v)) : v;
+
+/**
  * Like `permuteWithinGroups`, but groups are what `scope` allows from each
  * slot's tier, on top of `group` (slots in different groups never trade).
  * Star, rank and any-tier scopes are plain groups. Adjacent ranks overlap

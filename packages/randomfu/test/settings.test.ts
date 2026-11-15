@@ -44,6 +44,10 @@ const UNTRIED: readonly OptionKey[] = [
   "questMonsters.smallSpecies",
   "trades.mode",
   "mods.nodeMap",
+  "armorStats.defense",
+  "armorStats.resistances",
+  "armorStats.slots",
+  "armorStats.rarity",
 ];
 
 test("presets do what their help says", () => {
@@ -164,4 +168,23 @@ test("describeSettings hides options whose switch is off", () => {
   assert.ok(!lines.some((l) => l.includes("Cost variation")));
   const on = describeSettings(applySettings(defaultSettings("S"), { "costs.enabled": true }));
   assert.ok(on.includes("Costs / Crafting cost variation: ±50%"));
+});
+
+test("an option enabled by a choice names one of its values; one enabled by a switch doesn't", () => {
+  for (const option of OPTIONS.filter((o) => o.enabledBy)) {
+    const parent = OPTIONS.find((o) => o.key === option.enabledBy);
+    assert.ok(parent, `${option.key}: ${option.enabledBy} is an option`);
+    if (parent.type.kind === "choice") {
+      const values = parent.type.choices.map((c) => c.value);
+      assert.ok(option.enabledWhen?.length, `${option.key}: a choice needs enabledWhen`);
+      for (const when of option.enabledWhen) {
+        assert.ok(values.includes(when), `${option.key}: ${when} is a value of ${parent.key}`);
+        const on = applySettings(defaultSettings("S"), { [parent.key]: when });
+        assert.ok(isActive(on, option), `${option.key} is active at ${when}`);
+      }
+    } else {
+      assert.equal(parent.type.kind, "boolean", `${option.key}: ${parent.key} is a switch`);
+      assert.equal(option.enabledWhen, undefined, `${option.key}: a switch needs no enabledWhen`);
+    }
+  }
 });

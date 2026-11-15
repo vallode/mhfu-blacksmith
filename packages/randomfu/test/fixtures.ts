@@ -832,6 +832,11 @@ export function buildEboot(
     buf.writeUInt16LE(a.hunterType & 2 ? a.index : 0, at + 2); // female model
     buf[at + 4] = a.hunterType;
     buf[at + 5] = a.rarity;
+    const stats = fixtureArmorStats(a);
+    buf.writeUInt8(stats.defense, at + 12);
+    stats.resistances.forEach((r, k) => buf.writeInt8(r, at + 13 + k));
+    buf[at + 18] = stats.slots;
+    stats.caps.forEach((cap, k) => (buf[at + 20 + k] = cap));
     (FIXTURE_ARMOR_SKILLS[`${a.slot}:${a.index}`] ?? []).forEach(([tree, points], k) => {
       buf[at + 30 + k * 2] = tree;
       buf.writeInt8(points, at + 31 + k * 2);
@@ -1427,6 +1432,20 @@ export const FIXTURE_ARMOR: FixtureArmor[] = [
     [3, 15, 2],
   ]),
 ];
+
+/**
+ * A piece's defense, resistances (fire, water, thunder, dragon, ice),
+ * slots and seven sphere caps, made up from its index and rarity so that
+ * pieces of a group differ.
+ */
+export function fixtureArmorStats({ index, rarity }: FixtureArmor) {
+  return {
+    defense: 10 + 10 * rarity + index,
+    resistances: [(index % 3) - 1, ((index * 2) % 5) - 2, rarity, -rarity, index % 2],
+    slots: index % 4,
+    caps: [2, 4, 6, 8, 10, 12, 12 + index],
+  };
+}
 
 /**
  * Armor create entries besides `FIXTURE_RECIPES` (head entries 1-4, which

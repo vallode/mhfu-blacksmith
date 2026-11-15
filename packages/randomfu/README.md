@@ -24,7 +24,8 @@ expected) but not yet played in game. Star-level tiers, gathering sources,
 against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
 has been written to the EU disc and read back, but not yet played; so have
 quest maps, monster starts, small monster species and the wider quest
-reward pools. A PSP
+reward pools. Armor stats have been run over the EU disc's tables but not
+written to a disc or played, so no preset turns them on yet. A PSP
 with custom firmware isn't tested.
 
 ## Running it
@@ -116,6 +117,13 @@ web app shows as a tag):
 | `armorSkills.enabled`             | off         | Change armor skills                                                                        |
 | `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`)     |
 | `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                         |
+| `armorStats.defense`              | `off`       | Each piece's defense: `off`, `shuffle` (trade, with sphere caps) or `randomize`            |
+| `armorStats.defenseSpread`        | 0.2         | How far defense moves, when randomized                                                     |
+| `armorStats.resistances`          | `off`       | Each piece's five resistances: `off`, `shuffle` (trade all five) or `randomize`            |
+| `armorStats.resistanceSpread`     | 2           | How many points each resistance can move, when randomized                                  |
+| `armorStats.slots`                | `off`       | Each piece's decoration slots: `off`, `shuffle` or `randomize`                             |
+| `armorStats.rarity`               | `off`       | Each piece's rarity: `off`, `shuffle` (within its rank) or `randomize`                     |
+| `armorStats.raritySpread`         | 1           | How many levels rarity can move, when randomized                                           |
 | `shops.mode`                      | `off`       | `off`, `shuffle` the items shops sell between shops, or `randomize` them                   |
 | `shops.scope`                     | `low`       | With `randomize`, the items shops can sell besides their own: `low` / `high` rank, `any`   |
 | `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                                    |
@@ -188,6 +196,7 @@ and the quest map options, which rebuild quests (see "Quest maps" below).
 | weapon stats      | `WepBMValues` / `WepGunValues` in the EBOOT                                            | Attack, affinity, element or status (see below)               |
 | `armor`           | Armor create entries in the EBOOT                                                      | Which piece each place makes (see below)                      |
 | `armor-skills`    | `ArmorValues` skill entries in the EBOOT                                               | Each piece's skill trees and points (see below)               |
+| armor stats       | `ArmorValues` defense, resistances, slots, sphere caps and rarity in the EBOOT         | Each piece's numbers, kept, traded or varied (see below)      |
 | `shops`           | Shop item lists in `lobby_task.ovl`                                                    | Which items each shop sells (see below)                       |
 | `supplies`        | Supply box lists in each quest `.mib`                                                  | Item and amount of each stack (see below)                     |
 | `terms`           | Quest header fee, reward, penalty, time limit                                          | The numbers, varied (see below)                               |
@@ -456,6 +465,38 @@ Torso Up pieces adding the chest's points again. Skill activation thresholds are
 mhfu-extract has no table for them, none was found in the EBOOT, and
 neither mode needs them. Skills are a piece's own, so with `armor` they go
 with the piece to its new place.
+
+Armor stats (`armorStats.defense`, `armorStats.resistances`,
+`armorStats.slots`, `armorStats.rarity`; `src/shuffles/armor-stats.ts`)
+change each piece's own `ArmorValue`, so like skills they go with the piece
+wherever `armor` puts it. Each is left alone (`off`), shuffled or randomized on its own,
+for the same pieces as `armor-skills`. Shuffled, values trade between
+pieces of the same rarity and hunter type (Blademaster only, Gunner only, or
+both), so each rarity keeps the same values:
+
+- **defense** (u8 at +12, the level 1 value) trades with the piece's seven
+  sphere caps (+20 to +26), so a piece gets another's defense at every
+  level. Randomized, it's multiplied by a factor within
+  `armorStats.defenseSpread` and kept within what pieces of the same
+  hunter type have from one rarity below to one above, as weapon stats
+  are, and the caps stay. In game, a level 1 defense of 254 shows as 254
+  and upgrades past 256, and the total adds up past 255.
+- **resistances** (five s8 at +13: fire, water, thunder, dragon, ice) trade
+  as a set. Randomized, each moves by up to `armorStats.resistanceSpread`
+  points within the same kind of bounds, else within the disc's range for
+  that element.
+- **slots** (u8 at +18) trade, or are drawn from the slot counts pieces of
+  that rarity have on the disc, so a rarity keeps about as many.
+- **rarity** (u8 at +5) trades between pieces of the same rank (Low, High or
+  G, as the Blacksmith site ranks rarities) and hunter type, or moves by up
+  to `armorStats.raritySpread` within the rarities its rank has. What the
+  game reads armor rarity for hasn't been checked in game. The other
+  shuffles group pieces by the disc's rarities, before this changes them.
+
+Every piece draws from each stat's stream whether or not its value moves,
+so a piece's rolls depend only on the seed and its place in the list. On
+the EU disc, shuffled and randomized, every value stays in the disc's own
+ranges; nothing has been played yet.
 
 `shops` changes the shops. They live in `overlay/lobby_task.ovl`: each
 shop's stock is a list of u16 item IDs ending in 0xFFFF, one list per stage

@@ -20,7 +20,7 @@
  * Attack and element values are multiplied by a random factor within the
  * spread; affinity moves by up to the spread in points, in steps of 5. Each
  * is then kept within what weapons of the same type have from one rarity
- * below to one above (`Bounds`), on this disc, so a weapon stays plausible
+ * below to one above (`RarityBounds`), on this disc, so a weapon stays plausible
  * for where it is in the game. A weapon with no other of its type (and, for
  * elements, of its kind) in that window is held only by the spread. Sharpness, slots, defense bonus, horn notes,
  * shelling, ammo, rarity and price never change.
@@ -47,7 +47,7 @@ import { blademasterAffinity } from "mhfu-extract/src/emit/weapons.js";
 import type { Edits } from "../edits.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
-import type { ShuffleReport, SpoilerLine } from "./shuffle.js";
+import { RarityBounds, clamp, type ShuffleReport, type SpoilerLine } from "./shuffle.js";
 import { TYPE_NAMES } from "./weapons.js";
 
 /** A stat field in a weapon record: its offset in the record and how it's stored. */
@@ -207,50 +207,6 @@ export function collectWeaponStats(
   return out;
 }
 
-/**
- * The lowest and highest `value` among weapons of each type and rarity,
- * built once; `of(w)` merges `w`'s rarity with the ones either side. It's
- * null when no other weapon in that window has a value, so a lone weapon
- * is held only by the spread.
- */
-class Bounds {
-  private readonly groups = new Map<string, { lo: number; hi: number; n: number }>();
-
-  constructor(
-    weapons: readonly WeaponStats[],
-    private readonly value: (w: WeaponStats) => number | null,
-  ) {
-    for (const w of weapons) {
-      const v = value(w);
-      if (v === null) continue;
-      const key = `${w.type}:${w.rarity}`;
-      const g = this.groups.get(key);
-      if (g) {
-        g.lo = Math.min(g.lo, v);
-        g.hi = Math.max(g.hi, v);
-        g.n++;
-      } else this.groups.set(key, { lo: v, hi: v, n: 1 });
-    }
-  }
-
-  of(w: WeaponStats): [number, number] | null {
-    let lo = Infinity;
-    let hi = -Infinity;
-    let n = 0;
-    for (const r of [w.rarity - 1, w.rarity, w.rarity + 1]) {
-      const g = this.groups.get(`${w.type}:${r}`);
-      if (!g) continue;
-      lo = Math.min(lo, g.lo);
-      hi = Math.max(hi, g.hi);
-      n += g.n;
-    }
-    return n > 1 ? [lo, hi] : null;
-  }
-}
-
-const clamp = (v: number, bounds: [number, number] | null) =>
-  bounds ? Math.min(bounds[1], Math.max(bounds[0], v)) : v;
-
 /** The affinity a weapon shows: base plus the Blademaster sharpness bonus. */
 const shownAffinity = (w: WeaponStats, affinity: number) =>
   w.sharpnessAmount === null ? affinity : blademasterAffinity(affinity, w.sharpnessAmount);
@@ -272,11 +228,18 @@ export function randomizeWeaponStats(
   edits: Edits,
 ): ShuffleReport {
   const buf = edits.eboot();
-  const attackBounds = new Bounds(weapons, (o) => o.attack);
-  const affinityBounds = new Bounds(weapons, (o) => shownAffinity(o, o.affinity));
+  const typeBounds = (list: readonly WeaponStats[], value: (w: WeaponStats) => number | null) =>
+    new RarityBounds(
+      list,
+      (w) => w.type,
+      (w) => w.rarity,
+      value,
+    );
+  const attackBounds = typeBounds(weapons, (o) => o.attack);
+  const affinityBounds = typeBounds(weapons, (o) => shownAffinity(o, o.affinity));
   const elementBounds = {
-    element: new Bounds(weapons, (o) => (o.element?.kind === "element" ? o.element.value : null)),
-    status: new Bounds(weapons, (o) => (o.element?.kind === "status" ? o.element.value : null)),
+    element: typeBounds(weapons, (o) => (o.element?.kind === "element" ? o.element.value : null)),
+    status: typeBounds(weapons, (o) => (o.element?.kind === "status" ? o.element.value : null)),
   };
   const shown = (w: WeaponStats, attack: number) =>
     w.classMod > 0 ? Math.round((attack * w.classMod) / 100) : attack;
