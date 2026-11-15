@@ -41,7 +41,7 @@ const UNTRIED: readonly OptionKey[] = [
   "questMaps.enabled",
   "questMaps.starts",
   "questMonsters.smallSpecies",
-  "trades.enabled",
+  "trades.mode",
   "mods.nodeMap",
 ];
 
@@ -95,11 +95,11 @@ test("presets do what their help says", () => {
       .sort(),
   );
 
-  // Full: both together, with logic; Chaos: all of Full, without.
+  // Full: both together, at the same star level; Chaos: all of Full, with the limits off.
   const full = preset("Full");
   const chaos = preset("Chaos");
-  assert.equal(full["logic.tiers"], "star");
-  assert.equal(chaos["logic.tiers"], "none");
+  assert.equal(full["recipes.scope"], "star");
+  assert.equal(chaos["recipes.scope"], "any");
   for (const key of [...keys(shuffled), ...keys(randomized)]) {
     assert.ok(actionsOf(full).has(key), `Full has ${key}`);
   }
@@ -120,7 +120,7 @@ test("presets do what their help says", () => {
 
 test("settings strings round-trip, seed included, and stay short for the defaults", () => {
   const custom = applySettings(defaultSettings("Ünïcode seed 🐉"), {
-    "logic.tiers": "rank",
+    "recipes.scope": "rank",
     "recipes.amounts": true,
     "recipes.amountSpread": 0.25,
     "weapons.enabled": true,

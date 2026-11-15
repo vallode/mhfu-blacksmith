@@ -129,10 +129,10 @@ test("gathering: the recipe check uses the shuffled gathering points and still p
     const result = randomize(game, settingsWith(seed, ["gathering", "recipes"]));
     assert.deepEqual(result.problems, [], `seed ${seed}`);
   }
-  // Coarser tiers: rank-wide pools still keep each rank's items in that rank.
+  // Rank-wide recipes still keep each rank's items in that rank.
   for (const seed of ["a", "b", "c", "d"]) {
     const s = settingsWith(seed, ["gathering", "recipes", "quest-rewards"], {
-      "logic.tiers": "rank",
+      "recipes.scope": "rank",
     });
     assert.deepEqual(randomize(game, s).problems, []);
   }

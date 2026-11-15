@@ -22,7 +22,7 @@ export interface Tier {
   stars: number;
 }
 
-/** How strictly shuffles keep items in place: see the `logic.tiers` setting. */
+/** How strictly item sources are compared: by star level, by rank only, or not at all. */
 export type TierMode = "star" | "rank" | "none";
 
 /** The tier shuffles group by under `mode`: star level, rank only, or one pool. */

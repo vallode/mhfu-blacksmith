@@ -4,19 +4,19 @@ import { applySettings, defaultSettings, type OptionKey, type Settings } from ".
 export const SHUFFLE_KEYS = {
   "quest-rewards": "questRewards.mode",
   "monster-rewards": "monsterRewards.mode",
-  recipes: "recipes.materials",
+  recipes: "recipes.mode",
   "recipe-amounts": "recipes.amounts",
   costs: "costs.enabled",
   weapons: "weapons.enabled",
   armor: "armor.enabled",
   "armor-skills": "armorSkills.enabled",
-  shops: "shops.enabled",
+  shops: "shops.mode",
   gathering: "gathering.mode",
   supplies: "supplies.mode",
   "quest-money": "terms.money",
   "time-limits": "terms.time",
   deliveries: "deliveries.enabled",
-  "veggie-trades": "trades.enabled",
+  "veggie-trades": "trades.mode",
 } as const satisfies Record<string, OptionKey>;
 export type ShuffleName = keyof typeof SHUFFLE_KEYS;
 

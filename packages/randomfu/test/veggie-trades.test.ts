@@ -113,3 +113,32 @@ test("off by default", async () => {
     close();
   }
 });
+
+test("randomized trades give new items, keep what he takes, and keep a single gift single", async () => {
+  const { game, close } = await load();
+  try {
+    let changed = 0;
+    for (const scope of ["low", "high", "any"] as const) {
+      const result = randomize(
+        game,
+        settingsWith(`r-${scope}`, [], {
+          "trades.mode": "randomize",
+          "trades.mix": "all",
+          "trades.scope": scope,
+        }),
+      );
+      const after = readTrades(result.edits.files.get(GAME_TASK_INDEX)!);
+      after.forEach((rows, elder) => {
+        const before = FIXTURE_TRADES[elder]!;
+        rows.forEach((row, i) => {
+          assert.equal(row[0], before[i]![0], "he still takes the same item");
+          assert.equal(row[1] === row[2], before[i]![1] === before[i]![2], "single stays single");
+          if (row[1] !== before[i]![1]) changed++;
+        });
+      });
+    }
+    assert.ok(changed > 0);
+  } finally {
+    close();
+  }
+});

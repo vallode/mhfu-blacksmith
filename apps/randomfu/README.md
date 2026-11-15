@@ -3,7 +3,7 @@
 randomfu's front end: the randomizer (`packages/randomfu`) as a static
 web app that runs entirely in the browser. It's a step-by-step builder: pick your ISO, choose a seed and a
 preset (or load a shared settings string), go through the options a group
-at a time (Logic, Rewards, Gathering, Quests, Monsters, Smithy, Shops) or
+at a time (Rewards, Gathering, Quests, Monsters, Smithy, Shops) or
 skip them, review, and download the randomized ISO and spoiler log.
 Nothing is uploaded.
 

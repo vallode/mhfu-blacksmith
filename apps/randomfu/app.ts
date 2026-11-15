@@ -53,14 +53,6 @@ interface Step extends Sprite {
 
 const OPTION_STEPS: Step[] = [
   {
-    id: "logic",
-    title: "Logic",
-    icon: "star",
-    sections: ["Logic"],
-    intro:
-      "Logic applies to every item shuffle: quest rewards, carves, gathering points, supply boxes and recipe materials. At Same star level, every recipe stays craftable as early in the game as before.",
-  },
-  {
     id: "rewards",
     title: "Rewards",
     icon: "claw",

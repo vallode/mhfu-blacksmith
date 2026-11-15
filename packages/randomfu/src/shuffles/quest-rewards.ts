@@ -368,7 +368,7 @@ export function randomizeQuestRewards(
             : "Chances are rolled from 1 to 100.",
         "A list's chances always add up to 100: after the roll they're scaled to fit.",
         options.keepItems
-          ? "Every item quests rewarded is still a reward at the same star level (see Logic), where the new slots leave room."
+          ? "Every item quests rewarded is still a reward at the same star level, where the new slots leave room."
           : "Items quests rewarded may now be rewarded nowhere; recipes that need them may not be craftable.",
         "Other reward lists (extras and conditional ones) keep their number of slots.",
         NOTE_UNCHANGED,

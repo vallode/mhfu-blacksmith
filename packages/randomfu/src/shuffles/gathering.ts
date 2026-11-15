@@ -232,7 +232,7 @@ export function randomizeGathering(
       notes: [
         `Every pair gets a new item first found ${scopeFound(options.scope)} and a new value (${options.chances === "rarity" ? "the table's own, dealt out again" : options.chances === "reasonable" ? "the table's own, scaled by 0.5 to 2" : "rolled from 1 to 100"}), scaled so a table's values add up to what they did. Each table keeps its length.`,
         options.keepItems
-          ? "Every item you could gather is still at one or more spots at the same star level (see Logic)."
+          ? "Every item you could gather is still at one or more spots at the same star level."
           : "Items you could gather may now be found nowhere; recipes that need them may not be craftable.",
         NOTE_ONLY,
         `${changed} of ${slots.length} slots changed item.`,

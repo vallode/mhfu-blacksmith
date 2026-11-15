@@ -12,7 +12,6 @@ import { LOGIC_VERSION } from "./version.js";
 
 export interface Settings {
   seed: string;
-  "logic.tiers": "star" | "rank" | "none";
   "questRewards.mode": Mode;
   "questRewards.scope": Scope;
   "questRewards.slots": number;
@@ -35,9 +34,11 @@ export interface Settings {
   "terms.time": boolean;
   "terms.timeSpread": number;
   "deliveries.enabled": boolean;
-  "trades.enabled": boolean;
+  "trades.mode": Mode;
   "trades.mix": "elder" | "all";
-  "recipes.materials": boolean;
+  "trades.scope": "low" | "high" | "any";
+  "recipes.mode": Mode;
+  "recipes.scope": Scope;
   "recipes.amounts": boolean;
   "recipes.amountSpread": number;
   "recipes.maxQuantity": number;
@@ -55,8 +56,8 @@ export interface Settings {
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
   "armorSkills.keepArmorOnly": boolean;
-  "shops.enabled": boolean;
-  "shops.pool": "shop" | "low" | "high" | "any";
+  "shops.mode": Mode;
+  "shops.scope": "low" | "high" | "any";
   "shops.mix": "each" | "all";
   "shops.keepEssentials": boolean;
   "shops.special": boolean;
@@ -68,8 +69,8 @@ export interface Settings {
   "questMaps.enabled": boolean;
   "questMaps.pool": "time" | "any";
   "questMaps.starts": boolean;
-  "questMonsters.species": boolean;
-  "questMonsters.speciesPool": "variants" | "rank" | "any";
+  "questMonsters.mode": Mode;
+  "questMonsters.scope": "rank" | "adjacent" | "any";
   "questMonsters.text": boolean;
   "questMonsters.difficulty": boolean;
   "questMonsters.difficultySpread": number;
@@ -131,7 +132,7 @@ export interface OptionDef {
   help: string;
   type: OptionType;
   default: boolean | number | string;
-  /** Shuffle or randomize: left out for options that only tune another (and for Logic). */
+  /** Shuffle or randomize: left out for options that only tune another. */
   action?: Action;
   /** An option that must be on for this one to matter. */
   enabledBy?: OptionKey;
@@ -142,33 +143,6 @@ export interface OptionDef {
 const SPREAD = { kind: "number", min: 0, max: 0.95, step: 0.05, percent: true } as const;
 
 export const OPTIONS: readonly OptionDef[] = [
-  {
-    key: "logic.tiers",
-    section: "Logic",
-    label: "How far items can move",
-    help: "An item's point in the game is the rank and star level where it's first found: the earliest Village or Guild quest that rewards it, has a monster that gives it, or has a gathering point with it. Quest rewards have their own scope below.",
-    type: {
-      kind: "choice",
-      choices: [
-        {
-          value: "star",
-          label: "Same star level",
-          help: "Items only move between places at the same rank and star level. A 1★ recipe stays craftable at 1★.",
-        },
-        {
-          value: "rank",
-          label: "Same rank",
-          help: "Items move anywhere within Low, High or G Rank. Early recipes can ask for late Low Rank parts.",
-        },
-        {
-          value: "none",
-          label: "Anywhere (chaos)",
-          help: "No logic: any item can go anywhere. Recipes may need G Rank parts in Low Rank.",
-        },
-      ],
-    },
-    default: "star",
-  },
   {
     key: "questRewards.mode",
     section: "Quest rewards",
@@ -558,13 +532,29 @@ export const OPTIONS: readonly OptionDef[] = [
     action: "randomize",
   },
   {
-    key: "trades.enabled",
+    key: "trades.mode",
     section: "Veggie Elder",
-    label: "Shuffle the Veggie Elder's trades",
-    help: "What each of his trades gives, the common and rare item together, moves to another trade. Each trade keeps the item he takes and its place in his list, so he still takes the first item on it that you carry.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
+    label: "The Veggie Elder's trades",
+    help: "What the Elder gives for the items he takes. Each trade keeps the item he takes and its place in his list, so he still takes the first item on it that you carry.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "He gives what he always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "What each trade gives, the common and rare item together, moves to another trade.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Each trade gives new common and rare items drawn from the scope.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
   },
   {
     key: "trades.mix",
@@ -587,16 +577,88 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "elder",
-    enabledBy: "trades.enabled",
+    enabledBy: "trades.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
-    key: "recipes.materials",
+    key: "trades.scope",
+    section: "Veggie Elder",
+    label: "How far trades can reach",
+    help: "Which items a randomized trade can give besides the ones the Elders give anyway. Trades have no rank of their own, so this is the highest rank whose items can turn up.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "low",
+          label: "Trade and Low Rank items",
+          help: "Also anything first found in Low Rank.",
+        },
+        {
+          value: "high",
+          label: "Trade, Low and High Rank items",
+          help: "Also anything first found in Low or High Rank.",
+        },
+        { value: "any", label: "Any item (chaos)", help: "Any item in the game." },
+      ],
+    },
+    default: "low",
+    enabledBy: "trades.mode",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "recipes.mode",
     section: "Crafting",
-    label: "Shuffle recipe materials",
-    help: "Each crafting and upgrade material is replaced by another from the same point in the game (see Logic). Shop, combined and ticket items stay.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
+    label: "Recipe materials",
+    help: "What happens to the materials of crafting and upgrade recipes. Shop, combined and ticket items stay. An item's point in the game is the rank and star level where it's first found: the earliest Village or Guild quest that rewards it, has a monster that gives it, or has a gathering point with it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Recipes ask for what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Materials are swapped between recipe slots, as far as the scope allows.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Each material is replaced by a new item drawn from the scope.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "recipes.scope",
+    section: "Crafting",
+    label: "How far recipe materials can reach",
+    help: "Which materials a slot can get, by where each is first found. Only the same star level keeps every recipe craftable as early as before.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "star",
+          label: "Same star level",
+          help: "Materials stay at their own rank and star level. A 1★ recipe stays craftable at 1★.",
+        },
+        { value: "rank", label: "Same rank", help: "Anywhere within Low, High or G Rank." },
+        {
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
+        },
+        {
+          value: "any",
+          label: "Anywhere (chaos)",
+          help: "Any item with a source, at any rank. Recipes may need G Rank parts in Low Rank.",
+        },
+      ],
+    },
+    default: "star",
+    enabledBy: "recipes.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "recipes.amounts",
@@ -781,27 +843,38 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "armorSkills.enabled",
   },
   {
-    key: "shops.enabled",
+    key: "shops.mode",
     section: "Shop stock",
-    label: "Shuffle shop stock",
-    help: "Each item a shop sells is replaced by another item from the game, the same in every stage of that shop, so later stages still include earlier stock.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
-  },
-  {
-    key: "shops.pool",
-    section: "Shop stock",
-    label: "What shops can sell",
-    help: "Where replacement items come from.",
+    label: "Shop stock",
+    help: "What happens to what shops sell. Each item a shop sells is replaced by one other item, the same in every stage of that shop, so later stages still include earlier stock.",
     type: {
       kind: "choice",
       choices: [
+        { value: "off", label: "Unchanged", help: "Shops sell what they always did." },
         {
-          value: "shop",
-          label: "Shop items",
-          help: "Only items shops sell anyway, moved to other shops and stages.",
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Only items shops sell anyway are moved to other shops and stages. Every shop keeps its number of items.",
+          action: "shuffle",
         },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Items are replaced by ones drawn from the scope, and shops can sell more or fewer items.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "shops.scope",
+    section: "Shop stock",
+    label: "How far shop stock can reach",
+    help: "Which items a randomized shop can sell. Shops have no rank of their own, so this is the highest rank whose items can turn up, along with the items shops sell anyway.",
+    type: {
+      kind: "choice",
+      choices: [
         {
           value: "low",
           label: "Shop and Low Rank items",
@@ -819,14 +892,15 @@ export const OPTIONS: readonly OptionDef[] = [
         },
       ],
     },
-    default: "shop",
-    enabledBy: "shops.enabled",
+    default: "low",
+    enabledBy: "shops.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "shops.mix",
     section: "Shop stock",
     label: "Replacements across shops",
-    help: "Whether an item is replaced by the same thing in every shop. With shop items only, this also decides whether shops trade stock.",
+    help: "Whether an item is replaced by the same thing in every shop. When shuffling, this also decides whether shops trade stock.",
     type: {
       kind: "choice",
       choices: [
@@ -843,7 +917,8 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "each",
-    enabledBy: "shops.enabled",
+    enabledBy: "shops.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "shops.keepEssentials",
@@ -852,7 +927,8 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Potion, Whetstone, pickaxes, bugnets, BBQ Spit, Normal S Lv1/2 and Empty Bottle stay where they are.",
     type: { kind: "boolean" },
     default: true,
-    enabledBy: "shops.enabled",
+    enabledBy: "shops.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "shops.special",
@@ -861,7 +937,8 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The Pokke Village shop that takes Pokke Points: Armor Spheres, jewels, Pokke Tickets and Gourmet BBQ Spit. Off keeps armor upgrades as usual.",
     type: { kind: "boolean" },
     default: false,
-    enabledBy: "shops.enabled",
+    enabledBy: "shops.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "shops.countSpread",
@@ -870,14 +947,14 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "How far the number of items each shop sells can move, up or down, every stage alike. Above 0%, the shop lists are rewritten and the game is pointed at their new places.",
     type: SPREAD,
     default: 0,
-    action: "randomize",
-    enabledBy: "shops.enabled",
+    enabledBy: "shops.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "shops.prices",
     section: "Shop prices",
     label: "Randomize prices",
-    help: "The price of everything shops sell changes, with or without the stock shuffle (with it, of what they sell now). A price is the item's own, so it's the same in every shop.",
+    help: "The price of everything shops sell changes, with or without changing the stock (with it, of what they sell now). A price is the item's own, so it's the same in every shop.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
@@ -951,41 +1028,58 @@ export const OPTIONS: readonly OptionDef[] = [
     action: "shuffle",
   },
   {
-    key: "questMonsters.species",
+    key: "questMonsters.mode",
     section: "Quest monsters",
-    label: "Shuffle large monsters",
-    help: "Village and Guild quests get other large monsters from the game. A monster only goes to a map it's found on somewhere in the game, and the quest's target follows it. Tried on the EU disc.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
+    label: "Large monsters",
+    help: "What happens to the large monsters in Village and Guild quests. A monster only goes to a map it's found on somewhere in the game, and the quest's target follows it. Tried on the EU disc.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Quests have the monsters they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "A monster becomes one of its own variants: Rathian, Pink Rathian or Gold Rathian. Quests with several monsters change too.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "A monster becomes any large monster found on the quest's map within the scope. Only quests with one kind of large monster change.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
   },
   {
-    key: "questMonsters.speciesPool",
+    key: "questMonsters.scope",
     section: "Quest monsters",
-    label: "What large monsters can become",
-    help: "Where replacement monsters come from.",
+    label: "How far large monsters can reach",
+    help: "Which monsters a randomized quest can get: those found in quests of its rank, of its rank or the next, or at any rank (still only monsters found on its map).",
     type: {
       kind: "choice",
       choices: [
         {
-          value: "variants",
-          label: "Variants only",
-          help: "A monster becomes one of its own variants: Rathian, Pink Rathian or Gold Rathian. Quests with several monsters change too.",
+          value: "rank",
+          label: "Same rank",
+          help: "Any large monster found in a quest of the same rank (Low, High or G).",
         },
         {
-          value: "rank",
-          label: "Any monster from the same rank",
-          help: "Any large monster found in a quest of the same rank (Low, High or G). Only quests with one kind of large monster change.",
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
         },
         {
           value: "any",
-          label: "Any monster (chaos)",
-          help: "Any large monster found on the quest's map, at any rank. Only quests with one kind of large monster change.",
+          label: "Anywhere (chaos)",
+          help: "Any large monster found on the quest's map, at any rank.",
         },
       ],
     },
-    default: "variants",
-    enabledBy: "questMonsters.species",
+    default: "rank",
+    enabledBy: "questMonsters.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "questMonsters.difficulty",
@@ -1213,7 +1307,8 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Seen working on the EU disc's Quest Details screen.",
     type: { kind: "boolean" },
     default: true,
-    enabledBy: "questMonsters.species",
+    enabledBy: "questMonsters.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
 ];
 
@@ -1401,12 +1496,12 @@ export const PRESETS: readonly Preset[] = [
     changes: {
       "gathering.mode": "shuffle",
       "supplies.mode": "shuffle",
-      "recipes.materials": true,
+      "recipes.mode": "shuffle",
       "weapons.enabled": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
-      "shops.enabled": true,
-      "questMonsters.species": true,
+      "shops.mode": "shuffle",
+      "questMonsters.mode": "shuffle",
       "weaknesses.elements": true,
       "weaknesses.parts": true,
     },
@@ -1434,14 +1529,14 @@ export const PRESETS: readonly Preset[] = [
     name: "Full",
     help: "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before. Gathering points draw from the whole rank, shops add Low Rank items and prices change; armor skills are shuffled, and monster difficulty stays within its rank.",
     changes: {
-      "recipes.materials": true,
+      "recipes.mode": "shuffle",
       "recipes.amounts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
-      "shops.enabled": true,
-      "shops.pool": "low",
+      "shops.mode": "randomize",
+      "shops.scope": "low",
       "shops.prices": true,
       "shops.stacks": true,
       "gathering.mode": "randomize",
@@ -1450,7 +1545,7 @@ export const PRESETS: readonly Preset[] = [
       "terms.money": true,
       "terms.time": true,
       "deliveries.enabled": true,
-      "questMonsters.species": true,
+      "questMonsters.mode": "shuffle",
       "questMonsters.size": true,
       ...STAT_RANDOMIZERS,
       "weaknesses.elements": true,
@@ -1459,12 +1554,12 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Chaos",
-    help: "Full with the limits off. Logic is at Anywhere, so recipes may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
+    help: "Full with the limits off. Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
     changes: {
-      "logic.tiers": "none",
       "questRewards.scope": "any",
       "monsterRewards.scope": "any",
-      "recipes.materials": true,
+      "recipes.mode": "shuffle",
+      "recipes.scope": "any",
       "recipes.amounts": true,
       "recipes.amountSpread": 0.9,
       "costs.enabled": true,
@@ -1475,8 +1570,8 @@ export const PRESETS: readonly Preset[] = [
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
       "armorSkills.keepArmorOnly": false,
-      "shops.enabled": true,
-      "shops.pool": "any",
+      "shops.mode": "randomize",
+      "shops.scope": "any",
       "shops.mix": "all",
       "shops.keepEssentials": false,
       "shops.special": true,
@@ -1495,8 +1590,8 @@ export const PRESETS: readonly Preset[] = [
       "terms.time": true,
       "terms.timeSpread": 0.6,
       "deliveries.enabled": true,
-      "questMonsters.species": true,
-      "questMonsters.speciesPool": "any",
+      "questMonsters.mode": "randomize",
+      "questMonsters.scope": "any",
       "questMonsters.size": true,
       "questMonsters.sizeSpread": 0.5,
       ...STAT_RANDOMIZERS,
