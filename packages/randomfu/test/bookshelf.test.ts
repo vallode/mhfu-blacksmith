@@ -5,6 +5,7 @@ import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import { readMessageFile } from "mhfu-extract/src/strings/messages.js";
+import { enumMonsterNames } from "../src/names.js";
 import {
   addAppearances,
   BESTIARY_NAME,
@@ -328,7 +329,7 @@ test("article records are found by title and page count, and unlocked", () => {
 
 test("monsters are read from game_task.ovl: HP, softest parts, elements, status", () => {
   const task = new OvlFile(buildGameTask());
-  const [m] = readGuideMonsters(task, [16, 16]).filter((x) => x.emId === 16);
+  const [m] = readGuideMonsters(task, [16, 16], enumMonsterNames).filter((x) => x.emId === 16);
   assert.ok(m);
   assert.equal(m.hp, fixtureHp(16));
   const sums = m.parts.map((p) => p.cut + p.bash + p.shot);
@@ -355,7 +356,7 @@ test("monsters are read from game_task.ovl: HP, softest parts, elements, status"
     ko: null,
   });
   // Sorted by name; chunks without hitzones are left out.
-  const all = readGuideMonsters(task, [1, 2, 16]);
+  const all = readGuideMonsters(task, [1, 2, 16], enumMonsterNames);
   assert.deepEqual(
     all.map((x) => x.name),
     [...all.map((x) => x.name)].sort((a, b) => a.localeCompare(b)),

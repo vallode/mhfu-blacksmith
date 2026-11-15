@@ -41,7 +41,7 @@ import {
   randomizeShopPrices,
   randomizeShops,
 } from "./shuffles/shops.js";
-import { itemName, questLabel, tableName, useDiscMonsterNames } from "./names.js";
+import { itemName, monsterNames, questLabel, tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { collectSupplyRuns, randomizeSupplies, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
@@ -177,6 +177,7 @@ function reshapeQuests(
   const small = settings["questMonsters.smallSpecies"];
   if (!maps && !starts && !small) return { quests: game.quests, lost: [] };
 
+  const monsterName = monsterNames(game);
   const maxLength = largestQuest(game.quests);
   const { list, locked } = collectDocQuests(game.quests);
   const before = new Map(list.map((e) => [e, e.doc]));
@@ -189,13 +190,14 @@ function reshapeQuests(
       settings["questMaps.pool"],
       rng.fork("quest-maps"),
       (entry, doc) => questPayload(entry.quest, doc, maxLength) !== null,
+      monsterName,
     );
     moved = result.moved;
     mapReport = result.report;
     own.push(result.report);
   }
-  if (starts) own.push(randomizeStarts(list, moved, rng.fork("monster-starts")));
-  if (small) own.push(swapSmallSpecies(list, rng.fork("small-species")));
+  if (starts) own.push(randomizeStarts(list, moved, rng.fork("monster-starts"), monsterName));
+  if (small) own.push(swapSmallSpecies(list, rng.fork("small-species"), monsterName));
 
   const rebuilt = new Map<number, { entry: DocQuest; quest: LoadedQuest }>();
   for (const entry of list) {
@@ -257,7 +259,7 @@ export function randomize(
   settings: Settings,
   options: RandomizeOptions = {},
 ): RandomizeResult {
-  useDiscMonsterNames(input);
+  const monsterName = monsterNames(input);
   const rng = new Rng(`randomfu/${LOGIC_VERSION}/${settings.seed}`);
   const edits = new Edits(input);
   const reports: ShuffleReport[] = [];
@@ -281,12 +283,15 @@ export function randomize(
       edits,
       game.quests,
       setOf,
+      monsterName,
       game.boards,
     );
     reports.push(result.report);
     questsAfter = result.questsAfter;
     if (settings["questMonsters.text"]) {
-      reports.push(renameQuestText(result.swaps, game.quests, edits, game.boards, options.debug));
+      reports.push(
+        renameQuestText(result.swaps, game.quests, edits, monsterName, game.boards, options.debug),
+      );
     }
   }
   if (settings["questMonsters.difficulty"]) {
@@ -300,6 +305,7 @@ export function randomize(
         rng.fork("monster-difficulty"),
         edits,
         setOf,
+        monsterName,
       ),
     );
   }
@@ -330,6 +336,7 @@ export function randomize(
         settings["questMonsters.smallCountSpread"],
         rng.fork("small-monster-counts"),
         edits,
+        monsterName,
       ),
     );
   }
@@ -358,6 +365,7 @@ export function randomize(
           },
           edits,
           game.gameTask,
+          monsterName,
         ),
       );
     }
@@ -369,6 +377,7 @@ export function randomize(
           { elements: rng.fork("weakness-elements"), parts: rng.fork("weakness-parts") },
           edits,
           game.gameTask,
+          monsterName,
         ),
       );
     }
@@ -432,7 +441,14 @@ export function randomize(
     const scope = settings["monsterRewards.scope"];
     const result =
       monsterMode === "shuffle"
-        ? shuffleMonsterRewards(changed, scope, rng.fork("monster-rewards"), edits, game.gameSub)
+        ? shuffleMonsterRewards(
+            changed,
+            scope,
+            rng.fork("monster-rewards"),
+            edits,
+            game.gameSub,
+            monsterName,
+          )
         : randomizeMonsterRewards(
             changed,
             { scope, chances: settings["monsterRewards.chances"] },
@@ -444,6 +460,7 @@ export function randomize(
             rng.fork("monster-rewards"),
             edits,
             game.gameSub,
+            monsterName,
           );
     reports.push(result.report);
     monsterAfter = [...result.after, ...kept];
@@ -458,6 +475,7 @@ export function randomize(
         rng.fork("carve-counts"),
         edits,
         game.gameSub,
+        monsterName,
       ),
     );
 

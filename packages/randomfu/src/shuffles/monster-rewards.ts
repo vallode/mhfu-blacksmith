@@ -37,7 +37,7 @@ import { monsterKey, rewardRankBand, tierLabel, type Scope, type Tier } from "..
 import type { LoadedOverlay } from "../game/load.js";
 import type { Edits } from "../edits.js";
 import type { Rng } from "../rng.js";
-import { itemName, monsterName } from "../names.js";
+import { itemName, type MonsterNames } from "../names.js";
 import {
   permuteWithinScope,
   reconcile,
@@ -196,7 +196,7 @@ export function collectMonsterRewardSlots(
   return slots;
 }
 
-function listLabel(list: RewardList): string {
+function listLabel(list: RewardList, monsterName: MonsterNames): string {
   const users = [...new Set(list.refs.map((ref) => `${monsterName(ref.emId)} ${ref.source}`))];
   return users.join(", ");
 }
@@ -240,6 +240,8 @@ export function shuffleMonsterRewards(
   rng: Rng,
   edits: Edits,
   gameSub: LoadedOverlay,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
   // Carves have no amount, so they only trade with carves.
   const next = permuteWithinScope(
@@ -268,7 +270,7 @@ export function shuffleMonsterRewards(
       const value = { ...moved[k]!, chance: chances[k]! };
       writeSlot(buf, slot, value);
       lines.push({
-        where: `${listLabel(list)} (${tierLabel(slot.tier)})`,
+        where: `${listLabel(list, monsterName)} (${tierLabel(slot.tier)})`,
         text: slotText(value, slot),
       });
     });
@@ -321,6 +323,8 @@ export function randomizeMonsterRewards(
   rng: Rng,
   edits: Edits,
   gameSub: LoadedOverlay,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
   const poolFor = scopedPool(
     context.allItems.filter((i) => !isQuestItem(i)),
@@ -356,7 +360,7 @@ export function randomizeMonsterRewards(
       const value = { chance: chances[k]!, itemId, amount };
       writeSlot(buf, slot, value);
       lines.push({
-        where: `${listLabel(list)} (${tierLabel(slot.tier)})`,
+        where: `${listLabel(list, monsterName)} (${tierLabel(slot.tier)})`,
         text: slotText(value, slot),
       });
       after.push({ itemId, tier: slot.tier });

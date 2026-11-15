@@ -60,7 +60,7 @@ import {
 import { BAND_NAMES, inScope, questTier, type Band, type Tier } from "../game/tiers.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
-import { monsterName, questLabel } from "../names.js";
+import { questLabel, type MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
 import { getOrInsert, median, type ShuffleReport } from "./shuffle.js";
 
@@ -148,6 +148,8 @@ export function swapSpecies(
   edits: Edits,
   allQuests: readonly LoadedQuest[],
   setOf: MultiplierSetOf,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
   boards: readonly BoardFile[] = [],
 ): {
   report: ShuffleReport;
@@ -333,6 +335,8 @@ export function randomizeDifficulty(
   rng: Rng,
   edits: Edits,
   setOf: MultiplierSetOf,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   // A level is a row of one table: the monster's set, the quest's table.
   const key = (q: QuestMonsters, emId: number) =>
@@ -399,6 +403,8 @@ export function randomizeSmallCounts(
   spread: number,
   rng: Rng,
   edits: Edits,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   let cap = 1;
   for (const q of list) {
