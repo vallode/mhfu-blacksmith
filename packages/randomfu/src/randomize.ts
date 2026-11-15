@@ -38,7 +38,7 @@ import {
   randomizeShopPrices,
   randomizeShops,
 } from "./shuffles/shops.js";
-import { itemName, questLabel, tableName } from "./names.js";
+import { itemName, questLabel, tableName, useDiscMonsterNames } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { collectSupplyRuns, randomizeSupplies, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
@@ -254,6 +254,7 @@ export function randomize(
   settings: Settings,
   options: RandomizeOptions = {},
 ): RandomizeResult {
+  useDiscMonsterNames(input);
   const rng = new Rng(`randomfu/${LOGIC_VERSION}/${settings.seed}`);
   const edits = new Edits(input);
   const reports: ShuffleReport[] = [];

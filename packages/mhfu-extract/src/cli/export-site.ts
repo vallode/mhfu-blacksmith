@@ -68,7 +68,6 @@ import { buildSiteHitboxes, jointPositions } from "../monsters/hitboxes.js";
 import { locateMonsterChunks } from "../monsters/hitzones.js";
 import { OVERLAY_DIR } from "../monsters/overlays.js";
 import { MONSTER_OVERLAY } from "../overlay/monsters.js";
-import { loadEnums, lookupName } from "../strings/enums.js";
 import { armorModelPath, readArmorModelIds, type SiteArmorSlot } from "../tables/armor-models.js";
 import {
   readBlademasterWeapons,
@@ -76,7 +75,7 @@ import {
   type WeaponTypeName,
 } from "../tables/weapons.js";
 import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
-import { readData } from "game-data";
+import { readData, readRawData, readStringsDoc } from "game-data";
 
 export interface ExportSiteOptions {
   /** An `unpack` output directory (containing `data-bin/`, and `eboot.bin` for weapons/armor). */
@@ -116,12 +115,6 @@ export interface SiteModelManifest {
   /** armor slot -> "name" or "name|Sex" -> [male model ID, female model ID], 0 = none */
   armor: Record<string, Record<string, [number, number]>>;
 }
-
-/** monster.enum names that differ from the site's names. */
-const MONSTER_NAME_ALIASES: Record<string, string> = {
-  "One-Ear Yian Garuga": "Scarred Yian Garuga",
-  "Terra Shogun Ceanatur": "Terra Shogun Ceanataur",
-};
 
 type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string } | null)[]>;
 
@@ -366,14 +359,16 @@ class Converter {
   }
 }
 
-async function siteMonsterNames(dataDir: string): Promise<Set<string>> {
-  const names = new Set<string>();
+/** The site's monsters: emID -> name (`data/strings`). */
+async function siteMonsters(dataDir: string): Promise<Map<number, string>> {
+  const names = (readStringsDoc(dataDir).monster ?? {}) as Record<string, string>;
+  const out = new Map<number, string>();
   const dir = path.join(dataDir, "monsters");
   for (const file of (await readdir(dir)).filter((f) => f.endsWith(".json"))) {
-    const { monsters } = readData<{ monsters: { name: string }[] }>(dataDir, "monsters", file);
-    for (const monster of monsters) names.add(monster.name);
+    const { monsters } = readRawData<{ monsters: { id: number }[] }>(dataDir, "monsters", file);
+    for (const { id } of monsters) if (names[id]) out.set(id, names[id]);
   }
-  return names;
+  return out;
 }
 
 /** What monster hitboxes are read from: `game_task.ovl`, its chunk array and every `emNN.ovl`. */
@@ -464,8 +459,7 @@ async function exportMonsters(
   options: ExportSiteOptions,
   converter: Converter,
 ): Promise<Record<string, number>> {
-  const enums = loadEnums();
-  const siteNames = await siteMonsterNames(options.data);
+  const siteNames = await siteMonsters(options.data);
   const monsters: Record<string, number> = {};
   const emDir = path.join(options.unpacked, "data-bin", "emmodel");
   if (!(await exists(emDir))) return monsters;
@@ -474,13 +468,11 @@ async function exportMonsters(
   let hitboxCount = 0;
   for (const file of files) {
     const id = Number.parseInt(file.slice(2), 10);
-    const gameName = lookupName(enums, "emID", id);
-    const siteName = gameName ? (MONSTER_NAME_ALIASES[gameName] ?? gameName) : null;
-    if (!siteName || !siteNames.has(siteName)) {
-      console.log(`skip ${file}: ${gameName ?? "unnamed"} has no monster page`);
+    const siteName = siteNames.get(id);
+    if (!siteName) {
+      console.log(`skip ${file}: emID ${id} has no monster page`);
       continue;
     }
-    if (monsters[siteName]) continue; // duplicate emID name (e.g. Yama Tsukami)
     const relative = await converter.convert(
       `emmodel/${file}`,
       `monsters/${file.replace(/\.pac$/, ".glb")}`,

@@ -318,7 +318,7 @@ export default function MonsterDetailClient({ category, slug }: Props) {
     <>
       {/* Detail panel */}
       <DetailCard>
-        {/* Name, habitats and description left of the portrait scroll (stacked on phones) */}
+        {/* Name and description left of the portrait scroll (stacked on phones) */}
         <div className="flex flex-row items-start gap-4 mobile:flex-col-reverse mobile:items-stretch">
           <div className="flex min-w-0 flex-1 flex-col gap-2 text-main text-gold">
             <div className="flex items-center">
@@ -331,9 +331,6 @@ export default function MonsterDetailClient({ category, slug }: Props) {
                 />
               )}
             </div>
-            {monster.habitats && (
-              <p className="leading-[1.25] whitespace-normal">{monster.habitats.join(", ")}</p>
-            )}
             {monster.description && (
               <p className="text-small leading-[1.4] whitespace-normal text-white">
                 {monster.description}

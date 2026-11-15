@@ -4,7 +4,7 @@ import { test } from "node:test";
 import { fileURLToPath } from "node:url";
 import { fieldsAgree, toSite, type FieldContext, type FieldSpec } from "../src/build/fields.js";
 import { loadSiteIndex } from "../src/build/ids.js";
-import { monsterIdOf, parseDropSlot } from "../src/overlay/monsters.js";
+import { parseDropSlot } from "../src/overlay/monsters.js";
 
 const DATA = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "data");
 const ctx: FieldContext = {
@@ -177,12 +177,7 @@ test("drops toSite writes amounts as xN when the disc has amounts other than one
   assert.equal(fieldsAgree(DROPS, after, disc, ctx), true);
 });
 
-test("the monster overlay maps site names to emIDs and parses drop slots", () => {
-  assert.equal(monsterIdOf("Rathian"), 1);
-  assert.equal(monsterIdOf("Giaprey"), 35);
-  assert.equal(monsterIdOf("Scarred Yian Garuga"), 40); // enum: One-Ear Yian Garuga
-  assert.equal(monsterIdOf("Terra Shogun Ceanataur"), 87); // enum: Terra Shogun Ceanatur
-  assert.equal(monsterIdOf("Not A Monster"), null);
+test("the monster overlay parses drop slots", () => {
   assert.deepEqual(parseDropSlot("body/low"), { kind: "body", rank: "low" });
   assert.deepEqual(parseDropSlot("break:2/g"), { kind: "break", breakType: 2, rank: "g" });
 });

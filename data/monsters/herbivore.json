@@ -120,9 +120,6 @@
     {
       "id": 70,
       "type": "herbivore",
-      "habitats": [
-        "SnwyMntains"
-      ],
       "drops": {
         "low-rank": {
           "body carves (x1)": [

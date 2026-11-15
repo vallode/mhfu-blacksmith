@@ -1,8 +1,9 @@
 /**
  * Reads what the randomizer needs from a disc image: the region, every
- * quest, `game_sub.ovl` (monster rewards) and, when asked for, the decrypted
- * EBOOT (crafting recipes).
+ * quest, `game_sub.ovl` (monster rewards), the decrypted EBOOT (crafting
+ * recipes) and, on EU, the game's monster names.
  */
+import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { decryptEboot } from "mhfu-extract/src/container/eboot.js";
 import { loadFileList } from "mhfu-extract/src/container/filelist.js";
 import type { Iso9660Reader, DirEntry } from "mhfu-extract/src/container/iso9660.js";
@@ -12,6 +13,15 @@ import type { RandomAccessSource } from "mhfu-extract/src/container/source.js";
 import { MHP2G_PROFILE } from "mhfu-extract/src/games/mhp2g.js";
 import { listQuestFiles } from "mhfu-extract/src/quests/discovery.js";
 import { parseQuest, type ParsedQuest } from "mhfu-extract/src/quests/parser.js";
+import { readMessageFile } from "mhfu-extract/src/strings/messages.js";
+import {
+  MONSTER_NAME_FILE,
+  MONSTER_NAME_TABLE,
+  MonsterNameError,
+  readMonsterNames,
+  siteMonsterNames,
+} from "mhfu-extract/src/strings/monster-names.js";
+import { JP_BASE_ADDRESS } from "mhfu-extract/src/tables/offsets.js";
 import { PinnedResolver, type TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import { DataBin } from "../disc/databin.js";
 import { openQuestFile, type QuestFile } from "../disc/quest-file.js";
@@ -54,6 +64,12 @@ export interface GameData {
   eboot: Buffer;
   /** How EBOOT tables are found: undefined means JP's static addresses. */
   resolver: TableAddressResolver | undefined;
+  /**
+   * The game's English monster names by emID, as the site has them
+   * (mhfu-extract `strings/monster-names.ts`); null or absent where they
+   * can't be read (JP), which names monsters from `monster.enum`.
+   */
+  monsterNames?: (string | null)[] | null;
 }
 
 function indexOf(region: Region, path: string): number {
@@ -72,6 +88,23 @@ function readBoards(region: Region, dataBin: DataBin): BoardFile[] {
     if (records) boards.push({ index, path, data, records });
   }
   return boards;
+}
+
+/**
+ * The EU disc's monster names, or null if its message file or name table
+ * doesn't read as the extractor knows them: the names only label hints and
+ * the spoiler log, so they shouldn't stop a run.
+ */
+function readDiscMonsterNames(dataBin: DataBin, eboot: Buffer): (string | null)[] | null {
+  if (MONSTER_NAME_FILE >= dataBin.fileCount) return null;
+  const table = readMessageFile(dataBin.read(MONSTER_NAME_FILE))?.[MONSTER_NAME_TABLE];
+  if (!table) return null;
+  try {
+    return siteMonsterNames(readMonsterNames(new BinaryReader(eboot), JP_BASE_ADDRESS, table));
+  } catch (error) {
+    if (error instanceof MonsterNameError) return null;
+    throw error;
+  }
 }
 
 export interface DiscCheck {
@@ -142,5 +175,6 @@ export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): 
     boards: readBoards(region, dataBin),
     eboot,
     resolver,
+    monsterNames: region === "eu" ? readDiscMonsterNames(dataBin, eboot) : null,
   };
 }

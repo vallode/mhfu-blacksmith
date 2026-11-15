@@ -12,7 +12,7 @@ import overlay from "./monsters.json" with { type: "json" };
 export interface MonsterOverlayEntry {
   /** emID. */
   id: number;
-  /** Site name (differs from the emID enum for "Scarred Yian Garuga", "Terra Shogun Ceanataur"). */
+  /** Site name, for readers (`strings/monster-names.ts`); monsters pair by `id`. */
   name: string;
   /** `data/` file holding the monster. */
   file: string;
@@ -23,13 +23,6 @@ export interface MonsterOverlayEntry {
 }
 
 export const MONSTER_OVERLAY = (overlay as unknown as { monsters: MonsterOverlayEntry[] }).monsters;
-
-const byName = new Map(MONSTER_OVERLAY.map((m) => [m.name, m]));
-
-/** emID of a site monster, or null if the overlay doesn't list it. */
-export function monsterIdOf(siteName: string): number | null {
-  return byName.get(siteName)?.id ?? null;
-}
 
 /** Parses a drop slot (`"break:2/high"`) into its kind, break type and rank. */
 export function parseDropSlot(slot: string): { kind: string; breakType?: number; rank: string } {

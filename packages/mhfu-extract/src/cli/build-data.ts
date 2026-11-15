@@ -33,6 +33,7 @@ import {
 } from "../build/material-styles.js";
 import { mergeItemStats, type ItemStatChange } from "../build/items.js";
 import type { EmittedItem } from "../emit/items.js";
+import { renameMonsters, type MonsterNameChange } from "../build/monster-names.js";
 
 /** Targets copied from the disc whole, rather than merged with committed files. */
 export type CopiedTarget =
@@ -93,6 +94,8 @@ export interface ItemsBuildReport {
 }
 
 export interface BuildDataReport {
+  /** Monsters renamed to the disc's names (`build/monster-names.ts`); null when monsters weren't built. */
+  monsterNames: MonsterNameChange[] | null;
   categories: CategoryBuildReport[];
   items: ItemsBuildReport | null;
   /** Files copied from the disc (quests, gathering points, shops, combinations), relative to `data/`. */
@@ -265,6 +268,22 @@ async function copiedFiles(
 }
 
 /** Writes the disc's item stats into `data/items.json`. */
+/** Renames `data/strings` monsters to the names `extract` read from the disc. */
+async function buildMonsterNames(options: BuildDataOptions): Promise<MonsterNameChange[]> {
+  const source = await readJsonOrNull(path.join(options.extracted, "monster-names.json"));
+  if (!source) {
+    console.warn(
+      "monster-names.json isn't in the extract (not an EU disc?); names left as they are.",
+    );
+    return [];
+  }
+  return renameMonsters(
+    options.data,
+    (source as { names: Record<string, string> }).names,
+    options.dryRun,
+  );
+}
+
 async function buildItems(options: BuildDataOptions): Promise<ItemsBuildReport> {
   const source = await readJsonOrNull(path.join(options.extracted, "items.json"));
   if (!source) throw new Error(`items.json is missing from ${options.extracted}; rerun extract`);
@@ -393,10 +412,13 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
   const categoryNames = targets.filter(
     (t): t is CategoryName => t !== "items" && !COPIED_TARGETS.includes(t as CopiedTarget),
   );
+  // Names first: the merge below reads the committed monsters by name.
+  const monsterNames = categoryNames.includes("monsters") ? await buildMonsterNames(options) : null;
   const categories = await buildCategories(categoryNames, options);
   const items = targets.includes("items") ? await buildItems(options) : null;
   const { copied, skipped } = await copyTargets(targets, options);
   const report: BuildDataReport = {
+    monsterNames,
     categories,
     items,
     copiedFiles: copied,
@@ -410,6 +432,10 @@ export async function runBuildData(options: BuildDataOptions): Promise<BuildData
 
 export function printBuildSummary(report: BuildDataReport, dryRun = false): void {
   const verb = dryRun ? "would write" : "wrote";
+  if (report.monsterNames)
+    console.log(
+      `monster names: ${report.monsterNames.length} renamed to the disc's${report.monsterNames.length > 0 ? ` (${report.monsterNames.map((c) => `${c.before} -> ${c.after}`).join(", ")})` : ""}.`,
+    );
   for (const c of report.categories) {
     const byField = new Map<string, number>();
     for (const change of c.changes) byField.set(change.field, (byField.get(change.field) ?? 0) + 1);
@@ -508,6 +534,12 @@ export function changedLeaves(
 /** Markdown listing of every change, kept disagreement and unpaired item. */
 export function formatBuildReport(report: BuildDataReport): string {
   const out: string[] = [];
+  if (report.monsterNames && report.monsterNames.length > 0) {
+    out.push("## monster names", "", "| emID | site (before) | disc (after) |", "|---|---|---|");
+    for (const c of report.monsterNames)
+      out.push(`| ${c.id} | ${cell(c.before)} | ${cell(c.after)} |`);
+    out.push("");
+  }
   for (const c of report.categories) {
     out.push(`## ${c.category}`, "");
     const byField = new Map<string, Change[]>();
