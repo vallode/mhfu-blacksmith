@@ -16,6 +16,7 @@ import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
 import {
   collectGatheringSlots,
   randomizeGathering,
+  randomizeGatherCounts,
   shuffleGathering,
 } from "./shuffles/gathering.js";
 import {
@@ -482,6 +483,18 @@ export function randomize(
           );
     reports.push(result.report);
     gatheringAfter = [...result.after, ...pinned];
+  }
+
+  if (settings["gathering.counts"]) {
+    reports.push(
+      randomizeGatherCounts(
+        game.quests,
+        settings["gathering.countSpread"],
+        (quest) => deliveries.get(quest.index)?.itemId,
+        rng.fork("gather-counts"),
+        edits,
+      ),
+    );
   }
 
   const suppliesMode = settings["supplies.mode"];
