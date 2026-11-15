@@ -13,9 +13,12 @@
  * - Disc items the site doesn't list are not added. They'd need fields the
  *   disc doesn't have (`hr`, `sex`, ...); they're reported instead.
  * - `overlay/keep-site-values.json` lists reviewed disagreements where the
- *   committed value is right and the disc reading is wrong. Those stay as
- *   committed. An entry that no longer matches a disagreement is an error,
- *   so the list can't silently go stale.
+ *   committed value is right and the disc reading is wrong, by file, the
+ *   record's game ID and field. Those stay as committed. An entry that no
+ *   longer matches a disagreement is an error, so the list can't silently
+ *   go stale, and so is one whose `name` isn't the record's.
+ * - The result is the named view (game-data's `readData`); build-data
+ *   writes it back with `writeData`, which turns names into IDs.
  */
 import { readFileSync } from "node:fs";
 import { fileURLToPath } from "node:url";
@@ -33,6 +36,9 @@ import type { SiteIndex } from "./ids.js";
 
 export interface KeepSiteValue {
   file: string;
+  /** The record's game ID. */
+  id: number;
+  /** Its English name, for readers; checked against the record. */
   name: string;
   field: string;
   reason: string;
@@ -81,12 +87,11 @@ export function mergeCategory(
 ): MergeResult {
   const pairing = pairCategory(category, extracted, committed, site);
   const take = category.fields.filter((f) => category.take.includes(f.field));
-  const keepKey = (file: string, name: string, field: string) =>
-    `${file}\u0000${name}\u0000${field}`;
+  const keepKey = (file: string, id: number, field: string) => `${file}\u0000${id}\u0000${field}`;
   const fileNames = new Set(category.files.map((f) => f.file));
   const keepFieldsByFile = new Map(category.files.map((f) => [f.file, f.keepFields ?? []]));
   const relevantKeep = keep.filter((k) => fileNames.has(k.file));
-  const keepByKey = new Map(relevantKeep.map((k) => [keepKey(k.file, k.name, k.field), k]));
+  const keepByKey = new Map(relevantKeep.map((k) => [keepKey(k.file, k.id, k.field), k]));
   const usedKeep = new Set<string>();
 
   const files = new Map<string, Item[]>();
@@ -107,9 +112,13 @@ export function mergeCategory(
 
       const agrees =
         spec.field in pair.site && fieldsAgree(spec, pair.site[spec.field], discValue, ctx);
-      const override = keepByKey.get(keepKey(pair.file, name, spec.field));
+      const override = keepByKey.get(keepKey(pair.file, pair.id, spec.field));
       if (override) {
-        usedKeep.add(keepKey(pair.file, name, spec.field));
+        if (override.name !== name)
+          throw new Error(
+            `keep-site-values.json: ${pair.file} ID ${pair.id} is "${name}", not "${override.name}"`,
+          );
+        usedKeep.add(keepKey(pair.file, pair.id, spec.field));
         if (agrees) continue; // reported as stale below
         kept.push({ ...override, disc: discValue });
         continue;
@@ -132,24 +141,15 @@ export function mergeCategory(
   }
 
   const stale = relevantKeep.filter((k) => {
-    const key = keepKey(k.file, k.name, k.field);
-    return !usedKeep.has(key) || !kept.some((e) => keepKey(e.file, e.name, e.field) === key);
+    const key = keepKey(k.file, k.id, k.field);
+    return !usedKeep.has(key) || !kept.some((e) => keepKey(e.file, e.id, e.field) === key);
   });
   if (stale.length > 0) {
-    const list = stale.map((k) => `  - ${k.file} "${k.name}" ${k.field}`).join("\n");
+    const list = stale.map((k) => `  - ${k.file} ${k.id} "${k.name}" ${k.field}`).join("\n");
     throw new Error(
       `keep-site-values.json has entries that no longer match a disc disagreement; remove them:\n${list}`,
     );
   }
 
   return { files, changes, kept, pairing };
-}
-
-/** The committed files' layout: `JSON.stringify(_, null, 2)`, no trailing newline. */
-export function serializeDataFile(
-  arrayKey: string,
-  original: Record<string, unknown> | null,
-  items: Item[],
-): string {
-  return JSON.stringify({ ...(original ?? {}), [arrayKey]: items }, null, 2);
 }

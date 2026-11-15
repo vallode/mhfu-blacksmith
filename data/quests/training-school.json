@@ -5,30 +5,30 @@
       "hub": "training-school",
       "rank": null,
       "stars": 1,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Black Diablos",
+        "monster": 43,
         "amount": 2
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         }
       ],
@@ -40,27 +40,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -70,22 +70,17 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
           "endless": true
         },
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 1,
           "total_quantity": 2
         }
       ],
-      "title": "Basic Training - Basics",
-      "goal": "Deliver 2 pcs Raw Meat ",
-      "details": "I am your esteemed\ninstructor. First, I shall\nhave you deliver some Raw\nMeat. Slay a Popo in the\nwild, and deliver the meat\nto the Delivery Box in camp.\nGood luck.",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -94,34 +89,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 1,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Daimyo Hermitaur",
+        "monster": 48,
         "amount": 1
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Portable Spit",
+          "item": 866,
           "amount": 1
         }
       ],
@@ -133,27 +128,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -163,22 +158,17 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
           "endless": true
         },
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 1,
           "total_quantity": 2
         }
       ],
-      "title": "Basic Training - BBQ",
-      "goal": "Deliver 1 Well-Done Steak",
-      "details": "Your esteemed instructor\nonce again. Now we will\ncover BBQ training. Carve\nRaw Meat from a Popo and\nthen use the BBQ Spit to\ncook a tasty steak. It's my\ndinner, so don't burn it!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -187,7 +177,7 @@
       "hub": "training-school",
       "rank": null,
       "stars": 1,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
@@ -195,27 +185,27 @@
       "target": null,
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Old Pickaxe",
+          "item": 144,
           "amount": 2
         },
         {
-          "item": "Old Bugnet",
+          "item": 148,
           "amount": 2
         }
       ],
@@ -227,27 +217,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -257,32 +247,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 5
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 2,
           "total_quantity": 3
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
           "endless": true
         }
       ],
-      "title": "Basic Training - Gathering",
-      "goal": "Deliver 2 Honeys",
-      "details": "Another lesson from your\nesteemed instructor. Today\nyou will train in gathering\nHoney. Snowy mountain Honey\nis less sweet but more\nfragrant than regular honey.\nA real treat with manly men!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -291,30 +276,30 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Lao-Shan Lung",
+        "monster": 7,
         "amount": 1
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         }
       ],
@@ -326,27 +311,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -356,32 +341,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 5
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 2,
           "total_quantity": 3
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
           "endless": true
         }
       ],
-      "title": "Basic Training - Combining",
-      "goal": "Deliver 1 Potion",
-      "details": "Take some advice from your\nesteemed instructor, if\nthere is one thing a hunter\ncannot go without, it is\na Potion. Drink it when\ninjured and all will be\nwell. Never forget this!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -390,7 +370,7 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
@@ -398,27 +378,27 @@
       "target": null,
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Worm",
+          "item": 137,
           "amount": 5
         },
         {
-          "item": "Worm",
+          "item": 137,
           "amount": 5
         }
       ],
@@ -430,27 +410,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -460,32 +440,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 5
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 2,
           "total_quantity": 3
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
           "endless": true
         }
       ],
-      "title": "Basic Training - Fishing",
-      "goal": "Deliver 1 Sushifish",
-      "details": "Once again you come before\nyour esteemed instructor.\nYour next quest is to\ndeliver a Sushifish. Use\nbait near the waterside and\ncatch a big one. Just\ndeliver it before dinner!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -494,7 +469,7 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
@@ -502,19 +477,19 @@
       "target": null,
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         }
       ],
@@ -526,27 +501,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -556,32 +531,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 6
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 4,
           "total_quantity": 5
         },
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 2,
           "total_quantity": 4
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 8,
           "total_quantity": 15,
           "endless": true
         }
       ],
-      "title": "Basic Training - Transport",
-      "goal": "Deliver 1 Carnivore Egg",
-      "details": "I am truly esteemed,\nespecially as an instructor.\nToday's quest is to snatch a\nCarnivore Egg and return it\nto camp. This may be\ntraining, but it is no\nopportunity to slack!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -590,78 +560,78 @@
       "hub": "training-school",
       "rank": null,
       "stars": 3,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giadrome",
+        "monster": 77,
         "amount": 1
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 3
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 6
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 6
         },
         {
-          "item": "Paintball",
+          "item": 64,
           "amount": 2
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 5
         },
         {
-          "item": "Sm Barrel-Bomb",
+          "item": 84,
           "amount": 3
         },
         {
-          "item": "Sply Lg Brrl Bmb",
+          "item": 872,
           "amount": 2
         },
         {
-          "item": "Stone",
+          "item": 200,
           "amount": 5
         },
         {
-          "item": "Supply Flash Bmb",
+          "item": 869,
           "amount": 2
         },
         {
-          "item": "Smoke Bomb",
+          "item": 70,
           "amount": 5
         },
         {
-          "item": "Prtbl Shock Trap",
+          "item": 868,
           "amount": 1
         },
         {
-          "item": "Sleeping Thr Knf",
+          "item": 60,
           "amount": 5
         },
         {
-          "item": "Flute",
+          "item": 156,
           "amount": 1
         },
         {
-          "item": "Tranq Bomb",
+          "item": 74,
           "amount": 5
         },
         {
-          "item": "Thawing Agent",
+          "item": 23,
           "amount": 2
         }
       ],
@@ -673,27 +643,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -701,7 +671,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Giadrome",
+          "monster": 77,
           "quantity": 1,
           "power": 1,
           "multipliers": {
@@ -724,33 +694,28 @@
       },
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 2,
           "total_quantity": 4
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 19,
           "endless": true
         }
       ],
-      "title": "Basic Training - Hunting",
-      "goal": "Hunt the Giadrome",
-      "details": "You will hold me in great\nesteem as I say this is the\nlast basic training quest.\nYou must hunt down the\nfierce Giadrome. Stare death\nin the face and show your\ntrue hunting spirit.",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -759,34 +724,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 3,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -798,27 +763,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -828,32 +793,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Sword Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Sword mastery is the\njumping attack. Gauge the\ndistance of the jump and\nthen unleash a string of\ndeadly attacks!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -862,34 +822,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 3,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -901,27 +861,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -931,32 +891,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Dual Blade Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Dual Blade mastery is\nthe timing of Demonization.\nDon't wait for a chance to\nDemonize, Demonize and\ncreate your own chances.",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -965,34 +920,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -1004,27 +959,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -1034,32 +989,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Great Sword Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Great Sword mastery\nis using ready attacks and\ncharge slices. View your\nenemy and decide if a quick\ncut or strong slice is best.",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1068,34 +1018,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -1107,27 +1057,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -1137,32 +1087,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Long Sword Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Long Sword mastery\nlies in the Spirit gauge. If\nyou can fill the gauge, your\nattack power will increase\ngreatly! Fill it up!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1171,34 +1116,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -1210,27 +1155,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -1240,32 +1185,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Hammer Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Hammer mastery is the\ncharge attack. An attack\nshould be charged to the\nright level then released.\nTime the hit with your soul!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1274,34 +1214,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -1313,27 +1253,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -1343,32 +1283,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Hunting Horn Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "I, your instructor, must\ninform you that the key to\nHorn mastery is in the\nRecital. String together 2\nwhite notes to make yourself\nstrong, then claim victory\nbefore the effect wears off.",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1377,34 +1312,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -1416,27 +1351,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -1446,32 +1381,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Lance Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "As your esteemed instructor,\nI must inform you that the\nkey to Lance mastery is\nguarding. Use the Lance to\nblock an approaching\nmonster's attack then\ncounter fiercely!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1480,34 +1410,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "Mini Whetstone",
+          "item": 867,
           "amount": 2
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -1519,27 +1449,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -1549,32 +1479,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Gunlance Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "As your esteemed instructor,\nI must inform you that the \nkey to Gunlance mastery is\nbombardment. Blast armored\nmonsters into submission,\nthen take that chance to\nunleash Wyvern's Fire!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1583,46 +1508,46 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Normal S Lv1",
+          "item": 96,
           "amount": 1
         },
         {
-          "item": "Normal S Lv2",
+          "item": 97,
           "amount": 60
         },
         {
-          "item": "Pellet S Lv1",
+          "item": 102,
           "amount": 30
         },
         {
-          "item": "Para S Lv1",
+          "item": 120,
           "amount": 8
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -1634,27 +1559,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -1664,32 +1589,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Light Bowgun Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "Esteemed instructor here,\nremember the key to the\nLight Bowgun is ammo\nselection. Select your ammo\ndepending on the monster and\nsituation. Master the\nqualities of each shot!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1698,46 +1618,46 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Normal S Lv1",
+          "item": 96,
           "amount": 1
         },
         {
-          "item": "Normal S Lv2",
+          "item": 97,
           "amount": 60
         },
         {
-          "item": "Pellet S Lv1",
+          "item": 102,
           "amount": 30
         },
         {
-          "item": "Flaming S",
+          "item": 111,
           "amount": 20
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -1749,27 +1669,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -1779,32 +1699,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Heavy Bowgun Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "Your esteemed instructor\nreminds you that the key to\nthe Heavy Bowgun is judging\nthe proper distance. A\nBowgun's advantages aren't\nlimited to long distances,\nso pick the right distance!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1813,34 +1728,34 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 150,
       "penalty": 50,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Giaprey",
+        "monster": 35,
         "amount": 5
       },
       "supplies": [
         {
-          "item": "Map",
+          "item": 863,
           "amount": 1
         },
         {
-          "item": "First-Aid Med",
+          "item": 864,
           "amount": 3
         },
         {
-          "item": "Ration",
+          "item": 865,
           "amount": 3
         },
         {
-          "item": "Power Coating",
+          "item": 130,
           "amount": 10
         },
         {
-          "item": "Hot Drink",
+          "item": 22,
           "amount": 2
         }
       ],
@@ -1852,27 +1767,27 @@
           "items": [
             {
               "chance": 10,
-              "item": "Honey",
+              "item": 161,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Whetstone",
+              "item": 153,
               "amount": 1
             },
             {
               "chance": 30,
-              "item": "Potion",
+              "item": 7,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Paintball",
+              "item": 64,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             }
           ]
@@ -1882,32 +1797,27 @@
       "monster_size": null,
       "small_monsters": [
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 3,
           "total_quantity": 7
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 12,
           "total_quantity": 17,
           "endless": true
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 12,
           "total_quantity": 12
         }
       ],
-      "title": "Bow Mastery",
-      "goal": "Slay 5 Giaprey",
-      "details": "Your esteemed instructor\nreminds you that the key to\nBow mastery is charging.\nCharge the power of the Bow\nand then release it at the\nperfect moment. Charged\narrows are a unique beast!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1916,13 +1826,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 1,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 1000,
       "penalty": 1000,
       "time_limit_minutes": 20,
       "target": {
-        "monster": "Yian Kut-Ku",
+        "monster": 6,
         "amount": 1
       },
       "supplies": [],
@@ -1934,22 +1844,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Kut-Ku Coin",
+              "item": 884,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Kut-Ku Coin",
+              "item": 884,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 1
             }
           ]
@@ -1957,7 +1867,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Yian Kut-Ku",
+          "monster": 6,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -1980,16 +1890,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Yian Kut-Ku Training",
-      "goal": "Slay the Yian Kut-Ku",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Yian Kut-Ku. Its\nweakness is its sensitivity\nto loud noises. Try a Sonic\nBomb or even a Barrel-Bomb!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -1998,13 +1903,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 1,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 1000,
       "penalty": 1000,
       "time_limit_minutes": 20,
       "target": {
-        "monster": "Congalala",
+        "monster": 52,
         "amount": 1
       },
       "supplies": [],
@@ -2016,22 +1921,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Congalala Coin",
+              "item": 885,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Congalala Coin",
+              "item": 885,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 1
             }
           ]
@@ -2039,7 +1944,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Congalala",
+          "monster": 52,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -2062,16 +1967,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Congalala Training",
-      "goal": "Slay the Congalala",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Congalala. If you\nare hit by something it has\nthrown, the smell will spoil\nyour items and you won't be\nable to use them!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2080,13 +1980,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 1000,
       "penalty": 1000,
       "time_limit_minutes": 30,
       "target": {
-        "monster": "Khezu",
+        "monster": 15,
         "amount": 1
       },
       "supplies": [],
@@ -2098,22 +1998,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Khezu Coin",
+              "item": 886,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Khezu Coin",
+              "item": 886,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 1
             }
           ]
@@ -2121,7 +2021,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Khezu",
+          "monster": 15,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -2144,16 +2044,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Khezu Training",
-      "goal": "Slay the Khezu",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Khezu. You must\nfear not only its electric\nattacks but also its roar.\nThus, equip a weapon guard\nand be ready to use it.",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2162,13 +2057,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 2000,
       "penalty": 2000,
       "time_limit_minutes": 30,
       "target": {
-        "monster": "Daimyo Hermitaur",
+        "monster": 48,
         "amount": 1
       },
       "supplies": [],
@@ -2180,22 +2075,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Daimyo Coin",
+              "item": 887,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Daimyo Coin",
+              "item": 887,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 1
             }
           ]
@@ -2203,7 +2098,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Daimyo Hermitaur",
+          "monster": 48,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -2226,16 +2121,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Daimyo Hermitaur Training",
-      "goal": "Slay the Daimyo Hermitaur",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Daimyo Hermitaur.\nSupposedly you can only\ncrack its shell with a\nHammer or Hunting Horn, but\na Lance works as well!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2244,13 +2134,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 3,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 2000,
       "penalty": 2000,
       "time_limit_minutes": 30,
       "target": {
-        "monster": "Blangonga",
+        "monster": 51,
         "amount": 1
       },
       "supplies": [],
@@ -2262,22 +2152,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Blangonga Coin",
+              "item": 888,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Blangonga Coin",
+              "item": 888,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 1
             }
           ]
@@ -2285,7 +2175,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Blangonga",
+          "monster": 51,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -2308,16 +2198,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Blangonga Training",
-      "goal": "Slay the Blangonga",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Blangonga. You may\neven become a Snowman!\nThe best escape is using a\nThawing Agent... Or hitting\nthe beast on its arms!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2326,13 +2211,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 3,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 2000,
       "penalty": 2000,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Yian Garuga",
+        "monster": 78,
         "amount": 1
       },
       "supplies": [],
@@ -2344,22 +2229,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Yian Garuga Coin",
+              "item": 889,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Yian Garuga Coin",
+              "item": 889,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 1
             }
           ]
@@ -2367,7 +2252,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Yian Garuga",
+          "monster": 78,
           "quantity": 1,
           "power": 4,
           "multipliers": {
@@ -2390,16 +2275,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Yian Garuga Training",
-      "goal": "Slay the Yian Garuga",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Yian Garuga. After\nthreatening you, Garuga\nlikes to let off a roar or\ntwo. When you sense a\nthreat, prepare yourself!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2408,13 +2288,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 2000,
       "penalty": 2000,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Tigrex",
+        "monster": 75,
         "amount": 1
       },
       "supplies": [],
@@ -2426,22 +2306,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Tigrex Coin",
+              "item": 890,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Tigrex Coin",
+              "item": 890,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 1
             }
           ]
@@ -2449,7 +2329,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Tigrex",
+          "monster": 75,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -2472,16 +2352,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Tigrex Training",
-      "goal": "Slay the Tigrex",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Tigrex. Tigrex will\ncome after you with all its\ngot, so don't just wait\naround. Jump into the fight!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2490,13 +2365,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Diablos",
+        "monster": 14,
         "amount": 1
       },
       "supplies": [],
@@ -2508,22 +2383,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Expert Ticket",
+              "item": 926,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Diablos Coin",
+              "item": 891,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Diablos Coin",
+              "item": 891,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -2531,7 +2406,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Diablos",
+          "monster": 14,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -2554,16 +2429,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Diablos Training",
-      "goal": "Slay the Diablos",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Diablos. When it's\non the defensive, a Sonic\nBomb is useful, but once\nit's mad, that won't do a\nthing, so use a Flash Bomb!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2572,13 +2442,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Gravios",
+        "monster": 17,
         "amount": 1
       },
       "supplies": [],
@@ -2590,22 +2460,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Expert Ticket",
+              "item": 926,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Gravios Coin",
+              "item": 892,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Gravios Coin",
+              "item": 892,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -2613,7 +2483,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Gravios",
+          "monster": 17,
           "quantity": 1,
           "power": 4,
           "multipliers": {
@@ -2636,16 +2506,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Gravios Training",
-      "goal": "Slay the Gravios",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Gravios. When\nfighting underneath it,\nbeware of being crushed!\nWhen it's airborne, choose\nyour spots! Don't mess up!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2654,13 +2519,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Kirin",
+        "monster": 33,
         "amount": 1
       },
       "supplies": [],
@@ -2672,22 +2537,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Expert Ticket",
+              "item": 926,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Kirin Coin",
+              "item": 893,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Kirin Coin",
+              "item": 893,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -2695,7 +2560,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Kirin",
+          "monster": 33,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -2718,16 +2583,11 @@
       },
       "small_monsters": [
         {
-          "monster": "Rocks",
+          "monster": 29,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Kirin Training",
-      "goal": "Slay the Kirin",
-      "details": "It is I, your esteemed\ninstructor. Today you will\nbattle a Kirin. The key to\nthis battle is lightning. If\nyou can detect its patterns,\nyou can increase your\nchances of victory!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2736,13 +2596,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 1,
-      "map": "Desert (Day)",
+      "map": 3,
       "fee": 0,
       "reward": 2000,
       "penalty": 2000,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Cephadrome",
+        "monster": 8,
         "amount": 1
       },
       "supplies": [],
@@ -2754,22 +2614,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Cephadrome Coin",
+              "item": 894,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Cephadrome Coin",
+              "item": 894,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 1
             }
           ]
@@ -2777,7 +2637,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Cephadrome",
+          "monster": 8,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -2800,46 +2660,41 @@
       },
       "small_monsters": [
         {
-          "monster": "Cephalos",
+          "monster": 34,
           "max_quantity": 4,
           "total_quantity": 6
         },
         {
-          "monster": "Genprey",
+          "monster": 13,
           "max_quantity": 6,
           "total_quantity": 14
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 5,
           "total_quantity": 10
         },
         {
-          "monster": "Hermitaur",
+          "monster": 66,
           "max_quantity": 4,
           "total_quantity": 8
         },
         {
-          "monster": "Apceros",
+          "monster": 25,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Felyne",
+          "monster": 9,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Melynx",
+          "monster": 23,
           "max_quantity": 4,
           "total_quantity": 6
         }
       ],
-      "title": "Cephadrome Training",
-      "goal": "Slay the Cephadrome",
-      "details": "It is I, your esteemed\ninstructor. Time to face a\nCephadrome! Aim to use Small\nBarrel-Bombs when it is\nhiding. Set the bomb where\nit will resurface! That's\nthe secret!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2848,13 +2703,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Jungle (Night)",
+      "map": 20,
       "fee": 0,
       "reward": 2000,
       "penalty": 2000,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Plesioth",
+        "monster": 21,
         "amount": 1
       },
       "supplies": [],
@@ -2866,22 +2721,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Plesioth Coin",
+              "item": 895,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Plesioth Coin",
+              "item": 895,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 1
             }
           ]
@@ -2889,7 +2744,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Plesioth",
+          "monster": 21,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -2912,62 +2767,57 @@
       },
       "small_monsters": [
         {
-          "monster": "Aptonoth",
+          "monster": 12,
           "max_quantity": 9,
           "total_quantity": 9
         },
         {
-          "monster": "Kelbi",
+          "monster": 3,
           "max_quantity": 5,
           "total_quantity": 5
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 15,
           "total_quantity": 15,
           "endless": true
         },
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Velociprey",
+          "monster": 16,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Mosswine",
+          "monster": 4,
           "max_quantity": 9,
           "total_quantity": 9
         },
         {
-          "monster": "Hermitaur",
+          "monster": 66,
           "max_quantity": 6,
           "total_quantity": 6
         },
         {
-          "monster": "Melynx",
+          "monster": 23,
           "max_quantity": 6,
           "total_quantity": 6
         },
         {
-          "monster": "Hornetaur",
+          "monster": 24,
           "max_quantity": 9,
           "total_quantity": 9
         },
         {
-          "monster": "Conga",
+          "monster": 62,
           "max_quantity": 6,
           "total_quantity": 6
         }
       ],
-      "title": "Plesioth Training",
-      "goal": "Slay the Plesioth",
-      "details": "It is I, your esteemed\ninstructor. Time to face a\nPlesioth! Chasing it when it\nchanges areas is easy, but\nyou'll have to figure out a\nway to fish it out of the\nground.",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -2976,13 +2826,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 3,
-      "map": "Swamp (Day)",
+      "map": 4,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Shogun Ceanataur",
+        "monster": 67,
         "amount": 1
       },
       "supplies": [],
@@ -2994,22 +2844,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Shogun Coin",
+              "item": 896,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Shogun Coin",
+              "item": 896,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 1
             }
           ]
@@ -3017,7 +2867,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Shogun Ceanataur",
+          "monster": 67,
           "quantity": 1,
           "power": 2,
           "multipliers": {
@@ -3040,56 +2890,51 @@
       },
       "small_monsters": [
         {
-          "monster": "Aptonoth",
+          "monster": 12,
           "max_quantity": 6,
           "total_quantity": 6
         },
         {
-          "monster": "Hornetaur",
+          "monster": 24,
           "max_quantity": 6,
           "total_quantity": 6
         },
         {
-          "monster": "Great Thunderbug",
+          "monster": 56,
           "max_quantity": 9,
           "total_quantity": 9
         },
         {
-          "monster": "Melynx",
+          "monster": 23,
           "max_quantity": 9,
           "total_quantity": 9
         },
         {
-          "monster": "Conga",
+          "monster": 62,
           "max_quantity": 6,
           "total_quantity": 12
         },
         {
-          "monster": "Mosswine",
+          "monster": 4,
           "max_quantity": 6,
           "total_quantity": 6
         },
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Ioprey",
+          "monster": 30,
           "max_quantity": 6,
           "total_quantity": 9
         },
         {
-          "monster": "Genprey",
+          "monster": 13,
           "max_quantity": 6,
           "total_quantity": 7
         }
       ],
-      "title": "Shogun Ceanataur Training",
-      "goal": "Slay the Shogun Ceanataur",
-      "details": "It is I, your esteemed\ninstructor. Time to face a\nShogun Ceanataur! If it\nextends its claws, that's\nyour cue to pay attention\nbecause its reach has\ndoubled! Get out of the way!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -3098,13 +2943,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Forest and Hills (Day)",
+      "map": 2,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Rathalos",
+        "monster": 11,
         "amount": 1
       },
       "supplies": [],
@@ -3116,22 +2961,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Expert Ticket",
+              "item": 926,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Fire Coin",
+              "item": 897,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Fire Coin",
+              "item": 897,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -3139,7 +2984,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Rathalos",
+          "monster": 11,
           "quantity": 1,
           "power": 4,
           "multipliers": {
@@ -3162,57 +3007,52 @@
       },
       "small_monsters": [
         {
-          "monster": "Mosswine",
+          "monster": 4,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Aptonoth",
+          "monster": 12,
           "max_quantity": 4,
           "total_quantity": 8
         },
         {
-          "monster": "Felyne",
+          "monster": 9,
           "max_quantity": 3,
           "total_quantity": 5
         },
         {
-          "monster": "Velociprey",
+          "monster": 16,
           "max_quantity": 6,
           "total_quantity": 9
         },
         {
-          "monster": "Melynx",
+          "monster": 23,
           "max_quantity": 4,
           "total_quantity": 6
         },
         {
-          "monster": "Kelbi",
+          "monster": 3,
           "max_quantity": 3,
           "total_quantity": 3
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 0,
           "total_quantity": 0,
           "endless": true
         },
         {
-          "monster": "Shakalaka",
+          "monster": 57,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 2,
           "total_quantity": 2
         }
       ],
-      "title": "Rathalos Training",
-      "goal": "Slay the Rathalos",
-      "details": "It is I, your esteemed\ninstructor. Time to face a\nRathalos! You'll need a\nPaintball to keep track of\nit when it takes to flight,\nso make sure you hit it\nbefore it gets away!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -3221,13 +3061,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Snowy Mountains (Day)",
+      "map": 11,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Rajang",
+        "monster": 53,
         "amount": 1
       },
       "supplies": [],
@@ -3239,22 +3079,22 @@
           "items": [
             {
               "chance": 20,
-              "item": "Expert Ticket",
+              "item": 926,
               "amount": 1
             },
             {
               "chance": 55,
-              "item": "Rajang Coin",
+              "item": 898,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Rajang Coin",
+              "item": 898,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -3262,7 +3102,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Rajang",
+          "monster": 53,
           "quantity": 1,
           "power": 4,
           "multipliers": {
@@ -3285,37 +3125,32 @@
       },
       "small_monsters": [
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 2,
           "total_quantity": 3
         },
         {
-          "monster": "Giaprey",
+          "monster": 35,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 0,
           "total_quantity": 0,
           "endless": true
         },
         {
-          "monster": "Anteka",
+          "monster": 69,
           "max_quantity": 3,
           "total_quantity": 3
         },
         {
-          "monster": "Popo",
+          "monster": 70,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Rajang Training",
-      "goal": "Slay the Rajang",
-      "details": "It is I, your esteemed\ninstructor. So you've made\nit this far, huh!? I'm\nspeechless! Let's see what\nyou've got! Show me your\ntrue strength on this \nmountain!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -3324,13 +3159,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 1,
-      "map": "Great Forest (Day)",
+      "map": 30,
       "fee": 0,
       "reward": 2000,
       "penalty": 2000,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Hypnocatrice",
+        "monster": 82,
         "amount": 1
       },
       "supplies": [],
@@ -3342,22 +3177,22 @@
           "items": [
             {
               "chance": 55,
-              "item": "BlackBeltCoinG",
+              "item": 899,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "BlackBeltCoinG",
+              "item": 899,
               "amount": 2
             },
             {
               "chance": 30,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 3
             },
             {
               "chance": 10,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -3365,7 +3200,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Hypnocatrice",
+          "monster": 82,
           "quantity": 1,
           "power": 5,
           "multipliers": {
@@ -3388,42 +3223,37 @@
       },
       "small_monsters": [
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 2,
           "total_quantity": 2,
           "endless": true
         },
         {
-          "monster": "Conga",
+          "monster": 62,
           "max_quantity": 2,
           "total_quantity": 4
         },
         {
-          "monster": "Aptonoth",
+          "monster": 12,
           "max_quantity": 5,
           "total_quantity": 5
         },
         {
-          "monster": "Kelbi",
+          "monster": 3,
           "max_quantity": 5,
           "total_quantity": 5
         },
         {
-          "monster": "Shakalaka",
+          "monster": 57,
           "max_quantity": 2,
           "total_quantity": 2
         }
       ],
-      "title": "Hypnocatrice Training",
-      "goal": "Slay the Hypnocatrice",
-      "details": " ▲▼Instructor's Note▲▼\nPaintball ........... Area 6\nMega Potion ......... Area 2\nFarcaster ........... Area 4\nFlash Bomb ... Egg (1 only!)",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -3432,13 +3262,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Old Jungle",
+      "map": 26,
       "fee": 0,
       "reward": 2500,
       "penalty": 2500,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Emerald Congalala",
+        "monster": 85,
         "amount": 1
       },
       "supplies": [],
@@ -3450,22 +3280,22 @@
           "items": [
             {
               "chance": 55,
-              "item": "BlackBeltCoinG",
+              "item": 899,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "BlackBeltCoinG",
+              "item": 899,
               "amount": 2
             },
             {
               "chance": 25,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 3
             },
             {
               "chance": 15,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -3473,7 +3303,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Emerald Congalala",
+          "monster": 85,
           "quantity": 1,
           "power": 5,
           "multipliers": {
@@ -3496,42 +3326,37 @@
       },
       "small_monsters": [
         {
-          "monster": "Conga",
+          "monster": 62,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Velociprey",
+          "monster": 16,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 2,
           "total_quantity": 2,
           "endless": true
         },
         {
-          "monster": "Hermitaur",
+          "monster": 66,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Remobra",
+          "monster": 63,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Aptonoth",
+          "monster": 12,
           "max_quantity": 9,
           "total_quantity": 9
         }
       ],
-      "title": "Emerald Congalala Training",
-      "goal": "Slay the Emerald Congalala",
-      "details": " ▲▼Instructor's Note▲▼\nTrap Tool ........... Area 3\nMega Potion ..... Usual spot\nDeodorant ........... Area 9\nMax Potion ..... Furthest in",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -3540,13 +3365,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Old Desert",
+      "map": 27,
       "fee": 0,
       "reward": 2500,
       "penalty": 2500,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Plum Daimyo Hermitaur",
+        "monster": 86,
         "amount": 1
       },
       "supplies": [],
@@ -3558,22 +3383,22 @@
           "items": [
             {
               "chance": 55,
-              "item": "BlackBeltCoinG",
+              "item": 899,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "BlackBeltCoinG",
+              "item": 899,
               "amount": 2
             },
             {
               "chance": 25,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 3
             },
             {
               "chance": 15,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -3581,7 +3406,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Plum Daimyo Hermitaur",
+          "monster": 86,
           "quantity": 1,
           "power": 5,
           "multipliers": {
@@ -3604,57 +3429,52 @@
       },
       "small_monsters": [
         {
-          "monster": "Genprey",
+          "monster": 13,
           "max_quantity": 3,
           "total_quantity": 5
         },
         {
-          "monster": "Felyne",
+          "monster": 9,
           "max_quantity": 3,
           "total_quantity": 3
         },
         {
-          "monster": "Melynx",
+          "monster": 23,
           "max_quantity": 3,
           "total_quantity": 3
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 0,
           "total_quantity": 0,
           "endless": true
         },
         {
-          "monster": "Apceros",
+          "monster": 25,
           "max_quantity": 5,
           "total_quantity": 5
         },
         {
-          "monster": "Remobra",
+          "monster": 63,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Hermitaur",
+          "monster": 66,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Great Thunderbug",
+          "monster": 56,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Cephalos",
+          "monster": 34,
           "max_quantity": 2,
           "total_quantity": 2
         }
       ],
-      "title": "Plum D.Hermitaur Training",
-      "goal": "Slay the Plum D.Hermitaur",
-      "details": " ▲▼Instructor's Note▲▼\nBook of Combos 1 .... Area 2\nMega Potion ......... Area 8\nIron Pickaxe ........ Area 8\nTrap Tool + Genprey Fang = !",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -3663,13 +3483,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 3,
-      "map": "Great Forest (Night)",
+      "map": 31,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Nargacuga",
+        "monster": 81,
         "amount": 1
       },
       "supplies": [],
@@ -3681,22 +3501,22 @@
           "items": [
             {
               "chance": 55,
-              "item": "Expert Coin G",
+              "item": 900,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Expert Coin G",
+              "item": 900,
               "amount": 2
             },
             {
               "chance": 25,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 2
             },
             {
               "chance": 15,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -3704,7 +3524,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Nargacuga",
+          "monster": 81,
           "quantity": 1,
           "power": 5,
           "multipliers": {
@@ -3727,42 +3547,37 @@
       },
       "small_monsters": [
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Ioprey",
+          "monster": 30,
           "max_quantity": 2,
           "total_quantity": 4
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 2,
           "total_quantity": 2,
           "endless": true
         },
         {
-          "monster": "Aptonoth",
+          "monster": 12,
           "max_quantity": 5,
           "total_quantity": 5
         },
         {
-          "monster": "Kelbi",
+          "monster": 3,
           "max_quantity": 5,
           "total_quantity": 5
         },
         {
-          "monster": "Shakalaka",
+          "monster": 57,
           "max_quantity": 2,
           "total_quantity": 2
         }
       ],
-      "title": "Nargacuga Training",
-      "goal": "Slay the Nargacuga",
-      "details": " ▲▼Instructor's Note▲▼\nSonic Bomb .......... Area 4\nMega Potion ......... Area 8\nPitfall Trap ........ Area 3\nMax Potion .......... Bugnet",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -3771,13 +3586,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 3,
-      "map": "Old Desert",
+      "map": 27,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Copper Blangonga",
+        "monster": 84,
         "amount": 1
       },
       "supplies": [],
@@ -3789,22 +3604,22 @@
           "items": [
             {
               "chance": 55,
-              "item": "Expert Coin G",
+              "item": 900,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Expert Coin G",
+              "item": 900,
               "amount": 2
             },
             {
               "chance": 25,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 2
             },
             {
               "chance": 15,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -3812,7 +3627,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Copper Blangonga",
+          "monster": 84,
           "quantity": 1,
           "power": 5,
           "multipliers": {
@@ -3835,57 +3650,52 @@
       },
       "small_monsters": [
         {
-          "monster": "Genprey",
+          "monster": 13,
           "max_quantity": 3,
           "total_quantity": 5
         },
         {
-          "monster": "Felyne",
+          "monster": 9,
           "max_quantity": 3,
           "total_quantity": 3
         },
         {
-          "monster": "Melynx",
+          "monster": 23,
           "max_quantity": 3,
           "total_quantity": 3
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 0,
           "total_quantity": 0,
           "endless": true
         },
         {
-          "monster": "Apceros",
+          "monster": 25,
           "max_quantity": 5,
           "total_quantity": 5
         },
         {
-          "monster": "Remobra",
+          "monster": 63,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Hermitaur",
+          "monster": 66,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Great Thunderbug",
+          "monster": 56,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Cephalos",
+          "monster": 34,
           "max_quantity": 2,
           "total_quantity": 2
         }
       ],
-      "title": "Copper Blangonga Training",
-      "goal": "Slay the Copper Blangonga",
-      "details": " ▲▼Instructor's Note▲▼\nArmorskin .......... Remobra\nMega Potion ......... Area 9\nDemondrug .... A cool desert\nMax Potion ..... Underground",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -3894,13 +3704,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Volcano (Night)",
+      "map": 19,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Lavasioth",
+        "monster": 83,
         "amount": 1
       },
       "supplies": [],
@@ -3912,22 +3722,22 @@
           "items": [
             {
               "chance": 55,
-              "item": "Warrior Coin G",
+              "item": 901,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Warrior Coin G",
+              "item": 901,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -3935,7 +3745,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Lavasioth",
+          "monster": 83,
           "quantity": 1,
           "power": 5,
           "multipliers": {
@@ -3958,41 +3768,36 @@
       },
       "small_monsters": [
         {
-          "monster": "Ioprey",
+          "monster": 30,
           "max_quantity": 2,
           "total_quantity": 5
         },
         {
-          "monster": "Apceros",
+          "monster": 25,
           "max_quantity": 5,
           "total_quantity": 5
         },
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Remobra",
+          "monster": 63,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 21,
           "total_quantity": 21
         },
         {
-          "monster": "Ceanataur",
+          "monster": 73,
           "max_quantity": 2,
           "total_quantity": 2
         }
       ],
-      "title": "Lavasioth Training",
-      "goal": "Slay the Lavasioth",
-      "details": " ▲▼Instructor's Note▲▼\nLg Barrel-Bomb ...... Area 2\nMega Potion ......... Area 6\nIron Pickaxe ........ Area 3\nMax Potion .... A cool place",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -4001,13 +3806,14 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Old Swamp",
+      "map": 28,
       "fee": 0,
       "reward": 3000,
       "penalty": 3000,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Terra Shogun Ceanatur",
+        "monster": 87,
+        "alias": 0,
         "amount": 1
       },
       "supplies": [],
@@ -4019,22 +3825,22 @@
           "items": [
             {
               "chance": 55,
-              "item": "Warrior Coin G",
+              "item": 901,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Warrior Coin G",
+              "item": 901,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 2
             },
             {
               "chance": 20,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -4042,7 +3848,8 @@
       ],
       "large_monsters": [
         {
-          "monster": "Terra Shogun Ceanatur",
+          "monster": 87,
+          "alias": 0,
           "quantity": 1,
           "power": 5,
           "multipliers": {
@@ -4065,56 +3872,51 @@
       },
       "small_monsters": [
         {
-          "monster": "Velociprey",
+          "monster": 16,
           "max_quantity": 6,
           "total_quantity": 6
         },
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Kelbi",
+          "monster": 3,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Aptonoth",
+          "monster": 12,
           "max_quantity": 9,
           "total_quantity": 9
         },
         {
-          "monster": "Melynx",
+          "monster": 23,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Ceanataur",
+          "monster": 73,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Mosswine",
+          "monster": 4,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 7,
           "total_quantity": 7
         },
         {
-          "monster": "Hornetaur",
+          "monster": 24,
           "max_quantity": 2,
           "total_quantity": 2
         }
       ],
-      "title": "Terra S.Ceanataur Training",
-      "goal": "Slay the Terra S.Ceanataur",
-      "details": " ▲▼Instructor's Note▲▼\nThr Knife ..... Veggie Elder\nMega Potion ........ Area 10\nIron Pickaxe ........ Area 5\nMax Potion .... Grassy field\n         (bugnet) under tree",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -4123,13 +3925,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Old Volcano",
+      "map": 29,
       "fee": 0,
       "reward": 4000,
       "penalty": 4000,
       "time_limit_minutes": 50,
       "target": {
-        "monster": "Furious Rajang",
+        "monster": 89,
         "amount": 1
       },
       "supplies": [],
@@ -4141,22 +3943,22 @@
           "items": [
             {
               "chance": 55,
-              "item": "Legend Coin G",
+              "item": 902,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Legend Coin G",
+              "item": 902,
               "amount": 2
             },
             {
               "chance": 5,
-              "item": "Silver Egg",
+              "item": 861,
               "amount": 1
             },
             {
               "chance": 35,
-              "item": "Expand Pickaxe",
+              "item": 147,
               "amount": 1
             }
           ]
@@ -4164,7 +3966,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Furious Rajang",
+          "monster": 89,
           "quantity": 1,
           "power": 5,
           "multipliers": {
@@ -4187,31 +3989,26 @@
       },
       "small_monsters": [
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 1,
           "total_quantity": 1
         },
         {
-          "monster": "Apceros",
+          "monster": 25,
           "max_quantity": 4,
           "total_quantity": 4
         },
         {
-          "monster": "Melynx",
+          "monster": 23,
           "max_quantity": 3,
           "total_quantity": 3
         }
       ],
-      "title": "Rajang Training",
-      "goal": "Slay the Rajang",
-      "details": " ▲▼Instructor's Note▲▼\nNet .... Area 4 (South East)\nMega Potion .... Furthest in\nDemondrug ........... Area 7\nMax Potion .. Near base camp",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -4220,13 +4017,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 900,
       "penalty": 300,
       "time_limit_minutes": 10,
       "target": {
-        "monster": "Blue Yian Kut-Ku",
+        "monster": 38,
         "amount": 1
       },
       "supplies": [],
@@ -4238,22 +4035,22 @@
           "items": [
             {
               "chance": 40,
-              "item": "Raw Meat",
+              "item": 43,
               "amount": 2
             },
             {
               "chance": 45,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Gourmet Steak",
+              "item": 49,
               "amount": 1
             },
             {
               "chance": 10,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 1
             }
           ]
@@ -4265,12 +4062,12 @@
           "items": [
             {
               "chance": 90,
-              "item": "Gourmet Steak",
+              "item": 49,
               "amount": 1
             },
             {
               "chance": 10,
-              "item": "VeggieElderTcket",
+              "item": 919,
               "amount": 1
             }
           ]
@@ -4278,7 +4075,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Blue Yian Kut-Ku",
+          "monster": 38,
           "quantity": 1,
           "power": 15,
           "multipliers": {
@@ -4300,11 +4097,6 @@
         "max": 100
       },
       "small_monsters": [],
-      "title": "Blue Yian Kut-Ku Exercises",
-      "goal": "Slay the Blue Yian Kut-Ku",
-      "details": "It is I, your esteemed\ninstructor. If you can clear\nthis Group Training in time,\nyour reward will explode!\nFaster! Smarter! Set a new\nrecord!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -4313,13 +4105,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 3,
-      "map": "Desert (Day)",
+      "map": 3,
       "fee": 0,
       "reward": 2100,
       "penalty": 700,
       "time_limit_minutes": 30,
       "target": {
-        "monster": "Cephadrome",
+        "monster": 8,
         "amount": 1
       },
       "supplies": [],
@@ -4331,22 +4123,22 @@
           "items": [
             {
               "chance": 25,
-              "item": "Cephadrome Coin",
+              "item": 894,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 35,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Frozen Berry",
+              "item": 193,
               "amount": 1
             }
           ]
@@ -4358,12 +4150,12 @@
           "items": [
             {
               "chance": 60,
-              "item": "Cephadrome Coin",
+              "item": 894,
               "amount": 2
             },
             {
               "chance": 40,
-              "item": "VeggieElderTcket",
+              "item": 919,
               "amount": 1
             }
           ]
@@ -4371,7 +4163,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Cephadrome",
+          "monster": 8,
           "quantity": 1,
           "power": 11,
           "multipliers": {
@@ -4394,42 +4186,37 @@
       },
       "small_monsters": [
         {
-          "monster": "Cephalos",
+          "monster": 34,
           "max_quantity": 5,
           "total_quantity": 15,
           "endless": true
         },
         {
-          "monster": "Apceros",
+          "monster": 25,
           "max_quantity": 7,
           "total_quantity": 12
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 12,
           "total_quantity": 42
         },
         {
-          "monster": "Genprey",
+          "monster": 13,
           "max_quantity": 6,
           "total_quantity": 10
         },
         {
-          "monster": "Melynx",
+          "monster": 23,
           "max_quantity": 4,
           "total_quantity": 6
         },
         {
-          "monster": "Felyne",
+          "monster": 9,
           "max_quantity": 3,
           "total_quantity": 5
         }
       ],
-      "title": "Cephadrome Exercises",
-      "goal": "Slay the Cephadrome",
-      "details": "It is I, your esteemed\ninstructor. An all out\nassault will only lower your\ntime marginally. Victory\nrests on what you have and\nwhat you can combine it with\nin the southern desert.",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -4438,13 +4225,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Jungle (Day)",
+      "map": 6,
       "fee": 0,
       "reward": 4200,
       "penalty": 1400,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Rathian",
+        "monster": 1,
         "amount": 1
       },
       "supplies": [],
@@ -4456,27 +4243,27 @@
           "items": [
             {
               "chance": 25,
-              "item": "Fire Coin",
+              "item": 897,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Blackbelt Ticket",
+              "item": 925,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 1
             },
             {
               "chance": 10,
-              "item": "VeggieElderTcket",
+              "item": 919,
               "amount": 1
             }
           ]
@@ -4488,12 +4275,12 @@
           "items": [
             {
               "chance": 60,
-              "item": "Fire Coin",
+              "item": 897,
               "amount": 1
             },
             {
               "chance": 40,
-              "item": "VeggieElderTcket",
+              "item": 919,
               "amount": 1
             }
           ]
@@ -4501,7 +4288,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Rathian",
+          "monster": 1,
           "quantity": 1,
           "power": 12,
           "multipliers": {
@@ -4524,47 +4311,42 @@
       },
       "small_monsters": [
         {
-          "monster": "Aptonoth",
+          "monster": 12,
           "max_quantity": 2,
           "total_quantity": 2,
           "endless": true
         },
         {
-          "monster": "Kelbi",
+          "monster": 3,
           "max_quantity": 14,
           "total_quantity": 14
         },
         {
-          "monster": "Vespoid",
+          "monster": 19,
           "max_quantity": 6,
           "total_quantity": 20
         },
         {
-          "monster": "Hermitaur",
+          "monster": 66,
           "max_quantity": 2,
           "total_quantity": 3
         },
         {
-          "monster": "Mosswine",
+          "monster": 4,
           "max_quantity": 12,
           "total_quantity": 20
         },
         {
-          "monster": "Bullfango",
+          "monster": 5,
           "max_quantity": 2,
           "total_quantity": 2
         },
         {
-          "monster": "Velociprey",
+          "monster": 16,
           "max_quantity": 7,
           "total_quantity": 12
         }
       ],
-      "title": "Rathian Exercises",
-      "goal": "Slay the Rathian",
-      "details": "It is I, your esteemed\ninstructor. No time for\ntricks, just use your skills\nand finish this beast off!\nUse everything you've\nlearned about \"cooperation\"\nand obliterate your foe!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -4573,13 +4355,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 2,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 900,
       "penalty": 300,
       "time_limit_minutes": 10,
       "target": {
-        "monster": "Congalala",
+        "monster": 52,
         "amount": 1
       },
       "supplies": [],
@@ -4591,22 +4373,22 @@
           "items": [
             {
               "chance": 40,
-              "item": "Raw Meat",
+              "item": 43,
               "amount": 2
             },
             {
               "chance": 45,
-              "item": "Well-Done Steak",
+              "item": 48,
               "amount": 1
             },
             {
               "chance": 5,
-              "item": "Gourmet Steak",
+              "item": 49,
               "amount": 1
             },
             {
               "chance": 10,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 1
             }
           ]
@@ -4618,12 +4400,12 @@
           "items": [
             {
               "chance": 90,
-              "item": "Gourmet Steak",
+              "item": 49,
               "amount": 1
             },
             {
               "chance": 10,
-              "item": "VeggieElderTcket",
+              "item": 919,
               "amount": 1
             }
           ]
@@ -4631,7 +4413,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Congalala",
+          "monster": 52,
           "quantity": 1,
           "power": 6,
           "multipliers": {
@@ -4653,11 +4435,6 @@
         "max": 100
       },
       "small_monsters": [],
-      "title": "Congalala Exercises",
-      "goal": "Slay the Congalala",
-      "details": "It is I, your esteemed\ninstructor. I want to see\nyour true power on this one!\nGive it all you've got, you\nhear!? But don't leave your\nfriends in the dust. Be as\none! Fight as one!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -4666,13 +4443,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 4,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 6000,
       "penalty": 2000,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Shogun Ceanataur",
+        "monster": 67,
         "amount": 1
       },
       "supplies": [],
@@ -4684,22 +4461,22 @@
           "items": [
             {
               "chance": 25,
-              "item": "Shogun Coin",
+              "item": 896,
               "amount": 1
             },
             {
               "chance": 15,
-              "item": "Expert Ticket",
+              "item": 926,
               "amount": 1
             },
             {
               "chance": 35,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Gourmet Steak",
+              "item": 49,
               "amount": 1
             }
           ]
@@ -4711,12 +4488,12 @@
           "items": [
             {
               "chance": 60,
-              "item": "Shogun Coin",
+              "item": 896,
               "amount": 2
             },
             {
               "chance": 40,
-              "item": "VeggieElderTcket",
+              "item": 919,
               "amount": 1
             }
           ]
@@ -4724,7 +4501,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Shogun Ceanataur",
+          "monster": 67,
           "quantity": 1,
           "power": 11,
           "multipliers": {
@@ -4746,11 +4523,6 @@
         "max": 110
       },
       "small_monsters": [],
-      "title": "Shogun Ceanataur Exercises",
-      "goal": "Slay 1 Shogun Ceanataur",
-      "details": "It is I, your esteemed\ninstructor. Your opponent\nthis time is a pair of\nShogun Ceanataurs. You only\nhave to beat one to clear\nthe quest, so remember which\none you're going after!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     },
@@ -4759,13 +4531,13 @@
       "hub": "training-school",
       "rank": null,
       "stars": 5,
-      "map": "Arena (Large)",
+      "map": 9,
       "fee": 0,
       "reward": 8000,
       "penalty": 2700,
       "time_limit_minutes": 40,
       "target": {
-        "monster": "Tigrex",
+        "monster": 75,
         "amount": 2
       },
       "supplies": [],
@@ -4777,27 +4549,27 @@
           "items": [
             {
               "chance": 25,
-              "item": "Expert Coin G",
+              "item": 900,
               "amount": 1
             },
             {
               "chance": 25,
-              "item": "Warrior Coin G",
+              "item": 901,
               "amount": 1
             },
             {
               "chance": 20,
-              "item": "Small Goldenfish",
+              "item": 240,
               "amount": 3
             },
             {
               "chance": 20,
-              "item": "Steel Egg",
+              "item": 860,
               "amount": 2
             },
             {
               "chance": 10,
-              "item": "VeggieElderTckt+",
+              "item": 920,
               "amount": 1
             }
           ]
@@ -4809,12 +4581,12 @@
           "items": [
             {
               "chance": 60,
-              "item": "Warrior Coin G",
+              "item": 901,
               "amount": 1
             },
             {
               "chance": 40,
-              "item": "VeggieElderTckt+",
+              "item": 920,
               "amount": 1
             }
           ]
@@ -4822,7 +4594,7 @@
       ],
       "large_monsters": [
         {
-          "monster": "Tigrex",
+          "monster": 75,
           "quantity": 2,
           "power": 18,
           "multipliers": {
@@ -4844,11 +4616,6 @@
         "max": 108
       },
       "small_monsters": [],
-      "title": "Tigrex Exercises",
-      "goal": "Slay 2 Tigrex",
-      "details": "It is I, your esteemed\ninstructor. You'll be going\nafter 2 Tigrex back to\nback today. Try not to\nattack when it's infuriated,\nand use whatever you've got\nto create an opening!",
-      "fail": "Reward Zero\nTime Over",
-      "client": "Instructor",
       "requires": null,
       "urgent": false
     }

@@ -34,6 +34,14 @@ const BUILD_ID = "2026-11-12";
 const nextConfig = {
   output: "export",
   trailingSlash: true,
+  // The game data's loader (packages/game-data) is TypeScript source, and
+  // imports its own modules as "./files.js", as Node's ESM resolution wants.
+  // Webpack finds the .ts file behind each.
+  transpilePackages: ["game-data"],
+  webpack: (config) => {
+    config.resolve.extensionAlias = { ...config.resolve.extensionAlias, ".js": [".ts", ".js"] };
+    return config;
+  },
   experimental: { viewTransition: true },
   generateBuildId: () => BUILD_ID,
   // Share links (/sets/<code>/<slug>/, SHARE_PATH in src/lib/set-link.ts) are

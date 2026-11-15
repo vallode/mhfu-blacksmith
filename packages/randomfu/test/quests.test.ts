@@ -18,20 +18,22 @@ import {
 import { randomize } from "../src/randomize.js";
 import { Rng } from "../src/rng.js";
 import { collectDeliveries, shuffleDeliveries } from "../src/shuffles/deliveries.js";
+import { collectSupplyRuns, randomizeSupplies, shuffleSupplies } from "../src/shuffles/supplies.js";
 import {
-  addSupplies,
-  collectSupplyRuns,
-  shuffleSupplies,
-  type SupplyContext,
-} from "../src/shuffles/supplies.js";
-import { buildFixtureDisc, buildQuestPayload, FIXTURE_QUESTS, tempDir } from "./fixtures.js";
+  buildFixtureDisc,
+  buildQuestPayload,
+  finish,
+  FIXTURE_QUESTS,
+  patchInMemory,
+  tempDir,
+} from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function load(): Promise<{ game: GameData; close: () => void }> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: null });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -97,124 +99,111 @@ test("supply boxes: stacks move within their tier; quest items, the Paw Pass and
   close();
 });
 
-test("supply boxes from the same rank never hold quest items", async () => {
+test("randomized supply boxes keep the Map and never gain quest items", async () => {
   const { game, close } = await load();
   for (const seed of SEEDS) {
-    for (const pool of ["rank"]) {
-      const s = settingsWith(seed, ["supplies"], { "supplies.pool": pool });
+    for (const scope of ["rank", "star", "any"]) {
+      const s = settingsWith(seed, ["supplies"], {
+        "supplies.mode": "randomize",
+        "supplies.scope": scope,
+      });
       const result = randomize(game, s);
       for (const id of [1001, 10102, 2001]) {
         const before = supplies(byId(game, id).file.payload);
         const after = supplies(result.edits.questNow(byId(game, id)));
-        after.forEach(([item], i) => {
-          if (before[i]![0] === 863) assert.deepEqual(after[i], before[i], "the Map stays");
-          else assert.ok(item !== 863 && item !== 927, `${seed} ${pool}: quest ${id} got ${item}`);
-        });
+        const count = (list: number[][], item: number) => list.filter(([i]) => i === item).length;
+        assert.equal(count(after, 863), count(before, 863), "the Map stays");
+        assert.equal(count(after, 927), count(before, 927), "no Paw Pass Ticket gained or lost");
+        assert.ok(after.length >= 1);
       }
     }
   }
   close();
 });
 
-test("adding to supply boxes keeps them and appends random stacks where there's room", async () => {
+test("randomizing supply boxes rolls their length within the disc's limits", async () => {
   const { game, close } = await load();
   const largestQuest = Math.max(...game.quests.map((q) => q.file.payload.length));
   const largestBox = Math.max(...game.quests.map((q) => readSupplySlots(q.file.payload).length));
-  const room = new Map<number, number>();
+  const lengths = new Map<number, Set<number>>();
+  let grew = false;
   for (const seed of SEEDS) {
-    const result = randomize(game, settingsWith(seed, ["supplies"], { "supplies.pool": "add" }));
+    const result = randomize(
+      game,
+      settingsWith(seed, ["supplies"], {
+        "supplies.mode": "randomize",
+        "supplies.scope": "any",
+        "supplies.slots": 0.95,
+      }),
+    );
     for (const q of game.quests) {
       const id = q.parsed.header.questId;
       const before = q.file.payload;
       const after = result.edits.questNow(q);
-      if (id === 20001 || after.length === before.length) {
-        assert.ok(after.equals(before), `quest ${id} unchanged`);
-        room.set(id, 0);
+      if (id === 20001) {
+        assert.ok(after.equals(before), "Training School unchanged");
         continue;
       }
-      // The old bytes are all still there; only the supply pointer changed.
-      assert.ok(after.subarray(12, before.length).equals(before.subarray(12)));
-      assert.ok(after.subarray(0, 8).equals(before.subarray(0, 8)));
-      const ptr = after.readUInt32LE(8);
-      assert.ok(ptr >= before.length && ptr % 4 === 0, "the box moved to the end");
-      assert.ok(after.length <= Math.min(largestQuest, q.file.capacity));
       const box = supplies(after);
-      const old = supplies(before);
-      assert.deepEqual(box.slice(0, old.length), old, "keeps its own stacks, in order");
-      const added = box.slice(old.length);
-      assert.ok(added.length >= 1 && added.length <= 4 && box.length <= largestBox);
-      const oldItems = new Set(old.map(([item]) => item));
-      const addedItems = added.map(([item]) => item!);
-      assert.equal(new Set(addedItems).size, addedItems.length, "no item added twice");
-      for (const [item, amount] of added) {
-        assert.ok(!oldItems.has(item!), `${id}: ${item} was in the box already`);
-        assert.ok(item !== 863 && item !== 927 && amount! >= 1, `${id}: added ${item} x${amount}`);
+      assert.ok(box.length >= 1 && box.length <= largestBox, `${id}: ${box.length} entries`);
+      assert.ok(after.length <= Math.min(largestQuest, q.file.capacity));
+      const ptr = after.readUInt32LE(8);
+      if (after.length > before.length) {
+        grew = true;
+        assert.ok(ptr >= before.length && ptr % 4 === 0, "the box moved to the end");
+        assert.ok(after.subarray(12, before.length).equals(before.subarray(12)));
       }
-      // The same end marker.
+      // The same end marker: item 0, then the quest's ID.
       assert.equal(after.readUInt16LE(ptr + box.length * 4), 0);
       assert.equal(after.readUInt16LE(ptr + box.length * 4 + 2), id);
-      room.set(id, added.length);
+      const items = runsOf(box).map((r) => r.split("x")[0]!);
+      assert.equal(new Set(items).size, items.length, `${id}: no item twice`);
+      for (const [item, amount] of box) assert.ok(amount! >= 1 && item! > 0);
+      lengths.set(id, (lengths.get(id) ?? new Set()).add(box.length));
     }
   }
-  assert.equal(room.get(1001), 0, "1001 has the largest box already");
-  assert.equal(room.get(10102), 0, "10102 is the largest quest already");
-  assert.equal(room.get(10101), 3, "up to the largest box's 5 stacks");
-  assert.equal(room.get(2001), 4);
+  assert.ok(grew, "some box outgrew its place");
+  assert.ok(
+    [...lengths.values()].some((set) => set.size > 1),
+    "box lengths vary",
+  );
   close();
 });
 
 test("no supply mode gives a delivery quest the item it asks for", async () => {
   const { game, close } = await load();
-  const context = (deliveries: Map<number, number>, extra: Partial<SupplyContext> = {}) => ({
-    bands: new Map(),
-    allItems: [],
-    usualAmount: () => 1,
-    deliveryItem: (q: { parsed: { header: { questId: number } } }) =>
-      deliveries.get(q.parsed.header.questId),
-    ...extra,
-  });
+  const deliveryItem =
+    (deliveries: Map<number, number>) => (q: { parsed: { header: { questId: number } } }) =>
+      deliveries.get(q.parsed.header.questId);
   const boxOf = (edits: Edits, id: number) =>
     readSupplySlots(edits.questNow(byId(game, id))).map((s) => s.itemId);
   let swapped = false;
   for (const seed of SEEDS) {
-    // Adding: 2001 has room for 4 and only 241 to 245 to draw from, 241 being its target.
-    const added = new Edits(game);
-    addSupplies(
+    // Randomizing: 2001 can draw only from 240 to 245, 241 being its target.
+    const rolled = new Edits(game);
+    randomizeSupplies(
       game.quests,
-      context(new Map([[2001, 241]]), { allItems: [240, 241, 242, 243, 244, 245] }),
+      { scope: "any", slotSpread: 0.95, keepEssentials: true },
+      {
+        deliveryItem: deliveryItem(new Map([[2001, 241]])),
+        tiers: new Map(),
+        allItems: [240, 241, 242, 243, 244, 245],
+        amounts: () => [1],
+      },
       new Rng(seed),
-      added,
+      rolled,
     );
-    assert.deepEqual(boxOf(added, 2001).sort(), [240, 242, 243, 244, 245]);
+    assert.ok(!boxOf(rolled, 2001).includes(241), `${seed}: randomized`);
 
-    // The rank pool: 2001's only High Rank choices are its target and 242.
-    const ranked = new Edits(game);
-    const highRuns = collectSupplyRuns(game.quests, () => false).filter(
-      (r) => r.quest.parsed.header.questId === 2001,
-    );
-    shuffleSupplies(
-      highRuns,
-      { pool: "rank", keepEssentials: true },
-      context(new Map([[2001, 241]]), {
-        bands: new Map([
-          [241, "high"],
-          [242, "high"],
-        ]),
-      }),
-      new Rng(seed),
-      ranked,
-    );
-    assert.ok(!boxOf(ranked, 2001).includes(241), `${seed}: rank pool`);
-
-    // Permuting: 10102 must not get 1001's 140 stacks; the tier keeps its stacks.
+    // Shuffling: 10102 must not get 1001's 140 stacks; the tier keeps its stacks.
     const permuted = new Edits(game);
     const lowRuns = collectSupplyRuns(game.quests, (_, item) => isQuestItem(item)).filter((r) =>
       [1001, 10102].includes(r.quest.parsed.header.questId),
     );
     shuffleSupplies(
       lowRuns,
-      { pool: "supplies", keepEssentials: true },
-      context(new Map([[10102, 140]])),
+      { scope: "star", keepEssentials: true },
+      { deliveryItem: deliveryItem(new Map([[10102, 140]])) },
       new Rng(seed),
       permuted,
     );
@@ -410,32 +399,32 @@ test("the new shuffles keep to their own random streams", async () => {
 });
 
 test("a written disc reads back with the new supplies, terms and target", async () => {
-  for (const pool of ["supplies", "add"]) await writeAndReadBack(pool);
+  for (const mode of ["shuffle", "randomize"]) await writeAndReadBack(mode);
 });
 
-async function writeAndReadBack(pool: string): Promise<void> {
+async function writeAndReadBack(mode: string): Promise<void> {
   const { game, close } = await load();
   const s = settingsWith("w", ["supplies", "quest-money", "time-limits", "deliveries"], {
-    "supplies.pool": pool,
+    "supplies.mode": mode,
+    "supplies.slots": 0.95,
   });
   const result = randomize(game, s);
-  if (pool === "add") {
+  if (mode === "randomize") {
     assert.ok(
       [...result.edits.quests.values()].some((e) => e.payload.length > e.quest.file.payload.length),
     );
   }
   const out = path.join(tempDir(), "out.iso");
-  writeFileSync(out, buildFixtureDisc());
-  const { openPatchableImage } = await import("../src/disc/node-file.js");
+  const original = buildFixtureDisc();
   const { writeEdits } = await import("../src/write.js");
-  const image = openPatchableImage(out);
+  const image = patchInMemory(original);
   writeEdits(image, game, result.edits);
-  image.close();
+  writeFileSync(out, finish(image, original));
   const { source, iso } = openDiscImage(out);
-  const after = await loadGame(source, iso, { eboot: null });
+  const after = await loadGame(source, iso);
   for (const q of after.quests) {
     const expected = result.edits.questNow(game.quests.find((g) => g.index === q.index)!);
-    assert.ok(q.file.payload.equals(expected), `${pool}: quest ${q.parsed.header.questId}`);
+    assert.ok(q.file.payload.equals(expected), `${mode}: quest ${q.parsed.header.questId}`);
   }
   assert.equal(after.dataBin.fileCount, game.dataBin.fileCount);
   source.close();

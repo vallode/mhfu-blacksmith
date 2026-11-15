@@ -1,0 +1,22 @@
+{
+  "name": "game-data",
+  "version": "0.1.0",
+  "private": true,
+  "description": "Reads and writes the game data in data/: records keyed by game ID, names in per-language string tables.",
+  "license": "MIT",
+  "type": "module",
+  "exports": {
+    ".": "./src/index.ts"
+  },
+  "scripts": {
+    "test": "tsx --test test/**/*.test.ts",
+    "typecheck": "tsc --noEmit -p ."
+  },
+  "dependencies": {
+    "tsx": "^4.22.4"
+  },
+  "devDependencies": {
+    "@types/node": "^22",
+    "typescript": "^5"
+  }
+}

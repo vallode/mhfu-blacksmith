@@ -1,6 +1,6 @@
 /**
- * The randomfu web app's page: a step-by-step builder over the same
- * `OPTIONS` and `PRESETS` the CLI uses. The steps are the disc, the seed and
+ * The randomfu web app's page: a step-by-step builder over the
+ * `OPTIONS` and `PRESETS` in randomfu's settings. The steps are the disc, the seed and
  * a preset, one step per group of option sections, a review, and the run.
  *
  * Runs happen in a worker. The finished ISO is assembled as a Blob from
@@ -35,12 +35,15 @@ const $ = <T extends HTMLElement = HTMLElement>(id: string) => document.getEleme
 
 // ---------------------------------------------------------------- the steps
 
-interface Step {
-  id: string;
-  title: string;
-  /** A game sprite from images/, and its tint (a site colour token). */
+/** A game sprite from images/ (copied in by build.mjs), and its tint (a site colour token). */
+interface Sprite {
   icon: string;
   tint?: string;
+}
+
+interface Step extends Sprite {
+  id: string;
+  title: string;
   /** For option steps: the `OptionDef.section`s it shows, and a line above them. */
   sections?: string[];
   intro?: string;
@@ -49,14 +52,6 @@ interface Step {
 }
 
 const OPTION_STEPS: Step[] = [
-  {
-    id: "logic",
-    title: "Logic",
-    icon: "star",
-    sections: ["Logic"],
-    intro:
-      "Logic applies to every item shuffle: quest rewards, carves, gathering points, supply boxes and recipe materials. At Same star level, every recipe stays craftable as early in the game as before.",
-  },
   {
     id: "rewards",
     title: "Rewards",
@@ -87,7 +82,7 @@ const OPTION_STEPS: Step[] = [
     title: "Monsters",
     icon: "part",
     tint: "var(--color-gem-orange)",
-    sections: ["Quest monsters", "Monster stats", "Weaknesses", "Hints"],
+    sections: ["Quest monsters", "Monster stats", "Weaknesses"],
     intro:
       "Which monsters quests have and how tough they are. All of it has been tried in game, and the presets use it.",
   },
@@ -106,6 +101,14 @@ const OPTION_STEPS: Step[] = [
     sections: ["Shop stock", "Shop prices"],
     intro: "What the village, Guild Hall and peddling granny sell, and for how much.",
   },
+  {
+    id: "extras",
+    title: "Extras",
+    icon: "deco",
+    sections: ["Extras"],
+    intro:
+      "Neither a shuffle nor a randomizer: text, bookshelf guides and map changes that show you what the other steps did.",
+  },
 ];
 
 // A section no step claims still gets a step, so a new option always shows up.
@@ -114,6 +117,25 @@ const unclaimed = [...new Set(OPTIONS.map((o) => o.section))].filter((s) => !cla
 if (unclaimed.length > 0) {
   OPTION_STEPS.push({ id: "more", title: "More", icon: "deco", sections: unclaimed });
 }
+
+/** The sprite beside each option section's heading, in steps of more than one section. */
+const SECTION_ICONS: Record<string, Sprite> = {
+  "Quest rewards": { icon: "heavenly", tint: "var(--color-gem-yellow)" },
+  "Monster rewards": { icon: "scale", tint: "var(--color-gem-red)" },
+  Supplies: { icon: "fluid", tint: "var(--color-gem-green)" },
+  "Quest terms": { icon: "ticket", tint: "var(--color-gem-orange)" },
+  Deliveries: { icon: "egg", tint: "var(--color-parchment)" },
+  "Quest monsters": { icon: "monsters/flying-wyvern", tint: "var(--color-gem-orange)" },
+  "Monster stats": { icon: "ko" },
+  Weaknesses: { icon: "fire" },
+  Hints: { icon: "ukwn", tint: "var(--color-gem-cyan)" },
+  Crafting: { icon: "bone", tint: "var(--color-parchment)" },
+  Costs: { icon: "coin", tint: "var(--color-gem-yellow)" },
+  Weapons: { icon: "great-sword" },
+  Armor: { icon: "helmet" },
+  "Shop stock": { icon: "sac", tint: "var(--color-gem-orange)" },
+  "Shop prices": { icon: "coin", tint: "var(--color-gem-yellow)" },
+};
 
 const STEPS: Step[] = [
   { id: "game", title: "Your game", icon: "binoculars" },
@@ -195,11 +217,16 @@ function el<K extends keyof HTMLElementTagNameMap>(
   return node;
 }
 
-function icon(step: Step): HTMLElement {
+function icon(sprite: Sprite): HTMLElement {
   const span = el("span", { class: "icon", "aria-hidden": "true" });
-  span.style.setProperty("--icon", `url(images/${step.icon}.png)`);
-  if (step.tint) span.style.setProperty("--tint", step.tint);
+  setIcon(span, sprite);
   return span;
+}
+
+function setIcon(span: HTMLElement, sprite: Sprite): void {
+  span.style.setProperty("--icon", `url(images/${sprite.icon}.png)`);
+  if (sprite.tint) span.style.setProperty("--tint", sprite.tint);
+  else span.style.removeProperty("--tint");
 }
 
 function arrowButton(next: boolean, label: string): HTMLButtonElement {
@@ -333,8 +360,10 @@ function buildOptionPanels(): void {
       if (options.length === 0) continue;
       const block = el("div", { class: "option-section" });
       // A step of one section already has its name as the title.
-      if ((step.sections?.length ?? 0) > 1)
-        block.append(el("h3", { class: "subheading" }, section));
+      if ((step.sections?.length ?? 0) > 1) {
+        const sprite = SECTION_ICONS[section];
+        block.append(el("h3", { class: "subheading" }, sprite ? icon(sprite) : null, section));
+      }
       for (const option of options) block.append(renderOption(option));
       panel.append(block);
     }
@@ -472,6 +501,7 @@ function renderSteps(): void {
 
   $("step-count").textContent = `Step ${at + 1}/${steps.length}`;
   $("step-title").textContent = step.title;
+  setIcon($("step-icon"), step);
   for (const panel of document.querySelectorAll<HTMLElement>(".panel")) {
     panel.hidden = panel.dataset.step !== current;
   }
@@ -692,6 +722,14 @@ function droppable(): void {
 
 // ---------------------------------------------------------------- runs
 
+/**
+ * For testing in game, from the address: `?poogie-test` makes a happy Poogie
+ * always give the rarest reward (not for play), and `?debug` adds research
+ * detail to the spoiler log.
+ */
+const params = new URLSearchParams(location.search);
+const testing = { poogieTest: params.has("poogie-test"), debug: params.has("debug") };
+
 function outputName(file: File, seed: string): string {
   return `${file.name.replace(/\.iso$/i, "")} (RandomFU ${seed}).iso`;
 }
@@ -719,7 +757,12 @@ async function run(dryRun: boolean): Promise<void> {
     log.scrollTop = log.scrollHeight;
   };
   try {
-    const r = await ask({ type: "run", iso: file, settings, dryRun });
+    const r = await ask({
+      type: "run",
+      iso: file,
+      settings,
+      options: { ...testing, dryRun },
+    });
     if (r.type === "error") throw new Error(r.message);
     if (r.type !== "done") throw new Error("The run stopped without finishing.");
     showSpoiler(r.spoiler);
@@ -730,11 +773,14 @@ async function run(dryRun: boolean): Promise<void> {
         "data" in s ? s.data : file.slice(s.start, s.end),
       );
       const blob = new Blob(parts as BlobPart[], { type: "application/octet-stream" });
-      links.push(download(outputName(file, seed), blob, "Download randomized ISO"));
+      const link = download(outputName(file, seed), blob, "Download randomized ISO");
+      link.prepend(icon({ icon: "max" }));
+      links.push(link);
     } else {
       const now = el(
         "button",
         { type: "button", class: "button primary", id: "run-now" },
+        icon({ icon: "max" }),
         "Randomize!",
       );
       now.addEventListener("click", () => void run(false));
@@ -746,6 +792,7 @@ async function run(dryRun: boolean): Promise<void> {
       "Download spoiler log",
     );
     spoilerLink.className = "button";
+    spoilerLink.prepend(icon({ icon: "binoculars" }));
     links.push(spoilerLink);
     $("downloads").replaceChildren(...links);
     $<HTMLDetailsElement>("log-wrap").open = false;

@@ -25,7 +25,6 @@ const web = path.dirname(fileURLToPath(import.meta.url));
 const site = path.resolve(web, "..", "blacksmith");
 const dist = path.join(web, "dist");
 const shim = (name) => path.join(web, "shims", name);
-const unavailable = shim("unavailable.ts");
 
 mkdirSync(dist, { recursive: true });
 await build({
@@ -47,11 +46,6 @@ await build({
     "node:fs": shim("fs.ts"),
     "node:path": shim("path.ts"),
     "node:url": shim("url.ts"),
-    "node:fs/promises": unavailable,
-    "node:child_process": unavailable,
-    "node:os": unavailable,
-    "node:util": unavailable,
-    "node:zlib": unavailable,
   },
   loader: { ".csv": "text", ".enum": "text" },
   logLevel: "warning",
@@ -137,6 +131,19 @@ const assets = [
   "images/deco.png",
   "images/ticket.png",
   "images/max.png",
+  // Beside the option sections' headings (SECTION_ICONS in app.ts).
+  "images/heavenly.png",
+  "images/scale.png",
+  "images/fluid.png",
+  "images/egg.png",
+  "images/monsters/flying-wyvern.png",
+  "images/ko.png",
+  "images/fire.png",
+  "images/ukwn.png",
+  "images/bone.png",
+  "images/great-sword.png",
+  "images/helmet.png",
+  "images/sac.png",
   "images/favicons/felyne-favicon.png",
   "images/favicons/felyne-apple-touch-icon.png",
 ];

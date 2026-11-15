@@ -82,6 +82,25 @@ export const items = {
     /** One kind of point and where it is: "Mining: Base Camp, areas 2, 5". */
     points: (kind: string, places: string) => `${kind}: ${places}`,
   },
+  /** Pokke Farm's gathering points (lib/item-places FarmPlace). */
+  farm: {
+    title: "Pokke Farm",
+    spots: { mining: "Mining", insects: "Bugs", mushrooms: "Mushrooms", honey: "Honey" },
+    /** "Mining · 3-4 per quest" */
+    perQuest: (spot: string, count: string) => `${spot} · ${count} per quest`,
+    // The farm's upgrades, by their English name without the "+N" level.
+    points: {
+      "Mining Point": "Mining Point",
+      "Insect Thicket": "Insect Thicket",
+      "Mushroom Tree": "Mushroom Tree",
+      "Prototype Bee Hive": "Prototype Bee Hive",
+      "Production Bee Hive": "Production Bee Hive",
+      "Modified Bee Hive": "Modified Bee Hive",
+    } as Record<string, string>,
+    restocks: "The farm restocks after every quest.",
+    upgradesStack:
+      "Each Mining Point and Insect Thicket upgrade adds a point of its own, so the earlier ones stay.",
+  },
   shops: {
     title: "Shops",
     /** Shop names, by data/shops.json's name. Unlisted ones stay as they are. */
@@ -185,7 +204,14 @@ export const items = {
     /** The ways to get a material. */
     ways: {
       /** What to do. Short: the column fits eight characters. */
-      kinds: { shop: "Buy", monster: "Hunt", gather: "Gather", quest: "Quest", combine: "Combine" },
+      kinds: {
+        shop: "Buy",
+        monster: "Hunt",
+        gather: "Gather",
+        farm: "Farm",
+        quest: "Quest",
+        combine: "Combine",
+      },
       shop: "Shop",
       stageStock: (stage: number) => `Stage ${stage} stock`,
       /** By lib/item-places GatherKind. */

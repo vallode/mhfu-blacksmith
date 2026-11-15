@@ -1,20 +1,20 @@
 import assert from "node:assert/strict";
-import { readFileSync, writeFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { decryptQuest } from "mhfu-extract/src/quests/mib.js";
 import { DataBin } from "../src/disc/databin.js";
-import { copyAsIso, openPatchableImage } from "../src/disc/node-file.js";
 import { openQuestFile } from "../src/disc/quest-file.js";
 import {
-  buildCso,
   buildDataBin,
   buildIso,
   buildQuestEntry,
   buildQuestPayload,
+  finish,
   FIXTURE_QUESTS,
   JP_RAW,
+  patchInMemory,
   SECTOR,
   tempDir,
 } from "./fixtures.js";
@@ -25,23 +25,15 @@ function writeTemp(name: string, data: Buffer): string {
   return file;
 }
 
-test("copyAsIso decompresses a CSO to the same image", () => {
-  const iso = buildIso([{ path: "A/B.BIN", data: Buffer.from("hello") }]);
-  const out = path.join(tempDir(), "out.iso");
-  copyAsIso(writeTemp("in.cso", buildCso(iso)), out);
-  assert.ok(readFileSync(out).equals(iso));
-});
-
 test("replaceFile rewrites a file in place when it still fits", () => {
   const iso = buildIso([
     { path: "D/A.BIN", data: Buffer.alloc(3000, 1) },
     { path: "D/B.BIN", data: Buffer.alloc(100, 2) },
   ]);
-  const file = writeTemp("img.iso", iso);
-  const image = openPatchableImage(file);
+  const image = patchInMemory(iso);
   const before = image.stat("/D/A.BIN");
   const result = image.replaceFile("/D/A.BIN", Buffer.alloc(3500, 9));
-  image.close();
+  const file = writeTemp("img.iso", finish(image, iso));
   assert.equal(result.moved, false);
 
   const { iso: reader, source } = openDiscImage(file);
@@ -57,10 +49,9 @@ test("replaceFile moves a grown file to the end and updates the volume size", ()
     { path: "D/A.BIN", data: Buffer.alloc(100, 1) },
     { path: "D/B.BIN", data: Buffer.alloc(100, 2) },
   ]);
-  const file = writeTemp("img.iso", iso);
-  const image = openPatchableImage(file);
+  const image = patchInMemory(iso);
   const result = image.replaceFile("/D/A.BIN", Buffer.alloc(5000, 7));
-  image.close();
+  const file = writeTemp("img.iso", finish(image, iso));
   assert.equal(result.moved, true);
   assert.equal(result.lba, iso.length / SECTOR);
 

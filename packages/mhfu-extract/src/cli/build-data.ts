@@ -3,19 +3,25 @@
  * output. Equipment categories are merged field by field
  * (`build/merge.ts`); item stats are written into `data/items.json` by ID
  * (`build/items.ts`); quests, gathering points and shops have no committed
- * counterpart and are copied through, with each item under its game name. Prints, and optionally writes, a report of every value the disc
+ * counterpart and are copied through, with each item under its game name.
+ * Prints, and optionally writes, a report of every value the disc
  * changed, every reviewed disagreement kept as committed, and every item
  * only one side has.
+ *
+ * Everything here works on the named view of `data/` (game-data's
+ * `readData`). `writeData` writes it back: records with game IDs, names and
+ * quest text into `data/strings/en.json`. A second run writes nothing.
  */
-import { mkdir, readdir, readFile, writeFile } from "node:fs/promises";
+import { existsSync } from "node:fs";
+import { readdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
+import { readData, writeData } from "game-data";
 import { CATEGORIES, CATEGORY_NAMES, type CategoryName } from "../build/categories.js";
 import { loadInputs, type Unpaired } from "../build/compare.js";
 import { discMaterialId, loadSiteIndex, type SiteIndex } from "../build/ids.js";
 import {
   loadKeepSiteValues,
   mergeCategory,
-  serializeDataFile,
   type Change,
   type KeptDisagreement,
 } from "../build/merge.js";
@@ -29,20 +35,22 @@ import { mergeItemStats, type ItemStatChange } from "../build/items.js";
 import type { EmittedItem } from "../emit/items.js";
 
 /** Targets copied from the disc whole, rather than merged with committed files. */
-export type CopiedTarget = "quests" | "gathering" | "shops" | "combinations" | "veggie-trades";
+export type CopiedTarget =
+  "quests" | "gathering" | "shops" | "combinations" | "veggie-trades" | "farm";
 const COPIED_TARGETS: CopiedTarget[] = [
   "quests",
   "gathering",
   "shops",
   "combinations",
   "veggie-trades",
+  "farm",
 ];
 /**
  * Copied targets `extract` skips with a warning when it can't find them: a
  * run that doesn't name them in `only` leaves them as they are instead of
  * failing.
  */
-const OPTIONAL_TARGETS: CopiedTarget[] = ["veggie-trades"];
+const OPTIONAL_TARGETS: CopiedTarget[] = ["veggie-trades", "farm"];
 export type BuildTarget = CategoryName | "items" | CopiedTarget;
 export const BUILD_TARGETS: BuildTarget[] = [...CATEGORY_NAMES, "items", ...COPIED_TARGETS];
 
@@ -199,6 +207,17 @@ export function nameVeggieTradeItems(content: unknown, site: SiteIndex): unknown
   };
 }
 
+/** Writes each Pokke Farm point's items under their game names. */
+export function nameFarmItems(content: unknown, site: SiteIndex): unknown {
+  const rename = itemRenamer(site);
+  const doc = content as { points?: { items: QuestItem[] }[] };
+  if (!Array.isArray(doc?.points)) return content;
+  return {
+    ...doc,
+    points: doc.points.map((point) => ({ ...point, items: point.items.map(rename) })),
+  };
+}
+
 interface ItemRef {
   id: number;
   name: string;
@@ -235,6 +254,7 @@ async function copiedFiles(
   if (target === "shops") return { files: ["shops.json"], name: nameShopItems };
   if (target === "veggie-trades")
     return { files: ["veggie-trades.json"], name: nameVeggieTradeItems };
+  if (target === "farm") return { files: ["farm.json"], name: nameFarmItems };
   if (target === "combinations")
     return { files: ["combinations.json"], name: nameCombinationItems };
   const from = path.join(extractedDir, "quests");
@@ -248,16 +268,11 @@ async function copiedFiles(
 async function buildItems(options: BuildDataOptions): Promise<ItemsBuildReport> {
   const source = await readJsonOrNull(path.join(options.extracted, "items.json"));
   if (!source) throw new Error(`items.json is missing from ${options.extracted}; rerun extract`);
-  const file = path.join(options.data, "items.json");
-  const previous = await readFile(file, "utf-8");
   const { items, colors } = source as { items: EmittedItem[]; colors?: string[] };
-  const merged = mergeItemStats(JSON.parse(previous), items, colors);
-  const next = `${JSON.stringify(merged.content, null, 2)}\n`;
-  const filesWritten: string[] = [];
-  if (next !== previous) {
-    if (!options.dryRun) await writeFile(file, next, "utf-8");
-    filesWritten.push("items.json");
-  }
+  const merged = mergeItemStats(readData(options.data, "items.json"), items, colors);
+  const filesWritten = writeData(options.data, "items.json", merged.content, {
+    dryRun: options.dryRun,
+  });
   return { changes: merged.changes, missing: merged.missing, filesWritten };
 }
 
@@ -277,11 +292,7 @@ async function copyTarget(
       continue;
     }
     if (!source) throw new Error(`${rel} is missing from ${options.extracted}; rerun extract`);
-    const content = name(source, site);
-    if (!options.dryRun) {
-      await mkdir(path.dirname(path.join(options.data, rel)), { recursive: true });
-      await writeFile(path.join(options.data, rel), JSON.stringify(content, null, 2), "utf-8");
-    }
+    writeData(options.data, rel, name(source, site), { dryRun: options.dryRun });
     written.push(rel);
   }
   return written;
@@ -335,14 +346,16 @@ async function buildCategories(
     }
     const filesWritten: string[] = [];
     for (const [file, items] of result.files) {
-      const absPath = path.join(options.data, file);
-      const original = await readJsonOrNull(absPath);
-      if (!original) continue; // build-data rewrites committed files; it doesn't create new ones
-      const next = serializeDataFile(category.arrayKey, original, items);
-      const previous = original ? await readFile(absPath, "utf-8") : null;
-      if (next === previous) continue;
-      if (!options.dryRun) await writeFile(absPath, next, "utf-8");
-      filesWritten.push(file);
+      // build-data rewrites committed files; it doesn't create new ones.
+      if (!existsSync(path.join(options.data, file))) continue;
+      const original = readData<Record<string, unknown>>(options.data, file);
+      const written = writeData(
+        options.data,
+        file,
+        { ...original, [category.arrayKey]: items },
+        { dryRun: options.dryRun },
+      );
+      filesWritten.push(...written.filter((f) => !filesWritten.includes(f)));
     }
     categories.push({
       category: name,
@@ -588,7 +601,7 @@ export function formatBuildReport(report: BuildDataReport): string {
     out.push(
       "## Copied from the disc",
       "",
-      `${report.copiedFiles.length} file(s): quests, gathering points, shops, combinations and Veggie Elder trades.`,
+      `${report.copiedFiles.length} file(s): quests, gathering points, shops, combinations, Veggie Elder trades and Pokke Farm.`,
       "",
       ...report.copiedFiles.map((f) => `- ${f}`),
       "",

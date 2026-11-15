@@ -4,7 +4,7 @@
  * name. The site's names differ from the enums' in places (MHFU renames,
  * spelling fixes), so IDs go through what the repo already maps:
  *
- * - weapons and armor: `data/equipment-ids.json` (slot -> ID -> site item),
+ * - weapons and armor: game-data's equipment-ID view (slot -> ID -> site item),
  *   the same table `build-data` pairs equipment with;
  * - items: `data/items.json` by ID, under its name;
  * - decorations: `data/decorations.json` names, whose item ID comes from
@@ -18,7 +18,7 @@
  * `map` has no disc table yet (map names are hand-transcribed in
  * tables/quest-maps.ts), so it is never produced.
  */
-import { readFileSync } from "node:fs";
+import { readData } from "game-data";
 import path from "node:path";
 import { loadSiteIndex, type EquipmentSlot } from "../build/ids.js";
 import { MONSTER_OVERLAY } from "../overlay/monsters.js";
@@ -71,9 +71,7 @@ export function loadSiteKeys(dataDir: string): SiteKeys {
     // for matching older spellings, and nothing looks a translation up by one.
     add(keys, "ItemID", item.id, "item", [item.name]);
   }
-  const decorations = JSON.parse(readFileSync(path.join(dataDir, "decorations.json"), "utf-8")) as {
-    decorations: { name: string }[];
-  };
+  const decorations = readData<{ decorations: { name: string }[] }>(dataDir, "decorations.json");
   for (const deco of decorations.decorations) {
     const id = site.itemIdOf(deco.name);
     if (id !== null) add(keys, "ItemID", id, "decoration", [deco.name]);
@@ -81,9 +79,10 @@ export function loadSiteKeys(dataDir: string): SiteKeys {
 
   for (const monster of MONSTER_OVERLAY) add(keys, "emID", monster.id, "monster", [monster.name]);
 
-  const skills = JSON.parse(readFileSync(path.join(dataDir, "skills.json"), "utf-8")) as {
-    skills: { tree: string; aliases?: string[] }[];
-  };
+  const skills = readData<{ skills: { tree: string; aliases?: string[] }[] }>(
+    dataDir,
+    "skills.json",
+  );
   const skillIds = new Map<string, number>();
   enumNames("SkillID").forEach((n, i) => {
     if (n) skillIds.set(n, i);

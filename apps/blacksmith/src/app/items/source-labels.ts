@@ -5,6 +5,7 @@
  */
 import type { GameText } from "@/lib/i18n/game-text";
 import { isRank } from "@/lib/i18n/labels";
+import type { FarmPlace } from "@/lib/item-places";
 import type { Messages } from "@/lib/i18n/messages";
 import type { DropSource } from "@/lib/monster-drops";
 import { QUEST_HUBS } from "@/lib/quests";
@@ -42,4 +43,16 @@ const TIME_OF_DAY = / \((?:Day|Night)\)$/;
 export function groundName(game: GameText, map: string): string {
   const name = game.name("map", map);
   return TIME_OF_DAY.test(map) ? name.replace(/\s*\([^()]*\)$/, "") : name;
+}
+
+/** A Pokke Farm point's kind and gathers per quest: "Mining · 3-4 per quest". */
+/** A farm upgrade's name ("Mining Point +2"), its level kept. */
+export function farmPointName(t: Messages, point: string): string {
+  const [, base = point, level = ""] = /^(.*?)( \+\d+)?$/.exec(point) ?? [];
+  return `${t.items.farm.points[base] ?? base}${level}`;
+}
+
+export function farmLabel(t: Messages, { spot, gathers, mostGathers }: FarmPlace): string {
+  const count = gathers === mostGathers ? `${gathers}` : `${gathers}-${mostGathers}`;
+  return t.items.farm.perQuest(t.items.farm.spots[spot], count);
 }

@@ -63,13 +63,12 @@ export class Edits {
   }
 
   eboot(): Buffer {
-    if (!this.game.eboot) throw new Error("The EBOOT wasn't loaded");
     this.ebootCopy ??= Buffer.from(this.game.eboot);
     return this.ebootCopy;
   }
 
   /** The edited EBOOT, or null if nothing changed it. */
   changedEboot(): Buffer | null {
-    return this.ebootCopy && !this.ebootCopy.equals(this.game.eboot!) ? this.ebootCopy : null;
+    return this.ebootCopy && !this.ebootCopy.equals(this.game.eboot) ? this.ebootCopy : null;
   }
 }

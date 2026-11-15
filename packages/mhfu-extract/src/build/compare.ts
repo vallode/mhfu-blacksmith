@@ -17,21 +17,35 @@ import {
 import { assignDiscIds, loadSiteIndex, type SiteIndex } from "./ids.js";
 import type { MaterialContext } from "./categories.js";
 import { monsterIdOf } from "../overlay/monsters.js";
+import { readData } from "game-data";
 
 export type Item = Record<string, unknown>;
 
 /** File (relative to `data/`) -> its items. A missing file reads as empty. */
 export type CategoryItems = Map<string, Item[]>;
 
-export async function readCategoryItems(dir: string, category: Category): Promise<CategoryItems> {
+/** Reads one file of `extract` output. */
+async function readExtracted(dir: string, file: string): Promise<Record<string, Item[]>> {
+  return JSON.parse(await readFile(path.join(dir, file), "utf-8")) as Record<string, Item[]>;
+}
+
+/**
+ * A category's items per file, from `extract` output or, with `read` set to
+ * `readData`, from committed `data/`.
+ */
+export async function readCategoryItems(
+  dir: string,
+  category: Category,
+  read: (
+    dir: string,
+    file: string,
+  ) => Record<string, Item[]> | Promise<Record<string, Item[]>> = readExtracted,
+): Promise<CategoryItems> {
   const out: CategoryItems = new Map();
   for (const { file } of category.files) {
     let items: Item[] = [];
     try {
-      const json = JSON.parse(await readFile(path.join(dir, file), "utf-8")) as Record<
-        string,
-        Item[]
-      >;
+      const json = await read(dir, file);
       items = json[category.arrayKey] ?? [];
     } catch (error) {
       if ((error as NodeJS.ErrnoException).code !== "ENOENT") throw error;
@@ -268,7 +282,7 @@ export async function loadInputs(extractedDir: string, dataDir: string, names: C
   // new to armor is spelled the way weapons/decorations already spell it.
   const byContext = new Map<MaterialContext, Item[]>();
   for (const name of Object.keys(CATEGORIES) as CategoryName[]) {
-    const items = await readCategoryItems(dataDir, CATEGORIES[name]);
+    const items = await readCategoryItems(dataDir, CATEGORIES[name], readData);
     committed.set(name, items);
     const context = CATEGORIES[name].materialContext;
     byContext.set(context, [...(byContext.get(context) ?? []), ...[...items.values()].flat()]);

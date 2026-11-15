@@ -22,7 +22,7 @@ export interface CategoryFile {
   file: string;
   /** The enum table the extracted names come from. */
   table: NameTable;
-  /** `data/equipment-ids.json` slot; decorations have none and match through `data/items.json`. */
+  /** game-data's `equipment-ids.json` view slot; decorations have none and match through `data/items.json`. */
   slot?: EquipmentSlot;
   /** Weapon type of every item in this file (weapons share one ID space across types). */
   weaponType?: string;

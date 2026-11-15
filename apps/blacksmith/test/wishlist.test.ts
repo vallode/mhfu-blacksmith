@@ -6,10 +6,11 @@ import { describe, test } from "node:test";
 import type { ItemPlaces } from "../src/lib/item-places";
 import type { ItemSources } from "../src/lib/item-sources";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
-/** The site's own content: the weapon trees the bundles are built from. */
-const CONTENT_DIR = path.resolve(__dirname, "../content");
 import { slugify } from "../src/lib/slug";
+import { WEAPON_TYPES } from "../src/lib/constants";
+import { buildWeaponTree } from "../src/lib/trees";
 import type { Material, Weapon, WeaponTreeNode } from "../src/lib/types";
 import {
   bestDestinations,
@@ -243,6 +244,7 @@ describe("ways and destinations", () => {
         chance: 30,
       },
     ],
+    farm: [],
     shops: [],
   };
 
@@ -267,6 +269,7 @@ describe("ways and destinations", () => {
       sources,
       {
         gathering: [],
+        farm: [],
         shops: [
           { shop: "General Store", currency: "zenny", price: 50, stages: [1], stageCount: 3 },
         ],
@@ -282,6 +285,7 @@ describe("ways and destinations", () => {
       sources,
       {
         gathering: [],
+        farm: [],
         shops: [
           { shop: "Late Store", currency: "zenny", price: 50, stages: [3], stageCount: 3 },
           { shop: "Pokke", currency: "pokke-points", price: null, stages: [1], stageCount: 1 },
@@ -294,6 +298,26 @@ describe("ways and destinations", () => {
     assert.ok(ways.filter((w) => w.kind === "shop").every((w) => w.tier === 3));
   });
 
+  test("Pokke Farm is one way, its best point", () => {
+    const ways = itemWays(
+      undefined,
+      {
+        gathering: [],
+        farm: [
+          { point: "Mining Point", spot: "mining", chance: 7, gathers: 3, mostGathers: 4 },
+          { point: "Mining Point +2", spot: "mining", chance: 23, gathers: 3, mostGathers: 4 },
+        ],
+        shops: [],
+      },
+      undefined,
+      null,
+    );
+    assert.deepEqual(
+      ways.map((w) => [w.kind, w.name, w.detail, w.chance]),
+      [["farm", "Pokke Farm", "Mining Point +2 · Mining · 3-4 per quest", 23]],
+    );
+  });
+
   test("quest-only gathering stays apart, ranked by its quests", () => {
     const point = { kind: "mine" as const, areas: [1] };
     const ways = itemWays(
@@ -303,6 +327,7 @@ describe("ways and destinations", () => {
           { group: "Village", map: "Jungle (Day)", points: [point], chance: 50, quests: [7] },
           { group: "Village", map: "Jungle (Night)", points: [point], chance: 10 },
         ],
+        farm: [],
         shops: [],
       },
       undefined,
@@ -381,7 +406,7 @@ describe("game data", () => {
     // One lookup over every type: Dual Blades upgrade from Sword and Shield.
     const dir = path.join(DATA_DIR, "weapons");
     const list = fs.readdirSync(dir).flatMap((file) => {
-      const { weapons } = JSON.parse(fs.readFileSync(path.join(dir, file), "utf-8")) as {
+      const { weapons } = readData(DATA_DIR, "weapons", file) as {
         weapons: Weapon[];
       };
       return weapons.map((w) => ({ ...w, slug: slugify(w.name) }));
@@ -393,14 +418,7 @@ describe("game data", () => {
     );
 
     // Parents as the page finds them: from the trees, not improve_from.
-    const trees = fs
-      .readdirSync(path.join(CONTENT_DIR, "blacksmith"))
-      .map(
-        (type) =>
-          JSON.parse(
-            fs.readFileSync(path.join(CONTENT_DIR, "blacksmith", type, "map.json"), "utf-8"),
-          ).map as WeaponTreeNode[],
-      );
+    const trees = WEAPON_TYPES.map((type) => buildWeaponTree(type));
     const parents = treeParents(trees);
     for (const w of list) {
       const from = [w.improve_from ?? []].flat();

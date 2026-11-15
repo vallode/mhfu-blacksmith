@@ -1,25 +1,10 @@
 {
   "books": [
-    {
-      "id": 1,
-      "name": "Book of Combos 1"
-    },
-    {
-      "id": 2,
-      "name": "Book of Combos 2"
-    },
-    {
-      "id": 3,
-      "name": "Book of Combos 3"
-    },
-    {
-      "id": 4,
-      "name": "Book of Combos 4"
-    },
-    {
-      "id": 5,
-      "name": "Book of Combos 5"
-    }
+    1,
+    2,
+    3,
+    4,
+    5
   ],
   "book_bonus": [
     0,
@@ -32,19 +17,10 @@
   "combinations": [
     {
       "number": 1,
-      "result": {
-        "id": 7,
-        "name": "Potion"
-      },
+      "result": 7,
       "ingredients": [
-        {
-          "id": 163,
-          "name": "Herb"
-        },
-        {
-          "id": 177,
-          "name": "Blue Mushroom"
-        }
+        163,
+        177
       ],
       "success_rate": 95,
       "quantity": [
@@ -56,19 +32,10 @@
     },
     {
       "number": 2,
-      "result": {
-        "id": 8,
-        "name": "Mega Potion"
-      },
+      "result": 8,
       "ingredients": [
-        {
-          "id": 7,
-          "name": "Potion"
-        },
-        {
-          "id": 161,
-          "name": "Honey"
-        }
+        7,
+        161
       ],
       "success_rate": 90,
       "quantity": [
@@ -80,19 +47,10 @@
     },
     {
       "number": 3,
-      "result": {
-        "id": 9,
-        "name": "Nutrients"
-      },
+      "result": 9,
       "ingredients": [
-        {
-          "id": 177,
-          "name": "Blue Mushroom"
-        },
-        {
-          "id": 250,
-          "name": "Godbug"
-        }
+        177,
+        250
       ],
       "success_rate": 90,
       "quantity": [
@@ -104,19 +62,10 @@
     },
     {
       "number": 4,
-      "result": {
-        "id": 10,
-        "name": "Mega Nutrients"
-      },
+      "result": 10,
       "ingredients": [
-        {
-          "id": 9,
-          "name": "Nutrients"
-        },
-        {
-          "id": 161,
-          "name": "Honey"
-        }
+        9,
+        161
       ],
       "success_rate": 75,
       "quantity": [
@@ -128,19 +77,10 @@
     },
     {
       "number": 5,
-      "result": {
-        "id": 11,
-        "name": "Antidote"
-      },
+      "result": 11,
       "ingredients": [
-        {
-          "id": 164,
-          "name": "Antidote Herb"
-        },
-        {
-          "id": 177,
-          "name": "Blue Mushroom"
-        }
+        164,
+        177
       ],
       "success_rate": 95,
       "quantity": [
@@ -152,19 +92,10 @@
     },
     {
       "number": 6,
-      "result": {
-        "id": 30,
-        "name": "Herbal Medicine"
-      },
+      "result": 30,
       "ingredients": [
-        {
-          "id": 170,
-          "name": "Cactus Flower"
-        },
-        {
-          "id": 251,
-          "name": "Bitterbug"
-        }
+        170,
+        251
       ],
       "success_rate": 90,
       "quantity": [
@@ -176,19 +107,10 @@
     },
     {
       "number": 7,
-      "result": {
-        "id": 31,
-        "name": "Max Potion"
-      },
+      "result": 31,
       "ingredients": [
-        {
-          "id": 10,
-          "name": "Mega Nutrients"
-        },
-        {
-          "id": 182,
-          "name": "Dragon Toadstool"
-        }
+        10,
+        182
       ],
       "success_rate": 65,
       "quantity": [
@@ -200,19 +122,10 @@
     },
     {
       "number": 8,
-      "result": {
-        "id": 32,
-        "name": "Ancient Potion"
-      },
+      "result": 32,
       "ingredients": [
-        {
-          "id": 12,
-          "name": "Immunizer"
-        },
-        {
-          "id": 327,
-          "name": "Kelbi Horn"
-        }
+        12,
+        327
       ],
       "success_rate": 55,
       "quantity": [
@@ -224,19 +137,10 @@
     },
     {
       "number": 9,
-      "result": {
-        "id": 33,
-        "name": "Catalyst"
-      },
+      "result": 33,
       "ingredients": [
-        {
-          "id": 161,
-          "name": "Honey"
-        },
-        {
-          "id": 251,
-          "name": "Bitterbug"
-        }
+        161,
+        251
       ],
       "success_rate": 75,
       "quantity": [
@@ -248,19 +152,10 @@
     },
     {
       "number": 10,
-      "result": {
-        "id": 12,
-        "name": "Immunizer"
-      },
+      "result": 12,
       "ingredients": [
-        {
-          "id": 33,
-          "name": "Catalyst"
-        },
-        {
-          "id": 182,
-          "name": "Dragon Toadstool"
-        }
+        33,
+        182
       ],
       "success_rate": 75,
       "quantity": [
@@ -272,19 +167,10 @@
     },
     {
       "number": 11,
-      "result": {
-        "id": 13,
-        "name": "Power Juice"
-      },
+      "result": 13,
       "ingredients": [
-        {
-          "id": 33,
-          "name": "Catalyst"
-        },
-        {
-          "id": 47,
-          "name": "Rare Steak"
-        }
+        33,
+        47
       ],
       "success_rate": 75,
       "quantity": [
@@ -296,19 +182,10 @@
     },
     {
       "number": 12,
-      "result": {
-        "id": 14,
-        "name": "Mega Juice"
-      },
+      "result": 14,
       "ingredients": [
-        {
-          "id": 48,
-          "name": "Well-Done Steak"
-        },
-        {
-          "id": 279,
-          "name": "Power Extract"
-        }
+        48,
+        279
       ],
       "success_rate": 65,
       "quantity": [
@@ -320,19 +197,10 @@
     },
     {
       "number": 13,
-      "result": {
-        "id": 34,
-        "name": "Energy Drink"
-      },
+      "result": 34,
       "ingredients": [
-        {
-          "id": 161,
-          "name": "Honey"
-        },
-        {
-          "id": 162,
-          "name": "Sunset Herb"
-        }
+        161,
+        162
       ],
       "success_rate": 65,
       "quantity": [
@@ -344,19 +212,10 @@
     },
     {
       "number": 14,
-      "result": {
-        "id": 15,
-        "name": "Demondrug"
-      },
+      "result": 15,
       "ingredients": [
-        {
-          "id": 33,
-          "name": "Catalyst"
-        },
-        {
-          "id": 186,
-          "name": "Power Seed"
-        }
+        33,
+        186
       ],
       "success_rate": 65,
       "quantity": [
@@ -368,19 +227,10 @@
     },
     {
       "number": 15,
-      "result": {
-        "id": 16,
-        "name": "Mega Demondrug"
-      },
+      "result": 16,
       "ingredients": [
-        {
-          "id": 15,
-          "name": "Demondrug"
-        },
-        {
-          "id": 280,
-          "name": "Pale Extract"
-        }
+        15,
+        280
       ],
       "success_rate": 55,
       "quantity": [
@@ -392,19 +242,10 @@
     },
     {
       "number": 16,
-      "result": {
-        "id": 17,
-        "name": "Power Pill"
-      },
+      "result": 17,
       "ingredients": [
-        {
-          "id": 12,
-          "name": "Immunizer"
-        },
-        {
-          "id": 186,
-          "name": "Power Seed"
-        }
+        12,
+        186
       ],
       "success_rate": 75,
       "quantity": [
@@ -416,19 +257,10 @@
     },
     {
       "number": 17,
-      "result": {
-        "id": 18,
-        "name": "Armorskin"
-      },
+      "result": 18,
       "ingredients": [
-        {
-          "id": 33,
-          "name": "Catalyst"
-        },
-        {
-          "id": 187,
-          "name": "Armor Seed"
-        }
+        33,
+        187
       ],
       "success_rate": 65,
       "quantity": [
@@ -440,19 +272,10 @@
     },
     {
       "number": 18,
-      "result": {
-        "id": 19,
-        "name": "Mega Armorskin"
-      },
+      "result": 19,
       "ingredients": [
-        {
-          "id": 18,
-          "name": "Armorskin"
-        },
-        {
-          "id": 280,
-          "name": "Pale Extract"
-        }
+        18,
+        280
       ],
       "success_rate": 55,
       "quantity": [
@@ -464,19 +287,10 @@
     },
     {
       "number": 19,
-      "result": {
-        "id": 20,
-        "name": "Armor Pill"
-      },
+      "result": 20,
       "ingredients": [
-        {
-          "id": 12,
-          "name": "Immunizer"
-        },
-        {
-          "id": 187,
-          "name": "Armor Seed"
-        }
+        12,
+        187
       ],
       "success_rate": 75,
       "quantity": [
@@ -488,19 +302,10 @@
     },
     {
       "number": 20,
-      "result": {
-        "id": 22,
-        "name": "Hot Drink"
-      },
+      "result": 22,
       "ingredients": [
-        {
-          "id": 171,
-          "name": "Hot Pepper"
-        },
-        {
-          "id": 251,
-          "name": "Bitterbug"
-        }
+        171,
+        251
       ],
       "success_rate": 95,
       "quantity": [
@@ -512,19 +317,10 @@
     },
     {
       "number": 21,
-      "result": {
-        "id": 51,
-        "name": "Hot Meat"
-      },
+      "result": 51,
       "ingredients": [
-        {
-          "id": 48,
-          "name": "Well-Done Steak"
-        },
-        {
-          "id": 171,
-          "name": "Hot Pepper"
-        }
+        48,
+        171
       ],
       "success_rate": 95,
       "quantity": [
@@ -536,19 +332,10 @@
     },
     {
       "number": 22,
-      "result": {
-        "id": 21,
-        "name": "Cool Drink"
-      },
+      "result": 21,
       "ingredients": [
-        {
-          "id": 219,
-          "name": "Ice Crystal"
-        },
-        {
-          "id": 251,
-          "name": "Bitterbug"
-        }
+        219,
+        251
       ],
       "success_rate": 95,
       "quantity": [
@@ -560,19 +347,10 @@
     },
     {
       "number": 23,
-      "result": {
-        "id": 52,
-        "name": "Cold Meat"
-      },
+      "result": 52,
       "ingredients": [
-        {
-          "id": 48,
-          "name": "Well-Done Steak"
-        },
-        {
-          "id": 219,
-          "name": "Ice Crystal"
-        }
+        48,
+        219
       ],
       "success_rate": 95,
       "quantity": [
@@ -584,19 +362,10 @@
     },
     {
       "number": 24,
-      "result": {
-        "id": 183,
-        "name": "Spicy Mushroom"
-      },
+      "result": 183,
       "ingredients": [
-        {
-          "id": 171,
-          "name": "Hot Pepper"
-        },
-        {
-          "id": 175,
-          "name": "Special Mushroom"
-        }
+        171,
+        175
       ],
       "success_rate": 85,
       "quantity": [
@@ -608,19 +377,10 @@
     },
     {
       "number": 25,
-      "result": {
-        "id": 193,
-        "name": "Frozen Berry"
-      },
+      "result": 193,
       "ingredients": [
-        {
-          "id": 192,
-          "name": "Tropical Berry"
-        },
-        {
-          "id": 219,
-          "name": "Ice Crystal"
-        }
+        192,
+        219
       ],
       "success_rate": 85,
       "quantity": [
@@ -632,19 +392,10 @@
     },
     {
       "number": 26,
-      "result": {
-        "id": 23,
-        "name": "Thawing Agent"
-      },
+      "result": 23,
       "ingredients": [
-        {
-          "id": 165,
-          "name": "Fire Herb"
-        },
-        {
-          "id": 233,
-          "name": "Rumblefish"
-        }
+        165,
+        233
       ],
       "success_rate": 95,
       "quantity": [
@@ -656,19 +407,10 @@
     },
     {
       "number": 27,
-      "result": {
-        "id": 44,
-        "name": "Poisoned Meat"
-      },
+      "result": 44,
       "ingredients": [
-        {
-          "id": 43,
-          "name": "Raw Meat"
-        },
-        {
-          "id": 180,
-          "name": "Toadstool"
-        }
+        43,
+        180
       ],
       "success_rate": 90,
       "quantity": [
@@ -681,19 +423,10 @@
     },
     {
       "number": 28,
-      "result": {
-        "id": 45,
-        "name": "Tainted Meat"
-      },
+      "result": 45,
       "ingredients": [
-        {
-          "id": 43,
-          "name": "Raw Meat"
-        },
-        {
-          "id": 179,
-          "name": "Parashroom"
-        }
+        43,
+        179
       ],
       "success_rate": 90,
       "quantity": [
@@ -706,19 +439,10 @@
     },
     {
       "number": 29,
-      "result": {
-        "id": 46,
-        "name": "Drugged Meat"
-      },
+      "result": 46,
       "ingredients": [
-        {
-          "id": 43,
-          "name": "Raw Meat"
-        },
-        {
-          "id": 167,
-          "name": "Sleep Herb"
-        }
+        43,
+        167
       ],
       "success_rate": 90,
       "quantity": [
@@ -731,19 +455,10 @@
     },
     {
       "number": 30,
-      "result": {
-        "id": 63,
-        "name": "Bomb Material"
-      },
+      "result": 63,
       "ingredients": [
-        {
-          "id": 168,
-          "name": "Sap Plant"
-        },
-        {
-          "id": 200,
-          "name": "Stone"
-        }
+        168,
+        200
       ],
       "success_rate": 95,
       "quantity": [
@@ -755,19 +470,10 @@
     },
     {
       "number": 31,
-      "result": {
-        "id": 73,
-        "name": "Deodorant"
-      },
+      "result": 73,
       "ingredients": [
-        {
-          "id": 63,
-          "name": "Bomb Material"
-        },
-        {
-          "id": 162,
-          "name": "Sunset Herb"
-        }
+        63,
+        162
       ],
       "success_rate": 95,
       "quantity": [
@@ -779,19 +485,10 @@
     },
     {
       "number": 32,
-      "result": {
-        "id": 70,
-        "name": "Smoke Bomb"
-      },
+      "result": 70,
       "ingredients": [
-        {
-          "id": 63,
-          "name": "Bomb Material"
-        },
-        {
-          "id": 166,
-          "name": "Ivy"
-        }
+        63,
+        166
       ],
       "success_rate": 75,
       "quantity": [
@@ -803,19 +500,10 @@
     },
     {
       "number": 33,
-      "result": {
-        "id": 71,
-        "name": "Poison Smoke Bmb"
-      },
+      "result": 71,
       "ingredients": [
-        {
-          "id": 63,
-          "name": "Bomb Material"
-        },
-        {
-          "id": 180,
-          "name": "Toadstool"
-        }
+        63,
+        180
       ],
       "success_rate": 75,
       "quantity": [
@@ -827,19 +515,10 @@
     },
     {
       "number": 34,
-      "result": {
-        "id": 65,
-        "name": "Flash Bomb"
-      },
+      "result": 65,
       "ingredients": [
-        {
-          "id": 63,
-          "name": "Bomb Material"
-        },
-        {
-          "id": 252,
-          "name": "Flashbug"
-        }
+        63,
+        252
       ],
       "success_rate": 75,
       "quantity": [
@@ -851,19 +530,10 @@
     },
     {
       "number": 35,
-      "result": {
-        "id": 69,
-        "name": "Dung Bomb"
-      },
+      "result": 69,
       "ingredients": [
-        {
-          "id": 63,
-          "name": "Bomb Material"
-        },
-        {
-          "id": 67,
-          "name": "Dung"
-        }
+        63,
+        67
       ],
       "success_rate": 75,
       "quantity": [
@@ -875,19 +545,10 @@
     },
     {
       "number": 36,
-      "result": {
-        "id": 64,
-        "name": "Paintball"
-      },
+      "result": 64,
       "ingredients": [
-        {
-          "id": 168,
-          "name": "Sap Plant"
-        },
-        {
-          "id": 185,
-          "name": "Paintberry"
-        }
+        168,
+        185
       ],
       "success_rate": 95,
       "quantity": [
@@ -899,19 +560,10 @@
     },
     {
       "number": 37,
-      "result": {
-        "id": 72,
-        "name": "Farcaster"
-      },
+      "result": 72,
       "ingredients": [
-        {
-          "id": 63,
-          "name": "Bomb Material"
-        },
-        {
-          "id": 181,
-          "name": "Exciteshroom"
-        }
+        63,
+        181
       ],
       "success_rate": 95,
       "quantity": [
@@ -923,19 +575,10 @@
     },
     {
       "number": 38,
-      "result": {
-        "id": 35,
-        "name": "Gunpowder"
-      },
+      "result": 35,
       "ingredients": [
-        {
-          "id": 165,
-          "name": "Fire Herb"
-        },
-        {
-          "id": 178,
-          "name": "Nitroshroom"
-        }
+        165,
+        178
       ],
       "success_rate": 95,
       "quantity": [
@@ -948,19 +591,10 @@
     },
     {
       "number": 39,
-      "result": {
-        "id": 84,
-        "name": "Sm Barrel-Bomb"
-      },
+      "result": 84,
       "ingredients": [
-        {
-          "id": 82,
-          "name": "Small Barrel"
-        },
-        {
-          "id": 165,
-          "name": "Fire Herb"
-        }
+        82,
+        165
       ],
       "success_rate": 90,
       "quantity": [
@@ -973,19 +607,10 @@
     },
     {
       "number": 40,
-      "result": {
-        "id": 85,
-        "name": "Sm Barrel-Bomb+"
-      },
+      "result": 85,
       "ingredients": [
-        {
-          "id": 84,
-          "name": "Sm Barrel-Bomb"
-        },
-        {
-          "id": 235,
-          "name": "Burst Arrowana"
-        }
+        84,
+        235
       ],
       "success_rate": 90,
       "quantity": [
@@ -998,19 +623,10 @@
     },
     {
       "number": 41,
-      "result": {
-        "id": 86,
-        "name": "Lg Barrel-Bomb"
-      },
+      "result": 86,
       "ingredients": [
-        {
-          "id": 35,
-          "name": "Gunpowder"
-        },
-        {
-          "id": 83,
-          "name": "Large Barrel"
-        }
+        35,
+        83
       ],
       "success_rate": 75,
       "quantity": [
@@ -1023,19 +639,10 @@
     },
     {
       "number": 42,
-      "result": {
-        "id": 87,
-        "name": "Lg Barrel-Bomb+"
-      },
+      "result": 87,
       "ingredients": [
-        {
-          "id": 86,
-          "name": "Lg Barrel-Bomb"
-        },
-        {
-          "id": 234,
-          "name": "Scatterfish"
-        }
+        86,
+        234
       ],
       "success_rate": 75,
       "quantity": [
@@ -1048,19 +655,10 @@
     },
     {
       "number": 43,
-      "result": {
-        "id": 80,
-        "name": "Lightning Rod"
-      },
+      "result": 80,
       "ingredients": [
-        {
-          "id": 235,
-          "name": "Burst Arrowana"
-        },
-        {
-          "id": 253,
-          "name": "Thunderbug"
-        }
+        235,
+        253
       ],
       "success_rate": 75,
       "quantity": [
@@ -1073,19 +671,10 @@
     },
     {
       "number": 44,
-      "result": {
-        "id": 88,
-        "name": "Bounce Bomb"
-      },
+      "result": 88,
       "ingredients": [
-        {
-          "id": 84,
-          "name": "Sm Barrel-Bomb"
-        },
-        {
-          "id": 660,
-          "name": "Vespoid Wing"
-        }
+        84,
+        660
       ],
       "success_rate": 75,
       "quantity": [
@@ -1098,19 +687,10 @@
     },
     {
       "number": 45,
-      "result": {
-        "id": 89,
-        "name": "Bounce Bomb+"
-      },
+      "result": 89,
       "ingredients": [
-        {
-          "id": 88,
-          "name": "Bounce Bomb"
-        },
-        {
-          "id": 236,
-          "name": "Bomb Arrowana"
-        }
+        88,
+        236
       ],
       "success_rate": 75,
       "quantity": [
@@ -1123,19 +703,10 @@
     },
     {
       "number": 46,
-      "result": {
-        "id": 66,
-        "name": "Sonic Bomb"
-      },
+      "result": 66,
       "ingredients": [
-        {
-          "id": 35,
-          "name": "Gunpowder"
-        },
-        {
-          "id": 266,
-          "name": "Screamer"
-        }
+        35,
+        266
       ],
       "success_rate": 75,
       "quantity": [
@@ -1148,19 +719,10 @@
     },
     {
       "number": 47,
-      "result": {
-        "id": 76,
-        "name": "Net"
-      },
+      "result": 76,
       "ingredients": [
-        {
-          "id": 75,
-          "name": "Spiderweb"
-        },
-        {
-          "id": 166,
-          "name": "Ivy"
-        }
+        75,
+        166
       ],
       "success_rate": 90,
       "quantity": [
@@ -1173,19 +735,10 @@
     },
     {
       "number": 48,
-      "result": {
-        "id": 78,
-        "name": "Pitfall Trap"
-      },
+      "result": 78,
       "ingredients": [
-        {
-          "id": 76,
-          "name": "Net"
-        },
-        {
-          "id": 77,
-          "name": "Trap Tool"
-        }
+        76,
+        77
       ],
       "success_rate": 75,
       "quantity": [
@@ -1198,19 +751,10 @@
     },
     {
       "number": 49,
-      "result": {
-        "id": 79,
-        "name": "Shock Trap"
-      },
+      "result": 79,
       "ingredients": [
-        {
-          "id": 77,
-          "name": "Trap Tool"
-        },
-        {
-          "id": 357,
-          "name": "Genprey Fang"
-        }
+        77,
+        357
       ],
       "success_rate": 90,
       "quantity": [
@@ -1223,19 +767,10 @@
     },
     {
       "number": 50,
-      "result": {
-        "id": 140,
-        "name": "Tuna Bait"
-      },
+      "result": 140,
       "ingredients": [
-        {
-          "id": 137,
-          "name": "Worm"
-        },
-        {
-          "id": 247,
-          "name": "Yambug"
-        }
+        137,
+        247
       ],
       "success_rate": 95,
       "quantity": [
@@ -1247,19 +782,10 @@
     },
     {
       "number": 51,
-      "result": {
-        "id": 141,
-        "name": "Arrowana Bait"
-      },
+      "result": 141,
       "ingredients": [
-        {
-          "id": 136,
-          "name": "Cricket"
-        },
-        {
-          "id": 248,
-          "name": "Bughopper"
-        }
+        136,
+        248
       ],
       "success_rate": 95,
       "quantity": [
@@ -1271,19 +797,10 @@
     },
     {
       "number": 52,
-      "result": {
-        "id": 142,
-        "name": "Goldenfish Bait"
-      },
+      "result": 142,
       "ingredients": [
-        {
-          "id": 138,
-          "name": "Firefly"
-        },
-        {
-          "id": 249,
-          "name": "Snakebee Larva"
-        }
+        138,
+        249
       ],
       "success_rate": 90,
       "quantity": [
@@ -1295,19 +812,10 @@
     },
     {
       "number": 53,
-      "result": {
-        "id": 144,
-        "name": "Old Pickaxe"
-      },
+      "result": 144,
       "ingredients": [
-        {
-          "id": 200,
-          "name": "Stone"
-        },
-        {
-          "id": 292,
-          "name": "Bone"
-        }
+        200,
+        292
       ],
       "success_rate": 95,
       "quantity": [
@@ -1319,19 +827,10 @@
     },
     {
       "number": 54,
-      "result": {
-        "id": 145,
-        "name": "Iron Pickaxe"
-      },
+      "result": 145,
       "ingredients": [
-        {
-          "id": 202,
-          "name": "Iron Ore"
-        },
-        {
-          "id": 292,
-          "name": "Bone"
-        }
+        202,
+        292
       ],
       "success_rate": 75,
       "quantity": [
@@ -1343,19 +842,10 @@
     },
     {
       "number": 55,
-      "result": {
-        "id": 146,
-        "name": "Mega Pickaxe"
-      },
+      "result": 146,
       "ingredients": [
-        {
-          "id": 204,
-          "name": "Machalite Ore"
-        },
-        {
-          "id": 292,
-          "name": "Bone"
-        }
+        204,
+        292
       ],
       "success_rate": 95,
       "quantity": [
@@ -1367,19 +857,10 @@
     },
     {
       "number": 56,
-      "result": {
-        "id": 148,
-        "name": "Old Bugnet"
-      },
+      "result": 148,
       "ingredients": [
-        {
-          "id": 76,
-          "name": "Net"
-        },
-        {
-          "id": 289,
-          "name": "Mystery Bone"
-        }
+        76,
+        289
       ],
       "success_rate": 95,
       "quantity": [
@@ -1391,19 +872,10 @@
     },
     {
       "number": 57,
-      "result": {
-        "id": 149,
-        "name": "Bugnet"
-      },
+      "result": 149,
       "ingredients": [
-        {
-          "id": 76,
-          "name": "Net"
-        },
-        {
-          "id": 281,
-          "name": "Sm Monster Bone"
-        }
+        76,
+        281
       ],
       "success_rate": 75,
       "quantity": [
@@ -1415,19 +887,10 @@
     },
     {
       "number": 58,
-      "result": {
-        "id": 150,
-        "name": "Mega Bugnet"
-      },
+      "result": 150,
       "ingredients": [
-        {
-          "id": 76,
-          "name": "Net"
-        },
-        {
-          "id": 282,
-          "name": "Med Monster Bone"
-        }
+        76,
+        282
       ],
       "success_rate": 95,
       "quantity": [
@@ -1439,19 +902,10 @@
     },
     {
       "number": 59,
-      "result": {
-        "id": 218,
-        "name": "Antiseptic Stone"
-      },
+      "result": 218,
       "ingredients": [
-        {
-          "id": 203,
-          "name": "Earth Crystal"
-        },
-        {
-          "id": 251,
-          "name": "Bitterbug"
-        }
+        203,
+        251
       ],
       "success_rate": 75,
       "quantity": [
@@ -1463,19 +917,10 @@
     },
     {
       "number": 60,
-      "result": {
-        "id": 36,
-        "name": "Lifecrystals"
-      },
+      "result": 36,
       "ingredients": [
-        {
-          "id": 250,
-          "name": "Godbug"
-        },
-        {
-          "id": 298,
-          "name": "Wyvern Fang"
-        }
+        250,
+        298
       ],
       "success_rate": 90,
       "quantity": [
@@ -1487,19 +932,10 @@
     },
     {
       "number": 61,
-      "result": {
-        "id": 37,
-        "name": "Lifepowder"
-      },
+      "result": 37,
       "ingredients": [
-        {
-          "id": 36,
-          "name": "Lifecrystals"
-        },
-        {
-          "id": 299,
-          "name": "Wyvern Claw"
-        }
+        36,
+        299
       ],
       "success_rate": 65,
       "quantity": [
@@ -1511,19 +947,10 @@
     },
     {
       "number": 62,
-      "result": {
-        "id": 157,
-        "name": "Health Flute"
-      },
+      "result": 157,
       "ingredients": [
-        {
-          "id": 37,
-          "name": "Lifepowder"
-        },
-        {
-          "id": 156,
-          "name": "Flute"
-        }
+        37,
+        156
       ],
       "success_rate": 65,
       "quantity": [
@@ -1535,19 +962,10 @@
     },
     {
       "number": 63,
-      "result": {
-        "id": 158,
-        "name": "Antidote Flute"
-      },
+      "result": 158,
       "ingredients": [
-        {
-          "id": 156,
-          "name": "Flute"
-        },
-        {
-          "id": 218,
-          "name": "Antiseptic Stone"
-        }
+        156,
+        218
       ],
       "success_rate": 65,
       "quantity": [
@@ -1559,19 +977,10 @@
     },
     {
       "number": 64,
-      "result": {
-        "id": 159,
-        "name": "Demon Flute"
-      },
+      "result": 159,
       "ingredients": [
-        {
-          "id": 16,
-          "name": "Mega Demondrug"
-        },
-        {
-          "id": 282,
-          "name": "Med Monster Bone"
-        }
+        16,
+        282
       ],
       "success_rate": 55,
       "quantity": [
@@ -1583,19 +992,10 @@
     },
     {
       "number": 65,
-      "result": {
-        "id": 160,
-        "name": "Armor Flute"
-      },
+      "result": 160,
       "ingredients": [
-        {
-          "id": 19,
-          "name": "Mega Armorskin"
-        },
-        {
-          "id": 282,
-          "name": "Med Monster Bone"
-        }
+        19,
+        282
       ],
       "success_rate": 55,
       "quantity": [
@@ -1607,19 +1007,10 @@
     },
     {
       "number": 66,
-      "result": {
-        "id": 59,
-        "name": "Poison Thrw Knf"
-      },
+      "result": 59,
       "ingredients": [
-        {
-          "id": 58,
-          "name": "Throwing Knife"
-        },
-        {
-          "id": 180,
-          "name": "Toadstool"
-        }
+        58,
+        180
       ],
       "success_rate": 90,
       "quantity": [
@@ -1631,19 +1022,10 @@
     },
     {
       "number": 67,
-      "result": {
-        "id": 60,
-        "name": "Sleeping Thr Knf"
-      },
+      "result": 60,
       "ingredients": [
-        {
-          "id": 58,
-          "name": "Throwing Knife"
-        },
-        {
-          "id": 167,
-          "name": "Sleep Herb"
-        }
+        58,
+        167
       ],
       "success_rate": 90,
       "quantity": [
@@ -1655,19 +1037,10 @@
     },
     {
       "number": 68,
-      "result": {
-        "id": 61,
-        "name": "Paralyze Thr Knf"
-      },
+      "result": 61,
       "ingredients": [
-        {
-          "id": 58,
-          "name": "Throwing Knife"
-        },
-        {
-          "id": 179,
-          "name": "Parashroom"
-        }
+        58,
+        179
       ],
       "success_rate": 90,
       "quantity": [
@@ -1679,19 +1052,10 @@
     },
     {
       "number": 69,
-      "result": {
-        "id": 57,
-        "name": "Boomerang"
-      },
+      "result": 57,
       "ingredients": [
-        {
-          "id": 153,
-          "name": "Whetstone"
-        },
-        {
-          "id": 281,
-          "name": "Sm Monster Bone"
-        }
+        153,
+        281
       ],
       "success_rate": 90,
       "quantity": [
@@ -1703,19 +1067,10 @@
     },
     {
       "number": 70,
-      "result": {
-        "id": 39,
-        "name": "Powertalon"
-      },
+      "result": 39,
       "ingredients": [
-        {
-          "id": 38,
-          "name": "Powercharm"
-        },
-        {
-          "id": 691,
-          "name": "Lao-Shan's Claw"
-        }
+        38,
+        691
       ],
       "success_rate": 100,
       "quantity": [
@@ -1727,19 +1082,10 @@
     },
     {
       "number": 71,
-      "result": {
-        "id": 41,
-        "name": "Armortalon"
-      },
+      "result": 41,
       "ingredients": [
-        {
-          "id": 40,
-          "name": "Armorcharm"
-        },
-        {
-          "id": 691,
-          "name": "Lao-Shan's Claw"
-        }
+        40,
+        691
       ],
       "success_rate": 100,
       "quantity": [
@@ -1751,19 +1097,10 @@
     },
     {
       "number": 72,
-      "result": {
-        "id": 97,
-        "name": "Normal S Lv2"
-      },
+      "result": 97,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 190,
-          "name": "Needleberry"
-        }
+        93,
+        190
       ],
       "success_rate": 95,
       "quantity": [
@@ -1783,19 +1120,10 @@
     },
     {
       "number": 73,
-      "result": {
-        "id": 98,
-        "name": "Normal S Lv3"
-      },
+      "result": 98,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 233,
-          "name": "Rumblefish"
-        }
+        93,
+        233
       ],
       "success_rate": 95,
       "quantity": [
@@ -1815,19 +1143,10 @@
     },
     {
       "number": 74,
-      "result": {
-        "id": 99,
-        "name": "Pierce S Lv1"
-      },
+      "result": 99,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 348,
-          "name": "Velociprey Fang"
-        }
+        93,
+        348
       ],
       "success_rate": 90,
       "quantity": [
@@ -1847,19 +1166,10 @@
     },
     {
       "number": 75,
-      "result": {
-        "id": 100,
-        "name": "Pierce S Lv2"
-      },
+      "result": 100,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 232,
-          "name": "Pin Tuna"
-        }
+        93,
+        232
       ],
       "success_rate": 75,
       "quantity": [
@@ -1879,19 +1189,10 @@
     },
     {
       "number": 76,
-      "result": {
-        "id": 101,
-        "name": "Pierce S Lv3"
-      },
+      "result": 101,
       "ingredients": [
-        {
-          "id": 94,
-          "name": "Sm Bone Husk"
-        },
-        {
-          "id": 232,
-          "name": "Pin Tuna"
-        }
+        94,
+        232
       ],
       "success_rate": 75,
       "quantity": [
@@ -1907,19 +1208,10 @@
     },
     {
       "number": 77,
-      "result": {
-        "id": 102,
-        "name": "Pellet S Lv1"
-      },
+      "result": 102,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 189,
-          "name": "Scatternut"
-        }
+        93,
+        189
       ],
       "success_rate": 90,
       "quantity": [
@@ -1939,19 +1231,10 @@
     },
     {
       "number": 78,
-      "result": {
-        "id": 103,
-        "name": "Pellet S Lv2"
-      },
+      "result": 103,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 298,
-          "name": "Wyvern Fang"
-        }
+        93,
+        298
       ],
       "success_rate": 75,
       "quantity": [
@@ -1971,19 +1254,10 @@
     },
     {
       "number": 79,
-      "result": {
-        "id": 104,
-        "name": "Pellet S Lv3"
-      },
+      "result": 104,
       "ingredients": [
-        {
-          "id": 94,
-          "name": "Sm Bone Husk"
-        },
-        {
-          "id": 298,
-          "name": "Wyvern Fang"
-        }
+        94,
+        298
       ],
       "success_rate": 75,
       "quantity": [
@@ -2003,19 +1277,10 @@
     },
     {
       "number": 80,
-      "result": {
-        "id": 105,
-        "name": "Crag S Lv1"
-      },
+      "result": 105,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 235,
-          "name": "Burst Arrowana"
-        }
+        93,
+        235
       ],
       "success_rate": 90,
       "quantity": [
@@ -2027,19 +1292,10 @@
     },
     {
       "number": 81,
-      "result": {
-        "id": 106,
-        "name": "Crag S Lv2"
-      },
+      "result": 106,
       "ingredients": [
-        {
-          "id": 94,
-          "name": "Sm Bone Husk"
-        },
-        {
-          "id": 235,
-          "name": "Burst Arrowana"
-        }
+        94,
+        235
       ],
       "success_rate": 90,
       "quantity": [
@@ -2051,19 +1307,10 @@
     },
     {
       "number": 82,
-      "result": {
-        "id": 107,
-        "name": "Crag S Lv3"
-      },
+      "result": 107,
       "ingredients": [
-        {
-          "id": 95,
-          "name": "Lg Bone Husk"
-        },
-        {
-          "id": 236,
-          "name": "Bomb Arrowana"
-        }
+        95,
+        236
       ],
       "success_rate": 95,
       "quantity": [
@@ -2075,19 +1322,10 @@
     },
     {
       "number": 83,
-      "result": {
-        "id": 108,
-        "name": "Clust S Lv1"
-      },
+      "result": 108,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 191,
-          "name": "Bomberry"
-        }
+        93,
+        191
       ],
       "success_rate": 90,
       "quantity": [
@@ -2099,19 +1337,10 @@
     },
     {
       "number": 84,
-      "result": {
-        "id": 109,
-        "name": "Clust S Lv2"
-      },
+      "result": 109,
       "ingredients": [
-        {
-          "id": 94,
-          "name": "Sm Bone Husk"
-        },
-        {
-          "id": 299,
-          "name": "Wyvern Claw"
-        }
+        94,
+        299
       ],
       "success_rate": 75,
       "quantity": [
@@ -2123,19 +1352,10 @@
     },
     {
       "number": 85,
-      "result": {
-        "id": 110,
-        "name": "Clust S Lv3"
-      },
+      "result": 110,
       "ingredients": [
-        {
-          "id": 95,
-          "name": "Lg Bone Husk"
-        },
-        {
-          "id": 234,
-          "name": "Scatterfish"
-        }
+        95,
+        234
       ],
       "success_rate": 75,
       "quantity": [
@@ -2147,19 +1367,10 @@
     },
     {
       "number": 86,
-      "result": {
-        "id": 111,
-        "name": "Flaming S"
-      },
+      "result": 111,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 165,
-          "name": "Fire Herb"
-        }
+        93,
+        165
       ],
       "success_rate": 90,
       "quantity": [
@@ -2171,19 +1382,10 @@
     },
     {
       "number": 87,
-      "result": {
-        "id": 112,
-        "name": "Water S"
-      },
+      "result": 112,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 229,
-          "name": "Knife Mackerel"
-        }
+        93,
+        229
       ],
       "success_rate": 75,
       "quantity": [
@@ -2203,19 +1405,10 @@
     },
     {
       "number": 88,
-      "result": {
-        "id": 113,
-        "name": "Thunder S"
-      },
+      "result": 113,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 252,
-          "name": "Flashbug"
-        }
+        93,
+        252
       ],
       "success_rate": 75,
       "quantity": [
@@ -2235,19 +1428,10 @@
     },
     {
       "number": 89,
-      "result": {
-        "id": 114,
-        "name": "Freeze S"
-      },
+      "result": 114,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 219,
-          "name": "Ice Crystal"
-        }
+        93,
+        219
       ],
       "success_rate": 75,
       "quantity": [
@@ -2267,19 +1451,10 @@
     },
     {
       "number": 90,
-      "result": {
-        "id": 115,
-        "name": "Dragon S"
-      },
+      "result": 115,
       "ingredients": [
-        {
-          "id": 95,
-          "name": "Lg Bone Husk"
-        },
-        {
-          "id": 188,
-          "name": "Dragon Seed"
-        }
+        95,
+        188
       ],
       "success_rate": 75,
       "quantity": [
@@ -2291,19 +1466,10 @@
     },
     {
       "number": 91,
-      "result": {
-        "id": 116,
-        "name": "Recov S Lv1"
-      },
+      "result": 116,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 163,
-          "name": "Herb"
-        }
+        93,
+        163
       ],
       "success_rate": 90,
       "quantity": [
@@ -2315,19 +1481,10 @@
     },
     {
       "number": 92,
-      "result": {
-        "id": 117,
-        "name": "Recov S Lv2"
-      },
+      "result": 117,
       "ingredients": [
-        {
-          "id": 7,
-          "name": "Potion"
-        },
-        {
-          "id": 93,
-          "name": "Huskberry"
-        }
+        7,
+        93
       ],
       "success_rate": 90,
       "quantity": [
@@ -2339,19 +1496,10 @@
     },
     {
       "number": 93,
-      "result": {
-        "id": 118,
-        "name": "Poison S Lv1"
-      },
+      "result": 118,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 180,
-          "name": "Toadstool"
-        }
+        93,
+        180
       ],
       "success_rate": 90,
       "quantity": [
@@ -2363,19 +1511,10 @@
     },
     {
       "number": 94,
-      "result": {
-        "id": 119,
-        "name": "Poison S Lv2"
-      },
+      "result": 119,
       "ingredients": [
-        {
-          "id": 94,
-          "name": "Sm Bone Husk"
-        },
-        {
-          "id": 365,
-          "name": "Ioprey Fang"
-        }
+        94,
+        365
       ],
       "success_rate": 75,
       "quantity": [
@@ -2387,19 +1526,10 @@
     },
     {
       "number": 95,
-      "result": {
-        "id": 120,
-        "name": "Para S Lv1"
-      },
+      "result": 120,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 179,
-          "name": "Parashroom"
-        }
+        93,
+        179
       ],
       "success_rate": 90,
       "quantity": [
@@ -2411,19 +1541,10 @@
     },
     {
       "number": 96,
-      "result": {
-        "id": 121,
-        "name": "Para S Lv2"
-      },
+      "result": 121,
       "ingredients": [
-        {
-          "id": 94,
-          "name": "Sm Bone Husk"
-        },
-        {
-          "id": 357,
-          "name": "Genprey Fang"
-        }
+        94,
+        357
       ],
       "success_rate": 90,
       "quantity": [
@@ -2435,19 +1556,10 @@
     },
     {
       "number": 97,
-      "result": {
-        "id": 122,
-        "name": "Sleep S Lv1"
-      },
+      "result": 122,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 167,
-          "name": "Sleep Herb"
-        }
+        93,
+        167
       ],
       "success_rate": 90,
       "quantity": [
@@ -2459,19 +1571,10 @@
     },
     {
       "number": 98,
-      "result": {
-        "id": 123,
-        "name": "Sleep S Lv2"
-      },
+      "result": 123,
       "ingredients": [
-        {
-          "id": 94,
-          "name": "Sm Bone Husk"
-        },
-        {
-          "id": 231,
-          "name": "Sleepyfish"
-        }
+        94,
+        231
       ],
       "success_rate": 75,
       "quantity": [
@@ -2483,19 +1586,10 @@
     },
     {
       "number": 99,
-      "result": {
-        "id": 125,
-        "name": "Paint S"
-      },
+      "result": 125,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 185,
-          "name": "Paintberry"
-        }
+        93,
+        185
       ],
       "success_rate": 90,
       "quantity": [
@@ -2507,19 +1601,10 @@
     },
     {
       "number": 100,
-      "result": {
-        "id": 126,
-        "name": "Demon S"
-      },
+      "result": 126,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 186,
-          "name": "Power Seed"
-        }
+        93,
+        186
       ],
       "success_rate": 75,
       "quantity": [
@@ -2531,19 +1616,10 @@
     },
     {
       "number": 101,
-      "result": {
-        "id": 127,
-        "name": "Armor S"
-      },
+      "result": 127,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 187,
-          "name": "Armor Seed"
-        }
+        93,
+        187
       ],
       "success_rate": 75,
       "quantity": [
@@ -2555,19 +1631,10 @@
     },
     {
       "number": 102,
-      "result": {
-        "id": 129,
-        "name": "Empty Bottle"
-      },
+      "result": 129,
       "ingredients": [
-        {
-          "id": 94,
-          "name": "Sm Bone Husk"
-        },
-        {
-          "id": 153,
-          "name": "Whetstone"
-        }
+        94,
+        153
       ],
       "success_rate": 85,
       "quantity": [
@@ -2583,19 +1650,10 @@
     },
     {
       "number": 103,
-      "result": {
-        "id": 131,
-        "name": "Poison Coating"
-      },
+      "result": 131,
       "ingredients": [
-        {
-          "id": 129,
-          "name": "Empty Bottle"
-        },
-        {
-          "id": 180,
-          "name": "Toadstool"
-        }
+        129,
+        180
       ],
       "success_rate": 90,
       "quantity": [
@@ -2611,19 +1669,10 @@
     },
     {
       "number": 104,
-      "result": {
-        "id": 132,
-        "name": "ParalysisCoating"
-      },
+      "result": 132,
       "ingredients": [
-        {
-          "id": 129,
-          "name": "Empty Bottle"
-        },
-        {
-          "id": 179,
-          "name": "Parashroom"
-        }
+        129,
+        179
       ],
       "success_rate": 85,
       "quantity": [
@@ -2639,19 +1688,10 @@
     },
     {
       "number": 105,
-      "result": {
-        "id": 133,
-        "name": "Sleep Coating"
-      },
+      "result": 133,
       "ingredients": [
-        {
-          "id": 129,
-          "name": "Empty Bottle"
-        },
-        {
-          "id": 167,
-          "name": "Sleep Herb"
-        }
+        129,
+        167
       ],
       "success_rate": 90,
       "quantity": [
@@ -2667,19 +1707,10 @@
     },
     {
       "number": 106,
-      "result": {
-        "id": 130,
-        "name": "Power Coating"
-      },
+      "result": 130,
       "ingredients": [
-        {
-          "id": 129,
-          "name": "Empty Bottle"
-        },
-        {
-          "id": 178,
-          "name": "Nitroshroom"
-        }
+        129,
+        178
       ],
       "success_rate": 85,
       "quantity": [
@@ -2695,19 +1726,10 @@
     },
     {
       "number": 107,
-      "result": {
-        "id": 134,
-        "name": "CloseRngCoating"
-      },
+      "result": 134,
       "ingredients": [
-        {
-          "id": 129,
-          "name": "Empty Bottle"
-        },
-        {
-          "id": 229,
-          "name": "Knife Mackerel"
-        }
+        129,
+        229
       ],
       "success_rate": 85,
       "quantity": [
@@ -2723,19 +1745,10 @@
     },
     {
       "number": 108,
-      "result": {
-        "id": 135,
-        "name": "Paint Coating"
-      },
+      "result": 135,
       "ingredients": [
-        {
-          "id": 129,
-          "name": "Empty Bottle"
-        },
-        {
-          "id": 185,
-          "name": "Paintberry"
-        }
+        129,
+        185
       ],
       "success_rate": 90,
       "quantity": [
@@ -2751,19 +1764,10 @@
     },
     {
       "number": 109,
-      "result": {
-        "id": 42,
-        "name": "Tranquilizer"
-      },
+      "result": 42,
       "ingredients": [
-        {
-          "id": 167,
-          "name": "Sleep Herb"
-        },
-        {
-          "id": 179,
-          "name": "Parashroom"
-        }
+        167,
+        179
       ],
       "success_rate": 65,
       "quantity": [
@@ -2775,19 +1779,10 @@
     },
     {
       "number": 110,
-      "result": {
-        "id": 62,
-        "name": "Tranq Thrwng Knf"
-      },
+      "result": 62,
       "ingredients": [
-        {
-          "id": 42,
-          "name": "Tranquilizer"
-        },
-        {
-          "id": 58,
-          "name": "Throwing Knife"
-        }
+        42,
+        58
       ],
       "success_rate": 65,
       "quantity": [
@@ -2799,19 +1794,10 @@
     },
     {
       "number": 111,
-      "result": {
-        "id": 74,
-        "name": "Tranq Bomb"
-      },
+      "result": 74,
       "ingredients": [
-        {
-          "id": 42,
-          "name": "Tranquilizer"
-        },
-        {
-          "id": 63,
-          "name": "Bomb Material"
-        }
+        42,
+        63
       ],
       "success_rate": 75,
       "quantity": [
@@ -2823,19 +1809,10 @@
     },
     {
       "number": 112,
-      "result": {
-        "id": 124,
-        "name": "Tranq S"
-      },
+      "result": 124,
       "ingredients": [
-        {
-          "id": 42,
-          "name": "Tranquilizer"
-        },
-        {
-          "id": 94,
-          "name": "Sm Bone Husk"
-        }
+        42,
+        94
       ],
       "success_rate": 90,
       "quantity": [
@@ -2847,19 +1824,10 @@
     },
     {
       "number": 113,
-      "result": {
-        "id": 223,
-        "name": "Armor Sphere"
-      },
+      "result": 223,
       "ingredients": [
-        {
-          "id": 204,
-          "name": "Machalite Ore"
-        },
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        }
+        204,
+        222
       ],
       "success_rate": 100,
       "quantity": [
@@ -2871,19 +1839,10 @@
     },
     {
       "number": 114,
-      "result": {
-        "id": 223,
-        "name": "Armor Sphere"
-      },
+      "result": 223,
       "ingredients": [
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        },
-        {
-          "id": 257,
-          "name": "Killer Beetle"
-        }
+        222,
+        257
       ],
       "success_rate": 100,
       "quantity": [
@@ -2895,19 +1854,10 @@
     },
     {
       "number": 115,
-      "result": {
-        "id": 224,
-        "name": "Armor Sphere+"
-      },
+      "result": 224,
       "ingredients": [
-        {
-          "id": 205,
-          "name": "Dragonite Ore"
-        },
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        }
+        205,
+        222
       ],
       "success_rate": 100,
       "quantity": [
@@ -2919,19 +1869,10 @@
     },
     {
       "number": 116,
-      "result": {
-        "id": 224,
-        "name": "Armor Sphere+"
-      },
+      "result": 224,
       "ingredients": [
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        },
-        {
-          "id": 258,
-          "name": "Hercudrome"
-        }
+        222,
+        258
       ],
       "success_rate": 100,
       "quantity": [
@@ -2943,19 +1884,10 @@
     },
     {
       "number": 117,
-      "result": {
-        "id": 225,
-        "name": "Hrd Armor Sphere"
-      },
+      "result": 225,
       "ingredients": [
-        {
-          "id": 206,
-          "name": "Carbalite Ore"
-        },
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        }
+        206,
+        222
       ],
       "success_rate": 100,
       "quantity": [
@@ -2967,19 +1899,10 @@
     },
     {
       "number": 118,
-      "result": {
-        "id": 225,
-        "name": "Hrd Armor Sphere"
-      },
+      "result": 225,
       "ingredients": [
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        },
-        {
-          "id": 255,
-          "name": "King Scarab"
-        }
+        222,
+        255
       ],
       "success_rate": 100,
       "quantity": [
@@ -2991,19 +1914,10 @@
     },
     {
       "number": 119,
-      "result": {
-        "id": 226,
-        "name": "Hvy Armor Sphere"
-      },
+      "result": 226,
       "ingredients": [
-        {
-          "id": 217,
-          "name": "Purecrystal"
-        },
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        }
+        217,
+        222
       ],
       "success_rate": 100,
       "quantity": [
@@ -3015,19 +1929,10 @@
     },
     {
       "number": 120,
-      "result": {
-        "id": 227,
-        "name": "Ryl Armor Sphere"
-      },
+      "result": 227,
       "ingredients": [
-        {
-          "id": 207,
-          "name": "Eltalite Ore"
-        },
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        }
+        207,
+        222
       ],
       "success_rate": 100,
       "quantity": [
@@ -3039,19 +1944,10 @@
     },
     {
       "number": 121,
-      "result": {
-        "id": 227,
-        "name": "Ryl Armor Sphere"
-      },
+      "result": 227,
       "ingredients": [
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        },
-        {
-          "id": 256,
-          "name": "Emperor Cricket"
-        }
+        222,
+        256
       ],
       "success_rate": 100,
       "quantity": [
@@ -3063,19 +1959,10 @@
     },
     {
       "number": 122,
-      "result": {
-        "id": 228,
-        "name": "Tru Armor Sphere"
-      },
+      "result": 228,
       "ingredients": [
-        {
-          "id": 209,
-          "name": "Mellanje Ore"
-        },
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        }
+        209,
+        222
       ],
       "success_rate": 100,
       "quantity": [
@@ -3087,19 +1974,10 @@
     },
     {
       "number": 123,
-      "result": {
-        "id": 228,
-        "name": "Tru Armor Sphere"
-      },
+      "result": 228,
       "ingredients": [
-        {
-          "id": 222,
-          "name": "Armor Stone"
-        },
-        {
-          "id": 260,
-          "name": "PhantomButterfly"
-        }
+        222,
+        260
       ],
       "success_rate": 100,
       "quantity": [
@@ -3111,19 +1989,10 @@
     },
     {
       "number": 124,
-      "result": {
-        "id": 201,
-        "name": "Disk Stone"
-      },
+      "result": 201,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 201,
-          "name": "Disk Stone"
-        }
+        147,
+        201
       ],
       "success_rate": 100,
       "quantity": [
@@ -3135,19 +2004,10 @@
     },
     {
       "number": 125,
-      "result": {
-        "id": 202,
-        "name": "Iron Ore"
-      },
+      "result": 202,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 202,
-          "name": "Iron Ore"
-        }
+        147,
+        202
       ],
       "success_rate": 100,
       "quantity": [
@@ -3159,19 +2019,10 @@
     },
     {
       "number": 126,
-      "result": {
-        "id": 203,
-        "name": "Earth Crystal"
-      },
+      "result": 203,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 203,
-          "name": "Earth Crystal"
-        }
+        147,
+        203
       ],
       "success_rate": 100,
       "quantity": [
@@ -3183,19 +2034,10 @@
     },
     {
       "number": 127,
-      "result": {
-        "id": 204,
-        "name": "Machalite Ore"
-      },
+      "result": 204,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 204,
-          "name": "Machalite Ore"
-        }
+        147,
+        204
       ],
       "success_rate": 100,
       "quantity": [
@@ -3207,19 +2049,10 @@
     },
     {
       "number": 128,
-      "result": {
-        "id": 205,
-        "name": "Dragonite Ore"
-      },
+      "result": 205,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 205,
-          "name": "Dragonite Ore"
-        }
+        147,
+        205
       ],
       "success_rate": 100,
       "quantity": [
@@ -3231,19 +2064,10 @@
     },
     {
       "number": 129,
-      "result": {
-        "id": 206,
-        "name": "Carbalite Ore"
-      },
+      "result": 206,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 206,
-          "name": "Carbalite Ore"
-        }
+        147,
+        206
       ],
       "success_rate": 100,
       "quantity": [
@@ -3255,19 +2079,10 @@
     },
     {
       "number": 130,
-      "result": {
-        "id": 207,
-        "name": "Eltalite Ore"
-      },
+      "result": 207,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 207,
-          "name": "Eltalite Ore"
-        }
+        147,
+        207
       ],
       "success_rate": 100,
       "quantity": [
@@ -3279,19 +2094,10 @@
     },
     {
       "number": 131,
-      "result": {
-        "id": 208,
-        "name": "Union Ore"
-      },
+      "result": 208,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 208,
-          "name": "Union Ore"
-        }
+        147,
+        208
       ],
       "success_rate": 100,
       "quantity": [
@@ -3303,19 +2109,10 @@
     },
     {
       "number": 132,
-      "result": {
-        "id": 209,
-        "name": "Mellanje Ore"
-      },
+      "result": 209,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 209,
-          "name": "Mellanje Ore"
-        }
+        147,
+        209
       ],
       "success_rate": 100,
       "quantity": [
@@ -3327,19 +2124,10 @@
     },
     {
       "number": 133,
-      "result": {
-        "id": 210,
-        "name": "Firestone"
-      },
+      "result": 210,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 210,
-          "name": "Firestone"
-        }
+        147,
+        210
       ],
       "success_rate": 100,
       "quantity": [
@@ -3351,19 +2139,10 @@
     },
     {
       "number": 134,
-      "result": {
-        "id": 211,
-        "name": "Firecell Stone"
-      },
+      "result": 211,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 211,
-          "name": "Firecell Stone"
-        }
+        147,
+        211
       ],
       "success_rate": 100,
       "quantity": [
@@ -3375,19 +2154,10 @@
     },
     {
       "number": 135,
-      "result": {
-        "id": 215,
-        "name": "Lightcrystal"
-      },
+      "result": 215,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 215,
-          "name": "Lightcrystal"
-        }
+        147,
+        215
       ],
       "success_rate": 100,
       "quantity": [
@@ -3399,19 +2169,10 @@
     },
     {
       "number": 136,
-      "result": {
-        "id": 216,
-        "name": "Novacrystal"
-      },
+      "result": 216,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 216,
-          "name": "Novacrystal"
-        }
+        147,
+        216
       ],
       "success_rate": 100,
       "quantity": [
@@ -3423,19 +2184,10 @@
     },
     {
       "number": 137,
-      "result": {
-        "id": 217,
-        "name": "Purecrystal"
-      },
+      "result": 217,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 217,
-          "name": "Purecrystal"
-        }
+        147,
+        217
       ],
       "success_rate": 100,
       "quantity": [
@@ -3447,19 +2199,10 @@
     },
     {
       "number": 138,
-      "result": {
-        "id": 284,
-        "name": "Monster Bone+"
-      },
+      "result": 284,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 284,
-          "name": "Monster Bone+"
-        }
+        147,
+        284
       ],
       "success_rate": 100,
       "quantity": [
@@ -3471,19 +2214,10 @@
     },
     {
       "number": 139,
-      "result": {
-        "id": 285,
-        "name": "Hrd Monster Bone"
-      },
+      "result": 285,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 285,
-          "name": "Hrd Monster Bone"
-        }
+        147,
+        285
       ],
       "success_rate": 100,
       "quantity": [
@@ -3495,19 +2229,10 @@
     },
     {
       "number": 140,
-      "result": {
-        "id": 286,
-        "name": "Hvy Monster Bone"
-      },
+      "result": 286,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 286,
-          "name": "Hvy Monster Bone"
-        }
+        147,
+        286
       ],
       "success_rate": 100,
       "quantity": [
@@ -3519,19 +2244,10 @@
     },
     {
       "number": 141,
-      "result": {
-        "id": 254,
-        "name": "Carpenterbug"
-      },
+      "result": 254,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 254,
-          "name": "Carpenterbug"
-        }
+        147,
+        254
       ],
       "success_rate": 100,
       "quantity": [
@@ -3543,19 +2259,10 @@
     },
     {
       "number": 142,
-      "result": {
-        "id": 257,
-        "name": "Killer Beetle"
-      },
+      "result": 257,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 257,
-          "name": "Killer Beetle"
-        }
+        147,
+        257
       ],
       "success_rate": 100,
       "quantity": [
@@ -3567,19 +2274,10 @@
     },
     {
       "number": 143,
-      "result": {
-        "id": 258,
-        "name": "Hercudrome"
-      },
+      "result": 258,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 258,
-          "name": "Hercudrome"
-        }
+        147,
+        258
       ],
       "success_rate": 100,
       "quantity": [
@@ -3591,19 +2289,10 @@
     },
     {
       "number": 144,
-      "result": {
-        "id": 259,
-        "name": "Rare Scarab"
-      },
+      "result": 259,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 259,
-          "name": "Rare Scarab"
-        }
+        147,
+        259
       ],
       "success_rate": 100,
       "quantity": [
@@ -3615,19 +2304,10 @@
     },
     {
       "number": 145,
-      "result": {
-        "id": 255,
-        "name": "King Scarab"
-      },
+      "result": 255,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 255,
-          "name": "King Scarab"
-        }
+        147,
+        255
       ],
       "success_rate": 100,
       "quantity": [
@@ -3639,19 +2319,10 @@
     },
     {
       "number": 146,
-      "result": {
-        "id": 256,
-        "name": "Emperor Cricket"
-      },
+      "result": 256,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 256,
-          "name": "Emperor Cricket"
-        }
+        147,
+        256
       ],
       "success_rate": 100,
       "quantity": [
@@ -3663,19 +2334,10 @@
     },
     {
       "number": 147,
-      "result": {
-        "id": 260,
-        "name": "PhantomButterfly"
-      },
+      "result": 260,
       "ingredients": [
-        {
-          "id": 147,
-          "name": "Expand Pickaxe"
-        },
-        {
-          "id": 260,
-          "name": "PhantomButterfly"
-        }
+        147,
+        260
       ],
       "success_rate": 100,
       "quantity": [
@@ -3687,19 +2349,10 @@
     },
     {
       "number": 148,
-      "result": {
-        "id": 1164,
-        "name": "Pokke Snowman"
-      },
+      "result": 1164,
       "ingredients": [
-        {
-          "id": 1171,
-          "name": "Blngo Blzrd Ball"
-        },
-        {
-          "id": 1172,
-          "name": "Blngo Flrry Ball"
-        }
+        1171,
+        1172
       ],
       "success_rate": 100,
       "quantity": [
@@ -3711,19 +2364,10 @@
     },
     {
       "number": 149,
-      "result": {
-        "id": 1165,
-        "name": "Felyne Crown"
-      },
+      "result": 1165,
       "ingredients": [
-        {
-          "id": 1173,
-          "name": "Inferior FlynCrn"
-        },
-        {
-          "id": 1174,
-          "name": "Flyn Crwn Frgmnt"
-        }
+        1173,
+        1174
       ],
       "success_rate": 100,
       "quantity": [
@@ -3735,19 +2379,10 @@
     },
     {
       "number": 150,
-      "result": {
-        "id": 1166,
-        "name": "GldFlynJewelSwd"
-      },
+      "result": 1166,
       "ingredients": [
-        {
-          "id": 1175,
-          "name": "Hndlelss Gld Bld"
-        },
-        {
-          "id": 1176,
-          "name": "GldBladelessHndl"
-        }
+        1175,
+        1176
       ],
       "success_rate": 100,
       "quantity": [
@@ -3759,19 +2394,10 @@
     },
     {
       "number": 151,
-      "result": {
-        "id": 1167,
-        "name": "Dynasty Vase"
-      },
+      "result": 1167,
       "ingredients": [
-        {
-          "id": 1177,
-          "name": "Bttmlss Old Vase"
-        },
-        {
-          "id": 1178,
-          "name": "Old Vase Bottom"
-        }
+        1177,
+        1178
       ],
       "success_rate": 100,
       "quantity": [
@@ -3783,19 +2409,10 @@
     },
     {
       "number": 152,
-      "result": {
-        "id": 1168,
-        "name": "Mysterious Mask"
-      },
+      "result": 1168,
       "ingredients": [
-        {
-          "id": 1179,
-          "name": "Holed Shaka Mask"
-        },
-        {
-          "id": 1180,
-          "name": "Shakalaka Stone"
-        }
+        1179,
+        1180
       ],
       "success_rate": 100,
       "quantity": [
@@ -3807,19 +2424,10 @@
     },
     {
       "number": 153,
-      "result": {
-        "id": 1169,
-        "name": "Eldr Drgn Rfrnc"
-      },
+      "result": 1169,
       "ingredients": [
-        {
-          "id": 1181,
-          "name": "Torn Old Book"
-        },
-        {
-          "id": 1182,
-          "name": "Old Book Scrap"
-        }
+        1181,
+        1182
       ],
       "success_rate": 100,
       "quantity": [
@@ -3831,19 +2439,10 @@
     },
     {
       "number": 154,
-      "result": {
-        "id": 1170,
-        "name": "AncntCatKingStat"
-      },
+      "result": 1170,
       "ingredients": [
-        {
-          "id": 1183,
-          "name": "TaillessCatStatu"
-        },
-        {
-          "id": 1184,
-          "name": "BrokenStoneTail"
-        }
+        1183,
+        1184
       ],
       "success_rate": 100,
       "quantity": [
@@ -3855,19 +2454,10 @@
     },
     {
       "number": 155,
-      "result": {
-        "id": 161,
-        "name": "Honey"
-      },
+      "result": 161,
       "ingredients": [
-        {
-          "id": 138,
-          "name": "Firefly"
-        },
-        {
-          "id": 175,
-          "name": "Special Mushroom"
-        }
+        138,
+        175
       ],
       "success_rate": 90,
       "quantity": [
@@ -3880,19 +2470,10 @@
     },
     {
       "number": 156,
-      "result": {
-        "id": 163,
-        "name": "Herb"
-      },
+      "result": 163,
       "ingredients": [
-        {
-          "id": 168,
-          "name": "Sap Plant"
-        },
-        {
-          "id": 246,
-          "name": "Insect Husk"
-        }
+        168,
+        246
       ],
       "success_rate": 95,
       "quantity": [
@@ -3905,19 +2486,10 @@
     },
     {
       "number": 157,
-      "result": {
-        "id": 165,
-        "name": "Fire Herb"
-      },
+      "result": 165,
       "ingredients": [
-        {
-          "id": 155,
-          "name": "Garbage"
-        },
-        {
-          "id": 171,
-          "name": "Hot Pepper"
-        }
+        155,
+        171
       ],
       "success_rate": 90,
       "quantity": [
@@ -3930,19 +2502,10 @@
     },
     {
       "number": 158,
-      "result": {
-        "id": 177,
-        "name": "Blue Mushroom"
-      },
+      "result": 177,
       "ingredients": [
-        {
-          "id": 164,
-          "name": "Antidote Herb"
-        },
-        {
-          "id": 180,
-          "name": "Toadstool"
-        }
+        164,
+        180
       ],
       "success_rate": 95,
       "quantity": [
@@ -3955,19 +2518,10 @@
     },
     {
       "number": 159,
-      "result": {
-        "id": 43,
-        "name": "Raw Meat"
-      },
+      "result": 43,
       "ingredients": [
-        {
-          "id": 50,
-          "name": "Burnt Meat"
-        },
-        {
-          "id": 246,
-          "name": "Insect Husk"
-        }
+        50,
+        246
       ],
       "success_rate": 95,
       "quantity": [
@@ -3980,19 +2534,10 @@
     },
     {
       "number": 160,
-      "result": {
-        "id": 83,
-        "name": "Large Barrel"
-      },
+      "result": 83,
       "ingredients": [
-        {
-          "id": 166,
-          "name": "Ivy"
-        },
-        {
-          "id": 282,
-          "name": "Med Monster Bone"
-        }
+        166,
+        282
       ],
       "success_rate": 65,
       "quantity": [
@@ -4005,19 +2550,10 @@
     },
     {
       "number": 161,
-      "result": {
-        "id": 82,
-        "name": "Small Barrel"
-      },
+      "result": 82,
       "ingredients": [
-        {
-          "id": 168,
-          "name": "Sap Plant"
-        },
-        {
-          "id": 281,
-          "name": "Sm Monster Bone"
-        }
+        168,
+        281
       ],
       "success_rate": 75,
       "quantity": [
@@ -4030,19 +2566,10 @@
     },
     {
       "number": 162,
-      "result": {
-        "id": 93,
-        "name": "Huskberry"
-      },
+      "result": 93,
       "ingredients": [
-        {
-          "id": 93,
-          "name": "Huskberry"
-        },
-        {
-          "id": 202,
-          "name": "Iron Ore"
-        }
+        93,
+        202
       ],
       "success_rate": 75,
       "quantity": [
@@ -4055,19 +2582,10 @@
     },
     {
       "number": 163,
-      "result": {
-        "id": 190,
-        "name": "Needleberry"
-      },
+      "result": 190,
       "ingredients": [
-        {
-          "id": 190,
-          "name": "Needleberry"
-        },
-        {
-          "id": 203,
-          "name": "Earth Crystal"
-        }
+        190,
+        203
       ],
       "success_rate": 75,
       "quantity": [
@@ -4080,19 +2598,10 @@
     },
     {
       "number": 164,
-      "result": {
-        "id": 230,
-        "name": "Sushifish"
-      },
+      "result": 230,
       "ingredients": [
-        {
-          "id": 164,
-          "name": "Antidote Herb"
-        },
-        {
-          "id": 231,
-          "name": "Sleepyfish"
-        }
+        164,
+        231
       ],
       "success_rate": 75,
       "quantity": [
@@ -4105,19 +2614,10 @@
     },
     {
       "number": 165,
-      "result": {
-        "id": 47,
-        "name": "Rare Steak"
-      },
+      "result": 47,
       "ingredients": [
-        {
-          "id": 253,
-          "name": "Thunderbug"
-        },
-        {
-          "id": 351,
-          "name": "Velociprey Hide"
-        }
+        253,
+        351
       ],
       "success_rate": 90,
       "quantity": [
@@ -4130,19 +2630,10 @@
     },
     {
       "number": 166,
-      "result": {
-        "id": 266,
-        "name": "Screamer"
-      },
+      "result": 266,
       "ingredients": [
-        {
-          "id": 139,
-          "name": "Frog"
-        },
-        {
-          "id": 156,
-          "name": "Flute"
-        }
+        139,
+        156
       ],
       "success_rate": 75,
       "quantity": [
@@ -4155,19 +2646,10 @@
     },
     {
       "number": 167,
-      "result": {
-        "id": 25,
-        "name": "Monster Fluid"
-      },
+      "result": 25,
       "ingredients": [
-        {
-          "id": 219,
-          "name": "Ice Crystal"
-        },
-        {
-          "id": 271,
-          "name": "Sleep Sac"
-        }
+        219,
+        271
       ],
       "success_rate": 55,
       "quantity": [
@@ -4180,19 +2662,10 @@
     },
     {
       "number": 168,
-      "result": {
-        "id": 24,
-        "name": "Psychoserum"
-      },
+      "result": 24,
       "ingredients": [
-        {
-          "id": 170,
-          "name": "Cactus Flower"
-        },
-        {
-          "id": 253,
-          "name": "Thunderbug"
-        }
+        170,
+        253
       ],
       "success_rate": 75,
       "quantity": [
@@ -4205,19 +2678,10 @@
     },
     {
       "number": 169,
-      "result": {
-        "id": 279,
-        "name": "Power Extract"
-      },
+      "result": 279,
       "ingredients": [
-        {
-          "id": 188,
-          "name": "Dragon Seed"
-        },
-        {
-          "id": 308,
-          "name": "Piscine Liver"
-        }
+        188,
+        308
       ],
       "success_rate": 65,
       "quantity": [
@@ -4230,19 +2694,10 @@
     },
     {
       "number": 170,
-      "result": {
-        "id": 186,
-        "name": "Power Seed"
-      },
+      "result": 186,
       "ingredients": [
-        {
-          "id": 191,
-          "name": "Bomberry"
-        },
-        {
-          "id": 351,
-          "name": "Velociprey Hide"
-        }
+        191,
+        351
       ],
       "success_rate": 65,
       "quantity": [
@@ -4255,19 +2710,10 @@
     },
     {
       "number": 171,
-      "result": {
-        "id": 187,
-        "name": "Armor Seed"
-      },
+      "result": 187,
       "ingredients": [
-        {
-          "id": 190,
-          "name": "Needleberry"
-        },
-        {
-          "id": 342,
-          "name": "Giaprey Hide"
-        }
+        190,
+        342
       ],
       "success_rate": 65,
       "quantity": [
@@ -4280,19 +2726,10 @@
     },
     {
       "number": 172,
-      "result": {
-        "id": 53,
-        "name": "Rare Fish"
-      },
+      "result": 53,
       "ingredients": [
-        {
-          "id": 56,
-          "name": "Burnt Fish"
-        },
-        {
-          "id": 162,
-          "name": "Sunset Herb"
-        }
+        56,
+        162
       ],
       "success_rate": 90,
       "quantity": [

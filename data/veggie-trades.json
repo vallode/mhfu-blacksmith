@@ -3,3870 +3,3870 @@
   "elders": [
     {
       "maps": [
-        "Forest and Hills (Day)",
-        "Forest and Hills (Night)"
+        2,
+        16
       ],
       "trades": [
         {
-          "give": "Wyvern Egg",
-          "common": "Potion",
-          "rare": "Mega Potion"
+          "give": 876,
+          "common": 7,
+          "rare": 8
         },
         {
-          "give": "Insect Husk",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 246,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Garbage",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 155,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Fish",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 56,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Meat",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 50,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Scatternut",
-          "common": "Special Mushroom",
-          "rare": "Bone"
+          "give": 189,
+          "common": 175,
+          "rare": 292
         },
         {
-          "give": "Disk Stone",
-          "common": "Special Mushroom",
-          "rare": "Bone"
+          "give": 201,
+          "common": 175,
+          "rare": 292
         },
         {
-          "give": "Bounce Bomb",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 88,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Gunpowder",
-          "common": "Lg Bone Husk",
-          "rare": "Sm Bone Husk"
+          "give": 35,
+          "common": 95,
+          "rare": 94
         },
         {
-          "give": "Rumblefish",
-          "common": "Unknown Skull",
-          "rare": "Bone"
+          "give": 233,
+          "common": 290,
+          "rare": 292
         },
         {
-          "give": "Toadstool",
-          "common": "Sm Bone Husk",
-          "rare": "Unknown Skull"
+          "give": 180,
+          "common": 94,
+          "rare": 290
         },
         {
-          "give": "Dragon Toadstool",
-          "common": "Sm Monster Bone",
-          "rare": "Unknown Skull"
+          "give": 182,
+          "common": 281,
+          "rare": 290
         },
         {
-          "give": "Carpenterbug",
-          "common": "Sharp Claw",
-          "rare": "Anteka Pelt"
+          "give": 254,
+          "common": 427,
+          "rare": 330
         },
         {
-          "give": "Earth Crystal",
-          "common": "Sm Monster Bone",
-          "rare": "Giant Bone"
+          "give": 203,
+          "common": 281,
+          "rare": 295
         },
         {
-          "give": "Spicy Mushroom",
-          "common": "Lg Bone Husk",
-          "rare": "Sm Bone Husk"
+          "give": 183,
+          "common": 95,
+          "rare": 94
         },
         {
-          "give": "ShakalakaTreasre",
-          "common": "Bullfango Pelt",
-          "rare": "Giaprey Hide"
+          "give": 337,
+          "common": 321,
+          "rare": 342
         },
         {
-          "give": "Bomb Arrowana",
-          "common": "Sharp Claw",
-          "rare": "Bone"
+          "give": 236,
+          "common": 427,
+          "rare": 292
         },
         {
-          "give": "Suiko Jewel",
-          "common": "Velociprey Scale",
-          "rare": "Kelbi Horn"
+          "give": 944,
+          "common": 349,
+          "rare": 327
         },
         {
-          "give": "Power Seed",
-          "common": "Sharp Claw",
-          "rare": "Lg Bone Husk"
+          "give": 186,
+          "common": 427,
+          "rare": 95
         },
         {
-          "give": "Burst Arrowana",
-          "common": "Lg Bone Husk",
-          "rare": "Sm Monster Bone"
+          "give": 235,
+          "common": 95,
+          "rare": 281
         },
         {
-          "give": "Fire Herb",
-          "common": "Unknown Skull",
-          "rare": "Mystery Bone"
+          "give": 165,
+          "common": 290,
+          "rare": 289
         },
         {
-          "give": "Ruststone",
-          "common": "Remobra Skin",
-          "rare": "Striped Skin"
+          "give": 819,
+          "common": 332,
+          "rare": 335
         },
         {
-          "give": "Large Ruststone",
-          "common": "Giadrome Hide",
-          "rare": "Iodrome Hide"
+          "give": 821,
+          "common": 344,
+          "rare": 370
         },
         {
-          "give": "Needleberry",
-          "common": "Mystery Bone",
-          "rare": "Bone"
+          "give": 190,
+          "common": 289,
+          "rare": 292
         },
         {
-          "give": "Rathalos Tail",
-          "common": "Ceanataur Shell",
-          "rare": "Ioprey Scale"
+          "give": 557,
+          "common": 504,
+          "rare": 366
         },
         {
-          "give": "Velocidrome Claw",
-          "common": "Genprey Hide",
-          "rare": "Vespoid Wing"
+          "give": 354,
+          "common": 360,
+          "rare": 660
         },
         {
-          "give": "Rathalos Webbing",
-          "common": "Pnk Rathian Scl",
-          "rare": "Tigrex Shell"
+          "give": 559,
+          "common": 532,
+          "rare": 597
         },
         {
-          "give": "Chameleos Hide",
-          "common": "Monster Bone+",
-          "rare": "Eldr Dragon Bone"
+          "give": 729,
+          "common": 284,
+          "rare": 287
         },
         {
-          "give": "Chameleos Horn",
-          "common": "Fire Drgn Webbng",
-          "rare": "Kirin Hide"
+          "give": 732,
+          "common": 746,
+          "rare": 683
         },
         {
-          "give": "Ceanataur Claw",
-          "common": "Tigrex Scale",
-          "rare": "Garuga Shell"
+          "give": 510,
+          "common": 593,
+          "rare": 412
         },
         {
-          "give": "Garuga Ear",
-          "common": "Kut-Ku Ear",
-          "rare": "Kut-Ku Webbing"
+          "give": 415,
+          "common": 388,
+          "rare": 393
         },
         {
-          "give": "Daora Horn",
-          "common": "Daora Shell",
-          "rare": "DaoraDragonScale"
+          "give": 722,
+          "common": 714,
+          "rare": 717
         },
         {
-          "give": "Tigrex Tail",
-          "common": "Plesioth Fin",
-          "rare": "Blangonga Whiskr"
+          "give": 600,
+          "common": 473,
+          "rare": 435
         },
         {
-          "give": "Basarios Wing",
-          "common": "Wyvern Skull Shl",
-          "rare": "Iodrome Hide"
+          "give": 590,
+          "common": 493,
+          "rare": 370
         },
         {
-          "give": "Gravios Skl Shl",
-          "common": "Rathian Shell",
-          "rare": "Rathian Spike"
+          "give": 627,
+          "common": 526,
+          "rare": 529
         },
         {
-          "give": "Azur Rthlos Wing",
-          "common": "Monoblos Spine",
-          "rare": "FireWyvrn Marrow"
+          "give": 570,
+          "common": 673,
+          "rare": 546
         },
         {
-          "give": "Felyne Fur Ruby",
-          "common": "Bullfango Pelt",
-          "rare": "Kut-Ku Scale"
+          "give": 319,
+          "common": 321,
+          "rare": 382
         },
         {
-          "give": "Ancient Fish",
-          "common": "Lg Monster Bone",
-          "rare": "Thunderbug Juice"
+          "give": 243,
+          "common": 283,
+          "rare": 28
         },
         {
-          "give": "ShakaInheritance",
-          "common": "Flame Sac",
-          "rare": "Poison Sac"
+          "give": 339,
+          "common": 273,
+          "rare": 267
         },
         {
-          "give": "Akantor Tail",
-          "common": "Azure LaoS Shell",
-          "rare": "FireWyvrn BrnStm"
+          "give": 805,
+          "common": 702,
+          "rare": 547
         },
         {
-          "give": "Azre Rthlos Scl+",
-          "common": "Toxin Sac",
-          "rare": "Blk Gravios Shl"
+          "give": 563,
+          "common": 268,
+          "rare": 629
         },
         {
-          "give": "Kut-Ku Carapace",
-          "common": "Genprey Hide+",
-          "rare": "HornetaurInnrWng"
+          "give": 386,
+          "common": 361,
+          "rare": 667
         },
         {
-          "give": "Velocidrome Clw+",
-          "common": "Rathian Scale",
-          "rare": "Rathalos Scale"
+          "give": 355,
+          "common": 520,
+          "rare": 548
         },
         {
-          "give": "Blk Blos Thracic",
-          "common": "Stout Bone",
-          "rare": "Congalala Pelt+"
+          "give": 652,
+          "common": 296,
+          "rare": 445
         },
         {
-          "give": "Splendid Beak",
-          "common": "Bulldrome Hide+",
-          "rare": "Giaprey Hide+"
+          "give": 392,
+          "common": 326,
+          "rare": 343
         },
         {
-          "give": "Gold Rajang Pelt",
-          "common": "Inferno Sac",
-          "rare": "Hrd Monster Bone"
+          "give": 466,
+          "common": 274,
+          "rare": 285
         },
         {
-          "give": "Hypno Bezoar",
-          "common": "Sleep Sac",
-          "rare": "Rathian Spike"
+          "give": 376,
+          "common": 271,
+          "rare": 529
         },
         {
-          "give": "HvyAzurRthlsShl",
-          "common": "HvyBlueKut-KuShl",
-          "rare": "Str Kut-Ku Wing"
+          "give": 567,
+          "common": 400,
+          "rare": 394
         },
         {
-          "give": "Hvy Gaoren Spine",
-          "common": "ThckRathianScl",
-          "rare": "Hrd Rathalos Scl"
+          "give": 710,
+          "common": 522,
+          "rare": 550
         },
         {
-          "give": "VespoidQn'sCrown",
-          "common": "Rathian Scale+",
-          "rare": "Rathalos Scale+"
+          "give": 657,
+          "common": 521,
+          "rare": 549
         },
         {
-          "give": "StoutBlkTwstdHrn",
-          "common": "Lucky Kut-Ku Ear",
-          "rare": "StrRathalosWing"
+          "give": 647,
+          "common": 390,
+          "rare": 561
         },
         {
-          "give": "ThickGarugaScale",
-          "common": "ThkBullfangoPelt",
-          "rare": "RobustWyvernBone"
+          "give": 411,
+          "common": 322,
+          "rare": 293
         },
         {
-          "give": "SpecialKirinHide",
-          "common": "Blazing Fire Sac",
-          "rare": "BigEDragonBone"
+          "give": 685,
+          "common": 275,
+          "rare": 288
         },
         {
-          "give": "Hvy Ukanlos Tail",
-          "common": "Lao-Shan'sHvyShl",
-          "rare": "Rathian Thorn"
+          "give": 811,
+          "common": 700,
+          "rare": 531
         },
         {
-          "give": "Dosbiscus",
-          "common": "Dung",
-          "rare": "Wyvern Droppings"
+          "give": 172,
+          "common": 67,
+          "rare": 68
         },
         {
-          "give": "Chaos Mushroom",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 184,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Springnight Carp",
-          "common": "Net",
-          "rare": "Net"
+          "give": 244,
+          "common": 76,
+          "rare": 76
         },
         {
-          "give": "Great Hornfly",
-          "common": "Godbug",
-          "rare": "Monster Fluid"
+          "give": 264,
+          "common": 250,
+          "rare": 25
         },
         {
-          "give": "Sinister Cloth",
-          "common": "Dragon Treasure",
-          "rare": "Dragon Treasure"
+          "give": 817,
+          "common": 315,
+          "rare": 315
         },
         {
-          "give": "Dragonmoss",
-          "common": "Lg Monster Bone",
-          "rare": "Eldr Dragon Bone"
+          "give": 765,
+          "common": 283,
+          "rare": 287
         },
         {
-          "give": "Dragonmoss+",
-          "common": "Monster Bone+",
-          "rare": "Hrd Monster Bone"
+          "give": 766,
+          "common": 284,
+          "rare": 285
         },
         {
-          "give": "Dragonwood",
-          "common": "Lg Monster Bone",
-          "rare": "Eldr Dragon Bone"
+          "give": 768,
+          "common": 283,
+          "rare": 287
         },
         {
-          "give": "Dragonwood+",
-          "common": "Monster Bone+",
-          "rare": "Hrd Monster Bone"
+          "give": 769,
+          "common": 284,
+          "rare": 285
         },
         {
-          "give": "Giant Corn",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 174,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Tailed Frog",
-          "common": "Frog",
-          "rare": "Frog"
+          "give": 245,
+          "common": 139,
+          "rare": 139
         },
         {
-          "give": "Famitsu Ticket",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 929,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Famitsu PO",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 930,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Dengeki Ticket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 933,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Dengeki Ticket+",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 934,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "DemonKingTicket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 936,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Ticket J",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 937,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Hunter's Ticket",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 940,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Hunter Soul Tkt",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 941,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Amezari Shell",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 518,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "PtFamitsuTicket",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 931,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "SpecFamitsuTckt",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 932,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "Dengeki Ticket G",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 935,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Tckt J G",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 938,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Magazine Ticket",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 939,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Gt Amezari Shell",
-          "common": "Lightning Rod",
-          "rare": "Lightning Rod"
+          "give": 519,
+          "common": 80,
+          "rare": 80
         },
         {
-          "give": "Blackbelt Ticket",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 925,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Expert Ticket",
-          "common": "Decayed Drgn Scl",
-          "rare": "Decayed Drgn Scl"
+          "give": 926,
+          "common": 317,
+          "rare": 317
         },
         {
-          "give": "Hypno Ticket",
-          "common": "OrangeHypnoPelt",
-          "rare": "Sleep Sac"
+          "give": 381,
+          "common": 372,
+          "rare": 271
         },
         {
-          "give": "Lavasioth Ticket",
-          "common": "ThckLavasiothScl",
-          "rare": "HvyLavasiothShl"
+          "give": 492,
+          "common": 488,
+          "rare": 489
         },
         {
-          "give": "Kut-Ku Coin",
-          "common": "Kut-Ku Scale",
-          "rare": "Kut-Ku Shell"
+          "give": 884,
+          "common": 382,
+          "rare": 385
         },
         {
-          "give": "Congalala Coin",
-          "common": "Congalala Pelt",
-          "rare": "Congalala Fang"
+          "give": 885,
+          "common": 444,
+          "rare": 451
         },
         {
-          "give": "Khezu Coin",
-          "common": "Flabby Hide",
-          "rare": "Pale Extract"
+          "give": 886,
+          "common": 578,
+          "rare": 280
         },
         {
-          "give": "Daimyo Coin",
-          "common": "Hermitaur Shell",
-          "rare": "Hermitaur Claw"
+          "give": 887,
+          "common": 495,
+          "rare": 498
         },
         {
-          "give": "Blangonga Coin",
-          "common": "Blangonga Pelt",
-          "rare": "Blangonga Whiskr"
+          "give": 888,
+          "common": 432,
+          "rare": 435
         },
         {
-          "give": "Yian Garuga Coin",
-          "common": "Garuga Scale",
-          "rare": "Garuga Shell"
+          "give": 889,
+          "common": 409,
+          "rare": 412
         },
         {
-          "give": "Tigrex Coin",
-          "common": "Tigrex Scale",
-          "rare": "Tigrex Shell"
+          "give": 890,
+          "common": 593,
+          "rare": 597
         },
         {
-          "give": "Diablos Coin",
-          "common": "Diablos Shell",
-          "rare": "Blos Fang"
+          "give": 891,
+          "common": 637,
+          "rare": 645
         },
         {
-          "give": "Gravios Coin",
-          "common": "Gravios Shell",
-          "rare": "Lg Monster Bone"
+          "give": 892,
+          "common": 623,
+          "rare": 283
         },
         {
-          "give": "Kirin Coin",
-          "common": "Kirin Mane",
-          "rare": "Kirin Horn"
+          "give": 893,
+          "common": 686,
+          "rare": 682
         },
         {
-          "give": "Cephadrome Coin",
-          "common": "Cephalos Scale",
-          "rare": "Cephalos Fin"
+          "give": 894,
+          "common": 482,
+          "rare": 484
         },
         {
-          "give": "Plesioth Coin",
-          "common": "Plesioth Scale",
-          "rare": "Plesioth Fin"
+          "give": 895,
+          "common": 470,
+          "rare": 473
         },
         {
-          "give": "Shogun Coin",
-          "common": "Ceanataur Shell",
-          "rare": "Ceanataur Leg"
+          "give": 896,
+          "common": 504,
+          "rare": 507
         },
         {
-          "give": "Fire Coin",
-          "common": "Rathalos Scale",
-          "rare": "Rathalos Shell"
+          "give": 897,
+          "common": 548,
+          "rare": 554
         },
         {
-          "give": "Rajang Coin",
-          "common": "Commendation",
-          "rare": "Blk Rajang Pelt"
+          "give": 898,
+          "common": 903,
+          "rare": 460
         },
         {
-          "give": "BlackBeltCoinG",
-          "common": "OrangeHypnoPelt+",
-          "rare": "E.CongalalaPelt+"
+          "give": 899,
+          "common": 373,
+          "rare": 453
         },
         {
-          "give": "Expert Coin G",
-          "common": "C.BlangongaPelt+",
-          "rare": "ThickNargaScale"
+          "give": 900,
+          "common": 439,
+          "rare": 610
         },
         {
-          "give": "Warrior Coin G",
-          "common": "ThckLavasiothScl",
-          "rare": "TerraCeanatrShl"
+          "give": 901,
+          "common": 488,
+          "rare": 513
         },
         {
-          "give": "Legend Coin G",
-          "common": "Commendation S",
-          "rare": "Blk Rajang Pelt+"
+          "give": 902,
+          "common": 905,
+          "rare": 461
         },
         {
-          "give": "VeggieElderTcket",
-          "common": "Max Potion",
-          "rare": "Lifecrystals"
+          "give": 919,
+          "common": 31,
+          "rare": 36
         },
         {
-          "give": "VeggieElderTckt+",
-          "common": "Ancient Potion",
-          "rare": "Lifepowder"
+          "give": 920,
+          "common": 32,
+          "rare": 37
         },
         {
-          "give": "VegElderTcktBrz",
-          "common": "Monster Bone+",
-          "rare": "Monster Bone+"
+          "give": 921,
+          "common": 284,
+          "rare": 284
         },
         {
-          "give": "VegElderTcktSlv",
-          "common": "Rathalos Plate",
-          "rare": "Rathalos Plate"
+          "give": 922,
+          "common": 551,
+          "rare": 551
         },
         {
-          "give": "VegElderTcktGld",
-          "common": "Rathalos Ruby",
-          "rare": "Rathalos Ruby"
+          "give": 923,
+          "common": 552,
+          "rare": 552
         },
         {
-          "give": "VegElderTcktSky",
-          "common": "HvnlyRathianScl",
-          "rare": "HvnlyRathalosScl"
+          "give": 924,
+          "common": 525,
+          "rare": 553
         }
       ]
     },
     {
       "maps": [
-        "Desert (Day)",
-        "Desert (Night)"
+        3,
+        17
       ],
       "trades": [
         {
-          "give": "Herbivore Egg",
-          "common": "Potion",
-          "rare": "Mega Potion"
+          "give": 877,
+          "common": 7,
+          "rare": 8
         },
         {
-          "give": "Insect Husk",
-          "common": "Tropical Berry",
-          "rare": "Tropical Berry"
+          "give": 246,
+          "common": 192,
+          "rare": 192
         },
         {
-          "give": "Garbage",
-          "common": "Tropical Berry",
-          "rare": "Tropical Berry"
+          "give": 155,
+          "common": 192,
+          "rare": 192
         },
         {
-          "give": "Burnt Fish",
-          "common": "Tropical Berry",
-          "rare": "Tropical Berry"
+          "give": 56,
+          "common": 192,
+          "rare": 192
         },
         {
-          "give": "Burnt Meat",
-          "common": "Tropical Berry",
-          "rare": "Tropical Berry"
+          "give": 50,
+          "common": 192,
+          "rare": 192
         },
         {
-          "give": "Fire Herb",
-          "common": "Tropical Berry",
-          "rare": "Ice Crystal"
+          "give": 165,
+          "common": 192,
+          "rare": 219
         },
         {
-          "give": "Cactus Flower",
-          "common": "Tropical Berry",
-          "rare": "Ice Crystal"
+          "give": 170,
+          "common": 192,
+          "rare": 219
         },
         {
-          "give": "Bounce Bomb",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 88,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Barrel Lid",
-          "common": "Machalite Ore",
-          "rare": "Suiko Jewel"
+          "give": 81,
+          "common": 204,
+          "rare": 944
         },
         {
-          "give": "ShakalakaTreasre",
-          "common": "Suiko Jewel",
-          "rare": "Machalite Ore"
+          "give": 337,
+          "common": 944,
+          "rare": 204
         },
         {
-          "give": "Med Monster Bone",
-          "common": "Earth Crystal",
-          "rare": "Iron Ore"
+          "give": 282,
+          "common": 203,
+          "rare": 202
         },
         {
-          "give": "Sm Monster Bone",
-          "common": "Ice Crystal",
-          "rare": "Iron Ore"
+          "give": 281,
+          "common": 219,
+          "rare": 202
         },
         {
-          "give": "Bughopper",
-          "common": "Disk Stone",
-          "rare": "Iron Ore"
+          "give": 248,
+          "common": 201,
+          "rare": 202
         },
         {
-          "give": "Mystery Bone",
-          "common": "Stone",
-          "rare": "Disk Stone"
+          "give": 289,
+          "common": 200,
+          "rare": 201
         },
         {
-          "give": "Sleepyfish",
-          "common": "Iron Ore",
-          "rare": "Disk Stone"
+          "give": 231,
+          "common": 202,
+          "rare": 201
         },
         {
-          "give": "Sunset Herb",
-          "common": "Disk Stone",
-          "rare": "Stone"
+          "give": 162,
+          "common": 201,
+          "rare": 200
         },
         {
-          "give": "Antidote Herb",
-          "common": "Stone",
-          "rare": "Disk Stone"
+          "give": 164,
+          "common": 200,
+          "rare": 201
         },
         {
-          "give": "Unknown Skull",
-          "common": "Iron Ore",
-          "rare": "Disk Stone"
+          "give": 290,
+          "common": 202,
+          "rare": 201
         },
         {
-          "give": "Antiseptic Stone",
-          "common": "Suiko Jewel",
-          "rare": "Suiko Jewel"
+          "give": 218,
+          "common": 944,
+          "rare": 944
         },
         {
-          "give": "Dragon Toadstool",
-          "common": "Earth Crystal",
-          "rare": "Machalite Ore"
+          "give": 182,
+          "common": 203,
+          "rare": 204
         },
         {
-          "give": "Frozen Berry",
-          "common": "Earth Crystal",
-          "rare": "Machalite Ore"
+          "give": 193,
+          "common": 203,
+          "rare": 204
         },
         {
-          "give": "Remobra Skull",
-          "common": "Iron Ore",
-          "rare": "Disk Stone"
+          "give": 336,
+          "common": 202,
+          "rare": 201
         },
         {
-          "give": "Vespoid Shell",
-          "common": "Earth Crystal",
-          "rare": "Machalite Ore"
+          "give": 658,
+          "common": 203,
+          "rare": 204
         },
         {
-          "give": "Large Ruststone",
-          "common": "Machalite Ore",
-          "rare": "Armor Stone"
+          "give": 821,
+          "common": 204,
+          "rare": 222
         },
         {
-          "give": "Small Ruststone",
-          "common": "Machalite Ore",
-          "rare": "Armor Stone"
+          "give": 822,
+          "common": 204,
+          "rare": 222
         },
         {
-          "give": "Tuna Bait",
-          "common": "Iron Ore",
-          "rare": "Machalite Ore"
+          "give": 140,
+          "common": 202,
+          "rare": 204
         },
         {
-          "give": "Teostra Mane",
-          "common": "Armor Sphere",
-          "rare": "Armor Sphere+"
+          "give": 759,
+          "common": 223,
+          "rare": 224
         },
         {
-          "give": "Black Blos Spine",
-          "common": "Armor Sphere",
-          "rare": "Armor Stone"
+          "give": 651,
+          "common": 223,
+          "rare": 222
         },
         {
-          "give": "Gendrome Skull",
-          "common": "Machalite Ore",
-          "rare": "Earth Crystal"
+          "give": 364,
+          "common": 204,
+          "rare": 203
         },
         {
-          "give": "Pawprint Stamp",
-          "common": "Suiko Jewel",
-          "rare": "Akito Jewel"
+          "give": 906,
+          "common": 944,
+          "rare": 945
         },
         {
-          "give": "Black Blos Tail",
-          "common": "Machalite Ore",
-          "rare": "Lightcrystal"
+          "give": 654,
+          "common": 204,
+          "rare": 215
         },
         {
-          "give": "Lao-Shan's Horn",
-          "common": "Machalite Ore",
-          "rare": "Firestone"
+          "give": 692,
+          "common": 204,
+          "rare": 210
         },
         {
-          "give": "Garuga Tail",
-          "common": "Machalite Ore",
-          "rare": "Lightcrystal"
+          "give": 421,
+          "common": 204,
+          "rare": 215
         },
         {
-          "give": "Gaoren Claw",
-          "common": "Machalite Ore",
-          "rare": "Firestone"
+          "give": 712,
+          "common": 204,
+          "rare": 210
         },
         {
-          "give": "Congalala Claw",
-          "common": "Earth Crystal",
-          "rare": "Machalite Ore"
+          "give": 448,
+          "common": 203,
+          "rare": 204
         },
         {
-          "give": "Ceanataur Pincer",
-          "common": "Akito Jewel",
-          "rare": "Machalite Ore"
+          "give": 509,
+          "common": 945,
+          "rare": 204
         },
         {
-          "give": "Tigrex Skull Shl",
-          "common": "Machalite Ore",
-          "rare": "Suiko Jewel"
+          "give": 608,
+          "common": 204,
+          "rare": 944
         },
         {
-          "give": "Giadrome Skull",
-          "common": "Suiko Jewel",
-          "rare": "Earth Crystal"
+          "give": 347,
+          "common": 944,
+          "rare": 203
         },
         {
-          "give": "Fire Dragon Claw",
-          "common": "Firestone",
-          "rare": "BattlefieldJewel"
+          "give": 744,
+          "common": 210,
+          "rare": 946
         },
         {
-          "give": "ShakaInheritance",
-          "common": "Armor Sphere",
-          "rare": "Armor Sphere+"
+          "give": 339,
+          "common": 223,
+          "rare": 224
         },
         {
-          "give": "Grn Plsioth Scl+",
-          "common": "Akito Jewel",
-          "rare": "LapisLazuliJewel"
+          "give": 477,
+          "common": 945,
+          "rare": 947
         },
         {
-          "give": "Teostra Horn+",
-          "common": "Carbalite Ore",
-          "rare": "Union Ore"
+          "give": 763,
+          "common": 206,
+          "rare": 208
         },
         {
-          "give": "Tigrex Fang+",
-          "common": "Firestone",
-          "rare": "Lightcrystal"
+          "give": 606,
+          "common": 210,
+          "rare": 215
         },
         {
-          "give": "Giaprey Scale+",
-          "common": "Machalite Ore",
-          "rare": "Dragonite Ore"
+          "give": 341,
+          "common": 204,
+          "rare": 205
         },
         {
-          "give": "Azure LaoS Horn",
-          "common": "Firecell Stone",
-          "rare": "Novacrystal"
+          "give": 701,
+          "common": 211,
+          "rare": 216
         },
         {
-          "give": "Kut-Ku Scale+",
-          "common": "Dragonite Ore",
-          "rare": "Armor Sphere"
+          "give": 383,
+          "common": 205,
+          "rare": 223
         },
         {
-          "give": "Top-GrdRedHorn",
-          "common": "Firestone",
-          "rare": "Dragonite Ore"
+          "give": 670,
+          "common": 210,
+          "rare": 205
         },
         {
-          "give": "Thick Kut-Ku Scl",
-          "common": "Carbalite Ore",
-          "rare": "Armor Sphere+"
+          "give": 384,
+          "common": 206,
+          "rare": 224
         },
         {
-          "give": "HvyDiablosShell",
-          "common": "Eltalite Ore",
-          "rare": "LapisLazuliJewel"
+          "give": 639,
+          "common": 207,
+          "rare": 947
         },
         {
-          "give": "ThckGrnPlesioScl",
-          "common": "LapisLazuliJewel",
-          "rare": "Novacrystal"
+          "give": 478,
+          "common": 947,
+          "rare": 216
         },
         {
-          "give": "TerraCeanatrShl",
-          "common": "Union Ore",
-          "rare": "BattlefieldJewel"
+          "give": 513,
+          "common": 208,
+          "rare": 946
         },
         {
-          "give": "Hvy Gaoren Spine",
-          "common": "Mellanje Ore",
-          "rare": "Hrd Armor Sphere"
+          "give": 710,
+          "common": 209,
+          "rare": 225
         },
         {
-          "give": "Hvy Tigrex Fang",
-          "common": "Hrd Armor Sphere",
-          "rare": "Armor Stone"
+          "give": 607,
+          "common": 225,
+          "rare": 222
         },
         {
-          "give": "HardTeostraHorn",
-          "common": "Ryl Armor Sphere",
-          "rare": "Purecrystal"
+          "give": 764,
+          "common": 227,
+          "rare": 217
         },
         {
-          "give": "Dosbiscus",
-          "common": "Dung",
-          "rare": "Wyvern Droppings"
+          "give": 172,
+          "common": 67,
+          "rare": 68
         },
         {
-          "give": "Chaos Mushroom",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 184,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Springnight Carp",
-          "common": "Net",
-          "rare": "Net"
+          "give": 244,
+          "common": 76,
+          "rare": 76
         },
         {
-          "give": "Great Hornfly",
-          "common": "Godbug",
-          "rare": "Monster Fluid"
+          "give": 264,
+          "common": 250,
+          "rare": 25
         },
         {
-          "give": "Sinister Cloth",
-          "common": "Dragon Treasure",
-          "rare": "Dragon Treasure"
+          "give": 817,
+          "common": 315,
+          "rare": 315
         },
         {
-          "give": "Dragonmoss",
-          "common": "Armor Sphere",
-          "rare": "Armor Sphere"
+          "give": 765,
+          "common": 223,
+          "rare": 223
         },
         {
-          "give": "Dragonmoss+",
-          "common": "Armor Sphere+",
-          "rare": "Armor Sphere+"
+          "give": 766,
+          "common": 224,
+          "rare": 224
         },
         {
-          "give": "Dragonwood",
-          "common": "Armor Sphere",
-          "rare": "Armor Sphere"
+          "give": 768,
+          "common": 223,
+          "rare": 223
         },
         {
-          "give": "Dragonwood+",
-          "common": "Armor Sphere+",
-          "rare": "Armor Sphere+"
+          "give": 769,
+          "common": 224,
+          "rare": 224
         },
         {
-          "give": "Giant Corn",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 174,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Tailed Frog",
-          "common": "Frog",
-          "rare": "Frog"
+          "give": 245,
+          "common": 139,
+          "rare": 139
         },
         {
-          "give": "Famitsu Ticket",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 929,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Famitsu PO",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 930,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Dengeki Ticket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 933,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Dengeki Ticket+",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 934,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "DemonKingTicket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 936,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Ticket J",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 937,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Hunter's Ticket",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 940,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Hunter Soul Tkt",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 941,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Amezari Shell",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 518,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "PtFamitsuTicket",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 931,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "SpecFamitsuTckt",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 932,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "Dengeki Ticket G",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 935,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Tckt J G",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 938,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Magazine Ticket",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 939,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Gt Amezari Shell",
-          "common": "Lightning Rod",
-          "rare": "Lightning Rod"
+          "give": 519,
+          "common": 80,
+          "rare": 80
         },
         {
-          "give": "Blackbelt Ticket",
-          "common": "Tropical Berry",
-          "rare": "Tropical Berry"
+          "give": 925,
+          "common": 192,
+          "rare": 192
         },
         {
-          "give": "Expert Ticket",
-          "common": "Decayed Drgn Scl",
-          "rare": "Decayed Drgn Scl"
+          "give": 926,
+          "common": 317,
+          "rare": 317
         },
         {
-          "give": "Hypno Ticket",
-          "common": "Akito Jewel",
-          "rare": "Rainbow Ore"
+          "give": 381,
+          "common": 945,
+          "rare": 220
         },
         {
-          "give": "Lavasioth Ticket",
-          "common": "Firestone",
-          "rare": "Union Ore"
+          "give": 492,
+          "common": 210,
+          "rare": 208
         },
         {
-          "give": "Kut-Ku Coin",
-          "common": "Disk Stone",
-          "rare": "Stone"
+          "give": 884,
+          "common": 201,
+          "rare": 200
         },
         {
-          "give": "Congalala Coin",
-          "common": "Iron Ore",
-          "rare": "Disk Stone"
+          "give": 885,
+          "common": 202,
+          "rare": 201
         },
         {
-          "give": "Khezu Coin",
-          "common": "Suiko Jewel",
-          "rare": "Ice Crystal"
+          "give": 886,
+          "common": 944,
+          "rare": 219
         },
         {
-          "give": "Daimyo Coin",
-          "common": "Earth Crystal",
-          "rare": "Iron Ore"
+          "give": 887,
+          "common": 203,
+          "rare": 202
         },
         {
-          "give": "Blangonga Coin",
-          "common": "Ice Crystal",
-          "rare": "Earth Crystal"
+          "give": 888,
+          "common": 219,
+          "rare": 203
         },
         {
-          "give": "Yian Garuga Coin",
-          "common": "Machalite Ore",
-          "rare": "Armor Stone"
+          "give": 889,
+          "common": 204,
+          "rare": 222
         },
         {
-          "give": "Tigrex Coin",
-          "common": "Suiko Jewel",
-          "rare": "Machalite Ore"
+          "give": 890,
+          "common": 944,
+          "rare": 204
         },
         {
-          "give": "Diablos Coin",
-          "common": "Machalite Ore",
-          "rare": "Suiko Jewel"
+          "give": 891,
+          "common": 204,
+          "rare": 944
         },
         {
-          "give": "Gravios Coin",
-          "common": "Akito Jewel",
-          "rare": "Firestone"
+          "give": 892,
+          "common": 945,
+          "rare": 210
         },
         {
-          "give": "Kirin Coin",
-          "common": "Suiko Jewel",
-          "rare": "Lightcrystal"
+          "give": 893,
+          "common": 944,
+          "rare": 215
         },
         {
-          "give": "Cephadrome Coin",
-          "common": "Iron Ore",
-          "rare": "Disk Stone"
+          "give": 894,
+          "common": 202,
+          "rare": 201
         },
         {
-          "give": "Plesioth Coin",
-          "common": "Earth Crystal",
-          "rare": "Iron Ore"
+          "give": 895,
+          "common": 203,
+          "rare": 202
         },
         {
-          "give": "Shogun Coin",
-          "common": "Akito Jewel",
-          "rare": "Black Pearl"
+          "give": 896,
+          "common": 945,
+          "rare": 198
         },
         {
-          "give": "Fire Coin",
-          "common": "Machalite Ore",
-          "rare": "Akito Jewel"
+          "give": 897,
+          "common": 204,
+          "rare": 945
         },
         {
-          "give": "Rajang Coin",
-          "common": "BattlefieldJewel",
-          "rare": "Firestone"
+          "give": 898,
+          "common": 946,
+          "rare": 210
         },
         {
-          "give": "BlackBeltCoinG",
-          "common": "Carbalite Ore",
-          "rare": "Rainbow Ore"
+          "give": 899,
+          "common": 206,
+          "rare": 220
         },
         {
-          "give": "Expert Coin G",
-          "common": "Rainbow Ore",
-          "rare": "Lightcrystal"
+          "give": 900,
+          "common": 220,
+          "rare": 215
         },
         {
-          "give": "Warrior Coin G",
-          "common": "Union Ore",
-          "rare": "Novacrystal"
+          "give": 901,
+          "common": 208,
+          "rare": 216
         },
         {
-          "give": "Legend Coin G",
-          "common": "Eltalite Ore",
-          "rare": "Firecell Stone"
+          "give": 902,
+          "common": 207,
+          "rare": 211
         },
         {
-          "give": "VeggieElderTcket",
-          "common": "Demondrug",
-          "rare": "Power Seed"
+          "give": 919,
+          "common": 15,
+          "rare": 186
         },
         {
-          "give": "VeggieElderTckt+",
-          "common": "Mega Demondrug",
-          "rare": "Power Pill"
+          "give": 920,
+          "common": 16,
+          "rare": 17
         },
         {
-          "give": "VegElderTcktBrz",
-          "common": "Plesioth Fin",
-          "rare": "Plesioth Fin"
+          "give": 921,
+          "common": 473,
+          "rare": 473
         },
         {
-          "give": "VegElderTcktSlv",
-          "common": "Monoblos Heart",
-          "rare": "Monoblos Heart"
+          "give": 922,
+          "common": 675,
+          "rare": 675
         },
         {
-          "give": "VegElderTcktGld",
-          "common": "Fire Drgn Jwl",
-          "rare": "Fire Drgn Jwl"
+          "give": 923,
+          "common": 748,
+          "rare": 748
         },
         {
-          "give": "VegElderTcktSky",
-          "common": "HvnlyGaorenShell",
-          "rare": "HvnlyGaorenShell"
+          "give": 924,
+          "common": 707,
+          "rare": 707
         }
       ]
     },
     {
       "maps": [
-        "Swamp (Day)",
-        "Swamp (Night)"
+        4,
+        18
       ],
       "trades": [
         {
-          "give": "Sootstone Ore",
-          "common": "Potion",
-          "rare": "Mega Potion"
+          "give": 879,
+          "common": 7,
+          "rare": 8
         },
         {
-          "give": "Quartz Ore",
-          "common": "Potion",
-          "rare": "Mega Potion"
+          "give": 880,
+          "common": 7,
+          "rare": 8
         },
         {
-          "give": "Khezu Whelp",
-          "common": "Khz Whlp Ice Crm",
-          "rare": "Khz Whlp Ice Crm"
+          "give": 882,
+          "common": 883,
+          "rare": 883
         },
         {
-          "give": "Insect Husk",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 246,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Garbage",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 155,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Fish",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 56,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Meat",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 50,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Toadstool",
-          "common": "Special Mushroom",
-          "rare": "Hot Drink"
+          "give": 180,
+          "common": 175,
+          "rare": 22
         },
         {
-          "give": "Conga Pelt",
-          "common": "Special Mushroom",
-          "rare": "Antidote"
+          "give": 442,
+          "common": 175,
+          "rare": 11
         },
         {
-          "give": "Bounce Bomb",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 88,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Mystery Bone",
-          "common": "Antidote Herb",
-          "rare": "Herb"
+          "give": 289,
+          "common": 164,
+          "rare": 163
         },
         {
-          "give": "Sleepyfish",
-          "common": "Nitroshroom",
-          "rare": "Exciteshroom"
+          "give": 231,
+          "common": 178,
+          "rare": 181
         },
         {
-          "give": "Kut-Ku Scale",
-          "common": "Gunpowder",
-          "rare": "Antidote"
+          "give": 382,
+          "common": 35,
+          "rare": 11
         },
         {
-          "give": "Lost Umbrella",
-          "common": "Glutton Tuna",
-          "rare": "Power Extract"
+          "give": 818,
+          "common": 237,
+          "rare": 279
         },
         {
-          "give": "Snakebee Larva",
-          "common": "Bomberry",
-          "rare": "Armor Seed"
+          "give": 249,
+          "common": 191,
+          "rare": 187
         },
         {
-          "give": "Sm Monster Bone",
-          "common": "Cool Drink",
-          "rare": "Cold Meat"
+          "give": 281,
+          "common": 21,
+          "rare": 52
         },
         {
-          "give": "Disk Stone",
-          "common": "Antidote",
-          "rare": "Exciteshroom"
+          "give": 201,
+          "common": 11,
+          "rare": 181
         },
         {
-          "give": "Scatterfish",
-          "common": "Godbug",
-          "rare": "Antiseptic Stone"
+          "give": 234,
+          "common": 250,
+          "rare": 218
         },
         {
-          "give": "Ice Crystal",
-          "common": "Dung",
-          "rare": "Wyvern Droppings"
+          "give": 219,
+          "common": 67,
+          "rare": 68
         },
         {
-          "give": "Cricket",
-          "common": "Blue Mushroom",
-          "rare": "Bitterbug"
+          "give": 136,
+          "common": 177,
+          "rare": 251
         },
         {
-          "give": "Paintberry",
-          "common": "Sap Plant",
-          "rare": "Fire Herb"
+          "give": 185,
+          "common": 168,
+          "rare": 165
         },
         {
-          "give": "Spicy Mushroom",
-          "common": "Exciteshroom",
-          "rare": "Toadstool"
+          "give": 183,
+          "common": 181,
+          "rare": 180
         },
         {
-          "give": "Goldenfish Bait",
-          "common": "Armor Seed",
-          "rare": "Armorskin"
+          "give": 142,
+          "common": 187,
+          "rare": 18
         },
         {
-          "give": "Ruststone Rod",
-          "common": "Vespoid Wing",
-          "rare": "Vespoid Shell"
+          "give": 823,
+          "common": 660,
+          "rare": 658
         },
         {
-          "give": "Flat Ruststone",
-          "common": "Hornetaur Wing",
-          "rare": "Hornetaur Shell"
+          "give": 820,
+          "common": 666,
+          "rare": 663
         },
         {
-          "give": "ShakalakaTreasre",
-          "common": "Carpenterbug",
-          "rare": "Catalyst"
+          "give": 337,
+          "common": 254,
+          "rare": 33
         },
         {
-          "give": "Dragonite Ore",
-          "common": "Hercudrome",
-          "rare": "Killer Beetle"
+          "give": 205,
+          "common": 258,
+          "rare": 257
         },
         {
-          "give": "Lightcrystal",
-          "common": "Flashbug",
-          "rare": "Carpenterbug"
+          "give": 215,
+          "common": 252,
+          "rare": 254
         },
         {
-          "give": "Sm Ceanataur Shl",
-          "common": "Power Seed",
-          "rare": "Tranquilizer"
+          "give": 503,
+          "common": 186,
+          "rare": 42
         },
         {
-          "give": "Vibrant Pelt",
-          "common": "Mega Nutrients",
-          "rare": "Nutrients"
+          "give": 447,
+          "common": 10,
+          "rare": 9
         },
         {
-          "give": "Velocidrome Head",
-          "common": "Mega Potion",
-          "rare": "Killer Beetle"
+          "give": 356,
+          "common": 8,
+          "rare": 257
         },
         {
-          "give": "Chameleos Tail",
-          "common": "Mega Demondrug",
-          "rare": "Hot Meat"
+          "give": 738,
+          "common": 16,
+          "rare": 51
         },
         {
-          "give": "Blangonga Fang",
-          "common": "Killer Beetle",
-          "rare": "Health Flute"
+          "give": 429,
+          "common": 257,
+          "rare": 157
         },
         {
-          "give": "Twisted Horn",
-          "common": "Demondrug",
-          "rare": "Mega Demondrug"
+          "give": 634,
+          "common": 15,
+          "rare": 16
         },
         {
-          "give": "Anteka Antlers",
-          "common": "Well-Done Steak",
-          "rare": "Rare Steak"
+          "give": 329,
+          "common": 48,
+          "rare": 47
         },
         {
-          "give": "Teostra Tail",
-          "common": "Immunizer",
-          "rare": "Cold Meat"
+          "give": 760,
+          "common": 12,
+          "rare": 52
         },
         {
-          "give": "Azur Rthlos Tail",
-          "common": "Hornetaur Shell",
-          "rare": "Vespoid Shell"
+          "give": 568,
+          "common": 663,
+          "rare": 658
         },
         {
-          "give": "Blos Fang",
-          "common": "Psychoserum",
-          "rare": "Herbal Medicine"
+          "give": 645,
+          "common": 24,
+          "rare": 30
         },
         {
-          "give": "Hornetaur Head",
-          "common": "Antidote Flute",
-          "rare": "Demon Flute"
+          "give": 665,
+          "common": 158,
+          "rare": 159
         },
         {
-          "give": "ShakaInheritance",
-          "common": "King Scarab",
-          "rare": "Hercudrome"
+          "give": 339,
+          "common": 255,
+          "rare": 258
         },
         {
-          "give": "LapisLazuliJewel",
-          "common": "Gourmet Steak",
-          "rare": "Power Extract"
+          "give": 947,
+          "common": 49,
+          "rare": 279
         },
         {
-          "give": "Ceanataur Claw+",
-          "common": "Gourmet Fish+",
-          "rare": "Gourmet Fish"
+          "give": 511,
+          "common": 55,
+          "rare": 54
         },
         {
-          "give": "Chameleos Spike",
-          "common": "Hornetaur Crapce",
-          "rare": "Vespoid Carapace"
+          "give": 733,
+          "common": 664,
+          "rare": 659
         },
         {
-          "give": "Slvr Rthlos Wing",
-          "common": "HornetaurInnrWng",
-          "rare": "Vespoid InnrWng"
+          "give": 577,
+          "common": 667,
+          "rare": 661
         },
         {
-          "give": "Lg Lobstershell",
-          "common": "Mega Demondrug",
-          "rare": "King Scarab"
+          "give": 516,
+          "common": 16,
+          "rare": 255
         },
         {
-          "give": "Rajang Claw",
-          "common": "Power Juice",
-          "rare": "Mega Juice"
+          "give": 462,
+          "common": 13,
+          "rare": 14
         },
         {
-          "give": "Blazing Fire Sac",
-          "common": "Lifepowder",
-          "rare": "Fire Dragon Pwdr"
+          "give": 275,
+          "common": 37,
+          "rare": 747
         },
         {
-          "give": "DeadlyPoisonSac",
-          "common": "Power Extract",
-          "rare": "Power Juice"
+          "give": 269,
+          "common": 279,
+          "rare": 13
         },
         {
-          "give": "TerraCeanatrClaw",
-          "common": "Mega Demondrug",
-          "rare": "Power Pill"
+          "give": 514,
+          "common": 16,
+          "rare": 17
         },
         {
-          "give": "HrdE.CongaClaw",
-          "common": "Rare Scarab",
-          "rare": "King Scarab"
+          "give": 454,
+          "common": 259,
+          "rare": 255
         },
         {
-          "give": "YamaTsukamiFluid",
-          "common": "Monster Essence",
-          "rare": "Emperor Cricket"
+          "give": 773,
+          "common": 27,
+          "rare": 256
         },
         {
-          "give": "HrdChameleosHorn",
-          "common": "Vspoid Razorwing",
-          "rare": "Hornet Razorwing"
+          "give": 734,
+          "common": 662,
+          "rare": 668
         },
         {
-          "give": "LthrSlvrRthlsTal",
-          "common": "Emperor Cricket",
-          "rare": "Max Potion"
+          "give": 576,
+          "common": 256,
+          "rare": 31
         },
         {
-          "give": "Lightning Sac",
-          "common": "Thunderbug Jelly",
-          "rare": "Pale Extract"
+          "give": 278,
+          "common": 29,
+          "rare": 280
         },
         {
-          "give": "Dosbiscus",
-          "common": "Dung",
-          "rare": "Wyvern Droppings"
+          "give": 172,
+          "common": 67,
+          "rare": 68
         },
         {
-          "give": "Chaos Mushroom",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 184,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Springnight Carp",
-          "common": "Net",
-          "rare": "Net"
+          "give": 244,
+          "common": 76,
+          "rare": 76
         },
         {
-          "give": "Great Hornfly",
-          "common": "Godbug",
-          "rare": "Monster Fluid"
+          "give": 264,
+          "common": 250,
+          "rare": 25
         },
         {
-          "give": "Sinister Cloth",
-          "common": "Dragon Treasure",
-          "rare": "Dragon Treasure"
+          "give": 817,
+          "common": 315,
+          "rare": 315
         },
         {
-          "give": "Dragonmoss",
-          "common": "Thunderbug Juice",
-          "rare": "Monster Fluid"
+          "give": 765,
+          "common": 28,
+          "rare": 25
         },
         {
-          "give": "Dragonmoss+",
-          "common": "Pale Extract",
-          "rare": "Monster Broth"
+          "give": 766,
+          "common": 280,
+          "rare": 26
         },
         {
-          "give": "Dragonwood",
-          "common": "Thunderbug Juice",
-          "rare": "Monster Fluid"
+          "give": 768,
+          "common": 28,
+          "rare": 25
         },
         {
-          "give": "Dragonwood+",
-          "common": "Pale Extract",
-          "rare": "Monster Broth"
+          "give": 769,
+          "common": 280,
+          "rare": 26
         },
         {
-          "give": "Giant Corn",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 174,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Tailed Frog",
-          "common": "Frog",
-          "rare": "Frog"
+          "give": 245,
+          "common": 139,
+          "rare": 139
         },
         {
-          "give": "Famitsu Ticket",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 929,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Famitsu PO",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 930,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Dengeki Ticket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 933,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Dengeki Ticket+",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 934,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "DemonKingTicket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 936,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Ticket J",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 937,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Hunter's Ticket",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 940,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Hunter Soul Tkt",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 941,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Amezari Shell",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 518,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "PtFamitsuTicket",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 931,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "SpecFamitsuTckt",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 932,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "Dengeki Ticket G",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 935,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Tckt J G",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 938,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Magazine Ticket",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 939,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Gt Amezari Shell",
-          "common": "Lightning Rod",
-          "rare": "Lightning Rod"
+          "give": 519,
+          "common": 80,
+          "rare": 80
         },
         {
-          "give": "Blackbelt Ticket",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 925,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Expert Ticket",
-          "common": "Decayed Drgn Scl",
-          "rare": "Decayed Drgn Scl"
+          "give": 926,
+          "common": 317,
+          "rare": 317
         },
         {
-          "give": "Hypno Ticket",
-          "common": "Antidote Flute",
-          "rare": "Health Flute"
+          "give": 381,
+          "common": 158,
+          "rare": 157
         },
         {
-          "give": "Lavasioth Ticket",
-          "common": "Lifepowder",
-          "rare": "Max Potion"
+          "give": 492,
+          "common": 37,
+          "rare": 31
         },
         {
-          "give": "Kut-Ku Coin",
-          "common": "Potion",
-          "rare": "Herb"
+          "give": 884,
+          "common": 7,
+          "rare": 163
         },
         {
-          "give": "Congalala Coin",
-          "common": "Honey",
-          "rare": "Blue Mushroom"
+          "give": 885,
+          "common": 161,
+          "rare": 177
         },
         {
-          "give": "Khezu Coin",
-          "common": "Nutrients",
-          "rare": "Bitterbug"
+          "give": 886,
+          "common": 9,
+          "rare": 251
         },
         {
-          "give": "Daimyo Coin",
-          "common": "Armorskin",
-          "rare": "Armor Seed"
+          "give": 887,
+          "common": 18,
+          "rare": 187
         },
         {
-          "give": "Blangonga Coin",
-          "common": "Hot Meat",
-          "rare": "Hot Drink"
+          "give": 888,
+          "common": 51,
+          "rare": 22
         },
         {
-          "give": "Yian Garuga Coin",
-          "common": "Herbal Medicine",
-          "rare": "Antidote"
+          "give": 889,
+          "common": 30,
+          "rare": 11
         },
         {
-          "give": "Tigrex Coin",
-          "common": "Demondrug",
-          "rare": "Power Seed"
+          "give": 890,
+          "common": 15,
+          "rare": 186
         },
         {
-          "give": "Diablos Coin",
-          "common": "Mega Potion",
-          "rare": "Potion"
+          "give": 891,
+          "common": 8,
+          "rare": 7
         },
         {
-          "give": "Gravios Coin",
-          "common": "Armor Pill",
-          "rare": "Mega Armorskin"
+          "give": 892,
+          "common": 20,
+          "rare": 19
         },
         {
-          "give": "Kirin Coin",
-          "common": "Well-Done Steak",
-          "rare": "Energy Drink"
+          "give": 893,
+          "common": 48,
+          "rare": 34
         },
         {
-          "give": "Cephadrome Coin",
-          "common": "Cold Meat",
-          "rare": "Cool Drink"
+          "give": 894,
+          "common": 52,
+          "rare": 21
         },
         {
-          "give": "Plesioth Coin",
-          "common": "Mega Nutrients",
-          "rare": "Catalyst"
+          "give": 895,
+          "common": 10,
+          "rare": 33
         },
         {
-          "give": "Shogun Coin",
-          "common": "Gourmet Steak",
-          "rare": "Power Juice"
+          "give": 896,
+          "common": 49,
+          "rare": 13
         },
         {
-          "give": "Fire Coin",
-          "common": "Power Pill",
-          "rare": "Mega Demondrug"
+          "give": 897,
+          "common": 17,
+          "rare": 16
         },
         {
-          "give": "Rajang Coin",
-          "common": "Max Potion",
-          "rare": "Immunizer"
+          "give": 898,
+          "common": 31,
+          "rare": 12
         },
         {
-          "give": "BlackBeltCoinG",
-          "common": "Mega Armorskin",
-          "rare": "Armor Flute"
+          "give": 899,
+          "common": 19,
+          "rare": 160
         },
         {
-          "give": "Expert Coin G",
-          "common": "Mega Demondrug",
-          "rare": "Demon Flute"
+          "give": 900,
+          "common": 16,
+          "rare": 159
         },
         {
-          "give": "Warrior Coin G",
-          "common": "Lifepowder",
-          "rare": "Health Flute"
+          "give": 901,
+          "common": 37,
+          "rare": 157
         },
         {
-          "give": "Legend Coin G",
-          "common": "Ancient Potion",
-          "rare": "TerritorialDung+"
+          "give": 902,
+          "common": 32,
+          "rare": 312
         },
         {
-          "give": "VeggieElderTcket",
-          "common": "Nutrients",
-          "rare": "Potion"
+          "give": 919,
+          "common": 9,
+          "rare": 7
         },
         {
-          "give": "VeggieElderTckt+",
-          "common": "Mega Nutrients",
-          "rare": "Mega Potion"
+          "give": 920,
+          "common": 10,
+          "rare": 8
         },
         {
-          "give": "VegElderTcktBrz",
-          "common": "Lightcrystal",
-          "rare": "Lightcrystal"
+          "give": 921,
+          "common": 215,
+          "rare": 215
         },
         {
-          "give": "VegElderTcktSlv",
-          "common": "Gravios Skl Shl",
-          "rare": "Gravios Skl Shl"
+          "give": 922,
+          "common": 627,
+          "rare": 627
         },
         {
-          "give": "VegElderTcktGld",
-          "common": "Chameleos Jewel",
-          "rare": "Chameleos Jewel"
+          "give": 923,
+          "common": 740,
+          "rare": 740
         },
         {
-          "give": "VegElderTcktSky",
-          "common": "HvnlyBlkGraviShl",
-          "rare": "HvnlyBlkGraviShl"
+          "give": 924,
+          "common": 632,
+          "rare": 632
         }
       ]
     },
     {
       "maps": [
-        "Jungle (Day)",
-        "Jungle (Night)"
+        6,
+        20
       ],
       "trades": [
         {
-          "give": "Wyvern Egg",
-          "common": "Potion",
-          "rare": "Mega Potion"
+          "give": 876,
+          "common": 7,
+          "rare": 8
         },
         {
-          "give": "Carnivore Egg",
-          "common": "Potion",
-          "rare": "Mega Potion"
+          "give": 878,
+          "common": 7,
+          "rare": 8
         },
         {
-          "give": "Insect Husk",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 246,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Garbage",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 155,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Fish",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 56,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Meat",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 50,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Ivy",
-          "common": "Special Mushroom",
-          "rare": "Bone"
+          "give": 166,
+          "common": 175,
+          "rare": 292
         },
         {
-          "give": "Parashroom",
-          "common": "Special Mushroom",
-          "rare": "Sm Bone Husk"
+          "give": 179,
+          "common": 175,
+          "rare": 94
         },
         {
-          "give": "Bounce Bomb",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 88,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Sushifish",
-          "common": "Lg Bone Husk",
-          "rare": "Sm Bone Husk"
+          "give": 230,
+          "common": 95,
+          "rare": 94
         },
         {
-          "give": "Sleepyfish",
-          "common": "Sm Monster Bone",
-          "rare": "Unknown Skull"
+          "give": 231,
+          "common": 281,
+          "rare": 290
         },
         {
-          "give": "Spiderweb",
-          "common": "Sm Bone Husk",
-          "rare": "Lg Bone Husk"
+          "give": 75,
+          "common": 94,
+          "rare": 95
         },
         {
-          "give": "Thunderbug",
-          "common": "Giant Bone",
-          "rare": "Sharp Claw"
+          "give": 253,
+          "common": 295,
+          "rare": 427
         },
         {
-          "give": "Vespoid Abdomen",
-          "common": "Paralysis Sac",
-          "rare": "Unknown Skull"
+          "give": 656,
+          "common": 270,
+          "rare": 290
         },
         {
-          "give": "Yambug",
-          "common": "Sharp Claw",
-          "rare": "Bone"
+          "give": 247,
+          "common": 427,
+          "rare": 292
         },
         {
-          "give": "Pin Tuna",
-          "common": "Brute Bone",
-          "rare": "Lg Bone Husk"
+          "give": 232,
+          "common": 294,
+          "rare": 95
         },
         {
-          "give": "Armor Seed",
-          "common": "Sm Bone Husk",
-          "rare": "Unknown Skull"
+          "give": 187,
+          "common": 94,
+          "rare": 290
         },
         {
-          "give": "Felvine",
-          "common": "Mystery Bone",
-          "rare": "Bone"
+          "give": 169,
+          "common": 289,
+          "rare": 292
         },
         {
-          "give": "Suiko Jewel",
-          "common": "Med Monster Bone",
-          "rare": "Anteka Pelt"
+          "give": 944,
+          "common": 282,
+          "rare": 330
         },
         {
-          "give": "Spicy Mushroom",
-          "common": "Sm Monster Bone",
-          "rare": "Giant Bone"
+          "give": 183,
+          "common": 281,
+          "rare": 295
         },
         {
-          "give": "Arrowana Bait",
-          "common": "Bullfango Pelt",
-          "rare": "Sm Bone Husk"
+          "give": 141,
+          "common": 321,
+          "rare": 94
         },
         {
-          "give": "Speartuna",
-          "common": "Black Pearl",
-          "rare": "Piscine Fang"
+          "give": 239,
+          "common": 198,
+          "rare": 468
         },
         {
-          "give": "BattlefieldJewel",
-          "common": "Lg Monster Bone",
-          "rare": "Thunderbug Juice"
+          "give": 946,
+          "common": 283,
+          "rare": 28
         },
         {
-          "give": "Killer Beetle",
-          "common": "Giaprey Hide",
-          "rare": "Bullfango Pelt"
+          "give": 257,
+          "common": 342,
+          "rare": 321
         },
         {
-          "give": "Small Ruststone",
-          "common": "Remobra Skin",
-          "rare": "Striped Skin"
+          "give": 822,
+          "common": 332,
+          "rare": 335
         },
         {
-          "give": "Ruststone Rod",
-          "common": "Velocidrome Hide",
-          "rare": "Gendrome Hide"
+          "give": 823,
+          "common": 353,
+          "rare": 362
         },
         {
-          "give": "Sm Hermitaur Shl",
-          "common": "Giaprey Scale",
-          "rare": "Velociprey Scale"
+          "give": 494,
+          "common": 340,
+          "rare": 349
         },
         {
-          "give": "Grn Plesioth Fin",
-          "common": "Genprey Hide",
-          "rare": "Plesioth Scale"
+          "give": 479,
+          "common": 360,
+          "rare": 470
         },
         {
-          "give": "Sharpened Beak",
-          "common": "Cephalos Scale",
-          "rare": "Cephalos Fin"
+          "give": 417,
+          "common": 482,
+          "rare": 484
         },
         {
-          "give": "Bulldrome Tusk",
-          "common": "Blango Pelt",
-          "rare": "Bulldrome Hide"
+          "give": 324,
+          "common": 425,
+          "rare": 325
         },
         {
-          "give": "Bullfango Head",
-          "common": "Vespoid Wing",
-          "rare": "Hornetaur Wing"
+          "give": 323,
+          "common": 660,
+          "rare": 666
         },
         {
-          "give": "Ceanataur Leg",
-          "common": "Rubbery Hide",
-          "rare": "Plesioth Fin"
+          "give": 507,
+          "common": 401,
+          "rare": 473
         },
         {
-          "give": "Blangonga Tail",
-          "common": "Blangonga Pelt",
-          "rare": "Hermitaur Shell"
+          "give": 437,
+          "common": 432,
+          "rare": 495
         },
         {
-          "give": "Lunastra Tail",
-          "common": "Lunastra Horn",
-          "rare": "Gravios Shell"
+          "give": 753,
+          "common": 754,
+          "rare": 623
         },
         {
-          "give": "Lao-Shan's Claw",
-          "common": "Lao-Shan's Scale",
-          "rare": "Sm Lobstershell"
+          "give": 691,
+          "common": 693,
+          "rare": 515
         },
         {
-          "give": "Mosswine Hide",
-          "common": "Kelbi Hide",
-          "rare": "Velociprey Hide"
+          "give": 320,
+          "common": 328,
+          "rare": 351
         },
         {
-          "give": "Gypceros Head",
-          "common": "Flabby Hide",
-          "rare": "Hornetaur Shell"
+          "give": 404,
+          "common": 578,
+          "rare": 663
         },
         {
-          "give": "Diablos Tail",
-          "common": "Monoblos Shell",
-          "rare": "Blood Red Horn"
+          "give": 643,
+          "common": 671,
+          "rare": 669
         },
         {
-          "give": "Chameleos Claw",
-          "common": "Basarios Shell",
-          "rare": "Tigrex Claw"
+          "give": 735,
+          "common": 587,
+          "rare": 602
         },
         {
-          "give": "ShakaInheritance",
-          "common": "Electro Sac",
-          "rare": "Paralysis Sac"
+          "give": 339,
+          "common": 276,
+          "rare": 270
         },
         {
-          "give": "Grn Plsioth Fin+",
-          "common": "Ioprey Hide+",
-          "rare": "Cephalos Scale+"
+          "give": 480,
+          "common": 369,
+          "rare": 483
         },
         {
-          "give": "Velociprey Scle+",
-          "common": "High Qualty Pelt",
-          "rare": "Ioprey Hide"
+          "give": 350,
+          "common": 331,
+          "rare": 368
         },
         {
-          "give": "Blue Kut-Ku Scl+",
-          "common": "Blango Pelt+",
-          "rare": "Genprey Scale+"
+          "give": 396,
+          "common": 426,
+          "rare": 359
         },
         {
-          "give": "Slvr Rthlos Scl+",
-          "common": "Rubbery Hide+",
-          "rare": "Ioprey Hide+"
+          "give": 571,
+          "common": 402,
+          "rare": 369
         },
         {
-          "give": "Rajang Tail",
-          "common": "Fire Dragon Scl",
-          "rare": "Firecell Stone"
+          "give": 464,
+          "common": 741,
+          "rare": 211
         },
         {
-          "give": "Lao-Shan's Ruby",
-          "common": "ElderDragonBlood",
-          "rare": "Wyvern Stone"
+          "give": 696,
+          "common": 749,
+          "rare": 300
         },
         {
-          "give": "Rejuvenated Beak",
-          "common": "Coral Cphlos Scl",
-          "rare": "Coral Cphlos Fin"
+          "give": 418,
+          "common": 486,
+          "rare": 487
         },
         {
-          "give": "LeatherNargaTail",
-          "common": "Black Narga Pelt",
-          "rare": "NargaCuttingWing"
+          "give": 615,
+          "common": 612,
+          "rare": 618
         },
         {
-          "give": "SpecLavasioFin+",
-          "common": "ThckPlesiothScl",
-          "rare": "HvyPiscineFang"
+          "give": 491,
+          "common": 472,
+          "rare": 469
         },
         {
-          "give": "Lucky Kut-Ku Ear",
-          "common": "Hvy Kut-Ku Shell",
-          "rare": "ThkBlueKut-KuScl"
+          "give": 390,
+          "common": 387,
+          "rare": 397
         },
         {
-          "give": "StoutWarpedHorn",
-          "common": "HvyHermitaurShl",
-          "rare": "PlumD.HermitrShl"
+          "give": 636,
+          "common": 497,
+          "rare": 501
         },
         {
-          "give": "LthrC.BlangoTail",
-          "common": "Lg Pelagus Fang",
-          "rare": "E.CongalalaPelt+"
+          "give": 441,
+          "common": 452,
+          "rare": 453
         },
         {
-          "give": "HvyTeostraShell",
-          "common": "ThckDaoraDrgnScl",
-          "rare": "SpecChameleHide+"
+          "give": 758,
+          "common": 719,
+          "rare": 731
         },
         {
-          "give": "Azure LaoS Claw",
-          "common": "HvyRathianShell",
-          "rare": "HvyRathalosShl"
+          "give": 703,
+          "common": 528,
+          "rare": 556
         },
         {
-          "give": "Dosbiscus",
-          "common": "Dung",
-          "rare": "Wyvern Droppings"
+          "give": 172,
+          "common": 67,
+          "rare": 68
         },
         {
-          "give": "Chaos Mushroom",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 184,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Springnight Carp",
-          "common": "Net",
-          "rare": "Net"
+          "give": 244,
+          "common": 76,
+          "rare": 76
         },
         {
-          "give": "Great Hornfly",
-          "common": "Godbug",
-          "rare": "Monster Fluid"
+          "give": 264,
+          "common": 250,
+          "rare": 25
         },
         {
-          "give": "Sinister Cloth",
-          "common": "Dragon Treasure",
-          "rare": "Dragon Treasure"
+          "give": 817,
+          "common": 315,
+          "rare": 315
         },
         {
-          "give": "Dragonmoss",
-          "common": "Lg Monster Bone",
-          "rare": "Eldr Dragon Bone"
+          "give": 765,
+          "common": 283,
+          "rare": 287
         },
         {
-          "give": "Dragonmoss+",
-          "common": "Monster Bone+",
-          "rare": "Hrd Monster Bone"
+          "give": 766,
+          "common": 284,
+          "rare": 285
         },
         {
-          "give": "Dragonwood",
-          "common": "Lg Monster Bone",
-          "rare": "Eldr Dragon Bone"
+          "give": 768,
+          "common": 283,
+          "rare": 287
         },
         {
-          "give": "Dragonwood+",
-          "common": "Monster Bone+",
-          "rare": "Hrd Monster Bone"
+          "give": 769,
+          "common": 284,
+          "rare": 285
         },
         {
-          "give": "Giant Corn",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 174,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Tailed Frog",
-          "common": "Frog",
-          "rare": "Frog"
+          "give": 245,
+          "common": 139,
+          "rare": 139
         },
         {
-          "give": "Famitsu Ticket",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 929,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Famitsu PO",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 930,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Dengeki Ticket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 933,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Dengeki Ticket+",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 934,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "DemonKingTicket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 936,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Ticket J",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 937,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Hunter's Ticket",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 940,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Hunter Soul Tkt",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 941,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Amezari Shell",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 518,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "PtFamitsuTicket",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 931,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "SpecFamitsuTckt",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 932,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "Dengeki Ticket G",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 935,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Tckt J G",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 938,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Magazine Ticket",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 939,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Gt Amezari Shell",
-          "common": "Lightning Rod",
-          "rare": "Lightning Rod"
+          "give": 519,
+          "common": 80,
+          "rare": 80
         },
         {
-          "give": "Blackbelt Ticket",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 925,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Expert Ticket",
-          "common": "Decayed Drgn Scl",
-          "rare": "Decayed Drgn Scl"
+          "give": 926,
+          "common": 317,
+          "rare": 317
         },
         {
-          "give": "Hypno Ticket",
-          "common": "OrangeHypnoPelt",
-          "rare": "Sleep Sac"
+          "give": 381,
+          "common": 372,
+          "rare": 271
         },
         {
-          "give": "Lavasioth Ticket",
-          "common": "ThckLavasiothScl",
-          "rare": "HvyLavasiothShl"
+          "give": 492,
+          "common": 488,
+          "rare": 489
         },
         {
-          "give": "Kut-Ku Coin",
-          "common": "Kut-Ku Scale",
-          "rare": "Kut-Ku Shell"
+          "give": 884,
+          "common": 382,
+          "rare": 385
         },
         {
-          "give": "Congalala Coin",
-          "common": "Congalala Pelt",
-          "rare": "Congalala Fang"
+          "give": 885,
+          "common": 444,
+          "rare": 451
         },
         {
-          "give": "Khezu Coin",
-          "common": "Flabby Hide",
-          "rare": "Pale Extract"
+          "give": 886,
+          "common": 578,
+          "rare": 280
         },
         {
-          "give": "Daimyo Coin",
-          "common": "Hermitaur Shell",
-          "rare": "Hermitaur Claw"
+          "give": 887,
+          "common": 495,
+          "rare": 498
         },
         {
-          "give": "Blangonga Coin",
-          "common": "Blangonga Pelt",
-          "rare": "Blangonga Whiskr"
+          "give": 888,
+          "common": 432,
+          "rare": 435
         },
         {
-          "give": "Yian Garuga Coin",
-          "common": "Garuga Scale",
-          "rare": "Garuga Shell"
+          "give": 889,
+          "common": 409,
+          "rare": 412
         },
         {
-          "give": "Tigrex Coin",
-          "common": "Tigrex Scale",
-          "rare": "Tigrex Shell"
+          "give": 890,
+          "common": 593,
+          "rare": 597
         },
         {
-          "give": "Diablos Coin",
-          "common": "Diablos Shell",
-          "rare": "Blos Fang"
+          "give": 891,
+          "common": 637,
+          "rare": 645
         },
         {
-          "give": "Gravios Coin",
-          "common": "Gravios Shell",
-          "rare": "Lg Monster Bone"
+          "give": 892,
+          "common": 623,
+          "rare": 283
         },
         {
-          "give": "Kirin Coin",
-          "common": "Kirin Mane",
-          "rare": "Kirin Horn"
+          "give": 893,
+          "common": 686,
+          "rare": 682
         },
         {
-          "give": "Cephadrome Coin",
-          "common": "Cephalos Scale",
-          "rare": "Cephalos Fin"
+          "give": 894,
+          "common": 482,
+          "rare": 484
         },
         {
-          "give": "Plesioth Coin",
-          "common": "Plesioth Scale",
-          "rare": "Plesioth Fin"
+          "give": 895,
+          "common": 470,
+          "rare": 473
         },
         {
-          "give": "Shogun Coin",
-          "common": "Ceanataur Shell",
-          "rare": "Ceanataur Leg"
+          "give": 896,
+          "common": 504,
+          "rare": 507
         },
         {
-          "give": "Fire Coin",
-          "common": "Rathalos Scale",
-          "rare": "Rathalos Shell"
+          "give": 897,
+          "common": 548,
+          "rare": 554
         },
         {
-          "give": "Rajang Coin",
-          "common": "Commendation",
-          "rare": "Blk Rajang Pelt"
+          "give": 898,
+          "common": 903,
+          "rare": 460
         },
         {
-          "give": "BlackBeltCoinG",
-          "common": "OrangeHypnoPelt+",
-          "rare": "PlumD.HermitrShl"
+          "give": 899,
+          "common": 373,
+          "rare": 501
         },
         {
-          "give": "Expert Coin G",
-          "common": "C.BlangongaPelt+",
-          "rare": "ThickNargaScale"
+          "give": 900,
+          "common": 439,
+          "rare": 610
         },
         {
-          "give": "Warrior Coin G",
-          "common": "ThckLavasiothScl",
-          "rare": "TerraCeanatrShl"
+          "give": 901,
+          "common": 488,
+          "rare": 513
         },
         {
-          "give": "Legend Coin G",
-          "common": "Commendation S",
-          "rare": "Blk Rajang Pelt+"
+          "give": 902,
+          "common": 905,
+          "rare": 461
         },
         {
-          "give": "VeggieElderTcket",
-          "common": "Power Juice",
-          "rare": "Well-Done Steak"
+          "give": 919,
+          "common": 13,
+          "rare": 48
         },
         {
-          "give": "VeggieElderTckt+",
-          "common": "Mega Juice",
-          "rare": "Gourmet Steak"
+          "give": 920,
+          "common": 14,
+          "rare": 49
         },
         {
-          "give": "VegElderTcktBrz",
-          "common": "Vibrant Pelt",
-          "rare": "Vibrant Pelt"
+          "give": 921,
+          "common": 447,
+          "rare": 447
         },
         {
-          "give": "VegElderTcktSlv",
-          "common": "Rathian Plate",
-          "rare": "Rathian Plate"
+          "give": 922,
+          "common": 523,
+          "rare": 523
         },
         {
-          "give": "VegElderTcktGld",
-          "common": "Rathian Ruby",
-          "rare": "Rathian Ruby"
+          "give": 923,
+          "common": 524,
+          "rare": 524
         },
         {
-          "give": "VegElderTcktSky",
-          "common": "Lao-ShanHvnlyScl",
-          "rare": "Lao-ShanHvnlyScl"
+          "give": 924,
+          "common": 697,
+          "rare": 697
         }
       ]
     },
     {
       "maps": [
-        "Snowy Mountains (Day)",
-        "Snowy Mountains (Night)"
+        11,
+        21
       ],
       "trades": [
         {
-          "give": "Carnivore Egg",
-          "common": "Potion",
-          "rare": "Mega Potion"
+          "give": 878,
+          "common": 7,
+          "rare": 8
         },
         {
-          "give": "Sootstone Ore",
-          "common": "Potion",
-          "rare": "Mega Potion"
+          "give": 879,
+          "common": 7,
+          "rare": 8
         },
         {
-          "give": "Khezu Whelp",
-          "common": "Khz Whlp Ice Crm",
-          "rare": "Khz Whlp Ice Crm"
+          "give": 882,
+          "common": 883,
+          "rare": 883
         },
         {
-          "give": "Insect Husk",
-          "common": "Mountain Herbs",
-          "rare": "Mountain Herbs"
+          "give": 246,
+          "common": 173,
+          "rare": 173
         },
         {
-          "give": "Garbage",
-          "common": "Mountain Herbs",
-          "rare": "Mountain Herbs"
+          "give": 155,
+          "common": 173,
+          "rare": 173
         },
         {
-          "give": "Burnt Fish",
-          "common": "Mountain Herbs",
-          "rare": "Mountain Herbs"
+          "give": 56,
+          "common": 173,
+          "rare": 173
         },
         {
-          "give": "Burnt Meat",
-          "common": "Mountain Herbs",
-          "rare": "Mountain Herbs"
+          "give": 50,
+          "common": 173,
+          "rare": 173
         },
         {
-          "give": "Sleep Herb",
-          "common": "Mountain Herbs",
-          "rare": "Hot Drink"
+          "give": 167,
+          "common": 173,
+          "rare": 22
         },
         {
-          "give": "Bone",
-          "common": "Mountain Herbs",
-          "rare": "Hot Pepper"
+          "give": 292,
+          "common": 173,
+          "rare": 171
         },
         {
-          "give": "Bounce Bomb",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 88,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Ice Crystal",
-          "common": "Dung",
-          "rare": "Wyvern Droppings"
+          "give": 219,
+          "common": 67,
+          "rare": 68
         },
         {
-          "give": "Sm Monster Bone",
-          "common": "Hot Drink",
-          "rare": "Hot Meat"
+          "give": 281,
+          "common": 22,
+          "rare": 51
         },
         {
-          "give": "Throwing Knife",
-          "common": "Spicy Mushroom",
-          "rare": "Energy Drink"
+          "give": 58,
+          "common": 183,
+          "rare": 34
         },
         {
-          "give": "Black Pearl",
-          "common": "Gourmet Fish+",
-          "rare": "Killer Beetle"
+          "give": 198,
+          "common": 55,
+          "rare": 257
         },
         {
-          "give": "Small Goldenfish",
-          "common": "Carpenterbug",
-          "rare": "Goldenfish Bait"
+          "give": 240,
+          "common": 254,
+          "rare": 142
         },
         {
-          "give": "Akito Jewel",
-          "common": "Flashbug",
-          "rare": "Thunderbug"
+          "give": 945,
+          "common": 252,
+          "rare": 253
         },
         {
-          "give": "Frog",
-          "common": "Thawing Agent",
-          "rare": "Carpenterbug"
+          "give": 139,
+          "common": 23,
+          "rare": 254
         },
         {
-          "give": "Firestone",
-          "common": "Demon Flute",
-          "rare": "Health Flute"
+          "give": 210,
+          "common": 159,
+          "rare": 157
         },
         {
-          "give": "Flat Ruststone",
-          "common": "Vespoid Wing",
-          "rare": "Vespoid Shell"
+          "give": 820,
+          "common": 660,
+          "rare": 658
         },
         {
-          "give": "Ruststone",
-          "common": "Hornetaur Wing",
-          "rare": "Hornetaur Shell"
+          "give": 819,
+          "common": 666,
+          "rare": 663
         },
         {
-          "give": "Frozen Berry",
-          "common": "Exciteshroom",
-          "rare": "Toadstool"
+          "give": 193,
+          "common": 181,
+          "rare": 180
         },
         {
-          "give": "Daora Tail",
-          "common": "Mega Nutrients",
-          "rare": "Nutrients"
+          "give": 724,
+          "common": 10,
+          "rare": 9
         },
         {
-          "give": "Kirin Thndr Tail",
-          "common": "Hercudrome",
-          "rare": "Herbal Medicine"
+          "give": 688,
+          "common": 258,
+          "rare": 30
         },
         {
-          "give": "Giadrome Claw",
-          "common": "Tranquilizer",
-          "rare": "Gunpowder"
+          "give": 345,
+          "common": 42,
+          "rare": 35
         },
         {
-          "give": "Tigrex Fang",
-          "common": "Power Pill",
-          "rare": "Power Seed"
+          "give": 605,
+          "common": 17,
+          "rare": 186
         },
         {
-          "give": "Daora Claw",
-          "common": "Armor Pill",
-          "rare": "Armor Seed"
+          "give": 726,
+          "common": 20,
+          "rare": 187
         },
         {
-          "give": "Congalala Fang",
-          "common": "Dragon Toadstool",
-          "rare": "Cactus Flower"
+          "give": 451,
+          "common": 182,
+          "rare": 170
         },
         {
-          "give": "TwstBlkBlosHrn",
-          "common": "Power Juice",
-          "rare": "Power Extract"
+          "give": 646,
+          "common": 13,
+          "rare": 279
         },
         {
-          "give": "Blue Kut-Ku Scl",
-          "common": "Gourmet Steak",
-          "rare": "Well-Done Steak"
+          "give": 395,
+          "common": 49,
+          "rare": 48
         },
         {
-          "give": "Iodrome Skull",
-          "common": "Armor Flute",
-          "rare": "Antidote Flute"
+          "give": 371,
+          "common": 160,
+          "rare": 158
         },
         {
-          "give": "Teostra Horn",
-          "common": "Immunizer",
-          "rare": "Cold Meat"
+          "give": 762,
+          "common": 12,
+          "rare": 52
         },
         {
-          "give": "Blk Gravios Skl",
-          "common": "Ancient Potion",
-          "rare": "Max Potion"
+          "give": 633,
+          "common": 32,
+          "rare": 31
         },
         {
-          "give": "Teostra Shell",
-          "common": "Lifepowder",
-          "rare": "Lifecrystals"
+          "give": 756,
+          "common": 37,
+          "rare": 36
         },
         {
-          "give": "Garuga Mane",
-          "common": "Dragon Toadstool",
-          "rare": "Antidote"
+          "give": 423,
+          "common": 182,
+          "rare": 11
         },
         {
-          "give": "Carbalite Ore",
-          "common": "King Scarab",
-          "rare": "Hercudrome"
+          "give": 206,
+          "common": 255,
+          "rare": 258
         },
         {
-          "give": "Novacrystal",
-          "common": "Ancient Potion",
-          "rare": "Lifepowder"
+          "give": 216,
+          "common": 32,
+          "rare": 37
         },
         {
-          "give": "Ancient Fish",
-          "common": "Psychoserum",
-          "rare": "Catalyst"
+          "give": 243,
+          "common": 24,
+          "rare": 33
         },
         {
-          "give": "ShakaInheritance",
-          "common": "King Scarab",
-          "rare": "Hercudrome"
+          "give": 339,
+          "common": 255,
+          "rare": 258
         },
         {
-          "give": "Felyne Fur Ruby",
-          "common": "Gastronome Tuna",
-          "rare": "Glutton Tuna"
+          "give": 319,
+          "common": 238,
+          "rare": 237
         },
         {
-          "give": "Giant Beak",
-          "common": "Demondrug",
-          "rare": "Dragon Toadstool"
+          "give": 391,
+          "common": 15,
+          "rare": 182
         },
         {
-          "give": "Tigrex Scale+",
-          "common": "Mega Armorskin",
-          "rare": "Hot Meat"
+          "give": 594,
+          "common": 19,
+          "rare": 51
         },
         {
-          "give": "Rajang Fang",
-          "common": "Vespoid Carapace",
-          "rare": "Hornetaur Crapce"
+          "give": 458,
+          "common": 659,
+          "rare": 664
         },
         {
-          "give": "Giadrome Claw+",
-          "common": "Psychoserum",
-          "rare": "Thawing Agent"
+          "give": 346,
+          "common": 24,
+          "rare": 23
         },
         {
-          "give": "Gaoren Thoracic",
-          "common": "Vespoid InnrWng",
-          "rare": "HornetaurInnrWng"
+          "give": 709,
+          "common": 661,
+          "rare": 667
         },
         {
-          "give": "Slvr Rthlos Tail",
-          "common": "Mega Demondrug",
-          "rare": "King Scarab"
+          "give": 575,
+          "common": 16,
+          "rare": 255
         },
         {
-          "give": "Congalala Claw+",
-          "common": "Armorskin",
-          "rare": "Mega Potion"
+          "give": 449,
+          "common": 18,
+          "rare": 8
         },
         {
-          "give": "Top-GrdPlatHorn",
-          "common": "Max Potion",
-          "rare": "Lifepowder"
+          "give": 677,
+          "common": 31,
+          "rare": 37
         },
         {
-          "give": "KhezuSpecialCut",
-          "common": "Pale Extract",
-          "rare": "Catalyst"
+          "give": 583,
+          "common": 280,
+          "rare": 33
         },
         {
-          "give": "StrBasariosWing",
-          "common": "Vspoid Razorwing",
-          "rare": "Hornet Razorwing"
+          "give": 591,
+          "common": 662,
+          "rare": 668
         },
         {
-          "give": "AncientDrgnmoss",
-          "common": "Max Potion",
-          "rare": "Monster Essence"
+          "give": 767,
+          "common": 31,
+          "rare": 27
         },
         {
-          "give": "Mellanje Ore",
-          "common": "Mega Demondrug",
-          "rare": "Power Pill"
+          "give": 209,
+          "common": 16,
+          "rare": 17
         },
         {
-          "give": "Eltalite Ore",
-          "common": "Gourmet Steak",
-          "rare": "Power Extract"
+          "give": 207,
+          "common": 49,
+          "rare": 279
         },
         {
-          "give": "ShakalakaTreasr+",
-          "common": "Power Extract",
-          "rare": "Power Juice"
+          "give": 338,
+          "common": 279,
+          "rare": 13
         },
         {
-          "give": "Lthr Daora Tail",
-          "common": "Power Juice",
-          "rare": "Mega Juice"
+          "give": 725,
+          "common": 13,
+          "rare": 14
         },
         {
-          "give": "Dosbiscus",
-          "common": "Dung",
-          "rare": "Wyvern Droppings"
+          "give": 172,
+          "common": 67,
+          "rare": 68
         },
         {
-          "give": "Chaos Mushroom",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 184,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Springnight Carp",
-          "common": "Net",
-          "rare": "Net"
+          "give": 244,
+          "common": 76,
+          "rare": 76
         },
         {
-          "give": "Great Hornfly",
-          "common": "Godbug",
-          "rare": "Monster Fluid"
+          "give": 264,
+          "common": 250,
+          "rare": 25
         },
         {
-          "give": "Sinister Cloth",
-          "common": "Dragon Treasure",
-          "rare": "Dragon Treasure"
+          "give": 817,
+          "common": 315,
+          "rare": 315
         },
         {
-          "give": "Dragonmoss",
-          "common": "Thunderbug Juice",
-          "rare": "Monster Fluid"
+          "give": 765,
+          "common": 28,
+          "rare": 25
         },
         {
-          "give": "Dragonmoss+",
-          "common": "Pale Extract",
-          "rare": "Monster Broth"
+          "give": 766,
+          "common": 280,
+          "rare": 26
         },
         {
-          "give": "Dragonwood",
-          "common": "Thunderbug Juice",
-          "rare": "Monster Fluid"
+          "give": 768,
+          "common": 28,
+          "rare": 25
         },
         {
-          "give": "Dragonwood+",
-          "common": "Pale Extract",
-          "rare": "Monster Broth"
+          "give": 769,
+          "common": 280,
+          "rare": 26
         },
         {
-          "give": "Giant Corn",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 174,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Tailed Frog",
-          "common": "Frog",
-          "rare": "Frog"
+          "give": 245,
+          "common": 139,
+          "rare": 139
         },
         {
-          "give": "Famitsu Ticket",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 929,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Famitsu PO",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 930,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Dengeki Ticket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 933,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Dengeki Ticket+",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 934,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "DemonKingTicket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 936,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Ticket J",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 937,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Hunter's Ticket",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 940,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Hunter Soul Tkt",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 941,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Amezari Shell",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 518,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "PtFamitsuTicket",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 931,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "SpecFamitsuTckt",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 932,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "Dengeki Ticket G",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 935,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Tckt J G",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 938,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Magazine Ticket",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 939,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Gt Amezari Shell",
-          "common": "Lightning Rod",
-          "rare": "Lightning Rod"
+          "give": 519,
+          "common": 80,
+          "rare": 80
         },
         {
-          "give": "Blackbelt Ticket",
-          "common": "Mountain Herbs",
-          "rare": "Mountain Herbs"
+          "give": 925,
+          "common": 173,
+          "rare": 173
         },
         {
-          "give": "Expert Ticket",
-          "common": "Decayed Drgn Scl",
-          "rare": "Decayed Drgn Scl"
+          "give": 926,
+          "common": 317,
+          "rare": 317
         },
         {
-          "give": "Hypno Ticket",
-          "common": "Antidote Flute",
-          "rare": "Health Flute"
+          "give": 381,
+          "common": 158,
+          "rare": 157
         },
         {
-          "give": "Lavasioth Ticket",
-          "common": "Lifepowder",
-          "rare": "Max Potion"
+          "give": 492,
+          "common": 37,
+          "rare": 31
         },
         {
-          "give": "Kut-Ku Coin",
-          "common": "Potion",
-          "rare": "Herb"
+          "give": 884,
+          "common": 7,
+          "rare": 163
         },
         {
-          "give": "Congalala Coin",
-          "common": "Honey",
-          "rare": "Blue Mushroom"
+          "give": 885,
+          "common": 161,
+          "rare": 177
         },
         {
-          "give": "Khezu Coin",
-          "common": "Nutrients",
-          "rare": "Bitterbug"
+          "give": 886,
+          "common": 9,
+          "rare": 251
         },
         {
-          "give": "Daimyo Coin",
-          "common": "Armorskin",
-          "rare": "Armor Seed"
+          "give": 887,
+          "common": 18,
+          "rare": 187
         },
         {
-          "give": "Blangonga Coin",
-          "common": "Hot Meat",
-          "rare": "Hot Drink"
+          "give": 888,
+          "common": 51,
+          "rare": 22
         },
         {
-          "give": "Yian Garuga Coin",
-          "common": "Herbal Medicine",
-          "rare": "Antidote"
+          "give": 889,
+          "common": 30,
+          "rare": 11
         },
         {
-          "give": "Tigrex Coin",
-          "common": "Demondrug",
-          "rare": "Power Seed"
+          "give": 890,
+          "common": 15,
+          "rare": 186
         },
         {
-          "give": "Diablos Coin",
-          "common": "Mega Potion",
-          "rare": "Potion"
+          "give": 891,
+          "common": 8,
+          "rare": 7
         },
         {
-          "give": "Gravios Coin",
-          "common": "Armor Pill",
-          "rare": "Mega Armorskin"
+          "give": 892,
+          "common": 20,
+          "rare": 19
         },
         {
-          "give": "Kirin Coin",
-          "common": "Well-Done Steak",
-          "rare": "Energy Drink"
+          "give": 893,
+          "common": 48,
+          "rare": 34
         },
         {
-          "give": "Cephadrome Coin",
-          "common": "Cold Meat",
-          "rare": "Cool Drink"
+          "give": 894,
+          "common": 52,
+          "rare": 21
         },
         {
-          "give": "Plesioth Coin",
-          "common": "Mega Nutrients",
-          "rare": "Catalyst"
+          "give": 895,
+          "common": 10,
+          "rare": 33
         },
         {
-          "give": "Shogun Coin",
-          "common": "Gourmet Steak",
-          "rare": "Power Juice"
+          "give": 896,
+          "common": 49,
+          "rare": 13
         },
         {
-          "give": "Fire Coin",
-          "common": "Power Pill",
-          "rare": "Mega Demondrug"
+          "give": 897,
+          "common": 17,
+          "rare": 16
         },
         {
-          "give": "Rajang Coin",
-          "common": "Max Potion",
-          "rare": "Immunizer"
+          "give": 898,
+          "common": 31,
+          "rare": 12
         },
         {
-          "give": "BlackBeltCoinG",
-          "common": "Mega Armorskin",
-          "rare": "Armor Flute"
+          "give": 899,
+          "common": 19,
+          "rare": 160
         },
         {
-          "give": "Expert Coin G",
-          "common": "Mega Demondrug",
-          "rare": "Demon Flute"
+          "give": 900,
+          "common": 16,
+          "rare": 159
         },
         {
-          "give": "Warrior Coin G",
-          "common": "Lifepowder",
-          "rare": "Health Flute"
+          "give": 901,
+          "common": 37,
+          "rare": 157
         },
         {
-          "give": "Legend Coin G",
-          "common": "Ancient Potion",
-          "rare": "TerritorialDung+"
+          "give": 902,
+          "common": 32,
+          "rare": 312
         },
         {
-          "give": "VeggieElderTcket",
-          "common": "Armorskin",
-          "rare": "Armor Seed"
+          "give": 919,
+          "common": 18,
+          "rare": 187
         },
         {
-          "give": "VeggieElderTckt+",
-          "common": "Mega Armorskin",
-          "rare": "Armor Pill"
+          "give": 920,
+          "common": 19,
+          "rare": 20
         },
         {
-          "give": "VegElderTcktBrz",
-          "common": "Blangonga Fang",
-          "rare": "Blangonga Fang"
+          "give": 921,
+          "common": 429,
+          "rare": 429
         },
         {
-          "give": "VegElderTcktSlv",
-          "common": "Pale Bone",
-          "rare": "Pale Bone"
+          "give": 922,
+          "common": 581,
+          "rare": 581
         },
         {
-          "give": "VegElderTcktGld",
-          "common": "Daora Jewel",
-          "rare": "Daora Jewel"
+          "give": 923,
+          "common": 728,
+          "rare": 728
         },
         {
-          "give": "VegElderTcktSky",
-          "common": "HvnlyTigrexScale",
-          "rare": "HvnlyTigrexScale"
+          "give": 924,
+          "common": 596,
+          "rare": 596
         }
       ]
     },
     {
       "maps": [
-        "Old Jungle"
+        26
       ],
       "trades": [
         {
-          "give": "Insect Husk",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 246,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Garbage",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 155,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Fish",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 56,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Meat",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 50,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Sap Plant",
-          "common": "Special Mushroom",
-          "rare": "Hot Drink"
+          "give": 168,
+          "common": 175,
+          "rare": 22
         },
         {
-          "give": "Conga Pelt",
-          "common": "Special Mushroom",
-          "rare": "Deodorant"
+          "give": 442,
+          "common": 175,
+          "rare": 73
         },
         {
-          "give": "Bounce Bomb",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 88,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Disk Stone",
-          "common": "Stone",
-          "rare": "Green Seed"
+          "give": 201,
+          "common": 200,
+          "rare": 195
         },
         {
-          "give": "Sleepyfish",
-          "common": "Parashroom",
-          "rare": "Exciteshroom"
+          "give": 231,
+          "common": 179,
+          "rare": 181
         },
         {
-          "give": "Iodrome Hide",
-          "common": "Gunpowder",
-          "rare": "Antidote"
+          "give": 370,
+          "common": 35,
+          "rare": 11
         },
         {
-          "give": "Unknown Skull",
-          "common": "Glutton Tuna",
-          "rare": "Scatterfish"
+          "give": 290,
+          "common": 237,
+          "rare": 234
         },
         {
-          "give": "Kelbi Horn",
-          "common": "Bomberry",
-          "rare": "Armor Seed"
+          "give": 327,
+          "common": 191,
+          "rare": 187
         },
         {
-          "give": "Sm Monster Bone",
-          "common": "Hot Drink",
-          "rare": "Hot Meat"
+          "give": 281,
+          "common": 22,
+          "rare": 51
         },
         {
-          "give": "Iron Ore",
-          "common": "Exciteshroom",
-          "rare": "Toadstool"
+          "give": 202,
+          "common": 181,
+          "rare": 180
         },
         {
-          "give": "Thunderbug",
-          "common": "Godbug",
-          "rare": "Antiseptic Stone"
+          "give": 253,
+          "common": 250,
+          "rare": 218
         },
         {
-          "give": "Machalite Ore",
-          "common": "Carpenterbug",
-          "rare": "Honey"
+          "give": 204,
+          "common": 254,
+          "rare": 161
         },
         {
-          "give": "Firefly",
-          "common": "Blue Mushroom",
-          "rare": "Bitterbug"
+          "give": 138,
+          "common": 177,
+          "rare": 251
         },
         {
-          "give": "Nitroshroom",
-          "common": "Paintberry",
-          "rare": "Fire Herb"
+          "give": 178,
+          "common": 185,
+          "rare": 165
         },
         {
-          "give": "Frozen Berry",
-          "common": "Exciteshroom",
-          "rare": "Toadstool"
+          "give": 193,
+          "common": 181,
+          "rare": 180
         },
         {
-          "give": "Small Goldenfish",
-          "common": "Armor Seed",
-          "rare": "Armorskin"
+          "give": 240,
+          "common": 187,
+          "rare": 18
         },
         {
-          "give": "Large Ruststone",
-          "common": "Vespoid Wing",
-          "rare": "Vespoid Shell"
+          "give": 821,
+          "common": 660,
+          "rare": 658
         },
         {
-          "give": "Flat Ruststone",
-          "common": "Hornetaur Wing",
-          "rare": "Hornetaur Shell"
+          "give": 820,
+          "common": 666,
+          "rare": 663
         },
         {
-          "give": "Vespoid Abdomen",
-          "common": "Honey",
-          "rare": "Catalyst"
+          "give": 656,
+          "common": 161,
+          "rare": 33
         },
         {
-          "give": "Dragonite Ore",
-          "common": "Honey",
-          "rare": "Psychoserum"
+          "give": 205,
+          "common": 161,
+          "rare": 24
         },
         {
-          "give": "Black Pearl",
-          "common": "Flashbug",
-          "rare": "Carpenterbug"
+          "give": 198,
+          "common": 252,
+          "rare": 254
         },
         {
-          "give": "Bomb Arrowana",
-          "common": "Power Seed",
-          "rare": "Tranquilizer"
+          "give": 236,
+          "common": 186,
+          "rare": 42
         },
         {
-          "give": "Bullfango Head",
-          "common": "Honey",
-          "rare": "Bitterbug"
+          "give": 323,
+          "common": 161,
+          "rare": 251
         },
         {
-          "give": "Fire Dragon Scl",
-          "common": "Demondrug",
-          "rare": "Hot Meat"
+          "give": 741,
+          "common": 15,
+          "rare": 51
         },
         {
-          "give": "Blangonga Fang",
-          "common": "Killer Beetle",
-          "rare": "Health Flute"
+          "give": 429,
+          "common": 257,
+          "rare": 157
         },
         {
-          "give": "TwstBlkBlosHrn",
-          "common": "Demondrug",
-          "rare": "Mega Demondrug"
+          "give": 646,
+          "common": 15,
+          "rare": 16
         },
         {
-          "give": "Gendrome Skull",
-          "common": "Well-Done Steak",
-          "rare": "Rare Steak"
+          "give": 364,
+          "common": 48,
+          "rare": 47
         },
         {
-          "give": "Daora Horn",
-          "common": "Immunizer",
-          "rare": "Cold Meat"
+          "give": 722,
+          "common": 12,
+          "rare": 52
         },
         {
-          "give": "Remobra Skull",
-          "common": "Hornetaur Shell",
-          "rare": "Vespoid Shell"
+          "give": 336,
+          "common": 663,
+          "rare": 658
         },
         {
-          "give": "Gravios Shell",
-          "common": "Antiseptic Stone",
-          "rare": "Herbal Medicine"
+          "give": 623,
+          "common": 218,
+          "rare": 30
         },
         {
-          "give": "Velocidrome Claw",
-          "common": "Honey",
-          "rare": "Godbug"
+          "give": 354,
+          "common": 161,
+          "rare": 250
         },
         {
-          "give": "Congalala Fang",
-          "common": "Mega Potion",
-          "rare": "Killer Beetle"
+          "give": 451,
+          "common": 8,
+          "rare": 257
         },
         {
-          "give": "Monster Bone+",
-          "common": "Honey",
-          "rare": "Nutrients"
+          "give": 284,
+          "common": 161,
+          "rare": 9
         },
         {
-          "give": "Thunder Sac",
-          "common": "Monster Broth",
-          "rare": "Thunderbug Juice"
+          "give": 277,
+          "common": 26,
+          "rare": 28
         },
         {
-          "give": "Pnk Rathian Scl+",
-          "common": "Monster Fluid",
-          "rare": "Armor Pill"
+          "give": 533,
+          "common": 25,
+          "rare": 20
         },
         {
-          "give": "Toxin Sac",
-          "common": "Hercudrome",
-          "rare": "Rare Scarab"
+          "give": 268,
+          "common": 258,
+          "rare": 259
         },
         {
-          "give": "Novacrystal",
-          "common": "Gourmet Steak",
-          "rare": "Power Extract"
+          "give": 216,
+          "common": 49,
+          "rare": 279
         },
         {
-          "give": "Hermitaur Claw+",
-          "common": "Gourmet Fish+",
-          "rare": "Gourmet Fish"
+          "give": 499,
+          "common": 55,
+          "rare": 54
         },
         {
-          "give": "Slvr Rthlos Tail",
-          "common": "Hornetaur Crapce",
-          "rare": "Vespoid Carapace"
+          "give": 575,
+          "common": 664,
+          "rare": 659
         },
         {
-          "give": "Fire Dragon Pwdr",
-          "common": "HornetaurInnrWng",
-          "rare": "Vespoid InnrWng"
+          "give": 747,
+          "common": 667,
+          "rare": 661
         },
         {
-          "give": "Pale Khezu Steak",
-          "common": "Thunderbug Juice",
-          "rare": "Rare Scarab"
+          "give": 582,
+          "common": 28,
+          "rare": 259
         },
         {
-          "give": "Kirin Azure Horn",
-          "common": "Power Juice",
-          "rare": "Mega Juice"
+          "give": 690,
+          "common": 13,
+          "rare": 14
         },
         {
-          "give": "Nargacuga Tail",
-          "common": "Power Extract",
-          "rare": "Mega Demondrug"
+          "give": 614,
+          "common": 279,
+          "rare": 16
         },
         {
-          "give": "PlumD.HermitrClw",
-          "common": "Mega Armorskin",
-          "rare": "Armor Pill"
+          "give": 502,
+          "common": 19,
+          "rare": 20
         },
         {
-          "give": "AncientDrgnwood",
-          "common": "Max Potion",
-          "rare": "Monster Essence"
+          "give": 770,
+          "common": 31,
+          "rare": 27
         },
         {
-          "give": "ThckPnkRathnScl",
-          "common": "FireWyvern Fluid",
-          "rare": "Catalyst"
+          "give": 534,
+          "common": 545,
+          "rare": 33
         },
         {
-          "give": "YamaTsukaFillet",
-          "common": "Vspoid Razorwing",
-          "rare": "Hornet Razorwing"
+          "give": 772,
+          "common": 662,
+          "rare": 668
         },
         {
-          "give": "Purecrystal",
-          "common": "Power Extract",
-          "rare": "Power Juice"
+          "give": 217,
+          "common": 279,
+          "rare": 13
         },
         {
-          "give": "SpecialKirinHide",
-          "common": "PhantomButterfly",
-          "rare": "Emperor Cricket"
+          "give": 685,
+          "common": 260,
+          "rare": 256
         },
         {
-          "give": "LthrChameleoTail",
-          "common": "Power Juice",
-          "rare": "Mega Juice"
+          "give": 739,
+          "common": 13,
+          "rare": 14
         },
         {
-          "give": "Dosbiscus",
-          "common": "Dung",
-          "rare": "Wyvern Droppings"
+          "give": 172,
+          "common": 67,
+          "rare": 68
         },
         {
-          "give": "Chaos Mushroom",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 184,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Springnight Carp",
-          "common": "Net",
-          "rare": "Net"
+          "give": 244,
+          "common": 76,
+          "rare": 76
         },
         {
-          "give": "Great Hornfly",
-          "common": "Godbug",
-          "rare": "Monster Fluid"
+          "give": 264,
+          "common": 250,
+          "rare": 25
         },
         {
-          "give": "Sinister Cloth",
-          "common": "Dragon Treasure",
-          "rare": "Dragon Treasure"
+          "give": 817,
+          "common": 315,
+          "rare": 315
         },
         {
-          "give": "Dragonmoss",
-          "common": "Lifecrystals",
-          "rare": "Monster Fluid"
+          "give": 765,
+          "common": 36,
+          "rare": 25
         },
         {
-          "give": "Dragonmoss+",
-          "common": "Pale Extract",
-          "rare": "Monster Broth"
+          "give": 766,
+          "common": 280,
+          "rare": 26
         },
         {
-          "give": "Dragonwood",
-          "common": "Lifecrystals",
-          "rare": "Monster Fluid"
+          "give": 768,
+          "common": 36,
+          "rare": 25
         },
         {
-          "give": "Dragonwood+",
-          "common": "Pale Extract",
-          "rare": "Monster Broth"
+          "give": 769,
+          "common": 280,
+          "rare": 26
         },
         {
-          "give": "Giant Corn",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 174,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Tailed Frog",
-          "common": "Frog",
-          "rare": "Frog"
+          "give": 245,
+          "common": 139,
+          "rare": 139
         },
         {
-          "give": "Famitsu Ticket",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 929,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Famitsu PO",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 930,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Dengeki Ticket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 933,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Dengeki Ticket+",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 934,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "DemonKingTicket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 936,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Ticket J",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 937,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Hunter's Ticket",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 940,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Hunter Soul Tkt",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 941,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Amezari Shell",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 518,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "PtFamitsuTicket",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 931,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "SpecFamitsuTckt",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 932,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "Dengeki Ticket G",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 935,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Tckt J G",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 938,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Magazine Ticket",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 939,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Gt Amezari Shell",
-          "common": "Lightning Rod",
-          "rare": "Lightning Rod"
+          "give": 519,
+          "common": 80,
+          "rare": 80
         },
         {
-          "give": "Blackbelt Ticket",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 925,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Expert Ticket",
-          "common": "Decayed Drgn Scl",
-          "rare": "Decayed Drgn Scl"
+          "give": 926,
+          "common": 317,
+          "rare": 317
         },
         {
-          "give": "Hypno Ticket",
-          "common": "Antidote Flute",
-          "rare": "Health Flute"
+          "give": 381,
+          "common": 158,
+          "rare": 157
         },
         {
-          "give": "Lavasioth Ticket",
-          "common": "Lifepowder",
-          "rare": "Max Potion"
+          "give": 492,
+          "common": 37,
+          "rare": 31
         },
         {
-          "give": "Kut-Ku Coin",
-          "common": "Potion",
-          "rare": "Herb"
+          "give": 884,
+          "common": 7,
+          "rare": 163
         },
         {
-          "give": "Congalala Coin",
-          "common": "Honey",
-          "rare": "Blue Mushroom"
+          "give": 885,
+          "common": 161,
+          "rare": 177
         },
         {
-          "give": "Khezu Coin",
-          "common": "Nutrients",
-          "rare": "Bitterbug"
+          "give": 886,
+          "common": 9,
+          "rare": 251
         },
         {
-          "give": "Daimyo Coin",
-          "common": "Armorskin",
-          "rare": "Armor Seed"
+          "give": 887,
+          "common": 18,
+          "rare": 187
         },
         {
-          "give": "Blangonga Coin",
-          "common": "Hot Meat",
-          "rare": "Hot Drink"
+          "give": 888,
+          "common": 51,
+          "rare": 22
         },
         {
-          "give": "Yian Garuga Coin",
-          "common": "Herbal Medicine",
-          "rare": "Antidote"
+          "give": 889,
+          "common": 30,
+          "rare": 11
         },
         {
-          "give": "Tigrex Coin",
-          "common": "Demondrug",
-          "rare": "Power Seed"
+          "give": 890,
+          "common": 15,
+          "rare": 186
         },
         {
-          "give": "Diablos Coin",
-          "common": "Mega Potion",
-          "rare": "Potion"
+          "give": 891,
+          "common": 8,
+          "rare": 7
         },
         {
-          "give": "Gravios Coin",
-          "common": "Armor Pill",
-          "rare": "Mega Armorskin"
+          "give": 892,
+          "common": 20,
+          "rare": 19
         },
         {
-          "give": "Kirin Coin",
-          "common": "Well-Done Steak",
-          "rare": "Energy Drink"
+          "give": 893,
+          "common": 48,
+          "rare": 34
         },
         {
-          "give": "Cephadrome Coin",
-          "common": "Cold Meat",
-          "rare": "Cool Drink"
+          "give": 894,
+          "common": 52,
+          "rare": 21
         },
         {
-          "give": "Plesioth Coin",
-          "common": "Mega Nutrients",
-          "rare": "Catalyst"
+          "give": 895,
+          "common": 10,
+          "rare": 33
         },
         {
-          "give": "Shogun Coin",
-          "common": "Gourmet Steak",
-          "rare": "Power Juice"
+          "give": 896,
+          "common": 49,
+          "rare": 13
         },
         {
-          "give": "Fire Coin",
-          "common": "Power Pill",
-          "rare": "Mega Demondrug"
+          "give": 897,
+          "common": 17,
+          "rare": 16
         },
         {
-          "give": "Rajang Coin",
-          "common": "Max Potion",
-          "rare": "Immunizer"
+          "give": 898,
+          "common": 31,
+          "rare": 12
         },
         {
-          "give": "BlackBeltCoinG",
-          "common": "Mega Armorskin",
-          "rare": "Armor Flute"
+          "give": 899,
+          "common": 19,
+          "rare": 160
         },
         {
-          "give": "Expert Coin G",
-          "common": "Mega Demondrug",
-          "rare": "Demon Flute"
+          "give": 900,
+          "common": 16,
+          "rare": 159
         },
         {
-          "give": "Warrior Coin G",
-          "common": "Lifepowder",
-          "rare": "Health Flute"
+          "give": 901,
+          "common": 37,
+          "rare": 157
         },
         {
-          "give": "Legend Coin G",
-          "common": "Ancient Potion",
-          "rare": "TerritorialDung+"
+          "give": 902,
+          "common": 32,
+          "rare": 312
         },
         {
-          "give": "VeggieElderTcket",
-          "common": "Lg Barrel-Bomb",
-          "rare": "Sm Barrel-Bomb"
+          "give": 919,
+          "common": 86,
+          "rare": 84
         },
         {
-          "give": "VeggieElderTckt+",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Sm Barrel-Bomb+"
+          "give": 920,
+          "common": 87,
+          "rare": 85
         },
         {
-          "give": "VegElderTcktBrz",
-          "common": "Hermitaur Claw",
-          "rare": "Hermitaur Claw"
+          "give": 921,
+          "common": 498,
+          "rare": 498
         },
         {
-          "give": "VegElderTcktSlv",
-          "common": "Majestic Horn",
-          "rare": "Majestic Horn"
+          "give": 922,
+          "common": 635,
+          "rare": 635
         },
         {
-          "give": "VegElderTcktGld",
-          "common": "Gravios BrainStm",
-          "rare": "Gravios BrainStm"
+          "give": 923,
+          "common": 628,
+          "rare": 628
         },
         {
-          "give": "VegElderTcktSky",
-          "common": "HvnlyNargaScale",
-          "rare": "HvnlyNargaScale"
+          "give": 924,
+          "common": 611,
+          "rare": 611
         }
       ]
     },
     {
       "maps": [
-        "Old Swamp"
+        28
       ],
       "trades": [
         {
-          "give": "Quartz Ore",
-          "common": "Potion",
-          "rare": "Mega Potion"
+          "give": 880,
+          "common": 7,
+          "rare": 8
         },
         {
-          "give": "Insect Husk",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 246,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Garbage",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 155,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Fish",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 56,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Burnt Meat",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 50,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Toadstool",
-          "common": "Special Mushroom",
-          "rare": "Hot Drink"
+          "give": 180,
+          "common": 175,
+          "rare": 22
         },
         {
-          "give": "Herb",
-          "common": "Special Mushroom",
-          "rare": "Antidote"
+          "give": 163,
+          "common": 175,
+          "rare": 11
         },
         {
-          "give": "Bounce Bomb",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 88,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Screamer",
-          "common": "Earth Crystal",
-          "rare": "Suiko Jewel"
+          "give": 266,
+          "common": 203,
+          "rare": 944
         },
         {
-          "give": "ShakalakaTreasre",
-          "common": "Earth Crystal",
-          "rare": "Suiko Jewel"
+          "give": 337,
+          "common": 203,
+          "rare": 944
         },
         {
-          "give": "CarapaceonBrains",
-          "common": "Earth Crystal",
-          "rare": "Iron Ore"
+          "give": 306,
+          "common": 203,
+          "rare": 202
         },
         {
-          "give": "Carpenterbug",
-          "common": "Ice Crystal",
-          "rare": "Iron Ore"
+          "give": 254,
+          "common": 219,
+          "rare": 202
         },
         {
-          "give": "Mega Fishing Fly",
-          "common": "Disk Stone",
-          "rare": "Iron Ore"
+          "give": 143,
+          "common": 201,
+          "rare": 202
         },
         {
-          "give": "Brute Bone",
-          "common": "Iron Ore",
-          "rare": "Earth Crystal"
+          "give": 294,
+          "common": 202,
+          "rare": 203
         },
         {
-          "give": "Small Goldenfish",
-          "common": "Iron Ore",
-          "rare": "Disk Stone"
+          "give": 240,
+          "common": 202,
+          "rare": 201
         },
         {
-          "give": "Sap Plant",
-          "common": "Disk Stone",
-          "rare": "Stone"
+          "give": 168,
+          "common": 201,
+          "rare": 200
         },
         {
-          "give": "Hot Pepper",
-          "common": "Stone",
-          "rare": "Disk Stone"
+          "give": 171,
+          "common": 200,
+          "rare": 201
         },
         {
-          "give": "Wyvern Claw",
-          "common": "Iron Ore",
-          "rare": "Disk Stone"
+          "give": 299,
+          "common": 202,
+          "rare": 201
         },
         {
-          "give": "Frozen Berry",
-          "common": "Suiko Jewel",
-          "rare": "Suiko Jewel"
+          "give": 193,
+          "common": 944,
+          "rare": 944
         },
         {
-          "give": "Exciteshroom",
-          "common": "Earth Crystal",
-          "rare": "Machalite Ore"
+          "give": 181,
+          "common": 203,
+          "rare": 204
         },
         {
-          "give": "Spicy Mushroom",
-          "common": "Earth Crystal",
-          "rare": "Machalite Ore"
+          "give": 183,
+          "common": 203,
+          "rare": 204
         },
         {
-          "give": "Killer Beetle",
-          "common": "Iron Ore",
-          "rare": "Earth Crystal"
+          "give": 257,
+          "common": 202,
+          "rare": 203
         },
         {
-          "give": "Hornetaur Shell",
-          "common": "Earth Crystal",
-          "rare": "Machalite Ore"
+          "give": 663,
+          "common": 203,
+          "rare": 204
         },
         {
-          "give": "Ruststone",
-          "common": "Machalite Ore",
-          "rare": "Armor Stone"
+          "give": 819,
+          "common": 204,
+          "rare": 222
         },
         {
-          "give": "Small Ruststone",
-          "common": "Machalite Ore",
-          "rare": "Armor Stone"
+          "give": 822,
+          "common": 204,
+          "rare": 222
         },
         {
-          "give": "Remobra Skin",
-          "common": "Iron Ore",
-          "rare": "Machalite Ore"
+          "give": 332,
+          "common": 202,
+          "rare": 204
         },
         {
-          "give": "Chameleos Horn",
-          "common": "Armor Sphere",
-          "rare": "Armor Sphere+"
+          "give": 732,
+          "common": 223,
+          "rare": 224
         },
         {
-          "give": "Blk Gravios Skl",
-          "common": "Armor Sphere",
-          "rare": "Armor Stone"
+          "give": 633,
+          "common": 223,
+          "rare": 222
         },
         {
-          "give": "Bullfango Head",
-          "common": "Machalite Ore",
-          "rare": "Earth Crystal"
+          "give": 323,
+          "common": 204,
+          "rare": 203
         },
         {
-          "give": "Lost Umbrella",
-          "common": "Suiko Jewel",
-          "rare": "Akito Jewel"
+          "give": 818,
+          "common": 944,
+          "rare": 945
         },
         {
-          "give": "Blk Gravios Shl",
-          "common": "Earth Crystal",
-          "rare": "Lightcrystal"
+          "give": 629,
+          "common": 203,
+          "rare": 215
         },
         {
-          "give": "Lao-Shan's Shell",
-          "common": "Machalite Ore",
-          "rare": "Firestone"
+          "give": 698,
+          "common": 204,
+          "rare": 210
         },
         {
-          "give": "Monoblos Heart",
-          "common": "Earth Crystal",
-          "rare": "Lightcrystal"
+          "give": 675,
+          "common": 203,
+          "rare": 215
         },
         {
-          "give": "Gaoren Pincer",
-          "common": "Earth Crystal",
-          "rare": "Firestone"
+          "give": 711,
+          "common": 203,
+          "rare": 210
         },
         {
-          "give": "Blangonga Tail",
-          "common": "Earth Crystal",
-          "rare": "Machalite Ore"
+          "give": 437,
+          "common": 203,
+          "rare": 204
         },
         {
-          "give": "Hermitaur Claw",
-          "common": "Machalite Ore",
-          "rare": "Akito Jewel"
+          "give": 498,
+          "common": 204,
+          "rare": 945
         },
         {
-          "give": "Tigrex Tail",
-          "common": "Machalite Ore",
-          "rare": "Suiko Jewel"
+          "give": 600,
+          "common": 204,
+          "rare": 944
         },
         {
-          "give": "Iodrome Skull",
-          "common": "Suiko Jewel",
-          "rare": "Earth Crystal"
+          "give": 371,
+          "common": 944,
+          "rare": 203
         },
         {
-          "give": "Chameleos Claw",
-          "common": "Akito Jewel",
-          "rare": "BattlefieldJewel"
+          "give": 735,
+          "common": 945,
+          "rare": 946
         },
         {
-          "give": "Gastronome Tuna",
-          "common": "Armor Sphere",
-          "rare": "Armor Sphere+"
+          "give": 238,
+          "common": 223,
+          "rare": 224
         },
         {
-          "give": "Garuga Carapace",
-          "common": "BattlefieldJewel",
-          "rare": "LapisLazuliJewel"
+          "give": 413,
+          "common": 946,
+          "rare": 947
         },
         {
-          "give": "Chameleos Spike",
-          "common": "LapisLazuliJewel",
-          "rare": "Union Ore"
+          "give": 733,
+          "common": 947,
+          "rare": 208
         },
         {
-          "give": "Tigrex Claw+",
-          "common": "Firestone",
-          "rare": "Lightcrystal"
+          "give": 603,
+          "common": 210,
+          "rare": 215
         },
         {
-          "give": "Ioprey Scale+",
-          "common": "Earth Crystal",
-          "rare": "Dragonite Ore"
+          "give": 367,
+          "common": 203,
+          "rare": 205
         },
         {
-          "give": "Gaoren Thoracic",
-          "common": "Lightcrystal",
-          "rare": "Novacrystal"
+          "give": 709,
+          "common": 215,
+          "rare": 216
         },
         {
-          "give": "Blue Kut-Ku Scl+",
-          "common": "Armor Stone",
-          "rare": "Armor Sphere"
+          "give": 396,
+          "common": 222,
+          "rare": 223
         },
         {
-          "give": "Lunastra Spike",
-          "common": "Union Ore",
-          "rare": "LapisLazuliJewel"
+          "give": 755,
+          "common": 208,
+          "rare": 947
         },
         {
-          "give": "Hvy Monster Bone",
-          "common": "Dragonite Ore",
-          "rare": "BattlefieldJewel"
+          "give": 286,
+          "common": 205,
+          "rare": 946
         },
         {
-          "give": "HardGypcerosHead",
-          "common": "Carbalite Ore",
-          "rare": "Novacrystal"
+          "give": 405,
+          "common": 206,
+          "rare": 216
         },
         {
-          "give": "HvyGraviosShell",
-          "common": "Armor Sphere+",
-          "rare": "Armor Stone"
+          "give": 625,
+          "common": 224,
+          "rare": 222
         },
         {
-          "give": "StrAlluringWing",
-          "common": "LapisLazuliJewel",
-          "rare": "Novacrystal"
+          "give": 586,
+          "common": 947,
+          "rare": 216
         },
         {
-          "give": "SpecLavasioFin+",
-          "common": "Hrd Armor Sphere",
-          "rare": "Armor Sphere+"
+          "give": 491,
+          "common": 225,
+          "rare": 224
         },
         {
-          "give": "LthrSlvrRthlsTal",
-          "common": "Eltalite Ore",
-          "rare": "Wyvern Stone"
+          "give": 576,
+          "common": 207,
+          "rare": 300
         },
         {
-          "give": "ThckFireDrgnScl",
-          "common": "Firecell Stone",
-          "rare": "Purecrystal"
+          "give": 743,
+          "common": 211,
+          "rare": 217
         },
         {
-          "give": "Dosbiscus",
-          "common": "Dung",
-          "rare": "Wyvern Droppings"
+          "give": 172,
+          "common": 67,
+          "rare": 68
         },
         {
-          "give": "Chaos Mushroom",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 184,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Springnight Carp",
-          "common": "Net",
-          "rare": "Net"
+          "give": 244,
+          "common": 76,
+          "rare": 76
         },
         {
-          "give": "Great Hornfly",
-          "common": "Godbug",
-          "rare": "Monster Fluid"
+          "give": 264,
+          "common": 250,
+          "rare": 25
         },
         {
-          "give": "Sinister Cloth",
-          "common": "Dragon Treasure",
-          "rare": "Dragon Treasure"
+          "give": 817,
+          "common": 315,
+          "rare": 315
         },
         {
-          "give": "Dragonmoss",
-          "common": "Armor Sphere",
-          "rare": "Armor Sphere"
+          "give": 765,
+          "common": 223,
+          "rare": 223
         },
         {
-          "give": "Dragonmoss+",
-          "common": "Armor Sphere+",
-          "rare": "Armor Sphere+"
+          "give": 766,
+          "common": 224,
+          "rare": 224
         },
         {
-          "give": "Dragonwood",
-          "common": "Armor Sphere",
-          "rare": "Armor Sphere"
+          "give": 768,
+          "common": 223,
+          "rare": 223
         },
         {
-          "give": "Dragonwood+",
-          "common": "Armor Sphere+",
-          "rare": "Armor Sphere+"
+          "give": 769,
+          "common": 224,
+          "rare": 224
         },
         {
-          "give": "Giant Corn",
-          "common": "Honey",
-          "rare": "Honey"
+          "give": 174,
+          "common": 161,
+          "rare": 161
         },
         {
-          "give": "Tailed Frog",
-          "common": "Frog",
-          "rare": "Frog"
+          "give": 245,
+          "common": 139,
+          "rare": 139
         },
         {
-          "give": "Famitsu Ticket",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 929,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Famitsu PO",
-          "common": "Mega Bugnet",
-          "rare": "Bugnet"
+          "give": 930,
+          "common": 150,
+          "rare": 149
         },
         {
-          "give": "Dengeki Ticket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 933,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Dengeki Ticket+",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 934,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "DemonKingTicket",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 936,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Ticket J",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 937,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Hunter's Ticket",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 940,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Hunter Soul Tkt",
-          "common": "Mega Pickaxe",
-          "rare": "Iron Pickaxe"
+          "give": 941,
+          "common": 146,
+          "rare": 145
         },
         {
-          "give": "Amezari Shell",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 518,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "PtFamitsuTicket",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 931,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "SpecFamitsuTckt",
-          "common": "Lg Barrel-Bomb+",
-          "rare": "Lg Barrel-Bomb"
+          "give": 932,
+          "common": 87,
+          "rare": 86
         },
         {
-          "give": "Dengeki Ticket G",
-          "common": "Polytan Bomb",
-          "rare": "Polytan Bomb"
+          "give": 935,
+          "common": 91,
+          "rare": 91
         },
         {
-          "give": "Pirate Tckt J G",
-          "common": "JUMP Barrel-Bomb",
-          "rare": "JUMP Barrel-Bomb"
+          "give": 938,
+          "common": 92,
+          "rare": 92
         },
         {
-          "give": "Magazine Ticket",
-          "common": "Bounce Bomb+",
-          "rare": "Bounce Bomb+"
+          "give": 939,
+          "common": 89,
+          "rare": 89
         },
         {
-          "give": "Gt Amezari Shell",
-          "common": "Lightning Rod",
-          "rare": "Lightning Rod"
+          "give": 519,
+          "common": 80,
+          "rare": 80
         },
         {
-          "give": "Blackbelt Ticket",
-          "common": "Special Mushroom",
-          "rare": "Special Mushroom"
+          "give": 925,
+          "common": 175,
+          "rare": 175
         },
         {
-          "give": "Expert Ticket",
-          "common": "Decayed Drgn Scl",
-          "rare": "Decayed Drgn Scl"
+          "give": 926,
+          "common": 317,
+          "rare": 317
         },
         {
-          "give": "Hypno Ticket",
-          "common": "Akito Jewel",
-          "rare": "Rainbow Ore"
+          "give": 381,
+          "common": 945,
+          "rare": 220
         },
         {
-          "give": "Lavasioth Ticket",
-          "common": "Firestone",
-          "rare": "Union Ore"
+          "give": 492,
+          "common": 210,
+          "rare": 208
         },
         {
-          "give": "Kut-Ku Coin",
-          "common": "Disk Stone",
-          "rare": "Stone"
+          "give": 884,
+          "common": 201,
+          "rare": 200
         },
         {
-          "give": "Congalala Coin",
-          "common": "Iron Ore",
-          "rare": "Disk Stone"
+          "give": 885,
+          "common": 202,
+          "rare": 201
         },
         {
-          "give": "Khezu Coin",
-          "common": "Suiko Jewel",
-          "rare": "Ice Crystal"
+          "give": 886,
+          "common": 944,
+          "rare": 219
         },
         {
-          "give": "Daimyo Coin",
-          "common": "Earth Crystal",
-          "rare": "Iron Ore"
+          "give": 887,
+          "common": 203,
+          "rare": 202
         },
         {
-          "give": "Blangonga Coin",
-          "common": "Ice Crystal",
-          "rare": "Earth Crystal"
+          "give": 888,
+          "common": 219,
+          "rare": 203
         },
         {
-          "give": "Yian Garuga Coin",
-          "common": "Machalite Ore",
-          "rare": "Armor Stone"
+          "give": 889,
+          "common": 204,
+          "rare": 222
         },
         {
-          "give": "Tigrex Coin",
-          "common": "Suiko Jewel",
-          "rare": "Machalite Ore"
+          "give": 890,
+          "common": 944,
+          "rare": 204
         },
         {
-          "give": "Diablos Coin",
-          "common": "Machalite Ore",
-          "rare": "Suiko Jewel"
+          "give": 891,
+          "common": 204,
+          "rare": 944
         },
         {
-          "give": "Gravios Coin",
-          "common": "Akito Jewel",
-          "rare": "Firestone"
+          "give": 892,
+          "common": 945,
+          "rare": 210
         },
         {
-          "give": "Kirin Coin",
-          "common": "Suiko Jewel",
-          "rare": "Lightcrystal"
+          "give": 893,
+          "common": 944,
+          "rare": 215
         },
         {
-          "give": "Cephadrome Coin",
-          "common": "Iron Ore",
-          "rare": "Disk Stone"
+          "give": 894,
+          "common": 202,
+          "rare": 201
         },
         {
-          "give": "Plesioth Coin",
-          "common": "Earth Crystal",
-          "rare": "Iron Ore"
+          "give": 895,
+          "common": 203,
+          "rare": 202
         },
         {
-          "give": "Shogun Coin",
-          "common": "Akito Jewel",
-          "rare": "Black Pearl"
+          "give": 896,
+          "common": 945,
+          "rare": 198
         },
         {
-          "give": "Fire Coin",
-          "common": "Machalite Ore",
-          "rare": "Akito Jewel"
+          "give": 897,
+          "common": 204,
+          "rare": 945
         },
         {
-          "give": "Rajang Coin",
-          "common": "BattlefieldJewel",
-          "rare": "Firestone"
+          "give": 898,
+          "common": 946,
+          "rare": 210
         },
         {
-          "give": "BlackBeltCoinG",
-          "common": "Carbalite Ore",
-          "rare": "Rainbow Ore"
+          "give": 899,
+          "common": 206,
+          "rare": 220
         },
         {
-          "give": "Expert Coin G",
-          "common": "Rainbow Ore",
-          "rare": "Lightcrystal"
+          "give": 900,
+          "common": 220,
+          "rare": 215
         },
         {
-          "give": "Warrior Coin G",
-          "common": "Union Ore",
-          "rare": "Novacrystal"
+          "give": 901,
+          "common": 208,
+          "rare": 216
         },
         {
-          "give": "Legend Coin G",
-          "common": "Eltalite Ore",
-          "rare": "Firecell Stone"
+          "give": 902,
+          "common": 207,
+          "rare": 211
         },
         {
-          "give": "VeggieElderTcket",
-          "common": "Health Flute",
-          "rare": "Antidote Flute"
+          "give": 919,
+          "common": 157,
+          "rare": 158
         },
         {
-          "give": "VeggieElderTckt+",
-          "common": "Armor Flute",
-          "rare": "Demon Flute"
+          "give": 920,
+          "common": 160,
+          "rare": 159
         },
         {
-          "give": "VegElderTcktBrz",
-          "common": "Ceanataur Pincer",
-          "rare": "Ceanataur Pincer"
+          "give": 921,
+          "common": 509,
+          "rare": 509
         },
         {
-          "give": "VegElderTcktSlv",
-          "common": "Gypceros Head",
-          "rare": "Gypceros Head"
+          "give": 922,
+          "common": 404,
+          "rare": 404
         },
         {
-          "give": "VegElderTcktGld",
-          "common": "Lao-Shan's Ruby",
-          "rare": "Lao-Shan's Ruby"
+          "give": 923,
+          "common": 696,
+          "rare": 696
         },
         {
-          "give": "VegElderTcktSky",
-          "common": "HvnlyGraviosShl",
-          "rare": "HvnlyGraviosShl"
+          "give": 924,
+          "common": 626,
+          "rare": 626
         }
       ]
     }

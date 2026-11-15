@@ -15,7 +15,7 @@ async function load(): Promise<{ game: GameData; close: () => void }> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -75,7 +75,7 @@ test("the reader gives each used pair once, with its offset and value", () => {
   assert.match(readGatheringItems(past, parseQuest(past)).problem!, /item table 600, past/);
 });
 
-test("gathering: items move within their tier; values, tables and other quests stay", async () => {
+test("gathering: pairs move within their tier; tables keep their length and value total", async () => {
   const { game, close } = await load();
   const before = gathering(game, (i) => game.quests.find((q) => q.index === i)!.file.payload);
   let crossed = false;
@@ -88,10 +88,15 @@ test("gathering: items move within their tier; values, tables and other quests s
     for (const [questId, slots] of before) {
       const now = after.get(questId)!;
       assert.deepEqual(
-        now.map((s) => [s.table, s.offset, s.value]),
-        slots.map((s) => [s.table, s.offset, s.value]),
-        `quest ${questId}: same pairs, same values`,
+        now.map((s) => [s.table, s.offset]),
+        slots.map((s) => [s.table, s.offset]),
+        `quest ${questId}: same pairs`,
       );
+      const total = (list: typeof slots, table: number) =>
+        list.filter((s) => s.table === table).reduce((sum, s) => sum + s.value, 0);
+      for (const table of new Set(slots.map((s) => s.table))) {
+        assert.equal(total(now, table), total(slots, table), `quest ${questId} table ${table}`);
+      }
     }
     for (const [tier, { quests, items }] of Object.entries(TIERS)) {
       const now = quests.flatMap((id) => after.get(id)!.map((s) => s.itemId));
@@ -103,10 +108,11 @@ test("gathering: items move within their tier; values, tables and other quests s
     for (const quest of game.quests) {
       const was = quest.file.payload;
       const now = payloadOf(quest.index);
-      const pairs = new Set(before.get(quest.parsed.header.questId)!.map((s) => s.offset + 2));
+      const pairs = new Set(before.get(quest.parsed.header.questId)!.map((s) => s.offset));
       for (let i = 0; i < was.length; i++) {
         if (was[i] !== now[i]) {
-          assert.ok(pairs.has(i) || pairs.has(i - 1), `quest ${quest.path}: byte ${i}`);
+          const inPair = [0, 1, 2, 3].some((k) => pairs.has(i - k));
+          assert.ok(inPair, `quest ${quest.path}: byte ${i}`);
         }
       }
     }
@@ -123,10 +129,10 @@ test("gathering: the recipe check uses the shuffled gathering points and still p
     const result = randomize(game, settingsWith(seed, ["gathering", "recipes"]));
     assert.deepEqual(result.problems, [], `seed ${seed}`);
   }
-  // Coarser tiers: rank-wide pools still keep each rank's items in that rank.
+  // Rank-wide recipes still keep each rank's items in that rank.
   for (const seed of ["a", "b", "c", "d"]) {
     const s = settingsWith(seed, ["gathering", "recipes", "quest-rewards"], {
-      "logic.tiers": "rank",
+      "recipes.scope": "rank",
     });
     assert.deepEqual(randomize(game, s).problems, []);
   }
@@ -164,19 +170,24 @@ test("gathering never moves a delivery quest's own item away from its points", a
   const before = readGatheringItems(quest.file.payload, quest.parsed).slots;
   const target = before.find((s) => s.itemId === 126)!;
   for (const seed of ["a", "b", "c", "d", "e", "f"]) {
-    for (const pool of ["gathered", "rank", "any"]) {
+    for (const [mode, scope] of [
+      ["shuffle", "star"],
+      ["randomize", "rank"],
+      ["randomize", "any"],
+    ]) {
       const s = settingsWith(seed, ["gathering"], {
-        "gathering.pool": pool,
+        "gathering.mode": mode,
+        "gathering.scope": scope,
         "gathering.keepItems": false,
       });
       const payload = randomize(game, s).edits.questNow(quest);
-      assert.equal(payload.readUInt16LE(target.offset + 2), 126, `${seed} ${pool}`);
+      assert.equal(payload.readUInt16LE(target.offset + 2), 126, `${seed} ${mode} ${scope}`);
     }
   }
   close();
 });
 
-test("gathering pools: same rank keeps every gatherable item and fills the rest from that rank", async () => {
+test("gathering randomize: same rank keeps every gatherable item and fills the rest from that rank", async () => {
   const { game, close } = await load();
   let fromElsewhere = false;
   // Kept: every gatherable item is still in its tier. (The fixture's tiers have no spare
@@ -185,7 +196,8 @@ test("gathering pools: same rank keeps every gatherable item and fills the rest 
   for (const keepItems of [true, false]) {
     for (const seed of ["a", "b", "c", "d", "e", "f"]) {
       const s = settingsWith(seed, ["gathering"], {
-        "gathering.pool": "rank",
+        "gathering.mode": "randomize",
+        "gathering.scope": "rank",
         "gathering.keepItems": keepItems,
       });
       const result = randomize(game, s);
@@ -215,13 +227,14 @@ test("gathering pools: same rank keeps every gatherable item and fills the rest 
   close();
 });
 
-test("gathering pools: with any item and nothing kept, spots can give anything", async () => {
+test("gathering randomize: with any item and nothing kept, spots can give anything", async () => {
   const { game, close } = await load();
   const gatherable = new Set(Object.values(TIERS).flatMap((t) => t.items));
   let outside = 0;
   for (const seed of ["a", "b", "c"]) {
     const s = settingsWith(seed, ["gathering"], {
-      "gathering.pool": "any",
+      "gathering.mode": "randomize",
+      "gathering.scope": "any",
       "gathering.keepItems": false,
     });
     const result = randomize(game, s);
@@ -243,7 +256,10 @@ test("gathering pools: with any item and nothing kept, spots can give anything",
 
   // With the same-rank pool and items kept, recipes stay craftable.
   for (const seed of ["a", "b", "c", "d"]) {
-    const s = settingsWith(seed, ["gathering", "recipes"], { "gathering.pool": "rank" });
+    const s = settingsWith(seed, ["gathering", "recipes"], {
+      "gathering.mode": "randomize",
+      "gathering.scope": "rank",
+    });
     assert.deepEqual(randomize(game, s).problems, [], `seed ${seed}`);
   }
   close();

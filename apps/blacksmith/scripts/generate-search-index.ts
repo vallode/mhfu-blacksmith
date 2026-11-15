@@ -6,6 +6,7 @@ import { DATA_DIR } from "../src/lib/paths";
 import { slugify as itemSlug } from "../src/lib/slug";
 import { buildItemNameIndex, decorationItemId, type ItemRecord } from "../src/lib/items";
 import type { Dictionaries, ItemsBundle } from "../src/lib/schema";
+import { readData } from "game-data";
 
 const root = process.cwd();
 const dataDir = DATA_DIR;
@@ -40,7 +41,7 @@ for (const file of fs.readdirSync(weaponDir)) {
   const type = file.replace(/\.json$/, "");
   const craftingFile = path.join(weaponDir, file);
 
-  const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
+  const data = readData(dataDir, "weapons", file) as {
     weapons: Record<string, unknown>[];
   };
 
@@ -78,7 +79,7 @@ for (const file of fs.readdirSync(armorDir)) {
   const slot = file.replace(/\.json$/, "");
   const craftingFile = path.join(armorDir, file);
 
-  const data = JSON.parse(fs.readFileSync(craftingFile, "utf-8")) as {
+  const data = readData(dataDir, "armor", file) as {
     armor: Record<string, unknown>[];
   };
 
@@ -120,7 +121,7 @@ for (const file of fs.readdirSync(armorDir)) {
 // Decorations
 const decoFile = path.join(dataDir, "decorations.json");
 if (fs.existsSync(decoFile)) {
-  const data = JSON.parse(fs.readFileSync(decoFile, "utf-8")) as {
+  const data = readData(dataDir, "decorations.json") as {
     decorations: Record<string, unknown>[];
   };
 
@@ -151,7 +152,7 @@ for (const file of fs.readdirSync(monsterDir)) {
   const category = file.replace(/\.json$/, "");
   const jsonFile = path.join(monsterDir, file);
 
-  const data = JSON.parse(fs.readFileSync(jsonFile, "utf-8")) as {
+  const data = readData(dataDir, "monsters", file) as {
     monsters: Record<string, unknown>[];
   };
 
@@ -187,7 +188,7 @@ const QUEST_BOARD_SHORT: Record<QuestHubSlug, string> = {
 };
 const questDir = path.join(dataDir, "quests");
 for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) {
-  const data = JSON.parse(fs.readFileSync(path.join(questDir, file), "utf-8")) as {
+  const data = readData(dataDir, "quests", file) as {
     quests: { id: number; hub: string; rank: string | null; stars: number; title: string | null }[];
   };
   for (const q of data.quests) {
@@ -211,7 +212,7 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
 // the build writes first). Decorations are items too; they're searched as
 // decorations above.
 {
-  const { items } = JSON.parse(fs.readFileSync(path.join(dataDir, "items.json"), "utf-8")) as {
+  const { items } = readData(dataDir, "items.json") as {
     items: ItemRecord[];
   };
   const bundlePath = path.join(root, "public", "data", "items.json");
@@ -225,9 +226,9 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
   if (!bundle || !dict) console.warn("generate-search: no public/data yet; items get no icons");
   const { index } = buildItemNameIndex(items);
   const decorations = new Set(
-    (
-      JSON.parse(fs.readFileSync(decoFile, "utf-8")) as { decorations: { name: string }[] }
-    ).decorations.map((d) => decorationItemId(d.name, index)),
+    readData<{ decorations: { name: string }[] }>(dataDir, "decorations.json").decorations.map(
+      (d) => decorationItemId(d.name, index),
+    ),
   );
   for (const item of items) {
     if (item.placeholder || decorations.has(item.id)) continue;

@@ -1,9 +1,9 @@
 # randomfu web app
 
-randomfu (`packages/randomfu`) as a static web app that runs entirely in
-the browser. It's a step-by-step builder: pick your ISO, choose a seed and a
+randomfu's front end: the randomizer (`packages/randomfu`) as a static
+web app that runs entirely in the browser. It's a step-by-step builder: pick your ISO, choose a seed and a
 preset (or load a shared settings string), go through the options a group
-at a time (Logic, Rewards, Gathering, Quests, Monsters, Smithy, Shops) or
+at a time (Rewards, Gathering, Quests, Monsters, Smithy, Shops) or
 skip them, review, and download the randomized ISO and spoiler log.
 Nothing is uploaded.
 
@@ -18,7 +18,7 @@ options always show up. The page is styled after the MHFU Blacksmith site:
 # from apps/randomfu, or `pnpm --filter randomfu-web <script>` from the root
 pnpm build          # builds dist/: index.html, app.js, worker.js
 pnpm test           # unit tests (the browser shims)
-pnpm test:e2e       # builds, then checks the app in Chromium against the CLI
+pnpm test:e2e       # builds, then checks the app in Chromium against a Node run
 pnpm social-card    # builds, then redraws social-card.png (needs Chromium)
 ```
 
@@ -45,8 +45,9 @@ fetch) has to loosen it; `pnpm test:e2e` fails on any violation.
 
 How it works:
 
-- The randomizer runs in a worker (`worker.ts`) and reads the ISO with
-  `FileReaderSync`, so the shared code's synchronous reads work unchanged.
+- The randomizer runs in a worker (`worker.ts`), which reads the ISO with
+  `FileReaderSync`, so the shared code's synchronous reads work unchanged,
+  and hands it to randomfu's `runRandomizer` (`src/run.ts`).
 - Writes go to an `OverlaySource` (randomfu's `src/disc/image.ts`): a 2 KB sector is
   copied into memory the first time it's written. The finished ISO is a
   Blob of slices of the user's own file plus the changed sectors, so the
@@ -59,9 +60,13 @@ How it works:
   see its README), which runs in the worker as it does in Node.
 - `pnpm test:e2e` walks through every step with a fixture disc whose EBOOT
   is encrypted like a real one, randomizes with every shuffle on, and
-  checks the downloaded ISO is byte for byte the CLI's for the same
-  settings. It needs Playwright's Chromium.
-- CSO images aren't read in the browser yet: decompress to ISO first.
+  checks the downloaded ISO is byte for byte what `runRandomizer` gives in
+  Node for the same settings. It needs Playwright's Chromium.
+- For testing in game, two address options change a run: `?poogie-test`
+  makes a happy Poogie always give the rarest reward (not for play), and
+  `?debug` adds research detail to the spoiler log (such as the monster
+  names learned from quest text). Both can go together
+  (`?poogie-test&debug`).
 
 It's licensed GPL-3.0-or-later like the rest of randomfu; the build ships
 `LICENSE.txt`, and its source maps carry the full source.

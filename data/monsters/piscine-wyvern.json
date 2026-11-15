@@ -1,26 +1,25 @@
 {
   "monsters": [
     {
-      "name": "Cephalos",
+      "id": 34,
       "type": "piscine-wyvern",
-      "description": "Wyverns found only in the Desert. They resemble a Plesioth, but live and \"swim\" in sand rather than water. They seldom appear above land, but when their hearing is disturbed...",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Piscine Liver",
+              "item": 308,
               "chance": "60%"
             },
             {
-              "name": "Cephalos Scale",
+              "item": 482,
               "chance": "23%"
             },
             {
-              "name": "Piscine Fang",
+              "item": 468,
               "chance": "15%"
             },
             {
-              "name": "Cephalos Fin",
+              "item": 484,
               "chance": "2%"
             }
           ]
@@ -28,23 +27,23 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Piscine Liver",
+              "item": 308,
               "chance": "50%"
             },
             {
-              "name": "Cephalos Scale+",
+              "item": 483,
               "chance": "25%"
             },
             {
-              "name": "Coral Cphlos Scl",
+              "item": 486,
               "chance": "15%"
             },
             {
-              "name": "Piscine Fang",
+              "item": 468,
               "chance": "8%"
             },
             {
-              "name": "Cephalos Fin",
+              "item": 484,
               "chance": "2%"
             }
           ]
@@ -52,23 +51,23 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "HvyPiscineFang",
+              "item": 469,
               "chance": "40%"
             },
             {
-              "name": "Coral Cphlos Scl",
+              "item": 486,
               "chance": "20%"
             },
             {
-              "name": "Coral Cphlos Fin",
+              "item": 487,
               "chance": "20%"
             },
             {
-              "name": "Piscine Liver",
+              "item": 308,
               "chance": "15%"
             },
             {
-              "name": "Cephalos Scale+",
+              "item": 483,
               "chance": "5%"
             }
           ]
@@ -198,53 +197,56 @@
       }
     },
     {
-      "name": "Cephadrome",
+      "id": 8,
       "type": "piscine-wyvern",
       "icon": "cephalos",
-      "description": "The alpha monster form of the Cephalos. Larger and armored with black scales, they fit the appearance of a leader perfectly. Their fins hold a paralyzing toxin.",
       "drops": {
         "1-2 star guild": {
           "body carves (x3)": [
             {
-              "name": "Piscine Liver",
+              "item": 308,
               "chance": "15%"
             },
             {
-              "name": "Cephalos Scale",
+              "item": 482,
               "chance": "65%"
             },
             {
-              "name": "Piscine Fang",
+              "item": 468,
               "chance": "20%"
             }
           ],
           "break back fin": [
             {
-              "name": "Cephalos Scale x1",
+              "item": 482,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "shiny drop": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "75%"
             },
             {
-              "name": "Piscine Liver",
+              "item": 308,
               "chance": "25%"
             }
           ],
           "capture": [
             {
-              "name": "Med Monster Bone x2",
+              "item": 282,
+              "amount": 2,
               "chance": "50%"
             },
             {
-              "name": "Lg Monster Bone x1",
+              "item": 283,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Piscine Fang  x1",
+              "item": 468,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -252,53 +254,57 @@
         "low-rank": {
           "body carves (x3)": [
             {
-              "name": "Cephalos Scale",
+              "item": 482,
               "chance": "58%"
             },
             {
-              "name": "Piscine Fang",
+              "item": 468,
               "chance": "20%"
             },
             {
-              "name": "Piscine Liver",
+              "item": 308,
               "chance": "12%"
             },
             {
-              "name": "Cephalos Fin",
+              "item": 484,
               "chance": "10%"
             }
           ],
           "break back fin": [
             {
-              "name": "Cephalos Fin x1",
+              "item": 484,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "shiny drop": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "70%"
             },
             {
-              "name": "Cephalos Scale",
+              "item": 482,
               "chance": "20%"
             },
             {
-              "name": "Piscine Liver",
+              "item": 308,
               "chance": "10%"
             }
           ],
           "capture": [
             {
-              "name": "Cephalos Fin x1",
+              "item": 484,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "Lg Monster Bone x1",
+              "item": 283,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Piscine Fang x1",
+              "item": 468,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -306,77 +312,84 @@
         "high-rank": {
           "body carves (x3)": [
             {
-              "name": "Coral Cphlos Scl",
+              "item": 486,
               "chance": "20%"
             },
             {
-              "name": "Cephalos Fin+",
+              "item": 485,
               "chance": "14%"
             },
             {
-              "name": "Piscine Fang",
+              "item": 468,
               "chance": "13%"
             },
             {
-              "name": "Piscine Liver",
+              "item": 308,
               "chance": "3%"
             },
             {
-              "name": "Cephalos Scale+",
+              "item": 483,
               "chance": "50%"
             }
           ],
           "break back fin": [
             {
-              "name": "Cephalos Fin+ x1",
+              "item": 485,
+              "amount": 1,
               "chance": "75%"
             },
             {
-              "name": "Coral Cphlos Fin x1",
+              "item": 487,
+              "amount": 1,
               "chance": "25%"
             }
           ],
           "shiny drop": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "35%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "35%"
             },
             {
-              "name": "Coral Cphlos Scl",
+              "item": 486,
               "chance": "5%"
             },
             {
-              "name": "Piscine Liver",
+              "item": 308,
               "chance": "10%"
             },
             {
-              "name": "Cephalos Scale+",
+              "item": 483,
               "chance": "15%"
             }
           ],
           "capture": [
             {
-              "name": "Cephalos Fin+ x1",
+              "item": 485,
+              "amount": 1,
               "chance": "45%"
             },
             {
-              "name": "Coral Cphlos Fin x1",
+              "item": 487,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Monster Bone+ x1",
+              "item": 284,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Piscine Fang x2",
+              "item": 468,
+              "amount": 2,
               "chance": "10%"
             },
             {
-              "name": "Hrd Monster Bone x1",
+              "item": 285,
+              "amount": 1,
               "chance": "5%"
             }
           ]
@@ -521,56 +534,59 @@
       }
     },
     {
-      "name": "Plesioth",
+      "id": 21,
       "type": "piscine-wyvern",
-      "description": "An enormous, flightless, aquatic wyvern with wings that have evolved into fins for swimming. Although superficially fish-like, they can move on land as well. They love frogs.",
       "drops": {
         "1-2 star": {
           "body carves (x4)": [
             {
-              "name": "Plesioth Scale",
+              "item": 470,
               "chance": "50%"
             },
             {
-              "name": "Sm Lobstershell",
+              "item": 515,
               "chance": "5%"
             },
             {
-              "name": "Piscine Fang",
+              "item": 468,
               "chance": "20%"
             },
             {
-              "name": "Lg Monster Bone",
+              "item": 283,
               "chance": "25%"
             }
           ],
           "break back fin": [
             {
-              "name": "Plesioth Scale x1",
+              "item": 470,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "shiny drop : fished out, using frog as bait": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "75%"
             },
             {
-              "name": "Plesioth Scale",
+              "item": 470,
               "chance": "25%"
             }
           ],
           "capture": [
             {
-              "name": "Plesioth Scale x2",
+              "item": 470,
+              "amount": 2,
               "chance": "15%"
             },
             {
-              "name": "Lg Monster Bone x1",
+              "item": 283,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Wyvern Fang x3",
+              "item": 298,
+              "amount": 3,
               "chance": "60%"
             }
           ]
@@ -578,57 +594,63 @@
         "low rank": {
           "body carves (x4)": [
             {
-              "name": "Plesioth Scale",
+              "item": 470,
               "chance": "70%"
             },
             {
-              "name": "Plesioth Fin",
+              "item": 473,
               "chance": "22%"
             },
             {
-              "name": "Sm Lobstershell",
+              "item": 515,
               "chance": "8%"
             }
           ],
           "break back fin": [
             {
-              "name": "Plesioth Fin x1",
+              "item": 473,
+              "amount": 1,
               "chance": "92%"
             },
             {
-              "name": "Plesioth Scale x1",
+              "item": 470,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "shiny drop : fished out, using frog as bait": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "75%"
             },
             {
-              "name": "Plesioth Scale",
+              "item": 470,
               "chance": "22%"
             },
             {
-              "name": "Plesioth Fin",
+              "item": 473,
               "chance": "3%"
             }
           ],
           "capture": [
             {
-              "name": "Plesioth Scale x2",
+              "item": 470,
+              "amount": 2,
               "chance": "39%"
             },
             {
-              "name": "Wyvern Fang x3",
+              "item": 298,
+              "amount": 3,
               "chance": "33%"
             },
             {
-              "name": "Plesioth Fin x1",
+              "item": 473,
+              "amount": 1,
               "chance": "18%"
             },
             {
-              "name": "Sm Lobstershell x1",
+              "item": 515,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -636,81 +658,90 @@
         "high rank": {
           "body carves (x4)": [
             {
-              "name": "Plesioth Scale+",
+              "item": 471,
               "chance": "64%"
             },
             {
-              "name": "Plesioth Fin+",
+              "item": 474,
               "chance": "18%"
             },
             {
-              "name": "Sm Lobstershell",
+              "item": 515,
               "chance": "10%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "6%"
             },
             {
-              "name": "Lg Lobstershell",
+              "item": 516,
               "chance": "2%"
             }
           ],
           "break back fin": [
             {
-              "name": "Plesioth Fin+ x1",
+              "item": 474,
+              "amount": 1,
               "chance": "87%"
             },
             {
-              "name": "Plesioth Scale+ x1",
+              "item": 471,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Plesioth Fin x1",
+              "item": 473,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "shiny drop : fished out, using frog as bait": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "33%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "32%"
             },
             {
-              "name": "Plesioth Scale+",
+              "item": 471,
               "chance": "25%"
             },
             {
-              "name": "Plesioth Fin+",
+              "item": 474,
               "chance": "10%"
             }
           ],
           "capture": [
             {
-              "name": "Wyvern Fang x3",
+              "item": 298,
+              "amount": 3,
               "chance": "30%"
             },
             {
-              "name": "Plesioth Scale+ x1",
+              "item": 471,
+              "amount": 1,
               "chance": "27%"
             },
             {
-              "name": "Plesioth Fin+ x1",
+              "item": 474,
+              "amount": 1,
               "chance": "18%"
             },
             {
-              "name": "Sm Lobstershell x1",
+              "item": 515,
+              "amount": 1,
               "chance": "12%"
             },
             {
-              "name": "Lg Lobstershell x1",
+              "item": 516,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Plesioth Scale x2",
+              "item": 470,
+              "amount": 2,
               "chance": "5%"
             }
           ]
@@ -718,81 +749,90 @@
         "g rank": {
           "body carves (x4)": [
             {
-              "name": "ThckPlesiothScl",
+              "item": 472,
               "chance": "60%"
             },
             {
-              "name": "SpecPlesiothFin+",
+              "item": 475,
               "chance": "23%"
             },
             {
-              "name": "Lg Lobstershell",
+              "item": 516,
               "chance": "10%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "5%"
             },
             {
-              "name": "Gt Lobstershell",
+              "item": 517,
               "chance": "2%"
             }
           ],
           "break back fin": [
             {
-              "name": "SpecPlesiothFin+ x1",
+              "item": 475,
+              "amount": 1,
               "chance": "87%"
             },
             {
-              "name": "ThckPlesiothScl x1",
+              "item": 472,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Plesioth Fin+ x1",
+              "item": 474,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "shiny drop : fished out, using frog as bait": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "42%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "23%"
             },
             {
-              "name": "ThckPlesiothScl",
+              "item": 472,
               "chance": "25%"
             },
             {
-              "name": "SpecPlesiothFin+",
+              "item": 475,
               "chance": "10%"
             }
           ],
           "capture": [
             {
-              "name": "ThckPlesiothScl x1",
+              "item": 472,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "SpecPlesiothFin+ x1",
+              "item": 475,
+              "amount": 1,
               "chance": "23%"
             },
             {
-              "name": "HvyPiscineFang x2",
+              "item": 469,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Lg Lobstershell x1",
+              "item": 516,
+              "amount": 1,
               "chance": "12%"
             },
             {
-              "name": "Gt Lobstershell x1",
+              "item": 517,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Plesioth Scale+ x2",
+              "item": 471,
+              "amount": 2,
               "chance": "5%"
             }
           ]
@@ -937,65 +977,70 @@
       }
     },
     {
-      "name": "Green Plesioth",
+      "id": 46,
       "type": "piscine-wyvern",
       "icon": "plesioth",
-      "description": "An enormous, flightless, aquatic wyvern with wings that have evolved into fins for swimming. Although superficially fish-like, they can move on land as well. They love frogs.",
       "drops": {
         "low rank": {
           "body carves (x4)": [
             {
-              "name": "Grn Plesioth Scl",
+              "item": 476,
               "chance": "70%"
             },
             {
-              "name": "Grn Plesioth Fin",
+              "item": 479,
               "chance": "22%"
             },
             {
-              "name": "Sm Lobstershell",
+              "item": 515,
               "chance": "8%"
             }
           ],
           "break back fin": [
             {
-              "name": "Grn Plesioth Fin x1",
+              "item": 479,
+              "amount": 1,
               "chance": "92%"
             },
             {
-              "name": "Grn Plesioth Scl x2",
+              "item": 476,
+              "amount": 2,
               "chance": "8%"
             }
           ],
           "shiny drop : fished out, using frog as bait": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "75%"
             },
             {
-              "name": "Grn Plesioth Scl",
+              "item": 476,
               "chance": "22%"
             },
             {
-              "name": "Grn Plesioth Fin",
+              "item": 479,
               "chance": "3%"
             }
           ],
           "capture": [
             {
-              "name": "Grn Plesioth Scl x2",
+              "item": 476,
+              "amount": 2,
               "chance": "39%"
             },
             {
-              "name": "Piscine Fang x3",
+              "item": 468,
+              "amount": 3,
               "chance": "35%"
             },
             {
-              "name": "Grn Plesioth Fin x1",
+              "item": 479,
+              "amount": 1,
               "chance": "18%"
             },
             {
-              "name": "Sm Lobstershell x1",
+              "item": 515,
+              "amount": 1,
               "chance": "8%"
             }
           ]
@@ -1003,81 +1048,90 @@
         "high rank": {
           "body carves (x4)": [
             {
-              "name": "Grn Plsioth Scl+",
+              "item": 477,
               "chance": "60%"
             },
             {
-              "name": "Grn Plsioth Fin+",
+              "item": 480,
               "chance": "22%"
             },
             {
-              "name": "Sm Lobstershell",
+              "item": 515,
               "chance": "10%"
             },
             {
-              "name": "Wyvern Stone",
+              "item": 300,
               "chance": "6%"
             },
             {
-              "name": "Lg Lobstershell",
+              "item": 516,
               "chance": "2%"
             }
           ],
           "break back fin": [
             {
-              "name": "Grn Plsioth Fin+ x1",
+              "item": 480,
+              "amount": 1,
               "chance": "87%"
             },
             {
-              "name": "Grn Plsioth Scl+ x1",
+              "item": 477,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Grn Plesioth Fin x1",
+              "item": 479,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "shiny drop : fished out, using frog as bait": [
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "33%"
             },
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "32%"
             },
             {
-              "name": "Grn Plsioth Scl+",
+              "item": 477,
               "chance": "25%"
             },
             {
-              "name": "Grn Plsioth Fin+",
+              "item": 480,
               "chance": "10%"
             }
           ],
           "capture": [
             {
-              "name": "Wyvern Fang x3",
+              "item": 298,
+              "amount": 3,
               "chance": "30%"
             },
             {
-              "name": "Grn Plsioth Scl+ x1",
+              "item": 477,
+              "amount": 1,
               "chance": "27%"
             },
             {
-              "name": "Grn Plsioth Fin+ x1",
+              "item": 480,
+              "amount": 1,
               "chance": "18%"
             },
             {
-              "name": "Sm Lobstershell x1",
+              "item": 515,
+              "amount": 1,
               "chance": "12%"
             },
             {
-              "name": "Lg Lobstershell x1",
+              "item": 516,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Grn Plesioth Scl x2",
+              "item": 476,
+              "amount": 2,
               "chance": "5%"
             }
           ]
@@ -1085,81 +1139,90 @@
         "g rank": {
           "body carves (x4)": [
             {
-              "name": "ThckGrnPlesioScl",
+              "item": 478,
               "chance": "60%"
             },
             {
-              "name": "SpecGrnPlesioFn+",
+              "item": 481,
               "chance": "23%"
             },
             {
-              "name": "Lg Lobstershell",
+              "item": 516,
               "chance": "10%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "5%"
             },
             {
-              "name": "Gt Lobstershell",
+              "item": 517,
               "chance": "2%"
             }
           ],
           "break back fin": [
             {
-              "name": "SpecGrnPlesioFn+ x1",
+              "item": 481,
+              "amount": 1,
               "chance": "87%"
             },
             {
-              "name": "ThckGrnPlesioScl x1",
+              "item": 478,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Grn Plsioth Fin+ x1",
+              "item": 480,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "shiny drop : fished out, using frog as bait": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "42%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "23%"
             },
             {
-              "name": "ThckGrnPlesioScl",
+              "item": 478,
               "chance": "25%"
             },
             {
-              "name": "SpecGrnPlesioFn+",
+              "item": 481,
               "chance": "10%"
             }
           ],
           "capture": [
             {
-              "name": "ThckGrnPlesioScl x1",
+              "item": 478,
+              "amount": 1,
               "chance": "32%"
             },
             {
-              "name": "SpecGrnPlesioFn+ x1",
+              "item": 481,
+              "amount": 1,
               "chance": "23%"
             },
             {
-              "name": "HvyPiscineFang x2",
+              "item": 469,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Lg Lobstershell x1",
+              "item": 516,
+              "amount": 1,
               "chance": "12%"
             },
             {
-              "name": "Gt Lobstershell x1",
+              "item": 517,
+              "amount": 1,
               "chance": "8%"
             },
             {
-              "name": "Grn Plsioth Scl+ x2",
+              "item": 477,
+              "amount": 2,
               "chance": "5%"
             }
           ]
@@ -1304,94 +1367,102 @@
       }
     },
     {
-      "name": "Lavasioth",
+      "id": 83,
       "type": "piscine-wyvern",
-      "description": "A piscine wyvern that resides in magma. Its scales are covered by layers of cooled magma, which makes it one hard nut to crack. It swims around in lava, spewing the molten rock it takes in at its prey… Researchers love to study its peculiar way of life.",
       "drops": {
         "g rank": {
           "body carves (x4)": [
             {
-              "name": "ThckLavasiothScl",
+              "item": 488,
               "chance": "43%"
             },
             {
-              "name": "HvyLavasiothShl",
+              "item": 489,
               "chance": "30%"
             },
             {
-              "name": "HvyLavasiothFang",
+              "item": 490,
               "chance": "8%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "8%"
             },
             {
-              "name": "SpecLavasioFin+",
+              "item": 491,
               "chance": "6%"
             },
             {
-              "name": "Big Wyvern Stone",
+              "item": 301,
               "chance": "5%"
             }
           ],
           "break face": [
             {
-              "name": "HvyLavasiothFang x2",
+              "item": 490,
+              "amount": 2,
               "chance": "73%"
             },
             {
-              "name": "HvyLavasiothShl x1",
+              "item": 489,
+              "amount": 1,
               "chance": "21%"
             },
             {
-              "name": "Firecell Stone x1",
+              "item": 211,
+              "amount": 1,
               "chance": "6%"
             }
           ],
           "break fin": [
             {
-              "name": "SpecLavasioFin+ x1",
+              "item": 491,
+              "amount": 1,
               "chance": "92%"
             },
             {
-              "name": "ThckLavasiothScl x2",
+              "item": 488,
+              "amount": 2,
               "chance": "8%"
             }
           ],
           "shiny drop : ko-ed (hammer, hh, crag s)": [
             {
-              "name": "Wyvern Sobs",
+              "item": 310,
               "chance": "55%"
             },
             {
-              "name": "Wyvern Tears",
+              "item": 309,
               "chance": "25%"
             },
             {
-              "name": "ThckLavasiothScl",
+              "item": 488,
               "chance": "16%"
             },
             {
-              "name": "Firecell Stone",
+              "item": 211,
               "chance": "4%"
             }
           ],
           "capture": [
             {
-              "name": "ThckLavasiothScl x2",
+              "item": 488,
+              "amount": 2,
               "chance": "43%"
             },
             {
-              "name": "HvyLavasiothShl x1",
+              "item": 489,
+              "amount": 1,
               "chance": "27%"
             },
             {
-              "name": "SpecLavasioFin+ x1",
+              "item": 491,
+              "amount": 1,
               "chance": "24%"
             },
             {
-              "name": "HvyLavasiothFang x1",
+              "item": 490,
+              "amount": 1,
               "chance": "6%"
             }
           ]

@@ -13,16 +13,23 @@
   "definitions": {
     "monster": {
       "type": "object",
-      "required": ["name", "type"],
+      "required": ["id", "type"],
       "additionalProperties": true,
+      "$comment": "The name and the site's description are in data/strings, keyed by the ID: 'monster' and 'monster_description'.",
       "properties": {
-        "name":        { "type": "string", "minLength": 1 },
+        "id":          { "type": "integer", "minimum": 1, "description": "The game's monster ID (emID)" },
         "type":        { "type": "string", "minLength": 1 },
-        "description": { "type": "string" },
         "icon":        { "type": "string" },
         "habitats":    { "type": "array" },
         "base_hp":     { "type": "integer", "minimum": 0 },
-        "drops":       { "type": "object" },
+        "drops": {
+          "type": "object",
+          "description": "Rank -> source -> drops",
+          "additionalProperties": {
+            "type": "object",
+            "additionalProperties": { "type": "array", "items": { "$ref": "#/definitions/drop" } }
+          }
+        },
         "hitzones":    { "type": "object" },
         "breaks":      { "type": "array", "items": { "$ref": "#/definitions/break" } },
         "flinch_thresholds": {
@@ -85,6 +92,16 @@
         "damage":          { "type": "integer", "minimum": 0 },
         "damage_interval": { "type": "integer", "minimum": 0 },
         "total_time":      { "type": "integer", "minimum": 0 }
+      }
+    },
+    "drop": {
+      "type": "object",
+      "required": ["item", "chance"],
+      "additionalProperties": false,
+      "properties": {
+        "item":   { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json)" },
+        "amount": { "type": "integer", "minimum": 1, "description": "How many, where the site lists it (shown as \"<name> x<amount>\")" },
+        "chance": { "type": "string" }
       }
     },
     "break": {

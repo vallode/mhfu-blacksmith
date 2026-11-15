@@ -1,22 +1,21 @@
 {
   "monsters": [
     {
-      "name": "Hermitaur",
+      "id": 66,
       "type": "carapaceon",
-      "description": "A small Carapaceon with an incredibly hard shell. Known to live in great numbers in the desert, or lurking underground, one must be careful when treading in its domain. Its brains are said to be a true delicacy.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Sm Hermitaur Shl",
+              "item": 494,
               "chance": "40%"
             },
             {
-              "name": "CarapaceonBrains",
+              "item": 306,
               "chance": "34%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "26%"
             }
           ]
@@ -24,23 +23,23 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "CarapaceonBrains",
+              "item": 306,
               "chance": "42%"
             },
             {
-              "name": "Sm Hermitaur Shl",
+              "item": 494,
               "chance": "20%"
             },
             {
-              "name": "Hermitaur Shell",
+              "item": 495,
               "chance": "18%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "10%"
             },
             {
-              "name": "CarapaceonBrain+",
+              "item": 307,
               "chance": "10%"
             }
           ]
@@ -48,27 +47,27 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "CarapaceonBrains",
+              "item": 306,
               "chance": "24%"
             },
             {
-              "name": "Hermitaur Shell",
+              "item": 495,
               "chance": "10%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "5%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "1%"
             },
             {
-              "name": "Piercing Claw",
+              "item": 428,
               "chance": "40%"
             },
             {
-              "name": "CarapaceonBrain+",
+              "item": 307,
               "chance": "20%"
             }
           ]
@@ -125,79 +124,87 @@
       }
     },
     {
-      "name": "Daimyo Hermitaur",
+      "id": 48,
       "type": "carapaceon",
       "icon": "hermitaur",
-      "description": "A large carapaceon with a giant monster's skull on its back. Fond of the sand, it is mainly seen in the desert or jungle zones. Living underground, it surfaces when hungering for a snack.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
             {
-              "name": "Hermitaur Shell",
+              "item": 495,
               "chance": "40%"
             },
             {
-              "name": "Sm Hermitaur Shl",
+              "item": 494,
               "chance": "30%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "20%"
             },
             {
-              "name": "CarapaceonBrains",
+              "item": 306,
               "chance": "10%"
             }
           ],
           "break shell": [
             {
-              "name": "Hermitaur Shell x1",
+              "item": 495,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Sm Monster Bone x2",
+              "item": 281,
+              "amount": 2,
               "chance": "12%"
             },
             {
-              "name": "Med Monster Bone x1",
+              "item": 282,
+              "amount": 1,
               "chance": "28%"
             },
             {
-              "name": "Giant Bone x1",
+              "item": 295,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break claw": [
             {
-              "name": "Sharp Claw x1",
+              "item": 427,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Sm Hermitaur Shl x3",
+              "item": 494,
+              "amount": 3,
               "chance": "50%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "75%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "25%"
             }
           ],
           "capture": [
             {
-              "name": "Hermitaur Shell x1",
+              "item": 495,
+              "amount": 1,
               "chance": "57%"
             },
             {
-              "name": "Sm Hermitaur Shl x3",
+              "item": 494,
+              "amount": 3,
               "chance": "31%"
             },
             {
-              "name": "Sharp Claw x3",
+              "item": 427,
+              "amount": 3,
               "chance": "12%"
             }
           ]
@@ -205,71 +212,79 @@
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Hermitaur Shell",
+              "item": 495,
               "chance": "60%"
             },
             {
-              "name": "Lg Monster Bone",
+              "item": 283,
               "chance": "19%"
             },
             {
-              "name": "Hermitaur Claw",
+              "item": 498,
               "chance": "10%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "10%"
             },
             {
-              "name": "CarapaceonBrains",
+              "item": 306,
               "chance": "1%"
             }
           ],
           "break shell": [
             {
-              "name": "Blood Red Horn x1",
+              "item": 669,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Hermitaur Shell x1",
+              "item": 495,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Giant Bone x1",
+              "item": 295,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "break claw": [
             {
-              "name": "Hermitaur Claw x1",
+              "item": 498,
+              "amount": 1,
               "chance": "100%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "75%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "25%"
             }
           ],
           "capture": [
             {
-              "name": "Hermitaur Claw x1",
+              "item": 498,
+              "amount": 1,
               "chance": "45%"
             },
             {
-              "name": "Hermitaur Shell x1",
+              "item": 495,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Black Pearl x2",
+              "item": 198,
+              "amount": 2,
               "chance": "20%"
             }
           ]
@@ -277,95 +292,107 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Hermitaur Carpce",
+              "item": 496,
               "chance": "55%"
             },
             {
-              "name": "Monster Bone+",
+              "item": 284,
               "chance": "19%"
             },
             {
-              "name": "Hermitaur Claw+",
+              "item": 499,
               "chance": "10%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "10%"
             },
             {
-              "name": "Hermitaur Shell",
+              "item": 495,
               "chance": "5%"
             },
             {
-              "name": "CarapaceonBrain+",
+              "item": 307,
               "chance": "1%"
             }
           ],
           "break shell": [
             {
-              "name": "Blood Red Horn x1",
+              "item": 669,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Hermitaur Carpce x1",
+              "item": 496,
+              "amount": 1,
               "chance": "25%"
             },
             {
-              "name": "Hrd Monster Bone x1",
+              "item": 285,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "5%"
             },
             {
-              "name": "Monoblos Heart x1",
+              "item": 675,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "break claw": [
             {
-              "name": "Hermitaur Claw+ x1",
+              "item": 499,
+              "amount": 1,
               "chance": "58%"
             },
             {
-              "name": "Hermitaur Carpce x1",
+              "item": 496,
+              "amount": 1,
               "chance": "10%"
             },
             {
-              "name": "Hermitaur Claw+ x2",
+              "item": 499,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Hermitaur Claw x2",
+              "item": 498,
+              "amount": 2,
               "chance": "12%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "38%"
             },
             {
-              "name": "Crab Pearl+",
+              "item": 314,
               "chance": "37%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "25%"
             }
           ],
           "capture": [
             {
-              "name": "Hermitaur Claw+ x1",
+              "item": 499,
+              "amount": 1,
               "chance": "45%"
             },
             {
-              "name": "Hermitaur Carpce x1",
+              "item": 496,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Black Pearl x2",
+              "item": 198,
+              "amount": 2,
               "chance": "20%"
             }
           ]
@@ -373,103 +400,116 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "HvyHermitaurShl",
+              "item": 497,
               "chance": "51%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "19%"
             },
             {
-              "name": "HrdHermitaurClaw",
+              "item": 500,
               "chance": "10%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "10%"
             },
             {
-              "name": "Hermitaur Carpce",
+              "item": 496,
               "chance": "5%"
             },
             {
-              "name": "CarapaceonBrain+",
+              "item": 307,
               "chance": "5%"
             }
           ],
           "break shell": [
             {
-              "name": "HvyHermitaurShl x1",
+              "item": 497,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Blood Red Horn x1",
+              "item": 669,
+              "amount": 1,
               "chance": "33%"
             },
             {
-              "name": "Hvy Monster Bone x1",
+              "item": 286,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Monoblos Heart x1",
+              "item": 675,
+              "amount": 1,
               "chance": "7%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "5%"
             }
           ],
           "break claw": [
             {
-              "name": "HrdHermitaurClaw x1",
+              "item": 500,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "HrdHermitaurClaw x2",
+              "item": 500,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "Hermitaur Claw+ x2",
+              "item": 499,
+              "amount": 2,
               "chance": "15%"
             },
             {
-              "name": "HvyHermitaurShl x1",
+              "item": 497,
+              "amount": 1,
               "chance": "15%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl+",
+              "item": 314,
               "chance": "50%"
             },
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "25%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "15%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "10%"
             }
           ],
           "capture": [
             {
-              "name": "HrdHermitaurClaw x1",
+              "item": 500,
+              "amount": 1,
               "chance": "45%"
             },
             {
-              "name": "HvyHermitaurShl x1",
+              "item": 497,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Giant Blk Pearl x1",
+              "item": 199,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Hermitaur Carpce x1",
+              "item": 496,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -613,95 +653,104 @@
       }
     },
     {
-      "name": "Plum Daimyo Hermitaur",
+      "id": 86,
       "type": "carapaceon",
       "icon": "hermitaur",
-      "description": "A large carapaceon with a giant monster's skull on its back. Fond of the sand, it is mainly seen in the desert or jungle zones. Living underground, it surfaces when hungering for a snack.",
       "drops": {
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "PlumD.HermitrShl",
+              "item": 501,
               "chance": "51%"
             },
             {
-              "name": "Hrd Monster Bone",
+              "item": 285,
               "chance": "22%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "12%"
             },
             {
-              "name": "PlumD.HermitrClw",
+              "item": 502,
               "chance": "10%"
             },
             {
-              "name": "CarapaceonBrain+",
+              "item": 307,
               "chance": "5%"
             }
           ],
           "break shell": [
             {
-              "name": "PlumD.HermitrShl x1",
+              "item": 501,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Hvy Monster Bone x1",
+              "item": 286,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "15%"
             },
             {
-              "name": "Majestic Horn x1",
+              "item": 635,
+              "amount": 1,
               "chance": "30%"
             }
           ],
           "break claw": [
             {
-              "name": "PlumD.HermitrClw x1",
+              "item": 502,
+              "amount": 1,
               "chance": "58%"
             },
             {
-              "name": "PlumD.HermitrClw x2",
+              "item": 502,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "PlumD.HermitrShl x1",
+              "item": 501,
+              "amount": 1,
               "chance": "22%"
             }
           ],
           "shiny drop : finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl+",
+              "item": 314,
               "chance": "50%"
             },
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "25%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "15%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "10%"
             }
           ],
           "capture": [
             {
-              "name": "PlumD.HermitrClw x1",
+              "item": 502,
+              "amount": 1,
               "chance": "45%"
             },
             {
-              "name": "PlumD.HermitrShl x1",
+              "item": 501,
+              "amount": 1,
               "chance": "35%"
             },
             {
-              "name": "Giant Blk Pearl x1",
+              "item": 199,
+              "amount": 1,
               "chance": "20%"
             }
           ]
@@ -845,26 +894,25 @@
       }
     },
     {
-      "name": "Ceanataur",
+      "id": 73,
       "type": "carapaceon",
-      "description": "An adolescent Carapaceon with an organic shell firmly placed on its back. Once grown, this shell will be replaced by a giant monster's skull. Mainly living in volcanic zones, it is very aggressive, and not to be underestimated.",
       "drops": {
         "low-rank": {
           "body carves (x1)": [
             {
-              "name": "Sm Ceanataur Shl",
+              "item": 503,
               "chance": "42%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "25%"
             },
             {
-              "name": "CarapaceonBrains",
+              "item": 306,
               "chance": "25%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "8%"
             }
           ]
@@ -872,23 +920,23 @@
         "high-rank": {
           "body carves (x1)": [
             {
-              "name": "Sm Ceanataur Shl",
+              "item": 503,
               "chance": "35%"
             },
             {
-              "name": "Ceanataur Shell",
+              "item": 504,
               "chance": "25%"
             },
             {
-              "name": "CarapaceonBrains",
+              "item": 306,
               "chance": "20%"
             },
             {
-              "name": "CarapaceonBrain+",
+              "item": 307,
               "chance": "10%"
             },
             {
-              "name": "Giant Bone",
+              "item": 295,
               "chance": "10%"
             }
           ]
@@ -896,27 +944,27 @@
         "g-rank": {
           "body carves (x1)": [
             {
-              "name": "Piercing Claw",
+              "item": 428,
               "chance": "45%"
             },
             {
-              "name": "CarapaceonBrain+",
+              "item": 307,
               "chance": "20%"
             },
             {
-              "name": "CarapaceonBrains",
+              "item": 306,
               "chance": "14%"
             },
             {
-              "name": "Ceanataur Shell",
+              "item": 504,
               "chance": "10%"
             },
             {
-              "name": "Stout Bone",
+              "item": 296,
               "chance": "10%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "1%"
             }
           ]
@@ -973,95 +1021,106 @@
       }
     },
     {
-      "name": "Shogun Ceanataur",
+      "id": 67,
       "type": "carapaceon",
       "icon": "ceanataur",
-      "description": "A large Carapaceon with a giant monster's skull on its back. Its long, sharp pincers allow it to pierce volcanic bedrock and travel along ceilings. Sometimes, a precious and valuable pearl can be found inside its shell.",
       "drops": {
         "1-2 star": {
           "body carves (x3)": [
             {
-              "name": "Ceanataur Shell",
+              "item": 504,
               "chance": "40%"
             },
             {
-              "name": "Sm Ceanataur Shl",
+              "item": 503,
               "chance": "30%"
             },
             {
-              "name": "Sharp Claw",
+              "item": 427,
               "chance": "20%"
             },
             {
-              "name": "Med Monster Bone",
+              "item": 282,
               "chance": "10%"
             }
           ],
           "break shell - gravios skull": [
             {
-              "name": "Ceanataur Shell x1",
+              "item": 504,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Med Monster Bone x2",
+              "item": 282,
+              "amount": 2,
               "chance": "40%"
             },
             {
-              "name": "Lg Monster Bone x1",
+              "item": 283,
+              "amount": 1,
               "chance": "20%"
             }
           ],
           "break shell - brown skull": [
             {
-              "name": "Ceanataur Shell x1",
+              "item": 504,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Med Monster Bone x2",
+              "item": 282,
+              "amount": 2,
               "chance": "50%"
             }
           ],
           "break shell - white skull": [
             {
-              "name": "Ceanataur Shell x1",
+              "item": 504,
+              "amount": 1,
               "chance": "40%"
             },
             {
-              "name": "Giant Bone x2",
+              "item": 295,
+              "amount": 2,
               "chance": "60%"
             }
           ],
           "break claw": [
             {
-              "name": "Sharp Claw x1",
+              "item": 427,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Sm Ceanataur Shl x3",
+              "item": 503,
+              "amount": 3,
               "chance": "50%"
             }
           ],
           "shiny drop : replacing shell or finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "75%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "25%"
             }
           ],
           "capture": [
             {
-              "name": "Ceanataur Shell x1",
+              "item": 504,
+              "amount": 1,
               "chance": "57%"
             },
             {
-              "name": "Sm Ceanataur Shl x3",
+              "item": 503,
+              "amount": 3,
               "chance": "31%"
             },
             {
-              "name": "Sharp Claw x3",
+              "item": 427,
+              "amount": 3,
               "chance": "12%"
             }
           ]
@@ -1069,87 +1128,99 @@
         "low rank": {
           "body carves (x3)": [
             {
-              "name": "Ceanataur Shell",
+              "item": 504,
               "chance": "60%"
             },
             {
-              "name": "Ceanataur Leg",
+              "item": 507,
               "chance": "28%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "10%"
             },
             {
-              "name": "Ceanataur Pincer",
+              "item": 509,
               "chance": "2%"
             }
           ],
           "break shell - gravios skull": [
             {
-              "name": "Gravios Skl Shl x1",
+              "item": 627,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "Ceanataur Shell x1",
+              "item": 504,
+              "amount": 1,
               "chance": "22%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "break shell - brown skull": [
             {
-              "name": "Ceanataur Shell x1",
+              "item": 504,
+              "amount": 1,
               "chance": "50%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "50%"
             }
           ],
           "break shell - white skull": [
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "97%"
             },
             {
-              "name": "Ceanataur Shell x1",
+              "item": 504,
+              "amount": 1,
               "chance": "3%"
             }
           ],
           "break claw": [
             {
-              "name": "Ceanataur Claw x1",
+              "item": 510,
+              "amount": 1,
               "chance": "82%"
             },
             {
-              "name": "Ceanataur Pincer x1",
+              "item": 509,
+              "amount": 1,
               "chance": "18%"
             }
           ],
           "shiny drop : replacing shell or finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "75%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "25%"
             }
           ],
           "capture": [
             {
-              "name": "Ceanataur Leg x1",
+              "item": 507,
+              "amount": 1,
               "chance": "46%"
             },
             {
-              "name": "Ceanataur Shell x2",
+              "item": 504,
+              "amount": 2,
               "chance": "30%"
             },
             {
-              "name": "Ceanataur Pincer x1",
+              "item": 509,
+              "amount": 1,
               "chance": "24%"
             }
           ]
@@ -1157,107 +1228,121 @@
         "high rank": {
           "body carves (x3)": [
             {
-              "name": "Ceanataur Carpce",
+              "item": 505,
               "chance": "50%"
             },
             {
-              "name": "Ceanataur Leg",
+              "item": 507,
               "chance": "15%"
             },
             {
-              "name": "Ceanataur Pincer",
+              "item": 509,
               "chance": "15%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "10%"
             },
             {
-              "name": "Ceanataur Shell",
+              "item": 504,
               "chance": "5%"
             },
             {
-              "name": "Ceanataur Claw+",
+              "item": 511,
               "chance": "5%"
             }
           ],
           "break shell - gravios skull": [
             {
-              "name": "Gravios Skl Shl x1",
+              "item": 627,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "Ceanataur Carpce x1",
+              "item": 505,
+              "amount": 1,
               "chance": "22%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "break shell - brown skull": [
             {
-              "name": "Ceanataur Carpce x1",
+              "item": 505,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "30%"
             }
           ],
           "break shell - white skull": [
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "63%"
             },
             {
-              "name": "Ceanataur Carpce x1",
+              "item": 505,
+              "amount": 1,
               "chance": "37%"
             }
           ],
           "break claw": [
             {
-              "name": "Ceanataur Claw+ x1",
+              "item": 511,
+              "amount": 1,
               "chance": "55%"
             },
             {
-              "name": "Ceanataur Pincer x1",
+              "item": 509,
+              "amount": 1,
               "chance": "20%"
             },
             {
-              "name": "Ceanataur Claw x2",
+              "item": 510,
+              "amount": 2,
               "chance": "10%"
             },
             {
-              "name": "Ceanataur Claw+ x2",
+              "item": 511,
+              "amount": 2,
               "chance": "15%"
             }
           ],
           "shiny drop : replacing shell or finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "38%"
             },
             {
-              "name": "Crab Pearl+",
+              "item": 314,
               "chance": "37%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "25%"
             }
           ],
           "capture": [
             {
-              "name": "Ceanataur Carpce x2",
+              "item": 505,
+              "amount": 2,
               "chance": "60%"
             },
             {
-              "name": "Ceanataur Leg x1",
+              "item": 507,
+              "amount": 1,
               "chance": "22%"
             },
             {
-              "name": "Ceanataur Pincer x1",
+              "item": 509,
+              "amount": 1,
               "chance": "18%"
             }
           ]
@@ -1265,111 +1350,125 @@
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "HvyCeanataurShl",
+              "item": 506,
               "chance": "50%"
             },
             {
-              "name": "HvyCeanataurLeg",
+              "item": 508,
               "chance": "25%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "10%"
             },
             {
-              "name": "HrdCeanataurClaw",
+              "item": 512,
               "chance": "5%"
             },
             {
-              "name": "Ceanataur Pincer",
+              "item": 509,
               "chance": "5%"
             },
             {
-              "name": "Ceanataur Carpce",
+              "item": 505,
               "chance": "5%"
             }
           ],
           "break shell - gravios skull": [
             {
-              "name": "Gravios Skl Shl x1",
+              "item": 627,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "HvyCeanataurShl x1",
+              "item": 506,
+              "amount": 1,
               "chance": "22%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "break shell - brown skull": [
             {
-              "name": "HvyCeanataurShl x1",
+              "item": 506,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "30%"
             }
           ],
           "break shell - white skull": [
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "63%"
             },
             {
-              "name": "HvyCeanataurShl x1",
+              "item": 506,
+              "amount": 1,
               "chance": "37%"
             }
           ],
           "break claw": [
             {
-              "name": "HrdCeanataurClaw x1",
+              "item": 512,
+              "amount": 1,
               "chance": "55%"
             },
             {
-              "name": "Ceanataur Pincer x2",
+              "item": 509,
+              "amount": 2,
               "chance": "20%"
             },
             {
-              "name": "HrdCeanataurClaw x2",
+              "item": 512,
+              "amount": 2,
               "chance": "15%"
             },
             {
-              "name": "Ceanataur Claw+ x2",
+              "item": 511,
+              "amount": 2,
               "chance": "10%"
             }
           ],
           "shiny drop : replacing shell or finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl+",
+              "item": 314,
               "chance": "50%"
             },
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "25%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "15%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "10%"
             }
           ],
           "capture": [
             {
-              "name": "HvyCeanataurShl x2",
+              "item": 506,
+              "amount": 2,
               "chance": "60%"
             },
             {
-              "name": "HvyCeanataurLeg x1",
+              "item": 508,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Ceanataur Pincer x1",
+              "item": 509,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -1525,91 +1624,99 @@
       }
     },
     {
-      "name": "Terra Shogun Ceanataur",
+      "id": 87,
       "type": "carapaceon",
       "icon": "ceanataur",
-      "description": "A large Carapaceon with a giant monster's skull on its back. Its long, sharp pincers allow it to pierce volcanic bedrock and travel along ceilings. Sometimes, a precious and valuable pearl can be found inside its shell.",
       "drops": {
         "g rank": {
           "body carves (x3)": [
             {
-              "name": "TerraCeanatrShl",
+              "item": 513,
               "chance": "50%"
             },
             {
-              "name": "HvyCeanataurLeg",
+              "item": 508,
               "chance": "25%"
             },
             {
-              "name": "Ceanataur Pincer",
+              "item": 509,
               "chance": "10%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "10%"
             },
             {
-              "name": "TerraCeanatrClaw",
+              "item": 514,
               "chance": "5%"
             }
           ],
           "break shell": [
             {
-              "name": "Gravios Skl Shl x1",
+              "item": 627,
+              "amount": 1,
               "chance": "70%"
             },
             {
-              "name": "TerraCeanatrShl x1",
+              "item": 513,
+              "amount": 1,
               "chance": "22%"
             },
             {
-              "name": "Wyvern Skull Shl x1",
+              "item": 493,
+              "amount": 1,
               "chance": "8%"
             }
           ],
           "break claw": [
             {
-              "name": "TerraCeanatrClaw x1",
+              "item": 514,
+              "amount": 1,
               "chance": "65%"
             },
             {
-              "name": "TerraCeanatrClaw x2",
+              "item": 514,
+              "amount": 2,
               "chance": "15%"
             },
             {
-              "name": "Ceanataur Pincer x2",
+              "item": 509,
+              "amount": 2,
               "chance": "20%"
             }
           ],
           "shiny drop : replacing shell or finishes eating without noticing hunter": [
             {
-              "name": "Crab Pearl+",
+              "item": 314,
               "chance": "50%"
             },
             {
-              "name": "Crab Pearl",
+              "item": 313,
               "chance": "25%"
             },
             {
-              "name": "Giant Blk Pearl",
+              "item": 199,
               "chance": "15%"
             },
             {
-              "name": "Black Pearl",
+              "item": 198,
               "chance": "10%"
             }
           ],
           "capture": [
             {
-              "name": "TerraCeanatrShl x2",
+              "item": 513,
+              "amount": 2,
               "chance": "60%"
             },
             {
-              "name": "HvyCeanataurLeg x1",
+              "item": 508,
+              "amount": 1,
               "chance": "30%"
             },
             {
-              "name": "Ceanataur Pincer x1",
+              "item": 509,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -1744,9 +1851,8 @@
       }
     },
     {
-      "name": "Shen Gaoren",
+      "id": 55,
       "type": "carapaceon",
-      "description": "A giant Carapaceon with an equally giant monster's skull on its back. Prone to roaming and fiercely territorial, any intruders will be met with opposition, so nearby forts or towns must be warned of its presence.",
       "drops": {},
       "hitzones": {
         "head": {

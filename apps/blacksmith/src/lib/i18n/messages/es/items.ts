@@ -69,6 +69,22 @@ export const items: Messages["items"] = {
       areas.length === 1 ? `zona ${areas[0]}` : `zonas ${areas.join(", ")}`,
     points: (kind: string, places: string) => `${kind}: ${places}`,
   },
+  farm: {
+    title: "Granja Pokke",
+    spots: { mining: "Minería", insects: "Bichos", mushrooms: "Setas", honey: "Miel" },
+    perQuest: (spot: string, count: string) => `${spot} · ${count} por misión`,
+    points: {
+      "Mining Point": "Punto de minería",
+      "Insect Thicket": "Matorral de insectos",
+      "Mushroom Tree": "Árbol de setas",
+      "Prototype Bee Hive": "Colmena prototipo",
+      "Production Bee Hive": "Colmena de producción",
+      "Modified Bee Hive": "Colmena modificada",
+    },
+    restocks: "La granja se repone tras cada misión.",
+    upgradesStack:
+      "Cada mejora de Punto de minería y de Matorral de insectos añade un punto propio, así que los anteriores se mantienen.",
+  },
   shops: {
     title: "Tiendas",
     names: {
@@ -153,6 +169,7 @@ export const items: Messages["items"] = {
         shop: "Comprar",
         monster: "Cazar",
         gather: "Recoger",
+        farm: "Granja",
         quest: "Misión",
         combine: "Combinar",
       },

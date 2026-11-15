@@ -175,9 +175,8 @@ export function collectItemSources(
     });
   }
 
-  for (const slot of collectQuestRewardSlots(game.quests)) {
-    const itemId = edits.questNow(slot.quest).readUInt16LE(slot.offset + 2);
-    add(itemId, { type: "reward", place: "Reward", tier: slot.tier });
+  for (const slot of collectQuestRewardSlots(game.quests, (q) => edits.questNow(q))) {
+    add(slot.itemId, { type: "reward", place: "Reward", tier: slot.tier });
   }
 
   return [...sources]
@@ -351,9 +350,6 @@ export function planAlmanac(
       const notes = [
         `Home > Open Bookshelf > Info Magazine: the Lay of the Land articles are now the ${ALMANAC_NAME}, a line per crafting material naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, readable from the start. In English in every language.`,
       ];
-      if (!materials) {
-        notes.push("The EBOOT wasn't loaded, so every item is listed, not just materials.");
-      }
       if (trimmed > 0) notes.push(`For room, ${trimmed} lines leave out their latest source.`);
       if (book.left.length > 0) {
         notes.push(

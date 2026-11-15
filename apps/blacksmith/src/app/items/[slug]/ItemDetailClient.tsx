@@ -40,7 +40,7 @@ import {
 import { ownedItemCounts } from "@/lib/hunter-progress";
 import type { Messages } from "@/lib/i18n/messages";
 import { itemCategory } from "@/lib/item-categories";
-import type { GatherPlace, ShopPlace } from "@/lib/item-places";
+import type { FarmPlace, GatherPlace, ShopPlace } from "@/lib/item-places";
 import { groupBy, itemHref, type MonsterSource, type QuestSource } from "@/lib/item-sources";
 import {
   clearedQuestIds,
@@ -50,7 +50,13 @@ import {
   rewardTableHeading,
 } from "@/lib/quests";
 import { groupTrades, tradeMapsLabel, type ItemTrades, type Trade } from "@/lib/veggie-trades";
-import { dropSourceLabel, groundName, groupLabel } from "../source-labels";
+import {
+  dropSourceLabel,
+  farmLabel,
+  farmPointName,
+  groundName,
+  groupLabel,
+} from "../source-labels";
 
 interface Props {
   slug: string;
@@ -109,11 +115,18 @@ export default function ItemDetailClient({ slug }: Props) {
       content: <QuestSources sources={found.quests} cleared={cleared} />,
     });
   }
-  if (placed?.gathering.length) {
+  if (placed?.gathering.length || placed?.farm.length) {
     tabs.push({
       id: "gathering",
       label: t.items.detail.tabs.gathering,
-      content: <GatherPlaces places={placed.gathering} quests={quests} cleared={cleared} />,
+      content: (
+        <GatherPlaces
+          places={placed.gathering}
+          farm={placed.farm}
+          quests={quests}
+          cleared={cleared}
+        />
+      ),
     });
   }
   if (placed?.gathering.some((p) => p.mapQuest !== undefined)) {
@@ -294,14 +307,17 @@ function QuestSources({
 
 /**
  * The item's gathering points, one list per rank or quest board: a row per
- * map, or per quest where only that quest's points give it.
+ * map, or per quest where only that quest's points give it. Then Pokke
+ * Farm's points, a row per upgrade.
  */
 function GatherPlaces({
   places,
+  farm,
   quests,
   cleared,
 }: {
   places: GatherPlace[];
+  farm: FarmPlace[];
   quests: Quest[] | null;
   cleared: ReadonlySet<number> | null;
 }) {
@@ -309,7 +325,7 @@ function GatherPlaces({
   const game = useGameText();
   const { formatNumber } = useLocale();
   const byId = new Map(quests?.map((q) => [q.id, q]));
-  return (
+  const grid = (
     <DropGrid>
       {groupBy(places, (p) => p.group).map(([group, rows]) => (
         <SourceList
@@ -336,7 +352,28 @@ function GatherPlaces({
           })}
         />
       ))}
+      {farm.length > 0 && (
+        <SourceList
+          title={t.items.farm.title}
+          rows={farm.map((p) => ({
+            name: farmPointName(t, p.point),
+            detail: farmLabel(t, p),
+            value: `${formatNumber(p.chance)}%`,
+          }))}
+        />
+      )}
     </DropGrid>
+  );
+  if (farm.length === 0) return grid;
+  return (
+    <div className="flex flex-col gap-[1.6rem]">
+      {grid}
+      <p className="m-0 text-fine whitespace-normal text-white/60">
+        {t.items.farm.restocks}
+        {farm.some((p) => p.spot === "mining" || p.spot === "insects") &&
+          ` ${t.items.farm.upgradesStack}`}
+      </p>
+    </div>
   );
 }
 

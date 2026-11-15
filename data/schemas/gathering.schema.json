@@ -17,7 +17,7 @@
       "required": ["item", "chance"],
       "additionalProperties": false,
       "properties": {
-        "item":   { "type": "string", "minLength": 1, "description": "Game name, as in data/items.json" },
+        "item":   { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json)" },
         "chance": { "type": "integer", "minimum": 0, "maximum": 100, "description": "Percent per gather. A node's chances can add up to less than 100: the rest gives nothing." }
       }
     },
@@ -64,7 +64,7 @@
       "required": ["map", "quests", "areas"],
       "additionalProperties": false,
       "properties": {
-        "map":    { "type": "string", "minLength": 1, "description": "Same names as a quest's map" },
+        "map":    { "type": "integer", "minimum": 1, "description": "Map ID, as a quest's map" },
         "texture": { "type": "string", "description": "The map's texture for this layout's positions: map2 is public/images/area-maps/map2.png" },
         "quests": {
           "type": "array",

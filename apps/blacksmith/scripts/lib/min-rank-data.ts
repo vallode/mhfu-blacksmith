@@ -20,6 +20,7 @@ import {
   type RecipeLike,
   type WeaponLike,
 } from "../../src/lib/min-rank";
+import { readData } from "game-data";
 
 export type Recipes = Partial<
   Record<"create_mats" | "improve_mats" | "alternative_create_mats", RecipeLike[] | null>
@@ -39,8 +40,7 @@ export interface MinRanks {
 }
 
 export function loadMinRanks(dataDir: string): MinRanks {
-  const readJson = <T>(...p: string[]): T =>
-    JSON.parse(fs.readFileSync(path.join(dataDir, ...p), "utf-8"));
+  const readJson = <T>(...p: string[]): T => readData(dataDir, ...p);
   const list = (dir: string) => fs.readdirSync(path.join(dataDir, dir));
 
   const { index } = buildItemNameIndex(readJson<{ items: ItemRecord[] }>("items.json").items);

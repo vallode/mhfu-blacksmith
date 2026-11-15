@@ -13,10 +13,10 @@
   "definitions": {
     "material": {
       "type": "object",
-      "required": ["name", "amount", "type", "color"],
+      "required": ["item", "amount", "type", "color"],
       "additionalProperties": false,
       "properties": {
-        "name":   { "type": "string", "minLength": 1 },
+        "item":   { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json); its name is in data/strings" },
         "amount": { "type": "integer", "minimum": 1 },
         "type":   { "type": "string", "minLength": 1 },
         "color":  { "type": "string", "minLength": 1 }
@@ -32,10 +32,10 @@
     },
     "weapon": {
       "type": "object",
-      "required": ["name", "type", "rarity"],
+      "required": ["id", "type", "rarity"],
       "additionalProperties": true,
       "properties": {
-        "name":         { "type": "string", "minLength": 1 },
+        "id":           { "type": "integer", "minimum": 0, "description": "Game weapon ID: index into the melee table, or for bows and bowguns the ranged table. The name is in data/strings, under melee or ranged" },
         "type": {
           "type": "string",
           "enum": [
@@ -52,15 +52,17 @@
         "create_cost":  { "type": ["integer", "null"], "minimum": 0 },
         "improve_cost": { "type": ["integer", "null"], "minimum": 0 },
         "improve_from": {
+          "description": "Weapon ID(s) in the same table (melee or ranged) this one upgrades from",
           "oneOf": [
-            { "type": "string" },
-            { "type": "array", "items": { "type": "string" } },
+            { "type": "integer", "minimum": 0 },
+            { "type": "array", "items": { "type": "integer", "minimum": 0 } },
             { "type": "null" }
           ]
         },
         "improve_to":   {
+          "description": "Weapon IDs in the same table this one upgrades to",
           "oneOf": [
-            { "type": "array", "items": { "type": "string" } },
+            { "type": "array", "items": { "type": "integer", "minimum": 0 } },
             { "type": "null" }
           ]
         },

@@ -21,7 +21,7 @@ writeFileSync(FILE, buildFixtureDisc());
 
 async function load(): Promise<{ game: GameData; close: () => void }> {
   const { source, iso } = openDiscImage(FILE);
-  const game = await loadGame(source, iso, { eboot: null });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -109,6 +109,35 @@ test("off by default", async () => {
   try {
     const result = randomize(game, settingsWith("none", []));
     assert.equal(result.edits.files.get(GAME_TASK_INDEX), undefined);
+  } finally {
+    close();
+  }
+});
+
+test("randomized trades give new items, keep what he takes, and keep a single gift single", async () => {
+  const { game, close } = await load();
+  try {
+    let changed = 0;
+    for (const scope of ["low", "high", "any"] as const) {
+      const result = randomize(
+        game,
+        settingsWith(`r-${scope}`, [], {
+          "trades.mode": "randomize",
+          "trades.mix": "all",
+          "trades.scope": scope,
+        }),
+      );
+      const after = readTrades(result.edits.files.get(GAME_TASK_INDEX)!);
+      after.forEach((rows, elder) => {
+        const before = FIXTURE_TRADES[elder]!;
+        rows.forEach((row, i) => {
+          assert.equal(row[0], before[i]![0], "he still takes the same item");
+          assert.equal(row[1] === row[2], before[i]![1] === before[i]![2], "single stays single");
+          if (row[1] !== before[i]![1]) changed++;
+        });
+      });
+    }
+    assert.ok(changed > 0);
   } finally {
     close();
   }

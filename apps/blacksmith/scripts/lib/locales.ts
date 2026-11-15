@@ -7,11 +7,16 @@
  */
 import fs from "fs";
 import path from "path";
+import { readData } from "game-data";
 import { GAME_TEXT_KINDS, type GameLocale, type GameTextKind } from "../../src/lib/i18n/game-text";
 
 type Json = unknown;
 
-const readJson = (p: string): Json => JSON.parse(fs.readFileSync(p, "utf-8"));
+/**
+ * A file under `dataDir`, read through game-data: game records come back in
+ * their named view (names from data/strings), anything else as it is.
+ */
+const readJson = (dataDir: string, p: string): Json => readData(dataDir, path.relative(dataDir, p));
 
 const jsonFilesIn = (dir: string): string[] =>
   fs.existsSync(dir)
@@ -34,13 +39,13 @@ function collect(node: Json, keys: readonly string[], out: Set<string>): Set<str
   return out;
 }
 
-const listOf = (file: string, key: string): Json[] =>
-  ((readJson(file) as Record<string, Json[]>)[key] ?? []) as Json[];
+const listOf = (dataDir: string, file: string, key: string): Json[] =>
+  ((readJson(dataDir, file) as Record<string, Json[]>)[key] ?? []) as Json[];
 
 /** The English names each kind of locale entry can translate. */
 export function englishNames(dataDir: string): Record<GameTextKind, Set<string>> {
   const names = (files: string[], key: string) =>
-    new Set(files.flatMap((f) => listOf(f, key)).map((x) => (x as { name: string }).name));
+    new Set(files.flatMap((f) => listOf(dataDir, f, key)).map((x) => (x as { name: string }).name));
   const weaponFiles = jsonFilesIn(path.join(dataDir, "weapons"));
   const armorFiles = jsonFilesIn(path.join(dataDir, "armor"));
   const monsterFiles = jsonFilesIn(path.join(dataDir, "monsters"));
@@ -53,9 +58,9 @@ export function englishNames(dataDir: string): Record<GameTextKind, Set<string>>
     ...questFiles,
     decorations,
     path.join(dataDir, "items.json"),
-  ].map(readJson);
+  ].map((f) => readJson(dataDir, f));
 
-  const skills = readJson(path.join(dataDir, "skills.json")) as {
+  const skills = readJson(dataDir, path.join(dataDir, "skills.json")) as {
     skills: { tree: string; aliases?: string[]; skills: { name: string }[] }[];
   };
   const skillNames = new Set<string>();
@@ -66,7 +71,7 @@ export function englishNames(dataDir: string): Record<GameTextKind, Set<string>>
   }
   // Armor and decorations name skill trees in their own spellings.
   for (const file of [...armorFiles, decorations]) {
-    for (const piece of listOf(file, file === decorations ? "decorations" : "armor")) {
+    for (const piece of listOf(dataDir, file, file === decorations ? "decorations" : "armor")) {
       for (const s of (piece as { skills?: (string | { name: string })[] }).skills ?? []) {
         skillNames.add(typeof s === "string" ? s.replace(/ [+-]?\d+$/, "") : s.name);
         if (typeof s === "string") skillNames.add(s);
@@ -82,7 +87,10 @@ export function englishNames(dataDir: string): Record<GameTextKind, Set<string>>
     // Materials, drops, supplies and rewards: any item-like name in the data.
     item: everything.reduce<Set<string>>((set, d) => collect(d, ["name", "item"], set), new Set()),
     skill: skillNames,
-    map: questFiles.reduce<Set<string>>((set, f) => collect(readJson(f), ["map"], set), new Set()),
+    map: questFiles.reduce<Set<string>>(
+      (set, f) => collect(readJson(dataDir, f), ["map"], set),
+      new Set(),
+    ),
   };
 }
 
@@ -99,13 +107,13 @@ export function buildLocaleBundles(dataDir: string): LocaleBundle[] {
   const english = englishNames(dataDir);
   const questIds = new Set(
     jsonFilesIn(path.join(dataDir, "quests"))
-      .flatMap((f) => listOf(f, "quests"))
+      .flatMap((f) => listOf(dataDir, f, "quests"))
       .map((q) => String((q as { id: number }).id)),
   );
 
   return files.map((file) => {
     const code = path.basename(file, ".json");
-    const source = readJson(file) as GameLocale;
+    const source = readJson(dataDir, file) as GameLocale;
     const out: GameLocale = {};
     const warnings: string[] = [];
     let entries = 0;

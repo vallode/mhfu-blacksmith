@@ -5,14 +5,15 @@ import { describe, it } from "node:test";
 import { compareTiers, STAGES } from "../src/lib/min-rank";
 import { loadMinRanks, type Recipes } from "../scripts/lib/min-rank-data";
 import { DATA_DIR } from "../src/lib/paths";
+import { readData } from "game-data";
 
 const dataDir = DATA_DIR;
 const ranks = loadMinRanks(dataDir);
 
 const readList = (dir: string, file: string, field: string) =>
-  (
-    JSON.parse(fs.readFileSync(path.join(dataDir, dir, file), "utf-8")) as Record<string, unknown[]>
-  )[field] as ({ name: string } & Recipes)[];
+  (readData(dataDir, dir, file) as Record<string, unknown[]>)[field] as ({
+    name: string;
+  } & Recipes)[];
 
 describe("min rank over the real data", () => {
   it("finds a route for every weapon and armor piece", () => {
@@ -38,9 +39,9 @@ describe("min rank over the real data", () => {
 
   it("finds a route for every decoration, within the last stage", () => {
     const last = STAGES.at(-1)!;
-    const { decorations } = JSON.parse(
-      fs.readFileSync(path.join(dataDir, "decorations.json"), "utf-8"),
-    ) as { decorations: ({ name: string } & Recipes)[] };
+    const { decorations } = readData(dataDir, "decorations.json") as {
+      decorations: ({ name: string } & Recipes)[];
+    };
     for (const d of decorations) {
       const needs = ranks.decoration(d);
       assert.ok(needs, d.name);
@@ -51,7 +52,7 @@ describe("min rank over the real data", () => {
   it("treats materials only decorations use as gathered (Power Seed)", () => {
     const deco = (name: string) =>
       (
-        JSON.parse(fs.readFileSync(path.join(dataDir, "decorations.json"), "utf-8")) as {
+        readData(dataDir, "decorations.json") as {
           decorations: ({ name: string } & Recipes)[];
         }
       ).decorations.find((d) => d.name === name)!;

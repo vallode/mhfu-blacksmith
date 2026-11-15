@@ -69,7 +69,13 @@ import {
 } from "@/lib/wishlist";
 import { useWishlist, type Wishlist } from "@/lib/wishlist-store";
 import * as ui from "@/styles/settings";
-import { dropSourceLabel, groundName, groupLabel } from "../items/source-labels";
+import {
+  dropSourceLabel,
+  farmLabel,
+  farmPointName,
+  groundName,
+  groupLabel,
+} from "../items/source-labels";
 
 // ---------------------------------------------------------------------------
 // Loading the gear
@@ -743,6 +749,8 @@ function wayName(t: Messages, game: GameText, items: ItemLookup | null, way: Way
       return way.questId !== undefined ? game.quest(way.questId, "title", way.name) : way.name;
     case "shop":
       return t.items.shops.names[way.name] ?? way.name;
+    case "farm":
+      return t.items.farm.title;
     case "combine":
       if (!way.ingredients || !items) return way.name;
       return way.ingredients
@@ -776,6 +784,10 @@ function wayDetail(t: Messages, formatNumber: (n: number) => string, way: Way): 
       ]
         .filter(Boolean)
         .join(" · ");
+    case "farm":
+      return way.farm
+        ? `${farmPointName(t, way.farm.point)} · ${farmLabel(t, way.farm)}`
+        : way.detail;
     case "combine":
       return null;
   }

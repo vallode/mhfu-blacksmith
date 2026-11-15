@@ -4,7 +4,7 @@
  * Resolves a save file's equipment box (equip type code + equipment ID per
  * slot, see public/javascript/save-worker.js) to item pages, via the
  * equipment-ids.json bundle that scripts/generate-data.ts builds from
- * data/equipment-ids.json.
+ * the weapons' and armor's game IDs in data/.
  */
 import { useEffect, useState } from "react";
 import type { EquipmentIds } from "./schema";

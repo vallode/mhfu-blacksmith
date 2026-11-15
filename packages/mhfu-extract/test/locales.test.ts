@@ -4,9 +4,10 @@
  * mapping (locales/names.ts), and the whole command on a synthetic
  * unpacked disc.
  */
+import { readData } from "game-data";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import { mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
+import { cp, mkdtemp, mkdir, readFile, rm, writeFile } from "node:fs/promises";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -309,7 +310,7 @@ describe("site names for game IDs", () => {
   });
 
   test("decorations come from their item IDs", () => {
-    const items = JSON.parse(dataFile("items.json")) as { items: { id: number; name: string }[] };
+    const items = readData<{ items: { id: number; name: string }[] }>(DATA, "items.json");
     const jewel = items.items.find((i) => i.name === "Attack Jewel")!;
     const kinds = keys
       .get("ItemID")!
@@ -363,8 +364,15 @@ describe("locales command on a synthetic EU disc", () => {
       // A data/ with the real site files the mapping needs, and an existing es.json.
       await mkdir(path.join(data, "locales"), { recursive: true });
       await mkdir(path.join(data, "schemas"), { recursive: true });
-      for (const f of ["equipment-ids.json", "items.json", "decorations.json", "skills.json"]) {
-        await writeFile(path.join(data, f), dataFile(f));
+      for (const f of [
+        "items.json",
+        "decorations.json",
+        "skills.json",
+        "armor",
+        "weapons",
+        "strings",
+      ]) {
+        await cp(path.join(DATA, f), path.join(data, f), { recursive: true });
       }
       await writeFile(
         path.join(data, "schemas", "locale.schema.json"),
