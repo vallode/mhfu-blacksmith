@@ -757,14 +757,21 @@ unpacked directory; the log says `no hunter: ...` if it can't.
   it still can't texture. (`composeHunter` also used to let such an index
   fall onto the next piece's textures; each piece's textures are now mapped
   one by one.) The `models` subcommand doesn't add skin.
-- **Wearing armor.** The armor pages' viewer puts a piece on the hunter of its
-  sex in place of the default piece of its slot (the site's
+- **Wearing armor.** The armor pages' viewer puts a piece on the hunter of
+  its sex in place of the default piece of its slot (the site's
   `src/lib/hunter-armor.ts`). Each primitive of `hunter.glb` and
   `hunter-female.glb` names its slot (`extras.part`, the index in
-  `HUNTER_ARMOR`); a piece with several textures has a primitive for each. Piece models are unskinned, so the site moves a piece to its slot's
-  first mapped joint (as `composeHunter` does) and copies bone weights from
-  the nearest vertices of the default piece; the female hunter plays the
-  motions built on the male skeleton.
+  `HUNTER_ARMOR`); a piece with several textures has a primitive for each.
+  Every armor piece has its own partial skeleton, and pieces of a slot don't
+  all sit alike in theirs (the Giaprey Helm is modelled 12 units higher than
+  the Battle Helm). So `export-site` places each armor model on its sex's
+  player skeleton (the default leggings'), as `composeHunter` places the
+  hunter's pieces, and stores each vertex's player joints and weights as
+  `_JOINTS_0` and `_WEIGHTS_0` (`jointWeights` in `gltf.ts`; renderers
+  ignore them). The site skins those to the hunter as they are. A piece that
+  can't be placed (a bone with no player joint) is logged and left in its
+  own skeleton's place, where the site can only guess. The female hunter
+  plays the motions built on the male skeleton.
 - **Posed weapon bones** (`models/weapon-pose.ts`). Some weapons skin
   pieces to extra bones that the game moves at run time, and no motion file
   animates them: the Ravager Blade's (`we012`) claws are weighted 0.87/0.13

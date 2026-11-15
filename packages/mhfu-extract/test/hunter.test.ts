@@ -229,3 +229,31 @@ test("composeHunter keeps a texture index past a piece's own off the next piece'
   assert.equal(dressed.textures[dressed.pmo.materials[0]!.textureIndex], skin);
   assert.equal(dressed.pmo.materials[1]!.textureIndex, 2);
 });
+
+test("a piece placed alone on a given skeleton keeps its player joints as _JOINTS_0 and _WEIGHTS_0", async () => {
+  const skeleton = playerSkeleton();
+  const arms = piece(
+    "gauntlets",
+    Array.from({ length: 10 }, (_, i) => bone(i, i - 1, [0, 0, 0])),
+    [1],
+  );
+  // No leggings needed when the skeleton is given; the chest bone rises to the chest.
+  const placed = composeHunter([arms], skeleton);
+  const vertex = placed.pmo.meshes[0]!.primitives[0]!.geometry.vertices[0]!;
+  assert.ok(Math.abs(vertex.position[1]! * placed.pmo.scale[1] - 15.4) < 1e-6);
+  const { glb } = await buildGlb(placed.pmo, [], "arms", {
+    compress: false,
+    webp: false,
+    jointWeights: true,
+  });
+  const json = JSON.parse(glb.subarray(20, 20 + glb.readUInt32LE(12)).toString("utf-8")) as {
+    nodes: { mesh?: number; skin?: number; scale?: number[] }[];
+    meshes: { primitives: { attributes: Record<string, number> }[] }[];
+    skins?: unknown[];
+  };
+  const attributes = json.meshes[0]!.primitives[0]!.attributes;
+  assert.ok("_JOINTS_0" in attributes && "_WEIGHTS_0" in attributes);
+  assert.ok(!("JOINTS_0" in attributes));
+  assert.equal(json.skins, undefined);
+  assert.ok(json.nodes[0]!.scale);
+});

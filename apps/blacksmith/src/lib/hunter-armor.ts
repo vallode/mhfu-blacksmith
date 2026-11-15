@@ -9,12 +9,15 @@
  * `HUNTER_SLOTS` (`extras.part`). A piece goes on the hunter of its own sex:
  * the two skeletons differ.
  *
- * An armor piece's own model is unskinned and sits where its package's
- * partial skeleton puts it: around the joint its first bone maps to
- * (`SLOT_ROOT`), at the origin. So a piece goes on the hunter moved to that
- * joint, and takes its bone weights from the default piece of the same slot,
- * vertex by nearest vertex: the game's pieces of a slot share one skeleton
- * and are weighted alike.
+ * Armor models exported since mhfu-extract placed them (`placeArmor` in
+ * `export-site`) already sit on the player skeleton of their sex, with each
+ * vertex's player joints and weights in `_JOINTS_0` and `_WEIGHTS_0`: those
+ * go on as they are. An older export's piece sits where its package's own
+ * skeleton puts it, roughly around the joint its first bone maps to
+ * (`SLOT_ROOT`) at the origin. That one is moved to that joint and takes its
+ * weights from the default piece of the same slot, vertex by nearest vertex.
+ * It's a guess: pieces whose skeleton differs from the default's (the
+ * Giaprey Helm) land too high or low.
  *
  * three.js comes in as an argument, as the viewer imports it on demand.
  */
@@ -191,14 +194,24 @@ export function dressHunter(
   piece.traverse((object) => {
     const mesh = object as import("three").Mesh;
     if (!mesh.isMesh) return;
-    const { position, normal, uv } = mesh.geometry.attributes;
+    const {
+      position,
+      normal,
+      uv,
+      _joints_0: ownJoints,
+      _weights_0: ownWeights,
+    } = mesh.geometry.attributes;
     if (!position) return;
+    // A piece exported on the player skeleton (`_JOINTS_0`, `_WEIGHTS_0`)
+    // is already in place, with the game's own weights.
+    const placed = Boolean(ownJoints && ownWeights);
     const normalMatrix = new THREE.Matrix3().getNormalMatrix(mesh.matrixWorld);
     const positions = new Float32Array(position.count * 3);
     const stored = new Float32Array(position.count * 3);
     const normals = normal ? new Float32Array(normal.count * 3) : null;
     for (let i = 0; i < position.count; i++) {
-      vertex.fromBufferAttribute(position, i).applyMatrix4(mesh.matrixWorld).add(offset);
+      vertex.fromBufferAttribute(position, i).applyMatrix4(mesh.matrixWorld);
+      if (!placed) vertex.add(offset);
       vertex.toArray(positions, i * 3);
       vertex.applyMatrix4(fromModel).toArray(stored, i * 3);
       if (normal && normals)
@@ -210,7 +223,17 @@ export function dressHunter(
           .transformDirection(fromModel)
           .toArray(normals, i * 3);
     }
-    const { joints, weights } = transferSkin(positions, source);
+    const { joints, weights } =
+      ownJoints && ownWeights
+        ? {
+            joints: Uint16Array.from({ length: position.count * 4 }, (_, k) =>
+              ownJoints.getComponent(k >> 2, k & 3),
+            ),
+            weights: Float32Array.from({ length: position.count * 4 }, (_, k) =>
+              ownWeights.getComponent(k >> 2, k & 3),
+            ),
+          }
+        : transferSkin(positions, source);
     const geometry = new THREE.BufferGeometry();
     geometry.setAttribute("position", new THREE.BufferAttribute(stored, 3));
     if (normals) geometry.setAttribute("normal", new THREE.BufferAttribute(normals, 3));

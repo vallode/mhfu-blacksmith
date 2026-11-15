@@ -80,6 +80,13 @@ export interface GlbOptions {
    * `extras.targetNames`, at weight 0. Unskinned models only.
    */
   targets?: GlbTarget[];
+  /**
+   * Unskinned: also store each vertex's joints and weights (from its
+   * primitive's bone palette), as the application-specific attributes
+   * `_JOINTS_0` and `_WEIGHTS_0`, which renderers ignore. For a model a
+   * viewer skins to another's skeleton (an armor piece on the hunter).
+   */
+  jointWeights?: boolean;
 }
 
 /** A morph target: the model's `pmo` in another shape. */
@@ -439,7 +446,8 @@ export async function buildGlb(
     mesh.primitives.every((p) => p.geometry.vertices.every(isExactVertex)),
   );
   const skinned = !!rig?.bones.length;
-  const layout = skinned ? skinnedLayout(exact ? EXACT : FLOATS) : exact ? EXACT : FLOATS;
+  const weighted = skinned || !!options.jointWeights;
+  const layout = weighted ? skinnedLayout(exact ? EXACT : FLOATS) : exact ? EXACT : FLOATS;
   const targets = options.targets ?? [];
   if (targets.length && skinned) throw new Error("morph targets on a skinned model");
   for (const target of targets)
@@ -667,7 +675,7 @@ export async function buildGlb(
           type: "VEC2",
         },
       ];
-  if (skinned)
+  if (weighted)
     accessors.push(
       {
         bufferView: vertexView,
@@ -812,7 +820,11 @@ export async function buildGlb(
         POSITION: 0,
         NORMAL: 1,
         TEXCOORD_0: 2,
-        ...(skinned ? { JOINTS_0: 3, WEIGHTS_0: 4 } : {}),
+        ...(skinned
+          ? { JOINTS_0: 3, WEIGHTS_0: 4 }
+          : weighted
+            ? { _JOINTS_0: 3, _WEIGHTS_0: 4 }
+            : {}),
       },
       ...(targetAccessors.length ? { targets: targetAccessors } : {}),
       indices: accessors.length - 1,

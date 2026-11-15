@@ -134,7 +134,7 @@ export interface HunterModel {
  * Texture indices from here on have no image: a piece's material that
  * indexes past its own textures (and the skin's) keeps its index above this.
  */
-const MISSING_TEXTURE = 0x10000;
+export const MISSING_TEXTURE = 0x10000;
 
 /** The world position of each bone in the bind pose. */
 function bindPositions(bones: readonly Bone[]): Vec3[] {
@@ -164,13 +164,15 @@ export function readHunterPiece(
 }
 
 /**
- * The pieces as one model on the player's skeleton (see the module comment).
- * Needs leggings, whose skeleton is the whole player's.
+ * The pieces as one model on the player's skeleton (see the module comment):
+ * `skeleton`, or else the leggings', whose skeleton is the whole player's.
  */
-export function composeHunter(pieces: readonly HunterPiece[]): HunterModel {
-  const leggings = pieces.find((piece) => piece.slot === "leggings");
-  if (!leggings) throw new Error("A hunter needs leggings for the player skeleton");
-  const skeleton = leggings.bones;
+export function composeHunter(pieces: readonly HunterPiece[], skeleton?: Bone[]): HunterModel {
+  if (!skeleton) {
+    const leggings = pieces.find((piece) => piece.slot === "leggings");
+    if (!leggings) throw new Error("A hunter needs leggings for the player skeleton");
+    skeleton = leggings.bones;
+  }
   if (skeleton.length !== PLAYER_BONE_COUNT)
     throw new Error(`Player skeleton has ${skeleton.length} bones`);
   const playerPositions = bindPositions(skeleton);
