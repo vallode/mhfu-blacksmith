@@ -22,10 +22,14 @@ export interface Settings {
   "monsterRewards.scope": Scope;
   "monsterRewards.chances": "rarity" | "reasonable" | "any";
   "monsterRewards.captureAndBreaks": boolean;
+  "carveCounts.mode": Mode;
+  "carveCounts.max": number;
   "gathering.mode": Mode;
   "gathering.scope": Scope;
   "gathering.chances": "rarity" | "reasonable" | "any";
   "gathering.keepItems": boolean;
+  "gathering.counts": boolean;
+  "gathering.countSpread": number;
   "supplies.mode": Mode;
   "supplies.scope": Scope;
   "supplies.slots": number;
@@ -339,6 +343,45 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledWhen: ["shuffle", "randomize"],
   },
   {
+    key: "carveCounts.mode",
+    section: "Monster rewards",
+    label: "Carve counts",
+    help: 'How many times a monster can be carved, body and tail, separate from the items in its lists ("body carves (x3)"). A monster with no tail, and carves done another way (elder dragons, live carving), are left alone.',
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "off",
+          label: "Unchanged",
+          help: "Monsters can be carved as often as they always could.",
+        },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Counts trade places between the monsters that have one.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Every count is rolled from 1 to the largest below.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "carveCounts.max",
+    section: "Monster rewards",
+    label: "Most carves",
+    help: "The largest body or tail carve count a monster can roll.",
+    type: { kind: "number", min: 1, max: 9, step: 1 },
+    default: 4,
+    enabledBy: "carveCounts.mode",
+    enabledWhen: ["randomize"],
+  },
+  {
     key: "gathering.mode",
     section: "Gathering",
     label: "Gathering points",
@@ -423,6 +466,24 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
     enabledBy: "gathering.mode",
     enabledWhen: ["randomize"],
+  },
+  {
+    key: "gathering.counts",
+    section: "Gathering",
+    label: "Randomize how often points can be gathered",
+    help: "Each mining, gathering and bug catching point in Village and Guild quests gets a new fewest and most number of gathers before it runs out. Points that never run out, and points that give a delivery quest's item, stay as they are.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "gathering.countSpread",
+    section: "Gathering",
+    label: "Gather count variation",
+    help: "How far a point's gathers can move from their usual value, up or down. Every point can still be gathered at least once.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "gathering.counts",
   },
   {
     key: "supplies.mode",
@@ -1523,6 +1584,7 @@ export const PRESETS: readonly Preset[] = [
       "questRewards.draws": 0.3,
       "monsterRewards.mode": "off",
       "recipes.amounts": true,
+      "gathering.counts": true,
       "costs.enabled": true,
       "shops.prices": true,
       "shops.stacks": true,
@@ -1541,6 +1603,7 @@ export const PRESETS: readonly Preset[] = [
     changes: {
       "recipes.mode": "shuffle",
       "recipes.amounts": true,
+      "gathering.counts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
       "armor.enabled": true,
@@ -1574,6 +1637,8 @@ export const PRESETS: readonly Preset[] = [
       "recipes.scope": "any",
       "recipes.amounts": true,
       "recipes.amountSpread": 0.9,
+      "gathering.counts": true,
+      "gathering.countSpread": 0.9,
       "costs.enabled": true,
       "costs.spread": 0.9,
       "weapons.enabled": true,

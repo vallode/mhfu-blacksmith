@@ -11,10 +11,12 @@ import { shuffleArmor } from "./shuffles/armor.js";
 import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
 import { deliveryTargets, isQuestItem, readSupplySlots } from "./game/quest-fields.js";
+import { changeCarveCounts, collectCarveCounts } from "./shuffles/carve-counts.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
 import {
   collectGatheringSlots,
   randomizeGathering,
+  randomizeGatherCounts,
   shuffleGathering,
 } from "./shuffles/gathering.js";
 import {
@@ -446,6 +448,18 @@ export function randomize(
     monsterAfter = [...result.after, ...kept];
   }
 
+  const carveCountsMode = settings["carveCounts.mode"];
+  if (carveCountsMode !== "off")
+    reports.push(
+      changeCarveCounts(
+        collectCarveCounts(game.gameSub.ovl),
+        { mode: carveCountsMode, max: settings["carveCounts.max"] },
+        rng.fork("carve-counts"),
+        edits,
+        game.gameSub,
+      ),
+    );
+
   // Gathering points are item sources too: the recipe check below uses them as shuffled.
   let gatheringAfter: { itemId: number; tier: Tier }[] = gathering.slots;
   const gatheringMode = settings["gathering.mode"];
@@ -469,6 +483,18 @@ export function randomize(
           );
     reports.push(result.report);
     gatheringAfter = [...result.after, ...pinned];
+  }
+
+  if (settings["gathering.counts"]) {
+    reports.push(
+      randomizeGatherCounts(
+        game.quests,
+        settings["gathering.countSpread"],
+        (quest) => deliveries.get(quest.index)?.itemId,
+        rng.fork("gather-counts"),
+        edits,
+      ),
+    );
   }
 
   const suppliesMode = settings["supplies.mode"];
