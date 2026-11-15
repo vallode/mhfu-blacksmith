@@ -7,7 +7,10 @@
  * - `bodytailshiny[89]` (52 bytes, entry `i` is emID `i + 1`): body carve,
  *   tail carve and shiny drop, each seven u16 indexes, one per rank slot
  *   (unranked, low, high, treasure, training, G, misc; `0xFFFF` = none),
- *   then a 10-byte trailer (two u8, the f32 carve radius, a u16, two u8).
+ *   then a 10-byte trailer: the u8 body and tail carve counts (0 where the
+ *   monster has none or carves another way, as the elder dragons do), the
+ *   f32 carve radius, a u16 and two u8. Found by testing: a test disc with
+ *   Giadrome's body count changed from 2 to 1 gave one body carve in game.
  *   Index `n` reads the pointer at `carvePointers + n * 4`, which leads to
  *   `{ u16 chance, u16 item }` pairs ending in chance `0xFFFF`.
  * - `capbreakindex[]` (14 bytes, ending at a `0xFF` emID byte): u8 emID,
@@ -27,6 +30,8 @@ export const CAP_BREAK_POINTER_COUNT = 924;
 export const CARVE_INDEX_COUNT = 89;
 export const CARVE_INDEX_SIZE = 52;
 export const CAP_BREAK_ENTRY_SIZE = 14;
+/** Offset of the body carve count in a `bodytailshiny` entry; the tail count follows it. */
+export const CARVE_COUNT_OFFSET = 42;
 export const CAPTURE_TYPE = 128;
 
 /** Rank slots, in struct order. Cap/break entries have no `misc` slot. */
@@ -181,4 +186,25 @@ export function readCapBreakTables(ovl: OvlFile, table: TablePair): CapBreakTabl
     });
   }
   return tables;
+}
+
+export interface CarveCounts {
+  emId: number;
+  /** File offset of the body count byte; the tail count is the next byte. */
+  offset: number;
+  body: number;
+  tail: number;
+}
+
+/** Reads the body and tail carve counts of all 89 `bodytailshiny` entries. */
+export function readCarveCounts(ovl: OvlFile, table: TablePair): CarveCounts[] {
+  return Array.from({ length: CARVE_INDEX_COUNT }, (_, i) => {
+    const offset = table.index + i * CARVE_INDEX_SIZE + CARVE_COUNT_OFFSET;
+    return {
+      emId: i + 1,
+      offset,
+      body: ovl.reader.u8(offset),
+      tail: ovl.reader.u8(offset + 1),
+    };
+  });
 }
