@@ -235,6 +235,23 @@ is in. `monsterRewards.scope` works as `questRewards.scope` does (`star`,
 `rank`, `adjacent`, `any`), and `monsterRewards.captureAndBreaks` decides
 whether capture and break lists take part with carves.
 
+Most lists are reached through the carve and cap/break index tables, one
+pointer per rank slot. A few carves are picked by code instead (mhfu-extract
+`CODE_CARVES`, carve pointers 1001 to 1087): the elder dragons' body carves
+(Fatalis, Crimson and White Fatalis, Lao-Shan Lung and Ashen, Shen Gaoren,
+Yama Tsukami), Lao-Shan Lung's, Ashen's, Yama Tsukami's and both Gypceros'
+live carves, Shen Gaoren's second carve, Yama Tsukami's shiny drop and
+Congalala's and Emerald Congalala's tail-stagger drops (one list each for
+bone, mushroom and mineral stone). They take part like the rest, with
+every rank slot the code reads them in. The code mostly picks one list
+for G or high rank and another for every other slot, unranked, treasure
+and misc included, so on the EU disc 24 of the 79 take part: the G rank
+lists, Shen Gaoren's high rank ones and Congalala's low and high rank
+ones. Fatalis's, Crimson and White Fatalis's high rank carves, Lao-Shan
+Lung's, the Gypceros' high rank live carves and Yama Tsukami's carves
+stay, as other lists used at several ranks do. The FUC disc has the same
+lists at the same pointers.
+
 - **Shuffle** moves whole slots (item, chance and amount) between lists
   within the scope; carves only trade with carves. A list's chances are
   scaled back to the total it had.
@@ -730,7 +747,8 @@ with the Bestiary), each kind in its colour:
 - **Gathering**: the maps of quests the player can take (`questTier`),
   without day and night ("Forest", "Snowy Mtns").
 - **Monsters**: carve, tail, shiny, capture and break lists of monsters that
-  appear in those quests, at the rank and lowest star level they appear.
+  appear in those quests, at the rank and lowest star level they appear,
+  with the lists code picks (live carves count as carves).
 - **Rewards**: quest reward boxes.
 
 Each source is kept once, at its earliest tier, and listed shops first, then

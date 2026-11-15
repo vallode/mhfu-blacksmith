@@ -1,7 +1,7 @@
 /**
  * Locates and reads every monster table in the overlays: `game_task.ovl`'s
  * chunks (hitzones, tolerances, base HP) and quest stat multipliers, and
- * `game_sub.ovl`'s reward tables.
+ * `game_sub.ovl`'s reward tables, with the carve lists only code reaches.
  */
 import type { BinaryReader } from "../binary/reader.js";
 import { locateBreakTable, readBreakTable, readSpeciesTable } from "./breaks.js";
@@ -12,6 +12,7 @@ import {
   locateRewardTables,
   readCapBreakTables,
   readCarveTables,
+  readUnindexedCarves,
   type RewardTableLocation,
 } from "./rewards.js";
 import type { MonsterTables } from "../emit/monsters.js";
@@ -51,6 +52,7 @@ export function readMonsterTables(
     breaks: breaks ?? undefined,
     species: eboot ? readSpeciesTable(eboot.reader, eboot.baseAddress) : null,
     carves: readCarveTables(overlays.gameSub, rewards.carves),
+    unindexedCarves: readUnindexedCarves(overlays.gameSub, rewards.carves),
     capBreak: readCapBreakTables(overlays.gameSub, rewards.capBreak),
     multipliers: locateMultiplierTables(overlays.gameTask),
     locations: { chunks: chunksAt, rewards, breaks: breaks ? breakTable : null },

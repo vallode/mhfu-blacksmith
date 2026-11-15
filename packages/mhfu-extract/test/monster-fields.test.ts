@@ -185,4 +185,5 @@ test("the monster overlay maps site names to emIDs and parses drop slots", () =>
   assert.equal(monsterIdOf("Not A Monster"), null);
   assert.deepEqual(parseDropSlot("body/low"), { kind: "body", rank: "low" });
   assert.deepEqual(parseDropSlot("break:2/g"), { kind: "break", breakType: 2, rank: "g" });
+  assert.deepEqual(parseDropSlot("carve:1007"), { kind: "carve", pointer: 1007 });
 });
