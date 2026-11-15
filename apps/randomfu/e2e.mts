@@ -1,8 +1,9 @@
 /**
  * End-to-end check of the web app in a real browser: builds dist/,
  * serves it, uploads the test fixture disc, randomizes with every
- * shuffle on, downloads the ISO and compares it byte for byte with the CLI's
- * output for the same settings. Needs Playwright's Chromium.
+ * shuffle on, downloads the ISO and compares it byte for byte with the same
+ * run of the randomizer in Node, so the browser build (shims, worker, Blob
+ * assembly) changes nothing. Needs Playwright's Chromium.
  *
  *   pnpm test:e2e
  */
@@ -15,7 +16,7 @@ import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { runRandomizer } from "randomfu/src/run.js";
 import { applySettings, defaultSettings, encodeSettings, PRESETS } from "randomfu/src/settings.js";
-import { buildFixtureDisc, tempDir } from "randomfu/test/fixtures.js";
+import { assemble, buildFixtureDisc, memorySource, tempDir } from "randomfu/test/fixtures.js";
 
 const web = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.join(web, "dist");
@@ -24,7 +25,8 @@ execFileSync(process.execPath, [path.join(web, "build.mjs")], { stdio: "inherit"
 const dir = tempDir();
 // The disc's EBOOT is encrypted, as on a real disc, so the app decrypts it itself.
 const isoPath = path.join(dir, "MHFU test disc.iso");
-writeFileSync(isoPath, buildFixtureDisc({ ebootTag: 0xc0cb167c })); // a real disc's tag
+const disc = buildFixtureDisc({ ebootTag: 0xc0cb167c }); // a real disc's tag
+writeFileSync(isoPath, disc);
 
 // Everything on, as the Chaos preset, but keeping recipe logic so the run is checked.
 const chaos = PRESETS.find((p) => p.name === "Chaos")!;
@@ -45,9 +47,9 @@ const settings = applySettings(defaultSettings("WEB-E2E"), {
 });
 const settingsString = encodeSettings(settings);
 
-// The CLI's output for the same disc and settings: it decrypts the EBOOT in-process too.
-const cliOut = path.join(dir, "cli.iso");
-await runRandomizer({ iso: isoPath, out: cliOut, settings, force: true }, () => {});
+// The same run in Node, over the disc in memory.
+const { segments } = await runRandomizer(memorySource(disc), settings, {}, () => {});
+const fromNode = assemble(segments!, disc);
 
 const types: Record<string, string> = {
   ".html": "text/html",
@@ -108,20 +110,21 @@ try {
   await page.click("#apply-paste");
   assert.match((await page.textContent("#share-status"))!, /Loaded the settings string/);
 
-  // Through every option step to the review.
-  for (const name of [
-    "Logic",
-    "Rewards",
-    "Gathering",
-    "Quests",
-    "Monsters",
-    "Smithy",
-    "Shops",
-    "Review",
-  ]) {
+  // Through every option step to the review, in the order the step menu lists them.
+  const menu = await page.$$eval("#steps .step-label", (labels: Element[]) =>
+    labels.map((l: Element) => l.textContent ?? ""),
+  );
+  const optionSteps = menu.slice(menu.indexOf("Seed & preset") + 1, menu.indexOf("Review"));
+  const seen: string[] = [];
+  while (seen.length < 20) {
     await page.click("#next");
-    assert.equal(await title(), name);
+    const name = (await title())!;
+    if (name === "Review") break;
+    seen.push(name);
   }
+  assert.equal(await title(), "Review", `stuck after ${seen.join(", ")}`);
+  assert.deepEqual(seen, optionSteps, "Next goes through every option step in order");
+  assert.deepEqual(seen.slice(0, 4), ["Logic", "Rewards", "Gathering", "Quests"]);
   assert.equal(
     await page.inputValue("#share"),
     settingsString,
@@ -148,15 +151,14 @@ try {
   await download.saveAs(webOut);
 
   const fromWeb = readFileSync(webOut);
-  const fromCli = readFileSync(cliOut);
-  assert.equal(fromWeb.length, fromCli.length);
-  assert.ok(fromWeb.equals(fromCli), "the web app's ISO is byte for byte the CLI's");
-  assert.ok(!fromWeb.equals(readFileSync(isoPath)));
+  assert.equal(fromWeb.length, fromNode.length);
+  assert.ok(fromWeb.equals(fromNode), "the web app's ISO is byte for byte the Node run's");
+  assert.ok(!fromWeb.equals(disc));
   const spoiler = (await page.textContent("#spoiler"))!;
   assert.match(spoiler, /Settings: RF/);
 
   assert.deepEqual(errors, []);
-  console.log("Web app end to end: the downloaded ISO matches the CLI's byte for byte.");
+  console.log("Web app end to end: the downloaded ISO matches the Node run's byte for byte.");
 } finally {
   await browser.close();
   server.close();

@@ -1,9 +1,5 @@
 import assert from "node:assert/strict";
-import { readFileSync, writeFileSync } from "node:fs";
-import path from "node:path";
 import { test } from "node:test";
-import { settingsFromFlags } from "../src/cli.js";
-import { tempDir } from "./temp.js";
 import {
   OPTIONS,
   actionsOf,
@@ -15,8 +11,6 @@ import {
   describeSettings,
   encodeSettings,
   isActive,
-  needsEboot,
-  parseAssignments,
   settingsFromJson,
   settingsToJson,
   type Action,
@@ -34,17 +28,12 @@ test("every option has a default its own checks accept", () => {
       option.default,
     );
   }
-  // The only default that needs the EBOOT is the almanac's.
-  assert.equal(needsEboot(defaults), true, "the defaults need the EBOOT");
-  assert.equal(needsEboot({ ...defaults, "hints.almanac": false }), false, "only the almanac does");
   for (const preset of PRESETS) applySettings(defaults, preset.changes);
   for (const name of ["Full", "Chaos"]) {
     const preset = PRESETS.find((p) => p.name === name)!;
     assert.equal(preset.changes["armor.enabled"], true, `${name} shuffles armor`);
     assert.equal(preset.changes["gathering.enabled"], true, `${name} shuffles gathering`);
   }
-  assert.equal(OPTIONS.find((o) => o.key === "armor.enabled")!.eboot, true);
-  assert.ok(!OPTIONS.find((o) => o.key === "gathering.enabled")!.eboot);
 });
 
 /** Options no preset turns on until they're tried in game (see the README's status). */
@@ -155,7 +144,6 @@ test("values are checked and converted", () => {
   assert.throws(() => applySettings(d, { "costs.enabled": "maybe" }), /true or false/);
   assert.throws(() => applySettings(d, { "made.up": 1 }), /Unknown setting/);
   assert.throws(() => applySettings(d, { seed: " " }), /seed/);
-  assert.deepEqual(parseAssignments("a=1, b = two"), { a: "1", b: "two" });
 });
 
 test("settings files hold any subset; written files list everything", () => {
@@ -175,38 +163,4 @@ test("describeSettings hides options whose switch is off", () => {
   assert.ok(!lines.some((l) => l.includes("Cost variation")));
   const on = describeSettings(applySettings(defaultSettings("S"), { "costs.enabled": true }));
   assert.ok(on.includes("Costs / Crafting cost variation: ±50%"));
-});
-
-test("CLI flags layer: file < string < --shuffles < shorthand < --set < --seed", () => {
-  const dir = tempDir();
-  const file = path.join(dir, "s.json");
-  writeFileSync(
-    file,
-    JSON.stringify({ seed: "FROMFILE", "costs.enabled": true, "costs.spread": 0.1 }),
-  );
-  assert.equal(settingsFromFlags({ settings: file }).seed, "FROMFILE");
-
-  const string = encodeSettings(
-    applySettings(defaultSettings("FROMSTRING"), { "weapons.enabled": true }),
-  );
-  const s = settingsFromFlags({
-    settings: file,
-    "settings-string": string,
-    shuffles: "weapons,recipes",
-    "cost-spread": "0.2",
-    set: "recipes.maxQuantity=5",
-    seed: "FINAL",
-  });
-  assert.equal(s.seed, "FINAL");
-  assert.equal(s["weapons.enabled"], true);
-  assert.equal(s["recipes.materials"], true);
-  assert.equal(s["questRewards.enabled"], false, "--shuffles turns off what it doesn't list");
-  assert.equal(s["costs.spread"], 0.2);
-  assert.equal(s["recipes.maxQuantity"], 5);
-  assert.throws(() => settingsFromFlags({ shuffles: "everything" }), /Unknown shuffle/);
-  const named = settingsFromFlags({ shuffles: "armor,gathering" });
-  assert.equal(named["armor.enabled"], true);
-  assert.equal(named["gathering.enabled"], true);
-  assert.equal(named["weapons.enabled"], false);
-  assert.ok(readFileSync(file, "utf-8").includes("FROMFILE"));
 });

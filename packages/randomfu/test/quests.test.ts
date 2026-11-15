@@ -24,14 +24,21 @@ import {
   shuffleSupplies,
   type SupplyContext,
 } from "../src/shuffles/supplies.js";
-import { buildFixtureDisc, buildQuestPayload, FIXTURE_QUESTS, tempDir } from "./fixtures.js";
+import {
+  buildFixtureDisc,
+  buildQuestPayload,
+  finish,
+  FIXTURE_QUESTS,
+  patchInMemory,
+  tempDir,
+} from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
 async function load(): Promise<{ game: GameData; close: () => void }> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: null });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -425,14 +432,13 @@ async function writeAndReadBack(pool: string): Promise<void> {
     );
   }
   const out = path.join(tempDir(), "out.iso");
-  writeFileSync(out, buildFixtureDisc());
-  const { openPatchableImage } = await import("../src/disc/node-file.js");
+  const original = buildFixtureDisc();
   const { writeEdits } = await import("../src/write.js");
-  const image = openPatchableImage(out);
+  const image = patchInMemory(original);
   writeEdits(image, game, result.edits);
-  image.close();
+  writeFileSync(out, finish(image, original));
   const { source, iso } = openDiscImage(out);
-  const after = await loadGame(source, iso, { eboot: null });
+  const after = await loadGame(source, iso);
   for (const q of after.quests) {
     const expected = result.edits.questNow(game.quests.find((g) => g.index === q.index)!);
     assert.ok(q.file.payload.equals(expected), `${pool}: quest ${q.parsed.header.questId}`);

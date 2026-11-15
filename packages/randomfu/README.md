@@ -5,6 +5,10 @@ Portable 2nd G**. It reads your own disc image, shuffles game data, and
 writes a new ISO plus a spoiler log. It never ships game data: like other
 randomizers, it only edits a copy of a disc you supply.
 
+This package is the randomizer itself. You use it through the web app,
+`apps/randomfu` ([randomfu.vallode.com](https://randomfu.vallode.com)),
+which runs it in your browser; its README covers how.
+
 Licensed **GPL-3.0-or-later** (see `LICENSE`), because it builds on
 `packages/mhfu-extract`'s readers and ciphers, which are GPL.
 
@@ -21,71 +25,16 @@ against the synthetic disc the tests build (`test/fixtures.ts`). `armor-skills`
 has been written to the EU disc and read back, but not yet played; so have
 quest maps, monster starts, small monster species and the wider quest
 reward pools. A PSP
-with custom firmware isn't tested. Run `roundtrip` on a new disc first.
+with custom firmware isn't tested.
 
-## Usage
+## Running it
 
-### The settings page
-
-```bash
-# from packages/randomfu
-pnpm gui
-```
-
-This starts a small server on your computer and opens a page in your
-browser (or prints its address). On it you can:
-
-- enter the paths to your disc and the output, and check them;
-- set every option, with its explanation, or start from a preset
-  (see [Presets](#presets));
-- copy the **settings string** (seed and settings in one line), load one,
-  or save and load settings files;
-- preview the spoiler log, randomize, watch the log and search the
-  spoiler.
-
-The page remembers your paths and settings in the browser. The server
-only listens on 127.0.0.1, every request needs a token that only the
-page has, and requests naming any other host are refused, so other
-websites can't use it. Keep `pnpm gui` running while you use the page.
-`--port <n>` picks the port; `--no-open` doesn't open a browser.
-
-### The web app
-
-The same randomizer also runs entirely in the browser, as a static web app:
-see `apps/randomfu` (its README covers how it works).
-
-### The command line
-
-```bash
-pnpm roundtrip --iso /path/to/mhp2g.iso
-pnpm randomize --iso /path/to/mhp2g.iso --out /path/to/random.iso --seed MYSEED
-pnpm settings                       # list every setting with its values and help
-pnpm settings --write my.json       # write every setting to a file to edit
-```
-
-- `roundtrip` re-encrypts every quest and both monster overlays without
-  changing them and checks the result matches the disc byte for byte. If it
-  passes, edited files are written the way the game expects to read them.
-  It writes nothing.
-- `randomize` copies the image (`.iso` or `.cso`; the output is always an
-  `.iso`), shuffles, writes the changes in place, reads every changed file
-  back to check it, and writes `random.spoiler.txt` next to the output.
-  - `--dry-run` prints the spoiler log without writing an image.
-  - `--spoiler <path>` writes the log somewhere else.
-  - `--pspdecrypt-bin <name>`: decrypt with this `pspdecrypt` binary instead
-    of in-process (see `mhfu-extract unpack`).
-  - `--force` overwrites an existing output file.
-
-Settings come from these flags, later ones winning:
-
-| Flag                                                          | What it sets                                                                                                                                                                                                               |
-| ------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| `--settings <file.json>`                                      | Any subset of settings, by name (`pnpm settings` lists them)                                                                                                                                                               |
-| `--settings-string <RF…>`                                     | A shared settings string, seed included                                                                                                                                                                                    |
-| `--shuffles <list>`                                           | Exactly these on: quest-rewards, monster-rewards, gathering, recipes, recipe-amounts, costs, weapons, armor, armor-skills, shops, shop-prices, carry-limits, supplies, quest-money, time-limits, deliveries, veggie-trades |
-| `--tiers`, `--amount-spread`, `--cost-spread`, `--weapon-mix` | Shorthand for single settings                                                                                                                                                                                              |
-| `--set key=value,key=value`                                   | Any setting by name                                                                                                                                                                                                        |
-| `--seed <seed>`                                               | The seed; without one, a random seed is chosen                                                                                                                                                                             |
+`src/run.ts` (`runRandomizer`) runs it end to end over a disc image:
+load, shuffle, write the changes, read every changed file back to check
+it, and format the spoiler log. Writes are kept in memory over the image
+(`OverlaySource`, `src/disc/image.ts`), and the result is the finished
+image as ranges of the original plus the changed bytes, so the original is
+never written to. A dry run returns the spoiler log only.
 
 The same disc, seed and settings always give the same output. Each shuffle
 draws from its own random stream, so turning one on or off doesn't change
@@ -94,14 +43,14 @@ what the others do. A settings string records the logic version
 output, and loading a string made with another version warns that the
 game will differ.
 
-### Settings
+## Options
 
 All of them are defined once, in `src/settings.ts` (`OPTIONS`), which the
-CLI, settings files, settings strings and the page all read: a new option
-added there shows up everywhere.
+web app's pages, settings files and settings strings all read: a new
+option added there shows up everywhere.
 
 Each option either **shuffles** or **randomizes** (its `action`, which the
-pages and `pnpm settings` show as a tag):
+web app shows as a tag):
 
 - A shuffle moves what's already in the game to new places: quest rewards,
   carves, gathering points, supply boxes, recipe materials, the smithy's
@@ -274,9 +223,9 @@ slots.
 the median quantity recipes ask for that item. A slot keeps its size
 relative to that, so a slot that wanted 10 Iron Ore (usually 5) and now
 takes a Tigrex Claw (usually 1) asks for 2. Then it's multiplied by a
-random factor within `--amount-spread` and kept between 1 and 99.
+random factor within `recipes.amountSpread` and kept between 1 and 99.
 
-`costs` multiplies each price by a random factor within `--cost-spread`. A
+`costs` multiplies each price by a random factor within `costs.spread`. A
 weapon's upgrade cost is its own price, so it changes too. A decoration's
 price is also its sell price.
 
@@ -285,7 +234,7 @@ rarity, and by default the same type. A place is a weapon's create entry
 and its upgrade entry (the materials to make it by upgrading, and the
 weapons it upgrades into). The place keeps its materials and links, so
 every tree keeps its shape and pacing. The weapon keeps its own stats,
-horn notes, shells, ammo and price. With `--weapon-mix any-type`, a place
+horn notes, shells, ammo and price. With `weapons.mix any-type`, a place
 can take any weapon of the same rarity in the same family (Blademaster or
 Gunner). The game already upgrades across types within a family (Great
 Sword to Long Sword, Lance to Gunlance and more), but never between bows
@@ -422,8 +371,7 @@ also uses two Guild lists), the Guild Hall store (9 stages) and the Point
 Exchange (Armor Spheres, jewels and Pokke Tickets, bought with Pokke
 Points). They're found by their shape, from
 the table holding the general store's list (Herb, Potion, Antidote,
-Whetstone), not by address; `shop-scan` and `shop-lists` are the research
-commands that found them.
+Whetstone), not by address.
 
 - **Stock**: each item a shop sells is replaced by one drawn from the pool
   (`shops.pool`: the shops' own items, items first found in Low or High
@@ -694,8 +642,7 @@ Lay of the Land articles (strings 107-230, 109 pages) into the RandomFU
 Almanac: an intro, then a line per crafting material, A to Z, eight a page,
 spread evenly over the articles and titled by letter like the Bestiary.
 Materials are the items any crafting or upgrade recipe uses, read from the
-EBOOT as the recipe shuffles left it (so the option needs the EBOOT; about
-640 of 796 items). Each material's sources (`src/hints/sources.ts`, shared
+EBOOT as the recipe shuffles left it (about 640 of 796 items). Each material's sources (`src/hints/sources.ts`, shared
 with the Bestiary), each kind in its colour:
 
 - **Shops**: the Village and Guild stores and the Peddler, from
@@ -902,4 +849,5 @@ pnpm typecheck
 
 The tests build a small fake disc (ISO 9660, PARAM.SFO, an encrypted
 DATA.BIN with quests and a reward overlay, an EBOOT with recipes) and run
-the whole pipeline on it, including the CLI.
+the whole pipeline on it, `runRandomizer` included. The web app's
+`pnpm test:e2e` checks the browser build gives the same image.

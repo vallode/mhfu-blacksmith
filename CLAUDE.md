@@ -9,7 +9,8 @@ workspace:
   design tokens and sprites at build time (`build.mjs`).
 - `packages/mhfu-extract`: datamining pipeline from a disc image to `data/`
   and the site's `public/models/`.
-- `packages/randomfu`: the randomizer (library, CLI, local settings page).
+- `packages/randomfu`: the randomizer, a library with no front end of its
+  own; `apps/randomfu` is the only way to run it.
   Its own `CLAUDE.md` covers styling text written into the game.
 - `packages/game-data`: the one way into `data/`. Everything that reads the
   game data does so with its `readData`, and `build-data` writes with its

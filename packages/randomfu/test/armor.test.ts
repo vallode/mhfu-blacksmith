@@ -25,7 +25,7 @@ async function load(): Promise<{ game: GameData; close: () => void }> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -90,7 +90,7 @@ function substitution(before: Buffer, after: Buffer): Map<string, number> {
 
 test("armor: each place gets a piece of the same slot, rarity, hunter type and sex", async () => {
   const { game, close } = await load();
-  const before = game.eboot!;
+  const before = game.eboot;
   const editable = equipIdOffsets(before);
   const moved = new Set<string>();
   for (const seed of ["a", "b", "c", "d", "e", "f", "g", "h"]) {
@@ -189,7 +189,7 @@ test("armor: the smithy's store sells the piece now in each sold piece's places"
   let movedAny = false;
   for (const seed of ["a", "b", "c", "d", "e", "f"]) {
     const result = randomize(game, settingsWith(seed, ["armor"]));
-    const sigma = substitution(game.eboot!, result.edits.eboot());
+    const sigma = substitution(game.eboot, result.edits.eboot());
     const lobby = result.edits.overlay(game.lobbyTask);
     const expected = FIXTURE_STORE_LISTS.armor!.map(([category, id]) => [
       category,

@@ -1,8 +1,10 @@
 /** Messages between the page (app.ts) and the worker (worker.ts). */
+import type { RunOptions } from "randomfu/src/run.js";
 import type { Settings } from "randomfu/src/settings.js";
 
 export type Request =
-  { type: "check"; iso: File } | { type: "run"; iso: File; settings: Settings; dryRun: boolean };
+  | { type: "check"; iso: File }
+  | { type: "run"; iso: File; settings: Settings; options: RunOptions };
 
 /** A piece of the finished image: a range of the user's own file, or new bytes. */
 export type Segment = { start: number; end: number } | { data: Uint8Array };
