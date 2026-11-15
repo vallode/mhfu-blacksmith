@@ -1,11 +1,10 @@
 /**
  * Build-time item lookups for static params and page metadata, read from
- * data/mhfu/items.json. Pages render from public/data/<game>/items.json on the client.
+ * data/<game>/items.json by ID (game-records.ts): names in the page's
+ * language, slugs from the English names. Pages render from public/data/<game>/items.json on the client.
  */
-import type { ItemRecord } from "./items";
-import { DATA_DIR, GAME } from "./paths";
+import { gameRecords } from "./game-records";
 import { slugify } from "./slug";
-import { readData } from "game-data";
 
 export interface ItemSummary {
   id: number;
@@ -19,10 +18,18 @@ let cache: ItemSummary[] | null = null;
 /** Every real item (placeholders left out), by ID. */
 export function getItemSummaries(): ItemSummary[] {
   if (cache) return cache;
-  const { items } = readData<{ items: ItemRecord[] }>(DATA_DIR, GAME, "items.json");
+  const records = gameRecords();
+  const { items } = records.raw<{
+    items: { id: number; placeholder?: boolean; rarity?: number }[];
+  }>("items.json");
   cache = items
     .filter((i) => !i.placeholder)
-    .map((i) => ({ id: i.id, name: i.name, slug: slugify(i.name), rarity: i.rarity }));
+    .map((i) => ({
+      id: i.id,
+      name: records.strings.name("item", i.id),
+      slug: slugify(records.englishStrings.name("item", i.id)),
+      rarity: i.rarity,
+    }));
   return cache;
 }
 

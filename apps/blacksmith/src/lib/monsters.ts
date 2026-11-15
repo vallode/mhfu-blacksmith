@@ -1,13 +1,8 @@
-import fs from "fs";
-import path from "path";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "./constants";
 import { slugify } from "./slug";
 import type { Monster } from "./types";
-import { DATA_DIR, GAME, GAME_DATA_DIR } from "./paths";
 import { cached } from "./data-cache";
-import { readData } from "game-data";
-
-const dataDir = DATA_DIR;
+import { gameRecords } from "./game-records";
 
 export function getMonsterCategories(): MonsterCategory[] {
   return [...MONSTER_CATEGORIES];
@@ -19,15 +14,15 @@ export function getMonsters(category: MonsterCategory): Monster[] {
   return cached(cache, category, () => loadMonsters(category));
 }
 
+/** A category's monsters, named in the page's language; slugs from their English names. */
 function loadMonsters(category: MonsterCategory): Monster[] {
-  const filePath = path.join(GAME_DATA_DIR, "monsters", `${category}.json`);
-  if (!fs.existsSync(filePath)) return [];
-
-  const raw = readData<{ monsters: Monster[] }>(dataDir, GAME, "monsters", `${category}.json`);
-
-  return raw.monsters.map((m) => ({
+  const records = gameRecords();
+  const file = `monsters/${category}.json`;
+  if (!records.has(file)) return [];
+  const english = records.english<{ monsters: Monster[] }>(file).monsters;
+  return records.named<{ monsters: Monster[] }>(file).monsters.map((m, i) => ({
     ...m,
-    slug: slugify(m.name),
+    slug: slugify(english[i]!.name),
   }));
 }
 

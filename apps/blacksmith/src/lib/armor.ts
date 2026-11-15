@@ -1,37 +1,36 @@
-import fs from "fs";
-import path from "path";
 import { ARMOR_SLOTS, ARMOR_RANKS, type ArmorSlot, type ArmorRank } from "./constants";
 import { armorSlugs } from "./slug";
 import type { ArmorPiece } from "./types";
-import { DATA_DIR, GAME, GAME_DATA_DIR } from "./paths";
 import { cached } from "./data-cache";
-import { readData } from "game-data";
+import { gameRecords } from "./game-records";
 
-const dataDir = DATA_DIR;
-
-// data/mhfu/armor/<slot>.json holds every rank in one file; each piece carries
+// data/<game>/armor/<slot>.json holds every rank in one file; each piece carries
 // its own "rank" field.
-const allCache = new Map<ArmorSlot, ArmorPiece[]>();
+const allCache = new Map<ArmorSlot, { pieces: ArmorPiece[]; english: ArmorPiece[] }>();
 const rankCache = new Map<string, ArmorPiece[]>();
 
-function getAllArmorPieces(slot: ArmorSlot): ArmorPiece[] {
+/** A slot's pieces named in the page's language, and the same pieces named in English. */
+function getAllArmorPieces(slot: ArmorSlot): { pieces: ArmorPiece[]; english: ArmorPiece[] } {
   return cached(allCache, slot, () => loadArmorPieces(slot));
 }
 
-function loadArmorPieces(slot: ArmorSlot): ArmorPiece[] {
-  const filePath = path.join(GAME_DATA_DIR, "armor", `${slot}.json`);
-  if (!fs.existsSync(filePath)) return [];
-
-  const raw = readData<{ armor: ArmorPiece[] }>(dataDir, GAME, "armor", `${slot}.json`);
-
-  return raw.armor;
+function loadArmorPieces(slot: ArmorSlot): { pieces: ArmorPiece[]; english: ArmorPiece[] } {
+  const records = gameRecords();
+  const file = `armor/${slot}.json`;
+  if (!records.has(file)) return { pieces: [], english: [] };
+  return {
+    pieces: records.named<{ armor: ArmorPiece[] }>(file).armor,
+    english: records.english<{ armor: ArmorPiece[] }>(file).armor,
+  };
 }
 
 export function getArmorPieces(slot: ArmorSlot, rank: ArmorRank): ArmorPiece[] {
   return cached(rankCache, `${slot}/${rank}`, () => {
-    const pieces = getAllArmorPieces(slot).filter((p) => p.rank === rank);
-    const slugs = armorSlugs(pieces);
-    return pieces.map((p, i) => ({ ...p, slug: slugs[i] }));
+    const { pieces, english } = getAllArmorPieces(slot);
+    const atRank = pieces.flatMap((p, i) => (p.rank === rank ? [i] : []));
+    // Slugs from the English names, whatever the page's language.
+    const slugs = armorSlugs(atRank.map((i) => english[i]!));
+    return atRank.map((i, j) => ({ ...pieces[i]!, slug: slugs[j]! }));
   });
 }
 
@@ -47,7 +46,7 @@ export function getArmorPiece(
 export function getArmorParams(): { slot: ArmorSlot; rank: ArmorRank }[] {
   const params: { slot: ArmorSlot; rank: ArmorRank }[] = [];
   for (const slot of ARMOR_SLOTS) {
-    const pieces = getAllArmorPieces(slot);
+    const { pieces } = getAllArmorPieces(slot);
     for (const rank of ARMOR_RANKS) {
       if (pieces.some((p) => p.rank === rank)) {
         params.push({ slot, rank });
