@@ -6,12 +6,13 @@
  */
 import { formatRank, parseDropSource, type DropSource } from "./monster-drops";
 import { QUEST_HUB_SLUGS, isHiddenQuest, type Quest, type QuestRewardTable } from "./quests";
+import { inSite, type InSitePath } from "./site";
 import { slugify } from "./slug";
 import type { Monster } from "./types";
 
-/** An item's page: /items/<slug>/, the slug from its name. */
-export function itemHref(name: string): string {
-  return `/items/${slugify(name)}/`;
+/** An item's page (an in-site path, site.ts), the slug from its name. */
+export function itemHref(name: string): InSitePath {
+  return inSite.items(slugify(name));
 }
 
 /** One monster drop that gives the item. */

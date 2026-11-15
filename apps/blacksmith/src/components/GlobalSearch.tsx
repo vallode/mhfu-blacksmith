@@ -3,6 +3,8 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import Fuse from "fuse.js";
 import Link from "next/link";
+import { useSite } from "@/context/SiteContext";
+import { searchDataPath } from "@/lib/site";
 import { useRouter } from "next/navigation";
 import Card from "@/components/Card";
 import { cn } from "@/lib/cn";
@@ -75,6 +77,7 @@ function iconSrcFor(item: SearchEntry): string {
 
 export default function GlobalSearch() {
   const router = useRouter();
+  const site = useSite();
   const [isOpen, setIsOpen] = useState(false);
   const [query, setQuery] = useState("");
   const [results, setResults] = useState<{ item: SearchEntry; score?: number }[]>([]);
@@ -82,10 +85,13 @@ export default function GlobalSearch() {
   const fuseRef = useRef<Fuse<SearchEntry> | null>(null);
   const inputRef = useRef<HTMLInputElement>(null);
 
+  // The index of the copy of the site the page is in; another copy loads its own.
+  const indexUrl = searchDataPath(site);
+  const indexUrlRef = useRef<string | null>(null);
   const loadIndex = useCallback(async () => {
-    if (fuseRef.current) return;
+    if (fuseRef.current && indexUrlRef.current === indexUrl) return;
     try {
-      const res = await fetch("/search-data.json");
+      const res = await fetch(indexUrl);
       const data: SearchEntry[] = await res.json();
       fuseRef.current = new Fuse(data, {
         keys: [
@@ -98,10 +104,11 @@ export default function GlobalSearch() {
         minMatchCharLength: 2,
         includeScore: true,
       });
+      indexUrlRef.current = indexUrl;
     } catch (e) {
       console.warn("Failed to load search index", e);
     }
-  }, []);
+  }, [indexUrl]);
 
   const open = useCallback(async () => {
     await loadIndex();

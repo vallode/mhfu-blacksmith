@@ -11,6 +11,14 @@ parsing the files itself. Game facts (weapon types, ranks, quest boards,
 which sections a game has) come from `game-data/games`, through
 `src/lib/constants.ts`.
 
+URLs are `/<lang>/<game>/<section>/<english-slug>/`; the pages are under
+`src/app/[lang]/[game]/`. Build every internal link, metadata path and embed
+URL with `src/lib/site.ts` (`usePaths()` in client components, `pathsOf(params)`
+in pages), never by hand. Links that data carries are in-site paths
+(`inSite`, the part after `/<lang>/<game>`), which a component turns into its
+page's with `paths.at(href)`. The old URLs redirect through `_redirects`
+(`src/lib/redirects.ts`).
+
 Checks (from `apps/blacksmith`): `pnpm lint`, `pnpm typecheck`, `pnpm test`;
 and `pnpm format:check` from the repository root.
 
@@ -150,4 +158,4 @@ compact (900px and 1024px), tablet (768px) and phone (390px) widths.
 For refactors that shouldn't change the look, compare against the previous
 version: screenshots, or `getComputedStyle` of the affected elements. Some
 UI only renders with a hunter save loaded. Drop
-`test/fixtures/MHP2NDG.BIN` onto the upload card on `/hunter/` to load one.
+`test/fixtures/MHP2NDG.BIN` onto the upload card on `/en/mhfu/hunter/` to load one.

@@ -79,9 +79,9 @@ describe("weaponDescription", () => {
   });
 
   test("puts the rarity and type in the author line, linking to the tree", () => {
-    assert.deepEqual(weaponAuthor(weapon), {
+    assert.deepEqual(weaponAuthor({ lang: "en", game: "mhfu" }, weapon), {
       name: "Rarity 9 Sword and Shield",
-      path: "/blacksmith/sword-and-shield/",
+      path: "/en/mhfu/blacksmith/sword-and-shield/",
     });
   });
 });
@@ -95,8 +95,8 @@ describe("embed files", () => {
 
   test("puts a page's oEmbed file under /embed/oembed/", () => {
     assert.equal(
-      oembedPath("/blacksmith/long-sword/grtdemnhalberdraksha/"),
-      "/embed/oembed/blacksmith/long-sword/grtdemnhalberdraksha.json",
+      oembedPath("/en/mhfu/blacksmith/long-sword/grtdemnhalberdraksha/"),
+      "/embed/oembed/en/mhfu/blacksmith/long-sword/grtdemnhalberdraksha.json",
     );
   });
 });

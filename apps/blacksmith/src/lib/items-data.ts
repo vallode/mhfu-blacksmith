@@ -1,6 +1,6 @@
 /**
  * Build-time item lookups for static params and page metadata, read from
- * data/mhfu/items.json. Pages render from public/data/items.json on the client.
+ * data/mhfu/items.json. Pages render from public/data/<game>/items.json on the client.
  */
 import type { ItemRecord } from "./items";
 import { DATA_DIR, GAME } from "./paths";

@@ -1,5 +1,6 @@
 import { WEAPON_TYPES, ARMOR_SLOTS, ARMOR_RANKS, MONSTER_CATEGORIES } from "./constants";
 import { QUEST_HUB_SLUGS } from "./quests";
+import { dataPath, searchDataPath, SECTIONS, sitePaths, type Section, type Site } from "./site";
 
 const RUNTIME_CACHE = "mhfu-offline-v1";
 // Matches the `cacheName: "pages"` runtime-caching rule in next.config.mjs —
@@ -24,16 +25,18 @@ interface Manifest {
  * next.config.mjs) — this button just guarantees the underlying data is there
  * up front so search and any page you do open work offline.
  */
-export async function collectOfflineUrls(): Promise<string[]> {
-  const manifest: Manifest = await fetch("/data/data-manifest.json").then((r) => r.json());
-  const urls = (manifest.files ?? []).map((f) => `/data/${f}`);
+export async function collectOfflineUrls(site: Site): Promise<string[]> {
+  const manifest: Manifest = await fetch(dataPath(site.game, "data-manifest.json")).then((r) =>
+    r.json(),
+  );
+  const urls = (manifest.files ?? []).map((f) => dataPath(site.game, f));
   try {
     const images: string[] = await fetch("/data/image-manifest.json").then((r) => r.json());
     urls.push(...images);
   } catch {
     // image manifest missing; data-only offline is still useful
   }
-  urls.push("/search-data.json");
+  urls.push(searchDataPath(site));
   return urls;
 }
 
@@ -44,26 +47,20 @@ export async function collectOfflineUrls(): Promise<string[]> {
  * cache the real documents instead of relying on the generic offline shell.
  * Detail pages still fall back to src/app/offline at runtime.
  */
-export function collectStaticPageUrls(): string[] {
+export function collectStaticPageUrls(site: Site): string[] {
+  const paths = sitePaths(site);
   const urls = [
-    "/",
-    "/blacksmith/",
-    "/armorsmith/",
-    "/monsters/",
-    "/decorations/",
-    "/quests/",
-    "/items/",
-    "/veggie-elder/",
-    "/wishlist/",
-    "/hunter/",
-    "/options/",
+    paths.home(),
+    ...(Object.keys(SECTIONS) as Section[])
+      .filter((s) => s !== "setBuilder")
+      .map((s) => paths.section(s)),
   ];
-  for (const type of WEAPON_TYPES) urls.push(`/blacksmith/${type}/`);
+  for (const type of WEAPON_TYPES) urls.push(paths.weapons(type));
   for (const slot of ARMOR_SLOTS) {
-    for (const rank of ARMOR_RANKS) urls.push(`/armorsmith/${slot}/${rank}/`);
+    for (const rank of ARMOR_RANKS) urls.push(paths.armor(slot, rank));
   }
-  for (const category of MONSTER_CATEGORIES) urls.push(`/monsters/${category}/`);
-  for (const hub of QUEST_HUB_SLUGS) urls.push(`/quests/${hub}/`);
+  for (const category of MONSTER_CATEGORIES) urls.push(paths.monsters(category));
+  for (const hub of QUEST_HUB_SLUGS) urls.push(paths.quests(hub));
   return urls;
 }
 
@@ -81,6 +78,7 @@ export async function countCached(urls: string[]): Promise<number> {
 const FETCH_TIMEOUT_MS = 15000;
 
 export async function downloadOffline(
+  site: Site,
   urls: string[],
   onProgress: (done: number, total: number) => void,
 ): Promise<number> {
@@ -113,7 +111,7 @@ export async function downloadOffline(
   try {
     const pagesCache = await caches.open(PAGES_CACHE);
     await Promise.all(
-      collectStaticPageUrls().map(async (u) => {
+      collectStaticPageUrls(site).map(async (u) => {
         const controller = new AbortController();
         const timer = setTimeout(() => controller.abort(), FETCH_TIMEOUT_MS);
         try {

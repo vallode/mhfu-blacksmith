@@ -5,7 +5,7 @@
 import assert from "node:assert/strict";
 import { describe, it } from "node:test";
 import { cleanName, MAX_NAME } from "../src/lib/set-codec";
-import { codeFromPath, setSlug, sharePath } from "../src/lib/set-link";
+import { codeFromPath, setSlug, shareLinkOf, sharePath } from "../src/lib/set-link";
 
 describe("setSlug", () => {
   it("lowercases and joins words with dashes", () => {
@@ -39,41 +39,48 @@ describe("setSlug", () => {
 
 describe("sharePath", () => {
   it("ends with the name's slug", () => {
-    assert.equal(sharePath("AQID", "Rathalos Gunner"), "/sets/AQID/rathalos-gunner/");
+    assert.equal(sharePath("en", "AQID", "Rathalos Gunner"), "/en/sets/AQID/rathalos-gunner/");
   });
 
   it("slugs the name as a code carries it", () => {
     const long = "Rathalos Soul Gunner for Rajang and Kushala Daora hunts";
     assert.ok(long.length > MAX_NAME);
     const carried = cleanName(long);
-    assert.equal(sharePath("AQID", long), sharePath("AQID", carried));
-    assert.equal(sharePath("AQID", long), `/sets/AQID/${setSlug(carried)}/`);
-    assert.equal(sharePath("AQID", "  Line one\nline two "), "/sets/AQID/line-one-line-two/");
+    assert.equal(sharePath("en", "AQID", long), sharePath("en", "AQID", carried));
+    assert.equal(sharePath("en", "AQID", long), `/en/sets/AQID/${setSlug(carried)}/`);
+    assert.equal(
+      sharePath("en", "AQID", "  Line one\nline two "),
+      "/en/sets/AQID/line-one-line-two/",
+    );
   });
 
   it("has no slug without a name, or one with nothing to show", () => {
-    assert.equal(sharePath("AQID"), "/sets/AQID/");
-    assert.equal(sharePath("AQID", null), "/sets/AQID/");
-    assert.equal(sharePath("AQID", "麒麟"), "/sets/AQID/");
+    assert.equal(sharePath("en", "AQID"), "/en/sets/AQID/");
+    assert.equal(sharePath("en", "AQID", null), "/en/sets/AQID/");
+    assert.equal(sharePath("en", "AQID", "麒麟"), "/en/sets/AQID/");
   });
 });
 
 describe("codeFromPath", () => {
   it("reads the code with or without a slug or trailing slash", () => {
     for (const path of [
-      "/sets/AQ-_z9/",
-      "/sets/AQ-_z9",
-      "/sets/AQ-_z9/rathalos-gunner/",
-      "/sets/AQ-_z9/rathalos-gunner",
-      "/sets/AQ-_z9/%E9%BA%92%E9%BA%9F/",
+      "/en/sets/AQ-_z9/",
+      "/en/sets/AQ-_z9",
+      "/en/sets/AQ-_z9/rathalos-gunner/",
+      "/en/sets/AQ-_z9/rathalos-gunner",
+      "/en/sets/AQ-_z9/%E9%BA%92%E9%BA%9F/",
     ]) {
       assert.equal(codeFromPath(path), "AQ-_z9", path);
     }
   });
 
+  it("reads the language", () => {
+    assert.deepEqual(shareLinkOf("/en/sets/AQID/x/"), { lang: "en", code: "AQID" });
+  });
+
   it("reads back what sharePath writes", () => {
-    assert.equal(codeFromPath(sharePath("AQID", "Kirin's Set")), "AQID");
-    assert.equal(codeFromPath(sharePath("AQID")), "AQID");
+    assert.equal(codeFromPath(sharePath("en", "AQID", "Kirin's Set")), "AQID");
+    assert.equal(codeFromPath(sharePath("en", "AQID")), "AQID");
   });
 
   it("is null for anything else", () => {
@@ -82,7 +89,7 @@ describe("codeFromPath", () => {
       "/sets",
       "/set-builder/",
       "/sets/AQ=D/",
-      "/sets/AQID/name/more/",
+      "/en/sets/AQID/name/more/",
       "/x/sets/AQID/",
     ]) {
       assert.equal(codeFromPath(path), null, path);

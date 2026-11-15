@@ -2,23 +2,24 @@
 
 import { Fragment, useCallback, useEffect, useState, useSyncExternalStore } from "react";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { useInSitePathname, usePaths } from "@/context/SiteContext";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
-import { useSectionHref, type MenuSection } from "@/app/MenuLink";
+import { useSectionHref, type MenuSection } from "@/app/[lang]/[game]/MenuLink";
 import { cn } from "@/lib/cn";
 import { SITE_GAME } from "@/lib/constants";
+import { inSite, type Section } from "@/lib/site";
 import type { GameSections } from "game-data/games";
 
 interface NavItem {
   label: string;
   /** Icon sprite, from /images/<icon>.png. */
   icon: string;
-  /** Pages under this path light the entry up. */
+  /** Pages under this in-site path (site.ts) light the entry up. */
   match: string;
-  /** Plain link; entries with a `section` open the page last viewed there. */
-  href?: string;
+  /** Plain link to a section's page; entries with a `section` open the page last viewed there. */
+  page?: Section;
   section?: MenuSection;
   /** Shown in the phone tab bar (the rest are in its menu drawer). */
   tab?: boolean;
@@ -34,7 +35,7 @@ const ALL_NAV_GROUPS: NavItem[][] = [
     {
       label: "Weapons",
       icon: "great-sword",
-      match: "/blacksmith/",
+      match: inSite.section("weapons"),
       section: "weapons",
       needs: "blacksmith",
       tab: true,
@@ -43,7 +44,7 @@ const ALL_NAV_GROUPS: NavItem[][] = [
     {
       label: "Armor",
       icon: "helmet",
-      match: "/armorsmith/",
+      match: inSite.section("armor"),
       section: "armor",
       needs: "armorsmith",
       tab: true,
@@ -52,7 +53,7 @@ const ALL_NAV_GROUPS: NavItem[][] = [
     {
       label: "Monsters",
       icon: "claw",
-      match: "/monsters/",
+      match: inSite.section("monsters"),
       section: "monsters",
       tab: true,
       needs: "monsters",
@@ -60,24 +61,30 @@ const ALL_NAV_GROUPS: NavItem[][] = [
     {
       label: "Decorations",
       icon: "decoration",
-      match: "/decorations/",
-      href: "/decorations/",
+      match: inSite.section("decorations"),
+      page: "decorations",
       needs: "decorations",
     },
     {
       label: "Quests",
       icon: "ticket",
-      match: "/quests/",
+      match: inSite.section("quests"),
       section: "quests",
       tab: true,
       needs: "quests",
     },
-    { label: "Items", icon: "fluid", match: "/items/", href: "/items/", needs: "items" },
+    {
+      label: "Items",
+      icon: "fluid",
+      match: inSite.section("items"),
+      page: "items",
+      needs: "items",
+    },
     {
       label: "Veggie Elder",
       icon: "mushroom",
-      match: "/veggie-elder/",
-      href: "/veggie-elder/",
+      match: inSite.section("veggieElder"),
+      page: "veggieElder",
       needs: "veggieElder",
     },
   ],
@@ -85,13 +92,25 @@ const ALL_NAV_GROUPS: NavItem[][] = [
     {
       label: "Sets",
       icon: "plate",
-      match: "/set-builder/",
-      href: "/set-builder/",
+      match: inSite.section("setBuilder"),
+      page: "setBuilder",
       needs: "setBuilder",
     },
-    { label: "Wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/", needs: "wishlist" },
-    { label: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/", needs: "hunterImport" },
-    { label: "Options", icon: "part", match: "/options/", href: "/options/" },
+    {
+      label: "Wishlist",
+      icon: "sac",
+      match: inSite.section("wishlist"),
+      page: "wishlist",
+      needs: "wishlist",
+    },
+    {
+      label: "Hunter",
+      icon: "coin",
+      match: inSite.section("hunter"),
+      page: "hunter",
+      needs: "hunterImport",
+    },
+    { label: "Options", icon: "part", match: inSite.section("options"), page: "options" },
   ],
 ];
 /** The entries the game has sections for. */
@@ -120,13 +139,14 @@ function useCompact(): boolean {
 
 /** Where each entry goes: its own href, or the last page viewed in its section. */
 function useNavHrefs(pathname: string): (item: NavItem) => string {
+  const paths = usePaths();
   const sections: Record<MenuSection, string> = {
     weapons: useSectionHref("weapons", pathname),
     armor: useSectionHref("armor", pathname),
     monsters: useSectionHref("monsters", pathname),
     quests: useSectionHref("quests", pathname),
   };
-  return (item) => item.href ?? sections[item.section!];
+  return (item) => (item.page ? paths.section(item.page) : sections[item.section!]);
 }
 
 // A sidebar entry, like a row in the trees and lists: plain white text with
@@ -163,6 +183,7 @@ function SidebarContents({
   onToggle?: () => void;
   onSearch?: () => void;
 }) {
+  const paths = usePaths();
   // Rail classes, by width: wide screens follow the saved preference, compact
   // ones are a rail unless opened. (Phones show the drawer, never a rail.)
   // Both classes are spelled out at each use so Tailwind finds them.
@@ -171,7 +192,7 @@ function SidebarContents({
   return (
     <>
       <Link
-        href="/"
+        href={paths.home()}
         aria-label="Home"
         className={cn("mx-6 mt-2 mb-4 block flex-none", rail("wide:hidden", "compact:hidden"))}
       >
@@ -336,7 +357,8 @@ function TabBar({
  * Menu tab slides the full list in as a drawer.
  */
 export default function AppShell({ children }: { children: React.ReactNode }) {
-  const pathname = usePathname();
+  // In-site (site.ts): "/" is this copy's home, and entries match by section.
+  const pathname = useInSitePathname();
   const hrefFor = useNavHrefs(pathname);
 
   const [collapsed, setCollapsed] = useState(false);

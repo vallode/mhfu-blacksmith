@@ -6,6 +6,7 @@
  */
 import type { ArmorRank, ArmorSlot, WeaponType } from "./constants";
 import { weaponHref } from "./equipment-ref";
+import { inSite, type InSitePath } from "./site";
 import { normalizeItemName } from "./items";
 import { farmPlaceLabel, type ItemPlaces } from "./item-places";
 import { itemHref, type ItemSources } from "./item-sources";
@@ -61,10 +62,11 @@ export function entryKey(ref: GearRef): string {
     : `armor/${ref.slot}/${ref.rank}/${ref.slug}`;
 }
 
-export function entryHref(ref: GearRef): string {
+/** An entry's page, an in-site path (site.ts). */
+export function entryHref(ref: GearRef): InSitePath {
   return ref.kind === "weapon"
     ? weaponHref(ref.type, ref.slug)
-    : `/armorsmith/${ref.slot}/${ref.rank}/${ref.slug}/`;
+    : inSite.armor(ref.slot, ref.rank, ref.slug);
 }
 
 // ---------------------------------------------------------------------------

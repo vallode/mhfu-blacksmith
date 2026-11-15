@@ -1,6 +1,6 @@
 /**
  * The Veggie Elder's trades (data/mhfu/veggie-trades.json): the compact
- * public/data/veggie-trades.json bundle generate-data writes (item IDs), and
+ * public/data/<game>/veggie-trades.json bundle generate-data writes (item IDs), and
  * an index of the trades that give each item and the ones that take it.
  * Pure, so the item pages build it on the client and the tests build it
  * from data/.
@@ -18,7 +18,7 @@ export interface VeggieTradesFile {
 }
 
 /**
- * public/data/veggie-trades.json: each row is [row, give, common, rare], the
+ * public/data/<game>/veggie-trades.json: each row is [row, give, common, rare], the
  * row's place in the Elder's list (1-based) and its item IDs. The place is
  * the disc's, so a row left out for an unknown item doesn't renumber the rest.
  */

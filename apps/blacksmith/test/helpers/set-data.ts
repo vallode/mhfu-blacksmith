@@ -10,8 +10,9 @@ import path from "node:path";
 import type { DecorationBundle, EquipmentIds } from "../../src/lib/schema";
 import type { SearchData } from "../../src/lib/set-search";
 import { readSetSearchData } from "../../scripts/lib/set-data";
+import { dataPath, DEFAULT_GAME } from "../../src/lib/site";
 
-const outDir = path.join(process.cwd(), "public", "data");
+const outDir = path.join(process.cwd(), "public", dataPath(DEFAULT_GAME, ""));
 function ensureBundles() {
   const decos = path.join(outDir, "decorations.json");
   const fresh =

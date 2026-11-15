@@ -8,6 +8,10 @@ import {
   countCached,
   downloadOffline,
 } from "@/lib/offline-cache";
+import { siteOfPath } from "@/lib/site";
+
+/** The copy of the site the page is in: whose data an offline download fetches. */
+const currentSite = () => siteOfPath(window.location.pathname);
 
 export type OfflineDownloadStatus =
   "unsupported" | "checking" | "idle" | "downloading" | "complete" | "error";
@@ -66,7 +70,7 @@ export function OfflineProvider({ children }: { children: React.ReactNode }) {
     }
     setState((s) => ({ ...s, status: "checking" }));
     try {
-      const urls = await collectOfflineUrls();
+      const urls = await collectOfflineUrls(currentSite());
       const total = urls.length;
       const cached = await countCached(urls);
       if (!mounted.current) return;
@@ -80,9 +84,10 @@ export function OfflineProvider({ children }: { children: React.ReactNode }) {
   const download = useCallback(async () => {
     setState((s) => ({ ...s, status: "downloading", progress: 0 }));
     try {
-      const urls = await collectOfflineUrls();
+      const site = currentSite();
+      const urls = await collectOfflineUrls(site);
       const total = urls.length;
-      const cached = await downloadOffline(urls, (done, jobTotal) => {
+      const cached = await downloadOffline(site, urls, (done, jobTotal) => {
         if (!mounted.current) return;
         setState((s) => ({
           ...s,

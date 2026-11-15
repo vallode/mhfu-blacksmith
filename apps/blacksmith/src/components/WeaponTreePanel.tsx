@@ -6,6 +6,7 @@
  * selector: rows that don't match the filter are dimmed in place, so the
  * tree's lines and indentation never move.
  */
+import { inSite } from "@/lib/site";
 import { useState } from "react";
 import Card from "./Card";
 import CardBox from "./CardBox";
@@ -28,7 +29,7 @@ interface Props {
 
 export default function WeaponTreePanel({ type, tree, activeSlug }: Props) {
   const progress = useHunterProgress();
-  const basePath = `/blacksmith/${type}/`;
+  const basePath = inSite.weapons(type);
   const treeKey = `weapon-${type}`;
   // Read on mount: nothing renders from it until a hunter is loaded, which
   // is never the case on the first (hydrating) render.

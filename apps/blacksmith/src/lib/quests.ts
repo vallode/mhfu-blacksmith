@@ -6,6 +6,7 @@
 
 import { SITE_GAME } from "./constants";
 import { CROWN_ORDER, type Crown } from "./crowns";
+import { inSite, type InSitePath } from "./site";
 
 /** Each quest board's name, by slug. */
 const QUEST_HUB_LABELS = {
@@ -81,7 +82,7 @@ export function questTypesIn(quests: Pick<Quest, "type">[]): QuestType[] {
 }
 
 // ---------------------------------------------------------------------------
-// Bundle (public/data/quests.json)
+// Bundle (public/data/<game>/quests.json)
 // ---------------------------------------------------------------------------
 
 /** Reward table kinds, as in data/schemas/quest.schema.json. */
@@ -273,7 +274,7 @@ export function decodeQuests(b: QuestsBundle): Quest[] {
   const str = (i: number | null) => (i === null ? null : (b.strings[i] ?? null));
   const monsters: QuestMonster[] = b.monsters.map(([name, category, slug]) => ({
     name,
-    href: category && slug ? `/monsters/${category}/${slug}/` : null,
+    href: category && slug ? inSite.monsters(category, slug) : null,
   }));
   const tables: QuestRewardTable[] = b.tables.map(([kind, draws, condition, items]) => ({
     kind: REWARD_KINDS[kind] ?? "conditional",
@@ -465,8 +466,9 @@ export function clearedQuestIds(
   return save?.clearedQuests ? new Set(save.clearedQuests) : null;
 }
 
-export function questHref(q: Pick<Quest, "hub" | "id">): string {
-  return `/quests/${q.hub}/${q.id}/`;
+/** A quest's page, an in-site path (site.ts). */
+export function questHref(q: Pick<Quest, "hub" | "id">): InSitePath {
+  return inSite.quests(q.hub, q.id);
 }
 
 /**

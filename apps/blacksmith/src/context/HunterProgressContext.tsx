@@ -6,6 +6,7 @@
  * site wiring props through. Inactive (and fetches nothing) until a save
  * with an equipment box is loaded.
  */
+import { inSite } from "@/lib/site";
 import { createContext, useCallback, useContext, useEffect, useMemo, useState } from "react";
 import { useSave } from "@/context/SaveContext";
 import { usePreferences } from "@/context/PreferencesContext";
@@ -39,7 +40,8 @@ function decorationBySlug(bundle: DecorationBundle, slug: string): CompactDecora
   return bySlug.get(slug);
 }
 
-const DECORATION_PATH = "/decorations/";
+/** Decoration pages' in-site path (site.ts); owned hrefs are in-site paths too. */
+const DECORATION_PATH = inSite.decorations();
 
 interface HunterProgressValue {
   /** A save with an equipment box is loaded and its IDs are resolved. */

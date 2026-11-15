@@ -1,3 +1,4 @@
+import { usePaths } from "@/context/SiteContext";
 import Link from "next/link";
 import {
   QUEST_HUBS,
@@ -11,9 +12,10 @@ import {
 const SHOWN = 3;
 
 function QuestLink({ quest }: { quest: Quest }) {
+  const paths = usePaths();
   return (
     <Link
-      href={questHref(quest)}
+      href={paths.at(questHref(quest))}
       className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
     >
       {quest.title}

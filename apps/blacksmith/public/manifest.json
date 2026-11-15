@@ -1,8 +1,8 @@
 {
   "name": "MHFU Blacksmith",
   "short_name": "MHFU Blacksmith",
-  "description": "Monster Hunter Freedom Unite — weapons, armor, decorations, monsters",
-  "start_url": "/",
+  "description": "Monster Hunter Freedom Unite \u2014 weapons, armor, decorations, monsters",
+  "start_url": "/en/mhfu/",
   "scope": "/",
   "display": "standalone",
   "background_color": "#6e905f",

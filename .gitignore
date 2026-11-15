@@ -11,6 +11,7 @@ apps/blacksmith/content/**/*.md
 /apps/blacksmith/public/data
 /apps/blacksmith/public/search-data.json
 /apps/blacksmith/public/embed
+/apps/blacksmith/public/_redirects
 /apps/blacksmith/public/sw.js
 /apps/blacksmith/public/workbox-*.js
 /apps/blacksmith/public/swe-worker-*.js

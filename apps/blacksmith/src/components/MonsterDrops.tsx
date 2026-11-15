@@ -1,3 +1,4 @@
+import { usePaths } from "@/context/SiteContext";
 import Link from "next/link";
 import Icon from "@/components/Icon";
 import { cn } from "@/lib/cn";
@@ -91,11 +92,12 @@ export function DropList({ title, count, note, items }: DropListProps) {
 }
 
 function DropRow({ drop, showQuantity }: { drop: LinkedDrop; showQuantity: boolean }) {
+  const paths = usePaths();
   return (
     <li className="flex items-center gap-[0.8rem] leading-none text-white">
       <Icon type={drop.type || "ukwn"} color={drop.color} />
       {drop.href ? (
-        <Link href={drop.href} className={cn(dropName, itemLink)}>
+        <Link href={paths.at(drop.href)} className={cn(dropName, itemLink)}>
           {drop.name}
         </Link>
       ) : (

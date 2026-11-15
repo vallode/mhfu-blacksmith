@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaths } from "@/context/SiteContext";
 import Link from "next/link";
 import Icon from "./Icon";
 import { itemLink } from "./MonsterDrops";
@@ -28,6 +29,7 @@ const amountClass = "flex-none text-right whitespace-pre";
  * (owned = item box + pouch) and the owned count turns red when it's short.
  */
 export default function MaterialRow({ material }: MaterialRowProps) {
+  const paths = usePaths();
   const ownedOf = useOwnedMaterials();
   const owned = ownedOf(material.name);
   const required = Number(material.amount);
@@ -36,7 +38,7 @@ export default function MaterialRow({ material }: MaterialRowProps) {
     return (
       <div className="flex items-center">
         <Icon type={material.type} color={material.color} />
-        <Link href={itemHref(material.name)} className={cn(nameClass, itemLink)}>
+        <Link href={paths.at(itemHref(material.name))} className={cn(nameClass, itemLink)}>
           {material.name}
         </Link>
         <p className={amountClass}>:{pad(material.amount)}</p>
@@ -50,7 +52,7 @@ export default function MaterialRow({ material }: MaterialRowProps) {
   return (
     <div className="flex items-center" title={`You have ${shown} in your item box and pouch`}>
       <Icon type={material.type} color={material.color} />
-      <Link href={itemHref(material.name)} className={cn(nameClass, itemLink)}>
+      <Link href={paths.at(itemHref(material.name))} className={cn(nameClass, itemLink)}>
         {material.name}
       </Link>
       <p className={amountClass}>

@@ -3,22 +3,24 @@
  * from out/ as assets; only the set builder and share links run this script
  * first (`run_worker_first`), so every other request stays a static one.
  *
- * It serves share links (`/sets/<code>/<slug>/`, src/lib/set-link.ts) the set
- * builder's page, and gives them, and the older `/set-builder/?s=<code>`,
- * their own link embeds. The page is one static file for every set, so this
+ * It serves share links (`/<lang>/sets/<code>/<slug>/`, src/lib/set-link.ts)
+ * the set builder's page of the code's game, and gives them, and the older
+ * `/<lang>/<game>/set-builder/?s=<code>`, their own link embeds. The page is one static file for every set, so this
  * decodes the code and rewrites the page's meta tags (src/lib/set-embed.ts):
  * the set's name (or its skills) as the title, its skill points as the
  * description, and its card as the image. It also serves:
  *
- * - `/set-builder/card.png?s=<code>&v=<version>`: the card, drawn with
+ * - `/<lang>/<game>/set-builder/card.png?s=<code>&v=<version>`: the card, drawn with
  *   satori and resvg (src/lib/set-card.ts), and kept in Cloudflare's cache.
  *   `v` is the data and card version, so a new version gets a new image.
- * - `/set-builder/oembed.json?s=<code>`: the set's oEmbed file, which gives
+ * - `/<lang>/<game>/set-builder/oembed.json?s=<code>`: the set's oEmbed file, which gives
  *   Discord the line above the title ("G-Rank Blademaster Set"), like the
  *   detail pages' static ones.
  *
  * Anything else, or a code that doesn't open, gets the page as it is. Which
- * of these a request gets is decided in routes.ts.
+ * of these a request gets is decided in routes.ts. The URLs from before
+ * languages and games (`/sets/…`, `/set-builder/…`) never reach this script:
+ * the static assets' `_redirects` sends them here (scripts/generate-redirects.ts).
  */
 import { initWasm as initResvg, Resvg } from "@resvg/resvg-wasm";
 import resvgWasm from "@resvg/resvg-wasm/index_bg.wasm";
@@ -37,14 +39,9 @@ import {
 } from "../lib/set-card";
 import { SHARE_PARAM } from "../lib/set-codec";
 import { sharePath } from "../lib/set-link";
-import {
-  buildSetEmbed,
-  SET_EMBED_DATA_PATH,
-  setReader,
-  type SetEmbed,
-  type SetEmbedData,
-} from "../lib/set-embed";
-import { builderPage, CARD_PATH, OEMBED_PATH, route } from "./routes";
+import { buildSetEmbed, setReader, type SetEmbed, type SetEmbedData } from "../lib/set-embed";
+import { setEmbedDataPath, sitePaths, type Site } from "../lib/site";
+import { builderPage, cardPath, oembedFilePath, route } from "./routes";
 import type { ReactNode } from "react";
 import type { BuildSet } from "../lib/set-build";
 import type { SkillTreeData } from "../lib/set-search";
@@ -91,21 +88,30 @@ async function asset(env: Env, origin: string, path: string): Promise<Response> 
   return res;
 }
 
-const loadEmbedData = once(async (env: Env, origin: string) => {
-  const data = (await (await asset(env, origin, SET_EMBED_DATA_PATH)).json()) as SetEmbedData;
-  return {
-    read: setReader(data),
-    version: `${data.version}.${SET_CARD_VERSION}`,
-    trees: data.trees,
-  };
-});
+/** Each game's embed data (setEmbedDataPath), loaded once per isolate. */
+const embedDataLoaders = new Map<string, ReturnType<typeof embedDataLoader>>();
+const embedDataLoader = (game: Site["game"]) =>
+  once(async (env: Env, origin: string) => {
+    const data = (await (await asset(env, origin, setEmbedDataPath(game))).json()) as SetEmbedData;
+    return {
+      read: setReader(data),
+      version: `${data.version}.${SET_CARD_VERSION}`,
+      trees: data.trees,
+    };
+  });
+function loadEmbedData(env: Env, origin: string, site: Site) {
+  let load = embedDataLoaders.get(site.game);
+  if (!load) embedDataLoaders.set(site.game, (load = embedDataLoader(site.game)));
+  return load(env, origin);
+}
 
 /**
- * A share code's set, or null when the code doesn't open. Throws when the set
- * data can't be loaded, which is worth a retry (unavailable), not a 404.
+ * A share code's set, or null when the code doesn't open (or is another
+ * game's). Throws when the set data can't be loaded, which is worth a retry
+ * (unavailable), not a 404.
  */
-async function readCode(env: Env, origin: string, code: string) {
-  const { read, version, trees } = await loadEmbedData(env, origin);
+async function readCode(env: Env, origin: string, site: Site, code: string) {
+  const { read, version, trees } = await loadEmbedData(env, origin, site);
   const shared = read(code);
   return shared && { ...shared, version, trees };
 }
@@ -158,8 +164,8 @@ async function drawCard(
   return new Resvg(svg).render().asPng();
 }
 
-const cardUrl = (origin: string, code: string, version: string) => {
-  const url = new URL(CARD_PATH, origin);
+const cardUrl = (origin: string, site: Site, code: string, version: string) => {
+  const url = new URL(cardPath(site), origin);
   url.searchParams.set(SHARE_PARAM, code);
   url.searchParams.set("v", version);
   return url;
@@ -175,16 +181,17 @@ async function cardResponse(
   env: Env,
   ctx: ExecutionContext,
   url: URL,
+  site: Site,
   code: string,
 ): Promise<Response> {
   let r;
   try {
-    r = await readCode(env, url.origin, code);
+    r = await readCode(env, url.origin, site, code);
   } catch (e) {
     return unavailable("the set data", e);
   }
   if (!r) return new Response("Not found", { status: 404 });
-  const key = new Request(cardUrl(url.origin, r.canonical, r.version));
+  const key = new Request(cardUrl(url.origin, site, r.canonical, r.version));
 
   const cache = caches.default;
   let res = await cache.match(key);
@@ -213,21 +220,21 @@ async function cardResponse(
 const escapeHtml = (s: string) =>
   s.replace(/&/g, "&amp;").replace(/"/g, "&quot;").replace(/</g, "&lt;").replace(/>/g, "&gt;");
 
-const oembedUrl = (origin: string, code: string) => {
-  const url = new URL(OEMBED_PATH, origin);
+const oembedUrl = (origin: string, site: Site, code: string) => {
+  const url = new URL(oembedFilePath(site), origin);
   url.searchParams.set(SHARE_PARAM, code);
   return url.href;
 };
 
 /** The set's oEmbed file, the same shape as the detail pages' (seo.ts oembedJson). */
-function oembedResponse(embed: SetEmbed, origin: string): Response {
+function oembedResponse(embed: SetEmbed, origin: string, site: Site): Response {
   const body = {
     version: "1.0",
     type: "link",
     provider_name: SITE_NAME,
     provider_url: `${origin}/`,
     author_name: embed.author,
-    author_url: `${origin}/set-builder/`,
+    author_url: new URL(sitePaths(site).setBuilder(), origin).href,
   };
   return Response.json(body, {
     headers: { "Cache-Control": "public, max-age=3600" },
@@ -239,12 +246,13 @@ function rewritePage(
   page: Response,
   embed: SetEmbed,
   url: URL,
+  site: Site,
   code: string,
   shared: { canonical: string; version: string; name?: string },
 ): Response {
-  const shareUrl = new URL(sharePath(code, shared.name), url.origin);
+  const shareUrl = new URL(sharePath(site.lang, code, shared.name), url.origin);
   // The card doesn't show the name, so every name for a set shares one image URL.
-  const image = cardUrl(url.origin, shared.canonical, shared.version).href;
+  const image = cardUrl(url.origin, site, shared.canonical, shared.version).href;
   const content: Record<string, string> = {
     'meta[name="description"]': embed.description,
     'meta[name="theme-color"]': embed.color,
@@ -273,7 +281,7 @@ function rewritePage(
           [
             tag(
               "link",
-              `rel="alternate" type="application/json+oembed" href="${escapeHtml(oembedUrl(url.origin, code))}"`,
+              `rel="alternate" type="application/json+oembed" href="${escapeHtml(oembedUrl(url.origin, site, code))}"`,
             ),
             tag("meta", `property="og:image:alt" content="${escapeHtml(embed.details)}"`),
             tag("meta", `name="twitter:image:alt" content="${escapeHtml(embed.details)}"`),
@@ -300,26 +308,28 @@ const worker = {
     const url = new URL(request.url);
     const target = route(url, request.method);
     if (target.kind === "asset") return env.ASSETS.fetch(request);
-    const { code } = target;
+    const { code, site } = target;
 
-    if (target.kind === "card") return cardResponse(env, ctx, url, code);
+    if (target.kind === "card") return cardResponse(env, ctx, url, site, code);
 
     if (target.kind === "oembed") {
       let r;
       try {
-        r = await readCode(env, url.origin, code);
+        r = await readCode(env, url.origin, site, code);
       } catch (e) {
         return unavailable("the set data", e);
       }
       const embed = r && buildSetEmbed(r.set, r.trees, r.name);
-      return embed ? oembedResponse(embed, url.origin) : new Response("Not found", { status: 404 });
+      return embed
+        ? oembedResponse(embed, url.origin, site)
+        : new Response("Not found", { status: 404 });
     }
 
-    const page = await env.ASSETS.fetch(target.shareLink ? builderPage(request) : request);
+    const page = await env.ASSETS.fetch(target.shareLink ? builderPage(request, site) : request);
     if (!page.ok || !page.headers.get("Content-Type")?.startsWith("text/html")) return page;
     let r;
     try {
-      r = await readCode(env, url.origin, code);
+      r = await readCode(env, url.origin, site, code);
     } catch (e) {
       // The page still opens the set; it just goes out with the generic
       // embed, uncached, so the next fetch tries again.
@@ -329,7 +339,7 @@ const worker = {
       return new Response(page.body, { status: page.status, headers });
     }
     const embed = r && buildSetEmbed(r.set, r.trees, r.name);
-    return r && embed ? rewritePage(page, embed, url, code, r) : page;
+    return r && embed ? rewritePage(page, embed, url, site, code, r) : page;
   },
 };
 

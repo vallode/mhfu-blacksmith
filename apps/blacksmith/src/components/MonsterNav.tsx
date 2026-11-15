@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaths } from "@/context/SiteContext";
 import { useEffect } from "react";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 import { writeLastMonster } from "@/lib/last-monster";
@@ -12,6 +13,7 @@ interface MonsterNavProps {
 
 /** The bestiary's PageBar: one tab per monster type. */
 export default function MonsterNav({ activeCategory }: MonsterNavProps) {
+  const paths = usePaths();
   // Remember the monster type so the main menu's "Monsters" entry reopens it.
   useEffect(() => {
     if (activeCategory) writeLastMonster(activeCategory);
@@ -25,7 +27,7 @@ export default function MonsterNav({ activeCategory }: MonsterNavProps) {
           {MONSTER_CATEGORIES.map((category) => (
             <PageTab
               key={category}
-              href={`/monsters/${category}/`}
+              href={paths.monsters(category)}
               label={titleCase(category)}
               icon={category}
               monster

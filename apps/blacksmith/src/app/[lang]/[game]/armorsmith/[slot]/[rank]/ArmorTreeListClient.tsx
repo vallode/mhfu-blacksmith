@@ -1,0 +1,31 @@
+"use client";
+
+import { inSite } from "@/lib/site";
+import { NoDataCard } from "@/components/DetailPanel";
+import { useVisibleTree } from "@/hooks/useVisibleTree";
+import type { ArmorSlot, ArmorRank } from "@/lib/constants";
+import { useArmorTree } from "@/lib/client-data";
+
+interface Props {
+  slot: ArmorSlot;
+  rank: ArmorRank;
+}
+
+/**
+ * /armorsmith/<slot>/<rank>/: the tree is down the left in the armorsmith
+ * layout (ArmorShell); with no piece selected, the detail card is empty.
+ */
+export default function ArmorTreeListClient({ slot, rank }: Props) {
+  const { tree } = useArmorTree(slot, rank);
+  const visibleTree = useVisibleTree(tree, slot, inSite.armor(slot, rank));
+  // Everything on this page is out of reach at the chosen quest progress.
+  const allHidden = !!tree?.length && visibleTree?.length === 0;
+
+  return (
+    <NoDataCard>
+      {allHidden && (
+        <p className="whitespace-normal">Nothing here is within your quest progress yet.</p>
+      )}
+    </NoDataCard>
+  );
+}

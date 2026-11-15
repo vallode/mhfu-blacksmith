@@ -1,29 +1,30 @@
 "use client";
 
-import WeaponTreeListClient from "@/app/blacksmith/[type]/WeaponTreeListClient";
-import WeaponDetailClient from "@/app/blacksmith/[type]/[slug]/WeaponDetailClient";
-import ArmorTreeListClient from "@/app/armorsmith/[slot]/[rank]/ArmorTreeListClient";
-import ArmorDetailClient from "@/app/armorsmith/[slot]/[rank]/[slug]/ArmorDetailClient";
-import MonsterListClient from "@/app/monsters/[category]/MonsterListClient";
-import MonsterDetailClient from "@/app/monsters/[category]/[slug]/MonsterDetailClient";
-import DecorationsListClient from "@/app/decorations/DecorationsListClient";
-import DecorationDetailClient from "@/app/decorations/[slug]/DecorationDetailClient";
-import { ItemShell } from "@/app/items/ItemShell";
-import ItemsListClient from "@/app/items/ItemsListClient";
-import ItemDetailClient from "@/app/items/[slug]/ItemDetailClient";
-import LastWeaponRedirect from "@/app/blacksmith/LastWeaponRedirect";
-import { WeaponShell } from "@/app/blacksmith/WeaponShell";
-import ArmorRedirect from "@/app/armorsmith/ArmorRedirect";
-import { ArmorShell } from "@/app/armorsmith/ArmorShell";
-import { DecorationShell } from "@/app/decorations/DecorationShell";
-import MonsterRedirect from "@/app/monsters/MonsterRedirect";
-import { MonsterShell } from "@/app/monsters/MonsterShell";
-import QuestHubShell, { QuestBoardsShell } from "@/app/quests/[hub]/QuestHubShell";
-import QuestListClient from "@/app/quests/[hub]/QuestListClient";
-import QuestDetailClient from "@/app/quests/[hub]/[id]/QuestDetailClient";
-import SetBuilderClient from "@/app/set-builder/SetBuilderClient";
+import WeaponTreeListClient from "@/app/[lang]/[game]/blacksmith/[type]/WeaponTreeListClient";
+import WeaponDetailClient from "@/app/[lang]/[game]/blacksmith/[type]/[slug]/WeaponDetailClient";
+import ArmorTreeListClient from "@/app/[lang]/[game]/armorsmith/[slot]/[rank]/ArmorTreeListClient";
+import ArmorDetailClient from "@/app/[lang]/[game]/armorsmith/[slot]/[rank]/[slug]/ArmorDetailClient";
+import MonsterListClient from "@/app/[lang]/[game]/monsters/[category]/MonsterListClient";
+import MonsterDetailClient from "@/app/[lang]/[game]/monsters/[category]/[slug]/MonsterDetailClient";
+import DecorationsListClient from "@/app/[lang]/[game]/decorations/DecorationsListClient";
+import DecorationDetailClient from "@/app/[lang]/[game]/decorations/[slug]/DecorationDetailClient";
+import { ItemShell } from "@/app/[lang]/[game]/items/ItemShell";
+import ItemsListClient from "@/app/[lang]/[game]/items/ItemsListClient";
+import ItemDetailClient from "@/app/[lang]/[game]/items/[slug]/ItemDetailClient";
+import LastWeaponRedirect from "@/app/[lang]/[game]/blacksmith/LastWeaponRedirect";
+import { WeaponShell } from "@/app/[lang]/[game]/blacksmith/WeaponShell";
+import ArmorRedirect from "@/app/[lang]/[game]/armorsmith/ArmorRedirect";
+import { ArmorShell } from "@/app/[lang]/[game]/armorsmith/ArmorShell";
+import { DecorationShell } from "@/app/[lang]/[game]/decorations/DecorationShell";
+import MonsterRedirect from "@/app/[lang]/[game]/monsters/MonsterRedirect";
+import { MonsterShell } from "@/app/[lang]/[game]/monsters/MonsterShell";
+import QuestHubShell, { QuestBoardsShell } from "@/app/[lang]/[game]/quests/[hub]/QuestHubShell";
+import QuestListClient from "@/app/[lang]/[game]/quests/[hub]/QuestListClient";
+import QuestDetailClient from "@/app/[lang]/[game]/quests/[hub]/[id]/QuestDetailClient";
+import SetBuilderClient from "@/app/[lang]/[game]/set-builder/SetBuilderClient";
 import { QUEST_HUB_SLUGS, type QuestHubSlug } from "./quests";
 import { codeFromPath } from "./set-link";
+import { parseSitePath, SECTIONS } from "./site";
 import {
   WEAPON_TYPES,
   ARMOR_SLOTS,
@@ -70,11 +71,14 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
   // address itself.
   if (codeFromPath(pathname)) return { kind: "set-builder" };
 
-  const parts = pathname.split("/").filter(Boolean);
+  // The page's path inside its copy of the site (site.ts).
+  const parsed = parseSitePath(pathname);
+  if (!parsed) return { kind: "unknown" };
+  const parts = parsed.rest;
 
   if (parts.length === 0) return { kind: "home" };
 
-  if (parts[0] === "blacksmith") {
+  if (parts[0] === SECTIONS.weapons) {
     if (parts.length === 1) return { kind: "weapon-list" };
     const type = parts[1];
     if (!WEAPON_TYPES.includes(type as WeaponType)) return { kind: "unknown" };
@@ -84,7 +88,7 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
     }
   }
 
-  if (parts[0] === "armorsmith") {
+  if (parts[0] === SECTIONS.armor) {
     if (parts.length === 1) return { kind: "armor-list" };
     const [, slot, rank, slug] = parts;
     if (!ARMOR_SLOTS.includes(slot as ArmorSlot)) return { kind: "unknown" };
@@ -98,7 +102,7 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
     }
   }
 
-  if (parts[0] === "monsters") {
+  if (parts[0] === SECTIONS.monsters) {
     if (parts.length === 1) return { kind: "monster-list" };
     const category = parts[1];
     if (!MONSTER_CATEGORIES.includes(category as MonsterCategory)) return { kind: "unknown" };
@@ -108,12 +112,12 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
     }
   }
 
-  if (parts[0] === "decorations") {
+  if (parts[0] === SECTIONS.decorations) {
     if (parts.length === 1) return { kind: "decoration-list" };
     if (parts.length === 2) return { kind: "decoration-detail", slug: parts[1] };
   }
 
-  if (parts[0] === "quests") {
+  if (parts[0] === SECTIONS.quests) {
     if (parts.length === 1) return { kind: "quest-list" };
     const hub = parts[1] as QuestHubSlug;
     if (!QUEST_HUB_SLUGS.includes(hub)) return { kind: "unknown" };
@@ -122,12 +126,12 @@ export function matchOfflineRoute(pathname: string): RouteMatch {
     if (parts.length === 3 && Number.isInteger(id)) return { kind: "quest-detail", hub, id };
   }
 
-  if (parts[0] === "items") {
+  if (parts[0] === SECTIONS.items) {
     if (parts.length === 1) return { kind: "item-list" };
     if (parts.length === 2) return { kind: "item-detail", slug: parts[1] };
   }
 
-  if (parts[0] === "set-builder" && parts.length === 1) return { kind: "set-builder" };
+  if (parts[0] === SECTIONS.setBuilder && parts.length === 1) return { kind: "set-builder" };
 
   return { kind: "unknown" };
 }

@@ -7,10 +7,11 @@
 import { ARMOR_RANKS, WEAPON_TYPES } from "./constants";
 import { EQUIP_TYPE_SLOTS, type EquipmentIds } from "./schema";
 import type { EquipSlot } from "./save-store";
+import { inSite, type InSitePath } from "./site";
 import { slugify } from "./slug";
 
-/** A weapon's page. */
-export const weaponHref = (type: string, slug: string) => `/blacksmith/${type}/${slug}/`;
+/** A weapon's page (an in-site path, site.ts). */
+export const weaponHref = (type: string, slug: string): InSitePath => inSite.weapons(type, slug);
 
 export interface ResolvedEquip {
   name: string;
@@ -19,7 +20,8 @@ export interface ResolvedEquip {
   rarity: number | null;
   /** Weapon type or armor slot; also the icon type. */
   category: string;
-  href: string;
+  /** Its page, an in-site path (site.ts). */
+  href: InSitePath;
 }
 
 /** null for an unknown type code or an ID with no page. */
@@ -36,7 +38,7 @@ export function resolveEquip(ids: EquipmentIds, slot: EquipSlot): ResolvedEquip 
     name,
     rarity,
     category: typeSlot,
-    href: `/armorsmith/${typeSlot}/${ARMOR_RANKS[group]}/${slug}/`,
+    href: inSite.armor(typeSlot, ARMOR_RANKS[group], slug),
     ...(sex ? { sex } : {}),
   };
 }
