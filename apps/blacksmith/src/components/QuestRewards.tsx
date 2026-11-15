@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaths } from "@/context/SiteContext";
 import Icon from "@/components/Icon";
 import Link from "next/link";
 import {
@@ -43,6 +44,7 @@ export function QuestRewards({ tables }: { tables: QuestRewardTable[] }) {
 
 /** The supply box: one row per distinct item and amount; repeated rows show their count. */
 export function QuestSupplies({ supplies }: { supplies: Quest["supplies"] }) {
+  const paths = usePaths();
   const { items } = useItems();
   return (
     <ul className="m-0 flex max-w-[48rem] list-none flex-col gap-[0.2rem] p-0 text-small">
@@ -52,7 +54,7 @@ export function QuestSupplies({ supplies }: { supplies: Quest["supplies"] }) {
           <li key={i} className="flex items-center gap-[0.8rem] leading-none text-white">
             <Icon type={item?.type ?? "ukwn"} color={item?.color} />
             {item?.known ? (
-              <Link href={itemHref(item.name)} className={cn(dropName, itemLink)}>
+              <Link href={paths.at(itemHref(item.name))} className={cn(dropName, itemLink)}>
                 {item.name}
               </Link>
             ) : (

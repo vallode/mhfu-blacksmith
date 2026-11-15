@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaths } from "@/context/SiteContext";
 import { useEffect } from "react";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import { writeLastWeapon } from "@/lib/last-weapon";
@@ -12,6 +13,7 @@ interface WeaponNavProps {
 
 /** The weapon pages' PageBar: the type as title and one tab per weapon type. */
 export default function WeaponNav({ activeType }: WeaponNavProps) {
+  const paths = usePaths();
   // Remember the weapon type so the sidebar's "Weapons" entry reopens it.
   useEffect(() => {
     writeLastWeapon(activeType);
@@ -27,7 +29,7 @@ export default function WeaponNav({ activeType }: WeaponNavProps) {
           {WEAPON_TYPES.map((type) => (
             <PageTab
               key={type}
-              href={`/blacksmith/${type}/`}
+              href={paths.weapons(type)}
               label={titleCase(type)}
               icon={type}
               active={activeType === type}

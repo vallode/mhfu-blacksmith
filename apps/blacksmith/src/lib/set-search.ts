@@ -30,6 +30,7 @@
  *    torso's decorations count once more per Torso Up piece.
  */
 import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "./constants";
+import { inSite } from "./site";
 import { DecoSolver, type SolverBin } from "./deco-solver";
 import { isAvailable, type Tier } from "./min-rank";
 
@@ -179,7 +180,7 @@ export function prepareSearchData(
       rank: a.rank,
       name: a.name,
       slug: a.slug,
-      href: `/armorsmith/${a.slot}/${a.rank}/${a.slug}/`,
+      href: inSite.armor(a.slot, a.rank, a.slug),
       defence: a.defence ?? 0,
       res: a.res ?? [0, 0, 0, 0, 0],
       slots: a.slots ?? 0,
@@ -204,7 +205,7 @@ export function prepareSearchData(
       id,
       name: d.name,
       slug: d.slug,
-      href: `/decorations/${d.slug}/`,
+      href: inSite.decorations(d.slug),
       slots: d.slots ?? 1,
       color: d.color,
       rarity: d.rarity,

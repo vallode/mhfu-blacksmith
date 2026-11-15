@@ -1,3 +1,4 @@
+import { usePaths } from "@/context/SiteContext";
 import Link from "next/link";
 import CrownIcon from "@/components/CrownIcon";
 import { CROWN_LABELS, formatChance } from "@/lib/crowns";
@@ -21,6 +22,7 @@ export default function MonsterQuests({
   /** Shown above the lists, across both columns (the crown cutoffs). */
   legend?: React.ReactNode;
 }) {
+  const paths = usePaths();
   return (
     <div className="grid grid-cols-2 gap-x-[3.2rem] gap-y-[1.6rem] text-small mobile:grid-cols-1 compact:grid-cols-1">
       {legend && <div className="col-span-full">{legend}</div>}
@@ -40,7 +42,7 @@ export default function MonsterQuests({
                   >
                     <span className="w-cells-3 flex-none text-stat">{q.stars}★</span>
                     <Link
-                      href={questHref(q)}
+                      href={paths.at(questHref(q))}
                       className="min-w-0 truncate text-white underline-offset-4 hover:underline mobile:whitespace-normal"
                     >
                       {q.title}

@@ -11,6 +11,7 @@ import {
 } from "../src/lib/set-build";
 import {
   buildCodecTables,
+  codeGame,
   cleanName,
   CODEC_VERSION,
   decodeRaw,
@@ -421,5 +422,53 @@ describe("set validation", () => {
       ["Attack Jewel"],
     );
     assert.deepEqual(validateBuild(set), []);
+  });
+});
+
+describe("set codec games", () => {
+  const set = withPiece(
+    emptyBuild("Blademaster", "Male"),
+    "helmet",
+    byName("helmet", "Rathalos Helm"),
+  );
+
+  it("leaves the game out of MHFU codes, so they're the codes from before games", () => {
+    const code = encodeSet(set, tables);
+    assert.equal(tables.game, "mhfu");
+    const raw = decodeRaw(fromBase64Url(code)!);
+    assert.ok(raw.ok);
+    assert.equal(raw.raw.game, undefined);
+    assert.equal(codeGame(code), "mhfu");
+    // The golden code (from before games) still opens, as MHFU.
+    assert.equal(codeGame("AQMKqwObA40D3ALPAgQCBwr9ROhC6kKpPKk8"), "mhfu");
+  });
+
+  it("carries another game, which only that game's tables open", () => {
+    const mhf2 = { ...tables, game: "mhf2" as const };
+    const code = encodeSet(set, mhf2);
+    assert.notEqual(code, encodeSet(set, tables));
+    assert.equal(codeGame(code), "mhf2");
+    assert.deepEqual(decodeSet(code, tables), { ok: false, error: { kind: "game", game: "mhf2" } });
+    const r = ok(decodeSet(code, mhf2));
+    assert.deepEqual(shape(r.set), shape(set));
+    // The canonical code keeps the game.
+    assert.equal(codeGame(r.canonical), "mhf2");
+    // An MHFU code doesn't open as another game's.
+    assert.deepEqual(decodeSet(encodeSet(set, tables), mhf2), {
+      ok: false,
+      error: { kind: "game", game: "mhfu" },
+    });
+  });
+
+  it("writes the game as field 9, an index into the game codes", () => {
+    const bytes = encodeRaw({
+      armor: [0, 0, 0, 0, 0],
+      weaponSlots: 0,
+      decorations: [],
+      game: "mhf1",
+    });
+    assert.deepEqual([...bytes], [CODEC_VERSION, (FIELD.game << 1) | 0, 0]);
+    const unknown = decodeSet(code(CODEC_VERSION, FIELD.game << 1, 9), tables);
+    assert.deepEqual(unknown, { ok: false, error: { kind: "malformed", reason: "unknown game" } });
   });
 });

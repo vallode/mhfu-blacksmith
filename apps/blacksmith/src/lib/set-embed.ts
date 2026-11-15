@@ -1,5 +1,5 @@
 /**
- * Link embeds for shared sets (`/sets/<code>/<slug>/`, set-link.ts). The page is one
+ * Link embeds for shared sets (`/<lang>/sets/<code>/<slug>/`, set-link.ts). The page is one
  * static file for every set, so the Cloudflare Worker
  * (src/cloudflare/worker.ts) decodes the code and writes these into its
  * meta tags: the set's name (or, without one, its skills) as the title, its
@@ -9,11 +9,12 @@
  *
  * The Worker can't load the /data bundles the client builds its search data
  * from (too much to parse per request), so the build writes just what a code
- * needs into one file (setEmbedData, written by scripts/generate-embeds.ts
- * to SET_EMBED_DATA_PATH).
+ * needs into one file per game (setEmbedData, written by
+ * scripts/generate-embeds.ts to site.ts setEmbedDataPath).
  *
  * Pure: no fs, no process.env.
  */
+import type { GameCode } from "game-data/games";
 import { ARMOR_RANKS, ARMOR_SLOTS, type ArmorSlot } from "./constants";
 import {
   ELEMENT_EMOJI,
@@ -35,9 +36,6 @@ import {
   type SkillTreeData,
 } from "./set-search";
 
-/** Where the build writes setEmbedData's file, under public/. */
-export const SET_EMBED_DATA_PATH = "/embed/set-data.json";
-
 /** What an embed needs of an armor piece. */
 type EmbedPiece = Pick<Piece, "name" | "rank" | "defence" | "res" | "slots" | "rarity" | "points">;
 /** What an embed needs of a decoration. */
@@ -45,6 +43,8 @@ type EmbedDeco = Pick<Deco, "name" | "slots" | "points" | "color">;
 
 /** Everything a share code can name, keyed the way codes name it. */
 export interface SetEmbedData {
+  /** The game whose codes these name. */
+  game: GameCode;
   /** The game data's version (data-manifest.json), for cache keys. */
   version: string;
   trees: SkillTreeData[];
@@ -65,7 +65,7 @@ export function setEmbedData(data: SearchData, tables: CodecTables, version: str
   for (const [itemId, d] of tables.decoByItemId) {
     decorations[itemId] = { name: d.name, slots: d.slots, points: d.points, color: d.color };
   }
-  return { version, trees: data.trees, pieces, decorations };
+  return { game: tables.game, version, trees: data.trees, pieces, decorations };
 }
 
 /**
@@ -92,7 +92,7 @@ export function embedCodecTables(data: SetEmbedData): CodecTables {
   for (const [itemId, d] of Object.entries(data.decorations)) {
     decoByItemId.set(Number(itemId), { ...d, id: -1, slug: "", href: "", itemId: Number(itemId) });
   }
-  return { pieceGameId: new Map(), pieceByGameId, decoByItemId };
+  return { game: data.game, pieceGameId: new Map(), pieceByGameId, decoByItemId };
 }
 
 export interface SetEmbed {

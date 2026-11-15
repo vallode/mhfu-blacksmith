@@ -1,7 +1,10 @@
 "use client";
 
 /**
- * Client-side data access for the compact /data/*.json bundles.
+ * Client-side data access for the compact /data/<game>/*.json bundles.
+ *
+ * The bundles are the site's game's (DATA_GAME): the only game with data so
+ * far. The caches below hold one game; a second game keys them by game.
  *
  * - fetch through a module-level Map cache (served from the SW precache when offline)
  * - decode() hydrates compact shapes back into the full Weapon / ArmorPiece /
@@ -26,7 +29,13 @@ import {
   decodeDecoration,
   decodeTree,
 } from "./schema";
-import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
+import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES, SITE_GAME } from "./constants";
+import { dataPath, inSite } from "./site";
+
+/** The game whose bundles these are. */
+const DATA_GAME = SITE_GAME.code;
+/** A bundle's URL. */
+const bundleUrl = (file: string) => dataPath(DATA_GAME, file);
 import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
@@ -60,7 +69,7 @@ async function fetchJson<T>(url: string): Promise<T> {
 export function getDictionaries(): Promise<Dictionaries> {
   if (dictionariesCache) return Promise.resolve(dictionariesCache);
   if (!dictionariesPromise) {
-    dictionariesPromise = fetchJson<Dictionaries>("/data/dictionaries.json").then((d) => {
+    dictionariesPromise = fetchJson<Dictionaries>(bundleUrl("dictionaries.json")).then((d) => {
       dictionariesCache = d;
       return d;
     });
@@ -73,7 +82,7 @@ export function getBundle(file: string): Promise<Bundle> {
   if (cached) return Promise.resolve(cached);
   let p = bundlePromises.get(file);
   if (!p) {
-    p = fetchJson<Bundle>(`/data/${file}.json`).then(
+    p = fetchJson<Bundle>(bundleUrl(`${file}.json`)).then(
       (b) => {
         bundleCache.set(file, b);
         return b;
@@ -389,7 +398,7 @@ function buildItemLookup(bundle: ItemsBundle, d: Dictionaries): ItemLookup {
 export function getItems(): Promise<ItemLookup> {
   if (itemsCache) return Promise.resolve(itemsCache);
   if (!itemsPromise) {
-    itemsPromise = Promise.all([fetchJson<ItemsBundle>("/data/items.json"), getDictionaries()])
+    itemsPromise = Promise.all([fetchJson<ItemsBundle>(bundleUrl("items.json")), getDictionaries()])
       .then(([b, d]) => {
         itemsCache = buildItemLookup(b, d);
         return itemsCache;
@@ -432,7 +441,7 @@ let questsCache: Quest[] | null = null;
 export function getQuests(): Promise<Quest[]> {
   if (questsCache) return Promise.resolve(questsCache);
   if (!questsPromise) {
-    questsPromise = fetchJson<QuestsBundle>("/data/quests.json")
+    questsPromise = fetchJson<QuestsBundle>(bundleUrl("quests.json"))
       .then((b) => {
         questsCache = decodeQuests(b);
         return questsCache;
@@ -483,7 +492,7 @@ export function getItemSources(): Promise<Map<number, ItemSources>> {
         const monsters = (bundles as MonsterBundle[]).flatMap((b) =>
           b.items.map((cm) => ({
             name: cm.n,
-            href: `/monsters/${b.category}/${cm.s}/`,
+            href: inSite.monsters(b.category, cm.s),
             drops: decodeMonster(dict, cm, b.category).drops,
           })),
         );
@@ -523,7 +532,7 @@ let areaMapsCache: AreaMapsBundle | null = null;
 let areaMapsPromise: Promise<AreaMapsBundle> | null = null;
 
 function getAreaMaps(): Promise<AreaMapsBundle> {
-  areaMapsPromise ??= fetchJson<AreaMapsBundle>("/data/area-maps.json")
+  areaMapsPromise ??= fetchJson<AreaMapsBundle>(bundleUrl("area-maps.json"))
     .then((bundle) => (areaMapsCache = bundle))
     .catch((e) => {
       areaMapsPromise = null; // allow a retry on the next call
@@ -561,7 +570,7 @@ let itemPlacesCache: Map<number, ItemPlaces> | null = null;
 export function getItemPlaces(): Promise<Map<number, ItemPlaces>> {
   if (itemPlacesCache) return Promise.resolve(itemPlacesCache);
   if (!itemPlacesPromise) {
-    itemPlacesPromise = fetchJson<ItemPlacesBundle>("/data/item-places.json")
+    itemPlacesPromise = fetchJson<ItemPlacesBundle>(bundleUrl("item-places.json"))
       .then((bundle) => {
         itemPlacesCache = decodeItemPlaces(bundle);
         return itemPlacesCache;
@@ -602,7 +611,7 @@ let combinationsCache: CombinationIndex | null = null;
 export function getCombinations(): Promise<CombinationIndex> {
   if (combinationsCache) return Promise.resolve(combinationsCache);
   if (!combinationsPromise) {
-    combinationsPromise = fetchJson<CombinationsBundle>("/data/combinations.json")
+    combinationsPromise = fetchJson<CombinationsBundle>(bundleUrl("combinations.json"))
       .then((bundle) => {
         combinationsCache = decodeCombinations(bundle);
         return combinationsCache;
@@ -644,7 +653,7 @@ let tradesCache: Map<number, ItemTrades> | null = null;
 export function getVeggieTrades(): Promise<VeggieTradesBundle> {
   if (tradeBundleCache) return Promise.resolve(tradeBundleCache);
   if (!tradeBundlePromise) {
-    tradeBundlePromise = fetchJson<VeggieTradesBundle>("/data/veggie-trades.json")
+    tradeBundlePromise = fetchJson<VeggieTradesBundle>(bundleUrl("veggie-trades.json"))
       .then((bundle) => {
         tradeBundleCache = bundle;
         return bundle;
@@ -715,7 +724,7 @@ export function loadSetSearchData(): Promise<SearchData> {
     );
     setSearchPromise = Promise.all([
       getDictionaries(),
-      fetchJson<{ skills: SkillTreeData[] }>("/data/skills.json"),
+      fetchJson<{ skills: SkillTreeData[] }>(bundleUrl("skills.json")),
       getBundle("decorations"),
       ...armorFiles.map((f) => getBundle(f)),
     ])

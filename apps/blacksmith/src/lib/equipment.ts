@@ -7,7 +7,9 @@
  * the weapons' and armor's game IDs in data/.
  */
 import { useEffect, useState } from "react";
+import { SITE_GAME } from "./constants";
 import type { EquipmentIds } from "./schema";
+import { dataPath } from "./site";
 
 export { resolveEquip, type ResolvedEquip } from "./equipment-ref";
 
@@ -17,7 +19,7 @@ let idsCache: EquipmentIds | null = null;
 export function getEquipmentIds(): Promise<EquipmentIds> {
   if (idsCache) return Promise.resolve(idsCache);
   if (!idsPromise) {
-    idsPromise = fetch("/data/equipment-ids.json")
+    idsPromise = fetch(dataPath(SITE_GAME.code, "equipment-ids.json"))
       .then((res) => {
         if (!res.ok) throw new Error(`Failed to fetch equipment IDs: ${res.status}`);
         return res.json() as Promise<EquipmentIds>;

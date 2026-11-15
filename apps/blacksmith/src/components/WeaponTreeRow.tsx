@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react";
 import { flushSync } from "react-dom";
 import Link from "next/link";
+import { usePaths } from "@/context/SiteContext";
+import { inSite } from "@/lib/site";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
 import { prefetchBundle } from "@/lib/client-data";
@@ -58,15 +60,15 @@ const connector = [
   "after:absolute after:top-[19px] after:-left-4 after:-z-1 after:block after:h-[3px] after:w-4 after:bg-line",
 ].join(" ");
 
-/** Map a tree-row href to its data bundle, so we can warm the cache on hover. */
+/** Map a tree-row href (an in-site path) to its data bundle, so we can warm the cache on hover. */
 function bundleForHref(node: WeaponTreeNode, basePath: string): string | null {
-  if (basePath.startsWith("/blacksmith/")) return `weapon-${node.type}`;
-  if (basePath.startsWith("/armorsmith/")) {
-    // basePath is /armorsmith/<slot>/<rank>/ — the tree stays within one bundle
+  if (basePath.startsWith(inSite.weapons())) return `weapon-${node.type}`;
+  if (basePath.startsWith(inSite.armor())) {
+    // basePath is the armor list's /<armor>/<slot>/<rank>/ — the tree stays within one bundle
     const rank = basePath.split("/")[3];
     return `armor-${node.type}-${rank}`;
   }
-  if (basePath.startsWith("/decorations/")) return "decorations";
+  if (basePath.startsWith(inSite.decorations())) return "decorations";
   return null;
 }
 
@@ -162,6 +164,7 @@ export default function WeaponTreeRow({
   hasNextSibling = false,
   scroll = true,
 }: WeaponTreeRowProps) {
+  const paths = usePaths();
   // A branch holding the active row opens, so arriving at a weapon (from the
   // global search, say) shows it even if its branch was collapsed earlier.
   const [collapsed, setCollapsed] = useState(() => {
@@ -215,7 +218,7 @@ export default function WeaponTreeRow({
 
   const onPointerEnter = href
     ? () => {
-        const file = bundleForHref(node, isExternal ? `/blacksmith/${node.type}/` : basePath);
+        const file = bundleForHref(node, isExternal ? inSite.weapons(node.type) : basePath);
         if (file) prefetchBundle(file);
       }
     : undefined;
@@ -287,7 +290,7 @@ export default function WeaponTreeRow({
           // id that TreeScroll and the alias marker look up.
           id={node.alias ? undefined : node.slug}
           className={rowClass}
-          href={href}
+          href={paths.at(href)}
           scroll={scroll}
           title={
             ready

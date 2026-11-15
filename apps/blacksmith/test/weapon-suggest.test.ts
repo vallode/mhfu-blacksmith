@@ -1,3 +1,4 @@
+import { dataPath, DEFAULT_GAME } from "../src/lib/site";
 import assert from "node:assert/strict";
 import fs from "node:fs";
 import path from "node:path";
@@ -87,7 +88,7 @@ describe("suggestWeapons", () => {
 
   it("finds 3-slot G-rank weapons for every class in the shipped data", () => {
     loadShippedSetData(); // generates the bundles if they're missing
-    const dir = path.join(process.cwd(), "public", "data");
+    const dir = path.join(process.cwd(), "public", dataPath(DEFAULT_GAME, ""));
     const dict = JSON.parse(
       fs.readFileSync(path.join(dir, "dictionaries.json"), "utf-8"),
     ) as Dictionaries;

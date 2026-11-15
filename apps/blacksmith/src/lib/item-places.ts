@@ -2,7 +2,7 @@
  * Where an item can be gathered or bought: data/mhfu/gathering.json's points,
  * data/mhfu/farm.json's Pokke Farm points and data/mhfu/shops.json's stock, indexed
  * by in-game item ID. Pure, so
- * scripts/generate-data.ts writes it into public/data/item-places.json and
+ * scripts/generate-data.ts writes it into public/data/<game>/item-places.json and
  * the tests build it from data/.
  */
 import { formatRank } from "./monster-drops";
@@ -305,7 +305,7 @@ export function gatherPointsLabel(points: GatherPlace["points"]): string {
 }
 
 // ---------------------------------------------------------------------------
-// public/data/item-places.json: the same, with names and lists interned
+// public/data/<game>/item-places.json: the same, with names and lists interned
 // ---------------------------------------------------------------------------
 
 /** [group, map, chance, points ("g1,7|m0,3": kind letter, then areas), quests?] */

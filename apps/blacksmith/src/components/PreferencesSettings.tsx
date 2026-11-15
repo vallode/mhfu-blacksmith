@@ -6,6 +6,7 @@
  * game's Options menu (SettingsCard): a yellow box for each On/Off preference
  * (filled when on), and "◀ VALUE ▶" for one with several values.
  */
+import { usePaths } from "@/context/SiteContext";
 import Link from "next/link";
 import SettingsCard from "@/components/SettingsCard";
 import { SelectorRow, ToggleRow, type Choice } from "@/components/SettingRows";
@@ -29,6 +30,7 @@ const PROGRESS_CHOICES: Choice<Tier | null>[] = [
 const TREE_FILTER_CHOICES = TREE_FILTERS.map((f) => ({ value: f.id, label: f.label }));
 
 export default function PreferencesSettings() {
+  const paths = usePaths();
   const { prefs, set, reset } = usePreferences();
 
   /** An On/Off row for a boolean preference. */
@@ -70,7 +72,7 @@ export default function PreferencesSettings() {
       <h3 className={ui.subheading}>Hunter</h3>
       <p className={ui.note}>
         These apply once you load a hunter on the{" "}
-        <Link className="underline hover:text-white" href="/hunter/">
+        <Link className="underline hover:text-white" href={paths.hunter()}>
           Hunter Profile
         </Link>{" "}
         page.

@@ -1,5 +1,5 @@
 /**
- * Encodes data/mhfu/quests/*.json into the compact public/data/quests.json bundle
+ * Encodes data/mhfu/quests/*.json into the compact public/data/<game>/quests.json bundle
  * (shape and decoder: src/lib/quests.ts). Item names become in-game item IDs
  * (names and icons then come from items.json); monster names link to monster
  * pages; strings and identical reward tables are stored once.

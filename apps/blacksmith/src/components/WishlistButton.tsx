@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaths } from "@/context/SiteContext";
 import { useRouter } from "next/navigation";
 import { useToast } from "@/context/ToastContext";
 import { cn } from "@/lib/cn";
@@ -21,6 +22,7 @@ export default function WishlistButton({
   name: string;
   className?: string;
 }) {
+  const paths = usePaths();
   const wishlist = useWishlist();
   const { toast } = useToast();
   const router = useRouter();
@@ -38,7 +40,9 @@ export default function WishlistButton({
       id: "wishlist",
       message: listed ? `${name} taken off your wishlist.` : `${name} added to your wishlist.`,
       duration: 3000,
-      actions: listed ? undefined : [{ label: "View", onClick: () => router.push("/wishlist/") }],
+      actions: listed
+        ? undefined
+        : [{ label: "View", onClick: () => router.push(paths.wishlist()) }],
     });
   };
 

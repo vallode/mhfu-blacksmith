@@ -16,9 +16,12 @@
     "html_handling": "auto-trailing-slash",
     "not_found_handling": "404-page",
     // Everything else is a free static asset request that never runs the
-    // script; these count as Worker requests. The second is share links
-    // (SHARE_PATH in src/lib/set-link.ts).
-    "run_worker_first": ["/set-builder/*", "/sets/*"],
+    // script; these count as Worker requests. The first is each copy of the
+    // site's set builder (/<lang>/<game>/set-builder/, src/lib/site.ts), the
+    // second share links (/<lang>/sets/, src/lib/set-link.ts). The URLs from
+    // before languages and games (/set-builder/, /sets/) aren't here: the
+    // assets' _redirects (scripts/generate-redirects.ts) answers them first.
+    "run_worker_first": ["/*/*/set-builder/*", "/*/sets/*"],
   },
   // Production at mhfu-blacksmith.<account>.workers.dev, and a preview URL
   // per branch (see the workflow).

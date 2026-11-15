@@ -7,6 +7,7 @@
  * Pure functions over the tree data and the HunterProgress lookups, so the
  * list-level hook and the rows share one definition of a row's status.
  */
+import { inSite } from "./site";
 import { WEAPON_TYPES } from "./constants";
 import { weaponHref } from "./equipment-ref";
 import type { CraftCheck } from "./hunter-progress";
@@ -60,6 +61,7 @@ export function isExternalRow(node: WeaponTreeNode, sectionType: string): boolea
 export function treeRowHref(
   node: WeaponTreeNode,
   sectionType: string,
+  /** The tree's list, an in-site path (site.ts); rows link below it. */
   basePath: string,
 ): string | undefined {
   if (!node.rarity) return undefined;
@@ -92,9 +94,9 @@ export function rowStatus(
   // stop you making more.
   const craft = !progress.active
     ? null
-    : href?.startsWith("/decorations/")
+    : href?.startsWith(inSite.decorations())
       ? progress.craftCheck("decoration", node.slug, false)
-      : href?.startsWith("/blacksmith/") && !owned
+      : href?.startsWith(inSite.weapons()) && !owned
         ? progress.craftCheck(
             node.type,
             node.slug,

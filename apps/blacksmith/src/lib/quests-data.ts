@@ -1,6 +1,6 @@
 /**
  * Build-time quest lookups for static params and page metadata, read from
- * data/mhfu/quests/*.json. Pages render from public/data/quests.json on the client.
+ * data/mhfu/quests/*.json. Pages render from public/data/<game>/quests.json on the client.
  */
 import fs from "fs";
 import path from "path";

@@ -2,6 +2,7 @@ import fs from "fs";
 import path from "path";
 import { armorSlugs } from "../src/lib/slug";
 import { questHubSlug, type QuestHubSlug } from "../src/lib/quests";
+import { dataPath, searchDataPath, SECTIONS, sitePath, SITES, type Section } from "../src/lib/site";
 import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
 import { slugify as itemSlug } from "../src/lib/slug";
 import { buildItemNameIndex, decorationItemId, type ItemRecord } from "../src/lib/items";
@@ -10,6 +11,14 @@ import { readData } from "game-data";
 
 const root = process.cwd();
 const dataDir = DATA_DIR;
+
+/**
+ * An entry's path inside a copy of the site, without the trailing slash
+ * ("/blacksmith/bow/hunters-bow-i"); each copy's index puts its
+ * `/<lang>/<game>` in front.
+ */
+const rel = (section: Section, ...rest: (string | number)[]) =>
+  `/${[SECTIONS[section], ...rest].join("/")}`;
 
 function slugify(name: string): string {
   return name
@@ -61,7 +70,7 @@ for (const file of fs.readdirSync(weaponDir)) {
     entries.push({
       name,
       slug,
-      url: `/blacksmith/${type}/${slug}`,
+      url: rel("weapons", type, slug),
       category: "weapon",
       type: (w.type as string) || type,
       rank,
@@ -107,7 +116,7 @@ for (const file of fs.readdirSync(armorDir)) {
     entries.push({
       name,
       slug,
-      url: `/armorsmith/${slot}/${rank}/${slug}`,
+      url: rel("armor", slot, rank, slug),
       category: "armor",
       type: (a.type as string) || slot,
       rank,
@@ -135,7 +144,7 @@ if (fs.existsSync(decoFile)) {
     entries.push({
       name,
       slug,
-      url: `/decorations/${slug}`,
+      url: rel("decorations", slug),
       category: "decoration",
       type: "decoration",
       rank: null,
@@ -165,7 +174,7 @@ for (const file of fs.readdirSync(monsterDir)) {
     entries.push({
       name,
       slug,
-      url: `/monsters/${category}/${slug}`,
+      url: rel("monsters", category, slug),
       category: "monster",
       type: (m.type as string) || category,
       rank: null,
@@ -197,7 +206,7 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
     entries.push({
       name: q.title,
       slug: String(q.id),
-      url: `/quests/${hub}/${q.id}`,
+      url: rel("quests", hub, q.id),
       category: "quest",
       type: hub,
       rank: `${QUEST_BOARD_SHORT[hub]} ${q.stars}★`,
@@ -215,8 +224,8 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
   const { items } = readData(dataDir, GAME, "items.json") as {
     items: ItemRecord[];
   };
-  const bundlePath = path.join(root, "public", "data", "items.json");
-  const dictPath = path.join(root, "public", "data", "dictionaries.json");
+  const bundlePath = path.join(root, "public", dataPath(GAME, "items.json"));
+  const dictPath = path.join(root, "public", dataPath(GAME, "dictionaries.json"));
   const bundle = fs.existsSync(bundlePath)
     ? (JSON.parse(fs.readFileSync(bundlePath, "utf-8")) as ItemsBundle)
     : null;
@@ -239,7 +248,7 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
     const entry: SearchEntry = {
       name: item.name,
       slug,
-      url: `/items/${slug}`,
+      url: rel("items", slug),
       category: "item",
       type: (compact?.t !== undefined && dict?.types[compact.t]) || "ukwn",
       rank: null,
@@ -257,7 +266,7 @@ for (const file of fs.readdirSync(questDir).filter((f) => f.endsWith(".json"))) 
 entries.push({
   name: "Veggie Elder",
   slug: "veggie-elder",
-  url: "/veggie-elder/",
+  url: `${rel("veggieElder")}/`,
   category: "page",
   type: "mushroom",
   rank: null,
@@ -266,7 +275,16 @@ entries.push({
   skills: "trade trades swap exchange",
 });
 
-const outPath = path.join(root, "public", "search-data.json");
-fs.mkdirSync(path.dirname(outPath), { recursive: true });
-fs.writeFileSync(outPath, JSON.stringify(entries));
-console.log(`Generated ${entries.length} search entries → ${outPath}`);
+// One index per copy of the site (site.ts searchDataPath), its entries'
+// URLs in that copy. The index from before languages and games is gone.
+fs.rmSync(path.join(root, "public", "search-data.json"), { force: true });
+for (const site of SITES) {
+  const outPath = path.join(root, "public", searchDataPath(site));
+  const prefix = sitePath(site).replace(/\/$/, "");
+  fs.mkdirSync(path.dirname(outPath), { recursive: true });
+  fs.writeFileSync(
+    outPath,
+    JSON.stringify(entries.map((e) => ({ ...e, url: `${prefix}${e.url}` }))),
+  );
+  console.log(`Generated ${entries.length} search entries → ${outPath}`);
+}

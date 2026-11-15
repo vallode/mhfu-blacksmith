@@ -45,7 +45,8 @@ import {
   type CardAssets,
   type CardSprites,
 } from "../src/lib/set-card";
-import { SET_EMBED_DATA_PATH, setEmbedData } from "../src/lib/set-embed";
+import { setEmbedData } from "../src/lib/set-embed";
+import { dataPath, setEmbedDataPath, SITE_GAMES, SITES, sitePaths } from "../src/lib/site";
 import { getWeapons } from "../src/lib/weapons";
 import { readSetSearchData } from "./lib/set-data";
 
@@ -205,26 +206,29 @@ function writeOembed(route: string, author: EmbedAuthor) {
 
 function writeOembeds() {
   let count = 0;
-  for (const type of WEAPON_TYPES) {
-    for (const w of getWeapons(type)) {
-      writeOembed(`/blacksmith/${type}/${w.slug}/`, weaponAuthor(w));
+  for (const site of SITES) {
+    const paths = sitePaths(site);
+    for (const type of WEAPON_TYPES) {
+      for (const w of getWeapons(type)) {
+        writeOembed(paths.weapons(type, w.slug), weaponAuthor(site, w));
+        count++;
+      }
+    }
+    for (const { slot, rank } of getArmorParams()) {
+      for (const p of getArmorPieces(slot, rank)) {
+        writeOembed(paths.armor(slot, rank, p.slug), armorAuthor(site, p));
+        count++;
+      }
+    }
+    for (const d of getDecorations()) {
+      writeOembed(paths.decorations(d.slug), decorationAuthor(site, d));
       count++;
     }
-  }
-  for (const { slot, rank } of getArmorParams()) {
-    for (const p of getArmorPieces(slot, rank)) {
-      writeOembed(`/armorsmith/${slot}/${rank}/${p.slug}/`, armorAuthor(p));
-      count++;
-    }
-  }
-  for (const d of getDecorations()) {
-    writeOembed(`/decorations/${d.slug}/`, decorationAuthor(d));
-    count++;
-  }
-  for (const category of getMonsterCategories()) {
-    for (const m of getMonsters(category)) {
-      writeOembed(`/monsters/${category}/${m.slug}/`, monsterAuthor(category));
-      count++;
+    for (const category of getMonsterCategories()) {
+      for (const m of getMonsters(category)) {
+        writeOembed(paths.monsters(category, m.slug), monsterAuthor(site, category));
+        count++;
+      }
     }
   }
   return count;
@@ -302,16 +306,22 @@ async function writeSetCard() {
   return Object.keys(sprites).length;
 }
 
-/** The pieces and decorations share codes name, for the Worker's set embeds. */
+/** The pieces and decorations each game's share codes name, for the Worker's set embeds. */
 function writeSetData() {
-  const { data, ids } = readSetSearchData(path.join(publicDir, "data"));
-  const tables = buildCodecTables(data, ids);
-  const { version } = JSON.parse(
-    fs.readFileSync(path.join(publicDir, "data", "data-manifest.json"), "utf-8"),
-  ) as { version: string };
-  const embedData = setEmbedData(data, tables, version);
-  fs.writeFileSync(path.join(publicDir, SET_EMBED_DATA_PATH), JSON.stringify(embedData));
-  return Object.keys(embedData.pieces).length + Object.keys(embedData.decorations).length;
+  let entries = 0;
+  for (const game of SITE_GAMES) {
+    const { data, ids } = readSetSearchData(path.join(publicDir, dataPath(game, "")));
+    const tables = buildCodecTables(data, ids, game);
+    const { version } = JSON.parse(
+      fs.readFileSync(path.join(publicDir, dataPath(game, "data-manifest.json")), "utf-8"),
+    ) as { version: string };
+    const embedData = setEmbedData(data, tables, version);
+    const file = path.join(publicDir, setEmbedDataPath(game));
+    fs.mkdirSync(path.dirname(file), { recursive: true });
+    fs.writeFileSync(file, JSON.stringify(embedData));
+    entries += Object.keys(embedData.pieces).length + Object.keys(embedData.decorations).length;
+  }
+  return entries;
 }
 
 async function main() {

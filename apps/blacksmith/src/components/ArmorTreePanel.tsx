@@ -5,6 +5,7 @@
  * of the weapon tree's filter bar. Each rank is its own page, so stepping the
  * selector navigates to the same slot at the next rank.
  */
+import { usePaths } from "@/context/SiteContext";
 import { useRouter } from "next/navigation";
 import Card from "./Card";
 import CardBox from "./CardBox";
@@ -26,6 +27,7 @@ interface Props {
 }
 
 export default function ArmorTreePanel({ slot, rank, children }: Props) {
+  const paths = usePaths();
   const router = useRouter();
 
   const step = (by: 1 | -1) => {
@@ -34,7 +36,7 @@ export default function ArmorTreePanel({ slot, rank, children }: Props) {
     prefetchBundle(`armor-${slot}-${next}`);
     // The panel stays mounted (armorsmith layout); keep the page where it is
     // rather than letting the router scroll to the new rank's card.
-    router.push(`/armorsmith/${slot}/${next}/`, { scroll: false });
+    router.push(paths.armor(slot, next), { scroll: false });
   };
 
   return (

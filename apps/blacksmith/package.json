@@ -4,7 +4,7 @@
   "private": true,
   "scripts": {
     "dev": "next dev",
-    "build": "tsx scripts/generate-data.ts && tsx scripts/generate-search-index.ts && tsx scripts/generate-embeds.ts && next build",
+    "build": "tsx scripts/generate-data.ts && tsx scripts/generate-search-index.ts && tsx scripts/generate-embeds.ts && tsx scripts/generate-redirects.ts && next build",
     "start": "next start",
     "lint": "eslint src",
     "typecheck": "tsc --noEmit -p .",
@@ -15,7 +15,8 @@
     "test": "tsx --test test/**/*.test.ts",
     "validate-schema": "tsx scripts/validate-schema.ts",
     "generate-embeds": "tsx scripts/generate-embeds.ts",
-    "release-json": "tsx scripts/release-json.ts && zip -m -9 -r mhfu_weapon_information.zip mhfu_weapon_information"
+    "release-json": "tsx scripts/release-json.ts && zip -m -9 -r mhfu_weapon_information.zip mhfu_weapon_information",
+    "generate-redirects": "tsx scripts/generate-redirects.ts"
   },
   "dependencies": {
     "@ducanh2912/next-pwa": "^10.2.9",

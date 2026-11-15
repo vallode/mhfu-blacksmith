@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaths } from "@/context/SiteContext";
 import Link from "next/link";
 import { useState } from "react";
 import { Stat, StatList } from "@/components/DetailPanel";
@@ -70,6 +71,7 @@ export function ItemAreaMap({
   /** Whether an item name on a point is this item. */
   gives: (item: string) => boolean;
 }) {
+  const paths = usePaths();
   const groups = groupBy(
     places.filter((p) => p.mapQuest !== undefined),
     (p) => p.group,
@@ -123,7 +125,10 @@ export function ItemAreaMap({
                   <span key={id}>
                     {i > 0 && ", "}
                     {quest ? (
-                      <Link href={questHref(quest)} className="underline-offset-4 hover:underline">
+                      <Link
+                        href={paths.at(questHref(quest))}
+                        className="underline-offset-4 hover:underline"
+                      >
                         {quest.title}
                       </Link>
                     ) : (
@@ -148,6 +153,7 @@ export function ItemAreaMap({
  * the points that give that item are lit and the rest dimmed.
  */
 function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean }) {
+  const paths = usePaths();
   const [hidden, setHidden] = useState<ReadonlySet<GatherKind>>(new Set());
   const [selected, setSelected] = useState<number | null>(null);
   const lit = (p: Data["points"][number]) =>
@@ -252,7 +258,7 @@ function AreaMap({ map, gives }: { map: Data; gives?: (item: string) => boolean 
                 key={item}
                 label={
                   <Link
-                    href={itemHref(item)}
+                    href={paths.at(itemHref(item))}
                     className={cn("underline-offset-4 hover:underline", own && "text-positive")}
                   >
                     {item}

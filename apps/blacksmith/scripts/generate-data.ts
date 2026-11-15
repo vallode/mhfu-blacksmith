@@ -86,7 +86,10 @@ import { readData } from "game-data";
 
 const root = process.cwd();
 const dataDir = DATA_DIR;
-const outDir = path.join(root, "public", "data");
+/** public/data: the image manifest, shared by every game. */
+const sharedDir = path.join(root, "public", "data");
+/** public/data/<game>: this game's bundles (site.ts dataPath). */
+const outDir = path.join(root, "public", dataPath(GAME, ""));
 
 const RANKS = ["low-rank", "high-rank", "g-rank"];
 const minRanks = loadMinRanks(dataDir);
@@ -730,7 +733,11 @@ push("dictionaries.json", dictionaries);
 // Write all files, compute sizes + content-hash manifest.
 import { createHash } from "crypto";
 import { DATA_DIR, GAME, GAME_DATA_DIR } from "../src/lib/paths";
+import { dataPath } from "../src/lib/site";
 
+// Bundles that moved or are gone (the bundles were in public/data itself
+// before each game had its own directory) go first.
+fs.rmSync(sharedDir, { recursive: true, force: true });
 fs.mkdirSync(outDir, { recursive: true });
 const hash = createHash("sha256");
 let totalRaw = 0;
@@ -775,13 +782,13 @@ const walkImages = (dir: string) => {
 };
 walkImages(imagesDir);
 imageUrls.sort();
-fs.writeFileSync(path.join(outDir, "image-manifest.json"), JSON.stringify(imageUrls));
+fs.writeFileSync(path.join(sharedDir, "image-manifest.json"), JSON.stringify(imageUrls));
 
 const fmt = (n: number) =>
   n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(2)} MB` : `${(n / 1024).toFixed(1)} KB`;
 
 console.log(
-  `generate-data: ${files.length} bundles, ${totalItems} items → public/data  raw=${fmt(totalRaw)}  gzip≈${fmt(totalGzip)}  version=${version}`,
+  `generate-data: ${files.length} bundles, ${totalItems} items → public/data/${GAME}  raw=${fmt(totalRaw)}  gzip≈${fmt(totalGzip)}  version=${version}`,
 );
 
 if (totalRaw > BUDGET_BYTES) {

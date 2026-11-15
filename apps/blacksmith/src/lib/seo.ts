@@ -12,6 +12,7 @@ import {
   THEME_COLOR,
   titleCase,
 } from "./embed-format";
+import { langOf, languageAlternates, oembedPath, OG_LOCALES, sitePaths, type Site } from "./site";
 import type { ArmorPiece, Decoration, Monster, Weapon } from "./types";
 
 export {
@@ -46,12 +47,11 @@ export const DEFAULT_IMAGE = {
  */
 export interface EmbedAuthor {
   name: string;
-  /** Route path of the list page, e.g. "/blacksmith/long-sword/". */
+  /** Route path of the list page, e.g. "/en/mhfu/blacksmith/long-sword/" (site.ts). */
   path: string;
 }
 
-/** Where a page's oEmbed file lives: "/blacksmith/x/y/" → "/embed/oembed/blacksmith/x/y.json". */
-export const oembedPath = (path: string): string => `/embed/oembed${path.replace(/\/$/, "")}.json`;
+export { oembedPath } from "./site";
 
 /** The oEmbed file for a page: a "link" response carrying the author line. */
 export function oembedJson(author: EmbedAuthor) {
@@ -121,7 +121,7 @@ export function pageMetadata({
   /** The bare name, e.g. "Golden Serpentblade"; the site name is added to the tab title. */
   title: string;
   description: string;
-  /** Route path, e.g. "/blacksmith/great-sword/". Resolved against metadataBase. */
+  /** Route path, e.g. "/en/mhfu/blacksmith/great-sword/" (site.ts). Resolved against metadataBase. */
   path: string;
   /** Thumbnail shown beside the embed text; defaults to the felyne. */
   image?: { url: string; width?: number; height?: number };
@@ -134,13 +134,15 @@ export function pageMetadata({
     description,
     alternates: {
       canonical: path,
+      // hreflang: the page in each language the site is built in.
+      languages: languageAlternates(path),
       ...(oembed && { types: { "application/json+oembed": oembedPath(path) } }),
     },
     // A page-level openGraph replaces the layout's wholesale, so repeat the site fields.
     openGraph: {
       type: "website",
       siteName: SITE_NAME,
-      locale: "en_US",
+      locale: OG_LOCALES[langOf(path) ?? "en"],
       url: path,
       title,
       description,
@@ -159,9 +161,9 @@ export function accentViewport(color?: string): Viewport {
 const rarityPrefix = (rarity?: number | string | null) => (rarity ? `Rarity ${rarity} ` : "");
 
 /** "Rarity 10 Long Sword", linking to the long sword tree. */
-export const weaponAuthor = (w: Weapon): EmbedAuthor => ({
+export const weaponAuthor = (site: Site, w: Weapon): EmbedAuthor => ({
   name: `${rarityPrefix(w.rarity)}${titleCase(w.type)}`,
-  path: `/blacksmith/${w.type}/`,
+  path: sitePaths(site).weapons(w.type),
 });
 
 /** The stats under the title; the type and rarity are in the author line above it. */
@@ -182,14 +184,14 @@ export function weaponDescription(w: Weapon): string {
 }
 
 /** "Rarity 9 G-Rank Helmet · Gunner", linking to that slot and rank. */
-export const armorAuthor = (p: ArmorPiece): EmbedAuthor => ({
+export const armorAuthor = (site: Site, p: ArmorPiece): EmbedAuthor => ({
   name: [
     `${rarityPrefix(p.rarity)}${rankLabel(p.rank)} ${titleCase(p.type)}`.trim(),
     p.hunter_type && p.hunter_type !== "Blademaster/Gunner" ? p.hunter_type : "",
   ]
     .filter(Boolean)
     .join(" · "),
-  path: `/armorsmith/${p.type}/${p.rank}/`,
+  path: sitePaths(site).armor(p.type, p.rank),
 });
 
 export function armorDescription(p: ArmorPiece): string {
@@ -220,9 +222,9 @@ export function armorDescription(p: ArmorPiece): string {
 }
 
 /** "Flying Wyvern", linking to that category. */
-export const monsterAuthor = (category: string): EmbedAuthor => ({
+export const monsterAuthor = (site: Site, category: string): EmbedAuthor => ({
   name: titleCase(category),
-  path: `/monsters/${category}/`,
+  path: sitePaths(site).monsters(category),
 });
 
 export function monsterDescription(m: Monster): string {
@@ -233,9 +235,9 @@ export function monsterDescription(m: Monster): string {
 }
 
 /** "Rarity 5 Decoration", linking to the decoration list. */
-export const decorationAuthor = (d: Decoration): EmbedAuthor => ({
+export const decorationAuthor = (site: Site, d: Decoration): EmbedAuthor => ({
   name: `${rarityPrefix(d.rarity)}Decoration`,
-  path: "/decorations/",
+  path: sitePaths(site).decorations(),
 });
 
 export function decorationDescription(d: Decoration): string {

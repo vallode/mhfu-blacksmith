@@ -1,6 +1,8 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { useSite } from "@/context/SiteContext";
+import { parseSitePath } from "@/lib/site";
 import { matchOfflineRoute, renderOfflineRoute, type RouteMatch } from "@/lib/offline-routes";
 
 /**
@@ -20,6 +22,7 @@ import { matchOfflineRoute, renderOfflineRoute, type RouteMatch } from "@/lib/of
  * Next.js routing.
  */
 export default function OfflineNavGuard({ children }: { children: React.ReactNode }) {
+  const site = useSite();
   const [override, setOverride] = useState<RouteMatch | null>(null);
 
   useEffect(() => {
@@ -48,6 +51,10 @@ export default function OfflineNavGuard({ children }: { children: React.ReactNod
       if (url.origin !== window.location.origin) return;
       if (url.pathname === window.location.pathname) return;
 
+      // Another copy of the site (language or game) has its own shell: let
+      // that navigation go to the network or the offline page.
+      const target = parseSitePath(url.pathname)?.site;
+      if (target && (target.lang !== site.lang || target.game !== site.game)) return;
       const match = matchOfflineRoute(url.pathname);
       if (match.kind === "unknown") return;
 
@@ -73,7 +80,7 @@ export default function OfflineNavGuard({ children }: { children: React.ReactNod
       document.removeEventListener("click", onClick, true);
       window.removeEventListener("popstate", onPopState);
     };
-  }, []);
+  }, [site]);
 
   if (override) return <>{renderOfflineRoute(override)}</>;
   return <>{children}</>;

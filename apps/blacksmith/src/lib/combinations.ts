@@ -1,6 +1,6 @@
 /**
  * Item combinations (data/mhfu/combinations.json, the in-game Combination List):
- * the compact public/data/combinations.json bundle generate-data writes, and
+ * the compact public/data/<game>/combinations.json bundle generate-data writes, and
  * an index of what each item is made from and used to make. Pure, so the item pages
  * build it on the client and the tests build it from data/.
  */
@@ -57,7 +57,7 @@ export interface Combination {
   trap: boolean;
 }
 
-/** public/data/combinations.json */
+/** public/data/<game>/combinations.json */
 export interface CombinationsBundle {
   kind: "combinations";
   combinations: CompactCombination[];

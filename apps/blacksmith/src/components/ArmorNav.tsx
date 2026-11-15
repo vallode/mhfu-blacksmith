@@ -1,5 +1,6 @@
 "use client";
 
+import { usePaths } from "@/context/SiteContext";
 import { useEffect } from "react";
 import { ARMOR_SLOTS, type ArmorRank, type ArmorSlot } from "@/lib/constants";
 import { writeLastArmor } from "@/lib/armor-last-store";
@@ -14,6 +15,7 @@ interface ArmorNavProps {
 
 /** The armor pages' PageBar: one tab per armor slot. */
 export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProps) {
+  const paths = usePaths();
   // Remember this page for the main menu's Armor entry.
   useEffect(() => {
     if (activeSlot) writeLastArmor({ slot: activeSlot, rank });
@@ -27,7 +29,7 @@ export default function ArmorNav({ activeSlot, rank = "low-rank" }: ArmorNavProp
           {ARMOR_SLOTS.map((slot) => (
             <PageTab
               key={slot}
-              href={`/armorsmith/${slot}/${rank}/`}
+              href={paths.armor(slot, rank)}
               label={titleCase(slot)}
               icon={slot}
               active={activeSlot === slot}

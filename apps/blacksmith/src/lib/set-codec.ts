@@ -1,6 +1,6 @@
 /**
- * Share codes for armor sets, the `<code>` in a share link: `/sets/<code>/<slug>/`
- * (set-link.ts), or the older `/set-builder/?s=<code>`.
+ * Share codes for armor sets, the `<code>` in a share link: `/<lang>/sets/<code>/<slug>/`
+ * (set-link.ts), or the older `/<lang>/<game>/set-builder/?s=<code>`.
  *
  * A code holds the game's own IDs, never positions in the search data
  * (Piece.id / Deco.id change whenever the data is regenerated):
@@ -28,15 +28,19 @@
  *   7 query        reserved: the search's skills and options
  *   8 name         wire 1: the set's name, UTF-8, at most MAX_NAME characters
  *                  (share links of saved sets; saved codes leave it out)
+ *   9 game         wire 0: index into game-data's GAME_CODES (mhf1, mhf2, mhfu);
+ *                  absent means MHFU, so every code from before it opens as
+ *                  it did, and MHFU codes are unchanged
  *
  * Fields at their default (no armor, 0 weapon slots, Blademaster, Male, no
- * name) are left out. A decoder skips tags it doesn't know (the wire type says how), so builds
+ * name, MHFU) are left out. A decoder skips tags it doesn't know (the wire type says how), so builds
  * that predate a field still open codes that carry it. A field that appears
  * twice keeps its last value. Equipment ID 0 is unused in every table, which
  * is why it can mean "empty".
  *
  * Decoding never throws: it returns a set, or a typed error.
  */
+import { GAME_CODES, type GameCode } from "game-data/games";
 import { ARMOR_SLOTS, type ArmorSlot } from "./constants";
 import { resolveEquip } from "./equipment-ref";
 import { EQUIP_TYPE_SLOTS, type EquipmentIds } from "./schema";
@@ -58,7 +62,11 @@ export const FIELD = {
   sex: 6,
   query: 7,
   name: 8,
+  game: 9,
 } as const;
+
+/** The game of a code without a game field: every code from before it. */
+export const DEFAULT_CODE_GAME: GameCode = "mhfu";
 
 /** The longest set name a code carries (My sets' rename field allows as many). */
 export const MAX_NAME = 40;
@@ -103,12 +111,16 @@ export interface RawSet {
   sex?: number;
   /** The set's name, if the code has one. */
   name?: string;
+  /** The game; absent for MHFU (DEFAULT_CODE_GAME). */
+  game?: GameCode;
 }
 
 export type DecodeError =
   | { kind: "version"; version: number }
   | { kind: "malformed"; reason: string }
-  | { kind: "unknown-ids"; dropped: DroppedRef[] };
+  | { kind: "unknown-ids"; dropped: DroppedRef[] }
+  /** A set from another game than the tables'. */
+  | { kind: "game"; game: GameCode };
 
 export type DroppedRef =
   | { kind: "piece"; slot: ArmorSlot; gameId: number }
@@ -202,6 +214,10 @@ export function encodeRaw(raw: RawSet): Uint8Array {
     writeVarint(out, bytes.length);
     out.push(...bytes);
   }
+  if (raw.game && raw.game !== DEFAULT_CODE_GAME) {
+    key(FIELD.game, WIRE_VARINT);
+    writeVarint(out, GAME_CODES.indexOf(raw.game));
+  }
   return Uint8Array.from(out);
 }
 
@@ -251,6 +267,13 @@ export function decodeRaw(
           // Bad UTF-8 becomes U+FFFD rather than failing the set.
           const name = cleanName(new TextDecoder().decode(r.bytes()));
           raw.name = name || undefined;
+          break;
+        }
+        case FIELD.game: {
+          expect(WIRE_VARINT);
+          const game = GAME_CODES[r.varint()];
+          if (!game) throw new Malformed("unknown game");
+          raw.game = game === DEFAULT_CODE_GAME ? undefined : game;
           break;
         }
         default:
@@ -307,6 +330,8 @@ export function fromBase64Url(s: string): Uint8Array | null {
 // ---------------------------------------------------------------------------
 
 export interface CodecTables {
+  /** The game the tables are for: its codes are the ones they open. */
+  game: GameCode;
   /** Piece.id -> equipment ID. */
   pieceGameId: Map<number, number>;
   /** "<slot>:<equipment ID>" -> piece. */
@@ -324,6 +349,7 @@ export interface CodecTables {
 export function buildCodecTables(
   data: SearchData,
   ids: EquipmentIds,
+  game: GameCode = DEFAULT_CODE_GAME,
 ): CodecTables & { problems: string[] } {
   const byHref = new Map<string, { id: number; sex?: string }[]>();
   for (const slot of ARMOR_SLOTS) {
@@ -354,13 +380,14 @@ export function buildCodecTables(
     if (d.itemId === undefined) problems.push(`${d.href}: no item ID`);
     else decoByItemId.set(d.itemId, d);
   }
-  return { pieceGameId, pieceByGameId, decoByItemId, problems };
+  return { game, pieceGameId, pieceByGameId, decoByItemId, problems };
 }
 
 /** Pieces or decorations without a game ID are left out. */
 export function toRaw(set: BuildSet, tables: CodecTables, name?: string): RawSet {
   return {
     name,
+    game: tables.game,
     armor: set.pieces.map((p) => (p ? (tables.pieceGameId.get(p.id) ?? 0) : 0)),
     weaponSlots: set.weaponSlots,
     decorations: set.decorations.flatMap((d) =>
@@ -395,6 +422,8 @@ export type DecodeResult =
  * if nothing at all resolves, that's an "unknown-ids" error.
  */
 export function fromRaw(raw: RawSet, tables: CodecTables): DecodeResult {
+  const game = raw.game ?? DEFAULT_CODE_GAME;
+  if (game !== tables.game) return { ok: false, error: { kind: "game", game } };
   if (raw.hunterType !== undefined && !HUNTER_TYPES[raw.hunterType]) {
     return { ok: false, error: { kind: "malformed", reason: "unknown hunter type" } };
   }
@@ -429,6 +458,13 @@ export function fromRaw(raw: RawSet, tables: CodecTables): DecodeResult {
   return { ok: true, set, dropped, canonical, ...(raw.name ? { name: raw.name } : {}) };
 }
 
+/** A share code's game, or null when the code doesn't open. Never throws. */
+export function codeGame(code: string): GameCode | null {
+  const bytes = fromBase64Url(code.trim());
+  const raw = bytes && decodeRaw(bytes);
+  return raw?.ok ? (raw.raw.game ?? DEFAULT_CODE_GAME) : null;
+}
+
 /** A share code to a set. Never throws. */
 export function decodeSet(code: string, tables: CodecTables): DecodeResult {
   const bytes = fromBase64Url(code.trim());
@@ -446,6 +482,8 @@ export function describeDecodeError(error: DecodeError): string {
       return "This link's set code is damaged or incomplete.";
     case "unknown-ids":
       return "None of the armor or decorations in this link exist in this version of the site.";
+    case "game":
+      return `This link is a set for another game (${error.game}).`;
   }
 }
 
