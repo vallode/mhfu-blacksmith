@@ -11,8 +11,10 @@
  *   0x20 u32 mesh table        0x24 u32 vertex-group table
  *   0x28 u32 material map      0x2c u32 bone palette
  *   0x30 u32 material table    0x34 u32 display-list base
- * Mesh (0x18): f32[2] UV scale (u, v), u32 ?, u32 ?, u16 ?, u16 material
- *   slot base, u16 vertex-group count, u16 first vertex group.
+ * Mesh (0x18): f32[2] UV scale (u, v), u32 flags, u32 blend, u16 ?, u16
+ *   material slot base, u16 vertex-group count, u16 first vertex group.
+ *   The blend word is the GE ALPHA command (0xDF) the mesh draws with, or 0
+ *   when it draws opaque; see `meshBlend`.
  * Vertex group (0x10): u8 material slot (relative to the mesh's base), u8
  *   palette entry count, u16 first palette entry, u32 display-list offset
  *   (relative to display-list base), u32, u32.
@@ -41,8 +43,18 @@ export interface PmoPrimitive {
   geometry: DecodedGeometry;
 }
 
+/**
+ * How a mesh is drawn over what is behind it: `alpha` blends by the texture's
+ * alpha (fur, wing membranes); `add` and `revsub` are effect layers (glows, the
+ * dark layer over White Fatalis's head) that add their colour to, or take it
+ * from, what is behind.
+ */
+export type MeshBlend = "opaque" | "alpha" | "add" | "revsub";
+
 export interface PmoMesh {
   uvScale: [number, number];
+  /** Absent means opaque. */
+  blend?: MeshBlend;
   primitives: PmoPrimitive[];
 }
 
@@ -56,6 +68,23 @@ export interface Pmo {
 const MESH_STRIDE = 0x18;
 const VERTEX_GROUP_STRIDE = 0x10;
 const MATERIAL_STRIDE = 0x10;
+
+/**
+ * A mesh's blend word, a GE ALPHA command: bits 0-3 the source factor, 4-7
+ * the destination factor, 8-11 the equation (0 add, 2 reverse subtract).
+ * Monsters use three: 0x032 (source alpha, one minus source alpha: plain
+ * alpha blending), 0x0a2 / 0x0aa (destination factor fixed, adding) and 0x2aa
+ * (fixed factors, reverse subtracting). The fixed colours are set by the
+ * game's code, not the file, so `add` and `revsub` scale by source alpha.
+ */
+export function meshBlend(word: number): MeshBlend {
+  if (word >>> 24 !== 0xdf) return "opaque";
+  const destination = (word >> 4) & 0xf;
+  const equation = (word >> 8) & 0xf;
+  if (equation === 2) return "revsub";
+  if (equation === 0 && destination === 0xa) return "add";
+  return "alpha";
+}
 
 export function isPmo(buf: Buffer): boolean {
   return buf.length >= 0x38 && buf.subarray(0, 8).equals(Buffer.from("pmo\x001.0\x00", "latin1"));
@@ -93,6 +122,7 @@ export function readPmo(buf: Buffer): Pmo {
   for (let m = 0; m < meshCount; m++) {
     const at = meshTable + m * MESH_STRIDE;
     const uvScale: [number, number] = [reader.f32(at), reader.f32(at + 4)];
+    const blend = meshBlend(reader.u32(at + 0xc));
     const materialBase = reader.u16(at + 0x12);
     const groupCount = reader.u16(at + 0x14);
     const firstGroup = reader.u16(at + 0x16);
@@ -122,7 +152,7 @@ export function readPmo(buf: Buffer): Pmo {
         geometry: runDisplayList(reader, displayListBase + listOffset),
       });
     }
-    meshes.push({ uvScale, primitives });
+    meshes.push({ uvScale, ...(blend === "opaque" ? {} : { blend }), primitives });
   }
 
   return { radius, scale, materials, meshes };
