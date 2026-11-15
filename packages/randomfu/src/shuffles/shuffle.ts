@@ -1,4 +1,5 @@
 /** Shared pieces of the shuffles. */
+import { inScope, tierKey, type Scope, type Tier } from "../game/tiers.js";
 import type { Rng } from "../rng.js";
 
 /** `items` by key, in first-seen order of keys and items. */
@@ -32,6 +33,86 @@ export function permuteWithinGroups<S, V>(
   for (const indices of members.values()) {
     const values = rng.shuffle(indices.map((i) => value(slots[i]!)));
     indices.forEach((slotIndex, k) => (out[slotIndex] = values[k]!));
+  }
+  return out;
+}
+
+/**
+ * Like `permuteWithinGroups`, but groups are what `scope` allows from each
+ * slot's tier, on top of `group` (slots in different groups never trade).
+ * Star, rank and any-tier scopes are plain groups. Adjacent ranks overlap
+ * (Low trades with High, High with G, but Low not with G), so those slots
+ * trade pairwise instead: random swaps, each kept only if both slots may
+ * take the other's value.
+ */
+export function permuteWithinScope<S, V>(
+  slots: readonly S[],
+  tierOf: (slot: S) => Tier,
+  scope: Scope,
+  group: (slot: S) => string,
+  value: (slot: S) => V,
+  rng: Rng,
+): V[] {
+  if (scope !== "adjacent") {
+    return permuteWithinGroups(
+      slots,
+      (s) =>
+        `${group(s)}|${scope === "any" ? "" : scope === "rank" ? tierOf(s).band : tierKey(tierOf(s))}`,
+      value,
+      rng,
+    );
+  }
+  const out = slots.map(value);
+  // `from[k]` is the slot whose value `k` holds now.
+  const from = slots.map((_, i) => i);
+  for (const indices of groupBy(
+    slots.map((_, i) => i),
+    (i) => group(slots[i]!),
+  ).values()) {
+    for (let n = 0; n < indices.length * 12; n++) {
+      const a = indices[rng.int(indices.length)]!;
+      const b = indices[rng.int(indices.length)]!;
+      if (a === b) continue;
+      if (
+        inScope(scope, tierOf(slots[a]!), tierOf(slots[from[b]!]!)) &&
+        inScope(scope, tierOf(slots[b]!), tierOf(slots[from[a]!]!))
+      ) {
+        [out[a], out[b]] = [out[b]!, out[a]!];
+        [from[a], from[b]] = [from[b]!, from[a]!];
+      }
+    }
+  }
+  return out;
+}
+
+/**
+ * Whole numbers for `weights`' proportions that add up to `total`, each at
+ * least 1 (largest remainder). Reward chances in one list must total 100.
+ */
+export function reconcile(weights: readonly number[], total: number): number[] {
+  const n = weights.length;
+  if (n === 0) return [];
+  if (total < n) throw new RangeError(`${n} shares can't each get 1 of ${total}`);
+  const w = weights.map((x) => Math.max(1, x));
+  const sum = w.reduce((a, b) => a + b, 0);
+  const exact = w.map((x) => (x * total) / sum);
+  const out = exact.map((x) => Math.max(1, Math.floor(x)));
+  let left = total - out.reduce((a, b) => a + b, 0);
+  const byRemainder = exact
+    .map((x, i) => ({ i, r: x - Math.floor(x) }))
+    .sort((a, b) => b.r - a.r || a.i - b.i);
+  for (let k = 0; left > 0; k = (k + 1) % n) {
+    out[byRemainder[k]!.i]!++;
+    left--;
+  }
+  // Raising a share to 1 can overshoot: take it back from the largest.
+  while (left < 0) {
+    let big = 0;
+    out.forEach((x, i) => {
+      if (x > out[big]!) big = i;
+    });
+    out[big]!--;
+    left++;
   }
   return out;
 }

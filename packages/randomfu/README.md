@@ -116,7 +116,10 @@ pages and `pnpm settings` show as a tag):
 | Setting                           | Default     | What it does                                                                             |
 | --------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
 | `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`)                     |
-| `questRewards.enabled`            | on          | Shuffle quest rewards                                                                    |
+| `questRewards.mode`               | `shuffle`   | `off`, `shuffle` reward slots between quests, or `randomize` them                        |
+| `questRewards.scope`              | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`  |
+| `questRewards.slots`              | ±30%        | With `randomize`: how far a main reward list's number of slots can move                  |
+| `questRewards.chances`            | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`   |
 | `monsterRewards.enabled`          | on          | Shuffle carves and shiny drops                                                           |
 | `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                        |
 | `gathering.enabled`               | off         | Shuffle gathering points                                                                 |
@@ -209,7 +212,7 @@ except `supplies.pool add`, which grows quests into their sector padding
 
 | Shuffle           | Data                                                                                   | What changes                                                  |
 | ----------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `quest-rewards`   | `RewardTBL` items in each quest `.mib`                                                 | Item and amount move; the chance stays with the slot          |
+| `quest-rewards`   | `RewardTBL` items in each quest `.mib`                                                 | Item, amount and chance move together (see below)             |
 | `monster-rewards` | Carve, capture and break lists in `game_sub.ovl`                                       | Item moves; chance and amount stay with the slot              |
 | `gathering`       | Gathering item tables in each quest `.mib`                                             | Item moves; the value (weight) stays with the slot            |
 | `recipes`         | `EquipmentCreate` / `EquipmentUpgrade` in the EBOOT                                    | Material moves; quantity stays with the slot                  |
@@ -227,6 +230,32 @@ except `supplies.pool add`, which grows quests into their sector padding
 | quest monsters    | Spawn records in each quest `.mib`                                                     | Which large monsters, their level, small counts               |
 | monster stats     | Each monster's `emChunk` in `game_task.ovl`                                            | Base HP, size, status resistance                              |
 | weaknesses        | Hitzone tables in `game_task.ovl`                                                      | Elemental weaknesses and weak spots                           |
+
+### Quest rewards
+
+Each quest has a `RewardTBL[]`; every table points at a list of
+`RewardItem`s (chance, item, amount, 6 bytes each, ended by `0xFFFF`), and a
+list's chances add up to 100. The main list (`Unkn1 0x8000`) is the quest's
+reward pool, `0x8001` lists are fixed extras, and the rest are conditional
+(Slay, Paw Pass, Training, Treasure Hunting). Only Village and Guild quests
+take part (see Logic). `questRewards.scope` is how far they reach, and has
+its own setting rather than `logic.tiers`: `star` (the default), `rank`,
+`adjacent` (the same or the next rank: Low with High, High with G) or `any`.
+
+- **Shuffle** moves whole slots (item, amount and chance) between lists of
+  the same kind, within the scope. Each list keeps its number of slots. A
+  list that gets slots from elsewhere has its chances scaled (largest
+  remainder, each at least 1) back to the total it had.
+- **Randomize** rolls each main list's slot count within `questRewards.slots`
+  of its own, to no more than the longest main list on the disc has and as
+  many as the quest has room for. A longer list moves to the end of the
+  quest, into its sector padding, as supply boxes do. Each slot gets an item
+  first found within the scope (never a quest-only item, never one twice in
+  a list), an amount a quest gives of that item (rewards or supply boxes),
+  and a chance: `rarity` deals out the chances the list had, `reasonable`
+  scales each by 0.5 to 2, `any` rolls 1 to 100. The chances are then scaled
+  to the list's total. Extra and conditional lists keep their length.
+- Lists with empty (item 0) entries are shuffled but not randomized.
 
 ### Logic
 
@@ -250,7 +279,7 @@ the recipe check below no longer means anything).
   rewards, monster rewards and gathering points. A recipe slot is shuffled
   with other slots whose items have the same tier.
 
-The reward and gathering shuffles keep every tier's items within that
+The gathering shuffle (and quest rewards at `star` scope) keep every tier's items within that
 tier, so every recipe material is still found at or before the star level
 it was before. `checkRecipes` confirms this against the shuffled rewards
 and gathering points; any failure is printed and listed at the top of the

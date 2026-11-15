@@ -53,7 +53,7 @@ function requireFlag(flags: Record<string, string>, name: string): string {
 
 /** `--shuffles` names, kept from before settings files existed. */
 const SHUFFLE_FLAGS: Record<string, OptionKey> = {
-  "quest-rewards": "questRewards.enabled",
+  "quest-rewards": "questRewards.mode",
   "monster-rewards": "monsterRewards.enabled",
   recipes: "recipes.materials",
   "recipe-amounts": "recipes.amounts",
@@ -98,8 +98,11 @@ export function settingsFromFlags(flags: Record<string, string>): Settings {
     settings = decoded.settings;
   }
   if (flags.shuffles) {
-    const changes: Record<string, boolean> = {};
-    for (const key of Object.values(SHUFFLE_FLAGS)) changes[key] = false;
+    // An option that is a mode rather than a switch: on means shuffle.
+    const change = (key: OptionKey, on: boolean): boolean | string =>
+      key.endsWith(".mode") ? (on ? "shuffle" : "off") : on;
+    const changes: Record<string, boolean | string> = {};
+    for (const key of Object.values(SHUFFLE_FLAGS)) changes[key] = change(key, false);
     for (const name of flags.shuffles
       .split(",")
       .map((s) => s.trim())
@@ -110,7 +113,7 @@ export function settingsFromFlags(flags: Record<string, string>): Settings {
           `Unknown shuffle "${name}" (expected ${Object.keys(SHUFFLE_FLAGS).join(", ")})`,
         );
       }
-      changes[key] = true;
+      changes[key] = change(key, true);
     }
     settings = applySettings(settings, changes);
   }

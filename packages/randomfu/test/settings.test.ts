@@ -58,16 +58,15 @@ test("presets do what their help says", () => {
     OPTIONS.filter(
       (o) =>
         !UNTRIED.includes(o.key) &&
+        // Quest rewards can do either: Randomized leaves them off (every reward stays put).
+        !(action === "randomize" && o.key === "questRewards.mode") &&
         (o.action === action ||
           (o.type.kind === "choice" && o.type.choices.some((c) => c.action === action))),
     );
 
   // "The defaults: quest rewards and carves are shuffled."
   assert.deepEqual(preset("Rewards only"), defaultSettings("S"));
-  assert.deepEqual(keys(preset("Rewards only")), [
-    "monsterRewards.enabled",
-    "questRewards.enabled",
-  ]);
+  assert.deepEqual(keys(preset("Rewards only")), ["monsterRewards.enabled", "questRewards.mode"]);
 
   // Shuffled: every shuffle that's been tried, and no randomizer.
   const shuffled = preset("Shuffled");
@@ -154,7 +153,7 @@ test("settings files hold any subset; written files list everything", () => {
   const partial = settingsFromJson('{"costs.enabled": true, "seed": "FILE"}', "unused");
   assert.equal(partial.seed, "FILE");
   assert.equal(partial["costs.enabled"], true);
-  assert.equal(partial["questRewards.enabled"], true, "unlisted options keep their defaults");
+  assert.equal(partial["questRewards.mode"], "shuffle", "unlisted options keep their defaults");
   const full = JSON.parse(settingsToJson(partial));
   assert.equal(Object.keys(full).length, OPTIONS.length + 1);
   assert.throws(() => settingsFromJson("[]", "S"), /JSON object/);
@@ -192,7 +191,7 @@ test("CLI flags layer: file < string < --shuffles < shorthand < --set < --seed",
   assert.equal(s.seed, "FINAL");
   assert.equal(s["weapons.enabled"], true);
   assert.equal(s["recipes.materials"], true);
-  assert.equal(s["questRewards.enabled"], false, "--shuffles turns off what it doesn't list");
+  assert.equal(s["questRewards.mode"], "off", "--shuffles turns off what it doesn't list");
   assert.equal(s["costs.spread"], 0.2);
   assert.equal(s["recipes.maxQuantity"], 5);
   assert.throws(() => settingsFromFlags({ shuffles: "everything" }), /Unknown shuffle/);

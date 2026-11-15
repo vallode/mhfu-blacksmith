@@ -2,7 +2,7 @@ import { applySettings, defaultSettings, type OptionKey, type Settings } from ".
 
 /** Shuffle names as the tests (and the CLI's --shuffles) use them. */
 export const SHUFFLE_KEYS = {
-  "quest-rewards": "questRewards.enabled",
+  "quest-rewards": "questRewards.mode",
   "monster-rewards": "monsterRewards.enabled",
   recipes: "recipes.materials",
   "recipe-amounts": "recipes.amounts",
@@ -26,8 +26,11 @@ export function settingsWith(
   shuffles: ShuffleName[],
   changes: Partial<Record<OptionKey, boolean | number | string>> = {},
 ): Settings {
-  const on: Record<string, boolean> = {};
-  for (const [name, key] of Object.entries(SHUFFLE_KEYS))
-    on[key] = shuffles.includes(name as ShuffleName);
+  const on: Record<string, boolean | string> = {};
+  for (const [name, key] of Object.entries(SHUFFLE_KEYS)) {
+    const enabled = shuffles.includes(name as ShuffleName);
+    // A mode rather than a switch: on means shuffle.
+    on[key] = key.endsWith(".mode") ? (enabled ? "shuffle" : "off") : enabled;
+  }
   return applySettings(defaultSettings(seed), { ...on, ...changes });
 }

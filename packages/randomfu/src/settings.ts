@@ -7,12 +7,16 @@
  * of the seed, the logic version and every option that isn't its default:
  * with the same disc, it reproduces the same game.
  */
+import type { Scope } from "./game/tiers.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export interface Settings {
   seed: string;
   "logic.tiers": "star" | "rank" | "none";
-  "questRewards.enabled": boolean;
+  "questRewards.mode": Mode;
+  "questRewards.scope": Scope;
+  "questRewards.slots": number;
+  "questRewards.chances": "rarity" | "reasonable" | "any";
   "monsterRewards.enabled": boolean;
   "monsterRewards.captureAndBreaks": boolean;
   "gathering.enabled": boolean;
@@ -108,6 +112,9 @@ export type OptionType =
  */
 export type Action = "shuffle" | "randomize";
 
+/** What a feature does: nothing, shuffle what's there, or randomize new values. */
+export type Mode = "off" | Action;
+
 export interface OptionDef {
   key: OptionKey;
   section: string;
@@ -119,8 +126,10 @@ export interface OptionDef {
   action?: Action;
   /** Needs the decrypted EBOOT when on (or, for non-booleans, when `enabledBy` is on). */
   eboot?: boolean;
-  /** A boolean option that must be on for this one to matter. */
+  /** An option that must be on for this one to matter. */
   enabledBy?: OptionKey;
+  /** With `enabledBy` a choice: the values of it that count as on. */
+  enabledWhen?: readonly string[];
 }
 
 const SPREAD = { kind: "number", min: 0, max: 0.95, step: 0.05, percent: true } as const;
@@ -130,7 +139,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "logic.tiers",
     section: "Logic",
     label: "How far items can move",
-    help: "An item's point in the game is the rank and star level where it's first found: the earliest Village or Guild quest that rewards it, has a monster that gives it, or has a gathering point with it.",
+    help: "An item's point in the game is the rank and star level where it's first found: the earliest Village or Guild quest that rewards it, has a monster that gives it, or has a gathering point with it. Quest rewards have their own scope below.",
     type: {
       kind: "choice",
       choices: [
@@ -154,13 +163,94 @@ export const OPTIONS: readonly OptionDef[] = [
     default: "star",
   },
   {
-    key: "questRewards.enabled",
+    key: "questRewards.mode",
     section: "Quest rewards",
-    label: "Shuffle quest rewards",
-    help: "Reward items and amounts move between Village and Guild quests at the same point in the game (see Logic); each slot keeps its chance. Training School and Treasure Hunting quests are left alone.",
-    type: { kind: "boolean" },
-    default: true,
-    action: "shuffle",
+    label: "Quest rewards",
+    help: "What happens to the reward slots of Village and Guild quests. Training School and Treasure Hunting quests are left alone.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Quests give what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Whole reward slots (item, amount and chance) trade places between quests, as far as the scope allows. Each quest keeps its number of slots, and a list's chances are scaled back to add up to 100.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Each quest's main reward list gets a new number of slots, and every slot a new item, amount and chance, with the items drawn from the scope.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "shuffle",
+  },
+  {
+    key: "questRewards.scope",
+    section: "Quest rewards",
+    label: "How far rewards can reach",
+    help: "Which quests slots trade between when shuffled, and which items a quest's slots can be drawn from when randomized (by where each item is first found).",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "star",
+          label: "Same star level",
+          help: "Slots stay at their own rank and star level; randomized slots get items found there.",
+        },
+        {
+          value: "rank",
+          label: "Same rank",
+          help: "Anywhere within Low, High or G Rank.",
+        },
+        {
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
+        },
+        { value: "any", label: "Anywhere (chaos)", help: "Any quest, any item in the game." },
+      ],
+    },
+    default: "star",
+    enabledBy: "questRewards.mode",
+    enabledWhen: ["shuffle", "randomize"],
+  },
+  {
+    key: "questRewards.slots",
+    section: "Quest rewards",
+    label: "Reward slot variation",
+    help: "How far a main reward list's number of slots can move, up or down. A list never gets more slots than the longest one on the disc, or than its quest has room for.",
+    type: SPREAD,
+    default: 0.3,
+    enabledBy: "questRewards.mode",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "questRewards.chances",
+    section: "Quest rewards",
+    label: "Reward chances",
+    help: "How slots' chances are rolled. A list's chances always add up to 100, so whatever is rolled is scaled to fit.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rarity",
+          label: "Same rarity",
+          help: "The chances the list had, dealt to the new slots.",
+        },
+        {
+          value: "reasonable",
+          label: "Within reason",
+          help: "Each of the list's chances scaled by 0.5 to 2.",
+        },
+        { value: "any", label: "Anything (chaos)", help: "Each slot rolls 1 to 100." },
+      ],
+    },
+    default: "rarity",
+    enabledBy: "questRewards.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "monsterRewards.enabled",
@@ -1010,7 +1100,9 @@ export function needsEboot(settings: Settings): boolean {
 export function isActive(settings: Settings, option: OptionDef): boolean {
   if (!option.enabledBy) return true;
   const parent = BY_KEY.get(option.enabledBy)!;
-  return settings[option.enabledBy] === true && isActive(settings, parent);
+  const value = settings[option.enabledBy];
+  const on = option.enabledWhen ? option.enabledWhen.includes(String(value)) : value === true;
+  return on && isActive(settings, parent);
 }
 
 /** What `settings` shuffle and randomize: every option in effect that does either, with which. */
@@ -1157,7 +1249,7 @@ export const PRESETS: readonly Preset[] = [
     name: "Randomized",
     help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills. The bookshelf guides are written.",
     changes: {
-      "questRewards.enabled": false,
+      "questRewards.mode": "off",
       "monsterRewards.enabled": false,
       "recipes.amounts": true,
       "costs.enabled": true,
@@ -1206,6 +1298,7 @@ export const PRESETS: readonly Preset[] = [
     help: "Full with the limits off. Logic is at Anywhere, so recipes may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
     changes: {
       "logic.tiers": "none",
+      "questRewards.scope": "any",
       "recipes.materials": true,
       "recipes.amounts": true,
       "recipes.amountSpread": 0.9,

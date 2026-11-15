@@ -631,7 +631,9 @@
       function isActive(option) {
         if (!option.enabledBy) return true;
         const parent = schema.options.find((o) => o.key === option.enabledBy);
-        return settings[option.enabledBy] === true && isActive(parent);
+        const value = settings[option.enabledBy];
+        const on = option.enabledWhen ? option.enabledWhen.includes(String(value)) : value === true;
+        return on && isActive(parent);
       }
 
       function format(option, value) {

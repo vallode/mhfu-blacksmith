@@ -32,6 +32,21 @@ export function coarsen(tier: Tier, mode: TierMode): Tier {
   return tier;
 }
 
+/**
+ * How far a shuffle or randomizer may reach from a slot's own tier: its
+ * star level, its rank, the ranks next to it (Low and High, High and G) or
+ * the whole game.
+ */
+export type Scope = "star" | "rank" | "adjacent" | "any";
+
+/** True if something first found at `to` may be used at `from` under `scope`. */
+export function inScope(scope: Scope, from: Tier, to: Tier): boolean {
+  if (scope === "any") return true;
+  if (scope === "star") return from.band === to.band && from.stars === to.stars;
+  const gap = Math.abs(BANDS.indexOf(from.band) - BANDS.indexOf(to.band));
+  return scope === "rank" ? gap === 0 : gap <= 1;
+}
+
 export function tierKey(tier: Tier): string {
   return `${tier.band}:${tier.stars}`;
 }

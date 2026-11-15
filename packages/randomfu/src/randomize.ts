@@ -18,7 +18,11 @@ import {
   collectRewardLists,
   shuffleMonsterRewards,
 } from "./shuffles/monster-rewards.js";
-import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
+import {
+  collectQuestRewardSlots,
+  randomizeQuestRewards,
+  shuffleQuestRewards,
+} from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
 import { median, type ShuffleReport } from "./shuffles/shuffle.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
@@ -121,6 +125,25 @@ function usualAmounts(
     // The lower middle, so an even split rounds down to an amount the game uses.
     return amounts ? Math.max(1, median(amounts, "lower")) : 1;
   };
+}
+
+/** The amounts quests give of each item, in supply boxes and rewards. */
+function observedAmounts(
+  game: GameData,
+  rewards: readonly { itemId: number; amount: number }[],
+): (itemId: number) => readonly number[] {
+  const out = new Map<number, number[]>();
+  const add = (entries: Iterable<{ itemId: number; amount: number }>) => {
+    for (const { itemId, amount } of entries) {
+      if (amount < 1) continue;
+      const list = out.get(itemId);
+      if (list) list.push(amount);
+      else out.set(itemId, [amount]);
+    }
+  };
+  add(game.quests.flatMap((q) => readSupplySlots(q.file.payload)));
+  add(rewards);
+  return (itemId) => out.get(itemId) ?? [];
 }
 
 export interface RandomizeOptions {
@@ -262,10 +285,30 @@ export function randomize(
   const realTiers = itemTiers([...questSlots, ...monsterSlots, ...gathering.slots]);
 
   let questAfter: { itemId: number; tier: Tier }[] = grouped(questSlots);
-  if (settings["questRewards.enabled"]) {
-    const result = shuffleQuestRewards(grouped(questSlots), rng.fork("quest-rewards"), edits);
+  const rewardMode = settings["questRewards.mode"];
+  if (rewardMode !== "off") {
+    const scope = settings["questRewards.scope"];
+    const result =
+      rewardMode === "shuffle"
+        ? shuffleQuestRewards(questSlots, scope, rng.fork("quest-rewards"), edits)
+        : randomizeQuestRewards(
+            questSlots,
+            {
+              scope,
+              slotSpread: settings["questRewards.slots"],
+              chances: settings["questRewards.chances"],
+            },
+            {
+              tiers: realTiers,
+              allItems: sellableItems(),
+              amounts: observedAmounts(game, questSlots),
+              largestQuest: Math.max(...game.quests.map((q) => q.file.payload.length)),
+            },
+            rng.fork("quest-rewards"),
+            edits,
+          );
     reports.push(result.report);
-    questAfter = result.after;
+    questAfter = grouped(result.after);
   }
 
   let monsterAfter: { itemId: number; tier: Tier }[] = grouped(monsterSlots);
