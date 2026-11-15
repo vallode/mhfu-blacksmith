@@ -1013,7 +1013,7 @@ export const OPTIONS: readonly OptionDef[] = [
     label: "Monster guide on the bookshelf",
     help: "The house bookshelf's Practical Hunting monster articles (Open Bookshelf, Info Magazine) become the RandomFU Bestiary: one page per large monster rating its elemental weaknesses, softest parts, status resistance and health in stars, as the shuffles left them, readable from the start. In English in every language. EU disc only; seen on the shelf in PPSSPP.",
     type: { kind: "boolean" },
-    default: false,
+    default: true,
   },
   {
     key: "hints.almanac",
@@ -1021,7 +1021,7 @@ export const OPTIONS: readonly OptionDef[] = [
     label: "Item almanac on the bookshelf",
     help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
     type: { kind: "boolean" },
-    default: false,
+    default: true,
     eboot: true,
   },
   {
@@ -1209,9 +1209,6 @@ export interface Preset {
   changes: Partial<Record<OptionKey, boolean | number | string>>;
 }
 
-/** The bookshelf guides, written by every preset but Rewards only. */
-const HINTS = { "hints.bookshelf": true, "hints.almanac": true } as const;
-
 /** The monster and weapon randomizers that Randomized, Full and Chaos all turn on. */
 const STAT_RANDOMIZERS = {
   "questMonsters.crowns": true,
@@ -1233,7 +1230,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Shuffled",
-    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Every amount, cost and stat stays as it was. The bookshelf guides are written.",
+    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Every amount, cost and stat stays as it was.",
     changes: {
       "gathering.enabled": true,
       "supplies.enabled": true,
@@ -1245,12 +1242,11 @@ export const PRESETS: readonly Preset[] = [
       "questMonsters.species": true,
       "weaknesses.elements": true,
       "weaknesses.parts": true,
-      ...HINTS,
     },
   },
   {
     name: "Randomized",
-    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills. The bookshelf guides are written.",
+    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills.",
     changes: {
       "questRewards.enabled": false,
       "monsterRewards.enabled": false,
@@ -1265,7 +1261,6 @@ export const PRESETS: readonly Preset[] = [
       "armorSkills.mode": "randomize",
       "questMonsters.size": true,
       ...STAT_RANDOMIZERS,
-      ...HINTS,
     },
   },
   {
@@ -1293,7 +1288,6 @@ export const PRESETS: readonly Preset[] = [
       ...STAT_RANDOMIZERS,
       "weaknesses.elements": true,
       "weaknesses.parts": true,
-      ...HINTS,
     },
   },
   {
@@ -1349,7 +1343,6 @@ export const PRESETS: readonly Preset[] = [
       "weapons.attackSpread": 0.5,
       "weapons.affinitySpread": 30,
       "weapons.elementSpread": 0.6,
-      ...HINTS,
     },
   },
 ];

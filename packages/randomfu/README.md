@@ -190,8 +190,8 @@ pages and `pnpm settings` show as a tag):
 | `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                 |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                              |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                        |
-| `hints.bookshelf`                 | off         | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                    |
-| `hints.almanac`                   | off         | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                   |
+| `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                    |
+| `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                   |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)             |
 
 ### Presets
@@ -200,8 +200,7 @@ Each preset replaces every option and keeps the seed. They're built on
 the shuffle and randomize split, and a test (`test/settings.test.ts`) keeps
 them to what's described here. Options not yet tried in game are in no
 preset: quest maps, monster starts, small monster species and the Veggie
-Elder's trades. Turn those on yourself once you've tried them on your disc. Every preset but Rewards only also writes the
-bookshelf guides (EU disc only).
+Elder's trades. Turn those on yourself once you've tried them on your disc.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                |
 | ------------ | ------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
