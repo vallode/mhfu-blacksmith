@@ -81,8 +81,9 @@ web app shows as a tag):
 | `gathering.scope`                 | `star`      | How far pairs trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`  |
 | `gathering.chances`               | `rarity`    | With `randomize`: odds `rarity` (the table's own), `reasonable` (×0.5 to 2) or `any`     |
 | `gathering.keepItems`             | on          | With `randomize`, every gatherable item stays findable at its star level                 |
-| `supplies.enabled`                | off         | Shuffle supply boxes                                                                     |
-| `supplies.pool`                   | `supplies`  | Supply box items, any item of the same `rank`, or `add` random stacks to each box        |
+| `supplies.mode`                   | `off`       | `off`, `shuffle` supply box stacks between quests, or `randomize` them                   |
+| `supplies.scope`                  | `star`      | How far stacks trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any` |
+| `supplies.slots`                  | ±30%        | With `randomize`: how far a box's number of stacks can move                              |
 | `supplies.keepEssentials`         | on          | Keep maps, ballista and cannon ammo and the other quest-only supplies                    |
 | `terms.money`                     | off         | Randomize quest money: fees, reward money and penalties                                  |
 | `terms.moneySpread`               | 0.5         | How far they move                                                                        |
@@ -161,12 +162,12 @@ Elder's trades. Turn those on yourself once you've tried them on your disc.
 | Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills, shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                                                         |
 | Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon stats, new armor skills |
 | Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled, difficulty within its rank                                                                                                                        |
-| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering and supply boxes, any crown spread and difficulty, wide spreads                                                           |
+| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering points and supply boxes, any crown spread and difficulty, wide spreads                                                    |
 
 ## Shuffles
 
 No shuffle changes a list's length, so every edited file keeps its size,
-except `supplies.pool add`, which grows quests into their sector padding,
+except `supplies.mode randomize`, which grows quests into their sector padding,
 and the quest map options, which rebuild quests (see "Quest maps" below).
 
 | Shuffle           | Data                                                                                   | What changes                                                  |
@@ -759,27 +760,31 @@ are unchanged. Checked in PPSSPP on the Snowy Mountains map.
 of `{ u16 item, u16 amount }` at the header's `SuppliesPTR`, ending at item
 0 (whose amount field holds the quest ID). On the EU disc every quest has
 exactly one such list; nothing else points into it, and the header's
-`SupplyCond` (+70) is a flag, not a second list, so it's left alone and
-each entry is rewritten in place. Guild quests list a stack once per
-hunter (four Maps), so runs of identical entries change together. With
-`supplies.pool supplies` (the default) item and amount move between
-quests of the same tier; `rank` gives random items first found at the
-quest's rank, in their usual amount (the median a supply box, else a quest
-reward, gives of them). With `supplies.keepEssentials`, quest-only items
+`SupplyCond` (+70) is a flag, not a second list, so it's left alone. Guild
+quests list a stack once per hunter (four Maps), so runs of identical
+entries change together. With `supplies.keepEssentials`, quest-only items
 (Map, First-Aid Med, Ration, the supply-only tools, ballista and cannon
-ammo) stay; `rank` never hands them out, nor carried objects.
+ammo) stay where they are; randomizing never hands them out, nor carried
+objects. `supplies.scope` is `star`, `rank`, `adjacent` or `any`.
 
-`supplies.pool add` (the Chaos preset) keeps every box as it is and adds
-up to 4 stacks of random items (any item but quest-only ones, none the box
-already has), in their usual amount. The list can't grow where it is (the
-gathering tables follow it), so the box, the new stacks and the same end
-marker are copied to the end of the quest and `SuppliesPTR` points there;
-the old list stays, unread. The quest grows into its DATA.BIN entry's
-sector padding (the entry's size field says where the quest ends), so
-DATA.BIN keeps its layout. No quest grows past the largest quest on the
-disc (10,680 bytes on EU) and no box past the largest box (32 stacks),
-sizes the game already handles; boxes without room get fewer stacks or
-none. A quest's own delivery item (the
+- **Shuffle** moves whole stacks (item and amount) between boxes within the
+  scope, in place: each box keeps its length.
+- **Randomize** gives each box a new number of stacks (within
+  `supplies.slots` of its own) and every stack an item first found within
+  the scope or held by a supply box there (supply items aren't item
+  sources, so they have no tier of their own), in an amount quests give of
+  it (rewards or supply boxes). New stacks take a width the box already
+  had, kept stacks stay where they are, and a box never has the same item
+  twice. A list can't grow where it is (the gathering tables follow it), so
+  a longer box and the same end marker are copied to the end of the quest
+  and `SuppliesPTR` points there; the old list stays, unread. The quest
+  grows into its DATA.BIN entry's sector padding (the entry's size field
+  says where the quest ends), so DATA.BIN keeps its layout. No quest grows
+  past the largest quest on the disc (10,680 bytes on EU) and no box past
+  the largest box (32 entries), sizes the game already handles; boxes
+  without room get fewer stacks.
+
+A quest's own delivery item (the
 Paw Pass Ticket) always stays, and in every mode no delivery quest's box
 gets the item it asks for (a permutation that would put it there swaps it
 with another stack of the same tier). Quest-only items include the
@@ -862,7 +867,7 @@ played in game.
 
 - Whether files inside DATA.BIN can grow past their sectors. Needed for
   quest edits that add more data than the padding holds, such as new
-  monsters. Growing within the padding (`supplies.pool add`) isn't
+  monsters. Growing within the padding (`supplies.mode randomize`) isn't
   confirmed in game yet either. Other tools rebuild DATA.BIN with bigger
   files (IncognitoMan's `mhff`, which FUComplete uses, shifts every later
   file), but the game also loads files into fixed buffers (FUComplete's

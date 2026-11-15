@@ -56,10 +56,7 @@ test("presets do what their help says", () => {
       (o) =>
         !UNTRIED.includes(o.key) &&
         // Reward modes can do either: Randomized leaves them off (every reward stays put).
-        !(
-          action === "randomize" &&
-          ["questRewards.mode", "monsterRewards.mode", "gathering.mode"].includes(o.key)
-        ) &&
+        !(action === "randomize" && o.key.endsWith(".mode") && o.key !== "armorSkills.mode") &&
         (o.action === action ||
           (o.type.kind === "choice" && o.type.choices.some((c) => c.action === action))),
     );
@@ -78,8 +75,8 @@ test("presets do what their help says", () => {
       .sort(),
   );
   for (const option of OPTIONS.filter((o) => o.type.kind === "choice")) {
-    if (option.key === "armorSkills.mode" || option.key.endsWith("Rewards.mode")) continue;
-    if (option.key === "gathering.mode") continue;
+    // The modes are what the presets set, so they differ from the defaults.
+    if (option.key.endsWith(".mode")) continue;
     assert.equal(shuffled[option.key], option.default, `Shuffled keeps ${option.key}'s pool`);
   }
 

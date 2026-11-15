@@ -26,8 +26,9 @@ export interface Settings {
   "gathering.scope": Scope;
   "gathering.chances": "rarity" | "reasonable" | "any";
   "gathering.keepItems": boolean;
-  "supplies.enabled": boolean;
-  "supplies.pool": "supplies" | "rank" | "add";
+  "supplies.mode": Mode;
+  "supplies.scope": Scope;
+  "supplies.slots": number;
   "supplies.keepEssentials": boolean;
   "terms.money": boolean;
   "terms.moneySpread": number;
@@ -441,50 +442,75 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledWhen: ["randomize"],
   },
   {
-    key: "supplies.enabled",
+    key: "supplies.mode",
     section: "Supplies",
-    label: "Shuffle supply boxes",
-    help: "Each Village and Guild quest's supply box holds other items from the game. Stacks laid out once per hunter change together, and a delivery quest's box never gets the item it asks for.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
+    label: "Supply boxes",
+    help: "What happens to the supply box each Village and Guild quest hands out. Stacks laid out once per hunter change together, and a delivery quest's box never gets the item it asks for. Training School and Treasure Hunting quests are left alone.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Boxes hold what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Whole stacks (item and amount) trade places between boxes, as far as the scope allows. Each box keeps its length.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Each box gets a new number of stacks, and every stack a new item drawn from the scope and a new amount.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
   },
   {
-    key: "supplies.pool",
+    key: "supplies.scope",
     section: "Supplies",
-    label: "What supply boxes hold",
-    help: "Where supply box items come from.",
+    label: "How far supply boxes can reach",
+    help: "Which boxes stacks trade between when shuffled, and which items a box can be drawn from when randomized (items first found there, and items that boxes there hold).",
     type: {
       kind: "choice",
       choices: [
         {
-          value: "supplies",
-          label: "Supply box items",
-          help: "Only items supply boxes hold anyway: items and amounts move between the boxes of quests at the same point in the game (see Logic).",
+          value: "star",
+          label: "Same star level",
+          help: "Stacks stay at their own rank and star level; randomized boxes get items found there.",
         },
+        { value: "rank", label: "Same rank", help: "Anywhere within Low, High or G Rank." },
         {
-          value: "rank",
-          label: "Any item from the same rank",
-          help: "Anything first found at the quest's rank, or held by any supply box, in its usual amount.",
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
         },
-        {
-          value: "add",
-          label: "Add random items (chaos)",
-          help: "Each box keeps what it has and gets up to 4 more stacks of any item in the game, in its usual amount. A Low Rank box can hold G Rank parts.",
-        },
+        { value: "any", label: "Anywhere (chaos)", help: "Any box, any item in the game." },
       ],
     },
-    default: "supplies",
-    enabledBy: "supplies.enabled",
+    default: "star",
+    enabledBy: "supplies.mode",
+    enabledWhen: ["shuffle", "randomize"],
+  },
+  {
+    key: "supplies.slots",
+    section: "Supplies",
+    label: "Supply stack variation",
+    help: "How far a box's number of stacks can move, up or down. A box never gets more entries than the largest one on the disc, or than its quest has room for.",
+    type: SPREAD,
+    default: 0.3,
+    enabledBy: "supplies.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "supplies.keepEssentials",
     section: "Supplies",
     label: "Keep maps and quest supplies",
-    help: "Maps, ballista and cannon ammo and the other quest-only supplies stay where they are. A quest's Paw Pass Ticket always stays. (Adding random items keeps everything anyway.)",
+    help: "Maps, ballista and cannon ammo and the other quest-only supplies stay where they are. A quest's Paw Pass Ticket always stays. (Randomizing never adds quest-only items.)",
     type: { kind: "boolean" },
     default: true,
-    enabledBy: "supplies.enabled",
+    enabledBy: "supplies.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "terms.money",
@@ -1374,7 +1400,7 @@ export const PRESETS: readonly Preset[] = [
     help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Every amount, cost and stat stays as it was.",
     changes: {
       "gathering.mode": "shuffle",
-      "supplies.enabled": true,
+      "supplies.mode": "shuffle",
       "recipes.materials": true,
       "weapons.enabled": true,
       "armor.enabled": true,
@@ -1420,7 +1446,7 @@ export const PRESETS: readonly Preset[] = [
       "shops.stacks": true,
       "gathering.mode": "randomize",
       "gathering.scope": "rank",
-      "supplies.enabled": true,
+      "supplies.mode": "shuffle",
       "terms.money": true,
       "terms.time": true,
       "deliveries.enabled": true,
@@ -1462,8 +1488,8 @@ export const PRESETS: readonly Preset[] = [
       "gathering.mode": "randomize",
       "gathering.scope": "any",
       "gathering.keepItems": false,
-      "supplies.enabled": true,
-      "supplies.pool": "add",
+      "supplies.mode": "randomize",
+      "supplies.scope": "any",
       "terms.money": true,
       "terms.moneySpread": 0.9,
       "terms.time": true,

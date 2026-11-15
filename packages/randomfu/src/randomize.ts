@@ -30,7 +30,7 @@ import {
   shuffleQuestRewards,
 } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
-import { getOrInsert, median, type ShuffleReport } from "./shuffles/shuffle.js";
+import type { ShuffleReport } from "./shuffles/shuffle.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
 import {
   itemsOnSale,
@@ -40,7 +40,7 @@ import {
 } from "./shuffles/shops.js";
 import { itemName, questLabel, tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
-import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";
+import { collectSupplyRuns, randomizeSupplies, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
 import { findSmithyStore, storeReport } from "./shuffles/store.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
@@ -114,27 +114,6 @@ function sellableItems(): number[] {
     if (tableName("ItemID", id) !== null) out.push(id);
   }
   return out;
-}
-
-/**
- * How many of an item a stack gets when a wider pool puts it there: the
- * lower middle of what the first of `sources` that has the item gives of
- * it (so an even split rounds down to an amount the game uses), else 1.
- */
-function usualAmounts(
-  ...sources: readonly (readonly { itemId: number; amount: number }[])[]
-): (itemId: number) => number {
-  const amounts = sources.map((entries) => {
-    const out = new Map<number, number[]>();
-    for (const { itemId, amount } of entries) {
-      getOrInsert(out, itemId, () => []).push(amount);
-    }
-    return out;
-  });
-  return (itemId) => {
-    const found = amounts.find((m) => m.has(itemId))?.get(itemId);
-    return found ? Math.max(1, median(found, "lower")) : 1;
-  };
 }
 
 /** The amounts quests give of each item, in supply boxes and rewards. */
@@ -474,32 +453,33 @@ export function randomize(
     gatheringAfter = [...grouped(result.after), ...pinned];
   }
 
-  if (settings["supplies.enabled"]) {
-    const pool = settings["supplies.pool"];
+  const suppliesMode = settings["supplies.mode"];
+  if (suppliesMode !== "off") {
+    const scope = settings["supplies.scope"];
     const keepEssentials = settings["supplies.keepEssentials"];
-    const context = {
-      bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
-      allItems: sellableItems(),
-      usualAmount: usualAmounts(
-        game.quests.flatMap((q) => readSupplySlots(q.file.payload)),
-        questSlots,
-      ),
-      deliveryItem: (quest: LoadedQuest) => deliveries.get(quest.index)?.itemId,
-    };
+    const deliveryItem = (quest: LoadedQuest) => deliveries.get(quest.index)?.itemId;
     reports.push(
-      pool === "add"
-        ? addSupplies(game.quests, context, rng.fork("supplies"), edits)
-        : shuffleSupplies(
-            grouped(
-              collectSupplyRuns(
-                game.quests,
-                (quest, itemId) =>
-                  (keepEssentials && isQuestItem(itemId)) ||
-                  deliveries.get(quest.index)?.itemId === itemId,
-              ),
+      suppliesMode === "shuffle"
+        ? shuffleSupplies(
+            collectSupplyRuns(
+              game.quests,
+              (quest, itemId) =>
+                (keepEssentials && isQuestItem(itemId)) || deliveryItem(quest) === itemId,
             ),
-            { pool, keepEssentials },
-            context,
+            { scope, keepEssentials },
+            { deliveryItem },
+            rng.fork("supplies"),
+            edits,
+          )
+        : randomizeSupplies(
+            game.quests,
+            { scope, slotSpread: settings["supplies.slots"], keepEssentials },
+            {
+              deliveryItem,
+              tiers: realTiers,
+              allItems: sellableItems(),
+              amounts: observedAmounts(game, questSlots),
+            },
             rng.fork("supplies"),
             edits,
           ),

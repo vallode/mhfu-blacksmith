@@ -12,7 +12,7 @@ export const SHUFFLE_KEYS = {
   "armor-skills": "armorSkills.enabled",
   shops: "shops.enabled",
   gathering: "gathering.mode",
-  supplies: "supplies.enabled",
+  supplies: "supplies.mode",
   "quest-money": "terms.money",
   "time-limits": "terms.time",
   deliveries: "deliveries.enabled",
