@@ -248,7 +248,6 @@ export const monsters = {
       "requires fire element": "requires fire element",
       "stagger during taunt": "stagger during taunt",
       killed: "killed",
-      "stagger the tail": "stagger the tail",
       "stagger the tail [bone]": "stagger the tail [bone]",
       "stagger the tail [mushroom]": "stagger the tail [mushroom]",
       "stagger the tail [mineral stone]": "stagger the tail [mineral stone]",

@@ -1842,6 +1842,13 @@
             5
           ],
           "flinches": 2
+        },
+        {
+          "name": "right shoulder",
+          "parts": [
+            6
+          ],
+          "flinches": 2
         }
       ],
       "flinch_thresholds": [
@@ -2024,10 +2031,14 @@
             },
             {
               "item": 182,
-              "chance": "9%"
+              "chance": "10%"
             },
             {
               "item": 769,
+              "chance": "5%"
+            },
+            {
+              "item": 768,
               "chance": "5%"
             }
           ],
@@ -2551,7 +2562,7 @@
               "chance": "15%"
             },
             {
-              "item": 786,
+              "item": 787,
               "chance": "6%"
             },
             {

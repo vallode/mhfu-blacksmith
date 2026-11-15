@@ -180,4 +180,5 @@ test("drops toSite writes amounts as xN when the disc has amounts other than one
 test("the monster overlay parses drop slots", () => {
   assert.deepEqual(parseDropSlot("body/low"), { kind: "body", rank: "low" });
   assert.deepEqual(parseDropSlot("break:2/g"), { kind: "break", breakType: 2, rank: "g" });
+  assert.deepEqual(parseDropSlot("carve:1007"), { kind: "carve", pointer: 1007 });
 });

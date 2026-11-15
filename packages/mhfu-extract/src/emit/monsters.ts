@@ -3,7 +3,7 @@
  * (vallode/mhfu-blacksmith#35), for `compare` and `build-data`.
  *
  * The disc gives numbers: hitzone rows by table and row, drop lists by kind
- * and rank slot. `overlay/monsters.json` says which of those each committed
+ * and rank slot, or by carve pointer number for the lists only code picks. `overlay/monsters.json` says which of those each committed
  * hitzone part and drop group shows, so the output uses the site's part
  * names and group labels, in the committed order. Only parts and groups the
  * overlay maps are emitted. Values stay numeric: hitzones as numbers under
@@ -163,6 +163,8 @@ export interface EmittedBreak {
 export interface MonsterTables {
   chunks: MonsterChunk[];
   carves: CarveTables[];
+  /** Carve lists only code reaches, by pointer number (`rewards.ts` `readUnindexedCarves`); absent, `carve:` slots emit nothing. */
+  unindexedCarves?: Record<number, RewardEntry[]>;
   capBreak: CapBreakTable[];
   /** The break table; absent, no breaks are emitted. */
   breaks?: BreakRecord[];
@@ -234,7 +236,8 @@ export function monsterBreaks(
 }
 
 function dropList(tables: MonsterTables, emId: number, slot: string): RewardEntry[] | undefined {
-  const { kind, breakType, rank } = parseDropSlot(slot);
+  const { kind, breakType, pointer, rank } = parseDropSlot(slot);
+  if (kind === "carve") return tables.unindexedCarves?.[pointer!];
   const r = rank as RewardRank;
   if (kind === "body" || kind === "tail" || kind === "shiny") {
     return tables.carves.find((c) => c.emId === emId)?.[kind][r];

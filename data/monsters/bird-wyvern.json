@@ -2723,6 +2723,28 @@
               "chance": "3%"
             }
           ],
+          "live carving : when playing dead (x3)": [
+            {
+              "item": 402,
+              "chance": "30%"
+            },
+            {
+              "item": 268,
+              "chance": "10%"
+            },
+            {
+              "item": 279,
+              "chance": "20%"
+            },
+            {
+              "item": 267,
+              "chance": "20%"
+            },
+            {
+              "item": 309,
+              "chance": "20%"
+            }
+          ],
           "break head": [
             {
               "item": 205,
@@ -2792,6 +2814,32 @@
             {
               "item": 217,
               "chance": "3%"
+            }
+          ],
+          "live carving : when playing dead (x3)": [
+            {
+              "item": 403,
+              "chance": "30%"
+            },
+            {
+              "item": 310,
+              "chance": "25%"
+            },
+            {
+              "item": 279,
+              "chance": "15%"
+            },
+            {
+              "item": 269,
+              "chance": "13%"
+            },
+            {
+              "item": 309,
+              "chance": "10%"
+            },
+            {
+              "item": 405,
+              "chance": "7%"
             }
           ],
           "break head": [
@@ -3092,6 +3140,28 @@
               "chance": "3%"
             }
           ],
+          "live carving : when playing dead (x3)": [
+            {
+              "item": 407,
+              "chance": "30%"
+            },
+            {
+              "item": 268,
+              "chance": "10%"
+            },
+            {
+              "item": 279,
+              "chance": "20%"
+            },
+            {
+              "item": 267,
+              "chance": "20%"
+            },
+            {
+              "item": 309,
+              "chance": "20%"
+            }
+          ],
           "break head": [
             {
               "item": 205,
@@ -3162,6 +3232,32 @@
             {
               "item": 217,
               "chance": "3%"
+            }
+          ],
+          "live carving : when playing dead (x3)": [
+            {
+              "item": 408,
+              "chance": "30%"
+            },
+            {
+              "item": 310,
+              "chance": "25%"
+            },
+            {
+              "item": 279,
+              "chance": "15%"
+            },
+            {
+              "item": 269,
+              "chance": "13%"
+            },
+            {
+              "item": 309,
+              "chance": "10%"
+            },
+            {
+              "item": 405,
+              "chance": "7%"
             }
           ],
           "break head": [
