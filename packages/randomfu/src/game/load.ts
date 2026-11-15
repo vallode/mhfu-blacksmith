@@ -29,6 +29,7 @@ export const EBOOT_PATH = "/PSP_GAME/SYSDIR/EBOOT.BIN";
 const GAME_SUB_PATH = "overlay/game_sub.ovl";
 const GAME_TASK_PATH = "overlay/game_task.ovl";
 const LOBBY_TASK_PATH = "overlay/lobby_task.ovl";
+const EDIT_TASK_PATH = "overlay/edit_task.ovl";
 
 export interface LoadedQuest {
   /** DATA.BIN file index. */
@@ -55,6 +56,11 @@ export interface GameData {
   gameTask: LoadedOverlay;
   /** Town code and data, including the shops' item lists. */
   lobbyTask: LoadedOverlay;
+  /**
+   * Character creation, including a new hunter's equipment. Null when it
+   * can't be read: only the starting equipment needs it, so nothing else fails.
+   */
+  editTask: LoadedOverlay | null;
   /** The quest board files (`level*.mib`) that are on the disc and read as boards. */
   boards: BoardFile[];
   /** The decrypted EBOOT. */
@@ -160,6 +166,13 @@ export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): 
     const index = indexOf(region, path);
     return { index, ovl: parseOvl(dataBin.read(index)) };
   };
+  const optionalOverlay = (path: string): LoadedOverlay | null => {
+    try {
+      return overlay(path);
+    } catch {
+      return null;
+    }
+  };
 
   const eboot = await decryptEboot(iso.readFile(EBOOT_PATH));
   let resolver: TableAddressResolver | undefined;
@@ -182,6 +195,7 @@ export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): 
     gameSub: overlay(GAME_SUB_PATH),
     gameTask: overlay(GAME_TASK_PATH),
     lobbyTask: overlay(LOBBY_TASK_PATH),
+    editTask: optionalOverlay(EDIT_TASK_PATH),
     boards: readBoards(region, dataBin),
     eboot,
     resolver,

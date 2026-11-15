@@ -31,6 +31,7 @@ import {
   FIXTURE_RECIPES,
   GAME_SUB_INDEX,
   LOBBY_TASK_INDEX,
+  EDIT_TASK_INDEX,
   memorySource,
   patchInMemory,
   QUEST_INDICES,
@@ -114,14 +115,15 @@ test("roundtrip finds every file re-encrypts to the disc's bytes", async () => {
       mismatches.push(quest.path);
     }
   }
-  for (const { index } of [game.gameSub, game.gameTask, game.lobbyTask]) {
+  const overlays = [game.gameSub, game.gameTask, game.lobbyTask, game.editTask];
+  for (const { index } of overlays.filter((o) => o !== null)) {
     checked++;
     if (!game.dataBin.encode(index, game.dataBin.read(index)).equals(onDisc(index))) {
       mismatches.push(`DATA.BIN file ${index}`);
     }
   }
   source.close();
-  assert.deepEqual({ checked, mismatches }, { checked: 8, mismatches: [] });
+  assert.deepEqual({ checked, mismatches }, { checked: 9, mismatches: [] });
 });
 
 test("items get the earliest star level of a reward, monster or used gathering point", async () => {
@@ -355,6 +357,7 @@ test("written output reads back with the shuffled data, and nothing else changes
     ...QUEST_INDICES.filter((i) => i !== training),
     GAME_SUB_INDEX,
     LOBBY_TASK_INDEX,
+    EDIT_TASK_INDEX,
   ]);
   const changed: number[] = [];
   for (let i = 0; i < bin.fileCount; i++) {

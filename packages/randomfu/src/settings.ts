@@ -57,6 +57,13 @@ export interface Settings {
   "weapons.affinitySpread": number;
   "weapons.element": boolean;
   "weapons.elementSpread": number;
+  "weapons.elementGain": number;
+  "weapons.elementKind": boolean;
+  "weapons.slots": boolean;
+  "weapons.slotSpread": number;
+  "weapons.statRange": "near" | "wide" | "any";
+  "weapons.sharpness": boolean;
+  "weapons.sharpnessMode": "shuffle" | "new";
   "armor.enabled": boolean;
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
@@ -818,7 +825,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.attack",
     section: "Weapons",
     label: "Randomize weapon attack",
-    help: "Each weapon's attack varies, staying within what weapons of its type have from one rarity below to one above. Sharpness, slots, defense bonus, horn notes, shelling, ammo and cost stay fixed. Stats go with the weapon wherever the smithy makes it.",
+    help: "Each weapon's attack varies, staying within what weapons of its type have nearby in rarity (see the stat range). Defense bonus, horn notes, shelling, ammo and cost stay fixed. Stats go with the weapon wherever the smithy makes it.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
@@ -836,7 +843,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.affinity",
     section: "Weapons",
     label: "Randomize weapon affinity",
-    help: "Each weapon's affinity moves up or down in steps of 5%, staying within what weapons of its type have from one rarity below to one above.",
+    help: "Each weapon's affinity moves up or down in steps of 5%, staying within what weapons of its type have nearby in rarity.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
@@ -854,7 +861,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.element",
     section: "Weapons",
     label: "Randomize weapon element and status",
-    help: "Weapons with an element or status get a new value for it, staying within what weapons of its type have from one rarity below to one above. They keep which element or status it is; weapons without one stay without, and dual-element weapons keep theirs. A weapon that's the only one of its type with that element or status nearby varies by the spread alone.",
+    help: "Weapons with an element or status get a new value for it, staying within what weapons of its type have nearby in rarity. Dual-element weapons keep theirs. A weapon that's the only one of its type with that element or status nearby varies by the spread alone.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
@@ -867,6 +874,101 @@ export const OPTIONS: readonly OptionDef[] = [
     type: SPREAD,
     default: 0.3,
     enabledBy: "weapons.element",
+  },
+  {
+    key: "weapons.elementGain",
+    section: "Weapons",
+    label: "New elements",
+    help: "The chance a Blademaster weapon or bow with no element or status gains one (bows only elements), at a value weapons of its type with it have nearby in rarity. Bowguns never do.",
+    type: { kind: "number", min: 0, max: 1, step: 0.05, percent: true },
+    default: 0,
+    enabledBy: "weapons.element",
+  },
+  {
+    key: "weapons.elementKind",
+    section: "Weapons",
+    label: "Change which element",
+    help: "A Blademaster weapon or bow with an element or status can get any other: Fire can become Ice, or Poison, and the other way round (bows only elements).",
+    type: { kind: "boolean" },
+    default: false,
+    enabledBy: "weapons.element",
+  },
+  {
+    key: "weapons.slots",
+    section: "Weapons",
+    label: "Randomize decoration slots",
+    help: "Each weapon gains or loses decoration slots, from none to three.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "weapons.slotSpread",
+    section: "Weapons",
+    label: "Slot variation",
+    help: "How many slots a weapon can gain or lose.",
+    type: { kind: "number", min: 1, max: 3, step: 1 },
+    default: 1,
+    enabledBy: "weapons.slots",
+  },
+  {
+    key: "weapons.statRange",
+    section: "Weapons",
+    label: "Weapon stat range",
+    help: "What attack, affinity and element values a weapon stays within: those of weapons of its type at rarities near its own.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "near",
+          label: "One rarity either side",
+          help: "A rarity 3 weapon stays within what rarity 2 to 4 weapons of its type have.",
+        },
+        {
+          value: "wide",
+          label: "Three rarities either side",
+          help: "A rarity 3 weapon can have what rarity 1 to 6 weapons of its type have.",
+        },
+        {
+          value: "any",
+          label: "Any rarity",
+          help: "Any weapon can have what any weapon of its type has, G Rank included, as far as the variation lets it move.",
+        },
+      ],
+    },
+    default: "near",
+  },
+  {
+    key: "weapons.sharpness",
+    section: "Weapons",
+    label: "Shuffle weapon sharpness",
+    help: "Blademaster weapons of the same type and rarity trade sharpness bars, so bar lengths stay as they were for each rarity. Sharpness goes with the weapon wherever the smithy makes it.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
+  },
+  {
+    key: "weapons.sharpnessMode",
+    section: "Weapons",
+    label: "Sharpness bars",
+    help: "Whether the bars themselves change.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "shuffle",
+          label: "The game's bars",
+          help: "Weapons only trade the bars the game has.",
+        },
+        {
+          value: "new",
+          label: "New bars",
+          help: "Every bar gets new colors, each a random share of it, so any weapon can have any color, purple included. Bars keep their length.",
+        },
+      ],
+    },
+    default: "shuffle",
+    enabledBy: "weapons.sharpness",
   },
   {
     key: "armor.enabled",
@@ -1692,6 +1794,7 @@ const STAT_RANDOMIZERS = {
   "weapons.attack": true,
   "weapons.affinity": true,
   "weapons.element": true,
+  "weapons.slots": true,
 } as const;
 
 export const PRESETS: readonly Preset[] = [
@@ -1702,12 +1805,13 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Shuffled",
-    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Every amount, cost and stat stays as it was.",
+    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, weapon sharpness, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Every amount, cost and stat stays as it was.",
     changes: {
       "gathering.mode": "shuffle",
       "supplies.mode": "shuffle",
       "recipes.mode": "shuffle",
       "weapons.enabled": true,
+      "weapons.sharpness": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
       "shops.mode": "shuffle",
@@ -1718,7 +1822,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Randomized",
-    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, how often each quest's main reward list is drawn, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills.",
+    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, how often each quest's main reward list is drawn, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity, element and slots are rolled anew, and armor gets new skills.",
     changes: {
       "questRewards.mode": "off",
       "questRewards.draws": 0.3,
@@ -1746,6 +1850,7 @@ export const PRESETS: readonly Preset[] = [
       "gathering.counts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
+      "weapons.sharpness": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
       "questRewards.draws": 0.3,
@@ -1768,7 +1873,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Chaos",
-    help: "Full with the limits off. Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
+    help: "Full with the limits off. Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank. Weapons can change type, take any stat their type has at any rarity, gain or change elements and slots, and get new sharpness bars; any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
     changes: {
       "questRewards.scope": "any",
       "questRewards.draws": 0.9,
@@ -1783,6 +1888,12 @@ export const PRESETS: readonly Preset[] = [
       "costs.spread": 0.9,
       "weapons.enabled": true,
       "weapons.mix": "any-type",
+      "weapons.sharpness": true,
+      "weapons.sharpnessMode": "new",
+      "weapons.statRange": "any",
+      "weapons.elementGain": 0.4,
+      "weapons.elementKind": true,
+      "weapons.slotSpread": 2,
       "armor.enabled": true,
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",

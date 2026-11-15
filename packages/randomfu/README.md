@@ -113,6 +113,13 @@ web app shows as a tag):
 | `weapons.affinitySpread`          | 15          | How many points it can move                                                                |
 | `weapons.element`                 | off         | Randomize element and status values of weapons that have one                               |
 | `weapons.elementSpread`           | 0.3         | How far they move                                                                          |
+| `weapons.elementGain`             | 0           | Chance a Blademaster weapon or bow with no element or status gains one                     |
+| `weapons.elementKind`             | off         | A weapon's element or status can become any other (bows: elements only)                    |
+| `weapons.slots`                   | off         | Randomize each weapon's decoration slots, 0 to 3                                           |
+| `weapons.slotSpread`              | 1           | How many slots it can gain or lose                                                         |
+| `weapons.statRange`               | `near`      | Rarities either side stats stay within (`near` 1, `wide` 3, `any`)                         |
+| `weapons.sharpness`               | off         | Blademaster weapons of a type and rarity trade sharpness                                   |
+| `weapons.sharpnessMode`           | `shuffle`   | `new`: every bar the weapons use also gets new colors                                      |
 | `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                       |
 | `armorSkills.enabled`             | off         | Change armor skills                                                                        |
 | `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`)     |
@@ -359,26 +366,81 @@ what you can buy fits the shuffled smithy. It costs the new weapon's own
 price. Its armor follows `armor` the same way (see below). The spoiler
 lists the store in a "Smithy store" section of its own.
 
-Weapon stats (`weapons.attack`, `weapons.affinity`, `weapons.element`)
-change values in each weapon's own record (`src/shuffles/weapon-stats.ts`),
+A new hunter's equipment box follows the shuffle too. Character creation
+(`overlay/edit_task.ovl`) isn't a table: it calls the EBOOT's
+add-to-the-equipment-box routine once per piece, with the category and ID
+as `addiu` constants (`mhfu-extract/src/shops/starter.ts`), and randomfu
+rewrites those constants. On the EU and JP (FUC) discs a new hunter gets
+Bone Kris (worn), Bone Blade, Bone, Longhorn, Bone Gunlance, Bone Scythe,
+Bone Club, Ivory Horn, Shooter's Barrel, Bone Shooter and Hunter's Bow I:
+the weapons the smithy's first create entries make. With the shuffle the
+box holds what those entries make now, so the starting weapons match the
+first craftables, worn weapon included. The Mafumofu set (the hood in
+the box, the other pieces worn) follows `armor` the same way. A hunter
+made on the randomized image starts with it. One run of these calls
+gives the four Mafumofu pieces again, not worn, to a save without a flag
+it then sets; whether that runs for an existing save isn't known, so one
+might get the shuffled pieces. The spoiler lists it all under "Starting
+equipment", marking what's worn.
+
+The smithy lists a weapon under its own type's tab, whichever section its
+create entry is in: in PPSSPP on the JP disc, an `any-type` image's Great
+Sword / Long Sword tab showed weapons whose entries are in the Lance and
+Sword and Shield sections. A Great Sword entry that now makes a Hammer
+should likewise show under Hammers, but no one has checked that tab.
+
+Weapon stats (`weapons.attack`, `weapons.affinity`, `weapons.element`,
+`weapons.slots`) change values in each weapon's own record (`src/shuffles/weapon-stats.ts`),
 which the `weapons` shuffle never touches, so stats go with the weapon
 wherever it ends up, and the two can run in either order. Attack (the raw
 value; the game shows it times its type's class modifier) and element or
 status values are multiplied by a random factor within their spread;
 affinity moves by up to `weapons.affinitySpread` points, in steps of 5.
 Each value is then kept between the lowest and highest that weapons of the
-same type have, from one rarity below to one above, read from your disc; a
-weapon with no other of its type (or, for elements, of its element or
-status) in that window is limited by the spread alone. Only weapons that already have an element or status get a new value, and
-they keep which one; the dual-element weapons (listed in `WepDualAttr`) are
-skipped.
-Sharpness, slots, defense bonus, horn notes, shelling, ammo, rarity and
-price never change. Records with no attack (unused entries) are skipped.
+same type have, from `weapons.statRange` rarities below to as many above
+(one, three, or any), read from your disc; a weapon with no other of its
+type (or, for elements, of its element or status) in that window is limited
+by the spread alone. The dual-element weapons (listed in `WepDualAttr`) are
+skipped. With `weapons.elementGain`, a Blademaster weapon or bow with no
+element or status gains one by that chance: an element (or, for
+Blademaster weapons, a status) some weapon of its type has, at a value
+between the lowest and highest of that kind its type has in the window (or
+at any rarity, if none in the window does). With `weapons.elementKind`, a
+weapon's element or status becomes any one of those; a switch between an
+element and a status takes a new value that way and clears the other's
+bytes, and a switch within elements (or statuses) keeps the value. Bowguns
+never get an element: the game has none on a bowgun, and whether one would
+work isn't known. Bows' elements are only Fire, Water, Thunder, Dragon and
+Ice. Slots (Blademaster +18, Gunner +12) move by up to
+`weapons.slotSpread`, from 0 to 3. Each of these draws from its own random
+stream, every weapon drawing whether or not it can change, so turning one
+on leaves the others' rolls as they were. Gained and changed elements, and
+slots, are so far tested only against the synthetic disc: none have been
+seen in game.
+Defense bonus, horn notes, shelling, ammo, rarity and price never change. Records with no attack (unused entries) are skipped.
 Affinity's spread and bounds apply to the affinity as shown, including the
 up to 10 points the Blacksmith site adds to positive Blademaster affinity
 for long sharpness, so a weapon crossing to positive affinity can't jump
 further than the spread. Weapon
 stats are so far tested only against the synthetic disc.
+
+`weapons.sharpness` (`src/shuffles/sharpness.ts`) changes Blademaster
+sharpness. A weapon's bar comes from two bytes in its record:
+`SharpnessID` (+8) picks one of its type's run of curves in
+`SharpnessTable`, and `SharpnessAmount` (+9) how much of that curve shows,
+`50 * (amount + 3)` raw units (mhfu-extract's `emitSharpness`). Each curve
+is seven cumulative thresholds, red to purple, all ending at 450 on the EU
+and JP discs. Types share runs (Great Sword with Long Sword, Hammer with
+Hunting Horn, Lance with Gunlance), and every Blademaster type uses IDs 0
+to 7. Weapons of the same type and rarity trade (ID, amount) pairs, so each
+gets a bar a weapon of its kind and rarity had, and bar lengths per rarity
+stay as they were. With `weapons.sharpnessMode new`, every curve a weapon
+uses is also rewritten: six random cuts in steps of 10 along the curve's
+own length, so any weapon can have any color, purple included, though its
+bar stays as long as before. The spoiler lists each changed bar as color
+widths (`R8 O3 Y11 ...`), as the Blacksmith site shows them. It runs before
+the weapon stats, which read the new amounts for the site's affinity
+bonus. Neither mode has been seen in game yet.
 
 `gathering` changes the pairs (value, item) in the gathering item tables of
 Village and Guild quests. Tables keep their length and the quest file its
