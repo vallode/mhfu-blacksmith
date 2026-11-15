@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Game text in one language",
+  "description": "data/locales/<code>.json: the game's names and quest text in one language, keyed by English name (or quest ID). See src/lib/i18n/game-text.ts.",
+  "type": "object",
+  "additionalProperties": false,
+  "properties": {
+    "$comment": { "type": "string" },
+    "source": {
+      "type": ["string", "null"],
+      "description": "Where the text came from, e.g. the disc and extraction date."
+    },
+    "weapon": { "$ref": "#/definitions/names" },
+    "armor": { "$ref": "#/definitions/names" },
+    "item": { "$ref": "#/definitions/names" },
+    "monster": { "$ref": "#/definitions/names" },
+    "skill": { "$ref": "#/definitions/names" },
+    "decoration": { "$ref": "#/definitions/names" },
+    "map": { "$ref": "#/definitions/names" },
+    "quest": {
+      "type": "object",
+      "propertyNames": { "pattern": "^[0-9]+$" },
+      "additionalProperties": {
+        "type": "object",
+        "additionalProperties": false,
+        "properties": {
+          "title": { "type": "string" },
+          "goal": { "type": "string" },
+          "fail": { "type": "string" },
+          "details": { "type": "string" },
+          "client": { "type": "string" }
+        }
+      }
+    }
+  },
+  "definitions": {
+    "names": {
+      "type": "object",
+      "additionalProperties": { "type": "string", "minLength": 1 }
+    }
+  }
+}

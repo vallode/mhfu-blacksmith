@@ -23,6 +23,7 @@ import { usePreferences } from "@/context/PreferencesContext";
 import { useDecoration } from "@/lib/client-data";
 import { attachedDecorationCounts, ownedItemCounts } from "@/lib/hunter-progress";
 import Loading from "@/components/Loading";
+import { useLocale } from "@/context/LanguageContext";
 
 interface Props {
   slug: string;
@@ -36,6 +37,9 @@ function splitSkill(skill: string) {
 
 export default function DecorationDetailClient({ slug }: Props) {
   const { item: deco, loading } = useDecoration(slug);
+  const { t, game, formatNumber } = useLocale();
+  const td = t.equipment.detail;
+  const tdeco = t.equipment.decoration;
   // With a save loaded: jewels in the item box and pouch, and attached to
   // equipment (unless material counts are off on the Options page).
   const { save } = useSave();
@@ -51,8 +55,14 @@ export default function DecorationDetailClient({ slug }: Props) {
   // The nav and the list on the left come from the decorations layout
   // (DecorationShell), which stays mounted; this is only the detail panel.
   if (loading || !deco) {
-    return <DetailCard>{loading ? <Loading>Loading…</Loading> : <p>Not found.</p>}</DetailCard>;
+    return (
+      <DetailCard>
+        {loading ? <Loading>{t.common.loading}</Loading> : <p>{td.notFound}</p>}
+      </DetailCard>
+    );
   }
+
+  const name = game.name("decoration", deco.name);
 
   const id = deco.item_id;
   const inBox = counts && id !== undefined ? (counts.box.get(id) ?? 0) : null;
@@ -61,20 +71,22 @@ export default function DecorationDetailClient({ slug }: Props) {
   return (
     <DetailCard>
       <DetailHeader>
-        <Icon type="decoration" size="large" color={deco.color} alt={deco.name} />
-        <DetailName>{deco.name}</DetailName>
+        <Icon type="decoration" size="large" color={deco.color} alt={name} />
+        <DetailName>{name}</DetailName>
       </DetailHeader>
 
       <DetailBody>
         <StatList>
-          <Stat label="Slots:">
+          <Stat label={td.slots}>
             <Slots count={deco.slots} />
           </Stat>
           {inBox !== null && (
-            <Stat label="Owned:">
-              <StatValue>{inBox}</StatValue>
+            <Stat label={tdeco.owned}>
+              <StatValue>{formatNumber(inBox)}</StatValue>
               {attached > 0 && (
-                <StatValue className="ml-[0.8rem] text-muted">+{attached} attached</StatValue>
+                <StatValue className="ml-[0.8rem] text-muted">
+                  {tdeco.attached(formatNumber(attached))}
+                </StatValue>
               )}
             </Stat>
           )}
@@ -90,17 +102,17 @@ export default function DecorationDetailClient({ slug }: Props) {
         <Requirements>
           <RequirementTabs
             key={slug}
-            label={`${deco.name} recipes`}
+            label={tdeco.recipesLabel(name)}
             tabs={[deco.create_mats, deco.alternative_create_mats].map(
               (materials, i) =>
                 materials &&
                 materials.length > 0 && {
                   id: i === 0 ? "create" : "alt-recipe",
-                  label: i === 0 ? "Create cost" : "Alt. Recipe",
+                  label: i === 0 ? td.createCost : td.altRecipe,
                   content: (
                     <RequirementsPage>
                       <MaterialList
-                        label="Create cost"
+                        label={td.createCost}
                         cost={deco.create_cost}
                         materials={materials}
                       />

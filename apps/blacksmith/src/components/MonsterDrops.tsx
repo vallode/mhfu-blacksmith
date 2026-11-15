@@ -1,5 +1,8 @@
+"use client";
+
 import Link from "next/link";
 import Icon from "@/components/Icon";
+import { useGameText, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { itemHref } from "@/lib/item-sources";
 import { parseDropSource } from "@/lib/monster-drops";
@@ -42,27 +45,42 @@ export function DropGrid({ children }: { children: React.ReactNode }) {
  * chance.
  */
 export default function MonsterDrops({ sources }: MonsterDropsProps) {
+  const t = useT().monsters.drops;
+  const game = useGameText();
   return (
     <DropGrid>
-      {Object.entries(sources).map(([source, items]) => (
-        <DropList
-          key={source}
-          {...parseDropSource(source)}
-          items={items.map((drop) => ({ ...drop, href: itemHref(drop.name) }))}
-        />
-      ))}
+      {Object.entries(sources).map(([source, items]) => {
+        const { title, count, note } = parseDropSource(source);
+        return (
+          <DropList
+            key={source}
+            title={t.sources[title] ?? title}
+            count={count}
+            note={note && (t.notes[note] ?? note)}
+            // The page is found by the English name; the row shows the translation.
+            items={items.map((drop) => ({
+              ...drop,
+              name: game.name("item", drop.name),
+              href: itemHref(drop.name),
+            }))}
+          />
+        );
+      })}
     </DropGrid>
   );
 }
 
 interface DropListProps {
-  /** How the items are obtained: "Body carves", "Main reward" */
+  /** How the items are obtained, translated: "Body carves", "Main reward" */
   title: string;
   /** How many attempts, shown as "×N" */
   count?: number;
   /** Condition or detail, in small text */
   note?: string;
-  /** Each with the item's page, where it has one */
+  /**
+   * The rows, with item names already in the site's language, each with the
+   * item's page (from its English name), where it has one.
+   */
   items: LinkedDrop[];
 }
 
