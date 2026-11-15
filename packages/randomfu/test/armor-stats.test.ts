@@ -5,7 +5,14 @@ import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
-import type { OptionKey } from "../src/settings.js";
+import { ARMOR_STATS } from "../src/shuffles/armor-stats.js";
+import {
+  OPTIONS,
+  PRESETS,
+  applySettings,
+  defaultSettings,
+  type OptionKey,
+} from "../src/settings.js";
 import { armorValueAt, buildFixtureDisc, FIXTURE_ARMOR, tempDir } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
 
@@ -228,4 +235,29 @@ test("armor stats: defense is a whole byte, up to 255", async () => {
   }
   assert.ok(seen.has(255), "a factor over 1.02 stops at 255");
   close();
+});
+
+test("armor stats settings: off by default, shuffled or rolled anew in the presets", () => {
+  const preset = (name: string) =>
+    applySettings(defaultSettings("S"), PRESETS.find((p) => p.name === name)!.changes);
+  const modes = ARMOR_STATS.map((stat) => `armorStats.${stat}` as const);
+  for (const key of modes) {
+    assert.equal(OPTIONS.find((o) => o.key === key)!.default, "off", key);
+    assert.equal(preset("Rewards only")[key], "off", `Rewards only: ${key}`);
+    assert.equal(preset("Shuffled")[key], "shuffle", `Shuffled: ${key}`);
+    for (const name of ["Randomized", "Full", "Chaos"]) {
+      assert.equal(preset(name)[key], "randomize", `${name}: ${key}`);
+    }
+  }
+  // Chaos varies them more widely than the defaults, which the others keep.
+  const spreads = [
+    "armorStats.defenseSpread",
+    "armorStats.resistanceSpread",
+    "armorStats.raritySpread",
+  ] as const;
+  for (const key of spreads) {
+    const fallback = OPTIONS.find((o) => o.key === key)!.default;
+    for (const name of ["Randomized", "Full"]) assert.equal(preset(name)[key], fallback);
+    assert.ok((preset("Chaos")[key] as number) > (fallback as number), `Chaos: ${key}`);
+  }
 });

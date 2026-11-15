@@ -1706,7 +1706,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Shuffled",
-    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills and stats (defense, resistances, slots and rarity), shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. No amount, cost or stat gets a new value.",
+    help: "Moves things, rolls no new numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Armor pieces also trade their defense (with how far spheres upgrade it), resistances and slots with pieces of the same rarity and hunter type, and their rarity within its rank. No amount, cost or stat is rolled anew.",
     changes: {
       "gathering.mode": "shuffle",
       "supplies.mode": "shuffle",
