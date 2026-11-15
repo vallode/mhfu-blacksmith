@@ -9,6 +9,9 @@
  */
 import { LOGIC_VERSION } from "./version.js";
 
+/** Keep, shuffle or randomize one of the armor stats (`shuffles/armor-stats.ts`). */
+export type ArmorStatMode = "keep" | "shuffle" | "randomize";
+
 export interface Settings {
   seed: string;
   "logic.tiers": "star" | "rank" | "none";
@@ -48,6 +51,13 @@ export interface Settings {
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
   "armorSkills.keepArmorOnly": boolean;
+  "armorStats.defense": ArmorStatMode;
+  "armorStats.defenseSpread": number;
+  "armorStats.resistances": ArmorStatMode;
+  "armorStats.resistanceSpread": number;
+  "armorStats.slots": ArmorStatMode;
+  "armorStats.rarity": ArmorStatMode;
+  "armorStats.raritySpread": number;
   "shops.enabled": boolean;
   "shops.pool": "shop" | "low" | "high" | "any";
   "shops.mix": "each" | "all";
@@ -123,8 +133,10 @@ export interface OptionDef {
   default: boolean | number | string;
   /** Shuffle or randomize: left out for options that only tune another (and for Logic). */
   action?: Action;
-  /** A boolean option that must be on for this one to matter. */
+  /** An option that must be on (or at `enabledWhen`) for this one to matter. */
   enabledBy?: OptionKey;
+  /** The value `enabledBy` must have, when it's a choice rather than a switch. */
+  enabledWhen?: string;
 }
 
 const SPREAD = { kind: "number", min: 0, max: 0.95, step: 0.05, percent: true } as const;
@@ -582,6 +594,136 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: true,
     enabledBy: "armorSkills.enabled",
+  },
+  {
+    key: "armorStats.defense",
+    section: "Armor",
+    label: "Armor defense",
+    help: "Each piece's defense, which goes with the piece wherever the smithy makes it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "keep", label: "Keep", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Trade between pieces",
+          action: "shuffle",
+          help: "Pieces of the same rarity and hunter type trade their defense, along with how far armor spheres upgrade it.",
+        },
+        {
+          value: "randomize",
+          label: "New values",
+          action: "randomize",
+          help: "Each piece's defense varies, staying within what pieces of its hunter type have from one rarity below to one above. Armor spheres upgrade it as many levels as before.",
+        },
+      ],
+    },
+    default: "keep",
+  },
+  {
+    key: "armorStats.defenseSpread",
+    section: "Armor",
+    label: "Defense variation",
+    help: "How far defense can move from its usual value, up or down.",
+    type: SPREAD,
+    default: 0.2,
+    enabledBy: "armorStats.defense",
+    enabledWhen: "randomize",
+  },
+  {
+    key: "armorStats.resistances",
+    section: "Armor",
+    label: "Armor resistances",
+    help: "Each piece's fire, water, thunder, dragon and ice resistance.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "keep", label: "Keep", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Trade between pieces",
+          action: "shuffle",
+          help: "Pieces of the same rarity and hunter type trade all five resistances together.",
+        },
+        {
+          value: "randomize",
+          label: "New values",
+          action: "randomize",
+          help: "Each resistance moves up or down, staying within what pieces of its hunter type have from one rarity below to one above.",
+        },
+      ],
+    },
+    default: "keep",
+  },
+  {
+    key: "armorStats.resistanceSpread",
+    section: "Armor",
+    label: "Resistance variation",
+    help: "How many points each resistance can move, up or down.",
+    type: { kind: "number", min: 1, max: 10, step: 1, unit: "points" },
+    default: 2,
+    enabledBy: "armorStats.resistances",
+    enabledWhen: "randomize",
+  },
+  {
+    key: "armorStats.slots",
+    section: "Armor",
+    label: "Armor decoration slots",
+    help: "How many decoration slots each piece has.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "keep", label: "Keep", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Trade between pieces",
+          action: "shuffle",
+          help: "Pieces of the same rarity and hunter type trade their slots.",
+        },
+        {
+          value: "randomize",
+          label: "New values",
+          action: "randomize",
+          help: "Each piece gets a slot count drawn from the counts pieces of its rarity have, so a rarity keeps about as many slots.",
+        },
+      ],
+    },
+    default: "keep",
+  },
+  {
+    key: "armorStats.rarity",
+    section: "Armor",
+    label: "Armor rarity",
+    help: "Each piece's rarity. What the game uses armor rarity for hasn't been checked in game.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "keep", label: "Keep", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Trade between pieces",
+          action: "shuffle",
+          help: "Pieces of the same rank (Low, High or G) and hunter type trade their rarity.",
+        },
+        {
+          value: "randomize",
+          label: "New values",
+          action: "randomize",
+          help: "Each piece's rarity moves up or down, staying within its rank.",
+        },
+      ],
+    },
+    default: "keep",
+  },
+  {
+    key: "armorStats.raritySpread",
+    section: "Armor",
+    label: "Rarity variation",
+    help: "How many levels rarity can move, up or down.",
+    type: { kind: "number", min: 1, max: 4, step: 1, unit: "levels" },
+    default: 1,
+    enabledBy: "armorStats.rarity",
+    enabledWhen: "randomize",
   },
   {
     key: "shops.enabled",
@@ -1069,11 +1211,14 @@ export function applySettings(base: Settings, changes: Record<string, unknown>):
   return out as unknown as Settings;
 }
 
-/** True if the option is in effect: its `enabledBy` switch, and that switch's, are on. */
+/**
+ * True if the option is in effect: its `enabledBy` switch is on (or its
+ * choice is at `enabledWhen`), and that option is in effect too.
+ */
 export function isActive(settings: Settings, option: OptionDef): boolean {
   if (!option.enabledBy) return true;
   const parent = BY_KEY.get(option.enabledBy)!;
-  return settings[option.enabledBy] === true && isActive(settings, parent);
+  return settings[option.enabledBy] === (option.enabledWhen ?? true) && isActive(settings, parent);
 }
 
 /** What `settings` shuffle and randomize: every option in effect that does either, with which. */

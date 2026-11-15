@@ -9,6 +9,7 @@ import { Rng } from "./rng.js";
 import type { Settings } from "./settings.js";
 import { shuffleArmor } from "./shuffles/armor.js";
 import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
+import { ARMOR_STATS, randomizeArmorStats } from "./shuffles/armor-stats.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
 import { deliveryTargets, isQuestItem, readSupplySlots } from "./game/quest-fields.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
@@ -538,6 +539,34 @@ export function randomize(
     reports.push(shuffleArmor(game.eboot, game.resolver, rng.fork("armor"), edits, store));
   }
   if (settings["weapons.enabled"] || settings["armor.enabled"]) reports.push(storeReport(store));
+
+  // Stats are the pieces' own, in bytes the armor and skill shuffles don't
+  // touch. They go before the skill shuffle so its spoiler shows each
+  // piece's new rarity.
+  if (ARMOR_STATS.some((stat) => settings[`armorStats.${stat}`] !== "keep")) {
+    reports.push(
+      randomizeArmorStats(
+        game.eboot,
+        game.resolver,
+        {
+          defense: settings["armorStats.defense"],
+          defenseSpread: settings["armorStats.defenseSpread"],
+          resistances: settings["armorStats.resistances"],
+          resistanceSpread: settings["armorStats.resistanceSpread"],
+          slots: settings["armorStats.slots"],
+          rarity: settings["armorStats.rarity"],
+          raritySpread: settings["armorStats.raritySpread"],
+        },
+        {
+          defense: rng.fork("armor-defense"),
+          resistances: rng.fork("armor-resistances"),
+          slots: rng.fork("armor-slots"),
+          rarity: rng.fork("armor-rarity"),
+        },
+        edits,
+      ),
+    );
+  }
 
   // Skills are the pieces' own, so they go with a piece wherever the armor shuffle puts it.
   if (settings["armorSkills.enabled"]) {

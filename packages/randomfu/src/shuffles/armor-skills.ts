@@ -47,26 +47,24 @@
  */
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { HUNTER_TYPE_BITS } from "mhfu-extract/src/emit/armor.js";
-import {
-  ARMOR_SLOT_COUNTS,
-  ARMOR_SLOTS,
-  armorValuesOffsets,
-  type ArmorSlot,
-} from "mhfu-extract/src/tables/armor.js";
+import { ARMOR_SLOTS } from "mhfu-extract/src/tables/armor.js";
 import { readDecorationSkills } from "mhfu-extract/src/tables/decorations.js";
-import { ARMOR_ENTRY_SIZE, EQUIP_CREATE_ENTRY_SIZE } from "mhfu-extract/src/tables/offsets.js";
-import { equipmentCreateLayout } from "mhfu-extract/src/tables/recipes.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import type { Edits } from "../edits.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
-import { SLOT_NAMES, wearable } from "./armor.js";
+import {
+  RARITY_AT,
+  pieceName,
+  readArmorPieces,
+  spoilerPlace,
+  type ArmorPiece,
+  type HunterClass,
+} from "./armor.js";
 import { groupBy, permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
 
 export type ArmorSkillMode = "shuffle" | "randomize";
 
-const HUNTER_TYPE_AT = 4;
-const RARITY_AT = 5;
 const SKILLS_AT = 30;
 const SKILL_COUNT = 5;
 /** `SkillID` 1, "Torso Inc": the piece adds the chest's points again. */
@@ -74,7 +72,6 @@ const TORSO_UP = 1;
 /** Shuffles tried before groups that still repeat a tree keep their entries. */
 const SHUFFLE_ATTEMPTS = 20;
 
-type HunterClass = "blade" | "gun" | "both";
 /** Which pieces a tree suits: anyone's, one hunter type's, or only pieces both can wear. */
 type TreeUse = "anyone" | "blade" | "gun" | "both-only";
 
@@ -83,15 +80,7 @@ interface Skill {
   points: number;
 }
 
-interface Piece {
-  slot: ArmorSlot;
-  index: number;
-  /** File offset of the `ArmorValue`. */
-  at: number;
-  rarity: number;
-  /** `HunterType` bits. */
-  bits: number;
-  hunter: HunterClass;
+interface Piece extends ArmorPiece {
   /** The five entries as on the disc. */
   before: Skill[];
 }
@@ -102,13 +91,6 @@ interface Entry {
   /** Position in the piece's five entries. */
   position: number;
   skill: Skill;
-}
-
-function hunterClass(bits: number): HunterClass | null {
-  if (!wearable(bits)) return null;
-  const blade = (bits & HUNTER_TYPE_BITS.blademaster) !== 0;
-  const gun = (bits & HUNTER_TYPE_BITS.gunner) !== 0;
-  return blade && gun ? "both" : blade ? "blade" : "gun";
 }
 
 function treeName(tree: number): string {
@@ -124,27 +106,13 @@ function formatSkills(skills: Skill[]): string {
 /** Every piece the smithy makes, with its skills. */
 function readPieces(eboot: Buffer, resolver: TableAddressResolver | undefined): Piece[] {
   const reader = new BinaryReader(eboot);
-  const create = equipmentCreateLayout(reader, resolver);
-  const values = armorValuesOffsets(reader, resolver);
-  const pieces: Piece[] = [];
-  for (const slot of ARMOR_SLOTS) {
-    const { offset, count } = create[slot];
-    const made = new Set<number>();
-    for (let i = 0; i < count; i++) made.add(reader.u16(offset + i * EQUIP_CREATE_ENTRY_SIZE + 2));
-    for (const index of [...made].sort((a, b) => a - b)) {
-      if (index <= 0 || index >= ARMOR_SLOT_COUNTS[slot]) continue;
-      const at = values[slot] + index * ARMOR_ENTRY_SIZE;
-      const bits = reader.u8(at + HUNTER_TYPE_AT);
-      const hunter = hunterClass(bits);
-      if (!hunter) continue;
-      const before = Array.from({ length: SKILL_COUNT }, (_, k) => ({
-        tree: reader.u8(at + SKILLS_AT + k * 2),
-        points: reader.s8(at + SKILLS_AT + k * 2 + 1),
-      }));
-      pieces.push({ slot, index, at, rarity: reader.u8(at + RARITY_AT), bits, hunter, before });
-    }
-  }
-  return pieces;
+  return readArmorPieces(eboot, resolver).map((piece) => ({
+    ...piece,
+    before: Array.from({ length: SKILL_COUNT }, (_, k) => ({
+      tree: reader.u8(piece.at + SKILLS_AT + k * 2),
+      points: reader.s8(piece.at + SKILLS_AT + k * 2 + 1),
+    })),
+  }));
 }
 
 const takesPart = (skill: Skill, kept: Set<number>) =>
@@ -383,11 +351,10 @@ export function randomizeArmorSkills(
     });
     if (formatSkills(skills) === formatSkills(piece.before)) continue;
     changed++;
-    const { table, label } = SLOT_NAMES[piece.slot];
     lines.push({
-      where: `${label}, rarity ${piece.rarity + 1}`,
-      text: `${tableName(table, piece.index) ?? `${label} ${piece.index}`}: ${formatSkills(skills)} (was ${formatSkills(piece.before)})`,
-      order: ARMOR_SLOTS.indexOf(piece.slot) * 256 + piece.rarity,
+      // The rarity the game shows, after the armor stats if they changed it.
+      ...spoilerPlace(piece.slot, out.readUInt8(piece.at + RARITY_AT)),
+      text: `${pieceName(piece)}: ${formatSkills(skills)} (was ${formatSkills(piece.before)})`,
     });
   }
 
