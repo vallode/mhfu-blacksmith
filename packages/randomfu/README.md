@@ -60,88 +60,94 @@ web app shows as a tag):
   made; a weapon keeps its own stats wherever it turns up (randomized or
   not).
 - A randomizer rolls new values: material amounts, crafting costs, shop
-  prices, carry limits and stock size, quest rewards from a wider pool
-  (`questRewards.pool`), quest money and time limits,
+  prices, carry limits and stock size, quest rewards (`questRewards.mode randomize`), quest money and time limits,
   delivery targets, monster difficulty, size, crown spread, small monster counts, base HP
   and status resistance, new armor skills (`armorSkills.mode` `randomize`),
   and weapons' attack, affinity and element or status values.
 
-| Setting                           | Default     | What it does                                                                             |
-| --------------------------------- | ----------- | ---------------------------------------------------------------------------------------- |
-| `logic.tiers`                     | `star`      | How far items move: same star level, same rank, or anywhere (`none`)                     |
-| `questRewards.enabled`            | on          | Shuffle quest rewards                                                                    |
-| `questRewards.pool`               | `rewards`   | What rewards give: quest reward items, any item of the same `rank`, or `any`             |
-| `questRewards.keepItems`          | on          | With a wider pool, every reward item stays a reward at its point in the game             |
-| `monsterRewards.enabled`          | on          | Shuffle carves and shiny drops                                                           |
-| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                        |
-| `gathering.enabled`               | off         | Shuffle gathering points                                                                 |
-| `gathering.pool`                  | `gathered`  | What spots give: gathering point items, any item of the same `rank`, or `any`            |
-| `gathering.keepItems`             | on          | With a wider pool, every gatherable item stays findable at its point in the game         |
-| `supplies.enabled`                | off         | Shuffle supply boxes                                                                     |
-| `supplies.pool`                   | `supplies`  | Supply box items, any item of the same `rank`, or `add` random stacks to each box        |
-| `supplies.keepEssentials`         | on          | Keep maps, ballista and cannon ammo and the other quest-only supplies                    |
-| `terms.money`                     | off         | Randomize quest money: fees, reward money and penalties                                  |
-| `terms.moneySpread`               | 0.5         | How far they move                                                                        |
-| `terms.time`                      | off         | Randomize time limits                                                                    |
-| `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                       |
-| `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                                   |
-| `trades.enabled`                  | off         | Shuffle what the Veggie Elder's trades give                                              |
-| `trades.mix`                      | `elder`     | Within each hunting ground's Elder, or between `all` of them                             |
-| `recipes.materials`               | off         | Shuffle crafting and upgrade materials                                                   |
-| `recipes.amounts`                 | off         | Randomize material amounts                                                               |
-| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                                 |
-| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                            |
-| `costs.enabled`                   | off         | Randomize crafting costs                                                                 |
-| `costs.spread`                    | 0.5         | How far costs move                                                                       |
-| `weapons.enabled`                 | off         | Shuffle which weapons the smithy makes                                                   |
-| `weapons.mix`                     | `same-type` | Whether a spot keeps its weapon type (`any-type`: any Blademaster or Gunner type)        |
-| `weapons.attack`                  | off         | Randomize each weapon's attack                                                           |
-| `weapons.attackSpread`            | 0.2         | How far it moves                                                                         |
-| `weapons.affinity`                | off         | Randomize each weapon's affinity, in steps of 5%                                         |
-| `weapons.affinitySpread`          | 15          | How many points it can move                                                              |
-| `weapons.element`                 | off         | Randomize element and status values of weapons that have one                             |
-| `weapons.elementSpread`           | 0.3         | How far they move                                                                        |
-| `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                     |
-| `armorSkills.enabled`             | off         | Change armor skills                                                                      |
-| `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`)   |
-| `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                       |
-| `shops.enabled`                   | off         | Shuffle shop stock                                                                       |
-| `shops.pool`                      | `shop`      | What shops can sell: `shop` items, `low` / `high` rank items, `any`                      |
-| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                                  |
-| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                          |
-| `shops.special`                   | off         | Include the Point Exchange (Armor Spheres, jewels, Pokke Tickets)                        |
-| `shops.countSpread`               | 0           | How much more or fewer items each shop sells                                             |
-| `shops.prices`                    | off         | Randomize prices of what shops sell, with or without `shops.enabled`                     |
-| `shops.priceSpread`               | 0.5         | How far prices move                                                                      |
-| `shops.stacks`                    | off         | Randomize carry limits of what shops sell, with or without `shops.enabled`               |
-| `shops.stackSpread`               | 0.5         | How far carry limits move                                                                |
-| `questMaps.enabled`               | off         | Move quests to other maps                                                                |
-| `questMaps.pool`                  | `any`       | The other `time` of day only, or `any` map with all of the quest's large monsters        |
-| `questMaps.starts`                | off         | Shuffle where each large monster starts on its map                                       |
-| `questMonsters.species`           | off         | Shuffle large monsters between quests                                                    |
-| `questMonsters.speciesPool`       | `variants`  | Into one of their `variants`, any monster of the same `rank`, or `any`                   |
-| `questMonsters.text`              | on          | Rename swapped monsters in the quest's text                                              |
-| `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                                |
-| `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                              |
-| `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                            |
-| `questMonsters.size`              | off         | Randomize each quest's monster size (its size percentage)                                |
-| `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                             |
-| `questMonsters.crowns`            | off         | Change each quest's crown spread (the range its monsters' sizes roll in)                 |
-| `questMonsters.crownSpread`       | `random`    | One of the four that vary size at `random`, the `wide`st (85-125%) everywhere, or `none` |
-| `questMonsters.smallSpecies`      | off         | Shuffle which small monsters each quest has                                              |
-| `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                           |
-| `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                                      |
-| `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                         |
-| `monsterStats.hpSpread`           | 0.25        | How far HP moves                                                                         |
-| `monsterStats.size`               | off         | Randomize each monster's base size                                                       |
-| `monsterStats.sizeSpread`         | 0.2         | How far size moves (at most 50%)                                                         |
-| `monsterStats.status`             | off         | Randomize poison, paralysis, sleep and KO resistance                                     |
-| `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                 |
-| `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                              |
-| `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                        |
-| `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                    |
-| `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                   |
-| `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)             |
+| Setting                           | Default     | What it does                                                                               |
+| --------------------------------- | ----------- | ------------------------------------------------------------------------------------------ |
+| `questRewards.mode`               | `shuffle`   | `off`, `shuffle` reward slots between quests, or `randomize` them                          |
+| `questRewards.scope`              | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`    |
+| `questRewards.slots`              | ±30%        | With `randomize`: how far a main reward list's number of slots can move                    |
+| `questRewards.keepItems`          | on          | With `randomize`, every reward item stays a reward at its star level                       |
+| `questRewards.chances`            | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`     |
+| `monsterRewards.mode`             | `shuffle`   | `off`, `shuffle` carves and shiny drops between monsters, or `randomize` them              |
+| `monsterRewards.scope`            | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`    |
+| `monsterRewards.chances`          | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`     |
+| `monsterRewards.captureAndBreaks` | on          | Include capture and break rewards                                                          |
+| `gathering.mode`                  | `off`       | `off`, `shuffle` gathering point pairs between quests, or `randomize` them                 |
+| `gathering.scope`                 | `star`      | How far pairs trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`    |
+| `gathering.chances`               | `rarity`    | With `randomize`: odds `rarity` (the table's own), `reasonable` (×0.5 to 2) or `any`       |
+| `gathering.keepItems`             | on          | With `randomize`, every gatherable item stays findable at its star level                   |
+| `supplies.mode`                   | `off`       | `off`, `shuffle` supply box stacks between quests, or `randomize` them                     |
+| `supplies.scope`                  | `star`      | How far stacks trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`   |
+| `supplies.slots`                  | ±30%        | With `randomize`: how far a box's number of stacks can move                                |
+| `supplies.keepEssentials`         | on          | Keep maps, ballista and cannon ammo and the other quest-only supplies                      |
+| `terms.money`                     | off         | Randomize quest money: fees, reward money and penalties                                    |
+| `terms.moneySpread`               | 0.5         | How far they move                                                                          |
+| `terms.time`                      | off         | Randomize time limits                                                                      |
+| `terms.timeSpread`                | 0.3         | How far they move (always within 20 to 50 minutes)                                         |
+| `deliveries.enabled`              | off         | Randomize what delivery quests ask for                                                     |
+| `trades.mode`                     | `off`       | `off`, `shuffle` what the Veggie Elder's trades give, or `randomize` it                    |
+| `trades.mix`                      | `elder`     | Within each hunting ground's Elder, or between `all` of them                               |
+| `trades.scope`                    | `low`       | With `randomize`, the items trades can give besides their own: `low` / `high` rank, `any`  |
+| `recipes.mode`                    | `off`       | `off`, `shuffle` crafting and upgrade materials between slots, or `randomize` them         |
+| `recipes.scope`                   | `star`      | How far materials move or are drawn from: `star`, `rank`, `adjacent` ranks or `any`        |
+| `recipes.amounts`                 | off         | Randomize material amounts                                                                 |
+| `recipes.amountSpread`            | 0.5         | How far amounts move (0.5 = 50% to 150%)                                                   |
+| `recipes.maxQuantity`             | 99          | The most of one material a recipe can ask for                                              |
+| `costs.enabled`                   | off         | Randomize crafting costs                                                                   |
+| `costs.spread`                    | 0.5         | How far costs move                                                                         |
+| `weapons.enabled`                 | off         | Shuffle which weapons the smithy makes                                                     |
+| `weapons.mix`                     | `same-type` | Whether a spot keeps its weapon type (`any-type`: any Blademaster or Gunner type)          |
+| `weapons.attack`                  | off         | Randomize each weapon's attack                                                             |
+| `weapons.attackSpread`            | 0.2         | How far it moves                                                                           |
+| `weapons.affinity`                | off         | Randomize each weapon's affinity, in steps of 5%                                           |
+| `weapons.affinitySpread`          | 15          | How many points it can move                                                                |
+| `weapons.element`                 | off         | Randomize element and status values of weapons that have one                               |
+| `weapons.elementSpread`           | 0.3         | How far they move                                                                          |
+| `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                       |
+| `armorSkills.enabled`             | off         | Change armor skills                                                                        |
+| `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`)     |
+| `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                         |
+| `shops.mode`                      | `off`       | `off`, `shuffle` the items shops sell between shops, or `randomize` them                   |
+| `shops.scope`                     | `low`       | With `randomize`, the items shops can sell besides their own: `low` / `high` rank, `any`   |
+| `shops.mix`                       | `each`      | Each shop has its own replacements, or `all` share them                                    |
+| `shops.keepEssentials`            | on          | Keep Potion, Whetstone, pickaxes, bugnets, BBQ Spit, basic ammo                            |
+| `shops.special`                   | off         | Include the Point Exchange (Armor Spheres, jewels, Pokke Tickets)                          |
+| `shops.countSpread`               | 0           | With `randomize`: how much more or fewer items each shop sells                             |
+| `shops.prices`                    | off         | Randomize prices of what shops sell, with or without `shops.mode`                          |
+| `shops.priceSpread`               | 0.5         | How far prices move                                                                        |
+| `shops.stacks`                    | off         | Randomize carry limits of what shops sell, with or without `shops.mode`                    |
+| `shops.stackSpread`               | 0.5         | How far carry limits move                                                                  |
+| `questMaps.enabled`               | off         | Move quests to other maps                                                                  |
+| `questMaps.pool`                  | `any`       | The other `time` of day only, or `any` map with all of the quest's large monsters          |
+| `questMaps.starts`                | off         | Shuffle where each large monster starts on its map                                         |
+| `questMonsters.mode`              | `off`       | `off`, `shuffle` large monsters into their variants, or `randomize` them                   |
+| `questMonsters.scope`             | `rank`      | With `randomize`, any monster on the map found at the same `rank`, `adjacent` ranks, `any` |
+| `questMonsters.text`              | on          | Rename swapped monsters in the quest's text                                                |
+| `questMonsters.difficulty`        | off         | Randomize each large monster's difficulty level (`power`)                                  |
+| `questMonsters.difficultySpread`  | 4           | How many levels it can move                                                                |
+| `questMonsters.difficultyRange`   | `rank`      | Levels quests of the same rank use, or `any` level quests use                              |
+| `questMonsters.size`              | off         | Randomize each quest's monster size (its size percentage)                                  |
+| `questMonsters.sizeSpread`        | 0.2         | How far it moves (kept between 50% and 200%)                                               |
+| `questMonsters.crowns`            | off         | Change each quest's crown spread (the range its monsters' sizes roll in)                   |
+| `questMonsters.crownSpread`       | `random`    | One of the four that vary size at `random`, the `wide`st (85-125%) everywhere, or `none`   |
+| `questMonsters.smallSpecies`      | off         | Shuffle which small monsters each quest has                                                |
+| `questMonsters.smallCounts`       | off         | Randomize small monster counts                                                             |
+| `questMonsters.smallCountSpread`  | 0.5         | How far counts move                                                                        |
+| `monsterStats.hp`                 | off         | Randomize each monster's base HP                                                           |
+| `monsterStats.hpSpread`           | 0.25        | How far HP moves                                                                           |
+| `monsterStats.size`               | off         | Randomize each monster's base size                                                         |
+| `monsterStats.sizeSpread`         | 0.2         | How far size moves (at most 50%)                                                           |
+| `monsterStats.status`             | off         | Randomize poison, paralysis, sleep and KO resistance                                       |
+| `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                   |
+| `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                |
+| `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                          |
+| `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                      |
+| `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                     |
+| `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)               |
 
 ### Presets
 
@@ -157,19 +163,19 @@ Elder's trades. Turn those on yourself once you've tried them on your disc.
 | Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills, shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                                                         |
 | Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon stats, new armor skills |
 | Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled, difficulty within its rank                                                                                                                        |
-| Chaos        | Shuffle + randomize | As Full, with no logic (`logic.tiers none`), any Blademaster or Gunner type, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering and supply boxes, any crown spread and difficulty, wide spreads                                                           |
+| Chaos        | Shuffle + randomize | As Full, with recipes and rewards from anywhere, any Blademaster or Gunner type, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering points and supply boxes, any crown spread and difficulty, wide spreads                                                |
 
 ## Shuffles
 
 No shuffle changes a list's length, so every edited file keeps its size,
-except `supplies.pool add`, which grows quests into their sector padding,
+except `supplies.mode randomize`, which grows quests into their sector padding,
 and the quest map options, which rebuild quests (see "Quest maps" below).
 
 | Shuffle           | Data                                                                                   | What changes                                                  |
 | ----------------- | -------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| `quest-rewards`   | `RewardTBL` items in each quest `.mib`                                                 | Item and amount move; the chance stays with the slot          |
-| `monster-rewards` | Carve, capture and break lists in `game_sub.ovl`                                       | Item moves; chance and amount stay with the slot              |
-| `gathering`       | Gathering item tables in each quest `.mib`                                             | Item moves; the value (weight) stays with the slot            |
+| `quest-rewards`   | `RewardTBL` items in each quest `.mib`                                                 | Item, amount and chance move together (see below)             |
+| `monster-rewards` | Carve, capture and break lists in `game_sub.ovl`                                       | Item, chance and amount move together (see below)             |
+| `gathering`       | Gathering item tables in each quest `.mib`                                             | Item and value (weight) move together (see below)             |
 | `recipes`         | `EquipmentCreate` / `EquipmentUpgrade` in the EBOOT                                    | Material moves; quantity stays with the slot                  |
 | `recipe-amounts`  | The same recipe tables                                                                 | Quantities, rescaled and varied (see below)                   |
 | `costs`           | Weapon, armor and decoration prices in the EBOOT                                       | Crafting and upgrade costs, varied in steps of 10z            |
@@ -187,12 +193,59 @@ and the quest map options, which rebuild quests (see "Quest maps" below).
 | monster stats     | Each monster's `emChunk` in `game_task.ovl`                                            | Base HP, size, status resistance                              |
 | weaknesses        | Hitzone tables in `game_task.ovl`                                                      | Elemental weaknesses and weak spots                           |
 
-### Logic
+### Quest rewards
 
-Items only move within a **tier**: a rank (Low, High or G) and a star level.
-`logic.tiers` sets how strict that is: `star` (the default), `rank` (any
-star level within Low, High or G Rank) or `none` (one pool: no logic, and
-the recipe check below no longer means anything).
+Each quest has a `RewardTBL[]`; every table points at a list of
+`RewardItem`s (chance, item, amount, 6 bytes each, ended by `0xFFFF`), and a
+list's chances add up to 100. The main list (`Unkn1 0x8000`) is the quest's
+reward pool, `0x8001` lists are fixed extras, and the rest are conditional
+(Slay, Paw Pass, Training, Treasure Hunting). Only Village and Guild quests
+take part (see Tiers). `questRewards.scope` is how far they reach: `star` (the default), `rank`,
+`adjacent` (the same or the next rank: Low with High, High with G) or `any`.
+
+- **Shuffle** moves whole slots (item, amount and chance) between lists of
+  the same kind, within the scope. Each list keeps its number of slots. A
+  list that gets slots from elsewhere has its chances scaled (largest
+  remainder, each at least 1) back to the total it had.
+- **Randomize** rolls each main list's slot count within `questRewards.slots`
+  of its own, to no more than the longest main list on the disc has and as
+  many as the quest has room for. A longer list moves to the end of the
+  quest, into its sector padding, as supply boxes do. Each slot gets an item
+  first found within the scope (never a quest-only item, never one twice in
+  a list), an amount a quest gives of that item (rewards or supply boxes),
+  and a chance: `rarity` deals out the chances the list had, `reasonable`
+  scales each by 0.5 to 2, `any` rolls 1 to 100. The chances are then scaled
+  to the list's total. Extra and conditional lists keep their length.
+- Lists with empty (item 0) entries are shuffled but not randomized.
+
+### Monster rewards
+
+Carve, capture and break lists in `game_sub.ovl` are fixed in size and
+shared between monsters, so unlike quest rewards no list changes length. A
+list's tier is its rank and the earliest star level of a quest its monster
+is in. `monsterRewards.scope` works as `questRewards.scope` does (`star`,
+`rank`, `adjacent`, `any`), and `monsterRewards.captureAndBreaks` decides
+whether capture and break lists take part with carves.
+
+- **Shuffle** moves whole slots (item, chance and amount) between lists
+  within the scope; carves only trade with carves. A list's chances are
+  scaled back to the total it had.
+- **Randomize** gives every slot an item first found within the scope
+  (never a quest-only item, never one twice in a list), a chance as
+  `monsterRewards.chances` says (the same choices as quest rewards) scaled to
+  the list's total, and, for captures and breaks, an amount quests give of
+  that item.
+
+### Tiers
+
+Items are placed by **tier**: a rank (Low, High or G) and a star level.
+Every item shuffled or randomized has a `scope` that says how far from its
+own tier it may reach: `star` (the same rank and star level), `rank`,
+`adjacent` (the same or the next rank: Low with High, High with G) or `any`.
+Each feature has its own: `questRewards.scope`, `monsterRewards.scope`,
+`gathering.scope`, `supplies.scope`, `recipes.scope`. Shops, trades and
+quest monsters have no tier of their own, so theirs is a ceiling on which
+ranks' items can turn up.
 
 - A quest's tier is its header rank and star level. Only Village and Guild
   quests take part, on one star scale (Village 3★ and Guild 3★ are the same
@@ -207,12 +260,13 @@ the recipe check below no longer means anything).
   several nodes or table indices lead to it.
 - An item's tier is the earliest one it's found at among those quest
   rewards, monster rewards and gathering points. A recipe slot is shuffled
-  with other slots whose items have the same tier.
+  with other slots whose items are within `recipes.scope`.
 
-The reward and gathering shuffles keep every tier's items within that
+The shuffles at `star` scope (and gathering with `keepItems`) keep every tier's items within that
 tier, so every recipe material is still found at or before the star level
 it was before. `checkRecipes` confirms this against the shuffled rewards
-and gathering points; any failure is printed and listed at the top of the
+and gathering points (at `star` scope by star level, at `rank` scope by
+rank, and for wider scopes only that the item still has a source); any failure is printed and listed at the top of the
 spoiler log. The end of the log lists the tier found for every item, to
 check against the game.
 
@@ -282,28 +336,26 @@ for long sharpness, so a weapon crossing to positive affinity can't jump
 further than the spread. Weapon
 stats are so far tested only against the synthetic disc.
 
-`gathering` moves item IDs between the gathering item tables of Village
-and Guild quests of the same tier, like the quest reward shuffle. A pair's
-first field (taken to be the item's weight) stays with the pair, so a
-node keeps its odds; tables keep their length and the quest file its
-size. Only pairs in tables a node uses move: an unused table keeps its
+`gathering` changes the pairs (value, item) in the gathering item tables of
+Village and Guild quests. Tables keep their length and the quest file its
+size. Only pairs in tables a node uses change: an unused table keeps its
 items, and so do Training School, Treasure Hunting and the unused
-gathering copies. A pair with item 0 is left as it is.
+gathering copies. A pair with item 0 is left as it is, and a delivery
+quest's own item stays where it is.
 
-`questRewards.pool` widens what quest rewards give the same way: `rank` or
-`any` items, each in the amount quest rewards usually give of it (the
-lower median, else 1), never a new quest-only item, with
-`questRewards.keepItems` putting every reward item of a tier back in one
-of its slots first. Each slot keeps its chance. The default, `rewards`, is the shuffle above, seed for seed.
-
-`gathering.pool` widens what spots give. `rank`: any item first found at
-the quest's rank (Low, High or G), monster parts included; `any`: any item
-in the game. With `gathering.keepItems` (on by default), each item the
-spots of a tier gave is first put back in one random spot of that tier,
-so it's still found at the same point in the game and recipes stay
-craftable; the other spots get random pool items (avoiding repeats within
-a table). Off, items you could gather may be found nowhere, and the recipe
-check reports any recipe that can't be made as early as before.
+- **Shuffle** moves whole pairs (item and value, taken to be the item's
+  weight) between quests within `gathering.scope` (`star`, `rank`,
+  `adjacent` or `any`). A table's values are scaled back to the total it
+  had.
+- **Randomize** gives every pair an item first found within the scope
+  (monster parts included, avoiding repeats within a table) and a value as
+  `gathering.chances` says, scaled to the table's total. With
+  `gathering.keepItems` (on by default), each item the spots of a star
+  level gave is first put back in one random spot of that star level, so
+  it's still found at the same point in the game and recipes stay
+  craftable; the other spots get pool items. Off, items you could gather
+  may be found nowhere, and the recipe check reports any recipe that can't
+  be made as early as before.
 
 `armor` gives each armor place in the smithy (a create entry) a different
 piece of the same slot and rarity, wearable by the same hunters. A piece's
@@ -373,11 +425,13 @@ Points). They're found by their shape, from
 the table holding the general store's list (Herb, Potion, Antidote,
 Whetstone), not by address.
 
-- **Stock**: each item a shop sells is replaced by one drawn from the pool
-  (`shops.pool`: the shops' own items, items first found in Low or High
-  Rank, or any item in the game), the same in every stage. Shops sharing a
-  list share replacements (or all shops do, with `shops.mix all`).
-- **How many**: with `shops.countSpread`, each shop's lists scale by one
+- **Stock**: each item a shop sells is replaced by one other item, the same
+  in every stage. `shops.mode shuffle` draws from the items shops sell
+  anyway, so no shop changes length; `randomize` also draws from items first
+  found in Low or High Rank, or any item in the game (`shops.scope`; shops
+  have no rank of their own, so it is a ceiling). Shops sharing a list
+  share replacements (or all shops do, with `shops.mix all`).
+- **How many** (`randomize` only): with `shops.countSpread`, each shop's lists scale by one
   factor, so later stages still sell what earlier ones did (stages nest by
   construction: items are kept in an order of pinned items, then by the
   stage they first appear in, then extra pool items). No list grows past
@@ -389,8 +443,8 @@ Whetstone), not by address.
   padding. Without it, lists stay where they are.
 - **Prices and carry limits** (`shops.prices`, `shops.stacks`) are the
   item's own (EBOOT item table), so they apply wherever the item is, and
-  they don't need the stock shuffle: they change for everything the shops
-  sell, which is what they sell now with `shops.enabled` and their own
+  they don't need the stock to change: they change for everything the shops
+  sell, which is what they sell now with `shops.mode` and their own
   stock without it (the Point Exchange, bought with Pokke Points, only with
   `shops.special`). The buy price field isn't documented:
   randomfu finds it on the disc as the one field holding the general
@@ -713,27 +767,31 @@ are unchanged. Checked in PPSSPP on the Snowy Mountains map.
 of `{ u16 item, u16 amount }` at the header's `SuppliesPTR`, ending at item
 0 (whose amount field holds the quest ID). On the EU disc every quest has
 exactly one such list; nothing else points into it, and the header's
-`SupplyCond` (+70) is a flag, not a second list, so it's left alone and
-each entry is rewritten in place. Guild quests list a stack once per
-hunter (four Maps), so runs of identical entries change together. With
-`supplies.pool supplies` (the default) item and amount move between
-quests of the same tier; `rank` gives random items first found at the
-quest's rank, in their usual amount (the median a supply box, else a quest
-reward, gives of them). With `supplies.keepEssentials`, quest-only items
+`SupplyCond` (+70) is a flag, not a second list, so it's left alone. Guild
+quests list a stack once per hunter (four Maps), so runs of identical
+entries change together. With `supplies.keepEssentials`, quest-only items
 (Map, First-Aid Med, Ration, the supply-only tools, ballista and cannon
-ammo) stay; `rank` never hands them out, nor carried objects.
+ammo) stay where they are; randomizing never hands them out, nor carried
+objects. `supplies.scope` is `star`, `rank`, `adjacent` or `any`.
 
-`supplies.pool add` (the Chaos preset) keeps every box as it is and adds
-up to 4 stacks of random items (any item but quest-only ones, none the box
-already has), in their usual amount. The list can't grow where it is (the
-gathering tables follow it), so the box, the new stacks and the same end
-marker are copied to the end of the quest and `SuppliesPTR` points there;
-the old list stays, unread. The quest grows into its DATA.BIN entry's
-sector padding (the entry's size field says where the quest ends), so
-DATA.BIN keeps its layout. No quest grows past the largest quest on the
-disc (10,680 bytes on EU) and no box past the largest box (32 stacks),
-sizes the game already handles; boxes without room get fewer stacks or
-none. A quest's own delivery item (the
+- **Shuffle** moves whole stacks (item and amount) between boxes within the
+  scope, in place: each box keeps its length.
+- **Randomize** gives each box a new number of stacks (within
+  `supplies.slots` of its own) and every stack an item first found within
+  the scope or held by a supply box there (supply items aren't item
+  sources, so they have no tier of their own), in an amount quests give of
+  it (rewards or supply boxes). New stacks take a width the box already
+  had, kept stacks stay where they are, and a box never has the same item
+  twice. A list can't grow where it is (the gathering tables follow it), so
+  a longer box and the same end marker are copied to the end of the quest
+  and `SuppliesPTR` points there; the old list stays, unread. The quest
+  grows into its DATA.BIN entry's sector padding (the entry's size field
+  says where the quest ends), so DATA.BIN keeps its layout. No quest grows
+  past the largest quest on the disc (10,680 bytes on EU) and no box past
+  the largest box (32 entries), sizes the game already handles; boxes
+  without room get fewer stacks.
+
+A quest's own delivery item (the
 Paw Pass Ticket) always stays, and in every mode no delivery quest's box
 gets the item it asks for (a permutation that would put it there swaps it
 with another stack of the same tier). Quest-only items include the
@@ -791,8 +849,11 @@ five, or always with the Felyne Negotiations kitchen skill.
 
 `veggie-trades` moves each row's common and rare trade, as a pair, to
 another row: of the same Elder (`trades.mix elder`), or of any Elder
-(`all`). Rows keep the item he takes and their place in the list, so which
-of the hunter's items he picks doesn't change. No logic applies: a trade
+(`all`). With `trades.mode randomize` each row instead gets a new common
+and rare item from those the Elders give (of that Elder, or all) and, with
+`trades.scope`, items first found in Low or High Rank, or any item; a row
+that gave one item keeps giving one. Rows keep the item he takes and their place in the list, so which
+of the hunter's items he picks doesn't change. No tier logic applies: a trade
 isn't counted as an item source, so the recipe check ignores it. Not yet
 played in game.
 
@@ -816,7 +877,7 @@ played in game.
 
 - Whether files inside DATA.BIN can grow past their sectors. Needed for
   quest edits that add more data than the padding holds, such as new
-  monsters. Growing within the padding (`supplies.pool add`) isn't
+  monsters. Growing within the padding (`supplies.mode randomize`) isn't
   confirmed in game yet either. Other tools rebuild DATA.BIN with bigger
   files (IncognitoMan's `mhff`, which FUComplete uses, shifts every later
   file), but the game also loads files into fixed buffers (FUComplete's

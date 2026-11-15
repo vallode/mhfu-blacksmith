@@ -4,7 +4,7 @@
  */
 import { Edits } from "./edits.js";
 import type { GameData, LoadedQuest } from "./game/load.js";
-import { coarsen, itemTiers, monsterStars, type Tier } from "./game/tiers.js";
+import { itemTiers, monsterStars, type Tier, type TierMode } from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import type { Settings } from "./settings.js";
 import { shuffleArmor } from "./shuffles/armor.js";
@@ -12,16 +12,25 @@ import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
 import { deliveryTargets, isQuestItem, readSupplySlots } from "./game/quest-fields.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
-import { collectGatheringSlots, shuffleGathering } from "./shuffles/gathering.js";
+import {
+  collectGatheringSlots,
+  randomizeGathering,
+  shuffleGathering,
+} from "./shuffles/gathering.js";
 import {
   collectMonsterRewardSlots,
   collectRewardLists,
+  randomizeMonsterRewards,
   shuffleMonsterRewards,
   type RewardList,
 } from "./shuffles/monster-rewards.js";
-import { collectQuestRewardSlots, shuffleQuestRewards } from "./shuffles/quest-rewards.js";
+import {
+  collectQuestRewardSlots,
+  randomizeQuestRewards,
+  shuffleQuestRewards,
+} from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
-import { getOrInsert, median, type ShuffleReport } from "./shuffles/shuffle.js";
+import type { ShuffleReport } from "./shuffles/shuffle.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
 import {
   itemsOnSale,
@@ -31,11 +40,11 @@ import {
 } from "./shuffles/shops.js";
 import { itemName, questLabel, tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
-import { addSupplies, collectSupplyRuns, shuffleSupplies } from "./shuffles/supplies.js";
+import { collectSupplyRuns, randomizeSupplies, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
 import { findSmithyStore, storeReport } from "./shuffles/store.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
-import { collectTradeSlots, shuffleTrades } from "./shuffles/veggie-trades.js";
+import { collectTradeSlots, randomizeTrades, shuffleTrades } from "./shuffles/veggie-trades.js";
 import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stats.js";
 import {
   collectQuestMonsters,
@@ -107,25 +116,23 @@ function sellableItems(): number[] {
   return out;
 }
 
-/**
- * How many of an item a stack gets when a wider pool puts it there: the
- * lower middle of what the first of `sources` that has the item gives of
- * it (so an even split rounds down to an amount the game uses), else 1.
- */
-function usualAmounts(
-  ...sources: readonly (readonly { itemId: number; amount: number }[])[]
-): (itemId: number) => number {
-  const amounts = sources.map((entries) => {
-    const out = new Map<number, number[]>();
+/** The amounts quests give of each item, in supply boxes and rewards. */
+function observedAmounts(
+  game: GameData,
+  rewards: readonly { itemId: number; amount: number }[],
+): (itemId: number) => readonly number[] {
+  const out = new Map<number, number[]>();
+  const add = (entries: Iterable<{ itemId: number; amount: number }>) => {
     for (const { itemId, amount } of entries) {
-      getOrInsert(out, itemId, () => []).push(amount);
+      if (amount < 1) continue;
+      const list = out.get(itemId);
+      if (list) list.push(amount);
+      else out.set(itemId, [amount]);
     }
-    return out;
-  });
-  return (itemId) => {
-    const found = amounts.find((m) => m.has(itemId))?.get(itemId);
-    return found ? Math.max(1, median(found, "lower")) : 1;
   };
+  add(game.quests.flatMap((q) => readSupplySlots(q.file.payload)));
+  add(rewards);
+  return (itemId) => out.get(itemId) ?? [];
 }
 
 export interface RandomizeOptions {
@@ -133,6 +140,16 @@ export interface RandomizeOptions {
   poogieTest?: boolean;
   /** Adds research detail to the spoiler log. */
   debug?: boolean;
+}
+
+/**
+ * How strictly rebuilding quests keeps where items are first found: as
+ * strictly as the recipe materials need, star level unless they reach wider.
+ */
+function keepTiers(settings: Settings): TierMode {
+  if (settings["recipes.mode"] === "off") return "star";
+  const scope = settings["recipes.scope"];
+  return scope === "star" ? "star" : scope === "any" ? "none" : "rank";
 }
 
 /**
@@ -197,7 +214,7 @@ function reshapeQuests(
       itemSources(now, lists),
       new Set(rebuilt.keys()),
       lists,
-      settings["logic.tiers"],
+      keepTiers(settings),
     );
     lost = check.lost;
     if (check.blame.size === 0) break;
@@ -247,19 +264,15 @@ export function randomize(
   for (const item of reshaped.lost)
     problems.push(`${itemName(item)}: found later after quest changes`);
   const game: GameData = { ...input, quests: reshaped.quests };
-  const mode = settings["logic.tiers"];
-  // Shuffles group by these tiers; the spoiler's item list keeps the real ones.
-  const grouped = <T extends { tier: Tier }>(slots: T[]): T[] =>
-    slots.map((s) => ({ ...s, tier: coarsen(s.tier, mode) }));
 
   // Monster swaps first: carves are found where their monsters now are.
   const questMonsters = collectQuestMonsters(game.quests);
   const setOf = multiplierSets(game.gameTask.ovl);
   let questsAfter = game.quests.map((q) => q.parsed);
-  if (settings["questMonsters.species"]) {
+  if (settings["questMonsters.mode"] !== "off") {
     const result = swapSpecies(
       questMonsters,
-      settings["questMonsters.speciesPool"],
+      settings["questMonsters.mode"] === "shuffle" ? "variants" : settings["questMonsters.scope"],
       rng.fork("monster-species"),
       edits,
       game.quests,
@@ -367,87 +380,112 @@ export function randomize(
     deliveries.get(s.quest.index)?.itemId === s.itemId;
   const realTiers = itemTiers([...questSlots, ...monsterSlots, ...gathering.slots]);
 
-  let questAfter: { itemId: number; tier: Tier }[] = grouped(questSlots);
-  if (settings["questRewards.enabled"]) {
-    const result = shuffleQuestRewards(
-      grouped(questSlots),
-      rng.fork("quest-rewards"),
-      edits,
-      { pool: settings["questRewards.pool"], keepItems: settings["questRewards.keepItems"] },
-      // No new quest-only items (`isQuestItem`): supply tools and carried objects vanish after the quest.
-      {
-        bands: new Map(
-          [...realTiers]
-            .filter(([item]) => !isQuestItem(item))
-            .map(([item, tier]) => [item, tier.band]),
-        ),
-        allItems: sellableItems().filter((item) => !isQuestItem(item)),
-        usualAmount: usualAmounts(questSlots),
-      },
-    );
+  let questAfter: { itemId: number; tier: Tier }[] = questSlots;
+  const rewardMode = settings["questRewards.mode"];
+  if (rewardMode !== "off") {
+    const scope = settings["questRewards.scope"];
+    const result =
+      rewardMode === "shuffle"
+        ? shuffleQuestRewards(questSlots, scope, rng.fork("quest-rewards"), edits)
+        : randomizeQuestRewards(
+            questSlots,
+            {
+              scope,
+              slotSpread: settings["questRewards.slots"],
+              chances: settings["questRewards.chances"],
+              keepItems: settings["questRewards.keepItems"],
+            },
+            {
+              tiers: realTiers,
+              allItems: sellableItems(),
+              amounts: observedAmounts(game, questSlots),
+              largestQuest: largestQuest(game.quests),
+            },
+            rng.fork("quest-rewards"),
+            edits,
+          );
     reports.push(result.report);
     questAfter = result.after;
   }
 
-  let monsterAfter: { itemId: number; tier: Tier }[] = grouped(monsterSlots);
-  if (settings["monsterRewards.enabled"]) {
+  let monsterAfter: { itemId: number; tier: Tier }[] = monsterSlots;
+  const monsterMode = settings["monsterRewards.mode"];
+  if (monsterMode !== "off") {
     const withCaptures = settings["monsterRewards.captureAndBreaks"];
-    const shuffled = grouped(monsterSlots.filter((s) => withCaptures || s.list.stride === 4));
-    const kept = grouped(monsterSlots.filter((s) => !withCaptures && s.list.stride !== 4));
-    const result = shuffleMonsterRewards(
-      shuffled,
-      rng.fork("monster-rewards"),
-      edits,
-      game.gameSub,
-    );
+    const changed = monsterSlots.filter((s) => withCaptures || s.list.stride === 4);
+    const kept = monsterSlots.filter((s) => !withCaptures && s.list.stride !== 4);
+    const scope = settings["monsterRewards.scope"];
+    const result =
+      monsterMode === "shuffle"
+        ? shuffleMonsterRewards(changed, scope, rng.fork("monster-rewards"), edits, game.gameSub)
+        : randomizeMonsterRewards(
+            changed,
+            { scope, chances: settings["monsterRewards.chances"] },
+            {
+              tiers: realTiers,
+              allItems: sellableItems(),
+              amounts: observedAmounts(game, questSlots),
+            },
+            rng.fork("monster-rewards"),
+            edits,
+            game.gameSub,
+          );
     reports.push(result.report);
     monsterAfter = [...result.after, ...kept];
   }
 
   // Gathering points are item sources too: the recipe check below uses them as shuffled.
-  let gatheringAfter: { itemId: number; tier: Tier }[] = grouped(gathering.slots);
-  if (settings["gathering.enabled"]) {
-    const pinned = grouped(gathering.slots.filter(isDeliveryItem));
-    const result = shuffleGathering(
-      grouped(gathering.slots.filter((s) => !isDeliveryItem(s))),
-      { pool: settings["gathering.pool"], keepItems: settings["gathering.keepItems"] },
-      {
-        bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
-        allItems: sellableItems(),
-      },
-      rng.fork("gathering"),
-      edits,
-    );
+  let gatheringAfter: { itemId: number; tier: Tier }[] = gathering.slots;
+  const gatheringMode = settings["gathering.mode"];
+  if (gatheringMode !== "off") {
+    const pinned = gathering.slots.filter(isDeliveryItem);
+    const changed = gathering.slots.filter((s) => !isDeliveryItem(s));
+    const scope = settings["gathering.scope"];
+    const result =
+      gatheringMode === "shuffle"
+        ? shuffleGathering(changed, scope, rng.fork("gathering"), edits)
+        : randomizeGathering(
+            changed,
+            {
+              scope,
+              chances: settings["gathering.chances"],
+              keepItems: settings["gathering.keepItems"],
+            },
+            { tiers: realTiers, allItems: sellableItems() },
+            rng.fork("gathering"),
+            edits,
+          );
     reports.push(result.report);
     gatheringAfter = [...result.after, ...pinned];
   }
 
-  if (settings["supplies.enabled"]) {
-    const pool = settings["supplies.pool"];
+  const suppliesMode = settings["supplies.mode"];
+  if (suppliesMode !== "off") {
+    const scope = settings["supplies.scope"];
     const keepEssentials = settings["supplies.keepEssentials"];
-    const context = {
-      bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
-      allItems: sellableItems(),
-      usualAmount: usualAmounts(
-        game.quests.flatMap((q) => readSupplySlots(q.file.payload)),
-        questSlots,
-      ),
-      deliveryItem: (quest: LoadedQuest) => deliveries.get(quest.index)?.itemId,
-    };
+    const deliveryItem = (quest: LoadedQuest) => deliveries.get(quest.index)?.itemId;
     reports.push(
-      pool === "add"
-        ? addSupplies(game.quests, context, rng.fork("supplies"), edits)
-        : shuffleSupplies(
-            grouped(
-              collectSupplyRuns(
-                game.quests,
-                (quest, itemId) =>
-                  (keepEssentials && isQuestItem(itemId)) ||
-                  deliveries.get(quest.index)?.itemId === itemId,
-              ),
+      suppliesMode === "shuffle"
+        ? shuffleSupplies(
+            collectSupplyRuns(
+              game.quests,
+              (quest, itemId) =>
+                (keepEssentials && isQuestItem(itemId)) || deliveryItem(quest) === itemId,
             ),
-            { pool, keepEssentials },
-            context,
+            { scope, keepEssentials },
+            { deliveryItem },
+            rng.fork("supplies"),
+            edits,
+          )
+        : randomizeSupplies(
+            game.quests,
+            { scope, slotSpread: settings["supplies.slots"], keepEssentials },
+            {
+              deliveryItem,
+              tiers: realTiers,
+              allItems: sellableItems(),
+              amounts: observedAmounts(game, questSlots),
+            },
             rng.fork("supplies"),
             edits,
           ),
@@ -477,15 +515,28 @@ export function randomize(
     );
   }
 
-  if (settings["trades.enabled"]) {
+  if (settings["trades.mode"] !== "off") {
+    const tradeSlots = collectTradeSlots(game.gameTask);
     reports.push(
-      shuffleTrades(
-        collectTradeSlots(game.gameTask),
-        settings["trades.mix"],
-        rng.fork("veggie-trades"),
-        edits,
-        game.gameTask,
-      ),
+      settings["trades.mode"] === "shuffle"
+        ? shuffleTrades(
+            tradeSlots,
+            settings["trades.mix"],
+            rng.fork("veggie-trades"),
+            edits,
+            game.gameTask,
+          )
+        : randomizeTrades(
+            tradeSlots,
+            { mix: settings["trades.mix"], scope: settings["trades.scope"] },
+            {
+              bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
+              allItems: sellableItems(),
+            },
+            rng.fork("veggie-trades"),
+            edits,
+            game.gameTask,
+          ),
     );
   }
 
@@ -555,17 +606,14 @@ export function randomize(
     );
   }
 
-  if (settings["recipes.materials"] || settings["recipes.amounts"]) {
-    const vanillaTiers = itemTiers([
-      ...grouped(questSlots),
-      ...grouped(monsterSlots),
-      ...grouped(gathering.slots),
-    ]);
+  if (settings["recipes.mode"] !== "off" || settings["recipes.amounts"]) {
+    const scope = settings["recipes.scope"];
     const result = randomizeRecipes(
       collectRecipeSlots(edits.eboot(), game.resolver),
-      vanillaTiers,
+      realTiers,
       {
-        materials: settings["recipes.materials"],
+        materials: settings["recipes.mode"],
+        scope,
         amountSpread: settings["recipes.amounts"] ? settings["recipes.amountSpread"] : null,
         maxQuantity: settings["recipes.maxQuantity"],
       },
@@ -574,28 +622,29 @@ export function randomize(
     );
     reports.push(result.report);
     const tiersAfter = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
-    for (const p of checkRecipes(result.assigned, tiersAfter)) {
+    for (const p of checkRecipes(result.assigned, tiersAfter, scope)) {
       problems.push(`${p.recipe}: ${p.item} (${p.needs})`);
     }
   }
 
   const prices = settings["shops.prices"];
   const stacks = settings["shops.stacks"];
-  if (settings["shops.enabled"] || prices || stacks) {
+  const shopsMode = settings["shops.mode"];
+  if (shopsMode !== "off" || prices || stacks) {
     const shops = findShops(game.lobbyTask.ovl);
     const items = shopItemTable(game, prices || stacks);
     // Prices are the item's own, so they need no stock shuffle: without
     // one, they go to what the shops sell anyway.
     let sold = itemsOnSale(shops);
-    if (settings["shops.enabled"]) {
+    if (shopsMode !== "off") {
       const stock = randomizeShops(
         shops,
         {
-          pool: settings["shops.pool"],
+          pool: shopsMode === "shuffle" ? "shop" : settings["shops.scope"],
           mix: settings["shops.mix"],
           keepEssentials: settings["shops.keepEssentials"],
           special: settings["shops.special"],
-          countSpread: settings["shops.countSpread"],
+          countSpread: shopsMode === "randomize" ? settings["shops.countSpread"] : 0,
         },
         {
           bands: new Map([...realTiers].map(([item, tier]) => [item, tier.band])),
