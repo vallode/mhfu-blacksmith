@@ -1,20 +1,26 @@
 /**
  * Names for hints and the spoiler log, from the extractor's enum tables,
  * with the disc's monster names where `useDiscMonsterNames` gave them.
+ * They're randomfu's own: mhfu-extract's resolver is left as it is.
  */
-import {
-  getNameResolver,
-  useMonsterNames,
-  type NameTable,
-} from "mhfu-extract/src/strings/names.js";
+import { getNameResolver, type NameTable } from "mhfu-extract/src/strings/names.js";
 import type { GameData, LoadedQuest } from "./game/load.js";
 
-/** Names monsters as `game`'s disc does, or from `monster.enum` where it can't be read. */
+const names = getNameResolver();
+/** The disc's monster names by emID, from the game being randomized; null for the enum's. */
+let discMonsters: readonly (string | null)[] | null = null;
+
+/**
+ * Names monsters as `game`'s disc does, or from `monster.enum` where it
+ * can't be read. `randomize` calls it first, so its hints and the spoiler
+ * log formatted from its result name monsters alike.
+ */
 export function useDiscMonsterNames(game: Pick<GameData, "monsterNames">): void {
-  useMonsterNames(game.monsterNames ?? null);
+  discMonsters = game.monsterNames ?? null;
 }
 
-const resolve = (table: NameTable, id: number) => getNameResolver().resolve(table, id);
+const resolve = (table: NameTable, id: number): string | null =>
+  table === "emID" && discMonsters ? (discMonsters[id] ?? null) : names.resolve(table, id);
 
 export function itemName(id: number): string {
   return resolve("ItemID", id) ?? `Item ${id}`;

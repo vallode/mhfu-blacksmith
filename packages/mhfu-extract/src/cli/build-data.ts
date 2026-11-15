@@ -267,7 +267,6 @@ async function copiedFiles(
   return { files: files.map((f) => path.join("quests", f)), name: nameQuestItems };
 }
 
-/** Writes the disc's item stats into `data/items.json`. */
 /** Renames `data/strings` monsters to the names `extract` read from the disc. */
 async function buildMonsterNames(options: BuildDataOptions): Promise<MonsterNameChange[]> {
   const source = await readJsonOrNull(path.join(options.extracted, "monster-names.json"));
@@ -284,6 +283,7 @@ async function buildMonsterNames(options: BuildDataOptions): Promise<MonsterName
   );
 }
 
+/** Writes the disc's item stats into `data/items.json`. */
 async function buildItems(options: BuildDataOptions): Promise<ItemsBuildReport> {
   const source = await readJsonOrNull(path.join(options.extracted, "items.json"));
   if (!source) throw new Error(`items.json is missing from ${options.extracted}; rerun extract`);

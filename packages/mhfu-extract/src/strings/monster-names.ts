@@ -14,6 +14,7 @@
  * game's.
  */
 import type { BinaryReader } from "../binary/reader.js";
+import { JP_BASE_ADDRESS } from "../tables/offsets.js";
 import type { MessageTable } from "./messages.js";
 import overlay from "../overlay/monster-names.json" with { type: "json" };
 
@@ -89,4 +90,21 @@ export function siteMonsterNames(
     seen.set(name, id);
   });
   return names;
+}
+
+/**
+ * The site's monster names from an EU disc: its EBOOT's name table read
+ * against message file 19's tables (`readMessageFile`). Null if there is
+ * no name table to read; throws `MonsterNameError` if the EBOOT's table
+ * doesn't read or the overlay no longer fits it. `extract` and randomfu
+ * both name monsters this way.
+ */
+export function discMonsterNames(
+  eboot: BinaryReader,
+  messages: readonly MessageTable[] | null,
+  entries: readonly MonsterNameOverlay[] = MONSTER_NAME_OVERLAY,
+): (string | null)[] | null {
+  const table = messages?.[MONSTER_NAME_TABLE];
+  if (!table) return null;
+  return siteMonsterNames(readMonsterNames(eboot, JP_BASE_ADDRESS, table), entries);
 }

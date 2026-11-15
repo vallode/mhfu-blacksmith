@@ -9415,6 +9415,20 @@
         "Autoreload",
         "Speed Fire"
       ]
+    },
+    "monster": {
+      "40": [
+        "One-Ear Yian Garuga"
+      ],
+      "50": [
+        "Ashen Lao-Shan Lung"
+      ],
+      "86": [
+        "Plum Daimyo Hermitaur"
+      ],
+      "87": [
+        "Terra Shogun Ceanatur"
+      ]
     }
   }
 }

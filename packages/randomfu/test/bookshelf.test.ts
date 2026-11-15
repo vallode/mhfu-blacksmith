@@ -33,32 +33,10 @@ import {
   FIXTURE_TOLERANCES,
   fixtureHitzone,
   fixtureHp,
+  messageFile,
   tempDir,
 } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
-
-/** A message file: u32 count, u32 8, table offsets, then each table's offsets (0xFFFFFFFF-ended) and strings. */
-function messageFile(tables: string[][]): Buffer {
-  const parts: Buffer[] = [];
-  let at = 8 + 4 * tables.length;
-  const header = Buffer.alloc(at);
-  header.writeUInt32LE(tables.length, 0);
-  header.writeUInt32LE(8, 4);
-  tables.forEach((strings, t) => {
-    header.writeUInt32LE(at, 8 + 4 * t);
-    const list = Buffer.alloc(4 * (strings.length + 1));
-    let rel = list.length;
-    const bytes = strings.map((s) => Buffer.from(`${s}\0`, "utf8"));
-    bytes.forEach((b, i) => {
-      list.writeUInt32LE(rel, 4 * i);
-      rel += b.length;
-    });
-    list.writeUInt32LE(0xffffffff, 4 * strings.length);
-    parts.push(list, ...bytes);
-    at += rel;
-  });
-  return Buffer.concat([header, ...parts, Buffer.alloc(64)]);
-}
 
 /** Text without its colour codes. */
 const plain = (text: string) => text.replace(/~C\d\d/g, "");

@@ -3,7 +3,7 @@
  * the full `data/*.json`-shaped output plus an `EXTRACTION.json` provenance
  * manifest. See README's "Usage" section.
  */
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { BinaryReader } from "../binary/reader.js";
@@ -44,11 +44,10 @@ import {
 import { loadFileList } from "../container/filelist.js";
 import { readMessageFile, type MessageTable } from "../strings/messages.js";
 import {
+  discMonsterNames,
   MONSTER_NAME_FILE,
   MONSTER_NAME_OVERLAY,
   MONSTER_NAME_TABLE,
-  readMonsterNames,
-  siteMonsterNames,
 } from "../strings/monster-names.js";
 import { useMonsterNames } from "../strings/names.js";
 import { listQuestFiles } from "../quests/discovery.js";
@@ -161,7 +160,10 @@ async function writeRawDumps(
   }
 }
 
-/** The EU disc's English message file 19 (`strings/messages.ts`), with its DATA.BIN path. */
+/**
+ * The EU disc's English message file 19 (`strings/messages.ts`), with its
+ * DATA.BIN path; `tables` is null if the unpack doesn't have the file.
+ */
 async function loadEnglishMessages(
   unpacked: string,
   region: Region,
@@ -169,24 +171,30 @@ async function loadEnglishMessages(
   const rel =
     loadFileList(region).get(MONSTER_NAME_FILE) ??
     path.join("_unindexed", `${MONSTER_NAME_FILE}.bin`);
-  return { rel, tables: readMessageFile(await readFile(path.join(unpacked, "data-bin", rel))) };
+  const file = path.join(unpacked, "data-bin", rel);
+  const found = await access(file).then(
+    () => true,
+    () => false,
+  );
+  return { rel, tables: found ? readMessageFile(await readFile(file)) : null };
 }
 
 /**
  * Monster names from the disc (`strings/monster-names.ts`), or null with a
- * warning if the message file isn't there. A disc whose tables don't read,
- * or an overlay entry that no longer fits it, stops the extract.
+ * warning if the message file or its name table isn't there. A disc whose
+ * EBOOT table doesn't read, or an overlay entry that no longer fits it,
+ * stops the extract.
  */
 function loadMonsterNames(
   messages: { rel: string; tables: MessageTable[] | null },
   eboot: BinaryReader,
 ): (string | null)[] | null {
-  const table = messages.tables?.[MONSTER_NAME_TABLE];
-  if (!table) {
-    console.warn(`Warning: ${messages.rel} has no table ${MONSTER_NAME_TABLE}; no monster names.`);
-    return null;
-  }
-  return siteMonsterNames(readMonsterNames(eboot, JP_BASE_ADDRESS, table));
+  const names = discMonsterNames(eboot, messages.tables);
+  if (!names)
+    console.warn(
+      `Warning: ${messages.rel} is missing or has no table ${MONSTER_NAME_TABLE}; no monster names.`,
+    );
+  return names;
 }
 
 /** The monster list and its descriptions (`monsters/bestiary.ts`), or null with a warning. */

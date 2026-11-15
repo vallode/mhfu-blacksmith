@@ -15,13 +15,10 @@ import { listQuestFiles } from "mhfu-extract/src/quests/discovery.js";
 import { parseQuest, type ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import { readMessageFile } from "mhfu-extract/src/strings/messages.js";
 import {
+  discMonsterNames,
   MONSTER_NAME_FILE,
-  MONSTER_NAME_TABLE,
   MonsterNameError,
-  readMonsterNames,
-  siteMonsterNames,
 } from "mhfu-extract/src/strings/monster-names.js";
-import { JP_BASE_ADDRESS } from "mhfu-extract/src/tables/offsets.js";
 import { PinnedResolver, type TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import { DataBin } from "../disc/databin.js";
 import { openQuestFile, type QuestFile } from "../disc/quest-file.js";
@@ -70,6 +67,8 @@ export interface GameData {
    * can't be read (JP), which names monsters from `monster.enum`.
    */
   monsterNames?: (string | null)[] | null;
+  /** Why an EU disc's monster names couldn't be read, for the log. */
+  monsterNamesProblem?: string;
 }
 
 function indexOf(region: Region, path: string): number {
@@ -91,18 +90,28 @@ function readBoards(region: Region, dataBin: DataBin): BoardFile[] {
 }
 
 /**
- * The EU disc's monster names, or null if its message file or name table
- * doesn't read as the extractor knows them: the names only label hints and
- * the spoiler log, so they shouldn't stop a run.
+ * The EU disc's monster names (mhfu-extract `discMonsterNames`), or why
+ * they can't be read: the names only label hints and the spoiler log, so
+ * they shouldn't stop a run.
  */
-function readDiscMonsterNames(dataBin: DataBin, eboot: Buffer): (string | null)[] | null {
-  if (MONSTER_NAME_FILE >= dataBin.fileCount) return null;
-  const table = readMessageFile(dataBin.read(MONSTER_NAME_FILE))?.[MONSTER_NAME_TABLE];
-  if (!table) return null;
+export function readDiscMonsterNames(
+  dataBin: Pick<DataBin, "fileCount" | "read">,
+  eboot: Buffer,
+): { names: (string | null)[] | null; problem?: string } {
+  const unread = (why: string) => ({
+    names: null,
+    problem: `${why}; monsters are named from monster.enum.`,
+  });
+  if (MONSTER_NAME_FILE >= dataBin.fileCount)
+    return unread(`DATA.BIN has no file ${MONSTER_NAME_FILE}`);
   try {
-    return siteMonsterNames(readMonsterNames(new BinaryReader(eboot), JP_BASE_ADDRESS, table));
+    const names = discMonsterNames(
+      new BinaryReader(eboot),
+      readMessageFile(dataBin.read(MONSTER_NAME_FILE)),
+    );
+    return names ? { names } : unread(`DATA.BIN file ${MONSTER_NAME_FILE} has no monster names`);
   } catch (error) {
-    if (error instanceof MonsterNameError) return null;
+    if (error instanceof MonsterNameError) return unread(error.message);
     throw error;
   }
 }
@@ -162,6 +171,7 @@ export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): 
     resolver = new PinnedResolver(found, Buffer.from(eboot));
   }
 
+  const monsterNames = region === "eu" ? readDiscMonsterNames(dataBin, eboot) : null;
   return {
     region,
     discId,
@@ -175,6 +185,7 @@ export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): 
     boards: readBoards(region, dataBin),
     eboot,
     resolver,
-    monsterNames: region === "eu" ? readDiscMonsterNames(dataBin, eboot) : null,
+    monsterNames: monsterNames?.names ?? null,
+    ...(monsterNames?.problem && { monsterNamesProblem: monsterNames.problem }),
   };
 }

@@ -3,14 +3,18 @@ import { mkdtempSync, mkdirSync, readFileSync, rmSync, writeFileSync } from "nod
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { test } from "node:test";
+import { fileURLToPath } from "node:url";
+import { StringTable } from "game-data";
 import { renameMonsters } from "../src/build/monster-names.js";
 import type { MessageTable } from "../src/strings/messages.js";
 import {
+  discMonsterNames,
   MonsterNameError,
   readMonsterNames,
   siteMonsterNames,
   type MonsterNameOverlay,
 } from "../src/strings/monster-names.js";
+import { loadEnums, lookupName } from "../src/strings/enums.js";
 import { JP_BASE_ADDRESS } from "../src/tables/offsets.js";
 import { fixtureReader } from "./helpers.js";
 
@@ -103,5 +107,26 @@ test("renameMonsters renames data/strings monsters and reports each change", () 
     assert.deepEqual(renameMonsters(dir, names), []);
   } finally {
     rmSync(dir, { recursive: true, force: true });
+  }
+});
+
+test("discMonsterNames reads the name table, or gives null without one", () => {
+  assert.equal(discMonsterNames(namesFixture(), null), null);
+  assert.equal(discMonsterNames(namesFixture(), []), null);
+  const names = discMonsterNames(namesFixture(), [messages()], [crimson]);
+  assert.equal(names?.[36], "Crimson Fatalis");
+  assert.equal(names?.[86], "Plum D.Hermitaur");
+});
+
+test("data/strings keeps monster.enum's spellings, for extracts that name monsters by it (JP)", () => {
+  const strings = StringTable.read(fileURLToPath(new URL("../../../data", import.meta.url)));
+  const enums = loadEnums();
+  for (const [id, name] of Object.entries(strings.doc.monster ?? {})) {
+    const spelling = lookupName(enums, "emID", Number(id));
+    if (spelling === null || spelling === name) continue;
+    assert.ok(
+      strings.aliases("monster", id)?.includes(spelling),
+      `emID ${id} "${name}": add "${spelling}" to aliases.monster`,
+    );
   }
 });
