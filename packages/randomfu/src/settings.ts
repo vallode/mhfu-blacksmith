@@ -17,6 +17,7 @@ export interface Settings {
   "questRewards.slots": number;
   "questRewards.chances": "rarity" | "reasonable" | "any";
   "questRewards.keepItems": boolean;
+  "questRewards.draws": number;
   "monsterRewards.mode": Mode;
   "monsterRewards.scope": Scope;
   "monsterRewards.chances": "rarity" | "reasonable" | "any";
@@ -242,6 +243,14 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
     enabledBy: "questRewards.mode",
     enabledWhen: ["randomize"],
+  },
+  {
+    key: "questRewards.draws",
+    section: "Quest rewards",
+    label: "Reward draws variation",
+    help: "How far the number of times a quest's main reward list is drawn can move, up or down (at least 1 either way). Never more than the most any quest has on the disc. Works on its own, whatever the mode above.",
+    type: SPREAD,
+    default: 0,
   },
   {
     key: "monsterRewards.mode",
@@ -1508,9 +1517,10 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Randomized",
-    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills.",
+    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, how often each quest's main reward list is drawn, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills.",
     changes: {
       "questRewards.mode": "off",
+      "questRewards.draws": 0.3,
       "monsterRewards.mode": "off",
       "recipes.amounts": true,
       "costs.enabled": true,
@@ -1535,6 +1545,7 @@ export const PRESETS: readonly Preset[] = [
       "weapons.enabled": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
+      "questRewards.draws": 0.3,
       "shops.mode": "randomize",
       "shops.scope": "low",
       "shops.prices": true,
@@ -1557,6 +1568,7 @@ export const PRESETS: readonly Preset[] = [
     help: "Full with the limits off. Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
     changes: {
       "questRewards.scope": "any",
+      "questRewards.draws": 0.9,
       "monsterRewards.scope": "any",
       "recipes.mode": "shuffle",
       "recipes.scope": "any",

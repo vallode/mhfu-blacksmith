@@ -71,6 +71,7 @@ web app shows as a tag):
 | `questRewards.scope`              | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`    |
 | `questRewards.slots`              | ±30%        | With `randomize`: how far a main reward list's number of slots can move                    |
 | `questRewards.keepItems`          | on          | With `randomize`, every reward item stays a reward at its star level                       |
+| `questRewards.draws`              | 0%          | How far the number of times a main reward list is drawn (`Unkn2 >> 8`) can move; any mode  |
 | `questRewards.chances`            | `rarity`    | With `randomize`: chances `rarity` (the list's own), `reasonable` (×0.5 to 2) or `any`     |
 | `monsterRewards.mode`             | `shuffle`   | `off`, `shuffle` carves and shiny drops between monsters, or `randomize` them              |
 | `monsterRewards.scope`            | `star`      | How far slots trade, or items are drawn from: `star`, `rank`, `adjacent` ranks or `any`    |
@@ -217,6 +218,9 @@ take part (see Tiers). `questRewards.scope` is how far they reach: `star` (the d
   scales each by 0.5 to 2, `any` rolls 1 to 100. The chances are then scaled
   to the list's total. Extra and conditional lists keep their length.
 - Lists with empty (item 0) entries are shuffled but not randomized.
+- **Draws** (`questRewards.draws`, independent of the mode) moves each main
+  table's draw count, the high byte of `Unkn2`, up or down by that fraction
+  of itself (at least 1), never below 1 or above the most any quest has.
 
 ### Monster rewards
 

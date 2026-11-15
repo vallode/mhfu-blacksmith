@@ -27,6 +27,7 @@ import {
 import {
   collectQuestRewardSlots,
   randomizeQuestRewards,
+  randomizeRewardDraws,
   shuffleQuestRewards,
 } from "./shuffles/quest-rewards.js";
 import { checkRecipes, collectRecipeSlots, randomizeRecipes } from "./shuffles/recipes.js";
@@ -406,6 +407,17 @@ export function randomize(
           );
     reports.push(result.report);
     questAfter = result.after;
+  }
+
+  if (settings["questRewards.draws"] > 0) {
+    reports.push(
+      randomizeRewardDraws(
+        game.quests,
+        settings["questRewards.draws"],
+        rng.fork("reward-draws"),
+        edits,
+      ),
+    );
   }
 
   let monsterAfter: { itemId: number; tier: Tier }[] = monsterSlots;

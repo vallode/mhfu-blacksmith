@@ -7,6 +7,7 @@ import { loadGame, type GameData } from "../src/game/load.js";
 import { isQuestItem } from "../src/game/quest-fields.js";
 import { tierKey, type Tier } from "../src/game/tiers.js";
 import { randomize } from "../src/randomize.js";
+import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { Rng } from "../src/rng.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
 import { collectQuestRewardSlots } from "../src/shuffles/quest-rewards.js";
@@ -266,5 +267,39 @@ test("keeping reward items: every item stays a reward at its star level, and non
       assert.ok(byTier.get(tierKey(slot.tier))!.has(slot.itemId), `seed ${seed}: ${slot.itemId}`);
     }
   }
+  close();
+});
+
+test("reward draws move a main table's draw count and keep the low byte", async () => {
+  const { game, close } = await load(fixtureFile());
+  const draws = (payloadOf: (q: (typeof game.quests)[number]) => Buffer) =>
+    game.quests.map((q) =>
+      parseQuest(payloadOf(q)).rewards.map((t) => ({ kind: t.unkn1, param: t.unkn2 })),
+    );
+  const before = draws((q) => q.file.payload);
+  const most = Math.max(...before.flat().map((t) => (t.kind === 0x8000 ? t.param >> 8 : 0)), 1);
+  const off = randomize(game, settingsWith("fixture", [], { "questRewards.draws": 0 }));
+  assert.deepEqual(
+    draws((q) => off.edits.questNow(q)),
+    before,
+    "0 leaves draws alone",
+  );
+  let moved = false;
+  for (let n = 0; n < 8; n++) {
+    const result = randomize(game, settingsWith(`seed${n}`, [], { "questRewards.draws": 0.95 }));
+    const after = draws((q) => result.edits.questNow(q));
+    after.forEach((tables, q) =>
+      tables.forEach((t, i) => {
+        const was = before[q]![i]!;
+        assert.equal(t.kind, was.kind);
+        assert.equal(t.param & 0xff, was.param & 0xff, "low byte kept");
+        if (t.param === was.param) return;
+        moved = true;
+        assert.equal(t.kind, 0x8000, "only main tables move");
+        assert.ok(t.param >> 8 >= 1 && t.param >> 8 <= Math.max(most, was.param >> 8));
+      }),
+    );
+  }
+  assert.ok(moved, "some draw count moved");
   close();
 });
