@@ -1,9 +1,12 @@
+"use client";
+
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import MaterialRow from "@/components/MaterialRow";
 import Tabs, { type Tab } from "@/components/Tabs";
 import { cn } from "@/lib/cn";
 import type { Material } from "@/lib/types";
+import { useGameText, useT } from "@/context/LanguageContext";
 
 // Building blocks for the right-hand detail panel on weapon, armor,
 // decoration and monster pages. Text in the panel is yellow (text-stat) by
@@ -57,10 +60,11 @@ export function DetailName({ children, id }: { children: React.ReactNode; id?: s
  * Phones show the list alone on that page, unless there is a note.
  */
 export function NoDataCard({ children }: { children?: React.ReactNode }) {
+  const t = useT();
   return (
     <DetailCard className={children ? undefined : "mobile:hidden"}>
       <DetailHeader>
-        <p className="uppercase">No data</p>
+        <p className="uppercase">{t.equipment.detail.noData}</p>
       </DetailHeader>
       {children && <DetailBody>{children}</DetailBody>}
     </DetailCard>
@@ -155,11 +159,14 @@ export function Slots({ count }: { count?: number }) {
  * when they add and red when they take away (armor and decorations).
  */
 export function SkillPoints({ skills }: { skills: { name: string; amount: string | number }[] }) {
+  const game = useGameText();
   return (
     <div className="flex flex-1 flex-col gap-[13px]">
       {skills.map((skill, i) => (
         <div key={i} className="flex">
-          <h3 className="m-0 flex w-cells-10 leading-none font-normal">{skill.name}</h3>
+          <h3 className="m-0 flex w-cells-10 leading-none font-normal">
+            {game.name("skill", skill.name)}
+          </h3>
           <p
             className={cn(
               "w-cells-4 text-right",
@@ -186,14 +193,15 @@ export function MaterialList({
   materials,
 }: {
   label: string;
-  cost: React.ReactNode;
+  cost: number | string | null | undefined;
   materials: Material[];
 }) {
+  const t = useT();
   return (
     <div className="flex flex-auto flex-col gap-x-0 gap-y-[13px]">
       <p className="whitespace-normal">
         <span className="text-stat">{label}: </span>
-        <span className="whitespace-nowrap">{cost}z</span>
+        <span className="whitespace-nowrap">{t.common.zenny(String(cost ?? ""))}</span>
       </p>
       {materials.map((m, i) => (
         <MaterialRow key={i} material={m} />

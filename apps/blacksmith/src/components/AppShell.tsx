@@ -8,9 +8,14 @@ import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
 import { useSectionHref, type MenuSection } from "@/app/MenuLink";
 import { cn } from "@/lib/cn";
+import { useT } from "@/context/LanguageContext";
+import type { Messages } from "@/lib/i18n/messages";
+
+type NavLabel = keyof Messages["site"]["nav"];
 
 interface NavItem {
-  label: string;
+  /** Its name, in `site.nav`. */
+  label: NavLabel;
   /** Icon sprite, from /images/<icon>.png. */
   icon: string;
   /** Pages under this path light the entry up. */
@@ -28,7 +33,7 @@ interface NavItem {
 const NAV_GROUPS: NavItem[][] = [
   [
     {
-      label: "Weapons",
+      label: "weapons",
       icon: "great-sword",
       match: "/blacksmith/",
       section: "weapons",
@@ -36,24 +41,24 @@ const NAV_GROUPS: NavItem[][] = [
       tabMini: true,
     },
     {
-      label: "Armor",
+      label: "armor",
       icon: "helmet",
       match: "/armorsmith/",
       section: "armor",
       tab: true,
       tabMini: true,
     },
-    { label: "Monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
-    { label: "Decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
-    { label: "Quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
-    { label: "Items", icon: "fluid", match: "/items/", href: "/items/" },
-    { label: "Veggie Elder", icon: "mushroom", match: "/veggie-elder/", href: "/veggie-elder/" },
+    { label: "monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
+    { label: "decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
+    { label: "quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
+    { label: "items", icon: "fluid", match: "/items/", href: "/items/" },
+    { label: "veggieElder", icon: "mushroom", match: "/veggie-elder/", href: "/veggie-elder/" },
   ],
   [
-    { label: "Sets", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
-    { label: "Wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/" },
-    { label: "Hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
-    { label: "Options", icon: "part", match: "/options/", href: "/options/" },
+    { label: "sets", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
+    { label: "wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/" },
+    { label: "hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
+    { label: "options", icon: "part", match: "/options/", href: "/options/" },
   ],
 ];
 const NAV = NAV_GROUPS.flat();
@@ -121,6 +126,7 @@ function SidebarContents({
   onToggle?: () => void;
   onSearch?: () => void;
 }) {
+  const t = useT().site;
   // Rail classes, by width: wide screens follow the saved preference, compact
   // ones are a rail unless opened. (Phones show the drawer, never a rail.)
   // Both classes are spelled out at each use so Tailwind finds them.
@@ -130,13 +136,13 @@ function SidebarContents({
     <>
       <Link
         href="/"
-        aria-label="Home"
+        aria-label={t.nav.home}
         className={cn("mx-6 mt-2 mb-4 block flex-none", rail("wide:hidden", "compact:hidden"))}
       >
-        <img className="h-auto w-full" src="/images/blacksmith.png" alt="Blacksmith" />
+        <img className="h-auto w-full" src="/images/blacksmith.png" alt={t.logoAlt} />
       </Link>
 
-      <nav className="flex flex-col" aria-label="Main">
+      <nav className="flex flex-col" aria-label={t.nav.main}>
         {NAV_GROUPS.map((group, i) => (
           <Fragment key={i}>
             {i > 0 && <hr className="mx-6 my-[1rem] h-[3px] w-auto" />}
@@ -146,12 +152,14 @@ function SidebarContents({
                 <Link
                   key={item.match}
                   href={hrefFor(item)}
-                  title={railLabel ? item.label : undefined}
+                  title={railLabel ? t.nav[item.label] : undefined}
                   aria-current={active ? "page" : undefined}
                   className={cn(sidebarRow, active && sidebarRowActive)}
                 >
                   <Icon type={item.icon} nav active={active} className={rowIcon} />
-                  <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{item.label}</span>
+                  <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>
+                    {t.nav[item.label]}
+                  </span>
                 </Link>
               );
             })}
@@ -164,7 +172,7 @@ function SidebarContents({
         <button
           type="button"
           className={cn(sidebarRow, "search-trigger")}
-          title={railLabel ? "Search" : undefined}
+          title={railLabel ? t.nav.search : undefined}
           onClick={onSearch}
         >
           <span className="flex size-[32px] flex-none items-center justify-center">
@@ -174,7 +182,7 @@ function SidebarContents({
               alt=""
             />
           </span>
-          <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>Search</span>
+          <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.search}</span>
         </button>
 
         {onToggle && (
@@ -182,9 +190,9 @@ function SidebarContents({
             type="button"
             className={sidebarRow}
             onClick={onToggle}
-            aria-label={railLabel ? "Expand sidebar" : "Collapse sidebar"}
+            aria-label={railLabel ? t.nav.expandSidebar : t.nav.collapseSidebar}
             aria-expanded={!railLabel}
-            title={railLabel ? "Expand sidebar" : undefined}
+            title={railLabel ? t.nav.expandSidebar : undefined}
           >
             <span className="flex size-[32px] flex-none items-center justify-center">
               <img
@@ -196,7 +204,7 @@ function SidebarContents({
                 alt=""
               />
             </span>
-            <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>Collapse</span>
+            <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.collapse}</span>
           </button>
         )}
       </div>
@@ -216,6 +224,7 @@ function TabBar({
   menuOpen: boolean;
   onMenu: () => void;
 }) {
+  const t = useT().site;
   const tab =
     "group flex min-w-0 flex-1 cursor-pointer flex-col items-center justify-center gap-[0.3rem] border-none bg-transparent p-0 text-white";
   const tabActive = "bg-(image:--gradient-hover-glow)";
@@ -230,7 +239,10 @@ function TabBar({
     // sidebar under the left edge, so only the frame's top band shows. The
     // card is that much taller, and taller still by the bottom safe
     // area, which the tabs stay clear of.
-    <nav aria-label="Main" className="fixed inset-x-0 -bottom-[1.8rem] z-800 hidden mobile:flex">
+    <nav
+      aria-label={t.nav.main}
+      className="fixed inset-x-0 -bottom-[1.8rem] z-800 hidden mobile:flex"
+    >
       <Card
         frame="teal"
         className="h-[calc(var(--spacing-tabbar)+1.8rem+env(safe-area-inset-bottom))] bg-black/60 backdrop-blur-sm"
@@ -254,7 +266,7 @@ function TabBar({
                 active={active}
                 className={rowIcon}
               />
-              <span className={label}>{item.label}</span>
+              <span className={label}>{t.nav[item.label]}</span>
             </Link>
           );
         })}
@@ -277,7 +289,7 @@ function TabBar({
               />
             ))}
           </span>
-          <span className={label}>Menu</span>
+          <span className={label}>{t.nav.menu}</span>
         </button>
       </Card>
     </nav>
@@ -294,6 +306,7 @@ function TabBar({
  * Menu tab slides the full list in as a drawer.
  */
 export default function AppShell({ children }: { children: React.ReactNode }) {
+  const t = useT().site;
   const pathname = usePathname();
   const hrefFor = useNavHrefs(pathname);
 
@@ -404,7 +417,7 @@ export default function AppShell({ children }: { children: React.ReactNode }) {
         className={cn("fixed inset-0 z-850 hidden", menuOpen && "mobile:flex")}
         role="dialog"
         aria-modal="true"
-        aria-label="Menu"
+        aria-label={t.nav.menu}
       >
         <div className="absolute inset-0 bg-black/60" onClick={closeMenu} />
         {/* Dips under the screen's left edge, like the desktop sidebar. */}

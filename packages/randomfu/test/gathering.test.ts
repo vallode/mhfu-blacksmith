@@ -264,3 +264,70 @@ test("gathering randomize: with any item and nothing kept, spots can give anythi
   }
   close();
 });
+
+test("gather counts: finite points get new counts, never zero or fewest above most, delivery items kept", async () => {
+  const { game, close } = await load();
+  const delivery = game.quests.find((q) => q.parsed.header.questId === 10102)!;
+  let changed = false;
+  for (const seed of ["a", "b", "c", "d"]) {
+    const s = settingsWith(seed, [], { "gathering.counts": true, "gathering.countSpread": 0.9 });
+    const result = randomize(game, s);
+    for (const q of game.quests) {
+      const before = readGatheringItems(q.file.payload, q.parsed).nodes;
+      const payload = result.edits.quests.get(q.index)?.payload ?? q.file.payload;
+      const after = readGatheringItems(payload, q.parsed).nodes;
+      assert.equal(after.length, before.length);
+      before.forEach((b, i) => {
+        const a = after[i]!;
+        assert.ok(
+          a.gathers >= 1 && a.gathers <= a.mostGathers,
+          `${seed}: ${a.gathers}-${a.mostGathers}`,
+        );
+        if (a.gathers !== b.gathers || a.mostGathers !== b.mostGathers) {
+          changed = true;
+          assert.notEqual(q.index, delivery.index, "delivery quest's points stay");
+        }
+      });
+    }
+  }
+  assert.ok(changed, "some points changed");
+  close();
+});
+
+test("gather counts: endless and zero counts stay, spread 0 changes nothing, delivery points stay", async () => {
+  const { game, close } = await load();
+  const delivery = game.quests.find((q) => q.parsed.header.questId === 10102)!;
+  const other = game.quests.find((q) => q.parsed.header.questId === 1001)!;
+  const nodes = readGatheringItems(other.file.payload, other.parsed).nodes;
+  assert.ok(nodes.length >= 3);
+  // One endless point and one with no gathers; the rest stay ordinary.
+  other.file.payload.writeUInt16LE(255, nodes[0]!.offset + 18);
+  other.file.payload.writeUInt16LE(255, nodes[0]!.offset + 22);
+  other.file.payload.writeUInt16LE(0, nodes[1]!.offset + 22);
+  const read = (q: typeof other, payload: Buffer) => readGatheringItems(payload, q.parsed).nodes;
+  const counts = (q: typeof other, payload: Buffer) =>
+    read(q, payload).map((n) => [n.gathers, n.mostGathers]);
+
+  const zero = randomize(
+    game,
+    settingsWith("z", [], { "gathering.counts": true, "gathering.countSpread": 0 }),
+  );
+  assert.equal(zero.edits.quests.size, 0, "spread 0 edits no quest");
+
+  const deliveryBefore = counts(delivery, delivery.file.payload);
+  let changed = false;
+  for (const seed of ["a", "b", "c", "d"]) {
+    const result = randomize(
+      game,
+      settingsWith(seed, [], { "gathering.counts": true, "gathering.countSpread": 0.9 }),
+    );
+    const payloadOf = (q: typeof other) => result.edits.questNow(q);
+    assert.deepEqual(counts(delivery, payloadOf(delivery)), deliveryBefore, "delivery points stay");
+    const after = read(other, payloadOf(other));
+    assert.deepEqual([after[0]!.gathers, after[0]!.mostGathers], [255, 255]);
+    assert.equal(after[1]!.gathers, 0);
+    if (after.slice(2).some((n, i) => n.gathers !== nodes[i + 2]!.gathers)) changed = true;
+  }
+  assert.ok(changed, "ordinary points changed");
+  close();
+});

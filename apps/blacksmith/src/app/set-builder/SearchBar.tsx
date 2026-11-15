@@ -6,6 +6,7 @@
  * ("Search 3 skills", "Update results") and turns into progress and Cancel
  * while the search runs. Hidden while the results match the form.
  */
+import { useLocale, useT } from "@/context/LanguageContext";
 import { cn } from "@/lib/cn";
 import { primaryButton, secondaryButton } from "@/styles/set-builder";
 
@@ -32,8 +33,9 @@ export default function SearchBar({
   onSearch: () => void;
   onCancel: () => void;
 }) {
+  const text = useT().setBuilder;
+  const { formatNumber } = useLocale();
   if (!searching && !stale) return null;
-  const n = skillCount;
   return (
     <div className="sticky bottom-[1.6rem] z-20 flex gap-[0.8rem] min-[900px]:static min-[900px]:col-start-1 min-[900px]:row-start-2 mobile:bottom-[calc(var(--spacing-tabbar)+env(safe-area-inset-bottom)+0.8rem)]">
       {searching ? (
@@ -43,15 +45,17 @@ export default function SearchBar({
             className={cn(primaryButton, "cursor-default border-white/40 bg-line")}
           >
             <img src="/images/loading.gif" alt="" className="h-[2.4rem] w-auto" />
-            Searching… {found > 0 && <span className="text-stat">{found}</span>}
+            {text.searchBar.searching(
+              found > 0 ? <span className="text-stat">{formatNumber(found)}</span> : null,
+            )}
           </div>
           <button type="button" className={secondaryButton} onClick={onCancel}>
-            Cancel
+            {text.form.cancel}
           </button>
         </>
       ) : (
         <button type="button" className={primaryButton} disabled={!ready} onClick={onSearch}>
-          {hasResult ? "Update results" : `Search ${n} skill${n === 1 ? "" : "s"}`}
+          {hasResult ? text.searchBar.update : text.searchBar.search(skillCount)}
         </button>
       )}
     </div>

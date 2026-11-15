@@ -4,7 +4,8 @@
  * The equipment structs in EBOOT.BIN carry no name pointer of their own —
  * names live in separate string/pointer tables the vendored patterns don't
  * document (`amaillo/MH-Pointers-Tool` edits exactly these tables and is
- * the lead to follow for locating them). Until that pointer table's address
+ * the lead to follow for locating them; `find-names`, strings/name-search.ts,
+ * searches a real disc for them). Until that pointer table's address
  * is confirmed against a real EBOOT dump, this module bootstraps names from
  * the MIT-licensed `.enum` files in mhp2g-patterns, which is itself
  * hand-transcribed (third-party, not extracted) data.

@@ -17,14 +17,19 @@ export interface Settings {
   "questRewards.slots": number;
   "questRewards.chances": "rarity" | "reasonable" | "any";
   "questRewards.keepItems": boolean;
+  "questRewards.draws": number;
   "monsterRewards.mode": Mode;
   "monsterRewards.scope": Scope;
   "monsterRewards.chances": "rarity" | "reasonable" | "any";
   "monsterRewards.captureAndBreaks": boolean;
+  "carveCounts.mode": Mode;
+  "carveCounts.max": number;
   "gathering.mode": Mode;
   "gathering.scope": Scope;
   "gathering.chances": "rarity" | "reasonable" | "any";
   "gathering.keepItems": boolean;
+  "gathering.counts": boolean;
+  "gathering.countSpread": number;
   "supplies.mode": Mode;
   "supplies.scope": Scope;
   "supplies.slots": number;
@@ -244,6 +249,14 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledWhen: ["randomize"],
   },
   {
+    key: "questRewards.draws",
+    section: "Quest rewards",
+    label: "Reward draws variation",
+    help: "How far the number of times a quest's main reward list is drawn can move, up or down (rounded, so a small spread leaves small counts alone). Never fewer than 1 or more than the most any quest has on the disc. Works on its own, whatever the mode above.",
+    type: SPREAD,
+    default: 0,
+  },
+  {
     key: "monsterRewards.mode",
     section: "Monster rewards",
     label: "Carves and shiny drops",
@@ -330,6 +343,45 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledWhen: ["shuffle", "randomize"],
   },
   {
+    key: "carveCounts.mode",
+    section: "Monster rewards",
+    label: "Carve counts",
+    help: 'How many times a monster can be carved, body and tail, separate from the items in its lists ("body carves (x3)"). A monster with no tail, and carves done another way (elder dragons, live carving), are left alone.',
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "off",
+          label: "Unchanged",
+          help: "Monsters can be carved as often as they always could.",
+        },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Counts trade places between the monsters that have one.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Every count is rolled from 1 to the largest below.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "carveCounts.max",
+    section: "Monster rewards",
+    label: "Most carves",
+    help: "The largest body or tail carve count a monster can roll.",
+    type: { kind: "number", min: 1, max: 9, step: 1 },
+    default: 4,
+    enabledBy: "carveCounts.mode",
+    enabledWhen: ["randomize"],
+  },
+  {
     key: "gathering.mode",
     section: "Gathering",
     label: "Gathering points",
@@ -414,6 +466,24 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
     enabledBy: "gathering.mode",
     enabledWhen: ["randomize"],
+  },
+  {
+    key: "gathering.counts",
+    section: "Gathering",
+    label: "Randomize how often points can be gathered",
+    help: "Each mining, gathering and bug catching point in Village and Guild quests gets a new fewest and most number of gathers before it runs out. Points that never run out, and points that give a delivery quest's item, stay as they are.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "gathering.countSpread",
+    section: "Gathering",
+    label: "Gather count variation",
+    help: "How far a point's gathers can move from their usual value, up or down. Every point can still be gathered at least once.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "gathering.counts",
   },
   {
     key: "supplies.mode",
@@ -1508,11 +1578,13 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Randomized",
-    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills.",
+    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, how often each quest's main reward list is drawn, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills.",
     changes: {
       "questRewards.mode": "off",
+      "questRewards.draws": 0.3,
       "monsterRewards.mode": "off",
       "recipes.amounts": true,
+      "gathering.counts": true,
       "costs.enabled": true,
       "shops.prices": true,
       "shops.stacks": true,
@@ -1531,10 +1603,12 @@ export const PRESETS: readonly Preset[] = [
     changes: {
       "recipes.mode": "shuffle",
       "recipes.amounts": true,
+      "gathering.counts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
+      "questRewards.draws": 0.3,
       "shops.mode": "randomize",
       "shops.scope": "low",
       "shops.prices": true,
@@ -1557,11 +1631,14 @@ export const PRESETS: readonly Preset[] = [
     help: "Full with the limits off. Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
     changes: {
       "questRewards.scope": "any",
+      "questRewards.draws": 0.9,
       "monsterRewards.scope": "any",
       "recipes.mode": "shuffle",
       "recipes.scope": "any",
       "recipes.amounts": true,
       "recipes.amountSpread": 0.9,
+      "gathering.counts": true,
+      "gathering.countSpread": 0.9,
       "costs.enabled": true,
       "costs.spread": 0.9,
       "weapons.enabled": true,
