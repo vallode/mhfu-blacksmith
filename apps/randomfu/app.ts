@@ -21,6 +21,7 @@ import {
   isActive,
   settingsFromJson,
   settingsToJson,
+  withOlderDefaults,
   type Action,
   type OptionDef,
   type OptionKey,
@@ -105,9 +106,9 @@ const OPTION_STEPS: Step[] = [
     id: "modifications",
     title: "Modifications",
     icon: "dragon",
-    sections: ["Hunter's Pact", "Elite monsters", "Unknown Monster?! quests", "HUD"],
+    sections: ["Poogie", "Hunter's Pact", "Elite monsters", "Unknown Monster?! quests", "HUD"],
     intro:
-      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code. Each caps received Guild Cards at 3 to make room for it. No preset turns them on, and elite monsters haven't been tried in game yet.",
+      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code. Each caps received Guild Cards at 3 to make room for it. Only Poogie's luck is on unless you turn the others on, and elite monsters haven't been tried in game yet.",
   },
   {
     id: "extras",
@@ -137,6 +138,7 @@ const SECTION_ICONS: Record<string, Sprite> = {
   Deliveries: { icon: "egg", tint: "var(--color-parchment)" },
   "Quest maps": { icon: "binoculars" },
   "Hunter's Pact": { icon: "ko", tint: "var(--color-gem-red)" },
+  Poogie: { icon: "meat", tint: "var(--color-gem-pink)" },
   "Quest monsters": { icon: "monsters/flying-wyvern", tint: "var(--color-gem-orange)" },
   "Monster stats": { icon: "ko" },
   "Elite monsters": { icon: "monsters/elder-dragon", tint: "var(--color-gem-slate)" },
@@ -263,8 +265,12 @@ function save(): void {
 function restore(): void {
   try {
     const stored = JSON.parse(localStorage.getItem(STORE) ?? "{}") as { settings?: Settings };
+    // Stored settings have every option, so a missing one is newer than them.
     if (stored.settings)
-      settings = applySettings(defaultSettings(settings.seed), { ...stored.settings });
+      settings = applySettings(
+        defaultSettings(settings.seed),
+        withOlderDefaults({ ...stored.settings }),
+      );
   } catch {
     // Missing, or from an older version: keep the defaults.
   }

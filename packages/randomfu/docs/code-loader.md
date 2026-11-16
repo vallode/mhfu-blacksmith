@@ -108,9 +108,25 @@ from another build or region is never run. The blob is reloaded on every
 load, so whatever the save held in those bytes is replaced.
 
 Persistent feature data can't live in the blob, because the blob is
-reloaded. It belongs in its own slots (`allocateSlots`) or past the blob's
-end in the same room. Either way it's saved with the save, and the feature
+reloaded. It belongs in randomfu's save data (below), or in its own slots
+(`allocateSlots`). Either way it's saved with the save, and the feature
 must recognise first use: the bytes may be old Guild Cards.
+
+## Save data
+
+Every loader build keeps the last freed slot (95, save `+0x666E0`, 4216
+bytes) out of the blob's room (`reserveSaveData`, `SAVE_DATA`). It's at the
+same offset whatever features a build has or however big its blob is, so
+what features keep there carries over to a disc from another seed or
+settings. `rf_init` checks its magic (`RFS1`) before any feature's init and
+clears the slot when it isn't there (old Guild Card bytes, or a first load);
+a new character's memset clears it too. Its first word stays 0, the magic
+is the second: the game takes a slot whose first halfword isn't 0 as a
+received card, so on a disc without the loader the slot reads as empty, not
+as a card of garbage (that game can still write a 96th card over it, or
+clear it when it compacts the cards). Features read it with
+`rf_save_data()`, a `struct rf_save_data` (`blob/rf.h`): new fields go at
+the end, where a save that has the magic already has zeros.
 
 ## Game hooks
 
@@ -128,6 +144,7 @@ reaches. Twelve words per stub and 15 for `dispatch`.
 | 2    | pad         | the controller read in `padRead` (EU 0x08868F50), once a frame | 0x08868F64                                | 0x08868F5C                                |
 | 3    | quest load  | the quest loader (EU 0x08870AEC), accepting and departing      | `lobby_task` +0x2F424, `game_task` +0x6B8 | `lobby_task` +0x2F0B4, `game_task` +0x6A8 |
 | 4    | rewards     | the quest reward roll (EU 0x0886F894), once a completed quest  | 0x08875284                                | found by signature                        |
+| 5    | pick        | replaces the weighted picker (`poogie-luck.ts`)                | 0x0887265C (the picker's first two words) | 0x08872654                                |
 
 Hooks 0 and 1 pass the HUD object (EU 0x09A04BA0, right after the save
 struct), hook 3 a `struct rf_load` (below), hook 4 the results step's
@@ -151,6 +168,14 @@ The roll has filled the save's reward box (`+0x390`, 16 slots) and sorted
 it by then. The main loop's `jal padRead` (the one between `lui` and
 `lw $a0`, its delay slot loading the pad object's global, and followed by
 the printer's reset) gives the pad and printer globals.
+
+Hook 5 isn't a call but a function: the picker's first two words (its
+`addiu $sp` and `sw $ra`) become `j stub; nop`. The stub (19 words) checks
+the blob's magic and header entry like `dispatch`, then calls `rf_hook5`
+with the picker's `$a0` and `$a1` in a 32-byte frame and returns its `$v0`
+to the picker's caller; without it, it runs the two words and jumps to the
+picker's third. The picker only calls the RNG, so the temporaries the stub
+uses are free. One feature defines `rf_hook5` (`blob/poogie.c`).
 
 In the blob, `blob/runtime.c` defines `rf_init` and `rf_hook0`…, and
 features register callbacks with `rf_on(RF_HOOK_*, fn)` from their init
@@ -217,6 +242,19 @@ after dead, a max health other than the one last written, or a new quest.
 A quest has ended when `game_task` is gone (the village loads `lobby_task`
 at its address, seen on EU), which the pad hook notices since it runs on
 every frame; the clock going up counts too.
+
+## Poogie's luck
+
+`blob/poogie.c` defines `rf_hook5`, the game's weighted picker done as the
+game does it (the game's RNG, `rf_pick_rand(*rf_pick_rng, 0)`, modulo the
+list's total chance, then a walk), except that with event flag 0x1AC set
+(a happy pet since the last hunt) it rolls 2, 3 or 4 times by how many
+happy hunts the save has seen (50 and 200 are the steps) and keeps the entry
+with the lowest chance. On hook 2 it counts a happy pet and a tumble (flag
+0x1AB) once each, on the frame the flag is first seen set, in the save
+data. `rf_poogie_test_rolls` is 1 for play and 1025 for `?poogie-test`.
+`test/poogie-luck.test.ts` runs the stub, the blob and the quest reward
+walk in the interpreter.
 
 ## Hunter's Pact
 

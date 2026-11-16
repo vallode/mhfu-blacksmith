@@ -18,6 +18,42 @@ typedef signed short s16;
 
 /* Save struct offsets, shared by EU and JP. */
 #define RF_SAVE_ZENNY 0x696F0
+#define RF_SAVE_FLAGS 0x508 /* event flags: a bit array of u16s */
+
+/*
+ * randomfu's own save data: the last Guild Card slot (95), at the same save
+ * offset whatever features a build has and however big its blob is, so it
+ * carries over to a disc from another seed or settings. The code loader
+ * never loads the blob over it, and it's saved with the save. A new
+ * character's memset clears it; rf_init clears it on first use too (the
+ * bytes may be an old Guild Card) and sets the magic. Features keep their
+ * fields here: add new ones at the end, where an older save has zeros.
+ *
+ * Its first word stays 0: the game takes a card slot whose first halfword
+ * isn't 0 as a received card, so on a disc without the loader the slot
+ * reads as empty rather than as a card of garbage. (The game there can
+ * still write a 96th card over it, or clear it when compacting cards.)
+ * RF_SAVE_DATA must match SAVE_DATA in src/patches/guild-card-space.ts.
+ */
+#define RF_SAVE_DATA 0x666E0
+#define RF_SAVE_DATA_BYTES 4216
+#define RF_SAVE_DATA_MAGIC 0x31534652 /* "RFS1" */
+struct rf_save_data {
+  u32 empty; /* always 0: an empty Guild Card slot to the game */
+  u32 magic;
+  /* Poogie (poogie.c) */
+  u16 poogie_happy;   /* hunts after Poogie was happy to be petted */
+  u16 poogie_tumbles; /* times Poogie knocked the hunter over */
+  u8 poogie_counted;  /* which of the pet flags are already counted (poogie.c) */
+};
+
+/* The save's randomfu data, set up by rf_init before any feature's init. */
+struct rf_save_data *rf_save_data(void);
+
+/* Whether event flag `n` is set in the save (the EBOOT's own test, inline). */
+static inline u32 rf_flag(const u8 *save, u32 n) {
+  return (*(const u16 *)(save + RF_SAVE_FLAGS + (n >> 4) * 2) >> (n & 15)) & 1;
+}
 
 /*
  * Called after every load of the blob, with the save struct (a fixed
@@ -90,6 +126,18 @@ struct rf_load {
  */
 #define RF_HOOK_REWARDS 4
 #define RF_HOOKS 5
+
+/*
+ * rf_hook5 isn't a callback hook: it replaces the EBOOT's weighted picker,
+ * which every carve, capture, break and (randomfu routes them through it)
+ * quest reward rolls with: `u32 rf_hook5(const u16 *list, u16 *quantity)`.
+ * The list is (chance, item) entries, or (chance, item, quantity) when
+ * `quantity` isn't 0, ending at chance 0xFFFF; it returns the item, or
+ * 0xFFFF for none, and writes the quantity (0 for none). One feature
+ * defines it (poogie.c); without one, or before the blob loads, the game's
+ * own picker runs.
+ */
+#define RF_HOOK_PICK 5
 
 typedef void (*rf_hook_fn)(u8 *arg);
 void rf_on(u32 hook, rf_hook_fn fn);

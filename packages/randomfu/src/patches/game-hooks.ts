@@ -42,6 +42,11 @@
  *    `struct rf_load` (`blob/rf.h`); before, it may change the quest ID.
  * 4. Rewards: the call to the reward roll, once a completed quest, just
  *    after the box is filled and before the reward screen shows it.
+ * 5. Pick (optional, `poogie.enabled`): not a call but the EBOOT's weighted
+ *    picker itself (see `poogie-luck.ts`). Its first two words jump to a
+ *    stub that tail-calls the blob's `rf_hook5` with the picker's own
+ *    arguments when the blob defines one, and otherwise runs those two words
+ *    and goes on with the game's picker.
  *
  * The quest loader (EU 0x08870AEC) is `(quest, u16 id, buf)`, a two-step
  * state machine the caller runs every frame until it returns 1: step 0
@@ -64,6 +69,7 @@ import {
   Assembler,
   BEQ,
   BNE,
+  JALR,
   JR,
   LUI,
   LW,
@@ -82,7 +88,13 @@ import {
   type Segment,
 } from "./mips.js";
 
-export const HOOK = { questFrame: 0, hud: 1, pad: 2, questLoad: 3, rewards: 4 } as const;
+export const HOOK = { questFrame: 0, hud: 1, pad: 2, questLoad: 3, rewards: 4, pick: 5 } as const;
+
+/** The game's picker (hook 5): its address and its first two words, which the stub runs instead. */
+export interface PickSite {
+  picker: number;
+  prologue: readonly [number, number];
+}
 
 /** `struct rf_load`'s phase (`blob/rf.h`). */
 export const QUEST_LOAD_PHASE = { accept: 0, depart: 1, after: 2 } as const;
@@ -128,18 +140,26 @@ const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
 const isJalTo = (w: number, pc: number, target: number) =>
   w >>> 26 === 0x03 && jumpTarget(w, pc) === target;
 
-export interface HookSites {
+/**
+ * The pad hook's sites (hook 2) alone: all a blob needs when it only counts
+ * frames or reads the pad, like Poogie's luck, so it doesn't depend on the
+ * HUD and reward code matching too.
+ */
+export interface PadSites {
   segment: Segment;
+  padRead: number;
+  /** The controller read padRead calls, and that call's vaddr (padRead `+0x14`). */
+  ctrlRead: number;
+  ctrl: number;
+}
+
+export interface HookSites extends PadSites {
   hudUpdate: number;
   gauges: number;
   /** File offsets in `game_task.ovl` of its `jal hudUpdate`s. */
   questFrame: number[];
   /** ELF offset of the EBOOT's `jal gauges`. */
   hud: number;
-  padRead: number;
-  /** The controller read padRead calls, and that call's vaddr (padRead `+0x14`). */
-  ctrlRead: number;
-  ctrl: number;
   /** The main loop's `jal padRead`, a vaddr: `lui; jal; lw $a0` (the pad object's global). */
   pad: number;
   /** The quest reward roll, and the vaddr of its one call. */
@@ -203,22 +223,33 @@ export function findQuestLoadSites(
   return { loader, defaultBuffer: hiLo(lui!, addiu!), lobby: lobby[0]!, game: game[0]! };
 }
 
+/** The pad hook's site (hook 2), or why it can't be found. */
+export function findPadSites(vanillaEboot: Buffer): PadSites | string {
+  const segment = codeSegment(vanillaEboot);
+  if (!segment) return "the EBOOT isn't an ELF";
+  const [padRead] = findUnique(vanillaEboot, segment, [PAD_READ_SIGNATURE]);
+  if (padRead == null) return "this EBOOT's pad code doesn't match";
+  const ctrl = padRead + CTRL_READ_CALL;
+  const ctrlCall = word(vanillaEboot, segment.offset + (ctrl - segment.vaddr));
+  if (ctrlCall >>> 26 !== 0x03) return "this EBOOT's pad code doesn't match";
+  return { segment, padRead, ctrlRead: jumpTarget(ctrlCall, ctrl), ctrl };
+}
+
 /** The hooks' call sites, or why they can't be found. */
 export function findHookSites(
   vanillaEboot: Buffer,
   gameTask: Buffer,
   gameTaskBase: number,
 ): HookSites | string {
-  const segment = codeSegment(vanillaEboot);
-  if (!segment) return "the EBOOT isn't an ELF";
-  const [hudUpdate, gauges, padRead, rewardWalk] = findUnique(vanillaEboot, segment, [
+  const padSites = findPadSites(vanillaEboot);
+  if (typeof padSites === "string") return padSites;
+  const { segment, padRead } = padSites;
+  const [hudUpdate, gauges, rewardWalk] = findUnique(vanillaEboot, segment, [
     HUD_UPDATE_SIGNATURE,
     GAUGES_SIGNATURE,
-    PAD_READ_SIGNATURE,
     QUEST_REWARD_SIGNATURE,
   ]);
   if (hudUpdate == null || gauges == null) return "this EBOOT's HUD code doesn't match";
-  if (padRead == null) return "this EBOOT's pad code doesn't match";
   const rewardRoll = rewardWalk == null ? null : functionStart(vanillaEboot, segment, rewardWalk);
   if (rewardRoll == null) return "this EBOOT's quest reward code doesn't match";
   const offsetOf = (vaddr: number) => segment.offset + (vaddr - segment.vaddr);
@@ -248,23 +279,30 @@ export function findHookSites(
   if (hud.length !== 1 || questFrame.length !== 2) return "this game's HUD calls don't match";
   if (pad.length !== 1) return "this EBOOT's main loop doesn't match";
   if (rewards.length !== 1) return "this EBOOT's quest reward code doesn't match";
-  const ctrl = padRead + CTRL_READ_CALL;
-  const ctrlCall = word(vanillaEboot, offsetOf(ctrl));
-  if (ctrlCall >>> 26 !== 0x03) return "this EBOOT's pad code doesn't match";
-  const ctrlRead = jumpTarget(ctrlCall, ctrl);
   return {
-    segment,
+    ...padSites,
     hudUpdate,
     gauges,
     questFrame,
     hud: hud[0]!,
-    padRead,
-    ctrlRead,
-    ctrl,
     pad: pad[0]!,
     rewardRoll,
     rewards: rewards[0]!,
   };
+}
+
+/**
+ * Sets `$t0` to the blob and branches to `miss` unless its magic is there
+ * (it uses `$t1` and `$t2`). The next word the caller emits is the delay slot.
+ */
+function emitBlobCheck(a: Assembler, blob: number, miss: string): void {
+  const { zero, t0, t1, t2 } = R;
+  a.i(LUI, zero, t0, hi16(blob));
+  a.i(ADDIU, t0, t0, blob & 0xffff);
+  a.i(LW, t0, t1, HEADER.magic);
+  a.i(LUI, zero, t2, BLOB_MAGIC >>> 16);
+  a.i(ORI, t2, t2, BLOB_MAGIC & 0xffff);
+  a.branch(BNE, t1, t2, miss);
 }
 
 /**
@@ -337,12 +375,7 @@ export function assembleHooks(
   }
 
   a.label("dispatch");
-  a.i(LUI, zero, t0, hi16(blob));
-  a.i(ADDIU, t0, t0, blob & 0xffff);
-  a.i(LW, t0, t1, HEADER.magic);
-  a.i(LUI, zero, t2, BLOB_MAGIC >>> 16);
-  a.i(ORI, t2, t2, BLOB_MAGIC & 0xffff);
-  a.branch(BNE, t1, t2, "none");
+  emitBlobCheck(a, blob, "none");
   a.r(zero, a1, t3, 2, SLL);
   a.r(t3, t0, t3, 0, 0x21);
   a.i(LW, t3, t9, HEADER.hooks);
@@ -367,6 +400,43 @@ export function assembleHooks(
   };
 }
 
+/**
+ * Hook 5's stub at `at`: with the blob loaded and its `rf_hook5` defined, it
+ * calls that in a 32-byte frame (the O32 code may use `sp+0..15`) with the
+ * picker's `$a0` and `$a1` and returns its `$v0` to the picker's caller.
+ * Otherwise it runs the picker's first two words and jumps to the third. The
+ * picker is a leaf of the game's (it only calls the RNG), so the
+ * temporaries are free at its entry.
+ */
+export function assemblePickHook(at: number, blob: number, site: PickSite): number[] {
+  const a = new Assembler();
+  const { zero, t0, t9 } = R;
+  const nop = () => a.emit(0);
+  emitBlobCheck(a, blob, "game");
+  a.i(LW, t0, t9, HEADER.hooks + HOOK.pick * 4);
+  a.branch(BEQ, t9, zero, "game");
+  nop();
+  a.i(ADDIU, SP, SP, -32);
+  a.i(SW, SP, RA, 24);
+  a.r(t9, zero, RA, 0, JALR);
+  nop();
+  a.i(LW, SP, RA, 24);
+  a.r(RA, zero, zero, 0, JR);
+  a.i(ADDIU, SP, SP, 32);
+  a.label("game");
+  a.emit(site.prologue[0]);
+  a.j(site.picker + 8);
+  a.emit(site.prologue[1]);
+  return a.link(at);
+}
+
+/** Points the picker's first two words at hook 5's stub. */
+export function writePickHook(eboot: Buffer, segment: Segment, site: PickSite, stub: number): void {
+  const offset = segment.offset + (site.picker - segment.vaddr);
+  eboot.writeUInt32LE(((0x02 << 26) | ((stub >>> 2) & 0x03ffffff)) >>> 0, offset);
+  eboot.writeUInt32LE(0, offset + 4);
+}
+
 /** Points the quest loader's calls at the hook's entries. */
 export function writeQuestLoadCalls(
   lobbyTask: Buffer,
@@ -378,23 +448,34 @@ export function writeQuestLoadCalls(
   gameTask.writeUInt32LE(jalTo(entries.depart), sites.game);
 }
 
-export const hookCode = (sites: HookSites) => [
-  { hook: HOOK.questFrame, target: sites.hudUpdate },
-  { hook: HOOK.hud, target: sites.gauges },
-  { hook: HOOK.pad, target: sites.ctrlRead },
-  { hook: HOOK.rewards, target: sites.rewardRoll },
-];
+const hasAllSites = (sites: PadSites | HookSites): sites is HookSites => "gauges" in sites;
+
+/** The calls the stubs make: every hook's, or the pad's alone. */
+export const hookCode = (sites: PadSites | HookSites) =>
+  hasAllSites(sites)
+    ? [
+        { hook: HOOK.questFrame, target: sites.hudUpdate },
+        { hook: HOOK.hud, target: sites.gauges },
+        { hook: HOOK.pad, target: sites.ctrlRead },
+        { hook: HOOK.rewards, target: sites.rewardRoll },
+      ]
+    : [{ hook: HOOK.pad, target: sites.ctrlRead }];
 
 /** Points the game's calls at the stubs (`stubs` in `hookCode` order). */
 export function writeHookCalls(
   eboot: Buffer,
-  gameTask: Buffer,
-  sites: HookSites,
+  gameTask: Buffer | null,
+  sites: PadSites | HookSites,
   stubs: readonly number[],
 ): void {
+  const offsetOf = (vaddr: number) => sites.segment.offset + (vaddr - sites.segment.vaddr);
+  if (!hasAllSites(sites)) {
+    eboot.writeUInt32LE(jalTo(stubs[0]!), offsetOf(sites.ctrl));
+    return;
+  }
+  if (!gameTask) throw new Error("The quest frame hook needs game_task");
   for (const at of sites.questFrame) gameTask.writeUInt32LE(jalTo(stubs[0]!), at);
   eboot.writeUInt32LE(jalTo(stubs[1]!), sites.hud);
-  const offsetOf = (vaddr: number) => sites.segment.offset + (vaddr - sites.segment.vaddr);
   eboot.writeUInt32LE(jalTo(stubs[2]!), offsetOf(sites.ctrl));
   eboot.writeUInt32LE(jalTo(stubs[3]!), offsetOf(sites.rewards));
 }

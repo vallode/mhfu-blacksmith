@@ -173,6 +173,7 @@ web app shows as a tag):
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                 |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                           |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                 |
+| `poogie.enabled`                  | on          | A happy pet before a hunt makes its rewards rarer, more so as affection grows (caps Guild Cards)       |
 | `pact.enabled`                    | off         | Hunter's Pact: penalties at each quest's start, each paying a reward (caps Guild Cards)                |
 | `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                  |
 | `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                              |
@@ -1104,6 +1105,46 @@ Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not
 yet tried: JP in game, captures, and two large monsters in one area.
 
+## Poogie's luck
+
+`poogie.enabled` (Modifications → Poogie in the web app, on by default).
+Pet Poogie at home before a hunt: if it lies down happily, every carve,
+capture, break and quest reward in that hunt rolls twice and keeps the
+rarer entry. Poogie remembers how often it's been happy: after 50 happy
+hunts on a save it rolls three times, after 200 four. A tumble gives
+nothing.
+
+What the game does (EU and JP):
+
+- Petting Poogie (`lobby_task`) sets save event flag 0x1AC when it lies
+  down happily and 0x1AB when it knocks the hunter over; the hunt's return
+  to the village clears both. The flags are a bit array at save `+0x508`.
+- Carves, captures and breaks all draw from one weighted picker in the
+  EBOOT (`(chance, item[, quantity])` entries, ending at 0xFFFF). The quest
+  rewards roll the same way, inline, in the reward roll.
+
+How randomfu does it (`src/patches/poogie-luck.ts`, `blob/poogie.c`):
+
+- It's blob code on the code loader, so it caps received Guild Cards at 3
+  like the other Modifications. The picker's first two words jump to a
+  stub (game hook 5) that calls the blob's `rf_hook5` once the blob is
+  loaded, and the game's own picker otherwise (the title screen). The
+  quest rewards' inline walk is replaced with a call to the picker, keeping
+  a list's forced first entry, so they get the luck too.
+- The blob counts each happy pet and each tumble once, on the frame its
+  flag goes from clear to set, in randomfu's save data: the last Guild Card
+  slot, which every loader build keeps out of the blob's room at the same
+  save offset, so the count carries over to discs from other seeds and
+  settings (`RF_SAVE_DATA`, `blob/rf.h`). Its first word stays 0, so a disc
+  without the loader sees an empty Guild Card slot there; that game can
+  still write a 96th card over it or clear it when it compacts the cards.
+- `?poogie-test` in the web app's address builds a test disc where a happy
+  pick rolls 1025 times, all but guaranteeing the rarest entry.
+
+The luck was confirmed in game on carves and quest rewards when it was
+patched EBOOT code. Not yet tried in game since it moved into the blob,
+nor the counting.
+
 ## Hunter's Pact
 
 `pact.enabled` (Modifications → Hunter's Pact in the web app) offers pacts at the
@@ -1370,7 +1411,7 @@ struct) into room for randomfu's own code and data. Its demo blob adds 1000
 zenny on every save load, so it's seen to run; it does in PPSSPP on EU and
 JP (FUC). It's not for play. `docs/code-loader.md` has the design: the
 address, when it loads, the blob format, game hooks, the C toolchain and
-the PRX alternative. Monster health and the Hunter's Pact are built on it.
+the PRX alternative. Poogie's luck, monster health and the Hunter's Pact are built on it.
 
 - **Room.** The save struct is static (an arena in the EBOOT's BSS), so the
   freed slots are at a fixed address per region: EU `0x099A1820`, JP
@@ -1388,7 +1429,11 @@ the PRX alternative. Monster health and the Hunter's Pact are built on it.
   a quest, after the HUD draws the hunter's gauges, after the pad read gets
   the controller, around the quest loader's calls, and after a completed
   quest's reward roll (`src/patches/game-hooks.ts`). Blob features register for them with
-  `rf_on` (`blob/runtime.c`).
+  `rf_on` (`blob/runtime.c`). One more replaces the game's weighted
+  picker with the blob's `rf_hook5` (Poogie's luck).
+- **Save data.** The last freed slot is randomfu's own save data, kept out
+  of the blob's room in every build so features can remember things across
+  saves and discs (`RF_SAVE_DATA`, `blob/rf.h`).
 - **Blob code** is C in `blob/`, compiled by clang to MIPS objects
   (`node blob/build.mjs`, Homebrew `llvm`) and committed as base64
   (`src/blob/demo-object.ts`). randomfu links them per disc at the

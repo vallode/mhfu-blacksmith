@@ -59,6 +59,11 @@ import {
 export const CARDS = 0x4a58;
 export const CARD_BYTES = 4216;
 export const GAME_CARDS = 96;
+/**
+ * randomfu's own save data (`blob/rf.h`, `RF_SAVE_DATA`): the last slot, at
+ * the same offset whatever is kept or allocated, once `reserveSaveData` takes it.
+ */
+export const SAVE_DATA = CARDS + (GAME_CARDS - 1) * CARD_BYTES;
 /** Per card: a 40-byte summary and a 4-byte entry, compacted with the cards. */
 export const CARD_SUMMARIES = 0x687d0;
 export const CARD_SUMMARY_BYTES = 40;
@@ -226,6 +231,8 @@ interface Found {
 export class GuildCardSpace {
   private caveNext: number;
   private slotNext: number;
+  /** Slots from here on aren't handed out: the last one once it's randomfu's save data. */
+  private slotEnd = GAME_CARDS;
 
   constructor(
     readonly kept: number,
@@ -250,8 +257,8 @@ export class GuildCardSpace {
 
   /** The freed slots not yet handed out, as save offsets; null when none are left. */
   get freeSlots(): { start: number; end: number } | null {
-    if (this.slotNext >= GAME_CARDS) return null;
-    return { start: CARDS + this.slotNext * CARD_BYTES, end: CARDS + GAME_CARDS * CARD_BYTES };
+    if (this.slotNext >= this.slotEnd) return null;
+    return { start: CARDS + this.slotNext * CARD_BYTES, end: CARDS + this.slotEnd * CARD_BYTES };
   }
 
   /** Reserves `words` cave words and returns their vaddr; throws if they don't fit. */
@@ -281,13 +288,28 @@ export class GuildCardSpace {
    * returns their range as save offsets.
    */
   allocateSlots(count: number | null): { start: number; end: number } {
-    const n = count ?? GAME_CARDS - this.slotNext;
-    if (n <= 0 || this.slotNext + n > GAME_CARDS) {
-      throw new Error(`${GAME_CARDS - this.slotNext} freed Guild Card slots left, ${n} asked for`);
+    const n = count ?? this.slotEnd - this.slotNext;
+    if (n <= 0 || this.slotNext + n > this.slotEnd) {
+      throw new Error(
+        `${this.slotEnd - this.slotNext} freed Guild Card slots left, ${n} asked for`,
+      );
     }
     const start = CARDS + this.slotNext * CARD_BYTES;
     this.slotNext += n;
     return { start, end: CARDS + this.slotNext * CARD_BYTES };
+  }
+
+  /**
+   * Keeps the last slot for randomfu's save data (`SAVE_DATA`), which blob
+   * features share across builds. Returns its range as save offsets, or null
+   * when another feature already took it.
+   */
+  reserveSaveData(): { start: number; end: number } | null {
+    if (this.slotEnd === GAME_CARDS) {
+      if (this.slotNext >= GAME_CARDS) return null;
+      this.slotEnd = GAME_CARDS - 1;
+    }
+    return { start: SAVE_DATA, end: SAVE_DATA + CARD_BYTES };
   }
 }
 

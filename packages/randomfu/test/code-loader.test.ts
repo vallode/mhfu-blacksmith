@@ -26,6 +26,9 @@ import {
   SAVE_INIT_SIGNATURE,
   guildCardSpace,
 } from "../src/patches/guild-card-space.js";
+import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
+import { PAD_READ_SIGNATURE, findPadSites } from "../src/patches/game-hooks.js";
+import { PICKER_SIGNATURE, poogieObjects } from "../src/patches/poogie-luck.js";
 import { Cpu } from "./mips-cpu.js";
 
 const SAVE = 0x09999c60;
@@ -344,6 +347,8 @@ test("addCodeLoader patches the sites to load the blob it adds to the disc", () 
   assert.match(report.summary ?? "", /: on /, report.summary);
   assert.equal(report.applied, true);
   assert.equal(report.kept, 3);
+  // The blob's room stops short of the last slot, randomfu's save data.
+  assert.match(report.summary ?? "", new RegExp(` of ${(GAME_CARDS - 4) * CARD_BYTES} bytes`));
   const file = g.edits.discFiles.get(BLOB_ISO_PATH)!;
   assert.ok(file, "the blob is added to the disc");
 
@@ -403,6 +408,37 @@ test("addCodeLoader patches nothing unless every save setup call agrees on the a
     assert.equal(g.edits.discFiles.size, 0, why);
     assert.ok(g.edits.eboot().equals(g.elf), why);
   }
+});
+
+test("addCodeLoader with only the pad hook and the picker: Poogie's luck needs no HUD code", () => {
+  const g = syntheticGame();
+  const at = (offset: number) => g.OFFSET + offset;
+  PAD_READ_SIGNATURE.forEach((w, k) => g.elf.writeUInt32LE(w, at(0xd80 + k * 4)));
+  const ctrlRead = g.VADDR + 0xd00;
+  g.elf.writeUInt32LE(0x0c000000 | (ctrlRead >>> 2), at(0xd80 + 0x14)); // padRead's jal
+  PICKER_SIGNATURE.forEach((w, k) => g.elf.writeUInt32LE(w, at(0xe00 + k * 4)));
+  const pads = findPadSites(g.elf);
+  assert.ok(typeof pads !== "string", String(pads));
+  assert.equal(pads.ctrlRead, ctrlRead);
+  const picker = g.VADDR + 0xe00;
+  const report = addCodeLoader(g.elf, g.sub, g.edits, {
+    objects: [...decodeObjects(RUNTIME_OBJECTS), ...poogieObjects()],
+    hooks: { sites: pads, pick: { picker, prologue: [0x27bdffe0, 0xafbf001c] } },
+    externs: { rf_pick_rand: 0x088900c4, rf_pick_rng: 0x08a631a0, rf_poogie_test_rolls: 1 },
+  });
+  assert.equal(report.applied, true, report.summary);
+  const pickAt = Number(/picker (0x[0-9a-f]+)/.exec(report.summary ?? "")?.[1]);
+  const eboot = g.edits.eboot();
+  assert.equal(eboot.readUInt32LE(at(0xe00)), 0x08000000 | (pickAt >>> 2), "j stub");
+  assert.equal(eboot.readUInt32LE(at(0xe04)), 0, "nop");
+  const ctrlCall = eboot.readUInt32LE(at(0xd80 + 0x14));
+  assert.equal(ctrlCall >>> 26, 0x03);
+  assert.notEqual(
+    ((ctrlCall & 0x03ffffff) << 2) | 0x08000000,
+    ctrlRead,
+    "the pad call goes to a stub",
+  );
+  assert.equal(g.edits.files.size, 1, "only game_sub (the card loop) changes, not game_task");
 });
 
 test("addCodeLoader takes nothing when other features left too little room", () => {
