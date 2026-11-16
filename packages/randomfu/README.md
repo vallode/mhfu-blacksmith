@@ -1159,7 +1159,11 @@ and on the last row seals them. While the window is open the
 clock stands still and the hunter doesn't move: the pact holds the game's
 input lock, as shops and dialogues do. The window waits about half a
 second into the quest, until the quest file is loaded. Penalties last the
-quest; the next one draws again.
+quest; the next one draws again. Once sealed, the pacts taken (each
+penalty, then its reward after a ★, as the window showed them; text can't
+show the item icons) take the place of the quest's description, in every language, so the quest's info (Start, View
+Quest Details, page 4, "Quest Details:") shows them for the rest of the
+quest. Page 3's fail conditions have room for one more line only.
 
 | Penalty                              | Weight |
 | ------------------------------------ | ------ |
@@ -1246,6 +1250,13 @@ have the details):
   delivery say which penalties fit. The quest loader keeps the file when the
   same quest is taken again, so the pact clears its cache to have it read
   afresh.
+- The quest's text stays as offsets from the file's start in the loaded
+  file (`header +0x60`, `src/game/quest-text.ts`), which the game adds to
+  the file's address when it shows them (the info screen reads them each
+  time it's drawn). The pact points each language block's details at its
+  list in the blob. The info's four pages: reward, contract, time and zone;
+  main monsters and special conditions; level, goal and fail conditions;
+  client and details.
 - The reward roll is handed the quest object and reads its reward tables
   through the pointer at its `+0x5C` (the elites' quest state is the same
   object), drawing the main table as many times as its byte `+3` says. It's
@@ -1271,6 +1282,8 @@ have the details):
 
 Tried in game (EU): the window, its shade, layers and text, its controls
 and the input lock. Not yet: the rewards, the delivery penalties, and JP.
+The pacts in the quest's info were tried in their first place, the fail
+conditions, where they ran out of the box; not yet in the details.
 Some quest starts crashed on the EU disc before the window showed (cause
 not found yet); the pact now waits for the quest to settle and checks the
 game's pointers before it reads or writes through them. Open: whether a faint takes the

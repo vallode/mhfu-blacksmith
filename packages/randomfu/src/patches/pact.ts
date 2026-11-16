@@ -16,7 +16,10 @@
  *   quest), `+0x4C` the loaded quest file (EU 0x08A5C440). Its `+0x714` is
  *   the index of the file the loader read last: asked for the same quest
  *   again, the loader keeps what's in memory, so a pact that edits the file
- *   clears it.
+ *   clears it. Its text is offsets from the file's start (`+0x60`,
+ *   `game/quest-text.ts`), read each time it's shown: sealing points each
+ *   language's details (the info screen's page 4) at the pact's list in
+ *   the blob, in place of the description.
  * - The reward roll (EU 0x0886F894) is handed the quest object and reads
  *   its reward tables from the pointer at `+0x5C` (into the loaded file;
  *   the elites' quest state, `elite.ts`, is the same object). It draws from

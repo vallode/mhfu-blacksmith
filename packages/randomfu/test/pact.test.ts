@@ -501,6 +501,74 @@ test("one cart: the first faint takes the whole reward", () => {
   assert.equal(q.cpu.u32(QUEST + 0x18), q.cpu.u32(QUEST + 0x14));
 });
 
+/**
+ * Quest text: an English block (Japanese, English and Korean point at it,
+ * as on the EU disc) and a German one for the rest, with only their fail
+ * conditions and details set. Returns each language's details, as the
+ * game reads them: the file's start plus the block's offset.
+ */
+function questText(q: Quest) {
+  const strings = { en: 0x800, de: 0x830 };
+  const blocks = { en: 0x860, de: 0x880 };
+  const table = 0x8a0;
+  q.cpu.write(HEADER + strings.en, Buffer.from("Reward Zero\nTime Over\0It seems that\0"));
+  q.cpu.write(HEADER + strings.de, Buffer.from("Belohnung null\0Es scheint\0"));
+  q.cpu.fill(HEADER + blocks.en, 0x40, 0);
+  q.cpu.setU32(HEADER + blocks.en + 8, strings.en);
+  q.cpu.setU32(HEADER + blocks.en + 12, strings.en + 22);
+  q.cpu.setU32(HEADER + blocks.de + 8, strings.de);
+  q.cpu.setU32(HEADER + blocks.de + 12, strings.de + 15);
+  const slots = [blocks.en, blocks.en, blocks.de, blocks.de, blocks.de, blocks.de, blocks.en];
+  slots.forEach((b, k) => q.cpu.setU32(table + HEADER + k * 4, b));
+  q.cpu.setU32(HEADER + 0x60, table);
+  const read = (address: number) => {
+    const bytes = q.cpu.bytes(address, 400);
+    return bytes.subarray(0, bytes.indexOf(0)).toString("utf8");
+  };
+  return {
+    details: () =>
+      slots.map((_, k) => {
+        const block = q.cpu.u32(HEADER + table + k * 4);
+        return read((HEADER + q.cpu.u32(HEADER + block + 12)) >>> 0);
+      }),
+    /** Everything but the details' offsets. */
+    rest: () => [
+      q.cpu.bytes(HEADER + strings.en, 0x60),
+      q.cpu.bytes(HEADER + table, 28),
+      [0, 4, 8, 16, 20].map((at) => q.cpu.u32(HEADER + blocks.en + at)),
+      [0, 4, 8, 16, 20].map((at) => q.cpu.u32(HEADER + blocks.de + at)),
+    ],
+  };
+}
+
+test("the quest's details list the sealed pact in every language, in place of its description", () => {
+  const { q } = questOffering(reward(/^Zenny/));
+  const text = questText(q);
+  const rest = text.rest();
+  const list = take(q, () => true);
+  const pact = list.map((o) => `${o.penalty}\n★ ${o.reward}`).join("\n");
+  assert.deepEqual(text.details(), Array(7).fill(pact));
+  assert.deepEqual(text.rest(), rest, "the fail conditions, other strings and tables as they were");
+  // The zenny it lists is what the window showed and the quest now pays on top.
+  assert.equal(q.cpu.u32(QUEST + 0x14), 900 + amount(list.find(reward(/^Zenny/))!));
+  assert.equal(q.cpu.u16(QUEST + 0x714), 0xffff, "the quest file is read again next time");
+});
+
+test("the details list only the pacts taken, and stay as they were without one", () => {
+  const { q } = questOffering(penalty(/^One cart/));
+  const text = questText(q);
+  const list = take(q, penalty(/^One cart/));
+  const taken = list.find(penalty(/^One cart/))!;
+  assert.equal(text.details()[1], `${taken.penalty}\n★ ${taken.reward}`);
+  const none = quest();
+  const before = questText(none).details();
+  assert.equal(before[1], "It seems that");
+  none.frame();
+  seal(none, 0);
+  none.frame();
+  assert.deepEqual(questText(none).details(), before);
+});
+
 test("monsters' health and attack go up once each, and attack again after rage resets it", () => {
   const { q } = questOffering(penalty(/^Monsters' attack/));
   const m = q.monster(0, 3000, 1.5);

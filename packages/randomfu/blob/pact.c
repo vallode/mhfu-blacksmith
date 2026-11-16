@@ -13,7 +13,8 @@
  * "item received" card, above the rest of the HUD; the quest frame hook
  * notices a new quest, holds the clock while the window is open and keeps
  * the pact's penalties in force; the rewards hook adds the pact's items to
- * the reward box and its equipment to the equipment box.
+ * the reward box and its equipment to the equipment box. Sealing lists the
+ * pacts taken in the quest's details, for its info screen.
  */
 #include "monsters.h"
 
@@ -52,8 +53,12 @@ extern const u8 rf_pact_pool[];
 #define H_OBJECTIVES 0x28 /* two of { u32 kind, u16 id, u8 count, u8 slot } */
 #define H_RANK 0x44 /* 2 High Rank, 5 G Rank, else Low */
 #define H_TYPE 0x4c /* 2: a delivery */
+#define H_STRINGS 0x60 /* LangPTRs: 7 offsets of StringPTRs blocks (src/game/quest-text.ts) */
 #define H_TARGET_ID 0x70
 #define H_TARGET_NUM 0x72
+#define LANGUAGES 7
+#define S_DETAILS 12 /* the details' offset in a StringPTRs block: title, goal, fail, details, ... */
+#define QUEST_BYTES 0x6800 /* the loader's buffer: every offset in the file is below it */
 #define OBJECTIVE_ITEM 2
 #define DELIVERY 2
 
@@ -420,6 +425,96 @@ static void deliver_more(u8 *header, u32 percent) {
   }
 }
 
+/*
+ * Text: a small string builder. `line` is printed with the game's "%s"
+ * (~Cnn colours, ~Bnn button icons); `listed` is the sealed pact, for the
+ * quest's text.
+ */
+static char line[80];
+static u32 at;
+static void put(const char *s) {
+  while (*s && at < sizeof line - 1) line[at++] = *s++;
+  line[at] = 0;
+}
+static void put_number(u32 n) {
+  char digits[10];
+  int k = 0;
+  do digits[k++] = (char)('0' + n % 10);
+  while ((n /= 10) && k < 10);
+  while (k && at < sizeof line - 1) line[at++] = digits[--k];
+  line[at] = 0;
+}
+
+static void put_reward(u8 *q, const rf_offer *o) {
+  switch (o->reward) {
+  case R_ZENNY:
+    put("Zenny +");
+    put_number(bonus(q, o));
+    put("z");
+    break;
+  case R_DRAWS:
+    put("Quest rewards +");
+    put_number(o->value);
+    break;
+  default: {
+    const rf_entry *e = entry(o->value);
+    put((const char *)rf_pact_pool + e->name);
+    if (e->type == ITEM) {
+      put(" x");
+      put_number(e->amount);
+    }
+  }
+  }
+}
+
+/* A symbol the game's font has (src/hints/style.ts). */
+#define STAR "\xe2\x98\x85" /* ★ */
+
+static char listed[OFFERS * 2 * sizeof line];
+static u32 listed_at;
+static void list_line(void) {
+  for (u32 k = 0; k < at && listed_at < sizeof listed - 1; k++) listed[listed_at++] = line[k];
+  if (listed_at < sizeof listed - 1) listed[listed_at++] = '\n';
+  listed[listed_at] = 0;
+  at = 0;
+}
+
+/*
+ * The offer, as lines of `listed`: its penalty, then its reward after a
+ * star (the window draws an item's or piece's icon there; text can't).
+ * Before seal() pays it: bonus() reads what the quest pays.
+ */
+static void list_offer(u8 *q, const rf_offer *o) {
+  put(penalty[o->penalty].name);
+  list_line();
+  put(STAR " ");
+  put_reward(q, o);
+  list_line();
+}
+
+/*
+ * The quest's details (page 4 of its info, "Quest Details:", about seven
+ * lines) list the sealed pact in place of the description, in every
+ * language: the quest's text is its file's, which the game reads by offset
+ * from the file's start each time it shows it, so each block's details
+ * offset is pointed at `listed` (the sum wraps). The fail conditions (page
+ * 3) have one spare line, too few. The file is read again for the next
+ * quest (seal() clears the loader's cache).
+ */
+static int in_file(u32 off) { return off >= 0x80 && off < QUEST_BYTES; }
+
+static void list_in_text(u8 *header) {
+  const u32 table = *(u32 *)(header + H_STRINGS);
+  if (!in_file(table) || (table & 3) || !listed_at) return;
+  listed[--listed_at] = 0; /* the last line's break */
+  for (u32 lang = 0; lang < LANGUAGES; lang++) {
+    const u32 block = *(u32 *)(header + table + lang * 4);
+    if (in_file(block) && !(block & 3)) {
+      *(u32 *)(header + block + S_DETAILS) = (u32)listed - (u32)header;
+    }
+  }
+}
+
 static void seal(u8 *q) {
   state = SEALED;
   if (!taken) return; /* no pact: nothing changes */
@@ -427,8 +522,10 @@ static void seal(u8 *q) {
   u8 *hunter = *(u8 **)(q + HUD_HUNTER);
   if (!valid(hunter)) hunter = 0;
   u32 zenny = 0, draws = 0, one_cart = 0;
+  at = listed_at = 0;
   for (u32 k = 0; k < OFFERS; k++) {
     if (!(taken & (1u << k))) continue;
+    list_offer(q, &offer[k]);
     switch (offer[k].penalty) {
     case HP_UP: hp_up = 30; break;
     case HP_UP2: hp_up = 60; break;
@@ -485,6 +582,7 @@ static void seal(u8 *q) {
     const u32 n = main[TABLE_DRAWS] + draws;
     main[TABLE_DRAWS] = (u8)(n > MAX_DRAWS ? MAX_DRAWS : n);
   }
+  if (header) list_in_text(header);
   /* The quest file changed: have the loader read it again next time. */
   if (header || main) *(u16 *)(q + Q_LAST_FILE) = 0xffff;
 }
@@ -574,21 +672,6 @@ static void quest_frame(u8 *q) {
   time_seen = t;
 }
 
-/* Text: a small string builder, printed with the game's "%s"; ~Cnn colours, ~Bnn button icons. */
-static char line[80];
-static u32 at;
-static void put(const char *s) {
-  while (*s && at < sizeof line - 1) line[at++] = *s++;
-  line[at] = 0;
-}
-static void put_number(u32 n) {
-  char digits[10];
-  int k = 0;
-  do digits[k++] = (char)('0' + n % 10);
-  while ((n /= 10) && k < 10);
-  while (k && at < sizeof line - 1) line[at++] = digits[--k];
-  line[at] = 0;
-}
 static const char percent_s[] = "%s";
 
 static void text(u32 x, u32 y) {
@@ -618,7 +701,6 @@ typedef struct {
 #define C_DIM "~C10"
 #define BOX_ON "\xe2\x96\xa0"  /* ■ */
 #define BOX_OFF "\xe2\x96\xa1" /* □ */
-#define STAR "\xe2\x98\x85"    /* ★ */
 
 #define SCREEN_W 480
 #define SCREEN_H 272
@@ -647,28 +729,6 @@ static void lock(int on) {
   } else if (!on && locked) {
     p[PAD_LOCK] = 0;
     locked = 0;
-  }
-}
-
-static void put_reward(u8 *q, const rf_offer *o) {
-  switch (o->reward) {
-  case R_ZENNY:
-    put("Zenny +");
-    put_number(bonus(q, o));
-    put("z");
-    break;
-  case R_DRAWS:
-    put("Quest rewards +");
-    put_number(o->value);
-    break;
-  default: {
-    const rf_entry *e = entry(o->value);
-    put((const char *)rf_pact_pool + e->name);
-    if (e->type == ITEM) {
-      put(" x");
-      put_number(e->amount);
-    }
-  }
   }
 }
 
