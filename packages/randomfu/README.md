@@ -1089,9 +1089,11 @@ yet tried: JP in game, captures, and two large monsters in one area.
 start of every quest, as Hades' Pact of Punishment does: penalties taken
 for rewards. In base camp the screen darkens and a window, in the frame of
 the game's "item received" card and above the rest of the HUD, lists three
-pacts drawn at random, each a penalty (▼) and the reward it pays (★), and a
-way out. Up and down (or the stick) move a highlight, Circle (or Cross)
-takes a pact, and on the last row seals them. While the window is open the
+pacts drawn at random, each a penalty and, below it, the reward it pays (an
+item or piece of equipment with its icon, as the pouch and equipment box
+show it, the rest with a ★), and a way out. Up
+and down (or the stick) move a highlight, Circle (or Cross) takes a pact,
+and on the last row seals them. While the window is open the
 clock stands still and the hunter doesn't move: the pact holds the game's
 input lock, as shops and dialogues do. The window waits about half a
 second into the quest, until the quest file is loaded. Penalties last the
@@ -1118,64 +1120,89 @@ gathering quests, which time over wins. So a gathering quest draws from
 one cart, no supply box (which holds its Paw Pass Ticket), frail and
 weary. Each penalty's weight picks its reward:
 
-| Weight | Rewards                                                       |
-| ------ | ------------------------------------------------------------- |
-| 1      | zenny or HRP (half), Good Luck, a common item ×10             |
-| 2      | zenny or HRP (as much), Great Luck, an uncommon item ×5       |
-| 3      | zenny or HRP (twice), a rare item ×2, a weapon or armor piece |
+| Weight | Rewards                                                                         |
+| ------ | ------------------------------------------------------------------------------- |
+| 1      | zenny (half), quest rewards +1, 3 to 10 of a common item                        |
+| 2      | zenny (as much), quest rewards +2, 2 to 5 of an uncommon item                   |
+| 3      | zenny (twice), quest rewards +3, 1 to 3 of a rare item, a weapon or armor piece |
 
-Zenny and HRP are a share of what the quest pays, but at least a set
-amount for its rank, so quests that pay little are still worth a pact. The
-window shows the amount:
+Zenny is a share of what the quest pays, but at least a set amount for its
+rank, so quests that pay little are still worth a pact. The window shows
+the amount:
 
-| Rank | Zenny at least (weight 1/2/3) | HRP at least    |
-| ---- | ----------------------------- | --------------- |
-| Low  | 600 / 1200 / 2400             | 20 / 40 / 80    |
-| High | 2000 / 4000 / 8000            | 50 / 100 / 200  |
-| G    | 4000 / 8000 / 15000           | 100 / 200 / 400 |
+| Rank | Zenny at least (weight 1/2/3) |
+| ---- | ----------------------------- |
+| Low  | 600 / 1200 / 2400             |
+| High | 2000 / 4000 / 8000            |
+| G    | 4000 / 8000 / 15000           |
 
-A quest that gives no HRP (Village quests) offers none. Items and equipment
-come up twice as often as the rest, and no two pacts in a window pay zenny,
-HRP or luck alike. Rewards are paid only for a completed quest:
+Items and equipment come up twice as often as the rest. No two pacts in a
+window pay zenny or quest rewards alike, or give the same item or piece. Rewards
+are paid only for a completed quest:
 
-- zenny and HRP added to the quest's own (a faint costs the same share of
-  the new reward as of the old);
-- luck as the skill, for the quest's reward roll (the better of it and the
-  hunter's own);
+- zenny added to the quest's own (a faint costs the same share of the new
+  reward as of the old);
+- quest rewards as more draws from the quest's main reward table: the
+  reward screen lists that many more of the quest's own rewards. The game
+  draws at most 9 times, so quest rewards +N is offered only where all N
+  fit (+3 on a quest that draws 6 times or fewer);
 - items in the reward box, after the quest's own, on the reward screen;
 - equipment in the equipment box's first free slot.
 
 The items and equipment come from the quest's rank (Low, High or G), drawn
-per seed: items first found at that rank (after the shuffles), in three
-grades by the star level they're first found at, and weapons and armor of
-that rank's rarities (armor both sexes can wear). Up to 16 items a grade
-and 32 pieces a rank.
+per seed: items first found at that rank (after the shuffles), and weapons
+and armor of that rank's rarities (armor both sexes can wear). Up to 16
+items a grade and 32 pieces a rank.
+
+An item's grade is what it's worth, by the item table's price (the
+general store's for what it sells, and on the same scale for materials:
+Iron Ore 600, Rathalos Plate 48500). Each grade aims at a value per rank,
+and an item is in it if some amount within the grade's range comes within
+60% to 160% of that value. So a hard penalty never pays a pile of
+something cheap, and a light one never a plate. An item can be in more
+than one grade, in different amounts. Items with no price (supplies,
+Commendations) or that don't stack (eggs) are never rewards.
+
+| Rank | Value (grade 1/2/3)     | For example                                               |
+| ---- | ----------------------- | --------------------------------------------------------- |
+| Low  | 3000 / 10000 / 35000    | Iron Ore ×5, Rathian Scale ×2, Rathalos Plate ×1          |
+| High | 12000 / 40000 / 120000  | Carbalite Ore ×2, Rathian Carapace ×2, Rathian Ruby ×1    |
+| G    | 40000 / 120000 / 360000 | Eltalite Ore ×3, Hvy Rathalos Shl ×2, Fatalis Evil Eye ×1 |
 
 Sealing with nothing taken ("Hunt without a pact") changes nothing at
 all. It runs as blob code on the code loader, so it caps Guild Cards at 3,
-and it works alongside Monster health. The shade, window and text are
-drawn with the game's own routines.
+and it works alongside Monster health. The shade, window, text and item
+icons are drawn with the game's own routines.
 
 What it found (EU and JP; `src/patches/pact.ts` and `docs/code-loader.md`
 have the details):
 
 - The quest object (the HUD object `+0x1220`) holds the clock (ticks left),
   the reward zenny and a faint's penalty (a third of the reward on every
-  disc quest), and the loaded quest file, whose supplies, delivery target
-  and HRP the pact edits in place, and whose large monster tables and
+  disc quest), and the loaded quest file, whose supplies and delivery
+  target the pact edits in place, and whose large monster tables and
   delivery say which penalties fit. The quest loader keeps the file when the
   same quest is taken again, so the pact clears its cache to have it read
   afresh.
-- The reward roll asks for the luck skills (ids 0x90 to 0x93) in the
-  hunter's six skill ids at `+0x676`. It's called once, when a quest is
-  completed, and fills the save's reward box (16 slots), which the reward
-  screen shows; the pact adds its items after it (a new game hook). The
-  equipment box is the save's `+0x548`, 12 bytes a slot.
+- The reward roll is handed the quest object and reads its reward tables
+  through the pointer at its `+0x5C` (the elites' quest state is the same
+  object), drawing the main table as many times as its byte `+3` says. It's
+  called once, when a quest is completed, and fills the save's reward box
+  (16 slots), which the reward screen shows; the pact adds its items after
+  it (a new game hook). The equipment box is the save's `+0x548`, 12 bytes
+  a slot.
 - The HUD draws in layers 9 to 14, in order: its shapes in the layer in
   the HUD object's `+0x534`, the printer's text in 9 plus its `+0x12F`.
   The pact draws in 14, over the map and item bar. A second fill routine
   takes an alpha, which shades the screen. The print the card's window
   uses reads `~C` colours and `~B` button icons; the plain one doesn't.
+- The pouch and item box draw an item's icon with one routine (EU
+  0x0882E2C0) that takes the item and a size: its shape and colour come
+  from the item table, the 16x16 sprite below 21 pixels wide and the 24x24
+  one from there. A flag adds their overlays (ammo the gun can't load); the
+  pact leaves it off. Another routine (EU 0x08831338) draws a piece of
+  equipment's from its equipment box type and ID: the shape for its slot or
+  weapon class, in its rarity's colour.
 - Monster attack and defense are float multipliers (`+0x380`, `+0x384`)
   that the game sets again at spawn and when rage starts and ends; the
   shared `blob/monsters.c` scales them each time, and health once.
@@ -1209,9 +1236,12 @@ elite:
   every five seconds or so, and back. Other monsters of its species keep
   their colours.
 
-Each elite in a quest adds a draw to the main reward and half the quest's
-zenny and points again; the first also makes the main reward's rarer
-items (those below the average chance) half again as likely. The rewards
+Each elite in a quest adds a draw to the main reward (on top of what's
+there, so a Hunter's Pact's extra draws stay: the pact offers only draws
+that fit in the game's 9, so where both don't, it's the elite's that's
+lost) and half the quest's zenny and points again; the first also makes
+the main reward's rarer items (those below the average chance) half again
+as likely. The rewards
 grow when the elite shows up, so they're paid on completing the quest
 whether or not the elite was the target.
 

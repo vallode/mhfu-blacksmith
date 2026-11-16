@@ -5,7 +5,10 @@ import { linkBlob } from "../src/blob/link.js";
 import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
 import { codeSegment } from "../src/patches/mips.js";
 import {
+  EQUIPMENT_ICON_SIGNATURE,
   FILL_SIGNATURE,
+  ITEM_ICON_SIGNATURE,
+  ITEM_ICON_SIGNATURE_AT,
   TEXT_SETTERS,
   WINDOW_SIGNATURE,
   encodePactPool,
@@ -30,6 +33,7 @@ const HEADER = 0x08a5c440;
 const HUNTER = 0x090b3440;
 const MANAGER = 0x09c10f20;
 const PAD = 0x08b206dc;
+const TABLES = HEADER + 0x780;
 const PRINTER = 0x099712c0;
 const SAVE = 0x09999c60;
 const REWARD_BOX = SAVE + 0x390;
@@ -40,6 +44,8 @@ const EXTERNS = {
   rf_em_chunks: 0x09bb89b0,
   rf_window: 0x0882fc50,
   rf_fill: 0x0882d8dc,
+  rf_item_icon: 0x0882e2c0,
+  rf_equipment_icon: 0x08831338,
   rf_pad: 0x08a62c64,
   rf_printer: 0x08a631a8,
   rf_print: 0x088920a8,
@@ -83,6 +89,8 @@ function quest(pool: PactPool = POOL) {
   let lines: string[] = [];
   let windows: number[][] = [];
   let fills: number[][] = [];
+  let icons: number[][] = [];
+  let pieces: number[][] = [];
   let buttons = 0;
   let stickY = 0x80;
   const layers = () => [cpu.u8(HUD + 0x534), cpu.u8(PRINTER + 0x12f)];
@@ -116,6 +124,20 @@ function quest(pool: PactPool = POOL) {
     assert.equal(arg(0), HUD);
     assert.deepEqual(layers(), [14, 5]);
     fills.push([...[1, 2, 3, 4, 5, 6, 7].map(arg), cpu.u32(cpu.reg[29]! >>> 0)]);
+    return 0;
+  });
+  // itemIcon(hud, item, x, y, w, h, marks, alpha)
+  cpu.native.set(EXTERNS.rf_item_icon, () => {
+    assert.equal(arg(0), HUD);
+    assert.deepEqual(layers(), [14, 5]);
+    icons.push([1, 2, 3, 4, 5, 6, 7].map(arg));
+    return 0;
+  });
+  // equipmentIcon(hud, type, id, x, y, w, h, alpha, dim): the ninth on the stack.
+  cpu.native.set(EXTERNS.rf_equipment_icon, () => {
+    assert.equal(arg(0), HUD);
+    assert.deepEqual(layers(), [14, 5]);
+    pieces.push([...[1, 2, 3, 4, 5, 6, 7].map(arg), cpu.u32(cpu.reg[29]! >>> 0)]);
     return 0;
   });
   cpu.native.set(EXTERNS.rf_print, () => {
@@ -163,6 +185,9 @@ function quest(pool: PactPool = POOL) {
     cpu.setU32(QUEST + 0x14, 900);
     cpu.setU32(QUEST + 0x18, 300);
     cpu.setU32(QUEST + 0x4c, HEADER);
+    // The reward tables, as the quest object points at them: the main one draws 3 times.
+    cpu.setU32(QUEST + 0x5c, TABLES);
+    cpu.load(TABLES, [0x0300_8000, 0x7a0, 0x0000_ffff]);
     cpu.setU16(QUEST + 0x714, 0x13be);
     cpu.setU32(HEADER + 0x08, 0x700);
     cpu.setU32(HEADER + 0x3c, hrp);
@@ -210,6 +235,8 @@ function quest(pool: PactPool = POOL) {
     lines = [];
     windows = [];
     fills = [];
+    icons = [];
+    pieces = [];
     buttons = pressed;
     stickY = stick;
     cpu.call(hooks.stubs[2]!, [CTRL]);
@@ -238,6 +265,8 @@ function quest(pool: PactPool = POOL) {
     setUpQuest,
     windows: () => windows,
     fills: () => fills,
+    icons: () => icons,
+    pieces: () => pieces,
     layers,
     /** The quest is completed: the game rolls its rewards. */
     complete: () => cpu.call(hooks.stubs[3]!, [0x09a10000]),
@@ -248,12 +277,16 @@ function quest(pool: PactPool = POOL) {
 
 type Quest = ReturnType<typeof quest>;
 
-/** The window's offers: each a penalty ("▼ name") and its reward ("★ reward"). */
+/**
+ * The window's offers: each a box (□ or ■), its penalty, then its reward,
+ * after a star unless it's an item or piece, which gets its icon instead.
+ */
 function offers(lines: string[]) {
-  const out: { penalty: string; reward: string }[] = [];
+  const out: { penalty: string; reward: string; star: boolean }[] = [];
   lines.forEach((line, k) => {
-    if (!line.startsWith("▼ ")) return;
-    out.push({ penalty: line.slice(2), reward: lines[k + 1]!.replace(/^★ /, "") });
+    if (line !== "□" && line !== "■") return;
+    const star = lines[k + 2] === "★";
+    out.push({ penalty: lines[k + 1]!, reward: lines[k + (star ? 3 : 2)]!, star });
   });
   return out;
 }
@@ -268,10 +301,11 @@ test("a quest opens the window: three pacts, each a penalty and its reward, and 
   for (const { reward } of o) {
     assert.match(
       reward,
-      /^(Zenny \+\d+z|HRP \+\d+|Good Luck|Great Luck|Iron Ore x10|Machalite Ore x5|Dragonite Ore x2|Bone Kris)$/,
+      /^(Zenny \+\d+z|Quest rewards \+[123]|Iron Ore x10|Machalite Ore x5|Dragonite Ore x2|Bone Kris)$/,
     );
   }
   assert.ok(lines.includes("Hunt without a pact"));
+  assert.equal(lines[1], "□", "no subtitle: the offers come next");
   assert.equal(lines.filter((l) => l === "□").length, 3, "three empty boxes");
 });
 
@@ -364,13 +398,13 @@ test("taking a pact shows it, and the last row seals", () => {
   assert.ok(off.includes("Hunt without a pact"));
 });
 
-/** What a zenny or HRP offer shows: the amount it adds. */
+/** What a zenny or draws offer shows: the amount it adds. */
 const amount = (o: { reward: string }) => Number(o.reward.match(/\d+/)![0]);
 /** The penalty's weight, from the names in pact.c. */
 const weightOf = (o: { penalty: string }) =>
   /\+30%|No supply|Weary/.test(o.penalty) ? 1 : /\+100%|One cart|twice/.test(o.penalty) ? 3 : 2;
 
-test("a zenny or HRP reward pays the amount it shows", () => {
+test("a zenny reward pays the amount it shows", () => {
   const { q } = questOffering(reward(/^Zenny/));
   const list = take(q, reward(/^Zenny/));
   const zenny = list.find(reward(/^Zenny/))!;
@@ -379,21 +413,26 @@ test("a zenny or HRP reward pays the amount it shows", () => {
   assert.equal(q.cpu.u32(QUEST + 0x14), 900 + amount(zenny));
   assert.equal(q.cpu.u32(QUEST + 0x18), Math.floor((300 * (900 + amount(zenny))) / 900));
   assert.equal(q.cpu.u32(HEADER + 0x3c), 50, "HRP as it was");
-
-  const hrp = questOffering(reward(/^HRP/)).q;
-  const taken = take(hrp, reward(/^HRP/));
-  const more = taken.find(reward(/^HRP/))!;
-  // Half, all or twice the quest's 50, which is above Low Rank's 20, 40 and 80.
-  assert.equal(amount(more), [25, 50, 100][weightOf(more) - 1]);
-  assert.equal(hrp.cpu.u32(HEADER + 0x3c), 50 + amount(more));
-  assert.equal(hrp.cpu.u32(QUEST + 0x14), 900);
 });
 
-test("a quest with no HRP offers none", () => {
-  const q = quest();
-  for (let n = 1; n < 100; n++) {
-    for (const o of next(q, n, 1, "hunt", 0)) assert.doesNotMatch(o.reward, /^HRP/);
+test("no HRP, and no two pacts in a window give the same thing", () => {
+  // Iron Ore in every grade: it may come up once a window, never twice.
+  const ore = (amount: number) => [{ id: 202, type: 0xff, amount, name: "Iron Ore" }];
+  const q = quest([
+    [ore(10), ore(5), ore(2), [{ id: 40, type: 5, amount: 1, name: "Bone Kris" }]],
+    [[], [], [], []],
+    [[], [], [], []],
+  ]);
+  let ores = 0;
+  for (let n = 1; n < 300; n++) {
+    const list = next(q, n);
+    const here = list.filter(reward(/^Iron Ore/)).length;
+    assert.ok(here <= 1, list.map((o) => o.reward).join(", "));
+    ores += here;
+    for (const o of list) assert.doesNotMatch(o.reward, /^HRP/);
+    assert.equal(new Set(list.map((o) => o.reward.replace(/\d+/g, ""))).size, 3);
   }
+  assert.ok(ores > 50, "it does come up");
 });
 
 test("a gathering quest offers no monster, delivery or time penalties", () => {
@@ -497,11 +536,39 @@ test("frail and weary cap the hunter's health and stamina", () => {
   assert.equal(q.cpu.u16(HUNTER + 0x2e4), 50);
 });
 
-test("a luck reward gives the hunter the skill for the reward roll", () => {
-  const { q } = questOffering(reward(/Luck$/));
-  const list = take(q, reward(/Luck$/));
-  const great = list.some(reward(/^Great Luck$/));
-  assert.equal(q.cpu.u8(HUNTER + 0x676), great ? 0x91 : 0x90);
+test("more quest rewards: the main table draws as many more times", () => {
+  const draws = reward(/^Quest rewards/);
+  const { q } = questOffering(draws);
+  const list = take(q, draws);
+  const more = list.find(draws)!;
+  assert.equal(amount(more), weightOf(more), "one more draw per weight");
+  assert.equal(q.cpu.u8(TABLES + 3), 3 + amount(more));
+  assert.equal(q.cpu.u16(QUEST + 0x714), 0xffff, "the file is read afresh next time");
+});
+
+test("more quest rewards are offered only where all of them fit in 9 draws", () => {
+  const q = quest();
+  for (const base of [7, 9]) {
+    const seen = new Set<number>();
+    for (let n = 1; n < 300; n++) {
+      q.setUpQuest(90000 + n);
+      q.cpu.setU8(TABLES + 3, base);
+      q.settle();
+      for (const o of offers(q.frame()).filter(reward(/^Quest rewards/))) seen.add(amount(o));
+    }
+    // 7 draws: room for +1 and +2, not +3; 9: none.
+    assert.deepEqual([...seen].sort(), base === 7 ? [1, 2] : []);
+  }
+});
+
+test("a quest with no reward tables offers no more of them", () => {
+  const q = quest();
+  for (let n = 1; n < 100; n++) {
+    q.setUpQuest(90000 + n);
+    q.cpu.setU32(QUEST + 0x5c, 0);
+    q.settle();
+    for (const o of offers(q.frame())) assert.doesNotMatch(o.reward, /^Quest rewards/);
+  }
 });
 
 test("item and equipment rewards are paid when the quest is completed", () => {
@@ -557,7 +624,9 @@ test("rewards come from the quest's rank", () => {
   }
   // G Rank's pool is empty: bonuses only.
   for (let n = 1; n < 50; n++) {
-    for (const o of next(q, 6000 + n, 5)) assert.match(o.reward, /^(Zenny|HRP) \+\d+z?$|Luck$/);
+    for (const o of next(q, 6000 + n, 5)) {
+      assert.match(o.reward, /^Zenny \+\d+z$|^Quest rewards \+\d$/);
+    }
   }
 });
 
@@ -597,9 +666,14 @@ test("the text externs are found in an EBOOT with the game's own words", () => {
   const fill = VADDR + 0x400;
   const pad = VADDR + 0xc00;
   const print = VADDR + 0x1800;
+  const itemIcon = VADDR + 0x1400;
+  const equipmentIcon = VADDR + 0x1c00;
   // Unmasked, as on the disc: `li a1, 5` and the stores' offsets are real.
   put(setters, TEXT_SETTERS);
   put(fill, FILL_SIGNATURE);
+  put(itemIcon, [0x27bdffb0]);
+  put(itemIcon + ITEM_ICON_SIGNATURE_AT, ITEM_ICON_SIGNATURE);
+  put(equipmentIcon, EQUIPMENT_ICON_SIGNATURE);
   const window = VADDR + 0x1000;
   put(window, WINDOW_SIGNATURE);
   put(window + 0xfc, [0x0c000000 | ((print >>> 2) & 0x3ffffff)]);
@@ -612,6 +686,8 @@ test("the text externs are found in an EBOOT with the game's own words", () => {
     rf_print: print,
     rf_window: window,
     rf_fill: fill,
+    rf_item_icon: itemIcon,
+    rf_equipment_icon: equipmentIcon,
     rf_pad: 0x08a62c64,
   });
 });
@@ -651,6 +727,35 @@ test("the window is the item card's frame over a shaded screen, above the HUD", 
   assert.deepEqual(q.layers(), [9, 1], "the HUD's own layers back after");
 });
 
+test("item and equipment rewards show their own icons; the others a star", () => {
+  const item = reward(/ x\d+$/);
+  const piece = reward(/^Bone Kris$/);
+  const { q } = questOffering((o) => item(o));
+  const list = offers(q.frame());
+  const icons = q.icons();
+  const items = list.filter(item);
+  assert.equal(icons.length, items.length, "an icon for each item, none for the rest");
+  for (const o of list) assert.equal(o.star, !item(o) && !piece(o), o.reward);
+
+  // Bone Kris: a melee weapon (type 5), ID 40, by the game's routine in its rarity's colour.
+  const kris = questOffering(piece).q;
+  offers(kris.frame());
+  const [[type, id, x, y, w, h, alpha, dim]] = kris.pieces() as [number[]];
+  assert.deepEqual([type, id, w, h, alpha, dim], [5, 40, 16, 16, 0xff, 0]);
+  assert.ok(x! > 0 && y! > 0 && x! + w! <= 480 && y! + h! <= 272, "on screen");
+  const ids: Record<string, number> = {
+    "Iron Ore": 202,
+    "Machalite Ore": 203,
+    "Dragonite Ore": 204,
+  };
+  items.forEach((o, k) => {
+    const [id, x, y, w, h, marks, alpha] = icons[k]!;
+    assert.equal(id, ids[o.reward.replace(/ x\d+$/, "")]);
+    assert.deepEqual([w, h, marks, alpha], [16, 16, 0, 0xff], "the small icon, without overlays");
+    assert.ok(x! > 0 && y! > 0 && x! + w! <= 480 && y! + h! <= 272, "on screen");
+  });
+});
+
 test("the game's input lock holds while the window is open, and is handed back after", () => {
   const q = quest();
   q.frame();
@@ -684,12 +789,24 @@ test("a lock the game holds itself is left alone", () => {
   assert.equal(q.cpu.u8(PAD + 0x17), 0, "not set again: the pact was sealed with nothing");
 });
 
-test("the pool: items by rank and grade, equipment by rarity, wearable by anyone", () => {
+test("the pool: items by rank and worth, equipment by rarity, wearable by anyone", () => {
   const tiers = new Map([
-    [1, { band: "low" as const, stars: 1 }],
+    [1, { band: "low" as const, stars: 3 }],
     [2, { band: "low" as const, stars: 2 }],
-    [3, { band: "low" as const, stars: 3 }],
+    [3, { band: "low" as const, stars: 1 }],
     [4, { band: "high" as const, stars: 4 }],
+    [5, { band: "low" as const, stars: 1 }],
+    [6, { band: "low" as const, stars: 1 }],
+    [7, { band: "low" as const, stars: 1 }],
+  ]);
+  const values = new Map([
+    [1, { price: 300, carry: 99 }], // a handful is worth grade 1, never more
+    [2, { price: 2500, carry: 99 }], // four make grade 2
+    [3, { price: 25000, carry: 99 }], // one is grade 3
+    [4, { price: 3000, carry: 99 }],
+    [5, { price: 0, carry: 10 }], // a supply item: worth nothing
+    [6, { price: 12000, carry: 1 }], // an egg: doesn't stack
+    [7, { price: 20, carry: 99 }], // a Herb: never worth a pact
   ]);
   const equipment = [
     { type: 5, id: 7, name: "Bone Kris", rarity: 0 },
@@ -697,7 +814,7 @@ test("the pool: items by rank and grade, equipment by rarity, wearable by anyone
     { type: 1, id: 3, name: "Male Cap", rarity: 0, bits: 1 | 4 | 8 },
     { type: 1, id: 4, name: "Leather Cap", rarity: 0, bits: 1 | 2 | 4 | 8 },
   ];
-  const pool = pactPool(tiers, equipment, new Rng("pool"));
+  const pool = pactPool(tiers, values, equipment, new Rng("pool"));
   const ids = (b: number, k: number) => pool[b]![k]!.map((e) => e.id);
   assert.deepEqual(
     [0, 1, 2].map((g) => ids(0, g)),
@@ -705,8 +822,9 @@ test("the pool: items by rank and grade, equipment by rarity, wearable by anyone
   );
   assert.deepEqual(
     pool[0]!.slice(0, 3).map((g) => g[0]!.amount),
-    [10, 5, 2],
+    [10, 4, 1],
   );
+  assert.deepEqual(ids(1, 0), [4], "High Rank's own items");
   assert.deepEqual(ids(0, 3), [4, 7], "armor first, and no male-only cap");
   assert.deepEqual(ids(1, 3), [9]);
   assert.deepEqual(pool[2], [[], [], [], []]);

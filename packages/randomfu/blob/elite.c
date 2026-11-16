@@ -199,7 +199,8 @@ static void reward(void) {
   *(u32 *)(file + FILE_ZENNY) = quest.wrote_zenny;
   *(u32 *)(file + FILE_POINTS) += quest.points * POINTS_PERCENT / 100;
   if (!quest.main) return;
-  u32 draws = quest.draws + EXTRA_DRAWS * n;
+  /* Another draw on what's there, so others' draws (the Hunter's Pact's) stay. */
+  u32 draws = quest.main[TABLE_DRAWS] + EXTRA_DRAWS;
   quest.main[TABLE_DRAWS] = (u8)(draws > MAX_DRAWS ? MAX_DRAWS : draws);
   if (n != 1 || !quest.items) return;
   u32 total = 0;

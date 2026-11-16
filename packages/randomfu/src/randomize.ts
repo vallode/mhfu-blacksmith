@@ -91,6 +91,7 @@ import {
   findPactExterns,
   pactObjects,
   pactPool,
+  readItemValues,
 } from "./patches/pact.js";
 import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
@@ -938,8 +939,12 @@ export function randomize(
         typeof sites === "string"
           ? sites
           : findPactExterns(game.eboot!, sites, ovl.reader.buf, ovl);
+      // What items are worth, for grading the pact's item rewards: the vanilla table's.
+      const table = typeof found === "string" ? null : shopItemTable(game, false);
       if (typeof found === "string") reports.push(notApplied("Hunter's Pact", found));
-      else {
+      else if (!table) {
+        reports.push(notApplied("Hunter's Pact", "this disc's item table couldn't be read"));
+      } else {
         objects.push(...pactObjects());
         Object.assign(externs, found);
         // The pact's rewards, as the shuffles left items and equipment.
@@ -960,7 +965,10 @@ export function randomize(
           })),
         ];
         const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
-        data.rf_pact_pool = encodePactPool(pactPool(tiers, equipment, rng.fork("pact-pool")));
+        const values = readItemValues(game.eboot!, table);
+        data.rf_pact_pool = encodePactPool(
+          pactPool(tiers, values, equipment, rng.fork("pact-pool")),
+        );
         pact = true;
       }
     }
