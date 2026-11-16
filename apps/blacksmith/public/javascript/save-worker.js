@@ -17,6 +17,7 @@ const OFFSETS = {
   LARGEST:     0x0040e0, //   by the game's monster ID (src/lib/monster-ids.ts)
   SMALLEST:    0x004194,
   KILLS:       0x004248,
+  AWARDS:      0x067400, // u64 LE as two u32s: one bit per Guild Card award (see AWARD_COUNT)
 };
 
 // The game's quest ID -> cleared-bit table (EBOOT 0x19a65c on the EU disc,
@@ -39,6 +40,14 @@ const QUEST_FLAG_RUNS = [
 ].map(([firstId, count, slots]) => ({ firstId, count, slots }));
 
 const MONSTER_TABLE_SIZE = 90;
+
+// The Guild Card awards the game has given: bit n of the u64 at AWARDS is
+// award n, in the game's order (src/lib/awards.ts's AWARDS). The game's own
+// set/test routines (EU EBOOT 0x088551f0 / 0x08855278, JP 0x08855118 /
+// 0x088551a0) take the index and shift 1 by it as a 64-bit value; every index
+// 0-47 has a caller (the EBOOT, game_sub.ovl and lobby_task.ovl), and none
+// above it, so bits 48-63 are unused.
+const AWARD_COUNT = 48;
 
 // Equipment box slot: the first two bytes, read as one big-endian u16, are
 // 0x0000 for an empty slot and 0x0100–0x0106 for the seven equip types, so
@@ -94,6 +103,16 @@ function parseClearedQuests(view, base) {
   return cleared;
 }
 
+/** Indexes (into the game's award list) of the awards the hunter has been given. */
+function parseAwards(view, base) {
+  const awards = [];
+  for (let n = 0; n < AWARD_COUNT; n++) {
+    const word = view.getUint32(base + OFFSETS.AWARDS + (n >> 5) * 4, true);
+    if (word & (1 << (n & 31))) awards.push(n);
+  }
+  return awards;
+}
+
 /**
  * Every monster with a record: kills, captures, and the largest and smallest
  * size recorded (percent of the monster's base size). Monster ID 0 is
@@ -147,9 +166,11 @@ function parseCharacter(view, charIndex) {
 
   const clearedQuests = parseClearedQuests(view, base);
   const monsters = parseMonsterRecords(view, base);
+  const awards = parseAwards(view, base);
 
   return {
     name, sex, zenny, playTime, hunterRank, equipBox, itemChest, itemPouch, clearedQuests, monsters,
+    awards,
   };
 }
 

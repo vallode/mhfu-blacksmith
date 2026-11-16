@@ -230,9 +230,15 @@ function AwardStatus({ progress }: { progress: AwardProgress }) {
       return <span className="text-positive">{text.awards.done}</span>;
     case "untracked":
       return <span className="text-unavailable">{text.awards.notTracked}</span>;
+    case "notEarned":
+      return <span className="text-white/60">{text.awards.notEarned}</span>;
     case "loading":
       return <span className="text-white/50">…</span>;
     case "progress":
+      // The rule is met, but the game hasn't given the award.
+      if (progress.done === progress.total) {
+        return <span className="text-stat">{text.awards.notGiven}</span>;
+      }
       return progress.total === 1 ? (
         <span className="text-stat">{text.awards.notHunted}</span>
       ) : (
@@ -275,18 +281,20 @@ function AwardRow({ award, progress }: { award: Award; progress: AwardProgress }
             max={progress.total}
             aria-label={text.awards.earnedLabel(progress.done, progress.total)}
           />
-          <details className="text-small">
-            <summary className="cursor-pointer text-stat hover:text-white">
-              {text.awards.showLeft(progress.todo.length)}
-            </summary>
-            <ul className="m-0 mt-[0.6rem] flex list-none flex-col gap-[0.4rem] p-0">
-              {progress.todo.map((todo) => (
-                <li key={todo.kind === "quest" ? todo.quest.id : todo.monster.name}>
-                  <TodoLink todo={todo} />
-                </li>
-              ))}
-            </ul>
-          </details>
+          {progress.todo.length > 0 && (
+            <details className="text-small">
+              <summary className="cursor-pointer text-stat hover:text-white">
+                {text.awards.showLeft(progress.todo.length)}
+              </summary>
+              <ul className="m-0 mt-[0.6rem] flex list-none flex-col gap-[0.4rem] p-0">
+                {progress.todo.map((todo) => (
+                  <li key={todo.kind === "quest" ? todo.quest.id : todo.monster.name}>
+                    <TodoLink todo={todo} />
+                  </li>
+                ))}
+              </ul>
+            </details>
+          )}
         </>
       )}
     </li>
@@ -319,7 +327,9 @@ export function AwardsPage() {
         </span>
       </DetailHeader>
       <DetailBody>
-        <div className="text-small text-white/70">{text.awards.note}</div>
+        <div className="text-small text-white/70">
+          {ctx.save.awards ? text.awards.noteGiven : text.awards.note}
+        </div>
         {AWARD_GROUPS.map((group) => (
           <section key={group} className="flex flex-col gap-[1.2rem]">
             <DetailRule />

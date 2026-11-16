@@ -47,6 +47,12 @@ export interface SaveData {
   clearedQuests?: number[];
   /** Monsters with a record (kills, captures or sizes). Missing on saves stored before they were read. */
   monsters?: MonsterRecord[];
+  /**
+   * Indexes into AWARDS (src/lib/awards.ts) of the Guild Card awards the game
+   * has given the hunter: its own award flags. Missing on saves stored before
+   * they were read.
+   */
+  awards?: number[];
   savedAt: number;
 }
 
@@ -63,6 +69,7 @@ export function saveFromCharacter(
     equipBox: EquipSlot[];
     clearedQuests?: number[];
     monsters?: MonsterRecord[];
+    awards?: number[];
   },
   region: string,
   slot?: number,
@@ -79,6 +86,7 @@ export function saveFromCharacter(
     slot,
     clearedQuests: character.clearedQuests,
     monsters: character.monsters,
+    awards: character.awards,
   };
 }
 

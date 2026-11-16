@@ -18,6 +18,8 @@ export interface CharacterResult {
   clearedQuests: number[];
   /** Monsters with a kill, capture or size record. */
   monsters: MonsterRecord[];
+  /** Indexes into AWARDS (src/lib/awards.ts) of the awards the game has given the hunter. */
+  awards: number[];
 }
 
 export interface WorkerResult {
