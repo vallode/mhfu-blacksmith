@@ -1,6 +1,7 @@
 /**
  * "Unknown Monster?!" investigation quests (`quests.unknown`): one quest
- * per rank, on the Village 6★, Guild 8★ and G★3 boards, whose monster,
+ * for high rank and one for G rank, on the Guild 8★ and G★3 boards (low
+ * rank is left for getting used to the randomizer), whose monster,
  * map, size, crowns, difficulty and rewards are rolled again every time it's
  * accepted, by blob code (`blob/unknown-quests.c`, on the code loader and
  * its quest load hook, `game-hooks.ts`). This file builds what the blob
@@ -20,11 +21,17 @@
  *   (`board.ts`), found by quest ID; `addBoardRecord` adds one.
  * - The game keeps clear flags for some IDs no quest on the disc uses
  *   (EU table 0x0899C0A8): Village 10512 (6★), Guild 2237 (8★) and 3234
- *   (G★3) are three of them, so clearing these quests is remembered.
+ *   (G★3) are three of them, so clearing these quests is remembered. The
+ *   Village one is unused.
  * - Quest files are read and decrypted into a 0x6800-byte buffer by a loader
  *   (`game-hooks.ts`) that maps the ID to its file. The blob swaps the new
  *   ID for a template quest's before the call and edits the decrypted quest
  *   after it; new rewards and text go after its end, within the buffer.
+ *
+ * - The header's `spawn` byte (0x45) is where the hunter starts: 0 base
+ *   camp, 1 a random area (most high and G rank Guild quests), 2 only on
+ *   arena-like maps. Each roll takes one of the values the quests on the
+ *   template's map use.
  *
  * Accepting rolls; departing loads the quest again (the game reads it from
  * disc once more) and gets the same roll. Only the person accepting rolls,
@@ -61,7 +68,6 @@ export interface UnknownSlot {
 }
 
 export const UNKNOWN_SLOTS: readonly UnknownSlot[] = [
-  { band: "low", id: 10512, board: "village", star: 6, stars: 6, level: "mission_jpn/level6.mib" },
   { band: "high", id: 2237, board: "guild", star: 8, stars: 8, level: "mission_jpn/level8.mib" },
   { band: "g", id: 3234, board: "guild", star: 11, stars: 11, level: "mission_jpn/level11.mib" },
 ];
@@ -141,6 +147,8 @@ export interface Template {
   /** Payload offsets of every species field (records and preload list). */
   speciesAt: number[];
   levelAt: number[];
+  /** The `spawn` header values (where the hunter starts) a roll picks from. */
+  starts: number[];
 }
 
 export interface Choice {
@@ -194,11 +202,15 @@ export function unknownTables(
 
   // Where each monster is met: any Village or Guild quest, any rank.
   const onMap = new Map<number, Set<number>>();
+  // Where the hunter starts (the header's `spawn`) on each map, by day and night apart.
+  const startsOn = new Map<number, Set<number>>();
   for (const { parsed, spawns } of all) {
     const map = habitat(parsed.header.map);
     for (const { monsterId } of spawns.large) {
       (onMap.get(map) ?? onMap.set(map, new Set()).get(map)!).add(monsterId);
     }
+    const starts = startsOn.get(parsed.header.map) ?? new Set();
+    startsOn.set(parsed.header.map, starts.add(parsed.header.spawn));
   }
 
   const kinds = (rewards: RewardTable[], allowed: number[]) =>
@@ -249,6 +261,7 @@ export function unknownTables(
         species: [...species][0]!,
         speciesAt: [...q.spawns.large, ...q.spawns.loads].map((s) => s.offset),
         levelAt: q.spawns.large.map((s) => s.offset + POWER_OFFSET),
+        starts: [...(startsOn.get(header.map) ?? [])].sort((a, b) => a - b),
       });
     }
 
@@ -414,7 +427,8 @@ export function encodeTables(
       w.u16(template.quest.parsed.header.questId);
       w.u16(template.payload.length);
       w.u8(choices);
-      w.fill(0, 3);
+      w.u8(template.starts.reduce((bits, v) => bits | (1 << v), 0));
+      w.fill(0, 2);
       w.u32(choiceAt);
       w.u32(patchAt);
     }
