@@ -19,7 +19,7 @@ export interface HunterPage {
 /** The hunter's pages, then the save file (listed apart, under a divider). */
 export const HUNTER_PAGES: readonly HunterPage[] = [
   { id: "guild-card", icon: "coin", ready: true },
-  { id: "awards", icon: "heavenly", ready: false },
+  { id: "awards", icon: "heavenly", ready: true },
   { id: "quests", icon: "ticket", ready: true },
   { id: "monsters", icon: "claw", ready: false },
   { id: "crowns", icon: "scale", ready: false },

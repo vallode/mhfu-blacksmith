@@ -10,12 +10,22 @@ import {
   DetailRule,
 } from "@/components/DetailPanel";
 import SaveUpload from "@/components/SaveUpload";
-import { useLocale } from "@/context/LanguageContext";
+import { useGameText, useLocale } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
 import { useQuests } from "@/lib/client-data";
+import {
+  AWARDS,
+  AWARD_GROUPS,
+  awardProgress,
+  awardTotals,
+  type Award,
+  type AwardProgress,
+  type AwardTodo,
+} from "@/lib/awards";
 import { formatPlayTime, questProgress } from "@/lib/hunter-pages";
-import { questStarLevel } from "@/lib/quests";
+import { questHref, questStarLevel } from "@/lib/quests";
+import { useAwardContext } from "./useAwardContext";
 import { progressBar } from "@/styles/progress";
 
 /** Label and value rows, the label in the panel's yellow and the value white. */
@@ -169,6 +179,157 @@ export function QuestProgressPage() {
                   </li>
                 );
               })}
+            </ul>
+          </section>
+        ))}
+      </DetailBody>
+    </DetailCard>
+  );
+}
+
+/** One thing left for an award, linking to its quest or monster page. */
+function TodoLink({ todo }: { todo: AwardTodo }) {
+  const { t } = useLocale();
+  const game = useGameText();
+  if (todo.kind === "quest") {
+    const { quest } = todo;
+    const { stars, g } = questStarLevel(quest.hub, quest.stars);
+    return (
+      <Link href={questHref(quest)} className="flex gap-[1.2rem] text-white hover:text-stat">
+        <span className="w-cells-4 flex-none text-stat">
+          {g && "G"}
+          {stars}★
+        </span>
+        <span className="min-w-0 truncate">
+          {game.quest(quest.id, "title", quest.title)}
+          <span className="sr-only"> ({t.quests.hubs[quest.hub]})</span>
+        </span>
+      </Link>
+    );
+  }
+  const { monster } = todo;
+  const name = game.name("monster", monster.name);
+  return "slug" in monster ? (
+    <Link
+      href={`/monsters/${monster.category}/${monster.slug}/`}
+      className="text-white hover:text-stat"
+    >
+      {name}
+    </Link>
+  ) : (
+    <span className="text-white">{name}</span>
+  );
+}
+
+/** An award's status at the right of its row: earned, a count, or why there's none. */
+function AwardStatus({ progress }: { progress: AwardProgress }) {
+  const { t, formatNumber } = useLocale();
+  const text = t.site.hunter;
+  switch (progress.status) {
+    case "earned":
+      return <span className="text-positive">{text.awards.done}</span>;
+    case "untracked":
+      return <span className="text-unavailable">{text.awards.notTracked}</span>;
+    case "loading":
+      return <span className="text-white/50">…</span>;
+    case "progress":
+      return progress.total === 1 ? (
+        <span className="text-stat">{text.awards.notHunted}</span>
+      ) : (
+        <span className="text-white tabular-nums">
+          {text.guildCard.of(formatNumber(progress.done), formatNumber(progress.total))}
+        </span>
+      );
+  }
+}
+
+/** One award: its name and requirement, its status, and what's left of it. */
+function AwardRow({ award, progress }: { award: Award; progress: AwardProgress }) {
+  const text = useLocale().t.site.hunter;
+  const counted = progress.status === "progress" && progress.total > 1;
+  return (
+    <li className="flex flex-col gap-[0.6rem]">
+      <div className="flex items-baseline gap-x-[1.6rem]">
+        <h4
+          className={cn(
+            "m-0 min-w-0 font-normal",
+            progress.status === "earned"
+              ? "text-positive"
+              : progress.status === "untracked"
+                ? "text-white/60"
+                : "text-white",
+          )}
+        >
+          {award.name}
+        </h4>
+        <span className="ml-auto flex-none text-small">
+          <AwardStatus progress={progress} />
+        </span>
+      </div>
+      <div className="text-small text-white/60">{text.awards.requirements[award.id]}</div>
+      {counted && (
+        <>
+          <progress
+            className={progressBar}
+            value={progress.done}
+            max={progress.total}
+            aria-label={text.awards.earnedLabel(progress.done, progress.total)}
+          />
+          <details className="text-small">
+            <summary className="cursor-pointer text-stat hover:text-white">
+              {text.awards.showLeft(progress.todo.length)}
+            </summary>
+            <ul className="m-0 mt-[0.6rem] flex list-none flex-col gap-[0.4rem] p-0">
+              {progress.todo.map((todo) => (
+                <li key={todo.kind === "quest" ? todo.quest.id : todo.monster.name}>
+                  <TodoLink todo={todo} />
+                </li>
+              ))}
+            </ul>
+          </details>
+        </>
+      )}
+    </li>
+  );
+}
+
+/**
+ * The Guild Card's awards, by kind: earned, how far along, or not readable
+ * from a save yet, each with what's left to do.
+ */
+export function AwardsPage() {
+  const { t } = useLocale();
+  const text = t.site.hunter;
+  const ctx = useAwardContext();
+  const rows = useMemo(
+    () => AWARDS.map((award) => ({ award, progress: awardProgress(award, ctx) })),
+    [ctx],
+  );
+  if (!ctx.save) return <NoHunter />;
+  const { earned, tracked } = awardTotals(ctx);
+  return (
+    <DetailCard>
+      <DetailHeader>
+        <DetailName>{text.pages.awards}</DetailName>
+        <span
+          className="ml-auto text-white tabular-nums"
+          aria-label={text.awards.earnedLabel(earned, tracked)}
+        >
+          {text.awards.earned(earned, tracked)}
+        </span>
+      </DetailHeader>
+      <DetailBody>
+        <div className="text-small text-white/70">{text.awards.note}</div>
+        {AWARD_GROUPS.map((group) => (
+          <section key={group} className="flex flex-col gap-[1.2rem]">
+            <DetailRule />
+            <h3 className="m-0 font-normal text-stat">{text.awards.groups[group]}</h3>
+            <ul className="m-0 flex list-none flex-col gap-[1.6rem] p-0">
+              {rows
+                .filter((r) => r.award.group === group)
+                .map((r) => (
+                  <AwardRow key={r.award.id} award={r.award} progress={r.progress} />
+                ))}
             </ul>
           </section>
         ))}

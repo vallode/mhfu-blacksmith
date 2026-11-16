@@ -57,6 +57,7 @@ export function collectStaticPageUrls(): string[] {
     "/wishlist/",
     "/hunter/",
     "/hunter/guild-card/",
+    "/hunter/awards/",
     "/hunter/quests/",
     "/hunter/save/",
     "/options/",

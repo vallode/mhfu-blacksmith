@@ -11,6 +11,7 @@ import SplitPage from "@/components/SplitPage";
 import { useLocale } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
+import { awardTotals } from "@/lib/awards";
 import { useQuests } from "@/lib/client-data";
 import {
   HUNTER_PAGES,
@@ -22,6 +23,7 @@ import {
   type HunterPage,
   type HunterPageId,
 } from "@/lib/hunter-pages";
+import { useAwardContext } from "./useAwardContext";
 
 const activeRow = "bg-(image:--gradient-hover-glow)";
 // /hunter/ shows a page (the Guild Card, or the save file without a hunter)
@@ -98,7 +100,10 @@ function HunterList({ page }: { page: HunterPageId | null }) {
     () => (quests && save?.clearedQuests ? questProgress(quests, save) : null),
     [quests, save],
   );
+  const awardCtx = useAwardContext();
+  const awards = useMemo(() => (save ? awardTotals(awardCtx) : null), [save, awardCtx]);
   const counts: Partial<Record<HunterPageId, string>> = {
+    awards: awards ? t.site.hunter.awards.earned(awards.earned, awards.tracked) : undefined,
     quests: progress
       ? t.site.hunter.guildCard.of(formatNumber(progress.done), formatNumber(progress.total))
       : undefined,

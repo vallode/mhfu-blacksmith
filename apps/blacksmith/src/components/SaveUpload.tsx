@@ -22,13 +22,14 @@ import {
 import { formatPlayTime } from "@/lib/hunter-pages";
 import type { SaveData } from "@/lib/save-store";
 import Loading from "@/components/Loading";
+import * as ui from "@/styles/settings";
 
 const SLOTS = [0, 1, 2];
 
 // One hunter slot, a row like the game's Character Select: the slot number and
 // name, with HR, play time and zenny under it. The chosen hunter is lit
-// green; hover keeps the fill so clicking again (to deselect) reads as acting
-// on this row.
+// green. Picking it again does nothing: unloading is its own button, under the
+// slots, so a stray click can't drop the hunter.
 const slotBase =
   "flex w-full flex-col gap-[0.6rem] border-0 bg-transparent px-[1.2rem] py-[1rem] text-left font-[inherit] leading-none text-white";
 const slotActive =
@@ -65,11 +66,11 @@ interface SlotRowProps {
   slot: number;
   hunter: Hunter | null;
   active: boolean;
-  /** Select this hunter, or deselect it when it is the active one. */
-  onToggle?: () => void;
+  /** Load this hunter (not called for the loaded one). */
+  onSelect?: () => void;
 }
 
-function SlotRow({ slot, hunter, active, onToggle }: SlotRowProps) {
+function SlotRow({ slot, hunter, active, onSelect }: SlotRowProps) {
   const text = useT().site.hunter;
   const { formatNumber } = useLocale();
   if (!hunter) {
@@ -93,12 +94,11 @@ function SlotRow({ slot, hunter, active, onToggle }: SlotRowProps) {
       type="button"
       className={cn(
         slotBase,
-        "cursor-pointer focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white",
-        active ? slotActive : "hover:hover-glow",
+        "focus-visible:outline-2 focus-visible:-outline-offset-2 focus-visible:outline-white",
+        active ? slotActive : "cursor-pointer hover:hover-glow",
       )}
-      onClick={onToggle}
+      onClick={active ? undefined : onSelect}
       aria-pressed={active}
-      title={active ? text.deselect : undefined}
     >
       <span className={slotName}>
         <span>{slot + 1}</span>
@@ -109,6 +109,37 @@ function SlotRow({ slot, hunter, active, onToggle }: SlotRowProps) {
       )}
       {active && <span className="sr-only">{text.selected}</span>}
     </button>
+  );
+}
+
+/**
+ * Unloads the hunter, after asking: their items, records and progress stop
+ * showing across the site until a save is loaded again.
+ */
+function UnloadHunter({ name, onUnload }: { name: string; onUnload: () => void }) {
+  const text = useT().site.hunter;
+  const [asking, setAsking] = useState(false);
+  if (!asking) {
+    return (
+      <div className={ui.actions}>
+        <button type="button" className={ui.buttonSecondary} onClick={() => setAsking(true)}>
+          {text.unload}
+        </button>
+      </div>
+    );
+  }
+  return (
+    <div role="alertdialog" aria-label={text.unload} className="flex flex-col gap-[1rem]">
+      <div className="text-small text-white">{text.unloadConfirm(name)}</div>
+      <div className={ui.actions}>
+        <button type="button" className={ui.buttonSecondary} onClick={onUnload}>
+          {text.unloadYes}
+        </button>
+        <button type="button" className={ui.button} autoFocus onClick={() => setAsking(false)}>
+          {text.unloadNo}
+        </button>
+      </div>
+    </div>
   );
 }
 
@@ -215,7 +246,7 @@ export default function SaveUpload() {
             <div className="flex flex-col gap-[0.4rem]">
               {SLOTS.map((slot) => {
                 if (storedSlot === slot && save) {
-                  return <SlotRow key={slot} slot={slot} hunter={save} active onToggle={clear} />;
+                  return <SlotRow key={slot} slot={slot} hunter={save} active />;
                 }
                 const c = result?.characters[slot] ?? null;
                 const active = c ? isActiveHunter(save, c) : false;
@@ -225,11 +256,12 @@ export default function SaveUpload() {
                     slot={slot}
                     hunter={c}
                     active={active}
-                    onToggle={() => (active ? clear() : selectCharacter(slot))}
+                    onSelect={() => selectCharacter(slot)}
                   />
                 );
               })}
             </div>
+            {save && <UnloadHunter key={save.savedAt} name={save.name} onUnload={clear} />}
           </>
         )}
       </DetailBody>
