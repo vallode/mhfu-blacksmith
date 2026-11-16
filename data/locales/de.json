@@ -1,6 +1,6 @@
 {
   "$comment": "German game text: names keyed by their English name, quest board text keyed by quest ID. Missing entries fall back to English. Generated from the EU disc by `pnpm --filter mhfu-extract locales` (see packages/mhfu-extract/README.md, \"Localized text\"); don't hand-translate official names.",
-  "source": "EU disc ULES01213, extracted 2026-11-12",
+  "source": "EU disc ULES01213, extracted 2026-11-16",
   "weapon": {
     "Abominable Bow I": "EntsetzlicherBogen I",
     "Abominable Bow II": "EntsetzlicherBogenII",
@@ -8375,6 +8375,200 @@
       "fail": "Aucune prime",
       "details": "Une quête de collecte de\njour dans les montagnes\nenneigées. Collectez tous\nles composants que vous\ntrouverez sur place, puis\nlivrez le Ticket Passechat\npour achever le tout.",
       "client": "Chef village Pokke"
+    }
+  },
+  "award": {
+    "0": {
+      "name": "Dorfchefin-Handschuh",
+      "description": "Bezeugt den Abschluss der Pokke-Anfänger-Quests. Ein Geschenk der Chefin."
+    },
+    "1": {
+      "name": "Dorfchefin-Hut",
+      "description": "Bezeugt den Abschluss der mittelschweren Pokke-Quests & deine Kältebeständigkeit."
+    },
+    "2": {
+      "name": "Dorfchefin-Schal",
+      "description": "Bezeugt den Abschluss der schweren Pokke-Quests und hält dich warm."
+    },
+    "3": {
+      "name": "Dorfchefin-Umhang",
+      "description": "Bezeugt den Abschluss aller Pokke-Quests & dass du ein erstklassiger Jäger bist."
+    },
+    "4": {
+      "name": "Mähnenhalskette",
+      "description": "Bezeugt die Erlegung eines Kirin. Bewahrt die Anmut seiner Jahrtausendmähne."
+    },
+    "5": {
+      "name": "Blutonyx",
+      "description": "Bezeugt die Erlegung eines Akantor. Erobert das Herz und stiehlt die Seele."
+    },
+    "6": {
+      "name": "Königskrone",
+      "description": "Bezeugt deinen anhaltenden Erfolg im Kampf gegen riesige Monster."
+    },
+    "7": {
+      "name": "Miniaturkrone",
+      "description": "Bezeugt deinen anhaltenden Erfolg im Kampf gegen kleine Monster."
+    },
+    "8": {
+      "name": "Bronzemedaille",
+      "description": "Bezeugt den Abschluss aller ★- und ★★-Quests der Versammlungshalle! Toll!"
+    },
+    "9": {
+      "name": "Silbermedaille",
+      "description": "Bezeugt den Abschluss aller 3★- und 5★-Quests der Versammlungshalle! Stark!"
+    },
+    "10": {
+      "name": "Goldmedaille",
+      "description": "Bezeugt den Abschluss aller 6★- und 8★-Quests der Versammlungshalle! Spitze!"
+    },
+    "11": {
+      "name": "Schwarzgürtelabzeichen",
+      "description": "Bezeugt den Abschluss aller Kampftrainings-Quests und beschützt dich."
+    },
+    "12": {
+      "name": "Expertenabzeichen",
+      "description": "Bezeugt den Abschluss aller Spezialtrainings-Quests der Trainingsschule."
+    },
+    "13": {
+      "name": "Legendenabzeichen",
+      "description": "Bezeugt den Abschluss aller Gruppentrainings-Quests der Trainingsschule."
+    },
+    "14": {
+      "name": "Bericht über seltene Arten",
+      "description": "Liste der unglaublich starken farbigen Monster inklusive aller seltenen Arten."
+    },
+    "15": {
+      "name": "Bericht über Ökologieforschung",
+      "description": "Zusammengefasste Daten gefangener Monster. Bezeugt viele Fangerfolge!"
+    },
+    "16": {
+      "name": "Azurstein",
+      "description": "Ein reines Stück Machalit-Erz. Beweis für den Ausbau des Bergbaugebietes."
+    },
+    "17": {
+      "name": "Große Hornfliege",
+      "description": "Seltenes, hier lebendes Insekt und Beweis des Ausbaus der Insektensammelstelle."
+    },
+    "18": {
+      "name": "Frühlingsnachtkarpfen",
+      "description": "Prächtiger, rosaschuppiger Fisch und Beweis für den Ausbau des Angelstegs."
+    },
+    "19": {
+      "name": "Dosbiskus",
+      "description": "Seltene, im Tiefschnee wachsende Blume; Beweis für den Feldausbau."
+    },
+    "20": {
+      "name": "Dankbarer Brief",
+      "description": "Ein Brief von einem Felyne-Koch: \"Danke, für dich arbeite ich gern, miau!\""
+    },
+    "21": {
+      "name": "Armband des Weisen",
+      "description": "Bezeugt großes Kombiniergeschick, dem schier keine Grenzen gesetzt sind."
+    },
+    "22": {
+      "name": "Wyverianischer Handwerkshammer",
+      "description": "Schmutziger, aber dennoch göttlicher Hammer eines legendären Wyverianers."
+    },
+    "23": {
+      "name": "Jägerfortschritt",
+      "description": "Karte deines Jagdpfades. Beweist, dass du viele Gebiete besucht hast."
+    },
+    "24": {
+      "name": "Nekohts Schnurrhaare",
+      "description": "Bezeugt den Abschluss aller Nekoht-7★-Quests. Sieht majestätisch aus!"
+    },
+    "25": {
+      "name": "Nekohts Glöckchen",
+      "description": "Bezeugt den Abschluss aller Nekoht-8★-Quests. Eine geheimnisvolle Glocke."
+    },
+    "26": {
+      "name": "Nekohts Mantel",
+      "description": "Bezeugt den Abschluss aller Nekoht-9★-Quests. Ein schicker Mantel."
+    },
+    "27": {
+      "name": "Pokke-Kürbisflasche",
+      "description": "Bezeugt den Abschluss aller dringenden Pokke-Quests. Wärmt mit einem Schluck."
+    },
+    "28": {
+      "name": "Orichalcum-Schild",
+      "description": "Bezeugt den Abschluss aller G-St-1★-Quests der Versammlungshalle. Beispielhaft!"
+    },
+    "29": {
+      "name": "Platinum-Schild",
+      "description": "Bezeugt den Abschluss aller G-St-2★-Quests der Versammlungshalle. Stadtgespräch!"
+    },
+    "30": {
+      "name": "Gold-Schild",
+      "description": "Bezeugt den Abschluss aller G-St-3★-Quests der Versammlungshalle. Weltbekannt!"
+    },
+    "31": {
+      "name": "Wappen des überlegenen Jägers",
+      "description": "Alle Versammlungshallen- und Pokke-Quests erfüllt. Du bist unerreichbar!"
+    },
+    "32": {
+      "name": "Eruptiver Ring",
+      "description": "Bezeugt das Erlegen einer Fatalis. Der Glanz verdeckt das Unglück."
+    },
+    "33": {
+      "name": "Feuerring",
+      "description": "Bezeugt das Erlegen einer roten Fatalis. Mächtige Flammen zerstören alles."
+    },
+    "34": {
+      "name": "Puderweiße Krone",
+      "description": "Bezeugt das Erlegen einer weißen Fatalis. Die lange Mähne zeigt das Alter."
+    },
+    "35": {
+      "name": "Goldene Schneeschuhe",
+      "description": "Bezeugt die erfolgreiche Rajang-Jagd. Schneeschuhe aus goldenen Haaren."
+    },
+    "36": {
+      "name": "Ukanlos-Perle",
+      "description": "Bezeugt das Erlegen eines Ukanlos. Sein Träger kommt angeblich in den Himmel."
+    },
+    "37": {
+      "name": "Armband epischer Jagden",
+      "description": "Bezeugt mühevolle Kämpfe und Siege in epischen Jagden."
+    },
+    "38": {
+      "name": "Medaille des Kriegers",
+      "description": "Bezeugt das Bestehen aller G-St-Trainings in der Schule. Klasse!"
+    },
+    "39": {
+      "name": "Wächter-Auszeichnung",
+      "description": "Bezeugt die Hingabe an Stadt und Festung durch Lösung mancher Krise."
+    },
+    "40": {
+      "name": "Blumenbouquet der Gilde",
+      "description": "Hat unglaublich viele Gildenpunkte erhalten. Dosbiskusstrauß in voller Blüte."
+    },
+    "41": {
+      "name": "Helm des Abenteurers",
+      "description": "Bezeugt das Sammeln aller goldgekrönten, seltenen Schätze. Von Treshi."
+    },
+    "42": {
+      "name": "Trenyas Fahne",
+      "description": "Bezeugt die Unterstützung Trenyas für sehr viele, äußerst teure Abenteuer."
+    },
+    "43": {
+      "name": "Die ultimative Katzenminze",
+      "description": "Bezeugt die Dankbarkeit des Kameraden für die Gabe aller Kameradenfähigkeiten."
+    },
+    "44": {
+      "name": "Brief an den furchtlosen Anführer",
+      "description": "Ein Brief von einem Felyne-Kameraden: \"Welch Glück, Partner zu sein, miau!\""
+    },
+    "45": {
+      "name": "Mitgliedsausweis",
+      "description": "Bezeugt das Fertigen vieler Spezialwaffen. VIP-Karte für den Ausrüstungsladen."
+    },
+    "46": {
+      "name": "Wyverianische Fäustlinge",
+      "description": "Bezeugt das Sammeln von Rüstungen. Handschuh eines Rüstungskünstlers."
+    },
+    "47": {
+      "name": "Jägerwunder",
+      "description": "Karte deines Jagdpfades. Beweist, dass du alle Gebiete besucht hast."
     }
   }
 }

@@ -129,6 +129,7 @@ section("Validating IDs and strings…");
     "veggie-trades.json",
     "combinations.json",
     "farm.json",
+    "awards.json",
     ...weaponTypes.map((t) => `weapons/${t}.json`),
     ...ARMOR_SLOTS.map((s) => `armor/${s}.json`),
     ...monsterFiles.map((f) => `monsters/${f}`),
@@ -171,6 +172,14 @@ section("Validating IDs and strings…");
     if (en.farm?.[String(i)] === undefined)
       error(`farm.json: point ${i} has no name in data/strings/en.json`);
   });
+  const awardIds = readRawData<{ awards: { id: number }[] }>(dataDir, "awards.json").awards.map(
+    (a) => String(a.id),
+  );
+  for (const kind of ["award", "award_description"]) {
+    stale("en", en, kind, new Set(awardIds));
+    for (const id of awardIds)
+      if (!en[kind]?.[id]) error(`awards.json: award ${id} has no ${kind} in data/strings/en.json`);
+  }
 
   console.log(
     `  ${[...owned].map(([kind, keys]) => `${kind} ${keys.size}`).join(", ")}; ${Object.keys(en.map ?? {}).length} maps`,

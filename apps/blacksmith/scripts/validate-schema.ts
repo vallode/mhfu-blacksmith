@@ -31,6 +31,7 @@ const checks: [label: string, schema: string, files: string[]][] = [
   ["combinations", "combination", ["combinations.json"]],
   ["Veggie Elder trades", "veggie-trade", ["veggie-trades.json"]],
   ["Pokke Farm", "farm", ["farm.json"]],
+  ["Guild Card awards", "award", ["awards.json"]],
   ["skills", "skill", ["skills.json"]],
   ["string tables", "strings", jsonFiles("strings")],
   ["locales", "locale", jsonFiles("locales")],

@@ -15,6 +15,7 @@
  *   - area-maps.json             (each quest's gathering points on the map, see src/lib/area-maps.ts)
  *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - veggie-trades.json         (the Veggie Elder's trades, see src/lib/veggie-trades.ts)
+ *   - awards.json                (the Guild Card awards' names and descriptions, by index)
  *   - data-manifest.json         ({ files, version })
  *   - locale-<code>.json         (game text in other languages, from data/locales;
  *                                 fetched only in that language, so outside the
@@ -73,6 +74,7 @@ import {
 } from "../src/lib/items";
 import { encodeQuestBundle, monsterSizeRanges, type QuestRecord } from "./lib/quest-bundle";
 import { buildLocaleBundles } from "./lib/locales";
+import type { AwardText } from "../src/lib/i18n/game-text";
 import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
 import { encodeVeggieTrades, type VeggieTradesFile } from "../src/lib/veggie-trades";
 import {
@@ -577,6 +579,12 @@ for (const category of MONSTER_CATEGORIES) {
     console.warn(`generate-data: trade items not in items.json: ${trades.unresolved.join(", ")}`);
   }
   push("veggie-trades.json", trades.bundle);
+
+  // The Guild Card awards' text, by index (src/lib/awards.ts has their rules).
+  const awards = readData<{ awards: ({ id: number } & AwardText)[] }>(dataDir, "awards.json");
+  const awardText: AwardText[] = [];
+  for (const a of awards.awards) awardText[a.id] = { name: a.name, description: a.description };
+  push("awards.json", awardText);
 }
 
 // Decorations

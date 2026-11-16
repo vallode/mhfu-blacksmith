@@ -1603,9 +1603,10 @@ The site shows game text in other languages from `data/locales/<code>.json`
 (schema `data/schemas/locale.schema.json`, read by the site's
 `src/lib/i18n/game-text.ts`): names keyed by the site's English name per
 kind (`weapon`, `armor`, `item`, `monster`, `skill`, `decoration`, `map`),
-and quest board text (`title`, `goal`, `fail`, `details`, `client`) keyed by
-quest ID. `pnpm generate-data` drops entries whose English key isn't in
-`data/`. The EU disc (ULES01213) has German, French, Spanish and Italian
+quest board text (`title`, `goal`, `fail`, `details`, `client`) keyed by
+quest ID, and the Guild Card awards' `name` and `description` keyed by award
+index (EU disc only; `docs/awards.md`). `pnpm generate-data` drops entries
+whose English key isn't in `data/`. The EU disc (ULES01213) has German, French, Spanish and Italian
 besides English; the JP disc (ULJM05500) has Japanese.
 
 ```bash

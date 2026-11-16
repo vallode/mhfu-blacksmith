@@ -12,7 +12,6 @@ import {
   type AwardContext,
   type CrownMonster,
 } from "../src/lib/awards";
-import { MESSAGES } from "../src/lib/i18n/messages";
 import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
 import { DATA_DIR } from "../src/lib/paths";
 import { questHubSlug, type Quest } from "../src/lib/quests";
@@ -41,17 +40,20 @@ const QUESTS = [
 ];
 
 describe("AWARDS", () => {
-  test("lists the game's 48 awards in its order, each once", () => {
+  test("lists the game's 48 awards, each once, with their text in data/awards.json", () => {
     assert.equal(AWARDS.length, 48);
     assert.equal(new Set(AWARDS.map((a) => a.id)).size, 48);
-    assert.equal(AWARDS[0].name, "Village Chief's Glove");
-    assert.equal(AWARDS[47].name, "Hunter's Miracle");
-  });
-
-  test("has a requirement for every award in every language", () => {
-    for (const messages of Object.values(MESSAGES)) {
-      for (const a of AWARDS) assert.ok(messages.site.hunter.awards.requirements[a.id], a.id);
-    }
+    const { awards } = readData(DATA_DIR, "awards.json") as {
+      awards: { id: number; name: string; description: string }[];
+    };
+    assert.deepEqual(
+      awards.map((a) => a.id),
+      AWARDS.map((_, i) => i),
+    );
+    for (const a of awards) assert.ok(a.name && a.description, String(a.id));
+    // The game's order: the Glove is bit 0, the Miracle bit 47.
+    assert.equal(awards[0]!.name, "Village Chief's Glove");
+    assert.equal(awards[47]!.name, "Hunter's Miracle");
   });
 
   test("names only monsters the save keeps records for", () => {

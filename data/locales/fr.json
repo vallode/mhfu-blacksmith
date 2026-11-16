@@ -1,6 +1,6 @@
 {
   "$comment": "French game text: names keyed by their English name, quest board text keyed by quest ID. Missing entries fall back to English. Generated from the EU disc by `pnpm --filter mhfu-extract locales` (see packages/mhfu-extract/README.md, \"Localized text\"); don't hand-translate official names.",
-  "source": "EU disc ULES01213, extracted 2026-11-12",
+  "source": "EU disc ULES01213, extracted 2026-11-16",
   "weapon": {
     "Abominable Bow I": "Arc abominable I",
     "Abominable Bow II": "Arc abominable II",
@@ -8358,6 +8358,199 @@
       "fail": "Aucune prime",
       "details": "Une quête de collecte de\njour dans les montagnes\nenneigées. Collectez tous\nles composants que vous\ntrouverez sur place, puis\nlivrez le Ticket Passechat\npour achever le tout.",
       "client": "Chef village Pokke"
+    }
+  },
+  "award": {
+    "0": {
+      "name": "Gants de la chef du village",
+      "description": "Prouve l'accomplissement des quêtes pour débutant de Pokke. Cadeau de la chef."
+    },
+    "1": {
+      "name": "Chapeau de la chef du village",
+      "description": "Prouve l'accomplissement des quêtes moyennes de Pokke. Résistance au froid."
+    },
+    "2": {
+      "name": "Écharpe de la chef du village",
+      "description": "Prouve l'accomplissement des quêtes difficiles de Pokke. Vous réchauffe bien."
+    },
+    "3": {
+      "name": "Manteau de la chef du village",
+      "description": "Prouve l'accomplissement de toutes les quêtes de Pokke. Pour les chasseurs au top."
+    },
+    "4": {
+      "name": "Collier crinière",
+      "description": "Prouve la mise à mort d'un Kirin. Reflète la grâce de sa crinière millénaire."
+    },
+    "5": {
+      "name": "Onyx sang",
+      "description": "Preuve de la mise à mort d'un Akantor. Enchante le cœur et l'âme."
+    },
+    "6": {
+      "name": "Couronne du roi",
+      "description": "Symbole de succès répétés contre des monstres géants. Décerné à l'élite."
+    },
+    "7": {
+      "name": "Couronne miniature",
+      "description": "Symbole de succès répétés contre des bêtes de petite taille. Un record marquant."
+    },
+    "8": {
+      "name": "Médaille de bronze",
+      "description": "Preuve de la maîtrise de toutes les quêtes ★ et 2★ du hall de rassemblement."
+    },
+    "9": {
+      "name": "Médaille d'argent",
+      "description": "Preuve de la maîtrise de toutes les quêtes 3★ à 5★ du hall de rassemblement."
+    },
+    "10": {
+      "name": "Médaille d'or",
+      "description": "Preuve de la maîtrise de toutes les quêtes 6★ à 8★ du hall de rassemblement."
+    },
+    "11": {
+      "name": "Badge ceinture noire",
+      "description": "Preuve de succès dans tous les entraînements au combat de l'école. Vous protège."
+    },
+    "12": {
+      "name": "Badge expert",
+      "description": "Preuve de succès dans tous les entraînements spéciaux de l'école."
+    },
+    "13": {
+      "name": "Badge légende",
+      "description": "Preuve de succès dans tous les entraînements de groupe de l'école."
+    },
+    "14": {
+      "name": "Rapport sur les espèces rares",
+      "description": "Record lié aux monstres de couleur puissants. Confirme toutes les races rares."
+    },
+    "15": {
+      "name": "Rapport recherche sur l'écologie",
+      "description": "Record lié à la capture de monstres. Preuve de captures réussies."
+    },
+    "16": {
+      "name": "Pierre azur",
+      "description": "Morceau de Machalite pur. Prouve le développement du site de minage."
+    },
+    "17": {
+      "name": "Gd papillon cornu",
+      "description": "Insecte rare de cette zone. Prouve le développement d'une zone à insectes."
+    },
+    "18": {
+      "name": "Carpe de la source nocturne",
+      "description": "Superbe poisson printanier. Prouve le développement d'un ponton de pêche."
+    },
+    "19": {
+      "description": "Fleur rouge et rare trouvée au cœur de la neige. Preuve du dév. des champs."
+    },
+    "20": {
+      "name": "Lettre reconnaissante",
+      "description": "Lettre d'un chef Felyne disant : \"Merci, vous êtes un grand maître, miaou !\""
+    },
+    "21": {
+      "name": "Bracelet du sage",
+      "description": "Preuve de talent pour les combinaisons. Vous pouvez tout faire, à tout moment."
+    },
+    "22": {
+      "name": "Marteau d'artisan Wyverien",
+      "description": "Marteau divin d'un Wyvérien légendaire. Pour les vrais collectionneurs."
+    },
+    "23": {
+      "name": "Progrès du chasseur",
+      "description": "Carte retraçant vos lieux de chasse. Preuve de vos nombreux voyages."
+    },
+    "24": {
+      "name": "Moustache de Nekoht",
+      "description": "Prouve que vous avez fini des quêtes 7★ de Nekoht. Devenez un chat majestueux."
+    },
+    "25": {
+      "name": "Clochette de Nekoht",
+      "description": "Prouve que vous avez fini les quêtes 8★ de Nekoht. Cloche au son mystérieux."
+    },
+    "26": {
+      "name": "Manteau de Nekoht",
+      "description": "Prouve que vous avez fini les quêtes 9★ de Nekoht. Emblème de la guilde."
+    },
+    "27": {
+      "name": "Col roulé village Pokke",
+      "description": "Prouve que vous avez fini ttes quêtes urg. de Pokke. Réchauffe en une gorgée."
+    },
+    "28": {
+      "name": "Bouclier Orichalcum",
+      "description": "Prouve que vous maîtrisez toutes quêtes HR nv G 1★. Chasseur exemplaire."
+    },
+    "29": {
+      "name": "Bouclier d'argent",
+      "description": "Prouve que vous maîtrisez toutes quêtes HR nv G 2★. Honneur de la ville."
+    },
+    "30": {
+      "name": "Bouclier d'or",
+      "description": "Prouve que vous maîtrisez toutes quêtes HR nv G 3★. Renommée mondiale."
+    },
+    "31": {
+      "name": "Emblème suprême de chasseur",
+      "description": "Vous avez terminé toutes les quêtes de Pokke et du HR. Personne ne vous égale."
+    },
+    "32": {
+      "name": "Anneau igné",
+      "description": "Prouve que vous avez tué un Fatalis. Son superbe éclat cache un vrai danger..."
+    },
+    "33": {
+      "name": "Anneau de feu",
+      "description": "Prouve que vous avez tué un Fat. rouge. Ses puissantes flammes sèment la mort."
+    },
+    "34": {
+      "name": "Coiffe blanche",
+      "description": "Prouve que vous avez tué un Fat. blanc. Sa crinière blanche indique son âge."
+    },
+    "35": {
+      "name": "Chaussures de neige or",
+      "description": "Trophée de chasse d'un Rajang. Chaussures de neige créées avec ses poils d'or."
+    },
+    "36": {
+      "name": "Perle Ukanlos",
+      "description": "Prouve que vous avez tué un Ukanlos. Permet à son porteur d'aller au paradis."
+    },
+    "37": {
+      "name": "Bracelet de chasses épiques",
+      "description": "Prouve que vous avez mené et remporté de durs combats lors de chasses épiques."
+    },
+    "38": {
+      "name": "Médaille de guerrier",
+      "description": "Prouve que vous avez réussi tous les entraîn. de nv-G à l'école d'entraînement."
+    },
+    "39": {
+      "name": "Distinction de gardien",
+      "description": "Prouve que vous avez évité plusieurs crises à la ville et à la forteresse."
+    },
+    "40": {
+      "name": "Bouquet de la guilde",
+      "description": "Bouq. de Dosbiscus prouvant que vous avez gagné un nb incroy. de Pts de guilde."
+    },
+    "41": {
+      "name": "Casque d'aventurier",
+      "description": "Prouve que vous avez récup. tous les trésors couronnés d'or. Cadeau de Treshi."
+    },
+    "42": {
+      "name": "Drapeau de Trenya",
+      "description": "Prve que vous avez financé plusieurs expéditions coûteuses de Trenya."
+    },
+    "43": {
+      "name": "L'herbe-aux-chats ultime",
+      "description": "Cadeau de remerciement pour avoir débloqué tous les talents d'un de vos compgn."
+    },
+    "44": {
+      "name": "Lettre à mon vaillant leader",
+      "description": "Lettre d'un compagn. Felyne disant : \"Content de faire équipe avec vous, miaou !\""
+    },
+    "45": {
+      "name": "Carte de membre",
+      "description": "Prouve que vous avez créé plusieurs armes spéciales. Carte VIP d'échop. Équip."
+    },
+    "46": {
+      "name": "Moufle artisan Wyverien",
+      "description": "Prouve que vous collection. les armures. Moufle d'un grand fabricant d'armures."
+    },
+    "47": {
+      "name": "Miracle de chasseur",
+      "description": "Carte retraçant vos lieux de chasse. Preuve de vos nombreux voyages."
     }
   }
 }

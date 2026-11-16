@@ -42,6 +42,10 @@ export const STRING_KINDS = {
   map: "map ID",
   /** Pokke Farm's gathering points ("Mining Point +2"): the point's index in the game's farm table, the order of data/farm.json. */
   farm: "farm point index",
+  /** Guild Card awards: the award's index, its bit in the save's award flags (`data/awards.json`). */
+  award: "award index",
+  /** The game's description of an award: the award's index. */
+  award_description: "award index",
   /** Quest text, from the disc: the quest ID. */
   quest: "quest ID",
   quest_goal: "quest ID",

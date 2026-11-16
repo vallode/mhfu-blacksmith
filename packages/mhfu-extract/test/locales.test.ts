@@ -32,6 +32,7 @@ import {
   type QuestStrings,
 } from "../src/quests/parser.js";
 import { detectLanguage } from "../src/strings/language.js";
+import { messageFile } from "./helpers.js";
 import { enumNames } from "../src/strings/name-search.js";
 
 const DATA = path.join(path.dirname(fileURLToPath(import.meta.url)), "..", "..", "..", "data");
@@ -269,6 +270,27 @@ describe("locale files", () => {
     assert.deepEqual(validateLocale(merged, await loadLocaleSchema(DATA)), []);
   });
 
+  test("merge adds award text by index after the quests, and leaves it out while there is none", async () => {
+    const merged = mergeLocale(
+      "fr",
+      { award: { "3": { name: "old" } } },
+      { names: {}, award: { "10": { description: "d", name: "n" }, "2": { name: "m" } } },
+      "x",
+    );
+    assert.deepEqual(Object.keys(merged.award!), ["2", "3", "10"]);
+    assert.deepEqual(Object.keys(merged.award!["10"]!), ["name", "description"]);
+    assert.equal(Object.keys(merged).at(-1), "award");
+    assert.deepEqual(validateLocale(merged, await loadLocaleSchema(DATA)), []);
+    assert.equal(mergeLocale("fr", null, { names: {} }, "x").award, undefined);
+    assert.deepEqual(
+      validateLocale(
+        { award: { "1": { title: "t" } } } as LocaleFile,
+        await loadLocaleSchema(DATA),
+      ),
+      ['award["1"].title: unknown field'],
+    );
+  });
+
   test("a new file gets the committed comment's wording", () => {
     const merged = mergeLocale("de", null, { names: {} }, "x");
     assert.match(
@@ -388,6 +410,21 @@ describe("locales command on a synthetic EU disc", () => {
         }),
       );
 
+      // Award text in English and Spanish: Spanish names are DATA.BIN 23, the file list's message_jpn/str_tbl.pac.
+      const awardFile = (first: number, label: string) => {
+        const table = Array.from({ length: first + 48 }, (_, i) =>
+          i >= first ? `${label} ${i - first}` : `filler ${i}`,
+        );
+        return messageFile([table]);
+      };
+      await mkdir(path.join(unpacked, "data-bin", "_unindexed"), { recursive: true });
+      await mkdir(path.join(unpacked, "data-bin", "message_jpn"), { recursive: true });
+      const bin = (name: string) => path.join(unpacked, "data-bin", name);
+      await writeFile(bin("_unindexed/19.bin"), awardFile(1285, "Award"));
+      await writeFile(bin("_unindexed/4781.bin"), awardFile(1726, "About"));
+      await writeFile(bin("message_jpn/str_tbl.pac"), awardFile(1285, "Premio"));
+      await writeFile(bin("_unindexed/4785.bin"), awardFile(1726, "About"));
+
       const result = await runLocales({ unpacked, data });
       assert.deepEqual(Object.keys(result.written).sort(), ["de", "es", "fr", "it"]);
 
@@ -397,6 +434,9 @@ describe("locales command on a synthetic EU disc", () => {
       assert.deepEqual(es.item, { Potion: "Poción" });
       assert.equal(es.quest["10001"].title, TEXT.es.title);
       assert.equal(es.monster.Rathian, `Rathian${MONSTER_SUFFIX.es}`);
+      // Only what differs from English: the names, not the descriptions.
+      assert.deepEqual(es.award["0"], { name: "Premio 0" });
+      assert.deepEqual(es.award["47"], { name: "Premio 47" });
       assert.deepEqual(validateLocale(es, await loadLocaleSchema(data)), []);
 
       const de = JSON.parse(await readFile(path.join(data, "locales", "de.json"), "utf-8"));

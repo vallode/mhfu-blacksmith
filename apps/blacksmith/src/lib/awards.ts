@@ -3,9 +3,11 @@
  * what the site reads from a save: cleared quests, and the hunt and size
  * records.
  *
- * Names are the EU disc's, in the game's own order. Each rule is the
- * condition the game checks before it hands the award over, read from the EU
- * EBOOT and overlays (`packages/mhfu-extract/docs/awards.md` has the
+ * Awards are in the game's own order: an award's index in `AWARDS` is its
+ * bit in the save and its ID in `data/awards.json`, which has its name and
+ * the game's description of it (fetched as `/data/awards.json`). Each rule
+ * is the condition the game checks before it hands the award over, read from
+ * the EU EBOOT and overlays (`packages/mhfu-extract/docs/awards.md` has the
  * addresses). An award whose condition rests on save data the site doesn't
  * parse yet is `untracked`, with that data named beside it. The save's own
  * award flags aren't read yet either, so "earned" means the hunter meets the
@@ -62,9 +64,8 @@ export type AwardRule =
   | { kind: "untracked" };
 
 export interface Award {
+  /** The site's name for the award; its text is in `data/awards.json`, by index. */
   id: string;
-  /** The award's name on the EU disc. */
-  name: string;
   group: AwardGroup;
   rule: AwardRule;
 }
@@ -217,147 +218,127 @@ export const CROWN_GROUPS: readonly (readonly string[])[] = [
 export const AWARDS: readonly Award[] = [
   {
     id: "chief-glove",
-    name: "Village Chief's Glove",
     group: "village",
     rule: quests({ hubs: VILLAGE, stars: [1, 2] }),
   },
   {
     id: "chief-hat",
-    name: "Village Chief's Hat",
     group: "village",
     rule: quests({ hubs: VILLAGE, stars: [3, 4] }),
   },
   {
     id: "chief-scarf",
-    name: "Village Chief's Scarf",
     group: "village",
     rule: quests({ hubs: VILLAGE, stars: [5, 5] }),
   },
   {
     id: "chief-coat",
-    name: "Village Chief's Coat",
     group: "village",
     rule: quests({ hubs: VILLAGE, stars: [1, 6] }),
   },
-  { id: "mane-necklace", name: "Mane Necklace", group: "hunts", rule: hunt("Kirin") },
-  { id: "blood-onyx", name: "Blood Onyx", group: "hunts", rule: hunt("Akantor") },
+  { id: "mane-necklace", group: "hunts", rule: hunt("Kirin") },
+  { id: "blood-onyx", group: "hunts", rule: hunt("Akantor") },
   {
     id: "kings-crown",
-    name: "King's Crown",
     group: "hunts",
     rule: { kind: "crowns", crown: "gold" },
   },
   {
     id: "miniature-crown",
-    name: "Miniature Crown",
     group: "hunts",
     rule: { kind: "crowns", crown: "mini" },
   },
   {
     id: "bronze-medal",
-    name: "Bronze Medal",
     group: "gathering",
     rule: quests({ hubs: GUILD, stars: [1, 2] }),
   },
   {
     id: "silver-medal",
-    name: "Silver Medal",
     group: "gathering",
     rule: quests({ hubs: GUILD, stars: [3, 5] }),
   },
   {
     id: "gold-medal",
-    name: "Gold Medal",
     group: "gathering",
     rule: quests({ hubs: GUILD, stars: [6, 8] }),
   },
   // Training quests 21001-21010, each with all five of its weapon sets: the
   // per-set bits at 0x69234, bit (quest - 21001) * 5 + set.
-  { id: "black-belt", name: "Black Belt Badge", group: "training", rule: untracked },
+  { id: "black-belt", group: "training", rule: untracked },
   // The same bits for 21011-21015.
-  { id: "expert-badge", name: "Expert Badge", group: "training", rule: untracked },
+  { id: "expert-badge", group: "training", rule: untracked },
   {
     id: "legend-badge",
-    name: "Legend Badge",
     group: "training",
     rule: quests({ hubs: TRAINING, ids: range(22001, 22006) }),
   },
-  { id: "rare-species", name: "Rare Species Report", group: "hunts", rule: hunt(...RARE_SPECIES) },
+  { id: "rare-species", group: "hunts", rule: hunt(...RARE_SPECIES) },
   {
     id: "ecology-report",
-    name: "Ecology Research Report",
     group: "hunts",
     rule: capture(...ECOLOGY),
   },
   // Pokke Farm's levels, bytes at 0x69D98: Mining Area (byte 2) at 4.
-  { id: "azure-stone", name: "Azure Stone", group: "farm", rule: untracked },
+  { id: "azure-stone", group: "farm", rule: untracked },
   // Insect area (byte 3) at 4.
-  { id: "great-hornfly", name: "Great Hornfly", group: "farm", rule: untracked },
+  { id: "great-hornfly", group: "farm", rule: untracked },
   // Fishing Pier (byte 1) at 2.
-  { id: "springnight-carp", name: "Springnight Carp", group: "farm", rule: untracked },
+  { id: "springnight-carp", group: "farm", rule: untracked },
   // Field (byte 0) at 2.
-  { id: "dosbiscus", name: "Dosbiscus", group: "farm", rule: untracked },
+  { id: "dosbiscus", group: "farm", rule: untracked },
   // Five Felyne chefs (0x6925C + i * 0x70) each with byte +3 at 9 or more.
-  { id: "grateful-letter", name: "Grateful Letter", group: "farm", rule: untracked },
+  { id: "grateful-letter", group: "farm", rule: untracked },
   // All 172 combination recipes, the bitfield at 0x3FCC.
-  { id: "sages-bracelet", name: "Sage's Bracelet", group: "collection", rule: untracked },
+  { id: "sages-bracelet", group: "collection", rule: untracked },
   // Four of each of 11 weapon classes' listed weapons in the equipment box.
   {
     id: "artisans-hammer",
-    name: "Wyverian Artisan's Hammer",
     group: "collection",
     rule: untracked,
   },
   // The game's code hunts each of Chameleos, Teostra, Lunastra, Shen Gaoren,
   // Lao-Shan Lung and Akantor 50 times (records pooled with subspecies),
   // not what the description says; not confirmed in an emulator.
-  { id: "hunters-progress", name: "Hunter's Progress", group: "other", rule: untracked },
+  { id: "hunters-progress", group: "other", rule: untracked },
   {
     id: "nekoht-whiskers",
-    name: "Nekoht's Whiskers",
     group: "village",
     rule: quests({ hubs: VILLAGE, stars: [7, 7] }),
   },
   {
     id: "nekoht-bell",
-    name: "Nekoht's Bell",
     group: "village",
     rule: quests({ hubs: VILLAGE, stars: [8, 8] }),
   },
   {
     id: "nekoht-coat",
-    name: "Nekoht's Coat",
     group: "village",
     rule: quests({ hubs: VILLAGE, stars: [9, 9] }),
   },
   // Given at the end of "Rise to the Summit" (Akantor), the last urgent quest.
   {
     id: "pokke-gourd",
-    name: "Pokke Village Gourd",
     group: "village",
     rule: quests({ hubs: VILLAGE, ids: [11225] }),
   },
   {
     id: "orichalcum-shield",
-    name: "Orichalcum Shield",
     group: "gathering",
     rule: quests({ hubs: GUILD, stars: [9, 9] }),
   },
   {
     id: "platinum-shield",
-    name: "Platinum Shield",
     group: "gathering",
     rule: quests({ hubs: GUILD, stars: [10, 10] }),
   },
   {
     id: "gold-shield",
-    name: "Gold Shield",
     group: "gathering",
     rule: quests({ hubs: GUILD, stars: [11, 11] }),
   },
   {
     id: "supreme-crest",
-    name: "Supreme Hunter's Crest",
     group: "gathering",
     rule: quests({ hubs: [...VILLAGE, ...GUILD] }),
   },
@@ -365,63 +346,57 @@ export const AWARDS: readonly Award[] = [
   // the hunter slew the monster there; High Rank Fatalis quests don't count.
   {
     id: "igneous-ring",
-    name: "Igneous Ring",
     group: "hunts",
     rule: quests({ hubs: GUILD, ids: [3230] }),
   },
   {
     id: "ring-of-fire",
-    name: "Ring of Fire",
     group: "hunts",
     rule: quests({ hubs: GUILD, ids: [3231] }),
   },
   {
     id: "powder-white-crown",
-    name: "Powder-White Crown",
     group: "hunts",
     rule: quests({ hubs: GUILD, ids: [3232] }),
   },
   // Given at the end of "Child of Destruction" (Furious Rajang).
   {
     id: "gold-snowshoes",
-    name: "Gold Snowshoes",
     group: "hunts",
     rule: quests({ hubs: GUILD, ids: [3212] }),
   },
-  { id: "ukanlos-bead", name: "Ukanlos Bead", group: "hunts", rule: hunt("Ukanlos") },
+  { id: "ukanlos-bead", group: "hunts", rule: hunt("Ukanlos") },
   {
     id: "epic-hunts",
-    name: "Epic Hunts Armband",
     group: "other",
     rule: quests({ hubs: [...VILLAGE, ...GUILD], ids: EPIC_HUNTS }),
   },
   // The training bits (as the Black Belt Badge's) for 21016-21023.
-  { id: "warriors-medal", name: "Warrior's Medal", group: "training", rule: untracked },
+  { id: "warriors-medal", group: "training", rule: untracked },
   // 20 quests each in the Fortress and the Town: the map counters at 0x6A09C, bytes 12 and 13.
-  { id: "guardians-award", name: "Guardian's Award", group: "other", rule: untracked },
+  { id: "guardians-award", group: "other", rule: untracked },
   // 1,000,000 Guild Points, the u32 at 0x6924C.
-  { id: "flower-bouquet", name: "Flower Bouquet from the Guild", group: "other", rule: untracked },
+  { id: "flower-bouquet", group: "other", rule: untracked },
   // All 35 gold-crown treasures (0x67358, the u32 then 3 bits) and each
   // Treasure Hunt's best score (7 u32s at 0x67360) at its mark.
-  { id: "adventurers-helm", name: "Adventurer's Helm", group: "collection", rule: untracked },
+  { id: "adventurers-helm", group: "collection", rule: untracked },
   // Trenya's top trip paid for 100 times, the byte at 0x6A909.
-  { id: "trenyas-flag", name: "Trenya's Flag", group: "farm", rule: untracked },
+  { id: "trenyas-flag", group: "farm", rule: untracked },
   // A Felyne Comrade of your own (13 at 0x6974C + i * 0x70) with all 36 skills.
-  { id: "ultimate-catnip", name: "The Ultimate Catnip", group: "farm", rule: untracked },
+  { id: "ultimate-catnip", group: "farm", rule: untracked },
   // Five Felyne Comrades at full fondness (s16 +0x2A at 7000).
-  { id: "fearless-leader", name: "Letter to My Fearless Leader", group: "farm", rule: untracked },
+  { id: "fearless-leader", group: "farm", rule: untracked },
   // 50 special weapons forged: the bits in 9 u32s at 0x6A90C.
-  { id: "members-card", name: "Member's Card", group: "collection", rule: untracked },
+  { id: "members-card", group: "collection", rule: untracked },
   // Five rare (8+) pieces of each armor slot in the equipment box.
   {
     id: "artisans-mitten",
-    name: "Wyverian Artisan's Mitten",
     group: "collection",
     rule: untracked,
   },
   // 20 quests each in the Great Forest and the four Old maps (the map
   // counters, bytes 7 to 11), and the Hunter's Progress.
-  { id: "hunters-miracle", name: "Hunter's Miracle", group: "other", rule: untracked },
+  { id: "hunters-miracle", group: "other", rule: untracked },
 ];
 
 /** A monster for the crown awards: its name, type and crown sizes. */

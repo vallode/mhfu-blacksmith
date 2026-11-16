@@ -28,16 +28,19 @@ describe("gameText", () => {
   const es = gameText({
     item: { Potion: "Poción" },
     quest: { "10101": { title: "Título" } },
+    award: { "0": { name: "Guante de la jefe del pueblo" } },
   });
   test("translates what the locale has", () => {
     assert.equal(es.name("item", "Potion"), "Poción");
     assert.equal(es.quest(10101, "title", "Title"), "Título");
+    assert.equal(es.award(0, "name", "Village Chief's Glove"), "Guante de la jefe del pueblo");
   });
   test("falls back to English for the rest", () => {
     assert.equal(es.name("item", "Mega Potion"), "Mega Potion");
     assert.equal(es.name("weapon", "Potion"), "Potion");
     assert.equal(es.quest(10101, "goal", "Goal"), "Goal");
     assert.equal(es.quest(2, "title", "Other"), "Other");
+    assert.equal(es.award(0, "description", "Proof"), "Proof");
   });
   test("no locale file means English", () => {
     assert.equal(gameText(null), ENGLISH);

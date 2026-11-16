@@ -2,7 +2,7 @@
  * `data/locales/<code>.json` files: the site's game text in one language
  * (schema `data/schemas/locale.schema.json`, read by the site's
  * `src/lib/i18n/game-text.ts`). Names are keyed by the site's English name
- * per kind, quest board text by quest ID.
+ * per kind, quest board text by quest ID, and award text by award index.
  *
  * `locales` writes only the sections it produced and keeps every other
  * section of an existing file as it is, so a run that finds quest text but
@@ -31,6 +31,9 @@ export type NameKind = (typeof NAME_KINDS)[number];
 export const QUEST_TEXT_FIELDS = ["title", "goal", "fail", "details", "client"] as const;
 export type QuestText = Record<(typeof QUEST_TEXT_FIELDS)[number], string>;
 
+export const AWARD_TEXT_FIELDS = ["name", "description"] as const;
+export type AwardText = Record<(typeof AWARD_TEXT_FIELDS)[number], string>;
+
 export interface LocaleFile {
   $comment?: string;
   source?: string | null;
@@ -42,12 +45,14 @@ export interface LocaleFile {
   decoration?: Record<string, string>;
   map?: Record<string, string>;
   quest?: Record<string, Partial<QuestText>>;
+  award?: Record<string, Partial<AwardText>>;
 }
 
 /** What one run produced for one language. A section left out is kept from the existing file. */
 export interface ProducedLocale {
   names: Partial<Record<NameKind, Record<string, string>>>;
   quest?: Record<string, Partial<QuestText>>;
+  award?: Record<string, Partial<AwardText>>;
 }
 
 const LANGUAGE_LABELS: Record<LocaleCode, string> = {
@@ -62,7 +67,7 @@ const LANGUAGE_LABELS: Record<LocaleCode, string> = {
 export function defaultComment(code: LocaleCode): string {
   const disc = code === "ja" ? "JP" : "EU";
   return (
-    `${LANGUAGE_LABELS[code]} game text: names keyed by their English name, quest board text keyed by quest ID. ` +
+    `${LANGUAGE_LABELS[code]} game text: names keyed by their English name, quest board text keyed by quest ID, award text by award index. ` +
     `Missing entries fall back to English. Generated from the ${disc} disc by \`pnpm --filter mhfu-extract locales\` ` +
     `(see packages/mhfu-extract/README.md, "Localized text"); don't hand-translate official names.`
   );
@@ -79,16 +84,18 @@ function sortedNames(section: Record<string, string>): Record<string, string> {
   return Object.fromEntries(Object.entries(section).sort(([a], [b]) => byKey(a, b)));
 }
 
-function sortedQuests(
-  section: Record<string, Partial<QuestText>>,
-): Record<string, Partial<QuestText>> {
+/** A section keyed by number, sorted numerically, each entry's fields in `fields`' order. */
+function sortedById<F extends string>(
+  section: Record<string, Partial<Record<F, string>>>,
+  fields: readonly F[],
+): Record<string, Partial<Record<F, string>>> {
   return Object.fromEntries(
     Object.entries(section)
       .sort(([a], [b]) => Number(a) - Number(b) || byKey(a, b))
       .map(([id, text]) => {
-        const fields: Partial<QuestText> = {};
-        for (const f of QUEST_TEXT_FIELDS) if (text[f] !== undefined) fields[f] = text[f];
-        return [id, fields];
+        const out: Partial<Record<F, string>> = {};
+        for (const f of fields) if (text[f] !== undefined) out[f] = text[f];
+        return [id, out];
       }),
   );
 }
@@ -96,7 +103,8 @@ function sortedQuests(
 /**
  * `existing` (or a new file) with `produced`'s sections replacing the same
  * sections, every other section kept, and `source` set. Key order is fixed:
- * `$comment`, `source`, the name kinds in schema order, then `quest`.
+ * `$comment`, `source`, the name kinds in schema order, `quest`, then
+ * `award` (left out while there is none).
  */
 export function mergeLocale(
   code: LocaleCode,
@@ -114,7 +122,9 @@ export function mergeLocale(
   for (const kind of NAME_KINDS) {
     out[kind] = sortedNames({ ...base[kind], ...produced.names[kind] });
   }
-  out.quest = sortedQuests({ ...base.quest, ...produced.quest });
+  out.quest = sortedById({ ...base.quest, ...produced.quest }, QUEST_TEXT_FIELDS);
+  const award = sortedById({ ...base.award, ...produced.award }, AWARD_TEXT_FIELDS);
+  if (Object.keys(award).length > 0) out.award = award;
   return out;
 }
 
@@ -145,9 +155,6 @@ export async function loadLocaleSchema(dataDir: string): Promise<LocaleSchema> {
 export function validateLocale(file: LocaleFile, schema: LocaleSchema): string[] {
   const errors: string[] = [];
   const props = schema.properties;
-  const questFields = Object.keys(
-    ((props.quest?.additionalProperties ?? {}) as { properties?: object }).properties ?? {},
-  );
   for (const [key, value] of Object.entries(file)) {
     const prop = props[key];
     if (!prop) {
@@ -163,12 +170,15 @@ export function validateLocale(file: LocaleFile, schema: LocaleSchema): string[]
         if (typeof text !== "string" || text.length === 0)
           errors.push(`${key}["${en}"]: not a non-empty string`);
       }
-    } else if (key === "quest") {
+    } else if (key === "quest" || key === "award") {
+      const fields = Object.keys(
+        ((prop.additionalProperties ?? {}) as { properties?: object }).properties ?? {},
+      );
       for (const [id, text] of Object.entries(value as Record<string, Record<string, unknown>>)) {
-        if (!/^[0-9]+$/.test(id)) errors.push(`quest["${id}"]: ID isn't a number`);
+        if (!/^[0-9]+$/.test(id)) errors.push(`${key}["${id}"]: ID isn't a number`);
         for (const [field, v] of Object.entries(text)) {
-          if (!questFields.includes(field)) errors.push(`quest["${id}"].${field}: unknown field`);
-          else if (typeof v !== "string") errors.push(`quest["${id}"].${field}: not a string`);
+          if (!fields.includes(field)) errors.push(`${key}["${id}"].${field}: unknown field`);
+          else if (typeof v !== "string") errors.push(`${key}["${id}"].${field}: not a string`);
         }
       }
     }

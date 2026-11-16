@@ -1,6 +1,6 @@
 /**
  * Builds public/data/locale-<code>.json from data/locales/<code>.json: the
- * game's names and quest text in other languages (see
+ * game's names, quest text and award text in other languages (see
  * src/lib/i18n/game-text.ts). Entries whose English key the site doesn't have
  * are dropped with a warning, since nothing would ever look them up (a
  * renamed weapon, a typo, a name the extractor spells differently).
@@ -110,6 +110,11 @@ export function buildLocaleBundles(dataDir: string): LocaleBundle[] {
       .flatMap((f) => listOf(dataDir, f, "quests"))
       .map((q) => String((q as { id: number }).id)),
   );
+  const awardIds = new Set(
+    listOf(dataDir, path.join(dataDir, "awards.json"), "awards").map((a) =>
+      String((a as { id: number }).id),
+    ),
+  );
 
   return files.map((file) => {
     const code = path.basename(file, ".json");
@@ -147,6 +152,19 @@ export function buildLocaleBundles(dataDir: string): LocaleBundle[] {
         warnings.push(`${code}: ${unknown.length} quest ID(s) not in data/quests, dropped`);
       }
       if (Object.keys(kept).length > 0) out.quest = kept;
+      entries += Object.keys(kept).length;
+    }
+
+    if (source.award) {
+      const kept: NonNullable<GameLocale["award"]> = {};
+      const unknown = Object.keys(source.award).filter((id) => !awardIds.has(id));
+      for (const [id, text] of Object.entries(source.award)) {
+        if (awardIds.has(id)) kept[id] = text;
+      }
+      if (unknown.length > 0) {
+        warnings.push(`${code}: ${unknown.length} award ID(s) not in data/awards.json, dropped`);
+      }
+      if (Object.keys(kept).length > 0) out.award = kept;
       entries += Object.keys(kept).length;
     }
 

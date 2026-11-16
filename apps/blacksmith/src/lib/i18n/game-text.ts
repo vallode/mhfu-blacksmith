@@ -3,7 +3,8 @@
  * (`data/locales/<code>.json`, copied to `public/data/locale-<code>.json` by
  * scripts/generate-data.ts). Names are keyed by their English name, which the
  * site already uses as the identity of materials, skills and gear; quest
- * text is keyed by quest ID. Anything missing falls back to English.
+ * text is keyed by quest ID, and award text by the award's index. Anything
+ * missing falls back to English.
  */
 
 /** The kinds of named thing a locale file translates. */
@@ -30,11 +31,18 @@ export interface QuestText {
 
 export const QUEST_TEXT_FIELDS = ["title", "goal", "fail", "details", "client"] as const;
 
+/** A Guild Card award's text, as `data/awards.json` has it in English. */
+export interface AwardText {
+  name: string;
+  description: string;
+}
+
 /** One language's game text. Every section is optional. */
 export type GameLocale = Partial<Record<GameTextKind, Record<string, string>>> & {
   /** Where the text came from, e.g. "EU disc ULES01213, extracted 2026-11-09". */
   source?: string;
   quest?: Record<string, Partial<QuestText>>;
+  award?: Record<string, Partial<AwardText>>;
 };
 
 export interface GameText {
@@ -42,6 +50,8 @@ export interface GameText {
   name(kind: GameTextKind, english: string): string;
   /** `english`'s field of quest `id` in this language, or `english`. */
   quest(id: number | string, field: keyof QuestText, english: string): string;
+  /** `english`'s field of award `id` (its index) in this language, or `english`. */
+  award(id: number, field: keyof AwardText, english: string): string;
 }
 
 export function gameText(locale: GameLocale | null): GameText {
@@ -49,6 +59,7 @@ export function gameText(locale: GameLocale | null): GameText {
   return {
     name: (kind, english) => locale[kind]?.[english] || english,
     quest: (id, field, english) => locale.quest?.[String(id)]?.[field] || english,
+    award: (id, field, english) => locale.award?.[String(id)]?.[field] || english,
   };
 }
 
@@ -56,4 +67,5 @@ export function gameText(locale: GameLocale | null): GameText {
 export const ENGLISH: GameText = {
   name: (_kind, english) => english,
   quest: (_id, _field, english) => english,
+  award: (_id, _field, english) => english,
 };

@@ -39,6 +39,7 @@ import { slugify } from "./slug";
 import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
 import type { SearchData, SkillTreeData } from "./set-search";
 import { setSearchDataFromBundles } from "./set-data";
+import type { AwardText } from "./i18n/game-text";
 
 export type { MonsterListItem };
 
@@ -760,4 +761,43 @@ export function loadSetSearchData(): Promise<SearchData> {
       });
   }
   return setSearchPromise;
+}
+
+// ---------------------------------------------------------------------------
+// Guild Card awards: each award's name and description, by its index
+// ---------------------------------------------------------------------------
+
+let awardTextPromise: Promise<AwardText[]> | null = null;
+let awardTextCache: AwardText[] | null = null;
+
+/** The awards' English text from awards.json, in the game's order (`AWARDS`'). */
+export function getAwardText(): Promise<AwardText[]> {
+  if (awardTextCache) return Promise.resolve(awardTextCache);
+  if (!awardTextPromise) {
+    awardTextPromise = fetchJson<AwardText[]>("/data/awards.json")
+      .then((text) => (awardTextCache = text))
+      .catch((e) => {
+        awardTextPromise = null; // allow a retry on the next call
+        throw e;
+      });
+  }
+  return awardTextPromise;
+}
+
+/** `getAwardText` as a hook: null while loading or on error (`error` set). */
+export function useAwardText(): { awards: AwardText[] | null; error: boolean } {
+  const [awards, setAwards] = useState(awardTextCache);
+  const [error, setError] = useState(false);
+  useEffect(() => {
+    if (awardTextCache) return;
+    let cancelled = false;
+    getAwardText().then(
+      (a) => !cancelled && setAwards(a),
+      () => !cancelled && setError(true),
+    );
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return { awards, error };
 }

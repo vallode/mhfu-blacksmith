@@ -79,22 +79,20 @@ it was stepped through in PPSSPP; the doubtful points are marked.
 | 46  | Wyverian Artisan's Mitten     | Proof of a collector of armor. Mitt of a highly prolific armor artisan.            |
 | 47  | Hunter's Miracle              | Map recording your hunting trek. Proof of travel to all game areas.                |
 
-### Getting the text into `data/`
+### In `data/`
 
-The extractor could read both tables reliably (fixed entries in known
-message files, one per award). They aren't in `data/strings/<lang>.json`
-yet because that file is written only by `build-data` from records
-(`packages/game-data/src/model.ts`, `dehydrate`), and there is no award
-record. Doing it takes:
+`extract` reads both runs (`src/strings/awards.ts`) and writes
+`awards.json`; `build-data --only awards` turns it into `data/awards.json`
+(one record per award, only its `id`) and the strings `award` and
+`award_description`, by index. `locales` writes the French, German,
+Italian and Spanish text into each `data/locales/<code>.json`'s `award`
+section, where it differs from English. The site's Awards page shows these,
+and `apps/blacksmith/src/lib/awards.ts` holds only each award's rule.
 
-1. an `awards.json` record kind in `game-data` (`fileKind`, its schema,
-   `hydrate`/`dehydrate`) with one record per award by index, and string
-   kinds `award` and `award_description` in `STRING_KINDS`;
-2. an extractor step that reads 19.bin 1285+n and 4781 1726+n (and the
-   other EU languages' files for `data/locales/`) and emits `awards.json`;
-3. on the site, the Awards page showing `award_description` (through
-   `useGameText`) in place of the hand-written `awards.requirements`, and
-   `AWARDS` taking its names from the strings rather than its own `name`.
+The game breaks the descriptions into lines; the extractor joins them with
+spaces. A hyphen at a break joins its word up again ("mysterious-sounding");
+German also breaks between syllables ("Versamm-" and "lungshalle"), so a
+German hyphen before a lower-case letter is dropped.
 
 ## Storage and granting
 

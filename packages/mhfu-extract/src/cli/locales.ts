@@ -4,6 +4,8 @@
  *
  * - Quest board text from every `LangPTRs` slot (locales/quests.ts): German,
  *   French, Spanish and Italian on the EU disc, Japanese on the JP disc.
+ * - Award names and descriptions from the EU disc's message files
+ *   (strings/awards.ts), where they differ from English.
  * - Names from the name table search (strings/name-search.ts), only for
  *   tables and languages that pass its confidence checks; `find-names`
  *   shows the rest.
@@ -33,7 +35,8 @@ import {
 import { LANGUAGE_NAMES } from "../strings/language.js";
 import { translatedNames, type NameTableResult } from "../strings/name-search.js";
 import type { NameTable } from "../strings/names.js";
-import { readQuestsFromUnpackedDir } from "./extract.js";
+import { loadAwardText, readQuestsFromUnpackedDir } from "./extract.js";
+import { AWARD_TEXT_FILES, type AwardLanguage } from "../strings/awards.js";
 import {
   loadScanFiles,
   parseTables,
@@ -62,7 +65,9 @@ export interface LocalesOptions {
 }
 
 export interface LocalesResult {
-  written: Partial<Record<LocaleCode, { quests: number; names: Record<string, number> }>>;
+  written: Partial<
+    Record<LocaleCode, { quests: number; awards: number; names: Record<string, number> }>
+  >;
   slots: QuestSlotReport[];
 }
 
@@ -114,6 +119,24 @@ export async function runLocales(options: LocalesOptions): Promise<LocalesResult
     produced[code] = { names: {}, quest: section };
   }
 
+  if (manifest.region === "eu") {
+    const english = await loadAwardText(options.unpacked, manifest.region, "en");
+    for (const language of Object.keys(AWARD_TEXT_FILES) as AwardLanguage[]) {
+      if (language === "en" || !english) continue;
+      const awards = await loadAwardText(options.unpacked, manifest.region, language);
+      if (!awards) continue;
+      const section: NonNullable<ProducedLocale["award"]> = {};
+      for (const a of awards) {
+        const en = english[a.id]!;
+        const text: NonNullable<ProducedLocale["award"]>[string] = {};
+        if (a.name !== en.name) text.name = a.name;
+        if (a.description !== en.description) text.description = a.description;
+        if (Object.keys(text).length > 0) section[String(a.id)] = text;
+      }
+      (produced[language] ??= { names: {} }).award = section;
+    }
+  }
+
   let nameResults: NameTableResult[] = [];
   if (options.skipNames) {
     console.log("\nSkipping the name table search (--skip-names).");
@@ -143,7 +166,7 @@ export async function runLocales(options: LocalesOptions): Promise<LocalesResult
   console.log("");
   for (const code of LOCALE_CODES) {
     const p = produced[code];
-    if (!p || (!p.quest && Object.keys(p.names).length === 0)) continue;
+    if (!p || (!p.quest && !p.award && Object.keys(p.names).length === 0)) continue;
     const file = path.join(outDir, `${code}.json`);
     let existing: LocaleFile | null = null;
     try {
@@ -161,9 +184,11 @@ export async function runLocales(options: LocalesOptions): Promise<LocalesResult
     const names = Object.fromEntries(
       Object.entries(p.names).map(([k, v]) => [k, Object.keys(v).length]),
     );
-    written[code] = { quests: Object.keys(p.quest ?? {}).length, names };
+    const awards = Object.keys(p.award ?? {}).length;
+    written[code] = { quests: Object.keys(p.quest ?? {}).length, awards, names };
     const what = [
       p.quest ? `${Object.keys(p.quest).length} quests` : null,
+      p.award ? `${awards} awards` : null,
       ...Object.entries(names).map(([k, n]) => `${n} ${k} names`),
     ]
       .filter(Boolean)
