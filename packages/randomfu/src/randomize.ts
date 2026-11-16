@@ -82,6 +82,7 @@ import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
+import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
 import { findHookSites } from "./patches/game-hooks.js";
@@ -818,7 +819,11 @@ export function randomize(
         `Code loader demo: Guild Cards are capped at ${loader.kept} and every save load adds 1000z. This disc is not for play.`,
       );
     }
-  } else if (settings["hud.monsterHp"] !== "off" || settings["quests.unknown"]) {
+  } else if (
+    settings["hud.monsterHp"] !== "off" ||
+    settings["quests.unknown"] ||
+    settings["elites.enabled"]
+  ) {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
     // for the ones that do.
@@ -869,7 +874,41 @@ export function randomize(
       objects.push(...unknownQuestsObjects());
       Object.assign(externs, unknown.externs);
     }
-    if (typeof sites !== "string" && (monsterHp || unknown)) {
+    // Elites share the monster list and species table monster health finds.
+    let elites = false;
+    if (settings["elites.enabled"]) {
+      let found: Record<string, number> | string =
+        typeof sites === "string"
+          ? sites
+          : findMonsterHpExterns(
+              game.eboot!,
+              sites.segment,
+              sites.gauges,
+              ovl.reader.buf,
+              ovl,
+              mode === "off" ? "always" : mode,
+            );
+      if (typeof sites !== "string" && typeof found !== "string") {
+        const { rf_game_task, rf_monsters, rf_em_chunks } = found;
+        const elite = findEliteExterns(game.eboot!, sites.segment, ovl, settings["elites.chance"]);
+        found =
+          typeof elite === "string"
+            ? elite
+            : {
+                rf_game_task: rf_game_task!,
+                rf_monsters: rf_monsters!,
+                rf_em_chunks: rf_em_chunks!,
+                ...elite,
+              };
+      }
+      if (typeof found === "string") reports.push(notApplied("Elite monsters", found));
+      else {
+        objects.push(...eliteObjects());
+        Object.assign(externs, found);
+        elites = true;
+      }
+    }
+    if (typeof sites !== "string" && (monsterHp || unknown || elites)) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         objects,
         hooks: {

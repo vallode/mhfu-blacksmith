@@ -82,9 +82,9 @@ const OPTION_STEPS: Step[] = [
     title: "Monsters",
     icon: "part",
     tint: "var(--color-gem-orange)",
-    sections: ["Quest monsters", "Monster stats", "Weaknesses", "HUD"],
+    sections: ["Quest monsters", "Monster stats", "Elite monsters", "Weaknesses", "HUD"],
     intro:
-      "Which monsters quests have, how tough they are, and whether the HUD shows their health. All of it has been tried in game; the presets use all but the health gauge.",
+      "Which monsters quests have, how tough they are, and whether the HUD shows their health. All of it but elite monsters has been tried in game; the presets use all but elites and the health gauge.",
   },
   {
     id: "smithy",
@@ -127,6 +127,7 @@ const SECTION_ICONS: Record<string, Sprite> = {
   Deliveries: { icon: "egg", tint: "var(--color-parchment)" },
   "Quest monsters": { icon: "monsters/flying-wyvern", tint: "var(--color-gem-orange)" },
   "Monster stats": { icon: "ko" },
+  "Elite monsters": { icon: "monsters/elder-dragon", tint: "var(--color-gem-slate)" },
   Weaknesses: { icon: "fire" },
   Hints: { icon: "ukwn", tint: "var(--color-gem-cyan)" },
   HUD: { icon: "fluid", tint: "var(--color-gem-red)" },

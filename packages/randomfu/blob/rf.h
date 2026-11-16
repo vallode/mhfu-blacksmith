@@ -50,9 +50,14 @@ s32 sceIoClose(s32 fd);
  * RF_HOOK_HUD: just after the hunter's health and stamina gauges are drawn,
  *   which the game skips when the HUD is hidden (cutscenes, the HUD option).
  *   Draw here with the HUD's own routines to sit in the same layer.
+ * RF_HOOK_PAD: once a frame in every task, just after the main loop reads
+ *   the pad and before the task runs. The argument is the pad object: the
+ *   raw PSP buttons (u16) first, then the stick. Clearing its first 16 bytes
+ *   keeps that frame's input from the game, as the game itself does.
  */
 #define RF_HOOK_QUEST_FRAME 0
 #define RF_HOOK_HUD 1
+#define RF_HOOK_PAD 2
 /*
  * RF_HOOK_QUEST_LOAD: around both calls to the quest loader (accepting a
  *   quest in town, departing on it), once before the call and once after.
