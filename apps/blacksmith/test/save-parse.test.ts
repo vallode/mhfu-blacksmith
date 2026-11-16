@@ -15,7 +15,8 @@ import { AWARDS, awardProgress } from "../src/lib/awards";
 import type { ItemRecord } from "../src/lib/items";
 import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
 import { DATA_DIR } from "../src/lib/paths";
-import { AWARD_RECORD_KEYS, saveFromCharacter } from "../src/lib/save-store";
+import { HR_URGENT_QUESTS, hunterRankFrom } from "../src/lib/hunter-rank";
+import { AWARD_RECORD_KEYS, getSave, saveFromCharacter, setSave } from "../src/lib/save-store";
 import { readData } from "game-data";
 
 const root = path.resolve(__dirname, "..");
@@ -82,7 +83,7 @@ test("decrypts both layers and finds the two hunters", async () => {
     ),
     [
       ["Gideon", "Male", 1223209, 19087, 9, 79, 914, 15],
-      ["MEARO", "Male", 9999999, 2840, 2, 16, 999, 14],
+      ["MEARO", "Male", 9999999, 2840, 9, 16, 999, 14],
     ],
   );
 });
@@ -351,6 +352,70 @@ test("cleared quests: every quest the cheat's 448 bits cover, plus each hunter's
   assert.deepEqual(training(mearo), [20001, 20007]);
   // 403 quests before the Training School, counting 1-10 and 101-109.
   assert.equal(gideon.clearedQuests.length, 403 + 1);
+});
+
+test("Hunter Rank comes from the urgent quests cleared, as the game works it out", async () => {
+  // Both hunters have every quest cleared (the cheat above), so both are HR 9.
+  const { decryptGameLayer, decryptPSPLayer } = await import("../public/javascript/save-cipher.js");
+  const buf = fs.readFileSync(SAVE);
+  const plain: ArrayBuffer = await decryptGameLayer(
+    await decryptPSPLayer(buf.buffer.slice(buf.byteOffset, buf.byteOffset + buf.byteLength), "na"),
+    "na",
+  );
+  const rank = async (bytes: Uint8Array) => {
+    lastMessage = null;
+    await onmessage({ data: { buffer: bytes.slice().buffer, region: "us" } });
+    const gideon = ok(message()).characters[0] as CharacterResult;
+    // The site's own copy of the rule (src/lib/hunter-rank.ts) agrees.
+    assert.equal(hunterRankFrom(gideon.clearedQuests), gideon.hunterRank);
+    return gideon.hunterRank;
+  };
+  // Gideon's cleared bits (character 0x3f88); bit numbers from the game's table.
+  const bytes = new Uint8Array(plain);
+  const clear = (bit: number) => (bytes[0x1000 + 0x3f88 + (bit >> 3)] &= ~(1 << (bit & 7)));
+  // Bits of 3228, 3103, 3009, 2201, 2120, 1218, 1201 and 1104 (HR 9 down to HR 2),
+  // in the worker's QUEST_FLAG_RUNS order.
+  const urgent = [259, 204, 180, 132, 121, 84, 67, 44];
+  assert.equal(await rank(bytes), 9);
+  clear(urgent[0]);
+  assert.equal(await rank(bytes), 8, "3228 not cleared");
+  for (const bit of urgent.slice(1, 7)) clear(bit);
+  assert.equal(await rank(bytes), 2, "only 1104 cleared");
+  clear(urgent[7]);
+  assert.equal(await rank(bytes), 1, "no urgent quest cleared");
+});
+
+test("the worker and src/lib/hunter-rank.ts use the same urgent quests", () => {
+  const worker = fs.readFileSync(path.join(root, "public/javascript/save-worker.js"), "utf8");
+  const list = worker.match(/const HR_URGENT_QUESTS = \[([^\]]*)\]/);
+  assert.ok(list, "HR_URGENT_QUESTS not found in the worker");
+  assert.deepEqual(list[1].split(",").map(Number), HR_URGENT_QUESTS);
+});
+
+test("stored saves work HR out from the cleared quests, never from storage", () => {
+  const store = new Map<string, string>();
+  const global = globalThis as unknown as { localStorage?: Pick<Storage, "getItem" | "setItem"> };
+  global.localStorage = {
+    getItem: (k) => store.get(k) ?? null,
+    setItem: (k, v) => void store.set(k, v),
+  };
+  try {
+    setSave({ name: "New", region: "us", items: [], hunterRank: 3, clearedQuests: [1104, 1201] });
+    assert.equal(JSON.parse(store.get("mhfu_save")!).hunterRank, undefined, "HR isn't stored");
+    assert.equal(getSave()?.hunterRank, 3);
+    // A save stored before the fix: hunterRank held the Village quest count.
+    store.set(
+      "mhfu_save",
+      JSON.stringify({ name: "Old", items: [], hunterRank: 37, clearedQuests: [1104] }),
+    );
+    assert.equal(getSave()?.hunterRank, 2);
+    store.set("mhfu_save", JSON.stringify({ name: "Older", items: [], hunterRank: 37 }));
+    assert.equal(getSave()?.hunterRank, undefined, "no cleared quests stored, so no HR");
+    store.set("mhfu_save", JSON.stringify({ name: "Odd", items: [], clearedQuests: 5 }));
+    assert.equal(getSave()?.name, "Odd", "a bad cleared-quest list doesn't lose the save");
+  } finally {
+    delete global.localStorage;
+  }
 });
 
 test("every cleared quest is on the site, or one of the disc's unlisted 1-10 / 103-107", async () => {
