@@ -9,6 +9,7 @@ import {
   CARDS,
   COMPACT_WORDS,
   GAME_CARDS,
+  SAVE_DATA,
   GuildCardSpace,
   assembleCompaction,
   findCardBounds,
@@ -124,6 +125,27 @@ test("the cave and the freed slots are handed out in order, and never twice", ()
     end: CARDS + GAME_CARDS * CARD_BYTES,
   });
   assert.throws(() => space.allocateSlots(1));
+  assert.equal(space.reserveSaveData(), null, "every slot was handed out");
+
+  const reserving = new GuildCardSpace(
+    KEPT,
+    SAVE_POINTER,
+    SAVE,
+    caveStart,
+    caveEnd,
+    segment,
+    edits,
+  );
+  const data = { start: SAVE_DATA, end: SAVE_DATA + CARD_BYTES };
+  assert.equal(SAVE_DATA, CARDS + (GAME_CARDS - 1) * CARD_BYTES);
+  assert.deepEqual(reserving.reserveSaveData(), data);
+  assert.deepEqual(reserving.reserveSaveData(), data, "reserving again is the same slot");
+  assert.deepEqual(reserving.freeSlots, { start: CARDS + KEPT * CARD_BYTES, end: SAVE_DATA });
+  assert.deepEqual(reserving.allocateSlots(null), {
+    start: CARDS + KEPT * CARD_BYTES,
+    end: SAVE_DATA,
+  });
+  assert.equal(reserving.freeSlots, null);
 });
 
 test("a cap outside 1..95 cards is refused", () => {

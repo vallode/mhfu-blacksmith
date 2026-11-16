@@ -42,6 +42,11 @@
  *    `struct rf_load` (`blob/rf.h`); before, it may change the quest ID.
  * 4. Rewards: the call to the reward roll, once a completed quest, just
  *    after the box is filled and before the reward screen shows it.
+ * 5. Pick (optional, `poogie.enabled`): not a call but the EBOOT's weighted
+ *    picker itself (see `poogie-luck.ts`). Its first two words jump to a
+ *    stub that tail-calls the blob's `rf_hook5` with the picker's own
+ *    arguments when the blob defines one, and otherwise runs those two words
+ *    and goes on with the game's picker.
  *
  * The quest loader (EU 0x08870AEC) is `(quest, u16 id, buf)`, a two-step
  * state machine the caller runs every frame until it returns 1: step 0
@@ -64,6 +69,7 @@ import {
   Assembler,
   BEQ,
   BNE,
+  JALR,
   JR,
   LUI,
   LW,
@@ -82,7 +88,13 @@ import {
   type Segment,
 } from "./mips.js";
 
-export const HOOK = { questFrame: 0, hud: 1, pad: 2, questLoad: 3, rewards: 4 } as const;
+export const HOOK = { questFrame: 0, hud: 1, pad: 2, questLoad: 3, rewards: 4, pick: 5 } as const;
+
+/** The game's picker (hook 5): its address and its first two words, which the stub runs instead. */
+export interface PickSite {
+  picker: number;
+  prologue: readonly [number, number];
+}
 
 /** `struct rf_load`'s phase (`blob/rf.h`). */
 export const QUEST_LOAD_PHASE = { accept: 0, depart: 1, after: 2 } as const;
@@ -365,6 +377,48 @@ export function assembleHooks(
       },
     }),
   };
+}
+
+/**
+ * Hook 5's stub at `at`: with the blob loaded and its `rf_hook5` defined, it
+ * calls that in a 32-byte frame (the O32 code may use `sp+0..15`) with the
+ * picker's `$a0` and `$a1` and returns its `$v0` to the picker's caller.
+ * Otherwise it runs the picker's first two words and jumps to the third. The
+ * picker is a leaf of the game's (it only calls the RNG), so the
+ * temporaries are free at its entry.
+ */
+export function assemblePickHook(at: number, blob: number, site: PickSite): number[] {
+  const a = new Assembler();
+  const { zero, t0, t1, t2, t9 } = R;
+  const nop = () => a.emit(0);
+  a.i(LUI, zero, t0, hi16(blob));
+  a.i(ADDIU, t0, t0, blob & 0xffff);
+  a.i(LW, t0, t1, HEADER.magic);
+  a.i(LUI, zero, t2, BLOB_MAGIC >>> 16);
+  a.i(ORI, t2, t2, BLOB_MAGIC & 0xffff);
+  a.branch(BNE, t1, t2, "game");
+  a.i(LW, t0, t9, HEADER.hooks + HOOK.pick * 4);
+  a.branch(BEQ, t9, zero, "game");
+  nop();
+  a.i(ADDIU, SP, SP, -32);
+  a.i(SW, SP, RA, 24);
+  a.r(t9, zero, RA, 0, JALR);
+  nop();
+  a.i(LW, SP, RA, 24);
+  a.r(RA, zero, zero, 0, JR);
+  a.i(ADDIU, SP, SP, 32);
+  a.label("game");
+  a.emit(site.prologue[0]);
+  a.j(site.picker + 8);
+  a.emit(site.prologue[1]);
+  return a.link(at);
+}
+
+/** Points the picker's first two words at hook 5's stub. */
+export function writePickHook(eboot: Buffer, segment: Segment, site: PickSite, stub: number): void {
+  const offset = segment.offset + (site.picker - segment.vaddr);
+  eboot.writeUInt32LE(((0x02 << 26) | ((stub >>> 2) & 0x03ffffff)) >>> 0, offset);
+  eboot.writeUInt32LE(0, offset + 4);
 }
 
 /** Points the quest loader's calls at the hook's entries. */

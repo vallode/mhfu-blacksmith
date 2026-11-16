@@ -116,6 +116,7 @@ export interface Settings {
   "mods.nodeMap": boolean;
   "hud.monsterHp": "off" | "painted" | "always";
   "pact.enabled": boolean;
+  "poogie.enabled": boolean;
   "elites.enabled": boolean;
   "elites.chance": number;
   "quests.unknown": boolean;
@@ -1676,6 +1677,14 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "When a quest starts, a window in base camp offers three pacts drawn at random, each a penalty and the reward it pays: tougher or harder-hitting monsters, half the time, one cart, no supply box, a health or stamina cap or more to deliver (only those that fit the quest: no monster penalties on a gathering quest), for more zenny or HRP (at least a set amount per rank), luck, items or a weapon or armor piece of the quest's rank. The harder the penalty, the better its reward. Monster penalties stack with elite monsters. Take any, or none and the quest is as it was. The clock stops while you choose; penalties last the quest, and rewards are paid only if you complete it. Caps received Guild Cards at 3 to make room for its code.",
     type: { kind: "boolean" },
     default: false,
+  },
+  {
+    key: "poogie.enabled",
+    section: "Poogie",
+    label: "Poogie's luck",
+    help: "Pet Poogie at home before a hunt. If it lies down happily, that hunt's carves, captures, breaks and quest rewards lean towards rarer rewards: each draw rolls twice and keeps the rarer. Poogie remembers: after 50 happy hunts on a save it rolls three times, after 200 four. Its count is kept in the save, and carries over to discs from other seeds. Caps received Guild Cards at 3 to make room for its code.",
+    type: { kind: "boolean" },
+    default: true,
   },
   {
     key: "elites.enabled",

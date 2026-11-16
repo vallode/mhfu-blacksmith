@@ -36,13 +36,16 @@ import type { LoadedOverlay } from "../game/load.js";
 import type { ShuffleReport } from "../shuffles/shuffle.js";
 import {
   assembleHooks,
+  assemblePickHook,
   hookCode,
   writeHookCalls,
+  writePickHook,
   writeQuestLoadCalls,
   type HookSites,
+  type PickSite,
   type QuestLoadSites,
 } from "./game-hooks.js";
-import { guildCardSpace } from "./guild-card-space.js";
+import { SAVE_DATA, guildCardSpace } from "./guild-card-space.js";
 import {
   ADDIU,
   ADDU,
@@ -315,6 +318,8 @@ export interface CodeLoaderOptions {
     sites: HookSites;
     gameTask: LoadedOverlay;
     questLoad?: { sites: QuestLoadSites; lobbyTask: LoadedOverlay };
+    /** The game's picker, for a blob that defines `rf_hook5` (hook 5). */
+    pick?: PickSite;
   };
   /** The blob's externs that are found per disc. */
   externs?: Readonly<Record<string, number>>;
@@ -378,9 +383,10 @@ export function addCodeLoader(
   const space = guildCardSpace(vanillaEboot, gameSub, edits, options.keptCards);
   if (typeof space === "string") return skipped(space);
   // Check that the loader and blob fit what other features left, before taking any.
+  // The last slot is randomfu's save data in every build, so the blob never covers it.
   const free = space.freeSlots;
-  if (!free) return skipped("other features took every freed Guild Card slot");
-  const room = free.end - free.start;
+  const room = free ? Math.min(free.end, SAVE_DATA) - free.start : 0;
+  if (!free || room <= 0) return skipped("other features took every freed Guild Card slot");
   const blobAddress = space.saveStruct + free.start;
   const blob = linkBlob(
     options.objects,
@@ -404,12 +410,15 @@ export function addCodeLoader(
   const words = assembleLoader(0, addresses).code.length;
   const calls = hooks ? hookCode(hooks.sites) : [];
   const questLoader = hooks?.questLoad?.sites.loader;
-  const hookWords = hooks ? assembleHooks(0, blobAddress, calls, questLoader).code.length : 0;
+  const pickWords = hooks?.pick ? assemblePickHook(0, blobAddress, hooks.pick).length : 0;
+  const hookWords =
+    (hooks ? assembleHooks(0, blobAddress, calls, questLoader).code.length : 0) + pickWords;
   if (words + hookWords > space.freeCaveWords) {
     return skipped(
       `the loader needs ${words + hookWords} cave words, and ${space.freeCaveWords} are free`,
     );
   }
+  space.reserveSaveData();
   space.allocateSlots(null);
   const at = space.allocateCave(words);
   const loader = assembleLoader(at, addresses);
@@ -424,7 +433,7 @@ export function addCodeLoader(
   const hex = (n: number) => `0x${n.toString(16)}`;
   let hooksAt = "";
   if (hooks) {
-    const hookAt = space.allocateCave(hookWords);
+    const hookAt = space.allocateCave(hookWords - pickWords);
     const hookStubs = assembleHooks(hookAt, blobAddress, calls, questLoader);
     space.writeCave(hookAt, hookStubs.code);
     const gameTask = edits.overlay(hooks.gameTask);
@@ -434,6 +443,12 @@ export function addCodeLoader(
       writeQuestLoadCalls(lobbyTask, gameTask, hooks.questLoad.sites, hookStubs.questLoad);
     }
     hooksAt = `, hooks ${hex(hookAt)}`;
+    if (hooks.pick) {
+      const pickAt = space.allocateCave(pickWords);
+      space.writeCave(pickAt, assemblePickHook(pickAt, blobAddress, hooks.pick));
+      writePickHook(out, segment, hooks.pick, pickAt);
+      hooksAt += `, picker ${hex(pickAt)}`;
+    }
   }
   return {
     applied: true,

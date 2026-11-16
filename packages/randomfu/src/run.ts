@@ -52,7 +52,7 @@ export async function runRandomizer(
   const overlay = new OverlaySource(source);
   const image = new PatchableImage(overlay);
   log("Reading the disc...");
-  // Always loaded: Poogie's luck patches it whatever the settings.
+  // Always loaded: most options read it, and Poogie's luck (on by default) patches it.
   const game = await loadGame(overlay, image.iso);
   log(
     `${game.discId} (${game.region}): ${game.quests.length} quests, ${game.skippedQuests.length} skipped.`,

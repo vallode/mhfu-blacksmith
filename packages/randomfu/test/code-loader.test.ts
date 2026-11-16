@@ -344,6 +344,8 @@ test("addCodeLoader patches the sites to load the blob it adds to the disc", () 
   assert.match(report.summary ?? "", /: on /, report.summary);
   assert.equal(report.applied, true);
   assert.equal(report.kept, 3);
+  // The blob's room stops short of the last slot, randomfu's save data.
+  assert.match(report.summary ?? "", new RegExp(` of ${(GAME_CARDS - 4) * CARD_BYTES} bytes`));
   const file = g.edits.discFiles.get(BLOB_ISO_PATH)!;
   assert.ok(file, "the blob is added to the disc");
 

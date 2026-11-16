@@ -41,6 +41,7 @@ const BLOBS = {
   monsters: [["monsters.c"], "src/blob"],
   elite: [["elite.c"], "src/blob"],
   unknownQuests: [["unknown-quests.c"], "src/blob"],
+  poogie: [["poogie.c"], "src/blob"],
   linkTest: [["link-test.c"], "test"],
   commonTest: [["test/common-a.c", "test/common-b.c"], "test", ["-fcommon"]],
 };

@@ -112,7 +112,7 @@ import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
 import { findHookSites } from "./patches/game-hooks.js";
-import { addPoogieLuck } from "./patches/poogie-luck.js";
+import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export { LOGIC_VERSION };
@@ -891,7 +891,6 @@ export function randomize(
     );
   }
 
-  reports.push(addPoogieLuck(game.eboot, edits, { guaranteed: options.poogieTest }));
   const testing: string[] = [];
   if (options.loaderDemo) {
     const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
@@ -907,7 +906,8 @@ export function randomize(
     settings["hud.monsterHp"] !== "off" ||
     settings["quests.unknown"] ||
     settings["elites.enabled"] ||
-    settings["pact.enabled"]
+    settings["pact.enabled"] ||
+    settings["poogie.enabled"]
   ) {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
@@ -1032,7 +1032,18 @@ export function randomize(
         pact = true;
       }
     }
-    if (typeof sites !== "string" && (monsterHp || unknown || elites || pact)) {
+    const poogie = !settings["poogie.enabled"]
+      ? null
+      : typeof sites === "string"
+        ? sites
+        : preparePoogieLuck(game.eboot!, edits, { guaranteed: options.poogieTest });
+    if (typeof poogie === "string") reports.push(notApplied("Poogie", poogie));
+    else if (poogie) {
+      objects.push(...poogieObjects());
+      Object.assign(externs, poogie.externs);
+    }
+    const luck = typeof poogie === "string" ? null : poogie;
+    if (typeof sites !== "string" && (monsterHp || unknown || elites || pact || luck)) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         // Elites and the pact both bring the shared monster boosts: link them once.
         objects: objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
@@ -1040,12 +1051,14 @@ export function randomize(
           sites,
           gameTask: game.gameTask,
           ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
+          ...(luck && { pick: luck.pick }),
         },
         externs,
         data,
       });
       reports.push(loader);
       if (unknown) reports.push(unknown.finish(loader.applied));
+      if (luck) reports.push(luck.finish(loader.applied));
     }
   }
 
