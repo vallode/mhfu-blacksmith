@@ -290,3 +290,44 @@ describe("awardTotals", () => {
     assert.equal(totals.earned, 2);
   });
 });
+
+describe("awardProgress with the save's award flags", () => {
+  const index = (id: string) => AWARDS.findIndex((a) => a.id === id);
+  const flagged = (over: Partial<SaveData>, ...ids: string[]): AwardContext => ({
+    save: save({ clearedQuests: [], monsters: [], awards: ids.map(index), ...over }),
+    quests: QUESTS,
+    monsters: [],
+  });
+
+  test("a flagged award is earned, whatever its rule says", () => {
+    assert.deepEqual(awardProgress(award("mane-necklace"), flagged({}, "mane-necklace")), {
+      status: "earned",
+      done: 1,
+      total: 1,
+    });
+    assert.equal(awardProgress(award("azure-stone"), flagged({}, "azure-stone")).status, "earned");
+  });
+
+  test("a met rule without the flag isn't earned yet", () => {
+    const p = awardProgress(
+      award("mane-necklace"),
+      flagged({ monsters: [record("Kirin", { kills: 1 })] }),
+    );
+    assert.deepEqual(p, { status: "progress", done: 1, total: 1, todo: [] });
+  });
+
+  test("keeps the rule's progress for awards not given", () => {
+    const p = awardProgress(award("chief-glove"), flagged({ clearedQuests: [10001] }));
+    assert.equal(p.status, "progress");
+    assert.equal(p.status === "progress" && p.done, 1);
+  });
+
+  test("awards the rules can't follow are not earned rather than untracked", () => {
+    assert.deepEqual(awardProgress(award("azure-stone"), flagged({})), { status: "notEarned" });
+  });
+
+  test("every award counts towards the totals", () => {
+    const totals = awardTotals(flagged({}, "chief-glove", "azure-stone", "hunters-miracle"));
+    assert.deepEqual(totals, { earned: 3, tracked: 48 });
+  });
+});

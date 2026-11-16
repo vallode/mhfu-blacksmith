@@ -9,9 +9,12 @@
  * is the condition the game checks before it hands the award over, read from
  * the EU EBOOT and overlays (`packages/mhfu-extract/docs/awards.md` has the
  * addresses). An award whose condition rests on save data the site doesn't
- * parse yet is `untracked`, with that data named beside it. The save's own
- * award flags aren't read yet either, so "earned" means the hunter meets the
- * condition, not that the game has handed the award over.
+ * parse yet is `untracked`, with that data named beside it.
+ *
+ * Saves also carry the game's own award flags (`SaveData.awards`, one bit per
+ * award in this order). With them, "earned" is what the game has given, and
+ * the rules only show how far along the rest are. Saves stored before the
+ * flags were read fall back to the rules alone.
  */
 import { crownFor, type Crown, type Crowns } from "./crowns";
 import { monsterRecordFor } from "./monster-ids";
@@ -425,6 +428,8 @@ export type AwardProgress =
   | { status: "earned"; done: number; total: number }
   /** Part of the way: `todo` lists what's left. */
   | { status: "progress"; done: number; total: number; todo: AwardTodo[] }
+  /** Not given by the game, and the rules can't show how far along it is. */
+  | { status: "notEarned" }
   /** The save can't tell (untracked, or a save stored before the records were read). */
   | { status: "untracked" }
   /** Still loading the quests or monsters it needs. */
@@ -470,8 +475,32 @@ function groupRecord(
   };
 }
 
-/** How far the hunter is towards an award. */
+/**
+ * How far the hunter is towards an award. With the save's award flags, the
+ * game decides what's earned: a flagged award is earned whatever the rule
+ * says, and an unflagged one never is, even when the rule is met (the game
+ * may not have handed it over yet, or asks for more than the rule).
+ */
 export function awardProgress(award: Award, ctx: AwardContext): AwardProgress {
+  const progress = ruleProgress(award, ctx);
+  const given = ctx.save?.awards;
+  if (!given) return progress;
+  const total = "total" in progress ? progress.total : 1;
+  if (given.includes(AWARDS.findIndex((a) => a.id === award.id))) {
+    return { status: "earned", done: total, total };
+  }
+  switch (progress.status) {
+    case "earned":
+      return { ...progress, status: "progress", todo: [] };
+    case "untracked":
+      return { status: "notEarned" };
+    default:
+      return progress;
+  }
+}
+
+/** How far the hunter is towards an award by its rule alone. */
+function ruleProgress(award: Award, ctx: AwardContext): AwardProgress {
   const { save } = ctx;
   const rule = award.rule;
   switch (rule.kind) {
