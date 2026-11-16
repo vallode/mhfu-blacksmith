@@ -22,6 +22,8 @@ export interface RunOptions {
   dryRun?: boolean;
   /** For testing in game: a happy Poogie always gives the rarest reward. */
   poogieTest?: boolean;
+  /** Prototype: the code loader with its demo blob (see `docs/code-loader.md`). */
+  loaderDemo?: boolean;
   /** Adds research detail to the spoiler log. */
   debug?: boolean;
 }
@@ -61,8 +63,12 @@ export async function runRandomizer(
 
   const result = randomize(game, settings, {
     poogieTest: options.poogieTest,
+    loaderDemo: options.loaderDemo,
     debug: options.debug,
   });
+  // Testing options that only show once applied (the loader can be skipped).
+  testing.push(...result.testing);
+  for (const line of result.testing) log(line);
   for (const report of result.reports) log(reportLogLine(report));
   if (result.problems.length > 0) {
     log(
@@ -74,7 +80,7 @@ export async function runRandomizer(
   if (!options.dryRun) {
     const summary = writeEdits(image, game, result.edits);
     log(
-      `Changed ${summary.quests} quests and ${summary.files} other DATA.BIN files; EBOOT ${summary.eboot}. Read-back check passed.`,
+      `Changed ${summary.quests} quests and ${summary.files} other DATA.BIN files${summary.discFiles ? `, added ${summary.discFiles} disc file${summary.discFiles === 1 ? "" : "s"}` : ""}; EBOOT ${summary.eboot}. Read-back check passed.`,
     );
     segments = overlay.segments();
   }

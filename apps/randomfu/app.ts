@@ -724,11 +724,16 @@ function droppable(): void {
 
 /**
  * For testing in game, from the address: `?poogie-test` makes a happy Poogie
- * always give the rarest reward (not for play), and `?debug` adds research
- * detail to the spoiler log.
+ * always give the rarest reward and `?loader-demo` adds the code loader's
+ * demo (neither for play), and `?debug` adds research detail to the spoiler
+ * log.
  */
 const params = new URLSearchParams(location.search);
-const testing = { poogieTest: params.has("poogie-test"), debug: params.has("debug") };
+const testing = {
+  poogieTest: params.has("poogie-test"),
+  loaderDemo: params.has("loader-demo"),
+  debug: params.has("debug"),
+};
 
 function outputName(file: File, seed: string): string {
   return `${file.name.replace(/\.iso$/i, "")} (RandomFU ${seed}).iso`;

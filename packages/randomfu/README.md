@@ -1016,6 +1016,36 @@ of the hunter's items he picks doesn't change. No tier logic applies: a trade
 isn't counted as an item source, so the recipe check ignores it. Not yet
 played in game.
 
+## Code loader (prototype)
+
+`?loader-demo` in the web app's address (see `apps/randomfu`) caps received
+Guild Cards at 3 and turns the 93 freed slots (392,088 bytes of the save
+struct) into room for randomfu's own code and data. Its demo blob adds 1000
+zenny on every save load, so it's seen to run; it does in PPSSPP on EU and
+JP (FUC). It's not for play. `docs/code-loader.md` has the design: the
+address, when it loads, the blob format, the C toolchain and the PRX
+alternative.
+
+- **Room.** The save struct is static (an arena in the EBOOT's BSS), so the
+  freed slots are at a fixed address per region: EU `0x099A1820`, JP
+  `0x0999D560`. `src/patches/guild-card-space.ts` caps the cards and
+  rewrites the game's card compaction in 75 of its 351 words; the rest is a
+  code cave that patches share (`allocateCave`, `allocateSlots`).
+- **Loading.** Loading a save or making a new character overwrites the
+  slots. The EBOOT's two save-load copies and the new character's card
+  clear call a loader in the cave instead; it makes the game's call, then
+  reads `/PSP_GAME/USRDIR/RANDOMFU.BIN` over the slots with `sceIoOpen` and
+  `sceIoRead`, checks its header, syncs the caches and calls the blob's
+  `rf_init`.
+- **Blob code** is C in `blob/`, compiled by clang to MIPS objects
+  (`node blob/build.mjs`, Homebrew `llvm`) and committed as base64
+  (`src/blob/demo-object.ts`). randomfu links them per disc at the
+  region's address (`src/blob/link.ts`), so no compiler is needed to
+  randomize.
+
+Not yet tried: receiving Guild Cards with the cap, and a save from a
+patched game on an unpatched one (its card slots 4–96 hold the blob).
+
 ## How it writes the disc
 
 - **DATA.BIN** files are encrypted with a key seeded from their start
@@ -1031,6 +1061,10 @@ played in game.
   end of the image, and its directory record and the volume size are
   updated (`src/disc/image.ts`). PPSSPP is expected to run it; that isn't
   confirmed yet.
+- **New files** (the code loader's blob) go at the end of the image, with a
+  record added to their directory, kept in name order and shaped like the
+  directory's other records (UMD names have no `;1`); the directory must
+  have room in its sectors (`PatchableImage.writeFile`).
 
 ## Open questions
 
