@@ -181,8 +181,12 @@ from an open file) and `sceKernelStartModule`, plus
 
 ## Not yet tried
 
-- On hardware, at all. In PPSSPP, the demo works on EU and JP: loading a
-  save from the title adds 1000 zenny.
+- On hardware, at all. In PPSSPP, the demo worked on EU and JP (loading a
+  save from the title adds 1000 zenny) before the review fixes: the
+  loader's 40-byte frame, the stricter save-struct search and the web
+  app's `?loader-demo`. Those are covered by the interpreter tests and
+  give the same addresses on both discs, but haven't been re-run in
+  PPSSPP.
 - Receiving Guild Cards with the cap (exchange, the 4th card).
 - A save from a patched game loaded on an unpatched one. Its slots 4–96
   hold the blob, which the game may read as cards (a slot is "used" when

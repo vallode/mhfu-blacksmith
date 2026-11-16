@@ -135,6 +135,13 @@ function buildId(image: Buffer): number {
   return hash || 1;
 }
 
+/** Objects as `blob/build.mjs` writes them (base64), ready to link. */
+export function decodeObjects(
+  objects: readonly { name: string; base64: string }[],
+): { name: string; data: Buffer }[] {
+  return objects.map((o) => ({ name: o.name, data: Buffer.from(o.base64, "base64") }));
+}
+
 /**
  * Links `objects` to run at `base` (where the header goes). The objects must
  * define `rf_init`; `rf_hook0`… are optional entry points for game hooks.

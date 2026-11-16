@@ -300,6 +300,12 @@ export interface CodeLoaderOptions {
   keptCards?: number;
 }
 
+export interface CodeLoaderReport extends ShuffleReport {
+  applied: boolean;
+  /** Guild Cards kept, when applied. */
+  kept?: number;
+}
+
 /**
  * Adds the loader to the EBOOT and the linked blob to the disc. The report
  * says whether it was applied: it isn't when the EBOOT wasn't loaded or any
@@ -310,8 +316,9 @@ export function addCodeLoader(
   gameSub: LoadedOverlay,
   edits: Edits,
   options: CodeLoaderOptions,
-): ShuffleReport {
-  const skipped = (why: string): ShuffleReport => ({
+): CodeLoaderReport {
+  const skipped = (why: string): CodeLoaderReport => ({
+    applied: false,
     title: TITLE,
     notes: [`The code loader isn't in this image: ${why}.`],
     lines: [],
@@ -346,25 +353,29 @@ export function addCodeLoader(
 
   const space = guildCardSpace(vanillaEboot, gameSub, edits, options.keptCards);
   if (typeof space === "string") return skipped(space);
-  const room = space.allocateSlots(null);
-  const blobAddress = space.saveStruct + room.start;
-  const blob = linkBlob(
-    options.objects,
-    blobAddress,
-    { ...(imports as Imports) },
-    room.end - room.start,
-  );
-
+  // Check that the loader and blob fit what other features left, before taking any.
+  const free = space.freeSlots;
+  if (!free) return skipped("other features took every freed Guild Card slot");
+  const room = free.end - free.start;
+  const blobAddress = space.saveStruct + free.start;
+  const blob = linkBlob(options.objects, blobAddress, { ...(imports as Imports) });
+  if (blob.image.length > room) {
+    return skipped(`the blob is ${blob.image.length} bytes, and ${room} are free`);
+  }
   const addresses: LoaderAddresses = {
     saveStruct: space.saveStruct,
     blob: blobAddress,
-    room: room.end - room.start,
+    room,
     build: blob.build,
     memcpy,
     memset,
     imports: imports as Imports,
   };
   const words = assembleLoader(0, addresses).code.length;
+  if (words > space.freeCaveWords) {
+    return skipped(`the loader needs ${words} cave words, and ${space.freeCaveWords} are free`);
+  }
+  space.allocateSlots(null);
   const at = space.allocateCave(words);
   const loader = assembleLoader(at, addresses);
   space.writeCave(at, loader.code);
@@ -377,11 +388,13 @@ export function addCodeLoader(
 
   const hex = (n: number) => `0x${n.toString(16)}`;
   return {
+    applied: true,
+    kept: space.kept,
     title: TITLE,
     notes: [
       `Guild Cards are capped at ${space.kept}. A ${blob.image.length}-byte blob from ${BLOB_ISO_PATH} is loaded at ${hex(blobAddress)} after every save load and new game.`,
     ],
     lines: [],
-    summary: `${TITLE}: on (blob ${blob.image.length} of ${room.end - room.start} bytes at ${hex(blobAddress)}, loader ${hex(at)}, status ${hex(loader.status)}, build ${hex(blob.build)})`,
+    summary: `${TITLE}: on (blob ${blob.image.length} of ${room} bytes at ${hex(blobAddress)}, loader ${hex(at)}, status ${hex(loader.status)}, build ${hex(blob.build)})`,
   };
 }

@@ -5,15 +5,13 @@ import {
   BLOB_HEADER_BYTES,
   BLOB_MAGIC,
   HEADER,
+  decodeObjects,
   linkBlob,
   type LinkedBlob,
 } from "../src/blob/link.js";
 import { COMMON_TEST_OBJECTS } from "./common-test-object.js";
 import { LINK_TEST_OBJECTS } from "./link-test-object.js";
 import { Cpu } from "./mips-cpu.js";
-
-const objects = (list: readonly { name: string; base64: string }[]) =>
-  list.map((o) => ({ name: o.name, data: Buffer.from(o.base64, "base64") }));
 
 const BASE = 0x099a1820;
 const SAVE = 0x09999c60;
@@ -27,7 +25,7 @@ function run(blob: LinkedBlob) {
 }
 
 test("the header carries the magic, size, entry points and a build id", () => {
-  const blob = linkBlob(objects(LINK_TEST_OBJECTS), BASE, { sceIoClose: SCE_IO_CLOSE });
+  const blob = linkBlob(decodeObjects(LINK_TEST_OBJECTS), BASE, { sceIoClose: SCE_IO_CLOSE });
   const header = (field: number) => blob.image.readUInt32LE(field);
   assert.equal(header(HEADER.magic), BLOB_MAGIC);
   assert.equal(header(HEADER.size), blob.image.length);
@@ -40,7 +38,7 @@ test("the header carries the magic, size, entry points and a build id", () => {
 });
 
 test("linked code runs at its address: data, read-only data, zeroed data, calls and pointers", () => {
-  const blob = linkBlob(objects(LINK_TEST_OBJECTS), BASE, { sceIoClose: SCE_IO_CLOSE });
+  const blob = linkBlob(decodeObjects(LINK_TEST_OBJECTS), BASE, { sceIoClose: SCE_IO_CLOSE });
   const cpu = run(blob);
   const init = blob.symbols.get("rf_init")!;
   // reason 1: helper(1) = 1 * 3 + table[1] = 23, + 'f' + calls
@@ -59,8 +57,8 @@ test("linked code runs at its address: data, read-only data, zeroed data, calls 
 });
 
 test("the same object links at another address", () => {
-  const eu = linkBlob(objects(LINK_TEST_OBJECTS), BASE, { sceIoClose: SCE_IO_CLOSE });
-  const jp = linkBlob(objects(LINK_TEST_OBJECTS), 0x0999d560, { sceIoClose: 0x0890b918 });
+  const eu = linkBlob(decodeObjects(LINK_TEST_OBJECTS), BASE, { sceIoClose: SCE_IO_CLOSE });
+  const jp = linkBlob(decodeObjects(LINK_TEST_OBJECTS), 0x0999d560, { sceIoClose: 0x0890b918 });
   assert.equal(jp.image.length, eu.image.length);
   assert.notEqual(jp.build, eu.build);
   const cpu = new Cpu();
@@ -71,7 +69,7 @@ test("the same object links at another address", () => {
 });
 
 test("the demo adds 1000 zenny after a save load and nothing for a new game", () => {
-  const blob = linkBlob(objects(DEMO_OBJECTS), BASE);
+  const blob = linkBlob(decodeObjects(DEMO_OBJECTS), BASE);
   const cpu = new Cpu();
   cpu.write(BASE, blob.image);
   cpu.setU32(SAVE + 0x696f0, 8526);
@@ -82,12 +80,15 @@ test("the demo adds 1000 zenny after a save load and nothing for a new game", ()
 });
 
 test("undefined symbols and blobs too big for their room are errors", () => {
-  assert.throws(() => linkBlob(objects(LINK_TEST_OBJECTS), BASE), /sceIoClose is undefined/);
-  assert.throws(() => linkBlob(objects(DEMO_OBJECTS), BASE, {}, BLOB_HEADER_BYTES), /room for 64/);
+  assert.throws(() => linkBlob(decodeObjects(LINK_TEST_OBJECTS), BASE), /sceIoClose is undefined/);
+  assert.throws(
+    () => linkBlob(decodeObjects(DEMO_OBJECTS), BASE, {}, BLOB_HEADER_BYTES),
+    /room for 64/,
+  );
 });
 
 test("a common symbol is the same object as a definition of its name, or of another common", () => {
-  const blob = linkBlob(objects(COMMON_TEST_OBJECTS), BASE);
+  const blob = linkBlob(decodeObjects(COMMON_TEST_OBJECTS), BASE);
   const shared = blob.symbols.get("shared")!;
   const alsoCommon = blob.symbols.get("also_common")!;
   assert.equal(blob.image.readUInt32LE(shared - BASE), 7, "the definition, not a fresh common");

@@ -185,3 +185,15 @@ test("a quest re-seals to its exact bytes, padding included, and carries edits",
   assert.throws(() => quest.seal(Buffer.alloc(quest.capacity + 2)), /at most/);
   assert.throws(() => quest.seal(edited.subarray(0, 10)), /at most/);
 });
+
+test("writeFile changes nothing when the directory has no room for the record", () => {
+  // 47 records of 42 bytes, plus "." and "..", fill the directory's one sector.
+  const files = Array.from({ length: 47 }, (_, k) => ({
+    path: `D/F${String(k).padStart(2, "0")}.BIN`,
+    data: Buffer.alloc(10, k),
+  }));
+  const iso = buildIso(files);
+  const image = patchInMemory(iso);
+  assert.throws(() => image.writeFile("/D/M.BIN", Buffer.alloc(10, 6)), /no room/);
+  assert.ok(finish(image, iso).equals(iso));
+});

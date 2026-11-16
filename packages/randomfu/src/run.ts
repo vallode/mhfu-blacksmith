@@ -45,8 +45,6 @@ export async function runRandomizer(
   const testing = [
     options.poogieTest &&
       "Poogie test: a happy Poogie always gives the rarest reward. This disc is not for play.",
-    options.loaderDemo &&
-      "Code loader demo: Guild Cards are capped at 3 and every save load adds 1000z. This disc is not for play.",
     options.debug && "Debug: the spoiler log has research detail.",
   ].filter((line): line is string => typeof line === "string");
   for (const line of testing) log(line);
@@ -68,6 +66,9 @@ export async function runRandomizer(
     loaderDemo: options.loaderDemo,
     debug: options.debug,
   });
+  // Testing options that only show once applied (the loader can be skipped).
+  testing.push(...result.testing);
+  for (const line of result.testing) log(line);
   for (const report of result.reports) log(reportLogLine(report));
   if (result.problems.length > 0) {
     log(

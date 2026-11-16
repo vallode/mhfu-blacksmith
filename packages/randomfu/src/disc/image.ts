@@ -241,12 +241,10 @@ export class PatchableImage {
     const fileRecord = records.find((r) => (r[25]! & 0x02) === 0);
     if (!fileRecord) throw new Error(`${dirPath} has no file to copy a record from`);
 
+    // The data goes at the end of the image; nothing is written until the
+    // directory is known to have room for its record.
     const end = Math.ceil(this.file.totalBytes / SECTOR_SIZE) * SECTOR_SIZE;
     const lba = end / SECTOR_SIZE;
-    const padded = Buffer.alloc(Math.ceil(data.length / SECTOR_SIZE) * SECTOR_SIZE);
-    data.copy(padded);
-    this.file.write(end, padded);
-    this.setVolumeSize((end + padded.length) / SECTOR_SIZE);
 
     // Shaped like the directory's other files: UMD images name files without
     // the ";1" version (and PPSSPP matches names exactly), and give each an
@@ -280,6 +278,10 @@ export class PatchableImage {
       r.copy(packed, at);
       at += r.length;
     }
+    const padded = Buffer.alloc(Math.ceil(data.length / SECTOR_SIZE) * SECTOR_SIZE);
+    data.copy(padded);
+    this.file.write(end, padded);
+    this.setVolumeSize((end + padded.length) / SECTOR_SIZE);
     this.file.write(dir.lba * SECTOR_SIZE, packed);
     return { path, moved: true, lba, size: data.length };
   }

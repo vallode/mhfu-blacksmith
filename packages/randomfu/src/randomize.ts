@@ -78,6 +78,7 @@ import {
 } from "./shuffles/monster-stats.js";
 import { writeGuides } from "./hints/guides.js";
 import { DEMO_OBJECTS } from "./blob/demo-object.js";
+import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { addPoogieLuck } from "./patches/poogie-luck.js";
@@ -98,6 +99,8 @@ export interface RandomizeResult {
   sources: SourceSummary;
   /** Recipe materials that can't be found at their old tier any more. Should be empty. */
   problems: string[];
+  /** Testing options that changed this disc, for the log and spoiler (not in the settings string). */
+  testing: string[];
 }
 
 /**
@@ -800,12 +803,17 @@ export function randomize(
   }
 
   reports.push(addPoogieLuck(game.eboot, edits, { guaranteed: options.poogieTest }));
+  const testing: string[] = [];
   if (options.loaderDemo) {
-    const objects = DEMO_OBJECTS.map((o) => ({
-      name: o.name,
-      data: Buffer.from(o.base64, "base64"),
-    }));
-    reports.push(addCodeLoader(game.eboot, game.gameSub, edits, { objects }));
+    const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
+      objects: decodeObjects(DEMO_OBJECTS),
+    });
+    reports.push(loader);
+    if (loader.applied) {
+      testing.push(
+        `Code loader demo: Guild Cards are capped at ${loader.kept} and every save load adds 1000z. This disc is not for play.`,
+      );
+    }
   }
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.
@@ -827,5 +835,6 @@ export function randomize(
       gatheringProblems: gathering.problems,
     },
     problems,
+    testing,
   };
 }

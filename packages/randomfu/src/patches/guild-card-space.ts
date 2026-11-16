@@ -243,6 +243,17 @@ export class GuildCardSpace {
     this.slotNext = kept;
   }
 
+  /** Cave words not yet handed out. */
+  get freeCaveWords(): number {
+    return (this.caveEnd - this.caveNext) / 4;
+  }
+
+  /** The freed slots not yet handed out, as save offsets; null when none are left. */
+  get freeSlots(): { start: number; end: number } | null {
+    if (this.slotNext >= GAME_CARDS) return null;
+    return { start: CARDS + this.slotNext * CARD_BYTES, end: CARDS + GAME_CARDS * CARD_BYTES };
+  }
+
   /** Reserves `words` cave words and returns their vaddr; throws if they don't fit. */
   allocateCave(words: number): number {
     const at = this.caveNext;
@@ -327,14 +338,15 @@ function find(vanillaEboot: Buffer, gameSub: Buffer): Found | string {
 
   // The save struct's address: `lui at, hi; ori at, lo; jal saveInit; addu a0, s0, at`,
   // with `s0` the arena, set by the nearest `lui s0, hi; addiu s0, s0, lo` before
-  // it and not written in between. Every call must agree on one address.
+  // it and not written in between. Calls of that shape must agree on one
+  // address (others, if a build has any, pass a pointer this can't follow).
   const structs = new Set<number>();
   const end = segment.offset + segment.size;
   for (let off = segment.offset + 8; off + 8 <= end; off += 4) {
     if (word(vanillaEboot, off) !== jalTo(saveInit)) continue;
     const lui = word(vanillaEboot, off - 8);
     const ori = word(vanillaEboot, off - 4);
-    if (lui >>> 26 !== LUI || ori >>> 26 !== ORI) return "this EBOOT's code doesn't match";
+    if (lui >>> 26 !== LUI || ori >>> 26 !== ORI) continue;
     const inArena = ((lui & 0xffff) * 0x10000 + (ori & 0xffff)) >>> 0;
     const arena = arenaBefore(vanillaEboot, off - 12, Math.max(segment.offset, off - 0x400));
     if (arena === null) return "this EBOOT's code doesn't match";

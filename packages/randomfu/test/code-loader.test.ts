@@ -1,7 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { DEMO_OBJECTS } from "../src/blob/demo-object.js";
-import { BLOB_MAGIC, HEADER, linkBlob } from "../src/blob/link.js";
+import { BLOB_MAGIC, HEADER, decodeObjects, linkBlob } from "../src/blob/link.js";
 import { Edits } from "../src/edits.js";
 import type { GameData, LoadedOverlay } from "../src/game/load.js";
 import {
@@ -22,7 +22,9 @@ import {
   COMPACT_SIGNATURE,
   COMPACT_WORDS,
   GAME_CARDS,
+  GuildCardSpace,
   SAVE_INIT_SIGNATURE,
+  guildCardSpace,
 } from "../src/patches/guild-card-space.js";
 import { Cpu } from "./mips-cpu.js";
 
@@ -41,8 +43,7 @@ const IMPORTS: Imports = {
   sceKernelIcacheInvalidateAll: 0x0890e080,
 };
 
-const demoObjects = () =>
-  DEMO_OBJECTS.map((o) => ({ name: o.name, data: Buffer.from(o.base64, "base64") }));
+const demoObjects = () => decodeObjects(DEMO_OBJECTS);
 const demo = () => linkBlob(demoObjects(), BLOB, {}, ROOM);
 
 /** The loader in a CPU whose disc holds `file` (null: no file) and whose memcpy and memset work. */
@@ -291,6 +292,8 @@ function syntheticGame(arenas: number[] = [0x08a8c500], s0Between = false) {
       0x02012021, // addu a0, s0, at
     ]);
   });
+  // A caller of another shape (its pointer in a register) is passed over.
+  put(0x2e0, [0x02202021, jal(saveInit), 0]); // move a0, s1; jal; nop
 
   // Seven card loops; the first has the free count after it.
   for (let k = 0; k < 7; k++) {
@@ -339,6 +342,8 @@ test("addCodeLoader patches the sites to load the blob it adds to the disc", () 
   const g = syntheticGame();
   const report = addCodeLoader(g.elf, g.sub, g.edits, { objects: demoObjects() });
   assert.match(report.summary ?? "", /: on /, report.summary);
+  assert.equal(report.applied, true);
+  assert.equal(report.kept, 3);
   const file = g.edits.discFiles.get(BLOB_ISO_PATH)!;
   assert.ok(file, "the blob is added to the disc");
 
@@ -397,5 +402,27 @@ test("addCodeLoader patches nothing unless every save setup call agrees on the a
     assert.match(report.summary ?? "", /not applied/, why);
     assert.equal(g.edits.discFiles.size, 0, why);
     assert.ok(g.edits.eboot().equals(g.elf), why);
+  }
+});
+
+test("addCodeLoader takes nothing when other features left too little room", () => {
+  for (const [why, take] of [
+    ["no slots", (space: GuildCardSpace) => space.allocateSlots(null)],
+    ["too few cave words", (space: GuildCardSpace) => space.allocateCave(space.freeCaveWords - 10)],
+  ] as const) {
+    const g = syntheticGame();
+    const space = guildCardSpace(g.elf, g.sub, g.edits);
+    assert.ok(typeof space !== "string");
+    take(space);
+    const before = Buffer.from(g.edits.eboot());
+    const caveWords = space.freeCaveWords;
+    const slots = space.freeSlots;
+    const report = addCodeLoader(g.elf, g.sub, g.edits, { objects: demoObjects() });
+    assert.equal(report.applied, false, why);
+    assert.match(report.summary ?? "", /not applied/, why);
+    assert.equal(g.edits.discFiles.size, 0, why);
+    assert.ok(g.edits.eboot().equals(before), `${why}: the EBOOT is as the other feature left it`);
+    assert.equal(space.freeCaveWords, caveWords, why);
+    assert.deepEqual(space.freeSlots, slots, why);
   }
 });
