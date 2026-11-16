@@ -21,6 +21,10 @@
 extern const u8 rf_game_task[]; /* game_task.ovl's load address */
 extern const u8 rf_window[];    /* window(hud, rect, text, alpha): the card's frame */
 extern const u8 rf_fill[];      /* fill(hud, x, y, w, h, r, g, b, alpha) */
+/* item_icon(hud, item, x, y, w, h, marks, alpha): the item's icon in its colour, as the pouch's */
+extern const u8 rf_item_icon[];
+/* equipment_icon(hud, type, id, x, y, w, h, alpha, dim): a piece's icon in its rarity's colour */
+extern const u8 rf_equipment_icon[];
 extern u8 *const rf_pad[];      /* the global holding the game's pad object */
 extern u8 *const rf_printer[];  /* the global holding the text printer */
 extern const u8 rf_print[];     /* print(printer, x, y, format, ...): reads ~C and ~B codes */
@@ -31,6 +35,8 @@ extern const u8 rf_pact_pool[];
 #define Q_TIME 0x1230   /* s32 ticks left, counting down */
 #define Q_REWARD 0x1234 /* s32 reward zenny; a faint takes Q_PENALTY off it */
 #define Q_PENALTY 0x1238
+/* The reward tables the reward roll reads: u16 kind, u8, u8 draws, u32 items; until a kind of 0xFFFF */
+#define Q_TABLES 0x127c
 #define Q_HEADER 0x126c /* the quest file, loaded */
 /*
  * The quest loader skips reading a file it loaded last (the same quest
@@ -44,13 +50,19 @@ extern const u8 rf_pact_pool[];
 #define H_SUPPLIES 0x08
 #define H_LARGE 0x14 /* the large monster tables */
 #define H_OBJECTIVES 0x28 /* two of { u32 kind, u16 id, u8 count, u8 slot } */
-#define H_HRP 0x3c
 #define H_RANK 0x44 /* 2 High Rank, 5 G Rank, else Low */
 #define H_TYPE 0x4c /* 2: a delivery */
 #define H_TARGET_ID 0x70
 #define H_TARGET_NUM 0x72
 #define OBJECTIVE_ITEM 2
 #define DELIVERY 2
+
+/* The main reward table, which the reward screen draws from `draws` times (at most 9). */
+#define TABLE_MAIN 0x8000
+#define TABLE_BYTES 8
+#define TABLE_DRAWS 3
+#define MAX_TABLES 16
+#define MAX_DRAWS 9
 
 /* The printer: its text layer, 0 to 5 for the HUD's layers 9 to 14. */
 #define PRINTER_LAYER 0x12f
@@ -69,12 +81,6 @@ extern const u8 rf_pact_pool[];
 #define HP_MAX 0x41e
 #define STAMINA 0x55a
 #define STAMINA_MAX 0x62e
-#define SKILLS 0x676 /* the hunter's 6 skill ids the reward roll checks */
-#define SKILL_SLOTS 6
-#define GOOD_LUCK 0x90
-#define GREAT_LUCK 0x91
-#define BAD_LUCK 0x92
-#define CURSED 0x93
 
 /*
  * Input: the pad hook gets the system's SceCtrlData (buttons a u32 at +4,
@@ -132,14 +138,13 @@ static const struct {
 };
 
 /* The rewards. */
-enum { R_ZENNY, R_HRP, R_LUCK, R_ITEM, R_EQUIPMENT, REWARDS };
+enum { R_ZENNY, R_DRAWS, R_ITEM, R_EQUIPMENT, REWARDS };
 /*
- * Zenny and HRP: a percent of what the quest pays, by weight, but at least
- * a set amount for its rank, so a quest that pays little is still worth it.
+ * Zenny: a percent of what the quest pays, by weight, but at least a set
+ * amount for its rank, so a quest that pays little is still worth it.
  */
 static const u8 bonus_percent[4] = {0, 50, 100, 200};
 static const u16 zenny_floor[3][3] = {{600, 1200, 2400}, {2000, 4000, 8000}, {4000, 8000, 15000}};
-static const u16 hrp_floor[3][3] = {{20, 40, 80}, {50, 100, 200}, {100, 200, 400}};
 
 /*
  * The reward pool, per seed: a header of spans (first entry, count), per
@@ -172,7 +177,7 @@ static const rf_entry *entry(u32 index) {
 typedef struct {
   u8 penalty;
   u8 reward;
-  u16 value; /* luck skill or pool entry */
+  u16 value; /* draws added, or a pool entry */
 } rf_offer;
 
 /*
@@ -186,6 +191,8 @@ static u8 state;
 static u8 settle;
 static u8 band;  /* the quest's rank: 0 Low, 1 High, 2 G */
 static u8 kinds; /* what the quest has (NEEDS_*) */
+static u8 room;          /* draws the main reward table can still take */
+static u8 *rewards_main; /* that table, found when the offers were made */
 static rf_offer offer[OFFERS];
 static u8 taken; /* bit k: offer[k] */
 static u8 cursor;
@@ -260,6 +267,16 @@ static int has_large(u8 *header) {
   return 0;
 }
 
+/* The quest's main reward table, if it has one. */
+static u8 *main_table(u8 *q) {
+  u8 *t = *(u8 **)(q + Q_TABLES);
+  if ((u32)t < 0x08800000 || (u32)t >= 0x0a000000 || ((u32)t & 1)) return 0;
+  for (u32 k = 0; k < MAX_TABLES && *(u16 *)t != 0xffff; k++, t += TABLE_BYTES) {
+    if (*(u16 *)t == TABLE_MAIN) return t;
+  }
+  return 0;
+}
+
 static u32 kinds_of(u8 *header) {
   u32 k = NEEDS_TIME;
   if (has_large(header)) k |= NEEDS_LARGE;
@@ -276,38 +293,68 @@ static u32 rank_band(u8 *header) {
   return rank == 2 ? 1 : rank == 5 ? 2 : 0;
 }
 
-/* The zenny or HRP an offer adds: a percent of the quest's, at least the rank's floor. */
+/* The zenny an offer adds: a percent of the quest's, at least the rank's floor. */
 static u32 bonus(u8 *q, const rf_offer *o) {
   const u32 weight = penalty[o->penalty].weight;
-  u8 *header = header_of(q);
-  const u32 base = o->reward == R_ZENNY ? (u32) * (s32 *)(q + Q_REWARD)
-                   : header             ? *(u32 *)(header + H_HRP)
-                                        : 0;
-  const u32 floor = (o->reward == R_ZENNY ? zenny_floor : hrp_floor)[band][weight - 1];
+  const u32 base = (u32) * (s32 *)(q + Q_REWARD);
+  const u32 floor = zenny_floor[band][weight - 1];
   const u32 n = base > 1000000 ? 0 : base * bonus_percent[weight] / 100;
   return n > floor ? n : floor;
 }
 
-/* A reward for a penalty of `weight`, of a kind no other offer has (`used`). */
-static rf_offer pick(u32 p, u32 hrp, u32 *used) {
+/* Whether one of the first `k` offers already gives this pool entry's item or piece. */
+static int offered(u32 k, u32 value) {
+  const rf_entry *e = entry(value);
+  for (u32 j = 0; j < k; j++) {
+    if (offer[j].reward != R_ITEM && offer[j].reward != R_EQUIPMENT) continue;
+    const rf_entry *f = entry(offer[j].value);
+    if (f->id == e->id && f->type == e->type) return 1;
+  }
+  return 0;
+}
+
+/*
+ * The reward for offer `k`, whose penalty is `p`: zenny and draws of a kind
+ * no other offer has (`used`), and no item or piece another offer gives;
+ * a reward of REWARDS when nothing is left for it.
+ */
+static rf_offer pick(u32 k, u32 p, u32 *used) {
   const u32 weight = penalty[p].weight, b = band;
-  u32 kinds[REWARDS + 2], n = 0;
-  if (!(*used & (1u << R_ZENNY))) kinds[n++] = R_ZENNY;
-  if (hrp && !(*used & (1u << R_HRP))) kinds[n++] = R_HRP;
-  if (weight < 3 && !(*used & (1u << R_LUCK))) kinds[n++] = R_LUCK;
-  if (span(b, weight - 1)->count) kinds[n++] = R_ITEM;
-  if (weight == 3 && span(b, EQUIPMENT_KIND)->count) kinds[n++] = R_EQUIPMENT;
+  u32 options[REWARDS + 2], n = 0;
+  if (!(*used & (1u << R_ZENNY))) options[n++] = R_ZENNY;
+  /* Draws only where all of them fit, so the offer pays what it says. */
+  if (weight <= room && !(*used & (1u << R_DRAWS))) options[n++] = R_DRAWS;
+  if (span(b, weight - 1)->count) options[n++] = R_ITEM;
+  if (weight == 3 && span(b, EQUIPMENT_KIND)->count) options[n++] = R_EQUIPMENT;
   /* Things to get come up twice as often as bonuses. */
-  if (span(b, weight - 1)->count) kinds[n++] = R_ITEM;
-  if (weight == 3 && span(b, EQUIPMENT_KIND)->count) kinds[n++] = R_EQUIPMENT;
-  rf_offer o = {(u8)p, R_ZENNY, 0};
-  if (!n) return o;
-  o.reward = (u8)kinds[random(n)];
-  *used |= 1u << o.reward;
-  if (o.reward == R_LUCK) o.value = weight == 1 ? GOOD_LUCK : GREAT_LUCK;
-  if (o.reward == R_ITEM || o.reward == R_EQUIPMENT) {
-    const rf_span *s = span(b, o.reward == R_ITEM ? weight - 1 : EQUIPMENT_KIND);
-    o.value = (u16)(s->first + random(s->count));
+  if (span(b, weight - 1)->count) options[n++] = R_ITEM;
+  if (weight == 3 && span(b, EQUIPMENT_KIND)->count) options[n++] = R_EQUIPMENT;
+  rf_offer o = {(u8)p, REWARDS, 0};
+  while (n) {
+    o.reward = (u8)options[random(n)];
+    if (o.reward == R_ITEM || o.reward == R_EQUIPMENT) {
+      /* From a random place in the list, the first thing no other offer gives. */
+      const rf_span *s = span(b, o.reward == R_ITEM ? weight - 1 : EQUIPMENT_KIND);
+      const u32 start = random(s->count);
+      u32 j = 0;
+      for (; j < s->count; j++) {
+        o.value = (u16)(s->first + (start + j) % s->count);
+        if (!offered(k, o.value)) break;
+      }
+      if (j == s->count) { /* all of them are offered: another kind, then */
+        u32 m = 0;
+        for (u32 i = 0; i < n; i++) {
+          if (options[i] != o.reward) options[m++] = options[i];
+        }
+        n = m;
+        o.reward = REWARDS;
+        continue;
+      }
+    }
+    if (o.reward == R_DRAWS) o.value = (u16)weight; /* one more draw per weight */
+    if (o.reward == R_ZENNY) o.value = 0;
+    *used |= 1u << o.reward;
+    break;
   }
   return o;
 }
@@ -322,12 +369,14 @@ static void forget(void) {
   weary = 0;
 }
 
-static void new_quest(u8 *header) {
+static void new_quest(u8 *q, u8 *header) {
   seed ^= now;
   state = PENDING;
   band = (u8)rank_band(header);
   kinds = (u8)kinds_of(header);
-  const u32 hrp = *(u32 *)(header + H_HRP);
+  rewards_main = main_table(q);
+  const u32 draws = rewards_main ? rewards_main[TABLE_DRAWS] : MAX_DRAWS;
+  room = draws < MAX_DRAWS ? (u8)(MAX_DRAWS - draws) : 0;
   /* Three penalties from different groups that fit the quest, each with its reward. */
   u8 can[PENALTIES];
   u32 n = 0, used = 0;
@@ -335,34 +384,24 @@ static void new_quest(u8 *header) {
     if ((penalty[p].needs & kinds) == penalty[p].needs) can[n++] = (u8)p;
   }
   for (u32 k = 0; k < OFFERS; k++) {
-    if (!n) { /* never: four groups always fit */
-      offer[k] = (rf_offer){WEARY, R_ZENNY, 0};
-      continue;
+    /* A penalty with nothing left to pay gives way to another. */
+    u32 p = WEARY;
+    rf_offer o = {WEARY, REWARDS, 0};
+    while (n && o.reward == REWARDS) {
+      const u32 j = random(n);
+      p = can[j];
+      o = pick(k, p, &used);
+      if (o.reward == REWARDS) can[j] = can[--n];
     }
-    const u32 p = can[random(n)];
-    offer[k] = pick(p, hrp, &used);
+    /* Every penalty left has nothing to pay (an empty pool): zenny, if again. */
+    if (o.reward == REWARDS) o = (rf_offer){(u8)p, R_ZENNY, 0};
+    offer[k] = o;
     u32 m = 0;
     for (u32 j = 0; j < n; j++) {
       if (penalty[can[j]].group != penalty[p].group) can[m++] = can[j];
     }
     n = m;
   }
-}
-
-static void grant_luck(u8 *hunter, u32 skill) {
-  u8 *s = hunter + SKILLS;
-  int free = -1;
-  for (int k = 0; k < SKILL_SLOTS; k++) {
-    u32 id = s[k];
-    if (id == GREAT_LUCK) return;
-    if (id == skill) return;
-    if (id == GOOD_LUCK || id == BAD_LUCK || id == CURSED || id == 0) {
-      /* The roll checks Good Luck first: a weaker luck skill gives way. */
-      s[k] = 0;
-      if (free < 0) free = k;
-    }
-  }
-  if (free >= 0) s[free] = (u8)skill;
 }
 
 /* n times (100 + percent) / 100, rounded up. */
@@ -387,7 +426,7 @@ static void seal(u8 *q) {
   u8 *header = header_of(q);
   u8 *hunter = *(u8 **)(q + HUD_HUNTER);
   if (!valid(hunter)) hunter = 0;
-  u32 zenny = 0, hrp = 0, luck = 0, one_cart = 0;
+  u32 zenny = 0, draws = 0, one_cart = 0;
   for (u32 k = 0; k < OFFERS; k++) {
     if (!(taken & (1u << k))) continue;
     switch (offer[k].penalty) {
@@ -426,13 +465,12 @@ static void seal(u8 *q) {
     }
     switch (offer[k].reward) {
     case R_ZENNY: zenny += bonus(q, &offer[k]); break;
-    case R_HRP: hrp += bonus(q, &offer[k]); break;
-    case R_LUCK: luck = offer[k].value; break;
+    case R_DRAWS: draws += offer[k].value; break;
     default: paying |= (u8)(1u << k); break;
     }
   }
   /*
-   * The game pays the reward zenny and HRP only for a completed quest. A
+   * The game pays the reward zenny only for a completed quest. A
    * faint costs the same share of the new reward as of the old.
    */
   const s32 reward = *(s32 *)(q + Q_REWARD);
@@ -441,10 +479,14 @@ static void seal(u8 *q) {
   }
   *(s32 *)(q + Q_REWARD) = reward + (s32)zenny;
   if (one_cart) *(s32 *)(q + Q_PENALTY) = *(s32 *)(q + Q_REWARD);
-  if (header) *(u32 *)(header + H_HRP) += hrp;
-  if (hunter && luck) grant_luck(hunter, luck);
+  /* More draws from the main reward table (offered only where they fit). */
+  u8 *main = draws ? rewards_main : 0;
+  if (main) {
+    const u32 n = main[TABLE_DRAWS] + draws;
+    main[TABLE_DRAWS] = (u8)(n > MAX_DRAWS ? MAX_DRAWS : n);
+  }
   /* The quest file changed: have the loader read it again next time. */
-  if (header) *(u16 *)(q + Q_LAST_FILE) = 0xffff;
+  if (header || main) *(u16 *)(q + Q_LAST_FILE) = 0xffff;
 }
 
 /* The completed quest's rewards are in the box: add the pact's. */
@@ -519,7 +561,7 @@ static void quest_frame(u8 *q) {
   }
   if (state == SETTLING && ++settle >= SETTLE_FRAMES) {
     u8 *header = header_of(q);
-    if (header) new_quest(header);
+    if (header) new_quest(q, header);
     else settle = SETTLE_FRAMES; /* not loaded yet: try again next frame */
   }
   if (state == OPEN) *(s32 *)(q + Q_TIME) = t = held_time;
@@ -573,12 +615,9 @@ typedef struct {
 #define C_TAKEN "~C02" /* the card's item colour */
 #define C_REWARD "~C04"
 #define C_TITLE "~C05" /* the game's own highlight */
-#define C_NOTE "~C09"
 #define C_DIM "~C10"
-#define C_RED "~C19"
 #define BOX_ON "\xe2\x96\xa0"  /* ■ */
 #define BOX_OFF "\xe2\x96\xa1" /* □ */
-#define DOWN "\xe2\x96\xbc"    /* ▼ */
 #define STAR "\xe2\x98\x85"    /* ★ */
 
 #define SCREEN_W 480
@@ -591,6 +630,8 @@ typedef struct {
 #define WY ((SCREEN_H - WH) / 2)
 #define LEFT (WX + 14)
 #define BOX (LEFT + 20)
+#define ICON 16                 /* an item's icon, the pouch's small one */
+#define REWARD (BOX + ICON + 4) /* a reward's words, after its icon or star */
 #define TOP (WY + 10)
 #define OFFERS_Y (TOP + 22)
 #define SEAL_Y (OFFERS_Y + OFFERS * OFFER_H + 2)
@@ -612,12 +653,14 @@ static void lock(int on) {
 static void put_reward(u8 *q, const rf_offer *o) {
   switch (o->reward) {
   case R_ZENNY:
-  case R_HRP:
-    put(o->reward == R_ZENNY ? "Zenny +" : "HRP +");
+    put("Zenny +");
     put_number(bonus(q, o));
-    if (o->reward == R_ZENNY) put("z");
+    put("z");
     break;
-  case R_LUCK: put(o->value == GREAT_LUCK ? "Great Luck" : "Good Luck"); break;
+  case R_DRAWS:
+    put("Quest rewards +");
+    put_number(o->value);
+    break;
   default: {
     const rf_entry *e = entry(o->value);
     put((const char *)rf_pact_pool + e->name);
@@ -660,20 +703,29 @@ static void draw(u8 *q) {
 
   put(C_TITLE "Hunter's Pact");
   text(LEFT, TOP);
-  put(C_NOTE "Rewards paid on success");
-  text(WX + WW - 196, TOP);
   for (u32 k = 0; k < OFFERS; k++) {
     const u32 on = taken & (1u << k);
     const u32 y = OFFERS_Y + k * OFFER_H;
     put(on ? C_TAKEN BOX_ON : C_WHITE BOX_OFF);
     text(LEFT, y);
-    put(C_RED DOWN " ");
     put(on ? C_TAKEN : C_WHITE);
     put(penalty[offer[k].penalty].name);
     text(BOX, y);
-    put(C_TITLE STAR " " C_REWARD);
+    /* Items and pieces show their own icons, centred on the line's 14-pixel glyphs; the rest a star. */
+    if (offer[k].reward == R_ITEM || offer[k].reward == R_EQUIPMENT) {
+      const rf_entry *e = entry(offer[k].value);
+      if (e->type == ITEM) {
+        rf_call8(rf_item_icon, (u32)q, e->id, BOX, y + ROW - 1, ICON, ICON, 0, 0xff);
+      } else {
+        rf_call9(rf_equipment_icon, (u32)q, e->type, e->id, BOX, y + ROW - 1, ICON, ICON, 0xff, 0);
+      }
+    } else {
+      put(C_TITLE STAR);
+      text(BOX, y + ROW);
+    }
+    put(C_REWARD);
     put_reward(q, &offer[k]);
-    text(BOX, y + ROW);
+    text(REWARD, y + ROW);
   }
   put(taken ? C_TITLE "Seal the pact" : C_WHITE "Hunt without a pact");
   text(BOX, SEAL_Y);
