@@ -65,26 +65,26 @@ const OPTION_STEPS: Step[] = [
     title: "Gathering",
     icon: "ore",
     tint: "var(--color-gem-blue)",
-    sections: ["Gathering"],
-    intro: "What mining, gathering and bug catching points give you.",
+    sections: ["Gathering", "Veggie Elder"],
+    intro:
+      "What mining, gathering and bug catching points give you, and what the Veggie Elder trades.",
   },
   {
     id: "quests",
     title: "Quests",
     icon: "herb",
     tint: "var(--color-gem-green)",
-    sections: ["Supplies", "Quest terms", "Deliveries", "Hunter's Pact"],
+    sections: ["Supplies", "Quest terms", "Deliveries", "Quest maps"],
     intro:
-      "What quests hand you, what they pay and how long they last, what delivery quests ask for, and a pact of penalties for rewards at the start of each quest.",
+      "What quests hand you, what they pay and how long they last, what delivery quests ask for, and which maps they're on.",
   },
   {
     id: "monsters",
     title: "Monsters",
     icon: "part",
     tint: "var(--color-gem-orange)",
-    sections: ["Quest monsters", "Monster stats", "Elite monsters", "Weaknesses", "HUD"],
-    intro:
-      "Which monsters quests have, how tough they are, and whether the HUD shows their health. All of it but elite monsters has been tried in game; the presets use all but elites and the health gauge.",
+    sections: ["Quest monsters", "Monster stats", "Weaknesses"],
+    intro: "Which monsters quests have, how tough they are and where they're weak.",
   },
   {
     id: "smithy",
@@ -100,6 +100,14 @@ const OPTION_STEPS: Step[] = [
     tint: "var(--color-gem-yellow)",
     sections: ["Shop stock", "Shop prices"],
     intro: "What the village, Guild Hall and peddling granny sell, and for how much.",
+  },
+  {
+    id: "modifications",
+    title: "Modifications",
+    icon: "dragon",
+    sections: ["Hunter's Pact", "Elite monsters", "Unknown Monster?! quests", "HUD"],
+    intro:
+      "Neither a shuffle nor a randomizer: things the game doesn't do on its own, from new code. Each caps received Guild Cards at 3 to make room for it. No preset turns them on, and elite monsters haven't been tried in game yet.",
   },
   {
     id: "extras",
@@ -120,15 +128,19 @@ if (unclaimed.length > 0) {
 
 /** The sprite beside each option section's heading, in steps of more than one section. */
 const SECTION_ICONS: Record<string, Sprite> = {
+  Gathering: { icon: "ore", tint: "var(--color-gem-blue)" },
+  "Veggie Elder": { icon: "herb", tint: "var(--color-gem-green)" },
   "Quest rewards": { icon: "heavenly", tint: "var(--color-gem-yellow)" },
   "Monster rewards": { icon: "scale", tint: "var(--color-gem-red)" },
   Supplies: { icon: "fluid", tint: "var(--color-gem-green)" },
   "Quest terms": { icon: "ticket", tint: "var(--color-gem-orange)" },
   Deliveries: { icon: "egg", tint: "var(--color-parchment)" },
+  "Quest maps": { icon: "binoculars" },
   "Hunter's Pact": { icon: "ko", tint: "var(--color-gem-red)" },
   "Quest monsters": { icon: "monsters/flying-wyvern", tint: "var(--color-gem-orange)" },
   "Monster stats": { icon: "ko" },
   "Elite monsters": { icon: "monsters/elder-dragon", tint: "var(--color-gem-slate)" },
+  "Unknown Monster?! quests": { icon: "ukwn", tint: "var(--color-gem-cyan)" },
   Weaknesses: { icon: "fire" },
   Hints: { icon: "ukwn", tint: "var(--color-gem-cyan)" },
   HUD: { icon: "fluid", tint: "var(--color-gem-red)" },

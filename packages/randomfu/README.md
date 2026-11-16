@@ -1061,7 +1061,7 @@ yet tried: JP in game, captures, and two large monsters in one area.
 
 ## Hunter's Pact
 
-`pact.enabled` (Quests → Hunter's Pact in the web app) offers pacts at the
+`pact.enabled` (Modifications → Hunter's Pact in the web app) offers pacts at the
 start of every quest, as Hades' Pact of Punishment does: penalties taken
 for rewards. In base camp the screen darkens and a window, in the frame of
 the game's "item received" card and above the rest of the HUD, lists three

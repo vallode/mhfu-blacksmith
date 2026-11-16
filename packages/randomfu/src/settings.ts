@@ -1661,7 +1661,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "elites.enabled",
     section: "Elite monsters",
     label: "Elite monsters",
-    help: "Now and then a large monster is an elite: half again its health, hits 30% harder, moves 10% faster, enrages sooner and for half again as long, and is 15% bigger. Its hide has a faint crimson pulse. Each elite adds a reward draw, half the quest's zenny and points again, and makes the main reward's rarer items half again as likely. Rolled as each monster shows up, so the quest board doesn't tell. Stacks on the monster stats above. Caps received Guild Cards at 3 to make room for its code.",
+    help: "Now and then a large monster is an elite: half again its health, hits 30% harder, moves 10% faster, enrages sooner and for half again as long, and is 15% bigger. Its hide has a faint crimson pulse. Each elite adds a reward draw, half the quest's zenny and points again, and makes the main reward's rarer items half again as likely. Rolled as each monster shows up, so the quest board doesn't tell. Stacks on randomized monster stats. Caps received Guild Cards at 3 to make room for its code.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
@@ -1677,7 +1677,7 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "quests.unknown",
-    section: "Quest monsters",
+    section: "Unknown Monster?! quests",
     label: "Unknown Monster?! quests",
     help: "Adds an investigation quest to the Village 6★, Guild 8★ and G★3 boards. Each time you accept it, it rolls a monster met on that map in any quest, the map, size, crowns, difficulty for the rank and the rewards. The board doesn't say what you'll find, and the quest names the monster once it starts. Solo only: in ad-hoc play the others get a different roll. Caps received Guild Cards at 3 to make room for the code.",
     type: { kind: "boolean" },
