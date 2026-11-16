@@ -22,6 +22,7 @@
  * exactly for every table, including ChestArmorID (both are 420) — so
  * direct index lookup here is reliable.
  */
+import type { EquipmentTable } from "game-data";
 import { loadEnums, lookupName } from "./enums.js";
 
 export type NameTable =
@@ -37,6 +38,17 @@ export type NameTable =
   | "BowChargeID"
   | "ItemID"
   | "emID";
+
+/** The name enum of each weapon and armor table, by game-data's table name. */
+export const EQUIPMENT_NAME_TABLES = {
+  melee: "WepBMID",
+  ranged: "WepGunID",
+  helmet: "HeadArmorID",
+  plate: "ChestArmorID",
+  gauntlets: "ArmArmorID",
+  waist: "WaistArmorID",
+  leggings: "LegArmorID",
+} as const satisfies Record<EquipmentTable, NameTable>;
 
 export interface NameResolver {
   resolve(table: NameTable, index: number): string | null;

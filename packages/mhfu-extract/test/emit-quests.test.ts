@@ -90,6 +90,7 @@ const GIADROME_HUNT: ParsedQuest = {
     // 99 marks a species that keeps spawning: flagged, not counted.
     { stageId: 94, dataPtr: 300, monsters: [{ monsterId: 19, quantity: 99, power: 0 }] },
   ],
+  arenaSets: [],
   strings: {
     title: "強敵、ドスギアノス現る！",
     goal: "ドスギアノス１頭の狩猟",
@@ -426,5 +427,74 @@ test("emitQuest gives the quest's monster size range, and the flag fixed-size st
   assert.equal(
     emitQuest({ ...quest(1, 100, 0), largeMonsters: [] }, undefined, sizes)!.monster_size,
     null,
+  );
+});
+
+test("emitQuest writes a Training School quest's loadouts, by slot and ID", () => {
+  // Quest 21001's last set (EU disc): a Sandfall with attachments, two decorated armor pieces and shot.
+  const training: ParsedQuest = {
+    ...GIADROME_HUNT,
+    header: { ...GIADROME_HUNT.header, rank: 4, questId: 21001 },
+    arenaSets: [
+      {
+        players: 1,
+        pointMultiplier: 90,
+        equipment: [
+          { slot: "ranged", id: 8, level: 36, decorations: [] },
+          { slot: "leggings", id: 248, level: 0, decorations: [989] },
+          { slot: "helmet", id: 241, level: 3, decorations: [] },
+        ],
+        items: [{ itemId: 96, amount: 255 }],
+      },
+    ],
+  };
+  const emitted = emitQuest(training);
+  assert.ok(emitted?.arena_sets);
+  const [set] = emitted.arena_sets;
+  assert.equal(set!.players, 1);
+  assert.equal(set!.point_multiplier, 90);
+  assert.deepEqual(set!.equipment, [
+    { slot: "ranged", id: 8, name: "Sandfall", attachments: 36, decorations: [] },
+    {
+      slot: "leggings",
+      id: 248,
+      name: "Kut-Ku Leggings",
+      level: 0,
+      decorations: ["Attack Jewel"],
+    },
+    // Training-only gear has no record in data/, but the disc names it.
+    { slot: "helmet", id: 241, name: "Piercing of Rage", level: 3, decorations: [] },
+  ]);
+  assert.deepEqual(set!.items, [{ item: "Normal S Lv1", amount: 255 }]);
+  // Quests without loadouts get no field at all.
+  assert.equal("arena_sets" in emitQuest(VILLAGE_GIADROME)!, false);
+});
+
+test("emitQuest keeps an unexpected value on a melee weapon, and fails on an unnamed item", () => {
+  const withSet = (set: ParsedQuest["arenaSets"][number]): ParsedQuest => ({
+    ...GIADROME_HUNT,
+    header: { ...GIADROME_HUNT.header, rank: 4, questId: 21001 },
+    arenaSets: [set],
+  });
+  const melee = { slot: "melee" as const, id: 1, decorations: [] };
+  const plain = emitQuest(
+    withSet({ players: 1, pointMultiplier: 100, equipment: [{ ...melee, level: 0 }], items: [] }),
+  );
+  assert.equal("level" in plain!.arena_sets![0]!.equipment[0]!, false);
+  const odd = emitQuest(
+    withSet({ players: 1, pointMultiplier: 100, equipment: [{ ...melee, level: 5 }], items: [] }),
+  );
+  assert.equal(odd!.arena_sets![0]!.equipment[0]!.level, 5);
+  assert.throws(
+    () =>
+      emitQuest(
+        withSet({
+          players: 1,
+          pointMultiplier: 100,
+          equipment: [],
+          items: [{ itemId: 60000, amount: 1 }],
+        }),
+      ),
+    /quest 21001: arena set item 60000 has no name/,
   );
 });

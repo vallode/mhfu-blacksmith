@@ -313,11 +313,10 @@ byte (`checkQuest`). It's shared by the quest editor and randomfu, which
 rebuilds quests it moves to another map; `parser.ts` stays the read-only
 view the emitters use.
 
-Gathering points are read too (see "Gathering points" below). Not
-implemented (out of scope for now): `QuestScript` (opcodes are marked
-"TBD" even in the upstream pattern; see "Quest script" below) and arena
-sets. The quest-wide monster size is decoded; its spread isn't
-(see "Monster size" below).
+Gathering points and arena sets are read too (see "Gathering points" and
+"Arena sets" below). `QuestScript` is decoded (see "Quest script" below)
+but not emitted: every quest runs one of six scripts. The quest-wide
+monster size is decoded; its spread isn't (see "Monster size" below).
 
 ### Monster overlays: hitzones, tolerances and rewards
 
@@ -1052,8 +1051,9 @@ is deduplicated the same way for exact-duplicate `(monster, quantity, power)`
 rows. Each large monster's `multipliers` are its stat multiplier row (see
 "Monster overlays").
 
-Not implemented (out of scope for now, same as the underlying parser —
-see "Quests (.mib)" above): `QuestScript` and arena sets.
+Training School quests also carry `arena_sets`, the loadouts the hunter
+picks from (see "Arena sets" below). `QuestScript` isn't emitted (see
+"Quest script" below).
 
 ### Gathering points
 
@@ -1400,26 +1400,71 @@ Other sources checked:
 ### Quest script
 
 `QuestScript` packets are an s16 opcode and three s16 arguments, from
-`header.questScriptPtr` up to the supplies. Nothing public decodes them for
-MHP2G. For MH1/MHG, a community write-up (gist
-`2Tie/15606613e5a5e6036a93858c297b6523`, `g1scripting.txt`) has the same
-8-byte packet shape and lists `02` "Sets the goal for Monster arg1 to
-arg2" (a monster ID and a count; up to two), `01` waits for those goals,
-`24` waits for a monster goal to drop below arg2, and captures as a
-delivery goal (`04`) for a "wyvern" item.
+`header.questScriptPtr` up to the supplies. The script decides how a quest
+ends: what success, failure and Time Over do. The goals themselves aren't
+in it (see the objective slots below), which is why no packet names a
+monster.
 
-**MHP2G's scripts don't name monsters.** On the EU disc (`quest-probe`)
-the 551 quests have only 6 distinct scripts. No argument of any packet
-equals the quest's `TargetID` or one of its large monsters. Packets
-seen:
+**The interpreter** is the EU EBOOT's function at `0x0886E9F4`, a chain of
+`if`s on the opcode. Found from a PPSSPP savestate taken mid-quest: the
+quest manager is the object at the global `0x08A62C7C`, and its `+0x54`
+holds the script's address (`+0x50` the quest file's, `+0x58` the text
+table's). The manager runs the script from a packet index, carried on from
+packet to packet in the same frame or kept for the next one ("waits"
+below). Labels are found by scanning from the start. The script's state
+is the manager's: a wait counter at `+0xc`, the time left in ticks at
+`+0x10`, and the two objectives at `+0x728`, 8 bytes each (flags, emID or
+item, a count that goes down), set from the header's objective slots. The
+quest's state is a byte at `+0x2e` of the object the global `0x089CC438`
+points to (3 cleared, 5 ended, 6 leaving).
 
-- `-2`, `-1`, `3`, `10`, `27`, `30`, `31`, `37` and `45` always have zero
-  arguments.
-- `9` always has 150.
-- `26` has 0, or 1 in 10 quests.
-- `11` has 13-15, in 10 quests, together with `42`-`44` and `55`-`57`.
-- `53` has 2000 and `54`, in 7 quests (probably Treasure Hunting's
-  points).
+| opcode               | does                                                                                                                               |
+| -------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
+| `-1`                 | **Quest cleared**: state 3, posts event 2 (also the jump target when the goals are met).                                           |
+| `-2`                 | **Quest failed**: state 5, posts event 4 (also the jump target when a goal is flagged failed).                                     |
+| `37`                 | **Time Over failure**: state 5, a message, event 10.                                                                               |
+| `38`                 | Like `-1`, posting event 11. Unused.                                                                                               |
+| `26 n`               | Label `n`. Skipped when run.                                                                                                       |
+| `27 n`               | Start of every script: Time Over jumps to label `n`; shows a message with a time in minutes.                                       |
+| `47 n`               | Time Over jumps to label `n`, without the message. Unused.                                                                         |
+| `35 n`, `44 n`       | Two more event labels. `44 1` sends a fort event (the manager's `+0x11c`, probably the breach) to label 1. `35` is unused.         |
+| `28 n`               | Jump to label `n`. Unused.                                                                                                         |
+| `3`                  | Wait until the goals are met or one fails (and jump to `-1` or `-2`).                                                              |
+| `57`                 | Wait until the goals are met, or no large monster is left.                                                                         |
+| `45`                 | Wait until every hunter is flagged in the manager's `+0x110` (`-1` flags them).                                                    |
+| `30`, `31`           | Stop the script (`31` after the "returning to the village" message). `39`, `51` and any opcode not listed stop it too.             |
+| `9 n`, `10`          | Wait `n` ticks: `9` sets the counter, `10` counts it down.                                                                         |
+| `11 n`               | Show message `n` (a table at `0x089AC5A0`).                                                                                        |
+| `6`…`7`              | If the goals are met, else skip past `7`. Unused.                                                                                  |
+| `53 n`…`54`          | If the Treasure Hunting points (the manager's `+0x5b0` plus `+0x5b4`) are at least `n`, else skip past `54`.                       |
+| `55 n`…`56`          | If the manager's byte `+0x12d` is `n`, else skip past `56`.                                                                        |
+| `42`…`43`            | If a check in `game_task.ovl` (`0x09AC88F0`) passes, call `0x0886E0D8` with 0x200 (probably marking a repel), else skip past `43`. |
+| `40 n`…`41`          | Compares a monster's `+0x2e4` with the manager's `+0x114` minus `n`, skipping past `41` on one side. Unused.                       |
+| `36 s n`             | Wait until objective slot `s` is down to `n`. Unused.                                                                              |
+| `48 id n l`          | If the objective for `id` is down to `n`, jump to label `l`. Unused.                                                               |
+| `4 n`                | Add `n` ticks to the time left. Unused.                                                                                            |
+| `1 n`                | Which goals clear the quest (1 the first, 2 both). Unused.                                                                         |
+| `2`, `5`, `49`, `50` | Nothing.                                                                                                                           |
+
+`12`, `24`, `32`, `33` and `52` call game code not followed yet; none is on
+the EU disc.
+
+**The EU disc's 551 quests use six scripts:**
+
+- **Hunts** (409): `27 0`, wait for the goals (`3`); cleared (`-1`, `45`,
+  `30`); failed (`-2`, a 150-tick wait, `31`); Time Over (`26 0`, `37`,
+  the wait, `31`).
+- **Gathering** (115): the same, but Time Over goes to label 0 and on to
+  the cleared block: running out of time clears the quest.
+- **Treasure Hunting** (7): at Time Over, `53 2000` clears the quest with
+  2000 points or more and fails it otherwise.
+- **"Survive until Time Over"** (10): cleared when the goals are met or
+  every large monster is dead (`57`); at Time Over, cleared if `+0x12d` is
+  0 (`55 0`), failed otherwise.
+- **Forts** (7 on map 1 with `11 14`, 3 on map 12 with `11 15`): `44 1`
+  sends the fort event to label 1, the failure (with message 14 or 15);
+  cleared shows message 13; at Time Over, `42`…`43` decides between the
+  cleared block and the failure.
 
 The goals live in the header instead:
 
@@ -1439,6 +1484,39 @@ The goals live in the header instead:
 These fit the decomp's two `QuestTarget`s (an `emId` and a count each,
 `include/quest.hpp`). randomfu's swaps update `TargetID` and every
 monster-kind objective, and need nothing in the script.
+
+For MH1/MHG, a community write-up (gist
+`2Tie/15606613e5a5e6036a93858c297b6523`, `g1scripting.txt`) has the same
+8-byte packet shape; its opcode numbers don't match MHP2G's.
+
+### Arena sets
+
+Training School quests (`20xxx`-`22xxx`, 47 on the EU disc) carry the
+loadouts the hunter picks from, at `header.arenaPtr` (`0x7c`, 0 on every
+other quest): 1 set on the Basic Training and Mastery quests, 5 on the
+Subjugation Training ones. Nothing counts them; they run up to the quest
+script. `parser.ts`'s `readArenaSets` reads them, and `emit/quests.ts`
+writes them as `arena_sets`. Each set is 154 bytes:
+
+- `players` (u8): on the first set, how many hunters the quest is for (1
+  solo, 2 or 4 on the `22xxx` quests); 0 on the other sets.
+- `pointMultiplier` (u8, the hexpat's name): 85-120. What it scales isn't
+  confirmed.
+- Six equipment entries of 12 bytes, the weapon then legs, head, chest,
+  arms and waist: `{ u8 0, u8 type, u16 id, u16 level, u16 decorations[3] }`,
+  the shape of an equipment box slot. `type` is 0 legs, 1 head, 2 chest, 3
+  arms, 4 waist, 5 blademaster weapon, 6 gunner weapon; `id` indexes that
+  slot's table, and 0 is an empty slot. `level` is an armor piece's
+  upgrade level (0-15) and a bowgun's attachment bits (0x04 on every
+  bowgun past Mastery, 0x20 on most, 0x80 and 0x10 on a few; which part
+  each is isn't known). It's 0 on melee weapons and bows.
+- Twenty `{ u16 item, u16 amount }` items (shot as well as supplies).
+
+Every ID is a real piece of equipment. Eleven are training-only, with no
+record in `data/`: Rookie Knife (melee 464) and the ten Piercings (helmets
+240-249, Silence Piercing to Echo Piercing: rarity 1, defense 10, price
+0). Their names come from the disc into
+`data/strings/en.json` with the quest file (game-data's `writeData`).
 
 ### Save quest flags
 

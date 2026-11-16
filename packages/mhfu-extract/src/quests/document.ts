@@ -124,7 +124,8 @@ export interface ArenaEquipment {
   /** 0 legs, 1 head, 2 chest, 3 arms, 4 waist, 5 blademaster weapon, 6 gunner weapon. */
   type: number;
   id: number;
-  pad: number;
+  /** An armor piece's upgrade level; a bowgun's attachment bits; 0 on melee weapons and bows. */
+  level: number;
   decorations: [number, number, number];
 }
 
@@ -387,6 +388,10 @@ function readArena(r: Reader, end: number): ArenaSet[] | null {
   const count = Math.floor((end - at) / ARENA_SET_SIZE);
   if (count < 1 || count > ARENA_SETS_MAX)
     throw new QuestFormatError("the arena sets don't fit before the script");
+  return readArenaSetsIn(r, at, count);
+}
+
+function readArenaSetsIn(r: Reader, at: number, count: number): ArenaSet[] {
   return Array.from({ length: count }, (_, s) => {
     const base = at + s * ARENA_SET_SIZE;
     return {
@@ -398,7 +403,7 @@ function readArena(r: Reader, end: number): ArenaSet[] | null {
           unk: r.u8(e),
           type: r.u8(e + 1),
           id: r.u16(e + 2),
-          pad: r.u16(e + 4),
+          level: r.u16(e + 4),
           decorations: [r.u16(e + 6), r.u16(e + 8), r.u16(e + 10)] as [number, number, number],
         };
       }),
@@ -408,6 +413,14 @@ function readArena(r: Reader, end: number): ArenaSet[] | null {
       }),
     };
   });
+}
+
+/**
+ * `count` arena sets from `at` in a decrypted quest, for a reader that
+ * doesn't parse the whole file (src/quests/parser.ts).
+ */
+export function readArenaSetsAt(payload: Buffer, at: number, count: number): ArenaSet[] {
+  return readArenaSetsIn(new Reader(payload), at, count);
 }
 
 function readScript(r: Reader): ScriptPacket[] {
@@ -913,7 +926,7 @@ export function writeArena(w: Writer, arena: readonly ArenaSet[]): void {
       w.u8(e?.unk ?? 0);
       w.u8(e?.type ?? 0);
       w.u16(e?.id ?? 0);
-      w.u16(e?.pad ?? 0);
+      w.u16(e?.level ?? 0);
       for (let d = 0; d < 3; d++) w.u16(e?.decorations[d] ?? 0);
     }
     for (let i = 0; i < ARENA_ITEMS; i++) {
