@@ -619,7 +619,7 @@ function SourceList({ title, rows }: { title: string; rows: SourceRow[] }) {
         {rows.map((r, i) => (
           <li key={i} className="flex min-w-0 gap-[0.8rem] leading-[1.25]">
             {r.prefix && <span className="w-cells-4 flex-none text-stat">{r.prefix}</span>}
-            {r.map && <MapIcon map={r.map} />}
+            {r.map && <MapIcon map={r.map} scroll />}
             {r.icon && <Icon type={r.icon.type} color={r.icon.color} />}
             <div className="flex min-w-0 flex-1 flex-col gap-[0.2rem]">
               <div className="flex min-w-0 items-baseline gap-[0.8rem]">
