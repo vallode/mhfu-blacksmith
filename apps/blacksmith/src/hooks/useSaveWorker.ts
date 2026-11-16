@@ -1,9 +1,10 @@
 "use client";
 
 import { useCallback, useEffect, useRef, useState } from "react";
-import type { EquipSlot, MonsterRecord } from "@/lib/save-store";
+import type { AwardRecords, EquipSlot, MonsterRecord } from "@/lib/save-store";
 
-export interface CharacterResult {
+/** One hunter, as the worker parses it; it always reads the award records (`AwardRecords`). */
+export interface CharacterResult extends Required<AwardRecords> {
   name: string;
   sex: "Male" | "Female";
   zenny: number;

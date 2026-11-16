@@ -26,7 +26,68 @@ export interface MonsterRecord {
   smallest: number;
 }
 
-export interface SaveData {
+/** One of the hunter's Felyne Comrades. */
+export interface Comrade {
+  /** 7000 at full fondness. */
+  fondness: number;
+  /** How many of the 36 Comrade Skills it has. */
+  skills: number;
+  /** Raised by this hunter: its owner is the hunter's Guild Card name. */
+  own: boolean;
+}
+
+/**
+ * What the Guild Card award conditions read from a hunter's block, besides
+ * the cleared quests and monster records (src/lib/awards.ts uses them;
+ * packages/mhfu-extract/docs/awards.md has the offsets). Each is missing on
+ * saves stored before it was read.
+ */
+export interface AwardRecords {
+  /**
+   * Training School quests cleared with each weapon set: bit
+   * `(quest - 21001) * 5 + set`, for quests 21001-21023 and sets 0-4.
+   */
+  trainingSets?: number[];
+  /** Pokke Farm levels: Field, Fishing Pier, Mining Area, Insect area. */
+  farm?: number[];
+  /** The level of each Felyne Chef hired, of five. */
+  felyneChefs?: number[];
+  comrades?: Comrade[];
+  /** How many of the 172 combination recipes the hunter knows. */
+  recipes?: number;
+  guildPoints?: number;
+  /** How many of the 35 gold-crown treasures the hunter has found. */
+  goldTreasures?: number;
+  /** The best score of each Treasure Hunt, quests 4001-4007. */
+  treasureScores?: number[];
+  /**
+   * Quests done on each map: Forest and Hills, Jungle, Desert, Swamp,
+   * Volcano, Snowy Mountains, Tower, Great Forest, Old Jungle, Old Volcano,
+   * Old Desert, Old Swamp, Fortress, Town.
+   */
+  mapQuests?: number[];
+  /** Times Trenya's most expensive trip was paid for. */
+  trenyaTrips?: number;
+  /** How many special weapons the hunter has forged. */
+  specialWeapons?: number;
+}
+
+/** Every `AwardRecords` field, for copying them from a parsed hunter. */
+export const AWARD_RECORD_KEYS = [
+  "trainingSets",
+  "farm",
+  "felyneChefs",
+  "comrades",
+  "recipes",
+  "guildPoints",
+  "goldTreasures",
+  "treasureScores",
+  "mapQuests",
+  "trenyaTrips",
+  "specialWeapons",
+] as const satisfies readonly (keyof AwardRecords)[];
+
+export interface SaveData extends AwardRecords {
   name: string;
   region: string;
   /** Item box and pouch together. */
@@ -58,7 +119,7 @@ export interface SaveData {
 
 /** The parts of a parsed hunter that get stored. */
 export function saveFromCharacter(
-  character: {
+  character: AwardRecords & {
     name: string;
     sex?: string;
     zenny: number;
@@ -74,7 +135,11 @@ export function saveFromCharacter(
   region: string,
   slot?: number,
 ): Omit<SaveData, "savedAt"> {
+  const records = Object.fromEntries(
+    AWARD_RECORD_KEYS.map((key) => [key, character[key]]),
+  ) as AwardRecords;
   return {
+    ...records,
     name: character.name,
     region,
     items: [...character.itemChest, ...character.itemPouch],

@@ -1,25 +1,28 @@
 /**
  * The Guild Card's awards, and how far the loaded hunter is towards each from
- * what the site reads from a save: cleared quests, and the hunt and size
- * records.
+ * what the site reads from a save: cleared quests, the hunt and size records,
+ * the equipment box, and the other records the conditions read
+ * (`AwardRecords`: training, the farm, Felynes, treasures, map counters...).
  *
  * Awards are in the game's own order: an award's index in `AWARDS` is its
  * bit in the save and its ID in `data/awards.json`, which has its name and
  * the game's description of it (fetched as `/data/awards.json`). Each rule
  * is the condition the game checks before it hands the award over, read from
  * the EU EBOOT and overlays (`packages/mhfu-extract/docs/awards.md` has the
- * addresses). An award whose condition rests on save data the site doesn't
- * parse yet is `untracked`, with that data named beside it.
+ * addresses). An award whose condition the site can't follow yet is
+ * `untracked`, with the reason beside it.
  *
  * Saves also carry the game's own award flags (`SaveData.awards`, one bit per
  * award in this order). With them, "earned" is what the game has given, and
  * the rules only show how far along the rest are. Saves stored before the
  * flags were read fall back to the rules alone.
  */
+import { ARTISAN_WEAPONS } from "./award-weapons";
 import { crownFor, type Crown, type Crowns } from "./crowns";
 import { monsterRecordFor } from "./monster-ids";
 import { questsOnHub, type Quest, type QuestHubSlug } from "./quests";
 import type { MonsterRecord, SaveData } from "./save-store";
+import type { EquipmentIds } from "./schema";
 
 export type AwardGroup =
   "village" | "gathering" | "training" | "hunts" | "collection" | "farm" | "other";
@@ -63,7 +66,12 @@ export type AwardRule =
    * (`gold`), or its smallest at most its mini size (`mini`).
    */
   | { kind: "crowns"; crown: Extract<Crown, "gold" | "mini"> }
-  /** Not read from the save yet. */
+  /**
+   * Counted from the save's other records (`AwardRecords`, the equipment
+   * box): null when the save doesn't have them.
+   */
+  | { kind: "records"; tally: (save: SaveData, ctx: AwardContext) => Tally | null }
+  /** The site can't follow the condition (the reason is beside the award). */
   | { kind: "untracked" };
 
 export interface Award {
@@ -81,6 +89,10 @@ const capture = (...monsters: string[]): AwardRule => ({
   need: "capture",
 });
 const untracked: AwardRule = { kind: "untracked" };
+const records = (tally: (save: SaveData, ctx: AwardContext) => Tally | null): AwardRule => ({
+  kind: "records",
+  tally,
+});
 const VILLAGE: readonly QuestHubSlug[] = ["village"];
 const GUILD: readonly QuestHubSlug[] = ["low-rank", "high-rank", "g-rank"];
 const TRAINING: readonly QuestHubSlug[] = ["training-school"];
@@ -213,10 +225,65 @@ export const CROWN_GROUPS: readonly (readonly string[])[] = [
   ["Lavasioth"],
 ];
 
+/** `n` of `max`: a count the game checks against a mark, capped there. */
+const upTo = (n: number, max: number): Count => ({ done: Math.min(n, max), total: max });
+
+/** The site's quests of these IDs, as things still to do. */
+function questTodos(all: Quest[], hubs: readonly QuestHubSlug[], ids: number[]): AwardTodo[] {
+  return selectQuests(all, { hubs, ids }).map((quest) => ({ kind: "quest", quest }));
+}
+
+/** The weapon sets each Training School quest has (`trainingSets` has a bit for each). */
+const WEAPON_SETS = 5;
+
+/** The Artisan's Hammer's weapon class of each listed weapon, by `type:id`. */
+const ARTISAN_CLASS = new Map(
+  ARTISAN_WEAPONS.flatMap(([type, ids], weaponClass) =>
+    ids.map((id) => [`${type}:${id}`, weaponClass] as const),
+  ),
+);
+
 /**
- * Every award, in the game's order. Untracked awards name the save data
- * their condition needs, as offsets into a hunter's block of the save file
- * (the block `save-worker.js` reads the records from).
+ * Training quests `from` to `to`, each cleared with every one of its weapon
+ * sets (EU `0x08857058` reads the bits).
+ */
+function trainingSets(from: number, to: number): AwardRule {
+  return records((save, ctx) => {
+    if (!save.trainingSets) return null;
+    if (!ctx.quests) return "loading";
+    const bits = new Set(save.trainingSets);
+    const ids = range(from, to);
+    const allSets = (id: number) => {
+      for (let set = 0; set < WEAPON_SETS; set++) {
+        if (!bits.has((id - 21001) * WEAPON_SETS + set)) return false;
+      }
+      return true;
+    };
+    const left = ids.filter((id) => !allSets(id));
+    return {
+      done: ids.length - left.length,
+      total: ids.length,
+      todo: questTodos(ctx.quests, TRAINING, left),
+    };
+  });
+}
+
+/** A Pokke Farm area (its byte in `farm`) at `level`. */
+const farm = (area: number, level: number): AwardRule =>
+  records((save) => (save.farm ? upTo(save.farm[area] ?? 0, level) : null));
+
+/** The Treasure Hunts' marks for the Adventurer's Helm (EU `0x089A894C`), quests 4001-4007. */
+const TREASURE_MARKS = [30000, 35000, 35000, 40000, 40000, 45000, 50000];
+const GOLD_TREASURES = 35;
+
+/** Maps (by `mapQuests` index) and the quests the Hunter's Miracle needs on each. */
+const MIRACLE_MAPS = [7, 8, 9, 10, 11];
+const MAP_QUESTS = 20;
+
+/**
+ * Every award, in the game's order. The save data each condition reads is in
+ * `packages/mhfu-extract/docs/awards.md`; an untracked award says why beside
+ * it.
  */
 export const AWARDS: readonly Award[] = [
   {
@@ -266,11 +333,9 @@ export const AWARDS: readonly Award[] = [
     group: "gathering",
     rule: quests({ hubs: GUILD, stars: [6, 8] }),
   },
-  // Training quests 21001-21010, each with all five of its weapon sets: the
-  // per-set bits at 0x69234, bit (quest - 21001) * 5 + set.
-  { id: "black-belt", group: "training", rule: untracked },
-  // The same bits for 21011-21015.
-  { id: "expert-badge", group: "training", rule: untracked },
+  // Training quests 21001-21010, each cleared with all five of its weapon sets.
+  { id: "black-belt", group: "training", rule: trainingSets(21001, 21010) },
+  { id: "expert-badge", group: "training", rule: trainingSets(21011, 21015) },
   {
     id: "legend-badge",
     group: "training",
@@ -282,27 +347,48 @@ export const AWARDS: readonly Award[] = [
     group: "hunts",
     rule: capture(...ECOLOGY),
   },
-  // Pokke Farm's levels, bytes at 0x69D98: Mining Area (byte 2) at 4.
-  { id: "azure-stone", group: "farm", rule: untracked },
-  // Insect area (byte 3) at 4.
-  { id: "great-hornfly", group: "farm", rule: untracked },
-  // Fishing Pier (byte 1) at 2.
-  { id: "springnight-carp", group: "farm", rule: untracked },
-  // Field (byte 0) at 2.
-  { id: "dosbiscus", group: "farm", rule: untracked },
-  // Five Felyne chefs (0x6925C + i * 0x70) each with byte +3 at 9 or more.
-  { id: "grateful-letter", group: "farm", rule: untracked },
-  // All 172 combination recipes, the bitfield at 0x3FCC.
-  { id: "sages-bracelet", group: "collection", rule: untracked },
-  // Four of each of 11 weapon classes' listed weapons in the equipment box.
+  // Pokke Farm's upgrades, given on buying the last one (lobby_task
+  // 0x09A65578): the Mining Area to level 4.
+  { id: "azure-stone", group: "farm", rule: farm(2, 4) },
+  // The Insect area to 4.
+  { id: "great-hornfly", group: "farm", rule: farm(3, 4) },
+  // The Fishing Pier to 2.
+  { id: "springnight-carp", group: "farm", rule: farm(1, 2) },
+  // The Field to 2.
+  { id: "dosbiscus", group: "farm", rule: farm(0, 2) },
+  // All five Felyne Chefs hired, each at level 9 or more.
+  {
+    id: "grateful-letter",
+    group: "farm",
+    rule: records(({ felyneChefs: chefs }) =>
+      chefs ? { done: chefs.filter((level) => level >= 9).length, total: 5 } : null,
+    ),
+  },
+  // All 172 combination recipes known.
+  {
+    id: "sages-bracelet",
+    group: "collection",
+    rule: records(({ recipes }) => (recipes === undefined ? null : upTo(recipes, 172))),
+  },
+  // Four weapons from each of eleven classes' lists in the equipment box
+  // (each box slot counts, so two of one weapon are two).
   {
     id: "artisans-hammer",
     group: "collection",
-    rule: untracked,
+    rule: records(({ equipment }) => {
+      if (!equipment) return null;
+      const held = ARTISAN_WEAPONS.map(() => 0);
+      for (const s of equipment) {
+        const weaponClass = ARTISAN_CLASS.get(`${s.type}:${s.id}`);
+        if (weaponClass !== undefined) held[weaponClass]!++;
+      }
+      return { done: held.filter((n) => n >= 4).length, total: ARTISAN_WEAPONS.length };
+    }),
   },
   // The game's code hunts each of Chameleos, Teostra, Lunastra, Shen Gaoren,
   // Lao-Shan Lung and Akantor 50 times (records pooled with subspecies),
-  // not what the description says; not confirmed in an emulator.
+  // not what the description says; not confirmed in an emulator, so left
+  // untracked.
   { id: "hunters-progress", group: "other", rule: untracked },
   {
     id: "nekoht-whiskers",
@@ -374,33 +460,117 @@ export const AWARDS: readonly Award[] = [
     group: "other",
     rule: quests({ hubs: [...VILLAGE, ...GUILD], ids: EPIC_HUNTS }),
   },
-  // The training bits (as the Black Belt Badge's) for 21016-21023.
-  { id: "warriors-medal", group: "training", rule: untracked },
-  // 20 quests each in the Fortress and the Town: the map counters at 0x6A09C, bytes 12 and 13.
-  { id: "guardians-award", group: "other", rule: untracked },
-  // 1,000,000 Guild Points, the u32 at 0x6924C.
-  { id: "flower-bouquet", group: "other", rule: untracked },
-  // All 35 gold-crown treasures (0x67358, the u32 then 3 bits) and each
-  // Treasure Hunt's best score (7 u32s at 0x67360) at its mark.
-  { id: "adventurers-helm", group: "collection", rule: untracked },
-  // Trenya's top trip paid for 100 times, the byte at 0x6A909.
-  { id: "trenyas-flag", group: "farm", rule: untracked },
-  // A Felyne Comrade of your own (13 at 0x6974C + i * 0x70) with all 36 skills.
-  { id: "ultimate-catnip", group: "farm", rule: untracked },
-  // Five Felyne Comrades at full fondness (s16 +0x2A at 7000).
-  { id: "fearless-leader", group: "farm", rule: untracked },
-  // 50 special weapons forged: the bits in 9 u32s at 0x6A90C.
-  { id: "members-card", group: "collection", rule: untracked },
-  // Five rare (8+) pieces of each armor slot in the equipment box.
+  // Training quests 21016-21023 with every weapon set.
+  { id: "warriors-medal", group: "training", rule: trainingSets(21016, 21023) },
+  // 20 quests each in the Fortress and the Town.
+  {
+    id: "guardians-award",
+    group: "other",
+    rule: records(({ mapQuests: maps }) => {
+      if (!maps) return null;
+      const fortress = upTo(maps[12] ?? 0, MAP_QUESTS);
+      const town = upTo(maps[13] ?? 0, MAP_QUESTS);
+      return { done: fortress.done + town.done, total: fortress.total + town.total };
+    }),
+  },
+  // 1,000,000 Guild Points.
+  {
+    id: "flower-bouquet",
+    group: "other",
+    rule: records(({ guildPoints }) =>
+      guildPoints === undefined ? null : upTo(guildPoints, 1_000_000),
+    ),
+  },
+  // All 35 gold-crown treasures, and each Treasure Hunt's best score at its
+  // mark; what's left lists the hunts short of theirs.
+  {
+    id: "adventurers-helm",
+    group: "collection",
+    rule: records(({ goldTreasures, treasureScores: scores }, ctx) => {
+      if (goldTreasures === undefined || !scores) return null;
+      if (!ctx.quests) return "loading";
+      const short = TREASURE_MARKS.flatMap((mark, i) =>
+        (scores[i] ?? 0) >= mark ? [] : [4001 + i],
+      );
+      return {
+        done: Math.min(goldTreasures, GOLD_TREASURES) + TREASURE_MARKS.length - short.length,
+        total: GOLD_TREASURES + TREASURE_MARKS.length,
+        todo: questTodos(ctx.quests, ["treasure-hunting"], short),
+      };
+    }),
+  },
+  // Trenya's most expensive trip paid for 100 times.
+  {
+    id: "trenyas-flag",
+    group: "farm",
+    rule: records(({ trenyaTrips }) => (trenyaTrips === undefined ? null : upTo(trenyaTrips, 100))),
+  },
+  // A Felyne Comrade the hunter raised (its owner is the hunter's Guild Card
+  // name) with all 36 skills: the closest one's count.
+  {
+    id: "ultimate-catnip",
+    group: "farm",
+    rule: records(({ comrades }) =>
+      comrades
+        ? upTo(Math.max(0, ...comrades.filter((c) => c.own).map((c) => c.skills)), 36)
+        : null,
+    ),
+  },
+  // Five Felyne Comrades at full fondness: exactly 7000, as the game checks
+  // (game_sub 0x09C1F918), so an edited save's higher value doesn't count.
+  {
+    id: "fearless-leader",
+    group: "farm",
+    rule: records(({ comrades }) =>
+      comrades ? upTo(comrades.filter((c) => c.fondness === 7000).length, 5) : null,
+    ),
+  },
+  // 50 special weapons forged.
+  {
+    id: "members-card",
+    group: "collection",
+    rule: records(({ specialWeapons }) =>
+      specialWeapons === undefined ? null : upTo(specialWeapons, 50),
+    ),
+  },
+  // Five pieces of each armor slot in the equipment box at the game's rarity
+  // 8 or more (0-based, so the site's rarity 9 or more).
   {
     id: "artisans-mitten",
     group: "collection",
-    rule: untracked,
+    rule: records(({ equipment }, ctx) => {
+      if (!equipment) return null;
+      const ids = ctx.equipmentIds;
+      if (!ids) return ctx.equipmentIdsFailed ? null : "loading";
+      const done = ARMOR_TYPES.filter(
+        (type) =>
+          equipment.filter((s) => s.type === type && (ids[type]?.[s.id]?.[2] ?? 0) >= 9).length >=
+          5,
+      ).length;
+      return { done, total: ARMOR_TYPES.length };
+    }),
   },
-  // 20 quests each in the Great Forest and the four Old maps (the map
-  // counters, bytes 7 to 11), and the Hunter's Progress.
-  { id: "hunters-miracle", group: "other", rule: untracked },
+  // 20 quests each in the Great Forest and the four Old maps, and the
+  // Hunter's Progress (from the save's award flags): six steps.
+  {
+    id: "hunters-miracle",
+    group: "other",
+    rule: records(({ mapQuests: maps, awards }) => {
+      if (!maps || !awards) return null;
+      const done = MIRACLE_MAPS.filter((m) => (maps[m] ?? 0) >= MAP_QUESTS).length;
+      return {
+        done: done + (awards.includes(HUNTERS_PROGRESS) ? 1 : 0),
+        total: MIRACLE_MAPS.length + 1,
+      };
+    }),
+  },
 ];
+
+/** The Hunter's Progress's index, which the Hunter's Miracle needs. */
+const HUNTERS_PROGRESS = 23;
+
+/** The armor equip types (leggings, helmet, plate, gauntlets, waist). */
+const ARMOR_TYPES = [0, 1, 2, 3, 4];
 
 /** A monster for the crown awards: its name, type and crown sizes. */
 export interface CrownMonster {
@@ -417,11 +587,25 @@ export interface AwardContext {
   quests: Quest[] | null;
   /** All monsters, or null while they load. */
   monsters: CrownMonster[] | null;
+  /** The equipment ID table (equipment-ids.json), for armor rarity; null or missing while it loads. */
+  equipmentIds?: EquipmentIds | null;
+  /** The equipment ID table couldn't be fetched, so the awards that need it can't be followed. */
+  equipmentIdsFailed?: boolean;
 }
 
 /** Something still to do for an award: a quest to clear or a monster to hunt. */
 export type AwardTodo =
   { kind: "quest"; quest: Quest } | { kind: "monster"; monster: CrownMonster | { name: string } };
+
+/** A `records` rule's count: `done` of `total`, and what's left where it's quests. */
+export interface Count {
+  done: number;
+  total: number;
+  todo?: AwardTodo[];
+}
+
+/** A count, or "loading" while the quests or equipment IDs it needs load. */
+export type Tally = Count | "loading";
 
 export type AwardProgress =
   /** Meets the rule. */
@@ -555,6 +739,12 @@ function ruleProgress(award: Award, ctx: AwardContext): AwardProgress {
         total,
         left.map((name) => monsterTodo(ctx, name)),
       );
+    }
+    case "records": {
+      const count = save && rule.tally(save, ctx);
+      if (!count) return { status: "untracked" };
+      if (count === "loading") return { status: "loading" };
+      return tally(count.done, count.total, count.todo ?? []);
     }
   }
 }

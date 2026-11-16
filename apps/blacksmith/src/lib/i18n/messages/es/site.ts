@@ -205,7 +205,7 @@ export const site: Messages["site"] = {
     awards: {
       note: "Conseguido significa que tu partida muestra que cumples el requisito. El resto aún no se puede leer de una partida.",
       noteGiven:
-        "Los premios conseguidos son los que el juego te ha dado, leídos de tu partida. Para el resto, el progreso sale de tus misiones y registros de monstruos cuando la partida lo muestra.",
+        "Los premios conseguidos son los que el juego te ha dado, leídos de tu partida. Para el resto, el progreso sale del resto de tu partida: misiones, monstruos, entrenamiento, la granja, los Felyne y más.",
       earned: (earned: number, tracked: number) => `${earned}/${tracked}`,
       earnedLabel: (earned: number, tracked: number) =>
         `${earned} de ${tracked} premios con seguimiento conseguidos`,

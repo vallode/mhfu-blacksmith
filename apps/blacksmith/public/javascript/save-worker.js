@@ -18,7 +18,35 @@ const OFFSETS = {
   SMALLEST:    0x004194,
   KILLS:       0x004248,
   AWARDS:      0x067400, // u64 LE as two u32s: one bit per Guild Card award (see AWARD_COUNT)
+  // What the award conditions read (packages/mhfu-extract/docs/awards.md has
+  // the EU EBOOT and overlay code behind each).
+  RECIPES:         0x003fcc, // one bit per Combination List recipe, 0-171
+  GUILD_CARD_NAME: 0x0672b8, // the Guild Card's copy of the name, 18 bytes compared
+  GOLD_TREASURES:  0x067358, // u64 LE: one bit per gold-crown treasure, 0-34
+  TREASURE_SCORES: 0x067360, // 7 × u32 LE: best score of each Treasure Hunt, 4001-4007
+  GUILD_POINTS:    0x06924c, // u32 LE
+  TRAINING_SETS:   0x069234, // bit (quest - 21001) * 5 + set: a training quest cleared with a weapon set
+  FELYNE_CHEFS:    0x06925c, // 5 × 0x70: byte 0 nonzero when hired, byte 3 the chef's level
+  COMRADES:        0x06974c, // 13 × 0x70 (see parseComrades)
+  FARM:            0x069d98, // bytes: Field, Fishing Pier, Mining Area, Insect area levels
+  MAP_QUESTS:      0x06a09c, // 14 bytes: quests done on each map (see MAP_COUNT)
+  TRENYA_TRIPS:    0x06a909, // byte: Trenya's most expensive trip, times paid for
+  SPECIAL_WEAPONS: 0x06a90c, // 9 × u32 LE: one bit per special weapon forged (7 melee, 2 gunner)
 };
+
+const RECIPE_COUNT = 172;
+const GOLD_TREASURE_COUNT = 35;
+const TREASURE_HUNT_COUNT = 7;
+const TRAINING_SET_BITS = 23 * 5; // quests 21001-21023, five weapon sets each
+const FELYNE_CHEF_COUNT = 5;
+const COMRADE_COUNT = 13;
+const FELYNE_SIZE = 0x70;
+const FARM_COUNT = 4;
+// 0 Forest and Hills, 1 Jungle, 2 Desert, 3 Swamp, 4 Volcano, 5 Snowy
+// Mountains, 6 Tower, 7 Great Forest, 8 Old Jungle, 9 Old Volcano, 10 Old
+// Desert, 11 Old Swamp, 12 Fortress, 13 Town.
+const MAP_COUNT = 14;
+const SPECIAL_WEAPON_WORDS = 9;
 
 // The game's quest ID -> cleared-bit table (EBOOT 0x19a65c on the EU disc,
 // found by packages/mhfu-extract's `quest-flags`; its src/tables/quest-flags.ts
@@ -113,6 +141,75 @@ function parseAwards(view, base) {
   return awards;
 }
 
+/** Indexes of the set bits among the first `count` bits at `offset` (bit n is byte n >> 3, mask 1 << (n & 7)). */
+function setBits(view, offset, count) {
+  const bits = [];
+  for (let n = 0; n < count; n++) {
+    if (view.getUint8(offset + (n >> 3)) & (1 << (n & 7))) bits.push(n);
+  }
+  return bits;
+}
+
+/** The bytes at `offset`, as numbers. */
+function bytes(view, offset, count) {
+  return Array.from({ length: count }, (_, i) => view.getUint8(offset + i));
+}
+
+/**
+ * The hunter's Felyne Comrades (game_sub 0x09C1F918 reads them): a slot is
+ * used when its first byte is nonzero. `fondness` is the s16 at +0x2A,
+ * `skills` how many of the 36 skill bits (the u64 at +0x3C) are set, and
+ * `own` whether the owner name at +0x4E is this hunter's Guild Card name.
+ */
+function parseComrades(view, base) {
+  const name = bytes(view, base + OFFSETS.GUILD_CARD_NAME, 18);
+  const comrades = [];
+  for (let i = 0; i < COMRADE_COUNT; i++) {
+    const at = base + OFFSETS.COMRADES + i * FELYNE_SIZE;
+    if (view.getInt8(at) === 0) continue;
+    const low = view.getUint32(at + 0x3c, true);
+    const high = view.getUint32(at + 0x40, true) & 0xf;
+    const owner = bytes(view, at + 0x4e, 18);
+    comrades.push({
+      fondness: view.getInt16(at + 0x2a, true),
+      skills: popcount(low) + popcount(high),
+      own: owner.every((b, k) => b === name[k]),
+    });
+  }
+  return comrades;
+}
+
+function popcount(word) {
+  let n = 0;
+  for (let w = word >>> 0; w; w >>>= 1) n += w & 1;
+  return n;
+}
+
+/** What the award conditions read from the save, besides the quests and monster records. */
+function parseAwardRecords(view, base) {
+  const u32 = (offset) => view.getUint32(base + offset, true);
+  let specialWeapons = 0;
+  for (let i = 0; i < SPECIAL_WEAPON_WORDS; i++) specialWeapons += popcount(u32(OFFSETS.SPECIAL_WEAPONS + i * 4));
+  const felyneChefs = [];
+  for (let i = 0; i < FELYNE_CHEF_COUNT; i++) {
+    const at = base + OFFSETS.FELYNE_CHEFS + i * FELYNE_SIZE;
+    if (view.getInt8(at) !== 0) felyneChefs.push(view.getInt8(at + 3));
+  }
+  return {
+    trainingSets: setBits(view, base + OFFSETS.TRAINING_SETS, TRAINING_SET_BITS),
+    farm: bytes(view, base + OFFSETS.FARM, FARM_COUNT),
+    felyneChefs,
+    comrades: parseComrades(view, base),
+    recipes: setBits(view, base + OFFSETS.RECIPES, RECIPE_COUNT).length,
+    guildPoints: u32(OFFSETS.GUILD_POINTS),
+    goldTreasures: setBits(view, base + OFFSETS.GOLD_TREASURES, GOLD_TREASURE_COUNT).length,
+    treasureScores: Array.from({ length: TREASURE_HUNT_COUNT }, (_, i) => u32(OFFSETS.TREASURE_SCORES + i * 4)),
+    mapQuests: bytes(view, base + OFFSETS.MAP_QUESTS, MAP_COUNT),
+    trenyaTrips: view.getUint8(base + OFFSETS.TRENYA_TRIPS),
+    specialWeapons,
+  };
+}
+
 /**
  * Every monster with a record: kills, captures, and the largest and smallest
  * size recorded (percent of the monster's base size). Monster ID 0 is
@@ -170,7 +267,7 @@ function parseCharacter(view, charIndex) {
 
   return {
     name, sex, zenny, playTime, hunterRank, equipBox, itemChest, itemPouch, clearedQuests, monsters,
-    awards,
+    awards, ...parseAwardRecords(view, base),
   };
 }
 
