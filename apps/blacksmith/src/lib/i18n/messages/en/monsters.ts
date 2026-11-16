@@ -36,8 +36,10 @@ export const monsters = {
   list: {
     /** Under the Captured or Hunted filter: a monster's count, right of its name. */
     count: (count: string) => `×${count}`,
-    capturesTitle: (count: string) => `Captured ${count} times`,
-    killsTitle: (count: string) => `Hunted ${count} times`,
+    /** The count in words, for screen readers and on hover. */
+    capturesTitle: (n: number, count: string) =>
+      n === 1 ? "Captured once" : `Captured ${count} times`,
+    killsTitle: (n: number, count: string) => (n === 1 ? "Hunted once" : `Hunted ${count} times`),
     /** The selector under the list (lib/monster-filter). */
     filterGroup: "Monster filter",
     filterCount: (matched: number, total: number) => `${matched} of ${total} monsters`,

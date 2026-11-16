@@ -24,8 +24,9 @@ export const monsters: Messages["monsters"] = {
   },
   list: {
     count: (count: string) => `×${count}`,
-    capturesTitle: (count: string) => `Capturado ${count} veces`,
-    killsTitle: (count: string) => `Cazado ${count} veces`,
+    capturesTitle: (n: number, count: string) =>
+      n === 1 ? "Capturado 1 vez" : `Capturado ${count} veces`,
+    killsTitle: (n: number, count: string) => (n === 1 ? "Cazado 1 vez" : `Cazado ${count} veces`),
     filterGroup: "Filtro de monstruos",
     filterCount: (matched: number, total: number) => `${matched} de ${total} monstruos`,
     filters: {

@@ -24,6 +24,7 @@ import {
   type MonsterFilterId,
 } from "@/lib/monster-filter";
 import { prefetchManifest } from "@/lib/models";
+import { filterFade, filteredOut } from "@/styles/list";
 import { MONSTER_CATEGORIES, type MonsterCategory } from "@/lib/constants";
 
 // Some monsters have no art; keep the layout and hide the broken-image glyph.
@@ -37,6 +38,19 @@ function parseMonsterPath(pathname: string): { category?: MonsterCategory; slug?
   if (section !== "monsters") return {};
   if (!MONSTER_CATEGORIES.includes(category as MonsterCategory)) return {};
   return { category: category as MonsterCategory, slug };
+}
+
+/**
+ * A row's capture or kill count, right of its name: "×3" on screen, the
+ * whole "Captured 3 times" for screen readers and on hover.
+ */
+function CountBadge({ label, children }: { label: string; children: React.ReactNode }) {
+  return (
+    <span className="ml-auto pl-4 text-muted tabular-nums" title={label}>
+      <span aria-hidden="true">{children}</span>
+      <span className="sr-only">{label}</span>
+    </span>
+  );
 }
 
 /**
@@ -91,9 +105,10 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
               // glow's green, held still. Rows the filter leaves out are dimmed,
               // as in the weapon tree.
               className={cn(
-                "list-row transition-opacity duration-150 ease-out motion-reduce:transition-none",
+                "list-row",
+                filterFade,
                 m.slug === slug && "bg-(image:--gradient-hover-glow)",
-                !m.match && "opacity-30",
+                !m.match && filteredOut,
               )}
             >
               {/* The 36px portrait at 28px, in the same 32px slot as other row
@@ -108,16 +123,14 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
               />
               <p>{game.name("monster", m.name)}</p>
               {m.match && m.count !== null && (
-                <span
-                  className="ml-auto pl-4 text-muted tabular-nums"
-                  title={
-                    filter === "captured"
-                      ? tl.capturesTitle(formatNumber(m.count))
-                      : tl.killsTitle(formatNumber(m.count))
-                  }
+                <CountBadge
+                  label={(filter === "captured" ? tl.capturesTitle : tl.killsTitle)(
+                    m.count,
+                    formatNumber(m.count),
+                  )}
                 >
                   {tl.count(formatNumber(m.count))}
-                </span>
+                </CountBadge>
               )}
             </Link>
           ))}
