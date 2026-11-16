@@ -11,9 +11,11 @@ import fs from "node:fs";
 import path from "node:path";
 import { before, test } from "node:test";
 import type { CharacterResult, WorkerResult } from "../src/hooks/useSaveWorker";
+import { AWARDS } from "../src/lib/awards";
 import type { ItemRecord } from "../src/lib/items";
 import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
 import { DATA_DIR } from "../src/lib/paths";
+import { saveFromCharacter } from "../src/lib/save-store";
 import { readData } from "game-data";
 
 const root = path.resolve(__dirname, "..");
@@ -396,4 +398,45 @@ test("monster records read the Guild Card tables by monster ID", async () => {
     [gideon, mearo].every((h) => h.monsters.every((m) => m.captures === 0)),
     "neither hunter has captured anything",
   );
+});
+
+test("awards read the game's own flags, in AWARDS order", async () => {
+  const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
+  // Gideon's u64 is 0x00004020ff10072f.
+  assert.deepEqual(
+    gideon.awards.map((n) => AWARDS[n].id),
+    [
+      "chief-glove",
+      "chief-hat",
+      "chief-scarf",
+      "chief-coat",
+      "blood-onyx",
+      "bronze-medal",
+      "silver-medal",
+      "gold-medal",
+      "grateful-letter",
+      "nekoht-whiskers",
+      "nekoht-bell",
+      "nekoht-coat",
+      "pokke-gourd",
+      "orichalcum-shield",
+      "platinum-shield",
+      "gold-shield",
+      "supreme-crest",
+      "epic-hunts",
+      "artisans-mitten",
+    ],
+  );
+  // Blood Onyx (Akantor) but not Mane Necklace (Kirin): the game checks kills.
+  assert.equal(gideon.monsters.find((m) => m.id === MONSTER_GAME_IDS.Akantor)?.kills, 1);
+  assert.equal(
+    gideon.monsters.find((m) => m.id === MONSTER_GAME_IDS.Kirin),
+    undefined,
+  );
+  assert.deepEqual(mearo.awards, []);
+});
+
+test("stored saves keep the award flags", async () => {
+  const [gideon] = ok(await parse("us")).characters as CharacterResult[];
+  assert.deepEqual(saveFromCharacter(gideon, "us", 0).awards, gideon.awards);
 });
