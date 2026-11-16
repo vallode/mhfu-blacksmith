@@ -161,6 +161,7 @@ const assets = [
   "images/deco.png",
   "images/ticket.png",
   "images/max.png",
+  "images/dragon.png",
   // Beside the option sections' headings (SECTION_ICONS in app.ts).
   "images/heavenly.png",
   "images/scale.png",
