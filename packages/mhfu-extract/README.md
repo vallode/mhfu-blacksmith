@@ -217,7 +217,8 @@ Open:
   `m00001`-`m01013` and the last 32 real quests (`m30070` onwards) got
   non-quest names. A region-aware unpack (see "`DATA.BIN`") fixes it.
 - `diff` compares stats, not text: names come from the English
-  `mhp2g-patterns` enums for every region. Committed skill names are
+  `mhp2g-patterns` enums for every region, except monster names on the EU
+  disc (see "Monster names"). Committed skill names are
   rewritten to the extractor's spelling before comparing (see "Overlay
   data").
 
@@ -430,8 +431,7 @@ against the EU disc, then reviewed:
   Gaoren's (1010, 1011, 1030, 1031, 1058, 1059) and the Fatalis trio's low
   rank slot (Dark Piece and Dark Stone, 1072–1074).
 
-Monsters pair with the site by emID through the same overlay (the enum
-spells two differently: "One-Ear Yian Garuga", "Terra Shogun Ceanatur").
+Emitted monsters carry their emID, which pairs them with `data/`'s.
 `base_hp` is written to `data/monsters` and shown on the monster page.
 `tolerances` is written to `data/monsters` too (`siteTolerances`):
 paralysis, sleep, KO and poison in snake_case keys, `null` where `initial`
@@ -719,9 +719,9 @@ list (at most ~4 KB): `public/models/manifest/monsters.json`,
 own names; values are model IDs, from which `src/lib/models.ts` rebuilds the
 file paths:
 
-- **Monsters** map by game ID: `emmodel/emNN.pac` is `emID[NN]` in the
-  vendored `monster.enum`, matched to `data/monsters/*.json` by name (with
-  aliases for the two names that differ). IDs without a monster page
+- **Monsters** map by game ID: `emmodel/emNN.pac` is the monster whose
+  `data/monsters` record has ID NN, under its `data/strings` name. IDs
+  without a monster page
   (Veggie Elder, Poogie, ...) are skipped. Each monster also gets
   `monsters/emNN.hitboxes.json` (see "Monster hitboxes"), which needs
   `overlay/game_task.ovl` and the `emNN.ovl` files in the unpacked
@@ -1308,6 +1308,30 @@ Checked against what players report:
 Before this, randomfu could only scale size per species
 (`emChunk +0x40`); that option stays.
 
+**Monster names come from the EBOOT** (`strings/monster-names.ts`). A
+`u16[90]` by emID at `0x089AC710` gives each monster's name as an index
+into English message file 19's table 0; `0x089AC65C` just before it gives
+its species' name instead (Pink Rathian is "Rathian"). `extract` names
+monsters with it everywhere, and writes the names to `monster-names.json`,
+which `build-data` copies into `data/strings` by ID. The game abbreviates
+three ("Ash Lao-Shan Lung", "Plum D.Hermitaur", "Terra S.Ceanataur"), as
+its quest text does, and calls five subspecies by their base monster's
+name (Crimson and White Fatalis, Scarred Yian Garuga, Rusted Kushala
+Daora, Furious Rajang). `overlay/monster-names.json` names those five and
+Rocks, which the game doesn't name; `extract` fails if an entry no longer
+matches the disc or two monsters would share a name. Other regions keep
+`monster.enum`'s names.
+
+**The crown table is also the game's monster list.** Its 62 entries are
+the monsters the game describes, in the order of the English message file
+(DATA.BIN 19) table 17, which holds one description per entry. Entries
+without thresholds still point at their emID group, so the groups give
+every monster a description: subspecies take their base monster's, as
+they do its crowns. The groups cover 84 emIDs, each once; the six left out
+(0, 10, 18, 29, 32, 74) aren't monsters. `extract` writes the text as each
+monster's `description` (`monsters/bestiary.ts`), with the game's line
+breaks, which only fit its text box, turned into spaces.
+
 Other sources checked:
 
 - MHFU-ModKit's `MHFU_ENT_SIZE_SCALE` is the live entity's scale, not a
@@ -1763,7 +1787,7 @@ for tools, ammo and books, which have no icon mask) and the Lobstershells.
 | armor       | rarity, rank, slots, defence, resistances, sex, hunter_type, max_defence, max_defence_pre_ukanlos, create_cost, skills, create_mats    | 97.5–100%                                                                             | `hr`, `elder` (not on the disc), `alternative_create_mats` (not emitted)                    |
 | weapons     | attack, affinity, slots, rarity, elements, sharpness, sharpness_plus, create_cost, create_mats, improve_mats, improve_from, improve_to | 95.5–99.7% (sharpness 40–100%, affinity 99.5%, elements 100% outside bows, see below) | `improve_cost` (derivation unconfirmed), `alternative_create_mats` (ticket recipes missing) |
 | decorations | rarity, slots, create_cost, skills, create_mats, alternative_create_mats                                                               | 91.7–100%                                                                             | `color`, `category` (overlays)                                                              |
-| monsters    | base_hp, tolerances, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                               | base_hp, tolerances new; per part 97.3%, per drop group 86.5% (see below)             | `description`, `habitats`, `icon` (not on the disc)                                         |
+| monsters    | description, base_hp, tolerances, hitzones, drops (the parts and groups `overlay/monsters.json` maps)                                  | base_hp, tolerances new; per part 97.3%, per drop group 86.5% (see below)             | `icon` (not on the disc)                                                                    |
 
 Affinity was taken later (#33). Before, it agreed on 86.8% (198
 disagreements): heavy bowgun wrote zero as `"0"` (82, now compared by

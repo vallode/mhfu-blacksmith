@@ -19,7 +19,7 @@ import {
 import type { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
-import { monsterName } from "../names.js";
+import type { MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
 import type { ShuffleReport } from "./shuffle.js";
 
@@ -42,6 +42,8 @@ export function changeCarveCounts(
   rng: Rng,
   edits: Edits,
   gameSub: LoadedOverlay,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   const buf = edits.overlay(gameSub);
   const lines: { where: string; text: string }[] = [];

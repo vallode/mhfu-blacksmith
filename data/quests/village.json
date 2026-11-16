@@ -18273,7 +18273,6 @@
       "time_limit_minutes": 50,
       "target": {
         "monster": 40,
-        "alias": 0,
         "amount": 1
       },
       "supplies": [
@@ -18385,7 +18384,6 @@
       "large_monsters": [
         {
           "monster": 40,
-          "alias": 0,
           "quantity": 1,
           "power": 16,
           "multipliers": {

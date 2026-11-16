@@ -3,7 +3,7 @@
  * the full `data/*.json`-shaped output plus an `EXTRACTION.json` provenance
  * manifest. See README's "Usage" section.
  */
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { BinaryReader } from "../binary/reader.js";
@@ -35,6 +35,21 @@ import { loadMonsterOverlays, OVERLAY_DIR } from "../monsters/overlays.js";
 import { multiplierRow } from "../monsters/multipliers.js";
 import { readMonsterTables } from "../monsters/read.js";
 import { readSizeTables, type SizeTables } from "../monsters/sizes.js";
+import {
+  BESTIARY_MESSAGE_TABLE,
+  BestiaryError,
+  readBestiary,
+  type BestiaryEntry,
+} from "../monsters/bestiary.js";
+import { loadFileList } from "../container/filelist.js";
+import { readMessageFile, type MessageTable } from "../strings/messages.js";
+import {
+  discMonsterNames,
+  MONSTER_NAME_FILE,
+  MONSTER_NAME_OVERLAY,
+  MONSTER_NAME_TABLE,
+} from "../strings/monster-names.js";
+import { useMonsterNames } from "../strings/names.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
@@ -145,6 +160,61 @@ async function writeRawDumps(
   }
 }
 
+/**
+ * The EU disc's English message file 19 (`strings/messages.ts`), with its
+ * DATA.BIN path; `tables` is null if the unpack doesn't have the file.
+ */
+async function loadEnglishMessages(
+  unpacked: string,
+  region: Region,
+): Promise<{ rel: string; tables: MessageTable[] | null }> {
+  const rel =
+    loadFileList(region).get(MONSTER_NAME_FILE) ??
+    path.join("_unindexed", `${MONSTER_NAME_FILE}.bin`);
+  const file = path.join(unpacked, "data-bin", rel);
+  const found = await access(file).then(
+    () => true,
+    () => false,
+  );
+  return { rel, tables: found ? readMessageFile(await readFile(file)) : null };
+}
+
+/**
+ * Monster names from the disc (`strings/monster-names.ts`), or null with a
+ * warning if the message file or its name table isn't there. A disc whose
+ * EBOOT table doesn't read, or an overlay entry that no longer fits it,
+ * stops the extract.
+ */
+function loadMonsterNames(
+  messages: { rel: string; tables: MessageTable[] | null },
+  eboot: BinaryReader,
+): (string | null)[] | null {
+  const names = discMonsterNames(eboot, messages.tables);
+  if (!names)
+    console.warn(
+      `Warning: ${messages.rel} is missing or has no table ${MONSTER_NAME_TABLE}; no monster names.`,
+    );
+  return names;
+}
+
+/** The monster list and its descriptions (`monsters/bestiary.ts`), or null with a warning. */
+function loadBestiary(
+  messages: { rel: string; tables: MessageTable[] | null },
+  eboot: BinaryReader,
+): BestiaryEntry[] | null {
+  const table = messages.tables?.[BESTIARY_MESSAGE_TABLE];
+  try {
+    if (!table) throw new BestiaryError(`${messages.rel} has no table ${BESTIARY_MESSAGE_TABLE}`);
+    const entries = readBestiary(eboot, JP_BASE_ADDRESS, table);
+    console.log(`Monster list: ${entries.length} descriptions.`);
+    return entries;
+  } catch (error) {
+    if (!(error instanceof BestiaryError)) throw error;
+    console.warn(`Warning: no monster descriptions. ${error.message}`);
+    return null;
+  }
+}
+
 export async function runExtract(options: ExtractOptions): Promise<ExtractionManifest> {
   const manifestPath = path.join(options.unpacked, "manifest.json");
   const manifest: UnpackManifest = JSON.parse(await readFile(manifestPath, "utf-8"));
@@ -158,6 +228,19 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   console.log("Reading EBOOT.BIN...");
   const ebootBuf = await readFile(path.join(options.unpacked, "eboot.bin"));
   const reader = new BinaryReader(ebootBuf);
+
+  // Only the EU disc's English text is known: its monster names and
+  // descriptions. Names go in before anything is emitted, so every file
+  // names monsters alike; elsewhere they come from monster.enum.
+  const messages =
+    manifest.region === "eu" ? await loadEnglishMessages(options.unpacked, manifest.region) : null;
+  const monsterNames = messages ? loadMonsterNames(messages, reader) : null;
+  useMonsterNames(monsterNames);
+  if (monsterNames)
+    console.log(
+      `Monster names: ${monsterNames.filter((n) => n !== null).length - MONSTER_NAME_OVERLAY.length} from the disc, ${MONSTER_NAME_OVERLAY.length} from overlay/monster-names.json.`,
+    );
+  else console.warn(`Warning: region "${manifest.region}" names monsters from monster.enum.`);
 
   // JP keeps its original, unchanged fast path: static addresses +
   // JP-specific structural self-checks (verifyOffsets(), offsets.ts).
@@ -273,6 +356,16 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.warn(`Warning: region "${manifest.region}" has no size tables, so no sizes or crowns.`);
   }
   monsters.sizes = sizes;
+  // Only the EU disc's monster list and English descriptions are known.
+  monsters.bestiary = messages ? loadBestiary(messages, reader) : null;
+  if (monsterNames)
+    output["monster-names.json"] = {
+      names: Object.fromEntries(
+        monsterNames.flatMap((name, id) => (name === null ? [] : [[String(id), name]])),
+      ),
+    };
+  if (!monsters.bestiary)
+    console.warn(`Warning: region "${manifest.region}" has no monster descriptions.`);
   Object.assign(output, emitQuestsFile(quests, multiplierLookup, sizes ?? undefined));
 
   // Only the EU disc's map tables are known; elsewhere points get no positions.

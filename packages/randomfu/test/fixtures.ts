@@ -970,6 +970,77 @@ export function buildLobbyTask(): {
   return { buf, listAt, tablesAt, storeAt };
 }
 
+// ---------------------------------------------------------------- starting equipment
+
+export const EDIT_LOAD = 0x09a5c580;
+/** The EBOOT's add-to-the-equipment-box routine (JP's address). */
+export const ADD_TO_BOX = 0x08850668;
+
+/**
+ * A new hunter's equipment, as (category, ID) calls to `ADD_TO_BOX`: the
+ * store's weapons and armor, leg 2 by `addu $a1, $zero, $zero`.
+ */
+export const FIXTURE_STARTER: [number, number][] = [
+  [5, 1],
+  [5, 6],
+  [6, 1],
+  [0, 2],
+  [1, 3],
+  [1, 9],
+];
+/** Which of `FIXTURE_STARTER`'s pieces are worn: their box slot goes to an equip call. */
+export const FIXTURE_STARTER_WORN = [true, false, false, true, false, false];
+
+const jal = (target: number) => (0x0c000000 | ((target >>> 2) & 0x3ffffff)) >>> 0;
+const LUI_SAVE = 0x3c02089d; // lui $v0, 0x89d
+const LW_SAVE = 0x8c44c438; // lw $a0, -0x3bc8($v0)
+const CLEAR_A3 = 0x00003821; // addu $a3, $zero, $zero
+const setA1 = (category: number) => (category === 0 ? 0x00002821 : 0x24050000 | category);
+const setA2 = (id: number) => 0x24060000 | id;
+
+/**
+ * `edit_task.ovl` with `FIXTURE_STARTER`'s calls, each as the game makes
+ * them (worn ones passing their box slot to an equip call), plus calls it
+ * must not take: one to another routine, one whose ID is in a register,
+ * one whose ID is overwritten after its constant, one whose arguments are
+ * set before another call, and one a branch lands inside.
+ */
+export function buildEditTask(): { buf: Buffer; idAt: number[] } {
+  const buf = ovlHeader("edit_task.ovl", EDIT_LOAD, 0x600);
+  const idAt: number[] = [];
+  let at = 0x100;
+  const put = (...words: number[]) => {
+    for (const word of words) {
+      buf.writeUInt32LE(word >>> 0, at);
+      at += 4;
+    }
+  };
+  const call = (target: number, category: number, id: number | null, worn = false) => {
+    if (id !== null && target === ADD_TO_BOX) idAt.push(at + 12);
+    // addu $a2, $s0, $zero when not a constant
+    put(LUI_SAVE, LW_SAVE, setA1(category), id === null ? 0x02003021 : setA2(id));
+    put(jal(target), CLEAR_A3);
+    // andi $a1, $v0, 0xffff; lui $v0; jal equip; lw $a0
+    if (worn) put(0x3045ffff, LUI_SAVE, jal(0x08850868), LW_SAVE);
+  };
+  call(0x08812340, 5, 6);
+  FIXTURE_STARTER.forEach(([category, id], k) =>
+    call(ADD_TO_BOX, category, id, FIXTURE_STARTER_WORN[k]),
+  );
+  call(ADD_TO_BOX, 5, null);
+  // The ID's constant, then lw $a2, 0($s0).
+  put(setA1(5), setA2(6), 0x8e060000, LUI_SAVE, jal(ADD_TO_BOX), CLEAR_A3);
+  // Arguments set, then another call (which clobbers them), then the box call.
+  put(setA1(5), setA2(6), jal(0x08812340), 0, jal(ADD_TO_BOX), CLEAR_A3);
+  // A branch further down lands on the ID's setter, skipping the category's.
+  const landing = at + 12;
+  put(LUI_SAVE, LW_SAVE, setA1(5), setA2(6), jal(ADD_TO_BOX), CLEAR_A3);
+  const branchAt = at;
+  put(0x10000000 | (((landing - (branchAt + 4)) >> 2) & 0xffff), 0); // beq $zero, $zero; nop
+  put(0x03e00008); // jr $ra
+  return { buf, idAt };
+}
+
 // ---------------------------------------------------------------- quest board
 
 /** JP DATA.BIN indices of `mission_jpn/level1.mib` and `level2.mib`. */
@@ -1071,6 +1142,7 @@ export const TEXT_QUEST_INDEX = 4764;
 export const GAME_TASK_INDEX = 51;
 export const GAME_SUB_INDEX = 56;
 export const LOBBY_TASK_INDEX = 50;
+export const EDIT_TASK_INDEX = 44;
 
 /**
  * Low Rank 1★: quests 1001 (monster 1, mines item 120) and 10102 (a Village
@@ -1622,6 +1694,7 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   files.set(GAME_TASK_INDEX, buildGameTask());
   files.set(GAME_SUB_INDEX, buildGameSub(FIXTURE_CARVES, FIXTURE_CAPTURES));
   files.set(LOBBY_TASK_INDEX, buildLobbyTask().buf);
+  files.set(EDIT_TASK_INDEX, buildEditTask().buf);
   files.set(22, Buffer.from("stored raw"));
   let count = QUEST_INDICES.at(-1)! + 2;
   if (options.text) {
@@ -1670,4 +1743,27 @@ export function patchInMemory(original: Buffer): PatchableImage {
 /** The image `patchInMemory` made of `original`, with every write in it. */
 export function finish(image: PatchableImage, original: Buffer): Buffer {
   return assemble(image.source.segments(), original);
+}
+
+/** A message file: u32 count, u32 8, table offsets, then each table's offsets (0xFFFFFFFF-ended) and strings. */
+export function messageFile(tables: string[][]): Buffer {
+  const parts: Buffer[] = [];
+  let at = 8 + 4 * tables.length;
+  const header = Buffer.alloc(at);
+  header.writeUInt32LE(tables.length, 0);
+  header.writeUInt32LE(8, 4);
+  tables.forEach((strings, t) => {
+    header.writeUInt32LE(at, 8 + 4 * t);
+    const list = Buffer.alloc(4 * (strings.length + 1));
+    let rel = list.length;
+    const bytes = strings.map((s) => Buffer.from(`${s}\0`, "utf8"));
+    bytes.forEach((b, i) => {
+      list.writeUInt32LE(rel, 4 * i);
+      rel += b.length;
+    });
+    list.writeUInt32LE(0xffffffff, 4 * strings.length);
+    parts.push(list, ...bytes);
+    at += rel;
+  });
+  return Buffer.concat([header, ...parts, Buffer.alloc(64)]);
 }

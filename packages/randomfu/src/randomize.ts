@@ -42,14 +42,15 @@ import {
   randomizeShopPrices,
   randomizeShops,
 } from "./shuffles/shops.js";
-import { itemName, questLabel, tableName } from "./names.js";
+import { itemName, monsterNames, questLabel, tableName } from "./names.js";
 import { TABLE_COUNTS } from "mhfu-extract/src/tables/offsets.js";
 import { collectSupplyRuns, randomizeSupplies, shuffleSupplies } from "./shuffles/supplies.js";
 import { collectTermsSlots, randomizeTerms } from "./shuffles/terms.js";
-import { findSmithyStore, storeReport } from "./shuffles/store.js";
+import { findSmithyStore, findStarterBox, gearReport } from "./shuffles/store.js";
 import { shuffleWeapons } from "./shuffles/weapons.js";
 import { collectTradeSlots, randomizeTrades, shuffleTrades } from "./shuffles/veggie-trades.js";
 import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stats.js";
+import { randomizeSharpness } from "./shuffles/sharpness.js";
 import {
   collectQuestMonsters,
   multiplierSets,
@@ -178,6 +179,7 @@ function reshapeQuests(
   const small = settings["questMonsters.smallSpecies"];
   if (!maps && !starts && !small) return { quests: game.quests, lost: [] };
 
+  const monsterName = monsterNames(game);
   const maxLength = largestQuest(game.quests);
   const { list, locked } = collectDocQuests(game.quests);
   const before = new Map(list.map((e) => [e, e.doc]));
@@ -190,13 +192,14 @@ function reshapeQuests(
       settings["questMaps.pool"],
       rng.fork("quest-maps"),
       (entry, doc) => questPayload(entry.quest, doc, maxLength) !== null,
+      monsterName,
     );
     moved = result.moved;
     mapReport = result.report;
     own.push(result.report);
   }
-  if (starts) own.push(randomizeStarts(list, moved, rng.fork("monster-starts")));
-  if (small) own.push(swapSmallSpecies(list, rng.fork("small-species")));
+  if (starts) own.push(randomizeStarts(list, moved, rng.fork("monster-starts"), monsterName));
+  if (small) own.push(swapSmallSpecies(list, rng.fork("small-species"), monsterName));
 
   const rebuilt = new Map<number, { entry: DocQuest; quest: LoadedQuest }>();
   for (const entry of list) {
@@ -258,6 +261,7 @@ export function randomize(
   settings: Settings,
   options: RandomizeOptions = {},
 ): RandomizeResult {
+  const monsterName = monsterNames(input);
   const rng = new Rng(`randomfu/${LOGIC_VERSION}/${settings.seed}`);
   const edits = new Edits(input);
   const reports: ShuffleReport[] = [];
@@ -281,12 +285,15 @@ export function randomize(
       edits,
       game.quests,
       setOf,
+      monsterName,
       game.boards,
     );
     reports.push(result.report);
     questsAfter = result.questsAfter;
     if (settings["questMonsters.text"]) {
-      reports.push(renameQuestText(result.swaps, game.quests, edits, game.boards, options.debug));
+      reports.push(
+        renameQuestText(result.swaps, game.quests, edits, monsterName, game.boards, options.debug),
+      );
     }
   }
   if (settings["questMonsters.difficulty"]) {
@@ -300,6 +307,7 @@ export function randomize(
         rng.fork("monster-difficulty"),
         edits,
         setOf,
+        monsterName,
       ),
     );
   }
@@ -330,6 +338,7 @@ export function randomize(
         settings["questMonsters.smallCountSpread"],
         rng.fork("small-monster-counts"),
         edits,
+        monsterName,
       ),
     );
   }
@@ -358,6 +367,7 @@ export function randomize(
           },
           edits,
           game.gameTask,
+          monsterName,
         ),
       );
     }
@@ -369,6 +379,7 @@ export function randomize(
           { elements: rng.fork("weakness-elements"), parts: rng.fork("weakness-parts") },
           edits,
           game.gameTask,
+          monsterName,
         ),
       );
     }
@@ -432,7 +443,14 @@ export function randomize(
     const scope = settings["monsterRewards.scope"];
     const result =
       monsterMode === "shuffle"
-        ? shuffleMonsterRewards(changed, scope, rng.fork("monster-rewards"), edits, game.gameSub)
+        ? shuffleMonsterRewards(
+            changed,
+            scope,
+            rng.fork("monster-rewards"),
+            edits,
+            game.gameSub,
+            monsterName,
+          )
         : randomizeMonsterRewards(
             changed,
             { scope, chances: settings["monsterRewards.chances"] },
@@ -444,6 +462,7 @@ export function randomize(
             rng.fork("monster-rewards"),
             edits,
             game.gameSub,
+            monsterName,
           );
     reports.push(result.report);
     monsterAfter = [...result.after, ...kept];
@@ -458,6 +477,7 @@ export function randomize(
         rng.fork("carve-counts"),
         edits,
         game.gameSub,
+        monsterName,
       ),
     );
 
@@ -579,11 +599,12 @@ export function randomize(
     );
   }
 
-  // The smithy's store follows the weapons and armor shuffles: found once, for both.
-  const store =
-    settings["weapons.enabled"] || settings["armor.enabled"]
-      ? findSmithyStore(game.lobbyTask)
-      : null;
+  // The smithy's store and a new hunter's equipment follow the weapons and
+  // armor shuffles: found once, for both.
+  const followsGear = settings["weapons.enabled"] || settings["armor.enabled"];
+  const store = followsGear ? findSmithyStore(game.lobbyTask) : null;
+  const starter = followsGear ? findStarterBox(game.editTask) : null;
+  const gear = [store, starter].filter((list) => list !== null);
 
   // Weapons first: it moves upgrade materials between entries, and the
   // recipe shuffles then work on the tables as it left them.
@@ -595,27 +616,50 @@ export function randomize(
         settings["weapons.mix"],
         rng.fork("weapons"),
         edits,
-        store,
+        gear,
       ),
     );
   }
 
-  // Stats are in each weapon's own record, which the weapons shuffle never
-  // touches, so they go with the weapon and the order doesn't matter.
+  // Sharpness and stats are in each weapon's own record, which the weapons
+  // shuffle never touches, so they go with the weapon and that order
+  // doesn't matter. Sharpness goes first, and the stats are read after it:
+  // the affinity they bound is shown with a bonus by sharpness amount.
+  if (settings["weapons.sharpness"]) {
+    reports.push(
+      randomizeSharpness(
+        game.eboot,
+        game.resolver,
+        settings["weapons.sharpnessMode"],
+        rng.fork("weapon-sharpness"),
+        edits,
+      ),
+    );
+  }
   const weaponSpreads = {
     attack: settings["weapons.attack"] ? settings["weapons.attackSpread"] : null,
     affinity: settings["weapons.affinity"] ? settings["weapons.affinitySpread"] : null,
     element: settings["weapons.element"] ? settings["weapons.elementSpread"] : null,
+    slots: settings["weapons.slots"] ? settings["weapons.slotSpread"] : null,
   };
   if (Object.values(weaponSpreads).some((v) => v !== null)) {
+    // The resolver is pinned to the vanilla EBOOT, so it reads the edited one too.
+    const weapons = collectWeaponStats(edits.eboot(), game.resolver);
     reports.push(
       randomizeWeaponStats(
-        collectWeaponStats(game.eboot, game.resolver),
-        weaponSpreads,
+        weapons,
+        {
+          ...weaponSpreads,
+          elementGain: settings["weapons.elementGain"],
+          elementKind: settings["weapons.elementKind"],
+          range: settings["weapons.statRange"],
+        },
         {
           attack: rng.fork("weapon-attack"),
           affinity: rng.fork("weapon-affinity"),
           element: rng.fork("weapon-element"),
+          elementKind: rng.fork("weapon-element-kind"),
+          slots: rng.fork("weapon-slots"),
         },
         edits,
       ),
@@ -625,9 +669,11 @@ export function randomize(
   // Armor only changes which piece each create entry makes, so the recipe
   // shuffles' spoiler names the new pieces.
   if (settings["armor.enabled"]) {
-    reports.push(shuffleArmor(game.eboot, game.resolver, rng.fork("armor"), edits, store));
+    reports.push(shuffleArmor(game.eboot, game.resolver, rng.fork("armor"), edits, gear));
   }
-  if (settings["weapons.enabled"] || settings["armor.enabled"]) reports.push(storeReport(store));
+  if (followsGear) {
+    reports.push(gearReport("Smithy store", store), gearReport("Starting equipment", starter));
+  }
 
   // Stats are the pieces' own, in bytes the armor and skill shuffles don't
   // touch. They go before the skill shuffle so its spoiler shows each

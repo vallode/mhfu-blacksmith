@@ -22,7 +22,7 @@ import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
 import type { GameData } from "../game/load.js";
 import type { Tier } from "../game/tiers.js";
-import { monsterName } from "../names.js";
+import { monsterNames, type MonsterNames } from "../names.js";
 import {
   checkPage,
   fitLine,
@@ -81,7 +81,11 @@ const STATUS_AT = { paralysis: 0, ko: 10, sleep: 20, poison: 40 } as const;
 const cap = (s: string) => s.charAt(0).toUpperCase() + s.slice(1);
 
 /** Each large monster's data as it is in `task` (the edited `game_task.ovl`), by name. */
-export function readGuideMonsters(task: OvlFile, emIds: Iterable<number>): GuideMonster[] {
+export function readGuideMonsters(
+  task: OvlFile,
+  emIds: Iterable<number>,
+  monsterName: MonsterNames,
+): GuideMonster[] {
   const chunks = locateMonsterChunks(task);
   if (!chunks) throw new Error("game_task.ovl: the monster table wasn't found");
   const r = task.reader;
@@ -294,7 +298,7 @@ export function planBestiary(
   const articles = BESTIARY_ARTICLES_EU;
   const large = quests.flatMap((q) => q.largeMonsters.map((m) => m.monsterId));
   const task = new OvlFile(edits.dataFileNow(game.gameTask.index));
-  const monsters = readGuideMonsters(task, large);
+  const monsters = readGuideMonsters(task, large, monsterNames(game));
   addAppearances(monsters, largeAppearances(quests));
   return {
     title,

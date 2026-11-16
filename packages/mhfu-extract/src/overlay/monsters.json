@@ -470,7 +470,7 @@
     },
     {
       "id": 86,
-      "name": "Plum Daimyo Hermitaur",
+      "name": "Plum D.Hermitaur",
       "file": "monsters/carapaceon.json",
       "hitzones": {
         "head": [0, 0],
@@ -562,7 +562,7 @@
     },
     {
       "id": 87,
-      "name": "Terra Shogun Ceanataur",
+      "name": "Terra S.Ceanataur",
       "file": "monsters/carapaceon.json",
       "hitzones": {
         "head": [0, 0],
@@ -774,7 +774,7 @@
     },
     {
       "id": 50,
-      "name": "Ashen Lao-Shan Lung",
+      "name": "Ash Lao-Shan Lung",
       "file": "monsters/elder-dragon.json",
       "hitzones": {
         "head": [0, 0],

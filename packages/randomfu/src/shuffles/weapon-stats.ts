@@ -12,18 +12,23 @@
  *   to 10 points by sharpness (`SharpnessAmount`, u8 at +9), from a
  *   correlation with the site's data. Bounds and the spread apply to that
  *   shown value, so crossing from 0% to positive can't add a hidden bonus.
- * - element value: u8, Blademaster +15, Gunner +18; status value: u8,
- *   Blademaster +17. Both are a tenth of what the game shows. Only weapons
- *   that already have an element or status change, and keep its kind. The
- *   dual-element weapons (`WepDualAttr`) are skipped by ID.
+ * - element: type u8 then value u8, Blademaster +14, Gunner +17; status:
+ *   type then value, Blademaster +16. Values are a tenth of what the game
+ *   shows. The dual-element weapons (`WepDualAttr`) are skipped by ID.
+ *   Weapons with none can gain one (Blademaster weapons an element or a
+ *   status, bows an element), and ones with one can change which: only
+ *   Blademaster weapons and bows, as the game has elements on no bowgun.
+ * - slots: u8, Blademaster +18, Gunner +12, 0 to 3.
  *
  * Attack and element values are multiplied by a random factor within the
  * spread; affinity moves by up to the spread in points, in steps of 5. Each
- * is then kept within what weapons of the same type have from one rarity
- * below to one above (`RarityBounds`), on this disc, so a weapon stays plausible
- * for where it is in the game. A weapon with no other of its type (and, for
- * elements, of its kind) in that window is held only by the spread. Sharpness, slots, defense bonus, horn notes,
- * shelling, ammo, rarity and price never change.
+ * is then kept within what weapons of the same type have from `range`
+ * rarities below to as many above (`RarityBounds`), on this disc, so a weapon
+ * stays plausible for where it is in the game. A weapon with no other of
+ * its type (and, for elements, of its kind) in that window is held only by
+ * the spread. A new element or status, or a switch between the two, takes
+ * a value from that window's. Sharpness is `sharpness.ts`; defense bonus,
+ * horn notes, shelling, ammo, rarity and price never change.
  */
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import type { NameTable } from "mhfu-extract/src/strings/names.js";
@@ -69,6 +74,8 @@ interface Layout {
   status: { type: number; value: Field } | null;
   /** Offset of `SharpnessAmount` (u8), Blademaster only. */
   sharpnessAmount: number | null;
+  /** Offset of the decoration slots (u8). */
+  slots: number;
 }
 
 const AFFINITY: Field = { at: 13, size: "s8" };
@@ -84,6 +91,7 @@ const LAYOUTS: Layout[] = [
     element: { type: 14, value: { at: 15, size: "u8" } },
     status: { type: 16, value: { at: 17, size: "u8" } },
     sharpnessAmount: 9,
+    slots: 18,
   },
   {
     family: "Gunner",
@@ -95,11 +103,19 @@ const LAYOUTS: Layout[] = [
     element: { type: 17, value: { at: 18, size: "u8" } },
     status: null,
     sharpnessAmount: null,
+    slots: 12,
   },
 ];
 
 /** Affinity moves in steps of this many points, as the game's do. */
 export const AFFINITY_STEP = 5;
+
+/** Most decoration slots a weapon can have. */
+export const MAX_SLOTS = 3;
+
+/** How many rarities either side a value's bounds take in, by setting. */
+export const STAT_RANGES = { near: 1, wide: 3, any: Infinity } as const;
+export type StatRange = keyof typeof STAT_RANGES;
 
 export interface WeaponStatSpreads {
   /** Attack factor spread (0.2 = 80% to 120%), or null to leave attack alone. */
@@ -108,7 +124,37 @@ export interface WeaponStatSpreads {
   affinity: number | null;
   /** Element and status value factor spread, or null. */
   element: number | null;
+  /** Chance a weapon with no element or status gains one (0 for none). */
+  elementGain: number;
+  /** Whether a weapon's element or status can change to another. */
+  elementKind: boolean;
+  /** How many slots a weapon can gain or lose, or null to leave slots alone. */
+  slots: number | null;
+  /** Rarities either side bounds take in (`STAT_RANGES`). */
+  range: StatRange;
 }
+
+type AttributeKind = "element" | "status";
+
+/** An element or status a weapon can have: which, its type byte's value and its name. */
+interface Attribute {
+  kind: AttributeKind;
+  type: number;
+  name: string;
+}
+
+const ATTRIBUTES: Attribute[] = [
+  ...Object.entries(ELEMENT_NAMES).map(([type, name]) => ({
+    kind: "element" as const,
+    type: Number(type),
+    name,
+  })),
+  ...Object.entries(STATUS_NAMES).map(([type, name]) => ({
+    kind: "status" as const,
+    type: Number(type),
+    name,
+  })),
+];
 
 /** One weapon's stats, as stored. */
 export interface WeaponStats {
@@ -126,7 +172,21 @@ export interface WeaponStats {
   /** Blademaster sharpness amount, for the shown affinity; null for Gunner weapons. */
   sharpnessAmount: number | null;
   /** The element or status the record has, if any: which field and its value. */
-  element: { kind: "element" | "status"; name: string; field: Field; value: number } | null;
+  element: {
+    kind: AttributeKind;
+    type: number;
+    name: string;
+    field: Field;
+    value: number;
+  } | null;
+  /**
+   * Offsets of the element and status type bytes (each followed by its
+   * value) when the weapon can gain or change one; null when it can't (a
+   * bowgun, a dual-element weapon, or one with both).
+   */
+  attributes: { element: number; status: number | null } | null;
+  slotsAt: number;
+  slots: number;
   classMod: number;
 }
 
@@ -174,6 +234,7 @@ export function collectWeaponStats(
         const field = layout.element.value;
         element = {
           kind: "element",
+          type: elementType,
           name: ELEMENT_NAMES[elementType],
           field,
           value: read(reader, offset, field),
@@ -182,11 +243,20 @@ export function collectWeaponStats(
         const field = layout.status.value;
         element = {
           kind: "status",
+          type: statusType,
           name: STATUS_NAMES[statusType],
           field,
           value: read(reader, offset, field),
         };
       }
+      // Only a record whose bytes are empty or known, and not both set, is
+      // rewritten: an unknown type may mean something to the game.
+      const canTake =
+        !isDual &&
+        (layout.status !== null || type === "bow") &&
+        (elementType === 0 || ELEMENT_NAMES[elementType] !== undefined) &&
+        (statusType === 0 || STATUS_NAMES[statusType] !== undefined) &&
+        !(elementType !== 0 && statusType !== 0);
       out.push({
         family: layout.family,
         index,
@@ -200,6 +270,11 @@ export function collectWeaponStats(
         sharpnessAmount:
           layout.sharpnessAmount === null ? null : reader.u8(offset + layout.sharpnessAmount),
         element,
+        attributes: canTake
+          ? { element: layout.element.type, status: layout.status?.type ?? null }
+          : null,
+        slotsAt: layout.slots,
+        slots: reader.u8(offset + layout.slots),
         classMod: classMods[CLASS_MODIFIER_KEYS[type]],
       });
     }
@@ -211,9 +286,51 @@ export function collectWeaponStats(
 const shownAffinity = (w: WeaponStats, affinity: number) =>
   w.sharpnessAmount === null ? affinity : blademasterAffinity(affinity, w.sharpnessAmount);
 
+/**
+ * The element or status `w` gets instead of its own, with its value, or
+ * null when it keeps its own (or stays without). `rolls` are three uniform
+ * draws: whether, which, and the value.
+ */
+function newAttribute(
+  w: WeaponStats,
+  spreads: WeaponStatSpreads,
+  [whether, which, value]: number[],
+  bounds: Record<AttributeKind, RarityBounds<WeaponStats>>,
+): { attribute: Attribute; value: number } | null {
+  if (!w.attributes) return null;
+  if (w.element ? !spreads.elementKind : whether! >= spreads.elementGain) return null;
+  // Elements, and statuses where the record has room, of a kind some
+  // weapon of its type has (for a value to take).
+  const choices = ATTRIBUTES.filter(
+    (a) =>
+      (a.kind === "element" || w.attributes!.status !== null) &&
+      (w.element?.kind === a.kind || bounds[a.kind].of(w, Infinity, 1) !== null),
+  );
+  const attribute = choices[Math.floor(which! * choices.length)];
+  if (!attribute || (w.element?.type === attribute.type && w.element.kind === attribute.kind)) {
+    return null;
+  }
+  // Kept when it stays an element (or a status).
+  if (w.element?.kind === attribute.kind) return { attribute, value: w.element.value };
+  // Otherwise from weapons of its type with that kind, nearby or else at any rarity.
+  const [lo, hi] =
+    bounds[attribute.kind].of(w, undefined, 1) ?? bounds[attribute.kind].of(w, Infinity, 1)!;
+  return { attribute, value: Math.max(1, lo + Math.floor(value! * (hi - lo + 1))) };
+}
+
+/** Writes `attribute` at `value` into `w`'s record, clearing the other kind. */
+function writeAttribute(buf: Buffer, w: WeaponStats, attribute: Attribute, value: number): void {
+  const at = w.attributes!;
+  const own = attribute.kind === "element" ? at.element : at.status!;
+  const other = attribute.kind === "element" ? at.status : at.element;
+  if (other !== null) buf.fill(0, w.offset + other, w.offset + other + 2);
+  buf.writeUInt8(attribute.type, w.offset + own);
+  buf.writeUInt8(value, w.offset + own + 1);
+}
+
 /** Family, then type, then rarity as a number, so rarity 10 comes after 9. */
 const FAMILY_ORDER = ["Blademaster", "Gunner"];
-function compareWeapons(a: WeaponStats, b: WeaponStats): number {
+export function compareWeapons(a: WeaponStats, b: WeaponStats): number {
   return (
     FAMILY_ORDER.indexOf(a.family) - FAMILY_ORDER.indexOf(b.family) ||
     TYPE_NAMES[a.type].localeCompare(TYPE_NAMES[b.type]) ||
@@ -224,23 +341,25 @@ function compareWeapons(a: WeaponStats, b: WeaponStats): number {
 export function randomizeWeaponStats(
   weapons: readonly WeaponStats[],
   spreads: WeaponStatSpreads,
-  rngs: { attack: Rng; affinity: Rng; element: Rng },
+  rngs: { attack: Rng; affinity: Rng; element: Rng; elementKind: Rng; slots: Rng },
   edits: Edits,
 ): ShuffleReport {
   const buf = edits.eboot();
-  const typeBounds = (list: readonly WeaponStats[], value: (w: WeaponStats) => number | null) =>
+  const range = STAT_RANGES[spreads.range];
+  const typeBounds = (value: (w: WeaponStats) => number | null) =>
     new RarityBounds(
-      list,
+      weapons,
       (w) => w.type,
       (w) => w.rarity,
       value,
+      range,
     );
-  const attackBounds = typeBounds(weapons, (o) => o.attack);
-  const affinityBounds = typeBounds(weapons, (o) => shownAffinity(o, o.affinity));
-  const elementBounds = {
-    element: typeBounds(weapons, (o) => (o.element?.kind === "element" ? o.element.value : null)),
-    status: typeBounds(weapons, (o) => (o.element?.kind === "status" ? o.element.value : null)),
-  };
+  const attackBounds = typeBounds((o) => o.attack);
+  const affinityBounds = typeBounds((o) => shownAffinity(o, o.affinity));
+  const kindBounds = (kind: AttributeKind) =>
+    typeBounds((o) => (o.element?.kind === kind ? o.element.value : null));
+  const elementBounds = { element: kindBounds("element"), status: kindBounds("status") };
+  const changesKind = spreads.elementGain > 0 || spreads.elementKind;
   const shown = (w: WeaponStats, attack: number) =>
     w.classMod > 0 ? Math.round((attack * w.classMod) / 100) : attack;
   const factor = (spread: number, rng: Rng) => 1 - spread + rng.float() * 2 * spread;
@@ -282,8 +401,24 @@ export function randomizeWeaponStats(
     }
     if (spreads.element !== null) {
       const roll = factor(spreads.element, rngs.element);
+      // Drawn for every weapon, like the others, and from a stream of its
+      // own, so turning these on leaves the values above as they were.
+      const kindRolls = changesKind
+        ? [rngs.elementKind.float(), rngs.elementKind.float(), rngs.elementKind.float()]
+        : null;
+      const next = kindRolls && newAttribute(w, spreads, kindRolls, elementBounds);
       const element = w.element;
-      if (element) {
+      if (next) {
+        const { attribute } = next;
+        // A switch within elements (or statuses) keeps the value, varied as usual.
+        const value =
+          element?.kind === attribute.kind
+            ? clamp(Math.max(1, Math.round(next.value * roll)), elementBounds[attribute.kind].of(w))
+            : next.value;
+        writeAttribute(buf, w, attribute, value);
+        const now = `${attribute.name} ${value * 10}`;
+        changes.push(element ? `${element.name} ${element.value * 10} -> ${now}` : `gains ${now}`);
+      } else if (element) {
         const bounds = elementBounds[element.kind].of(w);
         const value = clamp(Math.max(1, Math.round(element.value * roll)), bounds);
         write(buf, w.offset, element.field, value);
@@ -291,6 +426,12 @@ export function randomizeWeaponStats(
           changes.push(`${element.name} ${element.value * 10} -> ${value * 10}`);
         }
       }
+    }
+    if (spreads.slots !== null) {
+      const roll = rngs.slots.int(2 * spreads.slots + 1) - spreads.slots;
+      const slots = Math.min(MAX_SLOTS, Math.max(0, w.slots + roll));
+      buf.writeUInt8(slots, w.offset + w.slotsAt);
+      if (slots !== w.slots) changes.push(`slots ${w.slots} -> ${slots}`);
     }
     if (changes.length > 0) {
       changed.push({
@@ -321,12 +462,34 @@ export function randomizeWeaponStats(
   }
   if (spreads.element !== null) {
     notes.push(
-      `Element and status values are ${pct(1 - spreads.element)} to ${pct(1 + spreads.element)} of what they were, in steps of 10. Weapons keep their element or status, and weapons with none stay without. The dual-element weapons keep theirs.`,
+      `Element and status values are ${pct(1 - spreads.element)} to ${pct(1 + spreads.element)} of what they were, in steps of 10. The dual-element weapons keep theirs.`,
+    );
+    if (spreads.elementGain > 0) {
+      notes.push(
+        `A Blademaster weapon or bow with no element or status gains one ${pct(spreads.elementGain)} of the time (bows only elements): an element or status some weapon of its type has, at a value weapons of its type with it have nearby (or at any rarity, if none nearby do).`,
+      );
+    } else notes.push("Weapons with no element or status stay without.");
+    notes.push(
+      spreads.elementKind
+        ? "A Blademaster weapon or bow with an element or status gets any one (bows only elements). Switching between an element and a status takes a value from weapons of its type with the new one nearby; otherwise the value is kept and varied as above."
+        : "Weapons keep which element or status they have.",
+    );
+  }
+  if (spreads.slots !== null) {
+    notes.push(`Decoration slots move by up to ${spreads.slots}, from 0 to ${MAX_SLOTS}.`);
+  }
+  if (spreads.attack !== null || spreads.affinity !== null || spreads.element !== null) {
+    notes.push(
+      {
+        near: "Each value stays within what weapons of the same type have, from one rarity below to one above.",
+        wide: "Each value stays within what weapons of the same type have, from three rarities below to three above.",
+        any: "Each value stays within what weapons of the same type have, at any rarity.",
+      }[spreads.range] +
+        " A weapon with no other of its type (or element or status) in that window is limited by the spread alone.",
     );
   }
   notes.push(
-    "Each value stays within what weapons of the same type have, from one rarity below to one above. A weapon with no other of its type (or element or status) in that window is limited by the spread alone.",
-    "Sharpness, slots, defense bonus, horn notes, shelling, ammo, rarity and price don't change.",
+    "Defense bonus, horn notes, shelling, ammo, rarity and price don't change.",
     `${lines.length} weapons changed.`,
   );
   return { title: "Weapon stats", notes, lines };

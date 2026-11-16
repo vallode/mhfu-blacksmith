@@ -5,6 +5,7 @@ import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import { readMessageFile } from "mhfu-extract/src/strings/messages.js";
+import { enumMonsterNames } from "../src/names.js";
 import {
   addAppearances,
   BESTIARY_NAME,
@@ -33,32 +34,10 @@ import {
   FIXTURE_TOLERANCES,
   fixtureHitzone,
   fixtureHp,
+  messageFile,
   tempDir,
 } from "./fixtures.js";
 import { settingsWith } from "./settings-helper.js";
-
-/** A message file: u32 count, u32 8, table offsets, then each table's offsets (0xFFFFFFFF-ended) and strings. */
-function messageFile(tables: string[][]): Buffer {
-  const parts: Buffer[] = [];
-  let at = 8 + 4 * tables.length;
-  const header = Buffer.alloc(at);
-  header.writeUInt32LE(tables.length, 0);
-  header.writeUInt32LE(8, 4);
-  tables.forEach((strings, t) => {
-    header.writeUInt32LE(at, 8 + 4 * t);
-    const list = Buffer.alloc(4 * (strings.length + 1));
-    let rel = list.length;
-    const bytes = strings.map((s) => Buffer.from(`${s}\0`, "utf8"));
-    bytes.forEach((b, i) => {
-      list.writeUInt32LE(rel, 4 * i);
-      rel += b.length;
-    });
-    list.writeUInt32LE(0xffffffff, 4 * strings.length);
-    parts.push(list, ...bytes);
-    at += rel;
-  });
-  return Buffer.concat([header, ...parts, Buffer.alloc(64)]);
-}
 
 /** Text without its colour codes. */
 const plain = (text: string) => text.replace(/~C\d\d/g, "");
@@ -350,7 +329,7 @@ test("article records are found by title and page count, and unlocked", () => {
 
 test("monsters are read from game_task.ovl: HP, softest parts, elements, status", () => {
   const task = new OvlFile(buildGameTask());
-  const [m] = readGuideMonsters(task, [16, 16]).filter((x) => x.emId === 16);
+  const [m] = readGuideMonsters(task, [16, 16], enumMonsterNames).filter((x) => x.emId === 16);
   assert.ok(m);
   assert.equal(m.hp, fixtureHp(16));
   const sums = m.parts.map((p) => p.cut + p.bash + p.shot);
@@ -377,7 +356,7 @@ test("monsters are read from game_task.ovl: HP, softest parts, elements, status"
     ko: null,
   });
   // Sorted by name; chunks without hitzones are left out.
-  const all = readGuideMonsters(task, [1, 2, 16]);
+  const all = readGuideMonsters(task, [1, 2, 16], enumMonsterNames);
   assert.deepEqual(
     all.map((x) => x.name),
     [...all.map((x) => x.name)].sort((a, b) => a.localeCompare(b)),

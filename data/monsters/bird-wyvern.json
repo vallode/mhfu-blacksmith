@@ -3,9 +3,6 @@
     {
       "id": 35,
       "type": "bird-wyvern",
-      "habitats": [
-        "SnwyMntains"
-      ],
       "drops": {
         "low-rank": {
           "body carves (x1)": [
