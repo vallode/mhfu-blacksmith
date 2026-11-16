@@ -56,6 +56,10 @@ export function collectStaticPageUrls(): string[] {
     "/veggie-elder/",
     "/wishlist/",
     "/hunter/",
+    "/hunter/guild-card/",
+    "/hunter/awards/",
+    "/hunter/quests/",
+    "/hunter/save/",
     "/options/",
   ];
   for (const type of WEAPON_TYPES) urls.push(`/blacksmith/${type}/`);

@@ -28,7 +28,7 @@ import {
   decodeDecoration,
   decodeTree,
 } from "./schema";
-import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES } from "./constants";
+import { ARMOR_RANKS, ARMOR_SLOTS, MONSTER_CATEGORIES, type MonsterCategory } from "./constants";
 import { decodeAreaMap, type AreaMap, type AreaMapsBundle } from "./area-maps";
 import { decodeItemPlaces, type ItemPlaces, type ItemPlacesBundle } from "./item-places";
 import { buildItemSources, type ItemSources } from "./item-sources";
@@ -287,6 +287,34 @@ export function useMonsterList(category: string): ListState<MonsterListItem> {
       items: b.items.map(decodeMonsterListItem),
     };
   });
+}
+
+/** Every monster type's list, with each monster's type: null until they have all loaded. */
+export function useAllMonsters(): (MonsterListItem & { category: MonsterCategory })[] | null {
+  const [monsters, setMonsters] = useState<
+    (MonsterListItem & { category: MonsterCategory })[] | null
+  >(null);
+  useEffect(() => {
+    let cancelled = false;
+    Promise.all(
+      MONSTER_CATEGORIES.map((category) =>
+        getBundle(`monster-${category}`).then((bundle) =>
+          (bundle as MonsterBundle).items.map((m) => ({
+            ...decodeMonsterListItem(m),
+            category,
+          })),
+        ),
+      ),
+    )
+      .then((lists) => {
+        if (!cancelled) setMonsters(lists.flat());
+      })
+      .catch(() => {});
+    return () => {
+      cancelled = true;
+    };
+  }, []);
+  return monsters;
 }
 
 // Re-export melodies lookup for the horn table.

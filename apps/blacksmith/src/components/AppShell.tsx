@@ -9,6 +9,7 @@ import Icon from "@/components/Icon";
 import { useSectionHref, type MenuSection } from "@/app/MenuLink";
 import { cn } from "@/lib/cn";
 import { useT } from "@/context/LanguageContext";
+import { useSave } from "@/context/SaveContext";
 import type { Messages } from "@/lib/i18n/messages";
 
 type NavLabel = keyof Messages["site"]["nav"];
@@ -29,7 +30,11 @@ interface NavItem {
   tabMini?: boolean;
 }
 
-/** The sidebar's entries, in groups with a divider between them: the game's data, then your own. */
+/**
+ * The sidebar's entries, in groups with a divider between them: the game's
+ * data, then your own. Search, the options and the hunter sit at the
+ * bottom (OPTIONS_NAV, HunterRow).
+ */
 const NAV_GROUPS: NavItem[][] = [
   [
     {
@@ -57,11 +62,16 @@ const NAV_GROUPS: NavItem[][] = [
   [
     { label: "sets", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
     { label: "wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/" },
-    { label: "hunter", icon: "coin", match: "/hunter/", href: "/hunter/" },
-    { label: "options", icon: "part", match: "/options/", href: "/options/" },
   ],
 ];
+const OPTIONS_NAV: NavItem = {
+  label: "options",
+  icon: "part",
+  match: "/options/",
+  href: "/options/",
+};
 const NAV = NAV_GROUPS.flat();
+const HUNTER_MATCH = "/hunter/";
 
 const COLLAPSED_KEY = "sidebar-collapsed";
 
@@ -102,6 +112,47 @@ const sidebarRowActive = "bg-(image:--gradient-hover-glow)";
 
 // Nav icons are grey until hovered; brighten them with their row too.
 const rowIcon = "mr-0 group-hover:before:bg-white";
+
+/**
+ * The hunter's entry at the foot of the sidebar, like an account row: the
+ * loaded hunter's name over their HR, or "Load hunter" without one. It leads
+ * to the hunter's pages (/hunter/), where a save is loaded too.
+ */
+function HunterRow({
+  pathname,
+  railLabel,
+  rail,
+}: {
+  pathname: string;
+  railLabel: boolean;
+  rail: (wide: string, compact: string) => string | false | undefined;
+}) {
+  const t = useT().site;
+  const { save } = useSave();
+  const active = pathname.startsWith(HUNTER_MATCH);
+  const label = save ? save.name : t.nav.loadHunter;
+  const rank = save?.hunterRank !== undefined ? t.hunter.rankShort(save.hunterRank) : null;
+  return (
+    <Link
+      href={HUNTER_MATCH}
+      title={railLabel ? [label, rank].filter(Boolean).join(" · ") : undefined}
+      aria-current={active ? "page" : undefined}
+      className={cn(sidebarRow, "h-[5.2rem]", active && sidebarRowActive)}
+    >
+      {/* Lit green while a hunter is loaded, like the chosen slot on the hunter page. */}
+      <Icon type="coin" nav active={active || !!save} className={rowIcon} />
+      <span
+        className={cn(
+          "flex min-w-0 flex-col leading-tight",
+          rail("wide:sr-only", "compact:sr-only"),
+        )}
+      >
+        <span className={cn("truncate", !save && "text-white/70")}>{label}</span>
+        {rank && <span className="text-fine text-muted">{rank}</span>}
+      </span>
+    </Link>
+  );
+}
 
 /**
  * The entries of the sidebar (and the phone menu drawer): logo, sections,
@@ -184,6 +235,23 @@ function SidebarContents({
           </span>
           <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.search}</span>
         </button>
+
+        <Link
+          href={hrefFor(OPTIONS_NAV)}
+          title={railLabel ? t.nav.options : undefined}
+          aria-current={pathname.startsWith(OPTIONS_NAV.match) ? "page" : undefined}
+          className={cn(sidebarRow, pathname.startsWith(OPTIONS_NAV.match) && sidebarRowActive)}
+        >
+          <Icon
+            type={OPTIONS_NAV.icon}
+            nav
+            active={pathname.startsWith(OPTIONS_NAV.match)}
+            className={rowIcon}
+          />
+          <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>{t.nav.options}</span>
+        </Link>
+
+        <HunterRow pathname={pathname} railLabel={railLabel} rail={rail} />
 
         {onToggle && (
           <button
