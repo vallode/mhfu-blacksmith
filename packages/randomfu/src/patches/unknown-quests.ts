@@ -1,6 +1,7 @@
 /**
  * "Unknown Monster?!" investigation quests (`quests.unknown`): one quest
- * per rank, on the Village 6★, Guild 8★ and G★3 boards, whose monster,
+ * for high rank and one for G rank, on the Guild 8★ and G★3 boards (low
+ * rank is left for getting used to the randomizer), whose monster,
  * map, size, crowns, difficulty and rewards are rolled again every time it's
  * accepted, by blob code (`blob/unknown-quests.c`, on the code loader and
  * its quest load hook, `game-hooks.ts`). This file builds what the blob
@@ -20,11 +21,16 @@
  *   (`board.ts`), found by quest ID; `addBoardRecord` adds one.
  * - The game keeps clear flags for some IDs no quest on the disc uses
  *   (EU table 0x0899C0A8): Village 10512 (6★), Guild 2237 (8★) and 3234
- *   (G★3) are three of them, so clearing these quests is remembered.
+ *   (G★3) are three of them, so clearing these quests is remembered. The
+ *   Village one is unused.
  * - Quest files are read and decrypted into a 0x6800-byte buffer by a loader
  *   (`game-hooks.ts`) that maps the ID to its file. The blob swaps the new
  *   ID for a template quest's before the call and edits the decrypted quest
  *   after it; new rewards and text go after its end, within the buffer.
+ * - The header's `spawn` byte (`SPAWN`, 0x45) is where the hunter starts:
+ *   0 base camp, 1 a random area (most high and G rank Guild quests); 2
+ *   isn't understood. A roll takes base camp or a random area, whichever
+ *   the quests on the template's map use; a template with 2 keeps it.
  *
  * Accepting rolls; departing loads the quest again (the game reads it from
  * disc once more) and gets the same roll. Only the person accepting rolls,
@@ -38,7 +44,15 @@ import type { Edits } from "../edits.js";
 import { addBoardRecord } from "../game/board-add.js";
 import { RECORD_HEADER_SIZE, RECORD_QUEST_ID, align } from "../game/board.js";
 import type { GameData, LoadedQuest } from "../game/load.js";
-import { FEE, PENALTY, QUEST_TYPE, REWARD } from "../game/quest-fields.js";
+import {
+  FEE,
+  PENALTY,
+  QUEST_TYPE,
+  REWARD,
+  SPAWN_BASE_CAMP,
+  SPAWN_RANDOM,
+  spawnValuesByMap,
+} from "../game/quest-fields.js";
 import { POWER_OFFSET, readSpawns, type QuestSpawns } from "../game/spawns.js";
 import { BANDS, questTier, type Band } from "../game/tiers.js";
 import { monsterNames, type MonsterNames } from "../names.js";
@@ -69,7 +83,6 @@ export interface UnknownSlot {
 }
 
 export const UNKNOWN_SLOTS: readonly UnknownSlot[] = [
-  { band: "low", id: 10512, board: "village", star: 6, stars: 6, level: "mission_jpn/level6.mib" },
   { band: "high", id: 2237, board: "guild", star: 8, stars: 8, level: "mission_jpn/level8.mib" },
   { band: "g", id: 3234, board: "guild", star: 11, stars: 11, level: "mission_jpn/level11.mib" },
 ];
@@ -151,6 +164,15 @@ export interface Template {
   /** Payload offsets of every species field (records and preload list). */
   speciesAt: number[];
   levelAt: number[];
+  /** The `spawn` header values (where the hunter starts) a roll picks from; none keeps the quest's. */
+  starts: number[];
+}
+
+/** What a roll can start a template at: base camp or random, where its map's quests do. */
+export function templateStarts(own: number, onMap: ReadonlySet<number>): number[] {
+  const rolled = [SPAWN_BASE_CAMP, SPAWN_RANDOM];
+  if (!rolled.includes(own)) return [];
+  return rolled.filter((v) => v === own || onMap.has(v));
 }
 
 export interface Choice {
@@ -247,6 +269,8 @@ export function unknownTables(
       (onMap.get(map) ?? onMap.set(map, new Set()).get(map)!).add(monsterId);
     }
   }
+  // Where the hunter starts (the header's `spawn`) on each map.
+  const startsOn = spawnValuesByMap(all.map((q) => q.parsed.header));
 
   const kinds = (rewards: RewardTable[], allowed: number[]) =>
     rewards.some((t) => t.unkn1 === MAIN) && rewards.every((t) => allowed.includes(t.unkn1));
@@ -300,6 +324,7 @@ export function unknownTables(
         })),
         speciesAt: [...q.spawns.large, ...q.spawns.loads].map((s) => s.offset),
         levelAt: q.spawns.large.map((s) => s.offset + POWER_OFFSET),
+        starts: templateStarts(header.spawn, startsOn.get(header.map) ?? new Set()),
       });
     }
 
@@ -498,7 +523,12 @@ export function encodeTables(
       w.u16(template.quest.parsed.header.questId);
       w.u16(template.payload.length);
       w.u8(choices);
-      w.fill(0, 3);
+      // struct template's start_count and start[2].
+      if (template.starts.length > 2 || template.starts.some((v) => v > 0xff)) {
+        throw new Error(`template ${template.quest.parsed.header.questId}: bad starts`);
+      }
+      w.u8(template.starts.length);
+      for (let k = 0; k < 2; k++) w.u8(template.starts[k] ?? 0);
       w.u32(choiceAt);
       w.u32(patchAt);
     }

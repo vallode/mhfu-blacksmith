@@ -1,7 +1,7 @@
 /*
  * "Unknown Monster?!" investigation quests (the quests.unknown setting): a
- * quest per rank whose monster, map, size, difficulty and rewards are
- * rolled again every time it's accepted. src/patches/unknown-quests.ts finds
+ * quest for high and one for G rank whose monster, map, size, difficulty
+ * and rewards are rolled again every time it's accepted. src/patches/unknown-quests.ts finds
  * the game's addresses and writes the tables below per disc; see also
  * ../docs/code-loader.md.
  *
@@ -9,8 +9,9 @@
  * load. When the game loads it (the quest load hook), the ID is swapped for
  * a real quest of the same rank, a "template", whose file the game reads
  * and decrypts as usual. After the load the hook rewrites the decrypted
- * quest: its large monster, level, size, crown spread, money, rewards and
- * text, and gives it back the new ID, which has a clear flag of its own.
+ * quest: its large monster, level, size, crown spread, where the hunter
+ * starts, money, rewards and text, and gives it back the new ID, which has
+ * a clear flag of its own.
  */
 #include "rf.h"
 
@@ -32,6 +33,7 @@ u32 sceKernelGetSystemTimeLow(void);
 #define OBJECTIVE_B 0x30
 #define OBJECTIVE_MONSTER 1
 #define SIZE 0x38
+#define START 0x45 /* where the hunter starts: 0 base camp, 1 a random area */
 #define CROWNS 0x4a
 #define QUEST_TYPE 76
 #define FEE 80
@@ -68,7 +70,8 @@ struct template {
   u16 quest_id;
   u16 size; /* payload bytes */
   u8 choices;
-  u8 pad[3];
+  u8 start_count; /* START values to roll from; 0 keeps the quest's */
+  u8 start[2];
   u32 choice_off; /* struct choice[choices] */
   u32 patch_off;  /* u16 offsets of species fields, 0, of level bytes, 0 */
 };
@@ -97,7 +100,7 @@ static struct {
   const struct slot *slot;
   const struct template *template;
   const struct choice *choice;
-  u32 level, size, crowns, rewards;
+  u32 level, size, crowns, rewards, start;
   u32 pending, depart;
 } roll;
 
@@ -136,6 +139,7 @@ static void roll_quest(const struct slot *s) {
   roll.size = s->size_lo + rnd(s->size_hi - s->size_lo + 1);
   roll.crowns = rnd(s->crown_max + 1);
   roll.rewards = rnd(c->rewards);
+  roll.start = roll.template->start[rnd(roll.template->start_count)];
 }
 
 static void put16(u8 *at, u32 v) {
@@ -261,6 +265,7 @@ static void patch(u8 *quest) {
   if (get32(quest + OBJECTIVE_B) == OBJECTIVE_MONSTER) put16(quest + OBJECTIVE_B + 4, c->species);
   quest[SIZE] = roll.size;
   quest[CROWNS] = roll.crowns;
+  if (t->start_count) quest[START] = roll.start;
   put32(quest + QUEST_TYPE, get32(quest + QUEST_TYPE) & ~STORY);
   put32(quest + FEE, s->fee);
   put32(quest + REWARD, s->reward);
