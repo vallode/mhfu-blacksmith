@@ -9,7 +9,6 @@
  * on the EU disc, Japanese on the JP disc (whose slots all alias the same
  * Japanese text). See README's "Quests" section.
  */
-import { ARMOR_SLOTS } from "game-data";
 import type {
   ArenaEquipment,
   ArenaSet,
@@ -390,8 +389,7 @@ function arenaItemName(questId: number, id: number): string {
  */
 function arenaLevel(e: ArenaEquipment): Pick<EmittedArenaEquipment, "level" | "attachments"> {
   if (e.slot === "ranged") return e.level === 0 ? {} : { attachments: e.level };
-  if ((ARMOR_SLOTS as readonly string[]).includes(e.slot) || e.level !== 0)
-    return { level: e.level };
+  if (e.slot !== "melee" || e.level !== 0) return { level: e.level };
   return {};
 }
 
