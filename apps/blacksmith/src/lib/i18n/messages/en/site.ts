@@ -208,11 +208,15 @@ export const site = {
     },
     awards: {
       note: "Earned means you meet the award's requirement from what your save shows. The rest can't be read from a save yet.",
+      noteGiven:
+        "Earned awards are the ones the game has given you, read from your save. For the rest, progress comes from your quest and monster records where the save shows it.",
       earned: (earned: number, tracked: number) => `${earned}/${tracked}`,
       earnedLabel: (earned: number, tracked: number) =>
         `${earned} of ${tracked} trackable awards earned`,
       done: "Earned",
       notTracked: "Not in save",
+      notEarned: "Not earned",
+      notGiven: "Not given yet",
       notHunted: "Not hunted yet",
       showLeft: (n: number) => `What's left (${n})`,
       groups: {
