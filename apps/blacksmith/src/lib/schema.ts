@@ -152,6 +152,8 @@ export interface CompactMonster {
   bk?: MonsterBreak[];
   /** hitzone_flinch: a flinch stringIdx (or null) per `hz` row, in its order */
   hf?: (number | null)[];
+  /** 1 when the monster can be captured (lib/monster-drops' canCapture), for the list's filter */
+  ca?: 1;
 }
 
 export interface CompactDecoration {

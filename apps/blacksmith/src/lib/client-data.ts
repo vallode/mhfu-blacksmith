@@ -41,6 +41,8 @@ import { setSearchDataFromBundles } from "./set-data";
 export interface MonsterListItem {
   slug: string;
   name: string;
+  /** Whether it can be captured (lib/monster-drops' canCapture). */
+  capturable: boolean;
 }
 
 // ---------------------------------------------------------------------------
@@ -285,7 +287,7 @@ export function useMonsterList(category: string): ListState<MonsterListItem> {
     const b = bundle as MonsterBundle;
     return {
       tree: null,
-      items: b.items.map((m) => ({ slug: m.s, name: m.n })),
+      items: b.items.map((m) => ({ slug: m.s, name: m.n, capturable: m.ca === 1 })),
     };
   });
 }

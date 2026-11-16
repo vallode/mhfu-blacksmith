@@ -85,6 +85,7 @@ import {
 import { buildArmorTree, buildDecorationTree, buildWeaponTree } from "../src/lib/trees";
 import { buildAreaMaps } from "../src/lib/area-maps";
 import { flinchThreshold } from "../src/lib/monster-breaks";
+import { canCapture } from "../src/lib/monster-drops";
 import type { HitboxCapsule } from "../src/lib/models";
 import { readData } from "game-data";
 
@@ -359,6 +360,7 @@ function encodeMonster(
   if (Array.isArray(m.breaks) && m.breaks.length > 0) out.bk = m.breaks;
   const flinch = out.hz && hitzoneFlinch(m);
   if (flinch) out.hf = flinch.map((v) => (v === null ? null : intern(stringIndex, v)));
+  if (canCapture(m)) out.ca = 1;
   if (m.drops && Object.keys(m.drops).length > 0) {
     out.dr = Object.entries(m.drops).map(([rankName, sources]) => [
       intern(stringIndex, rankName),
