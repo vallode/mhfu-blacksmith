@@ -17,6 +17,25 @@ export const STRING_TABLE_PTR = 96;
 export const TARGET_ID = 112;
 export const TARGET_NUM = 114;
 
+/**
+ * The header's `spawn` byte (0x45): where the hunter starts. 0 is base camp
+ * and 1 a random area (the game's pick, by its per-map chances in
+ * `game_sub`); 2, seen only on the Fortress, Castle Schrade, Battleground,
+ * Tower 1 and Snowy Mountains Peak, isn't understood.
+ */
+export const SPAWN = 0x45;
+export const SPAWN_BASE_CAMP = 0;
+export const SPAWN_RANDOM = 1;
+
+/** The `spawn` values each map's quests use, by map (day and night apart). */
+export function spawnValuesByMap(
+  headers: Iterable<{ map: number; spawn: number }>,
+): Map<number, Set<number>> {
+  const out = new Map<number, Set<number>>();
+  for (const { map, spawn } of headers) out.set(map, (out.get(map) ?? new Set()).add(spawn));
+  return out;
+}
+
 /** Time limits are in ticks: 1800 a minute (50 minutes = 90000). */
 export const TICKS_PER_MINUTE = 1800;
 

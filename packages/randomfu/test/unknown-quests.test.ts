@@ -5,6 +5,7 @@ import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
 import { decodeObjects, linkBlob } from "../src/blob/link.js";
 import { addBoardRecord } from "../src/game/board-add.js";
 import { readBoardRecords } from "../src/game/board.js";
+import { spawnValuesByMap } from "../src/game/quest-fields.js";
 import type { LoadedQuest } from "../src/game/load.js";
 import { enumMonsterNames as monsterName } from "../src/names.js";
 import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
@@ -13,6 +14,7 @@ import {
   encodeTables,
   listIndex,
   rewardBytes,
+  templateStarts,
   textBytes,
   unknownQuestsObjects,
   type SlotTables,
@@ -261,6 +263,22 @@ test("the hunter starts where the map's quests start them, rolled each time", ()
   const kept = game(tables([]));
   kept.load("accept", SLOT.id, LOBBY_BUF);
   assert.equal(kept.cpu.u8(LOBBY_BUF + 0x45), 2);
+});
+
+test("a template rolls base camp or random where its own map's quests use them, never 2", () => {
+  // Day (2) and night (3) versions of a map are apart.
+  const onMap = spawnValuesByMap([
+    { map: 2, spawn: 1 },
+    { map: 2, spawn: 0 },
+    { map: 2, spawn: 2 },
+    { map: 3, spawn: 1 },
+  ]);
+  assert.deepEqual([...onMap.get(2)!].sort(), [0, 1, 2]);
+  assert.deepEqual([...onMap.get(3)!], [1]);
+  assert.deepEqual(templateStarts(1, onMap.get(2)!), [0, 1]);
+  assert.deepEqual(templateStarts(1, onMap.get(3)!), [1]);
+  assert.deepEqual(templateStarts(0, new Set()), [0], "its own value always");
+  assert.deepEqual(templateStarts(2, onMap.get(2)!), [], "2 is kept, not rolled");
 });
 
 test("departing loads the same roll again, and names the monster", () => {

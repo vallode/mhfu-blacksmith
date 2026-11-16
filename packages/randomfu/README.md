@@ -1268,7 +1268,8 @@ one is ever wanted.) Every time it's accepted, it rolls:
   quests on the template's map use (the header's `spawn` byte, 0x45: 0 is
   base camp and 1 a random area, the game's own pick by its per-map
   chances in `game_sub`; 2, seen only on the Fortress, Castle Schrade,
-  Battleground, Tower 1 and Snowy Mountains Peak, isn't understood);
+  Battleground, Tower 1 and Snowy Mountains Peak, isn't understood, so it's
+  never rolled: a template with 2 keeps it);
 - its **rewards**: those of a quest of that rank that's only that monster,
   else a lower rank's, else a quest that has it alongside others; a
   monster no quest of that rank or below has keeps the template's
@@ -1301,8 +1302,7 @@ different quest: **solo only** for now. How it works:
 
 Tried in PPSSPP with the quest moved to the Village 2★ board for an early
 save: it shows on the board, loads a rolled hunt and plays through. Not yet
-tried: the 8★ and G★3 boards themselves, rolled starts (`spawn` 2 most
-of all), ad-hoc play, and each region
+tried: the 8★ and G★3 boards themselves, rolled starts, ad-hoc play, and each region
 separately.
 
 ## Code loader (prototype)
