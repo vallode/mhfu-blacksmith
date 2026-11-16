@@ -147,13 +147,16 @@ export function decodeObjects(
 /**
  * Links `objects` to run at `base` (where the header goes). The objects must
  * define `rf_init`; `rf_hook0`… are optional entry points for game hooks.
- * `maxBytes` bounds the image (the room the loader reads into).
+ * `maxBytes` bounds the image (the room the loader reads into). `data` adds
+ * tables built per disc after everything else, each word-aligned and named
+ * by a global symbol the objects can declare `extern`.
  */
 export function linkBlob(
   objects: readonly { name: string; data: Buffer }[],
   base: number,
   externs: Readonly<Record<string, number>> = {},
   maxBytes = Infinity,
+  data: Readonly<Record<string, Buffer>> = {},
 ): LinkedBlob {
   const files = objects.map((o) => parse(o.name, o.data));
 
@@ -194,6 +197,12 @@ export function linkBlob(
       cursor += sym.size;
     }
   }
+  const tables = Object.entries(data).map(([name, bytes]) => {
+    cursor = Math.ceil(cursor / 4) * 4;
+    const at = cursor;
+    cursor += bytes.length;
+    return { name, bytes, at };
+  });
   const end = Math.ceil(cursor / 4) * 4;
   const image = Buffer.alloc(end - base);
   if (image.length > maxBytes) {
@@ -210,8 +219,11 @@ export function linkBlob(
     );
   }
 
+  for (const { bytes, at } of tables) bytes.copy(image, at - base);
+
   const globals = new Map<string, number>(commons);
-  const defined = new Set<string>();
+  const defined = new Set<string>(tables.map((t) => t.name));
+  for (const { name, at } of tables) globals.set(name, at);
   const valueOf = (file: ObjectFile, sym: Sym): number | null => {
     if (sym.shndx === SHN_ABS) return sym.value;
     if (sym.shndx === SHN_COMMON) return commons.get(sym.name) ?? null;

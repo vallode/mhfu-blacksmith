@@ -83,6 +83,8 @@ import { addCodeLoader } from "./patches/code-loader.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
+import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
+import { findHookSites } from "./patches/game-hooks.js";
 import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -816,18 +818,71 @@ export function randomize(
         `Code loader demo: Guild Cards are capped at ${loader.kept} and every save load adds 1000z. This disc is not for play.`,
       );
     }
-  } else if (settings["hud.monsterHp"] !== "off") {
-    const mode = settings["hud.monsterHp"];
-    const objects = [...decodeObjects(RUNTIME_OBJECTS), ...monsterHpObjects()];
+  } else if (settings["hud.monsterHp"] !== "off" || settings["quests.unknown"]) {
+    // Each feature is resolved on its own first: one that doesn't match this
+    // disc is left out, and the loader (which caps Guild Cards) only goes in
+    // for the ones that do.
+    const notApplied = (title: string, why: string): ShuffleReport => ({
+      title,
+      notes: [`${title} isn't in this image: ${why}.`],
+      lines: [],
+      summary: `${title}: not applied (${why})`,
+    });
+    const objects = decodeObjects(RUNTIME_OBJECTS);
+    const externs: Record<string, number> = {};
     const { ovl } = game.gameTask;
-    reports.push(
-      addCodeLoader(game.eboot, game.gameSub, edits, {
+    // Both features run on the game hooks, found once here.
+    const sites = game.eboot
+      ? findHookSites(game.eboot, ovl.reader.buf, ovl.loadBase)
+      : "the EBOOT wasn't loaded";
+    const mode = settings["hud.monsterHp"];
+    let monsterHp = false;
+    if (mode !== "off") {
+      const found =
+        typeof sites === "string"
+          ? sites
+          : findMonsterHpExterns(
+              game.eboot!,
+              sites.segment,
+              sites.gauges,
+              ovl.reader.buf,
+              ovl,
+              mode,
+            );
+      if (typeof found === "string") reports.push(notApplied("Monster health", found));
+      else {
+        objects.push(...monsterHpObjects());
+        Object.assign(externs, found);
+        monsterHp = true;
+      }
+    }
+    const prepared = !settings["quests.unknown"]
+      ? null
+      : typeof sites === "string"
+        ? sites
+        : prepareUnknownQuests(game, edits, setOf);
+    if (typeof prepared === "string") {
+      reports.push(notApplied("Unknown Monster quests", prepared));
+    }
+    const unknown = typeof prepared === "string" ? null : prepared;
+    if (unknown) {
+      objects.push(...unknownQuestsObjects());
+      Object.assign(externs, unknown.externs);
+    }
+    if (typeof sites !== "string" && (monsterHp || unknown)) {
+      const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         objects,
-        gameTask: game.gameTask,
-        externs: (sites) =>
-          findMonsterHpExterns(game.eboot!, sites.segment, sites.gauges, ovl.reader.buf, ovl, mode),
-      }),
-    );
+        hooks: {
+          sites,
+          gameTask: game.gameTask,
+          ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
+        },
+        externs,
+        ...(unknown && { data: unknown.data }),
+      });
+      reports.push(loader);
+      if (unknown) reports.push(unknown.finish(loader.applied));
+    }
   }
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.

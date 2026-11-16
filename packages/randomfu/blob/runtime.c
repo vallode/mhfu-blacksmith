@@ -26,10 +26,13 @@ static void run(u32 hook, u8 *arg) {
 
 void rf_hook0(u8 *arg) { run(RF_HOOK_QUEST_FRAME, arg); }
 void rf_hook1(u8 *arg) { run(RF_HOOK_HUD, arg); }
+void rf_hook3(u8 *arg) { run(RF_HOOK_QUEST_LOAD, arg); }
 
 __attribute__((weak)) void rf_monster_hp_init(u32 reason, u8 *save);
+__attribute__((weak)) void rf_unknown_quests_init(u32 reason, u8 *save);
 
 void rf_init(u32 reason, u8 *save, u8 *blob) {
   (void)blob;
   if (rf_monster_hp_init) rf_monster_hp_init(reason, save);
+  if (rf_unknown_quests_init) rf_unknown_quests_init(reason, save);
 }

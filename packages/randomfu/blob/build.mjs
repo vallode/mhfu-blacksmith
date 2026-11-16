@@ -37,6 +37,7 @@ const BLOBS = {
   demo: [["demo.c"], "src/blob"],
   runtime: [["runtime.c"], "src/blob"],
   monsterHp: [["monster-hp.c"], "src/blob"],
+  unknownQuests: [["unknown-quests.c"], "src/blob"],
   linkTest: [["link-test.c"], "test"],
   commonTest: [["test/common-a.c", "test/common-b.c"], "test", ["-fcommon"]],
 };
