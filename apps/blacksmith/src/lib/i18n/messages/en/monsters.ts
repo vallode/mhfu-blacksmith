@@ -1,3 +1,5 @@
+import type { MonsterFilterId } from "../../../monster-filter";
+
 /** The bestiary: monster pages, hitzones and drop tables. */
 export const monsters = {
   /** The bestiary's page bar. */
@@ -29,6 +31,23 @@ export const monsters = {
       /** A small monster's tab: the quests with the most of it. */
       spawns: "Most plentiful",
     },
+  },
+  /** A monster type's list down the left. */
+  list: {
+    /** Under the Captured or Hunted filter: a monster's count, right of its name. */
+    count: (count: string) => `×${count}`,
+    /** The count in words, for screen readers and on hover. */
+    capturesTitle: (n: number, count: string) =>
+      n === 1 ? "Captured once" : `Captured ${count} times`,
+    killsTitle: (n: number, count: string) => (n === 1 ? "Hunted once" : `Hunted ${count} times`),
+    /** The selector under the list (lib/monster-filter). */
+    filterGroup: "Monster filter",
+    filterCount: (matched: number, total: number) => `${matched} of ${total} monsters`,
+    filters: {
+      all: "All",
+      captured: "Captured",
+      hunted: "Hunted",
+    } satisfies Record<MonsterFilterId, string>,
   },
   /** Guild Card crowns: the size records the game marks with a crown. */
   crowns: {

@@ -78,7 +78,7 @@ export const site: Messages["site"] = {
     },
     showHuntRecords: {
       label: "Registro de caza",
-      note: "Muestra en la página de cada monstruo cuántos has cazado y capturado.",
+      note: "Muestra en la página de cada monstruo cuántos has cazado y capturado, y filtra por ellos las listas de monstruos.",
     },
     defaultTreeFilter: {
       label: "Filtro inicial del árbol",
