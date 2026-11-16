@@ -108,6 +108,9 @@ importers:
 
   apps/randomfu:
     dependencies:
+      game-data:
+        specifier: workspace:*
+        version: link:../../packages/game-data
       mhfu-extract:
         specifier: workspace:*
         version: link:../../packages/mhfu-extract

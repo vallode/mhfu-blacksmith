@@ -35,12 +35,15 @@ export const MARKER_COLORS: Record<NodeKind, [number, number, number]> = {
   bug: [250, 220, 40],
 };
 
-const SIZE = 160;
+/** The textures' width and height in pixels. */
+export const MAP_SIZE = 160;
 /** Marker width and height in pixels, odd so it has a centre. */
-const MARKER = 3;
+export const MARKER_SIZE = 3;
 const TITLE = "Gathering nodes on the map";
+/** A node is drawn only where the art's alpha is above this: the game leaves the rest blank. */
+export const ON_ART_ALPHA = 128;
 /** Draw order: later kinds cover earlier ones where markers overlap. */
-const DRAW_ORDER: readonly NodeKind[] = ["bug", "gather", "mine"];
+export const DRAW_ORDER: readonly NodeKind[] = ["bug", "gather", "mine"];
 
 export interface NodePoint {
   kind: NodeKind;
@@ -62,9 +65,9 @@ interface MapArt {
 function readArt(file: Buffer): MapArt | null {
   const found = locateIndexedImage(file);
   if (!found?.swizzled || found.paletteFormat !== 3) return null;
-  if (found.width !== SIZE || found.height !== SIZE) return null;
-  const raw = file.subarray(found.pixels, found.pixels + SIZE * SIZE);
-  const pixels = unswizzle(raw, SIZE, SIZE);
+  if (found.width !== MAP_SIZE || found.height !== MAP_SIZE) return null;
+  const raw = file.subarray(found.pixels, found.pixels + MAP_SIZE * MAP_SIZE);
+  const pixels = unswizzle(raw, MAP_SIZE, MAP_SIZE);
   return {
     pixelsAt: found.pixels,
     paletteAt: found.palette,
@@ -95,15 +98,16 @@ export function drawNodes(file: Buffer, points: readonly NodePoint[]): Buffer | 
   const out = Buffer.from(file);
   for (const kind of kinds) out.set([...MARKER_COLORS[kind], 255], art.paletteAt + index[kind] * 4);
 
-  const half = (MARKER - 1) / 2;
+  const half = (MARKER_SIZE - 1) / 2;
   for (const { kind, x, y } of points) {
     for (let py = Math.round(y) - half; py <= Math.round(y) + half; py++) {
       for (let px = Math.round(x) - half; px <= Math.round(x) + half; px++) {
-        if (px >= 0 && py >= 0 && px < SIZE && py < SIZE) pixels[py * SIZE + px] = index[kind];
+        if (px >= 0 && py >= 0 && px < MAP_SIZE && py < MAP_SIZE)
+          pixels[py * MAP_SIZE + px] = index[kind];
       }
     }
   }
-  swizzle(pixels, SIZE, SIZE).copy(out, art.pixelsAt);
+  swizzle(pixels, MAP_SIZE, MAP_SIZE).copy(out, art.pixelsAt);
   return out;
 }
 
@@ -143,8 +147,8 @@ export function collectNodePoints(
       if (!kind || !pixel) continue;
       const x = Math.round(pixel[0]);
       const y = Math.round(pixel[1]);
-      if (x < 0 || y < 0 || x >= SIZE || y >= SIZE) continue;
-      if (art.alphas[art.pixels[y * SIZE + x]!]! > 128)
+      if (x < 0 || y < 0 || x >= MAP_SIZE || y >= MAP_SIZE) continue;
+      if (art.alphas[art.pixels[y * MAP_SIZE + x]!]! > ON_ART_ALPHA)
         points.set(`${kind}|${x}|${y}`, { kind, x, y });
     }
   }

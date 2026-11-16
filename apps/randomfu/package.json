@@ -6,13 +6,14 @@
   "license": "GPL-3.0-or-later",
   "type": "module",
   "scripts": {
-    "build": "node build.mjs",
+    "build": "node --import tsx build.mjs",
     "typecheck": "tsc --noEmit -p .",
     "test": "tsx --test test/**/*.test.ts",
     "test:e2e": "tsx e2e.mts",
     "social-card": "tsx social-card.mts"
   },
   "dependencies": {
+    "game-data": "workspace:*",
     "mhfu-extract": "workspace:*",
     "randomfu": "workspace:*"
   },

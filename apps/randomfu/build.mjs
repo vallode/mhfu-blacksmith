@@ -9,22 +9,49 @@
  * src/app/globals.css, and its sprites and font are copied from its public/,
  * so the two stay in step.
  *
+ * The Extras step's preview of the gathering-node map takes its nodes from
+ * data/gathering.json and the marker look from randomfu's patch
+ * (node-map-preview.ts), and its map picture from the site's public/.
+ *
  * index.html's link-preview tags get the site's absolute address, and the
  * picture they show (social-card.png, drawn by social-card.mts) is copied in,
  * as is the masthead's wordmark (randomfu.png).
  *
  *   pnpm build
+ *
+ * It imports TypeScript (game-data, randomfu), so it runs under tsx:
+ * `node --import tsx build.mjs`.
  */
 import { build } from "esbuild";
 import postcss from "postcss";
 import { copyFileSync, mkdirSync, readFileSync, writeFileSync } from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
+import { readData } from "game-data";
+import {
+  MAP_SIZE,
+  MARKER_COLORS,
+  MARKER_SIZE,
+  ON_ART_ALPHA,
+} from "randomfu/src/patches/node-map.js";
+import { nodeMapPoints } from "./node-map-preview.ts";
 
 const web = path.dirname(fileURLToPath(import.meta.url));
 const site = path.resolve(web, "..", "blacksmith");
 const dist = path.join(web, "dist");
 const shim = (name) => path.join(web, "shims", name);
+const dataDir = path.resolve(web, "..", "..", "data");
+
+// The Extras step's gathering-node map preview (NODE_MAP_PREVIEW in app.ts): the Great Forest.
+const previewTexture = "map30";
+const nodeMapPreview = {
+  texture: previewTexture,
+  size: MAP_SIZE,
+  marker: MARKER_SIZE,
+  onArtAlpha: ON_ART_ALPHA,
+  colors: MARKER_COLORS,
+  points: nodeMapPoints(readData(dataDir, "gathering.json"), previewTexture),
+};
 
 mkdirSync(dist, { recursive: true });
 await build({
@@ -40,7 +67,10 @@ await build({
   inject: [shim("buffer-global.ts")],
   // The shared code finds its vendored files relative to its own module; any path will do,
   // since the fs shim serves them by name.
-  define: { "import.meta.url": JSON.stringify("file:///randomfu/bundle.js") },
+  define: {
+    "import.meta.url": JSON.stringify("file:///randomfu/bundle.js"),
+    NODE_MAP_PREVIEW: JSON.stringify(nodeMapPreview),
+  },
   alias: {
     "node:crypto": shim("crypto.ts"),
     "node:fs": shim("fs.ts"),
@@ -146,6 +176,8 @@ const assets = [
   "images/sac.png",
   "images/favicons/felyne-favicon.png",
   "images/favicons/felyne-apple-touch-icon.png",
+  // The gathering-node map preview's picture.
+  `images/area-maps/${previewTexture}.png`,
 ];
 for (const asset of assets) {
   mkdirSync(path.join(dist, path.dirname(asset)), { recursive: true });

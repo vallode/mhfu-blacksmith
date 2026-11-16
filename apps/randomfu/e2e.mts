@@ -20,7 +20,9 @@ import { assemble, buildFixtureDisc, memorySource, tempDir } from "randomfu/test
 
 const web = path.dirname(fileURLToPath(import.meta.url));
 const dist = path.join(web, "dist");
-execFileSync(process.execPath, [path.join(web, "build.mjs")], { stdio: "inherit" });
+execFileSync(process.execPath, ["--import", "tsx", path.join(web, "build.mjs")], {
+  stdio: "inherit",
+});
 
 const dir = tempDir();
 // The disc's EBOOT is encrypted, as on a real disc, so the app decrypts it itself.
