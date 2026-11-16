@@ -107,6 +107,8 @@ export interface Settings {
   "monsterStats.sizeSpread": number;
   "monsterStats.status": boolean;
   "monsterStats.statusSpread": number;
+  "monsterAi.branches": boolean;
+  "monsterAi.branchSpread": number;
   "weaknesses.elements": boolean;
   "weaknesses.parts": boolean;
   "hints.bookshelf": boolean;
@@ -1573,6 +1575,24 @@ export const OPTIONS: readonly OptionDef[] = [
     type: SPREAD,
     default: 0.5,
     enabledBy: "monsterStats.status",
+  },
+  {
+    key: "monsterAi.branches",
+    section: "Monster stats",
+    label: "Randomize behaviour",
+    help: "Wherever a monster's AI picks at random between moves (which attack, whether to walk, turn or wait), the odds change: a monster may favour an attack it rarely used, or wander more than it did. Its moves and when it chooses don't change, and nothing it could do before becomes impossible. Species that share AI (the four dromes, Rathian and Rathalos and their kin) change together.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "monsterAi.branchSpread",
+    section: "Monster stats",
+    label: "Behaviour variation",
+    help: "How far each move's odds can move, up or down, before they're scaled back to the same total.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "monsterAi.branches",
   },
   {
     key: "weaknesses.elements",
