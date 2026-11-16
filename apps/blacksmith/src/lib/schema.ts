@@ -23,6 +23,7 @@ import type {
   MonsterBreak,
   MonsterDrop,
 } from "./types";
+import type { Crowns } from "./crowns";
 import { splitDropQuantity } from "./monster-drops";
 
 // ---------------------------------------------------------------------------
@@ -381,12 +382,15 @@ export interface MonsterListItem {
   name: string;
   /** Whether it can be captured (lib/monster-drops' canCapture, at build time). */
   capturable: boolean;
+  /** Guild Card crown thresholds (src/lib/crowns.ts), for the list's crown filters. */
+  crowns?: Crowns;
 }
 
 export const decodeMonsterListItem = (m: CompactMonster): MonsterListItem => ({
   slug: m.s,
   name: m.n,
   capturable: m.ca === 1,
+  ...(m.cr && { crowns: { mini: m.cr[0], silver: m.cr[1], gold: m.cr[2] } }),
 });
 
 export function decodeMonster(d: Dictionaries, m: CompactMonster, category: string): Monster {

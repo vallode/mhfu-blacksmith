@@ -6,6 +6,7 @@ import Link from "next/link";
 import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
+import CrownIcon from "@/components/CrownIcon";
 import MonsterNav from "@/components/MonsterNav";
 import SelectorBar, { SELECTOR_BAR_HEIGHT } from "@/components/SelectorBar";
 import SplitPage from "@/components/SplitPage";
@@ -19,6 +20,7 @@ import { monsterRecordFor } from "@/lib/monster-ids";
 import {
   cycleMonsterFilter,
   filterCount,
+  filterCrown,
   matchesMonster,
   monsterFilters,
   type MonsterFilterId,
@@ -71,18 +73,28 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
   // The choice is kept while moving between types; Captured, in a type with
   // nothing to capture, reads as All there and applies again on returning.
   const [selected, setSelected] = useState<MonsterFilterId>("all");
-  const anyCapturable = !!siblings?.some((m) => m.capturable);
-  const filter = records && monsterFilters(anyCapturable).includes(selected) ? selected : "all";
+  const avail = {
+    capturable: !!siblings?.some((m) => m.capturable),
+    crowns: !!siblings?.some((m) => m.crowns),
+  };
+  const filter = records && monsterFilters(avail).includes(selected) ? selected : "all";
+  const crown = filterCrown(filter);
   const rows = siblings?.map((m) => {
     const record = recordOf(m.name);
     return {
       ...m,
-      match: matchesMonster(filter, m.capturable, record),
+      match: matchesMonster(filter, m, record),
       count: filterCount(filter, record),
     };
   });
-  // Captured counts out of the monsters there are to capture.
-  const total = filter === "captured" ? rows?.filter((m) => m.capturable) : rows;
+  // Captured counts out of the monsters there are to capture, a crown filter
+  // out of those with crown sizes.
+  const total =
+    filter === "captured"
+      ? rows?.filter((m) => m.capturable)
+      : crown
+        ? rows?.filter((m) => m.crowns)
+        : rows;
   const matched = rows?.filter((m) => m.match).length ?? 0;
 
   // Portraits are small sprites; fetch the type's ahead of a click so the
@@ -122,6 +134,7 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
                 onError={hideBroken}
               />
               <p>{game.name("monster", m.name)}</p>
+              {m.match && crown && <CrownIcon crown={crown} className="ml-auto" />}
               {m.match && m.count !== null && (
                 <CountBadge
                   label={(filter === "captured" ? tl.capturesTitle : tl.killsTitle)(
@@ -144,7 +157,7 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
           groupLabel={tl.filterGroup}
           previousLabel={t.equipment.tree.previousFilter}
           nextLabel={t.equipment.tree.nextFilter}
-          onStep={(by) => setSelected(cycleMonsterFilter(filter, by, anyCapturable))}
+          onStep={(by) => setSelected(cycleMonsterFilter(filter, by, avail))}
           count={`${matched}/${total.length}`}
           countLabel={tl.filterCount(matched, total.length)}
         />
