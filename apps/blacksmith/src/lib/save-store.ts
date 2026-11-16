@@ -103,8 +103,9 @@ export interface SaveData extends AwardRecords {
   /** Total play time in seconds. */
   playTime?: number;
   /**
-   * HR, 1-9, from `clearedQuests`. Missing on saves stored before those were
-   * read: older saves stored a quest count here, so `getSave` works it out again.
+   * HR, 1-9: never stored, `getSave` works it out from `clearedQuests`.
+   * Missing when no cleared quests are stored. (Older saves stored a quest
+   * count here.)
    */
   hunterRank?: number;
   /** 0-based character slot in the save file. Missing on saves stored before it was kept. */
@@ -129,7 +130,6 @@ export function saveFromCharacter(
     sex?: string;
     zenny: number;
     playTime?: number;
-    hunterRank?: number;
     itemChest: ItemSlot[];
     itemPouch: ItemSlot[];
     equipBox: EquipSlot[];
@@ -152,7 +152,6 @@ export function saveFromCharacter(
     equipment: character.equipBox,
     sex: character.sex,
     playTime: character.playTime,
-    hunterRank: character.hunterRank,
     slot,
     clearedQuests: character.clearedQuests,
     monsters: character.monsters,
@@ -161,7 +160,11 @@ export function saveFromCharacter(
 }
 
 export function setSave(data: Omit<SaveData, "savedAt">): void {
-  localStorage.setItem(KEY, JSON.stringify({ ...data, savedAt: Date.now() }));
+  // hunterRank is worked out on read (getSave), so it isn't stored.
+  localStorage.setItem(
+    KEY,
+    JSON.stringify({ ...data, hunterRank: undefined, savedAt: Date.now() }),
+  );
 }
 
 export function getSave(): SaveData | null {
@@ -169,11 +172,13 @@ export function getSave(): SaveData | null {
     const raw = localStorage.getItem(KEY);
     if (!raw) return null;
     const save = JSON.parse(raw) as SaveData;
-    // Saves stored before HR was worked out from the cleared quests hold a
-    // quest count in `hunterRank`, so it's never taken from storage.
+    // HR comes from the cleared quests, never from storage: saves stored
+    // before this hold a quest count in `hunterRank`.
     return {
       ...save,
-      hunterRank: save.clearedQuests ? hunterRankFrom(save.clearedQuests) : undefined,
+      hunterRank: Array.isArray(save.clearedQuests)
+        ? hunterRankFrom(save.clearedQuests)
+        : undefined,
     };
   } catch {
     return null;

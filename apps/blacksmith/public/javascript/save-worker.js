@@ -10,7 +10,7 @@ const OFFSETS = {
   ZENNY:       0x069250, // uint32 LE
   // No Hunter Rank field: the game works HR out from cleared quests (see
   // HR_URGENT_QUESTS). 0x0672d8, once read as HR, is the Guild Card's quest
-  // counts: 7 × uint16 LE, one per category (see QUEST_COUNT_CATEGORIES).
+  // counts: 7 × uint16 LE, one per category (see "Guild Card quest counts").
   EQUIP_CHEST: 0x0000a8, // 400 slots × 12 bytes (see parseEquipSlot)
   ITEM_CHEST:  0x002f88, // 1000 slots × 4 bytes
   ITEM_POUCH:  0x003f28, // 24 slots × 4 bytes
@@ -69,14 +69,16 @@ const QUEST_FLAG_RUNS = [
   [20001, 18, 18], [21001, 23, 30], [22001, 6, 6],
 ].map(([firstId, count, slots]) => ({ firstId, count, slots }));
 
-// Hunter Rank isn't stored in the save. The game's HR routine (EU EBOOT
-// 0x0884fcb0) checks these urgent quests' cleared bits, highest first, and
-// returns 0-8; its callers add 1 (e.g. 0x08852eb8). So HR is 2 + the index of
-// the last quest here that is cleared, or 1 if none is. src/lib/hunter-rank.ts
-// has the same list, for saves stored before this was worked out.
+// Hunter Rank isn't stored in the save. The game's HR routine (EBOOT EU
+// 0x0884fcb0, JP 0x0884fbf4) checks these urgent quests' cleared bits,
+// highest first, and returns 0-8; its callers add 1 (EU 0x08852eb8, JP
+// 0x08852dd4). So HR is 2 + the index of the last quest here that is cleared,
+// or 1 if none is. The site keeps the same list in src/lib/hunter-rank.ts (a
+// test checks the two match), since this worker can't import it.
 const HR_URGENT_QUESTS = [1104, 1201, 1218, 2120, 2201, 3009, 3103, 3228];
 
-// What the uint16s at 0x0672d8 count (not read; for reference). Quests cleared
+// Guild Card quest counts: what the uint16s at 0x0672d8 count (not read;
+// for reference). Quests cleared
 // by category, each capped at 9999, added up by the game's quest-end routine
 // (EBOOT 0x08875048) from the quest ID: 0 Village 10000-10999, 1 Guild 1-1999,
 // 2 Guild 2000-2999, 3 Treasure 4000-4999, 4 Training 20000-22999 and

@@ -15,7 +15,7 @@ import { AWARDS, awardProgress } from "../src/lib/awards";
 import type { ItemRecord } from "../src/lib/items";
 import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
 import { DATA_DIR } from "../src/lib/paths";
-import { hunterRankFrom } from "../src/lib/hunter-rank";
+import { HR_URGENT_QUESTS, hunterRankFrom } from "../src/lib/hunter-rank";
 import { AWARD_RECORD_KEYS, getSave, saveFromCharacter, setSave } from "../src/lib/save-store";
 import { readData } from "game-data";
 
@@ -385,17 +385,37 @@ test("Hunter Rank comes from the urgent quests cleared, as the game works it out
   assert.equal(await rank(bytes), 1, "no urgent quest cleared");
 });
 
-test("stored saves work HR out again instead of keeping the old quest count", () => {
+test("the worker and src/lib/hunter-rank.ts use the same urgent quests", () => {
+  const worker = fs.readFileSync(path.join(root, "public/javascript/save-worker.js"), "utf8");
+  const list = worker.match(/const HR_URGENT_QUESTS = \[([^\]]*)\]/);
+  assert.ok(list, "HR_URGENT_QUESTS not found in the worker");
+  assert.deepEqual(list[1].split(",").map(Number), HR_URGENT_QUESTS);
+});
+
+test("stored saves work HR out from the cleared quests, never from storage", () => {
   const store = new Map<string, string>();
-  (globalThis as unknown as { localStorage: Pick<Storage, "getItem" | "setItem"> }).localStorage = {
+  const global = globalThis as unknown as { localStorage?: Pick<Storage, "getItem" | "setItem"> };
+  global.localStorage = {
     getItem: (k) => store.get(k) ?? null,
     setItem: (k, v) => void store.set(k, v),
   };
-  // A save stored before the fix: hunterRank held the Village quest count.
-  setSave({ name: "Old", region: "us", items: [], hunterRank: 37, clearedQuests: [1104, 1201] });
-  assert.equal(getSave()?.hunterRank, 3);
-  setSave({ name: "Older", region: "us", items: [], hunterRank: 37 });
-  assert.equal(getSave()?.hunterRank, undefined, "no cleared quests stored, so no HR");
+  try {
+    setSave({ name: "New", region: "us", items: [], hunterRank: 3, clearedQuests: [1104, 1201] });
+    assert.equal(JSON.parse(store.get("mhfu_save")!).hunterRank, undefined, "HR isn't stored");
+    assert.equal(getSave()?.hunterRank, 3);
+    // A save stored before the fix: hunterRank held the Village quest count.
+    store.set(
+      "mhfu_save",
+      JSON.stringify({ name: "Old", items: [], hunterRank: 37, clearedQuests: [1104] }),
+    );
+    assert.equal(getSave()?.hunterRank, 2);
+    store.set("mhfu_save", JSON.stringify({ name: "Older", items: [], hunterRank: 37 }));
+    assert.equal(getSave()?.hunterRank, undefined, "no cleared quests stored, so no HR");
+    store.set("mhfu_save", JSON.stringify({ name: "Odd", items: [], clearedQuests: 5 }));
+    assert.equal(getSave()?.name, "Odd", "a bad cleared-quest list doesn't lose the save");
+  } finally {
+    delete global.localStorage;
+  }
 });
 
 test("every cleared quest is on the site, or one of the disc's unlisted 1-10 / 103-107", async () => {
