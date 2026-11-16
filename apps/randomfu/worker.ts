@@ -1,25 +1,16 @@
 /**
  * The randomizer in a worker: reads the user's ISO through FileReaderSync
- * (the shared code reads synchronously), keeps every write in memory over it
- * (OverlaySource), and sends back the finished image as ranges of the
- * user's file plus changed sectors. Nothing leaves the browser.
+ * (the shared code reads synchronously), runs randomfu's `runRandomizer`
+ * over it, which keeps every write in memory, and sends back the finished
+ * image as ranges of the user's file plus changed sectors. Nothing leaves
+ * the browser.
  */
 import { Buffer } from "buffer";
 import { Iso9660Reader } from "mhfu-extract/src/container/iso9660.js";
-import { detectRegion, parseSfo } from "mhfu-extract/src/container/sfo.js";
 import type { RandomAccessSource } from "mhfu-extract/src/container/source.js";
-import { OverlaySource, PatchableImage } from "randomfu/src/disc/image.js";
-import { loadGame } from "randomfu/src/game/load.js";
-import { randomize } from "randomfu/src/randomize.js";
-import {
-  applySettings,
-  defaultSettings,
-  describeSettings,
-  encodeSettings,
-} from "randomfu/src/settings.js";
-import { reportLogLine } from "randomfu/src/shuffles/shuffle.js";
-import { formatSpoiler } from "randomfu/src/spoiler.js";
-import { writeEdits } from "randomfu/src/write.js";
+import { checkDisc } from "randomfu/src/game/load.js";
+import { runRandomizer } from "randomfu/src/run.js";
+import { applySettings, defaultSettings } from "randomfu/src/settings.js";
 import type { Request, Response, Segment } from "./protocol.js";
 
 interface WorkerScope {
@@ -50,64 +41,23 @@ class BlobSource implements RandomAccessSource {
   close(): void {}
 }
 
-function openIso(file: File): BlobSource {
-  const source = new BlobSource(file);
-  if (source.totalBytes >= 4 && source.read(0, 4).toString("latin1") === "CISO") {
-    throw new Error(
-      "That's a CSO. Decompress it to an ISO first (for example with maxcso or PPSSPP).",
-    );
-  }
-  return source;
-}
-
 async function check(iso: File): Promise<Response> {
-  const reader = new Iso9660Reader(openIso(iso));
-  const { region, discId } = detectRegion(parseSfo(reader.readFile("/PSP_GAME/PARAM.SFO")));
-  const supported = region === "jp" || region === "eu";
-  return { type: "checked", discId, region, supported };
+  return { type: "checked", ...checkDisc(new Iso9660Reader(new BlobSource(iso))) };
 }
 
 async function run(request: Extract<Request, { type: "run" }>): Promise<Response> {
-  const log = (line: string) => post({ type: "log", line });
   const settings = applySettings(defaultSettings(request.settings.seed), { ...request.settings });
-  const overlay = new OverlaySource(openIso(request.iso));
-  const image = new PatchableImage(overlay);
-  log("Reading the disc...");
-  const game = await loadGame(overlay, image.iso, {
-    // Always loaded: Poogie's luck patches it whatever the settings.
-    eboot: { external: false },
-  });
-  log(
-    `${game.discId} (${game.region}): ${game.quests.length} quests, ${game.skippedQuests.length} skipped.`,
+  const result = await runRandomizer(
+    new BlobSource(request.iso),
+    settings,
+    request.options,
+    (line) => post({ type: "log", line }),
   );
-  log(`Seed ${settings.seed}. Settings string: ${encodeSettings(settings)}`);
-  for (const line of describeSettings(settings)) log(`  ${line}`);
-
-  const result = randomize(game, settings);
-  for (const report of result.reports) log(reportLogLine(report));
-  if (result.problems.length > 0) {
-    log(
-      `Warning: ${result.problems.length} recipe materials can't be found as early as before; see the spoiler log.`,
-    );
-  }
-  let segments: Segment[] | null = null;
-  if (!request.dryRun) {
-    const summary = writeEdits(image, game, result.edits);
-    log(
-      `Changed ${summary.quests} quests and ${summary.files} other DATA.BIN files; EBOOT ${summary.eboot}. Read-back check passed.`,
-    );
-    segments = overlay
-      .segments()
-      .map((s) =>
-        s.kind === "original" ? { start: s.start, end: s.end } : { data: new Uint8Array(s.data) },
-      );
-  }
-  return {
-    type: "done",
-    spoiler: formatSpoiler(game, settings, result),
-    problems: result.problems,
-    segments,
-  };
+  const segments: Segment[] | null =
+    result.segments?.map((s) =>
+      s.kind === "original" ? { start: s.start, end: s.end } : { data: new Uint8Array(s.data) },
+    ) ?? null;
+  return { type: "done", spoiler: result.spoiler, problems: result.problems, segments };
 }
 
 scope.onmessage = (event) => {

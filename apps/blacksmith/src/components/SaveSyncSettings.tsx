@@ -2,39 +2,36 @@
 
 import SettingsCard from "@/components/SettingsCard";
 import { useFileSync } from "@/context/FileSyncContext";
+import { useT } from "@/context/LanguageContext";
+import type { Messages } from "@/lib/i18n/messages";
 import * as ui from "@/styles/settings";
 
-function formatTimeAgo(ts: number): string {
+function formatTimeAgo(ts: number, ago: Messages["site"]["saveSync"]["ago"]): string {
   const seconds = Math.max(0, Math.round((Date.now() - ts) / 1000));
-  if (seconds < 60) return "just now";
+  if (seconds < 60) return ago.justNow;
   const minutes = Math.round(seconds / 60);
-  if (minutes < 60) return `${minutes} min ago`;
+  if (minutes < 60) return ago.minutes(minutes);
   const hours = Math.round(minutes / 60);
-  if (hours < 24) return `${hours}h ago`;
-  return `${Math.round(hours / 24)}d ago`;
+  if (hours < 24) return ago.hours(hours);
+  return ago.days(Math.round(hours / 24));
 }
 
 export default function SaveSyncSettings() {
   const fileSync = useFileSync();
+  const text = useT().site.saveSync;
 
   if (!fileSync.isSupported) {
     return (
-      <SettingsCard title="Save Sync">
-        <p className={ui.note}>
-          Automatic save syncing isn&apos;t supported in this browser. You can still upload your
-          save file manually from the Hunter page.
-        </p>
+      <SettingsCard title={text.title}>
+        <p className={ui.note}>{text.unsupported}</p>
       </SettingsCard>
     );
   }
 
   if (!fileSync.hasHandle) {
     return (
-      <SettingsCard title="Save Sync">
-        <p className={ui.note}>
-          Connect your save file from the Hunter page to have your hunter profile refresh
-          automatically whenever you return, no re-uploading needed.
-        </p>
+      <SettingsCard title={text.title}>
+        <p className={ui.note}>{text.notConnected}</p>
       </SettingsCard>
     );
   }
@@ -42,25 +39,24 @@ export default function SaveSyncSettings() {
   const connected = fileSync.permission === "granted";
 
   return (
-    <SettingsCard title="Save Sync">
-      <p className={ui.note}>
-        Your hunter profile refreshes automatically from {fileSync.fileName ?? "your save file"}{" "}
-        whenever you return to this site — no re-uploading needed.
-      </p>
+    <SettingsCard title={text.title}>
+      <p className={ui.note}>{text.connectedNote(fileSync.fileName)}</p>
 
       <div className={ui.status}>
         <span className={ui.statusLabel}>
           {fileSync.syncing
-            ? "Syncing…"
+            ? text.syncing
             : connected
               ? fileSync.lastSynced
-                ? `Last synced ${formatTimeAgo(fileSync.lastSynced)}`
-                : "Connected"
-              : "Access needs to be reconnected"}
+                ? text.lastSynced(formatTimeAgo(fileSync.lastSynced, text.ago))
+                : text.connected
+              : text.needsReconnect}
         </span>
       </div>
 
-      {fileSync.error && <p className={ui.error}>{fileSync.error}</p>}
+      {fileSync.error && (
+        <p className={ui.error}>{fileSync.error.message ?? text.errors[fileSync.error.code]}</p>
+      )}
 
       <div className={ui.actions}>
         {connected ? (
@@ -70,16 +66,16 @@ export default function SaveSyncSettings() {
             disabled={fileSync.syncing}
             onClick={() => fileSync.syncNow()}
           >
-            {fileSync.syncing ? "Syncing…" : "Sync now"}
+            {fileSync.syncing ? text.syncing : text.syncNow}
           </button>
         ) : (
           <button type="button" className={ui.button} onClick={() => fileSync.requestReconnect()}>
-            Reconnect
+            {text.reconnect}
           </button>
         )}
 
         <button type="button" className={ui.buttonSecondary} onClick={() => fileSync.forget()}>
-          Forget save file
+          {text.forget}
         </button>
       </div>
     </SettingsCard>

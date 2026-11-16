@@ -95,9 +95,9 @@ const MONSTER_TYPES = [
 /**
  * Monsters come from `game_task.ovl`/`game_sub.ovl` (`monsters/*.ts`) with
  * part names and drop-group labels from `overlay/monsters.json`, so only
- * the parts and groups that overlay maps are compared; the rest, and every
- * other field (`description`, `habitats`, `icon`), stay as
- * committed. Monsters pair by emID through the same overlay.
+ * the parts and groups that overlay maps are compared; the rest, and
+ * `icon`, stay as committed. `description` is the game's
+ * (`monsters/bestiary.ts`). Monsters pair by emID.
  */
 const MONSTERS: Category = {
   name: "monsters",
@@ -106,6 +106,7 @@ const MONSTERS: Category = {
   // Monsters have no materials or skills; any context works.
   materialContext: "decoration",
   fields: [
+    { field: "description", kind: "scalar" },
     { field: "base_hp", kind: "scalar" },
     { field: "hitzones", kind: "hitzones" },
     { field: "drops", kind: "drops" },
@@ -124,8 +125,10 @@ const MONSTERS: Category = {
   // to disagree with, and is the HP before a quest's multiplier.
   // `breaks` (monsters/breaks.ts, overlay/breaks.json) and
   // `flinch_thresholds` and `tolerances` (hitzones.ts) are new too, as are
-  // `base_size` and `crowns` (monsters/sizes.ts).
+  // `base_size` and `crowns` (monsters/sizes.ts). `description` replaces
+  // the site's hand-written text with the game's (monsters/bestiary.ts).
   take: [
+    "description",
     "base_hp",
     "hitzones",
     "drops",

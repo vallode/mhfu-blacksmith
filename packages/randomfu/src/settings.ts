@@ -1,34 +1,49 @@
 /**
- * Every randomizer option, described once. The CLI, settings files, the
- * shareable settings string and the GUI all work from `OPTIONS`.
+ * Every randomizer option, described once. The web app's pages, settings
+ * files and the shareable settings string all work from `OPTIONS`.
  *
  * Settings are a flat object keyed by option (`"recipes.amountSpread"`), so
  * they serialize as they are. A settings string is "RF" plus base64url JSON
  * of the seed, the logic version and every option that isn't its default:
  * with the same disc, it reproduces the same game.
  */
+import type { Scope } from "./game/tiers.js";
 import { LOGIC_VERSION } from "./version.js";
 
 export interface Settings {
   seed: string;
-  "logic.tiers": "star" | "rank" | "none";
-  "questRewards.enabled": boolean;
-  "monsterRewards.enabled": boolean;
+  "questRewards.mode": Mode;
+  "questRewards.scope": Scope;
+  "questRewards.slots": number;
+  "questRewards.chances": "rarity" | "reasonable" | "any";
+  "questRewards.keepItems": boolean;
+  "questRewards.draws": number;
+  "monsterRewards.mode": Mode;
+  "monsterRewards.scope": Scope;
+  "monsterRewards.chances": "rarity" | "reasonable" | "any";
   "monsterRewards.captureAndBreaks": boolean;
-  "gathering.enabled": boolean;
-  "gathering.pool": "gathered" | "rank" | "any";
+  "carveCounts.mode": Mode;
+  "carveCounts.max": number;
+  "gathering.mode": Mode;
+  "gathering.scope": Scope;
+  "gathering.chances": "rarity" | "reasonable" | "any";
   "gathering.keepItems": boolean;
-  "supplies.enabled": boolean;
-  "supplies.pool": "supplies" | "rank" | "add";
+  "gathering.counts": boolean;
+  "gathering.countSpread": number;
+  "supplies.mode": Mode;
+  "supplies.scope": Scope;
+  "supplies.slots": number;
   "supplies.keepEssentials": boolean;
   "terms.money": boolean;
   "terms.moneySpread": number;
   "terms.time": boolean;
   "terms.timeSpread": number;
   "deliveries.enabled": boolean;
-  "trades.enabled": boolean;
+  "trades.mode": Mode;
   "trades.mix": "elder" | "all";
-  "recipes.materials": boolean;
+  "trades.scope": "low" | "high" | "any";
+  "recipes.mode": Mode;
+  "recipes.scope": Scope;
   "recipes.amounts": boolean;
   "recipes.amountSpread": number;
   "recipes.maxQuantity": number;
@@ -42,12 +57,26 @@ export interface Settings {
   "weapons.affinitySpread": number;
   "weapons.element": boolean;
   "weapons.elementSpread": number;
+  "weapons.elementGain": number;
+  "weapons.elementKind": boolean;
+  "weapons.slots": boolean;
+  "weapons.slotSpread": number;
+  "weapons.statRange": "near" | "wide" | "any";
+  "weapons.sharpness": boolean;
+  "weapons.sharpnessMode": "shuffle" | "new";
   "armor.enabled": boolean;
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
   "armorSkills.keepArmorOnly": boolean;
-  "shops.enabled": boolean;
-  "shops.pool": "shop" | "low" | "high" | "any";
+  "armorStats.defense": Mode;
+  "armorStats.defenseSpread": number;
+  "armorStats.resistances": Mode;
+  "armorStats.resistanceSpread": number;
+  "armorStats.slots": Mode;
+  "armorStats.rarity": Mode;
+  "armorStats.raritySpread": number;
+  "shops.mode": Mode;
+  "shops.scope": "low" | "high" | "any";
   "shops.mix": "each" | "all";
   "shops.keepEssentials": boolean;
   "shops.special": boolean;
@@ -56,8 +85,11 @@ export interface Settings {
   "shops.priceSpread": number;
   "shops.stacks": boolean;
   "shops.stackSpread": number;
-  "questMonsters.species": boolean;
-  "questMonsters.speciesPool": "variants" | "rank" | "any";
+  "questMaps.enabled": boolean;
+  "questMaps.pool": "time" | "any";
+  "questMaps.starts": boolean;
+  "questMonsters.mode": Mode;
+  "questMonsters.scope": "rank" | "adjacent" | "any";
   "questMonsters.text": boolean;
   "questMonsters.difficulty": boolean;
   "questMonsters.difficultySpread": number;
@@ -66,6 +98,7 @@ export interface Settings {
   "questMonsters.sizeSpread": number;
   "questMonsters.crowns": boolean;
   "questMonsters.crownSpread": "random" | "wide" | "none";
+  "questMonsters.smallSpecies": boolean;
   "questMonsters.smallCounts": boolean;
   "questMonsters.smallCountSpread": number;
   "monsterStats.hp": boolean;
@@ -78,6 +111,7 @@ export interface Settings {
   "weaknesses.parts": boolean;
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
+  "mods.nodeMap": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -107,6 +141,9 @@ export type OptionType =
  */
 export type Action = "shuffle" | "randomize";
 
+/** What a feature does: nothing, shuffle what's there, or randomize new values. */
+export type Mode = "off" | Action;
+
 export interface OptionDef {
   key: OptionKey;
   section: string;
@@ -114,162 +151,424 @@ export interface OptionDef {
   help: string;
   type: OptionType;
   default: boolean | number | string;
-  /** Shuffle or randomize: left out for options that only tune another (and for Logic). */
+  /** Shuffle or randomize: left out for options that only tune another. */
   action?: Action;
-  /** Needs the decrypted EBOOT when on (or, for non-booleans, when `enabledBy` is on). */
-  eboot?: boolean;
-  /** A boolean option that must be on for this one to matter. */
+  /** An option that must be on for this one to matter. */
   enabledBy?: OptionKey;
+  /** With `enabledBy` a choice: the values of it that count as on. */
+  enabledWhen?: readonly string[];
 }
 
 const SPREAD = { kind: "number", min: 0, max: 0.95, step: 0.05, percent: true } as const;
 
 export const OPTIONS: readonly OptionDef[] = [
   {
-    key: "logic.tiers",
-    section: "Logic",
-    label: "How far items can move",
-    help: "An item's point in the game is the rank and star level where it's first found: the earliest Village or Guild quest that rewards it, has a monster that gives it, or has a gathering point with it.",
+    key: "questRewards.mode",
+    section: "Quest rewards",
+    label: "Quest rewards",
+    help: "What happens to the reward slots of Village and Guild quests. Training School and Treasure Hunting quests are left alone.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Quests give what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Whole reward slots (item, amount and chance) trade places between quests, as far as the scope allows. Each quest keeps its number of slots, and a list's chances are scaled back to add up to 100.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Each quest's main reward list gets a new number of slots, and every slot a new item, amount and chance, with the items drawn from the scope.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "shuffle",
+  },
+  {
+    key: "questRewards.scope",
+    section: "Quest rewards",
+    label: "How far rewards can reach",
+    help: "Which quests slots trade between when shuffled, and which items a quest's slots can be drawn from when randomized (by where each item is first found).",
     type: {
       kind: "choice",
       choices: [
         {
           value: "star",
           label: "Same star level",
-          help: "Items only move between places at the same rank and star level. A 1★ recipe stays craftable at 1★.",
+          help: "Slots stay at their own rank and star level; randomized slots get items found there.",
         },
         {
           value: "rank",
           label: "Same rank",
-          help: "Items move anywhere within Low, High or G Rank. Early recipes can ask for late Low Rank parts.",
+          help: "Anywhere within Low, High or G Rank.",
         },
         {
-          value: "none",
-          label: "Anywhere (chaos)",
-          help: "No logic: any item can go anywhere. Recipes may need G Rank parts in Low Rank.",
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
         },
+        { value: "any", label: "Anywhere (chaos)", help: "Any quest, any item in the game." },
       ],
     },
     default: "star",
+    enabledBy: "questRewards.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
-    key: "questRewards.enabled",
+    key: "questRewards.slots",
     section: "Quest rewards",
-    label: "Shuffle quest rewards",
-    help: "Reward items and amounts move between Village and Guild quests at the same point in the game (see Logic); each slot keeps its chance. Training School and Treasure Hunting quests are left alone.",
-    type: { kind: "boolean" },
-    default: true,
-    action: "shuffle",
+    label: "Reward slot variation",
+    help: "How far a main reward list's number of slots can move, up or down. A list never gets more slots than the longest one on the disc, or than its quest has room for.",
+    type: SPREAD,
+    default: 0.3,
+    enabledBy: "questRewards.mode",
+    enabledWhen: ["randomize"],
   },
   {
-    key: "monsterRewards.enabled",
-    section: "Monster rewards",
-    label: "Shuffle carves and shiny drops",
-    help: "Body carves, tail carves and shiny drops move between monsters at the same point in the game (see Logic); each slot keeps its chance.",
+    key: "questRewards.chances",
+    section: "Quest rewards",
+    label: "Reward chances",
+    help: "How slots' chances are rolled. A list's chances always add up to 100, so whatever is rolled is scaled to fit.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rarity",
+          label: "Same rarity",
+          help: "The chances the list had, dealt to the new slots.",
+        },
+        {
+          value: "reasonable",
+          label: "Within reason",
+          help: "Each of the list's chances scaled by 0.5 to 2.",
+        },
+        { value: "any", label: "Anything (chaos)", help: "Each slot rolls 1 to 100." },
+      ],
+    },
+    default: "rarity",
+    enabledBy: "questRewards.mode",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "questRewards.keepItems",
+    section: "Quest rewards",
+    label: "Keep every reward item",
+    help: "When randomizing, every item a quest rewarded is still the reward of some quest at the same star level, so recipes that need it stay craftable. There may not be room for all of them if lists get shorter. Off, the scope decides everything.",
     type: { kind: "boolean" },
     default: true,
-    action: "shuffle",
+    enabledBy: "questRewards.mode",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "questRewards.draws",
+    section: "Quest rewards",
+    label: "Reward draws variation",
+    help: "How far the number of times a quest's main reward list is drawn can move, up or down (rounded, so a small spread leaves small counts alone). Never fewer than 1 or more than the most any quest has on the disc. Works on its own, whatever the mode above.",
+    type: SPREAD,
+    default: 0,
+  },
+  {
+    key: "monsterRewards.mode",
+    section: "Monster rewards",
+    label: "Carves and shiny drops",
+    help: "What happens to the reward lists of monsters: body carves, tail carves and shiny drops, and with the option below, captures and part breaks. A list never changes length.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Monsters give what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Whole slots (item, chance and amount) trade places between lists, as far as the scope allows. A list's chances are scaled back to add up to what they did.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Every slot gets a new item drawn from the scope, a new chance and, for captures and breaks, a new amount.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "shuffle",
+  },
+  {
+    key: "monsterRewards.scope",
+    section: "Monster rewards",
+    label: "How far monster rewards can reach",
+    help: "Which lists slots trade between when shuffled, and which items a list's slots can be drawn from when randomized (by where each item is first found). A list's point in the game is its rank and the earliest star level of a quest its monster is in.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "star",
+          label: "Same star level",
+          help: "Slots stay at their own rank and star level; randomized slots get items found there.",
+        },
+        { value: "rank", label: "Same rank", help: "Anywhere within Low, High or G Rank." },
+        {
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
+        },
+        { value: "any", label: "Anywhere (chaos)", help: "Any list, any item in the game." },
+      ],
+    },
+    default: "star",
+    enabledBy: "monsterRewards.mode",
+    enabledWhen: ["shuffle", "randomize"],
+  },
+  {
+    key: "monsterRewards.chances",
+    section: "Monster rewards",
+    label: "Monster reward chances",
+    help: "How slots' chances are rolled. A list's chances always add up to what they did, so whatever is rolled is scaled to fit.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rarity",
+          label: "Same rarity",
+          help: "The chances the list had, dealt to the new slots.",
+        },
+        {
+          value: "reasonable",
+          label: "Within reason",
+          help: "Each of the list's chances scaled by 0.5 to 2.",
+        },
+        { value: "any", label: "Anything (chaos)", help: "Each slot rolls 1 to 100." },
+      ],
+    },
+    default: "rarity",
+    enabledBy: "monsterRewards.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "monsterRewards.captureAndBreaks",
     section: "Monster rewards",
     label: "Include capture and break rewards",
-    help: "Capture rewards and part-break rewards are shuffled along with carves.",
+    help: "Capture rewards and part-break rewards are changed along with carves.",
     type: { kind: "boolean" },
     default: true,
-    enabledBy: "monsterRewards.enabled",
+    enabledBy: "monsterRewards.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
-    key: "gathering.enabled",
-    section: "Gathering",
-    label: "Shuffle gathering points",
-    help: "Items from mining, gathering and bug catching points move between Village and Guild quests at the same point in the game (see Logic); each spot keeps its odds. Training School and Treasure Hunting quests are left alone.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
-  },
-  {
-    key: "gathering.pool",
-    section: "Gathering",
-    label: "What gathering points give",
-    help: "Where gathering points' items come from.",
+    key: "carveCounts.mode",
+    section: "Monster rewards",
+    label: "Carve counts",
+    help: 'How many times a monster can be carved, body and tail, separate from the items in its lists ("body carves (x3)"). A monster with no tail, and carves done another way (elder dragons, live carving), are left alone.',
     type: {
       kind: "choice",
       choices: [
         {
-          value: "gathered",
-          label: "Gathering point items",
-          help: "Only items gathering points give anyway, moved between spots.",
+          value: "off",
+          label: "Unchanged",
+          help: "Monsters can be carved as often as they always could.",
         },
         {
-          value: "rank",
-          label: "Any item from the same rank",
-          help: "Anything first found at the quest's rank, monster parts included: a Low Rank quest's spots give Low Rank items, and likewise High and G Rank.",
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Counts trade places between the monsters that have one.",
+          action: "shuffle",
         },
         {
-          value: "any",
-          label: "Any item (chaos)",
-          help: "Any item in the game, at any rank.",
+          value: "randomize",
+          label: "Randomize",
+          help: "Every count is rolled from 1 to the largest below.",
+          action: "randomize",
         },
       ],
     },
-    default: "gathered",
-    enabledBy: "gathering.enabled",
+    default: "off",
+  },
+  {
+    key: "carveCounts.max",
+    section: "Monster rewards",
+    label: "Most carves",
+    help: "The largest body or tail carve count a monster can roll.",
+    type: { kind: "number", min: 1, max: 9, step: 1 },
+    default: 4,
+    enabledBy: "carveCounts.mode",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "gathering.mode",
+    section: "Gathering",
+    label: "Gathering points",
+    help: "What happens to the items of mining, gathering and bug catching points in Village and Guild quests. Training School and Treasure Hunting quests are left alone, and a delivery quest keeps the item it asks for.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Points give what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Pairs (item and how likely it is) trade places between quests, as far as the scope allows. A table's odds are scaled back to add up to what they did.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Every pair gets a new item drawn from the scope and new odds. Tables keep their length.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "gathering.scope",
+    section: "Gathering",
+    label: "How far gathering points can reach",
+    help: "Which quests pairs trade between when shuffled, and which items a point can give when randomized (by where each item is first found).",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "star",
+          label: "Same star level",
+          help: "Pairs stay at their own rank and star level; randomized points give items found there.",
+        },
+        { value: "rank", label: "Same rank", help: "Anywhere within Low, High or G Rank." },
+        {
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
+        },
+        { value: "any", label: "Anywhere (chaos)", help: "Any quest, any item in the game." },
+      ],
+    },
+    default: "star",
+    enabledBy: "gathering.mode",
+    enabledWhen: ["shuffle", "randomize"],
+  },
+  {
+    key: "gathering.chances",
+    section: "Gathering",
+    label: "Gathering odds",
+    help: "How points' odds are rolled. A table's odds always add up to what they did, so whatever is rolled is scaled to fit.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rarity",
+          label: "Same rarity",
+          help: "The odds the table had, dealt to the new items.",
+        },
+        {
+          value: "reasonable",
+          label: "Within reason",
+          help: "Each of the table's odds scaled by 0.5 to 2.",
+        },
+        { value: "any", label: "Anything (chaos)", help: "Each pair rolls 1 to 100." },
+      ],
+    },
+    default: "rarity",
+    enabledBy: "gathering.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "gathering.keepItems",
     section: "Gathering",
     label: "Keep every gatherable item findable",
-    help: "With a wider pool, each item gathering points give is still at one or more spots at the same point in the game, so recipes stay craftable. The other spots get random items.",
+    help: "When randomizing, each item gathering points give is still at one or more spots at the same star level, so recipes stay craftable. The other spots get random items.",
     type: { kind: "boolean" },
     default: true,
-    enabledBy: "gathering.enabled",
+    enabledBy: "gathering.mode",
+    enabledWhen: ["randomize"],
   },
   {
-    key: "supplies.enabled",
-    section: "Supplies",
-    label: "Shuffle supply boxes",
-    help: "Each Village and Guild quest's supply box holds other items from the game. Stacks laid out once per hunter change together, and a delivery quest's box never gets the item it asks for.",
+    key: "gathering.counts",
+    section: "Gathering",
+    label: "Randomize how often points can be gathered",
+    help: "Each mining, gathering and bug catching point in Village and Guild quests gets a new fewest and most number of gathers before it runs out. Points that never run out, and points that give a delivery quest's item, stay as they are.",
     type: { kind: "boolean" },
     default: false,
-    action: "shuffle",
+    action: "randomize",
   },
   {
-    key: "supplies.pool",
+    key: "gathering.countSpread",
+    section: "Gathering",
+    label: "Gather count variation",
+    help: "How far a point's gathers can move from their usual value, up or down. Every point can still be gathered at least once.",
+    type: SPREAD,
+    default: 0.5,
+    enabledBy: "gathering.counts",
+  },
+  {
+    key: "supplies.mode",
     section: "Supplies",
-    label: "What supply boxes hold",
-    help: "Where supply box items come from.",
+    label: "Supply boxes",
+    help: "What happens to the supply box each Village and Guild quest hands out. Stacks laid out once per hunter change together, and a delivery quest's box never gets the item it asks for. Training School and Treasure Hunting quests are left alone.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Boxes hold what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Whole stacks (item and amount) trade places between boxes, as far as the scope allows. Each box keeps its length.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Each box gets a new number of stacks, and every stack a new item drawn from the scope and a new amount.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "supplies.scope",
+    section: "Supplies",
+    label: "How far supply boxes can reach",
+    help: "Which boxes stacks trade between when shuffled, and which items a box can be drawn from when randomized (items first found there, and items that boxes there hold).",
     type: {
       kind: "choice",
       choices: [
         {
-          value: "supplies",
-          label: "Supply box items",
-          help: "Only items supply boxes hold anyway: items and amounts move between the boxes of quests at the same point in the game (see Logic).",
+          value: "star",
+          label: "Same star level",
+          help: "Stacks stay at their own rank and star level; randomized boxes get items found there.",
         },
+        { value: "rank", label: "Same rank", help: "Anywhere within Low, High or G Rank." },
         {
-          value: "rank",
-          label: "Any item from the same rank",
-          help: "Anything first found at the quest's rank, or held by any supply box, in its usual amount.",
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
         },
-        {
-          value: "add",
-          label: "Add random items (chaos)",
-          help: "Each box keeps what it has and gets up to 4 more stacks of any item in the game, in its usual amount. A Low Rank box can hold G Rank parts.",
-        },
+        { value: "any", label: "Anywhere (chaos)", help: "Any box, any item in the game." },
       ],
     },
-    default: "supplies",
-    enabledBy: "supplies.enabled",
+    default: "star",
+    enabledBy: "supplies.mode",
+    enabledWhen: ["shuffle", "randomize"],
+  },
+  {
+    key: "supplies.slots",
+    section: "Supplies",
+    label: "Supply stack variation",
+    help: "How far a box's number of stacks can move, up or down. A box never gets more entries than the largest one on the disc, or than its quest has room for.",
+    type: SPREAD,
+    default: 0.3,
+    enabledBy: "supplies.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "supplies.keepEssentials",
     section: "Supplies",
     label: "Keep maps and quest supplies",
-    help: "Maps, ballista and cannon ammo and the other quest-only supplies stay where they are. A quest's Paw Pass Ticket always stays. (Adding random items keeps everything anyway.)",
+    help: "Maps, ballista and cannon ammo and the other quest-only supplies stay where they are. A quest's Paw Pass Ticket always stays. (Randomizing never adds quest-only items.)",
     type: { kind: "boolean" },
     default: true,
-    enabledBy: "supplies.enabled",
+    enabledBy: "supplies.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "terms.money",
@@ -317,13 +616,29 @@ export const OPTIONS: readonly OptionDef[] = [
     action: "randomize",
   },
   {
-    key: "trades.enabled",
+    key: "trades.mode",
     section: "Veggie Elder",
-    label: "Shuffle the Veggie Elder's trades",
-    help: "What each of his trades gives, the common and rare item together, moves to another trade. Each trade keeps the item he takes and its place in his list, so he still takes the first item on it that you carry.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
+    label: "The Veggie Elder's trades",
+    help: "What the Elder gives for the items he takes. Each trade keeps the item he takes and its place in his list, so he still takes the first item on it that you carry.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "He gives what he always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "What each trade gives, the common and rare item together, moves to another trade.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Each trade gives new common and rare items drawn from the scope.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
   },
   {
     key: "trades.mix",
@@ -346,17 +661,88 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "elder",
-    enabledBy: "trades.enabled",
+    enabledBy: "trades.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
-    key: "recipes.materials",
+    key: "trades.scope",
+    section: "Veggie Elder",
+    label: "How far trades can reach",
+    help: "Which items a randomized trade can give besides the ones the Elders give anyway. Trades have no rank of their own, so this is the highest rank whose items can turn up.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "low",
+          label: "Trade and Low Rank items",
+          help: "Also anything first found in Low Rank.",
+        },
+        {
+          value: "high",
+          label: "Trade, Low and High Rank items",
+          help: "Also anything first found in Low or High Rank.",
+        },
+        { value: "any", label: "Any item (chaos)", help: "Any item in the game." },
+      ],
+    },
+    default: "low",
+    enabledBy: "trades.mode",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "recipes.mode",
     section: "Crafting",
-    label: "Shuffle recipe materials",
-    help: "Each crafting and upgrade material is replaced by another from the same point in the game (see Logic). Shop, combined and ticket items stay.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
-    eboot: true,
+    label: "Recipe materials",
+    help: "What happens to the materials of crafting and upgrade recipes. Shop, combined and ticket items stay. An item's point in the game is the rank and star level where it's first found: the earliest Village or Guild quest that rewards it, has a monster that gives it, or has a gathering point with it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Recipes ask for what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Materials are swapped between recipe slots, as far as the scope allows.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Each material is replaced by a new item drawn from the scope.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "recipes.scope",
+    section: "Crafting",
+    label: "How far recipe materials can reach",
+    help: "Which materials a slot can get, by where each is first found. Only the same star level keeps every recipe craftable as early as before.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "star",
+          label: "Same star level",
+          help: "Materials stay at their own rank and star level. A 1★ recipe stays craftable at 1★.",
+        },
+        { value: "rank", label: "Same rank", help: "Anywhere within Low, High or G Rank." },
+        {
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
+        },
+        {
+          value: "any",
+          label: "Anywhere (chaos)",
+          help: "Any item with a source, at any rank. Recipes may need G Rank parts in Low Rank.",
+        },
+      ],
+    },
+    default: "star",
+    enabledBy: "recipes.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "recipes.amounts",
@@ -366,7 +752,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "recipes.amountSpread",
@@ -394,7 +779,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "costs.spread",
@@ -413,7 +797,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
-    eboot: true,
   },
   {
     key: "weapons.mix",
@@ -442,11 +825,10 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.attack",
     section: "Weapons",
     label: "Randomize weapon attack",
-    help: "Each weapon's attack varies, staying within what weapons of its type have from one rarity below to one above. Sharpness, slots, defense bonus, horn notes, shelling, ammo and cost stay fixed. Stats go with the weapon wherever the smithy makes it.",
+    help: "Each weapon's attack varies, staying within what weapons of its type have nearby in rarity (see the stat range). Defense bonus, horn notes, shelling, ammo and cost stay fixed. Stats go with the weapon wherever the smithy makes it.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "weapons.attackSpread",
@@ -461,11 +843,10 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.affinity",
     section: "Weapons",
     label: "Randomize weapon affinity",
-    help: "Each weapon's affinity moves up or down in steps of 5%, staying within what weapons of its type have from one rarity below to one above.",
+    help: "Each weapon's affinity moves up or down in steps of 5%, staying within what weapons of its type have nearby in rarity.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "weapons.affinitySpread",
@@ -480,11 +861,10 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "weapons.element",
     section: "Weapons",
     label: "Randomize weapon element and status",
-    help: "Weapons with an element or status get a new value for it, staying within what weapons of its type have from one rarity below to one above. They keep which element or status it is; weapons without one stay without, and dual-element weapons keep theirs. A weapon that's the only one of its type with that element or status nearby varies by the spread alone.",
+    help: "Weapons with an element or status get a new value for it, staying within what weapons of its type have nearby in rarity. Dual-element weapons keep theirs. A weapon that's the only one of its type with that element or status nearby varies by the spread alone.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "weapons.elementSpread",
@@ -496,6 +876,101 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "weapons.element",
   },
   {
+    key: "weapons.elementGain",
+    section: "Weapons",
+    label: "New elements",
+    help: "The chance a Blademaster weapon or bow with no element or status gains one (bows only elements), at a value weapons of its type with it have nearby in rarity. Bowguns never do.",
+    type: { kind: "number", min: 0, max: 1, step: 0.05, percent: true },
+    default: 0,
+    enabledBy: "weapons.element",
+  },
+  {
+    key: "weapons.elementKind",
+    section: "Weapons",
+    label: "Change which element",
+    help: "A Blademaster weapon or bow with an element or status can get any other: Fire can become Ice, or Poison, and the other way round (bows only elements).",
+    type: { kind: "boolean" },
+    default: false,
+    enabledBy: "weapons.element",
+  },
+  {
+    key: "weapons.slots",
+    section: "Weapons",
+    label: "Randomize decoration slots",
+    help: "Each weapon gains or loses decoration slots, from none to three.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "weapons.slotSpread",
+    section: "Weapons",
+    label: "Slot variation",
+    help: "How many slots a weapon can gain or lose.",
+    type: { kind: "number", min: 1, max: 3, step: 1 },
+    default: 1,
+    enabledBy: "weapons.slots",
+  },
+  {
+    key: "weapons.statRange",
+    section: "Weapons",
+    label: "Weapon stat range",
+    help: "What attack, affinity and element values a weapon stays within: those of weapons of its type at rarities near its own.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "near",
+          label: "One rarity either side",
+          help: "A rarity 3 weapon stays within what rarity 2 to 4 weapons of its type have.",
+        },
+        {
+          value: "wide",
+          label: "Three rarities either side",
+          help: "A rarity 3 weapon can have what rarity 1 to 6 weapons of its type have.",
+        },
+        {
+          value: "any",
+          label: "Any rarity",
+          help: "Any weapon can have what any weapon of its type has, G Rank included, as far as the variation lets it move.",
+        },
+      ],
+    },
+    default: "near",
+  },
+  {
+    key: "weapons.sharpness",
+    section: "Weapons",
+    label: "Shuffle weapon sharpness",
+    help: "Blademaster weapons of the same type and rarity trade sharpness bars, so bar lengths stay as they were for each rarity. Sharpness goes with the weapon wherever the smithy makes it.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
+  },
+  {
+    key: "weapons.sharpnessMode",
+    section: "Weapons",
+    label: "Sharpness bars",
+    help: "Whether the bars themselves change.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "shuffle",
+          label: "The game's bars",
+          help: "Weapons only trade the bars the game has.",
+        },
+        {
+          value: "new",
+          label: "New bars",
+          help: "Every bar gets new colors, each a random share of it, so any weapon can have any color, purple included. Bars keep their length.",
+        },
+      ],
+    },
+    default: "shuffle",
+    enabledBy: "weapons.sharpness",
+  },
+  {
     key: "armor.enabled",
     section: "Armor",
     label: "Shuffle which armor the smithy makes",
@@ -503,7 +978,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
-    eboot: true,
   },
   {
     key: "armorSkills.enabled",
@@ -512,7 +986,6 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The skill points on armor pieces change. Each piece keeps how many skills it has and which are negative; Torso Up and decorations stay as they are.",
     type: { kind: "boolean" },
     default: false,
-    eboot: true,
   },
   {
     key: "armorSkills.mode",
@@ -549,27 +1022,168 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "armorSkills.enabled",
   },
   {
-    key: "shops.enabled",
-    section: "Shop stock",
-    label: "Shuffle shop stock",
-    help: "Each item a shop sells is replaced by another item from the game, the same in every stage of that shop, so later stages still include earlier stock.",
-    type: { kind: "boolean" },
-    default: false,
-    action: "shuffle",
-  },
-  {
-    key: "shops.pool",
-    section: "Shop stock",
-    label: "What shops can sell",
-    help: "Where replacement items come from.",
+    key: "armorStats.defense",
+    section: "Armor",
+    label: "Armor defense",
+    help: "Each piece's defense, which goes with the piece wherever the smithy makes it.",
     type: {
       kind: "choice",
       choices: [
+        { value: "off", label: "Unchanged", help: "As on the disc." },
         {
-          value: "shop",
-          label: "Shop items",
-          help: "Only items shops sell anyway, moved to other shops and stages.",
+          value: "shuffle",
+          label: "Shuffle",
+          action: "shuffle",
+          help: "Pieces of the same rarity and hunter type trade their defense, along with how far armor spheres upgrade it.",
         },
+        {
+          value: "randomize",
+          label: "Randomize",
+          action: "randomize",
+          help: "Each piece's defense varies, staying within what pieces of its hunter type have from one rarity below to one above. Armor spheres upgrade it as many levels as before.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "armorStats.defenseSpread",
+    section: "Armor",
+    label: "Defense variation",
+    help: "How far defense can move from its usual value, up or down.",
+    type: SPREAD,
+    default: 0.2,
+    enabledBy: "armorStats.defense",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "armorStats.resistances",
+    section: "Armor",
+    label: "Armor resistances",
+    help: "Each piece's fire, water, thunder, dragon and ice resistance.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          action: "shuffle",
+          help: "Pieces of the same rarity and hunter type trade all five resistances together.",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          action: "randomize",
+          help: "Each resistance moves up or down, staying within what pieces of its hunter type have from one rarity below to one above.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "armorStats.resistanceSpread",
+    section: "Armor",
+    label: "Resistance variation",
+    help: "How many points each resistance can move, up or down.",
+    type: { kind: "number", min: 1, max: 10, step: 1, unit: "points" },
+    default: 2,
+    enabledBy: "armorStats.resistances",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "armorStats.slots",
+    section: "Armor",
+    label: "Armor decoration slots",
+    help: "How many decoration slots each piece has.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          action: "shuffle",
+          help: "Pieces of the same rarity and hunter type trade their slots.",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          action: "randomize",
+          help: "Each piece gets a slot count drawn from the counts pieces of its rarity have, so a rarity keeps about as many slots.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "armorStats.rarity",
+    section: "Armor",
+    label: "Armor rarity",
+    help: "Each piece's rarity. What the game uses armor rarity for hasn't been checked in game.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "As on the disc." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          action: "shuffle",
+          help: "Pieces of the same rank (Low, High or G) and hunter type trade their rarity.",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          action: "randomize",
+          help: "Each piece's rarity moves up or down, staying within its rank.",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "armorStats.raritySpread",
+    section: "Armor",
+    label: "Rarity variation",
+    help: "How many levels rarity can move, up or down.",
+    type: { kind: "number", min: 1, max: 4, step: 1, unit: "levels" },
+    default: 1,
+    enabledBy: "armorStats.rarity",
+    enabledWhen: ["randomize"],
+  },
+  {
+    key: "shops.mode",
+    section: "Shop stock",
+    label: "Shop stock",
+    help: "What happens to what shops sell. Each item a shop sells is replaced by one other item, the same in every stage of that shop, so later stages still include earlier stock.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Shops sell what they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "Only items shops sell anyway are moved to other shops and stages. Every shop keeps its number of items.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "Items are replaced by ones drawn from the scope, and shops can sell more or fewer items.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "shops.scope",
+    section: "Shop stock",
+    label: "How far shop stock can reach",
+    help: "Which items a randomized shop can sell. Shops have no rank of their own, so this is the highest rank whose items can turn up, along with the items shops sell anyway.",
+    type: {
+      kind: "choice",
+      choices: [
         {
           value: "low",
           label: "Shop and Low Rank items",
@@ -587,14 +1201,15 @@ export const OPTIONS: readonly OptionDef[] = [
         },
       ],
     },
-    default: "shop",
-    enabledBy: "shops.enabled",
+    default: "low",
+    enabledBy: "shops.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "shops.mix",
     section: "Shop stock",
     label: "Replacements across shops",
-    help: "Whether an item is replaced by the same thing in every shop. With shop items only, this also decides whether shops trade stock.",
+    help: "Whether an item is replaced by the same thing in every shop. When shuffling, this also decides whether shops trade stock.",
     type: {
       kind: "choice",
       choices: [
@@ -611,7 +1226,8 @@ export const OPTIONS: readonly OptionDef[] = [
       ],
     },
     default: "each",
-    enabledBy: "shops.enabled",
+    enabledBy: "shops.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "shops.keepEssentials",
@@ -620,7 +1236,8 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "Potion, Whetstone, pickaxes, bugnets, BBQ Spit, Normal S Lv1/2 and Empty Bottle stay where they are.",
     type: { kind: "boolean" },
     default: true,
-    enabledBy: "shops.enabled",
+    enabledBy: "shops.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "shops.special",
@@ -629,7 +1246,8 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "The Pokke Village shop that takes Pokke Points: Armor Spheres, jewels, Pokke Tickets and Gourmet BBQ Spit. Off keeps armor upgrades as usual.",
     type: { kind: "boolean" },
     default: false,
-    enabledBy: "shops.enabled",
+    enabledBy: "shops.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
   {
     key: "shops.countSpread",
@@ -638,18 +1256,17 @@ export const OPTIONS: readonly OptionDef[] = [
     help: "How far the number of items each shop sells can move, up or down, every stage alike. Above 0%, the shop lists are rewritten and the game is pointed at their new places.",
     type: SPREAD,
     default: 0,
-    action: "randomize",
-    enabledBy: "shops.enabled",
+    enabledBy: "shops.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "shops.prices",
     section: "Shop prices",
     label: "Randomize prices",
-    help: "The price of everything shops sell changes, with or without the stock shuffle (with it, of what they sell now). A price is the item's own, so it's the same in every shop.",
+    help: "The price of everything shops sell changes, with or without changing the stock (with it, of what they sell now). A price is the item's own, so it's the same in every shop.",
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "shops.priceSpread",
@@ -668,7 +1285,6 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
-    eboot: true,
   },
   {
     key: "shops.stackSpread",
@@ -680,50 +1296,99 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "shops.stacks",
   },
   {
-    key: "questMonsters.species",
-    section: "Quest monsters",
-    label: "Shuffle large monsters",
-    help: "Village and Guild quests get other large monsters from the game. A monster only goes to a map it's found on somewhere in the game, and the quest's target follows it. Tried on the EU disc.",
+    key: "questMaps.enabled",
+    section: "Quest maps",
+    label: "Move quests to other maps",
+    help: "Village and Guild quests move to another map where all of their large monsters are found. A moved quest takes its gathering points and small monsters from a quest already on that map, and its monsters start where monsters of their kind start there. Delivery quests and quests whose goal names a small monster or an item stay. The quest's text still names the old map. Written and read back on the EU disc; not yet tried in game.",
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
   },
   {
-    key: "questMonsters.speciesPool",
-    section: "Quest monsters",
-    label: "What large monsters can become",
-    help: "Where replacement monsters come from.",
+    key: "questMaps.pool",
+    section: "Quest maps",
+    label: "Where quests can move",
+    help: "Which maps a quest can move to.",
     type: {
       kind: "choice",
       choices: [
         {
-          value: "variants",
-          label: "Variants only",
-          help: "A monster becomes one of its own variants: Rathian, Pink Rathian or Gold Rathian. Quests with several monsters change too.",
-        },
-        {
-          value: "rank",
-          label: "Any monster from the same rank",
-          help: "Any large monster found in a quest of the same rank (Low, High or G). Only quests with one kind of large monster change.",
+          value: "time",
+          label: "Other time of day",
+          help: "The same place by night instead of by day, or the other way round (Forest and Hills, Desert, Swamp, Volcano, Jungle, Snowy Mountains, Great Forest).",
         },
         {
           value: "any",
-          label: "Any monster (chaos)",
-          help: "Any large monster found on the quest's map, at any rank. Only quests with one kind of large monster change.",
+          label: "Any map its monsters are on",
+          help: "Any map where every one of the quest's large monsters is found in some quest: a Rathian hunt can go to the Forest and Hills, the Arena or the Old Volcano.",
         },
       ],
     },
-    default: "variants",
-    enabledBy: "questMonsters.species",
+    default: "any",
+    enabledBy: "questMaps.enabled",
   },
   {
-    key: "questMonsters.text",
-    section: "Quest monsters",
-    label: "Rename monsters in quest text",
-    help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Seen working on the EU disc's Quest Details screen.",
+    key: "questMaps.starts",
+    section: "Quest maps",
+    label: "Shuffle where large monsters start",
+    help: "Each large monster starts at another point on its map where the disc's quests start a monster of its kind (one whose kind starts nowhere else there keeps its own). Moved quests always get new starting points. Not yet tried in game.",
     type: { kind: "boolean" },
-    default: true,
-    enabledBy: "questMonsters.species",
+    default: false,
+    action: "shuffle",
+  },
+  {
+    key: "questMonsters.mode",
+    section: "Quest monsters",
+    label: "Large monsters",
+    help: "What happens to the large monsters in Village and Guild quests. A monster only goes to a map it's found on somewhere in the game, and the quest's target follows it. Tried on the EU disc.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Quests have the monsters they always did." },
+        {
+          value: "shuffle",
+          label: "Shuffle",
+          help: "A monster becomes one of its own variants: Rathian, Pink Rathian or Gold Rathian. Quests with several monsters change too.",
+          action: "shuffle",
+        },
+        {
+          value: "randomize",
+          label: "Randomize",
+          help: "A monster becomes any large monster found on the quest's map within the scope. Only quests with one kind of large monster change.",
+          action: "randomize",
+        },
+      ],
+    },
+    default: "off",
+  },
+  {
+    key: "questMonsters.scope",
+    section: "Quest monsters",
+    label: "How far large monsters can reach",
+    help: "Which monsters a randomized quest can get: those found in quests of its rank, of its rank or the next, or at any rank (still only monsters found on its map).",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rank",
+          label: "Same rank",
+          help: "Any large monster found in a quest of the same rank (Low, High or G).",
+        },
+        {
+          value: "adjacent",
+          label: "Same or next rank",
+          help: "Within a rank and the ranks next to it (Low with High, High with G).",
+        },
+        {
+          value: "any",
+          label: "Anywhere (chaos)",
+          help: "Any large monster found on the quest's map, at any rank.",
+        },
+      ],
+    },
+    default: "rank",
+    enabledBy: "questMonsters.mode",
+    enabledWhen: ["randomize"],
   },
   {
     key: "questMonsters.difficulty",
@@ -822,6 +1487,15 @@ export const OPTIONS: readonly OptionDef[] = [
     enabledBy: "questMonsters.crowns",
   },
   {
+    key: "questMonsters.smallSpecies",
+    section: "Quest monsters",
+    label: "Shuffle small monsters",
+    help: "Each small monster species in a Village or Guild quest becomes another found in the same areas in some quest (Cephalos stay in sand). Every one of its kind in the quest changes together. Small monsters the goal names, and delivery quests' small monsters, stay. Not yet tried in game.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "shuffle",
+  },
+  {
     key: "questMonsters.smallCounts",
     section: "Quest monsters",
     label: "Randomize small monster counts",
@@ -913,20 +1587,37 @@ export const OPTIONS: readonly OptionDef[] = [
   },
   {
     key: "hints.bookshelf",
-    section: "Hints",
+    section: "Extras",
     label: "Monster guide on the bookshelf",
     help: "The house bookshelf's Practical Hunting monster articles (Open Bookshelf, Info Magazine) become the RandomFU Bestiary: one page per large monster rating its elemental weaknesses, softest parts, status resistance and health in stars, as the shuffles left them, readable from the start. In English in every language. EU disc only; seen on the shelf in PPSSPP.",
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
+    key: "hints.almanac",
+    section: "Extras",
+    label: "Item almanac on the bookshelf",
+    help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
+    type: { kind: "boolean" },
+    default: true,
+  },
+  {
+    key: "mods.nodeMap",
+    section: "Extras",
+    label: "Gathering nodes on the area map",
+    help: "The map screen's pictures get a marker at every gathering (green), mining (orange) and bug catching (yellow) node of the map, so you can see where the points are. Each map's picture is shared by all its quests, so the markers show the map's nodes, not one quest's. EU disc only.",
     type: { kind: "boolean" },
     default: false,
   },
   {
-    key: "hints.almanac",
-    section: "Hints",
-    label: "Item almanac on the bookshelf",
-    help: "The house bookshelf's Lay of the Land articles (Open Bookshelf, Info Magazine) become the RandomFU Almanac: a line per crafting material, A to Z, naming the shops that sell it and its earliest gathering spots, carves, captures, breaks and quest rewards, as the shuffles left them, readable from the start. In English in every language. EU disc only.",
+    key: "questMonsters.text",
+    section: "Extras",
+    label: "Rename monsters in quest text",
+    help: "A swapped monster's name changes in the quest's title, goal, details and monster list, in every language, using names read from the disc's own quests. Text that can't change safely (another article, too long a line, no room) keeps the old name and is listed in the spoiler log. Seen working on the EU disc's Quest Details screen.",
     type: { kind: "boolean" },
-    default: false,
-    eboot: true,
+    default: true,
+    enabledBy: "questMonsters.mode",
+    enabledWhen: ["shuffle", "randomize"],
   },
 ];
 
@@ -940,8 +1631,8 @@ export function defaultSettings(seed: string): Settings {
 
 export class SettingsError extends Error {}
 
-/** Checks one value against its option, converting CLI strings ("true", "0.5"). */
-export function coerceOption(key: string, value: unknown): Settings[OptionKey] {
+/** Checks one value against its option, converting strings ("true", "0.5"). */
+function coerceOption(key: string, value: unknown): Settings[OptionKey] {
   const option = BY_KEY.get(key as OptionKey);
   if (!option) throw new SettingsError(`Unknown setting "${key}"`);
   const type = option.type;
@@ -979,28 +1670,16 @@ export function applySettings(base: Settings, changes: Record<string, unknown>):
   return out as unknown as Settings;
 }
 
-/** Parses `key=value,key=value` (the CLI's `--set`). */
-export function parseAssignments(value: string): Record<string, string> {
-  const out: Record<string, string> = {};
-  for (const part of value.split(",")) {
-    if (!part.trim()) continue;
-    const eq = part.indexOf("=");
-    if (eq === -1) throw new SettingsError(`Expected key=value, got "${part}"`);
-    out[part.slice(0, eq).trim()] = part.slice(eq + 1).trim();
-  }
-  return out;
-}
-
-/** True if any option that needs the decrypted EBOOT is on. */
-export function needsEboot(settings: Settings): boolean {
-  return OPTIONS.some((o) => o.eboot && settings[o.key] === true && isActive(settings, o));
-}
-
-/** True if the option is in effect: its `enabledBy` switch, and that switch's, are on. */
+/**
+ * True if the option is in effect: its `enabledBy` switch is on (or its
+ * choice is at `enabledWhen`), and that option is in effect too.
+ */
 export function isActive(settings: Settings, option: OptionDef): boolean {
   if (!option.enabledBy) return true;
   const parent = BY_KEY.get(option.enabledBy)!;
-  return settings[option.enabledBy] === true && isActive(settings, parent);
+  const value = settings[option.enabledBy];
+  const on = option.enabledWhen ? option.enabledWhen.includes(String(value)) : value === true;
+  return on && isActive(settings, parent);
 }
 
 /** What `settings` shuffle and randomize: every option in effect that does either, with which. */
@@ -1104,10 +1783,7 @@ export interface Preset {
   changes: Partial<Record<OptionKey, boolean | number | string>>;
 }
 
-/** The bookshelf guides, written by every preset but Rewards only. */
-const HINTS = { "hints.bookshelf": true, "hints.almanac": true } as const;
-
-/** The monster and weapon randomizers that Randomized, Full and Chaos all turn on. */
+/** The monster, weapon and armor stat randomizers that Randomized, Full and Chaos all turn on. */
 const STAT_RANDOMIZERS = {
   "questMonsters.crowns": true,
   "questMonsters.difficulty": true,
@@ -1118,6 +1794,11 @@ const STAT_RANDOMIZERS = {
   "weapons.attack": true,
   "weapons.affinity": true,
   "weapons.element": true,
+  "weapons.slots": true,
+  "armorStats.defense": "randomize",
+  "armorStats.resistances": "randomize",
+  "armorStats.slots": "randomize",
+  "armorStats.rarity": "randomize",
 } as const;
 
 export const PRESETS: readonly Preset[] = [
@@ -1128,28 +1809,34 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Shuffled",
-    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Every amount, cost and stat stays as it was. The bookshelf guides are written.",
+    help: "Moves things, rolls no new numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, weapon sharpness, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Armor pieces also trade their defense (with how far spheres upgrade it), resistances and slots with pieces of the same rarity and hunter type, and their rarity within its rank. No amount, cost or stat is rolled anew.",
     changes: {
-      "gathering.enabled": true,
-      "supplies.enabled": true,
-      "recipes.materials": true,
+      "gathering.mode": "shuffle",
+      "supplies.mode": "shuffle",
+      "recipes.mode": "shuffle",
       "weapons.enabled": true,
+      "weapons.sharpness": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
-      "shops.enabled": true,
-      "questMonsters.species": true,
+      "armorStats.defense": "shuffle",
+      "armorStats.resistances": "shuffle",
+      "armorStats.slots": "shuffle",
+      "armorStats.rarity": "shuffle",
+      "shops.mode": "shuffle",
+      "questMonsters.mode": "shuffle",
       "weaknesses.elements": true,
       "weaknesses.parts": true,
-      ...HINTS,
     },
   },
   {
     name: "Randomized",
-    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity and element are rolled anew, and armor gets new skills. The bookshelf guides are written.",
+    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, how often each quest's main reward list is drawn, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, each weapon's attack, affinity, element and slots, and each armor piece's defense, resistances, slots and rarity are rolled anew, and armor gets new skills.",
     changes: {
-      "questRewards.enabled": false,
-      "monsterRewards.enabled": false,
+      "questRewards.mode": "off",
+      "questRewards.draws": 0.3,
+      "monsterRewards.mode": "off",
       "recipes.amounts": true,
+      "gathering.counts": true,
       "costs.enabled": true,
       "shops.prices": true,
       "shops.stacks": true,
@@ -1160,55 +1847,67 @@ export const PRESETS: readonly Preset[] = [
       "armorSkills.mode": "randomize",
       "questMonsters.size": true,
       ...STAT_RANDOMIZERS,
-      ...HINTS,
     },
   },
   {
     name: "Full",
-    help: "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before. Gathering points draw from the whole rank, shops add Low Rank items and prices change; armor skills are shuffled, and monster difficulty stays within its rank.",
+    help: "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before. Gathering points draw from the whole rank, shops add Low Rank items and prices change; armor skills are shuffled while armor stats get new values, and monster difficulty stays within its rank.",
     changes: {
-      "recipes.materials": true,
+      "recipes.mode": "shuffle",
       "recipes.amounts": true,
+      "gathering.counts": true,
       "costs.enabled": true,
       "weapons.enabled": true,
+      "weapons.sharpness": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
-      "shops.enabled": true,
-      "shops.pool": "low",
+      "questRewards.draws": 0.3,
+      "shops.mode": "randomize",
+      "shops.scope": "low",
       "shops.prices": true,
       "shops.stacks": true,
-      "gathering.enabled": true,
-      "gathering.pool": "rank",
-      "supplies.enabled": true,
+      "gathering.mode": "randomize",
+      "gathering.scope": "rank",
+      "supplies.mode": "shuffle",
       "terms.money": true,
       "terms.time": true,
       "deliveries.enabled": true,
-      "questMonsters.species": true,
+      "questMonsters.mode": "shuffle",
       "questMonsters.size": true,
       ...STAT_RANDOMIZERS,
       "weaknesses.elements": true,
       "weaknesses.parts": true,
-      ...HINTS,
     },
   },
   {
     name: "Chaos",
-    help: "Full with the limits off. Logic is at Anywhere, so recipes may need G Rank parts in Low Rank. Weapons can change type, any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
+    help: "Full with the limits off. Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank. Weapons can change type, take any stat their type has at any rarity, gain or change elements and slots, and get new sharpness bars; any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
     changes: {
-      "logic.tiers": "none",
-      "recipes.materials": true,
+      "questRewards.scope": "any",
+      "questRewards.draws": 0.9,
+      "monsterRewards.scope": "any",
+      "recipes.mode": "shuffle",
+      "recipes.scope": "any",
       "recipes.amounts": true,
       "recipes.amountSpread": 0.9,
+      "gathering.counts": true,
+      "gathering.countSpread": 0.9,
       "costs.enabled": true,
       "costs.spread": 0.9,
       "weapons.enabled": true,
       "weapons.mix": "any-type",
+      "weapons.sharpness": true,
+      "weapons.sharpnessMode": "new",
+      "weapons.statRange": "any",
+      "weapons.elementGain": 0.4,
+      "weapons.elementKind": true,
+      "weapons.slotSpread": 2,
       "armor.enabled": true,
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
       "armorSkills.keepArmorOnly": false,
-      "shops.enabled": true,
-      "shops.pool": "any",
+      "shops.mode": "randomize",
+      "shops.scope": "any",
       "shops.mix": "all",
       "shops.keepEssentials": false,
       "shops.special": true,
@@ -1217,18 +1916,18 @@ export const PRESETS: readonly Preset[] = [
       "shops.priceSpread": 0.9,
       "shops.stacks": true,
       "shops.stackSpread": 0.9,
-      "gathering.enabled": true,
-      "gathering.pool": "any",
+      "gathering.mode": "randomize",
+      "gathering.scope": "any",
       "gathering.keepItems": false,
-      "supplies.enabled": true,
-      "supplies.pool": "add",
+      "supplies.mode": "randomize",
+      "supplies.scope": "any",
       "terms.money": true,
       "terms.moneySpread": 0.9,
       "terms.time": true,
       "terms.timeSpread": 0.6,
       "deliveries.enabled": true,
-      "questMonsters.species": true,
-      "questMonsters.speciesPool": "any",
+      "questMonsters.mode": "randomize",
+      "questMonsters.scope": "any",
       "questMonsters.size": true,
       "questMonsters.sizeSpread": 0.5,
       ...STAT_RANDOMIZERS,
@@ -1244,7 +1943,9 @@ export const PRESETS: readonly Preset[] = [
       "weapons.attackSpread": 0.5,
       "weapons.affinitySpread": 30,
       "weapons.elementSpread": 0.6,
-      ...HINTS,
+      "armorStats.defenseSpread": 0.5,
+      "armorStats.resistanceSpread": 5,
+      "armorStats.raritySpread": 2,
     },
   },
 ];

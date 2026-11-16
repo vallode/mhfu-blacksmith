@@ -1,5 +1,6 @@
 /**
- * Transforms data/*.json (raw items) and content/*.json (crafting trees) into
+ * Transforms data/*.json (raw items) and the crafting trees built by
+ * src/lib/trees.ts into
  * compact per-category bundles in public/data:
  *   - dictionaries.json          (shared materials/enums/strings/melodies)
  *   - weapon-<type>.json         (11)
@@ -15,6 +16,9 @@
  *   - combinations.json          (the Combination List, see src/lib/combinations.ts)
  *   - veggie-trades.json         (the Veggie Elder's trades, see src/lib/veggie-trades.ts)
  *   - data-manifest.json         ({ files, version })
+ *   - locale-<code>.json         (game text in other languages, from data/locales;
+ *                                 fetched only in that language, so outside the
+ *                                 manifest, the precache and the budget)
  *
  * Reuses the transform logic from src/lib (slugify, raw_attack
  * multipliers, horn-melody join) via the same constants/helpers.
@@ -68,6 +72,7 @@ import {
   type ItemRecord,
 } from "../src/lib/items";
 import { encodeQuestBundle, monsterSizeRanges, type QuestRecord } from "./lib/quest-bundle";
+import { buildLocaleBundles } from "./lib/locales";
 import { encodeCombinations, type CombinationsFile } from "../src/lib/combinations";
 import { encodeVeggieTrades, type VeggieTradesFile } from "../src/lib/veggie-trades";
 import {
@@ -77,13 +82,13 @@ import {
   type GatheringFile,
   type ShopsFile,
 } from "../src/lib/item-places";
+import { buildArmorTree, buildDecorationTree, buildWeaponTree } from "../src/lib/trees";
 import { buildAreaMaps } from "../src/lib/area-maps";
 import { flinchThreshold } from "../src/lib/monster-breaks";
 import type { HitboxCapsule } from "../src/lib/models";
 import { readData } from "game-data";
 
 const root = process.cwd();
-const contentDir = path.join(root, "content");
 const dataDir = DATA_DIR;
 const outDir = path.join(root, "public", "data");
 
@@ -337,9 +342,6 @@ function encodeMonster(
   const out: CompactMonster = { n: m.name, s: m.slug };
   const d = internString(m.description);
   if (d !== undefined) out.d = d;
-  if (Array.isArray(m.habitats) && m.habitats.length > 0) {
-    out.hb = m.habitats.map((h) => intern(stringIndex, h));
-  }
   if (m.hitzones && Object.keys(m.hitzones).length > 0) {
     const COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
     out.hz = Object.entries(m.hitzones).map(([part, vals]) => [
@@ -444,9 +446,7 @@ const weaponMinRank: MinRankLookup = (type, slug) => weaponMinRanks.get(`${type}
 
 for (const type of WEAPON_TYPES) {
   const crafting = readData<{ weapons: Weapon[] }>(dataDir, "weapons", `${type}.json`);
-  const tree = readJson<{ map: WeaponTreeNode[] }>(
-    path.join(contentDir, "blacksmith", type, "map.json"),
-  );
+  const tree = buildWeaponTree(type);
   const items = crafting.weapons.map((w) =>
     encodeWeapon({ ...w, slug: slugify(w.name) }, minRanks.weapon(type, w.name)),
   );
@@ -457,23 +457,20 @@ for (const type of WEAPON_TYPES) {
   push(`weapon-${type}.json`, {
     kind: "weapon",
     type,
-    tree: compactTree(tree.map, type, weaponMinRank),
+    tree: compactTree(tree, type, weaponMinRank),
     items,
   });
 }
 
 // Armor — data/armor/<slot>.json holds every rank in one file (each piece
 // carries its own "rank"), while the crafting tree is still split per rank
-// under content/armorsmith/<slot>/<rank>/map.json.
+// (see buildArmorTree).
 for (const slot of ARMOR_SLOTS) {
   const allPieces = readData<{ armor: ArmorPiece[] }>(dataDir, "armor", `${slot}.json`).armor;
   for (const rank of ARMOR_RANKS) {
     const pieces = allPieces.filter((p) => p.rank === rank);
     if (pieces.length === 0) continue;
-    const treePath = path.join(contentDir, "armorsmith", slot, rank, "map.json");
-    const tree = fs.existsSync(treePath)
-      ? readJson<{ map: WeaponTreeNode[] }>(treePath)
-      : { map: [] };
+    const tree = buildArmorTree(slot, rank);
     const slugs = armorSlugs(pieces);
     const items = pieces.map((p, i) =>
       encodeArmor({ ...p, slug: slugs[i], rank }, minRanks.armor(p)),
@@ -492,7 +489,7 @@ for (const slot of ARMOR_SLOTS) {
       slot,
       rank,
       tree: compactTree(
-        tree.map,
+        tree,
         slot,
         (_type, slug) => minRankBySlug.get(slug),
         (slug) => maxDefenceBySlug.get(slug),
@@ -583,9 +580,7 @@ for (const category of MONSTER_CATEGORIES) {
 // Decorations
 {
   const crafting = readData<{ decorations: Decoration[] }>(dataDir, "decorations.json");
-  const tree = readJson<{ map: WeaponTreeNode[] }>(
-    path.join(contentDir, "decorations", "map.json"),
-  );
+  const tree = buildDecorationTree();
   // The game's item IDs, for set share links (src/lib/set-codec.ts).
   const { index: itemIndex } = buildItemNameIndex(
     readData<{ items: ItemRecord[] }>(dataDir, "items.json").items,
@@ -612,7 +607,7 @@ for (const category of MONSTER_CATEGORIES) {
   totalItems += items.length;
   push("decorations.json", {
     kind: "decoration",
-    tree: compactTree(tree.map, "decoration"),
+    tree: compactTree(tree, "decoration"),
     items,
   });
 }
@@ -782,6 +777,13 @@ const walkImages = (dir: string) => {
 walkImages(imagesDir);
 imageUrls.sort();
 fs.writeFileSync(path.join(outDir, "image-manifest.json"), JSON.stringify(imageUrls));
+
+// Game text in other languages (scripts/lib/locales.ts).
+for (const locale of buildLocaleBundles(dataDir)) {
+  fs.writeFileSync(path.join(outDir, `locale-${locale.code}.json`), locale.json);
+  for (const warning of locale.warnings) console.warn(`generate-data: ${warning}`);
+  console.log(`generate-data: locale-${locale.code}.json, ${locale.entries} entries`);
+}
 
 const fmt = (n: number) =>
   n >= 1024 * 1024 ? `${(n / 1024 / 1024).toFixed(2)} MB` : `${(n / 1024).toFixed(1)} KB`;

@@ -3,9 +3,6 @@
     {
       "id": 35,
       "type": "bird-wyvern",
-      "habitats": [
-        "SnwyMntains"
-      ],
       "drops": {
         "low-rank": {
           "body carves (x1)": [
@@ -2729,15 +2726,23 @@
           "live carving : when playing dead (x3)": [
             {
               "item": 402,
-              "chance": "60%"
-            },
-            {
-              "item": 310,
               "chance": "30%"
             },
             {
               "item": 268,
               "chance": "10%"
+            },
+            {
+              "item": 279,
+              "chance": "20%"
+            },
+            {
+              "item": 267,
+              "chance": "20%"
+            },
+            {
+              "item": 309,
+              "chance": "20%"
             }
           ],
           "break head": [
@@ -3138,15 +3143,23 @@
           "live carving : when playing dead (x3)": [
             {
               "item": 407,
-              "chance": "60%"
-            },
-            {
-              "item": 310,
               "chance": "30%"
             },
             {
               "item": 268,
               "chance": "10%"
+            },
+            {
+              "item": 279,
+              "chance": "20%"
+            },
+            {
+              "item": 267,
+              "chance": "20%"
+            },
+            {
+              "item": 309,
+              "chance": "20%"
             }
           ],
           "break head": [

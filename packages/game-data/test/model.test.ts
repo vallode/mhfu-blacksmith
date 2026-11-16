@@ -1,9 +1,9 @@
 import assert from "node:assert/strict";
-import { mkdtempSync, mkdirSync, readFileSync, readdirSync, writeFileSync } from "node:fs";
+import { mkdtempSync, mkdirSync, readFileSync, readdirSync, rmSync, writeFileSync } from "node:fs";
 import { tmpdir } from "node:os";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
-import { describe, test } from "node:test";
+import { describe, test, type TestContext } from "node:test";
 import {
   dehydrate,
   fileKind,
@@ -276,8 +276,9 @@ describe("importLegacy", () => {
 });
 
 describe("writeData", () => {
-  function fixture(): string {
+  function fixture(t: TestContext): string {
     const dir = mkdtempSync(path.join(tmpdir(), "game-data-write-"));
+    t.after(() => rmSync(dir, { recursive: true, force: true }));
     const { files, en, ja } = importLegacy(legacy(), sources);
     for (const [rel, raw] of files) {
       mkdirSync(path.dirname(path.join(dir, rel)), { recursive: true });
@@ -289,16 +290,16 @@ describe("writeData", () => {
     return dir;
   }
 
-  test("writes nothing for an unchanged view", () => {
-    const dir = fixture();
+  test("writes nothing for an unchanged view", (t) => {
+    const dir = fixture(t);
     for (const rel of legacy().keys()) {
       if (rel === "equipment-ids.json") continue;
       assert.deepEqual(writeData(dir, rel, readData(dir, rel)), [], rel);
     }
   });
 
-  test("writes new values to the record and new text to the strings", () => {
-    const dir = fixture();
+  test("writes new values to the record and new text to the strings", (t) => {
+    const dir = fixture(t);
     const quests = readData(dir, "quests/village.json");
     quests.quests[0].title = "The Queen";
     quests.quests[0].supplies.push({ item: "ConstitutnJewel", amount: 1 });
@@ -314,8 +315,8 @@ describe("writeData", () => {
     assert.deepEqual(readData(dir, "quests/village.json"), quests);
   });
 
-  test("dry runs write nothing, and unknown names are errors", () => {
-    const dir = fixture();
+  test("dry runs write nothing, and unknown names are errors", (t) => {
+    const dir = fixture(t);
     const before = readFileSync(path.join(dir, "armor", "helmet.json"), "utf-8");
     const armor = readData(dir, "armor/helmet.json");
     armor.armor[0].defence = 9;
@@ -333,4 +334,62 @@ describe("writeData", () => {
     armor.armor[0].name = "Not In The Tables";
     assert.throws(() => writeData(dir, "armor/helmet.json", armor), /no helmet is named/);
   });
+});
+
+test("a quest's loadouts name training-only gear, never a piece with a record", () => {
+  const en = new StringTable({
+    item: { "989": "Attack Jewel" },
+    helmet: { "1": "Leather Helm", "241": "Old Piercing Name" },
+  });
+  const records = new Map([["helmet" as const, new Set([1])]]);
+  const quest = (names: [string, string]) => ({
+    quests: [
+      {
+        id: 21001,
+        map: null,
+        target: null,
+        supplies: [],
+        reward_tables: [],
+        large_monsters: [],
+        small_monsters: [],
+        arena_sets: [
+          {
+            players: 1,
+            point_multiplier: 100,
+            equipment: [
+              { slot: "helmet", id: 1, name: names[0], level: 0, decorations: ["Attack Jewel"] },
+              { slot: "helmet", id: 241, name: names[1], level: 2, decorations: [] },
+            ],
+            items: [],
+          },
+        ],
+        title: null,
+        goal: null,
+        details: null,
+        fail: null,
+        client: null,
+      },
+    ],
+  });
+  const { raw, strings } = dehydrate(
+    { kind: "quests" },
+    quest(["Renamed Helm", "Piercing of Rage"]),
+    stringResolver(en, undefined, records),
+  );
+  // The training-only piece takes the quest's name, even over an older one; the recorded piece keeps its record's.
+  assert.deepEqual(strings.en.helmet, { "241": "Piercing of Rage" });
+  assert.deepEqual(raw.quests[0].arena_sets[0].equipment, [
+    { slot: "helmet", id: 1, level: 0, decorations: [989] },
+    { slot: "helmet", id: 241, level: 2, decorations: [] },
+  ]);
+  // And the named view puts the name back after the ID.
+  const named = hydrate({ kind: "quests" }, raw, { en });
+  assert.deepEqual(Object.keys(named.quests[0].arena_sets[0].equipment[1]), [
+    "slot",
+    "id",
+    "name",
+    "level",
+    "decorations",
+  ]);
+  assert.equal(named.quests[0].arena_sets[0].equipment[1].name, "Old Piercing Name");
 });

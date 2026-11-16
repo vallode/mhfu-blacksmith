@@ -50,6 +50,13 @@ References:
 - **Skills** on armor (`{ "skill": 36, "amount": 3 }`) and decorations
   (`{ "skill": 36, "points": 1 }`).
 - **Quests:** `map: 11`, items by ID, `{ "monster": 87, "quantity": 1 }`.
+  A Training School quest's `arena_sets` name gear by slot and ID,
+  `{ "slot": "helmet", "id": 241, "level": 0, "decorations": [989] }`, as
+  a save's equipment box does. Gear with a record is named by it; the
+  training-only pieces with none (Rookie Knife, the Piercings) are named in
+  the string tables by the quest file. `writeData` checks the weapon and
+  armor records (`equipmentRecordIds`): a quest file writes the name of a
+  piece without a record, and never one with.
 - **Gathering, shops, Veggie Elder trades, combinations, Pokke Farm:**
   items and maps by ID. A farm point's name ("Mining Point +2") is under
   `farm`, by its index.
@@ -79,8 +86,10 @@ English (`StringTable`). `ja.json` holds the Japanese item names so far.
 `stringsPath(dataDir, lang)` is the one place the path is spelled out.
 
 **Spellings.** Where a reference should show another English spelling
-than the name, it carries `alias: n`: the n-th English alias. Quests name
-"Terra Shogun Ceanatur", the game's own spelling, that way. Skill
+than the name, it carries `alias: n`: the n-th English alias. Monsters'
+aliases are `monster.enum`'s spellings ("One-Ear Yian Garuga", "Terra
+Shogun Ceanatur"), which an extract of a disc whose names aren't read
+(JP) still uses; the EU disc's names are the names. Skill
 references on armor and decorations carry none: they show the tree's name
 from `skill`, as the set builder does. The old spellings ("Defence",
 "Load") stay as aliases, which search and the set builder still match.

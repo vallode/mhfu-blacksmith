@@ -15,12 +15,11 @@
       "type": "object",
       "required": ["id", "type"],
       "additionalProperties": true,
-      "$comment": "The name and the site's description are in data/strings, keyed by the ID: 'monster' and 'monster_description'.",
+      "$comment": "The name and the game's description are in data/strings, keyed by the ID: 'monster' and 'monster_description'.",
       "properties": {
         "id":          { "type": "integer", "minimum": 1, "description": "The game's monster ID (emID)" },
         "type":        { "type": "string", "minLength": 1 },
         "icon":        { "type": "string" },
-        "habitats":    { "type": "array" },
         "base_hp":     { "type": "integer", "minimum": 0 },
         "drops": {
           "type": "object",

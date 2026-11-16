@@ -189,7 +189,6 @@ export interface Monster {
   slug: string;
   type: string;
   description?: string;
-  habitats?: string[];
   hitzones?: Record<string, HitzoneValues>;
   drops?: Record<string, Record<string, MonsterDrop[]>>;
   /** HP before a quest's multiplier, from the disc */

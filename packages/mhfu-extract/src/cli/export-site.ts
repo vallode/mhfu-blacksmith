@@ -52,13 +52,14 @@ import { packMotions } from "../models/motion-pack.js";
 import { readMotionBank } from "../models/motion.js";
 import { packageModel } from "../models/rig.js";
 import { spawnHidden, withoutHidden } from "../models/spawn-parts.js";
+import { wearProps } from "../models/worn-props.js";
 import { isPac, readPac, type PacEntry } from "../models/pac.js";
 import { isPmo, type Pmo } from "../models/pmo.js";
 import { isTmh, readTmh } from "../models/tmh.js";
 import {
   poseWeapon,
   SHEATHED_TARGET,
-  WEAPON_POSES,
+  weaponPoses,
   type WeaponPoses,
 } from "../models/weapon-pose.js";
 import { parseOvl, type OvlFile } from "../container/ovl.js";
@@ -67,11 +68,14 @@ import { buildSiteHitboxes, jointPositions } from "../monsters/hitboxes.js";
 import { locateMonsterChunks } from "../monsters/hitzones.js";
 import { OVERLAY_DIR } from "../monsters/overlays.js";
 import { MONSTER_OVERLAY } from "../overlay/monsters.js";
-import { loadEnums, lookupName } from "../strings/enums.js";
 import { armorModelPath, readArmorModelIds, type SiteArmorSlot } from "../tables/armor-models.js";
-import { readBlademasterWeapons, readGunnerWeapons } from "../tables/weapons.js";
+import {
+  readBlademasterWeapons,
+  readGunnerWeapons,
+  type WeaponTypeName,
+} from "../tables/weapons.js";
 import { assertCurrentFileNames, type UnpackManifest } from "./unpack.js";
-import { readData } from "game-data";
+import { readData, readRawData, readStringsDoc } from "game-data";
 
 export interface ExportSiteOptions {
   /** An `unpack` output directory (containing `data-bin/`, and `eboot.bin` for weapons/armor). */
@@ -112,12 +116,6 @@ export interface SiteModelManifest {
   armor: Record<string, Record<string, [number, number]>>;
 }
 
-/** monster.enum names that differ from the site's names. */
-const MONSTER_NAME_ALIASES: Record<string, string> = {
-  "One-Ear Yian Garuga": "Scarred Yian Garuga",
-  "Terra Shogun Ceanatur": "Terra Shogun Ceanataur",
-};
-
 type EquipmentIds = Record<string, ({ name: string; type?: string; sex?: string } | null)[]>;
 
 /**
@@ -144,18 +142,37 @@ async function packageToGlb(
   const tmhEntry = entries.find((entry) => isTmh(entry.data));
   const model = packageModel(entries, pmoEntry.index, clipOptions);
   const { rig } = model;
-  // A monster is shown as it spawns: no broken parts, stump caps or rage
-  // layers. A table that doesn't fit the model leaves every part drawn.
-  if (name.startsWith("emmodel/"))
+  let textures = tmhEntry ? readTmh(tmhEntry.data) : [];
+  if (name.startsWith("emmodel/")) {
+    const pac = path.basename(name, ".pac");
+    // A monster is shown as it spawns: no broken parts, stump caps or rage
+    // layers. A table that doesn't fit the model leaves every part drawn.
     try {
-      model.pmo = withoutHidden(model.pmo, spawnHidden(path.basename(name, ".pac")));
+      model.pmo = withoutHidden(model.pmo, spawnHidden(pac));
     } catch (err) {
       console.log(`${name}: ${err instanceof Error ? err.message : String(err)}, drawing them all`);
     }
+    // And with what it wears from its props (King Shakalaka's crown). A
+    // package without them is drawn bare.
+    if (rig)
+      try {
+        ({ pmo: model.pmo, textures } = wearProps(
+          pac,
+          entries,
+          pmoEntry.index,
+          model.pmo,
+          rig.bones,
+          textures,
+        ));
+      } catch (err) {
+        console.log(
+          `${name}: ${err instanceof Error ? err.message : String(err)}, drawing it bare`,
+        );
+      }
+  }
   // An unrigged model's skeleton still splits it into pieces and poses it.
   const bones = rig ? undefined : weaponSkeleton(entries, pmoEntry.index);
   const { pmo, sheathed } = pose && bones ? poseWeapon(model.pmo, bones, pose) : { pmo: model.pmo };
-  const textures = tmhEntry ? readTmh(tmhEntry.data) : [];
   const motions = rig?.clips?.length ? packMotions(rig.clips) : undefined;
   const { glb } = await buildGlb(
     pmo,
@@ -342,14 +359,16 @@ class Converter {
   }
 }
 
-async function siteMonsterNames(dataDir: string): Promise<Set<string>> {
-  const names = new Set<string>();
+/** The site's monsters: emID -> name (`data/strings`). */
+async function siteMonsters(dataDir: string): Promise<Map<number, string>> {
+  const names = (readStringsDoc(dataDir).monster ?? {}) as Record<string, string>;
+  const out = new Map<number, string>();
   const dir = path.join(dataDir, "monsters");
   for (const file of (await readdir(dir)).filter((f) => f.endsWith(".json"))) {
-    const { monsters } = readData<{ monsters: { name: string }[] }>(dataDir, "monsters", file);
-    for (const monster of monsters) names.add(monster.name);
+    const { monsters } = readRawData<{ monsters: { id: number }[] }>(dataDir, "monsters", file);
+    for (const { id } of monsters) if (names[id]) out.set(id, names[id]);
   }
-  return names;
+  return out;
 }
 
 /** What monster hitboxes are read from: `game_task.ovl`, its chunk array and every `emNN.ovl`. */
@@ -440,8 +459,7 @@ async function exportMonsters(
   options: ExportSiteOptions,
   converter: Converter,
 ): Promise<Record<string, number>> {
-  const enums = loadEnums();
-  const siteNames = await siteMonsterNames(options.data);
+  const siteNames = await siteMonsters(options.data);
   const monsters: Record<string, number> = {};
   const emDir = path.join(options.unpacked, "data-bin", "emmodel");
   if (!(await exists(emDir))) return monsters;
@@ -450,13 +468,11 @@ async function exportMonsters(
   let hitboxCount = 0;
   for (const file of files) {
     const id = Number.parseInt(file.slice(2), 10);
-    const gameName = lookupName(enums, "emID", id);
-    const siteName = gameName ? (MONSTER_NAME_ALIASES[gameName] ?? gameName) : null;
-    if (!siteName || !siteNames.has(siteName)) {
-      console.log(`skip ${file}: ${gameName ?? "unnamed"} has no monster page`);
+    const siteName = siteNames.get(id);
+    if (!siteName) {
+      console.log(`skip ${file}: emID ${id} has no monster page`);
       continue;
     }
-    if (monsters[siteName]) continue; // duplicate emID name (e.g. Yama Tsukami)
     const relative = await converter.convert(
       `emmodel/${file}`,
       `monsters/${file.replace(/\.pac$/, ".glb")}`,
@@ -494,7 +510,7 @@ async function exportWeapons(
       const relative = await converter.convert(
         `weapon/we${id}.pac`,
         `weapons/we${id}.glb`,
-        WEAPON_POSES[page.type as keyof typeof WEAPON_POSES],
+        weaponPoses(page.type as WeaponTypeName, entry.modelId),
       );
       if (relative) {
         (weapons[page.type] ??= {})[page.name] = entry.modelId;

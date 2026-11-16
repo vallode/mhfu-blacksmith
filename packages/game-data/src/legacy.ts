@@ -93,6 +93,9 @@ export function importLegacy(legacy: Map<string, Doc>, sources: LegacyIdSources)
         throw new Error(`importLegacy: no ID for ${kind.kind} "${record.name ?? record.tree}"`);
       return id;
     },
+    recorded() {
+      throw new Error("importLegacy: references resolve after names are known");
+    },
   };
 
   // 1. Names: items, maps, then the records that only name themselves.
@@ -139,6 +142,7 @@ export function importLegacy(legacy: Map<string, Doc>, sources: LegacyIdSources)
   const byName = stringResolver(table);
   const resolver: Resolver = {
     ref: (kind, spelling) => byName.ref(kind, spelling),
+    recorded: (table, id) => byName.recorded(table, id),
     own(kind, record) {
       const id = legacyOwn(kind, record);
       if (id !== undefined) return id;

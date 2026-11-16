@@ -12,6 +12,7 @@ export {
   RANGED_TYPES,
   dehydrate,
   equipmentIds,
+  equipmentRecordIds,
   fileKind,
   formatDecorationSkill,
   hydrate,

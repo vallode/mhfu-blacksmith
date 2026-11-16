@@ -10,10 +10,13 @@ import {
   SHEATHED_TARGET,
   WEAPON_MOUNTS,
   type HunterClip,
+  type HunterMotion,
   type WeaponMount,
 } from "@/lib/hunter";
 import { fetchMotions, inPlace, type MotionClip } from "@/lib/motions";
 import { modelPanel, modelPanelButton } from "@/styles/model";
+import { useT } from "@/context/LanguageContext";
+import type { Messages } from "@/lib/i18n/messages";
 
 /** A capsule drawn over the model, in the model's space: a sphere of `radius` swept from `start` to `end`. */
 export interface ModelCapsule {
@@ -47,6 +50,23 @@ interface Props {
 }
 
 type Three = typeof import("three");
+
+/**
+ * Draws an effect layer as the game does: a material whose `extras.blend`
+ * (mhfu-extract's gltf.ts) is `add` adds its colour to what is behind it,
+ * `revsub` takes it away. Both scale by the texture's alpha and leave the
+ * depth buffer alone. Other materials are left as they are.
+ */
+function effectBlend(THREE: typeof import("three"), material: import("three").Material) {
+  const blend = material.userData.blend;
+  if (blend !== "add" && blend !== "revsub") return;
+  material.transparent = true;
+  material.depthWrite = false;
+  material.blending = THREE.CustomBlending;
+  material.blendEquation = blend === "add" ? THREE.AddEquation : THREE.ReverseSubtractEquation;
+  material.blendSrc = THREE.SrcAlphaFactor;
+  material.blendDst = THREE.OneFactor;
+}
 
 /** Resolves a `var(--name)` colour against `element`; other colours pass through. */
 function resolveColor(element: Element, color: string): string {
@@ -100,8 +120,8 @@ interface MotionState {
   count: number;
   index: number;
   playing: boolean;
-  /** Each clip's name, when they have them (the hunter's). */
-  labels?: string[];
+  /** What each clip is, when the clips are the hunter's (named by `motionLabel`). */
+  motions?: HunterMotion[];
 }
 
 /** Drives the loaded motions from React; set while a model with motions shows. */
@@ -112,11 +132,27 @@ interface MotionPlayer {
 
 const panelButton = cn(modelPanelButton, "text-parchment");
 
+/** A hunter motion's name in the site's language ("Sheathed idle", "Move 3", "Attack 12"). */
+function motionLabel(t: Messages, motion: HunterMotion): string {
+  const m = t.equipment.model;
+  switch (motion.kind) {
+    case "sheathed-idle":
+      return m.sheathedIdle;
+    case "drawn-idle":
+      return m.drawnIdle;
+    case "move":
+      return m.moveN(motion.n);
+    case "attack":
+      return m.attackN(motion.n);
+  }
+}
+
 /**
  * Interactive 3D view of a .glb model: drag to rotate, scroll/pinch to zoom.
  * three.js is imported on demand so it only loads on pages that show a model.
  */
 export default function ModelViewer({ src, label, pair = false, capsules, hunter }: Props) {
+  const t = useT();
   const containerRef = useRef<HTMLDivElement>(null);
   const [status, setStatus] = useState<Status>("loading");
   /** Set while a model is shown, for the capsule effect below. */
@@ -255,8 +291,8 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
             mount: WeaponMount & { hold: NonNullable<WeaponMount["hold"]> };
           };
           let held: Held[] = [];
-          // A great sword's or long sword's bones in the sheathed pose, as a
-          // morph target on the drawn mesh (mhfu-extract's weapon-pose.ts).
+          // A posed weapon's bones in the sheathed pose (a bowgun or bow folded),
+          // as a morph target on the drawn mesh (mhfu-extract's weapon-pose.ts).
           const poses: { influences: number[]; sheathed: number }[] = [];
           weapon.traverse((node) => {
             const mesh = node as import("three").Mesh;
@@ -343,6 +379,9 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
         // three.js's culling bounds cover.
         model.traverse((object) => {
           if ((object as import("three").SkinnedMesh).isSkinnedMesh) object.frustumCulled = false;
+          const mesh = object as import("three").Mesh;
+          if (mesh.isMesh)
+            for (const material of [mesh.material].flat()) effectBlend(THREE, material);
         });
 
         // Capsules are placed on the bind pose: each rides the bone that
@@ -591,8 +630,8 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
               count: actions.length,
               index: state.index,
               playing: state.playing,
-              labels: sources.some((clip) => (clip as HunterClip).label)
-                ? sources.map((clip) => (clip as HunterClip).label)
+              motions: sources.some((clip) => (clip as HunterClip).motion)
+                ? sources.map((clip) => (clip as HunterClip).motion)
                 : undefined,
             });
           };
@@ -714,21 +753,25 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
     };
   }, [capsules, status]);
 
+  const playWidth = Math.max(t.equipment.model.play.length, t.equipment.model.pause.length);
+
   return (
     <div className="relative h-full min-h-48 w-full">
       <div
         ref={containerRef}
         className="absolute inset-0"
         role="img"
-        aria-label={`3D model of ${label}`}
+        aria-label={t.equipment.model.label(label)}
       />
       {status === "loading" && (
-        <Loading className="absolute inset-0 justify-center opacity-70">Loading model…</Loading>
+        <Loading className="absolute inset-0 justify-center opacity-70">
+          {t.equipment.model.loading}
+        </Loading>
       )}
       {motion && (
         <div
           role="group"
-          aria-label="Motions"
+          aria-label={t.equipment.model.motions}
           className={cn(
             modelPanel,
             "absolute right-2 bottom-2 z-10 flex items-center gap-[0.8rem]",
@@ -737,27 +780,28 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
           <button
             type="button"
             className={panelButton}
-            aria-label="Previous motion"
+            aria-label={t.equipment.model.previousMotion}
             onClick={() => playerRef.current?.select(motion.index - 1)}
           >
             ‹
           </button>
-          {motion.labels ? (
+          {motion.motions ? (
             <select
-              aria-label="Motion"
+              aria-label={t.equipment.model.motion}
               className="cursor-pointer bg-transparent tracking-game"
               value={motion.index}
               onChange={(event) => playerRef.current?.select(Number(event.target.value))}
             >
-              {motion.labels.map((name, index) => (
+              {motion.motions.map((m, index) => (
                 <option key={index} value={index} className="bg-black">
-                  {name}
+                  {motionLabel(t, m)}
                 </option>
               ))}
             </select>
           ) : (
             <span className="tabular-nums" aria-live="polite">
-              Motion {/* As wide as the largest number, so the panel keeps its size. */}
+              {t.equipment.model.motion}{" "}
+              {/* As wide as the largest number, so the panel keeps its size. */}
               <span
                 className="inline-block text-right"
                 style={{ width: `calc(var(--cell) * ${String(motion.count).length})` }}
@@ -770,23 +814,25 @@ export default function ModelViewer({ src, label, pair = false, capsules, hunter
           <button
             type="button"
             className={panelButton}
-            aria-label="Next motion"
+            aria-label={t.equipment.model.nextMotion}
             onClick={() => playerRef.current?.select(motion.index + 1)}
           >
             ›
           </button>
           <button
             type="button"
-            className={cn(panelButton, "w-cells-5 text-left")}
+            className={cn(panelButton, "text-left")}
+            // As wide as the longer word, so the panel keeps its size.
+            style={{ width: `calc(var(--cell) * ${playWidth})` }}
             onClick={() => playerRef.current?.setPlaying(!motion.playing)}
           >
-            {motion.playing ? "Pause" : "Play"}
+            {motion.playing ? t.equipment.model.pause : t.equipment.model.play}
           </button>
         </div>
       )}
       {status === "error" && (
         <p className="absolute inset-0 flex items-center justify-center text-center opacity-70">
-          Model unavailable.
+          {t.equipment.model.unavailable}
         </p>
       )}
     </div>

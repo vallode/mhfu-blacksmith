@@ -1,22 +1,22 @@
 import { applySettings, defaultSettings, type OptionKey, type Settings } from "../src/settings.js";
 
-/** Shuffle names as the tests (and the CLI's --shuffles) use them. */
+/** Short names for the shuffles, as the tests use them. */
 export const SHUFFLE_KEYS = {
-  "quest-rewards": "questRewards.enabled",
-  "monster-rewards": "monsterRewards.enabled",
-  recipes: "recipes.materials",
+  "quest-rewards": "questRewards.mode",
+  "monster-rewards": "monsterRewards.mode",
+  recipes: "recipes.mode",
   "recipe-amounts": "recipes.amounts",
   costs: "costs.enabled",
   weapons: "weapons.enabled",
   armor: "armor.enabled",
   "armor-skills": "armorSkills.enabled",
-  shops: "shops.enabled",
-  gathering: "gathering.enabled",
-  supplies: "supplies.enabled",
+  shops: "shops.mode",
+  gathering: "gathering.mode",
+  supplies: "supplies.mode",
   "quest-money": "terms.money",
   "time-limits": "terms.time",
   deliveries: "deliveries.enabled",
-  "veggie-trades": "trades.enabled",
+  "veggie-trades": "trades.mode",
 } as const satisfies Record<string, OptionKey>;
 export type ShuffleName = keyof typeof SHUFFLE_KEYS;
 
@@ -26,8 +26,13 @@ export function settingsWith(
   shuffles: ShuffleName[],
   changes: Partial<Record<OptionKey, boolean | number | string>> = {},
 ): Settings {
-  const on: Record<string, boolean> = {};
-  for (const [name, key] of Object.entries(SHUFFLE_KEYS))
-    on[key] = shuffles.includes(name as ShuffleName);
-  return applySettings(defaultSettings(seed), { ...on, ...changes });
+  const on: Record<string, boolean | string> = {};
+  for (const [name, key] of Object.entries(SHUFFLE_KEYS)) {
+    const enabled = shuffles.includes(name as ShuffleName);
+    // A mode rather than a switch: on means shuffle.
+    on[key] = key.endsWith(".mode") ? (enabled ? "shuffle" : "off") : enabled;
+  }
+  // The bookshelf guides are on by default; a test asks for them by name.
+  const hints = { "hints.bookshelf": false, "hints.almanac": false };
+  return applySettings(defaultSettings(seed), { ...on, ...hints, ...changes });
 }

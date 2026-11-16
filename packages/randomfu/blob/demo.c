@@ -1,5 +1,5 @@
 /*
- * The code loader's demo (randomize --loader-demo, not for play): every
+ * The code loader's demo (?loader-demo in the web app, not for play): every
  * save load adds 1000 zenny, so it's seen to run at once.
  */
 #include "rf.h"

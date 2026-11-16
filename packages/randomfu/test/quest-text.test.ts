@@ -4,6 +4,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
+import { enumMonsterNames } from "../src/names.js";
 import { loadGame, type GameData, type LoadedQuest } from "../src/game/load.js";
 import { readQuestText, slotSize, writeQuestText } from "../src/game/quest-text.js";
 import { readSpawns } from "../src/game/spawns.js";
@@ -35,7 +36,7 @@ writeFileSync(FILE, buildFixtureDisc({ text: true }));
 
 async function load(): Promise<{ game: GameData; close: () => void }> {
   const { source, iso } = openDiscImage(FILE);
-  const game = await loadGame(source, iso, { eboot: null });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -107,13 +108,13 @@ test("a monster whose goals put different words before it can still be renamed",
   ]);
   assert.equal(slot.names.get(27), "Velocidrome");
   const swap = new Map([[27, 28]]);
-  assert.deepEqual(renameIn("Hunt the Velocidrome", slot, swap, 30), {
+  assert.deepEqual(renameIn("Hunt the Velocidrome", slot, swap, 30, enumMonsterNames), {
     text: "Hunt the Gendrome",
   });
-  assert.deepEqual(renameIn("Velocidrome\nVelociprey", slot, swap, 30), {
+  assert.deepEqual(renameIn("Velocidrome\nVelociprey", slot, swap, 30, enumMonsterNames), {
     text: "Gendrome\nVelociprey",
   });
-  assert.deepEqual(renameIn("Track down Velocidrome", slot, swap, 30), {
+  assert.deepEqual(renameIn("Track down Velocidrome", slot, swap, 30, enumMonsterNames), {
     problem: "Gendrome takes another article",
   });
 });
@@ -137,18 +138,34 @@ test("renaming reads the longest name first and checks articles and line width",
     [1, 37],
     [37, 1],
   ]);
-  assert.deepEqual(renameIn("Hunt the Rathian and\nthe Pink Rathian", slot, swap, 30), {
-    text: "Hunt the Pink Rathian and\nthe Rathian",
+  assert.deepEqual(
+    renameIn("Hunt the Rathian and\nthe Pink Rathian", slot, swap, 30, enumMonsterNames),
+    {
+      text: "Hunt the Pink Rathian and\nthe Rathian",
+    },
+  );
+  assert.deepEqual(renameIn("Hunt 2 Rathians", slot, swap, 30, enumMonsterNames), {
+    text: "Hunt 2 Pink Rathians",
   });
-  assert.deepEqual(renameIn("Hunt 2 Rathians", slot, swap, 30), { text: "Hunt 2 Pink Rathians" });
-  assert.deepEqual(renameIn("Hunt the Rathian", slot, swap, 16), { problem: "too wide" });
-  assert.ok("problem" in renameIn("Hunt the Rathian", slot, new Map([[1, 2]]), 30));
-  assert.deepEqual(renameIn("Rathian", slot, new Map([[1, 2]]), 30), { text: "Fatalis" });
-  assert.deepEqual(renameIn("Ratatouille", slot, swap, 30), { text: "Ratatouille" });
+  assert.deepEqual(renameIn("Hunt the Rathian", slot, swap, 16, enumMonsterNames), {
+    problem: "too wide",
+  });
+  assert.ok(
+    "problem" in renameIn("Hunt the Rathian", slot, new Map([[1, 2]]), 30, enumMonsterNames),
+  );
+  assert.deepEqual(renameIn("Rathian", slot, new Map([[1, 2]]), 30, enumMonsterNames), {
+    text: "Fatalis",
+  });
+  assert.deepEqual(renameIn("Ratatouille", slot, swap, 30, enumMonsterNames), {
+    text: "Ratatouille",
+  });
   // "pink Rathian" reads as Rathian, but it names Pink Rathian: leave it whole.
-  assert.deepEqual(renameIn("Hunt the pink Rathian", slot, new Map([[37, 1]]), 30), {
-    problem: "names Pink Rathian in another form",
-  });
+  assert.deepEqual(
+    renameIn("Hunt the pink Rathian", slot, new Map([[37, 1]]), 30, enumMonsterNames),
+    {
+      problem: "names Pink Rathian in another form",
+    },
+  );
   assert.deepEqual(splitNames("Rathian\nPink Rathian, Velociprey、Conga"), [
     "Rathian",
     "Pink Rathian",
@@ -212,7 +229,7 @@ test("swaps rename the monster in quest text where it's safe, and list the rest"
   const { game, close } = await load();
   let renamed = 0;
   for (let seed = 0; seed < 30; seed++) {
-    const settings = only(`t${seed}`, { "questMonsters.species": true });
+    const settings = only(`t${seed}`, { "questMonsters.mode": "shuffle" });
     const result = randomize(game, settings);
     const spoiler = formatSpoiler(game, settings, result);
     for (const id of [1001, 2001]) {
@@ -256,7 +273,7 @@ test("with renaming off, swaps leave the text alone", async () => {
   for (let seed = 0; seed < 10; seed++) {
     const result = randomize(
       game,
-      only(`t${seed}`, { "questMonsters.species": true, "questMonsters.text": false }),
+      only(`t${seed}`, { "questMonsters.mode": "shuffle", "questMonsters.text": false }),
     );
     const quest = byId(game, 1001);
     const after = result.edits.quests.get(quest.index)?.payload ?? quest.file.payload;
@@ -362,7 +379,7 @@ test("swaps update the board's TargetID and rename its text, on every board the 
   const { game, close } = await load();
   let checked = 0;
   for (let seed = 0; seed < 30; seed++) {
-    const settings = only(`b${seed}`, { "questMonsters.species": true });
+    const settings = only(`b${seed}`, { "questMonsters.mode": "shuffle" });
     const result = randomize(game, settings);
     const spoiler = formatSpoiler(game, settings, result);
     const quest = byId(game, 2001);

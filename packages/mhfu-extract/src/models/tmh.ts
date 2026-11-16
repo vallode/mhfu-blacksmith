@@ -54,24 +54,107 @@ function directColor(
 }
 
 /**
- * Undo the GE's texture swizzle: the image is stored as 16-byte x 8-row
- * blocks, left to right then top to bottom.
+ * Moves an image between row-major and the GE's swizzled order: 16-byte x
+ * 8-row blocks, left to right then top to bottom.
  */
-export function unswizzle(data: Buffer, rowBytes: number, height: number): Buffer {
+function reorderBlocks(data: Buffer, rowBytes: number, height: number, swizzling: boolean): Buffer {
   if (rowBytes % 16 !== 0 || height % 8 !== 0) return data; // too small to be swizzled in blocks
   const out = Buffer.alloc(rowBytes * height);
   const blocksPerRow = rowBytes / 16;
-  let src = 0;
+  let block = 0;
   for (let by = 0; by < height / 8; by++) {
     for (let bx = 0; bx < blocksPerRow; bx++) {
-      for (let row = 0; row < 8; row++) {
-        const dst = (by * 8 + row) * rowBytes + bx * 16;
-        data.copy(out, dst, src, src + 16);
-        src += 16;
+      for (let row = 0; row < 8; row++, block += 16) {
+        const flat = (by * 8 + row) * rowBytes + bx * 16;
+        if (swizzling) data.copy(out, block, flat, flat + 16);
+        else data.copy(out, flat, block, block + 16);
       }
     }
   }
   return out;
+}
+
+/** Undo the GE's texture swizzle: the image is stored as 16-byte x 8-row blocks. */
+export function unswizzle(data: Buffer, rowBytes: number, height: number): Buffer {
+  return reorderBlocks(data, rowBytes, height, false);
+}
+
+/** The inverse of `unswizzle`. */
+export function swizzle(data: Buffer, rowBytes: number, height: number): Buffer {
+  return reorderBlocks(data, rowBytes, height, true);
+}
+
+/** Where an image's pixel header is, given where the image starts. */
+const pixelHeaderAt = (imageAt: number) => imageAt + 16;
+interface PixelHeader {
+  size: number;
+  swizzled: boolean;
+  format: number;
+  width: number;
+  height: number;
+}
+
+function readPixelHeader(reader: BinaryReader, at: number): PixelHeader {
+  return {
+    size: reader.u32(at),
+    swizzled: reader.u32(at + 4) === 1,
+    format: reader.u32(at + 8),
+    width: reader.u16(at + 12),
+    height: reader.u16(at + 14),
+  };
+}
+
+/** Where a palette header is, given the pixel header and its size. */
+const paletteHeaderAt = (pixelHeader: number, pixelSize: number) => pixelHeader + pixelSize;
+
+export interface IndexedImageLocation {
+  width: number;
+  height: number;
+  swizzled: boolean;
+  /** File offset of the pixel data, one palette index per pixel. */
+  pixels: number;
+  /** File offset of the palette's first entry (RGBA8888 or 16-bit, by `paletteFormat`). */
+  palette: number;
+  paletteFormat: number;
+}
+
+/**
+ * Where the first image of a texture set keeps its 8-bit pixels and palette,
+ * or null if it isn't a palettized 8-bit image. For editing a texture in
+ * place; `readTmh` decodes the same layout.
+ */
+export function locateIndexedImage(buf: Buffer): IndexedImageLocation | null {
+  const imageAt = 16;
+  if (!isTmh(buf) || buf.length < 64 || buf.readUInt32LE(8) !== 1) return null;
+  if (buf.readUInt32LE(imageAt + 12) !== 1) return null; // no palette
+  const pixelHeader = pixelHeaderAt(imageAt);
+  const {
+    size: pixelSize,
+    swizzled,
+    format,
+    width,
+    height,
+  } = readPixelHeader(new BinaryReader(buf), pixelHeader);
+  const paletteHeader = paletteHeaderAt(pixelHeader, pixelSize);
+  if (format !== 5 || paletteHeader + 16 > buf.length) return null;
+  const paletteFormat = buf.readUInt32LE(paletteHeader + 8);
+  const palette = paletteHeader + 16;
+  const entryBytes = paletteFormat === 3 ? 4 : 2;
+  if (
+    pixelSize !== 16 + width * height ||
+    buf.readUInt32LE(paletteHeader + 12) !== 256 ||
+    palette + 256 * entryBytes > buf.length
+  ) {
+    return null;
+  }
+  return {
+    width,
+    height,
+    swizzled,
+    pixels: pixelHeader + 16,
+    palette,
+    paletteFormat,
+  };
 }
 
 function decodePalette(
@@ -150,12 +233,8 @@ function decodeDxt1(data: Buffer, width: number, height: number): Buffer {
 function decodeImage(reader: BinaryReader, offset: number): { image: TmhImage; size: number } {
   const totalSize = reader.u32(offset);
   const hasPalette = reader.u32(offset + 12) === 1;
-  const pixelAt = offset + 16;
-  const pixelSize = reader.u32(pixelAt);
-  const swizzled = reader.u32(pixelAt + 4) === 1;
-  const format = reader.u32(pixelAt + 8);
-  const width = reader.u16(pixelAt + 12);
-  const height = reader.u16(pixelAt + 14);
+  const pixelAt = pixelHeaderAt(offset);
+  const { size: pixelSize, swizzled, format, width, height } = readPixelHeader(reader, pixelAt);
   let data = reader.bytes(pixelAt + 16, pixelSize - 16);
 
   let rgba: Buffer;
@@ -171,7 +250,7 @@ function decodeImage(reader: BinaryReader, offset: number): { image: TmhImage; s
         rgba.set(directColor(pixels, (i * bpp) / 8, format), i * 4);
     } else {
       if (!hasPalette) throw new Error(`Indexed texture format ${format} without a palette`);
-      const { colors } = decodePalette(reader, pixelAt + pixelSize);
+      const { colors } = decodePalette(reader, paletteHeaderAt(pixelAt, pixelSize));
       for (let i = 0; i < width * height; i++) {
         let index: number;
         if (format === 4) index = (pixels.u8(i >> 1) >> ((i & 1) * 4)) & 15;

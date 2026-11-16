@@ -1,7 +1,6 @@
 /**
- * The output disc image, patched in place: on disk for the CLI
- * (`node-file.ts`), or as an in-memory layer over the user's file in the
- * browser (`OverlaySource`).
+ * The output disc image, patched in memory over the user's file
+ * (`OverlaySource`), which is never written to.
  *
  * Files are rewritten where they are when they still fit in their sectors.
  * A file that has grown is moved to the end of the image, and its
@@ -19,12 +18,6 @@ const PVD_VOLUME_SIZE = 80;
 const RECORD_LBA = 2;
 const RECORD_SIZE = 10;
 
-/** A source that can also be written to and resized. */
-export interface WritableSource extends RandomAccessSource {
-  write(offset: number, data: Buffer): void;
-  truncate(length: number): void;
-}
-
 /** One piece of a finished image: a byte range of the original, or new bytes. */
 export type ImageSegment =
   { kind: "original"; start: number; end: number } | { kind: "data"; data: Buffer };
@@ -35,7 +28,7 @@ export type ImageSegment =
  * ranges of the original plus the changed sectors, so it can be assembled
  * (for a download, say) without copying the original.
  */
-export class OverlaySource implements WritableSource {
+export class OverlaySource implements RandomAccessSource {
   private readonly sectors = new Map<number, Buffer>();
   private size: number;
 
@@ -162,11 +155,11 @@ export interface ReplaceResult {
 export class PatchableImage {
   readonly iso: Iso9660Reader;
 
-  constructor(private readonly file: WritableSource) {
+  constructor(private readonly file: OverlaySource) {
     this.iso = new Iso9660Reader(file);
   }
 
-  get source(): WritableSource {
+  get source(): OverlaySource {
     return this.file;
   }
 

@@ -226,10 +226,7 @@ export const monsterAuthor = (category: string): EmbedAuthor => ({
 });
 
 export function monsterDescription(m: Monster): string {
-  return (
-    lines(m.description, m.habitats?.length && `Habitats: ${m.habitats.join(", ")}`) ||
-    `${m.name} — ${titleCase(m.type)} in Monster Hunter Freedom Unite.`
-  );
+  return m.description || `${m.name} — ${titleCase(m.type)} in Monster Hunter Freedom Unite.`;
 }
 
 /** "Rarity 5 Decoration", linking to the decoration list. */

@@ -25,7 +25,8 @@
  * `lobby_task.ovl`) follows the shuffle, as it does for weapons: where it
  * sold a piece, it sells the piece now in that piece's places (the same
  * slot, rarity and wearers). Pieces it sells that the shuffle leaves alone
- * (no create entry makes them) stay.
+ * (no create entry makes them) stay. A new hunter's Mafumofu set
+ * (`edit_task.ovl`) follows it the same way.
  *
  * Mixing Blademaster and Gunner pieces isn't offered: nothing on a disc has
  * shown how the smithy lists a place whose piece is for the other type.
@@ -33,6 +34,7 @@
 import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { HUNTER_TYPE_BITS } from "mhfu-extract/src/emit/armor.js";
 import { ARMOR_CATEGORY } from "mhfu-extract/src/shops/equipment.js";
+import { displayRarity } from "mhfu-extract/src/emit/common.js";
 import type { NameTable } from "mhfu-extract/src/strings/names.js";
 import {
   ARMOR_SLOT_COUNTS,
@@ -47,10 +49,10 @@ import type { Edits } from "../edits.js";
 import { tableName } from "../names.js";
 import type { Rng } from "../rng.js";
 import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
-import { followStore, type SmithyStore } from "./store.js";
+import { followGear, type GearList } from "./store.js";
 
-const HUNTER_TYPE_AT = 4;
-const RARITY_AT = 5;
+export const HUNTER_TYPE_AT = 4;
+export const RARITY_AT = 5;
 
 export const SLOT_NAMES: Record<ArmorSlot, { table: NameTable; label: string }> = {
   head: { table: "HeadArmorID", label: "Head" },
@@ -77,13 +79,81 @@ export function wearable(bits: number): boolean {
   return (bits & (male | female)) !== 0 && (bits & (blademaster | gunner)) !== 0;
 }
 
+/** Who a piece is for: Blademaster only, Gunner only, or both. */
+export type HunterClass = "blade" | "gun" | "both";
+
+export function hunterClass(bits: number): HunterClass | null {
+  if (!wearable(bits)) return null;
+  const blade = (bits & HUNTER_TYPE_BITS.blademaster) !== 0;
+  const gun = (bits & HUNTER_TYPE_BITS.gunner) !== 0;
+  return blade && gun ? "both" : blade ? "blade" : "gun";
+}
+
+/** A piece the smithy makes. */
+export interface ArmorPiece {
+  slot: ArmorSlot;
+  index: number;
+  /** File offset of the `ArmorValue`. */
+  at: number;
+  /** Raw rarity (shown as rarity + 1). */
+  rarity: number;
+  /** `HunterType` bits. */
+  bits: number;
+  hunter: HunterClass;
+}
+
+/**
+ * Every piece a create entry makes, by slot and index: not piece 0, IDs
+ * past the slot's array or pieces with no sex or hunter type bit.
+ */
+export function readArmorPieces(
+  eboot: Buffer,
+  resolver: TableAddressResolver | undefined,
+): ArmorPiece[] {
+  const reader = new BinaryReader(eboot);
+  const create = equipmentCreateLayout(reader, resolver);
+  const values = armorValuesOffsets(reader, resolver);
+  const pieces: ArmorPiece[] = [];
+  for (const slot of ARMOR_SLOTS) {
+    const { offset, count } = create[slot];
+    const made = new Set<number>();
+    for (let i = 0; i < count; i++) made.add(reader.u16(offset + i * EQUIP_CREATE_ENTRY_SIZE + 2));
+    for (const index of [...made].sort((a, b) => a - b)) {
+      if (index <= 0 || index >= ARMOR_SLOT_COUNTS[slot]) continue;
+      const at = values[slot] + index * ARMOR_ENTRY_SIZE;
+      const bits = reader.u8(at + HUNTER_TYPE_AT);
+      const hunter = hunterClass(bits);
+      if (!hunter) continue;
+      pieces.push({ slot, index, at, rarity: reader.u8(at + RARITY_AT), bits, hunter });
+    }
+  }
+  return pieces;
+}
+
+/**
+ * Where a line goes in the armor spoilers: its slot and rarity as the game
+ * shows it, and an order that sorts by slot, then rarity.
+ */
+export function spoilerPlace(slot: ArmorSlot, rarity: number): { where: string; order: number } {
+  return {
+    where: `${SLOT_NAMES[slot].label}, rarity ${displayRarity(rarity)}`,
+    order: ARMOR_SLOTS.indexOf(slot) * 256 + rarity,
+  };
+}
+
+/** A piece's name, for the spoiler. */
+export function pieceName(piece: { slot: ArmorSlot; index: number }): string {
+  const { table, label } = SLOT_NAMES[piece.slot];
+  return tableName(table, piece.index) ?? `${label} ${piece.index}`;
+}
+
 export function shuffleArmor(
   eboot: Buffer,
   resolver: TableAddressResolver | undefined,
   rng: Rng,
   edits: Edits,
-  /** The smithy's store, or null to leave it (none found on the disc). */
-  store: SmithyStore | null,
+  /** Equipment outside the create entries that follows the shuffle (the store, the starting box). */
+  gear: GearList[],
 ): ShuffleReport {
   const reader = new BinaryReader(eboot);
   const create = equipmentCreateLayout(reader, resolver);
@@ -93,7 +163,7 @@ export function shuffleArmor(
   let moved = 0;
   let pieces = 0;
 
-  ARMOR_SLOTS.forEach((slot, slotIndex) => {
+  for (const slot of ARMOR_SLOTS) {
     const count = ARMOR_SLOT_COUNTS[slot];
     const { table, label } = SLOT_NAMES[slot];
     const name = (i: number) => tableName(table, i) ?? `${label} ${i}`;
@@ -122,17 +192,15 @@ export function shuffleArmor(
       out.writeUInt16LE(sigma.get(piece) ?? piece, at + 2);
     }
 
-    // The store sells whatever is now in the places of what it sold.
-    if (store) {
-      followStore(
-        store,
-        ARMOR_CATEGORY[slot],
-        (i) => sigma.get(i) ?? i,
-        name,
-        `Armor: ${label}`,
-        edits,
-      );
-    }
+    // The store and the starting box have whatever is now in the places of what they had.
+    followGear(
+      gear,
+      ARMOR_CATEGORY[slot],
+      (i) => sigma.get(i) ?? i,
+      name,
+      `Armor: ${label}`,
+      edits,
+    );
 
     for (const piece of shuffled) {
       const now = sigma.get(piece)!;
@@ -140,12 +208,11 @@ export function shuffleArmor(
       moved++;
       const who = wearers(hunterType(piece));
       lines.push({
-        where: `${label}, rarity ${rarity(piece) + 1}`,
+        ...spoilerPlace(slot, rarity(piece)),
         text: `${name(piece)} -> ${name(now)}${who ? ` (${who})` : ""}`,
-        order: slotIndex * 256 + rarity(piece),
       });
     }
-  });
+  }
 
   return {
     title: "Armor progression",

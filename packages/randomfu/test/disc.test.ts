@@ -1,20 +1,20 @@
 import assert from "node:assert/strict";
-import { readFileSync, writeFileSync } from "node:fs";
+import { writeFileSync } from "node:fs";
 import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { decryptQuest } from "mhfu-extract/src/quests/mib.js";
 import { DataBin } from "../src/disc/databin.js";
-import { copyAsIso, openPatchableImage } from "../src/disc/node-file.js";
 import { openQuestFile } from "../src/disc/quest-file.js";
 import {
-  buildCso,
   buildDataBin,
   buildIso,
   buildQuestEntry,
   buildQuestPayload,
+  finish,
   FIXTURE_QUESTS,
   JP_RAW,
+  patchInMemory,
   SECTOR,
   tempDir,
   UMD_FILE_XA,
@@ -26,23 +26,15 @@ function writeTemp(name: string, data: Buffer): string {
   return file;
 }
 
-test("copyAsIso decompresses a CSO to the same image", () => {
-  const iso = buildIso([{ path: "A/B.BIN", data: Buffer.from("hello") }]);
-  const out = path.join(tempDir(), "out.iso");
-  copyAsIso(writeTemp("in.cso", buildCso(iso)), out);
-  assert.ok(readFileSync(out).equals(iso));
-});
-
 test("replaceFile rewrites a file in place when it still fits", () => {
   const iso = buildIso([
     { path: "D/A.BIN", data: Buffer.alloc(3000, 1) },
     { path: "D/B.BIN", data: Buffer.alloc(100, 2) },
   ]);
-  const file = writeTemp("img.iso", iso);
-  const image = openPatchableImage(file);
+  const image = patchInMemory(iso);
   const before = image.stat("/D/A.BIN");
   const result = image.replaceFile("/D/A.BIN", Buffer.alloc(3500, 9));
-  image.close();
+  const file = writeTemp("img.iso", finish(image, iso));
   assert.equal(result.moved, false);
 
   const { iso: reader, source } = openDiscImage(file);
@@ -58,10 +50,9 @@ test("replaceFile moves a grown file to the end and updates the volume size", ()
     { path: "D/A.BIN", data: Buffer.alloc(100, 1) },
     { path: "D/B.BIN", data: Buffer.alloc(100, 2) },
   ]);
-  const file = writeTemp("img.iso", iso);
-  const image = openPatchableImage(file);
+  const image = patchInMemory(iso);
   const result = image.replaceFile("/D/A.BIN", Buffer.alloc(5000, 7));
-  image.close();
+  const file = writeTemp("img.iso", finish(image, iso));
   assert.equal(result.moved, true);
   assert.equal(result.lba, iso.length / SECTOR);
 
@@ -79,14 +70,13 @@ test("writeFile adds a file at the end of the image with a sorted directory reco
     { path: "D/A.BIN", data: Buffer.alloc(100, 1) },
     { path: "D/Z.BIN", data: Buffer.alloc(100, 2) },
   ]);
-  const file = writeTemp("img.iso", iso);
-  const image = openPatchableImage(file);
+  const image = patchInMemory(iso);
   const result = image.writeFile("/D/M.BIN", Buffer.alloc(3000, 5));
   assert.equal(result.lba, iso.length / SECTOR);
   // Writing it again replaces it in place.
   assert.equal(image.writeFile("/D/M.BIN", Buffer.alloc(10, 6)).moved, false);
   assert.throws(() => image.writeFile("/D/LONGNAME1.BIN", Buffer.alloc(1)), /8.3/);
-  image.close();
+  const file = writeTemp("img.iso", finish(image, iso));
 
   const { iso: reader, source } = openDiscImage(file);
   assert.ok(reader.readFile("/D/M.BIN").equals(Buffer.alloc(10, 6)));
@@ -107,10 +97,9 @@ test("writeFile adds a file at the end of the image with a sorted directory reco
 test("writeFile names a new file as the directory's other files are named", () => {
   // UMD images have no ";1" and an XA field; PPSSPP looks names up exactly.
   const iso = buildIso([{ path: "D/A.BIN", data: Buffer.alloc(100, 1) }], { umd: true });
-  const file = writeTemp("umd.iso", iso);
-  const image = openPatchableImage(file);
+  const image = patchInMemory(iso);
   image.writeFile("/D/M.BIN", Buffer.alloc(10, 6));
-  image.close();
+  const file = writeTemp("umd.iso", finish(image, iso));
 
   const { iso: reader, source } = openDiscImage(file);
   assert.ok(reader.readFile("/D/M.BIN").equals(Buffer.alloc(10, 6)));

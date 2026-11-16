@@ -36,7 +36,7 @@ export const STRING_KINDS = {
   skill_activation: "skill ID:points",
   /** Monsters: the game's monster ID (`emID`). */
   monster: "emID",
-  /** The site's own description of a monster (hand-written). */
+  /** The game's description of a monster, shared with its subspecies. */
   monster_description: "emID",
   /** Maps: the quest header's map ID. */
   map: "map ID",

@@ -1,0 +1,41 @@
+{
+  "$comment": "Monster names the disc doesn't give. The EU game names these subspecies only by their base monster's name, so they would share its name and page, and has no name for Rocks (Treasure Hunting's breakable rocks). Each entry is { id (emID), name (the site's name), disc (the game's name for it, or null for none; checked against the disc so the entry can't go stale), reason }. See strings/monster-names.ts.",
+  "names": [
+    {
+      "id": 29,
+      "name": "Rocks",
+      "disc": null,
+      "reason": "Treasure Hunting's breakable rocks. The game has no name for them."
+    },
+    {
+      "id": 36,
+      "name": "Crimson Fatalis",
+      "disc": "Fatalis",
+      "reason": "The game calls Fatalis, Crimson Fatalis and White Fatalis all \"Fatalis\". The music gallery calls it \"Red Fatalis\"."
+    },
+    {
+      "id": 40,
+      "name": "Scarred Yian Garuga",
+      "disc": "Yian Garuga",
+      "reason": "The game calls it \"Yian Garuga\", like emID 78."
+    },
+    {
+      "id": 60,
+      "name": "Rusted Kushala Daora",
+      "disc": "Kushala Daora",
+      "reason": "The game calls it \"Kushala Daora\", like emID 54."
+    },
+    {
+      "id": 71,
+      "name": "White Fatalis",
+      "disc": "Fatalis",
+      "reason": "The game calls it \"Fatalis\", like emID 2. Its items (\"White Fatalis Head\") and the music gallery use \"White Fatalis\"."
+    },
+    {
+      "id": 89,
+      "name": "Furious Rajang",
+      "disc": "Rajang",
+      "reason": "The game calls it \"Rajang\", like emID 53."
+    }
+  ]
+}

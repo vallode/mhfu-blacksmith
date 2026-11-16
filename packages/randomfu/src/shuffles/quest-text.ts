@@ -36,8 +36,8 @@ import {
   type TextBlock,
 } from "../game/quest-text.js";
 import type { Edits } from "../edits.js";
-import { monsterName, questLabel } from "../names.js";
-import type { ShuffleReport } from "./shuffle.js";
+import { questLabel, type MonsterNames } from "../names.js";
+import { getOrInsert, type ShuffleReport } from "./shuffle.js";
 
 const MONSTERS = STRING_FIELDS.indexOf("monsters");
 const GOAL = STRING_FIELDS.indexOf("goal");
@@ -187,6 +187,8 @@ export function renameIn(
   slot: SlotNames,
   mapping: ReadonlyMap<number, number>,
   width: number,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): Outcome {
   // Longest names first, so "Pink Rathian" isn't read as "Rathian".
   const known = [...slot.names].sort((a, b) => b[1].length - a[1].length);
@@ -256,6 +258,7 @@ function renameText(
   mapping: ReadonlyMap<number, number>,
   slots: readonly SlotNames[],
   note: Note,
+  monsterName: MonsterNames,
 ): number {
   if (text.blocks.length === 0) {
     note("all", "no text");
@@ -278,7 +281,7 @@ function renameText(
       done.add(ptr);
       const slot = slots[block.slots[0]!]!;
       const lang = blockLabel(block);
-      const result = renameIn(block.texts[field]!, slot, mapping, slot.widths[field]!);
+      const result = renameIn(block.texts[field]!, slot, mapping, slot.widths[field]!, monsterName);
       if ("problem" in result) {
         note(lang, `${STRING_FIELDS[field]}: ${result.problem}`);
         continue;
@@ -306,6 +309,8 @@ export function renameQuestText(
   swaps: ReadonlyMap<number, ReadonlyMap<number, number>>,
   quests: readonly LoadedQuest[],
   edits: Edits,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
   boards: readonly BoardFile[] = [],
   debug = false,
 ): ShuffleReport {
@@ -327,7 +332,7 @@ export function renameQuestText(
     const noter =
       (problems: Map<string, Set<string>>): Note =>
       (lang, problem) =>
-        (problems.get(problem) ?? problems.set(problem, new Set()).get(problem)!).add(lang);
+        getOrInsert(problems, problem, () => new Set()).add(lang);
 
     const fileProblems = new Map<string, Set<string>>();
     const fileCount = renameText(
@@ -337,6 +342,7 @@ export function renameQuestText(
       mapping,
       slots,
       noter(fileProblems),
+      monsterName,
     );
     report("Text", fileCount, fileProblems);
     let boardCount = 0;
@@ -356,6 +362,7 @@ export function renameQuestText(
               mapping,
               slots,
               noter(problems),
+              monsterName,
             );
         report(`Board text (${boardName(board)})`, count, problems);
         boardCount += count;

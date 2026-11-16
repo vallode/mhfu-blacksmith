@@ -1096,7 +1096,7 @@
               "chance": "20%"
             }
           ],
-          "shiny drop : stagger the tail": [
+          "shiny drop : stagger the tail [bone]": [
             {
               "item": 312,
               "chance": "48%"
@@ -1112,7 +1112,9 @@
             {
               "item": 286,
               "chance": "10%"
-            },
+            }
+          ],
+          "shiny drop : stagger the tail [mushroom]": [
             {
               "item": 312,
               "chance": "48%"
@@ -1128,7 +1130,9 @@
             {
               "item": 182,
               "chance": "10%"
-            },
+            }
+          ],
+          "shiny drop : stagger the tail [mineral stone]": [
             {
               "item": 312,
               "chance": "48%"

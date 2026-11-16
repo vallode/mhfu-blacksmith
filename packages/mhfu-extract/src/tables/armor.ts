@@ -150,7 +150,7 @@ function readArmorValueEntry(reader: BinaryReader, off: number, index: number): 
     rarity: reader.u8(off + 5),
     unkn1: reader.u16(off + 6),
     price: reader.u32(off + 8),
-    defense: reader.s8(off + 12),
+    defense: reader.u8(off + 12),
     resistances: {
       fire: reader.s8(off + 13),
       water: reader.s8(off + 14),

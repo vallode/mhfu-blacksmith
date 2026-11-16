@@ -5,7 +5,7 @@ import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
-import { needsEboot, OPTIONS, PRESETS, type Settings } from "../src/settings.js";
+import { OPTIONS, PRESETS, type Settings } from "../src/settings.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import {
   armorValueAt,
@@ -21,7 +21,7 @@ async function load(): Promise<{ game: GameData; close: () => void }> {
   const file = path.join(tempDir(), "disc.iso");
   writeFileSync(file, buildFixtureDisc());
   const { source, iso } = openDiscImage(file);
-  const game = await loadGame(source, iso, { eboot: {} });
+  const game = await loadGame(source, iso);
   return { game, close: () => source.close() };
 }
 
@@ -102,7 +102,7 @@ const skillsWith = (seed: string, changes: Partial<Settings>) =>
 
 test("armor skills, shuffle: entries trade within rarity, hunter type and sign", async () => {
   const { game, close } = await load();
-  const before = game.eboot!;
+  const before = game.eboot;
   const moved = new Set<string>();
   for (const seed of SEEDS) {
     const after = randomize(
@@ -155,7 +155,7 @@ test("armor skills, shuffle: entries trade within rarity, hunter type and sign",
 
 test("armor skills, shuffle: without keepArmorOnly, trees no decoration has move too", async () => {
   const { game, close } = await load();
-  const before = game.eboot!;
+  const before = game.eboot;
   let edgemasterMoved = false;
   for (const seed of SEEDS) {
     const settings = skillsWith(seed, {
@@ -172,7 +172,7 @@ test("armor skills, shuffle: without keepArmorOnly, trees no decoration has move
 
 test("armor skills, randomize: new trees for the piece's hunter type, points sized for its rarity", async () => {
   const { game, close } = await load();
-  const before = game.eboot!;
+  const before = game.eboot;
   const seen = new Set<number>();
   for (const seed of SEEDS) {
     const after = randomize(
@@ -225,10 +225,10 @@ test("armor skills, randomize: without keepArmorOnly, Edgemaster can be drawn", 
       "armorSkills.keepArmorOnly": false,
     });
     const after = randomize(game, settings).edits.eboot();
-    assertShape(game.eboot!, after, [TREE.torsoUp]);
+    assertShape(game.eboot, after, [TREE.torsoUp]);
     for (const key of PIECES) {
       skillsOf(after, key).forEach(([tree], k) => {
-        if (tree === TREE.edgemaster && skillsOf(game.eboot!, key)[k]![0] !== tree) drawn = true;
+        if (tree === TREE.edgemaster && skillsOf(game.eboot, key)[k]![0] !== tree) drawn = true;
       });
     }
   }
@@ -247,7 +247,7 @@ test("armor skills: deterministic, with a spoiler line per changed piece", async
     const report = a.reports.find((r) => r.title === "Armor skills")!;
     const changed = PIECES.filter(
       (k) =>
-        JSON.stringify(skillsOf(a.edits.eboot(), k)) !== JSON.stringify(skillsOf(game.eboot!, k)),
+        JSON.stringify(skillsOf(a.edits.eboot(), k)) !== JSON.stringify(skillsOf(game.eboot, k)),
     );
     assert.equal(report.lines.length, changed.length);
     assert.ok(report.lines.every((l) => / \(was .+\)$/.test(l.text)));
@@ -267,11 +267,9 @@ test("armor skills with the armor shuffle: skills stay with their piece", async 
   close();
 });
 
-test("armor skills settings: need the EBOOT, off by default, in the presets", () => {
+test("armor skills settings: off by default, in the presets", () => {
   const enabled = OPTIONS.find((o) => o.key === "armorSkills.enabled")!;
-  assert.equal(enabled.eboot, true);
   assert.equal(enabled.default, false);
-  assert.ok(needsEboot(skillsWith("x", {})));
   const presets = Object.fromEntries(PRESETS.map((p) => [p.name, p.changes]));
   assert.equal(presets.Full!["armorSkills.enabled"], true);
   assert.equal(presets.Full!["armorSkills.mode"], undefined, "Full shuffles");

@@ -13,6 +13,7 @@ import {
   ARMOR_SLOTS,
   dehydrate,
   equipmentIds,
+  equipmentRecordIds,
   fileKind,
   hydrate,
   mergeStrings,
@@ -61,6 +62,18 @@ function weaponTypes(dataDir: string): string[] {
     .map((f) => f.slice(0, -".json".length));
 }
 
+/** Every weapon and armor file, raw. */
+function equipmentFiles(dataDir: string) {
+  const weapons = weaponTypes(dataDir).map((type) => ({
+    type,
+    raw: readRawData(dataDir, "weapons", `${type}.json`),
+  }));
+  const armor = ARMOR_SLOTS.filter((slot) =>
+    existsSync(path.join(dataDir, "armor", `${slot}.json`)),
+  ).map((slot) => ({ slot, raw: readRawData(dataDir, "armor", `${slot}.json`) }));
+  return { weapons, armor };
+}
+
 /**
  * Reads a data file's named view, given `dataDir` and its path inside it,
  * whole (`"weapons/bow.json"`) or in segments as for `path.join`
@@ -73,13 +86,7 @@ export function readData<T = DataDoc>(dataDir: string, ...rel: string[]): T {
   if (!kind) return readRawData<T>(dataDir, p);
   const strings = hydrateStrings(dataDir);
   if (kind.kind === "equipment-ids") {
-    const weapons = weaponTypes(dataDir).map((type) => ({
-      type,
-      raw: readRawData(dataDir, "weapons", `${type}.json`),
-    }));
-    const armor = ARMOR_SLOTS.filter((slot) =>
-      existsSync(path.join(dataDir, "armor", `${slot}.json`)),
-    ).map((slot) => ({ slot, raw: readRawData(dataDir, "armor", `${slot}.json`) }));
+    const { weapons, armor } = equipmentFiles(dataDir);
     return equipmentIds(weapons, armor, strings.en) as T;
   }
   return hydrate(kind, readRawData(dataDir, p), strings) as T;
@@ -134,7 +141,17 @@ export function writeData(
   }
   const en = readStringsDoc(dataDir, DEFAULT_LANG);
   const current = existsSync(file) ? readRawData(dataDir, rel) : undefined;
-  const { raw, strings } = dehydrate(kind, named, stringResolver(new StringTable(en), current));
+  // Quests name training-only gear, which needs to know which IDs have a record.
+  let records: ReturnType<typeof equipmentRecordIds> | undefined;
+  if (kind.kind === "quests") {
+    const { weapons, armor } = equipmentFiles(dataDir);
+    records = equipmentRecordIds(weapons, armor);
+  }
+  const { raw, strings } = dehydrate(
+    kind,
+    named,
+    stringResolver(new StringTable(en), current, records),
+  );
 
   const changed: string[] = [];
   if (writeIfChanged(file, serializeData(raw), options.dryRun)) changed.push(relPath([rel]));

@@ -2,7 +2,7 @@
 
 A prototype that gives randomfu a large code and data area in game, for QoL
 features (a wishlist, an on-screen box number, pouch refill) and, later,
-multiworld hooks. `randomize --loader-demo` builds it with a demo blob.
+multiworld hooks. `?loader-demo` in the web app builds it with a demo blob.
 
 Addresses are EU / JP (FUC).
 

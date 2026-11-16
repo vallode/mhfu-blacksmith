@@ -46013,7 +46013,6 @@
       "time_limit_minutes": 50,
       "target": {
         "monster": 87,
-        "alias": 0,
         "amount": 1
       },
       "supplies": [
@@ -46189,7 +46188,6 @@
       "large_monsters": [
         {
           "monster": 87,
-          "alias": 0,
           "quantity": 1,
           "power": 27,
           "multipliers": {
@@ -46463,7 +46461,6 @@
         },
         {
           "monster": 87,
-          "alias": 0,
           "quantity": 1,
           "power": 28,
           "multipliers": {
@@ -47765,7 +47762,6 @@
       "time_limit_minutes": 50,
       "target": {
         "monster": 40,
-        "alias": 0,
         "amount": 1
       },
       "supplies": [
@@ -47924,7 +47920,6 @@
       "large_monsters": [
         {
           "monster": 40,
-          "alias": 0,
           "quantity": 1,
           "power": 27,
           "multipliers": {
@@ -55085,7 +55080,6 @@
         },
         {
           "monster": 87,
-          "alias": 0,
           "quantity": 1,
           "power": 25,
           "multipliers": {

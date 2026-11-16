@@ -45,7 +45,8 @@ This is a [pnpm workspace](https://pnpm.io/workspaces):
 | `apps/blacksmith`       | `blacksmith`   | The MHFU Blacksmith website, a statically exported [Next.js](https://nextjs.org/) app           |
 | `apps/randomfu`         | `randomfu-web` | The randomizer as a static web app that runs in the browser, at randomfu.vallode.com            |
 | `packages/mhfu-extract` | `mhfu-extract` | Datamining pipeline: reads a disc image and emits `data/` and the site's 3D models              |
-| `packages/randomfu`     | `randomfu`     | Seeded randomizer: library, command line and local settings page                                |
+| `packages/randomfu`     | `randomfu`     | The seeded randomizer behind `apps/randomfu`: options, shuffles, disc patching, spoiler log     |
+| `packages/game-data`    | `game-data`    | The one way into `data/`: `readData` for everything that reads it, `writeData` for writing      |
 | `data`                  |                | The game data the site is built from (JSON, validated by `data/schemas/`), shared by everything |
 
 Packages import each other by name (`import … from "mhfu-extract/src/container/image.js"`),
@@ -57,7 +58,6 @@ Dependencies:
 
 - [Node.js](https://nodejs.org/) 22+
 - [pnpm](https://pnpm.io/) (version pinned in `package.json`; `corepack enable` will pick it up)
-- [ImageMagick](https://imagemagick.org/) (optional, for `apps/blacksmith/scripts/crop-images.sh`)
 
 From the repository root:
 
@@ -70,32 +70,11 @@ pnpm lint           # ESLint
 pnpm typecheck      # tsc in every package
 pnpm test           # every package's tests
 pnpm format         # Prettier, for the whole repository
+pnpm format:check   # Prettier, check only
+pnpm clean:discs    # delete disc images left in Claude Code scratchpads (--dry-run lists them)
 ```
 
-Run any package's own scripts with `pnpm --filter <package> <script>`, or
-from its directory. The site's (from `apps/blacksmith`):
-
-```sh
-# Generate the client data bundles in public/ (needed once before `pnpm dev`,
-# and again whenever data/ or content/ changes)
-pnpm generate-data && pnpm generate-search
-
-pnpm validate         # sanity-check data/ and content/
-pnpm validate-schema  # check data/ against data/schemas/
-```
-
-Source data lives in `data/` (records and string tables, validated by `data/schemas/`) and `apps/blacksmith/content/` (crafting trees). Generated files under `apps/blacksmith/public/data`, `apps/blacksmith/public/*.json` and `apps/blacksmith/out/` are git-ignored.
-
-The crafting trees in `apps/blacksmith/content/**/map.json` are generated from `data/` with `pnpm generate-maps`. Rerun it after adding or re-parenting weapons, armor, or decorations.
-
-`apps/blacksmith/public/models/` holds 3D models extracted from the game, shown on detail pages by `src/components/ModelViewer.tsx`. They are generated, not hand-made: unpack your own disc image and run `pnpm --filter mhfu-extract export-site` (see `packages/mhfu-extract/README.md`, "3D models"), then commit the result.
-
-Records in `data/` carry the game's own IDs and refer to each other by ID: a weapon by its index in the game's melee or ranged weapon table, armor by its slot's armor ID (both as stored in a save file's equipment box), items by item ID, skill trees by `SkillID`, monsters by `emID`, maps and quests by their IDs. Names and other text are in per-language string tables, `data/strings/<lang>.json` (English complete, Japanese item names so far), keyed by kind and ID. Everything reads `data/` through `packages/game-data`, whose `readData` puts the English names back where the records had them before, so slugs and pages come from the same English names. See `packages/game-data/README.md`.
-
-The site is served at [mhfu.vallode.com](https://mhfu.vallode.com) and randomfu's web app at [randomfu.vallode.com](https://randomfu.vallode.com), both from Cloudflare. Each is a Cloudflare Worker serving static assets, configured by `apps/blacksmith/wrangler.jsonc` and `apps/randomfu/wrangler.jsonc`. The site's Worker also runs a script, `apps/blacksmith/src/cloudflare/worker.ts`, for the set builder's pages and share links only: it serves a shared set's link (`/sets/<code>/<name>/`) the set builder's page, and gives it its own embed by rewriting the page's meta tags, with the set's skills and stats and an image of the set drawn as a card (`/set-builder/card.png`, rendered with satori and resvg and kept in Cloudflare's cache). Every other request is a static asset request that never runs it.
-
-Cloudflare's Workers Builds deploys them from this repository: a push to `main` builds and deploys the site it changes, and the build's result shows up as a check on the commit or pull request. Its settings (root directory, build command, build variables such as `NEXT_PUBLIC_SITE_URL` and `SITE_URL`, watch paths) are in the Cloudflare dashboard, under each Worker's Settings > Build.
-
-To deploy by hand from GitHub Actions instead, run the **Deploy to Cloudflare** workflow (Actions > Deploy to Cloudflare > Run workflow), choosing the branch and the site. It builds the site in GitHub Actions and uploads it with Wrangler. `main` deploys to production at `<worker>.<subdomain>.workers.dev`, plus any custom domain added to the Worker in the Cloudflare dashboard. Any other branch gets a preview URL named after the branch, `<branch>-<worker>.<subdomain>.workers.dev`, once `main` has been deployed. The workflow needs the `CLOUDFLARE_API_TOKEN` (made from the "Edit Cloudflare Workers" template) and `CLOUDFLARE_ACCOUNT_ID` repository secrets. The `BLACKSMITH_URL` and `RANDOMFU_URL` repository variables set a site's production address for its link previews once it has a custom domain.
-
-Cloudflare's free plan takes at most 20,000 files per deploy, and the site's `out/` is close to that (about 19,700). Past it, deploys fail until the account is on the Workers Paid plan (100,000 files).
+Run any package's own scripts with `pnpm --filter <package> <script>`.
+More: [the site's workflow](apps/blacksmith/README.md) (data, crafting trees,
+3D models), [the game data format](packages/game-data/README.md) and
+[deployment](docs/deploying.md) (Cloudflare).

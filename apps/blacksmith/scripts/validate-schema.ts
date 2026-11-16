@@ -33,6 +33,7 @@ const checks: [label: string, schema: string, files: string[]][] = [
   ["Pokke Farm", "farm", ["farm.json"]],
   ["skills", "skill", ["skills.json"]],
   ["string tables", "strings", jsonFiles("strings")],
+  ["locales", "locale", jsonFiles("locales")],
 ];
 
 let failed = false;

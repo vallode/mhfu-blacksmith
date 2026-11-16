@@ -4,16 +4,15 @@ import Link from "next/link";
 import { DetailBody, DetailCard, DetailRule, Stat, StatList } from "@/components/DetailPanel";
 import { QuestRewards, QuestSupplies } from "@/components/QuestRewards";
 import Tabs, { type Tab } from "@/components/Tabs";
+import { useLocale, useT } from "@/context/LanguageContext";
 import { usePreferences } from "@/context/PreferencesContext";
 import { useSave } from "@/context/SaveContext";
 import { useQuests } from "@/lib/client-data";
 import {
   clearedQuestIds,
   questHref,
-  questHubLabel,
   questsOnHub,
   questStarLevel,
-  questTypeLabel,
   type QuestHubSlug,
   type QuestCrownChances,
   type QuestMonster,
@@ -24,8 +23,8 @@ import QuestAreaMap from "@/components/AreaMap";
 import Loading from "@/components/Loading";
 import MapIcon from "@/components/MapIcon";
 import { cn } from "@/lib/cn";
-import { formatChance, possibleCrowns } from "@/lib/crowns";
-import CrownIcon from "@/components/CrownIcon";
+import { possibleCrowns } from "@/lib/crowns";
+import CrownIcon, { useFormatChance } from "@/components/CrownIcon";
 import StarMarks from "@/components/StarMarks";
 
 interface Props {
@@ -33,9 +32,8 @@ interface Props {
   id: number;
 }
 
-const zenny = (n: number) => `${n.toLocaleString("en-US")}z`;
-
 function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
+  const { game } = useLocale();
   return (
     <span className="whitespace-normal text-white">
       {monsters.map((m, i) => (
@@ -43,10 +41,10 @@ function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
           {i > 0 && ", "}
           {m.href ? (
             <Link href={m.href} className="text-white underline-offset-4 hover:underline">
-              {m.name}
+              {game.name("monster", m.name)}
             </Link>
           ) : (
-            m.name
+            game.name("monster", m.name)
           )}
         </span>
       ))}
@@ -54,12 +52,15 @@ function MonsterLinks({ monsters }: { monsters: QuestMonster[] }) {
   );
 }
 
-const times = (n: number) => `×${n}`;
+/** The monster whose attack and defense change mid-hunt, as the note says. */
+const FURIOUS_RAJANG = "Furious Rajang";
 
 /** A monster's crown chances, gold first, leaving out crowns it can't get. */
 function CrownChances({ chances }: { chances: QuestCrownChances }) {
+  const t = useT().quests.monsterStats;
+  const formatChance = useFormatChance();
   const crowns = possibleCrowns([chances]);
-  if (crowns.length === 0) return <span className="text-white">None</span>;
+  if (crowns.length === 0) return <span className="text-white">{t.noCrowns}</span>;
   return (
     <span className="inline-flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.4rem] text-white tabular-nums">
       {crowns.map((crown) => (
@@ -80,6 +81,9 @@ function MonsterStats({
   stats: QuestMonsterStats[];
   size: QuestMonsterSize | null;
 }) {
+  const { t, game, formatNumber } = useLocale();
+  const m = t.quests.monsterStats;
+  const times = (n: number) => m.times(formatNumber(n));
   return (
     <div className="flex flex-col gap-6">
       {stats.map((s, i) => (
@@ -87,25 +91,25 @@ function MonsterStats({
           <h3 className="m-0 leading-none font-normal text-warm">
             {s.monster.href ? (
               <Link href={s.monster.href} className="underline-offset-4 hover:underline">
-                {s.monster.name}
+                {game.name("monster", s.monster.name)}
               </Link>
             ) : (
-              s.monster.name
+              game.name("monster", s.monster.name)
             )}
           </h3>
           <StatList>
             {s.hp !== null && (
-              <Stat label="HP:">
-                <span className="text-white tabular-nums">{s.hp.toLocaleString("en-US")}</span>
+              <Stat label={m.hp}>
+                <span className="text-white tabular-nums">{formatNumber(s.hp)}</span>
               </Stat>
             )}
-            <Stat label="Attack:">
+            <Stat label={m.attack}>
               <span className="text-white tabular-nums">{times(s.attack)}</span>
             </Stat>
-            <Stat label="Defense:">
+            <Stat label={m.defense}>
               <span className="text-white tabular-nums">{times(s.defense)}</span>
             </Stat>
-            <Stat label="Stagger:">
+            <Stat label={m.stagger}>
               <span className="text-white tabular-nums">{times(s.stagger)}</span>
             </Stat>
             {size && <MonsterSizeStats size={size} monster={s.monster.name} />}
@@ -113,19 +117,11 @@ function MonsterStats({
         </section>
       ))}
       <p className="text-fine leading-[1.4] whitespace-normal text-white/60">
-        Attack and defense multiply the damage the monster deals and takes, so a lower defense means
-        it takes less. Stagger multiplies how much damage a part takes before it flinches.
-        {stats.some((s) => s.monster.name === "Furious Rajang") &&
-          " Furious Rajang's attack and defense change again during the hunt."}
-        {size && size.crowns.length > 0 && (
-          <>
-            {" "}
-            Size is a percent of the monster&apos;s normal size, rolled for each monster; crown
-            chances are per monster.
-            {size.fixedFirst &&
-              " Until a story flag is set (likely the quest's first clear), every monster here is its normal size."}
-          </>
-        )}
+        {m.note}
+        {stats.some((s) => s.monster.name === FURIOUS_RAJANG) &&
+          ` ${m.changesDuringHunt(game.name("monster", FURIOUS_RAJANG))}`}
+        {size && size.crowns.length > 0 && ` ${m.sizeNote}`}
+        {size && size.crowns.length > 0 && size.fixedFirst && ` ${m.fixedFirstNote}`}
       </p>
     </div>
   );
@@ -133,16 +129,20 @@ function MonsterStats({
 
 /** A crowned monster's size range and crown chances; nothing for a monster without crowns. */
 function MonsterSizeStats({ size, monster }: { size: QuestMonsterSize; monster: string }) {
+  const { t, formatNumber } = useLocale();
+  const m = t.quests.monsterStats;
   const chances = size.crowns.find((c) => c.monster.name === monster);
   if (!chances) return null;
   return (
     <>
-      <Stat label="Size:">
+      <Stat label={m.size}>
         <span className="text-white tabular-nums">
-          {size.min === size.max ? `${size.min}%` : `${size.min}–${size.max}%`}
+          {size.min === size.max
+            ? m.sizePercent(formatNumber(size.min))
+            : m.sizeRange(formatNumber(size.min), formatNumber(size.max))}
         </span>
       </Stat>
-      <Stat label="Crowns:">
+      <Stat label={t.quests.detail.crowns}>
         <CrownChances chances={chances} />
       </Stat>
     </>
@@ -150,6 +150,7 @@ function MonsterSizeStats({ size, monster }: { size: QuestMonsterSize; monster: 
 }
 
 export default function QuestDetailClient({ hub, id }: Props) {
+  const { t, game, formatNumber } = useLocale();
   const { quests, error } = useQuests();
   const { save } = useSave();
   const { markCleared } = usePreferences().prefs;
@@ -163,83 +164,91 @@ export default function QuestDetailClient({ hub, id }: Props) {
     return (
       <DetailCard>
         {error ? (
-          <p>Couldn&apos;t load quests.</p>
+          <p>{t.quests.loadError}</p>
         ) : quests ? (
-          <p>Not found.</p>
+          <p>{t.quests.notFound}</p>
         ) : (
-          <Loading>Loading…</Loading>
+          <Loading>{t.common.loading}</Loading>
         )}
       </DetailCard>
     );
   }
 
+  const d = t.quests.detail;
+  const zenny = (n: number) => t.common.zenny(formatNumber(n));
+  /** Board text in the site's language, falling back to the English. */
+  const text = (field: "title" | "goal" | "fail" | "details" | "client", english: string) =>
+    game.quest(quest.id, field, english);
+  const title = text("title", quest.title);
   // The crowns any of the quest's monsters can roll here.
   const crowns = possibleCrowns(quest.monsterSize?.crowns ?? []);
 
   const tabs: Tab[] = [
     {
       id: "details",
-      label: "Details",
+      label: d.tabs.details,
       content: (
         <StatList>
           {quest.goal && (
-            <Stat label="Goal:">
-              <span className="whitespace-pre-line text-white">{quest.goal}</span>
+            <Stat label={d.goal}>
+              <span className="whitespace-pre-line text-white">{text("goal", quest.goal)}</span>
             </Stat>
           )}
           {quest.fail && (
-            <Stat label="Failure:">
-              <span className="whitespace-pre-line text-white">{quest.fail}</span>
+            <Stat label={d.failure}>
+              <span className="whitespace-pre-line text-white">{text("fail", quest.fail)}</span>
             </Stat>
           )}
           {quest.map && (
-            <Stat label="Location:">
-              <span className="whitespace-normal text-white">{quest.map}</span>
+            <Stat label={d.location}>
+              <span className="whitespace-normal text-white">{game.name("map", quest.map)}</span>
             </Stat>
           )}
-          <Stat label="Time limit:">
-            <span className="text-white tabular-nums">{quest.timeLimit} min</span>
+          <Stat label={d.timeLimit}>
+            <span className="text-white tabular-nums">
+              {d.minutes(formatNumber(quest.timeLimit))}
+            </span>
           </Stat>
-          <Stat label="Reward:">
+          <Stat label={d.reward}>
             <span className="text-white tabular-nums">{zenny(quest.reward)}</span>
           </Stat>
-          <Stat label="Contract fee:">
+          <Stat label={d.fee}>
             <span className="text-white tabular-nums">{zenny(quest.fee)}</span>
           </Stat>
           {requires && (
-            <Stat label="Requires:">
+            <Stat label={d.requires}>
               <Link
                 href={questHref(requires)}
                 className="whitespace-normal text-white underline-offset-4 hover:underline"
               >
-                {requires.title} ({questHubLabel(requires.hub)}{" "}
+                {game.quest(requires.id, "title", requires.title)} ({t.quests.hubs[requires.hub]}{" "}
                 <StarMarks {...questStarLevel(requires.hub, requires.stars)} />)
               </Link>
             </Stat>
           )}
           {quest.largeMonsters.length > 0 && (
-            <Stat label="Monsters:">
+            <Stat label={d.monsters}>
               <MonsterLinks monsters={quest.largeMonsters} />
             </Stat>
           )}
           {crowns.length > 0 && (
-            <Stat label="Crowns:">
+            <Stat label={d.crowns}>
               <span className="inline-flex flex-wrap items-center gap-[0.6rem] whitespace-normal text-white">
                 {crowns.map((c) => (
                   <CrownIcon key={c} crown={c} />
                 ))}
-                {quest.monsterSize?.fixedFirst && <span>(likely after the first clear)</span>}
+                {quest.monsterSize?.fixedFirst && <span>{d.crownsAfterFirstClear}</span>}
               </span>
             </Stat>
           )}
           {quest.smallMonsters.length > 0 && (
-            <Stat label="Small monsters:">
+            <Stat label={d.smallMonsters}>
               <MonsterLinks monsters={quest.smallMonsters} />
             </Stat>
           )}
           {quest.client && (
-            <Stat label="Client:">
-              <span className="whitespace-normal text-white">{quest.client}</span>
+            <Stat label={d.client}>
+              <span className="whitespace-normal text-white">{text("client", quest.client)}</span>
             </Stat>
           )}
         </StatList>
@@ -249,27 +258,27 @@ export default function QuestDetailClient({ hub, id }: Props) {
   if (quest.monsterStats.length > 0) {
     tabs.push({
       id: "monsters",
-      label: "Monsters",
+      label: d.tabs.monsters,
       content: <MonsterStats stats={quest.monsterStats} size={quest.monsterSize} />,
     });
   }
   if (quest.rewardTables.length > 0) {
     tabs.push({
       id: "rewards",
-      label: "Rewards",
+      label: d.tabs.rewards,
       content: <QuestRewards tables={quest.rewardTables} />,
     });
   }
   if (quest.supplies.length > 0) {
     tabs.push({
       id: "supplies",
-      label: "Supplies",
+      label: d.tabs.supplies,
       content: <QuestSupplies supplies={quest.supplies} />,
     });
   }
 
   if (quest.hasAreaMap) {
-    tabs.push({ id: "map", label: "Map", content: <QuestAreaMap questId={id} /> });
+    tabs.push({ id: "map", label: d.tabs.map, content: <QuestAreaMap questId={id} /> });
   }
 
   return (
@@ -293,7 +302,7 @@ export default function QuestDetailClient({ hub, id }: Props) {
       <div className="relative flex flex-col gap-2 text-main text-white">
         {cleared && (
           <div className="pointer-events-none absolute inset-x-0 top-0 flex text-small leading-[2.75rem] mobile:static mobile:leading-[1.25]">
-            <p className="text-stat">CLEAR!!</p>
+            <p className="text-stat">{t.quests.cleared}</p>
           </div>
         )}
         <p
@@ -302,21 +311,23 @@ export default function QuestDetailClient({ hub, id }: Props) {
             cleared && "px-[9.6rem] mobile:px-0",
           )}
         >
-          {questTypeLabel(quest.type)}
+          {t.quests.typeHeadings[quest.type]}
         </p>
-        <p className="text-center leading-[1.25] whitespace-normal">{quest.title}</p>
+        <p className="text-center leading-[1.25] whitespace-normal">{title}</p>
         <p className="text-center text-small leading-[1.25] whitespace-normal text-stat">
           <StarMarks {...questStarLevel(hub, quest.stars)} />
         </p>
         {quest.details && (
-          <p className="mt-2 text-small leading-[1.4] whitespace-normal">{quest.details}</p>
+          <p className="mt-2 text-small leading-[1.4] whitespace-normal">
+            {text("details", quest.details)}
+          </p>
         )}
       </div>
 
       <DetailBody>
         <DetailRule />
         {/* Keyed on the quest so the selected tab resets when navigating */}
-        <Tabs key={id} label={`${quest.title} data`} tabs={tabs} />
+        <Tabs key={id} label={d.tabsLabel(title)} tabs={tabs} />
       </DetailBody>
     </DetailCard>
   );

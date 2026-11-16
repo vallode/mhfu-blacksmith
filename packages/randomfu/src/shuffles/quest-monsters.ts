@@ -57,12 +57,12 @@ import {
   TARGET_ID_OFFSET,
   type QuestSpawns,
 } from "../game/spawns.js";
-import { BAND_NAMES, questTier, type Band, type Tier } from "../game/tiers.js";
+import { BAND_NAMES, inScope, questTier, type Band, type Tier } from "../game/tiers.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
-import { monsterName, questLabel } from "../names.js";
+import { questLabel, type MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
-import { median, type ShuffleReport } from "./shuffle.js";
+import { getOrInsert, median, type ShuffleReport } from "./shuffle.js";
 
 /** Variants that share their base species' skeleton, moves and overlay, by emID. */
 export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
@@ -71,7 +71,7 @@ export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
   [2, 36, 71], // Fatalis, Crimson, White
   [6, 38], // Yian Kut-Ku, Blue
   [20, 39], // Gypceros, Purple
-  [78, 40], // Yian Garuga, One-Ear
+  [78, 40], // Yian Garuga, Scarred
   [14, 43], // Diablos, Black
   [26, 44], // Monoblos, White
   [15, 45], // Khezu, Red
@@ -79,7 +79,7 @@ export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
   [17, 47], // Gravios, Black
   [48, 86], // Daimyo Hermitaur, Plum
   [67, 87], // Shogun Ceanataur, Terra
-  [7, 50], // Lao-Shan Lung, Ashen
+  [7, 50], // Lao-Shan Lung, Ash
   [51, 84], // Blangonga, Copper
   [52, 85], // Congalala, Emerald
   [53, 89], // Rajang, Furious
@@ -90,6 +90,11 @@ export const MONSTER_FAMILIES: readonly (readonly number[])[] = [
 
 const FAMILY = new Map<number, readonly number[]>();
 for (const family of MONSTER_FAMILIES) for (const id of family) FAMILY.set(id, family);
+
+/** A monster's family (itself and its variants), by emID. */
+export function familyOf(emId: number): readonly number[] {
+  return FAMILY.get(emId) ?? [emId];
+}
 
 /** `questHeader.Map`: night versions share their day map's monsters. */
 const NIGHT_TO_DAY: Record<number, number> = { 16: 2, 17: 3, 18: 4, 19: 5, 20: 6, 21: 11, 31: 30 };
@@ -128,7 +133,7 @@ export function collectQuestMonsters(quests: readonly LoadedQuest[]): QuestMonst
   return out;
 }
 
-export type SpeciesPool = "variants" | "rank" | "any";
+export type SpeciesPool = "variants" | "rank" | "adjacent" | "any";
 
 const unique = (ids: number[]) => [...new Set(ids)];
 
@@ -143,6 +148,8 @@ export function swapSpecies(
   edits: Edits,
   allQuests: readonly LoadedQuest[],
   setOf: MultiplierSetOf,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
   boards: readonly BoardFile[] = [],
 ): {
   report: ShuffleReport;
@@ -154,14 +161,13 @@ export function swapSpecies(
   const bands = new Map<number, Set<Band>>();
   /** Levels by monster or set, quest table and rank (see `usualLevel`). */
   const levels = new Map<string, number[]>();
-  const push = (key: string, power: number) =>
-    (levels.get(key) ?? levels.set(key, []).get(key)!).push(power);
+  const push = (key: string, power: number) => getOrInsert(levels, key, () => []).push(power);
   for (const { quest, tier, spawns } of list) {
     const map = habitat(quest.parsed.header.map);
     const table = quest.parsed.header.statTable;
     for (const { monsterId, power } of spawns.large) {
-      (onMap.get(map) ?? onMap.set(map, new Set()).get(map)!).add(monsterId);
-      (bands.get(monsterId) ?? bands.set(monsterId, new Set()).get(monsterId)!).add(tier.band);
+      getOrInsert(onMap, map, () => new Set()).add(monsterId);
+      getOrInsert(bands, monsterId, () => new Set()).add(tier.band);
       const set = setOf(monsterId);
       push(`m${monsterId}:${table}:${tier.band}`, power);
       push(`s${set}:${table}:${tier.band}`, power);
@@ -208,7 +214,13 @@ export function swapSpecies(
       const options =
         pool === "variants"
           ? (FAMILY.get(old) ?? [old]).filter((id) => id === old || here.has(id))
-          : [...here].filter((id) => pool === "any" || bands.get(id)?.has(tier.band));
+          : [...here].filter(
+              (id) =>
+                pool === "any" ||
+                [...(bands.get(id) ?? [])].some((band) =>
+                  inScope(pool, { band: tier.band, stars: 0 }, { band, stars: 0 }),
+                ),
+            );
       // Never empty: every monster of the quest is on its map, so its family
       // has as many options as the quest has members of it.
       const free = options.filter((id) => !taken.has(id)).sort((a, b) => a - b);
@@ -277,7 +289,7 @@ export function swapSpecies(
   const notes = [
     pool === "variants"
       ? "Each large monster became one of its variants, on maps where that variant is found."
-      : `Each large monster became any large monster found on the quest's map${pool === "rank" ? " at the quest's rank" : ""}.`,
+      : `Each large monster became any large monster found on the quest's map${pool === "rank" ? " at the quest's rank" : pool === "adjacent" ? " at the quest's rank or the next" : ""}.`,
   ];
   if (mixed > 0)
     notes.push(`${mixed} quests with more than one kind of large monster were left alone.`);
@@ -323,6 +335,8 @@ export function randomizeDifficulty(
   rng: Rng,
   edits: Edits,
   setOf: MultiplierSetOf,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   // A level is a row of one table: the monster's set, the quest's table.
   const key = (q: QuestMonsters, emId: number) =>
@@ -389,6 +403,8 @@ export function randomizeSmallCounts(
   spread: number,
   rng: Rng,
   edits: Edits,
+  /** Names monsters in the report (`names.ts` `monsterNames`). */
+  monsterName: MonsterNames,
 ): ShuffleReport {
   let cap = 1;
   for (const q of list) {

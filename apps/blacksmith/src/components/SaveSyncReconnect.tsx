@@ -3,6 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useToast } from "@/context/ToastContext";
 import { useFileSync } from "@/context/FileSyncContext";
+import { useT } from "@/context/LanguageContext";
 
 const TOAST_ID = "save-sync-reconnect";
 
@@ -17,6 +18,7 @@ const TOAST_ID = "save-sync-reconnect";
 export default function SaveSyncReconnect() {
   const { toast, dismiss } = useToast();
   const fileSync = useFileSync();
+  const t = useT().site.saveSync;
   const shown = useRef(false);
 
   useEffect(() => {
@@ -27,14 +29,12 @@ export default function SaveSyncReconnect() {
       shown.current = true;
       toast({
         id: TOAST_ID,
-        title: "Reconnect save file",
-        message: fileSync.fileName
-          ? `Allow access to ${fileSync.fileName} again to keep your hunter profile in sync.`
-          : "Allow access to your save file again to keep your hunter profile in sync.",
+        title: t.reconnectToast.title,
+        message: t.reconnectToast.message(fileSync.fileName),
         duration: null,
         actions: [
-          { label: "Reconnect", onClick: () => fileSync.requestReconnect() },
-          { label: "Not now", onClick: () => dismiss(TOAST_ID) },
+          { label: t.reconnect, onClick: () => fileSync.requestReconnect() },
+          { label: t.reconnectToast.notNow, onClick: () => dismiss(TOAST_ID) },
         ],
       });
       return;
@@ -44,7 +44,7 @@ export default function SaveSyncReconnect() {
       shown.current = false;
       dismiss(TOAST_ID);
     }
-  }, [fileSync, toast, dismiss]);
+  }, [fileSync, toast, dismiss, t]);
 
   return null;
 }

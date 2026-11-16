@@ -7399,7 +7399,7 @@
               "chance": "5%"
             }
           ],
-          "body carves (x1)": [
+          "tail carves (x1)": [
             {
               "item": 614,
               "chance": "82%"
@@ -7931,7 +7931,7 @@
             },
             {
               "item": 211,
-              "amount": 1,
+              "amount": 2,
               "chance": "10%"
             }
           ],
@@ -8189,14 +8189,17 @@
           "break claws": [
             {
               "item": 812,
+              "amount": 1,
               "chance": "80%"
             },
             {
               "item": 812,
+              "amount": 2,
               "chance": "10%"
             },
             {
               "item": 809,
+              "amount": 1,
               "chance": "10%"
             }
           ]
@@ -8283,6 +8286,14 @@
       },
       "base_hp": 12000,
       "breaks": [
+        {
+          "name": "claws",
+          "parts": [
+            4,
+            6
+          ],
+          "flinches": 2
+        },
         {
           "name": "head",
           "parts": [

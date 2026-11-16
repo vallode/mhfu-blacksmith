@@ -357,7 +357,7 @@
     {
       "id": 10004,
       "hub": "village",
-      "rank": null,
+      "rank": "low-rank",
       "stars": 1,
       "map": 21,
       "fee": 0,
@@ -1622,7 +1622,7 @@
     {
       "id": 10108,
       "hub": "village",
-      "rank": null,
+      "rank": "low-rank",
       "stars": 2,
       "map": 21,
       "fee": 150,
@@ -18273,7 +18273,6 @@
       "time_limit_minutes": 50,
       "target": {
         "monster": 40,
-        "alias": 0,
         "amount": 1
       },
       "supplies": [
@@ -18385,7 +18384,6 @@
       "large_monsters": [
         {
           "monster": 40,
-          "alias": 0,
           "quantity": 1,
           "power": 16,
           "multipliers": {

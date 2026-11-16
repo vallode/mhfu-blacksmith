@@ -208,15 +208,6 @@ describe("encodeQuestBundle / decodeQuests", () => {
     );
   });
 
-  test("links disc monster names the site spells differently", () => {
-    const { bundle } = encode([
-      quest({ target: null, large_monsters: [{ monster: "One-Ear Yian Garuga" }] }),
-    ]);
-    assert.deepEqual(decodeQuests(bundle)[0]!.largeMonsters, [
-      { name: "Scarred Yian Garuga", href: "/monsters/bird-wyvern/scarred-yian-garuga/" },
-    ]);
-  });
-
   test("gives each distinct large monster spawn its HP and multipliers", () => {
     const row = { hp: 0.6, attack: 1.15, defense: 1, status: 1 };
     const { bundle } = encode([

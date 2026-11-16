@@ -2,30 +2,38 @@
 
 import SettingsCard from "@/components/SettingsCard";
 import { useOffline, type OfflineDownloadStatus } from "@/context/OfflineContext";
+import { useT } from "@/context/LanguageContext";
+import type { Messages } from "@/lib/i18n/messages";
 import * as ui from "@/styles/settings";
 
-function primaryLabel(status: OfflineDownloadStatus, cached: number, progress: number): string {
+function primaryLabel(
+  text: Messages["site"]["offline"],
+  status: OfflineDownloadStatus,
+  cached: number,
+  progress: number,
+): string {
   switch (status) {
     case "checking":
-      return "Checking…";
+      return text.checking;
     case "downloading":
-      return `Downloading… ${progress}%`;
+      return text.downloading(progress);
     case "complete":
-      return "Re-download";
+      return text.redownload;
     case "error":
-      return "Retry";
+      return text.retry;
     default:
-      return cached > 0 ? "Finish downloading" : "Download for offline";
+      return cached > 0 ? text.finish : text.download;
   }
 }
 
 export default function OfflineSettings() {
   const offline = useOffline();
+  const text = useT().site.offline;
 
   if (offline.status === "unsupported") {
     return (
-      <SettingsCard title="Offline Data">
-        <p className={ui.note}>Offline downloads aren&apos;t supported in this browser.</p>
+      <SettingsCard title={text.title}>
+        <p className={ui.note}>{text.unsupported}</p>
       </SettingsCard>
     );
   }
@@ -39,25 +47,19 @@ export default function OfflineSettings() {
         : 0;
 
   return (
-    <SettingsCard title="Offline Data">
-      <p className={ui.note}>
-        Save weapon, armor, monster, and decoration data to this device so search and browsing work
-        without a connection. This stays here whenever you want to (re)download or clear it — unlike
-        the one-time popup.
-      </p>
+    <SettingsCard title={text.title}>
+      <p className={ui.note}>{text.note}</p>
 
       <div className={ui.status}>
         <span className={ui.statusLabel}>
           {offline.status === "checking"
-            ? "Checking cached files…"
-            : `${offline.cached} / ${offline.total} files cached`}
+            ? text.checkingFiles
+            : text.filesCached(offline.cached, offline.total)}
         </span>
         <progress className={ui.progress} value={pct} max={100} />
       </div>
 
-      {offline.status === "error" && (
-        <p className={ui.error}>Something went wrong. Check your connection and try again.</p>
-      )}
+      {offline.status === "error" && <p className={ui.error}>{text.error}</p>}
 
       <div className={ui.actions}>
         <button
@@ -66,12 +68,12 @@ export default function OfflineSettings() {
           disabled={busy}
           onClick={() => offline.download()}
         >
-          {primaryLabel(offline.status, offline.cached, offline.progress)}
+          {primaryLabel(text, offline.status, offline.cached, offline.progress)}
         </button>
 
         {offline.cached > 0 && !busy && (
           <button type="button" className={ui.buttonSecondary} onClick={() => offline.clear()}>
-            Clear offline data
+            {text.clear}
           </button>
         )}
       </div>
