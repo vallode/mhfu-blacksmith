@@ -11,7 +11,7 @@ import fs from "node:fs";
 import path from "node:path";
 import { before, test } from "node:test";
 import type { CharacterResult, WorkerResult } from "../src/hooks/useSaveWorker";
-import { AWARDS } from "../src/lib/awards";
+import { AWARDS, awardProgress } from "../src/lib/awards";
 import type { ItemRecord } from "../src/lib/items";
 import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
 import { DATA_DIR } from "../src/lib/paths";
@@ -439,4 +439,115 @@ test("awards read the game's own flags, in AWARDS order", async () => {
 test("stored saves keep the award flags", async () => {
   const [gideon] = ok(await parse("us")).characters as CharacterResult[];
   assert.deepEqual(saveFromCharacter(gideon, "us", 0).awards, gideon.awards);
+});
+
+test("award records: training, farm, Felynes, treasures, map counters and forging", async () => {
+  const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
+  const keys = [
+    "trainingSets",
+    "farm",
+    "felyneChefs",
+    "comrades",
+    "recipes",
+    "guildPoints",
+    "goldTreasures",
+    "treasureScores",
+    "mapQuests",
+    "trenyaTrips",
+    "specialWeapons",
+  ] as const;
+  const records = (h: CharacterResult) => Object.fromEntries(keys.map((k) => [k, h[k]]));
+  // Gideon: 21001 cleared with weapon set 4 only; three Comrades raised by
+  // "Callum" (another hunter), with an edited fondness of 9999; five chefs,
+  // whose levels no longer meet the Grateful Letter he holds.
+  const callum = { fondness: 9999, own: false };
+  assert.deepEqual(records(gideon), {
+    trainingSets: [4],
+    farm: [0, 0, 0, 0],
+    felyneChefs: [9, 9, 3, 3, 2],
+    comrades: [
+      { ...callum, skills: 27 },
+      { ...callum, skills: 24 },
+      { ...callum, skills: 24 },
+    ],
+    recipes: 0,
+    guildPoints: 1007759,
+    goldTreasures: 0,
+    treasureScores: [0, 0, 0, 0, 0, 0, 0],
+    mapQuests: [1, 2, 0, 0, 0, 7, 0, 0, 0, 0, 1, 0, 0, 0],
+    trenyaTrips: 0,
+    specialWeapons: 1,
+  });
+  // MEARO: five Comrades of his own without skills, one chef.
+  const own = { fondness: 9999, skills: 0, own: true };
+  assert.deepEqual(records(mearo), {
+    trainingSets: [],
+    farm: [0, 0, 0, 0],
+    felyneChefs: [2],
+    comrades: [own, own, own, own, own],
+    recipes: 0,
+    guildPoints: 999999,
+    goldTreasures: 0,
+    treasureScores: [0, 0, 0, 0, 0, 0, 0],
+    mapQuests: [0, 0, 1, 0, 0, 4, 0, 0, 0, 0, 0, 0, 0, 0],
+    trenyaTrips: 0,
+    specialWeapons: 0,
+  });
+});
+
+test("stored saves keep the award records", async () => {
+  const [gideon] = ok(await parse("us")).characters as CharacterResult[];
+  const stored = saveFromCharacter(gideon, "us", 0);
+  assert.deepEqual(stored.felyneChefs, gideon.felyneChefs);
+  assert.deepEqual(stored.comrades, gideon.comrades);
+  assert.equal(stored.guildPoints, 1007759);
+  assert.deepEqual(stored.mapQuests, gideon.mapQuests);
+});
+
+test("the award records show Gideon's progress on the Awards page", async () => {
+  const [gideon] = ok(await parse("us")).characters as CharacterResult[];
+  const ctx = {
+    save: { ...saveFromCharacter(gideon, "us", 0), savedAt: 0 },
+    quests: [],
+    monsters: [],
+  };
+  const progress = (id: string) => {
+    const p = awardProgress(
+      AWARDS.find((a) => a.id === id)!,
+      ctx,
+    );
+    return p.status === "progress" ? [p.status, p.done, p.total] : [p.status];
+  };
+  assert.deepEqual(
+    [
+      "grateful-letter",
+      "flower-bouquet",
+      "fearless-leader",
+      "ultimate-catnip",
+      "members-card",
+      "artisans-hammer",
+      "artisans-mitten",
+      "guardians-award",
+      "hunters-miracle",
+      "azure-stone",
+      "hunters-progress",
+    ].map((id) => [id, ...progress(id)]),
+    [
+      // Given, though his chefs' levels have since dropped (the save looks edited).
+      ["grateful-letter", "earned"],
+      // Past the mark, but the game hasn't handed it over yet.
+      ["flower-bouquet", "progress", 1_000_000, 1_000_000],
+      // Fondness 9999 isn't the 7000 the game checks for.
+      ["fearless-leader", "progress", 0, 5],
+      // His Comrades are Callum's.
+      ["ultimate-catnip", "progress", 0, 36],
+      ["members-card", "progress", 1, 50],
+      ["artisans-hammer", "progress", 0, 11],
+      ["artisans-mitten", "earned"],
+      ["guardians-award", "progress", 0, 40],
+      ["hunters-miracle", "progress", 0, 6],
+      ["azure-stone", "progress", 0, 4],
+      ["hunters-progress", "notEarned"],
+    ],
+  );
 });
