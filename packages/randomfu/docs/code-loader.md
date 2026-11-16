@@ -2,7 +2,9 @@
 
 A prototype that gives randomfu a large code and data area in game, for QoL
 features (a wishlist, an on-screen box number, pouch refill) and, later,
-multiworld hooks. `?loader-demo` in the web app builds it with a demo blob.
+multiworld hooks. `?loader-demo` in the web app builds it with a demo blob;
+the Monster health option (`hud.monsterHp`) builds it with the runtime and
+the monster health gauges.
 
 Addresses are EU / JP (FUC).
 
@@ -71,7 +73,7 @@ reader. A loose file reads with plain synchronous calls the EBOOT already
 imports: it opens `disc0:/PSP_GAME/USRDIR/DATA.BIN` itself.
 
 The loader takes 107 cave words, path, status and both entries included,
-which leaves 169 for other features. `load(reason)`:
+which leaves 169 for other features. The game hooks (below) take 39 more. `load(reason)`:
 
 1. `sceIoOpen("disc0:/PSP_GAME/USRDIR/RANDOMFU.BIN", O_RDONLY)`, then
    `sceIoRead` it over the freed slots (at most the room) and `sceIoClose`.
@@ -105,15 +107,80 @@ Each region links to its own address, so each has its own build id. A blob
 from another build or region is never run. The blob is reloaded on every
 load, so whatever the save held in those bytes is replaced.
 
-A feature that hooks game code (a per-frame or menu hook) should jump to a
-cave stub. The stub compares the magic word at the fixed blob address and
-calls `rf_hookN` only when it matches. That isn't built yet: the demo only
-needs `rf_init`.
-
 Persistent feature data can't live in the blob, because the blob is
 reloaded. It belongs in its own slots (`allocateSlots`) or past the blob's
 end in the same room. Either way it's saved with the save, and the feature
 must recognise first use: the bytes may be old Guild Cards.
+
+## Game hooks
+
+`src/patches/game-hooks.ts` points game calls at stubs in the cave. Each
+stub saves `$a0`, makes the game's call, then calls `dispatch(a0, k)`,
+which jumps to the blob's `rf_hookK` only when the magic word at the blob
+address matches and the header's entry isn't 0; the call's `$v0` is passed
+back. A stub's 32-byte frame leaves `sp+0..15` free for the O32 code it
+reaches. Twelve words per stub and 15 for `dispatch`.
+
+| Hook | `rf_hookN`  | The call                                                     | EU site(s)             | JP site(s)             |
+| ---- | ----------- | ------------------------------------------------------------ | ---------------------- | ---------------------- |
+| 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused | 0x09A627B0, 0x09A627D4 | 0x09A5DB20, 0x09A5DB44 |
+| 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9 | 0x0883FA68             | 0x0883FA84             |
+
+Both pass the HUD object (EU 0x09A04BA0, right after the save struct). The
+gauge call only happens when the gauges show: the layer skips it in
+cutscenes and when the HUD is off (HUD `+0x5DB`, save `+0x6AF1A`), and the
+function itself returns at once when bit 1 of HUD `+0x1194` is set. So
+anything drawn on hook 1 hides with the hunter's gauges. Every address is
+found by signature: the two functions in the EBOOT, then the `jal`s to
+them (exactly one in the EBOOT, two in `game_task`).
+
+In the blob, `blob/runtime.c` defines `rf_init` and `rf_hook0`…, and
+features register callbacks with `rf_on(RF_HOOK_*, fn)` from their init
+(`blob/rf.h`). Each feature's init is a weak symbol that the linker
+resolves to 0 when the feature isn't linked, so the runtime calls only the
+ones chosen. A feature's settings are link-time constants: an extern
+symbol whose "address" is the value (never 0, which clang assumes no
+object has).
+
+## Monster health
+
+`blob/monster-hp.c` on hook 1. Per frame it walks the 20 slots of
+`game_task`'s monster manager (a global; `MANAGER_SIGNATURE`) and, for each
+large monster that's active in the hunter's area with HP left, draws a
+gauge with the three routines the hunter's gauges use:
+
+| Routine | Arguments                     | EU         | JP         | Found at gauge function + |
+| ------- | ----------------------------- | ---------- | ---------- | ------------------------- |
+| frame   | `(hud, x, y, w, h, sprite)`   | 0x0882AC18 | 0x0882B2B4 | 0x150                     |
+| cap     | `(hud, x, y, sprite)`         | 0x0882A9DC | 0x0882B078 | 0x174                     |
+| fill    | `(hud, x, y, w, h, r, g, b)`  | 0x0882D6F0 | 0x0882D934 | 0x220                     |
+| map     | `(hud, monster)`: shows icon? | 0x08844578 | 0x08844528 | (own signature)           |
+| sprite  | `(hud, x, y, w, h, sprite)`   | 0x0882AF70 | 0x0882B60C | icon panel + 0x30         |
+
+Sprites 4 and 6 of the HUD's sprite table are the stamina gauge's frame and
+end cap (3 and 5 are health's). The fill converts the colour to 5551 and
+draws in the HUD's current layer. The hunter's fills are 2 pixels tall:
+health green (0x10, 0xC0, 0x10), its recoverable part red (0xC0, 0x10,
+0x10), stamina yellow (0xF0, 0xF0, 0x00). The monsters' gauges are red
+with a yellow trail, 80 pixels wide, stacked 14 apart on the left edge
+from (28, 92), under the name plate.
+
+The frame's right end is the stamina cap; its left end is the same cap
+mirrored. The sprite routine (the one the monster icon panel, EU
+0x0882FDA4, draws its frame with) stretches a sprite record's texture cell
+to any size, and it reads the record at `table + index × 12`. The blob
+keeps a record of its own, `(76, 44, −24, 12, 0x8001, 0)`, whose negative
+width reads the cap right to left, and passes the index that wraps to it
+(the offset ÷ 4 × 0xAAAAAAAB). A first version led each gauge with the
+monster's own icon (36-pixel cells of cockpit texture 0x8002, set 11, found
+through the panel's species lookup) at half size; it drew correctly but
+looked out of place.
+
+Calls with more than four arguments use `rf_call8` (`blob/rf.h`), which
+puts arguments 5–8 in `$t0`–`$t3` as EABI does. The gauges only read game
+memory; the tests in `test/monster-hp.test.ts` run the blob in the
+interpreter against a fake HUD and check it leaves the monsters, manager
+and HUD as they were.
 
 ## Toolchain
 
@@ -138,7 +205,8 @@ Two routes were weighed:
 EABI, which PSP code uses (arguments 5–8 in `$t0`–`$t3`, no argument area
 on the stack). The two agree for up to four 32-bit integer or pointer
 arguments and a 32-bit result, so calls between blob and game code must
-stay within that (`blob/rf.h` says so). An O32 callee may also store its
+stay within that (`blob/rf.h` says so), or go through `rf_call8`, which
+sets `$t0`–`$t3` for calls into the game. An O32 callee may also store its
 arguments in its caller's frame (`sp+0..15`), so the loader's frame leaves
 that space free when it calls `rf_init`. psp-gcc would lift the limit.
 

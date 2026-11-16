@@ -81,6 +81,8 @@ import { DEMO_OBJECTS } from "./blob/demo-object.js";
 import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { addNodeMap } from "./patches/node-map.js";
+import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
+import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -814,6 +816,18 @@ export function randomize(
         `Code loader demo: Guild Cards are capped at ${loader.kept} and every save load adds 1000z. This disc is not for play.`,
       );
     }
+  } else if (settings["hud.monsterHp"] !== "off") {
+    const mode = settings["hud.monsterHp"];
+    const objects = [...decodeObjects(RUNTIME_OBJECTS), ...monsterHpObjects()];
+    const { ovl } = game.gameTask;
+    reports.push(
+      addCodeLoader(game.eboot, game.gameSub, edits, {
+        objects,
+        gameTask: game.gameTask,
+        externs: (sites) =>
+          findMonsterHpExterns(game.eboot!, sites.segment, sites.gauges, ovl.reader.buf, ovl, mode),
+      }),
+    );
   }
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.

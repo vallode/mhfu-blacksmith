@@ -35,6 +35,8 @@ const FLAGS = [
 // name: [sources, where the object's TS goes, extra flags]
 const BLOBS = {
   demo: [["demo.c"], "src/blob"],
+  runtime: [["runtime.c"], "src/blob"],
+  monsterHp: [["monster-hp.c"], "src/blob"],
   linkTest: [["link-test.c"], "test"],
   commonTest: [["test/common-a.c", "test/common-b.c"], "test", ["-fcommon"]],
 };

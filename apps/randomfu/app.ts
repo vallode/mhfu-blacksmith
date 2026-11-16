@@ -82,9 +82,9 @@ const OPTION_STEPS: Step[] = [
     title: "Monsters",
     icon: "part",
     tint: "var(--color-gem-orange)",
-    sections: ["Quest monsters", "Monster stats", "Weaknesses"],
+    sections: ["Quest monsters", "Monster stats", "Weaknesses", "HUD"],
     intro:
-      "Which monsters quests have and how tough they are. All of it has been tried in game, and the presets use it.",
+      "Which monsters quests have, how tough they are, and whether the HUD shows their health. All of it has been tried in game; the presets use all but the health gauge.",
   },
   {
     id: "smithy",
@@ -129,6 +129,7 @@ const SECTION_ICONS: Record<string, Sprite> = {
   "Monster stats": { icon: "ko" },
   Weaknesses: { icon: "fire" },
   Hints: { icon: "ukwn", tint: "var(--color-gem-cyan)" },
+  HUD: { icon: "fluid", tint: "var(--color-gem-red)" },
   Crafting: { icon: "bone", tint: "var(--color-parchment)" },
   Costs: { icon: "coin", tint: "var(--color-gem-yellow)" },
   Weapons: { icon: "great-sword" },

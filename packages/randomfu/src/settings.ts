@@ -112,6 +112,7 @@ export interface Settings {
   "hints.bookshelf": boolean;
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
+  "hud.monsterHp": "off" | "painted" | "always";
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -1618,6 +1619,29 @@ export const OPTIONS: readonly OptionDef[] = [
     default: true,
     enabledBy: "questMonsters.mode",
     enabledWhen: ["shuffle", "randomize"],
+  },
+  {
+    key: "hud.monsterHp",
+    section: "HUD",
+    label: "Monster health",
+    help: "A short health gauge for each large monster in your area, on the left under your name plate, in the HUD's own frame and red. It follows the HUD: hidden in cutscenes and wherever the game hides your gauges. Caps received Guild Cards at 3 to make room for the code that draws it.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Off", help: "No monster gauges." },
+        {
+          value: "painted",
+          label: "On the map",
+          help: "A monster's gauge shows while the map shows it: from a Paintball hit until the mark wears off.",
+        },
+        {
+          value: "always",
+          label: "Always",
+          help: "Every large monster in your area shows its gauge.",
+        },
+      ],
+    },
+    default: "off",
   },
 ];
 
