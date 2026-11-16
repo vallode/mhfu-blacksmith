@@ -111,7 +111,7 @@ import {
 import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
-import { findHookSites } from "./patches/game-hooks.js";
+import { findHookSites, findPadSites } from "./patches/game-hooks.js";
 import { poogieObjects, preparePoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -902,6 +902,15 @@ export function randomize(
         `Code loader demo: Guild Cards are capped at ${loader.kept} and every save load adds 1000z. This disc is not for play.`,
       );
     }
+    if (settings["poogie.enabled"]) {
+      const why = "the loader demo's blob replaces its code";
+      reports.push({
+        title: "Poogie",
+        notes: [`Poogie's luck isn't in this image: ${why}.`],
+        lines: [],
+        summary: `Poogie: not applied (${why})`,
+      });
+    }
   } else if (
     settings["hud.monsterHp"] !== "off" ||
     settings["quests.unknown"] ||
@@ -1032,10 +1041,13 @@ export function randomize(
         pact = true;
       }
     }
+    // Poogie only needs the pad hook, so it doesn't wait on the HUD and reward code matching.
+    const hookSites =
+      typeof sites !== "string" ? sites : game.eboot ? findPadSites(game.eboot) : sites;
     const poogie = !settings["poogie.enabled"]
       ? null
-      : typeof sites === "string"
-        ? sites
+      : typeof hookSites === "string"
+        ? hookSites
         : preparePoogieLuck(game.eboot!, edits, { guaranteed: options.poogieTest });
     if (typeof poogie === "string") reports.push(notApplied("Poogie", poogie));
     else if (poogie) {
@@ -1043,13 +1055,14 @@ export function randomize(
       Object.assign(externs, poogie.externs);
     }
     const luck = typeof poogie === "string" ? null : poogie;
-    if (typeof sites !== "string" && (monsterHp || unknown || elites || pact || luck)) {
+    if (typeof hookSites !== "string" && (monsterHp || unknown || elites || pact || luck)) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         // Elites and the pact both bring the shared monster boosts: link them once.
         objects: objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
         hooks: {
-          sites,
-          gameTask: game.gameTask,
+          sites: hookSites,
+          // Pad-only sites (Poogie alone) leave game_task as it is.
+          ...(typeof sites !== "string" && { gameTask: game.gameTask }),
           ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
           ...(luck && { pick: luck.pick }),
         },
@@ -1058,7 +1071,14 @@ export function randomize(
       });
       reports.push(loader);
       if (unknown) reports.push(unknown.finish(loader.applied));
-      if (luck) reports.push(luck.finish(loader.applied));
+      if (luck) {
+        reports.push(luck.finish(loader.applied));
+        if (loader.applied && options.poogieTest) {
+          testing.push(
+            "Poogie test: a happy Poogie always gives the rarest reward. This disc is not for play.",
+          );
+        }
+      }
     }
   }
 

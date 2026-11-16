@@ -1135,7 +1135,9 @@ How randomfu does it (`src/patches/poogie-luck.ts`, `blob/poogie.c`):
   flag goes from clear to set, in randomfu's save data: the last Guild Card
   slot, which every loader build keeps out of the blob's room at the same
   save offset, so the count carries over to discs from other seeds and
-  settings (`RF_SAVE_DATA`, `blob/rf.h`).
+  settings (`RF_SAVE_DATA`, `blob/rf.h`). Its first word stays 0, so a disc
+  without the loader sees an empty Guild Card slot there; that game can
+  still write a 96th card over it or clear it when it compacts the cards.
 - `?poogie-test` in the web app's address builds a test disc where a happy
   pick rolls 1025 times, all but guaranteeing the rarest entry.
 

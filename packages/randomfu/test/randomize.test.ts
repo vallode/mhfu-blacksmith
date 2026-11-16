@@ -13,7 +13,7 @@ import { BinaryReader } from "mhfu-extract/src/binary/reader.js";
 import { EBOOT_PATH, loadGame, type GameData } from "../src/game/load.js";
 import { tierLabel } from "../src/game/tiers.js";
 import { randomize } from "../src/randomize.js";
-import type { Settings } from "../src/settings.js";
+import { applySettings, defaultSettings, type Settings } from "../src/settings.js";
 import { settingsWith, type ShuffleName } from "./settings-helper.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import { collectRewardLists } from "../src/shuffles/monster-rewards.js";
@@ -415,4 +415,16 @@ test("runRandomizer leaves the disc alone and returns the finished image", async
   const dry = await runRandomizer(source, chosen, { dryRun: true }, () => {});
   assert.equal(dry.segments, null);
   assert.equal(dry.spoiler, result.spoiler, "a dry run previews the same game");
+});
+
+test("Poogie's luck is reported when on, and the test notice shows only when it went in", async () => {
+  const { game, close } = await load(fixtureFile());
+  // The fixture's EBOOT has none of the game's code, so it can't go in.
+  const on = randomize(game, defaultSettings("p"), { poogieTest: true });
+  const poogie = on.reports.find((r) => r.title === "Poogie");
+  assert.match(poogie?.summary ?? "", /Poogie: not applied/);
+  assert.ok(!on.testing.some((line) => /Poogie test/.test(line)));
+  const off = randomize(game, applySettings(defaultSettings("p"), { "poogie.enabled": false }));
+  assert.ok(!off.reports.some((r) => r.title === "Poogie"));
+  close();
 });

@@ -120,7 +120,11 @@ same offset whatever features a build has or however big its blob is, so
 what features keep there carries over to a disc from another seed or
 settings. `rf_init` checks its magic (`RFS1`) before any feature's init and
 clears the slot when it isn't there (old Guild Card bytes, or a first load);
-a new character's memset clears it too. Features read it with
+a new character's memset clears it too. Its first word stays 0, the magic
+is the second: the game takes a slot whose first halfword isn't 0 as a
+received card, so on a disc without the loader the slot reads as empty, not
+as a card of garbage (that game can still write a 96th card over it, or
+clear it when it compacts the cards). Features read it with
 `rf_save_data()`, a `struct rf_save_data` (`blob/rf.h`): new fields go at
 the end, where a save that has the magic already has zeros.
 

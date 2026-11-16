@@ -21,6 +21,7 @@ import {
   isActive,
   settingsFromJson,
   settingsToJson,
+  withOlderDefaults,
   type Action,
   type OptionDef,
   type OptionKey,
@@ -264,8 +265,12 @@ function save(): void {
 function restore(): void {
   try {
     const stored = JSON.parse(localStorage.getItem(STORE) ?? "{}") as { settings?: Settings };
+    // Stored settings have every option, so a missing one is newer than them.
     if (stored.settings)
-      settings = applySettings(defaultSettings(settings.seed), { ...stored.settings });
+      settings = applySettings(
+        defaultSettings(settings.seed),
+        withOlderDefaults({ ...stored.settings }),
+      );
   } catch {
     // Missing, or from an older version: keep the defaults.
   }

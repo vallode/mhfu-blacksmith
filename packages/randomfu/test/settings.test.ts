@@ -13,6 +13,7 @@ import {
   isActive,
   settingsFromJson,
   settingsToJson,
+  withOlderDefaults,
   type Action,
   type OptionDef,
   type OptionKey,
@@ -141,6 +142,21 @@ test("settings strings round-trip, seed included, and stay short for the default
   assert.ok(encodeSettings(defaultSettings("ABC")).length < 40);
   assert.throws(() => decodeSettings("RF!!!"), SettingsError);
   assert.throws(() => decodeSettings("nope"), /starts with RF/);
+});
+
+test("settings from before Poogie's luck existed keep it off, so they don't cap Guild Cards", () => {
+  const encode = (payload: Record<string, unknown>) =>
+    `RF${Buffer.from(JSON.stringify(payload)).toString("base64url")}`;
+  assert.equal(decodeSettings(encode({ v: 14, seed: "a" })).settings["poogie.enabled"], false);
+  assert.equal(
+    decodeSettings(encode({ v: 14, seed: "a", "poogie.enabled": true })).settings["poogie.enabled"],
+    true,
+  );
+  assert.equal(decodeSettings(encode({ v: 15, seed: "a" })).settings["poogie.enabled"], true);
+  // A full set stored by an older build lacks the key; a newer one keeps its own.
+  const { "poogie.enabled": _, ...older } = defaultSettings("b");
+  assert.equal(withOlderDefaults(older)["poogie.enabled"], false);
+  assert.equal(withOlderDefaults({ ...defaultSettings("b") })["poogie.enabled"], true);
 });
 
 test("values are checked and converted", () => {

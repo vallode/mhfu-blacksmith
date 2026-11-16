@@ -1811,6 +1811,33 @@ export function encodeSettings(settings: Settings): string {
   return `RF${toBase64Url(Buffer.from(JSON.stringify(payload), "utf8"))}`;
 }
 
+/**
+ * Options added on by default whose default changes what a disc does in a way
+ * a player could lose by (Poogie's luck caps received Guild Cards): settings
+ * made before one existed keep the value that matches what they made then.
+ */
+const ADDED: { key: OptionKey; version: number; before: Settings[OptionKey] }[] = [
+  { key: "poogie.enabled", version: 15, before: false },
+];
+
+/**
+ * Fills in, for settings from before an option in `ADDED` existed, the value
+ * that keeps what they did: from a settings string of an older logic
+ * `version`, or (with no version) from a full set of settings stored by an
+ * older build, which lacks the key.
+ */
+export function withOlderDefaults(
+  changes: Record<string, unknown>,
+  version?: number,
+): Record<string, unknown> {
+  const out = { ...changes };
+  for (const { key, version: since, before } of ADDED) {
+    if (key in out) continue;
+    if (version === undefined || version < since) out[key] = before;
+  }
+  return out;
+}
+
 /** Decodes a settings string. `version` is the logic version it was made with. */
 export function decodeSettings(value: string): { settings: Settings; version: number } {
   const text = value.trim();
@@ -1828,7 +1855,10 @@ export function decodeSettings(value: string): { settings: Settings; version: nu
   if (typeof v !== "number" || typeof seed !== "string") {
     throw new SettingsError("That settings string is damaged");
   }
-  return { settings: applySettings(defaultSettings(seed), options), version: v };
+  return {
+    settings: applySettings(defaultSettings(seed), withOlderDefaults(options, v)),
+    version: v,
+  };
 }
 
 /** Settings from a JSON file's contents: any subset of options, plus an optional seed. */

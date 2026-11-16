@@ -63,9 +63,11 @@ How it works:
   checks the downloaded ISO is byte for byte what `runRandomizer` gives in
   Node for the same settings. It needs Playwright's Chromium.
 - For testing in game, three address options change a run: `?poogie-test`
-  makes a happy Poogie always give the rarest reward, `?loader-demo` adds
-  the code loader with its demo blob (Guild Cards capped at 3, 1000z on
-  every save load; see `packages/randomfu/docs/code-loader.md`), neither
+  makes a happy Poogie always give the rarest reward (with Poogie's luck
+  on, its default; the log and spoiler say so only when it went in),
+  `?loader-demo` adds the code loader with its demo blob instead of the
+  features' (Guild Cards capped at 3, 1000z on every save load, no Poogie;
+  see `packages/randomfu/docs/code-loader.md`), neither
   for play, and `?debug` adds research detail to the spoiler log (such as
   the monster names learned from quest text). They can go together
   (`?poogie-test&debug`).

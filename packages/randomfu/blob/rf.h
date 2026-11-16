@@ -28,12 +28,18 @@ typedef signed short s16;
  * character's memset clears it; rf_init clears it on first use too (the
  * bytes may be an old Guild Card) and sets the magic. Features keep their
  * fields here: add new ones at the end, where an older save has zeros.
+ *
+ * Its first word stays 0: the game takes a card slot whose first halfword
+ * isn't 0 as a received card, so on a disc without the loader the slot
+ * reads as empty rather than as a card of garbage. (The game there can
+ * still write a 96th card over it, or clear it when compacting cards.)
  * RF_SAVE_DATA must match SAVE_DATA in src/patches/guild-card-space.ts.
  */
 #define RF_SAVE_DATA 0x666E0
 #define RF_SAVE_DATA_BYTES 4216
 #define RF_SAVE_DATA_MAGIC 0x31534652 /* "RFS1" */
 struct rf_save_data {
+  u32 empty; /* always 0: an empty Guild Card slot to the game */
   u32 magic;
   /* Poogie (poogie.c) */
   u16 poogie_happy;   /* hunts after Poogie was happy to be petted */

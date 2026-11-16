@@ -42,11 +42,9 @@ export async function runRandomizer(
   log: Log,
 ): Promise<RunResult> {
   // Testing options aren't in the settings string, so the log and spoiler say so.
-  const testing = [
-    options.poogieTest &&
-      "Poogie test: a happy Poogie always gives the rarest reward. This disc is not for play.",
-    options.debug && "Debug: the spoiler log has research detail.",
-  ].filter((line): line is string => typeof line === "string");
+  const testing = [options.debug && "Debug: the spoiler log has research detail."].filter(
+    (line): line is string => typeof line === "string",
+  );
   for (const line of testing) log(line);
 
   const overlay = new OverlaySource(source);

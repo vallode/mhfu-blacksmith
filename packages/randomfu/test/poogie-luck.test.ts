@@ -218,8 +218,8 @@ function machine(options: { objects?: "runtime" | "poogie" | "none"; testRolls?:
   };
   /** One frame of the pad hook. */
   const frame = () => cpu.call(blob.symbols.get(`rf_hook${HOOK.pad}`)!, [0x08a62c00]);
-  const happy = () => cpu.u16(DATA + 4);
-  const setHappy = (n: number) => cpu.setU16(DATA + 4, n);
+  const happy = () => cpu.u16(DATA + 8);
+  const setHappy = (n: number) => cpu.setU16(DATA + 8, n);
 
   /** Calls the game's picker on `entries`: `(chance, item)` or `(chance, item, quantity)`. */
   const pick = (
@@ -422,7 +422,7 @@ test("zero-chance entries are never picked, lucky or not", () => {
 test("each happy pet and tumble counts once, until the hunt clears its flag", () => {
   const m = machine();
   m.init();
-  const tumbles = () => m.cpu.u16(DATA + 6);
+  const tumbles = () => m.cpu.u16(DATA + 10);
   m.frame();
   assert.deepEqual([m.happy(), tumbles()], [0, 0]);
   m.setFlag(HAPPY_FLAG, true);
@@ -457,8 +457,10 @@ test("randomfu's save data is cleared on first use and kept after", () => {
   m.cpu.fill(DATA, 4216, 0xab); // an old Guild Card
   m.cpu.setU32(DATA + 4216, 0x12345678); // past the slot: not ours
   m.init();
-  assert.equal(m.cpu.u32(DATA), MAGIC);
-  assert.ok(m.cpu.bytes(DATA + 4, 4212).every((b) => b === 0));
+  assert.equal(m.cpu.u16(DATA), 0, "an empty Guild Card slot to the game");
+  assert.equal(m.cpu.u32(DATA + 4), MAGIC);
+  assert.equal(m.cpu.u32(DATA), 0);
+  assert.ok(m.cpu.bytes(DATA + 8, 4208).every((b) => b === 0));
   assert.equal(m.cpu.u32(DATA + 4216), 0x12345678);
   m.setHappy(12);
   m.init(1);

@@ -42,6 +42,7 @@ import {
   writePickHook,
   writeQuestLoadCalls,
   type HookSites,
+  type PadSites,
   type PickSite,
   type QuestLoadSites,
 } from "./game-hooks.js";
@@ -315,8 +316,10 @@ export interface CodeLoaderOptions {
    * (hook 3) in `lobby_task` and `game_task`.
    */
   hooks?: {
-    sites: HookSites;
-    gameTask: LoadedOverlay;
+    /** Every hook's sites, or the pad hook's alone (`findPadSites`). */
+    sites: HookSites | PadSites;
+    /** `game_task`, which every hook but the pad's (and the picker) patches. */
+    gameTask?: LoadedOverlay;
     questLoad?: { sites: QuestLoadSites; lobbyTask: LoadedOverlay };
     /** The game's picker, for a blob that defines `rf_hook5` (hook 5). */
     pick?: PickSite;
@@ -410,13 +413,11 @@ export function addCodeLoader(
   const words = assembleLoader(0, addresses).code.length;
   const calls = hooks ? hookCode(hooks.sites) : [];
   const questLoader = hooks?.questLoad?.sites.loader;
+  const hookWords = hooks ? assembleHooks(0, blobAddress, calls, questLoader).code.length : 0;
   const pickWords = hooks?.pick ? assemblePickHook(0, blobAddress, hooks.pick).length : 0;
-  const hookWords =
-    (hooks ? assembleHooks(0, blobAddress, calls, questLoader).code.length : 0) + pickWords;
-  if (words + hookWords > space.freeCaveWords) {
-    return skipped(
-      `the loader needs ${words + hookWords} cave words, and ${space.freeCaveWords} are free`,
-    );
+  const caveWords = words + hookWords + pickWords;
+  if (caveWords > space.freeCaveWords) {
+    return skipped(`the loader needs ${caveWords} cave words, and ${space.freeCaveWords} are free`);
   }
   space.reserveSaveData();
   space.allocateSlots(null);
@@ -433,12 +434,13 @@ export function addCodeLoader(
   const hex = (n: number) => `0x${n.toString(16)}`;
   let hooksAt = "";
   if (hooks) {
-    const hookAt = space.allocateCave(hookWords - pickWords);
+    const hookAt = space.allocateCave(hookWords);
     const hookStubs = assembleHooks(hookAt, blobAddress, calls, questLoader);
     space.writeCave(hookAt, hookStubs.code);
-    const gameTask = edits.overlay(hooks.gameTask);
+    const gameTask = hooks.gameTask ? edits.overlay(hooks.gameTask) : null;
     writeHookCalls(out, gameTask, hooks.sites, hookStubs.stubs);
     if (hooks.questLoad && hookStubs.questLoad) {
+      if (!gameTask) throw new Error("The quest load hook needs game_task");
       const lobbyTask = edits.overlay(hooks.questLoad.lobbyTask);
       writeQuestLoadCalls(lobbyTask, gameTask, hooks.questLoad.sites, hookStubs.questLoad);
     }
