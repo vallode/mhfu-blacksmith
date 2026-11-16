@@ -24,7 +24,7 @@ import { loadSiteIndex, type EquipmentSlot } from "../build/ids.js";
 import { MONSTER_OVERLAY } from "../overlay/monsters.js";
 import { canonicalSkillName, skillNameAliases } from "../overlay/skill-name-aliases.js";
 import { enumNames } from "../strings/name-search.js";
-import type { NameTable } from "../strings/names.js";
+import { EQUIPMENT_NAME_TABLES, type NameTable } from "../strings/names.js";
 import type { NameKind } from "./file.js";
 
 /** The site's English keys for one game ID: which section, which names. */
@@ -35,15 +35,13 @@ export interface SiteKey {
 
 export type SiteKeys = Map<NameTable, Map<number, SiteKey[]>>;
 
-const EQUIPMENT_TABLES: [NameTable, EquipmentSlot, NameKind][] = [
-  ["WepBMID", "melee", "weapon"],
-  ["WepGunID", "ranged", "weapon"],
-  ["HeadArmorID", "helmet", "armor"],
-  ["ChestArmorID", "plate", "armor"],
-  ["ArmArmorID", "gauntlets", "armor"],
-  ["WaistArmorID", "waist", "armor"],
-  ["LegArmorID", "leggings", "armor"],
-];
+const EQUIPMENT_TABLES: [NameTable, EquipmentSlot, NameKind][] = Object.entries(
+  EQUIPMENT_NAME_TABLES,
+).map(([slot, table]) => [
+  table,
+  slot as EquipmentSlot,
+  slot === "melee" || slot === "ranged" ? "weapon" : "armor",
+]);
 
 function add(keys: SiteKeys, table: NameTable, id: number, kind: NameKind, names: string[]): void {
   const byId = keys.get(table) ?? new Map<number, SiteKey[]>();

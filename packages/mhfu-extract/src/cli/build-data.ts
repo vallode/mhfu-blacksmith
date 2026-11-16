@@ -140,9 +140,21 @@ function itemRenamer(site: SiteIndex) {
   };
 }
 
-/** Writes each quest supply and reward item under its game name. */
+/** `itemRenamer` for a bare item name. */
+function itemNamer(site: SiteIndex) {
+  const rename = itemRenamer(site);
+  return (item: string) => rename({ item }).item;
+}
+
+interface ArenaSetDoc {
+  equipment: { decorations: string[] }[];
+  items: QuestItem[];
+}
+
+/** Writes each quest supply, reward and Training School loadout item under its game name. */
 export function nameQuestItems(content: unknown, site: SiteIndex): unknown {
   const rename = itemRenamer(site);
+  const name = itemNamer(site);
   const doc = content as { quests?: Record<string, unknown>[] };
   if (!Array.isArray(doc?.quests)) return content;
   return {
@@ -154,6 +166,12 @@ export function nameQuestItems(content: unknown, site: SiteIndex): unknown {
         out.reward_tables = (quest.reward_tables as { items?: QuestItem[] }[]).map((table) =>
           Array.isArray(table.items) ? { ...table, items: table.items.map(rename) } : table,
         );
+      if (Array.isArray(quest.arena_sets))
+        out.arena_sets = (quest.arena_sets as ArenaSetDoc[]).map((set) => ({
+          ...set,
+          equipment: set.equipment.map((e) => ({ ...e, decorations: e.decorations.map(name) })),
+          items: set.items.map(rename),
+        }));
       return out;
     }),
   };
@@ -193,8 +211,7 @@ export function nameShopItems(content: unknown, site: SiteIndex): unknown {
 
 /** Writes each Veggie Elder trade's items under their game names. */
 export function nameVeggieTradeItems(content: unknown, site: SiteIndex): unknown {
-  const rename = itemRenamer(site);
-  const name = (item: string) => rename({ item }).item;
+  const name = itemNamer(site);
   const doc = content as { elders?: { trades: Record<"give" | "common" | "rare", string>[] }[] };
   if (!Array.isArray(doc?.elders)) return content;
   return {

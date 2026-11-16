@@ -270,6 +270,18 @@ export function hydrate(kind: FileKind, raw: Doc, s: HydrateStrings): Doc {
           }));
           out.large_monsters = out.large_monsters.map(monsterRef);
           out.small_monsters = out.small_monsters.map(monsterRef);
+          if (out.arena_sets)
+            out.arena_sets = out.arena_sets.map((set: Obj) => ({
+              ...set,
+              equipment: set.equipment.map(({ slot, id, ...rest }: Obj) => ({
+                slot,
+                id,
+                name: en.find(slot, id) ?? null,
+                ...rest,
+                decorations: rest.decorations.map(item),
+              })),
+              items: set.items.map((x: Obj) => renameKey(x, "item", "item", item)),
+            }));
           const text = (k: StringKind) => en.find(k, q.id) ?? null;
           return insertBefore(out, ["requires"], {
             title: text("quest"),
@@ -341,6 +353,18 @@ export function hydrate(kind: FileKind, raw: Doc, s: HydrateStrings): Doc {
   }
 }
 
+/** Per weapon or armor table, the IDs of its records. */
+export function equipmentRecordIds(
+  weapons: { type: string; raw: Doc }[],
+  armor: { slot: ArmorSlot; raw: Doc }[],
+): Map<EquipmentTable, Set<number>> {
+  const out = new Map<EquipmentTable, Set<number>>(EQUIPMENT_TABLES.map((t) => [t, new Set()]));
+  for (const { slot, raw } of armor) for (const a of raw.armor as Obj[]) out.get(slot)!.add(a.id);
+  for (const { type, raw } of weapons)
+    for (const w of raw.weapons as Obj[]) out.get(weaponTable(type))!.add(w.id);
+  return out;
+}
+
 /**
  * The equipment ID view (what `data/equipment-ids.json` held before IDs
  * moved onto the records): per table, an array indexed by game ID of the
@@ -397,6 +421,8 @@ export interface Resolver {
   ref(kind: "item" | "melee" | "ranged" | "skill" | "monster" | "map", spelling: string): Ref;
   /** The game ID of a record the file itself defines. */
   own(kind: FileKind, record: Obj): number;
+  /** Whether a weapon or armor record has this ID (and so names it). */
+  recorded(table: EquipmentTable, id: number): boolean;
 }
 
 /** Strings a file's records name, to merge into the string tables. */
@@ -630,6 +656,16 @@ export function dehydrate(
             }));
             out.large_monsters = q.large_monsters.map(monsterRef);
             out.small_monsters = q.small_monsters.map(monsterRef);
+            if (q.arena_sets)
+              out.arena_sets = q.arena_sets.map((set: Obj) => ({
+                ...set,
+                equipment: set.equipment.map((e: Obj) => {
+                  // Gear with a record is named by it; training-only gear by the quest.
+                  if (!r.recorded(e.slot, e.id)) setString(en, e.slot, e.id, e.name);
+                  return { ...omit(e, ["name"]), decorations: e.decorations.map(itemId) };
+                }),
+                items: set.items.map((x: Obj) => renameKey(x, "item", "item", itemId)),
+              }));
             return out;
           }),
         },
@@ -744,9 +780,15 @@ function refIndex(strings: StringTable, kind: StringKind): Map<string, Ref[]> {
  * Resolves references against English strings, and a file's own records
  * against the IDs its records already have (`current`, the raw file being
  * rewritten): weapons and armor by name (and armor `sex` where two pieces
- * share a name), monsters, skills and decorations by name.
+ * share a name), monsters, skills and decorations by name. `records` is the
+ * IDs of every weapon and armor record (`equipmentRecordIds`); without it,
+ * no ID counts as recorded.
  */
-export function stringResolver(en: StringTable, current?: Doc): Resolver {
+export function stringResolver(
+  en: StringTable,
+  current?: Doc,
+  records?: Map<EquipmentTable, Set<number>>,
+): Resolver {
   const indexes = new Map<StringKind, Map<string, Ref[]>>();
   const index = (kind: StringKind) => {
     let i = indexes.get(kind);
@@ -761,6 +803,9 @@ export function stringResolver(en: StringTable, current?: Doc): Resolver {
   return {
     ref(kind, spelling) {
       return one(kind, spelling, index(kind).get(spelling));
+    },
+    recorded(table, id) {
+      return records?.get(table)?.has(id) ?? false;
     },
     own(kind, record) {
       switch (kind.kind) {

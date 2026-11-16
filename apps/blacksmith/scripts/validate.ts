@@ -100,11 +100,22 @@ section("Validating IDs and strings…");
     .readdirSync(path.join(dataDir, "quests"))
     .filter((f) => f.endsWith(".json"));
   const questMonsters = new Set<string>();
+  // Training School loadouts name training-only gear that has no record.
+  const questGear = new Map<string, Set<string>>();
   for (const f of questFiles)
     for (const q of readRawData<{ quests: Raw[] }>(dataDir, "quests", f).quests) {
       own("quest", q.id, `quests/${f}`, false);
       for (const m of [q.target, ...q.large_monsters, ...q.small_monsters])
         if (m) questMonsters.add(String(m.monster));
+      for (const set of q.arena_sets ?? [])
+        for (const e of set.equipment) {
+          if (!questGear.has(e.slot)) questGear.set(e.slot, new Set());
+          questGear.get(e.slot)!.add(String(e.id));
+          if (en[e.slot]?.[String(e.id)] === undefined)
+            error(
+              `quests/${f}: quest ${q.id} has ${e.slot} ${e.id}, which has no name in data/strings/en.json`,
+            );
+        }
     }
 
   // References resolve: reading each file's named view looks every one up
@@ -145,8 +156,9 @@ section("Validating IDs and strings…");
     for (const key of Object.keys(doc[kind] ?? {}))
       if (!keys?.has(key)) error(`strings/${lang}.json: ${kind} ${key} names nothing in data/`);
   };
-  for (const kind of [...EQUIPMENT_TABLES, "item", "skill", "skill_activation"])
-    stale("en", en, kind, owned.get(kind));
+  for (const kind of EQUIPMENT_TABLES)
+    stale("en", en, kind, new Set([...(owned.get(kind) ?? []), ...(questGear.get(kind) ?? [])]));
+  for (const kind of ["item", "skill", "skill_activation"]) stale("en", en, kind, owned.get(kind));
   stale("en", en, "decoration", decorationIds);
   stale("en", en, "monster_description", owned.get("monster"));
   stale("en", en, "monster", new Set([...(owned.get("monster") ?? []), ...questMonsters]));
