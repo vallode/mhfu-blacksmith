@@ -167,6 +167,7 @@ const assets = [
   "images/fluid.png",
   "images/egg.png",
   "images/monsters/flying-wyvern.png",
+  "images/monsters/elder-dragon.png",
   "images/ko.png",
   "images/fire.png",
   "images/ukwn.png",

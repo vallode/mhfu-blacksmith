@@ -36,10 +36,11 @@ import type { LoadedOverlay } from "../game/load.js";
 import type { ShuffleReport } from "../shuffles/shuffle.js";
 import {
   assembleHooks,
-  findHookSites,
   hookCode,
   writeHookCalls,
+  writeQuestLoadCalls,
   type HookSites,
+  type QuestLoadSites,
 } from "./game-hooks.js";
 import { guildCardSpace } from "./guild-card-space.js";
 import {
@@ -305,11 +306,19 @@ export interface CodeLoaderOptions {
   objects: readonly { name: string; data: Buffer }[];
   /** Guild Cards to keep. */
   keptCards?: number;
-  /** `game_task`, to add the game hooks (`game-hooks.ts`) the blob's `rf_hookN` run on. */
-  gameTask?: LoadedOverlay;
-  /** The blob's externs that are found per disc; a string says why they weren't. */
-  externs?: (sites: HookSites) => Record<string, number> | string;
-  /** Data made at randomize time, linked in as global symbols (`linkBlob`'s `data`). */
+  /**
+   * The game hooks (`game-hooks.ts`) the blob's `rf_hookN` run on, found in
+   * `game_task` by the caller; `questLoad` also hooks the quest loader's calls
+   * (hook 3) in `lobby_task` and `game_task`.
+   */
+  hooks?: {
+    sites: HookSites;
+    gameTask: LoadedOverlay;
+    questLoad?: { sites: QuestLoadSites; lobbyTask: LoadedOverlay };
+  };
+  /** The blob's externs that are found per disc. */
+  externs?: Readonly<Record<string, number>>;
+  /** Tables built per disc, linked after the code under these names (`linkBlob`). */
   data?: Readonly<Record<string, Buffer>>;
 }
 
@@ -364,16 +373,7 @@ export function addCodeLoader(
     return skipped("this EBOOT doesn't import the file and cache calls");
   }
 
-  // Everything that can fail is found before anything is written.
-  let hooks: { sites: HookSites; externs: Record<string, number> } | null = null;
-  if (options.gameTask) {
-    const { ovl } = options.gameTask;
-    const sites = findHookSites(vanillaEboot, ovl.reader.buf, ovl.loadBase);
-    if (typeof sites === "string") return skipped(sites);
-    const externs = options.externs?.(sites) ?? {};
-    if (typeof externs === "string") return skipped(externs);
-    hooks = { sites, externs };
-  }
+  const { hooks } = options;
 
   const space = guildCardSpace(vanillaEboot, gameSub, edits, options.keptCards);
   if (typeof space === "string") return skipped(space);
@@ -385,7 +385,7 @@ export function addCodeLoader(
   const blob = linkBlob(
     options.objects,
     blobAddress,
-    { ...(imports as Imports), ...hooks?.externs },
+    { ...(imports as Imports), ...options.externs },
     Infinity,
     options.data,
   );
@@ -403,7 +403,8 @@ export function addCodeLoader(
   };
   const words = assembleLoader(0, addresses).code.length;
   const calls = hooks ? hookCode(hooks.sites) : [];
-  const hookWords = hooks ? assembleHooks(0, blobAddress, calls).code.length : 0;
+  const questLoader = hooks?.questLoad?.sites.loader;
+  const hookWords = hooks ? assembleHooks(0, blobAddress, calls, questLoader).code.length : 0;
   if (words + hookWords > space.freeCaveWords) {
     return skipped(
       `the loader needs ${words + hookWords} cave words, and ${space.freeCaveWords} are free`,
@@ -422,11 +423,16 @@ export function addCodeLoader(
 
   const hex = (n: number) => `0x${n.toString(16)}`;
   let hooksAt = "";
-  if (hooks && options.gameTask) {
+  if (hooks) {
     const hookAt = space.allocateCave(hookWords);
-    const hookStubs = assembleHooks(hookAt, blobAddress, calls);
+    const hookStubs = assembleHooks(hookAt, blobAddress, calls, questLoader);
     space.writeCave(hookAt, hookStubs.code);
-    writeHookCalls(out, edits.overlay(options.gameTask), hooks.sites, hookStubs.stubs);
+    const gameTask = edits.overlay(hooks.gameTask);
+    writeHookCalls(out, gameTask, hooks.sites, hookStubs.stubs);
+    if (hooks.questLoad && hookStubs.questLoad) {
+      const lobbyTask = edits.overlay(hooks.questLoad.lobbyTask);
+      writeQuestLoadCalls(lobbyTask, gameTask, hooks.questLoad.sites, hookStubs.questLoad);
+    }
     hooksAt = `, hooks ${hex(hookAt)}`;
   }
   return {

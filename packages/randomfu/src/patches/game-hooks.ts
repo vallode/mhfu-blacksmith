@@ -37,12 +37,23 @@
  * 2. Pad: the pad read's call to the controller read, once a frame in every
  *    task. Blob code gets the raw `SceCtrlData`, so it sees the buttons even
  *    while it keeps them from the game with the pad object's `+0x17`.
- * 3. Rewards: the call to the reward roll, once a completed quest, just
+ * 3. Quest load (optional, `quests.unknown`): the two calls to the quest
+ *    loader, below. The hook runs before and after the call with a
+ *    `struct rf_load` (`blob/rf.h`); before, it may change the quest ID.
+ * 4. Rewards: the call to the reward roll, once a completed quest, just
  *    after the box is filled and before the reward screen shows it.
+ *
+ * The quest loader (EU 0x08870AEC) is `(quest, u16 id, buf)`, a two-step
+ * state machine the caller runs every frame until it returns 1: step 0
+ * (`quest+0x716`) maps the ID to its DATA.BIN file and, unless `quest+0x714`
+ * says that file is already loaded, starts reading it; step 1 waits, then
+ * decrypts the quest into `buf` (0 is a default buffer, EU 0x08A5C440).
+ * `lobby_task` calls it once (accepting a quest), and `game_task` once
+ * (departing on it, with the default buffer).
  *
  * A stub saves the call's arguments' first register and its result, so the
  * hook gets the HUD object (the `SceCtrlData` for hook 2, the results step's
- * object for hook 3) in `$a0` and the
+ * object for hook 4) in `$a0` and the
  * caller its `$v0`. Everything is
  * found by code signatures, which match the EU and JP (FUC) discs.
  */
@@ -65,12 +76,16 @@ import {
   codeSegment,
   findUnique,
   hi16,
+  hiLo,
   jalTo,
   jumpTarget,
   type Segment,
 } from "./mips.js";
 
-export const HOOK = { questFrame: 0, hud: 1, pad: 2, rewards: 3 } as const;
+export const HOOK = { questFrame: 0, hud: 1, pad: 2, questLoad: 3, rewards: 4 } as const;
+
+/** `struct rf_load`'s phase (`blob/rf.h`). */
+export const QUEST_LOAD_PHASE = { accept: 0, depart: 1, after: 2 } as const;
 
 /** The HUD update (EU 0x0883F270), masked (see `maskWord`). */
 export const HUD_UPDATE_SIGNATURE = [
@@ -94,6 +109,20 @@ export const PAD_READ_SIGNATURE = [
   0x27bdffd0, 0xafbf0000, 0xafb00000, 0x00808021, 0x27a40020, 0x0c000000, 0x24050000, 0x58400010,
   0x92030017, 0x8fa40000, 0x3c030000, 0x00831824,
 ];
+/** The quest loader (EU 0x08870AEC), masked: it starts with `lbu $v0, 0x716($a0)`. */
+export const QUEST_LOADER_SIGNATURE = [
+  0x27bdfff0, 0xafbf0000, 0xafb20000, 0xafb10000, 0xafb00000, 0x90820716, 0x24030000, 0x00c08821,
+  0x00809021, 0x10430065, 0x00008021, 0x50400003, 0x30a2ffff, 0x1000007d, 0x02001021, 0x34010000,
+  0x0041082a, 0x50200078, 0x307000ff, 0x28412710,
+];
+/** Loader words that pin the quest object's fields (`lhu`/`sh` of 0x714, `sb $zero` of 0x716). */
+const QUEST_LOADER_WORDS = [
+  [0x12c, 0x96430714],
+  [0x1a8, 0xa6510714],
+  [0x220, 0xa2400716],
+] as const;
+/** `lui $s1` / `addiu $s1` of the default buffer, in the loader. */
+const DEFAULT_BUFFER_WORDS = [0x1e4, 0x1e8] as const;
 
 const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
 const isJalTo = (w: number, pc: number, target: number) =>
@@ -130,6 +159,48 @@ function functionStart(
     if (w >>> 16 === 0x27bd && w & 0x8000) return at;
   }
   return null;
+}
+
+export interface QuestLoadSites {
+  loader: number;
+  /** Where the loader decrypts with `buf` 0. */
+  defaultBuffer: number;
+  /** File offsets of the `jal loader` in `lobby_task.ovl` and `game_task.ovl`. */
+  lobby: number;
+  game: number;
+}
+
+const jalsTo = (ovl: Buffer, base: number, target: number) => {
+  const found: number[] = [];
+  for (let at = 0; at + 4 <= ovl.length; at += 4) {
+    if (isJalTo(word(ovl, at), base + at, target)) found.push(at);
+  }
+  return found;
+};
+
+/** The quest loader and its two calls (hook 3), or why they can't be found. */
+export function findQuestLoadSites(
+  vanillaEboot: Buffer,
+  segment: Segment,
+  lobbyTask: Buffer,
+  lobbyTaskBase: number,
+  gameTask: Buffer,
+  gameTaskBase: number,
+): QuestLoadSites | string {
+  const [loader] = findUnique(vanillaEboot, segment, [QUEST_LOADER_SIGNATURE]);
+  if (loader == null) return "this EBOOT's quest loader doesn't match";
+  const at = segment.offset + (loader - segment.vaddr);
+  if (QUEST_LOADER_WORDS.some(([offset, w]) => word(vanillaEboot, at + offset) !== w)) {
+    return "this EBOOT's quest loader doesn't match";
+  }
+  const [lui, addiu] = DEFAULT_BUFFER_WORDS.map((offset) => word(vanillaEboot, at + offset));
+  if (lui! >>> 16 !== 0x3c11 || addiu! >>> 16 !== 0x2631) {
+    return "this EBOOT's quest loader doesn't match";
+  }
+  const lobby = jalsTo(lobbyTask, lobbyTaskBase, loader);
+  const game = jalsTo(gameTask, gameTaskBase, loader);
+  if (lobby.length !== 1 || game.length !== 1) return "this game's quest loading calls don't match";
+  return { loader, defaultBuffer: hiLo(lui!, addiu!), lobby: lobby[0]!, game: game[0]! };
 }
 
 /** The hooks' call sites, or why they can't be found. */
@@ -205,9 +276,10 @@ export function assembleHooks(
   at: number,
   blob: number,
   originals: readonly { hook: number; target: number }[],
-): { code: number[]; stubs: number[] } {
+  questLoader?: number,
+): { code: number[]; stubs: number[]; questLoad?: { accept: number; depart: number } } {
   const a = new Assembler();
-  const { zero, v0, a0, a1, t0, t1, t2, t3, t9 } = R;
+  const { zero, v0, a0, a1, a2, t0, t1, t2, t3, t4, t9 } = R;
   const nop = () => a.emit(0);
 
   for (const [k, { hook, target }] of originals.entries()) {
@@ -225,6 +297,43 @@ export function assembleHooks(
     a.i(LW, SP, RA, 24);
     a.r(RA, zero, zero, 0, JR);
     a.i(ADDIU, SP, SP, 32);
+  }
+
+  if (questLoader !== undefined) {
+    // The quest loader's calls: `struct rf_load` at sp+16 (quest, id, buf,
+    // result, phase), dispatched before the call, which reloads its
+    // arguments from it, and after. $t4 carries the phase in.
+    const load = { quest: 16, id: 20, buf: 24, result: 28, phase: 32, ra: 40, size: 48 } as const;
+    a.label("acceptLoad");
+    a.branch(BEQ, zero, zero, "questLoad");
+    a.i(ADDIU, zero, t4, QUEST_LOAD_PHASE.accept);
+    a.label("departLoad");
+    a.i(ADDIU, zero, t4, QUEST_LOAD_PHASE.depart);
+    a.label("questLoad");
+    a.i(ADDIU, SP, SP, -load.size);
+    a.i(SW, SP, RA, load.ra);
+    a.i(SW, SP, a0, load.quest);
+    a.i(SW, SP, a1, load.id);
+    a.i(SW, SP, a2, load.buf);
+    a.i(SW, SP, zero, load.result);
+    a.i(SW, SP, t4, load.phase);
+    a.i(ADDIU, SP, a0, load.quest);
+    a.jalLabel("dispatch");
+    a.i(ADDIU, zero, a1, HOOK.questLoad);
+    a.i(LW, SP, a0, load.quest);
+    a.i(LW, SP, a1, load.id);
+    a.jal(questLoader);
+    a.i(LW, SP, a2, load.buf);
+    a.i(SW, SP, v0, load.result);
+    a.i(ADDIU, zero, t4, QUEST_LOAD_PHASE.after);
+    a.i(SW, SP, t4, load.phase);
+    a.i(ADDIU, SP, a0, load.quest);
+    a.jalLabel("dispatch");
+    a.i(ADDIU, zero, a1, HOOK.questLoad);
+    a.i(LW, SP, v0, load.result);
+    a.i(LW, SP, RA, load.ra);
+    a.r(RA, zero, zero, 0, JR);
+    a.i(ADDIU, SP, SP, load.size);
   }
 
   a.label("dispatch");
@@ -245,10 +354,28 @@ export function assembleHooks(
   a.r(RA, zero, zero, 0, JR);
   nop();
 
+  const code = a.link(at);
   return {
-    code: a.link(at),
+    code,
     stubs: originals.map((_, k) => at + a.offsetOf(`stub${k}`) * 4),
+    ...(questLoader !== undefined && {
+      questLoad: {
+        accept: at + a.offsetOf("acceptLoad") * 4,
+        depart: at + a.offsetOf("departLoad") * 4,
+      },
+    }),
   };
+}
+
+/** Points the quest loader's calls at the hook's entries. */
+export function writeQuestLoadCalls(
+  lobbyTask: Buffer,
+  gameTask: Buffer,
+  sites: QuestLoadSites,
+  entries: { accept: number; depart: number },
+): void {
+  lobbyTask.writeUInt32LE(jalTo(entries.accept), sites.lobby);
+  gameTask.writeUInt32LE(jalTo(entries.depart), sites.game);
 }
 
 export const hookCode = (sites: HookSites) => [

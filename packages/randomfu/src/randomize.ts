@@ -91,7 +91,10 @@ import {
   pactObjects,
   pactPool,
 } from "./patches/pact.js";
+import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
+import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
+import { findHookSites } from "./patches/game-hooks.js";
 import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -825,57 +828,144 @@ export function randomize(
         `Code loader demo: Guild Cards are capped at ${loader.kept} and every save load adds 1000z. This disc is not for play.`,
       );
     }
-  } else if (settings["hud.monsterHp"] !== "off" || settings["pact.enabled"]) {
-    const mode = settings["hud.monsterHp"];
-    const pact = settings["pact.enabled"];
-    const objects = [
-      ...decodeObjects(RUNTIME_OBJECTS),
-      ...(mode !== "off" ? monsterHpObjects() : []),
-      ...(pact ? pactObjects() : []),
-    ];
+  } else if (
+    settings["hud.monsterHp"] !== "off" ||
+    settings["quests.unknown"] ||
+    settings["elites.enabled"] ||
+    settings["pact.enabled"]
+  ) {
+    // Each feature is resolved on its own first: one that doesn't match this
+    // disc is left out, and the loader (which caps Guild Cards) only goes in
+    // for the ones that do.
+    const notApplied = (title: string, why: string): ShuffleReport => ({
+      title,
+      notes: [`${title} isn't in this image: ${why}.`],
+      lines: [],
+      summary: `${title}: not applied (${why})`,
+    });
+    const objects = decodeObjects(RUNTIME_OBJECTS);
+    const externs: Record<string, number> = {};
     const { ovl } = game.gameTask;
-    const eboot = game.eboot;
-    const data: Record<string, Buffer> = {};
-    if (pact) {
-      // The pact's rewards, as the shuffles left items and equipment.
-      const out = edits.eboot();
-      const equipment = [
-        ...collectWeaponStats(out, game.resolver).map((w) => ({
-          type: w.family === "Blademaster" ? MELEE_BOX_TYPE : RANGED_BOX_TYPE,
-          id: w.index,
-          name: w.name,
-          rarity: w.rarity,
-        })),
-        ...readArmorPieces(out, game.resolver).map((p) => ({
-          type: ARMOR_BOX_TYPE[p.slot],
-          id: p.index,
-          name: pieceName(p),
-          rarity: p.rarity,
-          bits: p.bits,
-        })),
-      ];
-      const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
-      data.rf_pact_pool = encodePactPool(pactPool(tiers, equipment, rng.fork("pact-pool")));
+    // The features run on the game hooks, found once here.
+    const sites = game.eboot
+      ? findHookSites(game.eboot, ovl.reader.buf, ovl.loadBase)
+      : "the EBOOT wasn't loaded";
+    const mode = settings["hud.monsterHp"];
+    let monsterHp = false;
+    if (mode !== "off") {
+      const found =
+        typeof sites === "string"
+          ? sites
+          : findMonsterHpExterns(
+              game.eboot!,
+              sites.segment,
+              sites.gauges,
+              ovl.reader.buf,
+              ovl,
+              mode,
+            );
+      if (typeof found === "string") reports.push(notApplied("Monster health", found));
+      else {
+        objects.push(...monsterHpObjects());
+        Object.assign(externs, found);
+        monsterHp = true;
+      }
     }
-    reports.push(
-      addCodeLoader(eboot, game.gameSub, edits, {
-        objects,
-        data,
-        gameTask: game.gameTask,
-        externs: (sites) => {
-          const found: Record<string, number> = {};
-          for (const externs of [
-            mode !== "off" &&
-              findMonsterHpExterns(eboot, sites.segment, sites.gauges, ovl.reader.buf, ovl, mode),
-            pact && findPactExterns(eboot, sites, ovl.reader.buf, ovl),
-          ]) {
-            if (typeof externs === "string") return externs;
-            if (externs) Object.assign(found, externs);
-          }
-          return found;
+    const prepared = !settings["quests.unknown"]
+      ? null
+      : typeof sites === "string"
+        ? sites
+        : prepareUnknownQuests(game, edits, setOf);
+    if (typeof prepared === "string") {
+      reports.push(notApplied("Unknown Monster quests", prepared));
+    }
+    const unknown = typeof prepared === "string" ? null : prepared;
+    if (unknown) {
+      objects.push(...unknownQuestsObjects());
+      Object.assign(externs, unknown.externs);
+    }
+    // Elites share the monster list and species table monster health finds.
+    let elites = false;
+    if (settings["elites.enabled"]) {
+      let found: Record<string, number> | string =
+        typeof sites === "string"
+          ? sites
+          : findMonsterHpExterns(
+              game.eboot!,
+              sites.segment,
+              sites.gauges,
+              ovl.reader.buf,
+              ovl,
+              mode === "off" ? "always" : mode,
+            );
+      if (typeof sites !== "string" && typeof found !== "string") {
+        const { rf_game_task, rf_monsters, rf_em_chunks } = found;
+        const elite = findEliteExterns(game.eboot!, sites.segment, ovl, settings["elites.chance"]);
+        found =
+          typeof elite === "string"
+            ? elite
+            : {
+                rf_game_task: rf_game_task!,
+                rf_monsters: rf_monsters!,
+                rf_em_chunks: rf_em_chunks!,
+                ...elite,
+              };
+      }
+      if (typeof found === "string") reports.push(notApplied("Elite monsters", found));
+      else {
+        objects.push(...eliteObjects());
+        Object.assign(externs, found);
+        elites = true;
+      }
+    }
+    let pact = false;
+    const data: Record<string, Buffer> = { ...unknown?.data };
+    if (settings["pact.enabled"]) {
+      const found =
+        typeof sites === "string"
+          ? sites
+          : findPactExterns(game.eboot!, sites, ovl.reader.buf, ovl);
+      if (typeof found === "string") reports.push(notApplied("Hunter's Pact", found));
+      else {
+        objects.push(...pactObjects());
+        Object.assign(externs, found);
+        // The pact's rewards, as the shuffles left items and equipment.
+        const out = edits.eboot();
+        const equipment = [
+          ...collectWeaponStats(out, game.resolver).map((w) => ({
+            type: w.family === "Blademaster" ? MELEE_BOX_TYPE : RANGED_BOX_TYPE,
+            id: w.index,
+            name: w.name,
+            rarity: w.rarity,
+          })),
+          ...readArmorPieces(out, game.resolver).map((p) => ({
+            type: ARMOR_BOX_TYPE[p.slot],
+            id: p.index,
+            name: pieceName(p),
+            rarity: p.rarity,
+            bits: p.bits,
+          })),
+        ];
+        const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
+        data.rf_pact_pool = encodePactPool(pactPool(tiers, equipment, rng.fork("pact-pool")));
+        pact = true;
+      }
+    }
+    if (typeof sites !== "string" && (monsterHp || unknown || elites || pact)) {
+      const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
+        // Elites and the pact both bring the shared monster boosts: link them once.
+        objects: objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
+        hooks: {
+          sites,
+          gameTask: game.gameTask,
+          ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
         },
-      }),
-    );
+        externs,
+        data,
+      });
+      reports.push(loader);
+      if (unknown) reports.push(unknown.finish(loader.applied));
+    }
   }
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.

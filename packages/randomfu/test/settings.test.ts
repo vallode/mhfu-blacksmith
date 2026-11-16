@@ -47,6 +47,7 @@ const UNTRIED: readonly OptionKey[] = [
   "questMonsters.smallSpecies",
   "trades.mode",
   "mods.nodeMap",
+  "elites.enabled",
 ];
 
 test("presets do what their help says", () => {

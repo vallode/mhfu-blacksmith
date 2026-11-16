@@ -148,8 +148,8 @@ export function decodeObjects(
  * Links `objects` to run at `base` (where the header goes). The objects must
  * define `rf_init`; `rf_hook0`… are optional entry points for game hooks.
  * `maxBytes` bounds the image (the room the loader reads into). `data` adds
- * bytes made at randomize time after everything else, each as a global
- * symbol of its name (word-aligned), for an object's `extern const u8 name[]`.
+ * tables built per disc after everything else, each word-aligned and named
+ * by a global symbol the objects can declare `extern`.
  */
 export function linkBlob(
   objects: readonly { name: string; data: Buffer }[],
@@ -197,13 +197,11 @@ export function linkBlob(
       cursor += sym.size;
     }
   }
-  const added = Object.entries(data).map(([name, bytes]) => {
-    if (definedNames.has(name)) throw new Error(`${name} is defined twice`);
+  const tables = Object.entries(data).map(([name, bytes]) => {
     cursor = Math.ceil(cursor / 4) * 4;
-    commons.set(name, cursor);
     const at = cursor;
     cursor += bytes.length;
-    return { at, bytes };
+    return { name, bytes, at };
   });
   const end = Math.ceil(cursor / 4) * 4;
   const image = Buffer.alloc(end - base);
@@ -221,10 +219,11 @@ export function linkBlob(
     );
   }
 
-  for (const { at, bytes } of added) bytes.copy(image, at - base);
+  for (const { bytes, at } of tables) bytes.copy(image, at - base);
 
   const globals = new Map<string, number>(commons);
-  const defined = new Set<string>();
+  const defined = new Set<string>(tables.map((t) => t.name));
+  for (const { name, at } of tables) globals.set(name, at);
   const valueOf = (file: ObjectFile, sym: Sym): number | null => {
     if (sym.shndx === SHN_ABS) return sym.value;
     if (sym.shndx === SHN_COMMON) return commons.get(sym.name) ?? null;

@@ -114,6 +114,9 @@ export interface Settings {
   "mods.nodeMap": boolean;
   "hud.monsterHp": "off" | "painted" | "always";
   "pact.enabled": boolean;
+  "elites.enabled": boolean;
+  "elites.chance": number;
+  "quests.unknown": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -129,6 +132,8 @@ export type OptionType =
       percent?: boolean;
       /** Shown as ±4 levels. */
       unit?: string;
+      /** Shown as 12%: a chance in percent, not a spread. */
+      chance?: boolean;
     }
   | {
       kind: "choice";
@@ -1648,7 +1653,33 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "pact.enabled",
     section: "Hunter's Pact",
     label: "Hunter's Pact",
-    help: "When a quest starts, a window in base camp offers three pacts drawn at random, each a penalty and the reward it pays: tougher or harder-hitting monsters, half the time, one cart, no supply box, a health or stamina cap or more to deliver (only those that fit the quest: no monster penalties on a gathering quest), for more zenny or HRP (at least a set amount per rank), luck, items or a weapon or armor piece of the quest's rank. The harder the penalty, the better its reward. Take any, or none and the quest is as it was. The clock stops while you choose; penalties last the quest, and rewards are paid only if you complete it. Caps received Guild Cards at 3 to make room for its code.",
+    help: "When a quest starts, a window in base camp offers three pacts drawn at random, each a penalty and the reward it pays: tougher or harder-hitting monsters, half the time, one cart, no supply box, a health or stamina cap or more to deliver (only those that fit the quest: no monster penalties on a gathering quest), for more zenny or HRP (at least a set amount per rank), luck, items or a weapon or armor piece of the quest's rank. The harder the penalty, the better its reward. Monster penalties stack with elite monsters. Take any, or none and the quest is as it was. The clock stops while you choose; penalties last the quest, and rewards are paid only if you complete it. Caps received Guild Cards at 3 to make room for its code.",
+    type: { kind: "boolean" },
+    default: false,
+  },
+  {
+    key: "elites.enabled",
+    section: "Elite monsters",
+    label: "Elite monsters",
+    help: "Now and then a large monster is an elite: half again its health, hits 30% harder, moves 10% faster, enrages sooner and for half again as long, and is 15% bigger. Its hide has a faint crimson pulse. Each elite adds a reward draw, half the quest's zenny and points again, and makes the main reward's rarer items half again as likely. Rolled as each monster shows up, so the quest board doesn't tell. Stacks on the monster stats above. Caps received Guild Cards at 3 to make room for its code.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "elites.chance",
+    section: "Elite monsters",
+    label: "Elite chance",
+    help: "Each large monster's chance of being an elite, rolled once per quest as it shows up.",
+    type: { kind: "number", min: 1, max: 100, step: 1, chance: true },
+    default: 12,
+    enabledBy: "elites.enabled",
+  },
+  {
+    key: "quests.unknown",
+    section: "Quest monsters",
+    label: "Unknown Monster?! quests",
+    help: "Adds an investigation quest to the Village 6★, Guild 8★ and G★3 boards. Each time you accept it, it rolls a monster met on that map in any quest, the map, size, crowns, difficulty for the rank and the rewards. The board doesn't say what you'll find, and the quest names the monster once it starts. Solo only: in ad-hoc play the others get a different roll. Caps received Guild Cards at 3 to make room for the code.",
     type: { kind: "boolean" },
     default: false,
   },
@@ -1796,6 +1827,7 @@ export function formatOption(option: OptionDef, value: Settings[OptionKey]): str
   if (type.kind === "boolean") return value ? "yes" : "no";
   if (type.kind === "number" && type.percent) return `±${Math.round(Number(value) * 100)}%`;
   if (type.kind === "number" && type.unit) return `±${String(value)} ${type.unit}`;
+  if (type.kind === "number" && type.chance) return `${String(value)}%`;
   if (type.kind === "choice") {
     return type.choices.find((c) => c.value === value)?.label ?? String(value);
   }
