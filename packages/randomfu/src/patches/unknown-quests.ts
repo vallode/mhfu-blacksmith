@@ -43,7 +43,14 @@ import { POWER_OFFSET, readSpawns, type QuestSpawns } from "../game/spawns.js";
 import { BANDS, questTier, type Band } from "../game/tiers.js";
 import { monsterNames, type MonsterNames } from "../names.js";
 import type { ShuffleReport, SpoilerLine } from "../shuffles/shuffle.js";
-import { habitat, type MultiplierSetOf } from "../shuffles/quest-monsters.js";
+import {
+  collectStartPoints,
+  habitat,
+  readStart,
+  restart,
+  type MultiplierSetOf,
+  type Point,
+} from "../shuffles/quest-monsters.js";
 import { findImports } from "./code-loader.js";
 import { findQuestLoadSites, type QuestLoadSites } from "./game-hooks.js";
 import { codeSegment, findUnique, hiLo, maskWord, type Segment } from "./mips.js";
@@ -138,6 +145,8 @@ export interface Template {
   payload: Buffer;
   map: number;
   species: number;
+  /** Each large monster record's offset and starting point. */
+  records: { at: number; point: Point }[];
   /** Payload offsets of every species field (records and preload list). */
   speciesAt: number[];
   levelAt: number[];
@@ -148,6 +157,8 @@ export interface Choice {
   level: [number, number];
   /** Reward sets, each a quest's tables; none keeps the template's. */
   rewards: RewardTable[][];
+  /** Records that move to a point the disc starts the monster's kind at. */
+  starts: { at: number; point: Point }[];
 }
 
 export interface SlotTables {
@@ -192,6 +203,8 @@ export function unknownTables(
     ];
   });
 
+  // Where each kind of monster starts, by map: the blob only changes the species.
+  const starts = collectStartPoints(quests);
   // Where each monster is met: any Village or Guild quest, any rank.
   const onMap = new Map<number, Set<number>>();
   for (const { parsed, spawns } of all) {
@@ -247,6 +260,10 @@ export function unknownTables(
         payload: q.payload,
         map: header.map,
         species: [...species][0]!,
+        records: q.spawns.large.map((s) => ({
+          at: s.offset,
+          point: readStart(q.payload, s.offset),
+        })),
         speciesAt: [...q.spawns.large, ...q.spawns.loads].map((s) => s.offset),
         levelAt: q.spawns.large.map((s) => s.offset + POWER_OFFSET),
       });
@@ -267,9 +284,17 @@ export function unknownTables(
       slot,
       templates: templates.flatMap((template) => {
         const set = setOf(template.species);
-        const species = [...(onMap.get(habitat(template.map)) ?? [])].filter(
-          (em) => setOf(em) === set,
-        );
+        // A monster starts at a point the disc starts its kind at: another's
+        // may have no ground it can stand on (water, sand, a nest).
+        const mapStarts = starts.get(template.map) ?? [];
+        const points = template.records.map((r) => r.point);
+        const moves = new Map<number, (Point | null)[]>();
+        for (const em of onMap.get(habitat(template.map)) ?? []) {
+          if (setOf(em) !== set) continue;
+          const to = restart(mapStarts, em, points, () => 0);
+          if (to) moves.set(em, to);
+        }
+        const species = [...moves.keys()];
         // A stat table no quest near the star uses keeps the template's levels.
         const range = levels.get(`${set}:${template.quest.parsed.header.statTable}`) ?? [
           ...template.levelAt.map((at) => template.payload[at]!),
@@ -285,7 +310,11 @@ export function unknownTables(
               Math.max(textBytes(monsterName(em)), textBytes(TEXT.unknown));
             if (room < 0) return [];
             const rewards = rewardsFor(slot.band, em).filter((r) => rewardBytes(r) <= room);
-            return [{ species: em, level, rewards }];
+            const starts = template.records.flatMap(({ at }, i) => {
+              const point = moves.get(em)![i];
+              return point ? [{ at, point }] : [];
+            });
+            return [{ species: em, level, rewards, starts }];
           });
         return choices.length > 0 ? [{ template, choices }] : [];
       }),
@@ -383,6 +412,26 @@ export function encodeTables(
     return rewardLists.get(key)!;
   };
 
+  // Start lists (`struct choice` start_off), shared wherever they're the same.
+  const startLists = new Map<string, number>();
+  const startList = (starts: Choice["starts"]) => {
+    const key = JSON.stringify(starts);
+    if (!startLists.has(key)) {
+      w.align(4);
+      startLists.set(key, w.pos);
+      for (const { at, point } of starts) {
+        w.u16(at);
+        w.u16(point.stage);
+        w.u32(point.rotation);
+        w.f32(point.x);
+        w.f32(point.y);
+        w.f32(point.z);
+      }
+      w.u16(0);
+    }
+    return startLists.get(key)!;
+  };
+
   tables.forEach((t, k) => {
     const text = w.pos;
     w.bytes(
@@ -395,6 +444,7 @@ export function encodeTables(
     );
     const templates = t.templates.map(({ template, choices }) => {
       const rewardsAt = choices.map((c) => (c.rewards.length > 0 ? rewardList(c.rewards) : 0));
+      const startsAt = choices.map((c) => (c.starts.length > 0 ? startList(c.starts) : 0));
       w.align(4);
       const choiceAt = w.pos;
       choices.forEach((c, n) => {
@@ -403,6 +453,7 @@ export function encodeTables(
         w.u8(c.level[1]);
         w.u8(c.rewards.length);
         w.u32(rewardsAt[n]!);
+        w.u32(startsAt[n]!);
       });
       const patchAt = w.pos;
       for (const v of [...template.speciesAt, 0, ...template.levelAt, 0]) w.u16(v);

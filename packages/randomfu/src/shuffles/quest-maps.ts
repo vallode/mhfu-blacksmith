@@ -39,7 +39,14 @@ import { OBJECTIVE_KIND_MONSTER } from "../game/spawns.js";
 import { questTier, type Tier } from "../game/tiers.js";
 import { questLabel, type MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
-import { familyOf, habitat } from "./quest-monsters.js";
+import {
+  collectStartPoints,
+  familyOf,
+  habitat,
+  hasStart,
+  pointKey,
+  type Start,
+} from "./quest-monsters.js";
 import { getOrInsert, groupBy, type ShuffleReport } from "./shuffle.js";
 
 /** A Village or Guild quest as a document. */
@@ -99,41 +106,6 @@ export function staysOnMap(doc: QuestDoc): string | null {
   }
   return null;
 }
-
-/** A large monster starting point on a map, and the monster the disc starts there. */
-export interface Start {
-  monster: number;
-  stage: number;
-  rotation: number;
-  x: number;
-  y: number;
-  z: number;
-}
-
-const pointKey = (s: Pick<Start, "stage" | "x" | "y" | "z">) => `${s.stage}:${s.x}:${s.y}:${s.z}`;
-
-/** Every large monster starting point the disc's quests use, by map. */
-export function collectStarts(list: readonly DocQuest[]): Map<number, Start[]> {
-  const out = new Map<number, Start[]>();
-  const seen = new Set<string>();
-  for (const { vanilla } of list) {
-    const map = vanilla.header.map;
-    for (const s of vanilla.large.flatMap((g) => g.spawns)) {
-      const key = `${map}:${s.monster}:${pointKey(s)}`;
-      if (seen.has(key)) continue;
-      seen.add(key);
-      const { monster, stage, rotation, x, y, z } = s;
-      getOrInsert(out, map, () => []).push({ monster, stage, rotation, x, y, z });
-    }
-  }
-  return out;
-}
-
-/** Whether `starts` has a point where the disc starts one of `monster`'s kind. */
-const hasStart = (starts: readonly Start[], monster: number) => {
-  const family = familyOf(monster);
-  return starts.some((s) => family.includes(s.monster));
-};
 
 /**
  * A starting point for `monster`: one its family starts at, one this quest
@@ -198,7 +170,7 @@ export function moveQuests(
   monsterName: MonsterNames,
 ): { report: ShuffleReport; moved: Set<DocQuest> } {
   const donors = groupBy(list, (e) => e.vanilla.header.map);
-  const starts = collectStarts(list);
+  const starts = collectStartPoints(list.map((e) => e.quest));
   /** Large monsters found on each habitat (day and night together). */
   const found = new Map<number, Set<number>>();
   for (const { vanilla } of list) {
@@ -305,7 +277,7 @@ export function randomizeStarts(
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
 ): ShuffleReport {
-  const starts = collectStarts(list);
+  const starts = collectStartPoints(list.map((e) => e.quest));
   const lines: ShuffleReport["lines"] = [];
   for (const entry of list) {
     if (skip.has(entry)) continue;

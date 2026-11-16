@@ -19,6 +19,13 @@ import type { QuestHeader } from "mhfu-extract/src/quests/parser.js";
 export const MON_DATA_SIZE = 60;
 export const QUANTITY_OFFSET = 4;
 export const POWER_OFFSET = 5;
+/**
+ * Where a large monster starts (mhfu-extract `quests/document.ts`): u16
+ * stage (area) at +8, u32 rotation at +28 and f32 x, y, z from +32.
+ */
+export const START_STAGE_OFFSET = 8;
+export const START_ROTATION_OFFSET = 28;
+export const START_POSITION_OFFSET = 32;
 /** `questHeader.TargetID`: the quest's main target, by emID. */
 export const TARGET_ID_OFFSET = 112;
 /**
@@ -50,6 +57,8 @@ export const SIZE_VARIATIONS = [
  */
 export const OBJECTIVE_OFFSETS = [0x28, 0x30] as const;
 export const OBJECTIVE_ID_OFFSET = 4;
+/** How many the objective asks for (a slay count). */
+export const OBJECTIVE_COUNT_OFFSET = 6;
 /** An objective's `kind` when its `id` is an emID (2 is an item). */
 export const OBJECTIVE_KIND_MONSTER = 1;
 

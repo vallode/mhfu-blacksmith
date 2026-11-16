@@ -85,6 +85,16 @@ export function collectMonsterChunks(
   }));
 }
 
+/** A monster's base HP, by emID, as the disc has it. */
+export function baseHpOf(ovl: OvlFile): (emId: number) => number {
+  const found = locateMonsterChunks(ovl);
+  if (!found) throw new Error("game_task.ovl: the monster table wasn't found");
+  return (emId) =>
+    emId > 0 && emId < MONSTER_CHUNK_COUNT
+      ? ovl.reader.u16(found.offset + emId * MONSTER_CHUNK_SIZE + BASE_HP_OFFSET)
+      : 0;
+}
+
 const factor = (rng: Rng, spread: number) => 1 - spread + 2 * spread * rng.float();
 const percent = (x: number) => `${Math.round(x * 100)}%`;
 
@@ -103,18 +113,20 @@ export function randomizeMonsterStats(
   gameTask: LoadedOverlay,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
+  /** The most base HP a monster can have (`hpLimit` in `quest-monsters.ts`). */
+  hpCap: (emId: number) => number = () => 0xffff,
 ): ShuffleReport {
   const buf = edits.overlay(gameTask);
   const lines: ShuffleReport["lines"] = [];
+  let capped = 0;
   for (const { emId, offset } of chunks) {
     const where = monsterName(emId);
     if (options.hpSpread !== null) {
       const at = offset + BASE_HP_OFFSET;
       const old = buf.readUInt16LE(at);
-      const next = Math.min(
-        0xffff,
-        Math.max(1, Math.round(old * factor(rngs.hp, options.hpSpread))),
-      );
+      const rolled = Math.max(1, Math.round(old * factor(rngs.hp, options.hpSpread)));
+      const next = Math.min(0xffff, hpCap(emId), rolled);
+      if (next < rolled) capped++;
       buf.writeUInt16LE(next, at);
       lines.push({ where, text: `HP ${next} (was ${old})` });
     }
@@ -142,7 +154,12 @@ export function randomizeMonsterStats(
     }
   }
   const notes: string[] = [];
-  if (options.hpSpread !== null) notes.push(`Base HP moved by up to ${percent(options.hpSpread)}.`);
+  if (options.hpSpread !== null) {
+    notes.push(
+      `Base HP moved by up to ${percent(options.hpSpread)}, never so far that a quest's multiplier takes it past 32767, the most the game holds.`,
+    );
+    if (capped > 0) notes.push(`${capped} monsters' HP was held at that limit.`);
+  }
   if (options.sizeSpread !== null)
     notes.push(`Base size moved by up to ${percent(options.sizeSpread)}.`);
   if (options.statusSpread !== null) {

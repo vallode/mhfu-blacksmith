@@ -33,7 +33,14 @@ import {
   type TablePair,
 } from "mhfu-extract/src/monsters/rewards.js";
 import { isQuestItem } from "../game/quest-fields.js";
-import { monsterKey, rewardRankBand, tierLabel, type Scope, type Tier } from "../game/tiers.js";
+import {
+  monsterKey,
+  rewardRankBand,
+  tierLabel,
+  type Band,
+  type Scope,
+  type Tier,
+} from "../game/tiers.js";
 import type { LoadedOverlay } from "../game/load.js";
 import type { Edits } from "../edits.js";
 import type { Rng } from "../rng.js";
@@ -64,6 +71,10 @@ export interface RewardList {
   entries: RewardEntry[];
   refs: RewardRef[];
 }
+
+/** Whether `list` is `emId`'s carves (not captures or breaks) at `band`. */
+export const carvesOf = (list: Pick<RewardList, "stride" | "refs">, emId: number, band: Band) =>
+  list.stride === 4 && list.refs.some((r) => r.emId === emId && rewardRankBand(r.rank) === band);
 
 /**
  * Every reward list reachable from the carve and cap/break index tables,
@@ -160,6 +171,19 @@ export interface MonsterRewardSlot {
   itemId: number;
   amount: number | undefined;
 }
+
+/** A delivery quest's item, on a monster met in it, at its rank. */
+export interface DeliveryCarve {
+  emId: number;
+  band: Band;
+  itemId: number;
+}
+
+/** Whether `slot` is one of `deliveries`' items carved from its monster at its quest's rank. */
+export const isDeliveryCarve = (
+  slot: Pick<MonsterRewardSlot, "itemId" | "list">,
+  deliveries: readonly DeliveryCarve[],
+) => deliveries.some((d) => d.itemId === slot.itemId && carvesOf(slot.list, d.emId, d.band));
 
 /**
  * The slots to shuffle: entries of lists used in exactly one band, by a
@@ -336,11 +360,16 @@ export function randomizeMonsterRewards(
   const after: { itemId: number; tier: Tier }[] = [];
   for (const [list, own] of byList(slots)) {
     const tier = own[0]!.tier;
-    const pool = poolFor(tier, own.length);
+    // Entries left out (a delivery's carve) stay, and aren't drawn again.
+    const mine = new Set(own.map((s) => s.offset));
+    const kept = list.entries
+      .filter((e, i) => e.itemId !== 0 && !mine.has(list.offset + i * list.stride))
+      .map((e) => e.itemId);
+    const pool = poolFor(tier, own.length + kept.length);
     const items: number[] = [];
     while (items.length < own.length) {
       const pick = pool[rng.int(pool.length)]!;
-      if (!items.includes(pick)) items.push(pick);
+      if (!items.includes(pick) && !kept.includes(pick)) items.push(pick);
     }
     const chances = rollChances(
       own.map((s) => s.chance),
