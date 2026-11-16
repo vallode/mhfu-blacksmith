@@ -38,6 +38,7 @@ const TEMPLATE_ID = 1101;
 const OTHER_ID = 1102;
 const OLD_EM = 7;
 const SPECIES = [11, 12];
+const MOVED = { stage: 7, rotation: 0x4000, x: 1.5, y: -2, z: 300 };
 
 /** A quest file: one large monster, a hunt that's also urgent, a reward table. */
 function questFile(em: number): Buffer {
@@ -58,6 +59,7 @@ function questFile(em: number): Buffer {
   q.writeUInt16LE(em, 0x200); // the large monster's record
   q.writeUInt8(1, 0x204);
   q.writeUInt8(9, 0x205); // its level
+  q.writeUInt16LE(1, 0x208); // its stage
   q.writeUInt16LE(em, 0x240); // the preload list
   return q;
 }
@@ -81,6 +83,7 @@ function tables(starts = [0, 1]): SlotTables[] {
             payload,
             map: 2,
             species: OLD_EM,
+            records: [{ at: 0x200, point: { stage: 1, rotation: 0, x: 0, y: 0, z: 0 } }],
             speciesAt: [0x200, 0x240],
             levelAt: [0x205],
             starts,
@@ -97,6 +100,8 @@ function tables(starts = [0, 1]): SlotTables[] {
                 table(0x8001, [[100, 300, 1]]),
               ],
             ],
+            // The second monster's kind starts elsewhere on the map.
+            starts: species === SPECIES[1] ? [{ at: 0x200, point: MOVED }] : [],
           })),
         },
       ],
@@ -306,6 +311,29 @@ test("accepting again rolls again", () => {
     rolled.add(`${cpu.u16(LOBBY_BUF + 0x200)}:${cpu.u8(LOBBY_BUF + 0x205)}`);
   }
   assert.ok(rolled.size > 4, `${rolled.size} different rolls`);
+});
+
+test("a monster whose kind starts elsewhere moves to its start", () => {
+  const { cpu, load, setTime } = game();
+  const seen = new Set<number>();
+  for (let t = 1; t < 40; t++) {
+    setTime(t * 7919);
+    load("accept", SLOT.id, LOBBY_BUF);
+    const q = LOBBY_BUF;
+    const em = cpu.u16(q + 0x200);
+    seen.add(em);
+    const place = cpu.bytes(q + 0x21c, 16);
+    const at = {
+      stage: cpu.u16(q + 0x208),
+      rotation: place.readUInt32LE(0),
+      x: place.readFloatLE(4),
+      y: place.readFloatLE(8),
+      z: place.readFloatLE(12),
+    };
+    if (em === SPECIES[1]) assert.deepEqual(at, MOVED);
+    else assert.deepEqual(at, { stage: 1, rotation: 0, x: 0, y: 0, z: 0 });
+  }
+  assert.equal(seen.size, 2, "both monsters rolled");
 });
 
 test("other quests load as they are", () => {

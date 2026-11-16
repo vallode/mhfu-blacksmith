@@ -4,7 +4,14 @@
  */
 import { Edits } from "./edits.js";
 import { loadEmOverlays, type GameData, type LoadedQuest } from "./game/load.js";
-import { itemTiers, monsterStars, type Tier, type TierMode } from "./game/tiers.js";
+import {
+  itemTiers,
+  monsterStars,
+  questTier,
+  type Band,
+  type Tier,
+  type TierMode,
+} from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import type { Settings } from "./settings.js";
 import { pieceName, readArmorPieces, shuffleArmor } from "./shuffles/armor.js";
@@ -21,10 +28,13 @@ import {
   shuffleGathering,
 } from "./shuffles/gathering.js";
 import {
+  carvesOf,
   collectMonsterRewardSlots,
   collectRewardLists,
   randomizeMonsterRewards,
+  isDeliveryCarve,
   shuffleMonsterRewards,
+  type DeliveryCarve,
   type RewardList,
 } from "./shuffles/monster-rewards.js";
 import {
@@ -53,13 +63,18 @@ import { collectWeaponStats, randomizeWeaponStats } from "./shuffles/weapon-stat
 import { randomizeSharpness } from "./shuffles/sharpness.js";
 import {
   collectQuestMonsters,
+  collectStartPoints,
+  hpLimit,
+  MAX_HP,
   multiplierSets,
   randomizeDifficulty,
   randomizeCrownSpread,
   randomizeQuestSize,
   randomizeSmallCounts,
   swapSpecies,
+  type HpMultiplierOf,
 } from "./shuffles/quest-monsters.js";
+import { locateMultiplierTables, multiplierRow } from "mhfu-extract/src/monsters/multipliers.js";
 import { renameQuestText } from "./shuffles/quest-text.js";
 import {
   collectDocQuests,
@@ -72,6 +87,7 @@ import { swapSmallSpecies } from "./shuffles/small-monsters.js";
 import { largestQuest, questPayload, rebuildQuest } from "./game/rebuild.js";
 import { itemSources, lostSources } from "./game/first-tiers.js";
 import {
+  baseHpOf,
   collectMonsterChunks,
   randomizeMonsterStats,
   shuffleWeaknesses,
@@ -298,6 +314,21 @@ export function randomize(
   // Monster swaps first: carves are found where their monsters now are.
   const questMonsters = collectQuestMonsters(game.quests);
   const setOf = multiplierSets(game.gameTask.ovl);
+  const multipliers = locateMultiplierTables(game.gameTask.ovl);
+  const hpOf: HpMultiplierOf = (set, table, power) =>
+    multipliers ? (multiplierRow(multipliers, set, table, power)?.hp ?? null) : null;
+  /** Whether a monster's HP at a level stays within the s16 it's kept in, given its base HP. */
+  const hpFits =
+    (baseHp: (emId: number) => number) => (emId: number, table: number, power: number) => {
+      const hp = hpOf(setOf(emId), table, power);
+      return hp === null || Math.trunc(baseHp(emId) * hp) <= MAX_HP;
+    };
+  const fitsHp = hpFits(baseHpOf(game.gameTask.ovl));
+  // A delivery quest's item, from the quests as they are before any shuffle.
+  const deliveries = deliveryTargets(game.quests);
+  /** Whether a monster's carves give an item at a rank, on the disc. */
+  const carves = (emId: number, band: Band, itemId: number) =>
+    rewardLists.some((l) => carvesOf(l, emId, band) && l.entries.some((e) => e.itemId === itemId));
   let questsAfter = game.quests.map((q) => q.parsed);
   if (settings["questMonsters.mode"] !== "off") {
     const result = swapSpecies(
@@ -307,8 +338,10 @@ export function randomize(
       edits,
       game.quests,
       setOf,
+      collectStartPoints(game.quests),
       monsterName,
       game.boards,
+      fitsHp,
     );
     reports.push(result.report);
     questsAfter = result.questsAfter;
@@ -330,6 +363,7 @@ export function randomize(
         edits,
         setOf,
         monsterName,
+        fitsHp,
       ),
     );
   }
@@ -361,6 +395,12 @@ export function randomize(
         rng.fork("small-monster-counts"),
         edits,
         monsterName,
+        // A delivery carved from a small monster (Popo Tongues) keeps as many of it.
+        (quest, emId) => {
+          const item = deliveries.get(quest.index)?.itemId;
+          const band = questTier(quest.parsed)?.band;
+          return item !== undefined && band !== undefined && carves(emId, band, item);
+        },
       ),
     );
   }
@@ -390,6 +430,7 @@ export function randomize(
           edits,
           game.gameTask,
           monsterName,
+          hpLimit(game.quests, edits, setOf, hpOf),
         ),
       );
     }
@@ -422,9 +463,9 @@ export function randomize(
   const questSlots = collectQuestRewardSlots(game.quests);
   const monsterSlots = collectMonsterRewardSlots(rewardLists, monsterStars(questsAfter));
   const gathering = collectGatheringSlots(game.quests);
-  // A delivery quest's own item stays at its gathering points, so the
+  // A delivery quest's own item stays at its gathering points, and on the
+  // carves of its monsters (Anteka Antlers, Piscine Livers), so the
   // quest can still be finished whether or not its target changes.
-  const deliveries = deliveryTargets(game.quests);
   const isDeliveryItem = (s: (typeof gathering.slots)[number]) =>
     deliveries.get(s.quest.index)?.itemId === s.itemId;
   const realTiers = itemTiers([...questSlots, ...monsterSlots, ...gathering.slots]);
@@ -472,8 +513,24 @@ export function randomize(
   const monsterMode = settings["monsterRewards.mode"];
   if (monsterMode !== "off") {
     const withCaptures = settings["monsterRewards.captureAndBreaks"];
-    const changed = monsterSlots.filter((s) => withCaptures || s.list.stride === 4);
-    const kept = monsterSlots.filter((s) => !withCaptures && s.list.stride !== 4);
+    // A delivery quest's item stays on its monsters' carves at its rank.
+    const deliveryCarves: DeliveryCarve[] = [];
+    game.quests.forEach((quest, i) => {
+      const itemId = deliveries.get(quest.index)?.itemId;
+      const band = questTier(quest.parsed)?.band;
+      if (itemId === undefined || !band) return;
+      const after = questsAfter[i]!;
+      const met = [...after.largeMonsters, ...after.smallMonsters.flatMap((t) => t.monsters)].map(
+        (m) => m.monsterId,
+      );
+      for (const emId of new Set(met)) deliveryCarves.push({ emId, band, itemId });
+    });
+    const pin = (s: (typeof monsterSlots)[number]) => isDeliveryCarve(s, deliveryCarves);
+    const changes = (s: (typeof monsterSlots)[number]) =>
+      !pin(s) && (withCaptures || s.list.stride === 4);
+    const changed = monsterSlots.filter(changes);
+    const kept = monsterSlots.filter((s) => !changes(s));
+    const pinned = monsterSlots.filter(pin).length;
     const scope = settings["monsterRewards.scope"];
     const result =
       monsterMode === "shuffle"
@@ -498,6 +555,11 @@ export function randomize(
             game.gameSub,
             monsterName,
           );
+    if (pinned > 0) {
+      result.report.notes.push(
+        `${pinned} carves stay where they are: they give a delivery quest's item (Popo Tongues, Piscine Livers) on a monster in that quest.`,
+      );
+    }
     reports.push(result.report);
     monsterAfter = [...result.after, ...kept];
   }
@@ -888,7 +950,13 @@ export function randomize(
       ? null
       : typeof sites === "string"
         ? sites
-        : prepareUnknownQuests(game, edits, setOf);
+        : prepareUnknownQuests(
+            game,
+            edits,
+            setOf,
+            // Base HP as the stats shuffle left it.
+            hpFits(baseHpOf(game.gameTask.ovl, edits.dataFileNow(game.gameTask.index))),
+          );
     if (typeof prepared === "string") {
       reports.push(notApplied("Unknown Monster quests", prepared));
     }

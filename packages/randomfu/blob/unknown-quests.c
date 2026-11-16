@@ -23,6 +23,10 @@ u32 sceKernelGetSystemTimeLow(void);
 
 #define NO_FILE 0xffff
 
+/* A large monster record's starting point: stage, then rotation and x, y, z. */
+#define START_STAGE 8
+#define START_PLACE 28
+
 /* Quest header fields. */
 #define REWARDS 12
 #define OBJECTIVE_A 0x28
@@ -76,6 +80,12 @@ struct choice {
   u8 level_lo, level_hi;
   u8 rewards;     /* reward sets; 0 keeps the template's */
   u32 reward_off; /* u32 offsets of reward sets */
+  /*
+   * 0, or where records move to a point the disc starts this monster's
+   * kind at: per record u16 offset, u16 stage, u32 rotation, f32 x, y, z;
+   * until an offset of 0.
+   */
+  u32 start_off;
 };
 
 #define DATA_MAGIC 0x31445155 /* "UQD1" */
@@ -242,6 +252,11 @@ static void patch(u8 *quest) {
   while ((off = get16(offsets)) != 0) {
     quest[off] = roll.level;
     offsets += 2;
+  }
+  for (const u8 *p = c->start_off ? rf_uq_data + c->start_off : 0; p && (off = get16(p)) != 0;
+       p += 20) {
+    put16(quest + off + START_STAGE, get16(p + 2));
+    for (u32 k = 0; k < 16; k += 4) put32(quest + off + START_PLACE + k, get32(p + 4 + k));
   }
   put16(quest + QUEST_ID, s->id);
   quest[STARS] = s->stars;

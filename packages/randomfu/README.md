@@ -651,16 +651,17 @@ map and name no stage.
   the gathering points, item tables, position sets and small monsters of a
   quest already there (the donor, of its own rank where there is one; one
   whose parts don't fit is passed over), and each large monster starts at
-  a point the disc's quests start its family at on that map. A map with no
-  such point for one of its monsters isn't offered (another monster's
-  start may be ground it can't stand on). Its `spawn` byte stays unless
+  a point the disc's quests start its family at on that map, none shared
+  by two of them. A map without one such point for each of its monsters
+  isn't offered (another monster's start may be ground it can't stand on). Its `spawn` byte stays unless
   no quest on the new map uses that value (the Fortress and Castle
   Schrade all use 2). Board records get the new map (`+0x1c`). Delivery
   quests, quests with an item objective, and quests whose goal names a
   small monster stay. The quest's text isn't changed, so it may still
   name the old map.
 - **Starts** (`questMaps.starts`): each large monster of a quest that
-  didn't move starts at another of its family's points on its own map.
+  didn't move starts at another of its family's points on its own map,
+  none shared by two of them; a quest without enough keeps its starts.
 - **Small monster species** (`questMonsters.smallSpecies`): one mapping per
   quest from old species to new, applied to every spawn and preload entry,
   so each area's group loads as many species as before and no two species
@@ -695,12 +696,21 @@ list (`emLoadTable`).
   monster when the draw picks it. The spoiler's notes count both and list
   the monsters a pool never changes;
   `rank` and `any` only change quests with one kind of large monster.
+  A monster also only goes to a quest whose map (by day or by night: their
+  stages differ) has enough points where the disc starts its kind, and it
+  starts at one of them: if the old monster's point isn't one, it moves to
+  one of its kind's starting points there (stage, rotation and position)
+  that no other monster of the quest starts at, as `questMaps.starts`
+  does. `variants` never needs to: a family shares its starts. On the EU disc, about 70% of `any` swaps would
+  otherwise start a monster in a stage its kind never starts in (a
+  Plesioth on dry ground, a Cephadrome off the sand).
   Quest scripts name no monsters on the EU disc (mhfu-extract README,
   "Quest script"), so `TargetID` and the objective slots are all a quest's
   goal needs. The quest's text is renamed for every swapped monster,
   whichever of them names it (`questMonsters.text`, below).
   Carves follow the monster: the reward shuffles and recipe check use
-  the star levels monsters are met at after the swap.
+  the star levels monsters are met at after the swap. A swapped monster
+  whose HP at its level would pass 32767 takes a lower level.
 - **Text** (`questMonsters.text`, `src/shuffles/quest-text.ts`,
   `src/game/quest-text.ts`). Swapped monsters are renamed in the quest's
   six strings (title, goal, fail, details, monster list, client) in every
@@ -770,10 +780,14 @@ list (`emLoadTable`).
   `monsters/multipliers.ts`). New levels stay within the levels Village and
   Guild quests using the same table set use (header rank 0 picks set 0,
   the rest set 1), and with `rank`, the same rank too: rows past those may
-  be filler.
+  be filler. A level whose HP multiplier would take the monster's base HP
+  past 32767 isn't used; it moves back towards the monster's own.
 - **Small monster counts** are the records' quantity byte, scaled and kept
   between 1 and the most any quest has. Counts of 0 and 99 (which looks
-  like "keeps coming") are left alone.
+  like "keeps coming") are left alone. A quest never has fewer of a small
+  monster than its goal asks to slay (the header's target, or an
+  objective), nor fewer than it had of one its delivery is carved from:
+  where the new counts would fall short, that species keeps its own.
 - **Quest size** (`questMonsters.size`) is the header's `MonSizeModifier`
   (u32 at `0x38`), the size in percent of every large monster in the
   quest. On the EU disc it's 100 in half the quests and 50-174 in the rest
@@ -799,7 +813,12 @@ list (`emLoadTable`).
 monster appears. Chunks for non-monsters are left alone, and so are
 hitzone tables they share.
 
-- **HP** is the u16 base HP (`+0x100`), **size** the f32 base scale
+- **HP** is the u16 base HP (`+0x100`), held at or below 32767 over the
+  highest HP multiplier any quest a player can take (Training and
+  Treasure ones too, not unused slots) gives a monster of its set, as the quests end up (so the Unknown Monster quests, which give a
+  monster its set's levels, fit too). In a quest the game keeps HP as a
+  signed 16-bit value (`+0x2E4`), so more wraps negative: Lao-Shan Lung,
+  Fatalis and Yama Tsukami have 26666 at ×1.0, and +25% took them to 33332. **Size** is the f32 base scale
   (`+0x40`), **status resistance** the `initial` and `increase` fields of
   paralysis, KO, sleep and poison (`+0x110`); 0 and 0xFFFF stay.
 - **Elements**: one random order of fire, water, ice, thunder and dragon
@@ -1023,8 +1042,10 @@ board file touches another record's header, pointer tables or strings. "Survive 
 Deliver the Paw Pass Ticket" quests stay as they are.
 
 The gathering shuffle never moves a delivery quest's own item away from
-its gathering points, whether or not `deliveries` is on, so every delivery
-quest can still be finished.
+its gathering points, whether or not `deliveries` is on, and the monster
+reward shuffle never moves it off the carves of a monster in that quest at
+its rank: Anteka Antlers, Popo Tongues and Piscine Livers are carved, not
+gathered, on the EU disc. So every delivery quest can still be finished.
 
 ### Veggie Elder trades
 
@@ -1260,9 +1281,15 @@ one is ever wanted.) Every time it's accepted, it rolls:
   which gives the map, the layout and the time limit;
 - a **monster**: any large monster met on that map in any Village or Guild
   quest, of any rank, as long as it uses the same stat multiplier set as
-  the template's (so no Lao-Shan Lung in a field quest);
+  the template's (so no Lao-Shan Lung in a field quest) and the disc
+  starts its kind somewhere on the template's map. Where the template's
+  monster starts at a point its kind doesn't, the choice carries one of
+  its kind's points (stage, rotation, position), which the blob writes
+  with the species;
 - its **difficulty**, from the levels the rank's quests near that star give
-  monsters of that set, **size** (the rank's 10th to 90th percentile) and
+  monsters of that set, up to the highest at which the monster's HP (as
+  `monsterStats.hp` left it) stays within 32767 (Yama Tsukami at G★3
+  would otherwise reach 39999), **size** (the rank's 10th to 90th percentile) and
   **crowns** (any size spread up to the widest the rank uses);
 - **where the hunter starts**: base camp or a random area, whichever the
   quests on the template's map use (the header's `spawn` byte, 0x45: 0 is
@@ -1341,6 +1368,34 @@ the PRX alternative. Monster health and the Hunter's Pact are built on it.
 Not yet tried: receiving Guild Cards with the cap, and a save from a
 patched game on an unpatched one (its card slots 4–96 hold the blob).
 
+## Quests that can't be finished
+
+A quest the player can't finish blocks the story when it's a key or urgent
+quest. These are the ways a shuffle could make one, and what keeps each
+from happening. Run over the EU disc (the Chaos preset with deliveries
+off and every monster option on at wide spreads, six seeds), the shuffles
+before these guards left every seed with some: 180 to 210 monsters
+starting in a stage their kind never starts in, four or five carved
+deliveries with nothing to carve, up to three slay goals short of
+monsters, and one or two monsters past 32767 HP. With them, none.
+
+| Risk                                                            | Kept from happening by                                                                |
+| --------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
+| A delivery's item is found nowhere in the quest                 | Gathering and carves keep it (gathering points, carves of the quest's monsters)       |
+| Too few carves for a delivery                                   | Small monster counts never lower the monsters it's carved from                        |
+| A "Slay N" goal asks for more small monsters than the quest has | Small monster counts keep the goal's species at least at its count                    |
+| A goal's small monster is swapped or moved away                 | Small monster species and quest maps leave the goal's monsters and quest              |
+| A monster starts where it can't stand (water, sand, a nest)     | Swaps and Unknown Monster quests only start monsters where the disc starts their kind |
+| A monster's HP wraps past 32767                                 | Base HP, swaps and difficulty stay where HP fits; the pact and elites cap their own   |
+| The Paw Pass Ticket goes missing on a gathering quest           | Its supply box stack always stays                                                     |
+
+Not covered: what a player chooses (a Hunter's Pact penalty, turning
+`supplies.keepEssentials` or `shops.keepEssentials` off), and odds (a
+randomized delivery asks for no more than its points give on average, so
+an unlucky run can fall short; retrying the quest rolls again). MHFU has
+no capture-only quests ("Hunt" takes a kill or a capture), so a monster
+that can't be captured never blocks one.
+
 ## How it writes the disc
 
 - **DATA.BIN** files are encrypted with a key seeded from their start
@@ -1374,8 +1429,9 @@ patched game on an unpatched one (its card slots 4–96 hold the blob).
 - Which monsters can share a quest. Swaps update the preload list
   (`emLoadTable`), but overlay memory limits which species load together,
   so wide swaps only touch quests with one kind of large monster.
-- Whether a swapped monster can spawn in its predecessor's starting area
-  (`LargeMonData.Stage`): swaps only check the map.
+- Whether a monster can start at a point the disc never starts its kind
+  at. Swaps and the Unknown Monster quests don't find out: they only start
+  monsters where their kind starts (see "Quests that can't be finished").
 - Whether hitboxes scale with either size option.
 - Quest text in game. Renaming the board files (`level*.mib`) shows on the
   EU Quest Details screen: a quest swapped from Velocidrome to Daimyo

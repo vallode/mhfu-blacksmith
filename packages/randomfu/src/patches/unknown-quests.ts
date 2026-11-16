@@ -57,7 +57,15 @@ import { POWER_OFFSET, readSpawns, type QuestSpawns } from "../game/spawns.js";
 import { BANDS, questTier, type Band } from "../game/tiers.js";
 import { monsterNames, type MonsterNames } from "../names.js";
 import type { ShuffleReport, SpoilerLine } from "../shuffles/shuffle.js";
-import { habitat, type MultiplierSetOf } from "../shuffles/quest-monsters.js";
+import {
+  collectStartPoints,
+  habitat,
+  readStart,
+  restart,
+  type MultiplierSetOf,
+  type Point,
+  type Start,
+} from "../shuffles/quest-monsters.js";
 import { findImports } from "./code-loader.js";
 import { findQuestLoadSites, type QuestLoadSites } from "./game-hooks.js";
 import { codeSegment, findUnique, hiLo, maskWord, type Segment } from "./mips.js";
@@ -151,6 +159,8 @@ export interface Template {
   payload: Buffer;
   map: number;
   species: number;
+  /** Each large monster record's offset and starting point. */
+  records: { at: number; point: Point }[];
   /** Payload offsets of every species field (records and preload list). */
   speciesAt: number[];
   levelAt: number[];
@@ -170,6 +180,8 @@ export interface Choice {
   level: [number, number];
   /** Reward sets, each a quest's tables; none keeps the template's. */
   rewards: RewardTable[][];
+  /** Records that move to a point the disc starts the monster's kind at. */
+  starts: { at: number; point: Point }[];
 }
 
 export interface SlotTables {
@@ -197,12 +209,45 @@ interface Seen {
   spawns: QuestSpawns;
 }
 
+/**
+ * Where `em` starts in place of the template's monster, as `struct choice`
+ * start lists have it: each record not at a point the disc starts its
+ * kind at (`starts` being the template's map's) moves to one, none
+ * shared. Null if its kind has too few points there.
+ */
+export function choiceStarts(
+  template: Pick<Template, "records">,
+  starts: readonly Start[],
+  em: number,
+): Choice["starts"] | null {
+  const to = restart(
+    starts,
+    em,
+    template.records.map((r) => r.point),
+    () => 0,
+  );
+  if (!to) return null;
+  return template.records.flatMap(({ at }, i) => (to[i] ? [{ at, point: to[i] }] : []));
+}
+
+/** `level` cut down to the levels at which `em`'s HP fits, or null if none does. */
+export function fittingLevels(
+  level: readonly [number, number],
+  fits: (power: number) => boolean,
+): [number, number] | null {
+  let hi = level[1];
+  while (hi >= level[0] && !fits(hi)) hi--;
+  return hi < level[0] ? null : [level[0], hi];
+}
+
 /** Every slot's templates and rolls, from the quests as `edits` has them. */
 export function unknownTables(
   quests: readonly LoadedQuest[],
   edits: Edits,
   setOf: MultiplierSetOf,
   monsterName: MonsterNames,
+  /** Whether a monster's HP at a level fits (`MAX_HP`; monster, quest table, level). */
+  fits: (emId: number, table: number, power: number) => boolean = () => true,
 ): SlotTables[] {
   const all: Seen[] = quests.flatMap((quest) => {
     const tier = questTier(quest.parsed);
@@ -214,6 +259,8 @@ export function unknownTables(
     ];
   });
 
+  // Where each kind of monster starts, by map: the blob only changes the species.
+  const starts = collectStartPoints(quests);
   // Where each monster is met: any Village or Guild quest, any rank.
   const onMap = new Map<number, Set<number>>();
   for (const { parsed, spawns } of all) {
@@ -271,6 +318,10 @@ export function unknownTables(
         payload: q.payload,
         map: header.map,
         species: [...species][0]!,
+        records: q.spawns.large.map((s) => ({
+          at: s.offset,
+          point: readStart(q.payload, s.offset),
+        })),
         speciesAt: [...q.spawns.large, ...q.spawns.loads].map((s) => s.offset),
         levelAt: q.spawns.large.map((s) => s.offset + POWER_OFFSET),
         starts: templateStarts(header.spawn, startsOn.get(header.map) ?? new Set()),
@@ -292,9 +343,16 @@ export function unknownTables(
       slot,
       templates: templates.flatMap((template) => {
         const set = setOf(template.species);
-        const species = [...(onMap.get(habitat(template.map)) ?? [])].filter(
-          (em) => setOf(em) === set,
-        );
+        // A monster starts at a point the disc starts its kind at: another's
+        // may have no ground it can stand on (water, sand, a nest).
+        const mapStarts = starts.get(template.map) ?? [];
+        const moves = new Map<number, Choice["starts"]>();
+        for (const em of onMap.get(habitat(template.map)) ?? []) {
+          if (setOf(em) !== set) continue;
+          const to = choiceStarts(template, mapStarts, em);
+          if (to) moves.set(em, to);
+        }
+        const species = [...moves.keys()];
         // A stat table no quest near the star uses keeps the template's levels.
         const range = levels.get(`${set}:${template.quest.parsed.header.statTable}`) ?? [
           ...template.levelAt.map((at) => template.payload[at]!),
@@ -309,8 +367,12 @@ export function unknownTables(
               align(template.payload.length) -
               Math.max(textBytes(monsterName(em)), textBytes(TEXT.unknown));
             if (room < 0) return [];
+            // The set's levels, up to the highest at which this monster's HP fits.
+            const table = template.quest.parsed.header.statTable;
+            const levels = fittingLevels(level, (power) => fits(em, table, power));
+            if (!levels) return [];
             const rewards = rewardsFor(slot.band, em).filter((r) => rewardBytes(r) <= room);
-            return [{ species: em, level, rewards }];
+            return [{ species: em, level: levels, rewards, starts: moves.get(em)! }];
           });
         return choices.length > 0 ? [{ template, choices }] : [];
       }),
@@ -408,6 +470,26 @@ export function encodeTables(
     return rewardLists.get(key)!;
   };
 
+  // Start lists (`struct choice` start_off), shared wherever they're the same.
+  const startLists = new Map<string, number>();
+  const startList = (starts: Choice["starts"]) => {
+    const key = JSON.stringify(starts);
+    if (!startLists.has(key)) {
+      w.align(4);
+      startLists.set(key, w.pos);
+      for (const { at, point } of starts) {
+        w.u16(at);
+        w.u16(point.stage);
+        w.u32(point.rotation);
+        w.f32(point.x);
+        w.f32(point.y);
+        w.f32(point.z);
+      }
+      w.u16(0);
+    }
+    return startLists.get(key)!;
+  };
+
   tables.forEach((t, k) => {
     const text = w.pos;
     w.bytes(
@@ -420,6 +502,7 @@ export function encodeTables(
     );
     const templates = t.templates.map(({ template, choices }) => {
       const rewardsAt = choices.map((c) => (c.rewards.length > 0 ? rewardList(c.rewards) : 0));
+      const startsAt = choices.map((c) => (c.starts.length > 0 ? startList(c.starts) : 0));
       w.align(4);
       const choiceAt = w.pos;
       choices.forEach((c, n) => {
@@ -428,6 +511,7 @@ export function encodeTables(
         w.u8(c.level[1]);
         w.u8(c.rewards.length);
         w.u32(rewardsAt[n]!);
+        w.u32(startsAt[n]!);
       });
       const patchAt = w.pos;
       for (const v of [...template.speciesAt, 0, ...template.levelAt, 0]) w.u16(v);
@@ -513,6 +597,8 @@ export function prepareUnknownQuests(
   game: GameData,
   edits: Edits,
   setOf: MultiplierSetOf,
+  /** Whether a monster's HP at a level fits, with base HP as `edits` has it (`unknownTables`). */
+  fits: (emId: number, table: number, power: number) => boolean = () => true,
 ): UnknownQuests | string {
   const vanillaEboot = game.eboot;
   const segment = vanillaEboot ? codeSegment(vanillaEboot) : null;
@@ -546,7 +632,7 @@ export function prepareUnknownQuests(
 
   // The disc's own names, which the quest's goal shows.
   const names = monsterNames(game);
-  const tables = unknownTables(game.quests, edits, setOf, names);
+  const tables = unknownTables(game.quests, edits, setOf, names, fits);
   const empty = tables.find((t) => t.templates.length === 0);
   if (empty) return `no quest of the ${empty.slot.band} rank can be a template`;
   const data = encodeTables(tables, lists, names);

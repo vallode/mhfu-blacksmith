@@ -246,6 +246,29 @@ test("start points: only a monster's own kind's, and moved quests are left alone
   assert.deepEqual([...seen].sort(), [36, 38]);
 });
 
+test("no two of a quest's large monsters share a starting point", () => {
+  const setups: Setup[] = [
+    // Two Rathian points by day, one by night.
+    {
+      questId: 1001,
+      map: 2,
+      large: [
+        [1, 36],
+        [1, 38],
+      ],
+    },
+    { questId: 1002, map: 16, large: [[1, 187]] },
+  ];
+  for (const seed of ["a", "b", "c", "d", "e", "f"]) {
+    const list = quests(setups);
+    const { moved } = moveQuests(list, "time", new Rng(seed), fitsAll, enumMonsterNames);
+    assert.ok(!moved.has(byId(list, 1001)), "the night has one Rathian point for two");
+    randomizeStarts(list, moved, new Rng(seed), enumMonsterNames);
+    const stages = byId(list, 1001).doc.large[0]!.spawns.map((s) => s.stage);
+    assert.deepEqual([...stages].sort(), [36, 38]);
+  }
+});
+
 test("a quest only moves where each of its monsters' kinds starts", () => {
   const setups: Setup[] = [
     // Forest and Hills by day starts only a Kut-Ku, by night only a Rathian.

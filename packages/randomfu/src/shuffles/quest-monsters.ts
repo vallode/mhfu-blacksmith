@@ -46,6 +46,7 @@ import { RECORD_TARGET_ID, type BoardFile } from "../game/board.js";
 import { DELIVERY_TYPE, QUEST_TYPE } from "../game/quest-fields.js";
 import {
   readSpawns,
+  OBJECTIVE_COUNT_OFFSET,
   OBJECTIVE_ID_OFFSET,
   OBJECTIVE_KIND_MONSTER,
   OBJECTIVE_OFFSETS,
@@ -54,10 +55,14 @@ import {
   SIZE_PERCENT_OFFSET,
   SIZE_VARIATION_OFFSET,
   SIZE_VARIATIONS,
+  START_POSITION_OFFSET,
+  START_ROTATION_OFFSET,
+  START_STAGE_OFFSET,
   TARGET_ID_OFFSET,
   type QuestSpawns,
+  type Spawn,
 } from "../game/spawns.js";
-import { BAND_NAMES, inScope, questTier, type Band, type Tier } from "../game/tiers.js";
+import { BAND_NAMES, inScope, isPlayable, questTier, type Band, type Tier } from "../game/tiers.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
 import { questLabel, type MonsterNames } from "../names.js";
@@ -96,6 +101,103 @@ export function familyOf(emId: number): readonly number[] {
   return FAMILY.get(emId) ?? [emId];
 }
 
+/** A large monster starting point on a map, and the monster the disc starts there. */
+export interface Start {
+  monster: number;
+  stage: number;
+  rotation: number;
+  x: number;
+  y: number;
+  z: number;
+}
+
+export const pointKey = (s: Pick<Start, "stage" | "x" | "y" | "z">) =>
+  `${s.stage}:${s.x}:${s.y}:${s.z}`;
+
+/** The distinct points where the disc starts one of `monster`'s kind (`starts` being one map's). */
+export function familyPoints(starts: readonly Start[], monster: number): Start[] {
+  const family = familyOf(monster);
+  const seen = new Set<string>();
+  return starts.filter((s) => {
+    if (!family.includes(s.monster) || seen.has(pointKey(s))) return false;
+    seen.add(pointKey(s));
+    return true;
+  });
+}
+
+export type Point = Omit<Start, "monster">;
+
+/**
+ * Where `monster` starts in place of the large monsters starting at
+ * `points`: a point the disc starts its kind at stays (null), each other
+ * one moves to a point of its kind that no record takes, `occupied` (the
+ * quest's other records) included; `pick` chooses among the free ones.
+ * Null if its kind has too few free points on the map.
+ */
+export function restart(
+  starts: readonly Start[],
+  monster: number,
+  points: readonly Point[],
+  pick: (n: number) => number,
+  occupied: ReadonlySet<string> = new Set(),
+): (Point | null)[] | null {
+  const own = familyPoints(starts, monster);
+  const ownKeys = new Set(own.map(pointKey));
+  const used = new Set([...occupied, ...points.map(pointKey).filter((k) => ownKeys.has(k))]);
+  const moves = points.filter((p) => !ownKeys.has(pointKey(p))).length;
+  if (own.filter((s) => !used.has(pointKey(s))).length < moves) return null;
+  return points.map((p) => {
+    if (ownKeys.has(pointKey(p))) return null;
+    const free = own.filter((s) => !used.has(pointKey(s)));
+    const { monster: _, ...to } = free[pick(free.length)]!;
+    used.add(pointKey(to));
+    return to;
+  });
+}
+
+/** A large monster record's starting point. */
+export function readStart(payload: Buffer, record: number): Point {
+  return {
+    stage: payload.readUInt16LE(record + START_STAGE_OFFSET),
+    rotation: payload.readUInt32LE(record + START_ROTATION_OFFSET),
+    x: payload.readFloatLE(record + START_POSITION_OFFSET),
+    y: payload.readFloatLE(record + START_POSITION_OFFSET + 4),
+    z: payload.readFloatLE(record + START_POSITION_OFFSET + 8),
+  };
+}
+
+function writeStart(payload: Buffer, record: number, start: Point): void {
+  payload.writeUInt16LE(start.stage, record + START_STAGE_OFFSET);
+  payload.writeUInt32LE(start.rotation, record + START_ROTATION_OFFSET);
+  payload.writeFloatLE(start.x, record + START_POSITION_OFFSET);
+  payload.writeFloatLE(start.y, record + START_POSITION_OFFSET + 4);
+  payload.writeFloatLE(start.z, record + START_POSITION_OFFSET + 8);
+}
+
+/**
+ * Every large monster starting point the Village and Guild quests use, by
+ * map (day and night apart: their stages differ). Read from each quest's
+ * file, so quests a map move rebuilt count with their new points, which
+ * are all points the disc starts the same kind at.
+ */
+export function collectStartPoints(quests: readonly LoadedQuest[]): Map<number, Start[]> {
+  const out = new Map<number, Start[]>();
+  const seen = new Set<string>();
+  for (const quest of quests) {
+    if (!questTier(quest.parsed)) continue;
+    const { payload } = quest.file;
+    const map = quest.parsed.header.map;
+    for (const { offset, monsterId } of readSpawns(payload, quest.parsed.header).large) {
+      const start = readStart(payload, offset);
+      const key = `${map}:${monsterId}:${pointKey(start)}`;
+      if (seen.has(key)) continue;
+      seen.add(key);
+      getOrInsert(out, map, () => []).push({ monster: monsterId, ...start });
+    }
+  }
+  return out;
+}
+
 /** `questHeader.Map`: night versions share their day map's monsters. */
 const NIGHT_TO_DAY: Record<number, number> = { 16: 2, 17: 3, 18: 4, 19: 5, 20: 6, 21: 11, 31: 30 };
 
@@ -114,6 +216,44 @@ export function multiplierSets(ovl: OvlFile): MultiplierSetOf {
   const found = locateMonsterChunks(ovl);
   if (!found) throw new Error("game_task.ovl: the monster table wasn't found");
   return (emId) => ovl.reader.s8(found.offset + emId * MONSTER_CHUNK_SIZE + MULTIPLIER_SET_OFFSET);
+}
+
+/**
+ * A monster's HP in a quest is a signed 16-bit value (its `+0x2E4`), set to
+ * `trunc(base HP * hp multiplier)`: past this it wraps negative.
+ */
+export const MAX_HP = 0x7fff;
+
+/** A row's HP multiplier (multiplier set, quest table, level), or null where the disc has none. */
+export type HpMultiplierOf = (set: number, table: number, power: number) => number | null;
+
+/**
+ * The most base HP each monster can have: `MAX_HP` over the highest HP
+ * multiplier any quest a player can take (`isPlayable`: Training and
+ * Treasure ones too) gives a monster of its set, as `edits` has them (after species
+ * swaps and difficulty). By set rather than by monster, since the Unknown
+ * Monster quests give any monster of a set the levels others of it have.
+ */
+export function hpLimit(
+  quests: readonly LoadedQuest[],
+  edits: Edits,
+  setOf: MultiplierSetOf,
+  hpOf: HpMultiplierOf,
+): (emId: number) => number {
+  const highest = new Map<number, number>();
+  for (const quest of quests) {
+    if (!isPlayable(quest.parsed)) continue;
+    const { header } = quest.parsed;
+    for (const { monsterId, power } of readSpawns(edits.questNow(quest), header).large) {
+      const set = setOf(monsterId);
+      const hp = hpOf(set, header.statTable, power);
+      if (hp !== null && hp > (highest.get(set) ?? 0)) highest.set(set, hp);
+    }
+  }
+  return (emId) => {
+    const hp = highest.get(setOf(emId));
+    return hp === undefined ? 0xffff : Math.min(0xffff, Math.floor(MAX_HP / hp));
+  };
 }
 
 export interface QuestMonsters {
@@ -148,9 +288,13 @@ export function swapSpecies(
   edits: Edits,
   allQuests: readonly LoadedQuest[],
   setOf: MultiplierSetOf,
+  /** Where the disc starts each kind of large monster, by map (`collectStartPoints`). */
+  starts: ReadonlyMap<number, readonly Start[]>,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
   boards: readonly BoardFile[] = [],
+  /** Whether a monster's HP at a level fits (`MAX_HP`); a swap steps its level down until it does. */
+  fits: (emId: number, table: number, power: number) => boolean = () => true,
 ): {
   report: ShuffleReport;
   questsAfter: ParsedQuest[];
@@ -194,6 +338,10 @@ export function swapSpecies(
   const changed = new Map<number, Map<number, number>>();
   /** Each changed quest's new levels (old emID -> level), where the set changed. */
   const relevelled = new Map<number, Map<number, number>>();
+  const startRng = rng.fork("starts");
+  let restarted = 0;
+  let otherSet = 0;
+  let lowered = 0;
   let mixed = 0;
   let stuck = 0;
   let drawnSame = 0;
@@ -207,11 +355,25 @@ export function swapSpecies(
       continue;
     }
     const here = onMap.get(habitat(quest.parsed.header.map)) ?? new Set<number>();
+    // Only monsters whose kind the disc starts somewhere on this map (by day
+    // or by night: their stages differ), so each has a point to start at.
+    const mapStarts = starts.get(quest.parsed.header.map) ?? [];
+    /** The points the quest's other large monsters start at. */
+    const occupiedBy = (monster: number) =>
+      new Set(
+        spawns.large
+          .filter((s) => s.monsterId !== monster)
+          .map((s) => pointKey(readStart(quest.file.payload, s.offset))),
+      );
     const taken = new Set<number>();
     const mapping = new Map<number, number>();
     let choice = false;
     for (const old of species) {
-      const options =
+      const points = spawns.large
+        .filter((s) => s.monsterId === old)
+        .map((s) => readStart(quest.file.payload, s.offset));
+      const occupied = occupiedBy(old);
+      const options = (
         pool === "variants"
           ? (FAMILY.get(old) ?? [old]).filter((id) => id === old || here.has(id))
           : [...here].filter(
@@ -220,7 +382,8 @@ export function swapSpecies(
                 [...(bands.get(id) ?? [])].some((band) =>
                   inScope(pool, { band: tier.band, stars: 0 }, { band, stars: 0 }),
                 ),
-            );
+            )
+      ).filter((id) => id === old || restart(mapStarts, id, points, () => 0, occupied) !== null);
       // Never empty: every monster of the quest is on its map, so its family
       // has as many options as the quest has members of it.
       const free = options.filter((id) => !taken.has(id)).sort((a, b) => a - b);
@@ -249,9 +412,41 @@ export function swapSpecies(
       const next = mapping.get(monsterId);
       if (next !== undefined) payload.writeUInt16LE(next, offset);
     }
-    for (const { offset, monsterId } of spawns.large) {
-      const next = level.get(monsterId);
-      if (next !== undefined) payload[offset + POWER_OFFSET] = next;
+    if (level.size > 0) otherSet++;
+    const setLevel = new Map(level);
+    for (const { offset, monsterId, power } of spawns.large) {
+      const next = mapping.get(monsterId);
+      if (next === undefined) continue;
+      // The set's usual level, or the record's own; never another record's step-down.
+      const usual = setLevel.get(monsterId) ?? power;
+      let now = usual;
+      while (now > 0 && !fits(next, quest.parsed.header.statTable, now)) now--;
+      if (now !== usual) lowered++;
+      if (setLevel.has(monsterId) || now !== power) {
+        level.set(monsterId, now);
+        payload[offset + POWER_OFFSET] = now;
+      }
+    }
+    // A monster starts at a point the disc starts its kind at: another's
+    // may have no ground it can stand on (water, sand, a nest), and two
+    // monsters never share one.
+    const movedTo = new Set<string>();
+    const moved = new Map<number, string[]>();
+    for (const [old, next] of mapping) {
+      const records = spawns.large.filter((s) => s.monsterId === old);
+      const was = records.map((s) => readStart(payload, s.offset));
+      // Only `variants` swaps quests with more than one kind, and a family
+      // shares its points, so the options' check still holds after a move.
+      const occupied = new Set([...occupiedBy(old), ...movedTo]);
+      const to = restart(mapStarts, next, was, (n) => startRng.int(n), occupied)!;
+      records.forEach(({ offset }, i) => {
+        const point = to[i];
+        if (!point) return;
+        writeStart(payload, offset, point);
+        movedTo.add(pointKey(point));
+        getOrInsert(moved, old, () => []).push(`stage ${point.stage} (was ${was[i]!.stage})`);
+        restarted++;
+      });
     }
     // A delivery quest's TargetID is an item, not a monster.
     const delivery = payload[QUEST_TYPE] === DELIVERY_TYPE;
@@ -277,11 +472,13 @@ export function swapSpecies(
     for (const [old, next] of mapping) {
       const was = spawns.large.find((s) => s.monsterId === old)?.power;
       const now = level.get(old);
+      const start = moved.get(old);
       lines.push({
         where: questLabel(quest),
         text:
           `${monsterName(next)} (was ${monsterName(old)})` +
-          (now === undefined ? "" : `, level ${now} (was ${was})`),
+          (now === undefined ? "" : `, level ${now} (was ${was})`) +
+          (start ? `, starts in ${start.join(", ")}` : ""),
       });
     }
   }
@@ -299,11 +496,20 @@ export function swapSpecies(
     );
   }
   if (drawnSame > 0) notes.push(`${drawnSame} quests drew their own monsters again.`);
-  if (relevelled.size > 0) {
+  if (otherSet > 0) {
     notes.push(
-      `${relevelled.size} quests got a monster with another stat table set (Fatalis, Lao-Shan Lung and their kind have their own), which takes the level it usually has with the quest's table and rank.`,
+      `${otherSet} quests got a monster with another stat table set (Fatalis, Lao-Shan Lung and their kind have their own), which takes the level it usually has with the quest's table and rank.`,
     );
   }
+  notes.push(
+    "A monster only becomes one whose kind the disc starts on the quest's map, and starts at a point where it does: where the old monster's point isn't one, it moves to one of its kind's starting points that no other monster of the quest takes.",
+  );
+  if (lowered > 0) {
+    notes.push(
+      `${lowered} swapped monsters took a lower level, where their HP at it would pass ${MAX_HP} and wrap around.`,
+    );
+  }
+  if (restarted > 0) notes.push(`${restarted} swapped monsters moved to another starting point.`);
   const neverMoves = [...movable].filter(([, m]) => !m).map(([id]) => monsterName(id));
   if (neverMoves.length > 0) {
     notes.push(
@@ -337,6 +543,8 @@ export function randomizeDifficulty(
   setOf: MultiplierSetOf,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
+  /** Whether a monster at a level keeps its HP within `MAX_HP` (monster, quest table, level). */
+  fits: (emId: number, table: number, power: number) => boolean = () => true,
 ): ShuffleReport {
   // A level is a row of one table: the monster's set, the quest's table.
   const key = (q: QuestMonsters, emId: number) =>
@@ -364,7 +572,12 @@ export function randomizeDifficulty(
       }
       const [lo, hi] = range;
       const delta = rng.int(options.spread * 2 + 1) - options.spread;
-      const next = Math.min(hi, Math.max(lo, spawn.power + delta));
+      let next = Math.min(hi, Math.max(lo, spawn.power + delta));
+      // Down towards its own level until its HP fits.
+      const table = q.quest.parsed.header.statTable;
+      while (next !== spawn.power && !fits(spawn.monsterId, table, next)) {
+        next += next > spawn.power ? -1 : 1;
+      }
       if (next === spawn.power) continue;
       const payload = edits.quest(q.quest);
       payload[spawn.offset + POWER_OFFSET] = next;
@@ -386,6 +599,7 @@ export function randomizeDifficulty(
   const notes = [
     `Large monsters moved up to ${options.spread} difficulty levels (the row of their HP, attack and defense multipliers).`,
     `Levels stay within those quests use for the same monster table set and quest table: ${ranges}.`,
+    "A level that would take a monster's HP past 32767 (the most the game holds) isn't used: it stays nearer its own.",
   ];
   if (unbounded > 0) {
     notes.push(
@@ -398,6 +612,44 @@ export function randomizeDifficulty(
 /** Counts at or above this are left alone: 99 looks like "keeps coming". */
 const SPECIAL_COUNT = 99;
 
+/**
+ * How many of each small monster a quest must keep, by emID: a slay goal's
+ * count (the header's target, not on a delivery, and each objective naming
+ * one) and, where `keep` says so, every one the quest has (a delivery's
+ * carves). Never more than the quest has, so its own counts always do.
+ * Species with an endless spawn need none.
+ */
+export function smallMonsterFloors(
+  q: QuestMonsters,
+  keep: (emId: number) => boolean,
+): Map<number, number> {
+  const payload = q.quest.file.payload;
+  const own = new Map<number, number>();
+  const endless = new Set<number>();
+  for (const { monsterId, quantity } of q.spawns.small) {
+    if (quantity >= SPECIAL_COUNT) endless.add(monsterId);
+    else own.set(monsterId, (own.get(monsterId) ?? 0) + quantity);
+  }
+  const need = new Map<number, number>();
+  const want = (emId: number, count: number) => {
+    const have = own.get(emId);
+    if (have === undefined || endless.has(emId) || count <= 0) return;
+    need.set(emId, Math.min(have, Math.max(need.get(emId) ?? 0, count)));
+  };
+  if (payload[QUEST_TYPE] !== DELIVERY_TYPE) {
+    want(payload.readUInt16LE(TARGET_ID_OFFSET), payload.readUInt16LE(TARGET_ID_OFFSET + 2));
+  }
+  for (const objective of OBJECTIVE_OFFSETS) {
+    if (payload.readUInt32LE(objective) !== OBJECTIVE_KIND_MONSTER) continue;
+    want(
+      payload.readUInt16LE(objective + OBJECTIVE_ID_OFFSET),
+      payload[objective + OBJECTIVE_COUNT_OFFSET]!,
+    );
+  }
+  for (const [emId, have] of own) if (keep(emId)) want(emId, have);
+  return need;
+}
+
 export function randomizeSmallCounts(
   list: readonly QuestMonsters[],
   spread: number,
@@ -405,6 +657,8 @@ export function randomizeSmallCounts(
   edits: Edits,
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
+  /** Small monsters a quest keeps at least as many of as it has (`smallMonsterFloors`). */
+  keep: (quest: LoadedQuest, emId: number) => boolean = () => false,
 ): ShuffleReport {
   let cap = 1;
   for (const q of list) {
@@ -413,26 +667,39 @@ export function randomizeSmallCounts(
     }
   }
   const lines: ShuffleReport["lines"] = [];
+  let held = 0;
   for (const q of list) {
+    const next = new Map<Spawn, number>();
     for (const spawn of q.spawns.small) {
       if (spawn.quantity === 0 || spawn.quantity >= SPECIAL_COUNT) continue;
       const factor = 1 - spread + 2 * spread * rng.float();
-      const next = Math.min(cap, Math.max(1, Math.round(spawn.quantity * factor)));
-      if (next === spawn.quantity) continue;
-      edits.quest(q.quest)[spawn.offset + QUANTITY_OFFSET] = next;
+      next.set(spawn, Math.min(cap, Math.max(1, Math.round(spawn.quantity * factor))));
+    }
+    // A goal that asks for more than the new counts give keeps the quest's own.
+    let kept = false;
+    for (const [emId, need] of smallMonsterFloors(q, (em) => keep(q.quest, em))) {
+      const mine = q.spawns.small.filter((s) => s.monsterId === emId);
+      const total = mine.reduce((n, s) => n + (next.get(s) ?? s.quantity), 0);
+      if (total >= need) continue;
+      for (const s of mine) next.delete(s);
+      kept = true;
+    }
+    if (kept) held++;
+    for (const [spawn, count] of next) {
+      if (count === spawn.quantity) continue;
+      edits.quest(q.quest)[spawn.offset + QUANTITY_OFFSET] = count;
       lines.push({
         where: questLabel(q.quest),
-        text: `${monsterName(spawn.monsterId)} x${next} (was x${spawn.quantity})`,
+        text: `${monsterName(spawn.monsterId)} x${count} (was x${spawn.quantity})`,
       });
     }
   }
-  return {
-    title: "Small monster counts",
-    notes: [
-      `Counts moved by up to ${Math.round(spread * 100)}%, between 1 and ${cap} (the most any quest has). Counts of 0 and ${SPECIAL_COUNT} or more are unchanged.`,
-    ],
-    lines,
-  };
+  const notes = [
+    `Counts moved by up to ${Math.round(spread * 100)}%, between 1 and ${cap} (the most any quest has). Counts of 0 and ${SPECIAL_COUNT} or more are unchanged.`,
+    "A quest never has fewer of a small monster than its goal asks to slay, nor fewer of one a delivery is carved from, than it had.",
+  ];
+  if (held > 0) notes.push(`${held} quests kept some counts as they were for that.`);
+  return { title: "Small monster counts", notes, lines };
 }
 
 /** Size percentages are kept within this (the byte the disc uses holds up to 255). */

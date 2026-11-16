@@ -39,7 +39,14 @@ import { OBJECTIVE_KIND_MONSTER } from "../game/spawns.js";
 import { questTier, type Tier } from "../game/tiers.js";
 import { questLabel, type MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
-import { familyOf, habitat } from "./quest-monsters.js";
+import {
+  collectStartPoints,
+  familyOf,
+  familyPoints,
+  habitat,
+  pointKey,
+  type Start,
+} from "./quest-monsters.js";
 import { getOrInsert, groupBy, type ShuffleReport } from "./shuffle.js";
 
 /** A Village or Guild quest as a document. */
@@ -100,45 +107,10 @@ export function staysOnMap(doc: QuestDoc): string | null {
   return null;
 }
 
-/** A large monster starting point on a map, and the monster the disc starts there. */
-export interface Start {
-  monster: number;
-  stage: number;
-  rotation: number;
-  x: number;
-  y: number;
-  z: number;
-}
-
-const pointKey = (s: Pick<Start, "stage" | "x" | "y" | "z">) => `${s.stage}:${s.x}:${s.y}:${s.z}`;
-
-/** Every large monster starting point the disc's quests use, by map. */
-export function collectStarts(list: readonly DocQuest[]): Map<number, Start[]> {
-  const out = new Map<number, Start[]>();
-  const seen = new Set<string>();
-  for (const { vanilla } of list) {
-    const map = vanilla.header.map;
-    for (const s of vanilla.large.flatMap((g) => g.spawns)) {
-      const key = `${map}:${s.monster}:${pointKey(s)}`;
-      if (seen.has(key)) continue;
-      seen.add(key);
-      const { monster, stage, rotation, x, y, z } = s;
-      getOrInsert(out, map, () => []).push({ monster, stage, rotation, x, y, z });
-    }
-  }
-  return out;
-}
-
-/** Whether `starts` has a point where the disc starts one of `monster`'s kind. */
-const hasStart = (starts: readonly Start[], monster: number) => {
-  const family = familyOf(monster);
-  return starts.some((s) => family.includes(s.monster));
-};
-
 /**
- * A starting point for `monster`: one its family starts at, one this quest
- * hasn't used yet where there is one; null if its family starts nowhere
- * on the map (a point another monster starts at may be off its ground).
+ * A starting point for `monster`: one its family starts at (a point another
+ * monster starts at may be off its ground) that this quest hasn't used, so
+ * no two monsters share one; null if there's none left.
  */
 function pickStart(
   starts: readonly Start[],
@@ -149,13 +121,22 @@ function pickStart(
   const family = familyOf(monster);
   const own = starts.filter((s) => family.includes(s.monster));
   const free = own.filter((s) => !used.has(pointKey(s)));
-  const pool = free.length > 0 ? free : own;
-  return pool.length > 0 ? pool[rng.int(pool.length)]! : null;
+  return free.length > 0 ? free[rng.int(free.length)]! : null;
+}
+
+/** Whether each kind of the quest's large monsters starts at enough points on a map for all of its records. */
+function roomFor(doc: QuestDoc, starts: readonly Start[]): boolean {
+  const spawns = doc.large.flatMap((g) => g.spawns);
+  const kinds = groupBy(spawns, (s) => familyOf(s.monster).join(","));
+  return [...kinds.values()].every(
+    (records) => familyPoints(starts, records[0]!.monster).length >= records.length,
+  );
 }
 
 /**
  * Each large monster at a new starting point from `starts` (`pickStart`);
- * one with none keeps its own and counts in `missing`.
+ * one with none left keeps its own and counts in `missing`, and the caller
+ * keeps the quest as it was.
  */
 function placeLarge(
   doc: QuestDoc,
@@ -198,7 +179,7 @@ export function moveQuests(
   monsterName: MonsterNames,
 ): { report: ShuffleReport; moved: Set<DocQuest> } {
   const donors = groupBy(list, (e) => e.vanilla.header.map);
-  const starts = collectStarts(list);
+  const starts = collectStartPoints(list.map((e) => e.quest));
   /** Large monsters found on each habitat (day and night together). */
   const found = new Map<number, Set<number>>();
   for (const { vanilla } of list) {
@@ -222,14 +203,15 @@ export function moveQuests(
     }
     const from = entry.doc.header.map;
     const species = largeSpecies(entry.doc);
-    // Only maps where the disc starts each of the quest's monsters' kinds somewhere.
+    // Only maps where the disc starts each of the quest's monsters' kinds at
+    // enough points for one each.
     const options = maps.filter(
       (m) =>
         m !== from &&
         (pool === "time"
           ? habitat(m) === habitat(from)
           : species.every((id) => found.get(habitat(m))?.has(id))) &&
-        species.every((id) => hasStart(starts.get(m) ?? [], id)),
+        roomFor(entry.doc, starts.get(m) ?? []),
     );
     if (options.length === 0) {
       nowhere++;
@@ -242,8 +224,13 @@ export function moveQuests(
       ...rng.shuffle(candidates.filter((d) => d.tier.band === entry.tier.band)),
       ...rng.shuffle(candidates.filter((d) => d.tier.band !== entry.tier.band)),
     ];
-    // Every map offered has a starting point for each monster's kind.
+    // Every map offered has a starting point for each monster; kinds that
+    // share a point could still run short.
     const placed = placeLarge(entry.doc, starts.get(to) ?? [], rng);
+    if (placed.missing > 0) {
+      nowhere++;
+      continue;
+    }
     let done = false;
     for (const donor of order) {
       const { vanilla } = donor;
@@ -301,11 +288,12 @@ export function randomizeStarts(
   /** Names monsters in the report (`names.ts` `monsterNames`). */
   monsterName: MonsterNames,
 ): ShuffleReport {
-  const starts = collectStarts(list);
+  const starts = collectStartPoints(list.map((e) => e.quest));
   const lines: ShuffleReport["lines"] = [];
   for (const entry of list) {
     if (skip.has(entry)) continue;
     const placed = placeLarge(entry.doc, starts.get(entry.doc.header.map) ?? [], rng);
+    if (placed.missing > 0) continue;
     const real = placed.moved.filter((m) => pointKey(m.spawn) !== pointKey(m.to));
     if (real.length === 0) continue;
     entry.doc = { ...entry.doc, large: placed.large };
@@ -319,7 +307,7 @@ export function randomizeStarts(
   return {
     title: "Large monster starts",
     notes: [
-      "Each large monster starts at a point where the disc's quests start one of its own kind on the same map (a monster with none there keeps its own). Monsters still roam as usual afterwards.",
+      "Each large monster starts at a point where the disc's quests start one of its own kind on the same map (no two of a quest's monsters share one; a quest whose kinds have too few points keeps its own starts). Monsters still roam as usual afterwards.",
     ],
     lines,
   };
