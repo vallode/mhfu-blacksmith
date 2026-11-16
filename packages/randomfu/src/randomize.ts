@@ -317,12 +317,13 @@ export function randomize(
   const multipliers = locateMultiplierTables(game.gameTask.ovl);
   const hpOf: HpMultiplierOf = (set, table, power) =>
     multipliers ? (multiplierRow(multipliers, set, table, power)?.hp ?? null) : null;
-  const baseHp = baseHpOf(game.gameTask.ovl);
-  /** Whether a monster's HP at a level stays within the s16 it's kept in. */
-  const fitsHp = (emId: number, table: number, power: number) => {
-    const hp = hpOf(setOf(emId), table, power);
-    return hp === null || Math.trunc(baseHp(emId) * hp) <= MAX_HP;
-  };
+  /** Whether a monster's HP at a level stays within the s16 it's kept in, given its base HP. */
+  const hpFits =
+    (baseHp: (emId: number) => number) => (emId: number, table: number, power: number) => {
+      const hp = hpOf(setOf(emId), table, power);
+      return hp === null || Math.trunc(baseHp(emId) * hp) <= MAX_HP;
+    };
+  const fitsHp = hpFits(baseHpOf(game.gameTask.ovl));
   // A delivery quest's item, from the quests as they are before any shuffle.
   const deliveries = deliveryTargets(game.quests);
   /** Whether a monster's carves give an item at a rank, on the disc. */
@@ -949,7 +950,13 @@ export function randomize(
       ? null
       : typeof sites === "string"
         ? sites
-        : prepareUnknownQuests(game, edits, setOf);
+        : prepareUnknownQuests(
+            game,
+            edits,
+            setOf,
+            // Base HP as the stats shuffle left it.
+            hpFits(baseHpOf(game.gameTask.ovl, edits.dataFileNow(game.gameTask.index))),
+          );
     if (typeof prepared === "string") {
       reports.push(notApplied("Unknown Monster quests", prepared));
     }

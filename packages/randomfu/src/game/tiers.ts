@@ -84,6 +84,17 @@ export function questTier(quest: ParsedQuest): Tier | null {
   return { band, stars: Math.max(1, quest.header.questStars) };
 }
 
+/**
+ * Whether a player can take the quest: a Village or Guild quest with a
+ * tier (`questTier`), or a Training School or Treasure Hunting one. Not
+ * unused slots or the unused gathering copies.
+ */
+export function isPlayable(quest: ParsedQuest): boolean {
+  const hub = questHub(quest.header.questId);
+  if (hub === "training-school" || hub === "treasure-hunting") return !isPlaceholderQuest(quest);
+  return questTier(quest) !== null;
+}
+
 /** A monster reward list's rank slot -> band. Treasure, training and the rest aren't shuffled. */
 export function rewardRankBand(rank: RewardRank): Band | null {
   if (rank === "low" || rank === "high" || rank === "g") return rank;

@@ -651,16 +651,17 @@ map and name no stage.
   the gathering points, item tables, position sets and small monsters of a
   quest already there (the donor, of its own rank where there is one; one
   whose parts don't fit is passed over), and each large monster starts at
-  a point the disc's quests start its family at on that map. A map with no
-  such point for one of its monsters isn't offered (another monster's
-  start may be ground it can't stand on). Its `spawn` byte stays unless
+  a point the disc's quests start its family at on that map, none shared
+  by two of them. A map without one such point for each of its monsters
+  isn't offered (another monster's start may be ground it can't stand on). Its `spawn` byte stays unless
   no quest on the new map uses that value (the Fortress and Castle
   Schrade all use 2). Board records get the new map (`+0x1c`). Delivery
   quests, quests with an item objective, and quests whose goal names a
   small monster stay. The quest's text isn't changed, so it may still
   name the old map.
 - **Starts** (`questMaps.starts`): each large monster of a quest that
-  didn't move starts at another of its family's points on its own map.
+  didn't move starts at another of its family's points on its own map,
+  none shared by two of them; a quest without enough keeps its starts.
 - **Small monster species** (`questMonsters.smallSpecies`): one mapping per
   quest from old species to new, applied to every spawn and preload entry,
   so each area's group loads as many species as before and no two species
@@ -813,8 +814,8 @@ monster appears. Chunks for non-monsters are left alone, and so are
 hitzone tables they share.
 
 - **HP** is the u16 base HP (`+0x100`), held at or below 32767 over the
-  highest HP multiplier any quest (Training and Treasure ones too) gives a
-  monster of its set, as the quests end up (so the Unknown Monster quests, which give a
+  highest HP multiplier any quest a player can take (Training and
+  Treasure ones too, not unused slots) gives a monster of its set, as the quests end up (so the Unknown Monster quests, which give a
   monster its set's levels, fit too). In a quest the game keeps HP as a
   signed 16-bit value (`+0x2E4`), so more wraps negative: Lao-Shan Lung,
   Fatalis and Yama Tsukami have 26666 at ×1.0, and +25% took them to 33332. **Size** is the f32 base scale
@@ -1284,7 +1285,9 @@ accepted, it rolls:
   its kind's points (stage, rotation, position), which the blob writes
   with the species;
 - its **difficulty**, from the levels the rank's quests near that star give
-  monsters of that set, **size** (the rank's 10th to 90th percentile) and
+  monsters of that set, up to the highest at which the monster's HP (as
+  `monsterStats.hp` left it) stays within 32767 (Yama Tsukami at G★3
+  would otherwise reach 39999), **size** (the rank's 10th to 90th percentile) and
   **crowns** (any size spread up to the widest the rank uses);
 - its **rewards**: those of a quest of that rank that's only that monster,
   else a lower rank's, else a quest that has it alongside others; a

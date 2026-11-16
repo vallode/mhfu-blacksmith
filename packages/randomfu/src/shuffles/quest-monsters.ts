@@ -62,7 +62,7 @@ import {
   type QuestSpawns,
   type Spawn,
 } from "../game/spawns.js";
-import { BAND_NAMES, inScope, questTier, type Band, type Tier } from "../game/tiers.js";
+import { BAND_NAMES, inScope, isPlayable, questTier, type Band, type Tier } from "../game/tiers.js";
 import type { ParsedQuest } from "mhfu-extract/src/quests/parser.js";
 import type { Edits } from "../edits.js";
 import { questLabel, type MonsterNames } from "../names.js";
@@ -113,12 +113,6 @@ export interface Start {
 
 export const pointKey = (s: Pick<Start, "stage" | "x" | "y" | "z">) =>
   `${s.stage}:${s.x}:${s.y}:${s.z}`;
-
-/** Whether `starts` has a point where the disc starts one of `monster`'s kind. */
-export const hasStart = (starts: readonly Start[], monster: number) => {
-  const family = familyOf(monster);
-  return starts.some((s) => family.includes(s.monster));
-};
 
 /** The distinct points where the disc starts one of `monster`'s kind (`starts` being one map's). */
 export function familyPoints(starts: readonly Start[], monster: number): Start[] {
@@ -235,8 +229,8 @@ export type HpMultiplierOf = (set: number, table: number, power: number) => numb
 
 /**
  * The most base HP each monster can have: `MAX_HP` over the highest HP
- * multiplier any quest with large monsters (Training and Treasure ones
- * too) gives a monster of its set, as `edits` has them (after species
+ * multiplier any quest a player can take (`isPlayable`: Training and
+ * Treasure ones too) gives a monster of its set, as `edits` has them (after species
  * swaps and difficulty). By set rather than by monster, since the Unknown
  * Monster quests give any monster of a set the levels others of it have.
  */
@@ -248,6 +242,7 @@ export function hpLimit(
 ): (emId: number) => number {
   const highest = new Map<number, number>();
   for (const quest of quests) {
+    if (!isPlayable(quest.parsed)) continue;
     const { header } = quest.parsed;
     for (const { monsterId, power } of readSpawns(edits.questNow(quest), header).large) {
       const set = setOf(monsterId);
@@ -374,6 +369,10 @@ export function swapSpecies(
     const mapping = new Map<number, number>();
     let choice = false;
     for (const old of species) {
+      const points = spawns.large
+        .filter((s) => s.monsterId === old)
+        .map((s) => readStart(quest.file.payload, s.offset));
+      const occupied = occupiedBy(old);
       const options = (
         pool === "variants"
           ? (FAMILY.get(old) ?? [old]).filter((id) => id === old || here.has(id))
@@ -384,12 +383,7 @@ export function swapSpecies(
                   inScope(pool, { band: tier.band, stars: 0 }, { band, stars: 0 }),
                 ),
             )
-      ).filter((id) => {
-        if (id === old) return true;
-        const records = spawns.large.filter((s) => s.monsterId === old);
-        const points = records.map((s) => readStart(quest.file.payload, s.offset));
-        return restart(mapStarts, id, points, () => 0, occupiedBy(old)) !== null;
-      });
+      ).filter((id) => id === old || restart(mapStarts, id, points, () => 0, occupied) !== null);
       // Never empty: every monster of the quest is on its map, so its family
       // has as many options as the quest has members of it.
       const free = options.filter((id) => !taken.has(id)).sort((a, b) => a - b);
@@ -419,14 +413,16 @@ export function swapSpecies(
       if (next !== undefined) payload.writeUInt16LE(next, offset);
     }
     if (level.size > 0) otherSet++;
+    const setLevel = new Map(level);
     for (const { offset, monsterId, power } of spawns.large) {
       const next = mapping.get(monsterId);
       if (next === undefined) continue;
-      let now = level.get(monsterId) ?? power;
-      const usual = now;
+      // The set's usual level, or the record's own; never another record's step-down.
+      const usual = setLevel.get(monsterId) ?? power;
+      let now = usual;
       while (now > 0 && !fits(next, quest.parsed.header.statTable, now)) now--;
       if (now !== usual) lowered++;
-      if (level.has(monsterId) || now !== power) {
+      if (setLevel.has(monsterId) || now !== power) {
         level.set(monsterId, now);
         payload[offset + POWER_OFFSET] = now;
       }
@@ -439,12 +435,10 @@ export function swapSpecies(
     for (const [old, next] of mapping) {
       const records = spawns.large.filter((s) => s.monsterId === old);
       const was = records.map((s) => readStart(payload, s.offset));
-      const pick = (n: number) => startRng.int(n);
-      // The options were checked against the quest as it was: should another
-      // monster's move have taken the last free point, share one of those.
-      const to =
-        restart(mapStarts, next, was, pick, new Set([...occupiedBy(old), ...movedTo])) ??
-        restart(mapStarts, next, was, pick, occupiedBy(old))!;
+      // Only `variants` swaps quests with more than one kind, and a family
+      // shares its points, so the options' check still holds after a move.
+      const occupied = new Set([...occupiedBy(old), ...movedTo]);
+      const to = restart(mapStarts, next, was, (n) => startRng.int(n), occupied)!;
       records.forEach(({ offset }, i) => {
         const point = to[i];
         if (!point) return;

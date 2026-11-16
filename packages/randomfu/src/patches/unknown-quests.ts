@@ -50,6 +50,7 @@ import {
   restart,
   type MultiplierSetOf,
   type Point,
+  type Start,
 } from "../shuffles/quest-monsters.js";
 import { findImports } from "./code-loader.js";
 import { findQuestLoadSites, type QuestLoadSites } from "./game-hooks.js";
@@ -186,12 +187,45 @@ interface Seen {
   spawns: QuestSpawns;
 }
 
+/**
+ * Where `em` starts in place of the template's monster, as `struct choice`
+ * start lists have it: each record not at a point the disc starts its
+ * kind at (`starts` being the template's map's) moves to one, none
+ * shared. Null if its kind has too few points there.
+ */
+export function choiceStarts(
+  template: Pick<Template, "records">,
+  starts: readonly Start[],
+  em: number,
+): Choice["starts"] | null {
+  const to = restart(
+    starts,
+    em,
+    template.records.map((r) => r.point),
+    () => 0,
+  );
+  if (!to) return null;
+  return template.records.flatMap(({ at }, i) => (to[i] ? [{ at, point: to[i] }] : []));
+}
+
+/** `level` cut down to the levels at which `em`'s HP fits, or null if none does. */
+export function fittingLevels(
+  level: readonly [number, number],
+  fits: (power: number) => boolean,
+): [number, number] | null {
+  let hi = level[1];
+  while (hi >= level[0] && !fits(hi)) hi--;
+  return hi < level[0] ? null : [level[0], hi];
+}
+
 /** Every slot's templates and rolls, from the quests as `edits` has them. */
 export function unknownTables(
   quests: readonly LoadedQuest[],
   edits: Edits,
   setOf: MultiplierSetOf,
   monsterName: MonsterNames,
+  /** Whether a monster's HP at a level fits (`MAX_HP`; monster, quest table, level). */
+  fits: (emId: number, table: number, power: number) => boolean = () => true,
 ): SlotTables[] {
   const all: Seen[] = quests.flatMap((quest) => {
     const tier = questTier(quest.parsed);
@@ -287,11 +321,10 @@ export function unknownTables(
         // A monster starts at a point the disc starts its kind at: another's
         // may have no ground it can stand on (water, sand, a nest).
         const mapStarts = starts.get(template.map) ?? [];
-        const points = template.records.map((r) => r.point);
-        const moves = new Map<number, (Point | null)[]>();
+        const moves = new Map<number, Choice["starts"]>();
         for (const em of onMap.get(habitat(template.map)) ?? []) {
           if (setOf(em) !== set) continue;
-          const to = restart(mapStarts, em, points, () => 0);
+          const to = choiceStarts(template, mapStarts, em);
           if (to) moves.set(em, to);
         }
         const species = [...moves.keys()];
@@ -309,12 +342,12 @@ export function unknownTables(
               align(template.payload.length) -
               Math.max(textBytes(monsterName(em)), textBytes(TEXT.unknown));
             if (room < 0) return [];
+            // The set's levels, up to the highest at which this monster's HP fits.
+            const table = template.quest.parsed.header.statTable;
+            const levels = fittingLevels(level, (power) => fits(em, table, power));
+            if (!levels) return [];
             const rewards = rewardsFor(slot.band, em).filter((r) => rewardBytes(r) <= room);
-            const starts = template.records.flatMap(({ at }, i) => {
-              const point = moves.get(em)![i];
-              return point ? [{ at, point }] : [];
-            });
-            return [{ species: em, level, rewards, starts }];
+            return [{ species: em, level: levels, rewards, starts: moves.get(em)! }];
           });
         return choices.length > 0 ? [{ template, choices }] : [];
       }),
@@ -534,6 +567,8 @@ export function prepareUnknownQuests(
   game: GameData,
   edits: Edits,
   setOf: MultiplierSetOf,
+  /** Whether a monster's HP at a level fits, with base HP as `edits` has it (`unknownTables`). */
+  fits: (emId: number, table: number, power: number) => boolean = () => true,
 ): UnknownQuests | string {
   const vanillaEboot = game.eboot;
   const segment = vanillaEboot ? codeSegment(vanillaEboot) : null;
@@ -567,7 +602,7 @@ export function prepareUnknownQuests(
 
   // The disc's own names, which the quest's goal shows.
   const names = monsterNames(game);
-  const tables = unknownTables(game.quests, edits, setOf, names);
+  const tables = unknownTables(game.quests, edits, setOf, names, fits);
   const empty = tables.find((t) => t.templates.length === 0);
   if (empty) return `no quest of the ${empty.slot.band} rank can be a template`;
   const data = encodeTables(tables, lists, names);

@@ -12,6 +12,7 @@ import type { GameData, LoadedOverlay, LoadedQuest } from "../src/game/load.js";
 import { readSpawns } from "../src/game/spawns.js";
 import { Rng } from "../src/rng.js";
 import type { MonsterRewardSlot, RewardList } from "../src/shuffles/monster-rewards.js";
+import { choiceStarts, fittingLevels } from "../src/patches/unknown-quests.js";
 import {
   carvesOf,
   isDeliveryCarve,
@@ -393,4 +394,94 @@ test("a delivery's carve is pinned only on its monster's carves at the quest's r
   assert.ok(isDeliveryCarve(slot("low"), deliveries));
   assert.ok(!isDeliveryCarve(slot("high"), deliveries), "a High Rank list stays free");
   assert.ok(!isDeliveryCarve(slot("low", 305), deliveries), "another item on the list");
+});
+
+test("an Unknown Monster choice moves only the records its kind doesn't start at, each to its own point", () => {
+  const at = (monster: number, stage: number) => ({
+    monster,
+    stage,
+    rotation: 0,
+    x: stage,
+    y: 0,
+    z: 0,
+  });
+  const point = (stage: number) => ({ stage, rotation: 0, x: stage, y: 0, z: 0 });
+  // The map: Rathalos (2) starts at 10 and 11, Plesioth (21) at 20 and 21.
+  const starts = [at(2, 10), at(2, 11), at(21, 20), at(21, 21)];
+  const template = {
+    records: [
+      { at: 0x200, point: point(20) }, // already a Plesioth point
+      { at: 0x23c, point: point(10) },
+    ],
+  };
+  assert.deepEqual(choiceStarts(template, starts, 21), [{ at: 0x23c, point: point(21) }]);
+  assert.deepEqual(choiceStarts(template, starts, 2), [{ at: 0x200, point: point(11) }]);
+  const three = { records: [...template.records, { at: 0x278, point: point(30) }] };
+  assert.equal(choiceStarts(three, starts, 21), null, "two points for three records");
+  assert.equal(choiceStarts(template, starts, 54), null, "its kind starts nowhere here");
+});
+
+test("an Unknown Monster choice's levels stop below where its HP would wrap", () => {
+  assert.deepEqual(
+    fittingLevels([2, 8], (p) => p <= 5),
+    [2, 5],
+  );
+  assert.deepEqual(
+    fittingLevels([2, 8], () => true),
+    [2, 8],
+  );
+  assert.equal(
+    fittingLevels([2, 8], (p) => p < 2),
+    null,
+  );
+});
+
+test("a swap's HP step-down never carries to another record of the same monster", () => {
+  const rathian = quest(
+    {
+      questId: 1001,
+      map: 2,
+      large: [
+        { em: 1, stage: 10, x: 1, power: 8 },
+        { em: 1, stage: 11, x: 2, power: 3 },
+      ],
+    },
+    0,
+  );
+  const plesioth = quest(
+    {
+      questId: 1002,
+      map: 2,
+      large: [
+        { em: 21, stage: 20, x: 3 },
+        { em: 21, stage: 21, x: 4 },
+      ],
+    },
+    1,
+  );
+  const all = [rathian, plesioth];
+  let swapped = 0;
+  for (let seed = 0; seed < 20; seed++) {
+    const e = edits();
+    swapSpecies(
+      all.map(monsters),
+      "any",
+      new Rng(`levels${seed}`),
+      e,
+      all,
+      () => 1,
+      collectStartPoints(all),
+      name,
+      [],
+      (em, _table, power) => em !== 21 || power <= 6,
+    );
+    const large = readSpawns(e.questNow(rathian), rathian.parsed.header).large;
+    if (large[0]!.monsterId !== 21) continue;
+    swapped++;
+    assert.deepEqual(
+      large.map((s) => s.power),
+      [6, 3],
+    );
+  }
+  assert.ok(swapped > 0);
 });

@@ -85,13 +85,14 @@ export function collectMonsterChunks(
   }));
 }
 
-/** A monster's base HP, by emID, as the disc has it. */
-export function baseHpOf(ovl: OvlFile): (emId: number) => number {
+/** A monster's base HP, by emID, as the disc has it, or as `buf` (the overlay edited) does. */
+export function baseHpOf(ovl: OvlFile, buf?: Buffer): (emId: number) => number {
   const found = locateMonsterChunks(ovl);
   if (!found) throw new Error("game_task.ovl: the monster table wasn't found");
+  const read = buf ?? ovl.reader.buf;
   return (emId) =>
     emId > 0 && emId < MONSTER_CHUNK_COUNT
-      ? ovl.reader.u16(found.offset + emId * MONSTER_CHUNK_SIZE + BASE_HP_OFFSET)
+      ? read.readUInt16LE(found.offset + emId * MONSTER_CHUNK_SIZE + BASE_HP_OFFSET)
       : 0;
 }
 
