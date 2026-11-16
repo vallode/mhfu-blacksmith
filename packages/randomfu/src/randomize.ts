@@ -7,7 +7,7 @@ import type { GameData, LoadedQuest } from "./game/load.js";
 import { itemTiers, monsterStars, type Tier, type TierMode } from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import type { Settings } from "./settings.js";
-import { shuffleArmor } from "./shuffles/armor.js";
+import { pieceName, readArmorPieces, shuffleArmor } from "./shuffles/armor.js";
 import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { ARMOR_STATS, randomizeArmorStats } from "./shuffles/armor-stats.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
@@ -82,6 +82,15 @@ import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
+import {
+  ARMOR_BOX_TYPE,
+  MELEE_BOX_TYPE,
+  RANGED_BOX_TYPE,
+  encodePactPool,
+  findPactExterns,
+  pactObjects,
+  pactPool,
+} from "./patches/pact.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
@@ -816,16 +825,55 @@ export function randomize(
         `Code loader demo: Guild Cards are capped at ${loader.kept} and every save load adds 1000z. This disc is not for play.`,
       );
     }
-  } else if (settings["hud.monsterHp"] !== "off") {
+  } else if (settings["hud.monsterHp"] !== "off" || settings["pact.enabled"]) {
     const mode = settings["hud.monsterHp"];
-    const objects = [...decodeObjects(RUNTIME_OBJECTS), ...monsterHpObjects()];
+    const pact = settings["pact.enabled"];
+    const objects = [
+      ...decodeObjects(RUNTIME_OBJECTS),
+      ...(mode !== "off" ? monsterHpObjects() : []),
+      ...(pact ? pactObjects() : []),
+    ];
     const { ovl } = game.gameTask;
+    const eboot = game.eboot;
+    const data: Record<string, Buffer> = {};
+    if (pact) {
+      // The pact's rewards, as the shuffles left items and equipment.
+      const out = edits.eboot();
+      const equipment = [
+        ...collectWeaponStats(out, game.resolver).map((w) => ({
+          type: w.family === "Blademaster" ? MELEE_BOX_TYPE : RANGED_BOX_TYPE,
+          id: w.index,
+          name: w.name,
+          rarity: w.rarity,
+        })),
+        ...readArmorPieces(out, game.resolver).map((p) => ({
+          type: ARMOR_BOX_TYPE[p.slot],
+          id: p.index,
+          name: pieceName(p),
+          rarity: p.rarity,
+          bits: p.bits,
+        })),
+      ];
+      const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
+      data.rf_pact_pool = encodePactPool(pactPool(tiers, equipment, rng.fork("pact-pool")));
+    }
     reports.push(
-      addCodeLoader(game.eboot, game.gameSub, edits, {
+      addCodeLoader(eboot, game.gameSub, edits, {
         objects,
+        data,
         gameTask: game.gameTask,
-        externs: (sites) =>
-          findMonsterHpExterns(game.eboot!, sites.segment, sites.gauges, ovl.reader.buf, ovl, mode),
+        externs: (sites) => {
+          const found: Record<string, number> = {};
+          for (const externs of [
+            mode !== "off" &&
+              findMonsterHpExterns(eboot, sites.segment, sites.gauges, ovl.reader.buf, ovl, mode),
+            pact && findPactExterns(eboot, sites, ovl.reader.buf, ovl),
+          ]) {
+            if (typeof externs === "string") return externs;
+            if (externs) Object.assign(found, externs);
+          }
+          return found;
+        },
       }),
     );
   }

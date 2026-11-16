@@ -15,18 +15,39 @@
  *   (EU 0x0883FA68) only when the gauges show: not in cutscenes or when the
  *   HUD is hidden. The function returns at once when bit 1 of the HUD's
  *   `+0x1194` is set.
+ * - The main loop reads the pad once a frame, before it runs the current
+ *   task, with an EBOOT function on the pad object (EU 0x08868F50, from EU
+ *   0x0888FD5C): the raw PSP buttons go to the object's first halfword, the
+ *   stick to `+2` and `+4`, and what the game works out from the stick to
+ *   the words after. It gets them from the system's controller read (its
+ *   one call, padRead `+0x14`, into a `SceCtrlData` on its stack: buttons a
+ *   u32 at `+4`, the stick bytes at `+8`, `+9`). When the game wants no input
+ *   (shops, dialogues, menus) it sets the object's `+0x17`, and the function
+ *   clears the first 16 bytes instead, so the hunter stands still.
+ * - A completed quest's rewards are rolled into the save's reward box by an
+ *   EBOOT function (EU 0x0886F894; see `poogie-luck.ts`), called once, from
+ *   the EBOOT's quest results step (EU 0x08875284) that `game_task` runs
+ *   before the reward screen. It ends by sorting the box.
  *
  * Hooks, by index (`rf_hookN`):
  *
  * 0. Quest frame: both `game_task` calls to the HUD update.
  * 1. HUD: the call to the gauge function. Blob code drawing here with the
  *    HUD's routines draws in the gauges' layer.
+ * 2. Pad: the pad read's call to the controller read, once a frame in every
+ *    task. Blob code gets the raw `SceCtrlData`, so it sees the buttons even
+ *    while it keeps them from the game with the pad object's `+0x17`.
+ * 3. Rewards: the call to the reward roll, once a completed quest, just
+ *    after the box is filled and before the reward screen shows it.
  *
  * A stub saves the call's arguments' first register and its result, so the
- * hook gets the HUD object in `$a0` and the caller its `$v0`. Everything is
+ * hook gets the HUD object (the `SceCtrlData` for hook 2, the results step's
+ * object for hook 3) in `$a0` and the
+ * caller its `$v0`. Everything is
  * found by code signatures, which match the EU and JP (FUC) discs.
  */
 import { BLOB_MAGIC, HEADER } from "../blob/link.js";
+import { QUEST_REWARD_SIGNATURE } from "./poogie-luck.js";
 import {
   ADDIU,
   Assembler,
@@ -49,7 +70,7 @@ import {
   type Segment,
 } from "./mips.js";
 
-export const HOOK = { questFrame: 0, hud: 1 } as const;
+export const HOOK = { questFrame: 0, hud: 1, pad: 2, rewards: 3 } as const;
 
 /** The HUD update (EU 0x0883F270), masked (see `maskWord`). */
 export const HUD_UPDATE_SIGNATURE = [
@@ -66,6 +87,14 @@ export const GAUGES_SIGNATURE = [
   0x8c420000, 0x8c440000, 0x8c990000, 0x8f390000, 0x0320f809, 0x8e510000, 0x9043003c, 0x24020000,
 ];
 
+/** The pad read (EU 0x08868F50), masked: it reads the pad and checks the object's `+0x17`. */
+/** padRead's call to the controller read (`jal`; `li $a1, 1`), from its start. */
+const CTRL_READ_CALL = 0x14;
+export const PAD_READ_SIGNATURE = [
+  0x27bdffd0, 0xafbf0000, 0xafb00000, 0x00808021, 0x27a40020, 0x0c000000, 0x24050000, 0x58400010,
+  0x92030017, 0x8fa40000, 0x3c030000, 0x00831824,
+];
+
 const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
 const isJalTo = (w: number, pc: number, target: number) =>
   w >>> 26 === 0x03 && jumpTarget(w, pc) === target;
@@ -78,6 +107,29 @@ export interface HookSites {
   questFrame: number[];
   /** ELF offset of the EBOOT's `jal gauges`. */
   hud: number;
+  padRead: number;
+  /** The controller read padRead calls, and that call's vaddr (padRead `+0x14`). */
+  ctrlRead: number;
+  ctrl: number;
+  /** The main loop's `jal padRead`, a vaddr: `lui; jal; lw $a0` (the pad object's global). */
+  pad: number;
+  /** The quest reward roll, and the vaddr of its one call. */
+  rewardRoll: number;
+  rewards: number;
+}
+
+/** The start of the function holding `vaddr`: the nearest `addiu $sp, $sp, -n` before it. */
+function functionStart(
+  eboot: Buffer,
+  segment: Segment,
+  vaddr: number,
+  limit = 0x800,
+): number | null {
+  for (let at = vaddr; at >= vaddr - limit && at >= segment.vaddr; at -= 4) {
+    const w = word(eboot, segment.offset + (at - segment.vaddr));
+    if (w >>> 16 === 0x27bd && w & 0x8000) return at;
+  }
+  return null;
 }
 
 /** The hooks' call sites, or why they can't be found. */
@@ -88,20 +140,34 @@ export function findHookSites(
 ): HookSites | string {
   const segment = codeSegment(vanillaEboot);
   if (!segment) return "the EBOOT isn't an ELF";
-  const [hudUpdate, gauges] = findUnique(vanillaEboot, segment, [
+  const [hudUpdate, gauges, padRead, rewardWalk] = findUnique(vanillaEboot, segment, [
     HUD_UPDATE_SIGNATURE,
     GAUGES_SIGNATURE,
+    PAD_READ_SIGNATURE,
+    QUEST_REWARD_SIGNATURE,
   ]);
   if (hudUpdate == null || gauges == null) return "this EBOOT's HUD code doesn't match";
+  if (padRead == null) return "this EBOOT's pad code doesn't match";
+  const rewardRoll = rewardWalk == null ? null : functionStart(vanillaEboot, segment, rewardWalk);
+  if (rewardRoll == null) return "this EBOOT's quest reward code doesn't match";
   const offsetOf = (vaddr: number) => segment.offset + (vaddr - segment.vaddr);
   if (word(vanillaEboot, offsetOf(gauges) + 0x14) !== 0x8c831194) {
     return "this EBOOT's HUD code doesn't match";
   }
 
   const hud: number[] = [];
+  const pad: number[] = [];
+  const rewards: number[] = [];
   for (let at = segment.offset; at + 4 <= segment.offset + segment.size; at += 4) {
-    if (isJalTo(word(vanillaEboot, at), segment.vaddr + (at - segment.offset), gauges)) {
-      hud.push(at);
+    const vaddr = segment.vaddr + (at - segment.offset);
+    if (isJalTo(word(vanillaEboot, at), vaddr, gauges)) hud.push(at);
+    if (isJalTo(word(vanillaEboot, at), vaddr, rewardRoll)) rewards.push(vaddr);
+    if (
+      isJalTo(word(vanillaEboot, at), vaddr, padRead) &&
+      word(vanillaEboot, at - 4) >>> 26 === 0x0f &&
+      word(vanillaEboot, at + 4) >>> 21 === ((0x23 << 5) | 2) // lw $a0, lo($v0)
+    ) {
+      pad.push(vaddr);
     }
   }
   const questFrame: number[] = [];
@@ -109,7 +175,25 @@ export function findHookSites(
     if (isJalTo(word(gameTask, at), gameTaskBase + at, hudUpdate)) questFrame.push(at);
   }
   if (hud.length !== 1 || questFrame.length !== 2) return "this game's HUD calls don't match";
-  return { segment, hudUpdate, gauges, questFrame, hud: hud[0]! };
+  if (pad.length !== 1) return "this EBOOT's main loop doesn't match";
+  if (rewards.length !== 1) return "this EBOOT's quest reward code doesn't match";
+  const ctrl = padRead + CTRL_READ_CALL;
+  const ctrlCall = word(vanillaEboot, offsetOf(ctrl));
+  if (ctrlCall >>> 26 !== 0x03) return "this EBOOT's pad code doesn't match";
+  const ctrlRead = jumpTarget(ctrlCall, ctrl);
+  return {
+    segment,
+    hudUpdate,
+    gauges,
+    questFrame,
+    hud: hud[0]!,
+    padRead,
+    ctrlRead,
+    ctrl,
+    pad: pad[0]!,
+    rewardRoll,
+    rewards: rewards[0]!,
+  };
 }
 
 /**
@@ -170,6 +254,8 @@ export function assembleHooks(
 export const hookCode = (sites: HookSites) => [
   { hook: HOOK.questFrame, target: sites.hudUpdate },
   { hook: HOOK.hud, target: sites.gauges },
+  { hook: HOOK.pad, target: sites.ctrlRead },
+  { hook: HOOK.rewards, target: sites.rewardRoll },
 ];
 
 /** Points the game's calls at the stubs (`stubs` in `hookCode` order). */
@@ -181,4 +267,7 @@ export function writeHookCalls(
 ): void {
   for (const at of sites.questFrame) gameTask.writeUInt32LE(jalTo(stubs[0]!), at);
   eboot.writeUInt32LE(jalTo(stubs[1]!), sites.hud);
+  const offsetOf = (vaddr: number) => sites.segment.offset + (vaddr - sites.segment.vaddr);
+  eboot.writeUInt32LE(jalTo(stubs[2]!), offsetOf(sites.ctrl));
+  eboot.writeUInt32LE(jalTo(stubs[3]!), offsetOf(sites.rewards));
 }

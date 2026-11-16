@@ -147,13 +147,16 @@ export function decodeObjects(
 /**
  * Links `objects` to run at `base` (where the header goes). The objects must
  * define `rf_init`; `rf_hook0`… are optional entry points for game hooks.
- * `maxBytes` bounds the image (the room the loader reads into).
+ * `maxBytes` bounds the image (the room the loader reads into). `data` adds
+ * bytes made at randomize time after everything else, each as a global
+ * symbol of its name (word-aligned), for an object's `extern const u8 name[]`.
  */
 export function linkBlob(
   objects: readonly { name: string; data: Buffer }[],
   base: number,
   externs: Readonly<Record<string, number>> = {},
   maxBytes = Infinity,
+  data: Readonly<Record<string, Buffer>> = {},
 ): LinkedBlob {
   const files = objects.map((o) => parse(o.name, o.data));
 
@@ -194,6 +197,14 @@ export function linkBlob(
       cursor += sym.size;
     }
   }
+  const added = Object.entries(data).map(([name, bytes]) => {
+    if (definedNames.has(name)) throw new Error(`${name} is defined twice`);
+    cursor = Math.ceil(cursor / 4) * 4;
+    commons.set(name, cursor);
+    const at = cursor;
+    cursor += bytes.length;
+    return { at, bytes };
+  });
   const end = Math.ceil(cursor / 4) * 4;
   const image = Buffer.alloc(end - base);
   if (image.length > maxBytes) {
@@ -209,6 +220,8 @@ export function linkBlob(
       section.offset + section.size,
     );
   }
+
+  for (const { at, bytes } of added) bytes.copy(image, at - base);
 
   const globals = new Map<string, number>(commons);
   const defined = new Set<string>();

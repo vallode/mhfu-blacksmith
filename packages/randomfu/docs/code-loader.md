@@ -73,7 +73,7 @@ reader. A loose file reads with plain synchronous calls the EBOOT already
 imports: it opens `disc0:/PSP_GAME/USRDIR/DATA.BIN` itself.
 
 The loader takes 107 cave words, path, status and both entries included,
-which leaves 169 for other features. The game hooks (below) take 39 more. `load(reason)`:
+which leaves 169 for other features. The game hooks (below) take 51 more. `load(reason)`:
 
 1. `sceIoOpen("disc0:/PSP_GAME/USRDIR/RANDOMFU.BIN", O_RDONLY)`, then
    `sceIoRead` it over the freed slots (at most the room) and `sceIoClose`.
@@ -121,18 +121,34 @@ address matches and the header's entry isn't 0; the call's `$v0` is passed
 back. A stub's 32-byte frame leaves `sp+0..15` free for the O32 code it
 reaches. Twelve words per stub and 15 for `dispatch`.
 
-| Hook | `rf_hookN`  | The call                                                     | EU site(s)             | JP site(s)             |
-| ---- | ----------- | ------------------------------------------------------------ | ---------------------- | ---------------------- |
-| 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused | 0x09A627B0, 0x09A627D4 | 0x09A5DB20, 0x09A5DB44 |
-| 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9 | 0x0883FA68             | 0x0883FA84             |
+| Hook | `rf_hookN`  | The call                                                       | EU site(s)             | JP site(s)             |
+| ---- | ----------- | -------------------------------------------------------------- | ---------------------- | ---------------------- |
+| 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused   | 0x09A627B0, 0x09A627D4 | 0x09A5DB20, 0x09A5DB44 |
+| 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9   | 0x0883FA68             | 0x0883FA84             |
+| 2    | pad         | the controller read in `padRead` (EU 0x08868F50), once a frame | 0x08868F64             | 0x08868F5C             |
+| 3    | rewards     | the quest reward roll (EU 0x0886F894), once a completed quest  | 0x08875284             | found by signature     |
 
-Both pass the HUD object (EU 0x09A04BA0, right after the save struct). The
+Hooks 0 and 1 pass the HUD object (EU 0x09A04BA0, right after the save
+struct). Hook 2 passes the system's `SceCtrlData` that `padRead` (called
+once a frame by the main loop, EU 0x0888FD5C) reads into: buttons a u32 at
+`+4`, the stick bytes at `+8`, `+9`. It runs before `padRead` checks the
+game's input lock (the pad object's `+0x17`, which shops and dialogues
+set): with it set, `padRead` clears the pad object and the hunter stands
+still. A feature that sets the lock keeps reading the buttons here. The
 gauge call only happens when the gauges show: the layer skips it in
 cutscenes and when the HUD is off (HUD `+0x5DB`, save `+0x6AF1A`), and the
 function itself returns at once when bit 1 of HUD `+0x1194` is set. So
 anything drawn on hook 1 hides with the hunter's gauges. Every address is
 found by signature: the two functions in the EBOOT, then the `jal`s to
-them (exactly one in the EBOOT, two in `game_task`).
+them (exactly one in the EBOOT, two in `game_task`); hook 2's is
+`padRead` `+0x14`. Hook 3's function is the one holding the reward walk
+`poogie-luck.ts` finds (its start: the nearest `addiu $sp, $sp, -n` before
+it), called from one place, the quest results step (EU 0x08874C58) that
+`game_task` runs before the reward screen; it passes that step's object.
+The roll has filled the save's reward box (`+0x390`, 16 slots) and sorted
+it by then. The main loop's `jal padRead` (the one between `lui` and
+`lw $a0`, its delay slot loading the pad object's global, and followed by
+the printer's reset) gives the pad and printer globals.
 
 In the blob, `blob/runtime.c` defines `rf_init` and `rf_hook0`…, and
 features register callbacks with `rf_on(RF_HOOK_*, fn)` from their init
@@ -181,6 +197,103 @@ puts arguments 5–8 in `$t0`–`$t3` as EABI does. The gauges only read game
 memory; the tests in `test/monster-hp.test.ts` run the blob in the
 interpreter against a fake HUD and check it leaves the monsters, manager
 and HUD as they were.
+
+## Monster boosts
+
+`blob/monsters.c` scales large monsters for any feature that asks
+(`blob/monsters.h`): each registers a booster with `rf_add_booster`, which
+says how many percent of health, attack and defense to add to a monster;
+boosters compose (+30% and +50% make +95%). On hook 0 it walks the
+monster manager: health and max health are rescaled whenever the total
+changes, by (100 + new) / (100 + old), so a boost that comes after the
+monster spawned still applies; attack (`+0x380`) and defense (`+0x384`),
+float multipliers the game writes again at spawn and at rage start and
+end, are rescaled from the game's value whenever it writes them. Boosters
+are asked every frame, before the scaling, and `rf_monster_is_new(slot)`
+tells them when a monster is first seen: a new pointer or species, alive
+after dead, a max health other than the one last written, or a new quest.
+A quest has ended when `game_task` is gone (the village loads `lobby_task`
+at its address, seen on EU), which the pad hook notices since it runs on
+every frame; the clock going up counts too.
+
+## Hunter's Pact
+
+`blob/pact.c` on hooks 0 to 3, with `monsters.c`, and a reward pool made
+per seed (`pactPool` in `src/patches/pact.ts`), linked in as
+`rf_pact_pool` (`linkBlob`'s `data`).
+
+- **Quest start.** Hook 0 sees a new quest when hook 2 saw `game_task`
+  go since the last one, or when the clock (quest `+0x10`) goes up. It
+  waits 20 quest frames, then until the loaded quest file's pointer (quest
+  `+0x4C`) is in user memory, before it reads anything. It draws three
+  penalties from different groups that fit the quest, each with a reward
+  its weight picks from the quest's rank (header `+0x44`: 2 High, 5 G,
+  else Low), and holds the clock while the window is open. Every game
+  pointer it follows (the file, the hunter, the printer, the pad object)
+  is checked first.
+- **What fits.** From the quest file: a large monster if its large
+  monster tables (header `+0x14`; 16 bytes each until a u16 0, `+12` the
+  list of 60-byte records until emID 0xFFFF) name one; a delivery if the
+  quest type (`+0x4C`) is 2 and its item (`+0x70`, amount `+0x72`) isn't
+  in the supply box; otherwise a type-2 quest is a Paw Pass gathering
+  quest, which time over wins, so half the time isn't offered. Delivering
+  more raises `+0x72` and the count of an item objective (`+0x28`, `+0x30`:
+  u32 kind 2, u16 item, u8 count) for that item.
+- **Zenny and HRP** are a share of the quest's (quest `+0x14`, header
+  `+0x3C`) by weight, but at least a floor per rank and weight, worked
+  out when the window draws and again at the seal, from the same values.
+  No HRP is offered when the quest gives none.
+- **Pool.** A header of spans (u16 first entry, u16 count) per rank and
+  kind (items of grade 1, 2, 3, then equipment), then 8-byte entries (u16
+  ID, u8 type: 0xFF an item, else the equipment box's; u8 amount; u16 name
+  offset), then the names, ASCII.
+- **Window.** Hook 1 draws it in the frame of the HUD's "Armor Sphere
+  received." card: `window(hud, rect, text, 0xFF)` (EU 0x0882FC50, JP
+  0x0882FE94) draws a framed box from a rect (u16 x, y, w, h; glyph size
+  14×14 at `+8`, `+9`; colour `+0xA`; frame style `+0xB`, 0 for the card;
+  text position `+0xC`; line height `+0x10`) and sets the printer's glyph
+  size, colour and line height. The card's own code (EU 0x0885A23C) found
+  it: traced from a savestate with the card up, through the `sprintf` of
+  "`~C02%s~C00 received.`" left on the stack. The lines go through the
+  print `window` calls at `+0xFC`, `print(printer, x, y, "%s", line)` (EU
+  0x088920A8, JP 0x08891B68), which reads `~Cnn` colours and `~Bnn` button
+  icons in the line; the other print (EU 0x08891474) shows them as text.
+  The printer is the global the main loop resets right after `padRead`.
+- **Layers.** The HUD queues its shapes into display lists by layer, 9 to
+  14, which are drawn in order: the layer is the HUD object's `+0x534`
+  byte when a shape is drawn, and the printer's text goes to 9 plus its
+  `+0x12F` (0 to 5). The gauges draw in 9, the map and item bar later, so
+  the pact sets both to the last (14 and 5) while it draws and puts them
+  back after. Under the window, `fill(hud, x, y, w, h, r, g, b, alpha)`
+  (EU 0x0882D8DC, JP 0x0882DB20; the ninth argument on the stack, as the
+  game's fades pass it; `rf_call9`) darkens the screen, and again for the
+  cursor's highlight. Its sibling just before (EU 0x0882D6F0, the gauges'
+  fill) is opaque: its colour is 5551 with the alpha bit set.
+- **Input.** Hook 2 reads the buttons (and the stick, as up and down)
+  from the controller data. While the window is open, and after until
+  every button is up, the pact sets the game's input lock (pad object
+  `+0x17`), as shops and dialogues do, unless the game holds it already.
+  If the window wasn't drawn for two frames (a cutscene, the HUD hidden),
+  it lets go and asks again when the HUD shows.
+- **Seal.** With nothing taken, nothing is written. Otherwise the
+  penalties are applied once: the clock, monster health and attack (via
+  `monsters.c`), a faint's penalty (quest `+0x18`; one cart sets it to
+  the whole reward), the loaded quest file's supplies (`+0x08`, emptied by
+  moving the end marker to the first entry), and the loader's last-file
+  index (quest `+0x714`) set to 0xFFFF so the edited file is read again
+  next time. Frail and Weary clamp the hunter's health and stamina each
+  frame after. Zenny and HRP rewards are added to the quest's (`+0x14`,
+  header `+0x3C`; the faint penalty `+0x18` keeps its share), which the
+  game pays only on completion; luck goes in the hunter's skill ids for
+  the reward roll.
+- **Payout.** Hook 3, once a completed quest: items go in the reward box's
+  first free slots (save `+0x390`), equipment in the equipment box's first
+  free slot (save `+0x548`, 400 slots of 12 bytes: `01`, type, u16 ID, the
+  rest 0). A quest left unfinished never reaches the hook, and the next
+  quest forgets the pact.
+
+`test/pact.test.ts` runs it in the interpreter against a fake quest, HUD,
+hunter, pad, printer and save.
 
 ## Toolchain
 

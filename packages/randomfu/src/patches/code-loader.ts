@@ -309,6 +309,8 @@ export interface CodeLoaderOptions {
   gameTask?: LoadedOverlay;
   /** The blob's externs that are found per disc; a string says why they weren't. */
   externs?: (sites: HookSites) => Record<string, number> | string;
+  /** Data made at randomize time, linked in as global symbols (`linkBlob`'s `data`). */
+  data?: Readonly<Record<string, Buffer>>;
 }
 
 export interface CodeLoaderReport extends ShuffleReport {
@@ -380,10 +382,13 @@ export function addCodeLoader(
   if (!free) return skipped("other features took every freed Guild Card slot");
   const room = free.end - free.start;
   const blobAddress = space.saveStruct + free.start;
-  const blob = linkBlob(options.objects, blobAddress, {
-    ...(imports as Imports),
-    ...hooks?.externs,
-  });
+  const blob = linkBlob(
+    options.objects,
+    blobAddress,
+    { ...(imports as Imports), ...hooks?.externs },
+    Infinity,
+    options.data,
+  );
   if (blob.image.length > room) {
     return skipped(`the blob is ${blob.image.length} bytes, and ${room} are free`);
   }

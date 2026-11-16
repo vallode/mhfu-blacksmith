@@ -102,15 +102,12 @@ function findAll(buf: Buffer, from: number, signature: readonly number[], masked
   return found;
 }
 
-/** The blob's externs for monster HP, or why they can't be found. */
-export function findMonsterHpExterns(
+/** The HUD's gauge routines the gauge function calls: frame, cap and fill. */
+export function findGaugeRoutines(
   vanillaEboot: Buffer,
   segment: Segment,
   gauges: number,
-  gameTask: Buffer,
-  ovl: OvlFile,
-  mode: Exclude<MonsterHpMode, "off">,
-): Record<string, number> | string {
+): Record<keyof typeof GAUGE_CALLS, number> | string {
   const at = segment.offset + (gauges - segment.vaddr);
   if (GAUGE_WORDS.some(([offset, w]) => word(vanillaEboot, at + offset) !== w)) {
     return "this EBOOT's gauge code doesn't match";
@@ -124,6 +121,44 @@ export function findMonsterHpExterns(
   if (Object.values(calls).some((target) => target === null)) {
     return "this EBOOT's gauge code doesn't match";
   }
+  return calls as Record<keyof typeof GAUGE_CALLS, number>;
+}
+
+/**
+ * The blob's externs for `game_task`'s monsters (`blob/monster-hp.c`,
+ * `blob/monsters.c`): the overlay, its monster manager's global and its
+ * species table.
+ */
+export function findMonsterExterns(
+  gameTask: Buffer,
+  ovl: OvlFile,
+): Record<string, number> | string {
+  const managers = new Set(
+    findAll(gameTask, OVL_HEADER_SIZE, MANAGER_SIGNATURE, true)
+      .filter((o) => word(gameTask, o + 20) === MANAGER_SLOTS_WORD)
+      .map((o) => hiLo(word(gameTask, o + 8), word(gameTask, o + 12))),
+  );
+  if (managers.size !== 1) return "game_task's monster list code doesn't match";
+  const chunks = locateMonsterChunks(ovl);
+  if (!chunks) return "game_task's monster table wasn't found";
+  return {
+    rf_game_task: ovl.loadBase,
+    rf_monsters: [...managers][0]!,
+    rf_em_chunks: ovl.loadBase + chunks.offset,
+  };
+}
+
+/** The blob's externs for monster HP, or why they can't be found. */
+export function findMonsterHpExterns(
+  vanillaEboot: Buffer,
+  segment: Segment,
+  gauges: number,
+  gameTask: Buffer,
+  ovl: OvlFile,
+  mode: Exclude<MonsterHpMode, "off">,
+): Record<string, number> | string {
+  const calls = findGaugeRoutines(vanillaEboot, segment, gauges);
+  if (typeof calls === "string") return calls;
 
   const [mapShows, iconPanel] = findUnique(vanillaEboot, segment, [
     MAP_SHOWS_SIGNATURE,
@@ -137,29 +172,21 @@ export function findMonsterHpExterns(
   const tableIn = (fn: number, [lui, addiu]: readonly number[]) =>
     hiLo(at32(fn + lui!), at32(fn + addiu!));
   const sprites = tableIn(sprite, SPRITE_TABLE_WORDS.sprite);
-  if (tableIn(calls.cap!, SPRITE_TABLE_WORDS.cap) !== sprites) {
+  if (tableIn(calls.cap, SPRITE_TABLE_WORDS.cap) !== sprites) {
     return "this EBOOT's HUD sprite code doesn't match";
   }
 
-  const managers = new Set(
-    findAll(gameTask, OVL_HEADER_SIZE, MANAGER_SIGNATURE, true)
-      .filter((o) => word(gameTask, o + 20) === MANAGER_SLOTS_WORD)
-      .map((o) => hiLo(word(gameTask, o + 8), word(gameTask, o + 12))),
-  );
-  if (managers.size !== 1) return "game_task's monster list code doesn't match";
+  const monsters = findMonsterExterns(gameTask, ovl);
+  if (typeof monsters === "string") return monsters;
   if (findAll(gameTask, OVL_HEADER_SIZE, PAINT_CODE, false).length !== 1) {
     return "game_task's paintball code doesn't match";
   }
-  const chunks = locateMonsterChunks(ovl);
-  if (!chunks) return "game_task's monster table wasn't found";
 
   return {
-    rf_game_task: ovl.loadBase,
-    rf_monsters: [...managers][0]!,
-    rf_em_chunks: ovl.loadBase + chunks.offset,
-    rf_hud_frame: calls.frame!,
-    rf_hud_cap: calls.cap!,
-    rf_hud_fill: calls.fill!,
+    ...monsters,
+    rf_hud_frame: calls.frame,
+    rf_hud_cap: calls.cap,
+    rf_hud_fill: calls.fill,
     rf_map_shows: mapShows,
     rf_hud_sprite: sprite,
     rf_hud_sprites: sprites,
