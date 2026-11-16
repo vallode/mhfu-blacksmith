@@ -5,6 +5,7 @@ import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
 import { decodeObjects, linkBlob } from "../src/blob/link.js";
 import { addBoardRecord } from "../src/game/board-add.js";
 import { readBoardRecords } from "../src/game/board.js";
+import { spawnValuesByMap } from "../src/game/quest-fields.js";
 import type { LoadedQuest } from "../src/game/load.js";
 import { enumMonsterNames as monsterName } from "../src/names.js";
 import { HOOK, assembleHooks } from "../src/patches/game-hooks.js";
@@ -13,6 +14,7 @@ import {
   encodeTables,
   listIndex,
   rewardBytes,
+  templateStarts,
   textBytes,
   unknownQuestsObjects,
   type SlotTables,
@@ -44,6 +46,7 @@ function questFile(em: number): Buffer {
   q.writeUInt32LE(1, 0x28); // objective A: a monster
   q.writeUInt16LE(em, 0x2c);
   q.writeUInt32LE(100, 0x38); // size
+  q.writeUInt8(2, 0x45); // the hunter's start
   q.writeUInt8(2, 0x4a); // crowns
   q.writeUInt32LE((1 << 2) | (1 << 25), 76); // hunting, urgent
   q.writeUInt32LE(500, 80);
@@ -66,7 +69,7 @@ const table = (kind: number, items: [number, number, number][]): RewardTable => 
   items: items.map(([chance, itemId, amount]) => ({ chance, itemId, amount })),
 });
 
-function tables(): SlotTables[] {
+function tables(starts = [0, 1]): SlotTables[] {
   const payload = questFile(OLD_EM);
   return [
     {
@@ -80,6 +83,7 @@ function tables(): SlotTables[] {
             species: OLD_EM,
             speciesAt: [0x200, 0x240],
             levelAt: [0x205],
+            starts,
           },
           choices: SPECIES.map((species) => ({
             species,
@@ -106,7 +110,7 @@ function tables(): SlotTables[] {
 }
 
 /** The blob, the hooks and a fake quest loader in a CPU. */
-function game() {
+function game(slots = tables()) {
   const blob = linkBlob(
     [...decodeObjects(RUNTIME_OBJECTS), ...unknownQuestsObjects()],
     BLOB,
@@ -116,7 +120,7 @@ function game() {
       sceKernelGetSystemTimeLow: TIMER,
     },
     Infinity,
-    { rf_uq_data: encodeTables(tables(), [BOARD_LIST], monsterName) },
+    { rf_uq_data: encodeTables(slots, [BOARD_LIST], monsterName) },
   );
   const cpu = new Cpu();
   cpu.write(BLOB, blob.image);
@@ -243,6 +247,38 @@ test("accepting loads a template and rewrites it as the rolled quest", () => {
   // The room the tables are checked against is what the blob writes.
   const set = tables()[0]!.templates[0]!.choices.find((c) => c.species === em)!.rewards[0]!;
   assert.equal(langs + 7 * 4, 0x400 + rewardBytes(set) + textBytes("???"));
+});
+
+test("the hunter starts where the map's quests start them, rolled each time", () => {
+  const { cpu, load, setTime } = game();
+  const seen = new Set<number>();
+  for (let t = 1; t < 40; t++) {
+    setTime(t * 7919);
+    load("accept", SLOT.id, LOBBY_BUF);
+    seen.add(cpu.u8(LOBBY_BUF + 0x45));
+  }
+  assert.deepEqual([...seen].sort(), [0, 1]);
+
+  // A template with no start values keeps its own.
+  const kept = game(tables([]));
+  kept.load("accept", SLOT.id, LOBBY_BUF);
+  assert.equal(kept.cpu.u8(LOBBY_BUF + 0x45), 2);
+});
+
+test("a template rolls base camp or random where its own map's quests use them, never 2", () => {
+  // Day (2) and night (3) versions of a map are apart.
+  const onMap = spawnValuesByMap([
+    { map: 2, spawn: 1 },
+    { map: 2, spawn: 0 },
+    { map: 2, spawn: 2 },
+    { map: 3, spawn: 1 },
+  ]);
+  assert.deepEqual([...onMap.get(2)!].sort(), [0, 1, 2]);
+  assert.deepEqual([...onMap.get(3)!], [1]);
+  assert.deepEqual(templateStarts(1, onMap.get(2)!), [0, 1]);
+  assert.deepEqual(templateStarts(1, onMap.get(3)!), [1]);
+  assert.deepEqual(templateStarts(0, new Set()), [0], "its own value always");
+  assert.deepEqual(templateStarts(2, onMap.get(2)!), [], "2 is kept, not rolled");
 });
 
 test("departing loads the same roll again, and names the monster", () => {

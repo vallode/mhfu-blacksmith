@@ -33,7 +33,7 @@ import { MAP_NAMES } from "mhfu-extract/src/tables/quest-maps.js";
 import type { Edits } from "../edits.js";
 import { RECORD_MAP, type BoardFile } from "../game/board.js";
 import type { LoadedQuest } from "../game/load.js";
-import { DELIVERY_TYPE } from "../game/quest-fields.js";
+import { DELIVERY_TYPE, spawnValuesByMap } from "../game/quest-fields.js";
 import { questDoc } from "../game/rebuild.js";
 import { OBJECTIVE_KIND_MONSTER } from "../game/spawns.js";
 import { questTier, type Tier } from "../game/tiers.js";
@@ -206,11 +206,7 @@ export function moveQuests(
     for (const id of largeSpecies(vanilla)) getOrInsert(found, h, () => new Set()).add(id);
   }
   /** The `spawn` header bytes each map's quests use (2 at the Fortress and Castle Schrade). */
-  const spawnValues = new Map<number, Set<number>>();
-  for (const { vanilla } of list) {
-    const m = vanilla.header.map;
-    getOrInsert(spawnValues, m, () => new Set()).add(vanilla.header.spawn);
-  }
+  const spawnValues = spawnValuesByMap(list.map((e) => e.vanilla.header));
   const maps = [...donors.keys()].sort((a, b) => a - b);
 
   const lines: ShuffleReport["lines"] = [];
