@@ -1,6 +1,6 @@
 {
   "$comment": "Italian game text: names keyed by their English name, quest board text keyed by quest ID. Missing entries fall back to English. Generated from the EU disc by `pnpm --filter mhfu-extract locales` (see packages/mhfu-extract/README.md, \"Localized text\"); don't hand-translate official names.",
-  "source": "EU disc ULES01213, extracted 2026-11-12",
+  "source": "EU disc ULES01213, extracted 2026-11-16",
   "weapon": {
     "Abominable Bow I": "Arco abominevole I",
     "Abominable Bow II": "Abominevole arco II",
@@ -8350,6 +8350,199 @@
       "fail": "Aucune prime",
       "details": "Une quête de collecte de\njour dans les montagnes\nenneigées. Collectez tous\nles composants que vous\ntrouverez sur place, puis\nlivrez le Ticket Passechat\npour achever le tout.",
       "client": "Chef village Pokke"
+    }
+  },
+  "award": {
+    "0": {
+      "name": "Guanti del capo del villaggio",
+      "description": "Prova del completamento delle missioni principiante di Pokke. Un dono del capo."
+    },
+    "1": {
+      "name": "Cappello del capo del villaggio",
+      "description": "Prova del completam. delle miss. intermedie di Pokke. Dimostra valore nel freddo."
+    },
+    "2": {
+      "name": "Sciarpa del capo del villaggio",
+      "description": "Prova del completam. delle miss. difficili di Pokke. Abb. calda se indossata."
+    },
+    "3": {
+      "name": "Cappa del capo del villaggio",
+      "description": "Prova del completam. di tutte le miss. di Pokke. Simb. d'un cacc. di 1ª cl."
+    },
+    "4": {
+      "name": "Collana criniera",
+      "description": "Prova dell'uccisione di un Kirin. Conserva la bellezza della criniera millenaria."
+    },
+    "5": {
+      "name": "Onice sanguigna",
+      "description": "Prova dell'uccisione di un Akantor. Il suo splendore cattura il cuore e l'anima."
+    },
+    "6": {
+      "name": "Corona del re",
+      "description": "Prova dei continui successi nel cacciare mostri giganti."
+    },
+    "7": {
+      "name": "Corona in miniatura",
+      "description": "Prova dei continui successi nel cacciare mostri piccoli."
+    },
+    "8": {
+      "name": "Medaglia di bronzo",
+      "description": "Prova del successo in tutte le missioni sala di racc. ★ e ★★. Non più un novizio."
+    },
+    "9": {
+      "name": "Medaglia d’argento",
+      "description": "Prova del succ. in tutte le miss. sala di racc. da 3★ a 5★. Dimostra coraggio."
+    },
+    "10": {
+      "name": "Medaglia d’oro",
+      "description": "Prova del succ. in tutte le miss. sala di racc. da 6★ a 8★. Una grande impresa."
+    },
+    "11": {
+      "name": "Distintivo cintura nera",
+      "description": "Prova del superam. di tutti gli add. di battaglia della Scuola di add. Ti protegge."
+    },
+    "12": {
+      "name": "Distintivo da esperto",
+      "description": "Prova del superam. di tutti gli add. speciali presso la scuola di addestramento."
+    },
+    "13": {
+      "name": "Orecchini leggenda",
+      "description": "Prova del superam. di tutti gli add. di gruppo alla sc. di add. Simbolo di potere."
+    },
+    "14": {
+      "name": "Rapporto sulle specie rare",
+      "description": "Documento dei mostri color. super potenti. Conferma di tutte le specie rare."
+    },
+    "15": {
+      "name": "Rapporto su ricerche ecologiche",
+      "description": "Rapporto sui record dei mostri catturati. Segno dei successi nella cattura."
+    },
+    "16": {
+      "name": "Pietra azzurra",
+      "description": "Un pezzo purissimo di min. di Machalite. I minatori adorano la sua bellezza."
+    },
+    "17": {
+      "name": "Grande Farfalla-corno",
+      "description": "Insetto raro che si trova in quest'area. Prova dello sv. d'un area di racc. ins."
+    },
+    "18": {
+      "name": "Carpa della notte primaverile",
+      "description": "Splendido pesce rosato primaverile. Prova dello sviluppo del Pontile."
+    },
+    "19": {
+      "description": "Raro fiore rosso che si trova nelle nevi. Prova dello sviluppo dei Campi."
+    },
+    "20": {
+      "name": "Lettera di gratitudine",
+      "description": "Lettera di uno chef Felyne con scritto: \"Grazie, sei un ottimo padrone, miao!\""
+    },
+    "21": {
+      "name": "Braccialetto del saggio",
+      "description": "Prova di perizia nel combinare. Sembra tu possa usare qualunque cosa."
+    },
+    "22": {
+      "name": "Martello di artigiano wyveriano",
+      "description": "Martello di un Wyveriano leggendario sporco, ma mitico."
+    },
+    "23": {
+      "name": "Cammino del cacciatore",
+      "description": "Registraz. su mappa batt. di caccia. Prova dei vostri numerosi viaggi."
+    },
+    "24": {
+      "name": "Vibrisse Nekoht",
+      "description": "Prova completam. Missioni Nekoht 7★. Indossalo e diventa un maestoso felino!"
+    },
+    "25": {
+      "name": "Campanella di Nekoht",
+      "description": "Prova completam. Missioni 8★ Nekoht. Una campana dal suono misterioso."
+    },
+    "26": {
+      "name": "Cappotto di Nekoht",
+      "description": "Prova completam. Missioni Nekoht 9★. Mantello chic. Stemma Gilda all'interno."
+    },
+    "27": {
+      "name": "Fiaschetto villaggio di Pokke",
+      "description": "Prova completam. di tutte le Miss. urgenti di Pokke. Scaldati bevendo un sorso."
+    },
+    "28": {
+      "name": "Scudo d'oricalco",
+      "description": "Prova del successo in tutte le Miss. sala raccolta 1★ Lv.G. Cacciatore esemplare."
+    },
+    "29": {
+      "name": "Scudo d'argento",
+      "description": "Prova del successo tutte le Miss. sala raccolta 2★ Lv.G. Tutti ne parlano."
+    },
+    "30": {
+      "name": "Scudo dorato",
+      "description": "Prova successo in tutte le Miss. sala raccolta 3★ Lv.G. Fama mondiale."
+    },
+    "31": {
+      "name": "Stemma supremo del cacciatore",
+      "description": "Tutte le Missioni Pokke e sala di raccolta completate. Un vero record!"
+    },
+    "32": {
+      "name": "Anello igneo",
+      "description": "Prova uccisione Fatalis. Sotto il suo fulgore di luce si cela la calamità..."
+    },
+    "33": {
+      "name": "Anello di fuoco",
+      "description": "Prova uccisione Fatalis rosso. Le sue potenti fiamme portano distruzione."
+    },
+    "34": {
+      "name": "Corona bianco neve",
+      "description": "Prova uccisione Fatalis bianco. La fluente criniera bianca ne rivela l'età."
+    },
+    "35": {
+      "name": "Scarpe da neve dorate",
+      "description": "Prova successo caccia al Rajang. Scarpe neve chic fatte dei suoi peli dorati."
+    },
+    "36": {
+      "name": "Goccia di Ukanlos",
+      "description": "Prova uccisione Ukanlos. Si dice che chi lo porta può andare in Paradiso."
+    },
+    "37": {
+      "name": "Bracciale di caccia epica",
+      "description": "Prova di dure lotte e di battaglie vinte durante missioni epiche."
+    },
+    "38": {
+      "name": "Medaglia del guerriero",
+      "description": "Prova super. tutti gli add. Lv G alla Scuola di addest. Davvero ben fatto!"
+    },
+    "39": {
+      "name": "Premio del guardiano",
+      "description": "Prova di devozione alla Città e alla Fortezza, salvandole da molte crisi."
+    },
+    "40": {
+      "name": "Bouquet di fiori dalla Gilda",
+      "description": "Guadagnato numero enorme di Punti Gilda. Un bouquet di Dosbiscus in boccio."
+    },
+    "41": {
+      "name": "Elmo dell'avventuriero",
+      "description": "Prova raccolta di tutti i tesori rari più fruttuosi. Regalo da parte di Treshi."
+    },
+    "42": {
+      "name": "Bandiera di Trenya",
+      "description": "Prova sovvenz. di Trenya in un incredibile numero di avventure costose."
+    },
+    "43": {
+      "name": "Erba-gatto definitiva",
+      "description": "Prova gratitudine comp. per aver sbloccato tutte le Ab. comp. per uno dei tuoi."
+    },
+    "44": {
+      "name": "Lettera al mio capo temerario",
+      "description": "Lettera compagno Felyne con scritto: \"Miao, lieto di essere il tuo partner!\""
+    },
+    "45": {
+      "name": "Tessera socio",
+      "description": "Prova creazione di molti esemplari di armi speciali. Tess. VIP bottega equipagg."
+    },
+    "46": {
+      "name": "Guanto dell'artigiano wyveriano",
+      "description": "Prova di un raccoglitore di armature. Manopola artig. armature molto prolifico."
+    },
+    "47": {
+      "name": "Miracolo del cacciatore",
+      "description": "Registraz. su mappa batt. di caccia. Prova viaggio in tutte le aree di gioco."
     }
   }
 }

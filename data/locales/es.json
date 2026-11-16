@@ -1,6 +1,6 @@
 {
   "$comment": "Spanish game text: names keyed by their English name, quest board text keyed by quest ID. Missing entries fall back to English. Generated from the EU disc by `pnpm --filter mhfu-extract locales` (see packages/mhfu-extract/README.md, \"Localized text\"); don't hand-translate official names.",
-  "source": "EU disc ULES01213, extracted 2026-11-12",
+  "source": "EU disc ULES01213, extracted 2026-11-16",
   "weapon": {
     "Abominable Bow I": "Arco abominable I",
     "Abominable Bow II": "Arco abominable II",
@@ -8724,6 +8724,199 @@
       "fail": "Aucune prime",
       "details": "Une quête de collecte de\njour dans les montagnes\nenneigées. Collectez tous\nles composants que vous\ntrouverez sur place, puis\nlivrez le Ticket Passechat\npour achever le tout.",
       "client": "Chef village Pokke"
+    }
+  },
+  "award": {
+    "0": {
+      "name": "Guante de la jefe del pueblo",
+      "description": "Prueba de completar las misiones de principiante. Regalo de la jefe."
+    },
+    "1": {
+      "name": "Sombrero de la jefe del pueblo",
+      "description": "Prueba de completar las misiones intermedias. Da coraje en el frío."
+    },
+    "2": {
+      "name": "Bufanda de la jefe del pueblo",
+      "description": "Prueba de completar las misiones difíciles. Da calor al llevarlo."
+    },
+    "3": {
+      "name": "Abrigo de la jefe del pueblo",
+      "description": "Prueba de completar todas las misiones Pokke. Prueba de calidad."
+    },
+    "4": {
+      "name": "Pajarita de melena",
+      "description": "Prueba de matar a un Kirin. Tiene la belleza de su nombre milenario."
+    },
+    "5": {
+      "name": "Ónice de sangre",
+      "description": "Prueba de matar a un Akantor. Su brillo cautiva el alma."
+    },
+    "6": {
+      "name": "Corona del rey",
+      "description": "Símbolo de continua victoria ante monstruos enormes."
+    },
+    "7": {
+      "name": "Corona en miniatura",
+      "description": "Símbolo de continua victoria ante monstruos pequeños."
+    },
+    "8": {
+      "name": "Medalla bronce",
+      "description": "Prueba de dominio de todas las misiones ★ y ★★ de la Sala reunión."
+    },
+    "9": {
+      "name": "Medalla plata",
+      "description": "Prueba de dominio de todas las misiones 3★ a 5★ de la Sala reunión."
+    },
+    "10": {
+      "name": "Medalla oro",
+      "description": "Prueba de dominio de todas las misiones 6★ a 8★ de la Sala reunión."
+    },
+    "11": {
+      "name": "Insignia cinturón negro",
+      "description": "Prueba de pasar todo el entrenamiento de batalla. Te protege."
+    },
+    "12": {
+      "name": "Insignia de experto",
+      "description": "Prueba de pasar todo el entrenamiento especial. Muestra tu coraje."
+    },
+    "13": {
+      "name": "Insignia de leyenda",
+      "description": "Prueba de pasar todo el entrenamiento en grupo. Signo de poder verdadero."
+    },
+    "14": {
+      "name": "Informe de especies raras",
+      "description": "Registro de los poderosos monstruos de colores. Confirma todos los tipos."
+    },
+    "15": {
+      "name": "Informe investigación ecología",
+      "description": "Informe de los registros de monstruos capturados. Signo de ilustres capturas."
+    },
+    "16": {
+      "name": "Piedra azul celeste",
+      "description": "Trozo de Machalita pura. Hermosa, prueba del desarrollo minero."
+    },
+    "17": {
+      "name": "Gran mosca cornuda",
+      "description": "Raro insecto del área. Prueba el desarrollo del área de rec. de insectos."
+    },
+    "18": {
+      "name": "Carpa Nocheprimavera",
+      "description": "Pez rosa pescado en primavera. Prueba desarr. del muelle de pesca."
+    },
+    "19": {
+      "description": "Rara flor roja de área nevada. Prueba de desarrollo de campo."
+    },
+    "20": {
+      "name": "Carta de agradecimiento",
+      "description": "Carta de un chef Felyne que dice: \"Gracias, eres un gran amo, ¡miau!\""
+    },
+    "21": {
+      "name": "Brazalete del sabio",
+      "description": "Prueba de maestría en la combinación. Puedes usarlo todo."
+    },
+    "22": {
+      "name": "Martillo del artesano Wyverian",
+      "description": "Martillo sucio pero divino de un Wyverian legendario."
+    },
+    "23": {
+      "name": "Progresos del cazador",
+      "description": "Mapa que registra el camino seguido en cacería. Prueba de numerosos viajes."
+    },
+    "24": {
+      "name": "Bigotes Nekoht",
+      "description": "Prueba de compl. misiones Nekoht 7★. ¡Póntela y sé un gato majestuoso!"
+    },
+    "25": {
+      "name": "Campana Nekoht",
+      "description": "Prueba de compl. misiones Nekoht 8★. Campanita artesana de raro sonido."
+    },
+    "26": {
+      "name": "Cota Nekoht",
+      "description": "Prueba de compl. misiones Nekoht 7★. Elegante abrigo con escudo gremial bordado."
+    },
+    "27": {
+      "name": "Jícaro Aldea Pokke",
+      "description": "Prueba de completar todas las misiones urg. de Pokke Témplate con sólo un sorbo."
+    },
+    "28": {
+      "name": "Escudo Orichalcum",
+      "description": "Prueba de dominar todas las mis. Sala reunión 1★. Cazador ejemplar."
+    },
+    "29": {
+      "name": "Escudo de platino",
+      "description": "Prueba de dominar todas las mis. Sala reunión 2★ Famoso en la ciudad."
+    },
+    "30": {
+      "name": "Escudo de oro",
+      "description": "Prueba de dominar todas las mis. Sala reunión 3★ Célebre en todo el mundo."
+    },
+    "31": {
+      "name": "Cresta cazador supremo",
+      "description": "Has completado todas las misiones Pokke y SR. ¡Nadie a tu altura!"
+    },
+    "32": {
+      "name": "Círculo ígneo",
+      "description": "Prueba de matar un Fatalis. Bajo su brillo terrible habita la calamidad..."
+    },
+    "33": {
+      "name": "Círculo de fuego",
+      "description": "Prueba de matar un Fatalis rojo. Su poderosa llama trae la destrucción total."
+    },
+    "34": {
+      "name": "Corona blanca",
+      "description": "Prueba de matar un Fatalis blanco. Su llameante crin blanca revela su edad."
+    },
+    "35": {
+      "name": "Raquetas doradas",
+      "description": "Prueba de caza de Rajang. Raquetas de primera hechas con su pelo dorado."
+    },
+    "36": {
+      "name": "Lágrima Ukanlos",
+      "description": "Prueba de matar un Ukanlos. Se dice que da al portador la entrada al Cielo."
+    },
+    "37": {
+      "name": "Brazalete cazas épicas",
+      "description": "Prueba de superación de duras luchas y batallas en arduas cazas épicas."
+    },
+    "38": {
+      "name": "Medalla guerrero",
+      "description": "Prueba de pasar todos los entrenos nivel G en la escuela. ¡Qué entusiasmo!"
+    },
+    "39": {
+      "name": "Premio de guardián",
+      "description": "Prueba de devoción a la Ciudad y la Fortaleza. Las has salvado varias veces."
+    },
+    "40": {
+      "name": "Ramo del Gremio",
+      "description": "Has ganado un número enorme de Puntos del Gremio. Un florido ramo de Dosbiscus."
+    },
+    "41": {
+      "name": "Casco aventurero",
+      "description": "Prueba de recoger todos los tesoros raros de corona dorada. Regalo de Treshi."
+    },
+    "42": {
+      "name": "Bandera de Trenya",
+      "description": "Prueba de financiar a Trenya en un gran número de las más caras misiones."
+    },
+    "43": {
+      "name": "Nepeta de gato",
+      "description": "Prueba gratitud de camarada por desbloq. todas las hab. para uno de tus camaradas."
+    },
+    "44": {
+      "name": "Carta a mi intrépido líder",
+      "description": "Carta de camarada Felyne que dice: \"Me alegra ser tu compañero, ¡miau!\""
+    },
+    "45": {
+      "name": "Tarjeta de miembro",
+      "description": "Prueba de crear un gran número de armas especiales. Tarjeta VIP tienda equipo."
+    },
+    "46": {
+      "name": "Mitón artesano Wyverian",
+      "description": "Prueba de recoger armaduras. Regalo de un prolífico armero."
+    },
+    "47": {
+      "name": "Milagro de cazador",
+      "description": "Mapa que registra el camino seguido en cacería. Prueba de numerosos viajes."
     }
   }
 }

@@ -33,6 +33,7 @@ per-language string tables.
 | maps                          | the quest header's map ID                       | named by quests, gathering |
 | quests                        | quest ID                                        | `quests/*.json`            |
 | Pokke Farm points             | the point's index in the game's farm table      | `farm.json`, in that order |
+| Guild Card awards             | the award's index (its bit in the save's flags) | `awards.json`              |
 
 The weapon and armor IDs are the ones a save's equipment box and the set
 builder's share codes use. They used to be listed in
@@ -60,6 +61,8 @@ References:
 - **Gathering, shops, Veggie Elder trades, combinations, Pokke Farm:**
   items and maps by ID. A farm point's name ("Mining Point +2") is under
   `farm`, by its index.
+- **Awards:** a record is only its `id`; the award's name and the game's
+  description of it are under `award` and `award_description`.
 
 **Names are in `data/strings/<lang>.json`**, by kind and ID:
 

@@ -44,6 +44,13 @@ import {
 import { loadFileList } from "../container/filelist.js";
 import { readMessageFile, type MessageTable } from "../strings/messages.js";
 import {
+  AWARD_TEXT_FILES,
+  AwardTextError,
+  readAwardText,
+  type AwardLanguage,
+  type AwardText,
+} from "../strings/awards.js";
+import {
   discMonsterNames,
   MONSTER_NAME_FILE,
   MONSTER_NAME_OVERLAY,
@@ -161,22 +168,52 @@ async function writeRawDumps(
 }
 
 /**
- * The EU disc's English message file 19 (`strings/messages.ts`), with its
- * DATA.BIN path; `tables` is null if the unpack doesn't have the file.
+ * A message file (`strings/messages.ts`) by DATA.BIN index, with its path
+ * inside `data-bin`; `tables` is null if the unpack doesn't have the file.
  */
-async function loadEnglishMessages(
+export async function loadMessageFile(
   unpacked: string,
   region: Region,
+  index: number,
 ): Promise<{ rel: string; tables: MessageTable[] | null }> {
-  const rel =
-    loadFileList(region).get(MONSTER_NAME_FILE) ??
-    path.join("_unindexed", `${MONSTER_NAME_FILE}.bin`);
+  const rel = loadFileList(region).get(index) ?? path.join("_unindexed", `${index}.bin`);
   const file = path.join(unpacked, "data-bin", rel);
   const found = await access(file).then(
     () => true,
     () => false,
   );
   return { rel, tables: found ? readMessageFile(await readFile(file)) : null };
+}
+
+/** The EU disc's English message file 19, which names the monsters and describes them. */
+async function loadEnglishMessages(
+  unpacked: string,
+  region: Region,
+): Promise<{ rel: string; tables: MessageTable[] | null }> {
+  return loadMessageFile(unpacked, region, MONSTER_NAME_FILE);
+}
+
+/**
+ * The awards' text in one EU language (`strings/awards.ts`), or null with a
+ * warning if its files aren't there or don't hold it.
+ */
+export async function loadAwardText(
+  unpacked: string,
+  region: Region,
+  language: AwardLanguage,
+): Promise<AwardText[] | null> {
+  const files = AWARD_TEXT_FILES[language];
+  const names = await loadMessageFile(unpacked, region, files.names);
+  const descriptions = await loadMessageFile(unpacked, region, files.descriptions);
+  try {
+    return readAwardText(names.tables, descriptions.tables, language);
+  } catch (error) {
+    if (!(error instanceof AwardTextError)) throw error;
+    console.warn(
+      `Warning: no ${language} award text in ${names.rel} and ${descriptions.rel}. ${error.message}`,
+    );
+    return null;
+  }
 }
 
 /**
@@ -414,6 +451,16 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     output["farm.json"] = emitFarm(farm);
   } else {
     console.warn("Warning: Pokke Farm's gathering tables weren't found; skipping farm.json.");
+  }
+
+  // The awards' names and descriptions, from the EU disc's message files.
+  const awards =
+    manifest.region === "eu" ? await loadAwardText(options.unpacked, manifest.region, "en") : null;
+  if (manifest.region !== "eu") {
+    console.warn(`Warning: region "${manifest.region}" has no award text, so no awards.json.`);
+  } else if (awards) {
+    console.log(`Guild Card awards: ${awards.length} names and descriptions.`);
+    output["awards.json"] = { awards };
   }
 
   if (options.raw) {

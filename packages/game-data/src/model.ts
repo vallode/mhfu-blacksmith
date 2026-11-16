@@ -57,6 +57,7 @@ export type FileKind =
   | { kind: "veggie-trades" }
   | { kind: "combinations" }
   | { kind: "farm" }
+  | { kind: "awards" }
   /** Not a file: built from the weapon and armor records (`equipmentIds`). */
   | { kind: "equipment-ids" };
 
@@ -79,6 +80,7 @@ export function fileKind(rel: string): FileKind | null {
     "veggie-trades.json": { kind: "veggie-trades" },
     "combinations.json": { kind: "combinations" },
     "farm.json": { kind: "farm" },
+    "awards.json": { kind: "awards" },
     "equipment-ids.json": { kind: "equipment-ids" },
   };
   return top[p] ?? null;
@@ -346,6 +348,15 @@ export function hydrate(kind: FileKind, raw: Doc, s: HydrateStrings): Doc {
           name: en.name("farm", i),
           ...p,
           items: p.items.map((x: Obj) => renameKey(x, "item", "item", item)),
+        })),
+      };
+    case "awards":
+      return {
+        ...raw,
+        awards: raw.awards.map((a: Obj) => ({
+          ...a,
+          name: en.name("award", a.id),
+          description: en.name("award_description", a.id),
         })),
       };
     case "equipment-ids":
@@ -744,6 +755,18 @@ export function dehydrate(
             const out = omit(p, ["name"]);
             out.items = p.items.map((x: Obj) => renameKey(x, "item", "item", itemId));
             return out;
+          }),
+        },
+        strings,
+      };
+    case "awards":
+      return {
+        raw: {
+          ...named,
+          awards: named.awards.map((a: Obj) => {
+            setString(en, "award", a.id, a.name);
+            setString(en, "award_description", a.id, a.description);
+            return omit(a, ["name", "description"]);
           }),
         },
         strings,

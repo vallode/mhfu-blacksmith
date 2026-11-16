@@ -13,17 +13,17 @@ import SaveUpload from "@/components/SaveUpload";
 import { useGameText, useLocale } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
 import { cn } from "@/lib/cn";
-import { useQuests } from "@/lib/client-data";
+import { useAwardText, useQuests } from "@/lib/client-data";
 import {
   AWARDS,
   AWARD_GROUPS,
   awardProgress,
   awardTotals,
-  type Award,
   type AwardProgress,
   type AwardTodo,
 } from "@/lib/awards";
 import { formatPlayTime, questProgress } from "@/lib/hunter-pages";
+import type { AwardText } from "@/lib/i18n/game-text";
 import { questHref, questStarLevel } from "@/lib/quests";
 import { useAwardContext } from "./useAwardContext";
 import { progressBar } from "@/styles/progress";
@@ -249,9 +249,19 @@ function AwardStatus({ progress }: { progress: AwardProgress }) {
   }
 }
 
-/** One award: its name and requirement, its status, and what's left of it. */
-function AwardRow({ award, progress }: { award: Award; progress: AwardProgress }) {
+/** One award: its name and the game's description of it, its status, and what's left of it. */
+function AwardRow({
+  index,
+  english,
+  progress,
+}: {
+  /** The award's index in `AWARDS`: its ID in the award text. */
+  index: number;
+  english: AwardText;
+  progress: AwardProgress;
+}) {
   const text = useLocale().t.site.hunter;
+  const game = useGameText();
   const counted = progress.status === "progress" && progress.total > 1;
   return (
     <li className="flex flex-col gap-[0.6rem]">
@@ -266,13 +276,15 @@ function AwardRow({ award, progress }: { award: Award; progress: AwardProgress }
                 : "text-white",
           )}
         >
-          {award.name}
+          {game.award(index, "name", english.name)}
         </h4>
         <span className="ml-auto flex-none text-small">
           <AwardStatus progress={progress} />
         </span>
       </div>
-      <div className="text-small text-white/60">{text.awards.requirements[award.id]}</div>
+      <div className="text-small text-white/60">
+        {game.award(index, "description", english.description)}
+      </div>
       {counted && (
         <>
           <progress
@@ -309,8 +321,9 @@ export function AwardsPage() {
   const { t } = useLocale();
   const text = t.site.hunter;
   const ctx = useAwardContext();
+  const { awards: english } = useAwardText();
   const rows = useMemo(
-    () => AWARDS.map((award) => ({ award, progress: awardProgress(award, ctx) })),
+    () => AWARDS.map((award, index) => ({ award, index, progress: awardProgress(award, ctx) })),
     [ctx],
   );
   if (!ctx.save) return <NoHunter />;
@@ -335,11 +348,17 @@ export function AwardsPage() {
             <DetailRule />
             <h3 className="m-0 font-normal text-stat">{text.awards.groups[group]}</h3>
             <ul className="m-0 flex list-none flex-col gap-[1.6rem] p-0">
-              {rows
-                .filter((r) => r.award.group === group)
-                .map((r) => (
-                  <AwardRow key={r.award.id} award={r.award} progress={r.progress} />
-                ))}
+              {english &&
+                rows
+                  .filter((r) => r.award.group === group)
+                  .map((r) => (
+                    <AwardRow
+                      key={r.award.id}
+                      index={r.index}
+                      english={english[r.index]!}
+                      progress={r.progress}
+                    />
+                  ))}
             </ul>
           </section>
         ))}

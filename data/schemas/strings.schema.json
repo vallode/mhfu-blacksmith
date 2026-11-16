@@ -168,6 +168,26 @@
         "type": "string"
       }
     },
+    "award": {
+      "type": "object",
+      "description": "Guild Card awards' names, by their id in data/awards.json",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "award_description": {
+      "type": "object",
+      "description": "The game's description of each award, by its id in data/awards.json",
+      "propertyNames": {
+        "pattern": "^[0-9]+$"
+      },
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
     "quest": {
       "type": "object",
       "description": "Quest titles, by quest ID",
