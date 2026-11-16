@@ -593,19 +593,20 @@ Whetstone), not by address.
   have no rank of their own, so it is a ceiling). Shops sharing a list
   share replacements (or all shops do, with `shops.mix all`). The monster
   Info items (Lynian Info to Fatalis Info, 831-859) only unlock bookshelf
-  pages, so they're dropped, not replaced: the general store sells that many
-  fewer items. No pool (shops, gathering, rewards, supplies, trades) ever
-  draws them.
+  pages, so they're dropped, not replaced: the Village general store, Guild
+  Hall store and Peddler sell up to 28 fewer items. Shorter lists end early
+  where they are. No pool (shops, gathering, rewards, supplies, trades) ever
+  draws them or any other quest item.
 - **How many** (`randomize` only): with `shops.countSpread`, each shop's lists scale by one
   factor, so later stages still sell what earlier ones did (stages nest by
   construction: items are kept in an order of pinned items, then by the
   stage they first appear in, then extra pool items). No list grows past
   the longest one on the disc (83), since the shop screen's limit is
-  unknown. Lists that change length are rewritten back to back in the
+  unknown. When a list grows, the lists are rewritten back to back in the
   space the lists use now and the pointer tables are updated; shops can
   only grow into space others free, so growth is scaled back until it
   fits. This refuses to run if that space holds anything but lists and
-  padding. Without it, lists stay where they are.
+  padding. Otherwise, lists stay where they are.
 - **Prices and carry limits** (`shops.prices`, `shops.stacks`) are the
   item's own (EBOOT item table), so they apply wherever the item is, and
   they don't need the stock to change: they change for everything the shops

@@ -232,6 +232,11 @@ test("the monster Info items are dropped from shops and never drawn", async () =
           "the Info item's slot goes",
         );
         assert.deepEqual(v2!.slice(0, v1!.length), v1, "stages stay consistent");
+        assert.deepEqual(
+          data.tables.map((t) => t.lists),
+          findShops(parseOvl(lobby.buf)).tables.map((t) => t.lists),
+          "shorter lists end where they are",
+        );
         const shops = result.reports.find((r) => r.title === "Shop stock")!;
         assert.ok(shops.lines.some((l) => l.text === "Rajang Info (removed)"));
       }
@@ -244,23 +249,24 @@ test("the monster Info items are dropped from shops and never drawn", async () =
 
 test("lists won't be rewritten over anything that isn't a shop list", async () => {
   const { game, close } = await load();
-  // A seed whose lists change length, so they'd be rewritten.
+  // A seed where some list grows, so they'd be rewritten (shorter lists end in place).
   const vanilla = findShops(parseOvl(lobby.buf));
   const lengths = (data: {
     tables: { lists: number[] }[];
     lists: Map<number, { items: number[] }>;
-  }) => data.tables.map((t) => t.lists.map((o) => data.lists.get(o)!.items.length)).join();
+  }) => data.tables.flatMap((t) => t.lists.map((o) => data.lists.get(o)!.items.length));
   const seed = "abcdefghijklmnopqrstuvwxyz".split("").find((seed) => {
     const s = settingsWith(seed, ["shops"], {
       "shops.mode": "randomize",
       "shops.countSpread": 0.9,
     });
     const edited = parseOvl(randomize(game, s).edits.overlay(game.lobbyTask));
-    return (
-      lengths(readTablesAt(edited, lobby.tablesAt, FIXTURE_SHOP_TABLES.length)) !== lengths(vanilla)
+    const before = lengths(vanilla);
+    return lengths(readTablesAt(edited, lobby.tablesAt, FIXTURE_SHOP_TABLES.length)).some(
+      (n, i) => n > before[i]!,
     );
   });
-  assert.ok(seed, "some seed changes a list's length");
+  assert.ok(seed, "some seed grows a list");
 
   const buf = game.dataBin.read(game.lobbyTask.index);
   const gap = lobby.listAt.empty! + 2; // the padding after the empty list
