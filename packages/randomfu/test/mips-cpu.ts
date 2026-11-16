@@ -1,11 +1,13 @@
 /**
  * Just enough of a MIPS CPU to run patch and blob code in tests: the integer
- * ops they use, with delay slots, over sparse 64 KB pages. Game functions
+ * ops they use (multiply and unsigned divide too), with delay slots, over sparse 64 KB pages. Game functions
  * the code calls are JavaScript (`native`): they get the CPU and return
  * `$v0`.
  */
 export class Cpu {
   readonly reg = new Int32Array(32);
+  hi = 0;
+  lo = 0;
   /** Addresses that run JavaScript instead of code, then return to `$ra`. */
   readonly native = new Map<number, (cpu: Cpu) => number>();
   /** Every native call, in order: its address and `$a0`–`$a2`. */
@@ -97,6 +99,21 @@ export class Cpu {
         else if (funct === 0x09) {
           target = u(rs);
           set(rd, pc + 8);
+        } else if (funct === 0x10) set(rd, this.hi);
+        else if (funct === 0x12) set(rd, this.lo);
+        else if (funct === 0x18) {
+          const p = BigInt(r[rs]!) * BigInt(r[rt]!);
+          this.lo = Number(BigInt.asIntN(32, p));
+          this.hi = Number(BigInt.asIntN(32, p >> 32n));
+        } else if (funct === 0x19) {
+          const p = BigInt(u(rs)) * BigInt(u(rt));
+          this.lo = Number(p & 0xffffffffn) | 0;
+          this.hi = Number(p >> 32n) | 0;
+        } else if (funct === 0x1b) {
+          if (u(rt) !== 0) {
+            this.lo = Math.floor(u(rs) / u(rt)) | 0;
+            this.hi = (u(rs) % u(rt)) | 0;
+          }
         } else if (funct === 0x21) set(rd, u(rs) + u(rt));
         else if (funct === 0x23) set(rd, u(rs) - u(rt));
         else if (funct === 0x24) set(rd, u(rs) & u(rt));
@@ -114,6 +131,8 @@ export class Cpu {
         target = ((pc + 4) & 0xf0000000) | ((w & 0x03ffffff) << 2);
       } else if (op === 0x04 || op === 0x05) {
         if ((r[rs] === r[rt]) === (op === 0x04)) target = pc + 4 + simm * 4;
+      } else if (op === 0x06 || op === 0x07) {
+        if (r[rs]! <= 0 === (op === 0x06)) target = pc + 4 + simm * 4;
       } else if (op === 0x09) set(rt, u(rs) + simm);
       else if (op === 0x0a) set(rt, r[rs]! < simm ? 1 : 0);
       else if (op === 0x0b) set(rt, u(rs) < simm >>> 0 ? 1 : 0);

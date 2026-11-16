@@ -7,8 +7,9 @@
  * sections laid out in order, and `R_MIPS_32`, `R_MIPS_26`, `R_MIPS_HI16`
  * and `R_MIPS_LO16` relocations with their addends in place (REL). Symbols
  * an object leaves undefined come from the other objects or from `externs`
- * (game functions and data, found per disc). This runs in the browser too,
- * so the same object links at each region's address.
+ * (game functions and data, found per disc); a weak one that neither
+ * defines is 0, so code can test for an optional feature. This runs in the
+ * browser too, so the same object links at each region's address.
  */
 
 /** The blob header: 16 words in front of the code. */
@@ -28,6 +29,7 @@ const SHF_ALLOC = 0x2;
 const SHN_UNDEF = 0;
 const SHN_ABS = 0xfff1;
 const SHN_COMMON = 0xfff2;
+const STB_WEAK = 2;
 
 const R_MIPS_NONE = 0;
 const R_MIPS_32 = 2;
@@ -227,12 +229,14 @@ export function linkBlob(
       globals.set(sym.name, value);
     }
   }
-  const resolve = (file: ObjectFile, sym: Sym): number => {
+  /** A symbol's value; null for a weak one nothing defines (0, never called). */
+  const resolve = (file: ObjectFile, sym: Sym): number | null => {
     if (sym.shndx !== SHN_UNDEF) {
       const value = valueOf(file, sym);
       if (value !== null) return value;
     }
     const value = globals.get(sym.name) ?? externs[sym.name];
+    if (value === undefined && sym.bind === STB_WEAK) return null;
     if (value === undefined) throw new Error(`${file.name}: ${sym.name} is undefined`);
     return value;
   };
@@ -257,7 +261,8 @@ export function linkBlob(
         const at = target - base + entry.offset;
         const p = target + entry.offset;
         const instr = image.readUInt32LE(at);
-        const s = entry.type === R_MIPS_NONE ? 0 : resolve(file, sym);
+        const resolved = entry.type === R_MIPS_NONE ? 0 : resolve(file, sym);
+        const s = resolved ?? 0;
         let out: number;
         switch (entry.type) {
           case R_MIPS_NONE:
@@ -267,7 +272,7 @@ export function linkBlob(
             break;
           case R_MIPS_26: {
             const value = (((instr & 0x03ffffff) << 2) + s) >>> 0;
-            if ((value & 0xf0000000) !== ((p + 4) & 0xf0000000)) {
+            if (resolved !== null && (value & 0xf0000000) !== ((p + 4) & 0xf0000000)) {
               throw new Error(`${file.name}: jump to ${sym.name} leaves the 256 MB segment`);
             }
             out = ((instr & 0xfc000000) | ((value >>> 2) & 0x03ffffff)) >>> 0;

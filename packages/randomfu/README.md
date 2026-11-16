@@ -170,6 +170,7 @@ web app shows as a tag):
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                      |
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                     |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)               |
+| `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)     |
 
 ### Presets
 
@@ -181,7 +182,7 @@ Elder's trades. Turn those on yourself once you've tried them on your disc.
 Armor stats are the exception: the presets turn on all four, though only
 defense has been played. Resistances, slots and rarity have only been run
 over the EU disc's tables, and what the game reads armor rarity for hasn't
-been checked.
+been checked. Monster health is off in every preset, since it caps Guild Cards.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                          |
 | ------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1016,6 +1017,43 @@ of the hunter's items he picks doesn't change. No tier logic applies: a trade
 isn't counted as an item source, so the recipe check ignores it. Not yet
 played in game.
 
+## Monster health
+
+`hud.monsterHp` (`painted` or `always`) draws a short gauge for
+each large monster in the hunter's area, on the left edge under the name
+plate: up to three, stacked. It's drawn by the HUD's own routines, so it
+looks like the stamina gauge: the same frame, its end cap on both ends (the
+left one mirrored), a 2-pixel fill in the hunter's health red, and
+a yellow trail that drains a pixel a frame after a hit, as the hunter's
+red recoverable health does. It runs as blob code on the code loader
+(below), so it caps Guild Cards at 3.
+
+- **`painted`** shows a monster's gauge while the map shows its icon: the
+  game's own test, so from a Paintball hit until the mark wears off (18000
+  frames).
+- **`always`** shows every large monster in the area.
+
+What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
+
+- A monster is an entity like the hunter: species `+0x1E8`, HP `+0x2E4`
+  (s16), max HP `+0x41E`, area `+0x29A`, and bit 0 of `+4` set while it's
+  active in the hunter's area. A Paintball sets `+0x3D0` and a timer at
+  `+0x3D2`.
+- `game_task` keeps every monster of the quest, large and small, in a
+  manager behind a global (20 pointers at `+0x1220`). One that leaves the
+  area stays in it, so the gauge checks the active bit and the area; a
+  dead one's HP is 0.
+- A species is large when its multiplier set in `game_task`'s monster
+  table (`+0x14F`) isn't 0.
+- The HUD draws the hunter's gauges in one EBOOT function, only when they
+  show (not in cutscenes, nor with the HUD hidden). The monster gauges are
+  drawn right after it, from a hook on that call, so they show and hide
+  with it.
+
+Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
+dies or leaves the area, and `painted` shows it once a Paintball hits. Not
+yet tried: JP in game, captures, and two large monsters in one area.
+
 ## Code loader (prototype)
 
 `?loader-demo` in the web app's address (see `apps/randomfu`) caps received
@@ -1023,8 +1061,8 @@ Guild Cards at 3 and turns the 93 freed slots (392,088 bytes of the save
 struct) into room for randomfu's own code and data. Its demo blob adds 1000
 zenny on every save load, so it's seen to run; it does in PPSSPP on EU and
 JP (FUC). It's not for play. `docs/code-loader.md` has the design: the
-address, when it loads, the blob format, the C toolchain and the PRX
-alternative.
+address, when it loads, the blob format, game hooks, the C toolchain and
+the PRX alternative. Monster health is the first feature built on it.
 
 - **Room.** The save struct is static (an arena in the EBOOT's BSS), so the
   freed slots are at a fixed address per region: EU `0x099A1820`, JP
@@ -1037,6 +1075,11 @@ alternative.
   reads `/PSP_GAME/USRDIR/RANDOMFU.BIN` over the slots with `sceIoOpen` and
   `sceIoRead`, checks its header, syncs the caches and calls the blob's
   `rf_init`.
+- **Game hooks.** Two game calls go through stubs in the cave that make
+  the call, then run the blob's `rf_hookN` if a blob is loaded: once a
+  frame in a quest, and after the HUD draws the hunter's gauges
+  (`src/patches/game-hooks.ts`). Blob features register for them with
+  `rf_on` (`blob/runtime.c`).
 - **Blob code** is C in `blob/`, compiled by clang to MIPS objects
   (`node blob/build.mjs`, Homebrew `llvm`) and committed as base64
   (`src/blob/demo-object.ts`). randomfu links them per disc at the

@@ -34,6 +34,13 @@ import { BLOB_MAGIC, HEADER, linkBlob } from "../blob/link.js";
 import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
 import type { ShuffleReport } from "../shuffles/shuffle.js";
+import {
+  assembleHooks,
+  findHookSites,
+  hookCode,
+  writeHookCalls,
+  type HookSites,
+} from "./game-hooks.js";
 import { guildCardSpace } from "./guild-card-space.js";
 import {
   ADDIU,
@@ -298,6 +305,10 @@ export interface CodeLoaderOptions {
   objects: readonly { name: string; data: Buffer }[];
   /** Guild Cards to keep. */
   keptCards?: number;
+  /** `game_task`, to add the game hooks (`game-hooks.ts`) the blob's `rf_hookN` run on. */
+  gameTask?: LoadedOverlay;
+  /** The blob's externs that are found per disc; a string says why they weren't. */
+  externs?: (sites: HookSites) => Record<string, number> | string;
 }
 
 export interface CodeLoaderReport extends ShuffleReport {
@@ -351,6 +362,17 @@ export function addCodeLoader(
     return skipped("this EBOOT doesn't import the file and cache calls");
   }
 
+  // Everything that can fail is found before anything is written.
+  let hooks: { sites: HookSites; externs: Record<string, number> } | null = null;
+  if (options.gameTask) {
+    const { ovl } = options.gameTask;
+    const sites = findHookSites(vanillaEboot, ovl.reader.buf, ovl.loadBase);
+    if (typeof sites === "string") return skipped(sites);
+    const externs = options.externs?.(sites) ?? {};
+    if (typeof externs === "string") return skipped(externs);
+    hooks = { sites, externs };
+  }
+
   const space = guildCardSpace(vanillaEboot, gameSub, edits, options.keptCards);
   if (typeof space === "string") return skipped(space);
   // Check that the loader and blob fit what other features left, before taking any.
@@ -358,7 +380,10 @@ export function addCodeLoader(
   if (!free) return skipped("other features took every freed Guild Card slot");
   const room = free.end - free.start;
   const blobAddress = space.saveStruct + free.start;
-  const blob = linkBlob(options.objects, blobAddress, { ...(imports as Imports) });
+  const blob = linkBlob(options.objects, blobAddress, {
+    ...(imports as Imports),
+    ...hooks?.externs,
+  });
   if (blob.image.length > room) {
     return skipped(`the blob is ${blob.image.length} bytes, and ${room} are free`);
   }
@@ -372,8 +397,12 @@ export function addCodeLoader(
     imports: imports as Imports,
   };
   const words = assembleLoader(0, addresses).code.length;
-  if (words > space.freeCaveWords) {
-    return skipped(`the loader needs ${words} cave words, and ${space.freeCaveWords} are free`);
+  const calls = hooks ? hookCode(hooks.sites) : [];
+  const hookWords = hooks ? assembleHooks(0, blobAddress, calls).code.length : 0;
+  if (words + hookWords > space.freeCaveWords) {
+    return skipped(
+      `the loader needs ${words + hookWords} cave words, and ${space.freeCaveWords} are free`,
+    );
   }
   space.allocateSlots(null);
   const at = space.allocateCave(words);
@@ -387,6 +416,14 @@ export function addCodeLoader(
   edits.discFile(BLOB_ISO_PATH, blob.image);
 
   const hex = (n: number) => `0x${n.toString(16)}`;
+  let hooksAt = "";
+  if (hooks && options.gameTask) {
+    const hookAt = space.allocateCave(hookWords);
+    const hookStubs = assembleHooks(hookAt, blobAddress, calls);
+    space.writeCave(hookAt, hookStubs.code);
+    writeHookCalls(out, edits.overlay(options.gameTask), hooks.sites, hookStubs.stubs);
+    hooksAt = `, hooks ${hex(hookAt)}`;
+  }
   return {
     applied: true,
     kept: space.kept,
@@ -395,6 +432,6 @@ export function addCodeLoader(
       `Guild Cards are capped at ${space.kept}. A ${blob.image.length}-byte blob from ${BLOB_ISO_PATH} is loaded at ${hex(blobAddress)} after every save load and new game.`,
     ],
     lines: [],
-    summary: `${TITLE}: on (blob ${blob.image.length} of ${room} bytes at ${hex(blobAddress)}, loader ${hex(at)}, status ${hex(loader.status)}, build ${hex(blob.build)})`,
+    summary: `${TITLE}: on (blob ${blob.image.length} of ${room} bytes at ${hex(blobAddress)}, loader ${hex(at)}${hooksAt}, status ${hex(loader.status)}, build ${hex(blob.build)})`,
   };
 }
