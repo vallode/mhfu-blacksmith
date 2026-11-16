@@ -348,7 +348,45 @@ function renderOption(option: OptionDef): HTMLElement {
     }
     wrap.append(optionText(option, null), group);
   }
+  if (option.key === "mods.nodeMap") wrap.append(nodeMapPreview());
   return wrap;
+}
+
+/**
+ * The map screen's picture as "Gathering nodes on the area map" leaves it,
+ * for the Great Forest: the site's copy of its texture, at its 160x160
+ * pixels, with a marker on each node as randomfu's patch draws them.
+ */
+function nodeMapPreview(): HTMLElement {
+  const { texture, size, marker, onArtAlpha, colors, points } = NODE_MAP_PREVIEW;
+  const canvas = el("canvas", {
+    class: "node-map",
+    width: String(size),
+    height: String(size),
+    role: "img",
+    "aria-label": "The Great Forest's map with its gathering nodes marked",
+  });
+  const context = canvas.getContext("2d", { willReadFrequently: true })!;
+  const picture = new Image();
+  picture.src = `images/area-maps/${texture}.png`;
+  picture
+    .decode()
+    .then(() => {
+      context.drawImage(picture, 0, 0, size, size);
+      // As the patch does: a node off the art (where the game draws nothing) gets no marker.
+      const art = context.getImageData(0, 0, size, size).data;
+      const half = (marker - 1) / 2;
+      for (const [kind, x, y] of points) {
+        if (x < 0 || y < 0 || x >= size || y >= size) continue;
+        if (art[(y * size + x) * 4 + 3]! <= onArtAlpha) continue;
+        context.fillStyle = `rgb(${colors[kind].join(" ")})`;
+        context.fillRect(x - half, y - half, marker, marker);
+      }
+    })
+    .catch(() => {
+      // The picture didn't load: the preview stays empty.
+    });
+  return canvas;
 }
 
 function buildOptionPanels(): void {

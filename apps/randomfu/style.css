@@ -829,6 +829,16 @@ textarea.text-input {
   cursor: pointer;
 }
 
+/* An option's preview: the map screen's picture with the gathering nodes on it. */
+.node-map {
+  display: block;
+  width: 100%;
+  max-width: 32rem;
+  aspect-ratio: 1;
+  margin: 0 auto;
+  image-rendering: pixelated;
+}
+
 /* An On/Off option: the site's yellow box, outlined when off and filled when on. */
 .toggle {
   appearance: none;
