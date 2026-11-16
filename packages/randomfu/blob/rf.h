@@ -43,7 +43,7 @@ s32 sceIoClose(s32 fd);
  * Game hooks (runtime.c): the code loader points game calls at stubs that
  * make the call, then run rf_hookN in the blob, if it's loaded. A feature
  * registers callbacks with rf_on from its init, which runs from rf_init after
- * every load. The argument is the HUD object for both hooks.
+ * every load. The argument is the HUD object for the first two.
  *
  * RF_HOOK_QUEST_FRAME: every frame of a quest (game_task.ovl's call to the
  *   HUD's update), menus and pauses included.
@@ -53,7 +53,30 @@ s32 sceIoClose(s32 fd);
  */
 #define RF_HOOK_QUEST_FRAME 0
 #define RF_HOOK_HUD 1
-#define RF_HOOKS 2
+/*
+ * RF_HOOK_QUEST_LOAD: around both calls to the quest loader (accepting a
+ *   quest in town, departing on it), once before the call and once after.
+ *   The argument is a struct rf_load; before the call, a callback may change
+ *   `id`, which is what the loader is then called with. The loader is a
+ *   state machine its caller runs every frame until it returns 1; the step
+ *   byte (RF_QUEST_LOADER_STEP) is 0 when a new load starts.
+ */
+#define RF_HOOK_QUEST_LOAD 3
+#define RF_HOOKS 4
+
+#define RF_LOAD_ACCEPT 0 /* lobby_task: the quest is accepted */
+#define RF_LOAD_DEPART 1 /* game_task: the quest starts */
+#define RF_LOAD_AFTER 2  /* either call returned; `result` is its $v0 */
+struct rf_load {
+  u8 *quest; /* the quest object */
+  u32 id;
+  u8 *buf; /* where it decrypts the quest; 0 for the default buffer */
+  u32 result;
+  u32 phase;
+};
+/* The quest object's loader state (the loader's code pins them). */
+#define RF_QUEST_LOADED_FILE 0x714 /* u16: the file in the buffer; not read again */
+#define RF_QUEST_LOADER_STEP 0x716 /* u8 */
 
 typedef void (*rf_hook_fn)(u8 *arg);
 void rf_on(u32 hook, rf_hook_fn fn);

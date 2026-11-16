@@ -40,6 +40,9 @@ export const RECORD_QUEST_ID = 0x18;
 export const RECORD_TARGET_ID = 0x24;
 /** The record's copy of `questHeader.Map` (u8, quest file 0x68). */
 export const RECORD_MAP = 0x1c;
+
+/** Rounds up to a word, as board and quest files align their blocks. */
+export const align = (n: number) => (n + 3) & ~3;
 const LANG_PTRS_SIZE = 28;
 const STRING_PTRS_SIZE = 24;
 
