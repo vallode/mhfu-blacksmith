@@ -177,6 +177,20 @@ test("elites' quests pay more: a draw, zenny and points each, rarer items once",
   assert.equal(q.cpu.u32(FILE + 0x208), 0x8001, "other tables are left alone");
 });
 
+test("elites add to zenny and points, keeping what another feature added", () => {
+  const q = quest(100);
+  q.monster(0);
+  q.frame();
+  assert.equal(q.cpu.u32(FILE + 0x3c), POINTS * 1.5);
+  // Say the Hunter's Pact is sealed now: 500 more points, 1000 more zenny.
+  q.cpu.setU32(FILE + 0x3c, POINTS * 1.5 + 500);
+  q.cpu.setU32(FILE + 0x54, ZENNY * 1.5 + 1000);
+  q.monster(1);
+  q.frame();
+  assert.equal(q.cpu.u32(FILE + 0x3c), POINTS * 2 + 500);
+  assert.equal(q.cpu.u32(FILE + 0x54), ZENNY * 2 + 1000);
+});
+
 test("at 0% nothing changes, and small monsters never roll", () => {
   const q = quest(0);
   const m = q.monster(0);

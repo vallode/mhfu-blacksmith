@@ -191,9 +191,13 @@ static void reward(void) {
   u8 *file = quest.file;
   if (!file) return;
   u32 n = quest.elites;
-  quest.wrote_zenny = quest.zenny + quest.zenny * ZENNY_PERCENT / 100 * n;
+  /*
+   * Each elite adds its share of the quest's own zenny and points to what's
+   * there, so others' bonuses (the Hunter's Pact's) stay.
+   */
+  quest.wrote_zenny = *(u32 *)(file + FILE_ZENNY) + quest.zenny * ZENNY_PERCENT / 100;
   *(u32 *)(file + FILE_ZENNY) = quest.wrote_zenny;
-  *(u32 *)(file + FILE_POINTS) = quest.points + quest.points * POINTS_PERCENT / 100 * n;
+  *(u32 *)(file + FILE_POINTS) += quest.points * POINTS_PERCENT / 100;
   if (!quest.main) return;
   u32 draws = quest.draws + EXTRA_DRAWS * n;
   quest.main[TABLE_DRAWS] = (u8)(draws > MAX_DRAWS ? MAX_DRAWS : draws);

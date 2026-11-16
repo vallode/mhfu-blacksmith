@@ -171,6 +171,7 @@ web app shows as a tag):
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                                             |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)                                       |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)                             |
+| `pact.enabled`                    | off         | Hunter's Pact: penalties at each quest's start, each paying a reward (caps Guild Cards)                            |
 | `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)                              |
 | `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                                          |
 | `quests.unknown`                  | off         | "Unknown Monster?!" quests on Village 6★, Guild 8★ and G★3 that roll a new hunt on every accept (caps Guild Cards) |
@@ -1058,6 +1059,112 @@ Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not
 yet tried: JP in game, captures, and two large monsters in one area.
 
+## Hunter's Pact
+
+`pact.enabled` (Quests → Hunter's Pact in the web app) offers pacts at the
+start of every quest, as Hades' Pact of Punishment does: penalties taken
+for rewards. In base camp the screen darkens and a window, in the frame of
+the game's "item received" card and above the rest of the HUD, lists three
+pacts drawn at random, each a penalty (▼) and the reward it pays (★), and a
+way out. Up and down (or the stick) move a highlight, Circle (or Cross)
+takes a pact, and on the last row seals them. While the window is open the
+clock stands still and the hunter doesn't move: the pact holds the game's
+input lock, as shops and dialogues do. The window waits about half a
+second into the quest, until the quest file is loaded. Penalties last the
+quest; the next one draws again.
+
+| Penalty                              | Weight |
+| ------------------------------------ | ------ |
+| Monsters' health +30% / +60% / +100% | 1/2/3  |
+| Monsters' attack +30% / +60% / +100% | 1/2/3  |
+| Half the time                        | 2      |
+| One cart: a faint fails              | 3      |
+| No supply box                        | 1      |
+| Frail: health capped at 50           | 2      |
+| Weary: stamina capped at half        | 1      |
+| Deliver 50% more / twice as many     | 2/3    |
+
+Two of the same kind (health +30% and +60%) are never offered together,
+and only penalties that mean something for the quest are, read from the
+loaded quest file: monster penalties need a large monster in the quest,
+delivery ones a delivery whose item isn't in the supply box (they raise
+the delivery's target and its item objective, rounding up; the goal line
+still shows the old number), and half the time isn't offered on the
+gathering quests, which time over wins. So a gathering quest draws from
+one cart, no supply box (which holds its Paw Pass Ticket), frail and
+weary. Each penalty's weight picks its reward:
+
+| Weight | Rewards                                                       |
+| ------ | ------------------------------------------------------------- |
+| 1      | zenny or HRP (half), Good Luck, a common item ×10             |
+| 2      | zenny or HRP (as much), Great Luck, an uncommon item ×5       |
+| 3      | zenny or HRP (twice), a rare item ×2, a weapon or armor piece |
+
+Zenny and HRP are a share of what the quest pays, but at least a set
+amount for its rank, so quests that pay little are still worth a pact. The
+window shows the amount:
+
+| Rank | Zenny at least (weight 1/2/3) | HRP at least    |
+| ---- | ----------------------------- | --------------- |
+| Low  | 600 / 1200 / 2400             | 20 / 40 / 80    |
+| High | 2000 / 4000 / 8000            | 50 / 100 / 200  |
+| G    | 4000 / 8000 / 15000           | 100 / 200 / 400 |
+
+A quest that gives no HRP (Village quests) offers none. Items and equipment
+come up twice as often as the rest, and no two pacts in a window pay zenny,
+HRP or luck alike. Rewards are paid only for a completed quest:
+
+- zenny and HRP added to the quest's own (a faint costs the same share of
+  the new reward as of the old);
+- luck as the skill, for the quest's reward roll (the better of it and the
+  hunter's own);
+- items in the reward box, after the quest's own, on the reward screen;
+- equipment in the equipment box's first free slot.
+
+The items and equipment come from the quest's rank (Low, High or G), drawn
+per seed: items first found at that rank (after the shuffles), in three
+grades by the star level they're first found at, and weapons and armor of
+that rank's rarities (armor both sexes can wear). Up to 16 items a grade
+and 32 pieces a rank.
+
+Sealing with nothing taken ("Hunt without a pact") changes nothing at
+all. It runs as blob code on the code loader, so it caps Guild Cards at 3,
+and it works alongside Monster health. The shade, window and text are
+drawn with the game's own routines.
+
+What it found (EU and JP; `src/patches/pact.ts` and `docs/code-loader.md`
+have the details):
+
+- The quest object (the HUD object `+0x1220`) holds the clock (ticks left),
+  the reward zenny and a faint's penalty (a third of the reward on every
+  disc quest), and the loaded quest file, whose supplies, delivery target
+  and HRP the pact edits in place, and whose large monster tables and
+  delivery say which penalties fit. The quest loader keeps the file when the
+  same quest is taken again, so the pact clears its cache to have it read
+  afresh.
+- The reward roll asks for the luck skills (ids 0x90 to 0x93) in the
+  hunter's six skill ids at `+0x676`. It's called once, when a quest is
+  completed, and fills the save's reward box (16 slots), which the reward
+  screen shows; the pact adds its items after it (a new game hook). The
+  equipment box is the save's `+0x548`, 12 bytes a slot.
+- The HUD draws in layers 9 to 14, in order: its shapes in the layer in
+  the HUD object's `+0x534`, the printer's text in 9 plus its `+0x12F`.
+  The pact draws in 14, over the map and item bar. A second fill routine
+  takes an alpha, which shades the screen. The print the card's window
+  uses reads `~C` colours and `~B` button icons; the plain one doesn't.
+- Monster attack and defense are float multipliers (`+0x380`, `+0x384`)
+  that the game sets again at spawn and when rage starts and ends; the
+  shared `blob/monsters.c` scales them each time, and health once.
+
+Tried in game (EU): the window, its shade, layers and text, its controls
+and the input lock. Not yet: the rewards, the delivery penalties, and JP.
+Some quest starts crashed on the EU disc before the window showed (cause
+not found yet); the pact now waits for the quest to settle and checks the
+game's pointers before it reads or writes through them. Open: whether a faint takes the
+quest's penalty off the reward and fails at 0 (one cart relies on it),
+when the supply box reads its list, and which of the two stamina fields is
+the current one (Weary caps both).
+
 ## Elite monsters
 
 `elites.enabled` makes some large monsters elites, in the spirit of
@@ -1174,7 +1281,7 @@ struct) into room for randomfu's own code and data. Its demo blob adds 1000
 zenny on every save load, so it's seen to run; it does in PPSSPP on EU and
 JP (FUC). It's not for play. `docs/code-loader.md` has the design: the
 address, when it loads, the blob format, game hooks, the C toolchain and
-the PRX alternative. Monster health is the first feature built on it.
+the PRX alternative. Monster health and the Hunter's Pact are built on it.
 
 - **Room.** The save struct is static (an arena in the EBOOT's BSS), so the
   freed slots are at a fixed address per region: EU `0x099A1820`, JP
@@ -1189,8 +1296,9 @@ the PRX alternative. Monster health is the first feature built on it.
   `rf_init`.
 - **Game hooks.** Game calls go through stubs in the cave that make the
   call, then run the blob's `rf_hookN` if a blob is loaded: once a frame in
-  a quest, after the HUD draws the hunter's gauges, and around the quest
-  loader's calls (`src/patches/game-hooks.ts`). Blob features register for them with
+  a quest, after the HUD draws the hunter's gauges, after the pad read gets
+  the controller, around the quest loader's calls, and after a completed
+  quest's reward roll (`src/patches/game-hooks.ts`). Blob features register for them with
   `rf_on` (`blob/runtime.c`).
 - **Blob code** is C in `blob/`, compiled by clang to MIPS objects
   (`node blob/build.mjs`, Homebrew `llvm`) and committed as base64

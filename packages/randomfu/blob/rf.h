@@ -50,10 +50,11 @@ s32 sceIoClose(s32 fd);
  * RF_HOOK_HUD: just after the hunter's health and stamina gauges are drawn,
  *   which the game skips when the HUD is hidden (cutscenes, the HUD option).
  *   Draw here with the HUD's own routines to sit in the same layer.
- * RF_HOOK_PAD: once a frame in every task, just after the main loop reads
- *   the pad and before the task runs. The argument is the pad object: the
- *   raw PSP buttons (u16) first, then the stick. Clearing its first 16 bytes
- *   keeps that frame's input from the game, as the game itself does.
+ * RF_HOOK_PAD: once a frame in every task, inside the game's pad read, just
+ *   after it reads the controller and before the task runs. The argument is
+ *   the system's SceCtrlData: buttons a u32 at +4, the stick bytes at +8 and
+ *   +9. The game ignores input while its pad object's +0x17 is 1 (shops,
+ *   dialogues); set it to keep the buttons from the game, as they do.
  */
 #define RF_HOOK_QUEST_FRAME 0
 #define RF_HOOK_HUD 1
@@ -67,7 +68,6 @@ s32 sceIoClose(s32 fd);
  *   byte (RF_QUEST_LOADER_STEP) is 0 when a new load starts.
  */
 #define RF_HOOK_QUEST_LOAD 3
-#define RF_HOOKS 4
 
 #define RF_LOAD_ACCEPT 0 /* lobby_task: the quest is accepted */
 #define RF_LOAD_DEPART 1 /* game_task: the quest starts */
@@ -82,6 +82,14 @@ struct rf_load {
 /* The quest object's loader state (the loader's code pins them). */
 #define RF_QUEST_LOADED_FILE 0x714 /* u16: the file in the buffer; not read again */
 #define RF_QUEST_LOADER_STEP 0x716 /* u8 */
+
+/*
+ * RF_HOOK_REWARDS: once a completed quest, just after its rewards are rolled
+ *   into the save's reward box (save +0x390: 16 slots of item and amount,
+ *   u16 each) and before the reward screen shows them.
+ */
+#define RF_HOOK_REWARDS 4
+#define RF_HOOKS 5
 
 typedef void (*rf_hook_fn)(u8 *arg);
 void rf_on(u32 hook, rf_hook_fn fn);
@@ -106,6 +114,32 @@ static inline u32 rf_call8(const void *fn, u32 a0, u32 a1, u32 a2, u32 a3, u32 a
                    : "=r"(r2), "+r"(r4), "+r"(r5), "+r"(r6), "+r"(r7), "+r"(r8), "+r"(r9),
                      "+r"(r10), "+r"(r11), "+r"(r25)
                    :
+                   : "$1", "$3", "$12", "$13", "$14", "$15", "$24", "$31", "hi", "lo",
+                     "memory");
+  return r2;
+}
+
+/*
+ * The same with a ninth argument, which the PSP passes on the stack: the
+ * callee finds it at the caller's $sp + 0.
+ */
+static inline u32 rf_call9(const void *fn, u32 a0, u32 a1, u32 a2, u32 a3, u32 a4, u32 a5,
+                           u32 a6, u32 a7, u32 a8) {
+  register u32 r4 __asm__("$4") = a0;
+  register u32 r5 __asm__("$5") = a1;
+  register u32 r6 __asm__("$6") = a2;
+  register u32 r7 __asm__("$7") = a3;
+  register u32 r8 __asm__("$8") = a4;
+  register u32 r9 __asm__("$9") = a5;
+  register u32 r10 __asm__("$10") = a6;
+  register u32 r11 __asm__("$11") = a7;
+  register u32 r25 __asm__("$25") = (u32)fn;
+  register u32 r2 __asm__("$2");
+  __asm__ volatile(".set push\n.set noreorder\naddiu $sp, $sp, -16\nsw %[a8], 0($sp)\njalr "
+                   "$25\nnop\naddiu $sp, $sp, 16\n.set pop"
+                   : "=r"(r2), "+r"(r4), "+r"(r5), "+r"(r6), "+r"(r7), "+r"(r8), "+r"(r9),
+                     "+r"(r10), "+r"(r11), "+r"(r25)
+                   : [a8] "r"(a8)
                    : "$1", "$3", "$12", "$13", "$14", "$15", "$24", "$31", "hi", "lo",
                      "memory");
   return r2;

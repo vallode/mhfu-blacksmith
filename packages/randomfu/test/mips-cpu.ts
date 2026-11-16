@@ -1,6 +1,6 @@
 /**
  * Just enough of a MIPS CPU to run patch and blob code in tests: the integer
- * ops they use (multiply, unsigned divide and variable shifts too), with delay slots, over sparse 64 KB pages. Game functions
+ * ops they use (multiply, unsigned divide, variable shifts and nor too), with delay slots, over sparse 64 KB pages. Game functions
  * the code calls are JavaScript (`native`): they get the CPU and return
  * `$v0`.
  */
@@ -122,6 +122,7 @@ export class Cpu {
         else if (funct === 0x24) set(rd, u(rs) & u(rt));
         else if (funct === 0x25) set(rd, u(rs) | u(rt));
         else if (funct === 0x26) set(rd, u(rs) ^ u(rt));
+        else if (funct === 0x27) set(rd, ~(u(rs) | u(rt)));
         else if (funct === 0x2a) set(rd, r[rs]! < r[rt]! ? 1 : 0);
         else if (funct === 0x2b) set(rd, u(rs) < u(rt) ? 1 : 0);
         else throw new Error(`funct ${funct.toString(16)} at ${pc.toString(16)}`);

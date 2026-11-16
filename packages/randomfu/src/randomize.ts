@@ -7,7 +7,7 @@ import type { GameData, LoadedQuest } from "./game/load.js";
 import { itemTiers, monsterStars, type Tier, type TierMode } from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import type { Settings } from "./settings.js";
-import { shuffleArmor } from "./shuffles/armor.js";
+import { pieceName, readArmorPieces, shuffleArmor } from "./shuffles/armor.js";
 import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { ARMOR_STATS, randomizeArmorStats } from "./shuffles/armor-stats.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
@@ -82,6 +82,15 @@ import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
+import {
+  ARMOR_BOX_TYPE,
+  MELEE_BOX_TYPE,
+  RANGED_BOX_TYPE,
+  encodePactPool,
+  findPactExterns,
+  pactObjects,
+  pactPool,
+} from "./patches/pact.js";
 import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
@@ -822,7 +831,8 @@ export function randomize(
   } else if (
     settings["hud.monsterHp"] !== "off" ||
     settings["quests.unknown"] ||
-    settings["elites.enabled"]
+    settings["elites.enabled"] ||
+    settings["pact.enabled"]
   ) {
     // Each feature is resolved on its own first: one that doesn't match this
     // disc is left out, and the loader (which caps Guild Cards) only goes in
@@ -836,7 +846,7 @@ export function randomize(
     const objects = decodeObjects(RUNTIME_OBJECTS);
     const externs: Record<string, number> = {};
     const { ovl } = game.gameTask;
-    // Both features run on the game hooks, found once here.
+    // The features run on the game hooks, found once here.
     const sites = game.eboot
       ? findHookSites(game.eboot, ovl.reader.buf, ovl.loadBase)
       : "the EBOOT wasn't loaded";
@@ -908,16 +918,50 @@ export function randomize(
         elites = true;
       }
     }
-    if (typeof sites !== "string" && (monsterHp || unknown || elites)) {
+    let pact = false;
+    const data: Record<string, Buffer> = { ...unknown?.data };
+    if (settings["pact.enabled"]) {
+      const found =
+        typeof sites === "string"
+          ? sites
+          : findPactExterns(game.eboot!, sites, ovl.reader.buf, ovl);
+      if (typeof found === "string") reports.push(notApplied("Hunter's Pact", found));
+      else {
+        objects.push(...pactObjects());
+        Object.assign(externs, found);
+        // The pact's rewards, as the shuffles left items and equipment.
+        const out = edits.eboot();
+        const equipment = [
+          ...collectWeaponStats(out, game.resolver).map((w) => ({
+            type: w.family === "Blademaster" ? MELEE_BOX_TYPE : RANGED_BOX_TYPE,
+            id: w.index,
+            name: w.name,
+            rarity: w.rarity,
+          })),
+          ...readArmorPieces(out, game.resolver).map((p) => ({
+            type: ARMOR_BOX_TYPE[p.slot],
+            id: p.index,
+            name: pieceName(p),
+            rarity: p.rarity,
+            bits: p.bits,
+          })),
+        ];
+        const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
+        data.rf_pact_pool = encodePactPool(pactPool(tiers, equipment, rng.fork("pact-pool")));
+        pact = true;
+      }
+    }
+    if (typeof sites !== "string" && (monsterHp || unknown || elites || pact)) {
       const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
-        objects,
+        // Elites and the pact both bring the shared monster boosts: link them once.
+        objects: objects.filter((o, k) => objects.findIndex((x) => x.name === o.name) === k),
         hooks: {
           sites,
           gameTask: game.gameTask,
           ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
         },
         externs,
-        ...(unknown && { data: unknown.data }),
+        data,
       });
       reports.push(loader);
       if (unknown) reports.push(unknown.finish(loader.applied));
