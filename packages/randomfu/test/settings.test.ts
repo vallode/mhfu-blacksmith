@@ -36,7 +36,10 @@ test("every option has a default its own checks accept", () => {
   }
 });
 
-/** Options no preset turns on until they're tried in game (see the README's status). */
+/**
+ * Options no preset turns on until they're tried in game (see the README's
+ * status). Armor stats are the exception the README's Presets names.
+ */
 const UNTRIED: readonly OptionKey[] = [
   "carveCounts.mode",
   "questMaps.enabled",
@@ -44,10 +47,6 @@ const UNTRIED: readonly OptionKey[] = [
   "questMonsters.smallSpecies",
   "trades.mode",
   "mods.nodeMap",
-  "armorStats.defense",
-  "armorStats.resistances",
-  "armorStats.slots",
-  "armorStats.rarity",
 ];
 
 test("presets do what their help says", () => {
@@ -79,9 +78,12 @@ test("presets do what their help says", () => {
       .map((o) => o.key)
       .sort(),
   );
-  for (const option of OPTIONS.filter((o) => o.type.kind === "choice")) {
-    // The modes are what the presets set, so they differ from the defaults.
-    if (option.key.endsWith(".mode")) continue;
+  for (const option of OPTIONS) {
+    if (option.type.kind !== "choice") continue;
+    // The modes are what the presets set, so they differ from the defaults: a
+    // mode's every value but "off" shuffles or randomizes. A scope or pool
+    // with an action on one value is still checked.
+    if (option.type.choices.every((c) => c.action || c.value === "off")) continue;
     assert.equal(shuffled[option.key], option.default, `Shuffled keeps ${option.key}'s pool`);
   }
 

@@ -1783,7 +1783,7 @@ export interface Preset {
   changes: Partial<Record<OptionKey, boolean | number | string>>;
 }
 
-/** The monster and weapon randomizers that Randomized, Full and Chaos all turn on. */
+/** The monster, weapon and armor stat randomizers that Randomized, Full and Chaos all turn on. */
 const STAT_RANDOMIZERS = {
   "questMonsters.crowns": true,
   "questMonsters.difficulty": true,
@@ -1795,6 +1795,10 @@ const STAT_RANDOMIZERS = {
   "weapons.affinity": true,
   "weapons.element": true,
   "weapons.slots": true,
+  "armorStats.defense": "randomize",
+  "armorStats.resistances": "randomize",
+  "armorStats.slots": "randomize",
+  "armorStats.rarity": "randomize",
 } as const;
 
 export const PRESETS: readonly Preset[] = [
@@ -1805,7 +1809,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Shuffled",
-    help: "Moves things, changes no numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, weapon sharpness, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Every amount, cost and stat stays as it was.",
+    help: "Moves things, rolls no new numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, weapon sharpness, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Armor pieces also trade their defense (with how far spheres upgrade it), resistances and slots with pieces of the same rarity and hunter type, and their rarity within its rank. No amount, cost or stat is rolled anew.",
     changes: {
       "gathering.mode": "shuffle",
       "supplies.mode": "shuffle",
@@ -1814,6 +1818,10 @@ export const PRESETS: readonly Preset[] = [
       "weapons.sharpness": true,
       "armor.enabled": true,
       "armorSkills.enabled": true,
+      "armorStats.defense": "shuffle",
+      "armorStats.resistances": "shuffle",
+      "armorStats.slots": "shuffle",
+      "armorStats.rarity": "shuffle",
       "shops.mode": "shuffle",
       "questMonsters.mode": "shuffle",
       "weaknesses.elements": true,
@@ -1822,7 +1830,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Randomized",
-    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, how often each quest's main reward list is drawn, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, and each weapon's attack, affinity, element and slots are rolled anew, and armor gets new skills.",
+    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, how often each quest's main reward list is drawn, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, each weapon's attack, affinity, element and slots, and each armor piece's defense, resistances, slots and rarity are rolled anew, and armor gets new skills.",
     changes: {
       "questRewards.mode": "off",
       "questRewards.draws": 0.3,
@@ -1843,7 +1851,7 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Full",
-    help: "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before. Gathering points draw from the whole rank, shops add Low Rank items and prices change; armor skills are shuffled, and monster difficulty stays within its rank.",
+    help: "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before. Gathering points draw from the whole rank, shops add Low Rank items and prices change; armor skills are shuffled while armor stats get new values, and monster difficulty stays within its rank.",
     changes: {
       "recipes.mode": "shuffle",
       "recipes.amounts": true,
@@ -1935,6 +1943,9 @@ export const PRESETS: readonly Preset[] = [
       "weapons.attackSpread": 0.5,
       "weapons.affinitySpread": 30,
       "weapons.elementSpread": 0.6,
+      "armorStats.defenseSpread": 0.5,
+      "armorStats.resistanceSpread": 5,
+      "armorStats.raritySpread": 2,
     },
   },
 ];
