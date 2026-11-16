@@ -165,6 +165,8 @@ web app shows as a tag):
 | `monsterStats.sizeSpread`         | 0.2         | How far size moves (at most 50%)                                                                                   |
 | `monsterStats.status`             | off         | Randomize poison, paralysis, sleep and KO resistance                                                               |
 | `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                                           |
+| `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                                    |
+| `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                                      |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                                        |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                                  |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                              |
@@ -810,6 +812,28 @@ hitzone tables they share.
   thresholds belong to the body part, not the row, so they don't move.
   Variants that share their base species' tables change with it.
 
+**Monster behaviour** (`monsterAi.branches`, `src/shuffles/monster-ai.ts`)
+rerolls the weights of the monsters' AI choices. Monster AI is bytecode in
+`game_task.ovl`; `docs/monster-ai.md` has what's known about it.
+
+- An `emChunk`'s `+0x158` pointers 3 to 19 are AI script roots, in
+  `game_task.ovl` or the family's `emNN.ovl`. The emNN overlays share one
+  load address, so a root goes to the monster's own overlay if it reads
+  there, or else the one overlay where all its roots read. Basarios and
+  Black Gravios read in two and are left alone.
+- A root is up to 20 table pointers to script entry points. `80 00 N` is a
+  weighted choice: N entries `80 k w <body>`, then `80 FF`; the game rolls
+  0 to 31 and walks the weights, which add up to 32.
+- Each weight is multiplied by a factor within the spread and the choice is
+  scaled back to 32 (largest remainder). An entry above 0 keeps at least 1,
+  an entry at 0 stays 0.
+- The scripts are read by pattern, not with the game's instruction lengths:
+  a choice changes only if its entries come in order, its weights add up to
+  32 and it holds no other choice. That's 3,355 choices in 18 files on the
+  EU and FUC discs. Species that share scripts change together.
+
+Not yet tried in game.
+
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start
 (`src/hints/bookshelf.ts`; the Text, Style and Unlocking notes below cover
@@ -1354,8 +1378,10 @@ patched game on an unpatched one (its card slots 4–96 hold the blob).
 - Large monster counts. What `quantity` means for a large monster (it's 1
   in 536 of 554 records, 10 or 5 in a few), and how it relates to the
   header's `TargetNum`, isn't known.
-- Attack patterns and animations. Monster AI lives in code (`game_task.ovl`
-  and each `emNN.ovl`) and the motion banks (each `emmodel/emNN.pac`'s entry 3) aren't decoded, so there's nothing to shuffle yet.
+- Which AI choices are attacks. The scripts' weights are data (Monster
+  behaviour), but what each action group does is species code, mapped for
+  the dromes only (`docs/monster-ai.md`), and the motion banks (each
+  `emmodel/emNN.pac`'s entry 3) aren't decoded.
 
 ## Tests
 

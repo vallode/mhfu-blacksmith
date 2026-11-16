@@ -48,6 +48,7 @@ const UNTRIED: readonly OptionKey[] = [
   "trades.mode",
   "mods.nodeMap",
   "elites.enabled",
+  "monsterAi.branches",
 ];
 
 test("presets do what their help says", () => {
