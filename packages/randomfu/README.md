@@ -171,6 +171,8 @@ web app shows as a tag):
 | `hints.almanac`                   | on          | Rewrite the bookshelf's map articles as an item almanac (EU disc only)                     |
 | `mods.nodeMap`                    | off         | Mark gathering, mining and bug nodes on the area map pictures (EU disc only)               |
 | `hud.monsterHp`                   | off         | Large monsters' health under your name plate: `painted` or `always` (caps Guild Cards)     |
+| `elites.enabled`                  | off         | Some large monsters are stronger elites, and their quests pay more (caps Guild Cards)      |
+| `elites.chance`                   | 12          | Each large monster's chance of being an elite, in percent                                  |
 
 ### Presets
 
@@ -182,7 +184,8 @@ Elder's trades. Turn those on yourself once you've tried them on your disc.
 Armor stats are the exception: the presets turn on all four, though only
 defense has been played. Resistances, slots and rarity have only been run
 over the EU disc's tables, and what the game reads armor rarity for hasn't
-been checked. Monster health is off in every preset, since it caps Guild Cards.
+been checked.
+Monster health and elite monsters are off in every preset, since they cap Guild Cards.
 
 | Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                          |
 | ------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -1053,6 +1056,64 @@ What it found (EU and JP; `src/patches/monster-hp.ts` has the details):
 Tried in PPSSPP on EU: the gauge tracks damage, goes when the monster
 dies or leaves the area, and `painted` shows it once a Paintball hits. Not
 yet tried: JP in game, captures, and two large monsters in one area.
+
+## Elite monsters
+
+`elites.enabled` makes some large monsters elites, in the spirit of
+World's Tempered and Sunbreak's Afflicted monsters. Each large monster
+rolls once, when it shows up in a quest, at `elites.chance` percent (12 by
+default), so the quest board never tells and a retried quest rolls again.
+It runs as blob code on the code loader, so it caps Guild Cards at 3. An
+elite:
+
+- has half again its health (at most 32767), and hits 30% harder;
+- moves 10% faster: its animations run 10% faster, except during moves
+  that set their own speed;
+- enrages after 60% of the damage it would otherwise take, and stays
+  enraged half again as long (monsters that don't enrage skip this);
+- is 15% bigger than the quest made it (at most 250%), which the Guild
+  Card doesn't record: its size records stay what the quest rolled;
+- has a faint crimson pulse: its hide turns a little redder and darker
+  every five seconds or so, and back. Other monsters of its species keep
+  their colours.
+
+Each elite in a quest adds a draw to the main reward and half the quest's
+zenny and points again; the first also makes the main reward's rarer
+items (those below the average chance) half again as likely. The rewards
+grow when the elite shows up, so they're paid on completing the quest
+whether or not the elite was the target.
+
+Health and attack go through the monster boosts the Hunter's Pact shares
+(`blob/monsters.c`), so the two compose, and all of it multiplies whatever
+the quest ends up with, so it stacks on `monsterStats` and
+`questMonsters`.
+
+What it found (EU, and the same code on JP; `src/patches/elite.ts` and
+`docs/code-loader.md` have the details):
+
+- The attack multiplier a monster's hits use is cached at `+0x380` (f32):
+  the quest's stat row times its rage multiplier, written at spawn and when
+  rage starts and ends.
+- Rage: a species' parameters hang off its `game_task` table entry
+  (`+0x1AC`): the meter's threshold, the rage's length, its speed, attack
+  and defense multipliers, and the meter's gain by health left. A monster
+  copies the threshold to `+0x570`, fills its meter at `+0x56E`, and when
+  it's full enrages: bit `0x20` of `+0x638`, with `+0x56C` frames left.
+- A monster's animations run at `2 × +0x4B0 × (100 + +0x769) / 100` each
+  frame: `+0x4B0` is the move's speed (rage sets it too) and `+0x769` a
+  bonus in percent some moves set and a change of move clears.
+- Size is `+0x274` (percent), turned into the model's scale by a
+  `game_task` function the game itself calls when a monster grows.
+- Each monster has its own copy of its model's materials (`+0x58`), which
+  the renderer reads every frame: diffuse, alpha and ambient colours per
+  mesh.
+- The reward screen draws the main reward table (kind `0x8000`) as many
+  times as its byte `+3` (the quest file's "draws"), plus Luck skills', and
+  picks each item by weight. It reads the quest file in memory, so the
+  blob changes it there, and puts it back if the next quest finds it
+  unread.
+
+Not yet tried in game.
 
 ## Code loader (prototype)
 

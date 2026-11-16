@@ -125,8 +125,10 @@ reaches. Twelve words per stub and 15 for `dispatch`.
 | ---- | ----------- | ------------------------------------------------------------ | ---------------------- | ---------------------- |
 | 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused | 0x09A627B0, 0x09A627D4 | 0x09A5DB20, 0x09A5DB44 |
 | 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9 | 0x0883FA68             | 0x0883FA84             |
+| 2    | pad         | the main loop's pad read (EU 0x08868F50), in every task      | 0x0888FD5C             | 0x0888FA60             |
 
-Both pass the HUD object (EU 0x09A04BA0, right after the save struct). The
+Hooks 0 and 1 pass the HUD object (EU 0x09A04BA0, right after the save
+struct); hook 2 passes the pad object (from the Hunter's Pact). The
 gauge call only happens when the gauges show: the layer skips it in
 cutscenes and when the HUD is off (HUD `+0x5DB`, save `+0x6AF1A`), and the
 function itself returns at once when bit 1 of HUD `+0x1194` is set. So
@@ -181,6 +183,56 @@ puts arguments 5–8 in `$t0`–`$t3` as EABI does. The gauges only read game
 memory; the tests in `test/monster-hp.test.ts` run the blob in the
 interpreter against a fake HUD and check it leaves the monsters, manager
 and HUD as they were.
+
+## Elite monsters
+
+`blob/elite.c` registers a booster with the shared monster boosts
+(`blob/monsters.c`, from the Hunter's Pact), which ask it once a frame,
+on hook 0, about every active large monster, and scale HP and the attack
+multiplier by what the boosters say. It also counts frames on hook 2,
+where it sees `game_task` replaced by the village's `lobby_task`: a new
+quest. It needs, per disc (`src/patches/elite.ts`), beside monster
+health's manager and species table:
+
+| Extern            | What                                             | EU         | JP         | Found by                             |
+| ----------------- | ------------------------------------------------ | ---------- | ---------- | ------------------------------------ |
+| `rf_quest`        | global holding the quest state                   | 0x08A62C7C | 0x08A5DD4C | `game_task`'s `lw`/`lb 0x116` of it  |
+| `rf_rng`          | global holding the game's random number object   | 0x08A631A0 | 0x08A5E270 | what most `jal rand` load into `$a0` |
+| `rf_rng_streams`  | where its u16 states are in it (a constant)      | 0xF7A56C   | 0xF7A3AC   | `rand`'s `lui`/`ori` (EU 0x088900C4) |
+| `rf_apply_size`   | `game_task`: scale the model from its size `(m)` | 0x09AC7668 | 0x09AC2938 | its exact code                       |
+| `rf_elite_chance` | the chance in percent (a constant)               |            |            | the setting                          |
+
+A monster rolls the first frame the shared boosts see it set up and alive
+(xorshift, stirred with the game's two first random streams, which it
+only reads, the frame count and the monster's address); a new monster in
+its slot, or a new quest, rolls again. For an elite the booster adds 50%
+HP and 30% attack, and writes the rest whenever the game has written it
+anew: the speed bonus (`+0x769`) when it's 0; the rage threshold (`+0x570`)
+when it equals the species' (`+0x1AC` of its table entry, then `+0`); the
+rage time left (`+0x56C`) on the frame rage starts; the size (`+0x274`),
+after which it calls `rf_apply_size`; and the tint.
+
+The tint is in the monster's own materials. The EBOOT's model renderer
+(EU 0x0886477C, called from `game_task` with the entity `+0x50`) sets each
+mesh's GE material from a table that `+0x58` points to and `+0x5C` ends:
+16 bytes each, diffuse RGB (`0x56`), alpha (`0x58`), ambient RGB (`0x55`),
+then the texture index at `+8`. The table is a copy inside the entity
+(Giadrome's at `+0x830`, 12 entries, on EU and JP savestates), so
+changing it changes that monster only. Each frame the blob scales the
+diffuse and ambient channels: red up to ×1.16, green and blue down to
+×0.77 and ×0.82, pulsing between half and all of that every 150 frames. A
+colour the game changes is taken as the new base.
+
+Rewards are written in the quest file in memory (quest state `+0x50`; its
+reward tables at `+0x5C`): the header's zenny (`+0x54`) and points
+(`+0x3C`), the main table's draws (`+3`, at most 9 of the roll's 10
+slots) and its items' chances. The blob keeps the values it found, so a
+quest file it finds as it left it (not read again) is put back first.
+
+The species' rage routines (meter, start, end, the per-frame countdown),
+the animation speed code and the model renderer are the same words on EU
+and JP but for addresses, and so are all the offsets above. Tests:
+`test/elite.test.ts` runs the blob in the interpreter.
 
 ## Toolchain
 

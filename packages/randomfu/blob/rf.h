@@ -43,17 +43,22 @@ s32 sceIoClose(s32 fd);
  * Game hooks (runtime.c): the code loader points game calls at stubs that
  * make the call, then run rf_hookN in the blob, if it's loaded. A feature
  * registers callbacks with rf_on from its init, which runs from rf_init after
- * every load. The argument is the HUD object for both hooks.
+ * every load. The argument is the HUD object for the first two.
  *
  * RF_HOOK_QUEST_FRAME: every frame of a quest (game_task.ovl's call to the
  *   HUD's update), menus and pauses included.
  * RF_HOOK_HUD: just after the hunter's health and stamina gauges are drawn,
  *   which the game skips when the HUD is hidden (cutscenes, the HUD option).
  *   Draw here with the HUD's own routines to sit in the same layer.
+ * RF_HOOK_PAD: once a frame in every task, just after the main loop reads
+ *   the pad and before the task runs. The argument is the pad object: the
+ *   raw PSP buttons (u16) first, then the stick. Clearing its first 16 bytes
+ *   keeps that frame's input from the game, as the game itself does.
  */
 #define RF_HOOK_QUEST_FRAME 0
 #define RF_HOOK_HUD 1
-#define RF_HOOKS 2
+#define RF_HOOK_PAD 2
+#define RF_HOOKS 3
 
 typedef void (*rf_hook_fn)(u8 *arg);
 void rf_on(u32 hook, rf_hook_fn fn);

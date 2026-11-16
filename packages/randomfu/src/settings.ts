@@ -113,6 +113,8 @@ export interface Settings {
   "hints.almanac": boolean;
   "mods.nodeMap": boolean;
   "hud.monsterHp": "off" | "painted" | "always";
+  "elites.enabled": boolean;
+  "elites.chance": number;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -128,6 +130,8 @@ export type OptionType =
       percent?: boolean;
       /** Shown as ±4 levels. */
       unit?: string;
+      /** Shown as 12%: a chance in percent, not a spread. */
+      chance?: boolean;
     }
   | {
       kind: "choice";
@@ -1643,6 +1647,24 @@ export const OPTIONS: readonly OptionDef[] = [
     },
     default: "off",
   },
+  {
+    key: "elites.enabled",
+    section: "Elite monsters",
+    label: "Elite monsters",
+    help: "Now and then a large monster is an elite: half again its health, hits 30% harder, moves 10% faster, enrages sooner and for half again as long, and is 15% bigger. Its hide has a faint crimson pulse. Each elite adds a reward draw, half the quest's zenny and points again, and makes the main reward's rarer items half again as likely. Rolled as each monster shows up, so the quest board doesn't tell. Stacks on the monster stats above. Caps received Guild Cards at 3 to make room for its code.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "elites.chance",
+    section: "Elite monsters",
+    label: "Elite chance",
+    help: "Each large monster's chance of being an elite, rolled once per quest as it shows up.",
+    type: { kind: "number", min: 1, max: 100, step: 1, chance: true },
+    default: 12,
+    enabledBy: "elites.enabled",
+  },
 ];
 
 const BY_KEY = new Map(OPTIONS.map((o) => [o.key, o]));
@@ -1787,6 +1809,7 @@ export function formatOption(option: OptionDef, value: Settings[OptionKey]): str
   if (type.kind === "boolean") return value ? "yes" : "no";
   if (type.kind === "number" && type.percent) return `±${Math.round(Number(value) * 100)}%`;
   if (type.kind === "number" && type.unit) return `±${String(value)} ${type.unit}`;
+  if (type.kind === "number" && type.chance) return `${String(value)}%`;
   if (type.kind === "choice") {
     return type.choices.find((c) => c.value === value)?.label ?? String(value);
   }

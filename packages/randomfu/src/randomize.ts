@@ -82,6 +82,7 @@ import { decodeObjects } from "./blob/link.js";
 import { addCodeLoader } from "./patches/code-loader.js";
 import { addNodeMap } from "./patches/node-map.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
+import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
 import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
@@ -816,16 +817,37 @@ export function randomize(
         `Code loader demo: Guild Cards are capped at ${loader.kept} and every save load adds 1000z. This disc is not for play.`,
       );
     }
-  } else if (settings["hud.monsterHp"] !== "off") {
-    const mode = settings["hud.monsterHp"];
-    const objects = [...decodeObjects(RUNTIME_OBJECTS), ...monsterHpObjects()];
+  } else if (settings["hud.monsterHp"] !== "off" || settings["elites.enabled"]) {
+    const hp = settings["hud.monsterHp"];
+    const elites = settings["elites.enabled"];
+    const objects = [
+      ...decodeObjects(RUNTIME_OBJECTS),
+      ...(hp !== "off" ? monsterHpObjects() : []),
+      ...(elites ? eliteObjects() : []),
+    ];
     const { ovl } = game.gameTask;
     reports.push(
       addCodeLoader(game.eboot, game.gameSub, edits, {
         objects,
         gameTask: game.gameTask,
-        externs: (sites) =>
-          findMonsterHpExterns(game.eboot!, sites.segment, sites.gauges, ovl.reader.buf, ovl, mode),
+        externs: (sites) => {
+          const gauges = findMonsterHpExterns(
+            game.eboot!,
+            sites.segment,
+            sites.gauges,
+            ovl.reader.buf,
+            ovl,
+            hp === "off" ? "always" : hp,
+          );
+          if (typeof gauges === "string" || !elites) return gauges;
+          const elite = findEliteExterns(
+            game.eboot!,
+            sites.segment,
+            ovl,
+            settings["elites.chance"],
+          );
+          return typeof elite === "string" ? elite : { ...gauges, ...elite };
+        },
       }),
     );
   }

@@ -15,15 +15,24 @@
  *   (EU 0x0883FA68) only when the gauges show: not in cutscenes or when the
  *   HUD is hidden. The function returns at once when bit 1 of the HUD's
  *   `+0x1194` is set.
+ * - The main loop reads the pad once a frame, before it runs the current
+ *   task, with an EBOOT function on the pad object (EU 0x08868F50, from EU
+ *   0x0888FD5C): the raw PSP buttons go to the object's first halfword, the
+ *   stick to `+2` and `+4`, and what the game works out from the stick to
+ *   the words after. The function clears the first 16 bytes when the game
+ *   wants no input, so whatever reads the pad reads them from there.
  *
  * Hooks, by index (`rf_hookN`):
  *
  * 0. Quest frame: both `game_task` calls to the HUD update.
  * 1. HUD: the call to the gauge function. Blob code drawing here with the
  *    HUD's routines draws in the gauges' layer.
+ * 2. Pad: the main loop's call to the pad read, in every task. Blob code can
+ *    read the buttons there, and keep them from the game by clearing them.
  *
  * A stub saves the call's arguments' first register and its result, so the
- * hook gets the HUD object in `$a0` and the caller its `$v0`. Everything is
+ * hook gets the HUD object (the pad object for hook 2) in `$a0` and the
+ * caller its `$v0`. Everything is
  * found by code signatures, which match the EU and JP (FUC) discs.
  */
 import { BLOB_MAGIC, HEADER } from "../blob/link.js";
@@ -49,7 +58,7 @@ import {
   type Segment,
 } from "./mips.js";
 
-export const HOOK = { questFrame: 0, hud: 1 } as const;
+export const HOOK = { questFrame: 0, hud: 1, pad: 2 } as const;
 
 /** The HUD update (EU 0x0883F270), masked (see `maskWord`). */
 export const HUD_UPDATE_SIGNATURE = [
@@ -66,6 +75,12 @@ export const GAUGES_SIGNATURE = [
   0x8c420000, 0x8c440000, 0x8c990000, 0x8f390000, 0x0320f809, 0x8e510000, 0x9043003c, 0x24020000,
 ];
 
+/** The pad read (EU 0x08868F50), masked: it reads the pad and checks the object's `+0x17`. */
+export const PAD_READ_SIGNATURE = [
+  0x27bdffd0, 0xafbf0000, 0xafb00000, 0x00808021, 0x27a40020, 0x0c000000, 0x24050000, 0x58400010,
+  0x92030017, 0x8fa40000, 0x3c030000, 0x00831824,
+];
+
 const word = (buf: Buffer, at: number) => buf.readUInt32LE(at);
 const isJalTo = (w: number, pc: number, target: number) =>
   w >>> 26 === 0x03 && jumpTarget(w, pc) === target;
@@ -78,6 +93,9 @@ export interface HookSites {
   questFrame: number[];
   /** ELF offset of the EBOOT's `jal gauges`. */
   hud: number;
+  padRead: number;
+  /** The main loop's `jal padRead`, a vaddr: `lui; jal; lw $a0` (the pad object's global). */
+  pad: number;
 }
 
 /** The hooks' call sites, or why they can't be found. */
@@ -88,20 +106,29 @@ export function findHookSites(
 ): HookSites | string {
   const segment = codeSegment(vanillaEboot);
   if (!segment) return "the EBOOT isn't an ELF";
-  const [hudUpdate, gauges] = findUnique(vanillaEboot, segment, [
+  const [hudUpdate, gauges, padRead] = findUnique(vanillaEboot, segment, [
     HUD_UPDATE_SIGNATURE,
     GAUGES_SIGNATURE,
+    PAD_READ_SIGNATURE,
   ]);
   if (hudUpdate == null || gauges == null) return "this EBOOT's HUD code doesn't match";
+  if (padRead == null) return "this EBOOT's pad code doesn't match";
   const offsetOf = (vaddr: number) => segment.offset + (vaddr - segment.vaddr);
   if (word(vanillaEboot, offsetOf(gauges) + 0x14) !== 0x8c831194) {
     return "this EBOOT's HUD code doesn't match";
   }
 
   const hud: number[] = [];
+  const pad: number[] = [];
   for (let at = segment.offset; at + 4 <= segment.offset + segment.size; at += 4) {
-    if (isJalTo(word(vanillaEboot, at), segment.vaddr + (at - segment.offset), gauges)) {
-      hud.push(at);
+    const vaddr = segment.vaddr + (at - segment.offset);
+    if (isJalTo(word(vanillaEboot, at), vaddr, gauges)) hud.push(at);
+    if (
+      isJalTo(word(vanillaEboot, at), vaddr, padRead) &&
+      word(vanillaEboot, at - 4) >>> 26 === 0x0f &&
+      word(vanillaEboot, at + 4) >>> 21 === ((0x23 << 5) | 2) // lw $a0, lo($v0)
+    ) {
+      pad.push(vaddr);
     }
   }
   const questFrame: number[] = [];
@@ -109,7 +136,8 @@ export function findHookSites(
     if (isJalTo(word(gameTask, at), gameTaskBase + at, hudUpdate)) questFrame.push(at);
   }
   if (hud.length !== 1 || questFrame.length !== 2) return "this game's HUD calls don't match";
-  return { segment, hudUpdate, gauges, questFrame, hud: hud[0]! };
+  if (pad.length !== 1) return "this EBOOT's main loop doesn't match";
+  return { segment, hudUpdate, gauges, questFrame, hud: hud[0]!, padRead, pad: pad[0]! };
 }
 
 /**
@@ -170,6 +198,7 @@ export function assembleHooks(
 export const hookCode = (sites: HookSites) => [
   { hook: HOOK.questFrame, target: sites.hudUpdate },
   { hook: HOOK.hud, target: sites.gauges },
+  { hook: HOOK.pad, target: sites.padRead },
 ];
 
 /** Points the game's calls at the stubs (`stubs` in `hookCode` order). */
@@ -181,4 +210,5 @@ export function writeHookCalls(
 ): void {
   for (const at of sites.questFrame) gameTask.writeUInt32LE(jalTo(stubs[0]!), at);
   eboot.writeUInt32LE(jalTo(stubs[1]!), sites.hud);
+  eboot.writeUInt32LE(jalTo(stubs[2]!), sites.segment.offset + (sites.pad - sites.segment.vaddr));
 }

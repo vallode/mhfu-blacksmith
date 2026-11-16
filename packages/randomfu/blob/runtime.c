@@ -26,10 +26,15 @@ static void run(u32 hook, u8 *arg) {
 
 void rf_hook0(u8 *arg) { run(RF_HOOK_QUEST_FRAME, arg); }
 void rf_hook1(u8 *arg) { run(RF_HOOK_HUD, arg); }
+void rf_hook2(u8 *arg) { run(RF_HOOK_PAD, arg); }
 
 __attribute__((weak)) void rf_monster_hp_init(u32 reason, u8 *save);
+__attribute__((weak)) void rf_monsters_init(u32 reason, u8 *save);
+__attribute__((weak)) void rf_elite_init(u32 reason, u8 *save);
 
 void rf_init(u32 reason, u8 *save, u8 *blob) {
   (void)blob;
   if (rf_monster_hp_init) rf_monster_hp_init(reason, save);
+  if (rf_monsters_init) rf_monsters_init(reason, save);
+  if (rf_elite_init) rf_elite_init(reason, save);
 }
