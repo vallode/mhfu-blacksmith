@@ -3,7 +3,7 @@
  * the same game, seed and settings always give the same edits and spoiler.
  */
 import { Edits } from "./edits.js";
-import type { GameData, LoadedQuest } from "./game/load.js";
+import { loadEmOverlays, type GameData, type LoadedQuest } from "./game/load.js";
 import {
   itemTiers,
   monsterStars,
@@ -92,6 +92,7 @@ import {
   randomizeMonsterStats,
   shuffleWeaknesses,
 } from "./shuffles/monster-stats.js";
+import { randomizeMonsterAi } from "./shuffles/monster-ai.js";
 import { writeGuides } from "./hints/guides.js";
 import { DEMO_OBJECTS } from "./blob/demo-object.js";
 import { decodeObjects } from "./blob/link.js";
@@ -444,6 +445,18 @@ export function randomize(
         ),
       );
     }
+  }
+  if (settings["monsterAi.branches"]) {
+    reports.push(
+      randomizeMonsterAi(
+        settings["monsterAi.branchSpread"],
+        rng.fork("monster-ai"),
+        edits,
+        game.gameTask,
+        loadEmOverlays(game),
+        monsterName,
+      ),
+    );
   }
 
   const questSlots = collectQuestRewardSlots(game.quests);

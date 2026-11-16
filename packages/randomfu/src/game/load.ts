@@ -203,3 +203,16 @@ export async function loadGame(source: RandomAccessSource, iso: Iso9660Reader): 
     ...(monsterNames?.problem && { monsterNamesProblem: monsterNames.problem }),
   };
 }
+
+/** Every `emNN.ovl` (a monster family's code and data) by emID, plaintext. */
+export function loadEmOverlays(
+  game: Pick<GameData, "region" | "dataBin">,
+): Map<number, LoadedOverlay> {
+  const out = new Map<number, LoadedOverlay>();
+  for (const [index, name] of loadFileList(game.region)) {
+    const m = /^overlay\/em(\d+)\.ovl$/.exec(name);
+    if (!m || index >= game.dataBin.fileCount) continue;
+    out.set(Number(m[1]), { index, ovl: parseOvl(game.dataBin.read(index)) });
+  }
+  return out;
+}
