@@ -115,6 +115,7 @@ export interface Settings {
   "hud.monsterHp": "off" | "painted" | "always";
   "elites.enabled": boolean;
   "elites.chance": number;
+  "quests.unknown": boolean;
 }
 
 export type OptionKey = Exclude<keyof Settings, "seed">;
@@ -1664,6 +1665,14 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "number", min: 1, max: 100, step: 1, chance: true },
     default: 12,
     enabledBy: "elites.enabled",
+  },
+  {
+    key: "quests.unknown",
+    section: "Quest monsters",
+    label: "Unknown Monster?! quests",
+    help: "Adds an investigation quest to the Village 6★, Guild 8★ and G★3 boards. Each time you accept it, it rolls a monster met on that map in any quest, the map, size, crowns, difficulty for the rank and the rewards. The board doesn't say what you'll find, and the quest names the monster once it starts. Solo only: in ad-hoc play the others get a different roll. Caps received Guild Cards at 3 to make room for the code.",
+    type: { kind: "boolean" },
+    default: false,
   },
 ];
 

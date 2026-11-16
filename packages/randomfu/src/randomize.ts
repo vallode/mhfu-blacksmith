@@ -84,6 +84,8 @@ import { addNodeMap } from "./patches/node-map.js";
 import { findMonsterHpExterns, monsterHpObjects } from "./patches/monster-hp.js";
 import { eliteObjects, findEliteExterns } from "./patches/elite.js";
 import { RUNTIME_OBJECTS } from "./blob/runtime-object.js";
+import { prepareUnknownQuests, unknownQuestsObjects } from "./patches/unknown-quests.js";
+import { findHookSites } from "./patches/game-hooks.js";
 import { addPoogieLuck } from "./patches/poogie-luck.js";
 import { LOGIC_VERSION } from "./version.js";
 
@@ -817,39 +819,109 @@ export function randomize(
         `Code loader demo: Guild Cards are capped at ${loader.kept} and every save load adds 1000z. This disc is not for play.`,
       );
     }
-  } else if (settings["hud.monsterHp"] !== "off" || settings["elites.enabled"]) {
-    const hp = settings["hud.monsterHp"];
-    const elites = settings["elites.enabled"];
-    const objects = [
-      ...decodeObjects(RUNTIME_OBJECTS),
-      ...(hp !== "off" ? monsterHpObjects() : []),
-      ...(elites ? eliteObjects() : []),
-    ];
+  } else if (
+    settings["hud.monsterHp"] !== "off" ||
+    settings["quests.unknown"] ||
+    settings["elites.enabled"]
+  ) {
+    // Each feature is resolved on its own first: one that doesn't match this
+    // disc is left out, and the loader (which caps Guild Cards) only goes in
+    // for the ones that do.
+    const notApplied = (title: string, why: string): ShuffleReport => ({
+      title,
+      notes: [`${title} isn't in this image: ${why}.`],
+      lines: [],
+      summary: `${title}: not applied (${why})`,
+    });
+    const objects = decodeObjects(RUNTIME_OBJECTS);
+    const externs: Record<string, number> = {};
     const { ovl } = game.gameTask;
-    reports.push(
-      addCodeLoader(game.eboot, game.gameSub, edits, {
+    // Both features run on the game hooks, found once here.
+    const sites = game.eboot
+      ? findHookSites(game.eboot, ovl.reader.buf, ovl.loadBase)
+      : "the EBOOT wasn't loaded";
+    const mode = settings["hud.monsterHp"];
+    let monsterHp = false;
+    if (mode !== "off") {
+      const found =
+        typeof sites === "string"
+          ? sites
+          : findMonsterHpExterns(
+              game.eboot!,
+              sites.segment,
+              sites.gauges,
+              ovl.reader.buf,
+              ovl,
+              mode,
+            );
+      if (typeof found === "string") reports.push(notApplied("Monster health", found));
+      else {
+        objects.push(...monsterHpObjects());
+        Object.assign(externs, found);
+        monsterHp = true;
+      }
+    }
+    const prepared = !settings["quests.unknown"]
+      ? null
+      : typeof sites === "string"
+        ? sites
+        : prepareUnknownQuests(game, edits, setOf);
+    if (typeof prepared === "string") {
+      reports.push(notApplied("Unknown Monster quests", prepared));
+    }
+    const unknown = typeof prepared === "string" ? null : prepared;
+    if (unknown) {
+      objects.push(...unknownQuestsObjects());
+      Object.assign(externs, unknown.externs);
+    }
+    // Elites share the monster list and species table monster health finds.
+    let elites = false;
+    if (settings["elites.enabled"]) {
+      let found: Record<string, number> | string =
+        typeof sites === "string"
+          ? sites
+          : findMonsterHpExterns(
+              game.eboot!,
+              sites.segment,
+              sites.gauges,
+              ovl.reader.buf,
+              ovl,
+              mode === "off" ? "always" : mode,
+            );
+      if (typeof sites !== "string" && typeof found !== "string") {
+        const { rf_game_task, rf_monsters, rf_em_chunks } = found;
+        const elite = findEliteExterns(game.eboot!, sites.segment, ovl, settings["elites.chance"]);
+        found =
+          typeof elite === "string"
+            ? elite
+            : {
+                rf_game_task: rf_game_task!,
+                rf_monsters: rf_monsters!,
+                rf_em_chunks: rf_em_chunks!,
+                ...elite,
+              };
+      }
+      if (typeof found === "string") reports.push(notApplied("Elite monsters", found));
+      else {
+        objects.push(...eliteObjects());
+        Object.assign(externs, found);
+        elites = true;
+      }
+    }
+    if (typeof sites !== "string" && (monsterHp || unknown || elites)) {
+      const loader = addCodeLoader(game.eboot, game.gameSub, edits, {
         objects,
-        gameTask: game.gameTask,
-        externs: (sites) => {
-          const gauges = findMonsterHpExterns(
-            game.eboot!,
-            sites.segment,
-            sites.gauges,
-            ovl.reader.buf,
-            ovl,
-            hp === "off" ? "always" : hp,
-          );
-          if (typeof gauges === "string" || !elites) return gauges;
-          const elite = findEliteExterns(
-            game.eboot!,
-            sites.segment,
-            ovl,
-            settings["elites.chance"],
-          );
-          return typeof elite === "string" ? elite : { ...gauges, ...elite };
+        hooks: {
+          sites,
+          gameTask: game.gameTask,
+          ...(unknown && { questLoad: { sites: unknown.questLoad, lobbyTask: game.lobbyTask } }),
         },
-      }),
-    );
+        externs,
+        ...(unknown && { data: unknown.data }),
+      });
+      reports.push(loader);
+      if (unknown) reports.push(unknown.finish(loader.applied));
+    }
   }
 
   // Last, so the guides show the monsters, drops, recipes and shops as the shuffles left them.

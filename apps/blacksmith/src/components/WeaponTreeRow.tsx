@@ -5,6 +5,7 @@ import { flushSync } from "react-dom";
 import Link from "next/link";
 import Icon from "./Icon";
 import { cn } from "@/lib/cn";
+import { filterFade, filteredOut } from "@/styles/list";
 import { prefetchBundle } from "@/lib/client-data";
 import { isNodeCollapsed, onNodeCollapsed, setNodeCollapsed } from "@/lib/tree-collapse-store";
 import { useHunterProgress } from "@/context/HunterProgressContext";
@@ -46,7 +47,7 @@ interface WeaponTreeRowProps {
 // connector lines and indentation never move.
 const rowBase = [
   "relative flex h-[38px] w-full min-w-max flex-row items-center pr-[0.9rem] text-white",
-  "transition-opacity duration-150 ease-out motion-reduce:transition-none",
+  filterFade,
   "before:absolute before:top-0 before:left-[calc(100%-50vw+2.3rem+0.65rem)] before:z-0 before:block before:h-full before:w-[calc(50vw-2.3rem-0.65rem)] before:bg-transparent",
   "mobile:before:left-0 mobile:before:w-full",
   "hover:before:hover-glow focus:before:hover-glow",
@@ -244,7 +245,7 @@ export default function WeaponTreeRow({
     // The current page's row keeps a steady (non-pulsing) highlight.
     isActive && "before:animate-none before:[background:var(--gradient-hover-glow)]",
     // Ruled out by the tree filter.
-    dimmed && "opacity-30",
+    dimmed && filteredOut,
   );
 
   const inner = (

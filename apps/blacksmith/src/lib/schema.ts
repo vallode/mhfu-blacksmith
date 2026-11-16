@@ -152,6 +152,8 @@ export interface CompactMonster {
   bk?: MonsterBreak[];
   /** hitzone_flinch: a flinch stringIdx (or null) per `hz` row, in its order */
   hf?: (number | null)[];
+  /** 1 when the monster can be captured (lib/monster-drops' canCapture), for the list's filter */
+  ca?: 1;
 }
 
 export interface CompactDecoration {
@@ -372,6 +374,20 @@ export function decodeArmor(d: Dictionaries, a: CompactArmor, slot: string): Arm
 }
 
 const HITZONE_COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
+
+/** A row of a monster type's list: no more of the monster than the list needs. */
+export interface MonsterListItem {
+  slug: string;
+  name: string;
+  /** Whether it can be captured (lib/monster-drops' canCapture, at build time). */
+  capturable: boolean;
+}
+
+export const decodeMonsterListItem = (m: CompactMonster): MonsterListItem => ({
+  slug: m.s,
+  name: m.n,
+  capturable: m.ca === 1,
+});
 
 export function decodeMonster(d: Dictionaries, m: CompactMonster, category: string): Monster {
   const hitzones: Monster["hitzones"] = {};

@@ -148,7 +148,21 @@ export class Cpu {
       else if (op === 0x23) set(rt, this.u32(at()));
       else if (op === 0x24) set(rt, this.u8(at()));
       else if (op === 0x25) set(rt, this.u16(at()));
-      else if (op === 0x28) this.setU8(at(), u(rt));
+      else if (op === 0x22 || op === 0x26 || op === 0x2a || op === 0x2e) {
+        // lwl, lwr, swl, swr (little-endian): clang merges byte loads and stores into them.
+        const word = at() & ~3;
+        const k = at() & 3;
+        const m = this.u32(word);
+        if (op === 0x22) set(rt, (u(rt) & (0x00ffffff >>> (k * 8))) | (m << ((3 - k) * 8)));
+        else if (op === 0x26) {
+          set(rt, (k === 0 ? 0 : u(rt) & (0xffffffff << ((4 - k) * 8))) | (m >>> (k * 8)));
+        } else if (op === 0x2a) {
+          this.setU32(
+            word,
+            (k === 3 ? 0 : m & (0xffffffff << ((k + 1) * 8))) | (u(rt) >>> ((3 - k) * 8)),
+          );
+        } else this.setU32(word, (m & (0x00ffffff >>> ((3 - k) * 8))) | (u(rt) << (k * 8)));
+      } else if (op === 0x28) this.setU8(at(), u(rt));
       else if (op === 0x29) this.setU16(at(), u(rt));
       else if (op === 0x2b) this.setU32(at(), u(rt));
       else throw new Error(`op ${op.toString(16)} at ${pc.toString(16)}`);

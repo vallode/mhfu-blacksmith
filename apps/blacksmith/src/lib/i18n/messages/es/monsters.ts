@@ -22,6 +22,19 @@ export const monsters: Messages["monsters"] = {
       spawns: "Dónde abunda",
     },
   },
+  list: {
+    count: (count: string) => `×${count}`,
+    capturesTitle: (n: number, count: string) =>
+      n === 1 ? "Capturado 1 vez" : `Capturado ${count} veces`,
+    killsTitle: (n: number, count: string) => (n === 1 ? "Cazado 1 vez" : `Cazado ${count} veces`),
+    filterGroup: "Filtro de monstruos",
+    filterCount: (matched: number, total: number) => `${matched} de ${total} monstruos`,
+    filters: {
+      all: "Todos",
+      captured: "Capturados",
+      hunted: "Cazados",
+    },
+  },
   crowns: {
     names: { gold: "Oro", silver: "Plata", mini: "Mini" },
     crown: { gold: "Corona de oro", silver: "Corona de plata", mini: "Corona mini" },

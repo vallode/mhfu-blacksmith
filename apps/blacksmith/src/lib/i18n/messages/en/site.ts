@@ -82,7 +82,7 @@ export const site = {
     },
     showHuntRecords: {
       label: "Hunt records",
-      note: "Show how many of each monster you have hunted and captured on its page.",
+      note: "Show how many of each monster you have hunted and captured on its page, and filter the monster lists by them.",
     },
     defaultTreeFilter: {
       label: "Starting tree filter",

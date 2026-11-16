@@ -23,6 +23,8 @@ import {
   decodeWeapon,
   decodeArmor,
   decodeMonster,
+  decodeMonsterListItem,
+  type MonsterListItem,
   decodeDecoration,
   decodeTree,
 } from "./schema";
@@ -38,10 +40,7 @@ import { decodeQuests, type Quest, type QuestsBundle } from "./quests";
 import type { SearchData, SkillTreeData } from "./set-search";
 import { setSearchDataFromBundles } from "./set-data";
 
-export interface MonsterListItem {
-  slug: string;
-  name: string;
-}
+export type { MonsterListItem };
 
 // ---------------------------------------------------------------------------
 // Module-level caches
@@ -285,7 +284,7 @@ export function useMonsterList(category: string): ListState<MonsterListItem> {
     const b = bundle as MonsterBundle;
     return {
       tree: null,
-      items: b.items.map((m) => ({ slug: m.s, name: m.n })),
+      items: b.items.map(decodeMonsterListItem),
     };
   });
 }

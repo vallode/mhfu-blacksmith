@@ -121,14 +121,16 @@ address matches and the header's entry isn't 0; the call's `$v0` is passed
 back. A stub's 32-byte frame leaves `sp+0..15` free for the O32 code it
 reaches. Twelve words per stub and 15 for `dispatch`.
 
-| Hook | `rf_hookN`  | The call                                                     | EU site(s)             | JP site(s)             |
-| ---- | ----------- | ------------------------------------------------------------ | ---------------------- | ---------------------- |
-| 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused | 0x09A627B0, 0x09A627D4 | 0x09A5DB20, 0x09A5DB44 |
-| 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9 | 0x0883FA68             | 0x0883FA84             |
-| 2    | pad         | the main loop's pad read (EU 0x08868F50), in every task      | 0x0888FD5C             | 0x0888FA60             |
+| Hook | `rf_hookN`  | The call                                                     | EU site(s)                                | JP site(s)                                |
+| ---- | ----------- | ------------------------------------------------------------ | ----------------------------------------- | ----------------------------------------- |
+| 0    | quest frame | `game_task`'s HUD update (EU 0x0883F270), playing and paused | 0x09A627B0, 0x09A627D4                    | 0x09A5DB20, 0x09A5DB44                    |
+| 1    | HUD         | the hunter's gauges (EU 0x088405E4), in the update's layer 9 | 0x0883FA68                                | 0x0883FA84                                |
+| 2    | pad         | the main loop's pad read (EU 0x08868F50), in every task      | 0x0888FD5C                                | 0x0888FA60                                |
+| 3    | quest load  | the quest loader (EU 0x08870AEC), accepting and departing    | `lobby_task` +0x2F424, `game_task` +0x6B8 | `lobby_task` +0x2F0B4, `game_task` +0x6A8 |
 
 Hooks 0 and 1 pass the HUD object (EU 0x09A04BA0, right after the save
-struct); hook 2 passes the pad object (from the Hunter's Pact). The
+struct); hook 2 passes the pad object (from the Hunter's Pact), and hook 3
+a `struct rf_load` (below). The
 gauge call only happens when the gauges show: the layer skips it in
 cutscenes and when the HUD is off (HUD `+0x5DB`, save `+0x6AF1A`), and the
 function itself returns at once when bit 1 of HUD `+0x1194` is set. So
@@ -233,6 +235,49 @@ The species' rage routines (meter, start, end, the per-frame countdown),
 the animation speed code and the model renderer are the same words on EU
 and JP but for addresses, and so are all the offsets above. Tests:
 `test/elite.test.ts` runs the blob in the interpreter.
+
+## Unknown Monster quests
+
+`blob/unknown-quests.c` on hook 3 (`README.md` has what it does for the
+player). The quest loader, EU 0x08870AEC / JP 0x08870AE4, is
+`(quest, u16 id, buf)`, a state machine its caller runs every frame until
+it returns 1:
+
+- Step 0 (`quest+0x716` is 0): maps the ID to its DATA.BIN file through a
+  table of groups (EU 0x089A7CE8: by thousands below 10000, then 10xxx,
+  11xxx, 2xxxx, 30xxx, 40xxx, 50xxx), returns 1 at once if `quest+0x714`
+  says that file is loaded, else allocates 0x6800 bytes and starts reading.
+- Step 1: when the read is done, decrypts the quest into `buf` (0: the
+  default buffer, EU 0x08A5C440 / JP 0x08A57510), frees the read buffer
+  and returns 1.
+
+`lobby_task` calls it when a quest is accepted (`buf` is the town's quest
+buffer) and `game_task` when it starts (the default buffer, the ID from the
+save at `+0x6AF12`). The hook's stub is one for both, entered with the
+phase in `$t4`: it stores `{quest, id, buf, result, phase}` at `sp+16`,
+dispatches, makes the call with the arguments read back from there (so a
+callback can change `id`), then stores `$v0` and dispatches again with
+phase 2. 27 words.
+
+The blob, on a new load (step 0) of one of its IDs, rolls (accepting) or
+keeps the accepted roll (departing), sets `+0x714` to 0xFFFF so the file is
+read again, and swaps the ID for the template's on every call of the load.
+When the load returns 1 it rewrites the buffer: species at every large
+monster record and preload entry, levels, the target and objectives,
+`questId`, stars, size `+0x38`, size spread `+0x4A`, money, clears the
+urgent and key bits, and writes the reward tables and one text block (all
+seven languages point at it) after the quest's end, with the header's
+pointers moved to them. `unknownTables` leaves out any roll whose rewards and
+text wouldn't fit in the loader's 0x6800-byte buffer (`rewardBytes`,
+`textBytes`).
+
+The board lists and their pointer table (EU 0x089B1E64, JP 0x089AEF28)
+are found from the function that counts them (`LIST_COUNT_SIGNATURE`), and
+the system timer that seeds each roll is `sceKernelGetSystemTimeLow`,
+imported by both EBOOTs. The tables are linked after the code as the
+`rf_uq_data` symbol (`linkBlob`'s `data`), so the blob has them at a known
+address; `test/unknown-quests.test.ts` runs the stub and blob against a fake
+loader.
 
 ## Toolchain
 
