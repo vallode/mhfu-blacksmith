@@ -1,3 +1,5 @@
+import { hunterRankFrom } from "./hunter-rank";
+
 const KEY = "mhfu_save";
 
 export interface ItemSlot {
@@ -100,7 +102,10 @@ export interface SaveData extends AwardRecords {
   sex?: string;
   /** Total play time in seconds. */
   playTime?: number;
-  /** Missing on saves stored before it was read. */
+  /**
+   * HR, 1-9, from `clearedQuests`. Missing on saves stored before those were
+   * read: older saves stored a quest count here, so `getSave` works it out again.
+   */
   hunterRank?: number;
   /** 0-based character slot in the save file. Missing on saves stored before it was kept. */
   slot?: number;
@@ -162,7 +167,14 @@ export function setSave(data: Omit<SaveData, "savedAt">): void {
 export function getSave(): SaveData | null {
   try {
     const raw = localStorage.getItem(KEY);
-    return raw ? (JSON.parse(raw) as SaveData) : null;
+    if (!raw) return null;
+    const save = JSON.parse(raw) as SaveData;
+    // Saves stored before HR was worked out from the cleared quests hold a
+    // quest count in `hunterRank`, so it's never taken from storage.
+    return {
+      ...save,
+      hunterRank: save.clearedQuests ? hunterRankFrom(save.clearedQuests) : undefined,
+    };
   } catch {
     return null;
   }
