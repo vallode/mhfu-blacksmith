@@ -1902,7 +1902,8 @@ export function describeSettings(settings: Settings): string[] {
 
 export interface Preset {
   name: string;
-  help: string;
+  /** The main differences from the other presets, one short point each. */
+  points: readonly string[];
   /** Changes from the defaults. */
   changes: Partial<Record<OptionKey, boolean | number | string>>;
 }
@@ -1928,12 +1929,21 @@ const STAT_RANDOMIZERS = {
 export const PRESETS: readonly Preset[] = [
   {
     name: "Rewards only",
-    help: "The defaults: quest rewards and carves are shuffled, at the same star level. Nothing else changes.",
+    points: [
+      "Quest rewards and carves are shuffled, at the same star level",
+      "Nothing else changes",
+    ],
     changes: {},
   },
   {
     name: "Shuffled",
-    help: "Moves things, rolls no new numbers: rewards, gathering points, supply boxes, recipe materials, the smithy's weapons and armor, weapon sharpness, armor skills, shop stock, large monsters (into their own variants) and every monster's elemental weaknesses and weak spots all trade places, at the same star level. Armor pieces also trade their defense (with how far spheres upgrade it), resistances and slots with pieces of the same rarity and hunter type, and their rarity within its rank. No amount, cost or stat is rolled anew.",
+    points: [
+      "Moves things, rolls no new numbers",
+      "Rewards, gathering points, supply boxes, recipe materials and shop stock trade places, at the same star level",
+      "The smithy's weapons and armor, weapon sharpness and armor skills trade places",
+      "Large monsters swap into their own variants; elemental weaknesses and weak spots trade places",
+      "Armor pieces trade defense, resistances and slots with pieces of the same rarity and hunter type, and rarity within its rank",
+    ],
     changes: {
       "gathering.mode": "shuffle",
       "supplies.mode": "shuffle",
@@ -1954,7 +1964,14 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Randomized",
-    help: "Changes numbers, moves nothing: every reward, weapon and monster stays where it was, but material amounts, crafting costs, shop prices, carry limits, quest money, time limits, how often each quest's main reward list is drawn, delivery targets, small monster counts, each quest's monster size, crown spread and difficulty, each monster's base HP, size and status resistance, each weapon's attack, affinity, element and slots, and each armor piece's defense, resistances, slots and rarity are rolled anew, and armor gets new skills.",
+    points: [
+      "Moves nothing, rolls numbers anew",
+      "Material amounts, crafting costs, shop prices, carry limits, quest money, time limits and delivery targets",
+      "How often each quest's main reward list is drawn, and small monster counts",
+      "Each quest's monster size, crown spread and difficulty; each monster's base HP, size and status resistance",
+      "Weapon attack, affinity, element and slots; armor defense, resistances, slots and rarity",
+      "Armor gets new skills",
+    ],
     changes: {
       "questRewards.mode": "off",
       "questRewards.draws": 0.3,
@@ -1975,7 +1992,12 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Full",
-    help: "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before. Gathering points draw from the whole rank, shops add Low Rank items and prices change; armor skills are shuffled while armor stats get new values, and monster difficulty stays within its rank.",
+    points: [
+      "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before",
+      "Gathering points draw from the whole rank; shops add Low Rank items and change prices",
+      "Armor skills are shuffled while armor stats get new values",
+      "Monster difficulty stays within its rank",
+    ],
     changes: {
       "recipes.mode": "shuffle",
       "recipes.amounts": true,
@@ -2005,7 +2027,14 @@ export const PRESETS: readonly Preset[] = [
   },
   {
     name: "Chaos",
-    help: "Full with the limits off. Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank. Weapons can change type, take any stat their type has at any rarity, gain or change elements and slots, and get new sharpness bars; any monster can turn up on a map it lives on, armor gets new skills (even ones that may become impossible to activate), shops and gathering points can give anything, quests can give any crown or any difficulty, and every number varies widely.",
+    points: [
+      "Full with the limits off, and every number varies widely",
+      "Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank",
+      "Weapons can change type, take any stat at any rarity, gain or change elements and slots, and get new sharpness bars",
+      "Any monster can turn up on a map it lives on; quests can give any crown or difficulty",
+      "Armor gets new skills, even ones that may become impossible to activate",
+      "Shops and gathering points can give anything",
+    ],
     changes: {
       "questRewards.scope": "any",
       "questRewards.draws": 0.9,
