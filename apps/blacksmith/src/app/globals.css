@@ -688,6 +688,10 @@ img {
 
   @media screen and (max-width: 899px) {
     flex-direction: column;
+    /* Fill the screen under the page bar even when the list is short, so an
+       item's sheet (SplitPage) has the screen's height to open into. */
+    flex: 1 1 auto;
+    min-height: 0;
   }
 }
 
