@@ -7,6 +7,7 @@ import { parseOvl } from "mhfu-extract/src/container/ovl.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
+import { isMonsterInfo } from "../src/game/quest-fields.js";
 import { ESSENTIALS, locateItemTable } from "../src/shuffles/shops.js";
 import {
   buildFixtureDisc,
@@ -203,6 +204,42 @@ test("item counts scale every stage of a shop alike, and the lists are rewritten
     assert.equal(data.tables[1]!.lists[2], data.tables[2]!.lists[1]);
   }
   close();
+});
+
+test("the monster Info items are dropped from shops and never drawn", async () => {
+  const { game, close } = await load();
+  // Village stage 2 sells Rajang Info in place of item 300.
+  const buf = game.dataBin.read(game.lobbyTask.index);
+  const at = lobby.listAt.village2! + 8 * 2;
+  const saved = buf.readUInt16LE(at);
+  buf.writeUInt16LE(851, at);
+  try {
+    for (const seed of ["a", "b", "c", "d"]) {
+      for (const extra of [
+        {},
+        { "shops.mode": "randomize", "shops.scope": "any", "shops.mix": "all" },
+      ] as const) {
+        const result = randomize(game, settingsWith(seed, ["shops"], extra));
+        const edited = parseOvl(result.edits.overlay(game.lobbyTask));
+        const data = readTablesAt(edited, lobby.tablesAt, FIXTURE_SHOP_TABLES.length);
+        const [v1, v2] = data.tables[0]!.lists.map((o) => data.lists.get(o)!.items);
+        for (const list of data.lists.values()) {
+          for (const v of list.items) assert.ok(!isMonsterInfo(v), `Info item ${v} sold`);
+        }
+        assert.equal(
+          v2!.length,
+          FIXTURE_SHOP_LISTS.village2!.length - 1,
+          "the Info item's slot goes",
+        );
+        assert.deepEqual(v2!.slice(0, v1!.length), v1, "stages stay consistent");
+        const shops = result.reports.find((r) => r.title === "Shop stock")!;
+        assert.ok(shops.lines.some((l) => l.text === "Rajang Info (removed)"));
+      }
+    }
+  } finally {
+    buf.writeUInt16LE(saved, at);
+    close();
+  }
 });
 
 test("lists won't be rewritten over anything that isn't a shop list", async () => {

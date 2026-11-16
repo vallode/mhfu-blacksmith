@@ -42,6 +42,7 @@ import {
 } from "mhfu-extract/src/tables/offsets.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import type { LoadedOverlay } from "../game/load.js";
+import { isMonsterInfo } from "../game/quest-fields.js";
 import type { Edits } from "../edits.js";
 import { itemName } from "../names.js";
 import type { Rng } from "../rng.js";
@@ -172,12 +173,15 @@ function poolFor(
   context: ShopContext,
 ): number[] {
   const base = options.mix === "each" ? own : allShopItems;
-  if (options.pool === "shop") return [...base];
-  if (options.pool === "any") return [...context.allItems];
-  const ranks = options.pool === "low" ? ["low"] : ["low", "high"];
-  const out = new Set(base);
-  for (const [item, band] of context.bands) if (ranks.includes(band)) out.add(item);
-  return [...out].sort((a, b) => a - b);
+  const pool = (() => {
+    if (options.pool === "shop") return [...base];
+    if (options.pool === "any") return [...context.allItems];
+    const ranks = options.pool === "low" ? ["low"] : ["low", "high"];
+    const out = new Set(base);
+    for (const [item, band] of context.bands) if (ranks.includes(band)) out.add(item);
+    return [...out].sort((a, b) => a - b);
+  })();
+  return pool.filter((v) => !isMonsterInfo(v));
 }
 
 /**
@@ -205,6 +209,7 @@ function prepareGroup(
   const firstStage = new Map<number, number>();
   lists.forEach((list, stage) => {
     for (const v of list.items) {
+      if (isMonsterInfo(v)) continue;
       if (!items.includes(v)) items.push(v);
       if (!firstStage.has(v)) firstStage.set(v, stage);
     }
@@ -249,12 +254,14 @@ function prepareGroup(
     const kept = new Map<ShopList, Set<number>>();
     // Smaller lists first, so a list's nested lists are settled before it.
     for (const list of [...lists].sort((a, b) => a.items.length - b.items.length)) {
-      const replaced = [...new Set(list.items.map((v) => sigma.get(v)!))];
-      if (list.items.length === 0) {
+      // The monster Info items are dropped, not replaced.
+      const sold = list.items.filter((v) => !isMonsterInfo(v));
+      const replaced = [...new Set(sold.map((v) => sigma.get(v)!))];
+      if (sold.length === 0) {
         out.set(list.offset, []);
         continue;
       }
-      const size = list.items.length;
+      const size = sold.length;
       const target =
         factor >= 1
           ? size + Math.floor((factor - 1) * size)
@@ -369,6 +376,7 @@ export function randomizeShops(
   const lines: { where: string; text: string }[] = [];
   const contents = new Map<number, number[]>();
   let replaced = 0;
+  const infos = allShopItems.filter(isMonsterInfo);
 
   const groups = groupTables(included, options.mix).map((group) => {
     const offsets = [...new Set(group.flatMap((t) => t.lists))].sort((a, b) => a - b);
@@ -405,6 +413,10 @@ export function randomizeShops(
 
   for (const { group, plan } of groups) {
     const where = group.map((t) => t.name).join(" + ");
+    const ownInfos = infos.filter((v) =>
+      group.some((t) => t.lists.some((o) => data.lists.get(o)!.items.includes(v))),
+    );
+    for (const v of ownInfos) lines.push({ where, text: `${itemName(v)} (removed)` });
     for (const [v, now] of plan.sigma) {
       if (now !== v) replaced++;
       lines.push({
@@ -454,6 +466,11 @@ export function randomizeShops(
       options.countSpread > 0
         ? `How many items each shop sells varies by up to ${Math.round(options.countSpread * 100)}% (at most ${maxLength}); the lists were ${layout === "repacked" ? "rewritten and the shop tables updated" : "kept in place"}.${growth < 1 ? ` Shops can only grow into space others free, so growth was scaled to ${Math.round(growth * 100)}%.` : ""}`
         : "Each shop sells as many items as before.",
+      ...(infos.length > 0
+        ? [
+            `The ${infos.length} monster Info items are no longer sold, so their shops sell that many fewer items.`,
+          ]
+        : []),
       ...notes,
       `${replaced} items replaced.${skipped.length > 0 ? ` Not changed: ${skipped.join(", ")}.` : ""}`,
     ],

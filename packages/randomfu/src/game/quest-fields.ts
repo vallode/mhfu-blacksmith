@@ -71,6 +71,18 @@ export function isQuestItem(itemId: number): boolean {
   return QUEST_ITEM_RANGES.some(([lo, hi]) => itemId >= lo && itemId <= hi);
 }
 
+/**
+ * The monster Info items, Lynian Info (831) to Fatalis Info (859): books
+ * the general store sells that unlock bookshelf pages. They're no use in a
+ * randomizer, so stock shuffles drop them from every shop and no pool draws
+ * them (rewards, supplies and trades skip them as quest items anyway).
+ */
+export const MONSTER_INFO: readonly [number, number] = [831, 859];
+
+export function isMonsterInfo(itemId: number): boolean {
+  return itemId >= MONSTER_INFO[0] && itemId <= MONSTER_INFO[1];
+}
+
 export interface DeliveryTarget {
   itemId: number;
   amount: number;

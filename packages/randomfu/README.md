@@ -588,10 +588,14 @@ Whetstone), not by address.
 
 - **Stock**: each item a shop sells is replaced by one other item, the same
   in every stage. `shops.mode shuffle` draws from the items shops sell
-  anyway, so no shop changes length; `randomize` also draws from items first
+  anyway, so no shop changes length but for the Info items below; `randomize` also draws from items first
   found in Low or High Rank, or any item in the game (`shops.scope`; shops
   have no rank of their own, so it is a ceiling). Shops sharing a list
-  share replacements (or all shops do, with `shops.mix all`).
+  share replacements (or all shops do, with `shops.mix all`). The monster
+  Info items (Lynian Info to Fatalis Info, 831-859) only unlock bookshelf
+  pages, so they're dropped, not replaced: the general store sells that many
+  fewer items. No pool (shops, gathering, rewards, supplies, trades) ever
+  draws them.
 - **How many** (`randomize` only): with `shops.countSpread`, each shop's lists scale by one
   factor, so later stages still sell what earlier ones did (stages nest by
   construction: items are kept in an order of pinned items, then by the
