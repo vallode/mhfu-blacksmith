@@ -454,5 +454,10 @@ describe("the awards counted from the save's other records", () => {
       [0, 5],
     );
     assert.equal(count("artisans-mitten", { equipment: [] }), "loading");
+    // Without the table there's no rarity to go on.
+    assert.equal(
+      count("artisans-mitten", { equipment: [] }, { equipmentIdsFailed: true }),
+      "untracked",
+    );
   });
 });

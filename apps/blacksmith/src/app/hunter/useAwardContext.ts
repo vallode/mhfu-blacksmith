@@ -14,9 +14,9 @@ export function useAwardContext(): AwardContext {
   const { save } = useSave();
   const { quests } = useQuests();
   const monsters = useAllMonsters();
-  const { ids: equipmentIds } = useEquipmentIds(save !== null);
+  const { ids: equipmentIds, error: equipmentIdsFailed } = useEquipmentIds(save !== null);
   return useMemo(
-    () => ({ save, quests, monsters, equipmentIds }),
-    [save, quests, monsters, equipmentIds],
+    () => ({ save, quests, monsters, equipmentIds, equipmentIdsFailed }),
+    [save, quests, monsters, equipmentIds, equipmentIdsFailed],
   );
 }

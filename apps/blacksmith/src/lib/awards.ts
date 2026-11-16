@@ -71,7 +71,7 @@ export type AwardRule =
    * box): null when the save doesn't have them.
    */
   | { kind: "records"; tally: (save: SaveData, ctx: AwardContext) => Tally | null }
-  /** Not read from the save yet. */
+  /** The site can't follow the condition (the reason is beside the award). */
   | { kind: "untracked" };
 
 export interface Award {
@@ -236,6 +236,13 @@ function questTodos(all: Quest[], hubs: readonly QuestHubSlug[], ids: number[]):
 /** The weapon sets each Training School quest has (`trainingSets` has a bit for each). */
 const WEAPON_SETS = 5;
 
+/** The Artisan's Hammer's weapon class of each listed weapon, by `type:id`. */
+const ARTISAN_CLASS = new Map(
+  ARTISAN_WEAPONS.flatMap(([type, ids], weaponClass) =>
+    ids.map((id) => [`${type}:${id}`, weaponClass] as const),
+  ),
+);
+
 /**
  * Training quests `from` to `to`, each cleared with every one of its weapon
  * sets (EU `0x08857058` reads the bits).
@@ -246,11 +253,13 @@ function trainingSets(from: number, to: number): AwardRule {
     if (!ctx.quests) return "loading";
     const bits = new Set(save.trainingSets);
     const ids = range(from, to);
-    const left = ids.filter((id) =>
-      Array.from({ length: WEAPON_SETS }).some(
-        (_, set) => !bits.has((id - 21001) * WEAPON_SETS + set),
-      ),
-    );
+    const allSets = (id: number) => {
+      for (let set = 0; set < WEAPON_SETS; set++) {
+        if (!bits.has((id - 21001) * WEAPON_SETS + set)) return false;
+      }
+      return true;
+    };
+    const left = ids.filter((id) => !allSets(id));
     return {
       done: ids.length - left.length,
       total: ids.length,
@@ -272,9 +281,9 @@ const MIRACLE_MAPS = [7, 8, 9, 10, 11];
 const MAP_QUESTS = 20;
 
 /**
- * Every award, in the game's order. Untracked awards name the save data
- * their condition needs, as offsets into a hunter's block of the save file
- * (the block `save-worker.js` reads the records from).
+ * Every award, in the game's order. The save data each condition reads is in
+ * `packages/mhfu-extract/docs/awards.md`; an untracked award says why beside
+ * it.
  */
 export const AWARDS: readonly Award[] = [
   {
@@ -368,11 +377,12 @@ export const AWARDS: readonly Award[] = [
     group: "collection",
     rule: records(({ equipment }) => {
       if (!equipment) return null;
-      const done = ARTISAN_WEAPONS.filter(([type, ids]) => {
-        const listed = new Set(ids);
-        return equipment.filter((s) => s.type === type && listed.has(s.id)).length >= 4;
-      }).length;
-      return { done, total: ARTISAN_WEAPONS.length };
+      const held = ARTISAN_WEAPONS.map(() => 0);
+      for (const s of equipment) {
+        const weaponClass = ARTISAN_CLASS.get(`${s.type}:${s.id}`);
+        if (weaponClass !== undefined) held[weaponClass]!++;
+      }
+      return { done: held.filter((n) => n >= 4).length, total: ARTISAN_WEAPONS.length };
     }),
   },
   // The game's code hunts each of Chameleos, Teostra, Lunastra, Shen Gaoren,
@@ -531,7 +541,7 @@ export const AWARDS: readonly Award[] = [
     rule: records(({ equipment }, ctx) => {
       if (!equipment) return null;
       const ids = ctx.equipmentIds;
-      if (!ids) return "loading";
+      if (!ids) return ctx.equipmentIdsFailed ? null : "loading";
       const done = ARMOR_TYPES.filter(
         (type) =>
           equipment.filter((s) => s.type === type && (ids[type]?.[s.id]?.[2] ?? 0) >= 9).length >=
@@ -579,6 +589,8 @@ export interface AwardContext {
   monsters: CrownMonster[] | null;
   /** The equipment ID table (equipment-ids.json), for armor rarity; null or missing while it loads. */
   equipmentIds?: EquipmentIds | null;
+  /** The equipment ID table couldn't be fetched, so the awards that need it can't be followed. */
+  equipmentIdsFailed?: boolean;
 }
 
 /** Something still to do for an award: a quest to clear or a monster to hunt. */

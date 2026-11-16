@@ -72,7 +72,8 @@ export interface AwardRecords {
   specialWeapons?: number;
 }
 
-const AWARD_RECORD_KEYS = [
+/** Every `AwardRecords` field, for copying them from a parsed hunter. */
+export const AWARD_RECORD_KEYS = [
   "trainingSets",
   "farm",
   "felyneChefs",
@@ -134,8 +135,9 @@ export function saveFromCharacter(
   region: string,
   slot?: number,
 ): Omit<SaveData, "savedAt"> {
-  const records: AwardRecords = {};
-  for (const key of AWARD_RECORD_KEYS) Object.assign(records, { [key]: character[key] });
+  const records = Object.fromEntries(
+    AWARD_RECORD_KEYS.map((key) => [key, character[key]]),
+  ) as AwardRecords;
   return {
     ...records,
     name: character.name,

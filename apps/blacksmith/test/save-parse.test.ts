@@ -15,7 +15,7 @@ import { AWARDS, awardProgress } from "../src/lib/awards";
 import type { ItemRecord } from "../src/lib/items";
 import { MONSTER_GAME_IDS } from "../src/lib/monster-ids";
 import { DATA_DIR } from "../src/lib/paths";
-import { saveFromCharacter } from "../src/lib/save-store";
+import { AWARD_RECORD_KEYS, saveFromCharacter } from "../src/lib/save-store";
 import { readData } from "game-data";
 
 const root = path.resolve(__dirname, "..");
@@ -443,20 +443,8 @@ test("stored saves keep the award flags", async () => {
 
 test("award records: training, farm, Felynes, treasures, map counters and forging", async () => {
   const [gideon, mearo] = ok(await parse("us")).characters as CharacterResult[];
-  const keys = [
-    "trainingSets",
-    "farm",
-    "felyneChefs",
-    "comrades",
-    "recipes",
-    "guildPoints",
-    "goldTreasures",
-    "treasureScores",
-    "mapQuests",
-    "trenyaTrips",
-    "specialWeapons",
-  ] as const;
-  const records = (h: CharacterResult) => Object.fromEntries(keys.map((k) => [k, h[k]]));
+  const records = (h: CharacterResult) =>
+    Object.fromEntries(AWARD_RECORD_KEYS.map((k) => [k, h[k]]));
   // Gideon: 21001 cleared with weapon set 4 only; three Comrades raised by
   // "Callum" (another hunter), with an edited fondness of 9999; five chefs,
   // whose levels no longer meet the Grateful Letter he holds.
