@@ -465,7 +465,11 @@ function buildPresets(): void {
               [...actionsOf(presetSettings(preset)).values()].includes(action) ? tag(action) : null,
             ),
           ),
-          el("span", { class: "note" }, preset.help),
+          el(
+            "ul",
+            { class: "preset-points" },
+            ...preset.points.map((point) => el("li", {}, point)),
+          ),
         ),
       ),
     );

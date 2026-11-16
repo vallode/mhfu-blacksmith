@@ -1274,3 +1274,13 @@ input[type="range"] {
   display: flex;
   visibility: hidden;
 }
+
+/* A preset's main differences, as short points under its name. */
+.preset-points {
+  margin: 0;
+  padding-left: 1.2rem;
+  list-style: disc;
+  font-size: var(--text-fine);
+  line-height: 1.4;
+  color: rgb(255 255 255 / 0.6);
+}
