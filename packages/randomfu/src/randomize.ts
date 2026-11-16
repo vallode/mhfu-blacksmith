@@ -939,7 +939,7 @@ export function randomize(
         typeof sites === "string"
           ? sites
           : findPactExterns(game.eboot!, sites, ovl.reader.buf, ovl);
-      // What items are worth, for grading the pact's item rewards: the vanilla table's.
+      // What items are worth and how many fit, for grading the pact's item rewards.
       const table = typeof found === "string" ? null : shopItemTable(game, false);
       if (typeof found === "string") reports.push(notApplied("Hunter's Pact", found));
       else if (!table) {
@@ -965,7 +965,8 @@ export function randomize(
           })),
         ];
         const tiers = itemTiers([...questAfter, ...monsterAfter, ...gatheringAfter]);
-        const values = readItemValues(game.eboot!, table);
+        // As the shops left prices and carry limits, so no reward pays past the limit.
+        const values = readItemValues(out, table);
         data.rf_pact_pool = encodePactPool(
           pactPool(tiers, values, equipment, rng.fork("pact-pool")),
         );

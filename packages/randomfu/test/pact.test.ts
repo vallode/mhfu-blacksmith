@@ -571,6 +571,21 @@ test("a quest with no reward tables offers no more of them", () => {
   }
 });
 
+test("a penalty with nothing left to pay gives way to one that has", () => {
+  // One item a grade and no reward tables: once zenny and a grade's item are
+  // offered, a third penalty of that weight has nothing left, so another
+  // penalty takes its place instead of paying zenny again.
+  const q = quest();
+  for (let n = 1; n < 300; n++) {
+    q.setUpQuest(90000 + n);
+    q.cpu.setU32(QUEST + 0x5c, 0);
+    q.settle();
+    const list = offers(q.frame());
+    assert.equal(list.length, 3);
+    assert.equal(new Set(list.map((o) => o.reward)).size, 3, list.map((o) => o.reward).join(", "));
+  }
+});
+
 test("item and equipment rewards are paid when the quest is completed", () => {
   const { q } = questOffering(reward(/^Bone Kris$/));
   // What the quest's own roll left: two items, then a sorted box.

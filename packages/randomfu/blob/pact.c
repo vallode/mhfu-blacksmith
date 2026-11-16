@@ -191,7 +191,8 @@ static u8 state;
 static u8 settle;
 static u8 band;  /* the quest's rank: 0 Low, 1 High, 2 G */
 static u8 kinds; /* what the quest has (NEEDS_*) */
-static u8 room;  /* draws the main reward table can still take */
+static u8 room;          /* draws the main reward table can still take */
+static u8 *rewards_main; /* that table, found when the offers were made */
 static rf_offer offer[OFFERS];
 static u8 taken; /* bit k: offer[k] */
 static u8 cursor;
@@ -276,7 +277,7 @@ static u8 *main_table(u8 *q) {
   return 0;
 }
 
-static u32 kinds_of(u8 *q, u8 *header) {
+static u32 kinds_of(u8 *header) {
   u32 k = NEEDS_TIME;
   if (has_large(header)) k |= NEEDS_LARGE;
   if (header[H_TYPE] == DELIVERY && *(u16 *)(header + H_TARGET_NUM)) {
@@ -314,7 +315,8 @@ static int offered(u32 k, u32 value) {
 
 /*
  * The reward for offer `k`, whose penalty is `p`: zenny and draws of a kind
- * no other offer has (`used`), and no item or piece another offer gives.
+ * no other offer has (`used`), and no item or piece another offer gives;
+ * a reward of REWARDS when nothing is left for it.
  */
 static rf_offer pick(u32 k, u32 p, u32 *used) {
   const u32 weight = penalty[p].weight, b = band;
@@ -327,7 +329,7 @@ static rf_offer pick(u32 k, u32 p, u32 *used) {
   /* Things to get come up twice as often as bonuses. */
   if (span(b, weight - 1)->count) options[n++] = R_ITEM;
   if (weight == 3 && span(b, EQUIPMENT_KIND)->count) options[n++] = R_EQUIPMENT;
-  rf_offer o = {(u8)p, R_ZENNY, 0};
+  rf_offer o = {(u8)p, REWARDS, 0};
   while (n) {
     o.reward = (u8)options[random(n)];
     if (o.reward == R_ITEM || o.reward == R_EQUIPMENT) {
@@ -345,15 +347,15 @@ static rf_offer pick(u32 k, u32 p, u32 *used) {
           if (options[i] != o.reward) options[m++] = options[i];
         }
         n = m;
-        o.reward = R_ZENNY;
+        o.reward = REWARDS;
         continue;
       }
     }
     if (o.reward == R_DRAWS) o.value = (u16)weight; /* one more draw per weight */
+    if (o.reward == R_ZENNY) o.value = 0;
+    *used |= 1u << o.reward;
     break;
   }
-  if (o.reward == R_ZENNY) o.value = 0;
-  *used |= 1u << o.reward;
   return o;
 }
 
@@ -371,9 +373,10 @@ static void new_quest(u8 *q, u8 *header) {
   seed ^= now;
   state = PENDING;
   band = (u8)rank_band(header);
-  kinds = (u8)kinds_of(q, header);
-  const u8 *main = main_table(q);
-  room = main && main[TABLE_DRAWS] < MAX_DRAWS ? (u8)(MAX_DRAWS - main[TABLE_DRAWS]) : 0;
+  kinds = (u8)kinds_of(header);
+  rewards_main = main_table(q);
+  const u32 draws = rewards_main ? rewards_main[TABLE_DRAWS] : MAX_DRAWS;
+  room = draws < MAX_DRAWS ? (u8)(MAX_DRAWS - draws) : 0;
   /* Three penalties from different groups that fit the quest, each with its reward. */
   u8 can[PENALTIES];
   u32 n = 0, used = 0;
@@ -381,12 +384,18 @@ static void new_quest(u8 *q, u8 *header) {
     if ((penalty[p].needs & kinds) == penalty[p].needs) can[n++] = (u8)p;
   }
   for (u32 k = 0; k < OFFERS; k++) {
-    if (!n) { /* never: four groups always fit */
-      offer[k] = (rf_offer){WEARY, R_ZENNY, 0};
-      continue;
+    /* A penalty with nothing left to pay gives way to another. */
+    u32 p = WEARY;
+    rf_offer o = {WEARY, REWARDS, 0};
+    while (n && o.reward == REWARDS) {
+      const u32 j = random(n);
+      p = can[j];
+      o = pick(k, p, &used);
+      if (o.reward == REWARDS) can[j] = can[--n];
     }
-    const u32 p = can[random(n)];
-    offer[k] = pick(k, p, &used);
+    /* Every penalty left has nothing to pay (an empty pool): zenny, if again. */
+    if (o.reward == REWARDS) o = (rf_offer){(u8)p, R_ZENNY, 0};
+    offer[k] = o;
     u32 m = 0;
     for (u32 j = 0; j < n; j++) {
       if (penalty[can[j]].group != penalty[p].group) can[m++] = can[j];
@@ -471,13 +480,13 @@ static void seal(u8 *q) {
   *(s32 *)(q + Q_REWARD) = reward + (s32)zenny;
   if (one_cart) *(s32 *)(q + Q_PENALTY) = *(s32 *)(q + Q_REWARD);
   /* More draws from the main reward table (offered only where they fit). */
-  u8 *main = draws ? main_table(q) : 0;
+  u8 *main = draws ? rewards_main : 0;
   if (main) {
     const u32 n = main[TABLE_DRAWS] + draws;
     main[TABLE_DRAWS] = (u8)(n > MAX_DRAWS ? MAX_DRAWS : n);
   }
   /* The quest file changed: have the loader read it again next time. */
-  if (header) *(u16 *)(q + Q_LAST_FILE) = 0xffff;
+  if (header || main) *(u16 *)(q + Q_LAST_FILE) = 0xffff;
 }
 
 /* The completed quest's rewards are in the box: add the pact's. */
