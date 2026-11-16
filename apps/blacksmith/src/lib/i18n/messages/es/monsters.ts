@@ -33,6 +33,8 @@ export const monsters: Messages["monsters"] = {
       all: "Todos",
       captured: "Capturados",
       hunted: "Cazados",
+      "gold-crown": "Corona de oro",
+      "mini-crown": "Corona mini",
     },
   },
   crowns: {

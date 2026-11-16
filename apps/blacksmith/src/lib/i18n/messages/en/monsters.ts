@@ -47,6 +47,8 @@ export const monsters = {
       all: "All",
       captured: "Captured",
       hunted: "Hunted",
+      "gold-crown": "Gold crown",
+      "mini-crown": "Mini crown",
     } satisfies Record<MonsterFilterId, string>,
   },
   /** Guild Card crowns: the size records the game marks with a crown. */

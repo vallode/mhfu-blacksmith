@@ -80,4 +80,13 @@ test("decodeMonsterListItem reads the capturable flag", () => {
     capturable: true,
   });
   assert.equal(decodeMonsterListItem({ n: "Remobra", s: "remobra" }).capturable, false);
+  assert.deepEqual(
+    decodeMonsterListItem({ n: "Rathian", s: "rathian", cr: [80, 115, 120] }).crowns,
+    {
+      mini: 80,
+      silver: 115,
+      gold: 120,
+    },
+  );
+  assert.equal(decodeMonsterListItem({ n: "Remobra", s: "remobra" }).crowns, undefined);
 });
