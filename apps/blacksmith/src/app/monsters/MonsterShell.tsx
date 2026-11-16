@@ -18,11 +18,12 @@ import { cn } from "@/lib/cn";
 import { getQuests, useMonsterList } from "@/lib/client-data";
 import { monsterRecordFor } from "@/lib/monster-ids";
 import {
+  activeMonsterFilter,
   cycleMonsterFilter,
   filterCount,
   filterCrown,
+  filterPool,
   matchesMonster,
-  monsterFilters,
   type MonsterFilterId,
 } from "@/lib/monster-filter";
 import { prefetchManifest } from "@/lib/models";
@@ -71,13 +72,14 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
   const recordOf = (name: string) => monsterRecordFor(records, name);
 
   // The choice is kept while moving between types; Captured, in a type with
-  // nothing to capture, reads as All there and applies again on returning.
+  // nothing to capture, and a crown filter, in one without crown sizes, read
+  // as All there and apply again on returning.
   const [selected, setSelected] = useState<MonsterFilterId>("all");
   const avail = {
     capturable: !!siblings?.some((m) => m.capturable),
     crowns: !!siblings?.some((m) => m.crowns),
   };
-  const filter = records && monsterFilters(avail).includes(selected) ? selected : "all";
+  const filter = records ? activeMonsterFilter(selected, avail) : "all";
   const crown = filterCrown(filter);
   const rows = siblings?.map((m) => {
     const record = recordOf(m.name);
@@ -87,14 +89,7 @@ function MonsterSidebar({ category, slug }: { category: MonsterCategory; slug?: 
       count: filterCount(filter, record),
     };
   });
-  // Captured counts out of the monsters there are to capture, a crown filter
-  // out of those with crown sizes.
-  const total =
-    filter === "captured"
-      ? rows?.filter((m) => m.capturable)
-      : crown
-        ? rows?.filter((m) => m.crowns)
-        : rows;
+  const total = rows && filterPool(filter, rows);
   const matched = rows?.filter((m) => m.match).length ?? 0;
 
   // Portraits are small sprites; fetch the type's ahead of a click so the

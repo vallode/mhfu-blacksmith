@@ -1,7 +1,8 @@
 /**
  * The monster list's filter: the selector bar under a monster type's list,
  * shown with a hunter loaded, which picks out the monsters they have captured
- * or hunted (by their Guild Card counts, lib/monster-ids). The rest stay in
+ * or hunted (by their Guild Card counts, lib/monster-ids), or whose largest or
+ * smallest size record is a gold or mini crown (lib/crowns). The rest stay in
  * the list, dimmed.
  */
 import { crownFor, type Crown, type Crowns } from "./crowns";
@@ -69,18 +70,30 @@ export function matchesMonster(
     case "hunted":
       return record.kills > 0;
     case "gold-crown":
-      return (
-        !!monster.crowns &&
-        record.largest > 0 &&
-        crownFor(record.largest, monster.crowns) === "gold"
-      );
+      return earnsCrown(record.largest, monster.crowns, "gold");
     case "mini-crown":
-      return (
-        !!monster.crowns &&
-        record.smallest > 0 &&
-        crownFor(record.smallest, monster.crowns) === "mini"
-      );
+      return earnsCrown(record.smallest, monster.crowns, "mini");
   }
+}
+
+/** Whether a recorded size earns the crown; a size of 0 is no record. */
+const earnsCrown = (size: number, crowns: Crowns | undefined, crown: Crown): boolean =>
+  !!crowns && size > 0 && crownFor(size, crowns) === crown;
+
+/** The filter in force: the selected one if on offer for the type, else All. */
+export const activeMonsterFilter = (
+  selected: MonsterFilterId,
+  avail: MonsterFilterAvailability,
+): MonsterFilterId => (monsterFilters(avail).includes(selected) ? selected : "all");
+
+/**
+ * The monsters a filter's match count is out of: Captured counts out of those
+ * there are to capture, a crown filter out of those with crown sizes.
+ */
+export function filterPool<T extends FilterableMonster>(filter: MonsterFilterId, rows: T[]): T[] {
+  if (filter === "captured") return rows.filter((m) => m.capturable);
+  if (filterCrown(filter)) return rows.filter((m) => m.crowns);
+  return rows;
 }
 
 /** The count a row shows under the filter: its captures or kills, none under All or a crown filter (which shows the crown). */

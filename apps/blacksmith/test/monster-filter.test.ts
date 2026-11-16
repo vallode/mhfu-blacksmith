@@ -1,9 +1,11 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
 import {
+  activeMonsterFilter,
   cycleMonsterFilter,
   filterCount,
   filterCrown,
+  filterPool,
   matchesMonster,
   monsterFilters,
 } from "../src/lib/monster-filter";
@@ -107,4 +109,20 @@ test("a row's count follows the filter", () => {
   assert.equal(filterCount("captured", record), 1);
   assert.equal(filterCount("hunted", record), 4);
   assert.equal(filterCount("hunted", null), null);
+});
+
+test("a filter that isn't on offer for the type reads as All", () => {
+  assert.equal(activeMonsterFilter("gold-crown", both), "gold-crown");
+  assert.equal(activeMonsterFilter("gold-crown", plain), "all");
+  assert.equal(activeMonsterFilter("captured", plain), "all");
+  assert.equal(activeMonsterFilter("hunted", plain), "hunted");
+});
+
+test("the match count is out of the monsters the filter can take", () => {
+  const rows = [{ capturable: true, crowns }, { capturable: false, crowns }, { capturable: false }];
+  assert.equal(filterPool("all", rows).length, 3);
+  assert.equal(filterPool("hunted", rows).length, 3);
+  assert.equal(filterPool("captured", rows).length, 1);
+  assert.equal(filterPool("gold-crown", rows).length, 2);
+  assert.equal(filterPool("mini-crown", rows).length, 2);
 });
