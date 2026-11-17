@@ -6,7 +6,7 @@ import { usePathname } from "next/navigation";
 import Card from "@/components/Card";
 import CardBox from "@/components/CardBox";
 import Icon from "@/components/Icon";
-import PageBar from "@/components/PageBar";
+import { SELECTOR_BAR_HEIGHT, barText } from "@/components/SelectorBar";
 import SplitPage from "@/components/SplitPage";
 import { useLocale } from "@/context/LanguageContext";
 import { useSave } from "@/context/SaveContext";
@@ -31,26 +31,39 @@ const activeRow = "bg-(image:--gradient-hover-glow)";
 const defaultRow = "compact:bg-(image:--gradient-hover-glow) wide:bg-(image:--gradient-hover-glow)";
 
 /**
- * The loaded hunter in the page bar, where the other sections have their
- * tabs: name, HR, play time and zenny. It stays in view on phones above a
- * page's sheet.
+ * The loaded hunter across the top of the list card, a flat grey bar like the
+ * tree cards' filter: name on the left, then HR, play time and zenny.
  */
-function HunterSummary() {
+function HunterHeader() {
   const { t, formatNumber } = useLocale();
   const text = t.site.hunter;
   const { save } = useSave();
-  if (!save) {
-    return <p className="text-main text-white/70 uppercase">{text.noHunter}</p>;
-  }
-  const meta = [
-    save.hunterRank !== undefined && text.rankShort(save.hunterRank),
-    save.playTime !== undefined && formatPlayTime(save.playTime),
-    save.zenny !== undefined && `${formatNumber(save.zenny)}z`,
-  ].filter(Boolean);
+  const meta =
+    save &&
+    [
+      save.hunterRank !== undefined && text.rankShort(save.hunterRank),
+      save.playTime !== undefined && formatPlayTime(save.playTime),
+      save.zenny !== undefined && `${formatNumber(save.zenny)}z`,
+    ].filter(Boolean);
+  // The stats follow the name, and drop to a second line when the card is
+  // too narrow for both.
   return (
-    <div className="flex min-w-0 items-baseline gap-x-[1.6rem] mobile:flex-col mobile:gap-y-[0.4rem]">
-      <p className="truncate text-main text-white">{save.name}</p>
-      <p className="truncate text-sub text-stat">{meta.join(" · ")}</p>
+    <div
+      className="absolute top-[4px] right-[4px] left-[4px] z-2 flex flex-wrap content-center items-baseline gap-x-[1.6rem] gap-y-[0.4rem] overflow-hidden bg-selector px-[1.6rem]"
+      style={{ height: SELECTOR_BAR_HEIGHT }}
+    >
+      {save ? (
+        <>
+          <p className={cn(barText, "max-w-full truncate text-white")}>{save.name}</p>
+          {meta && meta.length > 0 && (
+            <p className={cn(barText, "max-w-full truncate text-small text-stat")}>
+              {meta.join(" · ")}
+            </p>
+          )}
+        </>
+      ) : (
+        <p className={cn(barText, "max-w-full truncate text-white/70")}>{text.noHunter}</p>
+      )}
     </div>
   );
 }
@@ -114,6 +127,8 @@ function HunterList({ page }: { page: HunterPageId | null }) {
   return (
     <CardBox>
       <Card variant="weapon-tree">
+        {/* Room for the header over the top of the card. */}
+        <div className="flex-none" style={{ height: SELECTOR_BAR_HEIGHT }} aria-hidden="true" />
         <nav aria-label={t.site.hunter.pagesLabel} className="flex flex-col pl-[13px]">
           {HUNTER_PAGES.map((p) => (
             <PageRow
@@ -132,13 +147,14 @@ function HunterList({ page }: { page: HunterPageId | null }) {
           />
         </nav>
       </Card>
+      <HunterHeader />
     </CardBox>
   );
 }
 
 /**
- * The hunter section's frame: the loaded hunter in the page bar, their pages
- * down the left and the open page on the right, like the bestiary. On phones
+ * The hunter section's frame: the loaded hunter atop their pages down the
+ * left and the open page on the right, like the bestiary. On phones
  * the list fills the screen and a page slides up over it (SplitPage). Lives
  * in the hunter layout so the list stays mounted between pages.
  */
@@ -147,7 +163,7 @@ export default function HunterShell({ children }: { children: React.ReactNode })
   const page = hunterPageFromPath(usePathname());
   return (
     <>
-      <PageBar title={t.site.nav.hunter} tabs={<HunterSummary />} />
+      <h1 className="sr-only">{t.site.nav.hunter}</h1>
       <SplitPage list={<HunterList page={page} />} closeHref={page ? "/hunter/" : undefined}>
         {children}
       </SplitPage>
