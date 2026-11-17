@@ -4,7 +4,7 @@ import path from "node:path";
 import { test } from "node:test";
 import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { loadGame, type GameData } from "../src/game/load.js";
-import { isQuestItem } from "../src/game/quest-fields.js";
+import { isNeverDrawn } from "../src/game/quest-fields.js";
 import { tierKey, type Tier } from "../src/game/tiers.js";
 import { randomize } from "../src/randomize.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
@@ -241,7 +241,7 @@ test("monster rewards shuffle and randomize keep every list's length and chance 
   }
 });
 
-test("keeping reward items: every item stays a reward at its star level, and none is quest-only", async () => {
+test("keeping reward items: every item stays a reward at its star level, and none is never-drawn", async () => {
   const file = fixtureFile();
   const { game, close } = await load(file);
   const vanilla = collectQuestRewardSlots(game.quests);
@@ -260,7 +260,7 @@ test("keeping reward items: every item stays a reward at its star level, and non
       const key = tierKey(slot.tier);
       byTier.set(key, (byTier.get(key) ?? new Set()).add(slot.itemId));
       if (!vanilla.some((v) => v.itemId === slot.itemId)) {
-        assert.ok(!isQuestItem(slot.itemId), `${slot.itemId} is quest-only`);
+        assert.ok(!isNeverDrawn(slot.itemId), `${slot.itemId} is never drawn`);
       }
     }
     for (const slot of vanilla) {

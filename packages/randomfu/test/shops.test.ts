@@ -7,7 +7,7 @@ import { parseOvl } from "mhfu-extract/src/container/ovl.js";
 import { loadGame, type GameData } from "../src/game/load.js";
 import { randomize } from "../src/randomize.js";
 import { findShops } from "mhfu-extract/src/shops/shops.js";
-import { isMonsterInfo } from "../src/game/quest-fields.js";
+import { isMonsterInfo, isNeverDrawn } from "../src/game/quest-fields.js";
 import { ESSENTIALS, locateItemTable } from "../src/shuffles/shops.js";
 import {
   buildFixtureDisc,
@@ -239,6 +239,40 @@ test("the monster Info items are dropped from shops and never drawn", async () =
         );
         const shops = result.reports.find((r) => r.title === "Shop stock")!;
         assert.ok(shops.lines.some((l) => l.text === "Rajang Info (removed)"));
+      }
+    }
+  } finally {
+    buf.writeUInt16LE(saved, at);
+    close();
+  }
+});
+
+test("the guides always stay on sale, and nothing never-drawn is added", async () => {
+  const { game, close } = await load();
+  // Guild stage 2 sells the Organizer Guide in place of item 38.
+  const vanilla = new Set([...Object.values(FIXTURE_SHOP_LISTS).flat(), 829]);
+  const buf = game.dataBin.read(game.lobbyTask.index);
+  const at = lobby.listAt.guild2! + 4 * 2;
+  const saved = buf.readUInt16LE(at);
+  buf.writeUInt16LE(829, at);
+  try {
+    for (const seed of "abcdefgh".split("")) {
+      for (const extra of [
+        {},
+        { "shops.keepEssentials": false, "shops.mix": "all" },
+        { "shops.mode": "randomize", "shops.scope": "any", "shops.countSpread": 0.9 },
+      ] as const) {
+        const result = randomize(game, settingsWith(seed, ["shops"], extra));
+        const edited = parseOvl(result.edits.overlay(game.lobbyTask));
+        const data = readTablesAt(edited, lobby.tablesAt, FIXTURE_SHOP_TABLES.length);
+        const [guild1, guild2] = data.tables[2]!.lists.map((o) => data.lists.get(o)!.items);
+        assert.ok(guild2!.includes(829), `seed ${seed}: the Guild still sells the guide`);
+        assert.ok(!guild1!.includes(829), "and only from the stage it was sold at");
+        for (const list of data.lists.values()) {
+          for (const v of list.items) {
+            if (!vanilla.has(v)) assert.ok(!isNeverDrawn(v), `seed ${seed}: ${v} sold`);
+          }
+        }
       }
     }
   } finally {

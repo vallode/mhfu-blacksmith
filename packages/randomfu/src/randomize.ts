@@ -18,7 +18,12 @@ import { pieceName, readArmorPieces, shuffleArmor } from "./shuffles/armor.js";
 import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { ARMOR_STATS, randomizeArmorStats } from "./shuffles/armor-stats.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
-import { deliveryTargets, isQuestItem, readSupplySlots } from "./game/quest-fields.js";
+import {
+  deliveryTargets,
+  isNeverDrawn,
+  isQuestItem,
+  readSupplySlots,
+} from "./game/quest-fields.js";
 import { changeCarveCounts, collectCarveCounts } from "./shuffles/carve-counts.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
 import {
@@ -150,14 +155,14 @@ function shopItemTable(game: GameData, required: boolean) {
 }
 
 /**
- * Every item with a name and an item record, but quest items (`isQuestItem`:
- * the monster Info items, supply-only tools, carried objects and the like):
- * what the any-item pools (shops, gathering, rewards, supplies, trades) draw from.
+ * Every item with a name and an item record, but the ones no pool draws
+ * (`isNeverDrawn`: quest items, placeholders, junk, the guides): what the
+ * any-item pools (shops, gathering, rewards, supplies, trades) draw from.
  */
 function sellableItems(): number[] {
   const out: number[] = [];
   for (let id = 1; id < TABLE_COUNTS.regularItems + TABLE_COUNTS.decorations; id++) {
-    if (tableName("ItemID", id) !== null && !isQuestItem(id)) out.push(id);
+    if (tableName("ItemID", id) !== null && !isNeverDrawn(id)) out.push(id);
   }
   return out;
 }

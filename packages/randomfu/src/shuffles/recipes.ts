@@ -35,7 +35,7 @@ import {
 } from "mhfu-extract/src/tables/recipes.js";
 import type { NameTable } from "mhfu-extract/src/strings/names.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
-import { isQuestItem } from "../game/quest-fields.js";
+import { isNeverDrawn } from "../game/quest-fields.js";
 import {
   BANDS,
   inScope,
@@ -185,7 +185,7 @@ export function randomizeRecipes(
       repeats = separateDuplicates(assigned, options.scope, tiers, rng.materials);
     } else {
       const poolFor = scopedPool(
-        [...tiers.keys()].filter((i) => !isQuestItem(i)).sort((a, b) => a - b),
+        [...tiers.keys()].filter((i) => !isNeverDrawn(i)).sort((a, b) => a - b),
         tiers,
         options.scope,
       );

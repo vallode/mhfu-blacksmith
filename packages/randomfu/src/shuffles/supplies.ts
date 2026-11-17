@@ -26,7 +26,7 @@
  */
 import type { LoadedQuest } from "../game/load.js";
 import { largestQuest } from "../game/rebuild.js";
-import { isQuestItem, readSupplySlots, SUPPLIES_PTR } from "../game/quest-fields.js";
+import { isNeverDrawn, isQuestItem, readSupplySlots, SUPPLIES_PTR } from "../game/quest-fields.js";
 import { inScope, questTier, tierKey, type Scope, type Tier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
 import { itemName, questLabel } from "../names.js";
@@ -210,7 +210,7 @@ export function randomizeSupplies(
   // Sizes the game is known to handle: the largest quest and the largest box.
   const largest = largestQuest(quests);
   const largestBox = Math.max(...quests.map((q) => readSupplySlots(q.file.disc).length));
-  const everything = context.allItems.filter((i) => !isQuestItem(i));
+  const everything = context.allItems.filter((i) => !isNeverDrawn(i));
   const scoped = scopedPool(everything, context.tiers, options.scope);
   // Items the supply boxes of quests within a scope hold, which aren't item sources.
   const boxItems = new Map<string, Set<number>>();
@@ -223,7 +223,7 @@ export function randomizeSupplies(
         const other = questTier(q.parsed);
         if (!other || !inScope(options.scope, tier, other)) continue;
         for (const slot of readSupplySlots(q.file.disc)) {
-          if (!isQuestItem(slot.itemId)) items.add(slot.itemId);
+          if (!isNeverDrawn(slot.itemId)) items.add(slot.itemId);
         }
       }
       boxItems.set(key, items);

@@ -247,7 +247,8 @@ take part (see Tiers). `questRewards.scope` is how far they reach: `star` (the d
   of its own, to no more than the longest main list on the disc has and as
   many as the quest has room for. A longer list moves to the end of the
   quest, into its sector padding, as supply boxes do. Each slot gets an item
-  first found within the scope (never a quest-only item, never one twice in
+  first found within the scope (never a quest-only item or other
+  never-drawn item, never one twice in
   a list), an amount a quest gives of that item (rewards or supply boxes),
   and a chance: `rarity` deals out the chances the list had, `reasonable`
   scales each by 0.5 to 2, `any` rolls 1 to 100. The chances are then scaled
@@ -287,7 +288,7 @@ lists at the same pointers.
   within the scope; carves only trade with carves. A list's chances are
   scaled back to the total it had.
 - **Randomize** gives every slot an item first found within the scope
-  (never a quest-only item, never one twice in a list), a chance as
+  (never a quest-only item or other never-drawn item, never one twice in a list), a chance as
   `monsterRewards.chances` says (the same choices as quest rewards) scaled to
   the list's total, and, for captures and breaks, an amount quests give of
   that item.
@@ -595,8 +596,15 @@ Whetstone), not by address.
   Info items (Lynian Info to Fatalis Info, 831-859) only unlock bookshelf
   pages, so they're dropped, not replaced: the Village general store, Guild
   Hall store and Peddler sell up to 28 fewer items. Shorter lists end early
-  where they are. No pool (shops, gathering, rewards, supplies, trades) ever
-  draws them or any other quest item.
+  where they are. The Organizer and Backpacker Guides (more item box space)
+  always stay on sale where they are, with or without
+  `shops.keepEssentials`.
+- **Never drawn**: no pool (shops, gathering, quest and monster rewards,
+  supplies, trades, recipe materials, Hunter's Pact rewards) adds quest
+  items (the Info items among them), the placeholders No Coating and Dummy,
+  Wyvern Droppings (junk), or the Alchemy, Organizer and Backpacker Guides
+  (`isNeverDrawn` in `game/quest-fields.ts`). One already in a list can
+  stay there.
 - **How many** (`randomize` only): with `shops.countSpread`, each shop's lists scale by one
   factor, so later stages still sell what earlier ones did (stages nest by
   construction: items are kept in an order of pinned items, then by the

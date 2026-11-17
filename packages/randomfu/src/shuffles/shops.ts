@@ -42,7 +42,7 @@ import {
 } from "mhfu-extract/src/tables/offsets.js";
 import type { TableAddressResolver } from "mhfu-extract/src/tables/resolver.js";
 import type { LoadedOverlay } from "../game/load.js";
-import { isMonsterInfo, isQuestItem } from "../game/quest-fields.js";
+import { GUIDES, isMonsterInfo, isNeverDrawn } from "../game/quest-fields.js";
 import type { Edits } from "../edits.js";
 import { itemName } from "../names.js";
 import type { Rng } from "../rng.js";
@@ -181,8 +181,9 @@ function poolFor(
     for (const [item, band] of context.bands) if (ranks.includes(band)) out.add(item);
     return [...out].sort((a, b) => a - b);
   })();
-  // The monster Info items are dropped from shops, and no quest-only item is drawn.
-  return pool.filter((v) => !isQuestItem(v));
+  // The monster Info items are dropped from shops, the guides stay where they are,
+  // and nothing `isNeverDrawn` is drawn.
+  return pool.filter((v) => !isNeverDrawn(v));
 }
 
 /**
@@ -268,11 +269,12 @@ function prepareGroup(
           ? size + Math.floor((factor - 1) * size)
           : Math.max(1, Math.ceil(factor * size));
       const candidates = factor > 1 ? [...replaced, ...extras] : replaced;
-      // Whatever a nested list kept stays (see above).
+      // Whatever a nested list kept stays (see above), and so do the guides.
       const keep = new Set<number>();
       for (const [inner, items] of kept) {
         if (inner.items.every((v) => list.items.includes(v))) for (const v of items) keep.add(v);
       }
+      for (const v of sold) if (GUIDES.includes(v)) keep.add(v);
       for (const v of [...candidates].sort((a, b) => priority.get(a)! - priority.get(b)!)) {
         if (keep.size >= target) break;
         keep.add(v);
@@ -377,8 +379,10 @@ export function randomizeShops(
   lobby: LoadedOverlay,
 ): { report: ShuffleReport; sold: number[] } {
   const included = data.tables.filter((t) => options.special || !t.special);
-  const pinned = new Set(options.keepEssentials ? ESSENTIALS : []);
+  // The guides always stay on sale, where they are.
+  const pinned = new Set([...GUIDES, ...(options.keepEssentials ? ESSENTIALS : [])]);
   const allShopItems = itemsSoldBy(data, included);
+  const guides = GUIDES.filter((v) => allShopItems.includes(v));
   const maxLength = Math.max(...[...data.lists.values()].map((l) => l.items.length));
   const lines: { where: string; text: string }[] = [];
   const contents = new Map<number, number[]>();
@@ -468,6 +472,9 @@ export function randomizeShops(
       options.keepEssentials
         ? "Potion, Whetstone, pickaxes, bugnets, BBQ Spit, Normal S Lv1/2 and Empty Bottle stay on sale."
         : "No item is guaranteed to stay on sale.",
+      ...(guides.length > 0
+        ? [`${guides.map(itemName).join(", ")} stay on sale where they are.`]
+        : []),
       options.countSpread > 0
         ? `How many items each shop sells varies by up to ${Math.round(options.countSpread * 100)}% (at most ${maxLength}); the lists were ${layout === "repacked" ? "rewritten and the shop tables updated" : "kept in place"}.${growth < 1 ? ` Shops can only grow into space others free, so growth was scaled to ${Math.round(growth * 100)}%.` : ""}`
         : dropped > 0
