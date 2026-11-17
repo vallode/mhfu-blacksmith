@@ -1165,7 +1165,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "shops.mode",
     section: "Shop stock",
     label: "Shop stock",
-    help: "What happens to what shops sell. Each item a shop sells is replaced by one other item, the same in every stage of that shop, so later stages still include earlier stock.",
+    help: "What happens to what shops sell. Each item a shop sells is replaced by one other item, the same in every stage of that shop, so later stages still include earlier stock. The monster Info books (Lynian Info to Fatalis Info) only unlock bookshelf pages, so they're dropped instead and those shops sell that many fewer items. The Organizer and Backpacker Guides always stay on sale where they are.",
     type: {
       kind: "choice",
       choices: [
@@ -1263,7 +1263,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "shops.countSpread",
     section: "Shop stock",
     label: "Stock size variation",
-    help: "How far the number of items each shop sells can move, up or down, every stage alike. Above 0%, the shop lists are rewritten and the game is pointed at their new places.",
+    help: "How far the number of items each shop sells can move, up or down, every stage alike. When a shop grows, the shop lists are rewritten and the game is pointed at their new places.",
     type: SPREAD,
     default: 0,
     enabledBy: "shops.mode",

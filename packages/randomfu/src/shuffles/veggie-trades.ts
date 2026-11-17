@@ -12,7 +12,7 @@ import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
 import { itemName } from "../names.js";
 import type { Rng } from "../rng.js";
-import { isQuestItem } from "../game/quest-fields.js";
+import { isNeverDrawn } from "../game/quest-fields.js";
 import type { Band } from "../game/tiers.js";
 import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
 
@@ -107,7 +107,7 @@ export function randomizeTrades(
     const ranks = options.scope === "low" ? ["low"] : ["low", "high"];
     return [...context.bands].filter(([, band]) => ranks.includes(band)).map(([item]) => item);
   };
-  const extra = wide().filter((i) => !isQuestItem(i));
+  const extra = wide().filter((i) => !isNeverDrawn(i));
   const pools = new Map<string, number[]>();
   const poolFor = (slot: TradeSlot): number[] => {
     const key = options.mix === "elder" ? String(slot.elder) : "";

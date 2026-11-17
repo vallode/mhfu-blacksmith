@@ -71,6 +71,7 @@ import { PACT_OBJECTS } from "../blob/pact-object.js";
 import type { HookSites } from "./game-hooks.js";
 import { findUnique, hiLo, jumpTarget, maskWord } from "./mips.js";
 import { findMonsterExterns } from "./monster-hp.js";
+import { isNeverDrawn } from "../game/quest-fields.js";
 import type { Band, Tier } from "../game/tiers.js";
 import { itemName } from "../names.js";
 import type { Rng } from "../rng.js";
@@ -333,7 +334,10 @@ export function pactPool(
   const { male, female } = HUNTER_TYPE_BITS;
   return POOL_BANDS.map((band) => {
     const items = [...itemTiers]
-      .filter(([id, tier]) => id > 0 && tier.band === band && itemName(id) !== `Item ${id}`)
+      .filter(
+        ([id, tier]) =>
+          id > 0 && tier.band === band && !isNeverDrawn(id) && itemName(id) !== `Item ${id}`,
+      )
       .map(([id]) => id)
       .sort((a, b) => a - b);
     const grades = GRADE_VALUES[band].map((value, g) => {

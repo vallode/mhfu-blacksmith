@@ -247,7 +247,8 @@ take part (see Tiers). `questRewards.scope` is how far they reach: `star` (the d
   of its own, to no more than the longest main list on the disc has and as
   many as the quest has room for. A longer list moves to the end of the
   quest, into its sector padding, as supply boxes do. Each slot gets an item
-  first found within the scope (never a quest-only item, never one twice in
+  first found within the scope (never a quest-only item or other
+  never-drawn item, never one twice in
   a list), an amount a quest gives of that item (rewards or supply boxes),
   and a chance: `rarity` deals out the chances the list had, `reasonable`
   scales each by 0.5 to 2, `any` rolls 1 to 100. The chances are then scaled
@@ -287,7 +288,7 @@ lists at the same pointers.
   within the scope; carves only trade with carves. A list's chances are
   scaled back to the total it had.
 - **Randomize** gives every slot an item first found within the scope
-  (never a quest-only item, never one twice in a list), a chance as
+  (never a quest-only item or other never-drawn item, never one twice in a list), a chance as
   `monsterRewards.chances` says (the same choices as quest rewards) scaled to
   the list's total, and, for captures and breaks, an amount quests give of
   that item.
@@ -588,20 +589,32 @@ Whetstone), not by address.
 
 - **Stock**: each item a shop sells is replaced by one other item, the same
   in every stage. `shops.mode shuffle` draws from the items shops sell
-  anyway, so no shop changes length; `randomize` also draws from items first
+  anyway, so no shop changes length but for the Info items below; `randomize` also draws from items first
   found in Low or High Rank, or any item in the game (`shops.scope`; shops
   have no rank of their own, so it is a ceiling). Shops sharing a list
-  share replacements (or all shops do, with `shops.mix all`).
+  share replacements (or all shops do, with `shops.mix all`). The monster
+  Info items (Lynian Info to Fatalis Info, 831-859) only unlock bookshelf
+  pages, so they're dropped, not replaced: the Village general store, Guild
+  Hall store and Peddler sell up to 28 fewer items. Shorter lists end early
+  where they are. The Organizer and Backpacker Guides (more item box space)
+  always stay on sale where they are, with or without
+  `shops.keepEssentials`.
+- **Never drawn**: no pool (shops, gathering, quest and monster rewards,
+  supplies, trades, recipe materials, Hunter's Pact rewards) adds quest
+  items (the Info items among them), the placeholders No Coating and Dummy,
+  Wyvern Droppings (junk), or the Alchemy, Organizer and Backpacker Guides
+  (`isNeverDrawn` in `game/quest-fields.ts`). One already in a list can
+  stay there.
 - **How many** (`randomize` only): with `shops.countSpread`, each shop's lists scale by one
   factor, so later stages still sell what earlier ones did (stages nest by
   construction: items are kept in an order of pinned items, then by the
   stage they first appear in, then extra pool items). No list grows past
   the longest one on the disc (83), since the shop screen's limit is
-  unknown. Lists that change length are rewritten back to back in the
+  unknown. When a list grows, the lists are rewritten back to back in the
   space the lists use now and the pointer tables are updated; shops can
   only grow into space others free, so growth is scaled back until it
   fits. This refuses to run if that space holds anything but lists and
-  padding. Without it, lists stay where they are.
+  padding. Otherwise, lists stay where they are.
 - **Prices and carry limits** (`shops.prices`, `shops.stacks`) are the
   item's own (EBOOT item table), so they apply wherever the item is, and
   they don't need the stock to change: they change for everything the shops

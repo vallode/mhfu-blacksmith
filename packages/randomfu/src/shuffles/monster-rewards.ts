@@ -32,7 +32,7 @@ import {
   type RewardRank,
   type TablePair,
 } from "mhfu-extract/src/monsters/rewards.js";
-import { isQuestItem } from "../game/quest-fields.js";
+import { isNeverDrawn } from "../game/quest-fields.js";
 import {
   monsterKey,
   rewardRankBand,
@@ -351,7 +351,7 @@ export function randomizeMonsterRewards(
   monsterName: MonsterNames,
 ): { report: ShuffleReport; after: { itemId: number; tier: Tier }[] } {
   const poolFor = scopedPool(
-    context.allItems.filter((i) => !isQuestItem(i)),
+    context.allItems.filter((i) => !isNeverDrawn(i)),
     context.tiers,
     options.scope,
   );

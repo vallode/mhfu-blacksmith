@@ -51,8 +51,20 @@ export const TICKS_PER_MINUTE = 1800;
 export const DELIVERY_TYPE = 2;
 
 /**
- * The monster "Info" items (Lynian Info to Fatalis Info), which unlock
- * guide pages, the Steel, Silver and Golden Eggs (quest rewards elsewhere,
+ * The monster Info items, Lynian Info (831) to Fatalis Info (859): books
+ * that unlock bookshelf pages, sold by the Village general store, the
+ * Guild Hall store and the Peddler. They're no use in a randomizer, so
+ * stock shuffles drop them from every shop. They're quest items too
+ * (below), so no pool draws them (`isNeverDrawn`).
+ */
+export const MONSTER_INFO: readonly [number, number] = [831, 859];
+
+export function isMonsterInfo(itemId: number): boolean {
+  return itemId >= MONSTER_INFO[0] && itemId <= MONSTER_INFO[1];
+}
+
+/**
+ * The monster Info items (`MONSTER_INFO`), the Steel, Silver and Golden Eggs (quest rewards elsewhere,
  * but maybe carried objects in Treasure Hunting, so never in a box), then
  * items that only exist inside a quest: supply box items (Map, First-Aid
  * Med, Ration, Portable Spit, Mini Whetstone, Prtbl Shock Trap and the
@@ -60,15 +72,43 @@ export const DELIVERY_TYPE = 2;
  * (Wyvern, Herbivore and Carnivore Egg, Sootstone and Quartz Ore,
  * Powderstone) and the Khezu Whelps, then the Paw Pass Ticket and Limited
  * Paw Pass. IDs from the vendored ItemID enum. Supplies keep them unless
- * asked not to and never add them; deliveries never ask for them.
+ * asked not to and never add them; deliveries never ask for them; no item
+ * pool draws them (`isNeverDrawn`).
  */
 const QUEST_ITEM_RANGES: readonly [number, number][] = [
-  [831, 883],
+  [MONSTER_INFO[0], 883],
   [927, 928],
 ];
 
 export function isQuestItem(itemId: number): boolean {
   return QUEST_ITEM_RANGES.some(([lo, hi]) => itemId >= lo && itemId <= hi);
+}
+
+/** Named entries of the ItemID table that aren't real items: No Coating and Dummy. */
+export const PLACEHOLDER_ITEMS: readonly number[] = [128, 465];
+
+/** Junk: Wyvern Droppings, which no recipe or combination uses. */
+export const JUNK_ITEMS: readonly number[] = [68];
+
+/**
+ * The Alchemy, Organizer and Backpacker Guides: one-off unlocks (the
+ * Organizer and Backpacker Guides open more item box space). Shops that
+ * sell them keep selling them (`shops.ts`), and no pool hands them out.
+ */
+export const GUIDES: readonly number[] = [6, 829, 830];
+
+/**
+ * Items no pool draws, for rewards, gathering, supplies, trades, recipes,
+ * pacts or shops: quest items (the monster Info items among them),
+ * placeholders, junk and the guides. Items already in a list can stay.
+ */
+export function isNeverDrawn(itemId: number): boolean {
+  return (
+    isQuestItem(itemId) ||
+    PLACEHOLDER_ITEMS.includes(itemId) ||
+    JUNK_ITEMS.includes(itemId) ||
+    GUIDES.includes(itemId)
+  );
 }
 
 export interface DeliveryTarget {

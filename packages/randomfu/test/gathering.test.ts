@@ -6,6 +6,7 @@ import { openDiscImage } from "mhfu-extract/src/container/image.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
 import { readGatheringItems } from "mhfu-extract/src/quests/gathering.js";
 import { loadGame, type GameData } from "../src/game/load.js";
+import { isNeverDrawn } from "../src/game/quest-fields.js";
 import { randomize } from "../src/randomize.js";
 import { formatSpoiler } from "../src/spoiler.js";
 import { buildFixtureDisc, buildQuestPayload, FIXTURE_QUESTS, tempDir } from "./fixtures.js";
@@ -247,6 +248,10 @@ test("gathering randomize: with any item and nothing kept, spots can give anythi
     outside += all.filter(
       (v) => !gatherable.has(v) && result.sources.tiers.get(v) === undefined,
     ).length;
+    // Never a quest item, placeholder, junk or guide drawn.
+    for (const v of all) {
+      if (!gatherable.has(v)) assert.ok(!isNeverDrawn(v), `${v} drawn`);
+    }
     assert.match(
       result.reports.find((r) => r.title === "Gathering points")!.notes.join(" "),
       /may now be found nowhere/,

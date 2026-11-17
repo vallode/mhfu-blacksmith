@@ -14,7 +14,7 @@
  */
 import { classifyRewardTable } from "mhfu-extract/src/emit/quests.js";
 import { parseQuest } from "mhfu-extract/src/quests/parser.js";
-import { isQuestItem } from "../game/quest-fields.js";
+import { isNeverDrawn } from "../game/quest-fields.js";
 import type { LoadedQuest } from "../game/load.js";
 import { questTier, tierKey, type Scope, type Tier } from "../game/tiers.js";
 import type { Edits } from "../edits.js";
@@ -222,7 +222,7 @@ export function randomizeQuestRewards(
   const largest: Record<RewardKind, number> = { main: 1, extra: 1, conditional: 1 };
   for (const list of lists) largest[list.kind] = Math.max(largest[list.kind], list.slots.length);
 
-  const everything = context.allItems.filter((i) => !isQuestItem(i));
+  const everything = context.allItems.filter((i) => !isNeverDrawn(i));
   const poolFor = scopedPool(everything, context.tiers, options.scope);
 
   const lines: { where: string; text: string }[] = [];
