@@ -14,7 +14,7 @@ import {
 } from "./game/tiers.js";
 import { Rng } from "./rng.js";
 import type { Settings } from "./settings.js";
-import { pieceName, readArmorPieces, shuffleArmor } from "./shuffles/armor.js";
+import { drawStarterArmor, pieceName, readArmorPieces, shuffleArmor } from "./shuffles/armor.js";
 import { randomizeArmorSkills } from "./shuffles/armor-skills.js";
 import { ARMOR_STATS, randomizeArmorStats } from "./shuffles/armor-stats.js";
 import { collectPriceSlots, randomizeCosts } from "./shuffles/costs.js";
@@ -707,7 +707,9 @@ export function randomize(
 
   // The smithy's store and a new hunter's equipment follow the weapons and
   // armor shuffles: found once, for both.
-  const followsGear = settings["weapons.enabled"] || settings["armor.enabled"];
+  const startArmor = settings["armor.start"];
+  const followsGear =
+    settings["weapons.enabled"] || settings["armor.enabled"] || startArmor !== "smithy";
   const store = followsGear ? findSmithyStore(game.lobbyTask) : null;
   const starter = followsGear ? findStarterBox(game.editTask) : null;
   const gear = [store, starter].filter((list) => list !== null);
@@ -774,11 +776,35 @@ export function randomize(
 
   // Armor only changes which piece each create entry makes, so the recipe
   // shuffles' spoiler names the new pieces.
+  // A drawn starting set takes its entries out of the box's list first, so
+  // the armor shuffle doesn't move them.
+  if (starter && startArmor !== "smithy") {
+    drawStarterArmor(
+      game.eboot,
+      game.resolver,
+      starter,
+      startArmor,
+      rng.fork("starting-armor"),
+      edits,
+    );
+  }
   if (settings["armor.enabled"]) {
-    reports.push(shuffleArmor(game.eboot, game.resolver, rng.fork("armor"), edits, gear));
+    reports.push(
+      shuffleArmor(
+        game.eboot,
+        game.resolver,
+        settings["armor.scope"],
+        rng.fork("armor"),
+        edits,
+        gear,
+      ),
+    );
   }
   if (followsGear) {
-    reports.push(gearReport("Smithy store", store), gearReport("Starting equipment", starter));
+    if (settings["weapons.enabled"] || settings["armor.enabled"]) {
+      reports.push(gearReport("Smithy store", store));
+    }
+    reports.push(gearReport("Starting equipment", starter));
   }
 
   // Stats are the pieces' own, in bytes the armor and skill shuffles don't

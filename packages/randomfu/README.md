@@ -123,6 +123,8 @@ web app shows as a tag):
 | `weapons.sharpness`               | off         | Blademaster weapons of a type and rarity trade sharpness                                               |
 | `weapons.sharpnessMode`           | `shuffle`   | `new`: every bar the weapons use also gets new colors                                                  |
 | `armor.enabled`                   | off         | Shuffle which armor the smithy makes                                                                   |
+| `armor.scope`                     | `rarity`    | Which pieces a place can get: the same `rarity`, the same `rank` (Low, High or G), or `any`            |
+| `armor.start`                     | `smithy`    | A new hunter's armor: what the smithy's spots make (`smithy`), any Low Rank piece (`rank`), or `any`   |
 | `armorSkills.enabled`             | off         | Change armor skills                                                                                    |
 | `armorSkills.mode`                | `shuffle`   | Pieces trade their skill points (`shuffle`), or get new trees and points (`randomize`)                 |
 | `armorSkills.keepArmorOnly`       | on          | Skill trees no decoration has stay on their pieces                                                     |
@@ -192,13 +194,13 @@ over the EU disc's tables, and what the game reads armor rarity for hasn't
 been checked. Monster health, elite monsters and the Unknown Monster quests are off in every
 preset, since they cap Guild Cards.
 
-| Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                          |
-| ------------ | ------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                                                                                                                                           |
-| Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills and stats (by rarity; rarity within its rank), shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                     |
-| Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon and armor stats, new armor skills |
-| Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled, new armor stats, difficulty within its rank                                                                                                                 |
-| Chaos        | Shuffle + randomize | As Full, with recipes and rewards from anywhere, any Blademaster or Gunner type, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering points and supply boxes, any crown spread and difficulty, wide spreads (armor stats too)                                        |
+| Preset       | Does                | What it turns on                                                                                                                                                                                                                                                                                                                   |
+| ------------ | ------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Rewards only | Shuffle             | The defaults: quest rewards and carves (with capture and break rewards), at the same star level                                                                                                                                                                                                                                    |
+| Shuffled     | Shuffle             | Every tried shuffle and nothing else: rewards, gathering, supply boxes, recipe materials, weapons, armor, armor skills and stats (by rarity; rarity within its rank), shop stock, large monsters (into variants), elemental weaknesses and weak spots                                                                              |
+| Randomized   | Randomize           | Every tried randomizer that needs no shuffle on, and no shuffle: amounts, costs, shop prices and carry limits, quest money, time limits, deliveries, quest monster size, crown spread, difficulty and small monster counts, base HP, size and status resistance, weapon and armor stats, new armor skills, Low Rank starting armor |
+| Full         | Shuffle + randomize | Both, at the same star level: gathering from the same rank, shops with Low Rank items and new prices and carry limits, armor skills shuffled, new armor stats, Low Rank starting armor, difficulty within its rank                                                                                                                 |
+| Chaos        | Shuffle + randomize | As Full, with recipes and rewards from anywhere, any Blademaster or Gunner type, armor of any rarity in the smithy and the starting box, any monster, new armor skills (armor-only skill trees too), any item in shops, gathering points and supply boxes, any crown spread and difficulty, wide spreads (armor stats too)         |
 
 ## Shuffles
 
@@ -488,9 +490,12 @@ unchanged. It is independent of `gathering.mode`; `deliveries` reads the
 counts as they end up.
 
 `armor` gives each armor place in the smithy (a create entry) a different
-piece of the same slot and rarity, wearable by the same hunters. A piece's
+piece of the same slot, wearable by the same hunters, of the same rarity
+(`armor.scope rarity`), the same rank (`rank`: Low Rank is rarity 1 to 5,
+High 6 to 8, G 9 and up) or any rarity (`any`). A spoiler line names the
+new piece's rarity when it differs from the place's. A piece's
 `HunterType` is a bit field (1 male, 2 female, 4 Blademaster, 8 Gunner),
-and pieces only trade with pieces of the same rarity and the same value,
+and pieces only trade with pieces of the same value (and rarity or rank),
 so a place both sexes could use never gets a male- or female-only piece,
 and a Gunner place never gets a Blademaster piece. One substitution per
 slot is applied to every create entry, so where a piece had two recipes,
@@ -505,6 +510,19 @@ before the recipe shuffles, whose spoiler lines then name the new pieces.
 The smithy's store follows it: where it sold a piece, it sells the piece
 now in that piece's places, at the new piece's own price. The store's
 categories 0-4 are leg, head, chest, arm and waist.
+
+A new hunter's Mafumofu set follows `armor` too, unless `armor.start`
+says otherwise. Its body pieces are rarity 1 and for anyone, and on the EU
+disc only three pieces per slot are (Mafumofu, Leather, Chain), so at one
+rarity a hunter nearly always starts in Leather or Chain. With
+`armor.start rank` or `any`, each piece in the box is instead drawn from
+every piece the smithy makes for its slot that a new hunter can wear: for
+Blademasters (the box's worn weapon is one, whatever the weapon shuffle
+does) and both sexes, Low Rank only with `rank`. It draws from its own
+random stream, so the smithy shuffles the same with it on, and doesn't need
+`armor` on. The box's second run of Mafumofu pieces gets the same pieces.
+Pieces are drawn by their rarity and wearers on the disc. Not yet tried in
+game.
 
 `armor-skills` changes the skill points on each piece the smithy makes.
 A piece's `ArmorValue` has five entries of a skill tree (u8) and points
