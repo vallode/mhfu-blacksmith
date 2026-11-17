@@ -18,8 +18,8 @@ export const SELECTOR_BAR_HEIGHT = 56;
 /** The bar's arrows: 44px, centred on the bar's ends. */
 const arrowPosition = "absolute top-[calc(50%-22px)] size-[44px]";
 
-/** Label and count text in the bar. */
-const barText =
+/** Label and count text in the bar, and in other bars drawn like it. */
+export const barText =
   "text-main leading-none tracking-[0.08em] whitespace-nowrap text-shadow-[2px_2px_0_rgb(0_0_0/0.6)]";
 
 interface Props {
