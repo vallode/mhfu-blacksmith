@@ -26,8 +26,8 @@ interface NavItem {
   section?: MenuSection;
   /** Shown in the phone tab bar (the rest are in its menu drawer). */
   tab?: boolean;
-  /** Tab bar uses the 16px /images/<icon>-mini.png sprite. */
-  tabMini?: boolean;
+  /** Uses the 16px /images/<icon>-mini.png sprite (drawn at 2x) in the sidebar and tab bar. */
+  mini?: boolean;
 }
 
 /**
@@ -43,7 +43,7 @@ const NAV_GROUPS: NavItem[][] = [
       match: "/blacksmith/",
       section: "weapons",
       tab: true,
-      tabMini: true,
+      mini: true,
     },
     {
       label: "armor",
@@ -51,16 +51,22 @@ const NAV_GROUPS: NavItem[][] = [
       match: "/armorsmith/",
       section: "armor",
       tab: true,
-      tabMini: true,
+      mini: true,
     },
     { label: "monsters", icon: "claw", match: "/monsters/", section: "monsters", tab: true },
-    { label: "decorations", icon: "decoration", match: "/decorations/", href: "/decorations/" },
+    {
+      label: "decorations",
+      icon: "decoration",
+      match: "/decorations/",
+      href: "/decorations/",
+      mini: true,
+    },
     { label: "quests", icon: "ticket", match: "/quests/", section: "quests", tab: true },
     { label: "items", icon: "fluid", match: "/items/", href: "/items/" },
     { label: "veggieElder", icon: "mushroom", match: "/veggie-elder/", href: "/veggie-elder/" },
   ],
   [
-    { label: "sets", icon: "plate", match: "/set-builder/", href: "/set-builder/" },
+    { label: "sets", icon: "plate", match: "/set-builder/", href: "/set-builder/", mini: true },
     { label: "wishlist", icon: "sac", match: "/wishlist/", href: "/wishlist/" },
   ],
 ];
@@ -207,7 +213,13 @@ function SidebarContents({
                   aria-current={active ? "page" : undefined}
                   className={cn(sidebarRow, active && sidebarRowActive)}
                 >
-                  <Icon type={item.icon} nav active={active} className={rowIcon} />
+                  <Icon
+                    type={item.icon}
+                    size={item.mini ? "mini" : undefined}
+                    nav
+                    active={active}
+                    className={rowIcon}
+                  />
                   <span className={cn(rail("wide:sr-only", "compact:sr-only"))}>
                     {t.nav[item.label]}
                   </span>
@@ -228,8 +240,8 @@ function SidebarContents({
         >
           <span className="flex size-[32px] flex-none items-center justify-center">
             <img
-              className="size-[24px] opacity-75 group-hover:opacity-100"
-              src="/images/binoculars.png"
+              className="size-[32px] opacity-75 pixelated group-hover:opacity-100"
+              src="/images/binoculars-mini.png"
               alt=""
             />
           </span>
@@ -329,7 +341,7 @@ function TabBar({
             >
               <Icon
                 type={item.icon}
-                size={item.tabMini ? "mini" : undefined}
+                size={item.mini ? "mini" : undefined}
                 nav
                 active={active}
                 className={rowIcon}
