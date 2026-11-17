@@ -65,6 +65,8 @@ export interface Settings {
   "weapons.sharpness": boolean;
   "weapons.sharpnessMode": "shuffle" | "new";
   "armor.enabled": boolean;
+  "armor.scope": "rarity" | "rank" | "any";
+  "armor.start": "smithy" | "rank" | "any";
   "armorSkills.enabled": boolean;
   "armorSkills.mode": "shuffle" | "randomize";
   "armorSkills.keepArmorOnly": boolean;
@@ -984,10 +986,67 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "armor.enabled",
     section: "Armor",
     label: "Shuffle which armor the smithy makes",
-    help: "Each spot in the smithy makes a different armor piece for the same slot and rarity, wearable by the same hunters (Blademaster, Gunner or both; male, female or both). Spots keep their materials; pieces keep their stats, skills and cost. The smithy's store follows: it sells the pieces now in the spots of the ones it sold.",
+    help: "Each spot in the smithy makes a different armor piece for the same slot, wearable by the same hunters (Blademaster, Gunner or both; male, female or both), of a rarity the armor rarity range allows. Spots keep their materials; pieces keep their stats, skills and cost. The smithy's store follows: it sells the pieces now in the spots of the ones it sold.",
     type: { kind: "boolean" },
     default: false,
     action: "shuffle",
+  },
+  {
+    key: "armor.scope",
+    section: "Armor",
+    label: "Armor rarity range",
+    help: "Which pieces a smithy spot can get, by the rarity of the piece it made.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "rarity",
+          label: "Same rarity",
+          help: "A rarity 3 spot makes another rarity 3 piece.",
+        },
+        {
+          value: "rank",
+          label: "Same rank",
+          help: "A Low Rank spot makes any Low Rank piece (rarity 1 to 5), High Rank any High Rank piece, G Rank any G Rank piece.",
+        },
+        {
+          value: "any",
+          label: "Any rarity",
+          help: "Any spot can make any piece, so a Low Rank recipe can give G Rank armor and the other way round. The store's first pieces can be anything too.",
+        },
+      ],
+    },
+    default: "rarity",
+    enabledBy: "armor.enabled",
+  },
+  {
+    key: "armor.start",
+    section: "Armor",
+    label: "Starting armor",
+    help: "The armor in a new hunter's equipment box: the Mafumofu set, worn but for the hood.",
+    type: {
+      kind: "choice",
+      choices: [
+        {
+          value: "smithy",
+          label: "From the smithy",
+          help: "The Mafumofu set, or with the armor shuffle on, the pieces now in its spots in the smithy.",
+        },
+        {
+          value: "rank",
+          label: "Any Low Rank piece",
+          action: "randomize",
+          help: "Each piece is any Low Rank piece the smithy makes for its slot that a new hunter can wear: for Blademasters (the starting weapon is one) and both sexes.",
+        },
+        {
+          value: "any",
+          label: "Any piece",
+          action: "randomize",
+          help: "Each piece is any piece the smithy makes for its slot that a new hunter can wear, G Rank included.",
+        },
+      ],
+    },
+    default: "smithy",
   },
   {
     key: "armorSkills.enabled",
@@ -1970,7 +2029,7 @@ export const PRESETS: readonly Preset[] = [
       "How often each quest's main reward list is drawn, and small monster counts",
       "Each quest's monster size, crown spread and difficulty; each monster's base HP, size and status resistance",
       "Weapon attack, affinity, element and slots; armor defense, resistances, slots and rarity",
-      "Armor gets new skills",
+      "Armor gets new skills, and a new hunter starts in random Low Rank armor",
     ],
     changes: {
       "questRewards.mode": "off",
@@ -1984,6 +2043,7 @@ export const PRESETS: readonly Preset[] = [
       "terms.money": true,
       "terms.time": true,
       "deliveries.enabled": true,
+      "armor.start": "rank",
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
       "questMonsters.size": true,
@@ -1995,7 +2055,7 @@ export const PRESETS: readonly Preset[] = [
     points: [
       "Shuffled and Randomized together, at the same star level, so every recipe stays craftable as early as before",
       "Gathering points draw from the whole rank; shops add Low Rank items and change prices",
-      "Armor skills are shuffled while armor stats get new values",
+      "Armor skills are shuffled while armor stats get new values; a new hunter starts in random Low Rank armor",
       "Monster difficulty stays within its rank",
     ],
     changes: {
@@ -2006,6 +2066,7 @@ export const PRESETS: readonly Preset[] = [
       "weapons.enabled": true,
       "weapons.sharpness": true,
       "armor.enabled": true,
+      "armor.start": "rank",
       "armorSkills.enabled": true,
       "questRewards.draws": 0.3,
       "shops.mode": "randomize",
@@ -2032,6 +2093,7 @@ export const PRESETS: readonly Preset[] = [
       "Recipes can use materials from anywhere, so they may need G Rank parts in Low Rank",
       "Weapons can change type, take any stat at any rarity, gain or change elements and slots, and get new sharpness bars",
       "Any monster can turn up on a map it lives on; quests can give any crown or difficulty",
+      "Armor can come from any rarity, and a new hunter starts in any armor",
       "Armor gets new skills, even ones that may become impossible to activate",
       "Shops and gathering points can give anything",
     ],
@@ -2056,6 +2118,8 @@ export const PRESETS: readonly Preset[] = [
       "weapons.elementKind": true,
       "weapons.slotSpread": 2,
       "armor.enabled": true,
+      "armor.scope": "any",
+      "armor.start": "any",
       "armorSkills.enabled": true,
       "armorSkills.mode": "randomize",
       "armorSkills.keepArmorOnly": false,
