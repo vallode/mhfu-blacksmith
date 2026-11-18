@@ -436,14 +436,18 @@ player). The hook wraps `lobby_task`'s one call of the quest counter's
 card function, so it runs every frame the card shows, after the card is
 drawn. The blob reads the shown quest's type from the record copy the
 card draws from (EU 0x09B03F40, JP 0x09AFECD8) and, with bit 26 set, draws
-"Key Quest!" in the card's top right corner with `print(printer, x, y, shadow,
+a yellow ★ in the card's top right corner with `print(printer, x, y, shadow,
 colour, text, dx, dy)` (EU 0x0889198C, JP 0x0889144C), as the card draws
 "CLEAR!!" in its top left. It sets the
 printer's glyph size bytes (`+0x12C`, `+0x12D`, `+0x15F`) to 14 for the
-print and puts them back. Every address and the label's place are link-time
-constants that `findKeyQuestSites` reads from `lobby_task`; the hook's call
-is patched in the overlay (`code-loader.ts`, `hooks.questCard`).
-`test/key-quests.test.ts` runs the stub and blob in the interpreter.
+print and puts them back: the bytes the game's setter (EU 0x08890DE8)
+writes, which `findKeyQuestSites` checks in the EBOOT, since the line height
+(`+0x15F`) can also be set on its own. The ★ is UTF-8, as both discs'
+text is. Every address and the label's place are link-time constants that
+`findKeyQuestSites` reads from `lobby_task`; the hook's call is patched in
+the overlay (`code-loader.ts`, `hooks.questCard`). `test/key-quests.test.ts`
+runs the stub and blob in the interpreter, and `test/code-loader.test.ts`
+checks the call goes to hook 6's stub.
 
 ## Toolchain
 

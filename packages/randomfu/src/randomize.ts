@@ -1106,7 +1106,7 @@ export function randomize(
       ? null
       : typeof hookSites === "string"
         ? hookSites
-        : findKeyQuestSites(lobbyOvl.reader.buf, lobbyOvl.loadBase);
+        : findKeyQuestSites(lobbyOvl.reader.buf, lobbyOvl.loadBase, game.eboot);
     if (typeof keySites === "string") reports.push(notApplied("Key quests", keySites));
     const keys = typeof keySites === "string" ? null : keySites;
     if (keys) {

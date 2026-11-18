@@ -27,7 +27,7 @@ import {
   guildCardSpace,
 } from "../src/patches/guild-card-space.js";
 import { RUNTIME_OBJECTS } from "../src/blob/runtime-object.js";
-import { PAD_READ_SIGNATURE, findPadSites } from "../src/patches/game-hooks.js";
+import { HOOK, PAD_READ_SIGNATURE, findPadSites } from "../src/patches/game-hooks.js";
 import { PICKER_SIGNATURE, poogieObjects } from "../src/patches/poogie-luck.js";
 import { Cpu } from "./mips-cpu.js";
 
@@ -439,6 +439,36 @@ test("addCodeLoader with only the pad hook and the picker: Poogie's luck needs n
     "the pad call goes to a stub",
   );
   assert.equal(g.edits.files.size, 1, "only game_sub (the card loop) changes, not game_task");
+});
+
+test("addCodeLoader points lobby_task's quest card call at a stub that runs hook 6", () => {
+  const g = syntheticGame();
+  const at = (offset: number) => g.OFFSET + offset;
+  PAD_READ_SIGNATURE.forEach((w, k) => g.elf.writeUInt32LE(w, at(0xd80 + k * 4)));
+  const ctrlRead = g.VADDR + 0xd00;
+  g.elf.writeUInt32LE(0x0c000000 | (ctrlRead >>> 2), at(0xd80 + 0x14)); // padRead's jal
+  const pads = findPadSites(g.elf);
+  assert.ok(typeof pads !== "string", String(pads));
+  // lobby_task: any DATA.BIN file reads as the synthetic game_sub; the call is at +0x20.
+  const lobbyTask: LoadedOverlay = { index: 9, ovl: {} as LoadedOverlay["ovl"] };
+  const card = 0x09a8ca40;
+  const report = addCodeLoader(g.elf, g.sub, g.edits, {
+    objects: decodeObjects(RUNTIME_OBJECTS),
+    hooks: { sites: pads, questCard: { call: 0x20, card, lobbyTask } },
+  });
+  assert.equal(report.applied, true, report.summary);
+  const target = (w: number) => (((w & 0x03ffffff) << 2) | 0x08000000) >>> 0;
+  const eboot = g.edits.eboot();
+  const call = g.edits.overlay(lobbyTask).readUInt32LE(0x20);
+  assert.equal(call >>> 26, 0x03, "a jal");
+  const stub = (vaddr: number) => (k: number) => eboot.readUInt32LE(at(vaddr - g.VADDR + k * 4));
+  // A stub: addiu sp; sw ra; jal target; sw a0; sw v0; lw a0; jal dispatch; addiu a1, zero, hook.
+  const cardStub = stub(target(call));
+  assert.equal(target(cardStub(2)), card, "the card stub calls the card");
+  assert.equal(cardStub(7), 0x24050000 | HOOK.questCard, "and dispatches hook 6");
+  const padStub = stub(target(eboot.readUInt32LE(at(0xd80 + 0x14))));
+  assert.equal(target(padStub(2)), ctrlRead, "the pad call keeps its own stub");
+  assert.equal(padStub(7), 0x24050000 | HOOK.pad);
 });
 
 test("addCodeLoader takes nothing when other features left too little room", () => {

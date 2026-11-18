@@ -1,13 +1,14 @@
 /*
  * Key quests (quests.keyLabel): the quest counter's card (the Village
- * Chief's and the Guild's, in town) shows "Key Quest!" in its top right corner
+ * Chief's and the Guild's, in town) shows a yellow star in its top right corner
  * when the quest it shows is a key quest, one of those its star needs
  * cleared before the Urgent Quest shows.
  *
  * RF_HOOK_QUEST_CARD runs just after lobby_task draws the card. The card
  * draws from a copy of the shown quest's board record (header 0x4c-0x7f),
  * at a fixed address its getter returns; bit 26 of its quest type marks a
- * key quest (bit 25 an Urgent Quest). "Key Quest!" is drawn as the card draws
+ * key quest (bit 25 an Urgent Quest). The star is the font's ★ (the quest
+ * details' "LV★★★"), drawn as the card draws
  * "CLEAR!!" in its top left: the same print, glyph size, colours and
  * shadow. See ../src/patches/key-quests.ts.
  */
@@ -21,7 +22,7 @@ extern const u8 rf_key_y[];
 
 #define KEY_QUEST (1u << 26)
 
-/* The printer's glyph size (the game's setter writes all three). */
+/* The printer's glyph size: what the game's setter writes (key-quests.ts checks it). */
 #define PRINTER_GLYPH_W 0x12c
 #define PRINTER_GLYPH_H 0x12d
 #define PRINTER_LINE_H 0x15f
@@ -32,10 +33,8 @@ extern const u8 rf_key_y[];
 #define SHADOW 1
 #define SHADOW_OFFSET 2
 
-static const char label[] = "Key Quest!";
-
-/* The label's width: half a glyph a character, as the game measures text. */
-u32 rf_key_label_width(void) { return (sizeof label - 1) * GLYPH / 2; }
+/* ★ in UTF-8, as the game's strings have it. */
+static const char label[] = "\xe2\x98\x85";
 
 static void draw(u8 *counter) {
   (void)counter;

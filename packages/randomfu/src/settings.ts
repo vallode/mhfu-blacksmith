@@ -1776,7 +1776,7 @@ export const OPTIONS: readonly OptionDef[] = [
     key: "quests.keyLabel",
     section: "Key quests",
     label: "Mark key quests",
-    help: "The Village Chief's and the Guild's quest cards show \"Key Quest!\" in their top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
+    help: "The Village Chief's quest card (and likely the Guild's, not yet tried) shows a yellow ★ in its top right corner when the quest is one of the key quests its star needs cleared before the Urgent Quest shows. Which quests are key doesn't change, but once monsters move, the usual lists of them stop helping. Caps received Guild Cards at 3 to make room for the code.",
     type: { kind: "boolean" },
     default: false,
   },
