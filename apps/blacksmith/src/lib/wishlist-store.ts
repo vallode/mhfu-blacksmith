@@ -27,7 +27,8 @@ function isEntry(x: unknown): x is WishlistEntry {
   if (e.kind === "weapon") {
     return (
       (WEAPON_TYPES as readonly string[]).includes(e.type) &&
-      (e.from === undefined || e.from === null || typeof e.from === "string")
+      (e.from === undefined || e.from === null || typeof e.from === "string") &&
+      (e.made === undefined || typeof e.made === "string")
     );
   }
   return (
@@ -114,10 +115,13 @@ export interface Wishlist {
   has(ref: GearRef): boolean;
   /** Adds or removes the gear; false if storage refused the write. */
   toggle(ref: GearRef): boolean;
-  /** Changes an entry's recipe or starting weapon. */
+  /**
+   * Changes an entry's recipe, starting weapon or the furthest weapon made
+   * along its path (`made: undefined` clears it).
+   */
   update(
     key: string,
-    patch: Partial<Pick<WishlistEntry, "recipe">> & { from?: string | null },
+    patch: Partial<Pick<WishlistEntry, "recipe">> & { from?: string | null; made?: string },
   ): void;
   remove(key: string): void;
   clear(): void;

@@ -53,6 +53,7 @@ import {
   entryHref,
   entryKey,
   itemWays,
+  madeSteps,
   recipesOf,
   totalCost,
   totalMaterials,
@@ -200,6 +201,8 @@ interface GearRow {
   /** Upgrades: where the path starts (see `WeaponEntry.from`) */
   from: string | null | undefined;
   steps: CraftStep[];
+  /** How many of `steps`, from the first, the player has ticked off as made */
+  done: number;
   /** The loaded hunter has it already */
   owned: boolean;
 }
@@ -229,6 +232,7 @@ function resolveRows(
       ancestors: [],
       from: undefined,
       steps: [],
+      done: 0,
       owned: owned?.has(href) ?? false,
     };
     if (!found) return row;
@@ -262,6 +266,7 @@ function resolveRows(
           : (row.ancestors.find((a) => owned?.has(a.href))?.slug ?? row.ancestors[0]?.slug);
     }
     row.steps = weaponSteps(weapon, row.recipe, row.from, byName);
+    row.done = madeSteps(row.steps, entry.made);
     return row;
   });
 }
@@ -302,7 +307,7 @@ export default function WishlistClient() {
     if (!rows || !items) return null;
     const crafts = rows
       .filter((r) => r.gear && !r.owned && r.steps.length > 0)
-      .map((r) => ({ gear: r.gear!.name, steps: r.steps }));
+      .map((r) => ({ gear: r.gear!.name, steps: r.steps.slice(r.done) }));
     const needs = totalMaterials(crafts, items.idOf).map((need) => {
       const id = need.itemId;
       const ways =
@@ -437,6 +442,10 @@ function WishCard({
 const select =
   "max-w-full min-w-0 cursor-pointer border border-hr bg-black/45 px-[0.6rem] py-[0.3rem] font-[inherit] text-fine text-white focus-visible:border-white focus-visible:outline-none";
 
+/** The tick box beside each craft of an upgrade path. */
+const stepBox =
+  "flex size-[2rem] flex-none items-center justify-center border border-hr bg-black/45 p-0 text-fine leading-none text-positive";
+
 /** "4,500z", in the site's language. */
 function useZenny(): (n: number) => string {
   const t = useT();
@@ -527,9 +536,10 @@ function GearRecipe({
   const tw = useT().items.wishlist;
   const game = useGameText();
   const zenny = useZenny();
-  const { recipes, recipe, ancestors, from, steps } = row;
+  const { recipes, recipe, ancestors, from, steps, done } = row;
   if (!recipe) return <p className={ui.note}>{tw.noRecipe}</p>;
-  const cost = steps.reduce((s, st) => s + st.cost, 0);
+  // What's left to pay: the crafts not yet ticked off.
+  const cost = steps.slice(done).reduce((s, st) => s + st.cost, 0);
   return (
     <div className="flex flex-col gap-[0.6rem] text-fine text-white/60">
       <div className="flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.6rem]">
@@ -575,18 +585,50 @@ function GearRecipe({
         <span className="ml-auto text-white">{zenny(cost)}</span>
       </div>
       {steps.length > 1 && (
-        <ol className="m-0 flex list-none flex-wrap gap-x-[0.6rem] gap-y-[0.2rem] p-0 whitespace-normal">
-          {steps.map((s, i) => (
-            <li key={i}>
-              {i > 0 && <span className="text-muted">→ </span>}
-              <Link href={s.href} className="text-white/80 underline-offset-4 hover:underline">
-                {game.name(row.entry.kind, s.name)}
-              </Link>
-              {s.recipe !== "improve" && (
-                <span className="text-white/50"> {tw.stepRecipes[s.recipe]}</span>
-              )}
-            </li>
-          ))}
+        <ol className="m-0 flex list-none flex-col gap-[0.4rem] p-0">
+          {steps.map((s, i) => {
+            const made = i < done;
+            const name = game.name(row.entry.kind, s.name);
+            return (
+              <li key={i} className="flex min-w-0 items-center gap-[0.8rem]">
+                {i < steps.length - 1 ? (
+                  <button
+                    type="button"
+                    aria-pressed={made}
+                    aria-label={tw.madeLabel(name)}
+                    title={made ? tw.unmarkMade : tw.markMade}
+                    className={cn(
+                      stepBox,
+                      "cursor-pointer hover:border-white focus-visible:border-white focus-visible:outline-none",
+                    )}
+                    // Ticking a craft ticks every one before it; unticking it unticks the ones after.
+                    onClick={() =>
+                      wishlist.update(row.key, { made: made ? steps[i - 1]?.slug : s.slug })
+                    }
+                  >
+                    {made && "✓"}
+                  </button>
+                ) : (
+                  // The gear itself: made, it's owned, not ticked off.
+                  <span aria-hidden className="size-[2rem] flex-none" />
+                )}
+                <span className={cn("min-w-0 flex-1 whitespace-normal", made && "opacity-50")}>
+                  <Link
+                    href={s.href}
+                    className={cn(
+                      "text-white/80 underline-offset-4 hover:underline",
+                      made && "line-through",
+                    )}
+                  >
+                    {name}
+                  </Link>
+                  {s.recipe !== "improve" && (
+                    <span className="text-white/50"> {tw.stepRecipes[s.recipe]}</span>
+                  )}
+                </span>
+              </li>
+            );
+          })}
         </ol>
       )}
     </div>

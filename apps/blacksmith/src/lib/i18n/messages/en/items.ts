@@ -188,6 +188,10 @@ export const items = {
     from: "From",
     ownedOption: (name: string) => `${name} (owned)`,
     wholePath: "Nothing (whole path)",
+    /** The tick box beside each weapon of an upgrade path, and its tooltips. */
+    madeLabel: (name: string) => `Made ${name}`,
+    markMade: "Tick off as made",
+    unmarkMade: "Not made yet",
     cost: "Cost:",
     /** The loaded hunter's zenny, after the cost. */
     youHave: (amount: string) => `(you have ${amount})`,

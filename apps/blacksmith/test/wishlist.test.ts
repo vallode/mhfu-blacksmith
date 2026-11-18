@@ -23,6 +23,7 @@ import {
   totalMaterials,
   treeParents,
   upgradeAncestors,
+  madeSteps,
   weaponSteps,
   type MaterialNeed,
 } from "../src/lib/wishlist";
@@ -91,13 +92,15 @@ describe("entries", () => {
       ok,
       { ...ok, addedAt: 2 },
       { kind: "weapon", type: "spear", slug: "b", addedAt: 1 },
+      { kind: "weapon", type: "bow", slug: "d", addedAt: 1, made: 3 },
+      { kind: "weapon", type: "bow", slug: "e", addedAt: 1, made: "bone" },
       { kind: "armor", slot: "helmet", rank: "g-rank", slug: "c", addedAt: 1, recipe: "x" },
       { kind: "armor", slot: "helmet", rank: "g-rank", slug: "c", addedAt: 1, recipe: "alt" },
       null,
     ]);
     assert.deepEqual(
       parseWishlist(raw).map((e) => e.slug),
-      ["a", "c"],
+      ["a", "e", "c"],
     );
     assert.deepEqual(parseWishlist("not json"), []);
     assert.deepEqual(parseWishlist(null), []);
@@ -157,6 +160,17 @@ describe("recipes", () => {
     assert.deepEqual(names(weaponSteps(hugeBone, "improve", "nowhere", byName)), [
       "improve Huge Bone",
     ]);
+  });
+
+  test("made crafts count from the start of the path, never the last", () => {
+    const steps = weaponSteps(hugeBone, "improve", "bone", byName);
+    assert.equal(madeSteps(steps, undefined), 0);
+    assert.equal(madeSteps(steps, "bone-plus"), 1);
+    assert.equal(madeSteps(steps, "big-bone"), 2);
+    assert.equal(madeSteps(steps, "huge-bone"), 0);
+    // Off the path (a start further down, or another recipe): nothing made.
+    assert.equal(madeSteps(steps, "bone"), 0);
+    assert.equal(madeSteps(weaponSteps(hugeBone, "improve", "big-bone", byName), "big-bone"), 0);
   });
 
   test("create ignores the path", () => {

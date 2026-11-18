@@ -40,6 +40,12 @@ export interface WeaponEntry extends EntryBase {
    * the weapon just before it.
    */
   from?: string | null;
+  /**
+   * Upgrade paths of more than one craft: the furthest weapon along the path
+   * the player has made, by slug. It and every craft before it are ticked off
+   * (`madeSteps`). Ignored while it isn't on the path the entry makes.
+   */
+  made?: string;
 }
 
 export interface ArmorEntry extends EntryBase {
@@ -128,6 +134,7 @@ export function defaultRecipe(gear: Weapon | ArmorPiece): Recipe | undefined {
 /** One craft at the smithy: a weapon or armor piece, by one recipe. */
 export interface CraftStep {
   name: string;
+  slug: string;
   href: string;
   recipe: Recipe;
   cost: number;
@@ -176,7 +183,14 @@ function step(gear: Weapon | ArmorPiece, href: string, recipe: Recipe): CraftSte
         : gear.create_mats;
   const cost =
     recipe === "improve" && "improve_cost" in gear ? gear.improve_cost : gear.create_cost;
-  return { name: gear.name, href, recipe, cost: Number(cost) || 0, materials: materials ?? [] };
+  return {
+    name: gear.name,
+    slug: gear.slug,
+    href,
+    recipe,
+    cost: Number(cost) || 0,
+    materials: materials ?? [],
+  };
 }
 
 /**
@@ -212,6 +226,17 @@ export function weaponSteps(
   // From scratch with nothing creatable up the tree: the whole path found.
   // A start that isn't up the path: just the one upgrade.
   return from === null ? steps.reverse() : [make(weapon, "improve")];
+}
+
+/**
+ * How many of the crafts, from the first, are made: up to and including
+ * `made` (a weapon's slug). Never the last craft, which makes the gear itself;
+ * 0 when `made` isn't one of the others.
+ */
+export function madeSteps(steps: readonly CraftStep[], made: string | undefined): number {
+  if (made === undefined) return 0;
+  const i = steps.findIndex((s) => s.slug === made);
+  return i >= 0 && i < steps.length - 1 ? i + 1 : 0;
 }
 
 /** An armor piece's craft by a recipe. */
