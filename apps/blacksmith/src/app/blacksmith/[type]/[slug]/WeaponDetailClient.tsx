@@ -16,9 +16,11 @@ import {
   RequirementsPage,
   Slots,
   Stat,
+  StatArrows,
   StatList,
   StatValue,
 } from "@/components/DetailPanel";
+import { RECOIL_LEVELS, RELOAD_LEVELS } from "game-data/gunner";
 import { cn } from "@/lib/cn";
 import {
   melodyDuration,
@@ -47,6 +49,23 @@ function affinityClass(affinity: string | undefined): string {
   if (affinity.startsWith("-")) return "text-negative";
   if (!affinity.startsWith("0")) return "text-positive";
   return "";
+}
+
+/**
+ * Recoil as kick arrows: a red down-arrow for each level heavier than the
+ * lightest (VeryWeak), in the game's own order. Moderate, every light
+ * bowgun's and most heavy bowguns', gets three. Null for a level the list
+ * doesn't know (game-data's tests check the data has none).
+ */
+function recoilSteps(recoil: string): number | null {
+  const i = (RECOIL_LEVELS as readonly string[]).indexOf(recoil);
+  return i < 0 ? null : -(RECOIL_LEVELS.length - 1 - i);
+}
+
+/** Reload as arrows either side of Normal: green up when faster, red down when slower. */
+function reloadSteps(reload: string): number | null {
+  const i = (RELOAD_LEVELS as readonly string[]).indexOf(reload);
+  return i < 0 ? null : i - RELOAD_LEVELS.indexOf("Normal");
 }
 
 /** Bow coatings in the game's order (English, matched against the data). */
@@ -159,12 +178,14 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
             {weapon.recoil && (
               <Stat label={tw.recoil}>
+                <StatArrows steps={recoilSteps(weapon.recoil)} />
                 <StatValue>{lookup(tw.recoilValues, weapon.recoil)}</StatValue>
               </Stat>
             )}
 
             {weapon.reload && (
               <Stat label={tw.reload}>
+                <StatArrows steps={reloadSteps(weapon.reload)} />
                 <StatValue>{lookup(tw.reloadValues, weapon.reload)}</StatValue>
               </Stat>
             )}
