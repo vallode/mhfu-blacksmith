@@ -42,3 +42,4 @@ export {
   type StringsDoc,
 } from "./strings.js";
 export { importLegacy, type Imported, type LegacyIdSources } from "./legacy.js";
+export { RECOIL_CODE_BASE, RECOIL_LEVELS, RELOAD_LEVELS } from "./gunner.js";

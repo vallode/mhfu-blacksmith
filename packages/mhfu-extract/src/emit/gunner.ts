@@ -22,6 +22,7 @@
  * - Bow `ShotCoatings` bits 7-9 are the poison, paralysis and sleep coating
  *   bonuses the site lists as `{ name, attack: "Add" }` elements.
  */
+import { RECOIL_CODE_BASE, RECOIL_LEVELS, RELOAD_LEVELS } from "game-data";
 import type { BinaryReader } from "../binary/reader.js";
 import {
   RAPID_FIRE_BITS,
@@ -86,13 +87,10 @@ const AMMO_GROUPS: [string, [string, number][]][] = [
   ],
 ];
 
-export const RELOAD_NAMES: readonly string[] = ["VerySlow", "Slow", "Normal", "Fast", "VeryFast"];
-export const RECOIL_NAMES: Readonly<Record<number, string>> = {
-  2: "Moderate",
-  3: "Light",
-  4: "Weak",
-  5: "VeryWeak",
-};
+export const RELOAD_NAMES: readonly string[] = RELOAD_LEVELS;
+export const RECOIL_NAMES: Readonly<Record<number, string>> = Object.fromEntries(
+  RECOIL_LEVELS.map((name, i) => [RECOIL_CODE_BASE + i, name]),
+);
 
 /** `BowChargeID` 0-14: Rapd, Sctr, Prce, each level 1-5. */
 const CHARGE_KINDS = ["Rapd", "Sctr", "Prce"];

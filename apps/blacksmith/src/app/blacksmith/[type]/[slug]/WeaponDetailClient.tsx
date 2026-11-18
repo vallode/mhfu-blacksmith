@@ -20,6 +20,7 @@ import {
   StatList,
   StatValue,
 } from "@/components/DetailPanel";
+import { RECOIL_LEVELS, RELOAD_LEVELS } from "game-data/gunner";
 import { cn } from "@/lib/cn";
 import {
   melodyDuration,
@@ -51,19 +52,21 @@ function affinityClass(affinity: string | undefined): string {
 }
 
 /**
- * Recoil as kick arrows (negative steps: red, pointing down): one for each
- * step above Light. Moderate is every light bowgun's and most heavy bowguns'.
+ * Recoil as kick arrows: a red down-arrow for each level heavier than the
+ * lightest (VeryWeak), in the game's own order. Moderate, every light
+ * bowgun's and most heavy bowguns', gets three. Null for a level the list
+ * doesn't know (game-data's tests check the data has none).
  */
-const RECOIL_STEPS: Record<string, number> = { Light: 0, VeryWeak: -1, Weak: -2, Moderate: -3 };
+function recoilSteps(recoil: string): number | null {
+  const i = (RECOIL_LEVELS as readonly string[]).indexOf(recoil);
+  return i < 0 ? null : -(RECOIL_LEVELS.length - 1 - i);
+}
 
-/** Reload speed as arrows either side of Normal: green up when faster, red down when slower. */
-const RELOAD_STEPS: Record<string, number> = {
-  VerySlow: -2,
-  Slow: -1,
-  Normal: 0,
-  Fast: 1,
-  VeryFast: 2,
-};
+/** Reload as arrows either side of Normal: green up when faster, red down when slower. */
+function reloadSteps(reload: string): number | null {
+  const i = (RELOAD_LEVELS as readonly string[]).indexOf(reload);
+  return i < 0 ? null : i - RELOAD_LEVELS.indexOf("Normal");
+}
 
 /** Bow coatings in the game's order (English, matched against the data). */
 const COATINGS = [
@@ -175,14 +178,14 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
             {weapon.recoil && (
               <Stat label={tw.recoil}>
-                <StatArrows steps={RECOIL_STEPS[weapon.recoil] ?? 0} />
+                <StatArrows steps={recoilSteps(weapon.recoil)} />
                 <StatValue>{lookup(tw.recoilValues, weapon.recoil)}</StatValue>
               </Stat>
             )}
 
             {weapon.reload && (
               <Stat label={tw.reload}>
-                <StatArrows steps={RELOAD_STEPS[weapon.reload] ?? 0} />
+                <StatArrows steps={reloadSteps(weapon.reload)} />
                 <StatValue>{lookup(tw.reloadValues, weapon.reload)}</StatValue>
               </Stat>
             )}
