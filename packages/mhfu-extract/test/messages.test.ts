@@ -1,30 +1,7 @@
 import assert from "node:assert/strict";
 import { test } from "node:test";
 import { findMessages, readMessageFile, showMessage } from "../src/strings/messages.js";
-
-/** A message file: count, 8, table offsets; each table's offsets (from its start), -1, strings. */
-function messageFile(tables: string[][]): Buffer {
-  const header = Buffer.alloc(8 + tables.length * 4);
-  header.writeUInt32LE(tables.length, 0);
-  header.writeUInt32LE(8, 4);
-  const parts: Buffer[] = [header];
-  let at = header.length;
-  tables.forEach((strings, t) => {
-    header.writeUInt32LE(at, 8 + t * 4);
-    const list = Buffer.alloc(strings.length * 4 + 4);
-    let rel = list.length;
-    const bodies = strings.map((s, i) => {
-      const body = Buffer.from(`${s}\0`, "utf8");
-      list.writeUInt32LE(rel, i * 4);
-      rel += body.length;
-      return body;
-    });
-    list.writeUInt32LE(0xffffffff, strings.length * 4);
-    parts.push(list, ...bodies);
-    at += rel;
-  });
-  return Buffer.concat(parts);
-}
+import { messageFile } from "./helpers.js";
 
 test("message files are read table by table, with offsets from each table's start", () => {
   const buf = messageFile([

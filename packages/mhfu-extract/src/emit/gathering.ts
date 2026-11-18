@@ -10,14 +10,18 @@
  * each of them is on the map's texture, when `maps` can place them.
  */
 import type { ParsedQuest } from "../quests/parser.js";
-import { NODE_KINDS, readGatheringItems, type GatheringNode } from "../quests/gathering.js";
+import {
+  ENDLESS,
+  NODE_KINDS,
+  readGatheringItems,
+  type GatheringNode,
+} from "../quests/gathering.js";
 import { getNameResolver } from "../strings/names.js";
 import { projectToMap, type MapLayouts } from "../tables/map-layout.js";
 import { resolveMapName } from "../tables/quest-maps.js";
 import { isPlaceholderQuest, questHub } from "./quests.js";
 
 /** A node gathered this many times never runs out. */
-const ENDLESS = 0xff;
 
 export interface EmittedGatheringItem {
   item: string;

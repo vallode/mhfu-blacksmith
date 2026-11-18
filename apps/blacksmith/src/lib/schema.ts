@@ -23,6 +23,7 @@ import type {
   MonsterBreak,
   MonsterDrop,
 } from "./types";
+import type { Crowns } from "./crowns";
 import { splitDropQuantity } from "./monster-drops";
 
 // ---------------------------------------------------------------------------
@@ -62,7 +63,8 @@ export interface CompactTreeNode {
   t?: string; // type (omitted when it equals the bundle's own type)
   r?: number | null; // rarity
   c?: string; // color
-  e?: string; // element
+  e?: string; // element (the first, on a dual-element weapon)
+  e2?: string; // a dual-element weapon's second element
   m?: MinRankTuple; // earliest quest progress needed to make it
   d?: number; // armor max defence
   a?: 1; // alias: listed again under another parent, its branch is under the first
@@ -136,7 +138,6 @@ export interface CompactMonster {
   n: string;
   s: string;
   d?: number; // description stringIdx
-  hb?: number[]; // habitats stringIdx[]
   /** hitzones: [partStringIdx, [cut,bash,shot,fir,wtr,thn,ice,drg,ko]] */
   hz?: [number, (number | null)[]][];
   /** drops: [rankStringIdx, [sourceStringIdx, [materialId, chanceStringIdx][]][]][] */
@@ -153,6 +154,8 @@ export interface CompactMonster {
   bk?: MonsterBreak[];
   /** hitzone_flinch: a flinch stringIdx (or null) per `hz` row, in its order */
   hf?: (number | null)[];
+  /** 1 when the monster can be captured (lib/monster-drops' canCapture), for the list's filter */
+  ca?: 1;
 }
 
 export interface CompactDecoration {
@@ -288,6 +291,7 @@ export function decodeTreeNode(node: CompactTreeNode, bundleType: string): Weapo
     rarity: node.r ?? undefined,
     color: node.c,
     element: node.e,
+    elements: node.e && node.e2 ? [node.e, node.e2] : undefined,
     min_rank: decodeMinRank(node.m),
     max_defence: node.d,
     alias: node.a === 1 || undefined,
@@ -374,6 +378,30 @@ export function decodeArmor(d: Dictionaries, a: CompactArmor, slot: string): Arm
 
 const HITZONE_COLS = ["cut", "bash", "shot", "fir", "wtr", "thn", "ice", "drg", "ko"] as const;
 
+/** The compact `cr` tuple as crown thresholds. */
+const decodeCrowns = (cr: [number, number, number]): Crowns => ({
+  mini: cr[0],
+  silver: cr[1],
+  gold: cr[2],
+});
+
+/** A row of a monster type's list: no more of the monster than the list needs. */
+export interface MonsterListItem {
+  slug: string;
+  name: string;
+  /** Whether it can be captured (lib/monster-drops' canCapture, at build time). */
+  capturable: boolean;
+  /** Guild Card crown thresholds (src/lib/crowns.ts), for the list's crown filters. */
+  crowns?: Crowns;
+}
+
+export const decodeMonsterListItem = (m: CompactMonster): MonsterListItem => ({
+  slug: m.s,
+  name: m.n,
+  capturable: m.ca === 1,
+  ...(m.cr && { crowns: decodeCrowns(m.cr) }),
+});
+
 export function decodeMonster(d: Dictionaries, m: CompactMonster, category: string): Monster {
   const hitzones: Monster["hitzones"] = {};
   if (m.hz) {
@@ -423,12 +451,11 @@ export function decodeMonster(d: Dictionaries, m: CompactMonster, category: stri
     slug: m.s,
     type: category,
     description: m.d !== undefined ? str(d, m.d) : undefined,
-    habitats: m.hb ? m.hb.map((hi) => str(d, hi)) : undefined,
     hitzones: m.hz ? hitzones : undefined,
     drops: m.dr ? drops : undefined,
     base_hp: m.hp,
     base_size: m.bs,
-    crowns: m.cr ? { mini: m.cr[0], silver: m.cr[1], gold: m.cr[2] } : undefined,
+    crowns: m.cr ? decodeCrowns(m.cr) : undefined,
     size_range: m.sz ? { min: m.sz[0], max: m.sz[1] } : undefined,
     breaks: m.bk,
     hitzone_flinch: hitzoneFlinch,

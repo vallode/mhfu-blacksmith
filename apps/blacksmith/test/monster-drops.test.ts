@@ -1,6 +1,11 @@
 /** The drop-table text helpers (lib/monster-drops.ts) on the shapes found in data/monsters. */
 import assert from "node:assert/strict";
+import fs from "node:fs";
+import path from "node:path";
 import { describe, test } from "node:test";
+import { readData } from "game-data";
+import { DATA_DIR } from "../src/lib/paths";
+import type { Monster } from "../src/lib/types";
 import {
   canCapture,
   formatRank,
@@ -21,6 +26,23 @@ describe("canCapture", () => {
     // Kushala Daora: carves and breaks, but the game can't capture it.
     assert.equal(canCapture({ drops: { "high rank": { "body carves (x4)": [] } } }), false);
     assert.equal(canCapture({}), false);
+  });
+
+  // The data build flags capturable monsters with it (the bundles' `ca`),
+  // so a renamed capture source would quietly empty the lists' Captured filter.
+  test("finds the capturable monsters in data/monsters", () => {
+    const monsters = new Map(
+      fs
+        .readdirSync(path.join(DATA_DIR, "monsters"))
+        .flatMap((f) => readData<{ monsters: Monster[] }>(DATA_DIR, "monsters", f).monsters)
+        .map((m) => [m.name, m]),
+    );
+    for (const name of ["Rathian", "Yian Kut-Ku", "Tigrex", "Nargacuga", "Plesioth"]) {
+      assert.equal(canCapture(monsters.get(name)!), true, name);
+    }
+    for (const name of ["Remobra", "Kushala Daora", "Fatalis", "Akantor", "Lao-Shan Lung"]) {
+      assert.equal(canCapture(monsters.get(name)!), false, name);
+    }
   });
 });
 

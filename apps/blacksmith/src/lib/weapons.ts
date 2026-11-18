@@ -1,10 +1,9 @@
-import fs from "fs";
-import path from "path";
 import { WEAPON_TYPES, type WeaponType, WEAPON_CLASS_MULTIPLIER } from "./constants";
 import { slugify } from "./slug";
 import type { Weapon } from "./types";
 import { DATA_DIR } from "./paths";
 import { cached } from "./data-cache";
+import { readData } from "game-data";
 
 const dataDir = DATA_DIR;
 
@@ -19,8 +18,7 @@ export function getWeapons(type: WeaponType): Weapon[] {
 }
 
 function loadWeapons(type: WeaponType): Weapon[] {
-  const filePath = path.join(dataDir, "weapons", `${type}.json`);
-  const raw = JSON.parse(fs.readFileSync(filePath, "utf-8")) as { weapons: Weapon[] };
+  const raw = readData<{ weapons: Weapon[] }>(dataDir, "weapons", `${type}.json`);
 
   return raw.weapons.map((w) => {
     const multiplier = WEAPON_CLASS_MULTIPLIER[w.type];

@@ -1,0 +1,42 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "title": "Pokke Farm file",
+  "description": "Pokke Farm's gathering points, read from the EBOOT: each Mining Point, Insect Thicket, Mushroom Tree and Bee Hive, with what it gives. The farm restocks after every quest, drawing each point's items that many times.",
+  "type": "object",
+  "required": ["points"],
+  "additionalProperties": false,
+  "properties": {
+    "points": {
+      "type": "array",
+      "description": "In the EBOOT's order: the mining points, insect thickets, mushroom trees, then bee hives, each spot's from its first level up",
+      "items": { "$ref": "#/definitions/point" }
+    }
+  },
+  "definitions": {
+    "point": {
+      "type": "object",
+      "required": ["spot", "gathers", "most_gathers", "items"],
+      "additionalProperties": false,
+      "$comment": "The farm upgrade's name, as the game names it (\"Mining Point +2\", \"Production Bee Hive\"), is in data/strings under 'farm', keyed by the point's index in this list.",
+      "properties": {
+        "spot": { "enum": ["mining", "insects", "mushrooms", "honey"] },
+        "gathers": { "type": "integer", "minimum": 1, "description": "How many items the restock draws from it, at least" },
+        "most_gathers": { "type": "integer", "minimum": 1, "description": "How many items the restock draws from it, at most" },
+        "items": {
+          "type": "array",
+          "minItems": 1,
+          "description": "In the table's order",
+          "items": {
+            "type": "object",
+            "required": ["item", "chance"],
+            "additionalProperties": false,
+            "properties": {
+              "item": { "type": "integer", "minimum": 1, "description": "Item ID (data/items.json)" },
+              "chance": { "type": "integer", "minimum": 0, "maximum": 100, "description": "In percent, per draw" }
+            }
+          }
+        }
+      }
+    }
+  }
+}

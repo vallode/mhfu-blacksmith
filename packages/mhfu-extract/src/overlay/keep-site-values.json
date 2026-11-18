@@ -1,122 +1,142 @@
 {
-  "$comment": "Reviewed disc/site disagreements where the committed data/ value is right and the disc reading is wrong. build-data keeps these as committed. Each entry is { file, name (site name), field, reason }. See build/merge.ts.",
+  "$comment": "Reviewed disc/site disagreements where the committed data/ value is right and the disc reading is wrong. build-data keeps these as committed. Each entry is { file, id (the record's game ID), name (its English name, checked against the record), field, reason }. See build/merge.ts.",
   "entries": [
     {
       "file": "weapons/great-sword.json",
+      "id": 44,
       "name": "Rusted Great Sword",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/great-sword.json",
+      "id": 44,
       "name": "Rusted Great Sword",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/great-sword.json",
+      "id": 290,
       "name": "Worn Great Sword",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/great-sword.json",
+      "id": 290,
       "name": "Worn Great Sword",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/sword-and-shield.json",
+      "id": 197,
       "name": "Rusted Sword",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/sword-and-shield.json",
+      "id": 197,
       "name": "Rusted Sword",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/dual-blades.json",
+      "id": 362,
       "name": "Worn Blades",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/dual-blades.json",
+      "id": 362,
       "name": "Worn Blades",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/hammer.json",
+      "id": 95,
       "name": "Rusted Hammer",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/hammer.json",
+      "id": 95,
       "name": "Rusted Hammer",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/hammer.json",
+      "id": 310,
       "name": "Worn Hammer",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/hammer.json",
+      "id": 310,
       "name": "Worn Hammer",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/lance.json",
+      "id": 150,
       "name": "Rusted Lance",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/lance.json",
+      "id": 150,
       "name": "Rusted Lance",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/lance.json",
+      "id": 332,
       "name": "Worn Spear",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/lance.json",
+      "id": 332,
       "name": "Worn Spear",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/light-bowgun.json",
+      "id": 32,
       "name": "Demonlock",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/light-bowgun.json",
+      "id": 32,
       "name": "Demonlock",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/light-bowgun.json",
+      "id": 67,
       "name": "Island of the Gods",
       "field": "create_cost",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."
     },
     {
       "file": "weapons/light-bowgun.json",
+      "id": 67,
       "name": "Island of the Gods",
       "field": "create_mats",
       "reason": "Made by polishing a Ruststone. The disc's EquipCreate table has no recipe for it, so the committed Ruststone recipe stays."

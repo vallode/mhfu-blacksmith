@@ -23,9 +23,9 @@
       "required": ["give", "common", "rare"],
       "additionalProperties": false,
       "properties": {
-        "give":   { "type": "string", "minLength": 1, "description": "The item the Elder takes; game name, as in data/items.json" },
-        "common": { "type": "string", "minLength": 1, "description": "What he usually gives for it" },
-        "rare":   { "type": "string", "minLength": 1, "description": "What he gives on a rare trade" }
+        "give":   { "type": "integer", "minimum": 1, "description": "The item the Elder takes; item ID, as in data/items.json" },
+        "common": { "type": "integer", "minimum": 1, "description": "What he usually gives for it" },
+        "rare":   { "type": "integer", "minimum": 1, "description": "What he gives on a rare trade" }
       }
     },
     "elder": {
@@ -36,8 +36,8 @@
         "maps": {
           "type": "array",
           "minItems": 1,
-          "description": "The maps this list is used on, as quests name them",
-          "items": { "type": "string", "minLength": 1 }
+          "description": "The maps this list is used on, by map ID as in quests",
+          "items": { "type": "integer", "minimum": 1 }
         },
         "trades": {
           "type": "array",

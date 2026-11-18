@@ -5,15 +5,15 @@
  * `game_sub.ovl` with reward tables.
  * No game data: every value is made up.
  */
-import { mkdtempSync } from "node:fs";
-import { tmpdir } from "node:os";
-import path from "node:path";
 import { GAME_TAG_KEYS, TYPE01_TAG_KEYS } from "mhfu-extract/src/container/prx.js";
+import type { RandomAccessSource } from "mhfu-extract/src/container/source.js";
+import { OverlaySource, PatchableImage, type ImageSegment } from "../src/disc/image.js";
 import { encryptGameEboot } from "mhfu-extract/test/prx-fixture.js";
 import { encryptDataBinBlock } from "mhfu-extract/src/container/databin.js";
 import {
   CAP_BREAK_POINTER_COUNT,
   CAPTURE_TYPE,
+  CARVE_COUNT_OFFSET,
   CARVE_INDEX_COUNT,
   CARVE_INDEX_SIZE,
   CARVE_POINTER_COUNT,
@@ -53,9 +53,7 @@ import { ARMOR_POINTER_INDEX, ARMOR_SLOTS, type ArmorSlot } from "mhfu-extract/s
 
 export const SECTOR = 2048;
 
-export function tempDir(): string {
-  return mkdtempSync(path.join(tmpdir(), "randomfu-test-"));
-}
+export { tempDir } from "./temp.js";
 
 // ---------------------------------------------------------------- ISO 9660
 
@@ -69,8 +67,15 @@ function both32(buf: Buffer, offset: number, value: number): void {
   buf.writeUInt32BE(value, offset + 4);
 }
 
-function dirRecord(name: Buffer, lba: number, size: number, isDir: boolean): Buffer {
-  const length = 33 + name.length + (name.length % 2 === 0 ? 1 : 0);
+function dirRecord(
+  name: Buffer,
+  lba: number,
+  size: number,
+  isDir: boolean,
+  systemUse = Buffer.alloc(0),
+): Buffer {
+  const nameEnd = 33 + name.length + (name.length % 2 === 0 ? 1 : 0);
+  const length = nameEnd + systemUse.length;
   const rec = Buffer.alloc(length);
   rec[0] = length;
   both32(rec, 2, lba);
@@ -80,11 +85,18 @@ function dirRecord(name: Buffer, lba: number, size: number, isDir: boolean): Buf
   rec.writeUInt16BE(1, 30);
   rec[32] = name.length;
   name.copy(rec, 33);
+  systemUse.copy(rec, nameEnd);
   return rec;
 }
 
-/** Builds an image with one directory sector per directory and each file sector-aligned. */
-export function buildIso(files: IsoFile[]): Buffer {
+/** The XA system-use field UMD images give each file. */
+export const UMD_FILE_XA = Buffer.from("00000000" + "0d555841" + "000000000000", "hex");
+
+/**
+ * Builds an image with one directory sector per directory and each file
+ * sector-aligned. `umd` names files as UMD images do: no ";1", and an XA field.
+ */
+export function buildIso(files: IsoFile[], { umd = false } = {}): Buffer {
   const dirs = new Map<string, { lba: number; children: string[] }>();
   const dirOf = (p: string) => p.split("/").slice(0, -1).join("/");
   const ensureDir = (d: string): void => {
@@ -131,10 +143,11 @@ export function buildIso(files: IsoFile[]): Buffer {
         const file = fileByPath.get(child);
         return file
           ? dirRecord(
-              Buffer.from(`${name};1`, "latin1"),
+              Buffer.from(umd ? name : `${name};1`, "latin1"),
               fileLba.get(child)!,
               file.data.length,
               false,
+              umd ? UMD_FILE_XA : undefined,
             )
           : dirRecord(Buffer.from(name, "latin1"), dirs.get(child)!.lba, SECTOR, true);
       }),
@@ -143,21 +156,6 @@ export function buildIso(files: IsoFile[]): Buffer {
   }
   for (const f of files) f.data.copy(image, fileLba.get(f.path)! * SECTOR);
   return image;
-}
-
-/** Wraps an image as an uncompressed-block CSO. */
-export function buildCso(iso: Buffer): Buffer {
-  const blocks = Math.ceil(iso.length / SECTOR);
-  const header = Buffer.alloc(0x18 + (blocks + 1) * 4);
-  header.write("CISO", 0, "latin1");
-  header.writeUInt32LE(0x18, 4);
-  header.writeBigUInt64LE(BigInt(iso.length), 8);
-  header.writeUInt32LE(SECTOR, 16);
-  header[20] = 1;
-  for (let i = 0; i <= blocks; i++) {
-    header.writeUInt32LE(((header.length + i * SECTOR) | 0x80000000) >>> 0, 0x18 + i * 4);
-  }
-  return Buffer.concat([header, iso]);
 }
 
 // ---------------------------------------------------------------- PARAM.SFO
@@ -560,8 +558,21 @@ export interface CaptureListSpec {
   entries: { chance: number; itemId: number; amount: number }[];
 }
 
-/** `game_sub.ovl` with the two pointer tables, their index tables and the given lists. */
-export function buildGameSub(carves: CarveListSpec[], captures: CaptureListSpec[]): Buffer {
+/** A carve list only code picks: one no index reaches, at carve pointer `pointer`. */
+export interface CodeCarveListSpec {
+  pointer: number;
+  entries: { chance: number; itemId: number }[];
+}
+
+/**
+ * `game_sub.ovl` with the two pointer tables, their index tables and the
+ * given lists, plus `codeCarves` at their own carve pointers.
+ */
+export function buildGameSub(
+  carves: CarveListSpec[],
+  captures: CaptureListSpec[],
+  codeCarves: CodeCarveListSpec[] = [],
+): Buffer {
   const carvePointers = 0x80;
   const carveIndex = carvePointers + CARVE_POINTER_COUNT * 4;
   const capPointers = carveIndex + CARVE_INDEX_COUNT * CARVE_INDEX_SIZE + 4;
@@ -599,6 +610,15 @@ export function buildGameSub(carves: CarveListSpec[], captures: CaptureListSpec[
     const slot = carveIndex + (spec.emId - 1) * CARVE_INDEX_SIZE + spec.kind * 14 + spec.rank * 2;
     buf.writeUInt16LE(pointer, slot);
   });
+  for (const spec of codeCarves)
+    buf.writeUInt32LE(vaddr(placeList(spec.entries, 4)), carvePointers + spec.pointer * 4);
+  // Carve counts: monsters with a body list carve it 3 times, with a tail list once.
+  for (let i = 0; i < CARVE_INDEX_COUNT; i++) {
+    const at = carveIndex + i * CARVE_INDEX_SIZE + CARVE_COUNT_OFFSET;
+    const kinds = new Set(carves.filter((c) => c.emId === i + 1).map((c) => c.kind));
+    buf.writeUInt8(kinds.has(0) ? 3 : 0, at);
+    buf.writeUInt8(kinds.has(1) ? 1 : 0, at + 1);
+  }
   buf.fill(0xff, carveIndex + CARVE_INDEX_COUNT * CARVE_INDEX_SIZE, capPointers);
 
   for (let i = 0; i < CAP_BREAK_POINTER_COUNT; i++)
@@ -827,6 +847,11 @@ export function buildEboot(
     buf.writeUInt16LE(a.hunterType & 2 ? a.index : 0, at + 2); // female model
     buf[at + 4] = a.hunterType;
     buf[at + 5] = a.rarity;
+    const stats = fixtureArmorStats(a);
+    buf.writeUInt8(stats.defense, at + 12);
+    stats.resistances.forEach((r, k) => buf.writeInt8(r, at + 13 + k));
+    buf[at + 18] = stats.slots;
+    stats.caps.forEach((cap, k) => (buf[at + 20 + k] = cap));
     (FIXTURE_ARMOR_SKILLS[`${a.slot}:${a.index}`] ?? []).forEach(([tree, points], k) => {
       buf[at + 30 + k * 2] = tree;
       buf.writeInt8(points, at + 31 + k * 2);
@@ -960,6 +985,77 @@ export function buildLobbyTask(): {
   return { buf, listAt, tablesAt, storeAt };
 }
 
+// ---------------------------------------------------------------- starting equipment
+
+export const EDIT_LOAD = 0x09a5c580;
+/** The EBOOT's add-to-the-equipment-box routine (JP's address). */
+export const ADD_TO_BOX = 0x08850668;
+
+/**
+ * A new hunter's equipment, as (category, ID) calls to `ADD_TO_BOX`: the
+ * store's weapons and armor, leg 2 by `addu $a1, $zero, $zero`.
+ */
+export const FIXTURE_STARTER: [number, number][] = [
+  [5, 1],
+  [5, 6],
+  [6, 1],
+  [0, 2],
+  [1, 3],
+  [1, 9],
+];
+/** Which of `FIXTURE_STARTER`'s pieces are worn: their box slot goes to an equip call. */
+export const FIXTURE_STARTER_WORN = [true, false, false, true, false, false];
+
+const jal = (target: number) => (0x0c000000 | ((target >>> 2) & 0x3ffffff)) >>> 0;
+const LUI_SAVE = 0x3c02089d; // lui $v0, 0x89d
+const LW_SAVE = 0x8c44c438; // lw $a0, -0x3bc8($v0)
+const CLEAR_A3 = 0x00003821; // addu $a3, $zero, $zero
+const setA1 = (category: number) => (category === 0 ? 0x00002821 : 0x24050000 | category);
+const setA2 = (id: number) => 0x24060000 | id;
+
+/**
+ * `edit_task.ovl` with `FIXTURE_STARTER`'s calls, each as the game makes
+ * them (worn ones passing their box slot to an equip call), plus calls it
+ * must not take: one to another routine, one whose ID is in a register,
+ * one whose ID is overwritten after its constant, one whose arguments are
+ * set before another call, and one a branch lands inside.
+ */
+export function buildEditTask(): { buf: Buffer; idAt: number[] } {
+  const buf = ovlHeader("edit_task.ovl", EDIT_LOAD, 0x600);
+  const idAt: number[] = [];
+  let at = 0x100;
+  const put = (...words: number[]) => {
+    for (const word of words) {
+      buf.writeUInt32LE(word >>> 0, at);
+      at += 4;
+    }
+  };
+  const call = (target: number, category: number, id: number | null, worn = false) => {
+    if (id !== null && target === ADD_TO_BOX) idAt.push(at + 12);
+    // addu $a2, $s0, $zero when not a constant
+    put(LUI_SAVE, LW_SAVE, setA1(category), id === null ? 0x02003021 : setA2(id));
+    put(jal(target), CLEAR_A3);
+    // andi $a1, $v0, 0xffff; lui $v0; jal equip; lw $a0
+    if (worn) put(0x3045ffff, LUI_SAVE, jal(0x08850868), LW_SAVE);
+  };
+  call(0x08812340, 5, 6);
+  FIXTURE_STARTER.forEach(([category, id], k) =>
+    call(ADD_TO_BOX, category, id, FIXTURE_STARTER_WORN[k]),
+  );
+  call(ADD_TO_BOX, 5, null);
+  // The ID's constant, then lw $a2, 0($s0).
+  put(setA1(5), setA2(6), 0x8e060000, LUI_SAVE, jal(ADD_TO_BOX), CLEAR_A3);
+  // Arguments set, then another call (which clobbers them), then the box call.
+  put(setA1(5), setA2(6), jal(0x08812340), 0, jal(ADD_TO_BOX), CLEAR_A3);
+  // A branch further down lands on the ID's setter, skipping the category's.
+  const landing = at + 12;
+  put(LUI_SAVE, LW_SAVE, setA1(5), setA2(6), jal(ADD_TO_BOX), CLEAR_A3);
+  const branchAt = at;
+  put(0x10000000 | (((landing - (branchAt + 4)) >> 2) & 0xffff), 0); // beq $zero, $zero; nop
+  put(0x03e00008); // jr $ra
+  return { buf, idAt };
+}
+
 // ---------------------------------------------------------------- quest board
 
 /** JP DATA.BIN indices of `mission_jpn/level1.mib` and `level2.mib`. */
@@ -1061,6 +1157,7 @@ export const TEXT_QUEST_INDEX = 4764;
 export const GAME_TASK_INDEX = 51;
 export const GAME_SUB_INDEX = 56;
 export const LOBBY_TASK_INDEX = 50;
+export const EDIT_TASK_INDEX = 44;
 
 /**
  * Low Rank 1★: quests 1001 (monster 1, mines item 120) and 10102 (a Village
@@ -1424,6 +1521,20 @@ export const FIXTURE_ARMOR: FixtureArmor[] = [
 ];
 
 /**
+ * A piece's defense, resistances (fire, water, thunder, dragon, ice),
+ * slots and seven sphere caps, made up from its index and rarity so that
+ * pieces of a group differ.
+ */
+export function fixtureArmorStats({ index, rarity }: FixtureArmor) {
+  return {
+    defense: 10 + 10 * rarity + index,
+    resistances: [(index % 3) - 1, ((index * 2) % 5) - 2, rarity, -rarity, index % 2],
+    slots: index % 4,
+    caps: [2, 4, 6, 8, 10, 12, 12 + index],
+  };
+}
+
+/**
  * Armor create entries besides `FIXTURE_RECIPES` (head entries 1-4, which
  * make pieces 1-4), by slot: [entry, piece, materials]. Head piece 5 and
  * chest piece 3 have a second recipe.
@@ -1598,6 +1709,7 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
   files.set(GAME_TASK_INDEX, buildGameTask());
   files.set(GAME_SUB_INDEX, buildGameSub(FIXTURE_CARVES, FIXTURE_CAPTURES));
   files.set(LOBBY_TASK_INDEX, buildLobbyTask().buf);
+  files.set(EDIT_TASK_INDEX, buildEditTask().buf);
   files.set(22, Buffer.from("stored raw"));
   let count = QUEST_INDICES.at(-1)! + 2;
   if (options.text) {
@@ -1618,4 +1730,55 @@ export function buildFixtureDisc(options: FixtureDiscOptions = {}): Buffer {
     { path: "PSP_GAME/SYSDIR/EBOOT.BIN", data: fixtureEboot(options) },
     { path: "PSP_GAME/USRDIR/DATA.BIN", data: dataBin },
   ]);
+}
+
+// ---------------------------------------------------------------- images in memory
+
+/** A disc image held in memory, as a read-only source. */
+export function memorySource(image: Buffer): RandomAccessSource {
+  return {
+    totalBytes: image.length,
+    read: (offset, length) => image.subarray(offset, offset + length),
+    close: () => {},
+  };
+}
+
+/** The finished image a run's segments describe over the original. */
+export function assemble(segments: ImageSegment[], original: Buffer): Buffer {
+  return Buffer.concat(
+    segments.map((s) => (s.kind === "original" ? original.subarray(s.start, s.end) : s.data)),
+  );
+}
+
+/** A disc image to patch in memory, as the web app does; `finish` gives the result. */
+export function patchInMemory(original: Buffer): PatchableImage {
+  return new PatchableImage(new OverlaySource(memorySource(original)));
+}
+
+/** The image `patchInMemory` made of `original`, with every write in it. */
+export function finish(image: PatchableImage, original: Buffer): Buffer {
+  return assemble(image.source.segments(), original);
+}
+
+/** A message file: u32 count, u32 8, table offsets, then each table's offsets (0xFFFFFFFF-ended) and strings. */
+export function messageFile(tables: string[][]): Buffer {
+  const parts: Buffer[] = [];
+  let at = 8 + 4 * tables.length;
+  const header = Buffer.alloc(at);
+  header.writeUInt32LE(tables.length, 0);
+  header.writeUInt32LE(8, 4);
+  tables.forEach((strings, t) => {
+    header.writeUInt32LE(at, 8 + 4 * t);
+    const list = Buffer.alloc(4 * (strings.length + 1));
+    let rel = list.length;
+    const bytes = strings.map((s) => Buffer.from(`${s}\0`, "utf8"));
+    bytes.forEach((b, i) => {
+      list.writeUInt32LE(rel, 4 * i);
+      rel += b.length;
+    });
+    list.writeUInt32LE(0xffffffff, 4 * strings.length);
+    parts.push(list, ...bytes);
+    at += rel;
+  });
+  return Buffer.concat([header, ...parts, Buffer.alloc(64)]);
 }

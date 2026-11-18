@@ -1,4 +1,7 @@
+"use client";
+
 import { cn } from "@/lib/cn";
+import { useT } from "@/context/LanguageContext";
 
 interface SharpnessBarProps {
   values: (string | number)[];
@@ -6,7 +9,8 @@ interface SharpnessBarProps {
 }
 
 export default function SharpnessBar({ values, plus }: SharpnessBarProps) {
-  const title = plus ? "Sharpness +1" : "Sharpness";
+  const t = useT();
+  const title = plus ? t.equipment.detail.sharpnessPlus : t.equipment.detail.sharpness;
 
   return (
     <div

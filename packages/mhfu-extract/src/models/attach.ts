@@ -224,7 +224,14 @@ export function attachDetachedParts(pmo: Pmo, bones: Bone[]): Pmo {
     ),
   );
   if (!moved) return pmo;
+  return placeVertices(pmo, positions);
+}
 
+/**
+ * The PMO with its vertices at `positions` (model units, per mesh, primitive
+ * and vertex) and its position scale grown to fit them.
+ */
+export function placeVertices(pmo: Pmo, positions: Vec3[][][]): Pmo {
   const scale = pmo.scale.map((s, k) =>
     Math.max(s, ...positions.flat(2).map((p) => Math.abs(p[k]!))),
   ) as Vec3;

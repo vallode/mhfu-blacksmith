@@ -2,9 +2,9 @@
 
 /**
  * Hands a weapon tree's filter result (see lib/tree-filter.ts), and the tree
- * itself, from the tree panel down to its rows. Null outside a filtered weapon tree (armor and
- * decoration trees, or no hunter loaded): rows then work out their own
- * status and are never dimmed.
+ * itself, from the tree panel down to its rows. Null outside a weapon tree
+ * (armor and decoration trees): rows then work out their own status and are
+ * never dimmed.
  */
 import { createContext, useContext } from "react";
 import type { FilteredTree } from "@/lib/tree-filter";

@@ -12,6 +12,8 @@ import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
 import { itemName } from "../names.js";
 import type { Rng } from "../rng.js";
+import { isNeverDrawn } from "../game/quest-fields.js";
+import type { Band } from "../game/tiers.js";
 import { permuteWithinGroups, type ShuffleReport } from "./shuffle.js";
 
 export type TradeMix = "elder" | "all";
@@ -70,6 +72,77 @@ export function shuffleTrades(
       mix === "elder"
         ? "What each trade gives (its common and rare items together) moves to another trade of the same Elder."
         : "What each trade gives (its common and rare items together) moves to any Elder's trades.",
+      "Each trade keeps the item he takes and its place in his list: he takes the first item on it that the hunter carries.",
+    ],
+    lines,
+  };
+}
+
+export interface TradeContext {
+  /** Each item's earliest rank, for the Low/High Rank pools. */
+  bands: ReadonlyMap<number, Band>;
+  /** Every item in the game. */
+  allItems: readonly number[];
+}
+
+/**
+ * Gives every trade new common and rare items: from the items the Elders
+ * give anyway (of the same Elder, or all of them) and, with the scope, items
+ * first found in Low or High Rank, or any item. A trade whose two gifts
+ * were one item keeps giving one item.
+ */
+export function randomizeTrades(
+  slots: readonly TradeSlot[],
+  options: { mix: TradeMix; scope: "low" | "high" | "any" },
+  context: TradeContext,
+  rng: Rng,
+  edits: Edits,
+  gameTask: LoadedOverlay,
+): ShuffleReport {
+  const given = (rows: readonly TradeSlot[]) => [
+    ...new Set(rows.flatMap((r) => [r.common, r.rare])),
+  ];
+  const wide = (): number[] => {
+    if (options.scope === "any") return [...context.allItems];
+    const ranks = options.scope === "low" ? ["low"] : ["low", "high"];
+    return [...context.bands].filter(([, band]) => ranks.includes(band)).map(([item]) => item);
+  };
+  const extra = wide().filter((i) => !isNeverDrawn(i));
+  const pools = new Map<string, number[]>();
+  const poolFor = (slot: TradeSlot): number[] => {
+    const key = options.mix === "elder" ? String(slot.elder) : "";
+    let pool = pools.get(key);
+    if (!pool) {
+      const own = given(
+        options.mix === "elder" ? slots.filter((s) => s.elder === slot.elder) : slots,
+      );
+      pool = [...new Set([...own, ...extra])].sort((a, b) => a - b);
+      pools.set(key, pool);
+    }
+    return pool;
+  };
+  const buf = edits.overlay(gameTask);
+  const trade = (common: number, rare: number) =>
+    common === rare ? itemName(common) : `${itemName(common)} / ${itemName(rare)} (rare)`;
+  const lines = slots.map((slot) => {
+    const pool = poolFor(slot);
+    const common = pool[rng.int(pool.length)]!;
+    let rare = common;
+    if (slot.rare !== slot.common) {
+      for (let tries = 0; tries < 16 && rare === common; tries++)
+        rare = pool[rng.int(pool.length)]!;
+    }
+    buf.writeUInt16LE(common, slot.offset + 2);
+    buf.writeUInt16LE(rare, slot.offset + 4);
+    return {
+      where: `Veggie Elder: ${elderName(slot.elder)}`,
+      text: `${itemName(slot.give)} -> ${trade(common, rare)} (was ${trade(slot.common, slot.rare)})`,
+    };
+  });
+  return {
+    title: "Veggie Elder trades",
+    notes: [
+      `Each trade gives new common and rare items: ${options.mix === "elder" ? "those its Elder gives" : "those any Elder gives"}, or ${options.scope === "any" ? "any item" : options.scope === "low" ? "items first found in Low Rank" : "items first found in Low or High Rank"}.`,
       "Each trade keeps the item he takes and its place in his list: he takes the first item on it that the hunter carries.",
     ],
     lines,

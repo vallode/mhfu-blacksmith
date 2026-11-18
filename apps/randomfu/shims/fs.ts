@@ -38,11 +38,6 @@ function unavailable(): never {
 
 export const openSync = unavailable;
 export const readSync = unavailable;
-export const writeSync = unavailable;
 export const closeSync = unavailable;
 export const fstatSync = unavailable;
-export const ftruncateSync = unavailable;
-export const writeFileSync = unavailable;
-export const rmSync = unavailable;
-export const mkdtempSync = unavailable;
 export default { readFileSync, existsSync };

@@ -7,6 +7,7 @@ import { HUNTER_FEMALE_MODEL, HUNTER_MODEL } from "@/lib/hunter";
 import type { HunterSlot } from "@/lib/hunter-armor";
 import type { ArmorModelUrls } from "@/lib/models";
 import { modelPanel, modelPanelButton } from "@/styles/model";
+import { useT } from "@/context/LanguageContext";
 
 interface Props {
   models: ArmorModelUrls;
@@ -58,6 +59,7 @@ function useHunterExists(sex: "male" | "female"): boolean | undefined {
  * male/female switch when the piece has both models.
  */
 export default function ArmorModelViewer({ models, slot, label }: Props) {
+  const tm = useT().equipment.model;
   const both = Boolean(models.male && models.female);
   const [sex, setSex] = useState<"male" | "female">(models.male ? "male" : "female");
   const [onHunter, setOnHunter] = useState(lastOnHunter);
@@ -65,6 +67,7 @@ export default function ArmorModelViewer({ models, slot, label }: Props) {
   const shown = models[sex] ? sex : models.male ? "male" : "female";
   const canWear = useHunterExists(shown);
   const worn = onHunter && canWear === true;
+  const model = shown === "male" ? tm.maleModel(label) : tm.femaleModel(label);
 
   return (
     <div className="relative h-full w-full">
@@ -73,7 +76,7 @@ export default function ArmorModelViewer({ models, slot, label }: Props) {
         <ModelViewer
           key={`${src}|${worn}`}
           src={src}
-          label={`${label} (${shown})${worn ? " on a hunter" : ""}`}
+          label={worn ? tm.wornModel(model) : model}
           wear={worn ? { slot, sex: shown } : undefined}
         />
       )}
@@ -92,14 +95,14 @@ export default function ArmorModelViewer({ models, slot, label }: Props) {
             onHunter ? "text-stat" : "text-parchment",
           )}
         >
-          On hunter
+          {tm.onHunter}
         </button>
       )}
       {both && (
         <div
           className={cn(modelPanel, "absolute top-2 left-2 z-10 flex gap-[1.6rem]")}
           role="group"
-          aria-label="Model"
+          aria-label={tm.switchLabel}
         >
           {(["male", "female"] as const).map((option) => (
             <button
@@ -109,7 +112,7 @@ export default function ArmorModelViewer({ models, slot, label }: Props) {
               aria-pressed={sex === option}
               className={cn(modelPanelButton, sex === option ? "text-stat" : "text-parchment")}
             >
-              {option === "male" ? "Male" : "Female"}
+              {option === "male" ? tm.male : tm.female}
             </button>
           ))}
         </div>

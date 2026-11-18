@@ -106,7 +106,47 @@ export function indexVeggieTrades(bundle: VeggieTradesBundle): Map<number, ItemT
   return out;
 }
 
-/** An Elder's maps, each once: ["Desert (Day)", "Desert (Night)"] -> "Desert" */
-export function tradeMapsLabel(maps: readonly string[]): string {
-  return [...new Set(maps.map((m) => m.replace(/ \((?:Day|Night)\)$/, "")))].join(" / ");
+/**
+ * An Elder's maps, each once: ["Desert (Day)", "Desert (Night)"] -> "Desert".
+ * `ground` names a map without its time of day; pages pass one that puts
+ * it in the site's language.
+ */
+export function tradeMapsLabel(
+  maps: readonly string[],
+  ground: (map: string) => string = (m) => m.replace(/ \((?:Day|Night)\)$/, ""),
+): string {
+  return [...new Set(maps.map(ground))].join(" / ");
+}
+
+/** One row of an Elder's list in the bundle: [row, give, common, rare]. */
+export type TradeRow = VeggieTradesBundle["elders"][number]["rows"][number];
+
+/** Identical trades on several hunting grounds, as one. */
+export interface TradeGroup {
+  /** Item ID on the other side */
+  item: number;
+  /** In percent */
+  chance: number;
+  /** Only the rare trade */
+  rare: boolean;
+  /** Where he makes it: each ground's maps and its place in his list there */
+  places: { maps: string[]; row: number }[];
+}
+
+/**
+ * The trades that are the same item, chance and kind, one group each, in the
+ * order of their first trade (so a sorted list stays sorted).
+ */
+export function groupTrades(trades: readonly Trade[]): TradeGroup[] {
+  const groups = new Map<string, TradeGroup>();
+  for (const { maps, row, item, chance, rare } of trades) {
+    const key = `${item}|${chance}|${rare}`;
+    let group = groups.get(key);
+    if (!group) {
+      group = { item, chance, rare, places: [] };
+      groups.set(key, group);
+    }
+    group.places.push({ maps, row });
+  }
+  return [...groups.values()];
 }

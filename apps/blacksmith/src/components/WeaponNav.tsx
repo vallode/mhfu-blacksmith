@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { WEAPON_TYPES, type WeaponType } from "@/lib/constants";
 import { writeLastWeapon } from "@/lib/last-weapon";
-import { titleCase } from "@/lib/title-case";
+import { useT } from "@/context/LanguageContext";
 import PageBar, { PageTab, PageTabs } from "./PageBar";
 
 interface WeaponNavProps {
@@ -12,23 +12,22 @@ interface WeaponNavProps {
 
 /** The weapon pages' PageBar: the type as title and one tab per weapon type. */
 export default function WeaponNav({ activeType }: WeaponNavProps) {
+  const t = useT();
   // Remember the weapon type so the sidebar's "Weapons" entry reopens it.
   useEffect(() => {
     writeLastWeapon(activeType);
   }, [activeType]);
 
-  const typeName = titleCase(activeType);
-
   return (
     <PageBar
-      title={`${typeName} weapons`}
+      title={t.equipment.nav.weaponsTitle(t.common.weaponTypes[activeType])}
       tabs={
-        <PageTabs label="Weapon types">
+        <PageTabs label={t.equipment.nav.weaponTypes}>
           {WEAPON_TYPES.map((type) => (
             <PageTab
               key={type}
               href={`/blacksmith/${type}/`}
-              label={titleCase(type)}
+              label={t.common.weaponTypes[type]}
               icon={type}
               active={activeType === type}
             />

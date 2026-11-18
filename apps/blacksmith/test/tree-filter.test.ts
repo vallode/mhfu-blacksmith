@@ -13,7 +13,6 @@ import {
   type CraftCheck,
 } from "../src/lib/hunter-progress";
 import {
-  cycleTreeFilter,
   filterTree,
   matchesTreeFilter,
   rowStatus,
@@ -258,7 +257,10 @@ describe("tree filter", () => {
     },
   };
   const run = (filter: TreeFilterId) =>
-    filterTree(tree, "great-sword", "/blacksmith/great-sword/", progress, filter);
+    filterTree(tree, "great-sword", "/blacksmith/great-sword/", progress, {
+      hunter: filter,
+      element: "all",
+    });
   const matching = (filter: TreeFilterId) =>
     [...run(filter).rows].filter(([, row]) => row.match).map(([slug]) => slug);
 
@@ -313,7 +315,7 @@ describe("tree filter", () => {
       "great-sword",
       "/blacksmith/great-sword/",
       nothingOwned,
-      "craftable",
+      { hunter: "craftable", element: "all" },
     );
     assert.equal(matched, 1);
     assert.equal(rows.get("root")?.match, true);
@@ -348,7 +350,7 @@ describe("tree filter", () => {
       "great-sword",
       "/blacksmith/great-sword/",
       lookups,
-      "craftable",
+      { hunter: "craftable", element: "all" },
     );
     const first = rows.get(treeRowKey(merged[0].children![0], "/blacksmith/great-sword/p/"));
     const alias = rows.get(treeRowKey(merged[1].children![0], "/blacksmith/great-sword/q/"));
@@ -357,13 +359,6 @@ describe("tree filter", () => {
     assert.equal(alias?.match, true);
     assert.equal(total, 3);
     assert.equal(matched, 1);
-  });
-
-  test("cycles in order and wraps around", () => {
-    const order: TreeFilterId[] = ["all"];
-    for (let i = 0; i < 5; i++) order.push(cycleTreeFilter(order[order.length - 1], 1));
-    assert.deepEqual(order, ["all", "owned", "not-owned", "craftable", "within-one", "all"]);
-    assert.equal(cycleTreeFilter("all", -1), "within-one");
   });
 });
 

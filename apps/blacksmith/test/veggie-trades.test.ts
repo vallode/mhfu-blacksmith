@@ -1,16 +1,16 @@
 /** Veggie Elder trades (lib/veggie-trades.ts): the bundle and the index by item. */
 import assert from "node:assert/strict";
-import fs from "node:fs";
-import path from "node:path";
 import { describe, test } from "node:test";
 import { buildItemNameIndex, normalizeItemName, type ItemRecord } from "../src/lib/items";
 import { DATA_DIR } from "../src/lib/paths";
 import {
   encodeVeggieTrades,
+  groupTrades,
   indexVeggieTrades,
   tradeMapsLabel,
   type VeggieTradesFile,
 } from "../src/lib/veggie-trades";
+import { readData } from "game-data";
 
 const ITEM_IDS: Record<string, number> = {
   "Iron Ore": 1,
@@ -73,14 +73,33 @@ describe("Veggie Elder trades", () => {
     ]);
   });
 
+  test("the same trade on several grounds is one group, in order of its first trade", () => {
+    const a = { maps: FH, row: 1, item: 2, chance: 80, rare: false };
+    const b = { maps: ["Old Swamp"], row: 3, item: 2, chance: 80, rare: false };
+    const c = { maps: FH, row: 2, item: 1, chance: 100, rare: false };
+    const d = { maps: FH, row: 4, item: 2, chance: 20, rare: true };
+    assert.deepEqual(groupTrades([a, c, b, d]), [
+      {
+        item: 2,
+        chance: 80,
+        rare: false,
+        places: [
+          { maps: FH, row: 1 },
+          { maps: ["Old Swamp"], row: 3 },
+        ],
+      },
+      { item: 1, chance: 100, rare: false, places: [{ maps: FH, row: 2 }] },
+      { item: 2, chance: 20, rare: true, places: [{ maps: FH, row: 4 }] },
+    ]);
+  });
+
   test("an Elder's maps are named once, without the time of day", () => {
     assert.equal(tradeMapsLabel(FH), "Forest and Hills");
     assert.equal(tradeMapsLabel(["Old Swamp"]), "Old Swamp");
   });
 
   test("data/veggie-trades.json: every item resolves, and the first trade is the disc's", () => {
-    const read = <T>(f: string) =>
-      JSON.parse(fs.readFileSync(path.join(DATA_DIR, f), "utf-8")) as T;
+    const read = <T>(f: string) => readData(DATA_DIR, f) as T;
     const { index } = buildItemNameIndex(read<{ items: ItemRecord[] }>("items.json").items);
     const id = (name: string) => index.get(normalizeItemName(name));
     const real = encodeVeggieTrades(read<VeggieTradesFile>("veggie-trades.json"), id);

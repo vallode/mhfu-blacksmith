@@ -11,6 +11,7 @@ import { DATA_DIR } from "../src/lib/paths";
 import { decodeQuests } from "../src/lib/quests";
 import { slugify } from "../src/lib/slug";
 import type { Monster } from "../src/lib/types";
+import { readData } from "game-data";
 
 const ITEM_IDS: Record<string, number> = { "Rathalos Scale": 1, "Rathalos Ruby": 2, Map: 3 };
 const itemId = (name: string) => ITEM_IDS[name];
@@ -161,7 +162,7 @@ describe("item pages", () => {
   });
 
   test("every item has its own page slug, and every monster drop resolves to an item", () => {
-    const { items } = JSON.parse(fs.readFileSync(path.join(DATA_DIR, "items.json"), "utf-8")) as {
+    const { items } = readData(DATA_DIR, "items.json") as {
       items: ItemRecord[];
     };
     const slugs = items.filter((i) => !i.placeholder).map((i) => slugify(i.name));
@@ -170,9 +171,7 @@ describe("item pages", () => {
     const { index } = buildItemNameIndex(items);
     const unresolved: string[] = [];
     for (const file of fs.readdirSync(path.join(DATA_DIR, "monsters"))) {
-      const { monsters } = JSON.parse(
-        fs.readFileSync(path.join(DATA_DIR, "monsters", file), "utf-8"),
-      ) as { monsters: Monster[] };
+      const { monsters } = readData(DATA_DIR, "monsters", file) as { monsters: Monster[] };
       for (const m of monsters)
         for (const sources of Object.values(m.drops ?? {}))
           for (const drops of Object.values(sources))
@@ -185,7 +184,7 @@ describe("item pages", () => {
 
 describe("item categories", () => {
   test("every real item is in exactly one category", () => {
-    const { items } = JSON.parse(fs.readFileSync(path.join(DATA_DIR, "items.json"), "utf-8")) as {
+    const { items } = readData(DATA_DIR, "items.json") as {
       items: ItemRecord[];
     };
     for (const item of items) {

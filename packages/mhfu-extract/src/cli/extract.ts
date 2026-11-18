@@ -3,7 +3,7 @@
  * the full `data/*.json`-shaped output plus an `EXTRACTION.json` provenance
  * manifest. See README's "Usage" section.
  */
-import { mkdir, readFile, writeFile } from "node:fs/promises";
+import { access, mkdir, readFile, writeFile } from "node:fs/promises";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
 import { BinaryReader } from "../binary/reader.js";
@@ -16,6 +16,7 @@ import { loadMapLayouts } from "../tables/map-layout.js";
 import { emitQuestsFile, type MultiplierLookup } from "../emit/quests.js";
 import { emitShops } from "../emit/shops.js";
 import { emitVeggieTrades } from "../emit/veggie-trades.js";
+import { emitFarm } from "../emit/farm.js";
 import { dumpQuestRaw, type QuestRawEntry } from "../emit/quests-raw.js";
 import { dumpGunnerRaw } from "../emit/gunner-raw.js";
 import { dumpSharpnessRaw } from "../emit/sharpness-raw.js";
@@ -34,6 +35,28 @@ import { loadMonsterOverlays, OVERLAY_DIR } from "../monsters/overlays.js";
 import { multiplierRow } from "../monsters/multipliers.js";
 import { readMonsterTables } from "../monsters/read.js";
 import { readSizeTables, type SizeTables } from "../monsters/sizes.js";
+import {
+  BESTIARY_MESSAGE_TABLE,
+  BestiaryError,
+  readBestiary,
+  type BestiaryEntry,
+} from "../monsters/bestiary.js";
+import { loadFileList } from "../container/filelist.js";
+import { readMessageFile, type MessageTable } from "../strings/messages.js";
+import {
+  AWARD_TEXT_FILES,
+  AwardTextError,
+  readAwardText,
+  type AwardLanguage,
+  type AwardText,
+} from "../strings/awards.js";
+import {
+  discMonsterNames,
+  MONSTER_NAME_FILE,
+  MONSTER_NAME_OVERLAY,
+  MONSTER_NAME_TABLE,
+} from "../strings/monster-names.js";
+import { useMonsterNames } from "../strings/names.js";
 import { listQuestFiles } from "../quests/discovery.js";
 import { decryptQuest, isQuestMagic, QuestCipherError } from "../quests/mib.js";
 import { parseQuest, type ParsedQuest } from "../quests/parser.js";
@@ -45,6 +68,7 @@ import {
 } from "../tables/offsets.js";
 import { readCombinations } from "../tables/combinations.js";
 import { readVeggieTrades } from "../tables/veggie-trades.js";
+import { readFarmTables } from "../tables/farm.js";
 import {
   verifyResolverCoverage,
   type ResolverCoverageResult,
@@ -143,6 +167,91 @@ async function writeRawDumps(
   }
 }
 
+/**
+ * A message file (`strings/messages.ts`) by DATA.BIN index, with its path
+ * inside `data-bin`; `tables` is null if the unpack doesn't have the file.
+ */
+export async function loadMessageFile(
+  unpacked: string,
+  region: Region,
+  index: number,
+): Promise<{ rel: string; tables: MessageTable[] | null }> {
+  const rel = loadFileList(region).get(index) ?? path.join("_unindexed", `${index}.bin`);
+  const file = path.join(unpacked, "data-bin", rel);
+  const found = await access(file).then(
+    () => true,
+    () => false,
+  );
+  return { rel, tables: found ? readMessageFile(await readFile(file)) : null };
+}
+
+/** The EU disc's English message file 19, which names the monsters and describes them. */
+async function loadEnglishMessages(
+  unpacked: string,
+  region: Region,
+): Promise<{ rel: string; tables: MessageTable[] | null }> {
+  return loadMessageFile(unpacked, region, MONSTER_NAME_FILE);
+}
+
+/**
+ * The awards' text in one EU language (`strings/awards.ts`), or null with a
+ * warning if its files aren't there or don't hold it.
+ */
+export async function loadAwardText(
+  unpacked: string,
+  region: Region,
+  language: AwardLanguage,
+): Promise<AwardText[] | null> {
+  const files = AWARD_TEXT_FILES[language];
+  const names = await loadMessageFile(unpacked, region, files.names);
+  const descriptions = await loadMessageFile(unpacked, region, files.descriptions);
+  try {
+    return readAwardText(names.tables, descriptions.tables, language);
+  } catch (error) {
+    if (!(error instanceof AwardTextError)) throw error;
+    console.warn(
+      `Warning: no ${language} award text in ${names.rel} and ${descriptions.rel}. ${error.message}`,
+    );
+    return null;
+  }
+}
+
+/**
+ * Monster names from the disc (`strings/monster-names.ts`), or null with a
+ * warning if the message file or its name table isn't there. A disc whose
+ * EBOOT table doesn't read, or an overlay entry that no longer fits it,
+ * stops the extract.
+ */
+function loadMonsterNames(
+  messages: { rel: string; tables: MessageTable[] | null },
+  eboot: BinaryReader,
+): (string | null)[] | null {
+  const names = discMonsterNames(eboot, messages.tables);
+  if (!names)
+    console.warn(
+      `Warning: ${messages.rel} is missing or has no table ${MONSTER_NAME_TABLE}; no monster names.`,
+    );
+  return names;
+}
+
+/** The monster list and its descriptions (`monsters/bestiary.ts`), or null with a warning. */
+function loadBestiary(
+  messages: { rel: string; tables: MessageTable[] | null },
+  eboot: BinaryReader,
+): BestiaryEntry[] | null {
+  const table = messages.tables?.[BESTIARY_MESSAGE_TABLE];
+  try {
+    if (!table) throw new BestiaryError(`${messages.rel} has no table ${BESTIARY_MESSAGE_TABLE}`);
+    const entries = readBestiary(eboot, JP_BASE_ADDRESS, table);
+    console.log(`Monster list: ${entries.length} descriptions.`);
+    return entries;
+  } catch (error) {
+    if (!(error instanceof BestiaryError)) throw error;
+    console.warn(`Warning: no monster descriptions. ${error.message}`);
+    return null;
+  }
+}
+
 export async function runExtract(options: ExtractOptions): Promise<ExtractionManifest> {
   const manifestPath = path.join(options.unpacked, "manifest.json");
   const manifest: UnpackManifest = JSON.parse(await readFile(manifestPath, "utf-8"));
@@ -156,6 +265,19 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
   console.log("Reading EBOOT.BIN...");
   const ebootBuf = await readFile(path.join(options.unpacked, "eboot.bin"));
   const reader = new BinaryReader(ebootBuf);
+
+  // Only the EU disc's English text is known: its monster names and
+  // descriptions. Names go in before anything is emitted, so every file
+  // names monsters alike; elsewhere they come from monster.enum.
+  const messages =
+    manifest.region === "eu" ? await loadEnglishMessages(options.unpacked, manifest.region) : null;
+  const monsterNames = messages ? loadMonsterNames(messages, reader) : null;
+  useMonsterNames(monsterNames);
+  if (monsterNames)
+    console.log(
+      `Monster names: ${monsterNames.filter((n) => n !== null).length - MONSTER_NAME_OVERLAY.length} from the disc, ${MONSTER_NAME_OVERLAY.length} from overlay/monster-names.json.`,
+    );
+  else console.warn(`Warning: region "${manifest.region}" names monsters from monster.enum.`);
 
   // JP keeps its original, unchanged fast path: static addresses +
   // JP-specific structural self-checks (verifyOffsets(), offsets.ts).
@@ -271,6 +393,16 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.warn(`Warning: region "${manifest.region}" has no size tables, so no sizes or crowns.`);
   }
   monsters.sizes = sizes;
+  // Only the EU disc's monster list and English descriptions are known.
+  monsters.bestiary = messages ? loadBestiary(messages, reader) : null;
+  if (monsterNames)
+    output["monster-names.json"] = {
+      names: Object.fromEntries(
+        monsterNames.flatMap((name, id) => (name === null ? [] : [[String(id), name]])),
+      ),
+    };
+  if (!monsters.bestiary)
+    console.warn(`Warning: region "${manifest.region}" has no monster descriptions.`);
   Object.assign(output, emitQuestsFile(quests, multiplierLookup, sizes ?? undefined));
 
   // Only the EU disc's map tables are known; elsewhere points get no positions.
@@ -306,6 +438,29 @@ export async function runExtract(options: ExtractOptions): Promise<ExtractionMan
     console.warn(
       "Warning: the Veggie Elder's trade tables weren't found; skipping veggie-trades.json.",
     );
+  }
+
+  // Only the EU disc's farm tables are known; elsewhere there's no farm.json.
+  const farm = manifest.region === "eu" ? readFarmTables(reader) : null;
+  if (manifest.region !== "eu") {
+    console.warn(`Warning: region "${manifest.region}" has no farm tables, so no farm.json.`);
+  } else if (farm) {
+    console.log(
+      `Pokke Farm tables at 0x${farm.offset.toString(16)}: ${farm.tables.length} points.`,
+    );
+    output["farm.json"] = emitFarm(farm);
+  } else {
+    console.warn("Warning: Pokke Farm's gathering tables weren't found; skipping farm.json.");
+  }
+
+  // The awards' names and descriptions, from the EU disc's message files.
+  const awards =
+    manifest.region === "eu" ? await loadAwardText(options.unpacked, manifest.region, "en") : null;
+  if (manifest.region !== "eu") {
+    console.warn(`Warning: region "${manifest.region}" has no award text, so no awards.json.`);
+  } else if (awards) {
+    console.log(`Guild Card awards: ${awards.length} names and descriptions.`);
+    output["awards.json"] = { awards };
   }
 
   if (options.raw) {
