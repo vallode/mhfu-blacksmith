@@ -145,6 +145,24 @@ export function StatValue({
   return <span className={cn("text-white", className)}>{children}</span>;
 }
 
+/**
+ * A column of arrows before a stat value, at twice the sprites' size: green
+ * pointing up for each step better than usual, red pointing down for each
+ * step worse. Stacked arrows share their 1px outline. Three (26px) overhang
+ * the row into StatList's gap rather than make the row taller than its text.
+ */
+export function StatArrows({ steps }: { steps: number }) {
+  if (!steps) return null;
+  const src = steps > 0 ? "/images/arrow-up.png" : "/images/arrow-down.png";
+  return (
+    <span className="-my-[3px] mr-[0.6rem] flex flex-col self-center">
+      {Array.from({ length: Math.abs(steps) }, (_, i) => (
+        <img key={i} src={src} alt="" className="h-[10px] w-[14px] pixelated not-first:-mt-[2px]" />
+      ))}
+    </span>
+  );
+}
+
 /** Decoration slots as "OO-": filled for each slot, dashes for the rest. */
 export function Slots({ count }: { count?: number }) {
   return (

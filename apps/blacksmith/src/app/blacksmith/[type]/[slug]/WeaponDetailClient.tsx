@@ -16,6 +16,7 @@ import {
   RequirementsPage,
   Slots,
   Stat,
+  StatArrows,
   StatList,
   StatValue,
 } from "@/components/DetailPanel";
@@ -48,6 +49,21 @@ function affinityClass(affinity: string | undefined): string {
   if (!affinity.startsWith("0")) return "text-positive";
   return "";
 }
+
+/**
+ * Recoil as kick arrows (negative steps: red, pointing down): one for each
+ * step above Light. Moderate is every light bowgun's and most heavy bowguns'.
+ */
+const RECOIL_STEPS: Record<string, number> = { Light: 0, VeryWeak: -1, Weak: -2, Moderate: -3 };
+
+/** Reload speed as arrows either side of Normal: green up when faster, red down when slower. */
+const RELOAD_STEPS: Record<string, number> = {
+  VerySlow: -2,
+  Slow: -1,
+  Normal: 0,
+  Fast: 1,
+  VeryFast: 2,
+};
 
 /** Bow coatings in the game's order (English, matched against the data). */
 const COATINGS = [
@@ -159,12 +175,14 @@ export default function WeaponDetailClient({ type, slug }: Props) {
 
             {weapon.recoil && (
               <Stat label={tw.recoil}>
+                <StatArrows steps={RECOIL_STEPS[weapon.recoil] ?? 0} />
                 <StatValue>{lookup(tw.recoilValues, weapon.recoil)}</StatValue>
               </Stat>
             )}
 
             {weapon.reload && (
               <Stat label={tw.reload}>
+                <StatArrows steps={RELOAD_STEPS[weapon.reload] ?? 0} />
                 <StatValue>{lookup(tw.reloadValues, weapon.reload)}</StatValue>
               </Stat>
             )}
