@@ -39,6 +39,9 @@ export interface Settings {
   "terms.time": boolean;
   "terms.timeSpread": number;
   "deliveries.enabled": boolean;
+  "questGoals.enabled": boolean;
+  "questGoals.capture": boolean;
+  "questGoals.smallMonsters": boolean;
   "trades.mode": Mode;
   "trades.mix": "elder" | "all";
   "trades.scope": "low" | "high" | "any";
@@ -628,6 +631,33 @@ export const OPTIONS: readonly OptionDef[] = [
     type: { kind: "boolean" },
     default: false,
     action: "randomize",
+  },
+  {
+    key: "questGoals.enabled",
+    section: "Quest goals",
+    label: "Randomize quest goals",
+    help: "Each Village and Guild hunting or slaying quest asks for something else its own monsters allow: to hunt another of its large monsters, to capture one, or to slay some of its small monsters. Quests whose monsters come in waves keep their target, and quests with two targets keep both. The goal line changes to match (in English); the title and description don't. Elder dragon, delivery, fortress and Treasure Hunting quests keep their goals.",
+    type: { kind: "boolean" },
+    default: false,
+    action: "randomize",
+  },
+  {
+    key: "questGoals.capture",
+    section: "Quest goals",
+    label: "Capture goals",
+    help: "Goals can ask to capture a monster that can be captured. Killing it fails the quest, so bring traps and tranquilizers.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "questGoals.enabled",
+  },
+  {
+    key: "questGoals.smallMonsters",
+    section: "Quest goals",
+    label: "Small monster goals",
+    help: "Hunting quests can become slaying a number of the quest's small monsters, and slaying quests can become hunting one of their large monsters. Off, a small monster goal stays one (on another of the quest's small monsters) and a large monster goal stays large.",
+    type: { kind: "boolean" },
+    default: true,
+    enabledBy: "questGoals.enabled",
   },
   {
     key: "trades.mode",

@@ -51,6 +51,7 @@ const UNTRIED: readonly OptionKey[] = [
   "elites.enabled",
   "monsterAi.branches",
   "quests.keyLabel",
+  "questGoals.enabled",
 ];
 
 test("presets do what their help says", () => {

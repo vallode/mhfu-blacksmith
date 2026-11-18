@@ -36,6 +36,7 @@
  * disc once more) and gets the same roll. Only the person accepting rolls,
  * so in ad-hoc play the others' quest differs: solo only, for now.
  */
+import { HUNT_FLAGS, setGoals, SLAY_FLAGS } from "../game/goals.js";
 import { Writer } from "mhfu-extract/src/quests/document.js";
 import { parseQuest, type RewardTable } from "mhfu-extract/src/quests/parser.js";
 import { decodeObjects } from "../blob/link.js";
@@ -312,6 +313,11 @@ export function unknownTables(
       if (species.size !== 1) continue;
       if (!(header.questType & (HUNTING | SLAYING)) || header.questType & SPECIAL) continue;
       if (q.spawns.large.some((s) => s.quantity !== 1) || header.targetNum !== 1) continue;
+      // Its goal as it is now (the goals shuffle may have made it a capture or small monsters).
+      const goals = setGoals(q.payload);
+      const plain =
+        goals.length === 1 && (goals[0]!.flags === HUNT_FLAGS || goals[0]!.flags === SLAY_FLAGS);
+      if (!plain || goals[0]!.id !== [...species][0] || goals[0]!.count !== 1) continue;
       if (!kinds(q.parsed.rewards, [MAIN, EXTRA])) continue;
       templates.push({
         quest: q.quest,

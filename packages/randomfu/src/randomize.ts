@@ -26,6 +26,7 @@ import {
 } from "./game/quest-fields.js";
 import { changeCarveCounts, collectCarveCounts } from "./shuffles/carve-counts.js";
 import { collectDeliveries, shuffleDeliveries } from "./shuffles/deliveries.js";
+import { randomizeGoals } from "./shuffles/quest-goals.js";
 import {
   collectGatheringSlots,
   randomizeGathering,
@@ -361,6 +362,24 @@ export function randomize(
         renameQuestText(result.swaps, game.quests, edits, monsterName, game.boards, options.debug),
       );
     }
+  }
+  // Goals after every shuffle that changes a quest's monsters, before small
+  // monster counts (which keep as many as a slay goal needs).
+  if (settings["questGoals.enabled"]) {
+    reports.push(
+      randomizeGoals(
+        game.quests,
+        input.quests,
+        {
+          capture: settings["questGoals.capture"],
+          small: settings["questGoals.smallMonsters"],
+        },
+        rng.fork("quest-goals"),
+        edits,
+        monsterName,
+        game.boards,
+      ),
+    );
   }
   if (settings["questMonsters.difficulty"]) {
     reports.push(
