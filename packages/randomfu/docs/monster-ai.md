@@ -244,18 +244,22 @@ addresses, so the classification can be keyed by file and choice order.
 
 ## More aggressive monsters
 
-An option that moves weight from non-attack to attack entries is doable
-for the 2,158 mixed choices: keep the 32, keep every entry at 1 or more,
-and leave alone any choice with an unknown entry or one that species
-sharing it disagree on. That now covers nearly every large monster,
-including the elder dragons, Rajang, Congalala and Hypnocatrice; the
-weakest is Bulldrome. It needs the classification in the
-randomizer as data, keyed by file and choice order and checked against the
-disc's weights, since it can't be worked out without a disassembler.
+`monsterAi.aggression` (README, "Monster aggression") moves weight from
+non-attack to attack entries in 2,156 of the 2,158 mixed choices: the
+other 2 are the ones Hermitaur and Ceanataur share but disagree on. It
+keeps the 32 and every entry at 1 or more, and leaves alone any choice with
+an unknown entry. That covers nearly every large monster, including the
+elder dragons, Rajang, Congalala and Hypnocatrice; the weakest is
+Bulldrome. The classification ships as data (`monster-attacks.ts`), keyed
+by file and choice order and checked against the disc's weights by a hash,
+since it can't be worked out without a disassembler; `aggressive-choices.json`
+and `gen-attacks.mts` in the notes folder made it.
+
 A test disc with the attack entries of every mixed choice weighted ×4
-(then back to 32) made Giadrome clearly more aggressive on the EU disc in
-PPSSPP. Still to play: a trample-heavy species (Yian Kut-Ku, Yian Garuga,
-Diablos) to check the trample rule, and an elder dragon for the aura.
+(then back to 32), what `relentless` does, made Giadrome clearly more
+aggressive on the EU disc in PPSSPP. Still to play: a trample-heavy species
+(Yian Kut-Ku, Yian Garuga, Diablos) to check the trample rule, and an elder
+dragon for the aura.
 
 ## Other things found on the way
 

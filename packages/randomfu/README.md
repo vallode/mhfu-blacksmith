@@ -169,6 +169,7 @@ web app shows as a tag):
 | `monsterStats.statusSpread`       | 0.5         | How far resistances move                                                                               |
 | `monsterAi.branches`              | off         | Randomize the odds of each monster's AI choices                                                        |
 | `monsterAi.branchSpread`          | 0.5         | How far each move's odds move                                                                          |
+| `monsterAi.aggression`            | `off`       | `off`, `more` (attacks twice as likely against other moves) or `relentless` (four times)               |
 | `weaknesses.elements`             | off         | Shuffle each monster's elemental weaknesses                                                            |
 | `weaknesses.parts`                | off         | Shuffle which body parts are weak                                                                      |
 | `hints.bookshelf`                 | on          | Rewrite the bookshelf's monster articles as a bestiary (EU disc only)                                  |
@@ -886,6 +887,30 @@ rerolls the weights of the monsters' AI choices. Monster AI is bytecode in
   EU and FUC discs. Species that share scripts change together.
 
 Not yet tried in game.
+
+**Monster aggression** (`monsterAi.aggression`, `makeMonstersAggressive` in
+`src/shuffles/monster-ai.ts`) leans the same choices towards attacks.
+
+- Which entries lead to attacks can't be read without a disassembler, so it
+  is data (`src/shuffles/monster-attacks.ts`), worked out from the EU disc
+  as `docs/monster-ai.md` describes: for each script file, the choices that
+  mix attacks with other moves (2,156 in 17 files), by their index in
+  `findChoices`, with one letter per entry.
+- An attack spawns a hit that knocks the hunter back or stuns; walking
+  contact (no knockback, no stun) doesn't count, and em54's aura object
+  (Kushala Daora, Teostra, Lunastra) does. Choices with an entry nobody
+  could classify are left alone (38, mostly Great Thunderbug, Fatalis, the
+  Vespoids and Bulldrome), as are the 2 that Hermitaur and Ceanataur share
+  but disagree on.
+- Attack entries' weights are multiplied by 2 (`more`) or 4 (`relentless`)
+  and the choice is scaled back to 32, every possible entry keeping at
+  least 1. It runs after `monsterAi.branches`, on the rerolled weights.
+- A file is changed only if its choices and their vanilla weights hash to
+  what the data was made from; the EU and FUC discs both match.
+
+Tried in game on the EU disc at four times: Giadrome was clearly more
+aggressive. Species with walking contact and the elder dragons haven't been
+played.
 
 **The bookshelf guides** rewrite runs of the house bookshelf's articles
 (Open Bookshelf, Info Magazine) and make them readable from the start

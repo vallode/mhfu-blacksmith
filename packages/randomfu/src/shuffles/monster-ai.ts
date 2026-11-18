@@ -27,6 +27,9 @@
  * a choice is only changed if its entries come in order, its weights add up
  * to 32, it ends with `80 FF` and no entry holds another choice. Species that
  * share scripts (the dromes, Rathian and Rathalos...) change together.
+ *
+ * Monster aggression (`monsterAi.aggression`, `makeMonstersAggressive`) leans
+ * the choices that mix attacks with other moves towards the attacks.
  */
 import { OVL_HEADER_SIZE, type OvlFile } from "mhfu-extract/src/container/ovl.js";
 import { familyOverlayId } from "mhfu-extract/src/monsters/families.js";
@@ -39,6 +42,7 @@ import type { Edits } from "../edits.js";
 import type { LoadedOverlay } from "../game/load.js";
 import type { MonsterNames } from "../names.js";
 import type { Rng } from "../rng.js";
+import { MONSTER_ATTACKS, type AttackData } from "./monster-attacks.js";
 import type { ShuffleReport } from "./shuffle.js";
 
 /** `emChunk` offset of the 28 behaviour pointers. */
@@ -155,12 +159,12 @@ export function splitWeights(weights: readonly number[], total: number): number[
   return out;
 }
 
-/** New weights for a choice: each times `factor()`, back to 32; possible entries keep at least 1. */
-export function rerollWeights(weights: readonly number[], factor: () => number): number[] {
-  const out = splitWeights(
-    weights.map((w) => (w > 0 ? w * factor() : 0)),
-    CHOICE_TOTAL,
-  );
+/**
+ * `scaled` (each of `weights` times something) back to 32: an entry the game
+ * could pick stays possible (at least 1), one it never picks stays at 0.
+ */
+function backTo32(weights: readonly number[], scaled: readonly number[]): number[] {
+  const out = splitWeights(scaled, CHOICE_TOTAL);
   weights.forEach((w, i) => {
     if (w > 0 && out[i] === 0) {
       const most = out.indexOf(Math.max(...out));
@@ -169,6 +173,22 @@ export function rerollWeights(weights: readonly number[], factor: () => number):
     }
   });
   return out;
+}
+
+/** New weights for a choice: each times `factor()`, back to 32; possible entries keep at least 1. */
+export function rerollWeights(weights: readonly number[], factor: () => number): number[] {
+  return backTo32(
+    weights,
+    weights.map((w) => (w > 0 ? w * factor() : 0)),
+  );
+}
+
+/** Attack entries (`A` in `kinds`) times `factor`, back to 32; possible entries keep at least 1. */
+export function favourAttacks(weights: readonly number[], kinds: string, factor: number): number[] {
+  return backTo32(
+    weights,
+    weights.map((w, i) => (kinds[i] === "A" ? w * factor : w)),
+  );
 }
 
 export interface ScriptFile {
@@ -282,5 +302,114 @@ export function randomizeMonsterAi(
     notes,
     lines,
     summary: `Monster behaviour: ${total} choices`,
+  };
+}
+
+/** How much likelier an attack entry gets than before, against the others. */
+export const AGGRESSION_FACTOR = { more: 2, relentless: 4 } as const;
+export type Aggression = "off" | keyof typeof AGGRESSION_FACTOR;
+
+/** FNV-1a over each choice's entry count and weights, in order (`monster-attacks.ts`). */
+export function weightHash(choices: readonly Pick<Choice, "weights">[]): string {
+  let h = 0x811c9dc5;
+  for (const { weights } of choices) {
+    for (const b of [weights.length, ...weights]) {
+      h ^= b;
+      h = Math.imul(h, 0x01000193) >>> 0;
+    }
+  }
+  return h.toString(16).padStart(8, "0");
+}
+
+/** A file's mixed choices from `AttackData.mixed`: choice index to entry kinds. */
+export function parseMixed(mixed: string): Map<number, string> {
+  const out = new Map<number, string>();
+  for (const part of mixed.split(" ")) {
+    const [index, kinds] = part.split(":");
+    if (index && kinds) out.set(Number(index), kinds);
+  }
+  return out;
+}
+
+/** Whether a file's choices, by their vanilla weights, are the ones `known` was made from. */
+export function matchesAttackData(choices: readonly Choice[], known: AttackData): boolean {
+  return choices.length === known.choices && weightHash(choices) === known.hash;
+}
+
+/**
+ * Leans `known`'s mixed choices towards their attacks in `buf` (the file's
+ * edited copy, whose current weights are kept as the base). Returns how many
+ * changed.
+ */
+export function leanTowardsAttacks(
+  choices: readonly Choice[],
+  buf: Buffer,
+  known: AttackData,
+  factor: number,
+): number {
+  let changed = 0;
+  for (const [index, kinds] of parseMixed(known.mixed)) {
+    const c = choices[index];
+    if (!c || c.weights.length !== kinds.length) continue;
+    const next = favourAttacks(
+      c.weightAt.map((at) => buf[at]!),
+      kinds,
+      factor,
+    );
+    c.weightAt.forEach((at, k) => buf.writeUInt8(next[k]!, at));
+    changed++;
+  }
+  return changed;
+}
+
+/**
+ * Monster aggression (`monsterAi.aggression`): in every choice that mixes
+ * attacks with other moves (`monster-attacks.ts`), the attack entries' weights
+ * are multiplied by the level's factor and the choice scaled back to 32. It
+ * works on the weights as they are, so after `randomizeMonsterAi` it leans the
+ * new odds. A file is changed only if its choices and their vanilla weights
+ * are the ones the data was made from.
+ */
+export function makeMonstersAggressive(
+  level: keyof typeof AGGRESSION_FACTOR,
+  edits: Edits,
+  gameTask: LoadedOverlay,
+  emOverlays: ReadonlyMap<number, LoadedOverlay>,
+  monsterName: MonsterNames,
+  data: Readonly<Record<string, AttackData>> = MONSTER_ATTACKS,
+): ShuffleReport {
+  const factor = AGGRESSION_FACTOR[level];
+  const { files } = locateScripts(gameTask, emOverlays);
+  const lines: ShuffleReport["lines"] = [];
+  const unmatched: string[] = [];
+  let total = 0;
+  for (const { file, name, roots, emIds } of files) {
+    const known = data[name];
+    if (!known) continue;
+    const choices = findChoices(file.ovl, roots);
+    if (!matchesAttackData(choices, known)) {
+      unmatched.push(name);
+      continue;
+    }
+    const changed = leanTowardsAttacks(choices, edits.overlay(file), known, factor);
+    total += changed;
+    lines.push({
+      where: name,
+      text: `${changed} choices, for ${emIds.map(monsterName).join(", ")}`,
+    });
+  }
+  const notes = [
+    `In each choice between attacks and other moves, attacks are ${factor} times as likely as before against the rest; every move stays possible.`,
+  ];
+  if (unmatched.length) {
+    notes.push(
+      `Left alone, their scripts aren't the ones the attack data was made from: ${unmatched.join(", ")}.`,
+    );
+  }
+  return {
+    title: "Monster aggression",
+    notes,
+    lines,
+    summary: `Monster aggression: ${total} choices`,
   };
 }

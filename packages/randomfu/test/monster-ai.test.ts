@@ -4,8 +4,13 @@ import type { OvlFile } from "mhfu-extract/src/container/ovl.js";
 import {
   CHOICE_TOTAL,
   ROOT_TABLES,
+  favourAttacks,
   findChoices,
+  leanTowardsAttacks,
+  matchesAttackData,
+  parseMixed,
   rerollWeights,
+  weightHash,
   scriptOverlay,
   splitWeights,
 } from "../src/shuffles/monster-ai.js";
@@ -130,4 +135,60 @@ test("a monster's scripts go to its own or family overlay first, else the only o
     scriptOverlay(1, overlays, () => false),
     null,
   );
+});
+
+test("favouring attacks makes them likelier, keeps 32 and keeps every move possible", () => {
+  assert.deepEqual(favourAttacks([16, 16], "A-", 4), [26, 6]);
+  assert.deepEqual(favourAttacks([16, 16], "A-", 1), [16, 16]);
+  for (const factor of [2, 4]) {
+    const before = [1, 20, 0, 6, 5];
+    const after = favourAttacks(before, "A-A-A", factor);
+    assert.equal(
+      after.reduce((s, w) => s + w, 0),
+      CHOICE_TOTAL,
+    );
+    before.forEach((w, k) => assert.equal(after[k]! > 0, w > 0));
+    assert.ok(after[0]! + after[4]! > before[0]! + before[4]!);
+  }
+});
+
+test("attack data is applied only to the scripts it was made from", () => {
+  const { buf, ovl, root } = script();
+  const choices = findChoices(ovl, [root]);
+  const known = { choices: 2, hash: weightHash(choices), mixed: "0:-A-A 1:-A" };
+  assert.deepEqual(
+    parseMixed(known.mixed),
+    new Map([
+      [0, "-A-A"],
+      [1, "-A"],
+    ]),
+  );
+  assert.ok(matchesAttackData(choices, known));
+  assert.ok(!matchesAttackData(choices, { ...known, hash: "00000000" }));
+  assert.ok(!matchesAttackData(choices.slice(1), known));
+
+  assert.equal(leanTowardsAttacks(choices, buf, known, 4), 2);
+  const after = findChoices(ovl, [root]).map((c) => c.weights);
+  assert.deepEqual(after, [
+    favourAttacks([8, 4, 14, 6], "-A-A", 4),
+    favourAttacks([24, 8], "-A", 4),
+  ]);
+  // It leans the weights as they now are, so applying it twice leans further.
+  leanTowardsAttacks(choices, buf, known, 4);
+  assert.ok(findChoices(ovl, [root])[1]!.weights[1]! > after[1]![1]!);
+});
+
+test("the attack data reads: every mixed choice has attacks and other moves", async () => {
+  const { MONSTER_ATTACKS } = await import("../src/shuffles/monster-attacks.js");
+  let total = 0;
+  for (const [name, known] of Object.entries(MONSTER_ATTACKS)) {
+    assert.match(name, /^(game_task|em\d\d)\.ovl$/);
+    for (const [index, kinds] of parseMixed(known.mixed)) {
+      assert.ok(index < known.choices, `${name} ${index}`);
+      assert.match(kinds, /^[A-]+$/);
+      assert.ok(kinds.includes("A") && kinds.includes("-"), `${name} ${index}`);
+      total++;
+    }
+  }
+  assert.equal(total, 2156);
 });
