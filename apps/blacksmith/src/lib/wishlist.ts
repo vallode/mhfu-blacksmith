@@ -1,5 +1,5 @@
 /**
- * The wishlist: weapons and armor the player wants to make, the materials
+ * The wishlist: weapons, armor and decorations the player wants to make, the materials
  * they add up to, and where each material is best found. Pure, so the
  * wishlist page builds it from the bundles it loads and the tests build it
  * from data/. The list itself is kept in localStorage (wishlist-store.ts).
@@ -11,7 +11,7 @@ import { farmPlaceLabel, type FarmPlace, type GatherKind, type ItemPlaces } from
 import { itemHref, type ItemSources } from "./item-sources";
 import type { DropSource } from "./monster-drops";
 import { questHref, questHubLabel, questStarLevel, type QuestHubSlug } from "./quests";
-import type { ArmorPiece, Material, Weapon, WeaponTreeNode } from "./types";
+import type { ArmorPiece, Decoration, Material, Weapon, WeaponTreeNode } from "./types";
 
 // ---------------------------------------------------------------------------
 // Entries
@@ -48,23 +48,55 @@ export interface ArmorEntry extends EntryBase {
   rank: ArmorRank;
 }
 
-export type WishlistEntry = WeaponEntry | ArmorEntry;
+export interface DecorationEntry extends EntryBase {
+  kind: "decoration";
+  /**
+   * How many of the jewel to have: a set often wants several of one. Unset:
+   * one. Jewels already in the loaded hunter's item box count towards it.
+   */
+  count?: number;
+}
+
+export type WishlistEntry = WeaponEntry | ArmorEntry | DecorationEntry;
+
+/** The most of one decoration an entry can ask for: a full set's slots, and then some. */
+export const MAX_DECORATION_COUNT = 99;
 
 /** The gear an entry is for, without its choices: what `entryKey` reads. */
 export type GearRef =
-  Pick<WeaponEntry, "kind" | "type" | "slug"> | Pick<ArmorEntry, "kind" | "slot" | "rank" | "slug">;
+  | Pick<WeaponEntry, "kind" | "type" | "slug">
+  | Pick<ArmorEntry, "kind" | "slot" | "rank" | "slug">
+  | Pick<DecorationEntry, "kind" | "slug">;
 
-/** An entry's identity, which is also its page: "weapon/<type>/<slug>", "armor/<slot>/<rank>/<slug>". */
+/**
+ * An entry's identity, which is also its page: "weapon/<type>/<slug>",
+ * "armor/<slot>/<rank>/<slug>", "decoration/<slug>".
+ */
 export function entryKey(ref: GearRef): string {
-  return ref.kind === "weapon"
-    ? `weapon/${ref.type}/${ref.slug}`
-    : `armor/${ref.slot}/${ref.rank}/${ref.slug}`;
+  switch (ref.kind) {
+    case "weapon":
+      return `weapon/${ref.type}/${ref.slug}`;
+    case "armor":
+      return `armor/${ref.slot}/${ref.rank}/${ref.slug}`;
+    case "decoration":
+      return `decoration/${ref.slug}`;
+  }
 }
 
 export function entryHref(ref: GearRef): string {
-  return ref.kind === "weapon"
-    ? weaponHref(ref.type, ref.slug)
-    : `/armorsmith/${ref.slot}/${ref.rank}/${ref.slug}/`;
+  switch (ref.kind) {
+    case "weapon":
+      return weaponHref(ref.type, ref.slug);
+    case "armor":
+      return `/armorsmith/${ref.slot}/${ref.rank}/${ref.slug}/`;
+    case "decoration":
+      return `/decorations/${ref.slug}/`;
+  }
+}
+
+/** How many of the gear an entry wants: a decoration's count, else one. */
+export function entryCount(entry: WishlistEntry): number {
+  return entry.kind === "decoration" ? (entry.count ?? 1) : 1;
 }
 
 // ---------------------------------------------------------------------------
@@ -110,8 +142,11 @@ function parentName(w: Weapon): string | undefined {
   return Array.isArray(from) ? from[0] : (from ?? undefined);
 }
 
-/** The recipes a weapon or armor piece has, in the order the detail pages show them. */
-export function recipesOf(gear: Weapon | ArmorPiece): Recipe[] {
+/** Anything the wishlist can hold. */
+export type Gear = Weapon | ArmorPiece | Decoration;
+
+/** The recipes a weapon, armor piece or decoration has, in the order the detail pages show them. */
+export function recipesOf(gear: Gear): Recipe[] {
   const out: Recipe[] = [];
   if ("improve_mats" in gear && has(gear.improve_mats) && parentName(gear)) out.push("improve");
   if (has(gear.create_mats)) out.push("create");
@@ -120,18 +155,22 @@ export function recipesOf(gear: Weapon | ArmorPiece): Recipe[] {
 }
 
 /** Create where it can be made outright, else the upgrade, else the alternative recipe. */
-export function defaultRecipe(gear: Weapon | ArmorPiece): Recipe | undefined {
+export function defaultRecipe(gear: Gear): Recipe | undefined {
   const recipes = recipesOf(gear);
   return recipes.includes("create") ? "create" : recipes[0];
 }
 
-/** One craft at the smithy: a weapon or armor piece, by one recipe. */
+/** One craft at the smithy: a weapon, armor piece or decoration, by one recipe. */
 export interface CraftStep {
   name: string;
   href: string;
   recipe: Recipe;
+  /** Per craft */
   cost: number;
+  /** Per craft */
   materials: Material[];
+  /** How many times it's made (decorations); unset, once */
+  times?: number;
 }
 
 /** A weapon up the tree from another, nearest first. */
@@ -167,7 +206,7 @@ export function upgradeAncestors(weapon: Weapon, byName: ReadonlyMap<string, Wea
   return out;
 }
 
-function step(gear: Weapon | ArmorPiece, href: string, recipe: Recipe): CraftStep {
+function step(gear: Gear, href: string, recipe: Recipe): CraftStep {
   const materials =
     recipe === "alt"
       ? gear.alternative_create_mats
@@ -219,6 +258,31 @@ export function armorSteps(piece: ArmorPiece, href: string, recipe: Recipe): Cra
   return [step(piece, href, recipe)];
 }
 
+/**
+ * How many of a decoration are still to make: the entry's count less the
+ * jewels free in the hunter's item box and pouch (`have`, null without a
+ * save). Jewels set in equipment don't count: taking one out breaks it.
+ * Owned once there are enough.
+ */
+export function decorationNeed(
+  count: number,
+  have: number | null,
+): { toMake: number; owned: boolean } {
+  const free = Math.max(0, have ?? 0);
+  return { toMake: Math.max(0, count - free), owned: have !== null && free >= count };
+}
+
+/** A decoration's craft by a recipe, made `count` times (none for none). */
+export function decorationSteps(
+  deco: Decoration,
+  href: string,
+  recipe: Recipe,
+  count: number,
+): CraftStep[] {
+  const times = Math.max(0, Math.floor(count));
+  return times > 0 ? [{ ...step(deco, href, recipe), times }] : [];
+}
+
 // ---------------------------------------------------------------------------
 // Materials
 // ---------------------------------------------------------------------------
@@ -266,7 +330,7 @@ export function totalMaterials(
           };
           needs.set(key, need);
         }
-        need.amount += amount;
+        need.amount += amount * (s.times ?? 1);
         if (!need.for.includes(gear)) need.for.push(gear);
       }
     }
@@ -276,7 +340,10 @@ export function totalMaterials(
 
 /** Total zenny the crafts cost. */
 export function totalCost(crafts: { steps: CraftStep[] }[]): number {
-  return crafts.reduce((sum, c) => sum + c.steps.reduce((s, st) => s + st.cost, 0), 0);
+  return crafts.reduce(
+    (sum, c) => sum + c.steps.reduce((s, st) => s + st.cost * (st.times ?? 1), 0),
+    0,
+  );
 }
 
 // ---------------------------------------------------------------------------
