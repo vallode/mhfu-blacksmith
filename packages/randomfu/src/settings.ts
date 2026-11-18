@@ -111,6 +111,7 @@ export interface Settings {
   "monsterStats.statusSpread": number;
   "monsterAi.branches": boolean;
   "monsterAi.branchSpread": number;
+  "monsterAi.aggression": "off" | "more" | "relentless";
   "weaknesses.elements": boolean;
   "weaknesses.parts": boolean;
   "hints.bookshelf": boolean;
@@ -1654,6 +1655,29 @@ export const OPTIONS: readonly OptionDef[] = [
     type: SPREAD,
     default: 0.5,
     enabledBy: "monsterAi.branches",
+  },
+  {
+    key: "monsterAi.aggression",
+    section: "Monster stats",
+    label: "Aggression",
+    help: "Wherever a monster's AI picks at random between attacking and something else (walking, turning, waiting, roaring), attacks get likelier, so it spends less time between them. Which attacks it has and when it chooses don't change, and every move stays possible. The aura of Kushala Daora, Teostra and Lunastra counts as an attack; the light hit a large monster deals just by walking into you doesn't. Great Thunderbug is left alone, and Fatalis, the Vespoids and Bulldrome partly.",
+    type: {
+      kind: "choice",
+      choices: [
+        { value: "off", label: "Unchanged", help: "Monsters attack as often as they always did." },
+        {
+          value: "more",
+          label: "More aggressive",
+          help: "Each attack is twice as likely as before against the other moves.",
+        },
+        {
+          value: "relentless",
+          label: "Relentless",
+          help: "Each attack is four times as likely as before against the other moves.",
+        },
+      ],
+    },
+    default: "off",
   },
   {
     key: "weaknesses.elements",
