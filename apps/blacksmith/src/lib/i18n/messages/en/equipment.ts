@@ -266,7 +266,7 @@ export const equipment = {
     attached: (count: string) => `+${count} attached`,
     recipesLabel: (name: string) => `${name} recipes`,
   },
-  /** The star beside a weapon's or armor piece's name, and its toasts. */
+  /** The star beside a weapon's, armor piece's or decoration's name, and its toasts. */
   wishlist: {
     add: "Add to wishlist",
     remove: "Remove from wishlist",

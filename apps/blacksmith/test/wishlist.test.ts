@@ -11,14 +11,20 @@ import { readData } from "game-data";
 import { slugify } from "../src/lib/slug";
 import { WEAPON_TYPES } from "../src/lib/constants";
 import { buildWeaponTree } from "../src/lib/trees";
-import type { Material, Weapon, WeaponTreeNode } from "../src/lib/types";
+import type { Decoration, Material, Weapon, WeaponTreeNode } from "../src/lib/types";
 import {
+  addEntries,
   bestDestinations,
+  decorationNeed,
+  decorationSteps,
   defaultRecipe,
+  entryCount,
   entryHref,
   entryKey,
+  hasAll,
   itemWays,
   recipesOf,
+  setWants,
   totalCost,
   totalMaterials,
   treeParents,
@@ -29,8 +35,9 @@ import {
   untickedMade,
   weaponSteps,
   type MaterialNeed,
+  type WishlistEntry,
 } from "../src/lib/wishlist";
-import { parseWishlist, toggleEntry } from "../src/lib/wishlist-store";
+import { parseWishlist, toggleEntry, unreadableEntries } from "../src/lib/wishlist-store";
 
 const mat = (name: string, amount: number): Material => ({
   name,
@@ -77,6 +84,18 @@ describe("entries", () => {
     assert.equal(entryHref(w), "/blacksmith/great-sword/bone/");
     assert.equal(entryKey(a), "armor/helmet/g-rank/rath-helm");
     assert.equal(entryHref(a), "/armorsmith/helmet/g-rank/rath-helm/");
+    const d = { kind: "decoration", slug: "attack-jewel" } as const;
+    assert.equal(entryKey(d), "decoration/attack-jewel");
+    assert.equal(entryHref(d), "/decorations/attack-jewel/");
+  });
+
+  test("a decoration wants one unless counted", () => {
+    assert.equal(entryCount({ kind: "decoration", slug: "a", addedAt: 1 }), 1);
+    assert.equal(entryCount({ kind: "decoration", slug: "a", addedAt: 1, count: 4 }), 4);
+    assert.equal(
+      entryCount({ kind: "armor", slot: "leggings", rank: "g-rank", slug: "a", addedAt: 1 }),
+      1,
+    );
   });
 
   test("toggle adds first and removes", () => {
@@ -95,17 +114,30 @@ describe("entries", () => {
       ok,
       { ...ok, addedAt: 2 },
       { kind: "weapon", type: "spear", slug: "b", addedAt: 1 },
-      { kind: "weapon", type: "bow", slug: "d", addedAt: 1, made: 3 },
-      { kind: "weapon", type: "bow", slug: "e", addedAt: 1, made: "bone" },
+      { kind: "weapon", type: "bow", slug: "f", addedAt: 1, made: 3 },
+      { kind: "weapon", type: "bow", slug: "g", addedAt: 1, made: "bone" },
       { kind: "armor", slot: "helmet", rank: "g-rank", slug: "c", addedAt: 1, recipe: "x" },
       { kind: "armor", slot: "helmet", rank: "g-rank", slug: "c", addedAt: 1, recipe: "alt" },
+      { kind: "decoration", slug: "d", addedAt: 1, count: 0 },
+      { kind: "decoration", slug: "d", addedAt: 1, count: 2.5 },
+      { kind: "decoration", slug: "d", addedAt: 1, count: 3 },
+      { kind: "decoration", slug: "e", addedAt: 1 },
+      { kind: "decoration", slug: "e", addedAt: 1, count: 2 },
       null,
     ]);
     assert.deepEqual(
       parseWishlist(raw).map((e) => e.slug),
-      ["a", "e", "c"],
+      ["a", "g", "c", "d", "e"],
     );
     assert.deepEqual(parseWishlist("not json"), []);
+  });
+
+  test("entries this build can't read are kept apart, to write back", () => {
+    const future = { kind: "palico-gear", slug: "x", addedAt: 1 };
+    const raw = JSON.stringify([{ kind: "weapon", type: "bow", slug: "a", addedAt: 1 }, future, 3]);
+    assert.deepEqual(unreadableEntries(raw), [future]);
+    assert.deepEqual(unreadableEntries("not json"), []);
+    assert.deepEqual(unreadableEntries(null), []);
     assert.deepEqual(parseWishlist(null), []);
   });
 });
@@ -208,6 +240,144 @@ describe("recipes", () => {
 
   test("create ignores the path", () => {
     assert.deepEqual(names(weaponSteps(bigBone, "create", "bone", byName)), ["create Big Bone"]);
+  });
+});
+
+describe("decorations", () => {
+  const jewel: Decoration = {
+    name: "Attack Jewel",
+    slug: "attack-jewel",
+    type: "decoration",
+    create_cost: 400,
+    create_mats: [mat("Monster Fluid", 1), mat("Iron Ore", 2)],
+    alternative_create_mats: [mat("Rathalos Scale", 1)],
+  };
+
+  test("recipes", () => {
+    assert.deepEqual(recipesOf(jewel), ["create", "alt"]);
+    assert.equal(defaultRecipe(jewel), "create");
+    assert.deepEqual(recipesOf({ ...jewel, create_mats: [] }), ["alt"]);
+  });
+
+  test("one craft, made once per jewel still to make", () => {
+    const steps = decorationSteps(jewel, "/decorations/attack-jewel/", "create", 3);
+    assert.equal(steps.length, 1);
+    assert.equal(steps[0].times, 3);
+    assert.equal(totalCost([{ steps }]), 1200);
+    const mats = totalMaterials([{ gear: jewel.name, steps }], () => undefined);
+    assert.deepEqual(
+      mats.map((m) => [m.name, m.amount]),
+      [
+        ["Monster Fluid", 3],
+        ["Iron Ore", 6],
+      ],
+    );
+    assert.deepEqual(
+      decorationSteps(jewel, "", "alt", 1).map((s) => s.materials[0].name),
+      ["Rathalos Scale"],
+    );
+    assert.deepEqual(decorationSteps(jewel, "", "create", 0), []);
+  });
+
+  test("jewels in the box count towards the wanted number", () => {
+    assert.deepEqual(decorationNeed(3, null), { toMake: 3, owned: false });
+    assert.deepEqual(decorationNeed(3, 0), { toMake: 3, owned: false });
+    assert.deepEqual(decorationNeed(3, 2), { toMake: 1, owned: false });
+    assert.deepEqual(decorationNeed(3, 3), { toMake: 0, owned: true });
+    assert.deepEqual(decorationNeed(3, 87), { toMake: 0, owned: true });
+    assert.deepEqual(decorationNeed(2, Infinity), { toMake: 0, owned: true });
+  });
+});
+
+describe("adding a set", () => {
+  const piece = (slot: "helmet" | "plate" | "waist", slug: string) =>
+    ({ slot, rank: "g-rank", slug }) as const;
+  const jewel = (slug: string) => ({ deco: { slug } });
+  const set = {
+    pieces: [piece("waist", "c"), null, piece("helmet", "a"), piece("plate", "b")],
+    decorations: [jewel("fierce"), jewel("handy"), jewel("fierce"), jewel("fierce")],
+  };
+
+  test("the pieces head to legs, then each jewel with how many", () => {
+    assert.deepEqual(setWants(set), [
+      { kind: "armor", slot: "helmet", rank: "g-rank", slug: "a" },
+      { kind: "armor", slot: "plate", rank: "g-rank", slug: "b" },
+      { kind: "armor", slot: "waist", rank: "g-rank", slug: "c" },
+      { kind: "decoration", slug: "fierce", count: 3 },
+      { kind: "decoration", slug: "handy", count: 1 },
+    ]);
+    assert.deepEqual(setWants({ pieces: [null], decorations: [] }), []);
+  });
+
+  test("adds what's missing first, in order, and raises jewels to the count", () => {
+    const old: WishlistEntry[] = [
+      { kind: "weapon", type: "bow", slug: "x", addedAt: 1 },
+      { kind: "armor", slot: "plate", rank: "g-rank", slug: "b", addedAt: 1, recipe: "alt" },
+      { kind: "decoration", slug: "fierce", addedAt: 1 },
+      { kind: "decoration", slug: "handy", count: 5, addedAt: 1 },
+    ];
+    const wants = setWants(set);
+    assert.equal(hasAll(old, wants), false);
+    const [next, changed] = addEntries(old, wants, 2);
+    assert.equal(changed, 3);
+    assert.deepEqual(
+      next.map((e) => [entryKey(e), entryCount(e), e.addedAt]),
+      [
+        ["armor/helmet/g-rank/a", 1, 2],
+        ["armor/waist/g-rank/c", 1, 2],
+        ["weapon/bow/x", 1, 1],
+        ["armor/plate/g-rank/b", 1, 1],
+        ["decoration/fierce", 3, 1],
+        // Never lowered.
+        ["decoration/handy", 5, 1],
+      ],
+    );
+    // The listed piece keeps its recipe.
+    assert.equal(next[3].recipe, "alt");
+    assert.equal(hasAll(next, wants), true);
+    // Adding it again changes nothing.
+    const [again, none] = addEntries(next, wants, 3);
+    assert.equal(none, 0);
+    assert.deepEqual(again, next);
+  });
+
+  test("gear wanted twice takes the largest count, never lowering a listed jewel", () => {
+    const old: WishlistEntry[] = [{ kind: "decoration", slug: "fierce", addedAt: 1 }];
+    const [next, changed] = addEntries(old, [
+      { kind: "decoration", slug: "fierce", count: 5 },
+      { kind: "decoration", slug: "fierce", count: 3 },
+      { kind: "decoration", slug: "handy", count: 2 },
+      { kind: "decoration", slug: "handy", count: 4 },
+    ]);
+    assert.equal(changed, 2);
+    assert.deepEqual(
+      next.map((e) => [entryKey(e), entryCount(e)]),
+      [
+        ["decoration/handy", 4],
+        ["decoration/fierce", 5],
+      ],
+    );
+  });
+
+  test("a want over the most counts as met at the most", () => {
+    const wants = [{ kind: "decoration", slug: "a", count: 500 }] as const;
+    const [next] = addEntries([], wants);
+    assert.equal(hasAll(next, wants), true);
+  });
+
+  test("a jewel count is kept to 1…99, and one is left unset", () => {
+    const [next] = addEntries(
+      [],
+      [
+        { kind: "decoration", slug: "a", count: 500 },
+        { kind: "decoration", slug: "b", count: 1 },
+      ],
+    );
+    assert.deepEqual(
+      next.map((e) => e.kind === "decoration" && e.count),
+      [99, undefined],
+    );
+    assert.deepEqual(parseWishlist(JSON.stringify(next)), next);
   });
 });
 
@@ -491,5 +661,17 @@ describe("game data", () => {
       checked++;
     }
     assert.ok(checked > 900, `checked ${checked}`);
+  });
+
+  test("every decoration has a recipe to make it by", () => {
+    const { decorations } = readData(DATA_DIR, "decorations.json") as {
+      decorations: Decoration[];
+    };
+    assert.ok(decorations.length > 100);
+    for (const d of decorations) {
+      const recipe = defaultRecipe(d);
+      assert.ok(recipe, d.name);
+      assert.ok(decorationSteps(d, "", recipe, 1)[0].materials.length > 0, d.name);
+    }
   });
 });

@@ -6,6 +6,7 @@ import { useToast } from "@/context/ToastContext";
 import { cn } from "@/lib/cn";
 import type { GearRef } from "@/lib/wishlist";
 import { useWishlist } from "@/lib/wishlist-store";
+import WishlistStar from "./WishlistStar";
 
 /**
  * Adds the gear to the wishlist or takes it off: the game's star sprite
@@ -56,14 +57,7 @@ export default function WishlistButton({
         className,
       )}
     >
-      <img
-        src="/images/star.png"
-        alt=""
-        className={cn(
-          "aspect-[13/14] w-[2.6rem] pixelated",
-          !listed && "opacity-45 grayscale hover:opacity-80",
-        )}
-      />
+      <WishlistStar lit={listed} className={cn(!listed && "hover:opacity-80")} />
     </button>
   );
 }

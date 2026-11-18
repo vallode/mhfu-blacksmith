@@ -24,6 +24,7 @@ import { pressable, primaryButton, resultRow, secondaryButton } from "@/styles/s
 import * as ui from "@/styles/settings";
 import { binLabel, SetHeader } from "./ArmorSetView";
 import { weaponTypesFor } from "@/lib/weapon-suggest";
+import SetWishlistButton from "./SetWishlistButton";
 import Sheet from "./Sheet";
 import WeaponSuggestions from "./WeaponSuggestions";
 
@@ -141,6 +142,7 @@ export default function ResultView({
           <SkillLine set={set} wanted={wanted} />
         </div>
       </div>
+      <SetWishlistButton set={set} />
       <PieceSheet
         piece={picked?.piece ?? null}
         alternatives={picked ? (set.alternatives[picked.index] ?? []) : []}
