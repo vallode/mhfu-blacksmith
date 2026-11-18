@@ -711,16 +711,3 @@ img {
     animation-duration: 120ms;
   }
 }
-
-.blacksmith__title {
-  flex: 0 0 0%;
-  height: auto;
-  max-height: 5.2rem;
-  max-width: 51rem;
-  width: 100%;
-
-  img {
-    width: 100%;
-    height: auto;
-  }
-}

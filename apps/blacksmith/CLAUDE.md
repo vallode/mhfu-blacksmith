@@ -26,7 +26,7 @@ Styling is Tailwind CSS v4. `src/app/globals.css` is the only stylesheet.
   `progress.ts`, `set-builder.ts`).
 - **`globals.css` holds only what utilities can't express:** design tokens
   (`@theme`), custom utilities (`@utility`), element resets, and the few
-  global layout classes (`.split-page`, `.list-row`, `.blacksmith__title`).
+  global layout classes (`.split-page`, `.list-row`).
 - **Style elements directly; avoid descendant selectors.** Descendant variants
   (`[&_th]:text-warm`) are fine where the markup is generated in loops, as in
   the tables.
