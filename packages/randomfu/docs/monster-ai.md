@@ -42,11 +42,14 @@ found: the `emNN.ovl` name strings are in the EBOOT (EU file offset
 
 ## Roots and tables
 
-A root is up to 20 table pointers (fewer when the monster calls no high
-sub-script group; other data follows). Each table lists script entry points:
+A root is a list of table pointers: 20 for most monsters, more where
+`82 a n` uses a group above 4 (Kirin, Diablos, Congalala and Cephadrome go
+up to `82 09`), fewer when the monster calls no high group; other data
+follows. Each table lists script entry points:
 
 - `+0`: by the monster's state (`+0x500`).
 - `+4`: for op `81 n`, which sets `+0x51C` and jumps (0x09ABA9F8).
+- `+8`: for op `0F` (approach), `+0x14` and `+0x18` for op `17` (roam).
 - `+0x3C + 4a`: for op `82 a n`, a sub-script call; the resume point is
   saved at `+0x4F4` (0x09ABAA38).
 
@@ -56,16 +59,22 @@ sub-script group; other data follows). Each table lists script entry points:
 opcodes dispatched by a compare chain; each handler is
 `(monster, pc + 1) -> new pc`. The instruction length routine is at
 0x09AB7758 and skip-to-marker at 0x09AB7628. A full parser would use those;
-randomfu reads by pattern instead (below).
+randomfu reads by pattern instead (below). The length routine reads
+`80 00 N` and the first `80 1 w` as one 6-byte instruction; 82 opcodes have
+fixed lengths there and 48 depend on their first operand. Stepping over a
+script one byte at a time misreads the operands of ops like `17` as
+`05 g i 00`: the classification below runs the game's routine in unicorn.
 
-| Op          | What                                                                                                                                        |
-| ----------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
-| `80 00 N`   | Weighted random choice: N entries `80 k w <body>`, then `80 FF`. Roll `+0x322 & 0x1F` (0–31), walk the weights.                             |
-| `05 g i 00` | Start action `i` of group `g` (handler 0x09AB52A4 → 0x09AC89F0 → the monster's vtable `+0x88`); 0x09AB73D0 saves the resume pc at `+0x4CC`. |
-| `06 a b c`  | Sets `+0x506`/`+0x508`/`+0x504`: a mode (0, 2 or 9 while unaware, 1 once it's fighting), not the move.                                      |
-| `81 n`      | Jump through the `+4` table.                                                                                                                |
-| `82 a n`    | Call through the `+0x3C + 4a` table.                                                                                                        |
-| `FF`        | End.                                                                                                                                        |
+| Op             | What                                                                                                                                        |
+| -------------- | ------------------------------------------------------------------------------------------------------------------------------------------- |
+| `80 00 N`      | Weighted random choice: N entries `80 k w <body>`, then `80 FF`. Roll `+0x322 & 0x1F` (0–31), walk the weights.                             |
+| `05 g i 00`    | Start action `i` of group `g` (handler 0x09AB52A4 → 0x09AC89F0 → the monster's vtable `+0x88`); 0x09AB73D0 saves the resume pc at `+0x4CC`. |
+| `06 a b c`     | Sets `+0x506`/`+0x508`/`+0x504`: a mode (0, 2 or 9 while unaware, 1 once it's fighting), not the move.                                      |
+| `81 n`         | Jump through the `+4` table.                                                                                                                |
+| `82 a n`       | Call through the `+0x3C + 4a` table.                                                                                                        |
+| `0F a b c d e` | Approach the hunter (0x09ABD530): runs script `d` of the `+8` table, which walks and turns (actions like 1.0 and 1.1), then resumes.        |
+| `17 a b c d`   | Roam between map points (0x09ABD6C0): list `a` of the `+0x14` table names the points; each step runs script `c` of the `+0x18` table.       |
+| `FF`           | End.                                                                                                                                        |
 
 3,412 of about 3,500 `80 00 N` choices on the disc have weights that add up
 to exactly 32. The randomizer edits a choice only if its entries come in
@@ -128,6 +137,10 @@ from the motions it plays:
 - **No attack** (`-`): nothing with power. Roars, wind pressure and
   tremors are rows of the shared effect table (types 5, 6, 7, 0x13, 0x1D)
   with power 0.
+- em54's own object 0x09D1A2E0 (kind 0x1D), spawned by actions 1.7 and
+  1.18 of Kushala Daora, Lunastra and Teostra, counts as an attack although
+  it has no row: it is most likely the aura (wind, or fire for Teostra and
+  Lunastra), and favouring it is aggressive.
 
 This was worked out for every species by static analysis (capstone and
 unicorn): from the start-action method to the group and id handlers, the
@@ -152,15 +165,18 @@ that mattered:
   the motion player (Kelbi's 0x09ADBF50); those count as the player.
 
 A choice entry is an attack if its body starts an attack action, directly
-or through a sub-script, and unknown if any action it reaches is
-unresolved or a sub-script it calls can't be read.
+or through a sub-script (`81`, `82`, and the movement scripts of `0F` and
+`17`), and unknown if any action it reaches is unresolved or a sub-script
+it calls can't be read. Many of Kirin's, Diablos's and Congalala's choices
+pick only how to approach (`82` into a `0F`); the move follows the choice,
+so they're no-attack choices, not missing data.
 
 The drome result matches the Giadrome fight logged in PPSSPP: every hit
 came during motions 21, 22 or 25, which only group 3 plays, and group 1
 (walking and turning) spawns nothing. Group 3 isn't attacks for everyone:
 Rathian's are spread over groups 0 to 4 and 6, for example.
 
-Of the 3,355 choices randomfu edits, 3,216 are fully classified and 2,114
+Of the 3,355 choices randomfu edits, 3,317 are fully classified and 2,158
 of those mix attacks with other moves. "Attack weight" is the share of the
 32 that mixed choices give attacks now; "Attack/trample" counts the
 species' actions of each kind.
@@ -169,17 +185,17 @@ species' actions of each kind.
 | --------- | ---------------------------------------- | ------: | ---------: | ----: | ------------: | ---------------------: |
 | game_task | Velocidrome, Gendrome, Iodrome, Giadrome |     226 |        226 |   114 |           57% |                   12/0 |
 | game_task | Velociprey, Genprey, Ioprey, Giaprey     |      28 |         28 |    21 |           59% |                    9/2 |
-| game_task | Shogun and Terra Shogun Ceanataur        |      99 |         95 |    60 |           56% |                   25/0 |
-| game_task | Daimyo and Plum Daimyo Hermitaur         |      77 |         69 |    42 |           90% |                   33/0 |
+| game_task | Shogun and Terra Shogun Ceanataur        |      99 |         99 |    60 |           56% |                   25/0 |
+| game_task | Daimyo and Plum Daimyo Hermitaur         |      77 |         77 |    42 |           90% |                   33/0 |
 | game_task | Hermitaur, Ceanataur                     |      24 |         24 |    10 |           88% |                   19/0 |
 | game_task | Shakalaka, King Shakalaka                |      38 |         38 |    31 |           82% |                   22/0 |
 | game_task | Blangonga, Rajang, Blango                |      72 |         72 |    31 |           91% |                   69/0 |
 | game_task | Copper Blangonga                         |      81 |         81 |    36 |           89% |                   69/0 |
-| game_task | Furious Rajang                           |      92 |         91 |    41 |           88% |                   50/0 |
-| game_task | Congalala, Emerald Congalala             |      21 |         15 |    11 |           50% |                   53/0 |
+| game_task | Furious Rajang                           |      92 |         92 |    41 |           88% |                   50/0 |
+| game_task | Congalala, Emerald Congalala             |      21 |         21 |    11 |           50% |                   53/0 |
 | game_task | Conga                                    |       7 |          7 |     6 |           47% |                   50/0 |
 | game_task | Bulldrome                                |      19 |         16 |     2 |           61% |                    6/0 |
-| game_task | Cephadrome, Cephalos                     |      32 |         22 |    10 |           62% |                   26/6 |
+| game_task | Cephadrome, Cephalos                     |      32 |         32 |    10 |           62% |                   26/6 |
 | game_task | Vespoid, Hornetaur, Vespoid Queen        |      32 |         24 |    15 |           42% |                    7/0 |
 | game_task | Kelbi, Anteka                            |       7 |          7 |     1 |           88% |                    6/0 |
 | game_task | Other small monsters and Felynes         |      63 |         53 |    24 |        25–37% |                        |
@@ -188,17 +204,17 @@ species' actions of each kind.
 | em02      | Crimson Fatalis                          |      31 |         22 |    10 |           91% |                   60/0 |
 | em02      | White Fatalis                            |      33 |         26 |    10 |           89% |                   60/0 |
 | em07      | Lao-Shan Lung, Ash Lao-Shan Lung         |      10 |         10 |     1 |           38% |                   23/0 |
-| em14      | Diablos, Monoblos and their variants     |     163 |        159 |   148 |           76% |                  28/14 |
+| em14      | Diablos, Monoblos and their variants     |     163 |        163 |   148 |           76% |                  28/14 |
 | em15      | Khezu, Red Khezu                         |     108 |        108 |    86 |           66% |                   28/7 |
 | em17      | Gravios, Black Gravios, Basarios         |     139 |        139 |    20 |           86% |                   45/7 |
-| em20      | Yian Kut-Ku, Gypceros and their variants |     207 |        207 |   142 |           59% |                  37/28 |
-| em21      | Plesioth, Green Plesioth                 |      86 |         86 |    74 |           68% |                   13/7 |
-| em33      | Kirin                                    |     222 |        215 |   116 |           55% |                   16/0 |
-| em40      | Yian Garuga, Scarred Yian Garuga         |     324 |        321 |   284 |           60% |                  25/22 |
-| em54      | Kushala Daora, Rusted Kushala Daora      |     150 |        119 |    98 |           63% |                   50/0 |
-| em54      | Lunastra, Teostra                        |     151 |        127 |   103 |           47% |                   50/0 |
+| em20      | Yian Kut-Ku, Gypceros and their variants |     207 |        207 |   142 |           62% |                  37/28 |
+| em21      | Plesioth, Green Plesioth                 |      86 |         86 |    66 |           71% |                   13/7 |
+| em33      | Kirin                                    |     222 |        222 |   116 |           55% |                   16/0 |
+| em40      | Yian Garuga, Scarred Yian Garuga         |     324 |        324 |   285 |           61% |                  25/22 |
+| em54      | Kushala Daora, Rusted Kushala Daora      |     150 |        150 |   125 |           69% |                   52/0 |
+| em54      | Lunastra, Teostra                        |     151 |        151 |   127 |           56% |                   52/0 |
 | em55      | Shen Gaoren                              |       3 |          3 |     0 |               |                   30/0 |
-| em58      | Yama Tsukami                             |      22 |         19 |    12 |           71% |                   17/0 |
+| em58      | Yama Tsukami                             |      22 |         22 |    12 |           71% |                   17/0 |
 | em59      | Chameleos                                |      29 |         29 |    15 |           68% |                   16/0 |
 | em75      | Tigrex                                   |      39 |         39 |     9 |           62% |                  111/0 |
 | em75      | Nargacuga                                |      36 |         36 |    15 |           73% |                  111/0 |
@@ -211,12 +227,9 @@ Caveats:
 - Only 2 shared choices disagree between the species sharing them (both
   Hermitaur against Ceanataur). An option should still change a shared
   choice only where every species sharing it agrees.
-- What's left unknown: the elder dragons' actions 1.7 and 1.18 (em54's
-  own wind object, kind 0x1D, 0x09D1A2E0, with no row table found; likely
-  the wind aura), Great Thunderbug, and sub-scripts whose tables don't read
-  (most of Cephadrome's and some of Kirin's, Diablos's, Congalala's and the
-  crabs').
-- Trample is a heuristic (above), and nothing here has been played.
+- What's left unknown (38 choices): Great Thunderbug, Fatalis's family
+  (an action each), the Vespoid family and Bulldrome (unresolved actions).
+- Trample is a heuristic (above).
 
 The per-species action and choice classification
 (`monster-attack-choices.json`: each species' actions as `A`/`t`/`-`/`?`
@@ -232,11 +245,11 @@ addresses, so the classification can be keyed by file and choice order.
 ## More aggressive monsters
 
 An option that moves weight from non-attack to attack entries is doable
-for the 2,114 mixed choices: keep the 32, keep every entry at 1 or more,
+for the 2,158 mixed choices: keep the 32, keep every entry at 1 or more,
 and leave alone any choice with an unknown entry or one that species
 sharing it disagree on. That now covers nearly every large monster,
 including the elder dragons, Rajang, Congalala and Hypnocatrice; the
-weakest are Cephadrome and Bulldrome. It needs the classification in the
+weakest is Bulldrome. It needs the classification in the
 randomizer as data, keyed by file and choice order and checked against the
 disc's weights, since it can't be worked out without a disassembler.
 Before building it, play an attack-heavy test disc for a few species, one
