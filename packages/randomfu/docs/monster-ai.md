@@ -34,8 +34,9 @@ doesn't say which file holds it. The randomizer takes the monster's own
 `emNN.ovl` if the root reads there (Lao-Shan Lung's roots read as roots in
 em33 too, with no choices), or else the one overlay where every root reads.
 Basarios and Black Gravios read in both em17 and em83; their class code
-(below) is in em17, Gravios's, and their roots are Gravios's, so they take
-em17 (`SCRIPT_OVERLAY`). The game's own emID-to-overlay load table wasn't
+(below) is in em17, Gravios's, and their roots are Gravios's on the EU and
+FUC discs, so they take em17 (mhfu-extract `monsters/families.ts`, which
+`monsters/collision.ts` uses too). The game's own emID-to-overlay load table wasn't
 found: the `emNN.ovl` name strings are in the EBOOT (EU file offset
 0x1D0425) with no pointer to them.
 
@@ -173,20 +174,27 @@ of those mix attacks with other moves. "Attack weight" is the share of the
 Caveats:
 
 - Species that share a choice can disagree, because their classes differ:
-  93 choices, 67 of them Lunastra's against Teostra's (Teostra's attacks
-  there are unresolved), 24 in the Blangonga/Rajang scripts, 2 between
+  93 choices, 67 of them Lunastra's against Teostra's (Lunastra has an
+  attack where Teostra's same action spawns nothing found, so either their
+  classes differ or a Teostra spawn is missed), 24 in the Blangonga/Rajang scripts, 2 between
   Hermitaur and Ceanataur. An option should change a shared choice only
   where every species sharing it agrees.
-- The elder dragons (em54), Rajang, Congalala, Cephadrome and Kelbi have
-  the most unknowns: their attacks come from the computed-row factories.
+- The elder dragons (em54), Rajang, Congalala and Cephadrome have the most
+  unknowns, mostly from the computed-row factories. Kelbi and Anteka's
+  (1 of 7 classified) are motions picked by a computed record index
+  instead.
 - Low attack counts (Yian Kut-Ku and Gypceros, 3 attack actions; Hypnocatrice,
   none resolved) are probably missed spawns rather than harmless monsters;
   check those in game before relying on them.
 
-The per-species action and choice classification, and the Python scripts
-that made it, are outside the repo (left with the session notes) since they
-need a disassembler; rerunning them needs capstone, unicorn and an unpacked
-disc.
+The per-species action and choice classification
+(`monster-attack-choices.json`: each species' actions and choices as
+`A`/`-`/`?` strings, keyed by the choice's vaddr) and the Python scripts
+that made it (`monster-attack-scripts.tgz`) are outside the repo, since
+they need a disassembler: in
+`~/Library/Application Support/Claude/side-session-notes/local_9a5921b3-efe4-4424-aa07-046a21f9d4f7/`
+on the machine this was done on. Rerunning them needs capstone, unicorn
+and an unpacked EU disc.
 
 ## More aggressive monsters
 

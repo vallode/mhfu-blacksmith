@@ -872,8 +872,8 @@ rerolls the weights of the monsters' AI choices. Monster AI is bytecode in
   `game_task.ovl` or the family's `emNN.ovl`. The emNN overlays share one
   load address, so a root goes to the monster's own overlay if it reads
   there, or else the one overlay where all its roots read. Basarios and
-  Black Gravios read in em17 and em83; their class code is Gravios's, so
-  they take em17 and change with Gravios.
+  Black Gravios read in em17 and em83; their class code and roots are
+  Gravios's, so they take em17 and change with Gravios.
 - A root is up to 20 table pointers to script entry points. `80 00 N` is a
   weighted choice: N entries `80 k w <body>`, then `80 FF`; the game rolls
   0 to 31 and walks the weights, which add up to 32.

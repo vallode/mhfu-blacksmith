@@ -10,7 +10,7 @@
  *   script roots, one picked per map. The scripts are in `game_task.ovl` or
  *   in the monster family's `emNN.ovl`. Those overlays all load at one
  *   address, so a root is matched to the monster's own overlay (Basarios and
- *   Black Gravios: em17, `SCRIPT_OVERLAY`), or the one
+ *   Black Gravios: em17, mhfu-extract `familyOverlayId`), or the one
  *   overlay where every root it has reads as one; monsters that match more
  *   than one, or none, are left alone.
  * - A root is 20 table pointers to script entry points: `+0` by the
@@ -29,6 +29,7 @@
  * share scripts (the dromes, Rathian and Rathalos...) change together.
  */
 import { OVL_HEADER_SIZE, type OvlFile } from "mhfu-extract/src/container/ovl.js";
+import { familyOverlayId } from "mhfu-extract/src/monsters/families.js";
 import {
   MONSTER_CHUNK_COUNT,
   MONSTER_CHUNK_SIZE,
@@ -49,16 +50,6 @@ export const AI_ROOT_LAST = 19;
 export const ROOT_TABLES = 20;
 /** The roll is `0`…`31`. */
 export const CHOICE_TOTAL = 32;
-
-/**
- * Species whose scripts are in another family's overlay: Basarios and Black
- * Gravios run Gravios's class and scripts in `em17.ovl` (their roots also
- * read in em83). Found from the species class vtables (`docs/monster-ai.md`).
- */
-export const SCRIPT_OVERLAY: ReadonlyMap<number, number> = new Map([
-  [22, 17],
-  [47, 17],
-]);
 
 /** How far a choice's entry is searched for after the one before it. */
 const MAX_ENTRY = 0x140;
@@ -190,6 +181,23 @@ export interface ScriptFile {
 }
 
 /**
+ * The `emNN.ovl` (emID and file) that holds a monster's roots outside
+ * `game_task.ovl`: its own or its family's if `reads`, else the only one that
+ * does. Null when none or several do.
+ */
+export function scriptOverlay(
+  emId: number,
+  emOverlays: ReadonlyMap<number, LoadedOverlay>,
+  reads: (file: LoadedOverlay) => boolean,
+): readonly [number, LoadedOverlay] | null {
+  const ownId = familyOverlayId(emId);
+  const own = emOverlays.get(ownId);
+  if (own && reads(own)) return [ownId, own];
+  const holders = [...emOverlays].filter(([, f]) => reads(f));
+  return holders.length === 1 ? holders[0]! : null;
+}
+
+/**
  * Each monster's AI roots, by the overlay that holds them, and the monsters
  * whose overlay couldn't be told.
  */
@@ -223,15 +231,12 @@ export function locateScripts(
     }
     if (!elsewhere.length) continue;
     const reads = (file: LoadedOverlay) => elsewhere.every((r) => readRoot(file.ovl, r));
-    const ownId = SCRIPT_OVERLAY.get(emId) ?? emId;
-    const own = emOverlays.get(ownId);
-    const holders =
-      own && reads(own) ? [[ownId, own] as const] : [...emOverlays].filter(([, f]) => reads(f));
-    if (holders.length !== 1) {
+    const holder = scriptOverlay(emId, emOverlays, reads);
+    if (!holder) {
       unknown.push(emId);
       continue;
     }
-    const [id, file] = holders[0]!;
+    const [id, file] = holder;
     for (const root of elsewhere) add(file, `em${String(id).padStart(2, "0")}.ovl`, emId, root);
   }
   const ordered = [...files.values()].sort((a, b) => a.file.index - b.file.index);

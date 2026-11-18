@@ -6,8 +6,10 @@ import {
   ROOT_TABLES,
   findChoices,
   rerollWeights,
+  scriptOverlay,
   splitWeights,
 } from "../src/shuffles/monster-ai.js";
+import type { LoadedOverlay } from "../src/game/load.js";
 import { Rng } from "../src/rng.js";
 
 const BASE = 0x09a5f200;
@@ -96,5 +98,36 @@ test("with no spread, weights stay as they were", () => {
   assert.deepEqual(
     rerollWeights([12, 7, 7, 2, 4], () => 1),
     [12, 7, 7, 2, 4],
+  );
+});
+
+test("a monster's scripts go to its own or family overlay first, else the only one that reads", () => {
+  const file = (index: number) => ({ index }) as unknown as LoadedOverlay;
+  const em17 = file(17);
+  const em83 = file(83);
+  const em01 = file(1);
+  const overlays = new Map([
+    [1, em01],
+    [17, em17],
+    [83, em83],
+  ]);
+  const both = (f: LoadedOverlay) => f === em17 || f === em83;
+  // Basarios (22) and Black Gravios (47) read in em17 and em83; Gravios's em17 is theirs.
+  assert.deepEqual(scriptOverlay(22, overlays, both), [17, em17]);
+  assert.deepEqual(scriptOverlay(47, overlays, both), [17, em17]);
+  // Anyone else reading in two is left alone; reading in one takes that one.
+  assert.equal(scriptOverlay(7, overlays, both), null);
+  assert.deepEqual(
+    scriptOverlay(7, overlays, (f) => f === em83),
+    [83, em83],
+  );
+  // The own overlay wins even when another reads too.
+  assert.deepEqual(
+    scriptOverlay(1, overlays, () => true),
+    [1, em01],
+  );
+  assert.equal(
+    scriptOverlay(1, overlays, () => false),
+    null,
   );
 });
