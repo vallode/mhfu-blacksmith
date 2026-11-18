@@ -72,8 +72,11 @@ function weaponNode(weapon: Row, own: Row[], sibling: Row[], placed: Set<string>
     rarity: weapon.rarity,
   };
   if (weapon.color) node.color = weapon.color;
-  // TODO: Adjust to use both elements in dual element weapons.
-  if (weapon.elements) node.element = weapon.elements[0].name.toLowerCase();
+  if (weapon.elements?.length) {
+    const elements = weapon.elements.map((e) => e.name.toLowerCase());
+    node.element = elements[0];
+    if (elements.length > 1) node.elements = elements;
+  }
 
   if (placed.has(weaponKey(weapon))) {
     node.alias = true;

@@ -87,7 +87,10 @@ export interface WeaponTreeNode {
   type: string;
   rarity?: number;
   color?: string;
+  /** The weapon's element, lower-case ("fire"); the first one of a dual-element weapon. */
   element?: string;
+  /** Every element of a dual-element weapon, in order; absent for one element or none. */
+  elements?: string[];
   /** Earliest quest progress needed to make it; absent when no route is known. */
   min_rank?: MinRank;
   /** Armor only: defence at the highest upgrade level. */
