@@ -168,7 +168,7 @@ export const items = {
     materials: "Materials",
     whereToGo: "Where to go",
     empty:
-      "Nothing on your wishlist yet. Press the star beside a weapon, armor piece or decoration's name to add it, and its materials add up here with where to get them. The wishlist is kept in this browser.",
+      "Nothing on your wishlist yet. Press the star beside a weapon, armor piece or decoration's name to add it, or add a whole set from the Set builder, and its materials add up here with where to get them. The wishlist is kept in this browser.",
     loadError: "Couldn't load the wishlist's gear.",
     retry: "Try again",
     whereToGoNote: "The monsters and maps that give the most of the materials you still need.",

@@ -11,7 +11,15 @@
  */
 import { useCallback, useSyncExternalStore } from "react";
 import { ARMOR_RANKS, ARMOR_SLOTS, WEAPON_TYPES } from "./constants";
-import { entryKey, MAX_DECORATION_COUNT, type GearRef, type WishlistEntry } from "./wishlist";
+import {
+  addEntries,
+  entryKey,
+  hasAll,
+  MAX_DECORATION_COUNT,
+  type GearRef,
+  type GearWant,
+  type WishlistEntry,
+} from "./wishlist";
 
 const KEY = "wishlist";
 /** Sent on this window when the list changes here (other tabs get `storage`). */
@@ -127,7 +135,7 @@ export function toggleEntry(entries: WishlistEntry[], ref: GearRef): [WishlistEn
   if (entries.some((e) => entryKey(e) === key)) {
     return [entries.filter((e) => entryKey(e) !== key), false];
   }
-  return [[{ ...ref, addedAt: Date.now() } as WishlistEntry, ...entries], true];
+  return [addEntries(entries, [ref])[0], true];
 }
 
 export interface Wishlist {
@@ -136,6 +144,14 @@ export interface Wishlist {
   has(ref: GearRef): boolean;
   /** Adds or removes the gear; false if storage refused the write. */
   toggle(ref: GearRef): boolean;
+  /** Whether every wanted gear is listed, each decoration at least as many times. */
+  hasAll(wants: readonly GearWant[]): boolean;
+  /**
+   * Adds every wanted gear not listed and raises listed decorations to the
+   * count wanted (see `addEntries`). How many entries changed, or null if
+   * storage refused the write.
+   */
+  addAll(wants: readonly GearWant[]): number | null;
   /** Changes an entry's recipe, starting weapon or (decorations) count. */
   update(
     key: string,
@@ -154,6 +170,12 @@ export function useWishlist(): Wishlist {
     [list],
   );
   const toggle = useCallback((ref: GearRef) => writeWishlist(toggleEntry(snapshot(), ref)[0]), []);
+  const hasAllOf = useCallback((wants: readonly GearWant[]) => hasAll(list, wants), [list]);
+  const addAll = useCallback((wants: readonly GearWant[]) => {
+    const [next, changed] = addEntries(snapshot(), wants);
+    if (changed === 0) return 0;
+    return writeWishlist(next) ? changed : null;
+  }, []);
   const update = useCallback<Wishlist["update"]>((key, patch) => {
     // A count the list wouldn't read back would drop the whole entry.
     if (patch.count !== undefined && !isCount(patch.count)) return;
@@ -168,5 +190,5 @@ export function useWishlist(): Wishlist {
     writeWishlist([], false);
   }, []);
 
-  return { entries, has, toggle, update, remove, clear };
+  return { entries, has, toggle, hasAll: hasAllOf, addAll, update, remove, clear };
 }
