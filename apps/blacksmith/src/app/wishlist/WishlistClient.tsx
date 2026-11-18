@@ -52,13 +52,14 @@ import type { ArmorPiece, Decoration, Weapon } from "@/lib/types";
 import {
   armorSteps,
   bestDestinations,
+  decorationNeed,
   decorationSteps,
   defaultRecipe,
   entryCount,
   entryHref,
-  MAX_DECORATION_COUNT,
   entryKey,
   itemWays,
+  MAX_DECORATION_COUNT,
   recipesOf,
   totalCost,
   totalMaterials,
@@ -253,17 +254,14 @@ function resolveRows(
     if (!found) return row;
     row.recipes = recipesOf(found);
     if (entry.kind === "decoration") {
-      // Jewels set in equipment don't count: taking one out breaks it.
       const deco = found as Decoration;
       const id = deco.item_id;
       row.have = items && id !== undefined ? (items.get(id) ?? 0) : null;
-      row.owned = row.have !== null && row.have >= row.count;
+      const { toMake, owned: enough } = decorationNeed(row.count, row.have);
+      row.owned = enough;
       row.recipe =
         entry.recipe && row.recipes.includes(entry.recipe) ? entry.recipe : defaultRecipe(found);
-      if (row.recipe) {
-        const toMake = row.count - Math.min(row.count, row.have ?? 0);
-        row.steps = decorationSteps(deco, href, row.recipe, toMake);
-      }
+      if (row.recipe) row.steps = decorationSteps(deco, href, row.recipe, toMake);
       return row;
     }
     if (entry.kind === "armor") {
@@ -325,12 +323,11 @@ export default function WishlistClient() {
     [showMaterialCounts, save],
   );
   const ownedGear = useMemo(() => (ids && save ? ownedHrefs(ids, save) : null), [ids, save]);
-  // Decorations are owned like gear, whatever the material counts preference.
-  const boxItems = useMemo(() => ownedItemCounts(save), [save]);
 
+  // Jewels are items: counted from the item box only when material counts are on.
   const rows = useMemo(
-    () => (entries && gear ? resolveRows(entries, gear, ownedGear, boxItems) : null),
-    [entries, gear, ownedGear, boxItems],
+    () => (entries && gear ? resolveRows(entries, gear, ownedGear, owned) : null),
+    [entries, gear, ownedGear, owned],
   );
 
   const plan = useMemo(() => {
@@ -573,7 +570,7 @@ function DecorationCount({ row, wishlist }: { row: GearRow; wishlist: Wishlist }
         −
       </button>
       <span className="w-cells-4 text-center text-sub text-white tabular-nums" aria-live="polite">
-        ×{formatNumber(count)}
+        {tw.countValue(formatNumber(count))}
       </span>
       <button
         type="button"
@@ -626,7 +623,7 @@ function GearRecipe({
   const { formatNumber } = useLocale();
   const { recipes, recipe, ancestors, from, steps, have } = row;
   if (!recipe) return <p className={ui.note}>{tw.noRecipe}</p>;
-  const cost = steps.reduce((s, st) => s + st.cost, 0);
+  const cost = totalCost([{ steps }]);
   return (
     <div className="flex flex-col gap-[0.6rem] text-fine text-white/60">
       <div className="flex flex-wrap items-center gap-x-[1.2rem] gap-y-[0.6rem]">
@@ -671,11 +668,13 @@ function GearRecipe({
           </label>
         )}
         {have !== null && have > 0 && (
-          <span>{tw.inBox(formatNumber(have), formatNumber(steps.length))}</span>
+          <span>
+            {tw.inBox(formatNumber(have), formatNumber(decorationNeed(row.count, have).toMake))}
+          </span>
         )}
         <span className="ml-auto text-white">{zenny(cost)}</span>
       </div>
-      {row.entry.kind === "weapon" && steps.length > 1 && (
+      {steps.length > 1 && (
         <ol className="m-0 flex list-none flex-wrap gap-x-[0.6rem] gap-y-[0.2rem] p-0 whitespace-normal">
           {steps.map((s, i) => (
             <li key={i}>

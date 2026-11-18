@@ -183,6 +183,8 @@ export const items = {
       `Your hunter has ${have} in their item box already, so its materials are left out.`,
     /** A decoration's count: how many jewels to have. */
     countLabel: (name: string) => `How many ${name} to have`,
+    /** The count between − and +: "×3". */
+    countValue: (count: string) => `×${count}`,
     oneFewer: "One fewer",
     oneMore: "One more",
     /** Jewels set in equipment don't count: taking one out breaks it. */

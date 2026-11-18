@@ -150,6 +150,7 @@ export const items: Messages["items"] = {
     enoughNote: (have: string) =>
       `Tu cazador ya tiene ${have} en la caja de objetos, así que sus materiales no se cuentan.`,
     countLabel: (name: string) => `Cuántos ${name} tener`,
+    countValue: (count: string) => `×${count}`,
     oneFewer: "Uno menos",
     oneMore: "Uno más",
     inBox: (have: string, toMake: string) => `${have} en la caja de objetos · ${toMake} por crear`,

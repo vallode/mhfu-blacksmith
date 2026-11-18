@@ -165,8 +165,12 @@ export interface CraftStep {
   name: string;
   href: string;
   recipe: Recipe;
+  /** Per craft */
   cost: number;
+  /** Per craft */
   materials: Material[];
+  /** How many times it's made (decorations); unset, once */
+  times?: number;
 }
 
 /** A weapon up the tree from another, nearest first. */
@@ -254,15 +258,29 @@ export function armorSteps(piece: ArmorPiece, href: string, recipe: Recipe): Cra
   return [step(piece, href, recipe)];
 }
 
-/** A decoration's crafts by a recipe: one per jewel still to make (none for none). */
+/**
+ * How many of a decoration are still to make: the entry's count less the
+ * jewels free in the hunter's item box and pouch (`have`, null without a
+ * save). Jewels set in equipment don't count: taking one out breaks it.
+ * Owned once there are enough.
+ */
+export function decorationNeed(
+  count: number,
+  have: number | null,
+): { toMake: number; owned: boolean } {
+  const free = Math.max(0, have ?? 0);
+  return { toMake: Math.max(0, count - free), owned: have !== null && free >= count };
+}
+
+/** A decoration's craft by a recipe, made `count` times (none for none). */
 export function decorationSteps(
   deco: Decoration,
   href: string,
   recipe: Recipe,
   count: number,
 ): CraftStep[] {
-  const one = step(deco, href, recipe);
-  return Array.from({ length: Math.max(0, Math.floor(count)) }, () => one);
+  const times = Math.max(0, Math.floor(count));
+  return times > 0 ? [{ ...step(deco, href, recipe), times }] : [];
 }
 
 // ---------------------------------------------------------------------------
@@ -312,7 +330,7 @@ export function totalMaterials(
           };
           needs.set(key, need);
         }
-        need.amount += amount;
+        need.amount += amount * (s.times ?? 1);
         if (!need.for.includes(gear)) need.for.push(gear);
       }
     }
@@ -322,7 +340,10 @@ export function totalMaterials(
 
 /** Total zenny the crafts cost. */
 export function totalCost(crafts: { steps: CraftStep[] }[]): number {
-  return crafts.reduce((sum, c) => sum + c.steps.reduce((s, st) => s + st.cost, 0), 0);
+  return crafts.reduce(
+    (sum, c) => sum + c.steps.reduce((s, st) => s + st.cost * (st.times ?? 1), 0),
+    0,
+  );
 }
 
 // ---------------------------------------------------------------------------

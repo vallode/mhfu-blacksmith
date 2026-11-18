@@ -69,9 +69,25 @@ function readRaw(): string | null {
   }
 }
 
-export function writeWishlist(entries: WishlistEntry[]): boolean {
+/**
+ * The stored entries this build can't read, such as a newer build's kinds of
+ * gear. Writes keep them, so an older tab doesn't delete what a newer one added.
+ */
+export function unreadableEntries(raw: string | null): unknown[] {
   try {
-    localStorage.setItem(KEY, JSON.stringify(entries));
+    const parsed = JSON.parse(raw ?? "[]") as unknown;
+    if (!Array.isArray(parsed)) return [];
+    return parsed.filter((e) => typeof e === "object" && e !== null && !isEntry(e));
+  } catch {
+    return [];
+  }
+}
+
+/** Saves the list, after it the stored entries this build can't read unless `keepUnreadable` is false. */
+export function writeWishlist(entries: WishlistEntry[], keepUnreadable = true): boolean {
+  try {
+    const kept = keepUnreadable ? unreadableEntries(localStorage.getItem(KEY)) : [];
+    localStorage.setItem(KEY, JSON.stringify([...entries, ...kept]));
   } catch {
     return false;
   }
@@ -149,7 +165,7 @@ export function useWishlist(): Wishlist {
     writeWishlist(snapshot().filter((e) => entryKey(e) !== key));
   }, []);
   const clear = useCallback(() => {
-    writeWishlist([]);
+    writeWishlist([], false);
   }, []);
 
   return { entries, has, toggle, update, remove, clear };

@@ -14,6 +14,7 @@ import { buildWeaponTree } from "../src/lib/trees";
 import type { Decoration, Material, Weapon, WeaponTreeNode } from "../src/lib/types";
 import {
   bestDestinations,
+  decorationNeed,
   decorationSteps,
   defaultRecipe,
   entryCount,
@@ -28,7 +29,7 @@ import {
   weaponSteps,
   type MaterialNeed,
 } from "../src/lib/wishlist";
-import { parseWishlist, toggleEntry } from "../src/lib/wishlist-store";
+import { parseWishlist, toggleEntry, unreadableEntries } from "../src/lib/wishlist-store";
 
 const mat = (name: string, amount: number): Material => ({
   name,
@@ -119,6 +120,14 @@ describe("entries", () => {
       ["a", "c", "d", "e"],
     );
     assert.deepEqual(parseWishlist("not json"), []);
+  });
+
+  test("entries this build can't read are kept apart, to write back", () => {
+    const future = { kind: "palico-gear", slug: "x", addedAt: 1 };
+    const raw = JSON.stringify([{ kind: "weapon", type: "bow", slug: "a", addedAt: 1 }, future, 3]);
+    assert.deepEqual(unreadableEntries(raw), [future]);
+    assert.deepEqual(unreadableEntries("not json"), []);
+    assert.deepEqual(unreadableEntries(null), []);
     assert.deepEqual(parseWishlist(null), []);
   });
 });
@@ -199,9 +208,10 @@ describe("decorations", () => {
     assert.deepEqual(recipesOf({ ...jewel, create_mats: [] }), ["alt"]);
   });
 
-  test("one craft per jewel still to make", () => {
+  test("one craft, made once per jewel still to make", () => {
     const steps = decorationSteps(jewel, "/decorations/attack-jewel/", "create", 3);
-    assert.equal(steps.length, 3);
+    assert.equal(steps.length, 1);
+    assert.equal(steps[0].times, 3);
     assert.equal(totalCost([{ steps }]), 1200);
     const mats = totalMaterials([{ gear: jewel.name, steps }], () => undefined);
     assert.deepEqual(
@@ -216,6 +226,15 @@ describe("decorations", () => {
       ["Rathalos Scale"],
     );
     assert.deepEqual(decorationSteps(jewel, "", "create", 0), []);
+  });
+
+  test("jewels in the box count towards the wanted number", () => {
+    assert.deepEqual(decorationNeed(3, null), { toMake: 3, owned: false });
+    assert.deepEqual(decorationNeed(3, 0), { toMake: 3, owned: false });
+    assert.deepEqual(decorationNeed(3, 2), { toMake: 1, owned: false });
+    assert.deepEqual(decorationNeed(3, 3), { toMake: 0, owned: true });
+    assert.deepEqual(decorationNeed(3, 87), { toMake: 0, owned: true });
+    assert.deepEqual(decorationNeed(2, Infinity), { toMake: 0, owned: true });
   });
 });
 
